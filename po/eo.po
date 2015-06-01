@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 16:03+0200\n"
-"PO-Revision-Date: 2014-10-20 20:13+0200\n"
-"Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
+"PO-Revision-Date: 2014-11-08 13:21+0100\n"
+"Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -69,7 +69,7 @@ msgstr ""
 
 #: ../data/gramps.desktop.in.h:5
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr ""
+msgstr "Geneakogio;Familia historio;Esplorado;Genealogia Arbo;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"
@@ -106,8 +106,8 @@ msgid ""
 "different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-"<b>Labori per Datoj</b><br/>Oni povas doni intervalon de datoj utiligante "
-"laformaton &quot;inter la 4a de januaro 2000 kaj la 2a de marto 2003&quot;. "
+"<b>Labori per Datoj</b><br/>Oni povas doni intervalon de datoj utiligante la "
+"formaton &quot;inter la 4a de januaro 2000 kaj la 2a de marto 2003&quot;. "
 "Oni povas ankaŭ indiki la nivelon de konfido pri dato kaj eĉ elekti inter "
 "sep malsamaj kalendaroj. Provu la butonon apud la datkampo en la "
 "Eventoredaktilo."
@@ -807,7 +807,7 @@ msgid ""
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
 "<b>La 'Kielo kaj Kialo' de via genealogio</b><br/> Genealogio ne temas nur "
-"pri datoj kaj nomoj. Ĝi temas pri homoj. Estu priskribema. Inkludu kial "
+"pri datoj kaj nomoj. Ĝi temas pri homoj. Estu priskribema. Inkluzivu kial "
 "aferoj okazis kaj kiel praidoj povus esti formitaj de eventoj kiujn ili "
 "travivis. Rakontoj tre influas en la vivigo de la historio de familio."
 
@@ -920,14 +920,14 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Erar: Enigu Genealogia Arbo \"%s\" ne ekzistas\n"
+"Erar: Enigita Genealogia Arbo \"%s\" ne ekzistas\n"
 "Se temas pri GEDCOM, Gramps-xml aŭ grdb, uzu opcion -i por importi en "
 "Genealogian Arbon"
 
 #: ../gramps/cli/arghandler.py:249
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Eraro: Importu dosieron %s ne trovita."
+msgstr "Eraro: Importota dosiero %s ne trovita."
 
 #: ../gramps/cli/arghandler.py:267
 #, python-format
@@ -942,7 +942,7 @@ msgid ""
 "WARNING: It will be overwritten:\n"
 "   %s"
 msgstr ""
-"ATENTU: Eliga dosiero jam ekzistanta!\n"
+"ATENTU: Elira dosiero jam ekzistanta!\n"
 "ATENTU: Ĝi estos anstataŭgita:\n"
 "   %s"
 
@@ -1613,7 +1613,7 @@ msgstr "=dosiernomo"
 
 #: ../gramps/cli/plug/__init__.py:265
 msgid "Output file name. MANDATORY"
-msgstr "Eliga dosiernomo. DEVIGA"
+msgstr "Elira dosiernomo. DEVIGA"
 
 #: ../gramps/cli/plug/__init__.py:266
 msgid "=format"
@@ -1621,7 +1621,7 @@ msgstr "=formo"
 
 #: ../gramps/cli/plug/__init__.py:266
 msgid "Output file format."
-msgstr "Eliga dosierformo."
+msgstr "Elira dosierformo."
 
 #: ../gramps/cli/plug/__init__.py:267 ../gramps/cli/plug/__init__.py:268
 msgid "=name"
@@ -3816,7 +3816,7 @@ msgstr "Ekstraktas eventojn kongruajn kun la specifita filtrilnomo"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:566
 msgid "Include Family events:"
-msgstr "Inkludu familieventojn:"
+msgstr "Inkluzivu familieventojn:"
 
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
@@ -5023,7 +5023,8 @@ msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Ekstraktas personojn kiuj estas idoj aŭ geedzo de iu ekstraktita de filtrilo"
+"Ekstraktas personojn kiuj estas praidoj aŭ geedzo de iu ekstraktita de "
+"filtrilo"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
@@ -7405,7 +7406,7 @@ msgstr "Diversaj"
 #: ../gramps/gen/plug/_pluginreg.py:1130
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
-msgstr "ERARO: legado de kromprograma registriĝo fiaskis %(filename)s"
+msgstr "ERARO: legado de kromprograma registriĝo malsukcesis %(filename)s"
 
 #: ../gramps/gen/plug/_pluginreg.py:1113
 #, python-format
@@ -7660,8 +7661,8 @@ msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
-"La ordo laŭ kio oni eligos la paĝojn. Ĉi tiun opcion oni aplikas se la "
-"horizontalaj aŭ vertikalaj paĝoj estas pli grandaj ol 1."
+"La ordo laŭ kio eliros la paĝojn kun la grafikaĵoj. Ĉi tiun opcion oni "
+"aplikas se la horizontalaj aŭ vertikalaj paĝoj estas pli grandaj ol 1."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
@@ -7689,6 +7690,18 @@ msgid ""
 "the node spacing.\n"
 "  Expand will shrink the graph uniformly to fit the print area."
 msgstr ""
+"Efikas sur la nodaj interspaco kaj skalo de la grafikaĵo.\n"
+"Se la grafikaĵo estas pli malgranda ol la printzono:\n"
+"  La densigo ne ŝanĝos la nod-interspacon. \n"
+"  La plenigo pliigos la nod-interspacon ĝis adaptiĝo al la printzono kaj en "
+"larĝo kaj en alto.\n"
+"  La etendo pliigos la nod-interspacon unuforme por konservi la proporcion.\n"
+"Se la grafikaĵo estas pli larĝa ol la printzono:\n"
+"  La densigo ŝrumpos la grafikaĵon por atingi plimangrandan kunpremon "
+"perdante iom da simetrio.\n"
+"  La plenigo ŝrumpos la grafikaĵon ĝis adaptiĝo al la printzono post la "
+"komenca pliiĝo de nod-interspaco.\n"
+"  La etendo ŝrumpos unuforme la grafikaĵon ĝis adapto al la printzono."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:212
 msgid "DPI"
@@ -7964,11 +7977,11 @@ msgstr "Elektu la formon por montri la nomojn"
 #: ../gramps/gen/plug/report/stdoptions.py:96
 #, fuzzy
 msgid "Include data marked private"
-msgstr "Ne inkludu rikordojn markitajn privataj"
+msgstr "Ne inkluzivu rikordojn markitajn privataj"
 
 #: ../gramps/gen/plug/report/stdoptions.py:97
 msgid "Whether to include private data"
-msgstr "Ĉu inkludi privatajn datumojn"
+msgstr "Ĉu inkluzivi privatajn datumojn"
 
 #: ../gramps/gen/plug/report/utils.py:155
 #: ../gramps/plugins/textreport/indivcomplete.py:802
@@ -9558,7 +9571,7 @@ msgstr "ID-formoj"
 
 #: ../gramps/gui/configure.py:552
 msgid "Set the colors used for boxes in the graphical views"
-msgstr "Agordu la uzotajn kolorojn por la kadroj en la grafikaĵaj vidigoj"
+msgstr "Agordu la uzotajn kolorojn por la kadroj en la grafikaĵaj vidoj"
 
 #: ../gramps/gui/configure.py:554
 msgid "Gender Male Alive"
@@ -9864,11 +9877,10 @@ msgid "Change is not immediate"
 msgstr "La modifo ne estos tuja"
 
 #: ../gramps/gui/configure.py:1202
-#, fuzzy
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
-msgstr "Modifo de la datumformo ne funkcios ĝis restartigo de Gramps."
+msgstr "Modifo de la datformo ne funkcios ĝis venonta restartigo de Gramps."
 
 #: ../gramps/gui/configure.py:1216
 msgid "Date about range"
@@ -9966,7 +9978,7 @@ msgstr "Montru la ĉiutagan sugeston"
 
 #: ../gramps/gui/configure.py:1300
 msgid "Remember last view displayed"
-msgstr "Rememoru lastan vidigon montritan"
+msgstr "Rememoru lastan vidon montritan"
 
 #: ../gramps/gui/configure.py:1305
 msgid "Max generations for relationships"
@@ -11056,7 +11068,7 @@ msgstr "_Galerio"
 #: ../gramps/gui/editors/editperson.py:649
 #: ../gramps/plugins/view/mediaview.py:211
 msgid "View"
-msgstr "Rigardo"
+msgstr "Montru"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/plugins/view/mediaview.py:215
@@ -11324,8 +11336,9 @@ msgid "Alternative Names"
 msgstr "Alternativaj nomoj"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
+#, fuzzy
 msgid "Enclosed By"
-msgstr ""
+msgstr "Ligita al"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:141
 msgid "Place cycle detected"
@@ -11822,7 +11835,7 @@ msgid ""
 "updated. Some edits you have made may have been lost."
 msgstr ""
 "La %(object)s kiun oni redaktas estis modifita ekster ĉi tiu redkatilo. Tio "
-"devus dependi de unu modifo en uno en la ĉefaj vidoj, ekzemple fonto uzata "
+"devus dependi de unu modifo en unu en la ĉefaj vidoj, ekzemple fonto uzata "
 "ĉi tie estis forigita en la fontovido.\n"
 "Por certiĝi ke la informo montrita estas plu ĝusta, la montritaj datumoj "
 "estis aktualigitaj. Kelkaj modifoj kiujn oni faris, eble perdiĝis."
@@ -12732,7 +12745,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:561
 msgid "Include original person"
-msgstr "Inkludu originalan personon"
+msgstr "Inkluzivu originalan personon"
 
 #: ../gramps/gui/editors/filtereditor.py:563
 msgid "Use exact case of letters"
@@ -12752,7 +12765,7 @@ msgstr "Ankaŭ la familiaj eventojn kie persono estas geedzo"
 
 #: ../gramps/gui/editors/filtereditor.py:570
 msgid "Only include primary participants"
-msgstr "Inkludu nur ĉefajn partoprenantojn"
+msgstr "Inkluzivu nur ĉefajn partoprenantojn"
 
 #: ../gramps/gui/editors/filtereditor.py:594
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:76
@@ -13463,7 +13476,7 @@ msgstr "Privateco"
 #: ../gramps/gui/glade/editname.glade:563
 #: ../gramps/gui/glade/editplacename.glade:137
 msgid "Invoke date editor"
-msgstr "Lanĉu datredaktilon"
+msgstr "Envoku datredaktilon"
 
 #: ../gramps/gui/glade/editaddress.glade:346
 msgid "Date at which the address is valid."
@@ -13545,12 +13558,12 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 "Specifa loko kun la referencita informo. Por eldonita verko, tio povus "
-"inkludi la volumon de plurvoluma verko kaj la paĝonumero(j)n. Por magazino, "
-"tio povus inkludi la volumon, la numeron kaj la paĝnumerojn. Por ĵurnalo, "
-"tio povus inkludi kolumnonumeron kaj paĝnumeron, ktp. Por neeldonita fonto, "
-"tio povus esti folinumero, paĝnumero, kadronumero, ktp. Popolnombrada "
-"rikordo povua havi lininumeron aŭ loĝejo aŭ familinumerojn aldone de "
-"paĝnumero."
+"inkluzivi la volumon de plurvoluma verko kaj la paĝonumero(j)n. Por "
+"magazino, tio povus inkluzivi la volumon, la numeron kaj la paĝnumerojn. Por "
+"ĵurnalo, tio povus inkluzivi kolumnonumeron kaj paĝnumeron, ktp. Por "
+"neeldonita fonto, tio povus esti folinumero, paĝnumero, kadronumero, ktp. "
+"Popolnombrada rikordo povua havi lininumeron aŭ loĝejo aŭ familinumerojn "
+"aldone de paĝnumero."
 
 #: ../gramps/gui/glade/editcitation.glade:153
 msgid "_Volume/Page:"
@@ -13581,6 +13594,14 @@ msgid ""
 "High =Secondary evidence, data officially recorded sometime after event\n"
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
+"Komunikas la kvantan takson de la transendinto pri la fidindeco de parto de "
+"informo, bazita sur la graveco de la indico. Ĝi ne volas eviti al la "
+"ricevintoj kontroli mem la indicon.\n"
+"Tre malalta=Nefindidaj indico aŭ taksitaj datumoj\n"
+"Malalta=Diskutebla fidindeco de indico (intervjuoj, popolnombrado, parolaj "
+"genealogioj aŭ ebla nerekta informo, ekz. membiografio)\n"
+"Alta=Duaranga indico, datumoj oficiale registritaj post la evento\n"
+"Tre alta=Rekta kaj unuaranga indico aŭ kiu ne metas dubojn"
 
 #: ../gramps/gui/glade/editcitation.glade:227
 #: ../gramps/gui/glade/editevent.glade:312
@@ -14039,7 +14060,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editmediaref.glade:489
 msgid "Double click image to view in an external viewer"
-msgstr "Alklaku duoble la boldon por rigardi en ekstera vidigilo"
+msgstr "Alklaku duoble la bildon por rigardi en ekstera vidigilo"
 
 #: ../gramps/gui/glade/editmediaref.glade:534
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
@@ -14367,8 +14388,8 @@ msgstr ""
 "notacioj.\n"
 "Ekz., validaj valoroj estas 12.0154, 50°52′21.92″N, N50°52′21.92″ aŭ "
 "50:52:21.92\n"
-"Oni povas agordi ĉi tiujn valorojn per Geografia Vidigo serĉante la lokon aŭ "
-"per mapservo en la lokvidigo."
+"Oni povas agordi ĉi tiujn valorojn per Geografia Vido serĉante la lokon aŭ "
+"per mapservo en la lokvido."
 
 #: ../gramps/gui/glade/editplace.glade:177
 #: ../gramps/gui/glade/editplaceref.glade:408
@@ -14385,7 +14406,7 @@ msgstr ""
 "Ekz., validaj valoroj estas -124.3647, 124°52′21.92″E, E124°52′21.92″ aŭ "
 "124:52:21.92\n"
 "Oni povas agordi ĉi tiujn valorojn per Geografia Vidigo serĉante la lokon aŭ "
-"per mapservo en la lokvidigo."
+"per mapservo en la lokvido."
 
 #: ../gramps/gui/glade/editplace.glade:198
 #: ../gramps/gui/glade/editplaceref.glade:429
@@ -14411,7 +14432,7 @@ msgstr "La nomo de ĉi tiu loko"
 #: ../gramps/gui/glade/editplaceref.glade:551
 #, fuzzy
 msgid "Invoke place name editor."
-msgstr "Lanĉu datredaktilon"
+msgstr "Envoku datredaktilon"
 
 #: ../gramps/gui/glade/editplacename.glade:108
 msgid "Language:"
@@ -15341,12 +15362,11 @@ msgid "Select _None"
 msgstr "Elektu _neniun"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
 msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
-"Via versio de gi (gnome-instrospection) ŝajnas tro malnova. Necesas versio "
+"La versio de gi (gnome-instrospection) ŝajnas tro malnova. Necesas versio "
 "kiu havas la funkcion 'require_version' por startigi Gramps'on"
 
 #: ../gramps/gui/grampsgui.py:71
@@ -15365,7 +15385,6 @@ msgstr ""
 "Gramps ĉesos funkcii nun."
 
 #: ../gramps/gui/grampsgui.py:89
-#, fuzzy
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
@@ -15375,7 +15394,7 @@ msgid ""
 msgstr ""
 "Gdk, Gtk aŭ Pango typelib ne instalitaj.\n"
 "Instalu Gnome Introspection, kaj pygobject version 3.3.2 aŭ postan.\n"
-"Instalu tiam la datumojn introspection por Gdk, Gtk kaj Pango\n"
+"Instalu tiam la datumojn introspection por Gdk, Gtk, Pango kaj PangoCairo\n"
 "\n"
 "Gramps ĉesos funkcii nun."
 
@@ -15497,7 +15516,7 @@ msgstr ""
 "La asistanto faros al vi kelkajn demandojn kaj kolektos kelkajn informojn "
 "pri la eraro kiu okazis kaj la operaciuma ĉirkaŭaĵo. Ĉe la fino la asistanto "
 "petos sendi cimraporton per la cimspura sistemo de Gramps. La asistanto "
-"kopios la cimraporton en la tondujon tile oni povos alglui en la formularo "
+"kopios la cimraporton en la tondujon tiel oni povos alglui en la formularo "
 "de la cimspura retejo kaj tie kontroli kiun informon sendi kaj kiun ne."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:260
@@ -15528,7 +15547,7 @@ msgid ""
 "report."
 msgstr ""
 "Bv kontroli la informojn ĉi-malsupre kaj korekti kion vi taksas erara aŭ "
-"forigi cion kion oni preferas ne inkludi en la cimraporto."
+"forigi cion kion oni preferas ne inkluzivi en la cimraporto."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:383
 #: ../gramps/gui/logger/_errorreportassistant.py:409
@@ -15901,7 +15920,7 @@ msgstr "%(father_name)s kaj %(mother_name)s (%(family_id)s)"
 #: ../gramps/gui/plug/_guioptions.py:1219
 #, python-format
 msgid "Also include %s?"
-msgstr "Ĉu inkludi ankaŭ %s?"
+msgstr "Ĉu inkluzivi ankaŭ %s?"
 
 #: ../gramps/gui/plug/_guioptions.py:1221
 #: ../gramps/gui/selectors/selectperson.py:67
@@ -16043,7 +16062,7 @@ msgstr "Ŝarĝas helpprogramon"
 #: ../gramps/gui/plug/_windows.py:487
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
 msgid "Fail"
-msgstr "Fiasko"
+msgstr "Malsukceso"
 
 #: ../gramps/gui/plug/_windows.py:502 ../gramps/gui/widgets/grampletbar.py:529
 msgid "OK"
@@ -16116,7 +16135,7 @@ msgstr[1] "{number_of} helpprogramoj estis instalitaj"
 
 #: ../gramps/gui/plug/_windows.py:1200
 msgid "You need to restart Gramps to see new views."
-msgstr "Necesas restartigi Gramps'on por vidi la novajn vidigojn."
+msgstr "Necesas restartigi Gramps'on por vidi la novajn vidojn."
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "No addons were installed."
@@ -16133,7 +16152,7 @@ msgstr "Konservas viajn datumojn"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:224
 msgid "Choose the output format"
-msgstr "Elektu la eligan formon"
+msgstr "Elektu la eliran formon"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:238
 msgid "Export options"
@@ -16231,7 +16250,7 @@ msgstr "Dosiernomo: %s"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:508
 msgid "Saving failed"
-msgstr "Konservado fiaskis"
+msgstr "Konservado malsukcesis"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:510
 msgid ""
@@ -16277,6 +16296,7 @@ msgid "Error exporting your Family Tree"
 msgstr "Eraro dum la eksporto de via Geneaologia Arbo"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:55
+#, fuzzy
 msgid "Selecting Preview Data"
 msgstr "Elekto de antaŭvidotaj datumoj"
 
@@ -16300,11 +16320,11 @@ msgstr[1] "{number_of} Personoj"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:154
 msgid "Click to see preview of unfiltered data"
-msgstr "Alklaku por vidi antaŭrigardo de neflitritaj datumoj"
+msgstr "Alklaku por vidi antaŭrigardon de neflitritaj datumoj"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:166
 msgid "_Do not include records marked private"
-msgstr "_Ne inkludu registrojn markitajn kiel privatajn"
+msgstr "_Ne inkluzivu registrojn markitajn kiel privatajn"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:181
 #: ../gramps/gui/plug/export/_exportoptions.py:367
@@ -16392,7 +16412,7 @@ msgstr "Bv elekti malsaman redaktotan filtrilon"
 #: ../gramps/gui/plug/export/_exportoptions.py:682
 #: ../gramps/gui/plug/export/_exportoptions.py:707
 msgid "Include all selected people"
-msgstr "Inkludu ĉiujn elektitajn personojn"
+msgstr "Inkluzivu ĉiujn elektitajn personojn"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:696
 msgid "Include all selected notes"
@@ -16404,15 +16424,15 @@ msgstr "Anstataŭu antaŭnomojn de vivantoj"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:709
 msgid "Do not include living people"
-msgstr "Ne inkludu vivantojn"
+msgstr "Ne inkluzivu vivantojn"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:717
 msgid "Include all selected records"
-msgstr "Inkludu ĉiujn elektitajn rikordojn"
+msgstr "Inkluzivu ĉiujn elektitajn rikordojn"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:718
 msgid "Do not include records not linked to a selected person"
-msgstr "Ne inkludu rikordojn neligitajn al elektita persono"
+msgstr "Ne inkluzivu rikordojn neligitajn al elektita persono"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:94
 msgid "Web Connect"
@@ -16597,7 +16617,7 @@ msgstr "HTML-opcioj"
 #: ../gramps/gui/plug/report/_docreportdialog.py:170
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
 msgid "Output Format"
-msgstr "Eliga formato"
+msgstr "Elira formo"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:177
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:157
@@ -16913,7 +16933,7 @@ msgstr ""
 #: ../gramps/gui/spell.py:147
 #, python-format
 msgid "Spelling checker initialization failed: %s"
-msgstr "La pravalorizado de la literumada kontrolilo fiaskis: %s"
+msgstr "La pravalorizado de la literumada kontrolilo malsukcesis: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
 #: ../gramps/gui/tipofday.py:119 ../gramps/gui/viewmanager.py:500
@@ -16922,7 +16942,7 @@ msgstr "Tagsugesto"
 
 #: ../gramps/gui/tipofday.py:86
 msgid "Failed to display tip of the day"
-msgstr "Montro de la tagsugesto fiaskis"
+msgstr "Montro de la tagsugesto malsukcesis"
 
 #: ../gramps/gui/tipofday.py:87
 #, python-format
@@ -17050,7 +17070,7 @@ msgstr "_Finu"
 
 #: ../gramps/gui/viewmanager.py:479
 msgid "_View"
-msgstr "_Vidigu"
+msgstr "_Montru"
 
 #: ../gramps/gui/viewmanager.py:481
 msgid "_Preferences..."
@@ -17232,7 +17252,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:948
 msgid "View failed to load. Check error output."
-msgstr "Vidigo malsukcesi ŝargiĝi. Kontrolu la erar-eligon."
+msgstr "Vido malsukcesis ŝargiĝi. Kontrolu la erar-eligon."
 
 #: ../gramps/gui/viewmanager.py:1087
 msgid "Import Statistics"
@@ -17273,7 +17293,7 @@ msgstr "Aŭdvidaĵoj"
 #: ../gramps/plugins/textreport/indivcomplete.py:956
 #: ../gramps/plugins/webreport/narrativeweb.py:8205
 msgid "Include"
-msgstr "Inkludu"
+msgstr "Inkluzivu"
 
 #: ../gramps/gui/viewmanager.py:1287
 #: ../gramps/plugins/gramplet/statsgramplet.py:199
@@ -17321,7 +17341,7 @@ msgstr "Elektu sekurkopian dosierujon"
 
 #: ../gramps/gui/viewmanager.py:1598
 msgid "Failed Loading Plugin"
-msgstr "Kromprograma ŝargo fiaskis"
+msgstr "Kromprograma ŝargo malsukcesis"
 
 #: ../gramps/gui/viewmanager.py:1599
 #, fuzzy, python-format
@@ -17350,7 +17370,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1654
 msgid "Failed Loading View"
-msgstr "Vidigoŝargo fiaskis"
+msgstr "Vidoŝargo malsukcesis"
 
 #: ../gramps/gui/viewmanager.py:1655
 #, fuzzy, python-format
@@ -17366,11 +17386,11 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"La vido%(name)s nek ŝargis nek raportis eraron.\n"
+"La vido %(name)s nek ŝargis nek raportis eraron.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Se ne eblas mem ripari la misfunkcion oni povas sendi cimon alhttp://bugs."
+"Se ne eblas mem ripari la misfunkcion oni povas sendi cimon al http://bugs."
 "gramps-project.org aŭ kontakti la kromprograman aŭtoron "
 "(%(firstauthoremail)s).\n"
 "\n"
@@ -17403,7 +17423,7 @@ msgstr "_Kunfandu..."
 #: ../gramps/gui/views/listview.py:215
 #: ../gramps/plugins/lib/libpersonview.py:384
 msgid "Export View..."
-msgstr "Eksportu la vidigon..."
+msgstr "Eksportu la vidon..."
 
 #: ../gramps/gui/views/listview.py:221
 #: ../gramps/plugins/lib/libpersonview.py:369
@@ -17480,7 +17500,7 @@ msgstr "Kolumno alklakita, ordigas..."
 
 #: ../gramps/gui/views/listview.py:999
 msgid "Export View as Spreadsheet"
-msgstr "Eksportu la vidigon kiel kalkultabelon"
+msgstr "Eksportu la vidon kiel kalkultabelon"
 
 #: ../gramps/gui/views/listview.py:1012
 msgid "CSV"
@@ -17550,7 +17570,7 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
-"Necesas agordi 'defaŭltan personon'. Elektu la Personvidigon, elektu la "
+"Necesas agordi 'defaŭltan personon'. Elektu la Personvidon, elektu la "
 "personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per la "
 "menuero Redaktu -> Agordu Hejmpersonon."
 
@@ -17585,13 +17605,13 @@ msgstr "%(cat)s - %(view)s"
 #: ../gramps/gui/views/pageview.py:614
 #, python-format
 msgid "Configure %s View"
-msgstr "Agordu %s rigardon"
+msgstr "Agordu %s vidon"
 
 #. top widget at the top
 #: ../gramps/gui/views/pageview.py:628
 #, python-format
 msgid "View %(name)s: %(msg)s"
-msgstr "Vidigo %(name)s: %(msg)s"
+msgstr "Vido %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:221
 msgid "New Tag..."
@@ -17689,7 +17709,7 @@ msgstr "Form-eraro"
 #: ../gramps/gui/views/treemodels/treebasemodel.py:549
 #: ../gramps/gui/views/treemodels/treebasemodel.py:600
 msgid "Building View"
-msgstr "Konstruas vidigon"
+msgstr "Kunmetas vidon"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:603
 msgid "Obtaining all rows"
@@ -17879,7 +17899,7 @@ msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
 msgstr ""
-"Duoble alklaku sur la bildon por vidi ĝin en la defaŭlta bildovidigilo."
+"Duoble alklaku sur la bildon por montrii ĝin en la defaŭlta bildovidigilo."
 
 #: ../gramps/gui/widgets/progressdialog.py:299
 msgid "Progress Information"
@@ -18244,7 +18264,7 @@ msgstr "La centra persono por la arbo"
 #: ../gramps/plugins/drawreport/ancestortree.py:774
 #, fuzzy
 msgid "Include siblings of the center person"
-msgstr "Inkludu parencecon al la centra persono"
+msgstr "Inkluzivu parencecon al la centra persono"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:775
 msgid ""
@@ -18264,7 +18284,7 @@ msgstr "Generacioj"
 #: ../gramps/plugins/drawreport/ancestortree.py:780
 #: ../gramps/plugins/drawreport/descendtree.py:1519
 msgid "The number of generations to include in the tree"
-msgstr "La nombro de generacioj inkludotaj en la arbo"
+msgstr "La nombro de generacioj inkluzivotaj en la arbo"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:784
 msgid ""
@@ -18299,11 +18319,11 @@ msgstr "Raporttitolo"
 #: ../gramps/plugins/drawreport/descendtree.py:1642
 #: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid "Do not include a title"
-msgstr "Ne inkludu titolon"
+msgstr "Ne inkluzivu titolon"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:813
 msgid "Include Report Title"
-msgstr "Inkludu raporttitolon"
+msgstr "Inkluzivu raporttitolon"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:814
 #: ../gramps/plugins/drawreport/descendtree.py:1650
@@ -18313,7 +18333,7 @@ msgstr "Elektu titolon por la raporto"
 #: ../gramps/plugins/drawreport/ancestortree.py:817
 #: ../gramps/plugins/drawreport/descendtree.py:1654
 msgid "Include a border"
-msgstr "Inkludu borderon"
+msgstr "Inkluzivu borderon"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:818
 #: ../gramps/plugins/drawreport/descendtree.py:1655
@@ -18323,7 +18343,7 @@ msgstr "Ĉu krei borderon ĉirkaŭ la raporto"
 #: ../gramps/plugins/drawreport/ancestortree.py:821
 #: ../gramps/plugins/drawreport/descendtree.py:1658
 msgid "Include Page Numbers"
-msgstr "Inkludu paĝnumerojn"
+msgstr "Inkluzivu paĝnumerojn"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:822
 msgid "Whether to print page numbers on each page."
@@ -18383,12 +18403,12 @@ msgstr "Kiun vidigoformon uzi por la centra persono"
 #: ../gramps/plugins/drawreport/ancestortree.py:867
 #: ../gramps/plugins/drawreport/descendtree.py:1569
 msgid "Include Marriage box"
-msgstr "Inkludu geedziĝan kadron"
+msgstr "Inkluzivu geedziĝan kadron"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
 #: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Whether to include a separate marital box in the report"
-msgstr "Ĉu oni devas inkludi unuopan geedziĝan kadron en la raporto"
+msgstr "Ĉu oni devas inkluzivi unuopan geedziĝan kadron en la raporto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:872
 #: ../gramps/plugins/drawreport/descendtree.py:1574
@@ -18521,34 +18541,34 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:940
 #: ../gramps/plugins/drawreport/descendtree.py:1662
 msgid "Include Blank Pages"
-msgstr "Inkludu blankajn paĝojn"
+msgstr "Inkluzivu blankajn paĝojn"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 #: ../gramps/plugins/drawreport/descendtree.py:1663
 msgid "Whether to include pages that are blank."
-msgstr "Ĉu inkludi paĝojn blankajn."
+msgstr "Ĉu inkluzivi paĝojn blankajn."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:947
 #: ../gramps/plugins/graph/gvfamilylines.py:218
 #: ../gramps/plugins/graph/gvrelgraph.py:639
 msgid "Include thumbnail images of people"
-msgstr "Inkludu miniaturajn bildojn de personoj"
+msgstr "Inkluzivu miniaturajn bildojn de personoj"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:949
 #: ../gramps/plugins/graph/gvrelgraph.py:641
 msgid "Whether to include thumbnails of people."
-msgstr "Ĉu inkludi miniaturojn de personoj."
+msgstr "Ĉu inkluzivi miniaturojn de personoj."
 
 #. category_name = _("Notes")
 #: ../gramps/plugins/drawreport/ancestortree.py:954
 #: ../gramps/plugins/drawreport/descendtree.py:1668
 msgid "Include a note"
-msgstr "Inkludu noton"
+msgstr "Inkluzivu noton"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:955
 #: ../gramps/plugins/drawreport/descendtree.py:1670
 msgid "Whether to include a note on the report."
-msgstr "Ĉu inkludu noton en la raporto"
+msgstr "Ĉu inkluzivu noton en la raporto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:960
 #: ../gramps/plugins/drawreport/descendtree.py:1675
@@ -18727,12 +18747,12 @@ msgstr "La centra persono por la raporto"
 #: ../gramps/plugins/textreport/birthdayreport.py:434
 #: ../gramps/plugins/webreport/webcal.py:1364
 msgid "Include only living people"
-msgstr "Inkludu nur vivantojn"
+msgstr "Inkluzivu nur vivantojn"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:487
 #: ../gramps/plugins/webreport/webcal.py:1365
 msgid "Include only living people in the calendar"
-msgstr "Inkludu nur vivantojn en la kalendaro"
+msgstr "Inkluzivu nur vivantojn en la kalendaro"
 
 #. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:493
@@ -18803,23 +18823,23 @@ msgstr "Elektu la familinomon montrotan por virinoj edziniĝintaj"
 #: ../gramps/plugins/textreport/birthdayreport.py:467
 #: ../gramps/plugins/webreport/webcal.py:1456
 msgid "Include birthdays"
-msgstr "Inkludu naskiĝtagojn"
+msgstr "Inkluzivu naskiĝtagojn"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:532
 #: ../gramps/plugins/webreport/webcal.py:1457
 msgid "Include birthdays in the calendar"
-msgstr "Inkludu naskiĝtagojn en la kalendaro"
+msgstr "Inkluzivu naskiĝtagojn en la kalendaro"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:535
 #: ../gramps/plugins/textreport/birthdayreport.py:471
 #: ../gramps/plugins/webreport/webcal.py:1460
 msgid "Include anniversaries"
-msgstr "Inkludu datrevenojn"
+msgstr "Inkluzivu datrevenojn"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:536
 #: ../gramps/plugins/webreport/webcal.py:1461
 msgid "Include anniversaries in the calendar"
-msgstr "Inkludu datrevenojn en la kalendaro"
+msgstr "Inkluzivu datrevenojn en la kalendaro"
 
 #. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:540
@@ -18937,9 +18957,9 @@ msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Familia grafikaĵo por %(father1)s kaj %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "Cousin Chart for %(names)s"
-msgstr "Gekuza grafikaĵo por "
+msgstr "Gekuza grafikaĵo por %(names)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:747
 #, python-format
@@ -18975,7 +18995,7 @@ msgstr "Nivelo de geedzoj"
 #: ../gramps/plugins/drawreport/descendtree.py:1523
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
-"0=neniu geedzo, 1=inkludu geedzojn, 2=inkludu geedzojn de la geedzoj, etc"
+"0=neniu geedzo, 1=inkluzivu geedzojn, 2=inkluzivu geedzojn de la geedzoj, etc"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1528
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
@@ -19054,7 +19074,7 @@ msgstr "Gekuza grafikaĵo por [nomoj de gefiloj]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1659
 msgid "Whether to include page numbers on each page."
-msgstr "Ĉu inkludi paĝonumerojn su ĉiu paĝo."
+msgstr "Ĉu inkluzivi paĝonumerojn su ĉiu paĝo."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1743
 msgid "The bold style used for the text display."
@@ -19171,7 +19191,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:763
 #: ../gramps/plugins/textreport/detdescendantreport.py:925
 msgid "The number of generations to include in the report"
-msgstr "La nombro de generacioj inkludota en la raporto"
+msgstr "La nombro de generacioj inkluzivota en la raporto"
 
 #: ../gramps/plugins/drawreport/fanchart.py:663
 msgid "Type of graph"
@@ -19426,7 +19446,7 @@ msgstr "%s (persons):"
 #: ../gramps/plugins/drawreport/statisticschart.py:953
 #: ../gramps/plugins/textreport/recordsreport.py:166
 msgid "Determines what people are included in the report."
-msgstr "Determinas kiujn personojn inkludi en la raporto."
+msgstr "Determinas kiujn personojn inkluzivi en la raporto."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:957
 #: ../gramps/plugins/drawreport/timeline.py:391
@@ -19465,7 +19485,7 @@ msgstr "Personoj naskitaj post"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:984
 msgid "Birth year from which to include people."
-msgstr "Naskiĝjaro ekde kiam inkludi personojn"
+msgstr "Naskiĝjaro ekde kiam inkluzivi personojn"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:987
 msgid "People Born Before"
@@ -19473,23 +19493,23 @@ msgstr "Personoj naskitaj antaŭ"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:989
 msgid "Birth year until which to include people"
-msgstr "Naskiĝjaro ĝis kiam inkludi personojn"
+msgstr "Naskiĝjaro ĝis kiam inkluzivi personojn"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:992
 msgid "Include people without known birth years"
-msgstr "Inkludu personojn sen konataj naskiĝjaroj"
+msgstr "Inkluzivu personojn sen konataj naskiĝjaroj"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:994
 msgid "Whether to include people without known birth years."
-msgstr "Ĉu inkludi personojn sen konataj naskiĝjaroj."
+msgstr "Ĉu inkluzivi personojn sen konataj naskiĝjaroj."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:998
 msgid "Genders included"
-msgstr "Seksoj inkluditaj"
+msgstr "Seksoj inkluzivitaj"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1003
 msgid "Select which genders are included into statistics."
-msgstr "Elektu kiujn seksojn estos inkluditaj en la statistikoj"
+msgstr "Elektu kiujn seksojn estos inkluzivitaj en la statistikoj"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1007
 msgid "Max. items for a pie"
@@ -19581,7 +19601,7 @@ msgstr "Serĉas datintervalon ..."
 
 #: ../gramps/plugins/drawreport/timeline.py:387
 msgid "Determines what people are included in the report"
-msgstr "Determinas kiujn personojn inkludi en la raporto"
+msgstr "Determinas kiujn personojn inkluzivi en la raporto"
 
 #: ../gramps/plugins/drawreport/timeline.py:392
 #: ../gramps/plugins/textreport/recordsreport.py:171
@@ -19775,15 +19795,15 @@ msgstr "_Eksportu"
 
 #: ../gramps/plugins/export/exportcsv.py:197
 msgid "Include people"
-msgstr "Inkludu personojn"
+msgstr "Inkluzivu personojn"
 
 #: ../gramps/plugins/export/exportcsv.py:198
 msgid "Include marriages"
-msgstr "Inkludu geedziĝojn"
+msgstr "Inkluzivu geedziĝojn"
 
 #: ../gramps/plugins/export/exportcsv.py:199
 msgid "Include children"
-msgstr "Inkludu gefilojn"
+msgstr "Inkluzivu gefilojn"
 
 #: ../gramps/plugins/export/exportcsv.py:200
 msgid "Translate headers"
@@ -19874,7 +19894,7 @@ msgstr "Skribas deponejdatumojn"
 
 #: ../gramps/plugins/export/exportgedcom.py:1496
 msgid "GEDCOM Export failed"
-msgstr "GEDCOM-eksporto fiaskis"
+msgstr "GEDCOM-eksporto malsukcesis"
 
 #: ../gramps/plugins/export/exportgeneweb.glade:195
 msgid "Exclude _notes"
@@ -19962,7 +19982,8 @@ msgid ""
 msgstr ""
 "Enigu validan daton (kiel JJJJ-MM-TT) en malsupra kampo kaj alklaku Plenumu. "
 "Tio kalkulos la aĝojn por ĉiu ano de la Genealogia Arbo je tiu dato. Tiam "
-"eblos ordigi laŭ aĝkolumno, kaj duoble-alklaki la linion por vidi aŭ redakti."
+"eblos ordigi laŭ aĝkolumno, kaj duoble-alklaki la linion por montri aŭ "
+"redakti."
 
 #: ../gramps/plugins/gramplet/agestats.py:45
 #: ../gramps/plugins/gramplet/agestats.py:55
@@ -20045,17 +20066,17 @@ msgid "%(abbr)s %(date)s"
 msgstr "%(abbr)s %(date)s"
 
 #: ../gramps/plugins/gramplet/ancestor.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "%(depth)s. %(name)s"
-msgstr "%(date)s %(time)s"
+msgstr "%(depth)s. %(name)s"
 
 #: ../gramps/plugins/gramplet/attributes.py:41
 msgid ""
 "Double-click on a row to view a quick report showing all people with the "
 "selected attribute."
 msgstr ""
-"Duoblealklaku linion por vidi rapidraporton montrantan ĉiujn personojn kun "
-"la elektita atributo."
+"Duoble alklaku linion por montri rapidraporton kun ĉiuj personoj kun la "
+"elektita atributo."
 
 #: ../gramps/plugins/gramplet/attributes.py:45
 #: ../gramps/plugins/lib/libmetadata.py:170
@@ -20342,7 +20363,7 @@ msgstr "Praidoj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:101
 msgid "Ancestor"
-msgstr "Prauloj"
+msgstr "Praulo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:102
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:180
@@ -20404,7 +20425,7 @@ msgstr "Genealogio"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:197
 msgid "Gramplet showing an active item Quick View"
-msgstr "Gramplet'o por montri rapidan vidon de aktiva elemento"
+msgstr "Gramplet por montri rapidan vidon de aktiva elemento"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:212
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:218
@@ -20519,7 +20540,7 @@ msgstr "Gramplet por montri detalojn de loko"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:371
 msgid "Media Preview"
-msgstr "Aŭdvidaja antaŭrigardo"
+msgstr "Aŭdvidaĵa antaŭrigardo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:372
 msgid "Gramplet showing a preview of a media object"
@@ -21106,19 +21127,16 @@ msgid "SoundEx"
 msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
-#, fuzzy
 msgid "Place Locations"
-msgstr "Lokcitaĵoj"
+msgstr "Loklokigoj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
-#, fuzzy
 msgid "Gramplet showing the locations of a place over time"
-msgstr "Gramplet por montri la citaĵojn por loko"
+msgstr "Gramplet por montri la lokigojn de loko tra la tempo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
-#, fuzzy
 msgid "Locations"
-msgstr "Loko"
+msgstr "Lokigoj"
 
 #: ../gramps/plugins/gramplet/leak.py:100
 msgid "Uncollected object"
@@ -21144,9 +21162,8 @@ msgid "Uncollected Objects: %s"
 msgstr "Nekolektitaj objektoj: %s"
 
 #: ../gramps/plugins/gramplet/locations.py:81
-#, fuzzy
 msgid "Double-click on a row to edit the selected place."
-msgstr "Duoble alklaku linion por redakti elektitan filon."
+msgstr "Duoble alklaku linion por redakti elektitan lokon."
 
 #: ../gramps/plugins/gramplet/notes.py:99
 #: ../gramps/plugins/gramplet/todo.py:124
@@ -21298,7 +21315,7 @@ msgstr "Longitudo"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:127
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:142
 msgid "View Type"
-msgstr "Vidigotipo"
+msgstr "Vidotipo"
 
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:71
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:78
@@ -21605,7 +21622,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
 msgid "Dashboard View"
-msgstr "Panelvidigo"
+msgstr "Panelvido"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:134
 msgid ""
@@ -21618,8 +21635,8 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Nun vi legas el \"Panelo\"-vidigo, kie vi povas aldoni viajn proprajn "
-"gramplet'ojn. Vi povas ankaŭ aldoni gramplet'ojn al ĉiu ajn vidigo aldonante "
+"Nun vi legas el \"Panelo\"-vido, kie vi povas aldoni viajn proprajn "
+"gramplet'ojn. Vi povas ankaŭ aldoni gramplet'ojn al ĉiu ajn vido aldonante "
 "flankan breton kaj/aŭ suban breton, kaj dekstre alklakante ĉe la dekstro de "
 "la langeto.\n"
 "\n"
@@ -21903,7 +21920,7 @@ msgstr "Ĉu limigi la nombron de prauloj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:166
 msgid "The maximum number of ancestors to include."
-msgstr "La maksimuma nombro de prauloj inkludotaj."
+msgstr "La maksimuma nombro de prauloj inkluzivotaj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:170
 msgid "Limit the number of descendants"
@@ -21915,7 +21932,7 @@ msgstr "Ĉu limigi la nombron de praidoj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:179
 msgid "The maximum number of descendants to include."
-msgstr "La maksimuma nombro de praidoj inkludotaj."
+msgstr "La maksimuma nombro de praidoj inkluzivotaj."
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:187
@@ -21923,14 +21940,14 @@ msgstr "La maksimuma nombro de praidoj inkludotaj."
 #: ../gramps/plugins/graph/gvrelgraph.py:623
 #: ../gramps/plugins/textreport/indivcomplete.py:972
 msgid "Include Gramps ID"
-msgstr "Inkludu Gramps-ID'on"
+msgstr "Inkluzivu Gramps-ID'on"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:188
 #: ../gramps/plugins/graph/gvhourglass.py:306
 #: ../gramps/plugins/graph/gvrelgraph.py:624
 #, fuzzy
 msgid "Do not include"
-msgstr "Ne inkludu titolon"
+msgstr "Ne inkluzivu titolon"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:189
 #: ../gramps/plugins/graph/gvhourglass.py:307
@@ -21950,15 +21967,15 @@ msgstr ""
 #: ../gramps/plugins/graph/gvrelgraph.py:627
 #, fuzzy
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Ĉu inkludi Gramps-ID'on apud nomoj."
+msgstr "Ĉu inkluzivi Gramps-ID'on apud nomoj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:194
 msgid "Include dates"
-msgstr "Inkludu datojn"
+msgstr "Inkluzivu datojn"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:195
 msgid "Whether to include dates for people and families."
-msgstr "Ĉu inkludi datojn por personoj kaj familiojn."
+msgstr "Ĉu inkluzivi datojn por personoj kaj familiojn."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:200
 msgid "Limit dates to years only"
@@ -21974,25 +21991,25 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:206
 msgid "Include places"
-msgstr "Inkludu lokojn"
+msgstr "Inkluzivu lokojn"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:207
 msgid "Whether to include placenames for people and families."
-msgstr "Ĉu inkludi loknomojn por personoj kaj familioj."
+msgstr "Ĉu inkluzivi loknomojn por personoj kaj familioj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 msgid "Include the number of children"
-msgstr "Inkludu la nombron de gefiloj"
+msgstr "Inkluzivu la nombron de gefiloj"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr "Ĉu inkludi la nombron de gefiloj por familioj kun pli ol 1 fil(in)o."
+msgstr "Ĉu inkluzivi la nombron de gefiloj por familioj kun pli ol 1 fil(in)o."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:221
 msgid "Whether to include thumbnail images of people."
-msgstr "Ĉu inkludi miniaturajn bildojn de personoj."
+msgstr "Ĉu inkluzivi miniaturajn bildojn de personoj."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:226
 msgid "Thumbnail location"
@@ -22089,7 +22106,7 @@ msgstr "Maks. praidaraj generacioj"
 
 #: ../gramps/plugins/graph/gvhourglass.py:296
 msgid "The number of generations of descendants to include in the graph"
-msgstr "La nombro de praidaraj generacioj inkludotaj en la grafikaĵo"
+msgstr "La nombro de praidaraj generacioj inkluzivotaj en la grafikaĵo"
 
 #: ../gramps/plugins/graph/gvhourglass.py:300
 #: ../gramps/plugins/textreport/kinshipreport.py:351
@@ -22098,7 +22115,7 @@ msgstr "Maks. praulaj generacio"
 
 #: ../gramps/plugins/graph/gvhourglass.py:301
 msgid "The number of generations of ancestors to include in the graph"
-msgstr "La nombro de praulaj generacioj inkludotaj en la grafikaĵo"
+msgstr "La nombro de praulaj generacioj inkluzivotaj en la grafikaĵo"
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:315
@@ -22133,7 +22150,7 @@ msgstr "Praidoj - Prauloj"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:576
 msgid "Determines what people are included in the graph"
-msgstr "Determinas kiujn personojn inkludi en la raporto"
+msgstr "Determinas kiujn personojn inkluzivi en la raporto"
 
 #. ###############################
 #: ../gramps/plugins/graph/gvrelgraph.py:598
@@ -22144,46 +22161,46 @@ msgstr "Datoj por familianoj"
 #: ../gramps/plugins/graph/gvrelgraph.py:599
 #, fuzzy
 msgid "Do not include any dates or places"
-msgstr "Ne inkludu titolon"
+msgstr "Ne inkluzivu titolon"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:600
 #, fuzzy
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:602
 #, fuzzy
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:604
 #, fuzzy
 msgid "Include (birth, marriage, death) dates, and places if no dates"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:606
 #, fuzzy
 msgid "Include (birth, marriage, death) years, but no places"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:608
 #, fuzzy
 msgid "Include (birth, marriage, death) years, and places"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:610
 #, fuzzy
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "Inkludu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
+msgstr "Inkluzivu Naskiĝ-, Geedziĝ- kaj Mortdatojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:612
 #, fuzzy
 msgid "Whether to include dates and/or places"
-msgstr "Ĉu inkludi notojn por gepatroj."
+msgstr "Ĉu inkluzivi notojn por gepatroj."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:615
 msgid "Include URLs"
-msgstr "Inkludu URL-ojn"
+msgstr "Inkluzivu URL-ojn"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:616
 msgid ""
@@ -22191,13 +22208,13 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Inkludu URL'on en ĉiun grafikaĵan nodon tiel ke kreiĝu PDF- kaj bildmap-"
+"Inkluzivu URL'on en ĉiun grafikaĵan nodon tiel ke kreiĝu PDF- kaj bildmap-"
 "dosieroj entenantaj aktivajn ligilojn al dosieroj generitaj de 'Narrate Web "
 "Site'-raporto."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:631
 msgid "Include relationship to center person"
-msgstr "Inkludu parencecon al la centra persono"
+msgstr "Inkluzivu parencecon al la centra persono"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:632
 msgid "Whether to show every person's relationship to the center person"
@@ -22209,12 +22226,12 @@ msgstr "Lokigo de miniaturoj"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:654
 msgid "Include relationship debugging numbers also"
-msgstr "Inkludu ankaŭ la numerojn de la parencecĝustigo"
+msgstr "Inkluzivu ankaŭ la numerojn de la parencecĝustigo"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Ĉu inkludi ankaŭ 'Ga' kaj 'Gb', por ĝustigi la parenceckalkulilon."
+msgstr "Ĉu inkluzivi ankaŭ 'Ga' kaj 'Gb', por ĝustigi la parenceckalkulilon."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:691
 msgid "Arrowhead direction"
@@ -22981,6 +22998,13 @@ msgid ""
 "number in parentheses. Where possible these\n"
 "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
+"\n"
+"La importita dosiero ne estis mem-entena.\n"
+"Por korekti tion, estis kreitaj %(new)d objektoj\n"
+"kaj ilia tipa atributo estis agordita al 'Nekonata'.\n"
+"La disigo de kategorioj estas montrita de la numero interkrampa. Kie eble ĉi "
+"tiuj 'Nekonataj' objektoj estas referencitaj\n"
+"per noto %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:339
 msgid ""
@@ -23640,9 +23664,8 @@ msgid "Approved system identification"
 msgstr "Identigsistemo aprobita"
 
 #: ../gramps/plugins/lib/libgedcom.py:6945
-#, fuzzy
 msgid "Generated By"
-msgstr "Ĝenerala"
+msgstr "Kreita de"
 
 #: ../gramps/plugins/lib/libgedcom.py:6961
 msgid "Name of software product"
@@ -27262,8 +27285,8 @@ msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
 msgstr ""
-"Necesas elekti lokon por povi vidi sur mapo. Kelkaj Mapservoj povas subteni "
-"pluroblan elekton."
+"Necesas elekti lokon por povi montri ĝin sur mapo. Kelkaj Mapservoj povas "
+"subteni pluroblan elekton."
 
 #: ../gramps/plugins/lib/libplaceview.py:363
 msgid "Cannot delete place."
@@ -27293,7 +27316,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:414
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "La kunfando de ĉi tiu lokoj kreus cicklon en la lokhierarkio."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -27541,7 +27564,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:1124
 msgid "Nothing for this view."
-msgstr "Nenio por ĉi tiu vidigo."
+msgstr "Nenio por ĉi tiu vido."
 
 #: ../gramps/plugins/lib/maps/geography.py:1125
 msgid "Specific parameters"
@@ -28155,7 +28178,7 @@ msgstr "Konfirmu"
 
 #: ../gramps/plugins/quickview/linkreferences.py:56
 msgid "Failed: missing object"
-msgstr "Fiasko: objekto mankanta"
+msgstr "Malsukceso: objekto mankanta"
 
 #: ../gramps/plugins/quickview/linkreferences.py:58
 #: ../gramps/plugins/textreport/notelinkreport.py:113
@@ -28508,7 +28531,7 @@ msgstr "Ukrajna parenceckalkulilo"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:159
 msgid "Click to select a view"
-msgstr "Alklaku por elekti vidigon"
+msgstr "Alklaku por elekti vidon"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:32
 msgid "Category Sidebar"
@@ -28516,7 +28539,7 @@ msgstr "Kategoria flanka breto"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:33
 msgid "A sidebar to allow the selection of view categories"
-msgstr "Flanka breto permesanta la elekton de kategorividigo"
+msgstr "Flanka breto permesanta la elekton de kategorividoj"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:41
 msgid "Category"
@@ -28533,7 +28556,7 @@ msgstr "Elekto de kategorioj kaj vidoj el falmenuaj listoj"
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:56
 #, fuzzy
 msgid "Drop-Down"
-msgstr "Faligu"
+msgstr "Fala"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:62
 msgid "Expander Sidebar"
@@ -28630,7 +28653,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:435
 msgid "Include only living people in the report"
-msgstr "Inkludu nur vivantojn en la raporto"
+msgstr "Inkluzivu nur vivantojn en la raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:457
 msgid "Select the first day of the week for the report"
@@ -28638,19 +28661,19 @@ msgstr "Elektu la unua tagon de la semajno por la raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:468
 msgid "Include birthdays in the report"
-msgstr "Inkludu naskiĝtagojn en la raporto"
+msgstr "Inkluzivu naskiĝtagojn en la raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:472
 msgid "Include anniversaries in the report"
-msgstr "Inkludu datrevenojn en la raporto"
+msgstr "Inkluzivu datrevenojn en la raporto"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:475
 msgid "Include relationships to center person"
-msgstr "Inkludu parencecojn al la centra persono"
+msgstr "Inkluzivu parencecojn al la centra persono"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:477
 msgid "Include relationships to center person (slower)"
-msgstr "Inkludu parencecojn al la centra persono (pli malrapida)"
+msgstr "Inkluzivu parencecojn al la centra persono (pli malrapida)"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:484
 msgid "Title text"
@@ -28891,9 +28914,8 @@ msgstr "%(event_name)s: %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:356
 #: ../gramps/plugins/textreport/detdescendantreport.py:469
 #: ../gramps/plugins/textreport/familygroup.py:125
-#, fuzzy
 msgid "; "
-msgstr ","
+msgstr " "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:565
 #: ../gramps/plugins/textreport/detdescendantreport.py:617
@@ -29020,81 +29042,81 @@ msgstr "Ĉu aldoni praidaran referencon en la gefilolisto."
 #: ../gramps/plugins/textreport/detancestralreport.py:817
 #: ../gramps/plugins/textreport/detdescendantreport.py:980
 msgid "Include notes"
-msgstr "Inkludu la notojn"
+msgstr "Inkluzivu la notojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:818
 #: ../gramps/plugins/textreport/detdescendantreport.py:981
 msgid "Whether to include notes."
-msgstr "Ĉu inkludi la notojn"
+msgstr "Ĉu inkluzivi la notojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:821
 #: ../gramps/plugins/textreport/detdescendantreport.py:984
 msgid "Include attributes"
-msgstr "Inkludu atributojn"
+msgstr "Inkluzivu atributojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:822
 #: ../gramps/plugins/textreport/detdescendantreport.py:985
 #: ../gramps/plugins/textreport/familygroup.py:681
 msgid "Whether to include attributes."
-msgstr "Ĉu inkludi atributojn."
+msgstr "Ĉu inkluzivi atributojn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:825
 #: ../gramps/plugins/textreport/detdescendantreport.py:988
 #: ../gramps/plugins/textreport/indivcomplete.py:968
 msgid "Include Photo/Images from Gallery"
-msgstr "Inkludu Foton/Bildojn el la galerio"
+msgstr "Inkluzivu Foton/Bildojn el la galerio"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:826
 #: ../gramps/plugins/textreport/detdescendantreport.py:989
 #: ../gramps/plugins/textreport/indivcomplete.py:969
 msgid "Whether to include images."
-msgstr "Ĉu inkludi bildojn"
+msgstr "Ĉu inkluzivi bildojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:829
 #: ../gramps/plugins/textreport/detdescendantreport.py:992
 msgid "Include alternative names"
-msgstr "Inkludu alternativajn nomojn"
+msgstr "Inkluzivu alternativajn nomojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:830
 #: ../gramps/plugins/textreport/detdescendantreport.py:993
 msgid "Whether to include other names."
-msgstr "Ĉu inkludi aliajn nomojn"
+msgstr "Ĉu inkluzivi aliajn nomojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:833
 #: ../gramps/plugins/textreport/detdescendantreport.py:996
 msgid "Include events"
-msgstr "Inkludu eventojn"
+msgstr "Inkluzivu eventojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:834
 #: ../gramps/plugins/textreport/detdescendantreport.py:997
 msgid "Whether to include events."
-msgstr "Ĉu inkludi eventojn"
+msgstr "Ĉu inkluzivi eventojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:837
 #: ../gramps/plugins/textreport/detdescendantreport.py:1000
 msgid "Include addresses"
-msgstr "Inkludu adresojn"
+msgstr "Inkluzivu adresojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:838
 #: ../gramps/plugins/textreport/detdescendantreport.py:1001
 msgid "Whether to include addresses."
-msgstr "Ĉu inkludi adresojn."
+msgstr "Ĉu inkluzivi adresojn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:841
 #: ../gramps/plugins/textreport/detdescendantreport.py:1004
 msgid "Include sources"
-msgstr "Inkludu fontojn"
+msgstr "Inkluzivu fontojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:842
 #: ../gramps/plugins/textreport/detdescendantreport.py:1005
 msgid "Whether to include source references."
-msgstr "Ĉu inkludi fontreferencojn"
+msgstr "Ĉu inkluzivi fontreferencojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:845
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
 #: ../gramps/plugins/textreport/indivcomplete.py:963
 msgid "Include sources notes"
-msgstr "Inkludu fontnotojn"
+msgstr "Inkluzivu fontnotojn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:846
 #: ../gramps/plugins/textreport/detdescendantreport.py:1009
@@ -29103,8 +29125,8 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Ĉu inkludi fontonotojn en la Finnota sekcio. Funkcias nur se Inkludu notojn "
-"estas elektita."
+"Ĉu inkluzivi fontonotojn en la Finnota sekcio. Funkcias nur se Inkluzivu "
+"notojn estas elektita."
 
 #. How to handle missing information
 #. Missing information
@@ -29192,41 +29214,41 @@ msgstr "Uzu kompletajn frazojn"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
 #: ../gramps/plugins/textreport/kinshipreport.py:355
 msgid "Include spouses"
-msgstr "Inkludu geedzojn"
+msgstr "Inkluzivu geedzojn"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Whether to include detailed spouse information."
-msgstr "Ĉu inkludi detalajn informojn pri geedzo."
+msgstr "Ĉu inkluzivi detalajn informojn pri geedzo."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1017
 msgid "Include spouse reference"
-msgstr "Inkludu lgeedzan referencon"
+msgstr "Inkluzivu lgeedzan referencon"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "Whether to include reference to spouse."
-msgstr "Ĉu inkludi referncon al geedzo."
+msgstr "Ĉu inkluzivi referncon al geedzo."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1021
 msgid "Include sign of succession ('+') in child-list"
-msgstr "Inkludas signon de sukcedo ('+') en gefilolisto"
+msgstr "Inkluzivas signon de sukcedo ('+') en gefilolisto"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1023
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
-"Ĉu inkludi signon ('+') antaŭ la praida numero en la gefilolisto por indiki "
-"che fil(in)o havas sukcedanton."
+"Ĉu inkluzivi signon ('+') antaŭ la praida numero en la gefilolisto por "
+"indiki che fil(in)o havas sukcedanton."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1028
 msgid "Include path to start-person"
-msgstr "Inkludu vojon al komenca persono"
+msgstr "Inkluzivu vojon al komenca persono"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1029
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
-msgstr "Ĉu inkludi la vojon de praidaro el komencpersono al ĉiu praido."
+msgstr "Ĉu inkluzivi la vojon de praidaro el komencpersono al ĉiu praido."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1118
 msgid "The style used for the More About header and for headers of mates."
@@ -29269,9 +29291,9 @@ msgstr "La baza stilo uzota por la titoloj de la generacioj."
 #: ../gramps/plugins/textreport/familygroup.py:128
 #: ../gramps/plugins/textreport/indivcomplete.py:804
 #: ../gramps/plugins/textreport/indivcomplete.py:844
-#, fuzzy, python-format
+#, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s, %(str2)s"
+msgstr ""
 
 #: ../gramps/plugins/textreport/familygroup.py:381
 msgid "Marriage:"
@@ -29325,7 +29347,7 @@ msgstr "Generaciaj numeroj (nur rikuraj)"
 
 #: ../gramps/plugins/textreport/familygroup.py:664
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Ĉu inkludi la generacion sur ĉiu raporto (nur rikura)."
+msgstr "Ĉu inkluzivi la generacion sur ĉiu raporto (nur rikura)."
 
 #: ../gramps/plugins/textreport/familygroup.py:668
 msgid "Parent Events"
@@ -29333,7 +29355,7 @@ msgstr "Gepatroeventoj"
 
 #: ../gramps/plugins/textreport/familygroup.py:669
 msgid "Whether to include events for parents."
-msgstr "Ĉu inkludi eventojn por gepatroj."
+msgstr "Ĉu inkluzivi eventojn por gepatroj."
 
 #: ../gramps/plugins/textreport/familygroup.py:672
 msgid "Parent Addresses"
@@ -29341,7 +29363,7 @@ msgstr "Adresoj de gepatroj"
 
 #: ../gramps/plugins/textreport/familygroup.py:673
 msgid "Whether to include addresses for parents."
-msgstr "Ĉu inkludi adresojn por gepatroj."
+msgstr "Ĉu inkluzivi adresojn por gepatroj."
 
 #: ../gramps/plugins/textreport/familygroup.py:676
 msgid "Parent Notes"
@@ -29349,7 +29371,7 @@ msgstr "Gepatronotoj"
 
 #: ../gramps/plugins/textreport/familygroup.py:677
 msgid "Whether to include notes for parents."
-msgstr "Ĉu inkludi notojn por gepatroj."
+msgstr "Ĉu inkluzivi notojn por gepatroj."
 
 #: ../gramps/plugins/textreport/familygroup.py:680
 msgid "Parent Attributes"
@@ -29361,7 +29383,7 @@ msgstr "Alternativaj nomoj por gepatroj"
 
 #: ../gramps/plugins/textreport/familygroup.py:685
 msgid "Whether to include alternate names for parents."
-msgstr "Ĉu inkludi alternativajn nomojn por gepatroj."
+msgstr "Ĉu inkluzivi alternativajn nomojn por gepatroj."
 
 #: ../gramps/plugins/textreport/familygroup.py:689
 msgid "Parent Marriage"
@@ -29369,7 +29391,7 @@ msgstr "Gepatra geedziĝo"
 
 #: ../gramps/plugins/textreport/familygroup.py:690
 msgid "Whether to include marriage information for parents."
-msgstr "Ĉu inkludi gedziĝajn informojn por gepatroj."
+msgstr "Ĉu inkluzivi gedziĝajn informojn por gepatroj."
 
 #: ../gramps/plugins/textreport/familygroup.py:694
 msgid "Dates of Relatives"
@@ -29377,7 +29399,7 @@ msgstr "Datoj por familianoj"
 
 #: ../gramps/plugins/textreport/familygroup.py:695
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Ĉu inkludi datojn por familianoj (patro, patrino, geedzo)."
+msgstr "Ĉu inkluzivi datojn por familianoj (patro, patrino, geedzo)."
 
 #: ../gramps/plugins/textreport/familygroup.py:699
 msgid "Children Marriages"
@@ -29385,7 +29407,7 @@ msgstr "Gefilaj geedziĝoj"
 
 #: ../gramps/plugins/textreport/familygroup.py:700
 msgid "Whether to include marriage information for children."
-msgstr "Ĉu inkludi gedziĝajn informojn por gefiloj."
+msgstr "Ĉu inkluzivi gedziĝajn informojn por gefiloj."
 
 #. #########################
 #: ../gramps/plugins/textreport/familygroup.py:705
@@ -29483,7 +29505,7 @@ msgstr "Ĉu ordigi eventojn en kronologia ordo."
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:959
 msgid "Include Source Information"
-msgstr "Inkludu fontinformojn"
+msgstr "Inkluzivu fontinformojn"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:960
 msgid "Whether to cite sources."
@@ -29491,7 +29513,7 @@ msgstr "Ĉu citi la fontojn."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:973
 msgid "Whether to include Gramps ID next to names."
-msgstr "Ĉu inkludi Gramps-ID'on apud nomoj."
+msgstr "Ĉu inkluzivi Gramps-ID'on apud nomoj."
 
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:977
@@ -29541,23 +29563,23 @@ msgstr "La maksimuma nombro de praulaj generacioj"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:356
 msgid "Whether to include spouses"
-msgstr "Ĉu inkludi geedzojn"
+msgstr "Ĉu inkluzivi geedzojn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:359
 msgid "Include cousins"
-msgstr "Inkludu gekuzojn"
+msgstr "Inkluzivu gekuzojn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:360
 msgid "Whether to include cousins"
-msgstr "Ĉu inkludi gekuzojn"
+msgstr "Ĉu inkluzivi gekuzojn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "Include aunts/uncles/nephews/nieces"
-msgstr "Inkludu geonklojn/genevojn"
+msgstr "Inkluzivu geonklojn/genevojn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:364
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr "Ĉu inkludi geonklojn/genevojn"
+msgstr "Ĉu inkluzivi geonklojn/genevojn"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:391
 #: ../gramps/plugins/textreport/summary.py:308
@@ -29587,7 +29609,7 @@ msgstr "Ligiloj"
 #: ../gramps/plugins/textreport/notelinkreport.py:111
 #, fuzzy
 msgid "Failed"
-msgstr "Fiasko"
+msgstr "Malsukceso"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:204
 #: ../gramps/plugins/textreport/tagreport.py:932
@@ -29931,7 +29953,7 @@ msgstr "Totala grando de aŭdvideaj objektoj: %s MB"
 #: ../gramps/plugins/textreport/summary.py:282
 #, fuzzy
 msgid "Whether to count private data"
-msgstr "Ĉu inkludi privatajn datumojn"
+msgstr "Ĉu inkluzivi privatajn datumojn"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:63
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
@@ -29982,9 +30004,8 @@ msgid "Id"
 msgstr "Id"
 
 #: ../gramps/plugins/textreport/tagreport.py:642
-#, fuzzy
 msgid "Email Address"
-msgstr "Kopiu _retadreson"
+msgstr "Retadreso"
 
 #: ../gramps/plugins/textreport/tagreport.py:726
 #: ../gramps/plugins/view/sourceview.py:86
@@ -30958,11 +30979,11 @@ msgstr ""
 "\n"
 "La aŭdvideaj objektoj de Gramps estas kolekto de datumoj pri aŭdvideobjektaj "
 "dosieroj: ilia dosiernomo kaj/aŭ vojo, ilia priskribo, ilia ID, notoj, "
-"fontreferencoj, ktp Ĉi tiuj datumoj <b>ne inkludas la dosieron mem</b>.\n"
+"fontreferencoj, ktp Ĉi tiuj datumoj <b>ne inkluzivas la dosieron mem</b>.\n"
 "\n"
 "La dosieroj entenantaj bildon, sonon, filmon, ktp, ekzistas aparte sur "
 "propra fiksita disko.  Ĉi tiuj dosieroj ne estas administrata de Gramps kaj "
-"ne estas inkluditaj en la datumbazo de Gramps. La datumbazo de Gramps "
+"ne estas inkluzivitaj en la datumbazo de Gramps. La datumbazo de Gramps "
 "enmemorigas nur la vojon kaj la dosiernomojn.\n"
 "\n"
 "Ĉi tiu ilo permesas nur modifi la rikordojn en la datumbazo de Gramps. Se "
@@ -30994,7 +31015,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:382
 msgid "Operation failed"
-msgstr "Operacio fiaskis"
+msgstr "Operacio malsukcesis"
 
 #: ../gramps/plugins/tool/mediamanager.py:384
 msgid ""
@@ -31088,11 +31109,11 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:632
 msgid "Add images not included in database"
-msgstr "Aldonu bildojn ne inkluditajn en la datumbazo"
+msgstr "Aldonu bildojn ne inkluzivitajn en la datumbazo"
 
 #: ../gramps/plugins/tool/mediamanager.py:633
 msgid "Check directories for images not included in database"
-msgstr "Kontrolu bilddosierujojn ne inkluditajn en la datumbazo"
+msgstr "Kontrolu bilddosierujojn ne inkluzivitajn en la datumbazo"
 
 #: ../gramps/plugins/tool/mediamanager.py:634
 msgid ""
@@ -31123,7 +31144,6 @@ msgid "Ignore Date and Confidence"
 msgstr "Ignoru daton kaj konfidon"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgid "manual|Merge_citations..."
 msgstr "Kunfandu citaĵojn..."
 
@@ -31455,7 +31475,7 @@ msgstr "In_versigu markojn"
 #: ../gramps/plugins/tool/removeunused.glade:325
 #: ../gramps/plugins/tool/verify.glade:907
 msgid "Double-click on a row to view/edit data"
-msgstr "Duoble alklaku linion por vidi/redakti datumojn"
+msgstr "Duoble alklaku linion por montri/redakti datumojn"
 
 #: ../gramps/plugins/tool/removeunused.py:80
 msgid "Unused Objects"
@@ -31477,9 +31497,8 @@ msgid "Reordering Gramps IDs"
 msgstr "Reordigo de Gramps-ID'oj"
 
 #: ../gramps/plugins/tool/reorderids.py:70
-#, fuzzy
 msgid "Reordering Gramps IDs..."
-msgstr "Reordigo de Gramps-ID'oj"
+msgstr "Reordigo de Gramps-ID'oj..."
 
 #: ../gramps/plugins/tool/reorderids.py:72
 #: ../gramps/plugins/tool/tools.gpr.py:395
@@ -31524,7 +31543,7 @@ msgstr "Reordigo de not-ID'oj"
 
 #: ../gramps/plugins/tool/reorderids.py:170
 msgid "Done."
-msgstr ""
+msgstr "Farita."
 
 #: ../gramps/plugins/tool/reorderids.py:232
 msgid "Finding and assigning unused IDs"
@@ -31564,7 +31583,7 @@ msgstr "Agordu la ordigmanieron"
 
 #: ../gramps/plugins/tool/sortevents.py:190
 msgid "Include family events"
-msgstr "Inkludu familieventojn"
+msgstr "Inkluzivu familieventojn"
 
 #: ../gramps/plugins/tool/sortevents.py:191
 msgid "Sort family events of the person"
@@ -31590,7 +31609,7 @@ msgstr "Pro-Gen'a datumeraro"
 #: ../gramps/plugins/tool/testcasegenerator.py:213
 #, fuzzy
 msgid "Generate dummy data"
-msgstr "Ĝenerala"
+msgstr "Kreita de"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:218
 #, fuzzy
@@ -32163,7 +32182,7 @@ msgstr "Kunfandu la elektitajn citaĵojn"
 
 #: ../gramps/plugins/view/citationlistview.py:143
 msgid "Citation View"
-msgstr "Citaĵovidigo"
+msgstr "Citaĵovido"
 
 #: ../gramps/plugins/view/citationlistview.py:180
 #: ../gramps/plugins/view/citationtreeview.py:288
@@ -32378,7 +32397,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchartdescview.py:168
 #: ../gramps/plugins/view/fanchartview.py:166
 msgid "Print or save the Fan Chart View"
-msgstr "Printu aŭ konservu la vidigon de la ventumila grafikaĵo"
+msgstr "Printu aŭ konservu la vidon de la ventumila grafikaĵo"
 
 #: ../gramps/plugins/view/fanchartdescview.py:278
 #: ../gramps/plugins/view/fanchartview.py:276
@@ -32737,7 +32756,7 @@ msgstr "Ĉiuj konataj lokoj por unu persono"
 
 #: ../gramps/plugins/view/geography.gpr.py:79
 msgid "A view showing the places visited by one person during his life."
-msgstr "Rigardo kiu montras la lokojn vizitataj de unu persono dum sia vivo."
+msgstr "Vido kiu montras la lokojn vizitataj de unu persono dum sia vivo."
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 #: ../gramps/plugins/view/geography.gpr.py:104
@@ -32756,23 +32775,20 @@ msgstr "Ĉiuj konataj lokoj por unu familio"
 #: ../gramps/plugins/view/geography.gpr.py:96
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
-"Rigardo kiu montras la lokojn vizitataj de unu familio dum la vivo de siaj "
-"anoj."
+"Vido kiu montras la lokojn vizitataj de unu familio dum la vivo de siaj anoj."
 
 #: ../gramps/plugins/view/geography.gpr.py:112
-#, fuzzy
 msgid "Every residence or move for a person and any descendants"
-msgstr "Ĉiuj translokiĝoj por unu persono kaj liaj praidoj"
+msgstr "Ĉiuj rezidejo aŭ translokiĝoj por unu persono kaj liaj praidoj"
 
 #: ../gramps/plugins/view/geography.gpr.py:113
-#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Rigardo kiu montras ĉiujn lokojn vizititajn de ĉiuj personoj dum sia vivo.\n"
-"Tio estas por unu persono kaj liaj posteuloj.\n"
+"Vido kiu montras ĉiujn lokojn vizititajn de ĉiuj personoj dum sia vivo.\n"
+"Tio estas por persono kaj liaj posteuloj.\n"
 "Oni povas vidi la datojn kongruajn kun la periodo."
 
 #: ../gramps/plugins/view/geography.gpr.py:132
@@ -32780,15 +32796,15 @@ msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
-"Rigardo kiu montras la lokojn vizititajn de ĉiuj familianoj dum siaj vivoj: "
-"ĉu povis ĉi tiuj du personoj renkontiĝi?"
+"Viddo kiu montras la lokojn vizititajn de ĉiuj familianoj dum siaj vivoj: ĉu "
+"povis ĉi tiuj du personoj renkontiĝi?"
 
 #: ../gramps/plugins/view/geography.gpr.py:150
 msgid ""
 "A view showing the places visited by two persons during their life: have "
 "these two people been able to meet?"
 msgstr ""
-"Rigardo kiu montras la lokojn vizititajn de du personoj dum siaj vivoj: ĉu "
+"Vido kiu montras la lokojn vizititajn de du personoj dum siaj vivoj: ĉu "
 "povis ĉi tiuj du personoj renkontiĝi?"
 
 #: ../gramps/plugins/view/geography.gpr.py:167
@@ -32797,7 +32813,7 @@ msgstr "Ĉiuj konataj lokoj"
 
 #: ../gramps/plugins/view/geography.gpr.py:168
 msgid "A view showing all places of the database."
-msgstr "Rigardo kiu montras ĉiujn lokojn de la datumbazo."
+msgstr "Vido kiu montras ĉiujn lokojn de la datumbazo."
 
 #: ../gramps/plugins/view/geography.gpr.py:183
 msgid "All places related to Events"
@@ -32805,7 +32821,7 @@ msgstr "Ĉiuj lokoj rilataj al eventoj"
 
 #: ../gramps/plugins/view/geography.gpr.py:184
 msgid "A view showing all the event places of the database."
-msgstr "Rigardo kiu montras ĉiujn eventlokojn de la datumbazo."
+msgstr "Vido kiu montras ĉiujn eventlokojn de la datumbazo."
 
 #: ../gramps/plugins/view/geomoves.py:142
 msgid "Descendance of the active person."
@@ -32933,7 +32949,7 @@ msgstr "Redaktilo de aŭdvidaĵfiltrilo"
 
 #: ../gramps/plugins/view/mediaview.py:212
 msgid "View in the default viewer"
-msgstr "Rigardu per defaŭlta bildlegilo"
+msgstr "Montru per defaŭlta vidigilo"
 
 #: ../gramps/plugins/view/mediaview.py:216
 msgid "Open the folder containing the media file"
@@ -33347,31 +33363,31 @@ msgstr ""
 
 #: ../gramps/plugins/view/view.gpr.py:36
 msgid "The view showing all the events"
-msgstr "La vidigo kiu montras ĉiujn eventojn"
+msgstr "La vido kiu montras ĉiujn eventojn"
 
 #: ../gramps/plugins/view/view.gpr.py:51
 msgid "The view showing all families"
-msgstr "La vidigo kiu montras ĉiujn familiojn"
+msgstr "La vido kiu montras ĉiujn familiojn"
 
 #: ../gramps/plugins/view/view.gpr.py:66
 msgid "The view showing Gramplets"
-msgstr "La vidogo kiu montras Gramplet'ojn"
+msgstr "La vido kiu montras Gramplet'ojn"
 
 #: ../gramps/plugins/view/view.gpr.py:81
 msgid "The view showing all the media objects"
-msgstr "La vidigo kiu montras ĉiujn aŭdvideajn objektojn"
+msgstr "La vido kiu montras ĉiujn aŭdvideajn objektojn"
 
 #: ../gramps/plugins/view/view.gpr.py:96
 msgid "The view showing all the notes"
-msgstr "La vidigo kiu montras ĉiujn notojn"
+msgstr "La vido kiu montras ĉiujn notojn"
 
 #: ../gramps/plugins/view/view.gpr.py:111
 msgid "The view showing all relationships of the selected person"
-msgstr "La vidigo kiu montras ĉiujn parencecojn de la elektita persono"
+msgstr "La vido kiu montras ĉiujn parencecojn de la elektita persono"
 
 #: ../gramps/plugins/view/view.gpr.py:126
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr "La vidigo kiu montras praulan devenon de la elektita persono"
+msgstr "La vido kiu montras praulan devenon de la elektita persono"
 
 #: ../gramps/plugins/view/view.gpr.py:133
 #: ../gramps/plugins/view/view.gpr.py:142
@@ -33381,7 +33397,7 @@ msgstr "Grafikaĵoj"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 msgid "A view showing parents through a fanchart"
-msgstr "La vidigo kiu montras gepatrojn per ventumila grafikaĵo"
+msgstr "Vido kiu montras gepatrojn per ventumila grafikaĵo"
 
 #: ../gramps/plugins/view/view.gpr.py:158
 msgid "Showing descendants through a fanchart"
@@ -33394,17 +33410,17 @@ msgstr "Grupigitaj personoj"
 #: ../gramps/plugins/view/view.gpr.py:172
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr ""
-"La vidigo kiu montras ĉiujn personojn en la genealogia arbo grupigitajn per "
+"La vido kiu montras ĉiujn personojn en la genealogia arbo grupigitajn per "
 "familinomo"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree in a flat list"
 msgstr ""
-"La vidigo kiu montras ĉiujn personojn en la genealogia arbo en plata listo"
+"La vido kiu montras ĉiujn personojn en la genealogia arbo en plata listo"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all the places of the Family Tree"
-msgstr "La vidigo kiu montras ĉiujn lokojn en la genealogia arbo"
+msgstr "La vido kiu montras ĉiujn lokojn en la genealogia arbo"
 
 #: ../gramps/plugins/view/view.gpr.py:221
 msgid "Place Tree"
@@ -33412,19 +33428,19 @@ msgstr "Lokoarbo"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "A view displaying places in a tree format."
-msgstr "Vidigo montranta lokojn en arboformo."
+msgstr "Vido montranta lokojn en arboformo."
 
 #: ../gramps/plugins/view/view.gpr.py:237
 msgid "The view showing all the repositories"
-msgstr "La vidigo kiu montras ĉiujn deponejojn"
+msgstr "La vido kiu montras ĉiujn deponejojn"
 
 #: ../gramps/plugins/view/view.gpr.py:252
 msgid "The view showing all the sources"
-msgstr "La vidigo kiu montras ĉiujn fontojn"
+msgstr "La vido kiu montras ĉiujn fontojn"
 
 #: ../gramps/plugins/view/view.gpr.py:268
 msgid "The view showing all the citations"
-msgstr "La vidigo kiu montras ĉiujn citaĵojn"
+msgstr "La vido kiu montras ĉiujn citaĵojn"
 
 #: ../gramps/plugins/view/view.gpr.py:282
 msgid "Citation Tree"
@@ -33432,7 +33448,7 @@ msgstr "Citaĵoarbo"
 
 #: ../gramps/plugins/view/view.gpr.py:283
 msgid "A view displaying citations and sources in a tree format."
-msgstr "Vidigo montranta citaĵojn en arboformo."
+msgstr "Vido montranta citaĵojn en arboformo."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:374
 msgid "Gramps&nbsp;ID"
@@ -33784,7 +33800,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4834
 msgid "Thumbnail Preview"
-msgstr "Miiatur-antaŭvidigo"
+msgstr "Miniatur-antaŭrigardo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4993
 msgid ""
@@ -33987,7 +34003,7 @@ msgstr "Kreas famili-paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7673
 msgid "Creating thumbnail preview page..."
-msgstr "Kreas miniatur-antaŭvidigan paĝon..."
+msgstr "Kreas miniatur-antaŭrigardan paĝon..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7714
 msgid "Creating address book pages ..."
@@ -34099,11 +34115,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8094
 msgid "Include ancestor's tree"
-msgstr "Inkludu praulan arbon"
+msgstr "Inkluzivu praulan arbon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8095
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Ĉu inkludi praulan grafikaĵon sur ciu individua paĝo"
+msgstr "Ĉu inkluzivi praulan grafikaĵon sur ciu individua paĝo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8100
 msgid "Graph generations"
@@ -34111,7 +34127,7 @@ msgstr "Generacioj en la grafikaĵo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8101
 msgid "The number of generations to include in the ancestor graph"
-msgstr "La nombro de generacioj inkludotaj en la praula grafikaĵo"
+msgstr "La nombro de generacioj inkluzivotaj en la praula grafikaĵo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8111
 msgid "Page Generation"
@@ -34195,11 +34211,11 @@ msgstr "Noto uzota kiel suba paĝotitolo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8152
 msgid "Include images and media objects"
-msgstr "Inkludu bildojn kaj aŭdvideajn objektojn"
+msgstr "Inkluzivu bildojn kaj aŭdvideajn objektojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8154
 msgid "Whether to include a gallery of media objects"
-msgstr "Ĉu inkludi galerion de aŭdvideaj objektoj"
+msgstr "Ĉu inkluzivi galerion de aŭdvideaj objektoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8160
 msgid "Create and only use thumbnail- sized images"
@@ -34245,7 +34261,7 @@ msgstr "Forigu Gramps-ID'on"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8184
 msgid "Whether to include the Gramps ID of objects"
-msgstr "Ĉu inkludi la Gramps-ID de objektoj"
+msgstr "Ĉu inkluzivi la Gramps-ID de objektoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8196
 msgid "Living People"
@@ -34253,11 +34269,11 @@ msgstr "Vivantaj personoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8201
 msgid "Include Last Name Only"
-msgstr "Inkludu nur familinomon"
+msgstr "Inkluzivu nur familinomon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8203
 msgid "Include Full Name Only"
-msgstr "Inkludu nur kompletan nomon"
+msgstr "Inkluzivu nur kompletan nomon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8206
 msgid "How to handle living people"
@@ -34276,11 +34292,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8227
 msgid "Include download page"
-msgstr "Inkludu elŝutpaĝon"
+msgstr "Inkluzivu elŝutpaĝon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8228
 msgid "Whether to include a database download option"
-msgstr "Ĉu inkludi datumbazan elŝutopcion"
+msgstr "Ĉu inkluzivi datumbazan elŝutopcion"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8232
 #: ../gramps/plugins/webreport/narrativeweb.py:8242
@@ -34339,7 +34355,7 @@ msgstr "Inkudu kolumnon por naskiĝdatoj sur la indeksaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8273
 msgid "Whether to include a birth column"
-msgstr "Ĉu inkludi naskiĝkolumnon"
+msgstr "Ĉu inkluzivi naskiĝkolumnon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8276
 msgid "Include a column for death dates on the index pages"
@@ -34347,7 +34363,7 @@ msgstr "Inkudu kolumnon por mortodatoj sur la indeksaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8277
 msgid "Whether to include a death column"
-msgstr "Ĉu inkludi mortokolumnon"
+msgstr "Ĉu inkluzivi mortokolumnon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8280
 msgid "Include a column for partners on the index pages"
@@ -34355,7 +34371,7 @@ msgstr "Inkudu kolumnon por partneroj sur la indeksaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8282
 msgid "Whether to include a partners column"
-msgstr "Ĉu inkludi partnerkolumojn"
+msgstr "Ĉu inkluzivi partnerkolumojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8285
 msgid "Include a column for parents on the index pages"
@@ -34363,16 +34379,16 @@ msgstr "Inkudu kolumnon por gepatroj sur la indeksaj paĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8287
 msgid "Whether to include a parents column"
-msgstr "Ĉu inkludi gepatrokolumnon"
+msgstr "Ĉu inkluzivi gepatrokolumnon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8290
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Inkludu duon- kaj/aŭ vic-gefratojn en la paĝoj de individuoj"
+msgstr "Inkluzivu duon- kaj/aŭ vic-gefratojn en la paĝoj de individuoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8292
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Ĉu inkludi duon- kaj/aŭ vic-gefratojn kun gepatroj kaj gefratoj"
+msgstr "Ĉu inkluzivi duon- kaj/aŭ vic-gefratojn kun gepatroj kaj gefratoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8296
 msgid "Sort all children in birth order"
@@ -34384,15 +34400,15 @@ msgstr "Ĉu montri gefilojn laŭ naskiĝ- aŭ enig-ordo."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8300
 msgid "Include family pages"
-msgstr "Inkludu famili-paĝojn"
+msgstr "Inkluzivu famili-paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8301
 msgid "Whether or not to include family pages."
-msgstr "Ĉu inkludi aŭ ne famili-paĝojn."
+msgstr "Ĉu inkluzivi aŭ ne famili-paĝojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8304
 msgid "Include event pages"
-msgstr "Inkludu event-paĝojn"
+msgstr "Inkluzivu event-paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8305
 msgid "Add a complete events list and relevant pages or not"
@@ -34400,30 +34416,30 @@ msgstr "Aldoni au ne kompletan eventoliston kaj gravajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8308
 msgid "Include repository pages"
-msgstr "Ĉu inkludi deponej-paĝojn"
+msgstr "Ĉu inkluzivi deponej-paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8309
 msgid "Whether or not to include the Repository Pages."
-msgstr "Ĉu inkludi aŭ ne deponejpaĝojn"
+msgstr "Ĉu inkluzivi aŭ ne deponejpaĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8312
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr "Inkludu GENDEX-dosieron (/gendex.txt)"
+msgstr "Inkluzivu GENDEX-dosieron (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8313
 msgid "Whether to include a GENDEX file or not"
-msgstr "Ĉu inkludi GENDEX-dosieron aŭ ne"
+msgstr "Ĉu inkluzivi GENDEX-dosieron aŭ ne"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8316
 msgid "Include address book pages"
-msgstr "Inkludu adreslibrajn paĝojn"
+msgstr "Inkluzivu adreslibrajn paĝojn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8317
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
-"Ĉu aldoni aŭ ne paĝojn de Adreslibro, kiuj povas inkludi retadreson kaj "
+"Ĉu aldoni aŭ ne paĝojn de Adreslibro, kiuj povas inkluzivi retadreson kaj "
 "retejajn adresojn kaj personajn adresan/rezidejan eventojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8327
@@ -34444,18 +34460,18 @@ msgstr "Elektu la preferatan mapservon por krei la Lokmapajn paĝojn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8341
 msgid "Include Place map on Place Pages"
-msgstr "Inkludu lokmapon en Lokpaĝoj"
+msgstr "Inkluzivu lokmapon en Lokpaĝoj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8342
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
-"Ĉu inkludi lokmapon en Lokpaĝojn,kie Latitudo/Longitudo estas disponebla."
+"Ĉu inkluzivi lokmapon en Lokpaĝojn,kie Latitudo/Longitudo estas disponebla."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8347
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Inkludu familimapajn paĝojn kun ĉiuj lokoj montritaj sur la mapo"
+msgstr "Inkluzivu familimapajn paĝojn kun ĉiuj lokoj montritaj sur la mapo"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8350
 msgid ""
@@ -34614,7 +34630,7 @@ msgstr "Enigu la finan jaron por la kalendaroj inter 1900-3000."
 
 #: ../gramps/plugins/webreport/webcal.py:1428
 msgid "Holidays will be included for the selected country"
-msgstr "Oni inkludos la festojn por la elektita lando"
+msgstr "Oni inkluzivos la festojn por la elektita lando"
 
 #: ../gramps/plugins/webreport/webcal.py:1451
 msgid "Home link"
@@ -34623,7 +34639,8 @@ msgstr "Hejmligilo"
 #: ../gramps/plugins/webreport/webcal.py:1452
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
-msgstr "La ligilo inkludota por direkti la uzanto al la ĉefa paĝo de la retejo"
+msgstr ""
+"La ligilo inkluzivota por direkti la uzanto al la ĉefa paĝo de la retejo"
 
 #: ../gramps/plugins/webreport/webcal.py:1468
 msgid "Jan - Jun Notes"
@@ -34881,16 +34898,6 @@ msgstr "Apliku almenaŭ unu regulon"
 msgid "Exactly one rule must apply"
 msgstr "Apliku ekzakte unu regulon"
 
-#, fuzzy
-#~ msgid "Place format"
-#~ msgstr "Paperformato"
-
-#, fuzzy
-#~ msgid ""
-#~ "Changing the place format will not take effect until the next time Gramps "
-#~ "is started."
-#~ msgstr "Modifo de la datumformo ne funkcios ĝis restartigo de Gramps."
-
 #~ msgid "TRANSLATORS: Translate this to your name in your native language"
 #~ msgstr "TRADUKANTOJ: Pier Luigi Cinquantini"
 
@@ -34906,15 +34913,6 @@ msgstr "Apliku ekzakte unu regulon"
 
 #~ msgid "%s (copy, %s)"
 #~ msgstr "%s (copy, %s)"
-
-#~ msgid ""
-#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
-#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
-#~ "different ID or leave blank to get the next available ID value."
-#~ msgstr ""
-#~ "Oni provis uzi la ekzistantan Gramps_id kun la valoro %(gramps_id)s. Ĉi "
-#~ "tiu valoro estas jam uzata de '%(prim_object)s'. Bv enigi malsaman ID'on "
-#~ "aŭ lasi malplenan por akiri la postan disponeblan ID-valoron."
 
 #~ msgid "Cannot save place"
 #~ msgstr "Ne eblas konservi lokon"
@@ -34933,29 +34931,14 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgid "Place Name:"
 #~ msgstr "Loknomo:"
 
-#~ msgid "Top level place"
-#~ msgstr "Supernivela loko"
+#~ msgid "Cannot save place reference"
+#~ msgstr "Ne eblas konservi lokreferencon"
+
+#~ msgid "No place selected. Please select a place  or cancel the edit."
+#~ msgstr "Neniu loko elektita. Bv elekti lokon aŭ rezigni pri redakto."
 
 #~ msgid "First add a source using the buttons"
 #~ msgstr "Unue aldonu fonton per la butonoj"
-
-#~ msgid "Source: Publication"
-#~ msgstr "Fonto: Publikigo"
-
-#~ msgid "Source: Note"
-#~ msgstr "Fonto: Noto"
-
-#~ msgid "Citation: ID"
-#~ msgstr "Citaĵo: ID"
-
-#~ msgid "Citation: Volume/Page"
-#~ msgstr "Citaĵo: Volumo/Paĝo"
-
-#~ msgid "Citation: Date"
-#~ msgstr "Citaĵo: Dato"
-
-#~ msgid "Citation: Note"
-#~ msgstr "Citaĵo:Noto "
 
 #~ msgid "ZIP/Postal code"
 #~ msgstr "Poŝtkodo"
@@ -34965,9 +34948,6 @@ msgstr "Apliku ekzakte unu regulon"
 
 #~ msgid "New"
 #~ msgstr "Nova"
-
-#~ msgid "..."
-#~ msgstr "..."
 
 #~ msgid "_Add bookmark"
 #~ msgstr "_Aldonu legosignon"
@@ -35111,18 +35091,6 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgstr ""
 #~ " 16. <a wiki='How_you_can_help' >Kiel oni povas kontribui al Gramps?</a>\n"
 
-#~ msgid "Python Evaluation"
-#~ msgstr "Piton-taksado"
-
-#~ msgid "Gramplet allowing the evaluation of python code"
-#~ msgstr "Gramplet por permesi la taksadon de pitonkodo"
-
-#~ msgid "Uncollected Objects"
-#~ msgstr "Nekolektitaj objektoj"
-
-#~ msgid "Gramplet showing uncollected objects"
-#~ msgstr "Gramplet por montri nekolektitajn objektojn"
-
 #~ msgid "http://gramps-project.org/"
 #~ msgstr "http://gramps-project.org/"
 
@@ -35140,17 +35108,17 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgstr "http://gramps-project.org/contact/"
 
 #~ msgid "Include private records"
-#~ msgstr "Inkludu privatajn rikordojn"
+#~ msgstr "Inkluzivu privatajn rikordojn"
 
 #~ msgid ""
 #~ "Whether to include names, dates, and families that are marked as private."
-#~ msgstr "Ĉu inkludi nomojn, datojn kaj familiojn markitajn kiel privatajn."
+#~ msgstr "Ĉu inkluzivi nomojn, datojn kaj familiojn markitajn kiel privatajn."
 
 #~ msgid ""
 #~ "Include the dates that the individual was born, got married and/or died "
 #~ "in the graph labels."
 #~ msgstr ""
-#~ "Inkludu la datojn, kiam la persono naskiĝis, edz(in)iĝis kaj/aŭ mortis, "
+#~ "Inkluzivu la datojn, kiam la persono naskiĝis, edz(in)iĝis kaj/aŭ mortis, "
 #~ "en la grafikaĵaj etikedoj."
 
 #~ msgid "Use place when no date"
@@ -35164,13 +35132,10 @@ msgstr "Apliku ekzakte unu regulon"
 #~ "lokokampon."
 
 #~ msgid "Include IDs"
-#~ msgstr "Inkludu  ID'ojn"
+#~ msgstr "Inkluzivu  ID'ojn"
 
 #~ msgid "Include individual and family IDs."
-#~ msgstr "Inkludu personojn kaj familiajn ID'ojn"
-
-#~ msgid "Sweden - Holidays"
-#~ msgstr "Svedio - Festotagoj"
+#~ msgstr "Inkluzivu personojn kaj familiajn ID'ojn"
 
 #~ msgid "SUBM (Submitter): @%s@"
 #~ msgstr "SUBM (Transendanto): @%s@"
@@ -35178,14 +35143,11 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgid "Invalid line %d in GEDCOM file."
 #~ msgstr "Nevalida linio %d en GEDCOM-dosiero."
 
-#~ msgid "(%(x)d,%(y)d)"
-#~ msgstr "(%(x)d,%(y)d)"
-
 #~ msgid "%(name)s [%(gid)s]"
 #~ msgstr "%(name)s [%(gid)s]"
 
 #~ msgid "Include private data"
-#~ msgstr "Inkludu privatajn datumojn"
+#~ msgstr "Inkluzivu privatajn datumojn"
 
 #~ msgid "Webkit module not loaded."
 #~ msgstr "Modulo Webkit ne ŝargita."
@@ -35194,20 +35156,20 @@ msgstr "Apliku ekzakte unu regulon"
 #~ "Webkit module not loaded. Embedded web page viewing will not be "
 #~ "available. Use your package manager to install gir1.2-webkit-3.0"
 #~ msgstr ""
-#~ "Modulo Webkit ne ŝargita. La vido de la enkorpigita retpaĝo ne estos "
+#~ "Modulo Webkit ne ŝargita. La montro de la enkorpigita retpaĝo ne estos "
 #~ "disponebla. Uzu vian pakaĵadministrilon por instali gir1.2-webkit-3.0"
 
 #~ msgid "Html View"
-#~ msgstr "Html-vidigo"
+#~ msgstr "Html-vido"
 
 #~ msgid "A view showing html pages embedded in Gramps"
-#~ msgstr "Rigardo kiu montras html-paĝojn enkorpigitajn den Gramps"
+#~ msgstr "Vido kiu montras html-paĝojn enkorpigitajn en Gramps"
 
 #~ msgid "Web"
 #~ msgstr "Reto"
 
 #~ msgid "HtmlView"
-#~ msgstr "Html-vidigo"
+#~ msgstr "Html-vido"
 
 #~ msgid "Go to the previous page in the history"
 #~ msgstr "Iru al la antaŭa paĝo en la historio"
@@ -35222,7 +35184,7 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgstr "Haltu kaj reŝargu la paĝon."
 
 #~ msgid "Start page for the Html View"
-#~ msgstr "Komencpaĝo por la html-vidigo"
+#~ msgstr "Komencpaĝo por la html-vido"
 
 #~ msgid ""
 #~ "Type a webpage address at the top, and hit the execute button to load a "
@@ -35239,7 +35201,7 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgstr "<br />Kreita por <a href = \"%(url)s\">%(name)s</a>"
 
 #~ msgid "Whether to include private objects"
-#~ msgstr "Ĉu inkludi privatajn objektojn"
+#~ msgstr "Ĉu inkluzivi privatajn objektojn"
 
 #~ msgid ""
 #~ "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
@@ -35250,6 +35212,57 @@ msgstr "Apliku ekzakte unu regulon"
 #~ "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 #~ msgstr ""
 #~ "Kreita de <a href=\"http://gramps-project.org\">Gramps</a> je %(date)s"
+
+#~ msgid "Source: Publication"
+#~ msgstr "Fonto: Publikigo"
+
+#~ msgid "Source: Note"
+#~ msgstr "Fonto: Noto"
+
+#~ msgid "Citation: ID"
+#~ msgstr "Citaĵo: ID"
+
+#~ msgid "Citation: Volume/Page"
+#~ msgstr "Citaĵo: Volumo/Paĝo"
+
+#~ msgid "Citation: Date"
+#~ msgstr "Citaĵo: Dato"
+
+#~ msgid "Citation: Note"
+#~ msgstr "Citaĵo:Noto "
+
+#~ msgid ""
+#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
+#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
+#~ "different ID or leave blank to get the next available ID value."
+#~ msgstr ""
+#~ "Oni provis uzi la ekzistantan Gramps_id kun la valoro %(gramps_id)s. Ĉi "
+#~ "tiu valoro estas jam uzata de '%(prim_object)s'. Bv enigi malsaman ID'on "
+#~ "aŭ lasi malplenan por akiri la postan disponeblan ID-valoron."
+
+#~ msgid "Top level place"
+#~ msgstr "Supernivela loko"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Python Evaluation"
+#~ msgstr "Piton-taksado"
+
+#~ msgid "Gramplet allowing the evaluation of python code"
+#~ msgstr "Gramplet por permesi la taksadon de pitonkodo"
+
+#~ msgid "Uncollected Objects"
+#~ msgstr "Nekolektitaj objektoj"
+
+#~ msgid "Gramplet showing uncollected objects"
+#~ msgstr "Gramplet por montri nekolektitajn objektojn"
+
+#~ msgid "Sweden - Holidays"
+#~ msgstr "Svedio - Festotagoj"
+
+#~ msgid "(%(x)d,%(y)d)"
+#~ msgstr "(%(x)d,%(y)d)"
 
 #, fuzzy
 #~ msgid "Regular expression:"
