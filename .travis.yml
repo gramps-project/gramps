@@ -8,7 +8,7 @@ language: c
 #    - 3.4
 
 install:
-    - git clone --depth=50 --branch=master git://github.com/gramps-project/gramps.git gramps-project/gramps
+    - git clone --depth=50 --branch=maintenance/gramps42 git://github.com/gramps-project/gramps.git gramps-project/gramps
     - cd gramps-project/gramps 
     - time sudo apt-get update
     - travis_retry sudo apt-get install gir1.2-pango gir1.2-gtk xdg-utils librsvg2-common libglib2.0-dev intltool 
