@@ -22,7 +22,7 @@
 GRAMPS registration file
 """
 
-MODULE_VERSION="4.2" 
+MODULE_VERSION="5.0" 
 
 #------------------------------------------------------------------------
 #
