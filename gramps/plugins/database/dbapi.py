@@ -1058,11 +1058,11 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return (handle for handle in self.family_map.keys())
 
     def get_tag_from_name(self, name):
-        ## FIXME: Slow, but typically not too many tags:
-        for data in self.tag_map.values():
-            tag = Tag.create(data)
-            if tag.name == name:
-                return tag
+        cur = self.dbapi.execute("""select handle from tag where order_by = ?;""",
+                                 [self._order_by_tag_key(name)])
+        row = cur.fetchone()
+        if row:
+            self.get_tag_from_handle(row[0])
         return None
 
     def get_person_from_gramps_id(self, gramps_id):
