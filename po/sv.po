@@ -20,13 +20,13 @@
 # Bo Rosén <bo.rosen@home.se>, 2001.
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
-# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
+# Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 16:26+0200\n"
-"PO-Revision-Date: 2014-05-21 18:53+0200\n"
+"POT-Creation-Date: 2015-06-01 16:03+0200\n"
+"PO-Revision-Date: 2015-01-06 18:29+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -995,7 +995,7 @@ msgstr "Gramps släktträd:"
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:438
 #: ../gramps/cli/arghandler.py:440 ../gramps/cli/clidbman.py:67
 #: ../gramps/cli/clidbman.py:211 ../gramps/gui/clipboard.py:968
-#: ../gramps/gui/configure.py:1393
+#: ../gramps/gui/configure.py:1410
 msgid "Family Tree"
 msgstr "Släktträd"
 
@@ -1008,7 +1008,7 @@ msgstr "Släktträd \"%s\":"
 #: ../gramps/cli/arghandler.py:418
 #, fuzzy, python-format
 msgid "   %(item)s: %(summary)s"
-msgstr "%(type)s: %(list)s"
+msgstr "%(str1)s: %(str2)s"
 
 #. translators: ignore unless your quotation marks differ
 #: ../gramps/cli/arghandler.py:438 ../gramps/cli/arghandler.py:442
@@ -1441,7 +1441,7 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:493 ../gramps/gui/configure.py:1301
+#: ../gramps/cli/clidbman.py:493 ../gramps/gui/configure.py:1318
 msgid "Never"
 msgstr "Aldrig"
 
@@ -1456,7 +1456,7 @@ msgstr "Låst av %s"
 #: ../gramps/gen/lib/eventtype.py:168 ../gramps/gen/lib/familyreltype.py:52
 #: ../gramps/gen/lib/grampstype.py:34 ../gramps/gen/lib/nameorigintype.py:79
 #: ../gramps/gen/lib/nametype.py:52 ../gramps/gen/lib/notetype.py:78
-#: ../gramps/gen/lib/placetype.py:67 ../gramps/gen/lib/repotype.py:58
+#: ../gramps/gen/lib/placetype.py:68 ../gramps/gen/lib/repotype.py:58
 #: ../gramps/gen/lib/srcattrtype.py:49 ../gramps/gen/lib/srcmediatype.py:62
 #: ../gramps/gen/lib/urltype.py:53 ../gramps/gen/utils/lds.py:81
 #: ../gramps/gen/utils/lds.py:87 ../gramps/gen/utils/unknown.py:119
@@ -1577,15 +1577,15 @@ msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Släktträdet saknas, då det har raderats."
 
 #: ../gramps/cli/grampscli.py:252
-#, fuzzy
 msgid "The database is locked."
-msgstr "Namnet på denna plats."
+msgstr "Databasen är låst"
 
 #: ../gramps/cli/grampscli.py:253
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
+"Använd valet -force-unlocking om du är säker på att databasen inte används."
 
 #. already errors encountered. Show first one on terminal and exit
 #: ../gramps/cli/grampscli.py:332
@@ -1743,23 +1743,23 @@ msgstr "Misslyckades med att skriva rapport. "
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Importerade %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:298
+#: ../gramps/gen/config.py:301
 msgid "Missing Given Name"
 msgstr "Saknat förnamn"
 
-#: ../gramps/gen/config.py:299
+#: ../gramps/gen/config.py:302
 msgid "Missing Record"
 msgstr "Saknad post"
 
-#: ../gramps/gen/config.py:300
+#: ../gramps/gen/config.py:303
 msgid "Missing Surname"
 msgstr "Saknat efternamn"
 
-#: ../gramps/gen/config.py:307 ../gramps/gen/config.py:309
+#: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
 msgid "Living"
 msgstr "Levande"
 
-#: ../gramps/gen/config.py:308
+#: ../gramps/gen/config.py:311
 msgid "Private Record"
 msgstr "Privat post"
 
@@ -2036,17 +2036,15 @@ msgstr ""
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:467
-#, fuzzy
 msgid "after-date|"
-msgstr "efter"
+msgstr ""
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:472
-#, fuzzy
 msgid "about-date|"
-msgstr "omkring"
+msgstr ""
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2909,13 +2907,13 @@ msgid "Surname, Given Suffix"
 msgstr "Efternamn, dopnamn suffix"
 
 #: ../gramps/gen/display/name.py:357 ../gramps/gen/utils/keyword.py:55
-#: ../gramps/gui/configure.py:634 ../gramps/gui/configure.py:636
-#: ../gramps/gui/configure.py:641 ../gramps/gui/configure.py:643
-#: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
-#: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:648
-#: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:651
-#: ../gramps/gui/configure.py:652 ../gramps/gui/configure.py:653
-#: ../gramps/gui/configure.py:654 ../gramps/gui/configure.py:655
+#: ../gramps/gui/configure.py:635 ../gramps/gui/configure.py:637
+#: ../gramps/gui/configure.py:642 ../gramps/gui/configure.py:644
+#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:647
+#: ../gramps/gui/configure.py:648 ../gramps/gui/configure.py:649
+#: ../gramps/gui/configure.py:651 ../gramps/gui/configure.py:652
+#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:654
+#: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
 #: ../gramps/plugins/export/exportcsv.py:352
 #: ../gramps/plugins/importer/importcsv.py:134
 msgid "Given"
@@ -5931,7 +5929,7 @@ msgstr "Matchar källor som indikerats som privata"
 #: ../gramps/gen/lib/eventroletype.py:59 ../gramps/gen/lib/eventtype.py:169
 #: ../gramps/gen/lib/familyreltype.py:53 ../gramps/gen/lib/markertype.py:58
 #: ../gramps/gen/lib/nameorigintype.py:80 ../gramps/gen/lib/nametype.py:53
-#: ../gramps/gen/lib/notetype.py:79 ../gramps/gen/lib/placetype.py:68
+#: ../gramps/gen/lib/notetype.py:79 ../gramps/gen/lib/placetype.py:69
 #: ../gramps/gen/lib/repotype.py:59 ../gramps/gen/lib/srcattrtype.py:50
 #: ../gramps/gen/lib/srcmediatype.py:63 ../gramps/gen/lib/urltype.py:54
 #: ../gramps/gui/autocomp.py:179
@@ -5983,8 +5981,8 @@ msgid "Social Security Number"
 msgstr "Personnummer"
 
 #: ../gramps/gen/lib/attrtype.py:70 ../gramps/gen/utils/keyword.py:72
-#: ../gramps/gui/configure.py:637 ../gramps/gui/configure.py:639
-#: ../gramps/gui/configure.py:644 ../gramps/gui/configure.py:651
+#: ../gramps/gui/configure.py:638 ../gramps/gui/configure.py:640
+#: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:652
 #: ../gramps/plugins/tool/patchnames.py:428
 msgid "Nickname"
 msgstr "Smeknamn"
@@ -6250,7 +6248,7 @@ msgstr "Livshändelser"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #: ../gramps/gen/lib/eventtype.py:145 ../gramps/gui/clipboard.py:771
-#: ../gramps/gui/configure.py:525
+#: ../gramps/gui/configure.py:526
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:490
@@ -6374,7 +6372,7 @@ msgstr "Vald"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Emigration"
-msgstr "Emigration"
+msgstr "Utflyttning"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "First Communion"
@@ -6382,7 +6380,7 @@ msgstr "Första nattvarden"
 
 #: ../gramps/gen/lib/eventtype.py:189
 msgid "Immigration"
-msgstr "Immigration"
+msgstr "Inflyttning"
 
 #: ../gramps/gen/lib/eventtype.py:190
 msgid "Graduation"
@@ -6579,7 +6577,7 @@ msgstr "vald"
 
 #: ../gramps/gen/lib/eventtype.py:237
 msgid "Emigration abbreviation|em."
-msgstr "emi."
+msgstr "utfl."
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgid "First Communion abbreviation|f.comm."
@@ -6587,7 +6585,7 @@ msgstr "1.nattv."
 
 #: ../gramps/gen/lib/eventtype.py:239
 msgid "Immigration abbreviation|im."
-msgstr "immi."
+msgstr "infl."
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgid "Graduation abbreviation|grad."
@@ -6816,7 +6814,7 @@ msgid "Surname|Taken"
 msgstr "Taget efternamn"
 
 #: ../gramps/gen/lib/nameorigintype.py:85 ../gramps/gen/utils/keyword.py:65
-#: ../gramps/gui/configure.py:647
+#: ../gramps/gui/configure.py:648
 msgid "Patronymic"
 msgstr "Patronymikon"
 
@@ -6857,7 +6855,7 @@ msgstr "Namn vid födseln"
 msgid "Married Name"
 msgstr "Namn som gift"
 
-#: ../gramps/gen/lib/notetype.py:80 ../gramps/gui/configure.py:1346
+#: ../gramps/gen/lib/notetype.py:80 ../gramps/gui/configure.py:1363
 #: ../gramps/gui/editors/editeventref.py:78
 #: ../gramps/gui/editors/editmediaref.py:97
 #: ../gramps/gui/editors/editplaceref.py:70
@@ -6889,7 +6887,7 @@ msgid "Source text"
 msgstr "Källtext"
 
 #: ../gramps/gen/lib/notetype.py:84 ../gramps/gui/clipboard.py:490
-#: ../gramps/gui/configure.py:531 ../gramps/gui/editors/editcitation.py:109
+#: ../gramps/gui/configure.py:532 ../gramps/gui/editors/editcitation.py:109
 #: ../gramps/gui/editors/editcitation.py:115
 #: ../gramps/gui/editors/filtereditor.py:297
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
@@ -6985,7 +6983,7 @@ msgstr "Barnreferensnotis"
 msgid "Merged Gramps ID"
 msgstr "Sammanslagna Gramps-ID"
 
-#: ../gramps/gen/lib/placetype.py:69 ../gramps/gui/configure.py:509
+#: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:510
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:268
@@ -6997,7 +6995,7 @@ msgstr "Sammanslagna Gramps-ID"
 msgid "Country"
 msgstr "Land"
 
-#: ../gramps/gen/lib/placetype.py:70
+#: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:268
 #: ../gramps/plugins/lib/maps/placeselection.py:144
@@ -7006,7 +7004,7 @@ msgstr "Land"
 msgid "State"
 msgstr "Län/delstat"
 
-#: ../gramps/gen/lib/placetype.py:71
+#: ../gramps/gen/lib/placetype.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:268
 #: ../gramps/plugins/lib/maps/placeselection.py:145
@@ -7014,7 +7012,7 @@ msgstr "Län/delstat"
 msgid "County"
 msgstr "Landskap"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/gui/configure.py:507
+#: ../gramps/gen/lib/placetype.py:73 ../gramps/gui/configure.py:508
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/tool/extractcity.py:389
@@ -7023,11 +7021,11 @@ msgstr "Landskap"
 msgid "City"
 msgstr "Ort"
 
-#: ../gramps/gen/lib/placetype.py:73
+#: ../gramps/gen/lib/placetype.py:74
 msgid "Parish"
 msgstr "Församling"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:506
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/gui/configure.py:507
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/repoview.py:90
@@ -7036,7 +7034,7 @@ msgstr "Församling"
 msgid "Locality"
 msgstr "Trakt/ort"
 
-#: ../gramps/gen/lib/placetype.py:75
+#: ../gramps/gen/lib/placetype.py:76
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
 #: ../gramps/plugins/view/repoview.py:89
@@ -7044,53 +7042,59 @@ msgstr "Trakt/ort"
 msgid "Street"
 msgstr "Gatuadress"
 
-#: ../gramps/gen/lib/placetype.py:76
-msgid "Province"
-msgstr "Län/delstat"
-
 #: ../gramps/gen/lib/placetype.py:77
-msgid "Region"
-msgstr "Område"
+msgid "Province"
+msgstr "Provins"
 
 #: ../gramps/gen/lib/placetype.py:78
+msgid "Region"
+msgstr "Region"
+
+#: ../gramps/gen/lib/placetype.py:79
 msgid "Department"
 msgstr "Departement"
 
-#: ../gramps/gen/lib/placetype.py:79
+#: ../gramps/gen/lib/placetype.py:80
 msgid "Neighborhood"
 msgstr "Grannskap"
 
-#: ../gramps/gen/lib/placetype.py:80
+#: ../gramps/gen/lib/placetype.py:81
 msgid "District"
 msgstr "Distrikt"
 
-#: ../gramps/gen/lib/placetype.py:81
+#: ../gramps/gen/lib/placetype.py:82
 msgid "Borough"
 msgstr "Kommun"
 
-#: ../gramps/gen/lib/placetype.py:82
+#: ../gramps/gen/lib/placetype.py:83
 msgid "Municipality"
 msgstr "Kommun/Stad"
 
-#: ../gramps/gen/lib/placetype.py:83
+#: ../gramps/gen/lib/placetype.py:84
 msgid "Town"
 msgstr "Stad"
 
-#: ../gramps/gen/lib/placetype.py:84
+#: ../gramps/gen/lib/placetype.py:85
 msgid "Village"
 msgstr "Samhälle"
 
-#: ../gramps/gen/lib/placetype.py:85
+#: ../gramps/gen/lib/placetype.py:86
 msgid "Hamlet"
 msgstr "By"
 
-#: ../gramps/gen/lib/placetype.py:86
+#: ../gramps/gen/lib/placetype.py:87
 msgid "Farm"
 msgstr "Gård"
 
-#: ../gramps/gen/lib/placetype.py:87
+#: ../gramps/gen/lib/placetype.py:88
 msgid "Building"
 msgstr "Byggnad"
+
+#: ../gramps/gen/lib/placetype.py:89 ../gramps/plugins/gramplet/leak.py:96
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
+#: ../gramps/plugins/webreport/narrativeweb.py:4209
+msgid "Number"
+msgstr "Antal"
 
 #: ../gramps/gen/lib/repotype.py:60
 msgid "Library"
@@ -7783,7 +7787,7 @@ msgstr ""
 #. ###############################
 #. 3
 #: ../gramps/gen/plug/docgen/graphdoc.py:244 ../gramps/gui/clipboard.py:394
-#: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editlink.py:82
+#: ../gramps/gui/configure.py:540 ../gramps/gui/editors/editlink.py:82
 #: ../gramps/gui/editors/editmedia.py:89
 #: ../gramps/gui/editors/editmedia.py:172
 #: ../gramps/gui/editors/editmediaref.py:136
@@ -7927,7 +7931,7 @@ msgid "Graphs"
 msgstr "Diagram"
 
 #: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1144
+#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1164
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:95
 #: ../gramps/plugins/textreport/custombooktext.py:126
 #: ../gramps/plugins/textreport/tagreport.py:483
@@ -7979,9 +7983,9 @@ msgstr "Slutnoter"
 #: ../gramps/plugins/textreport/indivcomplete.py:815
 #: ../gramps/plugins/textreport/indivcomplete.py:816
 #: ../gramps/plugins/textreport/indivcomplete.py:817
-#, fuzzy, python-format
+#, python-format
 msgid "%s:"
-msgstr "%s."
+msgstr "%s:"
 
 #: ../gramps/gen/plug/report/stdoptions.py:49
 msgid "Translation"
@@ -7992,7 +7996,7 @@ msgid "The translation to be used for the report."
 msgstr "Översättning för rapporten."
 
 #. label for the combo
-#: ../gramps/gen/plug/report/stdoptions.py:63 ../gramps/gui/configure.py:968
+#: ../gramps/gen/plug/report/stdoptions.py:63 ../gramps/gui/configure.py:969
 #: ../gramps/plugins/webreport/narrativeweb.py:8038
 #: ../gramps/plugins/webreport/webcal.py:1355
 msgid "Name format"
@@ -8666,19 +8670,19 @@ msgstr "Titel"
 msgid "GIVEN"
 msgstr "FÖRNAMN"
 
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:641
-#: ../gramps/gui/configure.py:648 ../gramps/gui/configure.py:650
-#: ../gramps/gui/configure.py:651 ../gramps/gui/configure.py:652
-#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:654
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:642
+#: ../gramps/gui/configure.py:649 ../gramps/gui/configure.py:651
+#: ../gramps/gui/configure.py:652 ../gramps/gui/configure.py:653
+#: ../gramps/gui/configure.py:654 ../gramps/gui/configure.py:655
 msgid "SURNAME"
 msgstr "EFTERNAMN"
 
 #. show surname and first name
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:621
-#: ../gramps/gui/configure.py:634 ../gramps/gui/configure.py:636
-#: ../gramps/gui/configure.py:638 ../gramps/gui/configure.py:640
-#: ../gramps/gui/configure.py:643 ../gramps/gui/configure.py:644
-#: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
+#: ../gramps/gui/configure.py:635 ../gramps/gui/configure.py:637
+#: ../gramps/gui/configure.py:639 ../gramps/gui/configure.py:641
+#: ../gramps/gui/configure.py:644 ../gramps/gui/configure.py:645
+#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:647
 #: ../gramps/gui/editors/displaytabs/surnametab.py:75
 #: ../gramps/gui/plug/_guioptions.py:89 ../gramps/gui/plug/_guioptions.py:1468
 #: ../gramps/plugins/drawreport/statisticschart.py:327
@@ -8703,9 +8707,9 @@ msgstr "Tilltalsnamn"
 msgid "Name|COMMON"
 msgstr "VANLIGT"
 
-#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:638
-#: ../gramps/gui/configure.py:640 ../gramps/gui/configure.py:643
-#: ../gramps/gui/configure.py:644 ../gramps/gui/configure.py:650
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:639
+#: ../gramps/gui/configure.py:641 ../gramps/gui/configure.py:644
+#: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:651
 msgid "Name|Common"
 msgstr "Vanligt"
 
@@ -8721,11 +8725,11 @@ msgstr "Initialer"
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../gramps/gen/utils/keyword.py:60 ../gramps/gui/configure.py:634
-#: ../gramps/gui/configure.py:636 ../gramps/gui/configure.py:638
-#: ../gramps/gui/configure.py:640 ../gramps/gui/configure.py:641
-#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
-#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:655
+#: ../gramps/gen/utils/keyword.py:60 ../gramps/gui/configure.py:635
+#: ../gramps/gui/configure.py:637 ../gramps/gui/configure.py:639
+#: ../gramps/gui/configure.py:641 ../gramps/gui/configure.py:642
+#: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:649
+#: ../gramps/gui/configure.py:654 ../gramps/gui/configure.py:656
 #: ../gramps/gui/glade/editperson.glade:229
 #: ../gramps/plugins/export/exportcsv.py:353
 #: ../gramps/plugins/importer/importcsv.py:141
@@ -8798,7 +8802,7 @@ msgstr "Patronymikon[bnd]"
 msgid "RAWSURNAMES"
 msgstr "TOTALEFTERNAMN"
 
-#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:655
+#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:656
 msgid "Rawsurnames"
 msgstr "Totalefternamn"
 
@@ -9035,7 +9039,7 @@ msgstr ""
 msgid "Unavailable"
 msgstr "Otillgänglig"
 
-#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:505
+#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:506
 #: ../gramps/gui/editors/editaddress.py:155
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:100
 #: ../gramps/plugins/gramplet/repositorydetails.py:122
@@ -9045,7 +9049,7 @@ msgid "Address"
 msgstr "Adress"
 
 #. 0 this order range above
-#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:535
+#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:536
 #: ../gramps/gui/editors/editlink.py:79
 #: ../gramps/gui/editors/filtereditor.py:291
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
@@ -9061,7 +9065,7 @@ msgid "Event"
 msgstr "Händelse"
 
 #. 5
-#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:527
+#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:528
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -9137,7 +9141,7 @@ msgstr "Platsref"
 #. Priority
 #. Handle
 #. Add column with object name
-#: ../gramps/gui/clipboard.py:589 ../gramps/gui/configure.py:504
+#: ../gramps/gui/clipboard.py:589 ../gramps/gui/configure.py:505
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
@@ -9229,7 +9233,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../gramps/gui/clipboard.py:743 ../gramps/gui/configure.py:523
+#: ../gramps/gui/clipboard.py:743 ../gramps/gui/configure.py:524
 #: ../gramps/gui/editors/editlink.py:83
 #: ../gramps/gui/editors/filtereditor.py:289
 #: ../gramps/gui/glade/editpersonref.glade:211
@@ -9264,7 +9268,7 @@ msgid "Person"
 msgstr "Person"
 
 #. 7
-#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:529
+#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:530
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:86 ../gramps/gui/editors/editsource.py:76
 #: ../gramps/gui/editors/filtereditor.py:293
@@ -9283,7 +9287,7 @@ msgid "Source"
 msgstr "Källa"
 
 #. 6
-#: ../gramps/gui/clipboard.py:827 ../gramps/gui/configure.py:537
+#: ../gramps/gui/clipboard.py:827 ../gramps/gui/configure.py:538
 #: ../gramps/gui/editors/editlink.py:85
 #: ../gramps/gui/editors/editrepository.py:67
 #: ../gramps/gui/editors/editrepository.py:69
@@ -9355,7 +9359,7 @@ msgstr "Arkivplats"
 msgid "Type"
 msgstr "Typ"
 
-#: ../gramps/gui/clipboard.py:962 ../gramps/gui/configure.py:1003
+#: ../gramps/gui/clipboard.py:962
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -9421,8 +9425,8 @@ msgstr "Trädvy: första kolumnen \"%s\" kan ej ändras"
 msgid "Drag and drop the columns to change the order"
 msgstr "Drag och släpp kolumner för att ändra ordning"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1407
-#: ../gramps/gui/configure.py:1432 ../gramps/gui/plug/_dialogs.py:123
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1424
+#: ../gramps/gui/configure.py:1449 ../gramps/gui/plug/_dialogs.py:123
 #: ../gramps/gui/viewmanager.py:1344
 #: ../gramps/plugins/lib/maps/geography.py:940
 #: ../gramps/plugins/lib/maps/geography.py:1179
@@ -9430,7 +9434,7 @@ msgid "_Apply"
 msgstr "_Tillämpa"
 
 #. #################
-#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1118
+#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1099
 #: ../gramps/plugins/drawreport/ancestortree.py:832
 #: ../gramps/plugins/drawreport/descendtree.py:1535
 msgid "Display"
@@ -9545,17 +9549,17 @@ msgstr ""
 msgid " Name Editor"
 msgstr " Redigerare för namn"
 
-#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1487
+#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1504
 #: ../gramps/gui/views/pageview.py:607
 msgid "Preferences"
 msgstr "Inställningar"
 
 #: ../gramps/gui/configure.py:231 ../gramps/gui/configure.py:236
-#: ../gramps/gui/configure.py:793
+#: ../gramps/gui/configure.py:794
 msgid "Invalid or incomplete format definition."
 msgstr "Ogiltig eller ofullständig formatdefinition."
 
-#: ../gramps/gui/configure.py:502
+#: ../gramps/gui/configure.py:503
 msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
@@ -9563,74 +9567,74 @@ msgstr ""
 "Skriv in information om dig, så personer kan ta kontakt med dig, när du "
 "slickar ut ditt släktträd"
 
-#: ../gramps/gui/configure.py:508
+#: ../gramps/gui/configure.py:509
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
 msgstr "Stat/Län"
 
-#: ../gramps/gui/configure.py:510 ../gramps/plugins/tool/extractcity.py:391
+#: ../gramps/gui/configure.py:511 ../gramps/plugins/tool/extractcity.py:391
 #: ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: ../gramps/gui/configure.py:511
+#: ../gramps/gui/configure.py:512
 #: ../gramps/plugins/gramplet/repositorydetails.py:110
 #: ../gramps/plugins/webreport/narrativeweb.py:384
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../gramps/gui/configure.py:512 ../gramps/gui/plug/_windows.py:610
+#: ../gramps/gui/configure.py:513 ../gramps/gui/plug/_windows.py:610
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "E-post"
 
-#: ../gramps/gui/configure.py:513
+#: ../gramps/gui/configure.py:514
 msgid "Researcher"
 msgstr "Forskare"
 
-#: ../gramps/gui/configure.py:533 ../gramps/gui/editors/editperson.py:646
+#: ../gramps/gui/configure.py:534 ../gramps/gui/editors/editperson.py:646
 #: ../gramps/gui/widgets/photo.py:87
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
-#: ../gramps/gui/configure.py:541
+#: ../gramps/gui/configure.py:542
 msgid "ID Formats"
 msgstr "ID-format"
 
-#: ../gramps/gui/configure.py:551
+#: ../gramps/gui/configure.py:552
 msgid "Set the colors used for boxes in the graphical views"
 msgstr "Bestäm färg att användas till rutor i de grafiska vyerna"
 
-#: ../gramps/gui/configure.py:553
+#: ../gramps/gui/configure.py:554
 msgid "Gender Male Alive"
 msgstr "Levande mansperson"
 
-#: ../gramps/gui/configure.py:555
+#: ../gramps/gui/configure.py:556
 msgid "Border Male Alive"
 msgstr "Kant för levande mansperson"
 
-#: ../gramps/gui/configure.py:557
+#: ../gramps/gui/configure.py:558
 msgid "Gender Male Death"
 msgstr "Död mansperson"
 
-#: ../gramps/gui/configure.py:559
+#: ../gramps/gui/configure.py:560
 msgid "Border Male Death"
 msgstr "Kant för död mansperson"
 
-#: ../gramps/gui/configure.py:561
+#: ../gramps/gui/configure.py:562
 msgid "Gender Female Alive"
 msgstr "Levande kvinnoperson"
 
-#: ../gramps/gui/configure.py:563
+#: ../gramps/gui/configure.py:564
 msgid "Border Female Alive"
 msgstr "Kant för levande kvinnoperson"
 
-#: ../gramps/gui/configure.py:565
+#: ../gramps/gui/configure.py:566
 msgid "Gender Female Death"
 msgstr "Död kvinnoperson"
 
-#: ../gramps/gui/configure.py:567
+#: ../gramps/gui/configure.py:568
 msgid "Border Female Death"
 msgstr "Kant för död kvinnoperson"
 
@@ -9642,77 +9646,77 @@ msgstr "Kant för död kvinnoperson"
 #. #                        'preferences.color-gender-other-death')
 #. #        self.add_color(grid, _('Border Other Death'), 8,
 #. #                        'preferences.bordercolor-gender-other-death')
-#: ../gramps/gui/configure.py:577
+#: ../gramps/gui/configure.py:578
 msgid "Gender Unknown Alive"
 msgstr "Levande av okänt kön"
 
-#: ../gramps/gui/configure.py:579
+#: ../gramps/gui/configure.py:580
 msgid "Border Unknown Alive"
 msgstr "Kant för levande av okänt kön"
 
-#: ../gramps/gui/configure.py:581
+#: ../gramps/gui/configure.py:582
 msgid "Gender Unknown Death"
 msgstr "Död person av okänt kön"
 
-#: ../gramps/gui/configure.py:583
+#: ../gramps/gui/configure.py:584
 msgid "Border Unknown Death"
 msgstr "Kant för person av okänt kön"
 
-#: ../gramps/gui/configure.py:585
+#: ../gramps/gui/configure.py:586
 msgid "Colors"
 msgstr "Färg"
 
-#: ../gramps/gui/configure.py:593
+#: ../gramps/gui/configure.py:594
 msgid "Suppress warning when adding parents to a child."
 msgstr "Varna inte när föräldrar läggs till ett barn."
 
-#: ../gramps/gui/configure.py:597
+#: ../gramps/gui/configure.py:598
 msgid "Suppress warning when canceling with changed data."
 msgstr "Varna inte när dialogfönster med osparad information stängs."
 
-#: ../gramps/gui/configure.py:601
+#: ../gramps/gui/configure.py:602
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr "Undertryck varning om saknad forskare vid export till GEDCOM."
 
-#: ../gramps/gui/configure.py:606
+#: ../gramps/gui/configure.py:607
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Visa statusfönster vid problem att ladda insticksmoduler."
 
-#: ../gramps/gui/configure.py:609
+#: ../gramps/gui/configure.py:610
 msgid "Warnings"
 msgstr "Varningar"
 
-#: ../gramps/gui/configure.py:635 ../gramps/gui/configure.py:649
+#: ../gramps/gui/configure.py:636 ../gramps/gui/configure.py:650
 msgid "Common"
 msgstr "Vanligt"
 
-#: ../gramps/gui/configure.py:642 ../gramps/plugins/export/exportcsv.py:353
+#: ../gramps/gui/configure.py:643 ../gramps/plugins/export/exportcsv.py:353
 #: ../gramps/plugins/importer/importcsv.py:137
 msgid "Call"
 msgstr "Tilltalsnamn"
 
-#: ../gramps/gui/configure.py:647
+#: ../gramps/gui/configure.py:648
 msgid "NotPatronymic"
 msgstr "IckePatronymikon"
 
-#: ../gramps/gui/configure.py:724
+#: ../gramps/gui/configure.py:725
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Vagnretur för att spara, Esc för att avbryta redigering"
 
-#: ../gramps/gui/configure.py:771
+#: ../gramps/gui/configure.py:772
 msgid "This format exists already."
 msgstr "Detta format finns redan."
 
-#: ../gramps/gui/configure.py:810
+#: ../gramps/gui/configure.py:811
 msgid "Format"
 msgstr "Format"
 
-#: ../gramps/gui/configure.py:820
+#: ../gramps/gui/configure.py:821
 msgid "Example"
 msgstr "Exempel"
 
 #. show an add button
-#: ../gramps/gui/configure.py:840
+#: ../gramps/gui/configure.py:841
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:151
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:158
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:312
@@ -9727,7 +9731,7 @@ msgstr "Exempel"
 msgid "_Add"
 msgstr "_Lägg till..."
 
-#: ../gramps/gui/configure.py:843
+#: ../gramps/gui/configure.py:844
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:153
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:159
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:313
@@ -9741,7 +9745,7 @@ msgstr "_Lägg till..."
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../gramps/gui/configure.py:847
+#: ../gramps/gui/configure.py:848
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:160
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
@@ -9753,7 +9757,7 @@ msgstr "R_edigera"
 msgid "_Remove"
 msgstr "_Ta bort"
 
-#: ../gramps/gui/configure.py:972
+#: ../gramps/gui/configure.py:973
 #: ../gramps/gui/editors/displaytabs/buttontab.py:70
 #: ../gramps/gui/glade/editfamily.glade:286
 #: ../gramps/gui/glade/editfamily.glade:594
@@ -9766,154 +9770,183 @@ msgstr "_Ta bort"
 msgid "Edit"
 msgstr "Redigera"
 
-#: ../gramps/gui/configure.py:982
+#: ../gramps/gui/configure.py:983
 msgid "Consider single pa/matronymic as surname"
 msgstr "Överväg enkelt patro/matronymikon som efternamn"
 
-#: ../gramps/gui/configure.py:996
+#: ../gramps/gui/configure.py:997
 msgid "Date format"
 msgstr "Datumformat"
 
-#: ../gramps/gui/configure.py:1003
-msgid "Automatic"
-msgstr "Automatisk"
-
-#: ../gramps/gui/configure.py:1010
-#, fuzzy
-msgid "Place format"
-msgstr "Pappersformat"
-
-#: ../gramps/gui/configure.py:1017
-msgid "Display legacy place title field in editors"
-msgstr ""
-
-#: ../gramps/gui/configure.py:1024
+#: ../gramps/gui/configure.py:1005
 msgid "Years"
 msgstr "År"
 
-#: ../gramps/gui/configure.py:1025
+#: ../gramps/gui/configure.py:1006
 msgid "Years, Months"
 msgstr "År, månader"
 
-#: ../gramps/gui/configure.py:1026
+#: ../gramps/gui/configure.py:1007
 msgid "Years, Months, Days"
 msgstr "År, månader, dagar"
 
-#: ../gramps/gui/configure.py:1038
+#: ../gramps/gui/configure.py:1019
 msgid "Age display precision (requires restart)"
 msgstr "Precision vid visning av ålder (omstart krävs)"
 
-#: ../gramps/gui/configure.py:1051
+#: ../gramps/gui/configure.py:1032
 msgid "Calendar on reports"
 msgstr "Kalender för rapporter"
 
-#: ../gramps/gui/configure.py:1064
+#: ../gramps/gui/configure.py:1045
 msgid "Surname guessing"
 msgstr "Gissar efternamn"
 
-#: ../gramps/gui/configure.py:1077
+#: ../gramps/gui/configure.py:1058
 msgid "Default family relationship"
 msgstr "Standardfamiljesläktskap"
 
-#: ../gramps/gui/configure.py:1084
+#: ../gramps/gui/configure.py:1065
 msgid "Height multiple surname box (pixels)"
 msgstr "Höjd på rutan för flera efternamn (pixlar)"
 
-#: ../gramps/gui/configure.py:1091
+#: ../gramps/gui/configure.py:1072
 msgid "Active person's name and ID"
 msgstr "Aktiv persons namn och ID"
 
-#: ../gramps/gui/configure.py:1092
+#: ../gramps/gui/configure.py:1073
 msgid "Relationship to home person"
 msgstr "Släktskap till hemperson"
 
-#: ../gramps/gui/configure.py:1101
+#: ../gramps/gui/configure.py:1082
 msgid "Status bar"
 msgstr "Statusrad"
 
-#: ../gramps/gui/configure.py:1108
+#: ../gramps/gui/configure.py:1089
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr "Visa text i sidokolumnens knappar (aktiveras vid omstart)"
 
-#: ../gramps/gui/configure.py:1114
+#: ../gramps/gui/configure.py:1095
 msgid "Show close button in gramplet bar tabs"
 msgstr "Visa stängningsknapp i flikar hos gramplets"
 
-#: ../gramps/gui/configure.py:1126
+#: ../gramps/gui/configure.py:1108
+msgid "Enable automatic place title generation"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1112
+msgid "Suppress comma after house number"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1116
+#, fuzzy
+msgid "Reverse display order"
+msgstr "Använd moders visningsformat"
+
+#: ../gramps/gui/configure.py:1122
+#, fuzzy
+msgid "Full place name"
+msgstr "Komplett efternamn:"
+
+#: ../gramps/gui/configure.py:1123
+msgid "-> Hamlet/VillageTown/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1124
+msgid "Hamlet/VillageTown/City ->"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1129
+#, fuzzy
+msgid "Restrict"
+msgstr "Distrikt"
+
+#: ../gramps/gui/configure.py:1134
+#: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
+msgid "Language"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1138
+#: ../gramps/plugins/quickview/filterbyname.py:100
+#: ../gramps/plugins/textreport/tagreport.py:380
+#: ../gramps/plugins/view/view.gpr.py:205
+#: ../gramps/plugins/view/view.gpr.py:213
+#: ../gramps/plugins/view/view.gpr.py:229
+#: ../gramps/plugins/webreport/narrativeweb.py:1760
+#: ../gramps/plugins/webreport/narrativeweb.py:1815
+#: ../gramps/plugins/webreport/narrativeweb.py:1871
+#: ../gramps/plugins/webreport/narrativeweb.py:3340
+#: ../gramps/plugins/webreport/narrativeweb.py:3461
+msgid "Places"
+msgstr "Platser"
+
+#: ../gramps/gui/configure.py:1146
 msgid "Missing surname"
 msgstr "Saknat efternamn"
 
-#: ../gramps/gui/configure.py:1129
+#: ../gramps/gui/configure.py:1149
 msgid "Missing given name"
 msgstr "Saknat förnamn"
 
-#: ../gramps/gui/configure.py:1132
+#: ../gramps/gui/configure.py:1152
 msgid "Missing record"
 msgstr "Saknad post"
 
-#: ../gramps/gui/configure.py:1135
+#: ../gramps/gui/configure.py:1155
 msgid "Private surname"
 msgstr "Privat efternamn"
 
-#: ../gramps/gui/configure.py:1138
+#: ../gramps/gui/configure.py:1158
 msgid "Private given name"
 msgstr "Privat förnamn"
 
-#: ../gramps/gui/configure.py:1141
+#: ../gramps/gui/configure.py:1161
 msgid "Private record"
 msgstr "Privat post"
 
-#: ../gramps/gui/configure.py:1177 ../gramps/gui/configure.py:1184
+#: ../gramps/gui/configure.py:1201
 msgid "Change is not immediate"
 msgstr "Ändringen är inte omedelbar"
 
-#: ../gramps/gui/configure.py:1178
-#, fuzzy
+#: ../gramps/gui/configure.py:1202
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
-msgstr "Förändringen av dataformat kommer att gälla nästa gång Gramps startas."
+msgstr "Ändring av datumformat blir effektivt först när Gramps har startat om."
 
-#: ../gramps/gui/configure.py:1185
-#, fuzzy
-msgid ""
-"Changing the place format will not take effect until the next time Gramps is "
-"started."
-msgstr "Förändringen av dataformat kommer att gälla nästa gång Gramps startas."
-
-#: ../gramps/gui/configure.py:1199
+#: ../gramps/gui/configure.py:1216
 msgid "Date about range"
 msgstr "Ungefärligt datumintervall"
 
-#: ../gramps/gui/configure.py:1202
+#: ../gramps/gui/configure.py:1219
 msgid "Date after range"
 msgstr "Datum efterintervall"
 
-#: ../gramps/gui/configure.py:1205
+#: ../gramps/gui/configure.py:1222
 msgid "Date before range"
 msgstr "Datum föreintervall"
 
-#: ../gramps/gui/configure.py:1208
+#: ../gramps/gui/configure.py:1225
 msgid "Maximum age probably alive"
 msgstr "Maximal ålder för personer som troligen lever"
 
-#: ../gramps/gui/configure.py:1211
+#: ../gramps/gui/configure.py:1228
 msgid "Maximum sibling age difference"
 msgstr "Maximal åldersskillnad mellan syskon"
 
-#: ../gramps/gui/configure.py:1214
+#: ../gramps/gui/configure.py:1231
 msgid "Minimum years between generations"
 msgstr "Minst antal år mellan generationer"
 
-#: ../gramps/gui/configure.py:1217
+#: ../gramps/gui/configure.py:1234
 msgid "Average years between generations"
 msgstr "Antal år i medel mellan generationer"
 
-#: ../gramps/gui/configure.py:1220
+#: ../gramps/gui/configure.py:1237
 msgid "Markup for invalid date format"
 msgstr "Markering för ogiltigt datumformat"
 
-#: ../gramps/gui/configure.py:1223
+#: ../gramps/gui/configure.py:1240
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -9944,23 +9977,23 @@ msgstr ""
 "Till example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "kommer att visa <u><b>Datum i fetstil, understruken</b></u>.\n"
 
-#: ../gramps/gui/configure.py:1237
+#: ../gramps/gui/configure.py:1254
 msgid "Dates"
 msgstr "Datum"
 
-#: ../gramps/gui/configure.py:1247
+#: ../gramps/gui/configure.py:1264
 msgid "Add default source on GEDCOM import"
 msgstr "Lägg till standardkälla vid GEDCOM-import"
 
-#: ../gramps/gui/configure.py:1251
+#: ../gramps/gui/configure.py:1268
 msgid "Add tag on import"
 msgstr "Lägg till flagga vid import"
 
-#: ../gramps/gui/configure.py:1262
+#: ../gramps/gui/configure.py:1279
 msgid "Enable spelling checker"
 msgstr "Aktivera stavningskontroll"
 
-#: ../gramps/gui/configure.py:1271
+#: ../gramps/gui/configure.py:1288
 #, fuzzy, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -9971,114 +10004,114 @@ msgstr ""
 "index.php?title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#Spell_Check_Install"
 
-#: ../gramps/gui/configure.py:1278
+#: ../gramps/gui/configure.py:1295
 msgid "Display Tip of the Day"
 msgstr "Visa dagens tips"
 
-#: ../gramps/gui/configure.py:1283
+#: ../gramps/gui/configure.py:1300
 msgid "Remember last view displayed"
 msgstr "Kom ihåg senaste visade vy"
 
-#: ../gramps/gui/configure.py:1288
+#: ../gramps/gui/configure.py:1305
 msgid "Max generations for relationships"
 msgstr "Största antal generationer för släktskap"
 
-#: ../gramps/gui/configure.py:1294
+#: ../gramps/gui/configure.py:1311
 msgid "Base path for relative media paths"
 msgstr "Grundsökväg för relativ mediasökväg"
 
-#: ../gramps/gui/configure.py:1302
+#: ../gramps/gui/configure.py:1319
 msgid "Once a month"
 msgstr "En gång i månaden"
 
-#: ../gramps/gui/configure.py:1303
+#: ../gramps/gui/configure.py:1320
 msgid "Once a week"
 msgstr "En gång i veckan"
 
-#: ../gramps/gui/configure.py:1304
+#: ../gramps/gui/configure.py:1321
 msgid "Once a day"
 msgstr "Dagligen"
 
-#: ../gramps/gui/configure.py:1305
+#: ../gramps/gui/configure.py:1322
 msgid "Always"
 msgstr "Alltid"
 
-#: ../gramps/gui/configure.py:1310
+#: ../gramps/gui/configure.py:1327
 msgid "Check for updates"
 msgstr "Kontrollera om det finns uppdateringar"
 
-#: ../gramps/gui/configure.py:1316
+#: ../gramps/gui/configure.py:1333
 msgid "Updated addons only"
 msgstr "Uppdatera endast tillägg"
 
-#: ../gramps/gui/configure.py:1317
+#: ../gramps/gui/configure.py:1334
 msgid "New addons only"
 msgstr "Endast ny tillägg"
 
-#: ../gramps/gui/configure.py:1318
+#: ../gramps/gui/configure.py:1335
 msgid "New and updated addons"
 msgstr "Nya och uppdaterade tillägg"
 
-#: ../gramps/gui/configure.py:1328
+#: ../gramps/gui/configure.py:1345
 msgid "What to check"
 msgstr "Vad skall kontrolleras"
 
-#: ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1350
 msgid "Where to check"
 msgstr "Var kontroll skall göras"
 
-#: ../gramps/gui/configure.py:1337
+#: ../gramps/gui/configure.py:1354
 msgid "Do not ask about previously notified addons"
 msgstr "Fråga ej om tidigare  noterade tillägg"
 
-#: ../gramps/gui/configure.py:1342
+#: ../gramps/gui/configure.py:1359
 msgid "Check now"
 msgstr "Kontrollera nu"
 
-#: ../gramps/gui/configure.py:1352
+#: ../gramps/gui/configure.py:1369
 msgid "Checking Addons Failed"
 msgstr "Kontroll av tillägg misslyckades"
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1370
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Arkivplatsen med tillägg verkar vara otillgängligt. Försök senare."
 
-#: ../gramps/gui/configure.py:1362
+#: ../gramps/gui/configure.py:1379
 msgid "There are no available addons of this type"
 msgstr "Det finns inga tillgängliga tillägg av denna typ"
 
-#: ../gramps/gui/configure.py:1363
+#: ../gramps/gui/configure.py:1380
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrollerade om '%s'"
 
-#: ../gramps/gui/configure.py:1364
+#: ../gramps/gui/configure.py:1381
 msgid "' and '"
 msgstr "' och '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1369
+#: ../gramps/gui/configure.py:1386
 msgid "new"
 msgstr "ny"
 
-#: ../gramps/gui/configure.py:1369
+#: ../gramps/gui/configure.py:1386
 msgid "update"
 msgstr "uppdaterade"
 
-#: ../gramps/gui/configure.py:1382
+#: ../gramps/gui/configure.py:1399
 msgid "Family Tree Database path"
 msgstr "Sökväg för databas till Släktträd"
 
-#: ../gramps/gui/configure.py:1390
+#: ../gramps/gui/configure.py:1407
 msgid "Automatically load last Family Tree"
 msgstr "Läs in senaste Släktträd automatiskt"
 
-#: ../gramps/gui/configure.py:1402
+#: ../gramps/gui/configure.py:1419
 msgid "Select media directory"
 msgstr "Välj en mediamapp"
 
-#: ../gramps/gui/configure.py:1405 ../gramps/gui/configure.py:1430
+#: ../gramps/gui/configure.py:1422 ../gramps/gui/configure.py:1447
 #: ../gramps/gui/dbloader.py:141 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:24
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -10139,7 +10172,7 @@ msgstr "Välj en mediamapp"
 msgid "_Cancel"
 msgstr "Avbryt"
 
-#: ../gramps/gui/configure.py:1427
+#: ../gramps/gui/configure.py:1444
 msgid "Select database directory"
 msgstr "Välj en databasmapp"
 
@@ -11334,10 +11367,6 @@ msgstr "Flytta det valda namnet uppåt"
 msgid "Move the selected place name downwards"
 msgstr "Flytta det valda namnet neråt"
 
-#: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
-msgid "Language"
-msgstr ""
-
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:71
 #: ../gramps/plugins/gramplet/placedetails.py:130
 msgid "Alternative Names"
@@ -11536,7 +11565,7 @@ msgstr "Kan inte spara citering. ID finns redan."
 #: ../gramps/gui/editors/editevent.py:248
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:847
-#: ../gramps/gui/editors/editplace.py:285
+#: ../gramps/gui/editors/editplace.py:284
 #: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
@@ -12322,76 +12351,76 @@ msgstr "Ingen person vald"
 msgid "You must either select a person or Cancel the edit"
 msgstr "Du måste antingen välja en person eller avbryta redigeringen"
 
-#: ../gramps/gui/editors/editplace.py:84
+#: ../gramps/gui/editors/editplace.py:83
 #: ../gramps/gui/glade/editplace.glade:288
 #: ../gramps/gui/merge/mergeplace.py:56
 msgid "place|Name:"
 msgstr "Platsnamn:"
 
-#: ../gramps/gui/editors/editplace.py:89
+#: ../gramps/gui/editors/editplace.py:88
 #: ../gramps/gui/editors/editplaceref.py:95
 #, python-format
 msgid "Place: %s"
 msgstr "Plats: %s"
 
-#: ../gramps/gui/editors/editplace.py:91
+#: ../gramps/gui/editors/editplace.py:90
 #: ../gramps/gui/editors/editplaceref.py:97
 msgid "New Place"
 msgstr "Ny plats"
 
-#: ../gramps/gui/editors/editplace.py:169
+#: ../gramps/gui/editors/editplace.py:168
 #: ../gramps/gui/editors/editplaceref.py:169
 msgid "Invalid latitude (syntax: 18\\u00b09'"
 msgstr "Ogiltig latitud (syntax: 18\\u00b09'"
 
-#: ../gramps/gui/editors/editplace.py:170
+#: ../gramps/gui/editors/editplace.py:169
 #: ../gramps/gui/editors/editplaceref.py:170
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 eller -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:172
+#: ../gramps/gui/editors/editplace.py:171
 #: ../gramps/gui/editors/editplaceref.py:172
 msgid "Invalid longitude (syntax: 18\\u00b09'"
 msgstr "Ogiltig longitud (syntax: 18\\u00b09'"
 
-#: ../gramps/gui/editors/editplace.py:173
+#: ../gramps/gui/editors/editplace.py:172
 #: ../gramps/gui/editors/editplaceref.py:173
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 eller -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:183
+#: ../gramps/gui/editors/editplace.py:182
 #: ../gramps/plugins/lib/maps/geography.py:854
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
 msgstr "Redigera plats"
 
-#: ../gramps/gui/editors/editplace.py:274
+#: ../gramps/gui/editors/editplace.py:273
 #: ../gramps/gui/editors/editplaceref.py:275
 #, fuzzy
 msgid "Cannot save place. Name not entered."
 msgstr "Kan inte spara plats. Namn ej inmatat."
 
-#: ../gramps/gui/editors/editplace.py:275
+#: ../gramps/gui/editors/editplace.py:274
 #: ../gramps/gui/editors/editplaceref.py:276
 msgid "You must enter a name before saving."
 msgstr "Du måste skriva in en namn innan du sparar."
 
-#: ../gramps/gui/editors/editplace.py:284
+#: ../gramps/gui/editors/editplace.py:283
 msgid "Cannot save place. ID already exists."
 msgstr "Kan inte spara plats. ID finns redan."
 
-#: ../gramps/gui/editors/editplace.py:298
+#: ../gramps/gui/editors/editplace.py:297
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Lägg till plats (%s)"
 
-#: ../gramps/gui/editors/editplace.py:303
+#: ../gramps/gui/editors/editplace.py:302
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Redigera plats (%s)"
 
-#: ../gramps/gui/editors/editplace.py:328
+#: ../gramps/gui/editors/editplace.py:327
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Radera plats (%s)"
@@ -13253,9 +13282,8 @@ msgstr ""
 #: ../gramps/gui/glade/dbman.glade:237 ../gramps/gui/widgets/fanchart.py:1642
 #: ../gramps/plugins/view/pedigreeview.py:1647
 #: ../gramps/plugins/view/pedigreeview.py:1891
-#, fuzzy
 msgid "_Copy"
-msgstr "Kopiera"
+msgstr "_Kopiera"
 
 #: ../gramps/gui/glade/dbman.glade:268
 msgid "_Rename"
@@ -15372,7 +15400,6 @@ msgid "Select _None"
 msgstr "Välj _inget"
 
 #: ../gramps/gui/grampsgui.py:57
-#, fuzzy
 msgid ""
 "Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
@@ -15396,7 +15423,6 @@ msgstr ""
 "Gramps kommer att avslutas nu."
 
 #: ../gramps/gui/grampsgui.py:89
-#, fuzzy
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
@@ -15404,11 +15430,11 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Gdk, Gtk or Pango typelib ej installerade.\n"
+"Gdk, Gtk Pango eller PangoCairo typelib ej installerade.\n"
 "Installera Gnome Introspection, och pygobject version 3.3.2 eller senare.\n"
-"Installera sedan instrospection data för Gdk, Gtk och Pango\n"
+"Installera sedan instrospection data för Gdk, Gtk, Pango  och PangoCairo\n"
 "\n"
-"Gramps kommer att avslutas nu.."
+"Gramps kommer att avslutas nu."
 
 #: ../gramps/gui/grampsgui.py:100
 msgid ""
@@ -16142,8 +16168,8 @@ msgstr "Laddar ner och installerar tillägg"
 #: ../gramps/gui/plug/_windows.py:1197
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "%d tillägg installerades."
-msgstr[1] "%d tillägg installerades."
+msgstr[0] "{number_of} tillägg installerades."
+msgstr[1] "{number_of} tillägg installerades."
 
 #: ../gramps/gui/plug/_windows.py:1200
 msgid "You need to restart Gramps to see new views."
@@ -17798,14 +17824,12 @@ msgid "Related"
 msgstr "Släkt"
 
 #: ../gramps/gui/widgets/fanchart.py:1865
-#, fuzzy
 msgid "Add partner to person"
-msgstr "Lägger föräldrar till en person"
+msgstr "Lägger partner till en person"
 
 #: ../gramps/gui/widgets/fanchart.py:1874
-#, fuzzy
 msgid "Add a person"
-msgstr "Lägg till en ny person"
+msgstr "Lägg till en person"
 
 #: ../gramps/gui/widgets/fanchart.py:1949
 #: ../gramps/plugins/view/relview.py:1549
@@ -18970,9 +18994,9 @@ msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Familjetavla för %(father1)s och %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "Cousin Chart for %(names)s"
-msgstr "Kusintavla för "
+msgstr "Kusintavla för %(names)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:747
 #, python-format
@@ -20069,9 +20093,9 @@ msgid "%(abbr)s %(date)s"
 msgstr "%(abbr)s %(date)s"
 
 #: ../gramps/plugins/gramplet/ancestor.py:150
-#, fuzzy, python-format
+#, python-format
 msgid "%(depth)s. %(name)s"
-msgstr "%(date)s %(time)s"
+msgstr "%(depth)s. %(name)s"
 
 #: ../gramps/plugins/gramplet/attributes.py:41
 msgid ""
@@ -21126,25 +21150,16 @@ msgid "SoundEx"
 msgstr "SoundEx-kod:"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
-#, fuzzy
 msgid "Place Locations"
-msgstr "Platsciteringar"
+msgstr "Platslokalisering"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
-#, fuzzy
 msgid "Gramplet showing the locations of a place over time"
-msgstr "Gramplet visande citeringana för en plats"
+msgstr "Gramplet visande placering för en plats över tid "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
-#, fuzzy
 msgid "Locations"
-msgstr "Plats"
-
-#: ../gramps/plugins/gramplet/leak.py:96
-#: ../gramps/plugins/webreport/narrativeweb.py:2728
-#: ../gramps/plugins/webreport/narrativeweb.py:4209
-msgid "Number"
-msgstr "Antal"
+msgstr "Lokaliseringar"
 
 #: ../gramps/plugins/gramplet/leak.py:100
 msgid "Uncollected object"
@@ -21170,9 +21185,8 @@ msgid "Uncollected Objects: %s"
 msgstr "Ej skräpsamlade objekt: %s"
 
 #: ../gramps/plugins/gramplet/locations.py:81
-#, fuzzy
 msgid "Double-click on a row to edit the selected place."
-msgstr "Dubbelklicka på en rad för att redigera det valda barnet."
+msgstr "Dubbelklicka på en rad för att redigera den valda platsen."
 
 #: ../gramps/plugins/gramplet/notes.py:99
 #: ../gramps/plugins/gramplet/todo.py:124
@@ -22236,12 +22250,13 @@ msgstr "Miniatyrbildsplats"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:654
 msgid "Include relationship debugging numbers also"
-msgstr ""
+msgstr "Tag även med släktskapsavlusningsnummer"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
+"Huruvida även ta med 'Ga' och 'Gb', för att avlusa släktskapsberäknaren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:691
 msgid "Arrowhead direction"
@@ -23662,16 +23677,14 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (repository) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6916
-#, fuzzy
 msgid "HEAD (header)"
-msgstr "Head (header)"
+msgstr "HEAD (header)"
 
 #: ../gramps/plugins/lib/libgedcom.py:6933
 msgid "Approved system identification"
 msgstr "Godkänd systemidentifiering"
 
 #: ../gramps/plugins/lib/libgedcom.py:6945
-#, fuzzy
 msgid "Generated By"
 msgstr "Skapad av"
 
@@ -27961,19 +27974,6 @@ msgstr "Objekt"
 msgid "People"
 msgstr "Personer"
 
-#: ../gramps/plugins/quickview/filterbyname.py:100
-#: ../gramps/plugins/textreport/tagreport.py:380
-#: ../gramps/plugins/view/view.gpr.py:205
-#: ../gramps/plugins/view/view.gpr.py:213
-#: ../gramps/plugins/view/view.gpr.py:229
-#: ../gramps/plugins/webreport/narrativeweb.py:1760
-#: ../gramps/plugins/webreport/narrativeweb.py:1815
-#: ../gramps/plugins/webreport/narrativeweb.py:1871
-#: ../gramps/plugins/webreport/narrativeweb.py:3340
-#: ../gramps/plugins/webreport/narrativeweb.py:3461
-msgid "Places"
-msgstr "Platser"
-
 #: ../gramps/plugins/quickview/filterbyname.py:103
 #: ../gramps/plugins/view/sourceview.py:115
 #: ../gramps/plugins/view/view.gpr.py:251
@@ -28880,9 +28880,8 @@ msgstr "%(event_name)s: %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:356
 #: ../gramps/plugins/textreport/detdescendantreport.py:469
 #: ../gramps/plugins/textreport/familygroup.py:125
-#, fuzzy
 msgid "; "
-msgstr " "
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:565
 #: ../gramps/plugins/textreport/detdescendantreport.py:617
@@ -29258,9 +29257,9 @@ msgstr "Grundläggande mall använd för generationsrubriker."
 #: ../gramps/plugins/textreport/familygroup.py:128
 #: ../gramps/plugins/textreport/indivcomplete.py:804
 #: ../gramps/plugins/textreport/indivcomplete.py:844
-#, fuzzy, python-format
+#, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s i %(str2)s. "
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/plugins/textreport/familygroup.py:381
 msgid "Marriage:"
@@ -29976,9 +29975,8 @@ msgid "Id"
 msgstr "Id"
 
 #: ../gramps/plugins/textreport/tagreport.py:642
-#, fuzzy
 msgid "Email Address"
-msgstr "Kopiera _e-postadress"
+msgstr "e-postadress"
 
 #: ../gramps/plugins/textreport/tagreport.py:726
 #: ../gramps/plugins/view/sourceview.py:86
@@ -31112,9 +31110,8 @@ msgid "Ignore Date and Confidence"
 msgstr "Ignorera datum och tillförlitlighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgid "manual|Merge_citations..."
-msgstr "an inte slå samman familjer."
+msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:131
 msgid ""
@@ -31461,7 +31458,6 @@ msgid "Reordering Gramps IDs"
 msgstr "Sorterar om Gramps-ID:n"
 
 #: ../gramps/plugins/tool/reorderids.py:70
-#, fuzzy
 msgid "Reordering Gramps IDs..."
 msgstr "Sorterar om Gramps-ID:n"
 
@@ -31508,7 +31504,7 @@ msgstr "Sorterar om notis-ID:n"
 
 #: ../gramps/plugins/tool/reorderids.py:170
 msgid "Done."
-msgstr ""
+msgstr "Klart."
 
 #: ../gramps/plugins/tool/reorderids.py:232
 msgid "Finding and assigning unused IDs"
@@ -32748,18 +32744,16 @@ msgstr ""
 "levnad."
 
 #: ../gramps/plugins/view/geography.gpr.py:112
-#, fuzzy
 msgid "Every residence or move for a person and any descendants"
 msgstr "Alla förflyttningar för en person och dess ättlingar"
 
 #: ../gramps/plugins/view/geography.gpr.py:113
-#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"En vy, som visar alla de platser besökta av en person under livet.\n"
+"En vy, som visar alla de platser besökta av alla personer under livet.\n"
 "Detta är för en person och dess ättlingar.\n"
 "Du kan se datum motsvarande för perioden."
 
@@ -34868,6 +34862,9 @@ msgstr "Minst en regel måste uppfyllas"
 msgid "Exactly one rule must apply"
 msgstr "Endast en regel måste uppfyllas"
 
+#~ msgid "   %s: %s"
+#~ msgstr "   %s: %s"
+
 #~ msgid "TRANSLATORS: Translate this to your name in your native language"
 #~ msgstr "Peter Landgren"
 
@@ -34881,17 +34878,11 @@ msgstr "Endast en regel måste uppfyllas"
 #~ "\n"
 #~ "==== Medarbetare ====\n"
 
+#~ msgid "%s (copy, %s)"
+#~ msgstr "%s (kopiera, %s)"
+
 #~ msgid "<b>Multiple Surnames</b>"
 #~ msgstr "<b>Flera efternamn</b>"
-
-#~ msgid ""
-#~ "You have attempted to use the existing Gramps ID with value "
-#~ "%(gramps_id)s. This value is already used by '%(prim_object)s'. Please "
-#~ "enter a different ID or leave blank to get the next available ID value."
-#~ msgstr ""
-#~ "Du har försökt att använda ett befintligt Gramps-ID med värdet "
-#~ "%(gramps_id)s. Detta värde används redan av '%(prim_object)s'. Skriv in "
-#~ "ett annat ID eller lämna tomt för att få nästa tillgängliga ID-värde."
 
 #~ msgid "Cannot save place"
 #~ msgstr "Kan inte spara plats"
@@ -34910,29 +34901,14 @@ msgstr "Endast en regel måste uppfyllas"
 #~ msgid "Place Name:"
 #~ msgstr "Platsnamn:"
 
-#~ msgid "Top level place"
-#~ msgstr "Toppnivå"
+#~ msgid "Cannot save place reference"
+#~ msgstr "Kan inte spara platsreferens"
+
+#~ msgid "No place selected. Please select a place  or cancel the edit."
+#~ msgstr "Ingen plats vald. Välj en plats eller avbryt redigeringen."
 
 #~ msgid "First add a source using the buttons"
 #~ msgstr "Först lägg till en källa genom att använda knapparna"
-
-#~ msgid "Source: Publication"
-#~ msgstr "Källa: Publikation"
-
-#~ msgid "Source: Note"
-#~ msgstr "Käll: Notis"
-
-#~ msgid "Citation: ID"
-#~ msgstr "Citering: ID"
-
-#~ msgid "Citation: Volume/Page"
-#~ msgstr "Citering: Volym/sida"
-
-#~ msgid "Citation: Date"
-#~ msgstr "Citering: datum"
-
-#~ msgid "Citation: Note"
-#~ msgstr "Citering: Notiser"
 
 #~ msgid "ZIP/Postal code"
 #~ msgstr "Postnummer:"
@@ -34942,9 +34918,6 @@ msgstr "Endast en regel måste uppfyllas"
 
 #~ msgid "New"
 #~ msgstr "Ny"
-
-#~ msgid "..."
-#~ msgstr "..."
 
 #~ msgid "_Add bookmark"
 #~ msgstr "_Lägg till bokmärke"
@@ -35135,9 +35108,6 @@ msgstr "Endast en regel måste uppfyllas"
 #~ msgid "Include individual and family IDs."
 #~ msgstr "Ta med individ- och familje-ID."
 
-#~ msgid "Sweden - Holidays"
-#~ msgstr "Sverige - Helgdagar"
-
 #~ msgid "SUBM (Submitter): @%s@"
 #~ msgstr "SUBM (Submitter): @%s@"
 
@@ -35213,6 +35183,42 @@ msgstr "Endast en regel måste uppfyllas"
 #~ msgid ""
 #~ "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 #~ msgstr "Skapad av <a href=\"http://gramps-project.org\">Gramps</a> %(date)s"
+
+#~ msgid ""
+#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
+#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
+#~ "different ID or leave blank to get the next available ID value."
+#~ msgstr ""
+#~ "Du har försökt att använda ett befintligt Gramps-ID med värdet "
+#~ "%(gramps_id)s. Detta värde används redan av '%(prim_object)s'. Skriv in "
+#~ "ett annat ID eller lämna tomt för att få nästa tillgängliga ID-värde."
+
+#~ msgid "Top level place"
+#~ msgstr "Toppnivå"
+
+#~ msgid "Source: Publication"
+#~ msgstr "Källa: Publikation"
+
+#~ msgid "Source: Note"
+#~ msgstr "Käll: Notis"
+
+#~ msgid "Citation: ID"
+#~ msgstr "Citering: ID"
+
+#~ msgid "Citation: Volume/Page"
+#~ msgstr "Citering: Volym/sida"
+
+#~ msgid "Citation: Date"
+#~ msgstr "Citering: datum"
+
+#~ msgid "Citation: Note"
+#~ msgstr "Citering: Notiser"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Sweden - Holidays"
+#~ msgstr "Sverige - Helgdagar"
 
 #~ msgid "YES"
 #~ msgstr "Ja"
@@ -38665,6 +38671,9 @@ msgstr "Endast en regel måste uppfyllas"
 
 #~ msgid "Version B"
 #~ msgstr "Version B"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisk"
 
 #~ msgid "Version C"
 #~ msgstr "Version C"

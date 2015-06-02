@@ -150,7 +150,7 @@ register('behavior.surname-guessing', 0)
 register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
-register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps42")
+register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps50")
 
 register('export.proxy-order', [
         ["privacy", 0], 
