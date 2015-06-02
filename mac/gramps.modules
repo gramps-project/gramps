@@ -13,8 +13,6 @@
 	      href="http://www.gnome.org/~fpeters/pyxdg/"/>
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
-  <repository type="git" name="gramps"
-	      href="git://git.code.sf.net/p/gramps/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://svn.code.sf.net/p/gramps-addons/code/"/>
   <repository type="tarball" name="oracle"
@@ -54,11 +52,11 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <!--include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/-->
-  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
+  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
+  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
-    <branch module="source" repo="gramps"
+    <branch module="gramps-project/gramps.git" repo="github"
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-python2-modules"/>
@@ -134,6 +132,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
+  <distutils id="setuptools">
+    <branch module="s/setuptools/setuptools-16.0.tar.gz"
+	    version="16.0" repo="pymodules"/>
+  </distutils>
   <distutils id="pil">
     <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware">
       <patch file="Imaging-Freetype2.patch" strip="1"/-->
@@ -142,6 +144,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    hash="md5:3fdc9f16a1b60366ae8158b424655d10">
       <patch file="Pillow-tk-setup.patch" strip="1"/>
     </branch>
+    <dependencies>
+      <dep package="setuptools"/>
+    </dependencies>
   </distutils>
 
  <distutils id='pyicu'>
