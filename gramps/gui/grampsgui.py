@@ -160,7 +160,7 @@ class Gramps(object):
         from .dialog import WarningDialog
         import gettext
 
-        _display_welcome_message()
+        #_display_welcome_message()
 
         # Append image directory to the theme search path
         theme = Gtk.IconTheme.get_default()
