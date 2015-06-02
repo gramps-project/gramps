@@ -27,6 +27,7 @@ Class handling language-specific selection for date parser and displayer.
 # Python modules
 #
 #-------------------------------------------------------------------------
+import sys
 import time
 
 #-------------------------------------------------------------------------
@@ -35,6 +36,7 @@ import time
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
+from ..const import GRAMPS_LOCALE as glocale
 from . import LANG_TO_DISPLAY, LANG, parser, displayer
 
 #--------------------------------------------------------------
@@ -94,4 +96,7 @@ def format_time(secs):
     """
     t = time.localtime(secs)
     d = Date(t.tm_year, t.tm_mon, t.tm_mday)
-    return displayer.display(d) + time.strftime(' %X', t)
+    if sys.version_info[0] < 3:
+        return displayer.display(d) + time.strftime(' %X', t).decode(glocale.encoding)
+    else:
+        return displayer.display(d) + time.strftime(' %X', t)

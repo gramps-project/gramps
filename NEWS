@@ -1,3 +1,46 @@
+2015-05-01
+Version 4.1.3, "Thou shalt not count to five", a maintenance release.
+* Fix db upgrade failure
+* GtkDialog mapped without a transient parent
+* [Gedcom} SUBN and SUBM record handling
+* [Gedcom] Import/export round trip causes lost information
+* [Gedcom] Entering a witness to an event such as marriage might be ignored
+* [Gedcom] Gramps can't import estim. date period exported by itself
+* [Gedcom] 1/4 and 1/2 ANSEL characters not supported on importing ANSEL
+* [Gedcom] Importing file containing multibyte UTF-8 characters fails
+* [Gedcom] Import fails for ANSI file under python 3
+* [Gedcom] Failure importing ANSEL encoded gedcom file.
+* [Gedcom] Characters ignored on a Gedcom encoded ANSI (cp1252 West Europe, USA)
+* [Gedcom] NameError in importer
+* [Gedcom] Event address is lost on import, i.e. disconnected from event
+* Crash on geneweb export with python3
+* GuiColorOption missing avail-changed event handler
+* Bad generation of [timeline report] ODT files since 4.0.0
+* Fix bad handle in explanation note for unknown event
+* Fix spurious generation of empty 'Alternative Name' in place.merge()
+* Support creating directories in various scenarios
+* Attempting to add a bookmark causes an error
+* Long series of "unhandled exception" popup boxes while doing a check & repair
+* Crash when trying to link existing place as an enclosing place using P0001 number
+* HTML view fails to load
+* Relationship Graph crashes
+* Python3 needs new_subpixbuf not subpixbuf
+* Regression: running gramps from crontab fails
+* tag_map is not initialized
+* Some labels now fit better on citations sidebar filter
+* Event columns in web narrative are too narrow
+* Problem by start program (launcher)
+* Translation string missing in Not Related tool for help and close button
+* Date format month/year is not well reported at editing time [in Italian]
+* Fix unknown gender relationships handler for the french locale
+* Fix a handle type bug on sidebar filter
+* Tidy up About dialog
+* Cleanup on some man files
+* Convert some remaining unicode literals
+* Fix mac menubar setting
+* Enable python3 to run po/update_po.py
+* Updated translations: cs, de, fr, is, nl
+
 2015-02-28
 Version 4.1.2, "That's no ordinary rabbit", a maintenance release.
 * Error converting python2 utf-8 strings to python3 str when loading data from database

@@ -76,15 +76,31 @@ def importData(database, filename, user):
         database.__class__.__bases__ = (DbMixin,) +  \
                                         database.__class__.__bases__
 
-    try:
-        ifile = open(filename, "r")
-    except IOError:
-        return
+    if sys.version_info[0] < 3:
+        try:
+            ifile = open(filename, "rU")
+        except IOError:
+            return
+    else:
+        try:
+            ifile = open(filename, "rb")
+        except IOError:
+            return
 
+#    print("file opened")
     ansel = False
     gramps = False
     for index in range(50):
-        line = ifile.readline().split()
+        # Treat the file as though it is UTF-8 since this is the more modern
+        # option; and anyway it doesn't really matter as we are only trying to
+        # detect a CHAR or SOUR line which is only 7-bit ASCII anyway,  and we
+        # ignore anything that can't be translated.
+        line = ifile.readline()
+        if sys.version_info[0] < 3:
+            line = unicode(line, encoding='utf-8', errors='replace')
+        else:
+            line = line.decode(encoding='utf-8', errors='replace')
+        line = line.split()
         if len(line) == 0:
             break
         if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":

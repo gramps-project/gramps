@@ -50,7 +50,7 @@ LOG = logging.getLogger(".gen.plug")
 #-------------------------------------------------------------------------
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS
-from ...version import VERSION_TUPLE
+from gramps.version import VERSION_TUPLE
 from . import BasePluginManager
 from ..utils.configmanager import safe_eval
 from ..config import config

@@ -25,6 +25,8 @@
 Display a people who have a person's same surname or given name.
 """
 
+from __future__ import unicode_literals
+
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
@@ -68,9 +70,9 @@ class SameGiven(Rule):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.first_name:
-                anyNBSP = name.first_name.split(u'\u00A0')
+                anyNBSP = name.first_name.split('\u00A0')
                 if len(anyNBSP) > 1: # there was an NBSP, a non-breaking space
-                    first_two = anyNBSP[0] + u'\u00A0' + anyNBSP[1].split()[0]
+                    first_two = anyNBSP[0] + '\u00A0' + anyNBSP[1].split()[0]
                     if first_two.upper() == src:
                         return True
                     else:

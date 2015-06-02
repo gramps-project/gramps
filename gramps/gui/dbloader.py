@@ -83,24 +83,24 @@ class DbLoader(CLIDbLoader):
         self.import_info = None
     
     def _warn(self, title, warnmessage):
-        WarningDialog(title, warnmessage)
+        WarningDialog(title, warnmessage, parent=self.uistate.window)
     
     def _errordialog(self, title, errormessage):
         """
         Show the error. 
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage)
+        ErrorDialog(title, errormessage, parent=self.uistate.window)
         return 1
     
     def _dberrordialog(self, msg):
         import traceback
         exc = traceback.format_exc()
         try:
-            DBErrorDialog(str(msg.value))
+            DBErrorDialog(str(msg.value), parent=self.uistate.window)
             _LOG.error(str(msg.value))
         except:
-            DBErrorDialog(str(msg))
+            DBErrorDialog(str(msg), parent=self.uistate.window)
             _LOG.error(str(msg) +"\n" + exc)
     
     def _begin_progress(self):
@@ -198,7 +198,8 @@ class DbLoader(CLIDbLoader):
                     _("Could not open file: %s") % filename, 
                     _('File type "%s" is unknown to Gramps.\n\n'
                       'Valid types are: Gramps database, Gramps XML, '
-                      'Gramps package, GEDCOM, and others.') % extension)
+                      'Gramps package, GEDCOM, and others.') % extension,
+                    parent=self.uistate.window)
 
         import_dialog.destroy()
         return False
@@ -220,13 +221,15 @@ class DbLoader(CLIDbLoader):
         elif os.path.isdir(filename):
             ErrorDialog(
                 _('Cannot open file'), 
-                _('The selected file is a directory, not a file.\n'))
+                _('The selected file is a directory, not a file.\n'),
+                parent=self.uistate.window)
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
                 ErrorDialog(
                     _('Cannot open file'), 
-                    _('You do not have read access to the selected file.'))
+                    _('You do not have read access to the selected file.'),
+                    parent=self.uistate.window)
                 return True
         else:
             try:
@@ -236,7 +239,8 @@ class DbLoader(CLIDbLoader):
             except IOError:
                 ErrorDialog(
                     _('Cannot create file'),
-                    _('You do not have write access to the selected file.'))
+                    _('You do not have write access to the selected file.'),
+                    parent=self.uistate.window)
                 return True
 
         return False
@@ -259,7 +263,8 @@ class DbLoader(CLIDbLoader):
                 _("Could not import file: %s") % filename, 
                 _("This file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "
-                  "encoding, and import again") + "\n\n %s" % msg)
+                  "encoding, and import again") + "\n\n %s" % msg,
+                parent=self.uistate.window)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
         self._end_progress()
@@ -327,7 +332,8 @@ class DbLoader(CLIDbLoader):
                                        str(msg), 
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"), 
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False
@@ -341,7 +347,8 @@ class DbLoader(CLIDbLoader):
                                        str(msg), 
                                        _("I have made a backup,\n"
                                          "please upgrade my tree"), 
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
                         force_bsddb_downgrade = False
@@ -355,7 +362,8 @@ class DbLoader(CLIDbLoader):
                                        str(msg), 
                                        _("I have made a backup,\n"
                                          "please downgrade my Family Tree"), 
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = True
@@ -369,7 +377,8 @@ class DbLoader(CLIDbLoader):
                                        str(msg), 
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"), 
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False

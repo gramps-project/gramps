@@ -89,6 +89,15 @@ class ErrorReportAssistant(Gtk.Assistant):
         self.build_page4()
         self.build_page5()
         self.create_page_summary()
+
+        try:
+            self.set_transient_for(self.list_toplevels()[-2])
+        except IndexError:
+            self.set_position(Gtk.WindowPosition.CENTER)
+            self.set_urgency_hint(True)
+            self.set_keep_above(True)
+        self.set_default_size(800,-1)
+
         self.show_all()
 
         self.ownthread = ownthread

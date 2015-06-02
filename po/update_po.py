@@ -169,9 +169,13 @@ def TipsParse(filename, mark):
     tips = open('../data/tips.xml.in.h', 'w')
     marklist = root.iter(mark)
     for key in marklist:
-        tip = ElementTree.tostring(key, encoding="UTF-8")
-        tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
-        tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
+        tip = ElementTree.tostring(key, encoding="UTF-8", method="xml")
+        if sys.version_info[0] < 3:
+            tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
+            tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
+        else: # python3 support
+            tip = tip.decode("utf-8")
+            tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
         tip = tip.replace("<br />", "<br/>")
         #tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
         #tip = tip.replace("\n<b>", "<b>") # special case tip 18

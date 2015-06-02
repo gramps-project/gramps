@@ -281,7 +281,7 @@ class TimeLine(Report):
             # subtitle if the report's output is in the main/UI language
         mark = None
         if toc:
-            mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+            mark = IndexMark(title_one, INDEX_TYPE_TOC, 1)
         self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
         
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):

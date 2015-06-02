@@ -29,6 +29,7 @@ Make an 'Unknown' primary object
 # Python modules
 #
 #-------------------------------------------------------------------------
+import sys
 import time
 import os
 
@@ -146,8 +147,11 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     elif isinstance(obj, Tag):
         if not hasattr(make_unknown, 'count'):
             make_unknown.count = 1 #primitive static variable
+        tval = time.strftime('%x %X', time.localtime())
+        if sys.version_info[0] < 3:
+            tval = tval.decode(glocale.encoding)
         obj.set_name(_("Unknown, was missing %(time)s (%(count)d)") % {
-                'time': time.strftime('%x %X', time.localtime()),
+                'time': tval,
                 'count': make_unknown.count})
         make_unknown.count += 1
     else:
@@ -165,9 +169,11 @@ def create_explanation_note(dbase):
     those objects of type "Unknown" need a explanatory note. This funcion
     provides such a note for import methods.
     """
+    tval = time.strftime('%x %X', time.localtime())
+    if sys.version_info[0] < 3:
+        tval = tval.decode(glocale.encoding)
     note = Note( _('Objects referenced by this note '
-                                    'were missing in a file imported on %s.') %
-                                    time.strftime('%x %X', time.localtime()))
+                'were missing in a file imported on %s.') % tval)
     note.set_handle(create_id())
     note.set_gramps_id(dbase.find_next_note_gramps_id())
     # Use defaults for privacy, format and type.

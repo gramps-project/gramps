@@ -41,6 +41,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePlaceQuery
+from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -140,6 +141,8 @@ class MergePlace(ManagedWindow):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
+        title1 = place_displayer.display(database, self.pl1)
+        title2 = place_displayer.display(database, self.pl2)
         rbutton1 = self.get_widget("handle_btn1")
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")

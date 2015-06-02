@@ -181,7 +181,19 @@ class GeoGraphyView(OsmGps, NavigationView):
                 self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(fh)
             #self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(path)
 
-    def add_bookmark(self, menu, handle):
+    def add_bookmark(self, menu):
+        mlist = self.selected_handles()
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+        
+
+    def add_bookmark_from_popup(self, menu, handle):
         if handle:
             self.uistate.set_active(handle, self.navigation_type())
             self.bookmarks.add(handle)

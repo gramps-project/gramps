@@ -248,6 +248,14 @@ table.primobjlist tr.BeginLetter td, table.primobjlist tr.BeginSurname td {
 td.ColumnLetter, td.ColumnRowLabel {
     font-weight: bold;
 }
+/* bug #8213 testing by Stephane, 2014-12-6 */
+td.ColumnEvent, td.ColumnDate {
+    white-space: nowrap;
+}
+td.ColumnPlace, td.ColumnDescription {
+    width: 20%
+}
+/* end of customizations by Stephane */
 td.ColumnBirth, td.ColumnDeath, td.ColumnPartner, td.ColumnParents {
     font-size: 90%;
 }

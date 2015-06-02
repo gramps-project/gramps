@@ -271,6 +271,7 @@ class EditReference(ManagedWindow, DbGUIElement):
         if new_id:
             old_primary = self.db.get_from_name_and_gramps_id(type, new_id)
             if old_primary:
+                description = None
                 if type == 'Event':
                     msg1 = _("Cannot save event. ID already exists.")
                     description = old_primary.get_description()
@@ -280,6 +281,8 @@ class EditReference(ManagedWindow, DbGUIElement):
                 elif type == 'Repository':
                     msg1 = _("Cannot save repository. ID already exists.")
                     description = old_primary.get_name()
+                else:
+                    msg1 = _("Cannot save item. ID already exists.")
                 if description:
                     msg2 = _("You have attempted to use the existing Gramps "
                              "ID with value %(id)s. This value is already " 

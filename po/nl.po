@@ -6399,23 +6399,20 @@ msgid "Street"
 msgstr "Straat"
 
 #: ../gramps/gen/lib/placetype.py:76
-#, fuzzy
 msgid "Province"
 msgstr "Deelstaat/Provincie"
 
 #: ../gramps/gen/lib/placetype.py:77
-#, fuzzy
 msgid "Region"
-msgstr "Religie"
+msgstr "Regio"
 
 #: ../gramps/gen/lib/placetype.py:78
-#, fuzzy
 msgid "Department"
-msgstr "Pensioen"
+msgstr "Departement"
 
 #: ../gramps/gen/lib/placetype.py:79
 msgid "Neighborhood"
-msgstr ""
+msgstr "Buurt"
 
 #: ../gramps/gen/lib/placetype.py:80
 msgid "District"
@@ -6426,9 +6423,8 @@ msgid "Borough"
 msgstr ""
 
 #: ../gramps/gen/lib/placetype.py:82
-#, fuzzy
 msgid "Municipality"
-msgstr "Plaats"
+msgstr "Gemeente"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Town"
@@ -6436,7 +6432,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/placetype.py:84
 msgid "Village"
-msgstr ""
+msgstr "Dorp"
 
 #: ../gramps/gen/lib/placetype.py:85
 msgid "Hamlet"
@@ -6444,7 +6440,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/placetype.py:86
 msgid "Farm"
-msgstr ""
+msgstr "Boerderij"
 
 #: ../gramps/gen/lib/placetype.py:87
 #, fuzzy
@@ -8110,7 +8106,7 @@ msgstr "Onbekend, aangemaakt om een ontbrekend opmerkingsobject te vervangen."
 #: ../gramps/gen/utils/unknown.py:149
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr "Obekend, %(time)s (%(count)d) ontbrak"
+msgstr "Onbekend, %(time)s (%(count)d) ontbrak"
 
 #: ../gramps/gen/utils/unknown.py:168
 #, python-format
@@ -17681,7 +17677,7 @@ msgstr "doopdatum"
 
 #: ../gramps/plugins/export/exportcsv.py:368 ../gramps/plugins/importer/importcsv.py:201
 msgid "Baptism place"
-msgstr "doopplaats"
+msgstr "Doopplaats"
 
 #: ../gramps/plugins/export/exportcsv.py:368 ../gramps/plugins/importer/importcsv.py:206
 msgid "Baptism source"

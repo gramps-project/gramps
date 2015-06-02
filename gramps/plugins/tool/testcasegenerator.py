@@ -129,11 +129,16 @@ class TestcaseGenerator(tool.BatchTool):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
+        if uistate:
+            parent_window = uistate.window
+        else:
+            parent_window = None
         self.person = None
         if dbstate.db.readonly:
             return
 
-        tool.BatchTool.__init__(self, dbstate, user, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, user, options_class, name,
+                                parent=parent_window)
 
         if self.fail:
             return
@@ -192,7 +197,7 @@ class TestcaseGenerator(tool.BatchTool):
 
     def init_gui(self,uistate):
         title = "%s - Gramps" % _("Generate testcases")
-        self.top = Gtk.Dialog(title)
+        self.top = Gtk.Dialog(title, parent=uistate.window)
         self.top.set_default_size(400,150)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
@@ -279,7 +284,7 @@ class TestcaseGenerator(tool.BatchTool):
             while Gtk.events_pending():
                 Gtk.main_iteration()
         
-        self.progress = ProgressMeter(_('Generating testcases'),'')
+        self.progress = ProgressMeter(_('Generating testcases'),'', parent=self.window)
         self.transaction_count = 0;
         
         if self.options.handler.options_dict['lowlevel']:

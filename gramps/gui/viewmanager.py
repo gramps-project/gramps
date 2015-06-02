@@ -386,7 +386,7 @@ class ViewManager(CLIManager):
         hpane.add2(self.notebook)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
-        vbox.pack_start(self.menubar, False, True, 0)
+        self.__attach_menubar(vbox)
         vbox.pack_start(self.toolbar, False, True, 0)
         vbox.add(hpane)
         self.statusbar = Statusbar()
@@ -834,13 +834,15 @@ class ViewManager(CLIManager):
 
         self.uimanager.add_ui_from_string(UIDEFAULT)
         self.uimanager.ensure_update()
+
+    def __attach_menubar(self, vbox):
+        vbox.pack_start(self.menubar, False, True, 0)
         if _GTKOSXAPPLICATION:
-            menubar = self.uimanager.get_widget("/MenuBar")
-            menubar.hide()
+            self.menubar.hide()
             quit_item = self.uimanager.get_widget("/MenuBar/FileMenu/Quit")
             about_item = self.uimanager.get_widget("/MenuBar/HelpMenu/About")
             prefs_item = self.uimanager.get_widget("/MenuBar/EditMenu/Preferences")
-            self.macapp.set_menu_bar(menubar)
+            self.macapp.set_menu_bar(self.menubar)
             self.macapp.insert_app_menu_item(about_item, 0)
             self.macapp.insert_app_menu_item(prefs_item, 1)
 
@@ -1306,7 +1308,8 @@ class ViewManager(CLIManager):
                     _("Backup file already exists! Overwrite?"),
                     _("The file '%s' exists.") % filename,
                     _("Proceed and overwrite"),
-                    _("Cancel the backup"))
+                    _("Cancel the backup"),
+                    parent=self.window)
                 yes_no = question.run()
                 if not yes_no:
                     return
@@ -1337,12 +1340,13 @@ class ViewManager(CLIManager):
         right pane, otherwise FileChooserDialog will hang.
         """
         f = Gtk.FileChooserDialog(
-            _("Select backup directory"),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(Gtk.STOCK_CANCEL,
-                     Gtk.ResponseType.CANCEL,
-                     Gtk.STOCK_APPLY,
-                     Gtk.ResponseType.OK))
+                title=_("Select backup directory"),
+                parent=self.window,
+                action=Gtk.FileChooserAction.SELECT_FOLDER,
+                buttons=(Gtk.STOCK_CANCEL,
+                    Gtk.ResponseType.CANCEL,
+                    Gtk.STOCK_APPLY,
+                    Gtk.ResponseType.OK))
         mpath = path_entry.get_text()
         if not mpath:
             mpath = HOME_DIR

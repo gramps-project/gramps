@@ -3,11 +3,11 @@
 "http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.6.0/">
   <header>
-    <created date="2014-11-13" version="4.1.0"/>
+    <created date="2015-05-10" version="4.1.4"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
-    <mediapath>/home/cristina/gramps/master/example/gramps</mediapath>
+    <mediapath>/home/pierre/Gramps/master/example/gramps</mediapath>
   </header>
   <name-formats>
     <format number="-1" name="SURNAME, Given (Common)" fmt_str="SURNAME, given (common)" active="1"/>
@@ -90,6 +90,11 @@
       <type>Birth</type>
       <dateval val="1592" type="about"/>
       <description>Birth of Abbott, Frances</description>
+    </event>
+    <event handle="_a5af0eb6abd74c3d7fc" change="1284030605" id="E3415">
+      <type>Death</type>
+      <dateval val="1642-01" type="about"/>
+      <description>Death of Abbott, Frances</description>
     </event>
     <event handle="_a5af0eb6add73de72aa" change="1284030598" id="E0014">
       <type>Birth</type>
@@ -17897,11 +17902,6 @@
       <type>Death</type>
       <dateval val="1850" type="about" quality="estimated"/>
     </event>
-    <event handle="_a5af0eb6abd74c3d7fc" change="1284030605" id="E3415">
-      <type>Death</type>
-      <dateval val="1642-01" type="about"/>
-      <description>Death of Abbott, Frances</description>
-    </event>
   </events>
   <people home="_GNUJQCL9MD64AM56OH">
     <person handle="_004KQCGYT27EEPQHK" change="1185438865" id="I0552">
@@ -20260,7 +20260,7 @@
       <parentin hlink="_HQ8KQCT2UX4S9I0E26"/>
       <citationref hlink="_c140d24b31f74169170"/>
     </person>
-    <person handle="_3RFKQCNKMX9HVLNSLW" change="1185438865" id="I1116">
+    <person handle="_3RFKQCNKMX9HVLNSLW" change="1431174900" id="I1116">
       <gender>F</gender>
       <name type="Birth Name">
         <surname>Garner</surname>
@@ -22104,7 +22104,7 @@
       <parentin hlink="_JT4KQC83ZKPOLC0UEJ"/>
       <citationref hlink="_c140d24fa2503a14583"/>
     </person>
-    <person handle="_6TFKQCUTO94WB2NHN" change="1185438865" id="I1119">
+    <person handle="_6TFKQCUTO94WB2NHN" change="1431174900" id="I1119">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Zelpha Josephine</first>
@@ -23913,7 +23913,7 @@
       <parentin hlink="_1RUJQCCL9MVRYLMTBO"/>
       <citationref hlink="_c140d254dcc234394a3"/>
     </person>
-    <person handle="_9QFKQC54ET79K2SD57" change="1185438865" id="I1115">
+    <person handle="_9QFKQC54ET79K2SD57" change="1431174900" id="I1115">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Mary M.</first>
@@ -24600,7 +24600,7 @@
       <parentin hlink="_4W1KQCYZD6N5M576RA"/>
       <citationref hlink="_c140d2566d57b164cf5"/>
     </person>
-    <person handle="_AWFKQCJELLUWDY2PD3" change="1284030919" id="I1123">
+    <person handle="_AWFKQCJELLUWDY2PD3" change="1431174900" id="I1123">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Robert F.</first>
@@ -27182,7 +27182,7 @@
       <parentin hlink="_0Q3KQCBZ4421A3L5B4"/>
       <citationref hlink="_c140d25c5be3120050a"/>
     </person>
-    <person handle="_EPFKQCETTDTEL3PYIR" change="1185438865" id="I1114">
+    <person handle="_EPFKQCETTDTEL3PYIR" change="1431174900" id="I1114">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Mary J.</first>
@@ -28226,7 +28226,7 @@
       <parentin hlink="_BWAKQCZLIWDX9ZEFED"/>
       <citationref hlink="_c140d25eec45aabbd80"/>
     </person>
-    <person handle="_GNUJQCL9MD64AM56OH" change="1328027440" id="I0044">
+    <person handle="_GNUJQCL9MD64AM56OH" change="1431174904" id="I0044">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Lewis Anderson</first>
@@ -28454,7 +28454,7 @@
       <childof hlink="_05XJQC935HU62H3KL4"/>
       <citationref hlink="_c140d25f5c448b251ca"/>
     </person>
-    <person handle="_GYFKQCPH8Q0JDN94GR" change="1185438865" id="I1126">
+    <person handle="_GYFKQCPH8Q0JDN94GR" change="1431174900" id="I1126">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anetta</first>
@@ -32105,7 +32105,7 @@
       <parentin hlink="_ZA6KQC27P0I8E2JZUC"/>
       <citationref hlink="_c140d2677c105a1b132"/>
     </person>
-    <person handle="_MUFKQCMXUJ07MCDUNI" change="1185438865" id="I1121">
+    <person handle="_MUFKQCMXUJ07MCDUNI" change="1431174900" id="I1121">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Iola Elizabeth Betty</first>
@@ -33279,7 +33279,7 @@
       <parentin hlink="_9SEKQCAAWRUCIO7A0M"/>
       <citationref hlink="_c140d269f4c7c13bf87"/>
     </person>
-    <person handle="_ORFKQC4KLWEGTGR19L" change="1185438865" id="I1117">
+    <person handle="_ORFKQC4KLWEGTGR19L" change="1431174900" id="I1117">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Rebecca Catharine</first>
@@ -33963,7 +33963,7 @@
       <parentin hlink="_IXDKQCOYLEMDKWJZPC"/>
       <citationref hlink="_c140d26b98d33ec7f15"/>
     </person>
-    <person handle="_PXFKQCXEHJX3W1Q1IV" change="1185438865" id="I1125">
+    <person handle="_PXFKQCXEHJX3W1Q1IV" change="1431174900" id="I1125">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Emma A.</first>
@@ -35695,7 +35695,7 @@
       <parentin hlink="_FP4KQCQQX8O84KK3IF"/>
       <citationref hlink="_c140d27142a05b2d019"/>
     </person>
-    <person handle="_SOFKQCBYAO18OWC0CS" change="1185438865" id="I1113">
+    <person handle="_SOFKQCBYAO18OWC0CS" change="1431174900" id="I1113">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Phebe</first>
@@ -37068,7 +37068,7 @@
       <parentin hlink="_7ZWJQC8ZR4WJZE09RW"/>
       <citationref hlink="_c140d276c1802ec5ac3"/>
     </person>
-    <person handle="_UZFKQCIHVT44DC9KGH" change="1185438865" id="I1128">
+    <person handle="_UZFKQCIHVT44DC9KGH" change="1431174900" id="I1128">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Antoinette</first>
@@ -42060,12 +42060,12 @@
       <childref hlink="_GH0KQCGPLF5J17PELU"/>
       <citationref hlink="_c140d286d0e2f46fb29"/>
     </family>
-    <family handle="_8OUJQCUVZ0XML7BQLF" change="1185438865" id="F0018">
+    <family handle="_8OUJQCUVZ0XML7BQLF" change="1431174900" id="F0018">
       <rel type="Married"/>
       <father hlink="_35WJQC1B7T7NPV8OLV"/>
       <mother hlink="_46WJQCIOLQ0KOX2XCC"/>
       <eventref hlink="_a5af0ed602318310d6d" role="Family"/>
-      <childref hlink="_GNUJQCL9MD64AM56OH"/>
+      <childref hlink="_GNUJQCL9MD64AM56OH" mrel="Custom relationship to mother" frel="Custom relationship to father"/>
       <childref hlink="_SOFKQCBYAO18OWC0CS"/>
       <childref hlink="_EPFKQCETTDTEL3PYIR"/>
       <childref hlink="_9QFKQC54ET79K2SD57"/>
@@ -63926,6 +63926,94 @@ page 26  Repository:Address</text>
       </style>
       <style name="fontface" value="Courier">
         <range start="0" end="705"/>
+      </style>
+    </note>
+    <note handle="_d0436bba4ec328d3b631259a4ee" change="1431184305" id="_header1" type="General">
+      <text>Title for the example pages</text>
+      <style name="fontcolor" value="#ef2929">
+        <range start="0" end="27"/>
+      </style>
+      <style name="underline">
+        <range start="0" end="27"/>
+      </style>
+      <style name="fontface" value="Serif">
+        <range start="0" end="27"/>
+      </style>
+      <style name="bold">
+        <range start="0" end="27"/>
+      </style>
+      <style name="fontsize" value="8">
+        <range start="0" end="27"/>
+      </style>
+    </note>
+    <note handle="_d0436bcc69d6bba278bff5bc7db" change="1431184300" id="_footer1" type="General">
+      <text>Footer: exported by  __GRAMPS_HOMEPAGE__ on __EXPORT_DATE__</text>
+    </note>
+    <note handle="_d0436be64ac277b615b79b34e72" change="1431211661" id="_custom1" type="General">
+      <text>Export date: __EXPORT_DATE__
+GRAMPS homepage: __GRAMPS_HOMEPAGE__
+GRAMPS version: __GRAMPS_VERSION__
+
+Number of families: __NB_FAMILIES__
+Number of persons: __NB_INDIVIDUALS__
+Number of media objects: __NB_MEDIA__
+Number of sources: __NB_SOURCES__
+Number of repositories: __NB_REPOSITORIES__
+Number of places: __NB_PLACES__
+
+Search form:
+__SEARCH_FORM__
+
+Test link person: Garner von Zieliński, Lewis Anderson Sr
+Test link family: Family of Warner, Allen Carl and Garner, Rita Marie
+Test link source: World of the Wierd
+Test link media: 1897_expeditionsmannschaft_rio_a
+Test link place: Warren-Farmington Hills-Troy, MI
+
+Test internet link: blog.codinghorror.com
+Test relative path link: relative file path to &quot;archive.zip&quot;
+Test relative path link: relative file path to &quot;archive.tgz&quot;
+
+Thumbnail for &quot;1897_expeditionsmannschaft_rio_a&quot;:
+__THUMB_O0010__
+Image &quot;AntoineClaudet&quot;:
+__MEDIA_O0011__
+Thumbnail for &quot;1897_expeditionsmannschaft_rio_a&quot; with link:
+__THUMB_O0010__
+Image &quot;AntoineClaudet&quot; with link:
+__MEDIA_O0011__
+
+Wrong media ID:
+__MEDIA_wrong id__</text>
+      <style name="link" value="relative://relative.archive.zip">
+        <range start="663" end="686"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/238CGQ939HG18SS5MG">
+        <range start="952" end="967"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/238CGQ939HG18SS5MG">
+        <range start="520" end="535"/>
+      </style>
+      <style name="link" value="gramps://Family/handle/48TJQCGNNIR5SJRCAK">
+        <range start="413" end="429"/>
+      </style>
+      <style name="link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
+        <range start="355" end="371"/>
+      </style>
+      <style name="link" value="http://blog.codinghorror.com/">
+        <range start="621" end="639"/>
+      </style>
+      <style name="link" value="gramps://Source/handle/VUBKMQTA2XZG1V6QP8">
+        <range start="483" end="499"/>
+      </style>
+      <style name="link" value="gramps://Place/handle/3WTJQCB9F2MX9W98VP">
+        <range start="570" end="585"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/Y3ARGQWE088EQRTTDH">
+        <range start="1002" end="1017"/>
+      </style>
+      <style name="link" value="relative://relative.archive.tgz">
+        <range start="724" end="747"/>
       </style>
     </note>
   </notes>

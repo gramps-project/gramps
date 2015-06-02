@@ -88,7 +88,7 @@ class User(user.User):
             self._progress.close()
             self._progress = None
     
-    def prompt(self, title, message, accept_label, reject_label):
+    def prompt(self, title, message, accept_label, reject_label, parent=None):
         """
         Prompt the user with a message to select an alternative.
         
@@ -106,7 +106,7 @@ class User(user.User):
         :returns: the user's answer to the question
         :rtype: bool
         """
-        dialog = QuestionDialog2(title, message, accept_label, reject_label)
+        dialog = QuestionDialog2(title, message, accept_label, reject_label, parent)
         return dialog.run()
     
     def warn(self, title, warning=""):

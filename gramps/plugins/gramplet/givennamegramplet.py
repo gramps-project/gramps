@@ -18,6 +18,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 #
+from __future__ import unicode_literals
+
 from collections import defaultdict
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -66,9 +68,9 @@ class GivenNameCloudGramplet(Gramplet):
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set(name.get_first_name().strip() for name in allnames)
             for givenname in allnames:
-                anyNBSP = givenname.split(u'\u00A0')
+                anyNBSP = givenname.split('\u00A0')
                 if len(anyNBSP) > 1: # there was an NBSP, a non-breaking space
-                    first_two = anyNBSP[0] + u'\u00A0' + anyNBSP[1].split()[0]
+                    first_two = anyNBSP[0] + '\u00A0' + anyNBSP[1].split()[0]
                     givensubnames[first_two] += 1
                     representative_handle[first_two] = person.handle
                     givenname = ' '.join(anyNBSP[1].split()[1:])

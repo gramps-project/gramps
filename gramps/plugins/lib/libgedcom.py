@@ -578,6 +578,10 @@ LDS_STATUS = {
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
 STRIP_DICT = dict.fromkeys(list(range(9))+list(range(11, 13))+list(range(14, 32)))
+# The C1 Control characters are not treated in Latin-1 (ISO-8859-1) as
+# undefined, but if they have been used, the file is probably supposed to be
+# cp1252
+DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 
 #-------------------------------------------------------------------------
 #
@@ -689,7 +693,7 @@ class GedcomDateParser(DateParser):
 #-------------------------------------------------------------------------
 class Lexer(object):
 
-    def __init__(self, ifile):
+    def __init__(self, ifile, __add_msg):
         self.ifile = ifile
         self.current_list = []
         self.eof = False
@@ -700,6 +704,7 @@ class Lexer(object):
             TOKEN_CONT : self.__fix_token_cont,
             TOKEN_CONC : self.__fix_token_conc,
             }
+        self.__add_msg = __add_msg
 
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:
@@ -738,6 +743,7 @@ class Lexer(object):
                 self.eof = True
                 return
 
+            original_line = line
             try:
                 # According to the GEDCOM 5.5 standard,
                 # Chapter 1 subsection Grammar
@@ -771,6 +777,13 @@ class Lexer(object):
                     tag = line[0]
                     line_value = line[2]
             except:
+                problem = _("Line ignored ")
+                text = original_line.rstrip('\n\r')
+                prob_width = 66
+                problem = problem.ljust(prob_width)[0:(prob_width-1)]
+                text = text.replace("\n", "\n".ljust(prob_width + 22))
+                message = "%s              %s" % (problem, text)
+                self.__add_msg(message)
                 continue
 
             token = TOKENS.get(tag, TOKEN_UNKNOWN)
@@ -780,6 +793,10 @@ class Lexer(object):
             if func:
                 func(data)
             else:
+                # There will normally only be one space between tag and
+                # line_value, but in case there is more then one, remove extra
+                # spaces after CONC/CONT processing
+                data = data[:2] + (data[2].strip(),) + data[3:]
                 self.current_list.insert(0, data)
 
     def clean_up(self):
@@ -1234,27 +1251,29 @@ class GedInfoParser(object):
 #
 #-------------------------------------------------------------------------
 class BaseReader(object):
-    def __init__(self, ifile, encoding):
+    def __init__(self, ifile, encoding, __add_msg):
         self.ifile = ifile
         self.enc = encoding
+        self.__add_msg = __add_msg
 
     def reset(self):
         self.ifile.seek(0)
 
     def readline(self):
-        if sys.version_info[0] < 3:
-            line = unicode(self.ifile.readline(), 
-                           encoding=self.enc,
-                           errors='replace')
-        else:
-            line = self.ifile.readline()
-            line = line.decode(self.enc, errors='replace')
-        return line.translate(STRIP_DICT)
+        raise NotImplemented
+
+    def report_error(self, problem, line):
+        line = line.rstrip('\n\r')
+        prob_width = 66
+        problem = problem.ljust(prob_width)[0:(prob_width-1)]
+        text = line.replace("\n", "\n".ljust(prob_width + 22))
+        message = "%s               %s" % (problem, text)
+        self.__add_msg(message)
 
 class UTF8Reader(BaseReader):
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, 'utf8')
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'utf8', __add_msg)
         self.reset()
 
     def reset(self):
@@ -1275,23 +1294,61 @@ class UTF8Reader(BaseReader):
 
 class UTF16Reader(BaseReader):
 
-    def __init__(self, ifile):
+    def __init__(self, ifile, __add_msg):
         new_file = codecs.EncodedFile(ifile, 'utf8', 'utf16')
-        BaseReader.__init__(self, new_file, 'utf16')
+        BaseReader.__init__(self, new_file, '', __add_msg)
         self.reset()
 
     def readline(self):
-        l = self.ifile.readline()
-        if l.strip():
-            return l
+        line = self.ifile.readline()
+        if sys.version_info[0] < 3:
+            line = unicode(line,
+                           encoding='utf8',
+                           errors='replace')
+            if line.strip():
+                return line.translate(STRIP_DICT)
+            else:
+                line = self.ifile.readline()
+                line = unicode(line,
+                               encoding='utf8',
+                               errors='replace')
+                return line.translate(STRIP_DICT)
         else:
-            return self.ifile.readline()
+            line = line.decode('utf8', errors='replace')
+            return line.translate(STRIP_DICT)
 
 class AnsiReader(BaseReader):
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, 'latin1')
-    
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'latin1', __add_msg)
+   
+    def readline(self):
+        line = self.ifile.readline()
+        if sys.version_info[0] < 3:
+            line = unicode(line, 
+                           encoding=self.enc,
+                           errors='replace')
+        else:
+            line = line.decode(self.enc, errors='replace')
+        if line.translate(DEL_AND_C1) != line:
+            self.report_error("DEL or C1 control chars in line did you mean CHAR cp1252??", line)
+        return line.translate(STRIP_DICT)
+
+class CP1252Reader(BaseReader):
+
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'cp1252', __add_msg)
+   
+    def readline(self):
+        line = self.ifile.readline()
+        if sys.version_info[0] < 3:
+            line = unicode(line, 
+                           encoding=self.enc,
+                           errors='replace')
+        else:
+            line = line.decode(self.enc, errors='replace')
+        return line.translate(STRIP_DICT)
+
 class AnselReader(BaseReader):
     """
     ANSEL to Unicode Conversion
@@ -1311,7 +1368,8 @@ class AnselReader(BaseReader):
     TODO: should we allow TAB, as a Gramps extension?
     """
     __printable_ascii = list(map(chr, list(range(32, 127)))) # note: up thru 126
-    __use_ASCII = list(map(chr, [10, 27, 29 , 30, 31])) + __printable_ascii
+    #                            LF  CR  Esc GS   RS  US
+    __use_ASCII = list(map(chr, [10, 13, 27, 29 , 30, 31])) + __printable_ascii
     
     # mappings of single byte ANSEL codes to unicode
     __onebyte = {
@@ -1324,9 +1382,11 @@ class AnselReader(BaseReader):
          b'\xB4' : '\u00fe',   b'\xB5' : '\u00e6',   b'\xB6' : '\u0153',   
          b'\xB7' : '\u02ba',   b'\xB8' : '\u0131',   b'\xB9' : '\u00a3',   
          b'\xBA' : '\u00f0',   b'\xBC' : '\u01a1',   b'\xBD' : '\u01b0',   
+         b'\xBE' : '\u25a1',   b'\xBF' : '\u25a0',
          b'\xC0' : '\u00b0',   b'\xC1' : '\u2113',   b'\xC2' : '\u2117',   
          b'\xC3' : '\u00a9',   b'\xC4' : '\u266f',   b'\xC5' : '\u00bf',   
          b'\xC6' : '\u00a1',   b'\xC7' : '\u00df',   b'\xC8' : '\u20ac',  
+         b'\xCD' : '\u0065',   b'\xCE' : '\u006f',   b'\xCF' : '\u00df',
         }
     
     # combining forms (in ANSEL, they precede the modified ASCII character
@@ -1347,6 +1407,7 @@ class AnselReader(BaseReader):
          b'\xF3' : '\u0324',   b'\xF4' : '\u0325',   b'\xF5' : '\u0333',   
          b'\xF6' : '\u0332',   b'\xF7' : '\u0326',   b'\xF8' : '\u031c',   
          b'\xF9' : '\u032e',   b'\xFA' : '\ufe22',   b'\xFB' : '\ufe23',   
+         b'\xFC' : '\u0338',
          b'\xFE' : '\u0313',  
        }
     
@@ -1504,52 +1565,94 @@ class AnselReader(BaseReader):
          b'\xF9\x48' : '\u1e2a',   b'\xF9\x68' : '\u1e2b',  
        }
 
-    @staticmethod
-    def __ansel_to_unicode(s):
+    def __ansel_to_unicode(self, s):
         """ Convert an ANSEL encoded string to unicode """
     
         buff = StringIO()
-        while s:
-            if ord(s[0]) < 128:
-                if s[0] in AnselReader.__use_ASCII:
-                    head = s[0]
-                else:
-                    # substitute space for disallowed (control) chars
-                    head = ' '
-                s = s[1:]
-            else:
-                if s[0:2] in AnselReader.__twobyte:
-                    head = AnselReader.__twobyte[s[0:2]]
-                    s = s[2:]
-                elif s[0] in AnselReader.__onebyte:
-                    head = AnselReader.__onebyte[s[0]]
-                    s = s[1:]
-                elif s[0] in AnselReader.__acombiners:
-                    c =  AnselReader.__acombiners[s[0]]
-                    # always consume the combiner
-                    s = s[1:]
-                    next = s[0]
-                    if next in AnselReader.__printable_ascii:
-                        # consume next as well
-                        s = s[1:]
-                        # unicode: combiner follows base-char
-                        head = next + c
-                    else:
-                        # just drop the unexpected combiner
-                        continue 
-                else:
-                    head = '\ufffd' # "Replacement Char"
-                    s = s[1:]
-            buff.write(head.encode("utf-8"))
+        error = ""
         if sys.version_info[0] < 3:
+            while s:
+                if ord(s[0]) < 128:
+                    if s[0] in AnselReader.__use_ASCII:
+                        head = s[0]
+                    else:
+                        # substitute space for disallowed (control) chars
+                        error += " (%#X)" % ord(s[0])
+                        head = ' '
+                    s = s[1:]
+                else:
+                    if s[0:2] in AnselReader.__twobyte:
+                        head = AnselReader.__twobyte[s[0:2]]
+                        s = s[2:]
+                    elif s[0] in AnselReader.__onebyte:
+                        head = AnselReader.__onebyte[s[0]]
+                        s = s[1:]
+                    elif s[0] in AnselReader.__acombiners:
+                        c =  AnselReader.__acombiners[s[0]]
+                        # always consume the combiner
+                        s = s[1:]
+                        next = s[0]
+                        if next in AnselReader.__printable_ascii:
+                            # consume next as well
+                            s = s[1:]
+                            # unicode: combiner follows base-char
+                            head = next + c
+                        else:
+                            # just drop the unexpected combiner
+                            error += " (%#X)" % ord(s[0])
+                            continue 
+                    else:
+                        error += " (%#X)" % ord(s[0])
+                        head = '\ufffd' # "Replacement Char"
+                        s = s[1:]
+                buff.write(head.encode("utf-8"))
             ans = unicode(buff.getvalue(), "utf-8")
         else:
-            ans = buff.getvalue().decode("utf-8")
+            while s:
+                if s[0] < 128:
+                    if chr(s[0]) in AnselReader.__use_ASCII:
+                        head = chr(s[0])
+                    else:
+                        # substitute space for disallowed (control) chars
+                        error += " (%#X)" % s[0]
+                        head = ' '
+                    s = s[1:]
+                else:
+                    if s[0:2] in AnselReader.__twobyte:
+                        head = AnselReader.__twobyte[s[0:2]]
+                        s = s[2:]
+                    elif bytes([s[0]]) in AnselReader.__onebyte:
+                        head = AnselReader.__onebyte[bytes([s[0]])]
+                        s = s[1:]
+                    elif bytes([s[0]]) in AnselReader.__acombiners:
+                        c =  AnselReader.__acombiners[bytes([s[0]])]
+                        # always consume the combiner
+                        s = s[1:]
+                        next_byte = s[0]
+                        if next_byte < 128 and chr(next_byte) in AnselReader.__printable_ascii:
+                            # consume next as well
+                            s = s[1:]
+                            # unicode: combiner follows base-char
+                            head = chr(next_byte) + c
+                        else:
+                            # just drop the unexpected combiner
+                            error += " (%#X)" % s[0]
+                            continue 
+                    else:
+                        error += " (%#X)" % s[0]
+                        head = '\ufffd' # "Replacement Char"
+                        s = s[1:]
+                buff.write(head)
+            ans = buff.getvalue()
+
+        if error:
+            # e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
+            self.report_error(_("Illegal character%s") % error, ans)
         buff.close()
         return ans
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, "")
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, "", __add_msg)
 
     def readline(self):
         return self.__ansel_to_unicode(self.ifile.readline())
@@ -1807,6 +1910,7 @@ class GedcomParser(UpdateCallback):
 
     __TRUNC_MSG = _("Your GEDCOM file is corrupted. "
                     "It appears to have been truncated.")
+    _EMPTY_LOC = Location().serialize()
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -2298,12 +2402,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_CTRY   : self.__location_ctry, 
             # Not legal GEDCOM - not clear why these are included at this level 
             TOKEN_ADDR   : self.__ignore, 
-            TOKEN_DATE   : self.__location_date, 
+            TOKEN_DATE   : self.__ignore, # there is nowhere to put a date
             TOKEN_NOTE   : self.__location_note, 
             TOKEN_RNOTE  : self.__location_note, 
             TOKEN__LOC   : self.__ignore, 
             TOKEN__NAME  : self.__ignore, 
-            TOKEN_PHON   : self.__ignore, 
+            TOKEN_PHON   : self.__location_phone, 
             TOKEN_IGNORE : self.__ignore, 
             }
         self.func_list.append(self.parse_loc_tbl)
@@ -2638,27 +2742,29 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.note_parse_tbl)
 
         # look for existing place titles, build a map 
-        self.place_names = {}
+        self.place_names = defaultdict(list)
         cursor = dbase.get_place_cursor()
         data = next(cursor)
         while data:
             (handle, val) = data
-            self.place_names[val[2]] = handle
+            self.place_names[val[2]].append(handle)
             data = next(cursor)
         cursor.close()
 
         enc = stage_one.get_encoding()
 
         if enc == "ANSEL":
-            rdr = AnselReader(ifile)
+            rdr = AnselReader(ifile, self.__add_msg)
         elif enc in ("UTF-8", "UTF8"):
-            rdr = UTF8Reader(ifile)
-        elif enc in ("UTF-16", "UTF16", "UNICODE"):
-            rdr = UTF16Reader(ifile)
+            rdr = UTF8Reader(ifile, self.__add_msg)
+        elif enc in ("UTF-16LE", "UTF-16BE",  "UTF16", "UNICODE"):
+            rdr = UTF16Reader(ifile, self.__add_msg)
+        elif enc in ("CP1252", "WINDOWS-1252"):
+            rdr = CP1252Reader(ifile, self.__add_msg)
         else:
-            rdr = AnsiReader(ifile)
+            rdr = AnsiReader(ifile, self.__add_msg)
 
-        self.lexer = Lexer(rdr)
+        self.lexer = Lexer(rdr, self.__add_msg)
         self.filename = filename
         self.backoff = False
 
@@ -2716,7 +2822,12 @@ class GedcomParser(UpdateCallback):
         else:
             message = _("GEDCOM import report: %s errors detected") % \
                 self.number_of_errors
-        self.user.info(message, "".join(self.errors), monospaced=True)
+        if hasattr(self.user.uistate, 'window'):
+            parent_window = self.user.uistate.window
+        else:
+            parent_window = None
+        self.user.info(message, "".join(self.errors),
+                       parent = parent_window, monospaced=True)
 
     def __clean_up(self):
         """
@@ -2869,40 +2980,60 @@ class GedcomParser(UpdateCallback):
             self.dbase.add_note(note, self.trans)
         return note
 
-    def __find_or_create_place(self, title):
+    def __loc_is_empty(self, location):
         """
-        Finds or creates a place based on the GRAMPS ID. If the ID is
-        already used (is in the db), we return the item in the db. Otherwise, 
-        we create a new place, assign the handle and GRAMPS ID.
+        Determines whether a location is empty.
+        
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return True of False
+        """
+        if location is None:
+            return True
+        elif location.serialize() == self._EMPTY_LOC:
+            return True
+        elif location.is_empty():
+            return True
+        return False
+    
+    def __find_place(self, title, location):
+        """
+        Finds an existing place based on the title and primary location.
+        
+        @param title: The place title
+        @type title: string
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return gen.lib.Place
+        """
+        for place_handle in self.place_names[title]:
+            place = self.dbase.get_place_from_handle(place_handle)
+            if place.get_title() == title:
+                if self.__loc_is_empty(location) and \
+                   self.__loc_is_empty(self.__get_first_loc(place)):
+                    return place
+                elif (not self.__loc_is_empty(location) and \
+                      not self.__loc_is_empty(self.__get_first_loc(place)) and
+                      self.__get_first_loc(place).is_equivalent(location) == IDENTICAL):
+                    return place
+        return None
+
+    def __create_place(self, title, location):
+        """
+        Create a new place based on the title and primary location.
+        
+        @param title: The place title
+        @type title: string
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return gen.lib.Place
         """
         place = Place()
-
-        # check to see if we've encountered this name before
-        # if we haven't we need to get a new GRAMPS ID
-        
-        intid = self.place_names.get(title)
-        if intid is None:
-            intid = self.lid2id.get(title)
-            if intid is None:
-                new_id = self.dbase.find_next_place_gramps_id()
-            else:
-                new_id = None
-        else:
-            new_id = None
-
-        # check to see if the name already existed in the database
-        # if it does, create a new name by appending the GRAMPS ID.
-        # generate a GRAMPS ID if needed
-        
-        if self.dbase.has_place_handle(intid):
-            place.unserialize(self.dbase.get_raw_place_data(intid))
-        else:
-            intid = create_id()
-            place.set_handle(intid)
-            place.set_title(title)
-            place.set_gramps_id(new_id)
-            self.dbase.add_place(place, self.trans)
-            self.lid2id[title] = intid
+        place.set_title(title)
+        if location:
+            place.add_alternate_locations(location)
+        self.dbase.add_place(place, self.trans)
+        self.place_names[title].append(place.get_handle())
         return place
 
     def __find_file(self, fullname, altpath):
@@ -3321,7 +3452,10 @@ class GedcomParser(UpdateCallback):
         if line.token_text == self.subm and self.import_researcher:
             self.dbase.set_researcher(state.res)
         
-        submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
+        if state.res.get_name() == "":
+            submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
+        else:
+            submitter_name = _("SUBM (Submitter): (@%s@) %s") % (line.token_text, state.res.get_name())
         if self.use_def_src:
             repo.set_name(submitter_name)
             repo.set_handle(create_id())
@@ -4466,8 +4600,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         try:
-            state.place = self.__find_or_create_place(line.data)
-            state.place.set_title(line.data)
+            title = line.data
+            place = self.__find_place(title, None)
+            if place:
+                state.place = place
+            else:
+                state.place = self.__create_place(title, None)
             state.lds_ord.set_place_handle(state.place.handle)
         except NameError:
             return
@@ -5157,7 +5295,7 @@ class GedcomParser(UpdateCallback):
             #    +1 SOUR @<XREF:SOUR>@  {0:M}
             if not line.data:
                 self.__add_msg(_("Empty note ignored"), line, state)
-                self.__skip_subordinate_levels(level+1, state)
+                self.__skip_subordinate_levels(state.level+1, state)
             else:
                 new_note = Note(line.data)
                 new_note.set_gramps_id(self.nid_map[""])
@@ -5305,22 +5443,56 @@ class GedcomParser(UpdateCallback):
         if self.is_ftw and state.event.type in FTW_BAD_PLACE:
             state.event.set_description(line.data)
         else:
-            # It is possible that we have already got an address structure
-            # associated with this event. In that case, we will remember the
-            # location to re-insert later, and set the place as the place name
-            # and primary location
+            title = line.data
             place_handle = state.event.get_place_handle()
             if place_handle:
-                place = self.dbase.get_place_from_handle(place_handle)
+                # We encounter a PLAC, having previously encountered an ADDR
+                old_place = self.dbase.get_place_from_handle(place_handle)
+                old_title = old_place.get_title()
+                location = self.__get_first_loc(old_place)
+                if old_title != "":
+                    # We have previously found a PLAC 
+                    self.__add_msg(_("A second PLAC ignored"), line, state)
+                    # ignore this second PLAC, and use the old one
+                    title = old_title
+                    place = old_place
+                else:
+                    # This is the first PLAC
+                    refs = list(self.dbase.find_backlink_handles(place_handle))
+                    # We haven't commited the event yet, so the place will not
+                    # be linked to it. If there are any refs they will be from
+                    # other events (etc)
+                    if len(refs) == 0:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = old_place
+                            place.set_title(title)
+                            self.place_names[old_title].remove(place_handle)
+                            self.place_names[title].append(place_handle)
+                        else:
+                            place.merge(old_place)
+                            self.place_import.remove_location(old_place.handle)
+                            self.dbase.remove_place(place_handle, self.trans)
+                            self.place_names[old_title].remove(place_handle)
+                    else:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = self.__create_place(title, location)
+                        else:
+                            pass
             else:
-                place = self.__find_or_create_place(line.data)
-            place.set_title(line.data)
-            state.event.set_place_handle(place.handle)
+                # The first thing we encounter is PLAC
+                location = None
+                place = self.__find_place(title, location)
+                if place is None:
+                    place = self.__create_place(title, location)
+
+            state.event.set_place_handle(place.handle)            
 
             sub_state = CurrentState()
             sub_state.place = place
             sub_state.level = state.level+1
-            sub_state.pf = PlaceParser()
+            sub_state.pf = self.place_parser
 
             self.__parse_level(sub_state, self.event_place_map, 
                              self.__undefined)
@@ -5430,8 +5602,8 @@ class GedcomParser(UpdateCallback):
         
         sub_state = CurrentState(level=state.level+1)
         sub_state.location = Location()
-        sub_state.note = []
         sub_state.event = state.event
+        sub_state.place = Place() # temp stash for notes, citations etc
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -5439,21 +5611,53 @@ class GedcomParser(UpdateCallback):
         self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
-        note_list = sub_state.note
-
         place_handle = state.event.get_place_handle()
         if place_handle:
-            place = self.dbase.get_place_from_handle(place_handle)
+            # We encounter an ADDR having previously encountered a PLAC
+            old_place = self.dbase.get_place_from_handle(place_handle)
+            title = old_place.get_title()
+            if len(old_place.get_alternate_locations()) != 0 and \
+                   not self.__get_first_loc(old_place).is_empty():
+                # We have perviously found an ADDR, or have populated location
+                # from PLAC title
+                self.__add_msg(_("Location already populated; ADDR ignored"),
+                               line, state)
+                # ignore this second ADDR, and use the old one
+                location = self.__get_first_loc(old_place)
+                place = old_place
+            else:
+                # This is the first ADDR
+                refs = list(self.dbase.find_backlink_handles(place_handle))
+                # We haven't commited the event yet, so the place will not be
+                # linked to it. If there are any refs they will be from other
+                # events (etc)
+                if len(refs) == 0:
+                    place = self.__find_place(title, location)
+                    if place is None:
+                        place = old_place
+                        self.__add_location(place, location)
+                    else:
+                        place.merge(old_place)
+                        self.place_import.remove_location(old_place.handle)
+                        self.dbase.remove_place(place_handle, self.trans)
+                        self.place_names[title].remove(place_handle)
+                else:
+                    place = self.__find_place(title, location)
+                    if place is None:
+                        place = self.__create_place(title, location)
+                    else:
+                        pass
         else:
-            place = self.__find_or_create_place(line.data)
-            place.set_title(line.data)
-            place_handle = place.handle
+            # The first thing we encounter is ADDR
+            title = ""
+            place = self.__find_place(title, location)
+            if place is None:
+                place = self.__create_place(title, location)
 
-        self.__add_location(place, location)
+        # merge notes etc into place
+        place.merge(sub_state.place)
 
-        list(map(place.add_note, note_list))
-
-        state.event.set_place_handle(place_handle)
+        state.event.set_place_handle(place.get_handle())
         self.dbase.commit_place(place, self.trans)
 
     def __add_location(self, place, location):
@@ -5467,6 +5671,18 @@ class GedcomParser(UpdateCallback):
             if loc.is_equivalent(location) == IDENTICAL:
                 return
         place.add_alternate_locations(location)
+
+    def __get_first_loc(self, place):
+        """
+        @param place: A place object
+        @type place: Place
+        @return location: the first alternate location if any else None
+        @type location: gen.lib.location
+        """
+        if len(place.get_alternate_locations()) == 0:
+            return None
+        else:
+            return place.get_alternate_locations()[0]
 
     def __event_phon(self, line, state):
         """
@@ -5626,7 +5842,7 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.__get_next_line()
-            if self.__level_is_finished(line, state.level):
+            if self.__level_is_finished(line, state.level+1):
                 break
             elif line.token == TOKEN_AGE:
                 attr = Attribute()
@@ -5647,7 +5863,7 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.__get_next_line()
-            if self.__level_is_finished(line, state.level):
+            if self.__level_is_finished(line, state.level+1):
                 break
             elif line.token == TOKEN_AGE:
                 attr = Attribute()
@@ -6635,17 +6851,6 @@ class GedcomParser(UpdateCallback):
         url.set_type(UrlType(UrlType.EMAIL))
         state.repo.add_url(url)
 
-    def __location_date(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_date_object(line.data)
-
     def __location_adr1(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6714,7 +6919,7 @@ class GedcomParser(UpdateCallback):
             state.location = Location()
         state.location.set_country(line.data)
 
-    def __location_note(self, line, state):
+    def __location_phone(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -6723,9 +6928,19 @@ class GedcomParser(UpdateCallback):
         """
         if not state.location:
             state.location = Location()
+        state.location.set_phone(line.data)
+
+    def __location_note(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         if state.event:
-            self.__parse_note(line, state.event, state.level+1, state)
+            self.__parse_note(line, state.place, state.level, state)
         else:
+            # This causes notes below SUBMitter to be ignored
             self.__not_recognized(line, state.level, state)
 
     def __optional_note(self, line, state):
@@ -7063,8 +7278,13 @@ class GedcomParser(UpdateCallback):
                     sattr.set_value(line.data)
                     self.def_src.add_attribute(sattr)
             elif line.token == TOKEN_FORM:
-                if line.data != "LINEAGE-LINKED":
-                    self.__add_msg(_("GEDCOM form not supported"), line, state)
+                if line.data == "LINEAGE-LINKED":
+                    pass
+                elif line.data.upper() == "LINEAGE-LINKED":
+                    # Allow Lineage-Linked etc. though it should be in uppercase
+                    self.__add_msg(_("GEDCOM FORM should be in uppercase"), line, state)
+                else:
+                    self.__add_msg(_("GEDCOM FORM not supported"), line, state)
                 if self.use_def_src:
                     sattr = SrcAttribute()
                     sattr.set_type(_('GEDCOM form'))
@@ -7284,6 +7504,7 @@ class GedcomParser(UpdateCallback):
                 sattr.set_type(msg)
                 sattr.set_value(line.data)
                 self.def_src.add_attribute(sattr)
+                self.dbase.commit_source(self.def_src, self.trans)
             
     def handle_source(self, line, level, state):
         """
@@ -7609,7 +7830,7 @@ class GedcomStageOne(object):
             input_file.read(1)
             self.enc = "UTF8"
             return input_file
-        elif line == b"\xff\xfe":
+        elif line == b"\xff\xfe" or line == b"\xfe\xff":
             self.enc = "UTF16"
             input_file.seek(0)
             return codecs.EncodedFile(input_file, 'utf8', 'utf16')
@@ -7630,25 +7851,33 @@ class GedcomStageOne(object):
         reader = self.__detect_file_decoder(self.ifile)
 
         for line in reader:
+            # Treat the file as though it is UTF-8 since this will be right if a
+            # BOM was detected; it is the more modern option; and anyway it
+            # doesn't really matter as we are only trying to detect a CHAR line
+            # which is only 7-bit ASCII anyway,  and we ignore anything that
+            # can't be translated.
+            if sys.version_info[0] < 3:
+                line = unicode(line, encoding='utf-8', errors='replace')
+            else:
+                line = line.decode(encoding='utf-8', errors='replace')
             line = line.strip()
             if not line:
                 continue
             self.lcnt += 1
 
-            data = line.split(None, 2) + ['']
             try:
+                data = line.split(None, 2) + ['']
                 (level, key, value) = data[:3]
                 level = int(level)
-                key = conv_to_unicode(key.strip())
-                value = conv_to_unicode(value.strip())
+                key = key.strip()
+                value = value.strip()
             except:
-                LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
                 continue
 
             if level == 0 and key[0] == '@':
-                if value == ("FAM", "FAMILY") :
+                if value in ("FAM", "FAMILY") :
                     current_family_id = key.strip()[1:-1]
-                elif value == ("INDI", "INDIVIDUAL"):
+                elif value in ("INDI", "INDIVIDUAL"):
                     self.pcnt += 1
             elif key in ("HUSB", "HUSBAND", "WIFE") and \
                  self.__is_xref_value(value):
@@ -7658,6 +7887,9 @@ class GedcomStageOne(object):
             elif key == 'CHAR' and not self.enc:
                 assert(isinstance(value, STRTYPE))
                 self.enc = value
+        LOG.debug("parse pcnt %d" % self.pcnt)
+        LOG.debug("parse famc %s" % dict(self.famc))
+        LOG.debug("parse fams %s" % dict(self.fams))
 
     def get_famc_map(self):
         """
