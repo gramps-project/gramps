@@ -64,7 +64,6 @@ fname_map = {'all': _('Filtering_on|all'),
              'people with missing birth dates': 
                 _('Filtering_on|people with missing birth dates'), 
              'disconnected people': _('Filtering_on|disconnected people'),
-             'all families': _('Filtering_on|all families'), 
              'unique surnames': _('Filtering_on|unique surnames'),
              'people with media': _('Filtering_on|people with media'), 
              'media references': _('Filtering_on|media references'),
