@@ -1086,7 +1086,7 @@ class GrampsPreferences(ConfigureDialog):
 
         # Text in sidebar:
         self.add_checkbox(grid, 
-                          _("Show text in sidebar buttons (requires restart)"), 
+                          _("Show text label beside Navigator buttons (requires restart)"), 
                           row, 'interface.sidebar-text', stop=3)
         row += 1
 
