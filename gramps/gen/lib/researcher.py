@@ -84,7 +84,7 @@ class Researcher(LocationBase):
                 "street": self.street, 
                 "locality": self.locality, 
                 "city": self.city, 
-                "country": self.county, 
+                "county": self.county, 
                 "state": self.state,
                 "country": self.country, 
                 "postal": self.postal, 
