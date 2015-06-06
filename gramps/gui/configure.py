@@ -1387,25 +1387,59 @@ class GrampsPreferences(ConfigureDialog):
 
         self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
+    def database_backend_changed(self, obj):
+        the_list = obj.get_model()
+        the_iter = obj.get_active_iter()
+        db_choice = the_list.get_value(the_iter, 2)
+        config.set('behavior.database-backend', db_choice)
+
     def add_famtree_panel(self, configdialog):
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
+        current_line = 0
+        backend_plugins = self.uistate.viewmanager._pmgr.get_reg_databases()
+        obox = Gtk.ComboBox()
+        cell = Gtk.CellRendererText()
+        obox.pack_start(cell, True)
+        obox.add_attribute(cell, 'text', 1)
+        # Build model:
+        model = Gtk.ListStore(GObject.TYPE_INT, 
+                              GObject.TYPE_STRING, 
+                              GObject.TYPE_STRING)
+        count = 0
+        active = 0
+        default = config.get('behavior.database-backend')
+        for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
+            if plugin.id == default:
+                active = count
+            model.append(row=[count, plugin.name, plugin.id])
+            count += 1
+        obox.set_model(model)
+        # set the default value as active in the combo
+        obox.set_active(active)
+        obox.connect('changed', self.database_backend_changed)
+        lwidget = BasicLabel("%s: " % _('Database backend'))
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        grid.attach(obox, 2, current_line, 1, 1)
+        current_line += 1
 
         self.dbpath_entry = Gtk.Entry()
         self.add_path_box(grid, 
                 _('Family Tree Database path'),
-                0, self.dbpath_entry, config.get('behavior.database-path'),
+                current_line, self.dbpath_entry, config.get('behavior.database-path'),
                 self.set_dbpath, self.select_dbpath)
+        current_line += 1
 
         #self.add_entry(grid, 
         #        _('Family Tree Database path'), 
         #        0, 'behavior.database-path')
         self.add_checkbox(grid, 
                 _('Automatically load last Family Tree'), 
-                1, 'behavior.autoload')
+                current_line, 'behavior.autoload')
+        current_line += 1
                 
         return _('Family Tree'), grid
 

@@ -80,6 +80,7 @@ from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
+from gramps.gen.config import config
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -103,25 +104,6 @@ OPEN_COL  = 5
 ICON_COL = 6
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
-
-class DatabaseDialog(Gtk.MessageDialog):
-    def __init__(self, parent, options):
-        """
-        options = [(pdata, number), ...]
-        """
-        Gtk.MessageDialog.__init__(self,
-                                parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.QUESTION,
-                                   )
-        self.set_icon(ICON)
-        self.set_title('')
-        self.set_markup('<span size="larger" weight="bold">%s</span>' %
-                        _('Database Backend for New Tree'))
-        self.format_secondary_text(
-            _("Please select a database backend type:"))
-        for option, number in options:
-            self.add_button(option.name, number)
 
 class DbManager(CLIDbManager):
     """
@@ -780,23 +762,7 @@ class DbManager(CLIDbManager):
         message.
         """
         self.new.set_sensitive(False)
-        dbid = None
-        pmgr = BasePluginManager.get_instance()
-        pdata = pmgr.get_reg_databases()
-        # If just one database backend, just use it:
-        if len(pdata) == 0:
-            DbManager.ERROR(_("No available database backends"),
-                            _("Please check your dependencies."))
-        elif len(pdata) == 1:
-            dbid = pdata[0].id
-        elif len(pdata) > 1:
-            options = sorted(list(zip(pdata, range(1, len(pdata) + 1))), key=lambda items: items[0].name)
-            d = DatabaseDialog(self.top, options)
-            number = d.run()
-            d.destroy()
-            if number >= 0:
-                dbid = [option[0].id for option in options if option[1] == number][0]
-        ### Now, let's load it up
+        dbid = config.get('behavior.database-backend')
         if dbid:
             try:
                 self._create_new_db(dbid=dbid)

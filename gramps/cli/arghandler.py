@@ -52,6 +52,7 @@ from .plug import cl_report, cl_book
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import conv_to_unicode
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -490,8 +491,8 @@ class ArgHandler(object):
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
-
-                    newdb = self.dbstate.make_database("bsddb")
+                    dbid = config.get('behavior.database-backend')
+                    newdb = self.dbstate.make_database(dbid)
                     newdb.write_version(self.imp_db_path)
                 
                 try:
