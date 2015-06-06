@@ -22,7 +22,7 @@
 """
 Czech-specific classes for parsing and displaying dates.
 """
-from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -221,7 +221,9 @@ class DateDisplayCZ(DateDisplay):
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
 
-    def display(self, date):
+    display = DateDisplay.display_formatted
+
+    def orig_display(self, date):
         """
         Return a text string representing the date.
         """
