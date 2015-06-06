@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-05 14:49+0200\n"
-"PO-Revision-Date: 2015-06-05 15:11+0100\n"
+"PO-Revision-Date: 2015-06-06 10:23+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -982,7 +982,7 @@ msgstr "{long_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:168
 #, python-brace-format
 msgid "from|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -992,7 +992,7 @@ msgstr "{long_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:176
 #, python-brace-format
 msgid "to|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -1002,7 +1002,7 @@ msgstr "{long_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:184
 #, python-brace-format
 msgid "between|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -1012,7 +1012,7 @@ msgstr "{long_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:192
 #, python-brace-format
 msgid "and|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1021,7 +1021,7 @@ msgstr "{long_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:199
 #, python-brace-format
 msgid "before|{long_month} {year}"
-msgstr "před {long_month} roku {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1030,7 +1030,7 @@ msgstr "před {long_month} roku {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:206
 #, python-brace-format
 msgid "after|{long_month} {year}"
-msgstr "po {long_month} roku {year}"
+msgstr "{long_month.f[T]} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1039,7 +1039,7 @@ msgstr "po {long_month} roku {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-brace-format
 msgid "about|{long_month} {year}"
-msgstr "kolem měsíce {long_month} roku {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. If "estimated <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1048,7 +1048,7 @@ msgstr "kolem měsíce {long_month} roku {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
 msgid "estimated|{long_month} {year}"
-msgstr "odhadem kolem měsíce {long_month} roku {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1057,7 +1057,7 @@ msgstr "odhadem kolem měsíce {long_month} roku {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
 msgid "calculated|{long_month} {year}"
-msgstr "{long_month} roku {year}"
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:232
 #, python-brace-format
@@ -1072,7 +1072,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:240
 #, python-brace-format
 msgid "from|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -1082,7 +1082,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 #, python-brace-format
 msgid "to|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -1092,7 +1092,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:256
 #, python-brace-format
 msgid "between|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[O]} {year}"
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -1102,7 +1102,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:264
 #, python-brace-format
 msgid "and|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[O]} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1111,7 +1111,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:271
 #, python-brace-format
 msgid "before|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1120,7 +1120,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:278
 #, python-brace-format
 msgid "after|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[T]} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1129,7 +1129,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
 msgid "about|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. If "estimated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1154,14 +1154,14 @@ msgstr "{short_month} {year}"
 #. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:398
 msgid "from-date|"
-msgstr "od"
+msgstr "from"
 
 #. If there is no special inflection for "to <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:403
 msgid "to-date|"
-msgstr "do"
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:404
 #, python-brace-format
@@ -1180,7 +1180,7 @@ msgstr "between"
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:428
 msgid "and-date|"
-msgstr "between"
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 #, python-brace-format
@@ -1214,14 +1214,14 @@ msgstr "about"
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:477
 msgid "estimated-date|"
-msgstr "odhadovaný"
+msgstr "estimated"
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "calculated-date|"
-msgstr "vypočítaný"
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 #, python-brace-format
@@ -2965,7 +2965,7 @@ msgstr "Název filtru osob:"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:566
 msgid "Include Family events:"
-msgstr "Včetně rodinných událostí"
+msgstr "Zahrnout rodinných události"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:51
 msgid "Events of persons matching the <person filter>"
@@ -5217,7 +5217,7 @@ msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of} rok"
 msgstr[1] "{number_of} roky"
-msgstr[2] "{number_of} roků"
+msgstr[2] "{number_of} let"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
@@ -11787,7 +11787,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:561
 msgid "Include original person"
-msgstr "Včetně původní osoby"
+msgstr "Zahrnout původní osobu"
 
 #: ../gramps/gui/editors/filtereditor.py:563
 msgid "Use exact case of letters"
@@ -18592,7 +18592,7 @@ msgstr "Styl používaný pro jméno osoby."
 
 #: ../gramps/plugins/drawreport/timeline.py:455
 msgid "The style used for the year labels."
-msgstr "Styl používaný pro návěští roků."
+msgstr "Styl používaný pro návěští let(roků)."
 
 #: ../gramps/plugins/export/export.gpr.py:31
 #: ../gramps/plugins/importer/import.gpr.py:33
@@ -21142,27 +21142,27 @@ msgstr "Nezahrnovat žádné datum nebo místo"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:600
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "Včetně data (narození, svatby a úmrtí), ale bez míst"
+msgstr "Zahrnout datum (narození, svatby a úmrtí), ale bez míst"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:602
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "Včetně data (narození, svatby a úmrtí) a míst"
+msgstr "Zahrnout datum (narození, svatby a úmrtí) a místa"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:604
 msgid "Include (birth, marriage, death) dates, and places if no dates"
-msgstr "Včetně data (narození, svatby a úmrtí), a míst pokud není datum"
+msgstr "Zahrnout datum (narození, svatby a úmrtí), a místa pokud není datum"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:606
 msgid "Include (birth, marriage, death) years, but no places"
-msgstr "Včetně roku (narození, svatby a úmrtí), ale bez míst"
+msgstr "Zahrnout rok (narození, svatby a úmrtí), ale bez míst"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:608
 msgid "Include (birth, marriage, death) years, and places"
-msgstr "Včetně roku (narození, svatby a úmrtí) a míst"
+msgstr "Zahrnout rok (narození, svatby a úmrtí) a místa"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:610
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "Včetně roku (narození, svatby a úmrtí) a míst pokud není datum"
+msgstr "Zahrnout rok (narození, svatby a úmrtí) a místa pokud není datum"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:612
 msgid "Whether to include dates and/or places"
@@ -27847,12 +27847,12 @@ msgstr "Zda použít běžné jméno jako křestní jméno."
 #: ../gramps/plugins/textreport/detancestralreport.py:787
 #: ../gramps/plugins/textreport/detdescendantreport.py:949
 msgid "Use full dates instead of only the year"
-msgstr "Používat plná data místo pouze roků"
+msgstr "Používat plná data místo pouze let(roků)"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:788
 #: ../gramps/plugins/textreport/detdescendantreport.py:951
 msgid "Whether to use full dates instead of just year."
-msgstr "Zda používat plná data místo pouze roků."
+msgstr "Zda používat plná data místo pouze let(roků)."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:791
 #: ../gramps/plugins/textreport/detdescendantreport.py:954
@@ -27980,7 +27980,7 @@ msgstr "Zda zahrnout odkazy na prameny."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
 #: ../gramps/plugins/textreport/indivcomplete.py:963
 msgid "Include sources notes"
-msgstr "Začlenit poznámky pramenů"
+msgstr "Zahrnout poznámky pramenů"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:846
 #: ../gramps/plugins/textreport/detdescendantreport.py:1009
@@ -28078,7 +28078,7 @@ msgstr "Použít rozvité věty"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
 #: ../gramps/plugins/textreport/kinshipreport.py:355
 msgid "Include spouses"
-msgstr "Včetně manželů(ek)"
+msgstr "Zahrnout manžel(k)y"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Whether to include detailed spouse information."
@@ -28366,7 +28366,7 @@ msgstr "Zda třídit události v chronologickém pořadí."
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:959
 msgid "Include Source Information"
-msgstr "Včetně archivní informace"
+msgstr "Zahrnout archivní informace"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:960
 msgid "Whether to cite sources."
@@ -30489,7 +30489,7 @@ msgstr "Nastavit třídění"
 
 #: ../gramps/plugins/tool/sortevents.py:190
 msgid "Include family events"
-msgstr "Včetně rodinných událostí"
+msgstr "Zahrnout rodinné události"
 
 #: ../gramps/plugins/tool/sortevents.py:191
 msgid "Sort family events of the person"
