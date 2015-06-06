@@ -20559,7 +20559,7 @@ msgstr "Online příručka Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
 msgid "locale_suffix|"
-msgstr ""
+msgstr "cs"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
