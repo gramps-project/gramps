@@ -490,9 +490,7 @@ class GeoPerson(GeoGraphyView):
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
         menu.show()
-        menu.popup(None, None,
-                   lambda menu, data: (event.get_root_coords()[0],
-                                       event.get_root_coords()[1], True),
+        menu.popup(None, None, None,
                    None, event.button, event.time)
         return 1
 
