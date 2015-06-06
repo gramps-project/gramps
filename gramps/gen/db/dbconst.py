@@ -28,26 +28,23 @@ Declare constants used by database modules
 # constants
 #
 #-------------------------------------------------------------------------
-__all__ = (
-            ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
-             'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
-             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R',
-             'DBFLAGS_D', 'SCHVERSFN', 'PCKVERSFN'
-            ) +
-            
-            ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
-             'EVENT_KEY', 'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY',
-             'NOTE_KEY', 'REFERENCE_KEY', 'TAG_KEY'
-            ) +
-
-            ('TXNADD', 'TXNUPD', 'TXNDEL')
-          )
+__all__ = ( 'DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
+            'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
+            'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'SCHVERSFN', 'PCKVERSFN',
+            'DBBACKEND',
+            'PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
+            'EVENT_KEY', 'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY',
+            'NOTE_KEY', 'REFERENCE_KEY', 'TAG_KEY',
+            'TXNADD', 'TXNUPD', 'TXNDEL',
+            "CLASS_TO_KEY_MAP", "KEY_TO_CLASS_MAP", "KEY_TO_NAME_MAP"
+        )
 
 DBEXT     = ".db"           # File extension to be used for database files
 DBUNDOFN  = "undo.db"       # File name of 'undo' database
 DBLOCKFN  = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
 BDBVERSFN = "bdbversion.txt"# File name of Berkeley DB version file
+DBBACKEND = "database.txt"  # File name of Database backend file
 SCHVERSFN = "schemaversion.txt"# File name of schema version file
 PCKVERSFN = "pickleupgrade.txt" # Indicator that pickle has been upgrade t Python3
 DBLOGNAME = ".Db"           # Name of logger
@@ -59,18 +56,6 @@ DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
 DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
-
-try:
-    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
-    DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
-    DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
-    DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
-except:
-    print("WARNING: no bsddb support")
-    # FIXME: make this more abstract to deal with other backends, or do not import
-    DBFLAGS_O = DB_CREATE = DB_AUTO_COMMIT = 0
-    DBFLAGS_R = DB_RDONLY = 0
-    DBFLAGS_D = DB_DUP = DB_DUPSORT = 0
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1
@@ -85,3 +70,37 @@ TAG_KEY        = 9
 CITATION_KEY   = 10
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2
+
+CLASS_TO_KEY_MAP = {"Person": PERSON_KEY, 
+                    "Family": FAMILY_KEY, 
+                    "Source": SOURCE_KEY, 
+                    "Citation": CITATION_KEY, 
+                    "Event": EVENT_KEY, 
+                    "MediaObject": MEDIA_KEY, 
+                    "Place": PLACE_KEY, 
+                    "Repository": REPOSITORY_KEY,
+                    "Note" : NOTE_KEY,
+                    "Tag": TAG_KEY}
+
+KEY_TO_CLASS_MAP = {PERSON_KEY: "Person", 
+                    FAMILY_KEY: "Family", 
+                    SOURCE_KEY: "Source", 
+                    CITATION_KEY: "Citation", 
+                    EVENT_KEY: "Event", 
+                    MEDIA_KEY: "MediaObject", 
+                    PLACE_KEY: "Place", 
+                    REPOSITORY_KEY: "Repository",
+                    NOTE_KEY: "Note",
+                    TAG_KEY: "Tag"}
+
+KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
+                   FAMILY_KEY: 'family',
+                   EVENT_KEY: 'event',
+                   SOURCE_KEY: 'source',
+                   CITATION_KEY: 'citation',
+                   PLACE_KEY: 'place',
+                   MEDIA_KEY: 'media',
+                   REPOSITORY_KEY: 'repository',
+                   #REFERENCE_KEY: 'reference',
+                   NOTE_KEY: 'note',
+                   TAG_KEY: 'tag'}

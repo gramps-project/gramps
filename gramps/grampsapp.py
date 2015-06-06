@@ -136,14 +136,6 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
              'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
-try:
-    import bsddb3
-except ImportError:
-    logging.warning(_("\nYou don't have the python3 bsddb3 package installed."
-        " This package is needed to start Gramps.\n\n"
-         "Gramps will terminate now."))
-    sys.exit(1)
-    
 #-------------------------------------------------------------------------
 #
 # Gramps libraries

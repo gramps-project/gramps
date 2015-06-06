@@ -54,7 +54,6 @@ _LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.constfunc import win, conv_to_unicode
@@ -134,61 +133,42 @@ class CLIDbManager(object):
 
     def get_dbdir_summary(self, dirpath, name):
         """
-        Returns (people_count, bsddb_version, schema_version) of
-        current DB.
-        Returns ("Unknown", "Unknown", "Unknown") if invalid DB or other error.
+        dirpath: full path to database
+        name: proper name of family tree
+
+        Returns dictionary of summary item.
+        Should include at least, if possible:
+
+        _("Path")
+        _("Family Tree")
+        _("Last accessed")
+        _("Database backend")
+        _("Locked?")
+
+        and these details:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
         """
-        from bsddb3 import dbshelve, db
-
-        from gramps.gen.db import META, PERSON_TBL
-        from  gramps.gen.db.dbconst import BDBVERSFN
-
-        bdbversion_file = os.path.join(dirpath, BDBVERSFN)
-        if os.path.isfile(bdbversion_file):
-            vers_file = open(bdbversion_file)
-            bsddb_version = vers_file.readline().strip()
-        else:
-            return "Unknown", "Unknown", "Unknown"
-        
-        current_bsddb_version = str(db.version())
-        if bsddb_version != current_bsddb_version:
-            return "Unknown", bsddb_version, "Unknown"
-        
-        env = db.DBEnv()
-        flags = db.DB_CREATE | db.DB_PRIVATE |\
-            db.DB_INIT_MPOOL |\
-            db.DB_INIT_LOG | db.DB_INIT_TXN
+        dbid = "bsddb"
+        dbid_path = os.path.join(dirpath, "database.txt")
+        if os.path.isfile(dbid_path):
+            dbid = open(dbid_path).read().strip()
         try:
-            env.open(dirpath, flags)
+            database = self.dbstate.make_database(dbid)
+            database.load(dirpath, None)
+            retval = database.get_summary()
         except Exception as msg:
-            LOG.warning("Error opening db environment for '%s': %s" %
-                        (name, str(msg)))
-            try:
-                env.close()
-            except Exception as msg:
-                LOG.warning("Error closing db environment for '%s': %s" %
-                        (name, str(msg)))
-            return "Unknown", bsddb_version, "Unknown"
-        dbmap1 = dbshelve.DBShelf(env)
-        fname = os.path.join(dirpath, META + ".db")
-        try:
-            dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
-        except:
-            env.close()
-            return "Unknown", bsddb_version, "Unknown"
-        schema_version = dbmap1.get(b'version', default=None)
-        dbmap1.close()
-        dbmap2 = dbshelve.DBShelf(env)
-        fname = os.path.join(dirpath, PERSON_TBL + ".db")
-        try:
-            dbmap2.open(fname, PERSON_TBL, db.DB_HASH, db.DB_RDONLY)
-        except:
-            env.close()
-            return "Unknown", bsddb_version, schema_version
-        count = len(dbmap2)
-        dbmap2.close()
-        env.close()
-        return (count, bsddb_version, schema_version)
+            retval = {"Unavailable": str(msg)[:74] + "..."}
+        retval.update({
+            _("Family Tree"): name,
+            _("Path"): dirpath,
+            _("Database backend"): dbid,
+            _("Last accessed"): time_val(dirpath)[1],
+            _("Locked?"): self.is_locked(dirpath),
+        })
+        return retval
 
     def family_tree_summary(self):
         """
@@ -199,19 +179,7 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last, 
              tval, enable, stock_id) = item
-            count, bsddb_version, schema_version = self.get_dbdir_summary(dirpath, name)
-            retval = {}
-            retval[_("Number of people")] = count
-            if enable:
-                retval[_("Locked?")] = _("yes")
-            else:
-                retval[_("Locked?")] = _("no")
-            retval[_("Bsddb version")] = bsddb_version
-            retval[_("Schema version")] = schema_version
-            retval[_("Family Tree")] = name
-            retval[_("Path")] = dirpath
-            retval[_("Last accessed")] = time.strftime('%x %X', 
-                                                    time.localtime(tval))
+            retval = self.get_dbdir_summary(dirpath, name)
             summary_list.append( retval )
         return summary_list
 
@@ -275,7 +243,7 @@ class CLIDbManager(object):
         """
         print(_('Import finished...'))
 
-    def create_new_db_cli(self, title=None, create_db=True):
+    def create_new_db_cli(self, title=None, create_db=True, dbid=None):
         """
         Create a new database.
         """
@@ -294,7 +262,9 @@ class CLIDbManager(object):
 
         if create_db:
             # write the version number into metadata
-            newdb = DbBsddb()
+            if dbid is None:
+                dbid = "bsddb"
+            newdb = self.dbstate.make_database(dbid)
             newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -303,11 +273,11 @@ class CLIDbManager(object):
                                    last, tval, False, ""))
         return new_path, title
 
-    def _create_new_db(self, title=None):
+    def _create_new_db(self, title=None, dbid=None):
         """
         Create a new database, do extra stuff needed
         """
-        return self.create_new_db_cli(title)
+        return self.create_new_db_cli(title, dbid=dbid)
 
     def import_new_db(self, filename, user):
         """
@@ -360,8 +330,8 @@ class CLIDbManager(object):
     
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
-                dbclass = DbBsddb
-                dbase = dbclass()
+
+                dbase = self.dbstate.make_database("bsddb")
                 dbase.load(new_path, user.callback)
     
                 import_function = plugin.get_import_function()

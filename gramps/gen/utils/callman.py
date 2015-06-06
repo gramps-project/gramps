@@ -303,7 +303,8 @@ class CallbackManager(object):
         Do a custom db connect signal outside of the primary object ones
         managed automatically.
         """
-        self.custom_signal_keys.append(self.database.connect(name, callback))
+        if self.database:
+            self.custom_signal_keys.append(self.database.connect(name, callback))
     
     def __callbackcreator(self, signal, noarg=False):
         """

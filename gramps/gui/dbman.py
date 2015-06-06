@@ -69,19 +69,17 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.plug import BasePluginManager
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_WIKISTRING
 from .user import User
-from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
-from gramps.gen.db import DbBsddb
+from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
 from .pluginmanager import GuiPluginManager
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
-from gramps.gen.db.backup import restore
 from gramps.gen.db.exceptions import DbException
-
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -105,6 +103,25 @@ OPEN_COL  = 5
 ICON_COL = 6
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
+
+class DatabaseDialog(Gtk.MessageDialog):
+    def __init__(self, parent, options):
+        """
+        options = [(pdata, number), ...]
+        """
+        Gtk.MessageDialog.__init__(self,
+                                parent,
+                                flags=Gtk.DialogFlags.MODAL,
+                                type=Gtk.MessageType.QUESTION,
+                                   )
+        self.set_icon(ICON)
+        self.set_title('')
+        self.set_markup('<span size="larger" weight="bold">%s</span>' %
+                        _('Database Backend for New Tree'))
+        self.format_secondary_text(
+            _("Please select a database backend type:"))
+        for option, number in options:
+            self.add_button(option.name, number)
 
 class DbManager(CLIDbManager):
     """
@@ -531,8 +548,8 @@ class DbManager(CLIDbManager):
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
         
         self.__start_cursor(_("Extracting archive..."))
-        dbclass = DbBsddb
-        dbase = dbclass()
+
+        dbase = self.dbstate.make_database("bsddb")
         dbase.load(new_path, None)
         
         self.__start_cursor(_("Importing archive..."))
@@ -719,18 +736,17 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = DbBsddb()
+        newdb = self.dbstate.make_database("bsddb")
         newdb.write_version(dirname)
 
-        dbclass = DbBsddb
-        dbase = dbclass()
+        dbase = self.dbstate.make_database("bsddb")
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))
         
         try:
-            restore(dbase)
+            dbase.restore()
         except DbException as msg:
             DbManager.ERROR(_("Error restoring backup data"), msg)
 
@@ -764,19 +780,37 @@ class DbManager(CLIDbManager):
         message.
         """
         self.new.set_sensitive(False)
-        try:
-            self._create_new_db()
-        except (OSError, IOError) as msg:
-            DbManager.ERROR(_("Could not create Family Tree"),
-                                       str(msg))
+        dbid = None
+        pmgr = BasePluginManager.get_instance()
+        pdata = pmgr.get_reg_databases()
+        # If just one database backend, just use it:
+        if len(pdata) == 0:
+            DbManager.ERROR(_("No available database backends"),
+                            _("Please check your dependencies."))
+        elif len(pdata) == 1:
+            dbid = pdata[0].id
+        elif len(pdata) > 1:
+            options = sorted(list(zip(pdata, range(1, len(pdata) + 1))), key=lambda items: items[0].name)
+            d = DatabaseDialog(self.top, options)
+            number = d.run()
+            d.destroy()
+            if number >= 0:
+                dbid = [option[0].id for option in options if option[1] == number][0]
+        ### Now, let's load it up
+        if dbid:
+            try:
+                self._create_new_db(dbid=dbid)
+            except (OSError, IOError) as msg:
+                DbManager.ERROR(_("Could not create Family Tree"),
+                                str(msg))
         self.new.set_sensitive(True)
 
-    def _create_new_db(self, title=None, create_db=True):
+    def _create_new_db(self, title=None, create_db=True, dbid=None):
         """
         Create a new database, append to model
         """
         new_path, title = self.create_new_db_cli(conv_to_unicode(title, 'utf8'),
-                                                 create_db)
+                                                 create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 

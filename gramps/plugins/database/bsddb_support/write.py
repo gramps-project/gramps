@@ -40,49 +40,46 @@ from functools import wraps
 import logging
 from sys import maxsize, getfilesystemencoding, version_info
 
-try:
-    from bsddb3 import dbshelve, db
-except:
-    # FIXME: make this more abstract to deal with other backends
-    class db:
-        DB_HASH = 0
-        DBRunRecoveryError = 0
-        DBAccessError = 0
-        DBPageNotFoundError = 0
-        DBInvalidArgError = 0
+from bsddb3 import dbshelve, db
+from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+
+DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
+DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
+DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib.person import Person
-from ..lib.family import Family
-from ..lib.src import Source
-from ..lib.citation import Citation
-from ..lib.event import Event
-from ..lib.place import Place
-from ..lib.repo import Repository
-from ..lib.mediaobj import MediaObject
-from ..lib.note import Note
-from ..lib.tag import Tag
-from ..lib.genderstats import GenderStats
-from ..lib.researcher import Researcher 
+from gramps.gen.lib.person import Person
+from gramps.gen.lib.family import Family
+from gramps.gen.lib.src import Source
+from gramps.gen.lib.citation import Citation
+from gramps.gen.lib.event import Event
+from gramps.gen.lib.place import Place
+from gramps.gen.lib.repo import Repository
+from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.note import Note
+from gramps.gen.lib.tag import Tag
+from gramps.gen.lib.genderstats import GenderStats
+from gramps.gen.lib.researcher import Researcher 
 
 from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo,
-                    exceptions)
-from .dbconst import *
-from ..utils.callback import Callback
-from ..utils.cast import conv_dbstr_to_unicode
-from ..utils.id import create_id
-from ..updatecallback import UpdateCallback
-from ..errors import DbError
-from ..constfunc import (win, conv_to_unicode, handle2internal,
+                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
+
+from gramps.gen.db import exceptions
+from gramps.gen.db.dbconst import *
+from gramps.gen.utils.callback import Callback
+from gramps.gen.utils.cast import conv_dbstr_to_unicode
+from gramps.gen.utils.id import create_id
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.errors import DbError
+from gramps.gen.constfunc import (win, conv_to_unicode, handle2internal,
                          get_env_var)
-from ..const import HOME_DIR, GRAMPS_LOCALE as glocale
+from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
@@ -133,39 +130,6 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 # these maps or modifying the values of the keys will break
 # existing databases.
 
-CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY, 
-                    Family.__name__: FAMILY_KEY, 
-                    Source.__name__: SOURCE_KEY, 
-                    Citation.__name__: CITATION_KEY, 
-                    Event.__name__: EVENT_KEY, 
-                    MediaObject.__name__: MEDIA_KEY, 
-                    Place.__name__: PLACE_KEY, 
-                    Repository.__name__:REPOSITORY_KEY,
-                    Note.__name__: NOTE_KEY,
-                    Tag.__name__: TAG_KEY}
-
-KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
-                    FAMILY_KEY: Family.__name__, 
-                    SOURCE_KEY: Source.__name__, 
-                    CITATION_KEY: Citation.__name__, 
-                    EVENT_KEY: Event.__name__, 
-                    MEDIA_KEY: MediaObject.__name__, 
-                    PLACE_KEY: Place.__name__, 
-                    REPOSITORY_KEY: Repository.__name__,
-                    NOTE_KEY: Note.__name__,
-                    TAG_KEY: Tag.__name__}
-
-KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
-                   FAMILY_KEY: 'family',
-                   EVENT_KEY: 'event',
-                   SOURCE_KEY: 'source',
-                   CITATION_KEY: 'citation',
-                   PLACE_KEY: 'place',
-                   MEDIA_KEY: 'media',
-                   REPOSITORY_KEY: 'repository',
-                   #REFERENCE_KEY: 'reference',
-                   NOTE_KEY: 'note',
-                   TAG_KEY: 'tag'}
 #-------------------------------------------------------------------------
 #
 # Helper functions
@@ -689,7 +653,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return False
 
     @catch_db_error
-    def load(self, name, callback, mode=DBMODE_W, force_schema_upgrade=False,
+    def load(self, name, callback=None, mode=DBMODE_W, force_schema_upgrade=False,
              force_bsddb_upgrade=False, force_bsddb_downgrade=False,
              force_python_upgrade=False):
 
@@ -2433,6 +2397,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             version = str(_DBVERSION)
             version_file.write(version)
 
+        versionpath = os.path.join(name, str(DBBACKEND))
+        _LOG.debug("Write database backend file to 'bsddb'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("bsddb")
+
         self.metadata.close()
         self.env.close()
   
@@ -2448,6 +2417,180 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Get the transaction class associated with this database backend.
         """
         return DbTxn
+
+    def backup(self):
+        """
+        Exports the database to a set of backup files. These files consist
+        of the pickled database tables, one file for each table.
+        
+        The heavy lifting is done by the private :py:func:`__do__export` function.
+        The purpose of this function is to catch any exceptions that occur.
+        
+        :param database: database instance to backup
+        :type database: DbDir
+        """
+        try:
+            do_export(self)
+        except (OSError, IOError) as msg:
+            raise DbException(str(msg))
+
+    def restore(self):
+        """
+        Restores the database to a set of backup files. These files consist
+        of the pickled database tables, one file for each table.
+        
+        The heavy lifting is done by the private :py:func:`__do__restore` function.
+        The purpose of this function is to catch any exceptions that occur.
+        
+        :param database: database instance to restore
+        :type database: DbDir
+        """
+        try:
+            do_restore(self)
+        except (OSError, IOError) as msg:
+            raise DbException(str(msg))
+
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
+        """
+        schema_version = self.metadata.get(b'version', default=None)
+        bdbversion_file = os.path.join(self.path, BDBVERSFN)
+        if os.path.isfile(bdbversion_file):
+            vers_file = open(bdbversion_file)
+            bsddb_version = vers_file.readline().strip()
+        else:
+            bsddb_version = _("Unknown")
+        return {
+            _("Number of people"): self.get_number_of_people(),
+            _("Schema version"): schema_version,
+            _("Version"): bsddb_version,
+        }
+
+    def prepare_import(self):
+        """
+        Initialization before imports
+        """
+        pass
+
+    def commit_import(self):
+        """
+        Post process after imports
+        """
+        pass
+
+def mk_backup_name(database, base):
+    """
+    Return the backup name of the database table
+
+    :param database: database instance 
+    :type database: DbDir
+    :param base: base name of the table
+    :type base: str
+    """
+    return os.path.join(database.get_save_path(), base + ".gbkp")
+
+def mk_tmp_name(database, base):
+    """
+    Return the temporary backup name of the database table
+
+    :param database: database instance 
+    :type database: DbDir
+    :param base: base name of the table
+    :type base: str
+    """
+    return os.path.join(database.get_save_path(), base + ".gbkp.new")
+
+def do_export(database):
+    """
+    Loop through each table of the database, saving the pickled data
+    a file.
+
+    :param database: database instance to backup
+    :type database: DbDir
+    """
+    try:
+        for (base, tbl) in build_tbl_map(database):
+            backup_name = mk_tmp_name(database, base)
+            backup_table = open(backup_name, 'wb')
+    
+            cursor = tbl.cursor()
+            data = cursor.first()
+            while data:
+                pickle.dump(data, backup_table, 2)
+                data = cursor.next()
+            cursor.close()
+            backup_table.close()
+    except (IOError,OSError):
+        return
+
+    for (base, tbl) in build_tbl_map(database):
+        new_name = mk_backup_name(database, base)
+        old_name = mk_tmp_name(database, base)
+        if os.path.isfile(new_name):
+            os.unlink(new_name)
+        os.rename(old_name, new_name)
+
+def do_restore(database):
+    """
+    Loop through each table of the database, restoring the pickled data
+    to the appropriate database file.
+
+    :param database: database instance to backup
+    :type database: DbDir
+    """
+    for (base, tbl) in build_tbl_map(database):
+        backup_name = mk_backup_name(database, base)
+        backup_table = open(backup_name, 'rb')
+        load_tbl_txn(database, backup_table, tbl)
+
+    database.rebuild_secondary()
+
+def load_tbl_txn(database, backup_table, tbl):
+    """
+    Return the temporary backup name of the database table
+
+    :param database: database instance 
+    :type database: DbDir
+    :param backup_table: file containing the backup data
+    :type backup_table: file
+    :param tbl: Berkeley db database table
+    :type tbl: Berkeley db database table
+    """
+    try:
+        while True:
+            data = pickle.load(backup_table)
+            txn = database.env.txn_begin()
+            tbl.put(data[0], data[1], txn=txn)
+            txn.commit()
+    except EOFError:
+        backup_table.close()
+
+def build_tbl_map(database):
+    """
+    Builds a table map of names to database tables.
+
+    :param database: database instance to backup
+    :type database: DbDir
+    """
+    return [
+        ( PERSON_TBL,  database.person_map.db),
+        ( FAMILY_TBL,  database.family_map.db),
+        ( PLACES_TBL,  database.place_map.db),
+        ( SOURCES_TBL, database.source_map.db),
+        ( CITATIONS_TBL, database.citation_map.db),
+        ( REPO_TBL,    database.repository_map.db),
+        ( NOTE_TBL,    database.note_map.db),
+        ( MEDIA_TBL,   database.media_map.db),
+        ( EVENTS_TBL,  database.event_map.db),
+        ( TAG_TBL,     database.tag_map.db),
+        ( META,        database.metadata.db),
+        ]
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)

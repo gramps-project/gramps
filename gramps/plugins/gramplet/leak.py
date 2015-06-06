@@ -31,7 +31,6 @@ Show uncollected objects in a window.
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from bsddb3.db import DBError
 
 #------------------------------------------------------------------------
 #
@@ -155,6 +154,13 @@ class Leak(Gramplet):
                         parent=self.uistate.window)
 
     def display(self):
+        try:
+            from bsddb3.db import DBError
+        except:
+            class DBError(Exception):
+                """
+                Dummy.
+                """
         gc.collect(2)
         self.model.clear()
         count = 0

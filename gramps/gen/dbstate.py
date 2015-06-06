@@ -22,12 +22,22 @@
 """
 Provide the database state class
 """
+import sys
+import os
+import io
 
-from .db import DbBsddbRead
 from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".dbstate")
 
 class DbState(Callback):
     """
@@ -45,7 +55,7 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db      = DbBsddbRead()
+        self.db      = self.make_database("bsddb")
         self.open    = False
         self.stack = []
 
@@ -54,9 +64,10 @@ class DbState(Callback):
         Closes the existing db, and opens a new one.
         Retained for backward compatibility.
         """
-        self.emit('no-database', ())
-        self.db.close()
-        self.change_database_noclose(database)
+        if database:
+            self.emit('no-database', ())
+            self.db.close()
+            self.change_database_noclose(database)
 
     def change_database_noclose(self, database):
         """
@@ -88,7 +99,7 @@ class DbState(Callback):
         """
         self.emit('no-database', ())
         self.db.close()
-        self.db = DbBsddbRead()
+        self.db = self.make_database("bsddb")
         self.db.db_is_open = False
         self.open = False
         self.emit('database-changed', (self.db, ))
@@ -122,3 +133,100 @@ class DbState(Callback):
         """
         self.db = self.stack.pop()
         self.emit('database-changed', (self.db, ))
+
+    def make_database(self, id):
+        """
+        Make a database, given a plugin id.
+        """
+        from .plug import BasePluginManager
+        from .const import PLUGINS_DIR, USER_PLUGINS
+
+        pmgr = BasePluginManager.get_instance()
+        pdata = pmgr.get_plugin(id)
+        
+        if not pdata:
+            # This might happen if using gramps from outside, and
+            # we haven't loaded plugins yet
+            pmgr.reg_plugins(PLUGINS_DIR, self, None)
+            pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
+            pdata = pmgr.get_plugin(id)
+
+        if pdata:
+            if pdata.reset_system:
+                if self.modules_is_set():
+                    self.reset_modules()
+                else:
+                    self.save_modules()
+            mod = pmgr.load_plugin(pdata)
+            database = getattr(mod, pdata.databaseclass)
+            return database()
+
+    def open_database(self, dbname, force_unlock=False, callback=None):
+        """
+        Open a database by name and return the database.
+        """
+        data = self.lookup_family_tree(dbname)
+        database = None
+        if data:
+            dbpath, locked, locked_by, backend = data
+            if (not locked) or (locked and force_unlock):
+                database = self.make_database(backend)
+                database.load(dbpath, callback=callback)
+        return database
+
+    def lookup_family_tree(self, dbname):
+        """
+        Find a Family Tree given its name, and return properties.
+        """
+        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        for dpath in os.listdir(dbdir):
+            dirpath = os.path.join(dbdir, dpath)
+            path_name = os.path.join(dirpath, "name.txt")
+            if os.path.isfile(path_name):
+                file = io.open(path_name, 'r', encoding='utf8')
+                name = file.readline().strip()
+                file.close()
+                if dbname == name:
+                    locked = False
+                    locked_by = None
+                    backend = None
+                    fname = os.path.join(dirpath, "database.txt")
+                    if os.path.isfile(fname):
+                        ifile = io.open(fname, 'r', encoding='utf8')
+                        backend = ifile.read().strip()
+                        ifile.close()
+                    else:
+                        backend = "bsddb"
+                    try:
+                        fname = os.path.join(dirpath, "lock")
+                        ifile = io.open(fname, 'r', encoding='utf8')
+                        locked_by = ifile.read().strip()
+                        locked = True
+                        ifile.close()
+                    except (OSError, IOError):
+                        pass
+                    return (dirpath, locked, locked_by, backend)
+        return None
+
+    ## Work-around for databases that need sys refresh (django):
+    def modules_is_set(self):
+        LOG.info("modules_is_set?")
+        if hasattr(self, "_modules"):
+            return self._modules != None
+        else:
+            self._modules = None
+            return False
+
+    def reset_modules(self):
+        LOG.info("reset_modules!")
+        # First, clear out old modules:
+        for key in list(sys.modules.keys()):
+            del(sys.modules[key])
+        # Next, restore previous:
+        for key in self._modules:
+            sys.modules[key] = self._modules[key]
+
+    def save_modules(self):
+        LOG.info("save_modules!")
+        self._modules = sys.modules.copy()
+
