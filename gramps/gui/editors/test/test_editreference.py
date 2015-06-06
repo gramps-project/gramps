@@ -56,16 +56,22 @@ example = os.path.abspath(
                  "example/gramps/example.gramps"))
 
 class TestEditReference(unittest.TestCase):
-    def setUp(self):
-        self.db = DictionaryDb() 
 
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_editreference(self):
         dbstate = DbState()
-        dbstate.db = self.db
+        db = dbstate.make_database("bsddb")
+        path = "/tmp/edit_ref_test"
+        try:
+            os.mkdir(path)
+        except:
+            pass
+        db.write_version(path)
+        db.load(path)
+        dbstate.change_database(db)
         source = Place() 
         source.gramps_id = "P0001"
-        self.db.place_map[source.handle] = source
+        dbstate.db.place_map[source.handle] = source.serialize()
         editor = MockEditReference(dbstate, uistate=None, track=[], 
                                    source=source, source_ref=None, update=None)
         with patch('gramps.gui.editors.editreference.ErrorDialog') as MockED:

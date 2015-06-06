@@ -22,8 +22,9 @@ import unittest
 import tempfile
 import shutil
 
-from gramps.gen.db import DbBsddb, DbTxn
+from .. import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
+from gramps.gen.dbstate import DbState
 from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person, 
                             Family, Event, Place, MediaObject)
 
@@ -37,7 +38,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         self._tmpdir = tempfile.mkdtemp()
         
         self._db = DbBsddb()
-        dbman = CLIDbManager(None)
+        dbman = CLIDbManager(DbState())
         self._filename, title = dbman.create_new_db_cli(title="Test")
         self._db.load(self._filename, dummy_callback, "w")
 
