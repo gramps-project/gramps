@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 16:03+0200\n"
-"PO-Revision-Date: 2015-06-03 17:33+0100\n"
+"PO-Revision-Date: 2015-06-06 11:00+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1846,7 +1846,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:168
 msgid "from|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -1855,7 +1855,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:176
 msgid "to|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -1864,7 +1864,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:184
 msgid "between|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -1873,7 +1873,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:192
 msgid "and|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1881,7 +1881,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
 msgid "before|{long_month} {year}"
-msgstr "{long_month.f[S]} {year}"
+msgstr "{long_month.f[O]} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1905,7 +1905,7 @@ msgstr "{long_month.f[D]} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 msgid "estimated|{long_month} {year}"
-msgstr "{long_month.f[T]} {year}"
+msgstr "{long_month.f[D]} {year}"
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1913,7 +1913,7 @@ msgstr "{long_month.f[T]} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 msgid "calculated|{long_month} {year}"
-msgstr "{long_month.f[T]} {year}"
+msgstr "{long_month} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:232
 msgid "{short_month} {year}"
@@ -1926,7 +1926,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:240
 msgid "from|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -1935,7 +1935,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 msgid "to|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -1944,7 +1944,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:256
 msgid "between|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[O]} {year}"
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -1953,7 +1953,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:264
 msgid "and|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[O]} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1961,7 +1961,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:271
 msgid "before|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1969,7 +1969,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:278
 msgid "after|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[T]} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1977,7 +1977,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 msgid "about|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr "{short_month.f[D]} {year}"
 
 #. If "estimated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -2000,14 +2000,14 @@ msgstr "{short_month} {year}"
 #. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:398
 msgid "from-date|"
-msgstr ""
+msgstr "from"
 
 #. If there is no special inflection for "to <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:403
 msgid "to-date|"
-msgstr ""
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:404
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
@@ -2025,7 +2025,7 @@ msgstr "between"
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:428
 msgid "and-date|"
-msgstr "between"
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 msgid ""
@@ -2058,14 +2058,14 @@ msgstr "about"
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:477
 msgid "estimated-date|"
-msgstr "odhadovaný"
+msgstr "estimated"
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "calculated-date|"
-msgstr "vypočítaný"
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
@@ -2205,51 +2205,51 @@ msgstr "P=pro|D=pro|T=pro"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgid "alternative month names for January||"
-msgstr ""
+msgstr "leden"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "alternative month names for February||"
-msgstr ""
+msgstr "únor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "alternative month names for March||"
-msgstr ""
+msgstr "březen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "alternative month names for April||"
-msgstr ""
+msgstr "duben"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "alternative month names for May||"
-msgstr ""
+msgstr "květen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "alternative month names for June||"
-msgstr ""
+msgstr "červen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "alternative month names for July||"
-msgstr ""
+msgstr "červenec"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "alternative month names for August||"
-msgstr ""
+msgstr "srpen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:109
 msgid "alternative month names for September||"
-msgstr ""
+msgstr "září"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgid "alternative month names for October||"
-msgstr ""
+msgstr "říjen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgid "alternative month names for November||"
-msgstr ""
+msgstr "listopad"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgid "alternative month names for December||"
-msgstr ""
+msgstr "prosinec"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:116 ../gramps/gen/lib/date.py:583
@@ -3816,7 +3816,7 @@ msgstr "Vyhovují události odpovídající uvedenému filtru"
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
 #: ../gramps/gui/editors/filtereditor.py:566
 msgid "Include Family events:"
-msgstr "Včetně rodinných událostí"
+msgstr "Zahrnout rodinných události"
 
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
@@ -5566,12 +5566,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
 msgid "Places enclosed by another place"
-msgstr ""
+msgstr "Místa ohraničená jiným místem"
 
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
-#, fuzzy
 msgid "Matches a place enclosed by a particular place"
-msgstr "Vyhovují místa s konkrétním názvem"
+msgstr "Vyhovují místa ohraničená konkrétním místem"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
@@ -6087,7 +6086,7 @@ msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of} rok"
 msgstr[1] "{number_of} roky"
-msgstr[2] "{number_of} roků"
+msgstr[2] "{number_of} let"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
@@ -7206,9 +7205,8 @@ msgid "FTP"
 msgstr "FTP"
 
 #: ../gramps/gen/merge/diff.py:274
-#, fuzzy
 msgid "Family Tree Differences"
-msgstr "Odkazy rodiny: %s"
+msgstr "Rozdíly rodokmenu"
 
 #: ../gramps/gen/merge/diff.py:275
 msgid "Searching..."
@@ -8128,7 +8126,7 @@ msgstr "Soukromý"
 
 #: ../gramps/gen/recentfiles.py:236
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr ""
+msgstr "Nelze otevřít soubor se seznamem aktuálních DB {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:240
 msgid ""
@@ -8137,6 +8135,10 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
+"Chyba analýzy souboru se seznamem aktuálních DB {fname}: {error}.\n"
+"Tento stav může indikovat poškození Vašich souborů.\n"
+"Pokud si jste jisti, že ostatní soubory jsou v pořádku, smažte jej a "
+"restartuje Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1496
@@ -9762,16 +9764,15 @@ msgstr "Ukázat tlačítko pro zavření v záložkách panelu grampletů"
 
 #: ../gramps/gui/configure.py:1108
 msgid "Enable automatic place title generation"
-msgstr ""
+msgstr "Povolit automatické vytváření titulku místa"
 
 #: ../gramps/gui/configure.py:1112
 msgid "Suppress comma after house number"
-msgstr ""
+msgstr "Potlačit čárku za číslem domu"
 
 #: ../gramps/gui/configure.py:1116
-#, fuzzy
 msgid "Reverse display order"
-msgstr "Použít formát zobrazení matky"
+msgstr "Zobrazení v obráceném pořadí"
 
 #: ../gramps/gui/configure.py:1122
 msgid "Full place name"
@@ -9779,11 +9780,11 @@ msgstr "Celý názav místa"
 
 #: ../gramps/gui/configure.py:1123
 msgid "-> Hamlet/VillageTown/City"
-msgstr ""
+msgstr "-> Osada/Obec/Město"
 
 #: ../gramps/gui/configure.py:1124
 msgid "Hamlet/VillageTown/City ->"
-msgstr ""
+msgstr "Osada/Obec/Město ->"
 
 #: ../gramps/gui/configure.py:1129
 msgid "Restrict"
@@ -10095,7 +10096,7 @@ msgstr "Vybrat adresář pro média"
 #: ../gramps/plugins/tool/populatesources.py:89
 #: ../gramps/plugins/tool/testcasegenerator.py:245
 msgid "_Cancel"
-msgstr "_Zrušit"
+msgstr "_Storno"
 
 #: ../gramps/gui/configure.py:1444
 msgid "Select database directory"
@@ -11266,9 +11267,8 @@ msgid "Godfather"
 msgstr "Kmotr"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:53
-#, fuzzy
 msgid "Create and add a new place name"
-msgstr "Vytvořit a přidat nové jméno"
+msgstr "Vytvořit a přidat nový název místa"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
 msgid "Remove the existing place name"
@@ -11279,14 +11279,12 @@ msgid "Edit the selected place name"
 msgstr "Upravit zvolený název místa"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:56
-#, fuzzy
 msgid "Move the selected place name upwards"
-msgstr "Posunout vybrané jméno výše"
+msgstr "Posunout vybraný název místa výše"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:57
-#, fuzzy
 msgid "Move the selected place name downwards"
-msgstr "Posunout vybrané jméno níže"
+msgstr "Posunout vybraný název místa níže"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:71
 #: ../gramps/plugins/gramplet/placedetails.py:130
@@ -12317,7 +12315,6 @@ msgstr "Upravit místo"
 
 #: ../gramps/gui/editors/editplace.py:273
 #: ../gramps/gui/editors/editplaceref.py:275
-#, fuzzy
 msgid "Cannot save place. Name not entered."
 msgstr "Nelze uložit umístění. Chybí název."
 
@@ -12694,7 +12691,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:561
 msgid "Include original person"
-msgstr "Včetně původní osoby"
+msgstr "Zahrnout původní osobu"
 
 #: ../gramps/gui/editors/filtereditor.py:563
 msgid "Use exact case of letters"
@@ -13269,7 +13266,6 @@ msgid "Apply the operation to this item"
 msgstr "Aplikovat operaci na tuto položku"
 
 #: ../gramps/gui/glade/dialog.glade:528
-#, fuzzy
 msgid "_Use this answer for the rest of the items"
 msgstr "Styl používaný pro nadpis stránky."
 
@@ -13278,6 +13274,8 @@ msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
 msgstr ""
+"Pokud zaškrtnete toto tlačítko, Vaše další odpověď bude platná pro zbytek "
+"zvolených položek"
 
 #: ../gramps/gui/glade/dialog.glade:762 ../gramps/gui/glade/dialog.glade:778
 #: ../gramps/gui/glade/dialog.glade:889
@@ -14374,14 +14372,12 @@ msgid "Language:"
 msgstr "Jazyk:"
 
 #: ../gramps/gui/glade/editplacename.glade:122
-#, fuzzy
 msgid "Language in which the name is written."
-msgstr "Datum ve kterém je adresa platná."
+msgstr "Jazyk v němž je jméno psáno."
 
 #: ../gramps/gui/glade/editplacename.glade:170
-#, fuzzy
 msgid "Date range in which the name is valid."
-msgstr "Rozsah data pro který je odlaz platný."
+msgstr "Rozsah data pro který je jméno platné."
 
 #: ../gramps/gui/glade/editplacename.glade:183
 msgid "The name of the place."
@@ -14774,13 +14770,12 @@ msgstr ""
 "primární data pro sloučené místo."
 
 #: ../gramps/gui/glade/mergeplace.glade:620
-#, fuzzy
 msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Budou kombinovány alternativní lokace, prameny, url, objekty médií a "
-"poznámky obou míst."
+"Budou kombinovány alternativní názvy, prameny, url, objekty médií a poznámky "
+"obou míst."
 
 #: ../gramps/gui/glade/mergerepository.glade:98
 msgid ""
@@ -17344,22 +17339,20 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr "Záložka nemůže být nastavena, protože nikdo není vybrán."
 
 #: ../gramps/gui/views/listview.py:540
-#, fuzzy
 msgid "Multiple Selection Delete"
-msgstr "Podrobný výběr"
+msgstr "Mazání vícenásobného výběru"
 
 #: ../gramps/gui/views/listview.py:541
-#, fuzzy
 msgid ""
 "More than one item has been selected for deletion. Select the option "
 "indicating how to delete the items:"
 msgstr ""
-"Pro smazání byl označen více než jeden objekt. Ptát se před vymazáním "
-"jednotlivých objektů?"
+"Pro smazání byl označen více než jeden objekt. Vyberte volbu určující jak "
+"mazat tyto položky:"
 
 #: ../gramps/gui/views/listview.py:543
 msgid "Delete All"
-msgstr "Smazat vše"
+msgstr "Odstranit vše"
 
 #: ../gramps/gui/views/listview.py:544
 msgid "Confirm Each Delete"
@@ -18152,14 +18145,13 @@ msgid "The center person for the tree"
 msgstr "Ústřední osoba stromu"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:774
-#, fuzzy
 msgid "Include siblings of the center person"
-msgstr "Zahrnout vztahy k ústřední osobě"
+msgstr "Zahrnout příbuzné ústřední osoby"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:775
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
-msgstr ""
+msgstr "Zda zobrazit pouze ústřední osobu, nebo také všechny její příbuzné"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:779
 #: ../gramps/plugins/drawreport/descendtree.py:1518
@@ -18385,12 +18377,10 @@ msgstr ""
 " vertikálních i horizontálních mezer"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:916
-#, fuzzy
 msgid "inter-box scale factor"
-msgstr "poměr zvětšení výšky rámu"
+msgstr "měřítko vnitřního rámečku"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:918
-#, fuzzy
 msgid "Make the inter-box spacing bigger or smaller"
 msgstr "Zvětšit nebo zmenšit výšku vnitřního rámečku"
 
@@ -19514,7 +19504,7 @@ msgstr "Styl používaný pro jméno osoby."
 
 #: ../gramps/plugins/drawreport/timeline.py:455
 msgid "The style used for the year labels."
-msgstr "Styl používaný pro návěští roků."
+msgstr "Styl používaný pro návěští let(roků)."
 
 #: ../gramps/plugins/export/export.gpr.py:31
 #: ../gramps/plugins/importer/import.gpr.py:33
@@ -19782,12 +19772,11 @@ msgstr "Vyjmout poz_námky"
 
 #: ../gramps/plugins/export/exportgeneweb.glade:217
 msgid "Use _Living as first name"
-msgstr ""
+msgstr "Zda použít běžné jméno jako křestní jméno."
 
 #: ../gramps/plugins/export/exportgeneweb.glade:260
-#, fuzzy
 msgid "Reference i_mages from path:  "
-msgstr "Odkazy pro tento %s"
+msgstr "_Referenční obrázky z cesty:"
 
 #: ../gramps/plugins/export/exportgeneweb.glade:280
 #: ../gramps/plugins/quickview/filterbyname.py:352
@@ -22049,34 +22038,28 @@ msgid "Do not include any dates or places"
 msgstr "Nezahrnovat žádné datum nebo místo"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:600
-#, fuzzy
 msgid "Include (birth, marriage, death) dates, but no places"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout datum (narození, svatby a úmrtí), ale bez míst"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:602
-#, fuzzy
 msgid "Include (birth, marriage, death) dates, and places"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout datum (narození, svatby a úmrtí) a místa"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:604
-#, fuzzy
 msgid "Include (birth, marriage, death) dates, and places if no dates"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout datum (narození, svatby a úmrtí), a místa pokud není datum"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:606
-#, fuzzy
 msgid "Include (birth, marriage, death) years, but no places"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout rok (narození, svatby a úmrtí), ale bez míst"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:608
-#, fuzzy
 msgid "Include (birth, marriage, death) years, and places"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout rok (narození, svatby a úmrtí) a místa"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:610
-#, fuzzy
 msgid "Include (birth, marriage, death) places, but no dates"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout rok (narození, svatby a úmrtí) a místa pokud není datum"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:612
 msgid "Whether to include dates and/or places"
@@ -22456,19 +22439,16 @@ msgid "Error reading GEDCOM file"
 msgstr "Chyba při čtení GEDCOM souboru"
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
-#, fuzzy
 msgid "Accomplishment"
-msgstr "Zarovnání"
+msgstr "Dovednost"
 
 #: ../gramps/plugins/importer/importgeneweb.py:81
-#, fuzzy
 msgid "Acquisition"
-msgstr "Akce"
+msgstr "Nabytí"
 
 #: ../gramps/plugins/importer/importgeneweb.py:82
-#, fuzzy
 msgid "Adhesion"
-msgstr "Verze"
+msgstr "Srůst"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
@@ -22480,73 +22460,62 @@ msgid "Change Name"
 msgstr "Změnit název"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
-#, fuzzy
 msgid "Circumcision"
-msgstr "Oddělení"
+msgstr "Obřízka"
 
 #: ../gramps/plugins/importer/importgeneweb.py:94
 msgid "Military Demobilisation"
-msgstr ""
+msgstr "Demobilizace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#, fuzzy
 msgid "Dotation"
-msgstr "Citace"
+msgstr "Dotace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
-#, fuzzy
 msgid "Excommunication"
-msgstr "Vzdělání"
+msgstr "Vyloučení"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#, fuzzy
 msgid "LDS Family Link"
-msgstr "Linky rodiny"
+msgstr "SPD odkaz na rodinu"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
-#, fuzzy
 msgid "Funeral"
-msgstr "Obecné"
+msgstr "Funeral"
 
 #: ../gramps/plugins/importer/importgeneweb.py:106
-#, fuzzy
 msgid "Hospitalisation"
-msgstr "Udělení občanství"
+msgstr "Hospitalizace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:107
 msgid "Illness"
 msgstr "Choroba"
 
 #: ../gramps/plugins/importer/importgeneweb.py:109
-#, fuzzy
 msgid "List Passenger"
-msgstr "Přizpůsobit stránce"
+msgstr "Seznam cestujících"
 
 #: ../gramps/plugins/importer/importgeneweb.py:110
-#, fuzzy
 msgid "Military Distinction"
-msgstr "Vojenská služba"
+msgstr "Vojenská vyznamenání"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
 msgid "Militaty Mobilisation"
-msgstr ""
+msgstr "Mobilizace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:112
-#, fuzzy
 msgid "Military Promotion"
-msgstr "Vojenská služba"
+msgstr "Vojenská povýšení"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
-#, fuzzy
 msgid "LDS Seal to child"
-msgstr "Vybrat dítě"
+msgstr "SPD pečeť potomka"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 msgid "Sold property"
 msgstr "Prodaný majetek"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
-#, fuzzy
 msgid "No mention"
 msgstr "Bez popisu"
 
@@ -23399,9 +23368,8 @@ msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
 #: ../gramps/plugins/lib/libgedcom.py:3368
-#, fuzzy
 msgid "(Submitter):"
-msgstr "Předloženo"
+msgstr "(Vkladatel ):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3399
 #: ../gramps/plugins/lib/libgedcom.py:6996
@@ -28753,12 +28721,12 @@ msgstr "Zda použít běžné jméno jako křestní jméno."
 #: ../gramps/plugins/textreport/detancestralreport.py:787
 #: ../gramps/plugins/textreport/detdescendantreport.py:949
 msgid "Use full dates instead of only the year"
-msgstr "Používat plná data místo pouze roků"
+msgstr "Používat plná data místo pouze let(roků)"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:788
 #: ../gramps/plugins/textreport/detdescendantreport.py:951
 msgid "Whether to use full dates instead of just year."
-msgstr "Zda používat plná data místo pouze roků."
+msgstr "Zda používat plná data místo pouze let(roků)."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:791
 #: ../gramps/plugins/textreport/detdescendantreport.py:954
@@ -28886,7 +28854,7 @@ msgstr "Zda zahrnout odkazy na prameny."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
 #: ../gramps/plugins/textreport/indivcomplete.py:963
 msgid "Include sources notes"
-msgstr "Začlenit poznámky pramenů"
+msgstr "Zahrnout poznámky pramenů"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:846
 #: ../gramps/plugins/textreport/detdescendantreport.py:1009
@@ -28984,7 +28952,7 @@ msgstr "Použít rozvité věty"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
 #: ../gramps/plugins/textreport/kinshipreport.py:355
 msgid "Include spouses"
-msgstr "Včetně manželů(ek)"
+msgstr "Zahrnout manžel(k)y"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Whether to include detailed spouse information."
@@ -29272,7 +29240,7 @@ msgstr "Zda třídit události v chronologickém pořadí."
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:959
 msgid "Include Source Information"
-msgstr "Včetně archivní informace"
+msgstr "Zahrnout archivní informace"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:960
 msgid "Whether to cite sources."
@@ -29352,23 +29320,20 @@ msgid "The basic style used for sub-headings."
 msgstr "Základní styl používaný pro podnadpisy."
 
 #: ../gramps/plugins/textreport/notelinkreport.py:67
-#, fuzzy
 msgid "Note Link Check Report"
-msgstr "Sestava Poslední předek"
+msgstr "Zpráva kontroly odkazů poznámek"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:77
 msgid "Note ID"
 msgstr "ID poznámky"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:83
-#, fuzzy
 msgid "Link Type"
-msgstr "_Typ odkazu:"
+msgstr "Typ odkazu"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:89
-#, fuzzy
 msgid "Links To"
-msgstr "Odkazy"
+msgstr "Odkazuje na"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:111
 msgid "Failed"
@@ -29889,13 +29854,12 @@ msgid "Records Report"
 msgstr "Sestava záznamů"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:432
-#, fuzzy
 msgid "Note Link Report"
-msgstr "Sestava Poslední předek"
+msgstr "Zpráva odkazů poznámek"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:433
 msgid "Shows status of links in notes"
-msgstr ""
+msgstr "Zobrazuje stav odkazů v poznámkách"
 
 #: ../gramps/plugins/tool/changenames.glade:35
 msgid ""
@@ -30426,6 +30390,8 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
+"Tento test vytvoří v současné databázi mnoho osob a událostí. Opravdu si "
+"přejete spustit tento test?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
@@ -30492,9 +30458,8 @@ msgstr "Zásuvný modul testu datumu"
 
 #. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
-#, fuzzy
 msgid "Pass"
-msgstr "Pesach"
+msgstr "Průchod"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 msgid "Gender Statistics tool"
@@ -31368,7 +31333,7 @@ msgstr "Nastavit třídění"
 
 #: ../gramps/plugins/tool/sortevents.py:190
 msgid "Include family events"
-msgstr "Včetně rodinných událostí"
+msgstr "Zahrnout rodinné události"
 
 #: ../gramps/plugins/tool/sortevents.py:191
 msgid "Sort family events of the person"
@@ -31384,6 +31349,8 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Vytvořit nízkoúrovňové chyby databáze\n"
+"Oprava vyžaduje znovunačtení databáze"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:209
 msgid "Generate database errors"
@@ -31414,6 +31381,8 @@ msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
+"Počet nově vytvořených osob\n"
+"(Počet je přibližný, protože jsou vytvářeny rodiny)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:284
 msgid "Generating testcases"
@@ -31421,7 +31390,7 @@ msgstr "Vytváří se testovací scénáře"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:289
 msgid "Generating low level database errors"
-msgstr ""
+msgstr "Bylo zjištěno poškození databáze"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:301
 msgid "Generating families"
@@ -31500,7 +31469,7 @@ msgstr "Vytváří se databázové chyby"
 #: ../gramps/plugins/tool/testcasegenerator.py:1449
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Generátor testovacích scénářů, krok %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -34669,6 +34638,13 @@ msgstr "Musí platit alespoň jedno pravidlo"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Musí platit právě jedno pravidlo"
+
+#~ msgctxt "place"
+#~ msgid "Name:"
+#~ msgstr "Název:"
+
+#~ msgid "manual|Tagging"
+#~ msgstr "Štítky"
 
 #~ msgid "Automatic"
 #~ msgstr "Automaticky"
