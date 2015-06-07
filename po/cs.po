@@ -1673,7 +1673,7 @@ msgstr "kolem "
 
 #: ../gramps/gen/datehandler/_datestrings.py:220
 msgid "date quality|estimated "
-msgstr "přibližně "
+msgstr "odhadem "
 
 #: ../gramps/gen/datehandler/_datestrings.py:221
 msgid "date quality|calculated "
