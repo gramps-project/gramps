@@ -164,7 +164,7 @@ class DateParserCZ(DateParser):
 
     quality_to_int = {
         'přibližně'  : Date.QUAL_ESTIMATED,
-        'odhadované' : Date.QUAL_ESTIMATED, 
+        'odhadem'    : Date.QUAL_ESTIMATED, 
         'odh.'       : Date.QUAL_ESTIMATED, 
         'vypočteno'  : Date.QUAL_CALCULATED,
         'vypočtené'  : Date.QUAL_CALCULATED, 
