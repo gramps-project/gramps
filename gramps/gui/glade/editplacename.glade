@@ -180,7 +180,7 @@
                   <object class="UndoableEntry" id="value">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes" context="place">The name of the place.</property>
+                    <property name="tooltip_text" translatable="yes">The name of the place.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
