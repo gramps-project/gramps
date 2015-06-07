@@ -440,7 +440,7 @@ primary data for the merged place.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn2">
-                            <property name="label" translatable="yes" context="place">Name:</property>
+                            <property name="label" translatable="yes">Name:</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
