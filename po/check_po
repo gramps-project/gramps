@@ -216,17 +216,17 @@ class Check_last_char( Check ):
 
     def __process( self, msg, msgid, msgstr ):
         msgid_last = msgid[-1:]
-        msgstr_last = unicode(msgstr, encoding='utf-8')[-1:]
+        msgstr_last = msgstr[-1:]
         if msgid_last.isspace() != msgstr_last.isspace():
             self.msgs.append( msg )
         elif (msgid_last == '.') != (msgstr_last == '.' or
-                                     msgstr_last == u'\u3002' ): # Chinese
+                                     msgstr_last == '\u3002' ): # Chinese
             self.msgs.append( msg )
         elif (msgid_last == ':') != (msgstr_last == ':' or
-                                     msgstr_last == u'\uff1a' ): # Chinese
+                                     msgstr_last == '\uff1a' ): # Chinese
             self.msgs.append( msg )
         elif (msgid_last == ')') != (msgstr_last == ')' or
-                                     msgstr_last == u'\uff09' ): # Chinese
+                                     msgstr_last == '\uff09' ): # Chinese
             self.msgs.append( msg )
 
 
