@@ -359,9 +359,7 @@ class GeoPlaces(GeoGraphyView):
         bookm.show()
         bookm.connect("activate", self.add_bookmark_from_popup, hdle)
         itemoption.append(bookm)
-        menu.popup(None, None,
-                   lambda menu, data: (event.get_root_coords()[0],
-                                       event.get_root_coords()[1], True),
+        menu.popup(None, None, None,
                    None, event.button, event.time)
         return 1
 
