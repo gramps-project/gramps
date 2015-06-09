@@ -1,7 +1,7 @@
 # French translation for Gramps
 # $Id$
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2001-2014 Free Software Foundation, Inc.
+# Copyright (C) 2001-2015 Free Software Foundation, Inc.
 #
 # Quelques variables pour la cohérence:
 #  ancestor : ascendant
@@ -24,10 +24,10 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.1.0\n"
+"Project-Id-Version: 4.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 16:03+0200\n"
-"PO-Revision-Date: 2015-06-01 16:25+0100\n"
+"PO-Revision-Date: 2015-06-09 16:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -35,13 +35,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: \n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
 msgstr "Gramps est un programme de généalogie, intuitif pour le loisir et complet pour un usage professionnel."
 
-# trunk
 #: ../data/gramps.appdata.xml.in.h:2
 msgid "It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events."
 msgstr "Il vous permet d'enregistrer de nombreux détails sur la vie d'un individu ainsi que les relations complexes entre différentes personnes, différents lieux et événements."
@@ -7832,6 +7831,9 @@ msgid ""
 "This might indicate a damage to your files.\n"
 "If you're sure there is no problem with other files, delete it, and restart Gramps."
 msgstr ""
+"Erreur à l'analyse des fichiers de la base de données {fname}: {error}.\n"
+"Ceci pourrait indiquer des fichiers endommagés.\n"
+"Si vous êtes certain(e) qu'il n'y a aucun problème avec d'autres fichiers,  supprimez et redémarrez Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1496
@@ -9600,15 +9602,13 @@ msgstr "Suppression de la virgule après le numéro de l'adresse"
 
 # master
 #: ../gramps/gui/configure.py:1116
-#, fuzzy
 msgid "Reverse display order"
-msgstr "Utiliser le format d'affichage de la mère"
+msgstr "Inverser l'ordre d'affichage"
 
 # master
 #: ../gramps/gui/configure.py:1122
-#, fuzzy
 msgid "Full place name"
-msgstr "Nom de famille complet :"
+msgstr "Nom de lieu complet"
 
 # master
 #: ../gramps/gui/configure.py:1123
@@ -9622,9 +9622,8 @@ msgstr "Hameau/Village/Ville ->"
 
 # master
 #: ../gramps/gui/configure.py:1129
-#, fuzzy
 msgid "Restrict"
-msgstr "District (Arrondissement)"
+msgstr "Restreindre"
 
 # master
 #: ../gramps/gui/configure.py:1134
@@ -15034,7 +15033,7 @@ msgstr "Ligne :"
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1495
 msgid "Fill:"
-msgstr ""
+msgstr "Remplir :"
 
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1510
@@ -15044,7 +15043,7 @@ msgstr "Ombre"
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1586
 msgid "pt"
-msgstr ""
+msgstr "point"
 
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1609
@@ -15054,13 +15053,12 @@ msgstr "Espace :"
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1631
 msgid "Draw shadow"
-msgstr ""
+msgstr "Dessiner l'ombre"
 
 # master
 #: ../gramps/gui/glade/styleeditor.glade:1673
-#, fuzzy
 msgid "Draw options"
-msgstr "Options de la table"
+msgstr "Options de dessin"
 
 # trunk
 #: ../gramps/gui/glade/styleeditor.glade:1828
@@ -17939,7 +17937,7 @@ msgstr "Inclure les frères et sœurs de la souche"
 # master
 #: ../gramps/plugins/drawreport/ancestortree.py:775
 msgid "Whether to only display the center person or all of his/her siblings too"
-msgstr ""
+msgstr "Afficher ou non uniquement l'individu central ou ses frères et sœurs également "
 
 #: ../gramps/plugins/drawreport/ancestortree.py:779
 #: ../gramps/plugins/drawreport/descendtree.py:1518
@@ -19599,7 +19597,7 @@ msgstr "Exclure les _notes"
 # master
 #: ../gramps/plugins/export/exportgeneweb.glade:217
 msgid "Use _Living as first name"
-msgstr ""
+msgstr "Utiliser _Vivant comme prénom"
 
 # master
 #: ../gramps/plugins/export/exportgeneweb.glade:260
@@ -19852,19 +19850,19 @@ msgstr "Édition des conjoints"
 #: ../gramps/plugins/gramplet/faqgramplet.py:71
 #, python-format
 msgid "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of spouses?%(html_end)s\n"
-msgstr ""
+msgstr "  1. %(gramps_FAQ_html_start)s%(faq_section)sComment changer l'ordre des conjoints ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
 msgid "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional spouse?%(html_end)s\n"
-msgstr ""
+msgstr "  2. %(gramps_FAQ_html_start)s%(faq_section)sComment ajouter un conjoint supplémentaire ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
 msgid "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?%(html_end)s\n"
-msgstr ""
+msgstr "  3. %(gramps_FAQ_html_start)s%(faq_section)sComment enlever un conjoint ?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -19874,7 +19872,7 @@ msgstr "Sauvegardes et mises à jour"
 #: ../gramps/plugins/gramplet/faqgramplet.py:92
 #, python-format
 msgid "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?%(html_end)s\n"
-msgstr ""
+msgstr "  4. %(gramps_FAQ_html_start)s%(faq_section)sComment faire des sauvegardes ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
@@ -19890,7 +19888,7 @@ msgstr "Saisie des données"
 #: ../gramps/plugins/gramplet/faqgramplet.py:109
 #, python-format
 msgid "  6. %(gramps_manual_html_start)s%(section)sHow should information about marriages be entered?%(html_end)s\n"
-msgstr ""
+msgstr "  6. %(gramps_manual_html_start)s%(section)sComment saisir les informations sur le mariage ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
@@ -19912,31 +19910,31 @@ msgstr "  8. %(gramps_FAQ_html_start)s%(faq_section)sComment ajouter une photo �
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
 msgid "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media objects?%(html_end)s\n"
-msgstr ""
+msgstr "  9. %(gramps_FAQ_html_start)s%(faq_section)sComment retrouver les objets media non-utilisés ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
 msgid " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with Gramps and my tree?%(html_end)s\n"
-msgstr ""
+msgstr " 10. %(gramps_FAQ_html_start)s%(faq_section)sComment générer un site internet avec mes données ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
-msgstr ""
+msgstr " 11. %(web_html_start)sComment saisir une profession ? [en]%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
 msgid " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a bug?%(html_end)s\n"
-msgstr ""
+msgstr " 12. %(gramps_FAQ_html_start)s%(faq_section)sQue faire si je trouve une erreur ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
 msgid " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?%(html_end)s\n"
-msgstr ""
+msgstr " 13. %(gramps_wiki_html_start)s%(section)sExiste-t-il un manuel d'utilisation de Gramps ?%(html_end)s\n"
 
 # /!\ à tester ...
 # 'Category:Fr:Tutorials'
@@ -19950,13 +19948,13 @@ msgstr " 14. %(gramps_wiki_html_start)s%(section)sExiste-t-il des tutoriels ?%(
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
-msgstr ""
+msgstr " 15. %(gramps_wiki_html_start)s%(section)sComment je fais pour... ?%(html_end)s\n"
 
 # master
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
 msgid " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?%(html_end)s\n"
-msgstr ""
+msgstr " 16. %(gramps_wiki_html_start)s%(section)sComment je peux aider Gramps ?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:42
 msgid "Double-click given name for details"
@@ -34159,373 +34157,3 @@ msgstr "Une seule règle doit correspondre"
 
 #~ msgid "Place format"
 #~ msgstr "Format de lieu"
-
-# Substantif (GNOME fr)
-#~ msgid ""
-#~ "Changing the place format will not take effect until the next time Gramps "
-#~ "is started."
-#~ msgstr ""
-#~ "Le changement du format de lieu ne prendra effet que la prochaine fois "
-#~ "que Gramps sera démarré."
-# master
-#, fuzzy
-#~ msgid "phpGedView import"
-#~ msgstr "Importation GeneWeb"
-
-# master
-#~ msgid "http://"
-#~ msgstr "http://"
-# master
-#, fuzzy
-#~ msgid "Username:"
-#~ msgstr "Nom de famille"
-
-# master
-#, fuzzy
-#~ msgid "Password:"
-#~ msgstr "Pâque juive"
-
-# master
-#, fuzzy
-#~ msgid "Fetching records..."
-#~ msgstr "Enregistrement manquant "
-
-# Substantif (GNOME fr)
-# master
-#, fuzzy
-#~ msgid "Logging in..."
-#~ msgstr "Chargement des greffons..."
-
-# Substantif (GNOME fr)
-# master
-#, fuzzy
-#~ msgid "Importing GEDCOM..."
-#~ msgstr "Importation des données..."
-
-# master
-#, fuzzy
-#~ msgid "Error: login failed"
-#~ msgstr "Erreur à l'ouverture du fichier."
-
-# master
-#~ msgid "done."
-#~ msgstr "fait."
-# master
-#, fuzzy
-#~ msgid "Connecting..."
-#~ msgstr "Sélection en cours..."
-
-# master
-#, fuzzy
-#~ msgid "Get version..."
-#~ msgstr "Version du schéma"
-
-# master
-#, fuzzy
-#~ msgid "Version %s"
-#~ msgstr "Version"
-
-# Substantif (GNOME fr)
-# master
-#, fuzzy
-#~ msgid "Reading file list..."
-#~ msgstr "Lecture des données..."
-
-#~ msgid "Cannot save place"
-#~ msgstr "Impossible d'enregistrer le lieu"
-
-#~ msgid "No data exists for this place. Please enter data or cancel the edit."
-#~ msgstr ""
-#~ "Aucune donnée n'existe pour ce lieu. Veuillez entrer une donnée ou "
-#~ "annuler l'édition."
-
-# trunk
-#~ msgid "Place Name:"
-#~ msgstr "Nom du lieu :"
-#~ msgid "New"
-#~ msgstr "Nouveau"
-#~ msgid "_Add bookmark"
-#~ msgstr "_Ajouter un signet"
-#~ msgid "Configure"
-#~ msgstr "Configuration"
-#~ msgid "Edit Date"
-#~ msgstr "Éditer la date"
-#~ msgid "Font"
-#~ msgstr "Police"
-#~ msgid "Font Background Color"
-#~ msgstr "Couleur d'arrière-plan de la police"
-#~ msgid "Gramplets"
-#~ msgstr "Gramplets"
-#~ msgid "Public"
-#~ msgstr "Public"
-#~ msgid "Merge"
-#~ msgstr "Fusion"
-#~ msgid "Add Parents"
-#~ msgstr "Ajouter des parents"
-#~ msgid "Select Parents"
-#~ msgstr "Sélectionner les parents"
-#~ msgid "Reports"
-#~ msgstr "Rapports"
-#~ msgid "Add Spouse"
-#~ msgstr "Ajouter un conjoint"
-#~ msgid "Tools"
-#~ msgstr "Outils"
-#~ msgid "Grouped List"
-#~ msgstr "Liste groupée"
-#~ msgid "List"
-#~ msgstr "Liste"
-#~ msgid "Zoom In"
-#~ msgstr "Agrandir"
-#~ msgid "Zoom Out"
-#~ msgstr "Réduire"
-#~ msgid "Fit Width"
-#~ msgstr "Largeur idéale"
-#~ msgid ""
-#~ "Include the dates that the individual was born, got married and/or died "
-#~ "in the graph labels."
-#~ msgstr ""
-#~ "Inclure les dates de naissance, mariage et/ou décès sur le graphique."
-#~ msgid "Use place when no date"
-#~ msgstr "Utiliser le lieu en l'absence de date"
-#~ msgid ""
-#~ "When no birth, marriage, or death date is available, the correspondent "
-#~ "place field will be used."
-#~ msgstr ""
-#~ "Lorsque ni les dates de naissance, ni les dates de mariage, ni les dates "
-#~ "de décès ne sont disponibles, le lieu correspondant sera utilisé."
-# trunk
-#~ msgid "SUBM (Submitter): @%s@"
-#~ msgstr "SUBM (Soumetteur) : @%s@"
-#~ msgid "%(name)s [%(gid)s]"
-#~ msgstr "%(name)s [%(gid)s]"
-#~ msgid "Invalid line %d in GEDCOM file."
-#~ msgstr "Ligne %d  invalide dans le fichier GEDCOM."
-#~ msgid "   %s: %s"
-#~ msgstr "  %s : %s"
-# trunk
-#~ msgid "%s (copy, %s)"
-#~ msgstr "%s (copie, %s)"
-#~ msgid "First add a source using the buttons"
-#~ msgstr "Ajoutez d'abord une source avec les boutons"
-#~ msgid "Paragraph"
-#~ msgstr "Paragraphe"
-#~ msgid ""
-#~ "  1. <a wiki='%s_-_FAQ#How_do_I_change_the_order_of_spouses.3F'>How do I "
-#~ "change the order of spouses?</a>\n"
-#~ msgstr ""
-#~ "  1. <a wiki='%s_-_FAQ'>Comment changer l'ordre des conjoints ?</a>\n"
-#~ msgid ""
-#~ "  2. <a wiki='%s_-_FAQ#How_do_I_add_an_additional_spouse.3F'>How do I add "
-#~ "an additional spouse?</a>\n"
-#~ msgstr ""
-#~ "  2. <a wiki='%s_-_FAQ'>Comment ajouter un conjoint supplémentaire ?</a>\n"
-#~ msgid ""
-#~ "  3. <a wiki='%s_-_FAQ#How_do_I_remove_a_spouse.3F'>How do I remove a "
-#~ "spouse?</a>\n"
-#~ msgstr "  3. <a wiki='%s_-_FAQ'>Comment enlever un conjoint ?</a>\n"
-#~ msgid ""
-#~ "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
-#~ "safely?</a>\n"
-#~ msgstr "  4. <a wiki='%s_-_FAQ'>Comment faire des sauvegardes ?</a>\n"
-#~ msgid ""
-#~ "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-"
-#~ "_part_1#Editing_Information_About_Relationships'>How should information "
-#~ "about marriages be entered?</a>\n"
-#~ msgstr ""
-#~ "  6. <a wiki='%s_-_Entering_and_Editing_Data:_Detailed_-_part_1#."
-#~ "C3.89dition_de_l.27information_sur_les_relations'>Comment saisir les "
-#~ "informations sur le mariage ?</a>\n"
-#~ msgid ""
-#~ "  9. <a wiki='%s_-_FAQ#How_do_you_find_unused_media_objects.3F'>How do "
-#~ "you find unused media objects?</a>\n"
-#~ msgstr ""
-#~ "  9. <a wiki='%s_-_FAQ'>Comment retrouver les objets media non-utilisés ?"
-#~ "</a>\n"
-#~ msgid ""
-#~ " 10. <a wiki='%s_-"
-#~ "_FAQ#How_can_I_publish_web_sites_generated_by_GRAMPS.3F'>How can I make a "
-#~ "website with Gramps and my tree?</a>\n"
-#~ msgstr ""
-#~ " 10. <a wiki='%s_-_FAQ'>Comment générer un site internet avec mes "
-#~ "données ?</a>\n"
-#~ msgid ""
-#~ " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
-#~ "msg_id=21487967'>How do I record one's occupation?</a>\n"
-#~ msgstr ""
-#~ " 11. <a href='http://sourceforge.net/mailarchive/message.php?"
-#~ "msg_id=21487967'>Comment saisir une profession ? [en]</a>\n"
-#~ msgid ""
-#~ " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I "
-#~ "do if I have found a bug?</a>\n"
-#~ msgstr " 12. <a wiki='%s_-_FAQ'>Que faire si je trouve une erreur ?</a>\n"
-#~ msgid ""
-#~ " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-#~ msgstr ""
-#~ " 13. <a wiki='Portal:Using_GRAMPS'>Existe-t-il un manuel d'utilisation de "
-#~ "Gramps?</a>\n"
-#~ msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-#~ msgstr ""
-#~ " 15. <a wiki='Category:Fr:Comment_je...'>Comment je fais pour... ?</a>\n"
-#~ msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-#~ msgstr ""
-#~ " 16. <a wiki='How_you_can_help'>Comment je peux aider Gramps ?</a>\n"
-#~ msgid "http://gramps-project.org/"
-#~ msgstr "http://www.gramps-project.org/wiki/index.php?title=Main_Page/fr"
-#~ msgid ""
-#~ "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
-#~ msgstr ""
-#~ "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy/fr"
-#~ msgid ""
-#~ "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
-#~ msgstr ""
-#~ "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual/"
-#~ "fr"
-#~ msgid "http://gramps-project.org/contact/"
-#~ msgstr "http://www.gramps-project.org/wiki/index.php?title=Contact/fr"
-#~ msgid "Include private records"
-#~ msgstr "Inclure les données privées"
-#~ msgid ""
-#~ "Whether to include names, dates, and families that are marked as private."
-#~ msgstr ""
-#~ "Inclure ou non les noms, dates, et familles marqués comme étant privés."
-#~ msgid "Include IDs"
-#~ msgstr "Inclure les identifiants"
-#~ msgid "Include individual and family IDs."
-#~ msgstr "Inclure les identifiants individuels et familiaux."
-#~ msgid "Include private data"
-#~ msgstr "Inclure les données privées"
-#~ msgid "Webkit module not loaded."
-#~ msgstr "Module Webkit non-chargé."
-#~ msgid ""
-#~ "Webkit module not loaded. Embedded web page viewing will not be "
-#~ "available. Use your package manager to install gir1.2-webkit-3.0"
-#~ msgstr ""
-#~ "Le module Webkit n'est pas chargé. Le navigateur de page internet n'est "
-#~ "pas disponible. Utilisez votre gestionnaire de paquets pour installer "
-#~ "gir1.2-webkit-3.0."
-#~ msgid "Html View"
-#~ msgstr "Vue HTML"
-#~ msgid "A view showing html pages embedded in Gramps"
-#~ msgstr "Une vue permettant de voir des pages internet dans Gramps."
-#~ msgid "Web"
-#~ msgstr "Internet"
-#~ msgid "HtmlView"
-#~ msgstr "Vue HTML"
-#~ msgid "Go to the previous page in the history"
-#~ msgstr "Aller à la page précédente de l'historique"
-#~ msgid "Go to the next page in the history"
-#~ msgstr "Aller à la page suivante de l'historique"
-#~ msgid "_Refresh"
-#~ msgstr "_Actualiser"
-#~ msgid "Stop and reload the page."
-#~ msgstr "Arrêt et réouverture de la page."
-#~ msgid "Start page for the Html View"
-#~ msgstr "Première page pour la vue HTML"
-#~ msgid ""
-#~ "Type a webpage address at the top, and hit the execute button to load a "
-#~ "webpage in this page\n"
-#~ "<br>\n"
-#~ "For example: <b>http://gramps-project.org</p>"
-#~ msgstr ""
-#~ "Saisissez une adresse internet en haut, et appuyez sur le bouton "
-#~ "Appliquer pour charger la page internet\n"
-#~ "<br>\n"
-#~ "Par exemple: <b>http://gramps-project.org</p>"
-#~ msgid "<br />Created for <a href = \"%(url)s\">%(name)s</a>"
-#~ msgstr "<br />Créé pour <a href = \"%(url)s\">%(name)s</a>"
-#~ msgid "Whether to include private objects"
-#~ msgstr "Inclure ou non les objets privés"
-#~ msgid ""
-#~ "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-#~ msgstr ""
-#~ "Créé pour <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-#~ msgid ""
-#~ "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
-#~ msgstr ""
-#~ "Généré par <a href=\"http://gramps-project.org\">Gramps</a> le %(date)s"
-#~ msgid "TRANSLATORS: Translate this to your name in your native language"
-#~ msgstr ""
-#~ "Michel Guitel\n"
-#~ "Laurent Protois\n"
-#~ "Matthieu Pupat\n"
-#~ "Guillaume Pratte\n"
-#~ "Frédéric Chateaux\n"
-#~ "Jérôme Rapinat\n"
-#~ "Mathieu MD"
-#~ msgid "==== Authors ====\n"
-#~ msgstr "==== Auteurs ====\n"
-#~ msgid ""
-#~ "\n"
-#~ "==== Contributors ====\n"
-#~ msgstr ""
-#~ "\n"
-#~ "==== Collaborateurs ====\n"
-# trunk
-#~ msgid "Cannot save location. Title not entered."
-#~ msgstr "Impossible d'enregistrer l'emplacement. Le titre est absent."
-# trunk
-#~ msgid "You must enter a title before saving."
-#~ msgstr "Vous devez d'abord créer un titre avant d'enregistrer."
-#~ msgid "Cannot save place reference"
-#~ msgstr "Impossible d'enregistrer la référence du lieu"
-#~ msgid "No place selected. Please select a place  or cancel the edit."
-#~ msgstr ""
-#~ "Aucun lieu sélectionné. Veuillez sélectionner un lieu ou annuler "
-#~ "l'édition."
-# INSEE, postal, Belgique, Canada ...
-# Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
-#~ msgid "ZIP/Postal code"
-#~ msgstr "Code lieu"
-#~ msgid "Church parish"
-#~ msgstr "Paroisse"
-# trunk
-#~ msgid "Source: Publication"
-#~ msgstr "Source : Publication"
-#~ msgid "Source: Note"
-#~ msgstr "Source : Note"
-# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#~ msgid "Citation: ID"
-#~ msgstr "Citation : Id"
-# trunk
-#~ msgid "Citation: Volume/Page"
-#~ msgstr "Citation : Volume/Page"
-# trunk
-#~ msgid "Citation: Date"
-#~ msgstr "Citation : Date"
-# trunk
-#~ msgid "Citation: Note"
-#~ msgstr "Citation : Note"
-# trunk
-#~ msgid "Top level place"
-#~ msgstr "Niveau supérieur du lieu"
-#~ msgid "..."
-#~ msgstr "..."
-#~ msgid "Sweden - Holidays"
-#~ msgstr "Suède - jours fériés"
-# trunk
-#~ msgid ""
-#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
-#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
-#~ "different ID or leave blank to get the next available ID value."
-#~ msgstr ""
-#~ "Vous avez essayé d'utiliser l'identifiant Gramps existant %(gramps_id)s. "
-#~ "Cette valeur est déjà utilisée par « %(prim_object)s ». Veuillez entrer "
-#~ "un identifiant différent ou laissez vide pour obtenir la valeur du "
-#~ "prochain identifiant disponible."
-#~ msgid "Python Evaluation"
-#~ msgstr "Terminal d'évaluation Python"
-# trunk
-#~ msgid "Gramplet allowing the evaluation of python code"
-#~ msgstr "Gramplet affichant les citations du lieu."
-#~ msgid "Uncollected Objects"
-#~ msgstr "Objets non-collectés"
-# trunk
-#, fuzzy
-#~ msgid "window2"
-#~ msgstr "Fenêtre principale"
-
-# trunk
-#, fuzzy
-#~ msgid "window1"
-#~ msgstr "Fenêtre principale"
