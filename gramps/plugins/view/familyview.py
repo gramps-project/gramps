@@ -219,7 +219,8 @@ class FamilyView(ListView):
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
-                  "no one was selected."))
+                  "no one was selected."),
+                parent=self.uistate.window)
         
     def add(self, obj):
         family = Family()
@@ -243,13 +244,15 @@ class FamilyView(ListView):
             QuestionDialog(msg1, 
                            msg2, 
                            _('_Delete Family'), 
-                           lambda: self.delete_family_response(family))
+                           lambda: self.delete_family_response(family),
+                           parent=self.uistate.window)
         else:
             MultiSelectDialog(self._message1_format,
                               self._message2_format, 
                               handles,
                               self.dbstate.db.get_family_from_handle,
-                              yes_func=self.delete_family_response)
+                              yes_func=self.delete_family_response,
+                              parent=self.uistate.window)
 
     def _message1_format(self, family):
         """
@@ -298,7 +301,7 @@ class FamilyView(ListView):
             msg2 = _("Exactly two families must be selected to perform a merge."
                      " A second family can be selected by holding down the "
                      "control key while clicking on the desired family.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeFamily(self.dbstate, self.uistate, mlist[0], mlist[1])
 

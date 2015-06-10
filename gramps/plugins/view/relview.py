@@ -1350,7 +1350,8 @@ class RelationshipView(NavigationView):
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _('Broken family detected'),
-                _('Please run the Check and Repair Database tool'))
+                _('Please run the Check and Repair Database tool'),
+                parent=self.uistate.window)
             return
         
         father_handle = family.get_father_handle()

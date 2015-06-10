@@ -301,7 +301,8 @@ class EditNote(EditPrimary):
         if self.object_is_empty():
             ErrorDialog(_("Cannot save note"), 
                         _("No data exists for this note. Please "
-                          "enter data or cancel the edit."))
+                          "enter data or cancel the edit."),
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
         
@@ -313,7 +314,7 @@ class EditNote(EditPrimary):
                          "enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
         

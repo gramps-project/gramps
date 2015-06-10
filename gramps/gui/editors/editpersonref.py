@@ -229,4 +229,5 @@ class EditPersonRef(EditSecondary):
             ErrorDialog(
                 _('No person selected'),
                 _('You must either select a person or Cancel '
-                  'the edit'))
+                  'the edit'),
+                parent=self.window)

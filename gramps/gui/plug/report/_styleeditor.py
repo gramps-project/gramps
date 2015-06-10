@@ -136,7 +136,8 @@ class StyleListDisplay(object):
             self.sheetlist.save()
         except IOError as msg:
             from ...dialog import ErrorDialog
-            ErrorDialog(_("Error saving stylesheet"), str(msg))
+            ErrorDialog(_("Error saving stylesheet"),
+                        str(msg), parent=self.window)
         except:
             log.error("Failed to save stylesheet", exc_info=True)
 

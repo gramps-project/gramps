@@ -242,7 +242,7 @@ class NoteView(ListView):
             msg2 = _("Exactly two notes must be selected to perform a merge. "
                     "A second note can be selected by holding down the "
                     "control key while clicking on the desired note.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeNote(self.dbstate, self.uistate, mlist[0], mlist[1])
 

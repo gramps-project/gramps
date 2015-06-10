@@ -485,7 +485,9 @@ class OrganizeTagsDialog(object):
             _("The tag definition will be removed.  "
               "The tag will be also removed from all objects in the database."),
             _("Yes"),
-            _("No"))
+            _("No"),
+            parent=top)
+
         prompt = yes_no.run()
         if prompt:
 
@@ -571,7 +573,8 @@ class EditTag(object):
         if not self.tag.get_name():
             ErrorDialog(
                 _("Cannot save tag"),
-                _("The tag name cannot be empty"))
+                _("The tag name cannot be empty"),
+                parent=self.top)
             return
 
         if not self.tag.get_handle():
