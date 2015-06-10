@@ -208,6 +208,40 @@ class DbState(Callback):
                     return (dirpath, locked, locked_by, backend)
         return None
 
+    def import_from_filename(self, db, filename, user=None):
+        """
+        Import the filename into the db.
+        """
+        from .plug import BasePluginManager
+        from .const import PLUGINS_DIR, USER_PLUGINS
+        from gramps.cli.user import User
+        pmgr = BasePluginManager.get_instance()
+        if user is None:
+            user = User()
+        (name, ext) = os.path.splitext(os.path.basename(filename))
+        format = ext[1:].lower()
+        import_list = pmgr.get_reg_importers()
+        if import_list == []:
+            # This might happen if using gramps from outside, and
+            # we haven't loaded plugins yet
+            pmgr.reg_plugins(PLUGINS_DIR, self, None)
+            pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
+            import_list = pmgr.get_reg_importers()
+        for pdata in import_list:
+            if format == pdata.extension:
+                mod = pmgr.load_plugin(pdata)
+                if not mod:
+                    for item in pmgr.get_fail_list():
+                        name, error_tuple, pdata = item
+                        # (filename, (exception-type, exception, traceback), pdata)
+                        etype, exception, traceback = error_tuple
+                        print("ERROR:", name, exception)
+                    return False
+                import_function = getattr(mod, pdata.import_function)
+                results = import_function(db, filename, user)
+                return True
+        return False
+
     ## Work-around for databases that need sys refresh (django):
     def modules_is_set(self):
         LOG.info("modules_is_set?")
