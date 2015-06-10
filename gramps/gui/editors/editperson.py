@@ -811,7 +811,7 @@ class EditPerson(EditPrimary):
                 msg = _("Changing the gender caused problems "
                         "with marriage information.\nPlease check "
                         "the person's marriages.")
-                ErrorDialog(msg2, msg)
+                ErrorDialog(msg2, msg, parent=self.window)
 
     def save(self, *obj):
         """
@@ -821,7 +821,8 @@ class EditPerson(EditPrimary):
         if self.object_is_empty():
             ErrorDialog(_("Cannot save person"),
                         _("No data exists for this person. Please "
-                          "enter data or cancel the edit."))
+                          "enter data or cancel the edit."),
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
         # fix surname problems
@@ -849,7 +850,7 @@ class EditPerson(EditPrimary):
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

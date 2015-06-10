@@ -663,7 +663,7 @@ class ViewManager(CLIManager):
         """
         Initialize the interface.
         """
-        self.views = get_available_views()
+        self.views = get_available_views(self.uistate)
         defaults = views_to_show(self.views,
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
@@ -764,7 +764,7 @@ class ViewManager(CLIManager):
             try:
                 backup(self.dbstate.db)
             except DbException as msg:
-                ErrorDialog(_("Error saving backup data"), msg)
+                ErrorDialog(_("Error saving backup data"), msg, parent=self.uistate.window)
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
 
@@ -779,7 +779,8 @@ class ViewManager(CLIManager):
                 _("Aborting changes will return the database to the state "
                   "it was before you started this editing session."),
                 _("Abort changes"),
-                _("Cancel"))
+                _("Cancel"),
+                parent=self.uistate.window)
 
             if dialog.run():
                 self.dbstate.db.disable_signals()
@@ -791,7 +792,8 @@ class ViewManager(CLIManager):
                 _("Cannot abandon session's changes"),
                 _('Changes cannot be completely abandoned because the '
                   'number of changes made in the session exceeded the '
-                  'limit.'))
+                  'limit.'),
+                parent=self.uistate.window)
 
     def __init_action_group(self, name, actions, sensitive=True, toggles=None):
         """
@@ -1608,7 +1610,8 @@ def run_plugin(pdata, dbstate, uistate):
                 'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
-                'error_msg': pmgr.get_fail_list()[-1][1][1]})
+                'error_msg': pmgr.get_fail_list()[-1][1][1]},
+            parent=uistate.window)
         return
 
     if pdata.ptype == REPORT:
@@ -1633,7 +1636,7 @@ def make_plugin_callback(pdata, dbstate, uistate):
     """
     return lambda x: run_plugin(pdata, dbstate, uistate)
 
-def get_available_views():
+def get_available_views(uistate):
     """
     Query the views and determine what views to show and in which order
 
@@ -1664,7 +1667,8 @@ def get_available_views():
                     'gramps_bugtracker_url' : URL_BUGHOME,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
-                    'error_msg': lasterror})
+                    'error_msg': lasterror},
+                parent=uistate.window)
             continue
         viewclass = getattr(mod, pdata.viewclass)
 

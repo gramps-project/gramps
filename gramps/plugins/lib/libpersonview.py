@@ -296,7 +296,8 @@ class BasePersonView(ListView):
             QuestionDialog(msg1, 
                            msg2, 
                            _('_Delete Person'), 
-                           self.delete_person_response)
+                           self.delete_person_response,
+                           parent=self.uistate.window)
         else:
             # Ask to delete; option to cancel, delete rest
             # This gets person to delete from parameter
@@ -304,7 +305,8 @@ class BasePersonView(ListView):
                               self._message2_format, 
                               handles,
                               self._lookup_person,
-                              yes_func=self.delete_person_response) # Yes
+                              yes_func=self.delete_person_response,
+                              parent=self.uistate.window) # Yes
 
     def _message1_format(self, person):
         return _('Delete %s?') % (name_displayer.display(person) + 
@@ -417,7 +419,8 @@ class BasePersonView(ListView):
         _("Cannot merge people"), 
         _("Exactly two people must be selected to perform a merge. "
           "A second person can be selected by holding down the "
-          "control key while clicking on the desired person."))
+          "control key while clicking on the desired person."),
+        parent=self.uistate.window)
         else:
             MergePerson(self.dbstate, self.uistate, mlist[0], mlist[1])
 

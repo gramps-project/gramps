@@ -254,7 +254,8 @@ class NavigationView(PageView):
             WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
-                  "no one was selected."))
+                  "no one was selected."),
+                parent=self.uistate.window)
 
     def edit_bookmarks(self, obj):
         """
@@ -343,7 +344,7 @@ class NavigationView(PageView):
         """
         A dialog to move to a Gramps ID entered by the user.
         """
-        dialog = Gtk.Dialog(_('Jump to by Gramps ID'))
+        dialog = Gtk.Dialog(_('Jump to by Gramps ID'), parent=self.uistate.window)
         dialog.set_border_width(12)
         label = Gtk.Label(label='<span weight="bold" size="larger">%s</span>' % 
                           _('Jump to by Gramps ID'))

@@ -351,7 +351,7 @@ class MediaView(ListView):
             msg2 = _("Exactly two media objects must be selected to perform a "
             "merge. A second object can be selected by holding down the "
             "control key while clicking on the desired object.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeMedia(self.dbstate, self.uistate, mlist[0], mlist[1])
 

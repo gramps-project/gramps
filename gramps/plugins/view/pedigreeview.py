@@ -1494,7 +1494,8 @@ class PedigreeView(NavigationView):
             alive = probably_alive(person, self.dbstate.db)
         except RuntimeError:
             ErrorDialog(_('Relationship loop detected'),
-                        _('A person was found to be his/her own ancestor.'))
+                        _('A person was found to be his/her own ancestor.'),
+                        parent=self.uistate.window)
             alive = False
         lst[index] = [person, val, None, alive, None]
 

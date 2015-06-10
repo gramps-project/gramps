@@ -247,7 +247,7 @@ class RepositoryView(ListView):
                      "merge. A second repository can be selected by holding "
                      "down the control key while clicking on the desired "
                      "repository.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeRepository(self.dbstate, self.uistate, mlist[0], mlist[1])
 
