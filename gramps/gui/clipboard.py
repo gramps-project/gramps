@@ -1579,7 +1579,8 @@ class MultiTreeView(Gtk.TreeView):
 
     def edit_obj(self, objclass, handle):
         from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
-                                 EditPlace, EditRepository, EditNote, EditMedia)
+                              EditPlace, EditRepository, EditNote, EditMedia,
+                              EditCitation)
         if objclass == 'Person':
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
@@ -1644,6 +1645,14 @@ class MultiTreeView(Gtk.TreeView):
                               self.uistate, [], ref)
                 except WindowActiveError:
                     pass
+        elif objclass == 'Citation':
+            ref = self.dbstate.db.get_citation_from_handle(handle)
+            if ref:
+                try:
+                    EditCitation(self.dbstate, self.uistate, [], ref)
+                except WindowActiveError:
+                    pass
+
 
 def short(val,size=60):
     if len(val) > size:
