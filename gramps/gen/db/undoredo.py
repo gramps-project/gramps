@@ -130,7 +130,7 @@ class DbUndo(object):
         """
         if self.db.readonly or self.undo_count == 0:
             return False
-        return self.__undo(update_history)
+        return self._undo(update_history)
 
     def redo(self, update_history=True):
         """
@@ -138,42 +138,32 @@ class DbUndo(object):
         """
         if self.db.readonly or self.redo_count == 0:
             return False
-        return self.__redo(update_history)
+        return self._redo(update_history)
 
     def undo_reference(self, data, handle, db_map):
         """
         Helper method to undo a reference map entry
         """
-        try:
-            if data is None:
-                db_map.delete(handle, txn=self.txn)
-            else:
-                db_map.put(handle, data, txn=self.txn)
-
-        except DBERRS as msg:
-            self.db._log_error()
-            raise DbError(msg)
+        if data is None:
+            db_map.delete(handle)
+        else:
+            db_map[handle] = data
 
     def undo_data(self, data, handle, db_map, emit, signal_root):
         """
         Helper method to undo/redo the changes made
         """
-        try:
-            if data is None:
-                emit(signal_root + '-delete', ([handle2internal(handle)],))
-                db_map.delete(handle, txn=self.txn)
+        if data is None:
+            emit(signal_root + '-delete', ([handle],))
+            db_map.delete(handle)
+        else:
+            ex_data = db_map[handle]
+            if ex_data:
+                signal = signal_root + '-update'
             else:
-                ex_data = db_map.get(handle, txn=self.txn)
-                if ex_data:
-                    signal = signal_root + '-update'
-                else:
-                    signal = signal_root + '-add'
-                db_map.put(handle, data, txn=self.txn)
-                emit(signal, ([handle2internal(handle)],))
-
-        except DBERRS as msg:
-            self.db._log_error()
-            raise DbError(msg)
+                signal = signal_root + '-add'
+            db_map[handle] = data
+            emit(signal, ([handle],))
 
     undo_count = property(lambda self:len(self.undoq))
     redo_count = property(lambda self:len(self.redoq))
