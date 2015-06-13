@@ -35,8 +35,45 @@ from .editsecondary import EditSecondary
 from ..glade import Glade
 from ..widgets import MonitoredDate, MonitoredEntry
 from ..dialog import ErrorDialog
+from gramps.gen.errors import ValidationError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+ISO_CODES = (
+'aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az',
+'ba', 'be', 'bg', 'bh', 'bi', 'bm', 'bn', 'bo', 'br', 'bs',
+'ca', 'ce', 'ch', 'co', 'cr', 'cs', 'cu', 'cv', 'cy',
+'da', 'de', 'dv', 'dz',
+'ee', 'el', 'en', 'eo', 'es', 'et', 'eu',
+'fa', 'ff', 'fi', 'fj', 'fo', 'fr', 'fy',
+'ga', 'gd', 'gl', 'gn', 'gu', 'gv',
+'ha', 'he', 'hi', 'ho', 'hr', 'ht', 'hu', 'hy', 'hz',
+'ia', 'id', 'ie', 'ig', 'ii', 'ik', 'io', 'is', 'it', 'iu',
+'ja', 'jv',
+'ka', 'kg', 'ki', 'kj', 'kk', 'kl', 'km', 'kn', 'ko', 'kr', 'ks', 'ku', 'kv',
+'kw', 'ky',
+'la', 'lb', 'lg', 'li', 'ln', 'lo', 'lt', 'lu', 'lv',
+'mg', 'mh', 'mi', 'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my',
+'na', 'nb', 'nd', 'ne', 'ng', 'nl', 'nn', 'no', 'nr', 'nv', 'ny',
+'oc', 'oj', 'om', 'or', 'os',
+'pa', 'pi', 'pl', 'ps', 'pt',
+'qu',
+'rm', 'rn', 'ro', 'ru', 'rw',
+'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sq', 'sr',
+'ss', 'st', 'su', 'sv', 'sw',
+'ta', 'te', 'tg', 'th', 'ti', 'tk', 'tl', 'tn', 'to', 'tr', 'ts', 'tt', 'tw',
+'ty',
+'ug', 'uk', 'ur', 'uz',
+'ve', 'vi', 'vo',
+'wa', 'wo',
+'xh',
+'yi', 'yo',
+'za', 'zh', 'zu')
 
 #-------------------------------------------------------------------------
 #
@@ -75,6 +112,13 @@ class EditPlaceName(EditSecondary):
         self.language = MonitoredEntry(
             self.top.get_object("language"), self.obj.set_language,
             self.obj.get_language, self.db.readonly)
+        self.language.connect("validate", self._validate_iso_code)
+        #force validation now with initial entry
+        self.top.get_object("language").validate(force=True)
+
+    def _validate_iso_code(self, widget, text):
+        if text not in ISO_CODES:
+            return ValidationError(_("Invalid ISO code"))
 
     def _connect_signals(self):
         self.define_help_button(self.top.get_object('help'))
