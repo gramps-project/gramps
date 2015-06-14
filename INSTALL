@@ -91,12 +91,6 @@ alternative location on windows, supply the --root argument to setup.py
 
 For example:
    python setup.py install --root ~/test
-   or
-   python setup.py install --root ~/test --enable-packager-mode
-
-The last option, --enable-packager-mode, is needed if you want to disable
-execution of post-install mime processing. If you don't have root/admin
-access, this will be needed
 
 Packager's issues
 ------------------
