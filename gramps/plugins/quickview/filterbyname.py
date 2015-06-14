@@ -87,30 +87,56 @@ def run(database, document, filter_name, *args, **kwargs):
         sdoc.paragraph(_("Right-click row (or press ENTER) to see selected items."))
         sdoc.paragraph("")
         stab.columns(_("Object"), _("Count/Total"))
-        stab.row([_("People"), "Filter", "Person"], 
-                 "%d/%d" % (len(database.get_person_handles()),
-                            len(database.basedb.get_person_handles())))
-        stab.row([_("Families"), "Filter", "Family"], 
-                 "%d/%d" % (len(database.get_family_handles()),
-                            len(database.basedb.get_family_handles())))
-        stab.row([_("Events"), "Filter", "Event"], 
-                 "%d/%d" % (len(database.get_event_handles()),
-                            len(database.basedb.get_event_handles())))
-        stab.row([_("Places"), "Filter", "Place"], 
-                 "%d/%d" % (len(database.get_place_handles()),
-                            len(database.basedb.get_place_handles())))
-        stab.row([_("Sources"), "Filter", "Source"], 
-                 "%d/%d" % (len(database.get_source_handles()),
-                            len(database.basedb.get_source_handles())))
-        stab.row([_("Repositories"), "Filter", "Repository"], 
-                 "%d/%d" % (len(database.get_repository_handles()),
-                            len(database.basedb.get_repository_handles())))
-        stab.row([_("Media"), "Filter", "MediaObject"], 
-                 "%d/%d" % (len(database.get_media_object_handles()),
-                            len(database.basedb.get_media_object_handles())))
-        stab.row([_("Notes"), "Filter", "Note"], 
-                 "%d/%d" % (len(database.get_note_handles()),
-                            len(database.basedb.get_note_handles())))
+        if hasattr(database, "db"):
+            stab.row([_("People"), "Filter", "Person"], 
+                     "%d/%d" % (len(database.get_person_handles()),
+                                len(database.db.get_person_handles())))
+            stab.row([_("Families"), "Filter", "Family"], 
+                     "%d/%d" % (len(database.get_family_handles()),
+                                len(database.db.get_family_handles())))
+            stab.row([_("Events"), "Filter", "Event"], 
+                     "%d/%d" % (len(database.get_event_handles()),
+                                len(database.db.get_event_handles())))
+            stab.row([_("Places"), "Filter", "Place"], 
+                     "%d/%d" % (len(database.get_place_handles()),
+                                len(database.db.get_place_handles())))
+            stab.row([_("Sources"), "Filter", "Source"], 
+                     "%d/%d" % (len(database.get_source_handles()),
+                                len(database.db.get_source_handles())))
+            stab.row([_("Repositories"), "Filter", "Repository"], 
+                     "%d/%d" % (len(database.get_repository_handles()),
+                     len(database.db.get_repository_handles())))
+            stab.row([_("Media"), "Filter", "MediaObject"], 
+                     "%d/%d" % (len(database.get_media_object_handles()),
+                                len(database.db.get_media_object_handles())))
+            stab.row([_("Notes"), "Filter", "Note"], 
+                     "%d/%d" % (len(database.get_note_handles()),
+                                len(database.db.get_note_handles())))
+        else:
+            stab.row([_("People"), "Filter", "Person"], 
+                     "%d/%d" % (len(database.get_person_handles()),
+                                len(database.basedb.get_person_handles())))
+            stab.row([_("Families"), "Filter", "Family"], 
+                     "%d/%d" % (len(database.get_family_handles()),
+                                len(database.basedb.get_family_handles())))
+            stab.row([_("Events"), "Filter", "Event"], 
+                     "%d/%d" % (len(database.get_event_handles()),
+                                len(database.basedb.get_event_handles())))
+            stab.row([_("Places"), "Filter", "Place"], 
+                     "%d/%d" % (len(database.get_place_handles()),
+                                len(database.basedb.get_place_handles())))
+            stab.row([_("Sources"), "Filter", "Source"], 
+                     "%d/%d" % (len(database.get_source_handles()),
+                                len(database.basedb.get_source_handles())))
+            stab.row([_("Repositories"), "Filter", "Repository"], 
+                     "%d/%d" % (len(database.get_repository_handles()),
+                     len(database.basedb.get_repository_handles())))
+            stab.row([_("Media"), "Filter", "MediaObject"], 
+                     "%d/%d" % (len(database.get_media_object_handles()),
+                                len(database.basedb.get_media_object_handles())))
+            stab.row([_("Notes"), "Filter", "Note"], 
+                     "%d/%d" % (len(database.get_note_handles()),
+                                len(database.basedb.get_note_handles())))
         sdoc.paragraph("")
         stab.write(sdoc)
         return
