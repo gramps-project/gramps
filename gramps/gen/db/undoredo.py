@@ -35,6 +35,7 @@ class DbUndo(object):
                         self.db.media_map,
                         self.db.place_map,
                         self.db.repository_map,
+                        None,
                         self.db.note_map,
                         self.db.tag_map,
                         self.db.citation_map,
