@@ -45,6 +45,7 @@ from stat import ST_MODE
 import io
 from gramps.version import VERSION
 import unittest
+import argparse
 
 # this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
 # (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
@@ -59,6 +60,19 @@ server = False
 if '--server' in sys.argv:
     sys.argv.remove('--server')
     server = True
+
+# check if the resourcepath option is used and store the path
+# this is for packagers that build out of the source tree
+# other options to setup.py are passed through
+resource_path = ''
+packaging = False
+argparser = argparse.ArgumentParser(add_help=False)
+argparser.add_argument("--resourcepath", dest="resource_path")
+args, passthrough = argparser.parse_known_args()
+if args.resource_path:
+    resource_path = args.resource_path
+    packaging = True
+sys.argv = [sys.argv[0]] + passthrough
 
 def intltool_version():
     '''
@@ -241,7 +255,10 @@ class install(_install):
                                      'utils', 'resource-path')
         with io.open(resource_file, 'w', encoding='utf-8',
                      errors='strict') as fp:
-            path = os.path.abspath(os.path.join(self.install_data, 'share'))
+            if packaging:
+                path = resource_path
+            else:
+                path = os.path.abspath(os.path.join(self.install_data, 'share'))
             fp.write(path)
 
         _install.run(self)
