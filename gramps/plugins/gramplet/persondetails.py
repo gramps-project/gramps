@@ -84,12 +84,40 @@ class PersonDetails(Gramplet):
         self.update()
 
     def update_has_data(self): 
+        """
+        Determine if a person has_data by checking:
+
+            1. has a birth, baptism, death, or burial event; OR
+            2. has a father; OR
+            3. has a mother
+        """
         active_handle = self.get_active('Person')
+        has_data = False
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)
-            self.set_has_data(active_person is not None)
-        else:
-            self.set_has_data(False)
+            if active_person:
+                for event_type in [EventType(EventType.BIRTH),
+                                   EventType(EventType.BAPTISM),
+                                   EventType(EventType.DEATH),
+                                   EventType(EventType.BURIAL)]:
+                    event = self.get_event(active_person, event_type)
+                    if event:
+                        has_data = True
+                        break
+                if not has_data:
+                    family_handle = active_person.get_main_parents_family_handle()
+                    if family_handle:
+                        family = self.dbstate.db.get_family_from_handle(family_handle)
+                        handle = family.get_father_handle()
+                        if handle:
+                            if self.dbstate.db.get_person_from_handle(handle):
+                                has_data = True
+                            else:
+                                handle = family.get_mother_handle()
+                                if handle:
+                                    if self.dbstate.db.get_person_from_handle(handle):
+                                        has_data = True
+        self.set_has_data(has_data)
 
     def main(self): # return false finishes
         self.display_empty()
@@ -99,12 +127,8 @@ class PersonDetails(Gramplet):
             self.top.hide()
             if active_person:
                 self.display_person(active_person)
-                self.set_has_data(True)
-            else:
-                self.set_has_data(False)
             self.top.show()
-        else:
-            self.set_has_data(False)
+        self.update_has_data()
 
     def display_person(self, active_person):
         """
