@@ -172,3 +172,4 @@ LOGGING = None
 
 ## Changes for Django 1.7.1:
 ABSOLUTE_URL_OVERRIDES = {}
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
