@@ -451,7 +451,10 @@ class Tag(models.Model):
             models.Model.save(self)
 
     def save(self, *args, **kwargs):
-        if self.save_cache_q:
+        if "save_cache" in kwargs:
+            self.save_cache_q = kwargs.pop("save_cache")
+        if hasattr(self, "save_cache_q") and self.save_cache_q:
+            # Tag doesn't have a cache
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
 
@@ -484,6 +487,7 @@ class PrimaryObject(models.Model):
     cache = models.TextField(blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True, null=True)
     dji = None
+    save_cache_q = False
 
     def __str__(self): 
         return "%s: %s" % (self.__class__.__name__,
@@ -535,6 +539,8 @@ class PrimaryObject(models.Model):
             models.Model.save(self)
 
     def save(self, *args, **kwargs):
+        if "save_cache" in kwargs:
+            self.save_cache_q = kwargs.pop("save_cache")
         if self.save_cache_q:
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
