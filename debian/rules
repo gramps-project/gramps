@@ -29,8 +29,8 @@ override_dh_auto_install:
 override_dh_fixperms:
 	dh_fixperms
 	chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/css/Web_*.css
-	chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/22x22/gramps*.png
-	chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/16x16/gramps*.png
+	#chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/hicolor/22x22/actions/gramps*.png
+	#chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/hicolor/16x16/actions/gramps*.png
 
 # Avoid compressing COPYING file so that it can appear in the "About" dialog
 override_dh_compress:
