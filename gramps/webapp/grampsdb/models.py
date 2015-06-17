@@ -451,11 +451,7 @@ class Tag(models.Model):
             models.Model.save(self)
 
     def save(self, *args, **kwargs):
-        save_cache = True
-        if "save_cache" in kwargs:
-            save_cache = kwargs["save_cache"]
-            del kwargs["save_cache"]
-        if save_cache:
+        if self.save_cache_q:
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
 
@@ -539,11 +535,7 @@ class PrimaryObject(models.Model):
             models.Model.save(self)
 
     def save(self, *args, **kwargs):
-        save_cache = True
-        if "save_cache" in kwargs:
-            save_cache = kwargs["save_cache"]
-            del kwargs["save_cache"]
-        if save_cache:
+        if self.save_cache_q:
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
 
@@ -601,10 +593,7 @@ class Person(PrimaryObject):
 
     def save(self, *args, **kwargs):
         from gramps.webapp.utils import probably_alive
-        if "save_cache" in kwargs:
-            compute_probably_alive = kwargs["save_cache"]
-        else:
-            compute_probably_alive = True
+        compute_probably_alive = self.save_cache_q
         PrimaryObject.save(self, *args, **kwargs)
         # expensive! only do this if also saving cache
         if compute_probably_alive:
