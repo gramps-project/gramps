@@ -17,13 +17,14 @@ Vcs-browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
 X-Python-Version: >= 3.0
 
-Package: python-gramps
+Package: python3-gramps
 Architecture: all
 Depends:
  gir1.2-gtk-3.0,
  librsvg2-2,
  python3-gi,
  python3-gi-cairo,
+ python3-bsddb3,
  xdg-utils,
  ${misc:Depends},
  ${python:Depends}

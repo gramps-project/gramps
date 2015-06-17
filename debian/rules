@@ -12,7 +12,7 @@ override_dh_auto_test:
 
 # Override of auto_build
 override_dh_auto_build:
-	python3 setup.py build
+	python3 setup.py build --resourcepath=/usr/share
 
 # Override of auto_install to remove information from package
 override_dh_auto_install:
