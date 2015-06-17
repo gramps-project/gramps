@@ -2472,12 +2472,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             version_file.write(version)
 
         versionpath = os.path.join(name, cuni(PCKVERSFN))
-        _LOG.debug("Write pickle version file to %s" % "Yes")
         with open(versionpath, "w") as version_file:
-            version = "Yes"
             if sys.version_info[0] <3:
+                version = "No"
                 if isinstance(version, UNITYPE):
                     version = version.encode('utf-8')
+            else:
+                version = "Yes"
+            _LOG.debug("Write pickle version file to %s" % "Yes")
             version_file.write(version)
 
         versionpath = os.path.join(name, cuni(SCHVERSFN))
