@@ -1917,6 +1917,7 @@ class GedcomParser(UpdateCallback):
             self.default_tag = None
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
+        self.addr_is_detail = False
         self.groups = None
         self.want_parse_warnings = True
 
@@ -2931,23 +2932,32 @@ class GedcomParser(UpdateCallback):
                     return place
         return None
 
-    def __create_place(self, title, location):
+    def __add_place(self, event, sub_state):
         """
-        Create a new place based on the title and primary location.
+        Add a new place to an event if not already present, or update a
+        place.
         
-        @param title: The place title
-        @type title: string
-        @param location: The current location
-        @type location: gen.lib.Location
-        @return gen.lib.Place
+        @param event: The event
+        @type event: gen.lib.Event
+        @param substate: The sub-state for PLAC or ADDR elements (i.e. parsed by
+        event_parse_tbl)
+        @type sub_state: CurrentState
         """
-        place = Place()
-        place.set_title(title)
-        if location:
-            place.add_alternate_locations(location)
-        self.dbase.add_place(place, self.trans)
-        self.place_names[title].append(place.get_handle())
-        return place
+        if sub_state.place:
+            # see whether this place already exists
+            place = self.__find_place(sub_state.place.get_title(),
+                                      self.__get_first_loc(sub_state.place))
+            if place is None:
+                place = sub_state.place
+                self.dbase.add_place(place, self.trans)
+                self.place_names[place.get_title()].append(place.get_handle())
+                event.set_place_handle(place.get_handle())
+            else:
+                place.merge(sub_state.place)
+                self.dbase.commit_place(place, self.trans)
+                event.set_place_handle(place.get_handle())
+            place_title = place_displayer.display(self.dbase, place)
+            sub_state.pf.load_place(self.place_import, place, place_title)
 
     def __find_file(self, fullname, altpath):
         tries = []
@@ -3862,10 +3872,13 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
         sub_state.event = event
         sub_state.event_ref = event_ref
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
 
+        self.__add_place(event, sub_state)
+                
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
@@ -4067,10 +4080,13 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
         sub_state.event = event
         sub_state.event_ref = event_ref
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
 
+        self.__add_place(event, sub_state)
+        
         self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
@@ -4519,11 +4535,14 @@ class GedcomParser(UpdateCallback):
         try:
             title = line.data
             place = self.__find_place(title, None)
-            if place:
-                state.place = place
+            if place is None:
+                place = Place()
+                place.set_title(title)
+                self.dbase.add_place(place, self.trans)
+                self.place_names[place.get_title()].append(place.get_handle())
             else:
-                state.place = self.__create_place(title, None)
-            state.lds_ord.set_place_handle(state.place.handle)
+                pass
+            state.lds_ord.set_place_handle(place.handle)
         except NameError:
             return
 
@@ -4887,9 +4906,12 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
         sub_state.event = event
         sub_state.event_ref = event_ref
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
+
+        self.__add_place(event, sub_state)
 
         if event.type == EventType.MARRIAGE:
             descr = event.get_description()
@@ -4930,9 +4952,12 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
         sub_state.event = event
         sub_state.event_ref = event_ref
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
+        
+        self.__add_place(event, sub_state)
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
@@ -5361,64 +5386,29 @@ class GedcomParser(UpdateCallback):
             state.event.set_description(line.data)
         else:
             title = line.data
-            place_handle = state.event.get_place_handle()
-            if place_handle:
+            place = state.place
+            if place:
                 # We encounter a PLAC, having previously encountered an ADDR
-                old_place = self.dbase.get_place_from_handle(place_handle)
-                old_title = old_place.get_title()
-                location = self.__get_first_loc(old_place)
-                if old_title != "":
+                if place.get_title() and place.get_title() != "":
                     # We have previously found a PLAC 
                     self.__add_msg(_("A second PLAC ignored"), line, state)
                     # ignore this second PLAC, and use the old one
-                    title = old_title
-                    place = old_place
                 else:
                     # This is the first PLAC
-                    refs = list(self.dbase.find_backlink_handles(place_handle))
-                    # We haven't commited the event yet, so the place will not
-                    # be linked to it. If there are any refs they will be from
-                    # other events (etc)
-                    if len(refs) == 0:
-                        place = self.__find_place(title, location)
-                        if place is None:
-                            place = old_place
-                            place.set_title(title)
-                            self.place_names[old_title].remove(place_handle)
-                            self.place_names[title].append(place_handle)
-                        else:
-                            place.merge(old_place)
-                            self.place_import.remove_location(old_place.handle)
-                            self.dbase.remove_place(place_handle, self.trans)
-                            self.place_names[old_title].remove(place_handle)
-                    else:
-                        place = self.__find_place(title, location)
-                        if place is None:
-                            place = self.__create_place(title, location)
-                        else:
-                            pass
+                    place.set_title(line.data)
             else:
                 # The first thing we encounter is PLAC
-                location = None
-                place = self.__find_place(title, location)
-                if place is None:
-                    place = self.__create_place(title, location)
-
-            state.event.set_place_handle(place.handle)            
-
+                state.place = Place()
+                place = state.place
+                place.set_title(line.data)
+                
             sub_state = CurrentState()
             sub_state.place = place
             sub_state.level = state.level+1
-            sub_state.pf = self.place_parser
 
             self.__parse_level(sub_state, self.event_place_map, 
                              self.__undefined)
             state.msg += sub_state.msg
-
-            place_title = place_displayer.display(self.dbase, place)
-            sub_state.pf.load_place(self.place_import, place, place_title)
-
-            self.dbase.commit_place(place, self.trans)
 
     def __event_place_note(self, line, state):
         """
@@ -5528,54 +5518,52 @@ class GedcomParser(UpdateCallback):
         self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
-        place_handle = state.event.get_place_handle()
-        if place_handle:
-            # We encounter an ADDR having previously encountered a PLAC
-            old_place = self.dbase.get_place_from_handle(place_handle)
-            title = old_place.get_title()
-            if len(old_place.get_alternate_locations()) != 0 and \
-                   not self.__get_first_loc(old_place).is_empty():
-                # We have perviously found an ADDR, or have populated location
-                # from PLAC title
-                self.__add_msg(_("Location already populated; ADDR ignored"),
-                               line, state)
-                # ignore this second ADDR, and use the old one
-                location = self.__get_first_loc(old_place)
-                place = old_place
-            else:
-                # This is the first ADDR
-                refs = list(self.dbase.find_backlink_handles(place_handle))
-                # We haven't commited the event yet, so the place will not be
-                # linked to it. If there are any refs they will be from other
-                # events (etc)
-                if len(refs) == 0:
-                    place = self.__find_place(title, location)
-                    if place is None:
-                        place = old_place
-                        self.__add_location(place, location)
-                    else:
-                        place.merge(old_place)
-                        self.place_import.remove_location(old_place.handle)
-                        self.dbase.remove_place(place_handle, self.trans)
-                        self.place_names[title].remove(place_handle)
-                else:
-                    place = self.__find_place(title, location)
-                    if place is None:
-                        place = self.__create_place(title, location)
-                    else:
-                        pass
-        else:
-            # The first thing we encounter is ADDR
-            title = ""
-            place = self.__find_place(title, location)
+        
+        if self.addr_is_detail and state.place:
+            # Commit the enclosing place
+            place = self.__find_place(state.place.get_title(), None)
             if place is None:
-                place = self.__create_place(title, location)
+                place = state.place
+                self.dbase.add_place(place, self.trans)
+                self.place_names[place.get_title()].append(place.get_handle())
+            else:
+                place.merge(state.place)
+                self.dbase.commit_place(place, self.trans)
+            place_title = place_displayer.display(self.dbase, place)
+            state.pf.load_place(self.place_import, place, place_title)
+            
+            # Create the Place Details (it is committed with the event)
+            place_detail = Place()
+            place_detail.set_name(location.get_street())
+            place_detail.set_title(location.get_street())
+            # For RootsMagic etc. Place Details e.g. address, hospital, cemetary
+            place_detail.set_type((PlaceType.CUSTOM, _("Detail")))
+            placeref = PlaceRef()
+            placeref.ref = place.get_handle()
+            place_detail.set_placeref_list([placeref])
+            state.place = place_detail
+        else:
+            place = state.place
+            if place:
+                # We encounter an ADDR having previously encountered a PLAC
+                if len(place.get_alternate_locations()) != 0 and \
+                       not self.__get_first_loc(place).is_empty():
+                    # We have perviously found an ADDR, or have populated location
+                    # from PLAC title
+                    self.__add_msg(_("Location already populated; ADDR ignored"),
+                                   line, state)
+                    # ignore this second ADDR, and use the old one
+                else:
+                    # This is the first ADDR
+                    place.add_alternate_locations(location)
+            else:
+                # The first thing we encounter is ADDR
+                state.place = Place()
+                place = state.place
+                place.add_alternate_locations(location)
 
         # merge notes etc into place
         place.merge(sub_state.place)
-
-        state.event.set_place_handle(place.get_handle())
-        self.dbase.commit_place(place, self.trans)
 
     def __add_location(self, place, location):
         """
@@ -5608,12 +5596,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        place_handle = state.event.get_place_handle()
-        if place_handle:
-            place = self.dbase.get_place_from_handle(place_handle)
+        place = state.place
+        if place:
             codes = [place.get_code(), line.data]
             place.set_code(' '.join(code for code in codes if code))
-            self.dbase.commit_place(place, self.trans)
 
     def __event_privacy(self, line, state):
         """
@@ -6925,6 +6911,11 @@ class GedcomParser(UpdateCallback):
         self.gedsource = self.gedmap.get_from_source_tag(line.data)
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
+        # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
+        # Book/RootsMagic-for-PAF-Users-Printable.pdf) use the Addr fields for
+        # 'Place Details (address, hospital, cemetary)'
+        if line.data.strip().lower() in ['rootsmagic']:
+            self.addr_is_detail = True        
         # We will use the approved system ID as the name of the generating
         # software, in case we do not get the name in the proper place
         self.genby = line.data
@@ -7576,9 +7567,13 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
         sub_state.event = event
         sub_state.person = state.person
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
         state.msg += sub_state.msg
+
+        self.__add_place(event, sub_state)
+        
         self.dbase.commit_event(event, self.trans)
 
         event_ref.set_reference_handle(event.handle)
@@ -7600,10 +7595,13 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level+1
         sub_state.event = event
         sub_state.event_ref = event_ref
+        sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
         state.msg += sub_state.msg
 
+        self.__add_place(event, sub_state)
+        
         self.dbase.commit_event(event, self.trans)
         event_ref.set_reference_handle(event.handle)
         return event_ref
