@@ -722,8 +722,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         # Check for pickle upgrade
         versionpath = os.path.join(self.path, str(PCKVERSFN))
-        if not os.path.isfile(versionpath) and \
-           not self.readonly and not self.update_pickle_version:
+        # Up to gramps 3.4.x PCKVERSFN was not written
+        # Gramps 4.2 incorrectly wrote PCKVERSFN = 'Yes' for Python2, so check
+        # whether python is upgraded
+        if ((not self.readonly and not self.update_pickle_version) and
+            (not os.path.isfile(versionpath) or self.update_python_version)):
             _LOG.debug("Make backup in case there is a pickle upgrade")
             self.__make_zip_backup(name)
             self.update_pickle_version = True
