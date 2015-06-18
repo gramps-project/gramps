@@ -12,25 +12,24 @@ override_dh_auto_test:
 
 # Override of auto_build
 override_dh_auto_build:
-	python3 setup.py build --resourcepath=/usr/share
+	python3 setup.py build
 
 # Override of auto_install to remove information from package
 override_dh_auto_install:
 	#dh_auto_install
 	# Remove duplicate copyright information
-	#rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
+	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
 	# Remove install file as it is not needed by package users
-	#rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/INSTALL
+	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
-	#rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/LICENSE
-	python3 setup.py install --root=debian/python3-gramps --install-layout=deb
+	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/LICENSE
+	ln -s /usr/share/common-licenses/GPL-2 $(CURDIR)/debian/gramps/usr/share/doc/gramps/COPYING
+	python3 setup.py install --resourcepath=/usr/share --root=debian/python3-gramps --install-layout=deb
 
 # Make css style sheets and png icons non-executable
 override_dh_fixperms:
 	dh_fixperms
 	chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/css/Web_*.css
-	#chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/hicolor/22x22/actions/gramps*.png
-	#chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/images/hicolor/16x16/actions/gramps*.png
 
 # Avoid compressing COPYING file so that it can appear in the "About" dialog
 override_dh_compress:
