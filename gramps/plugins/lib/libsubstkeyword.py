@@ -734,7 +734,7 @@ class VarString(object):
 
         #return what we have
         return (self.state, curr_string)
-        print("===" + str(self.state) + " '" + str(curr_string) + "'")
+        #print("===" + str(self.state) + " '" + str(curr_string) + "'")
 
     def extend(self, acquisition):
         """

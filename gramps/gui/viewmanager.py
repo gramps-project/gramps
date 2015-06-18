@@ -87,7 +87,6 @@ from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
-from gramps.gen.db.backup import backup
 from gramps.gen.db.exceptions import DbException
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
@@ -762,7 +761,7 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
-                backup(self.dbstate.db)
+                self.dbstate.db.backup()
             except DbException as msg:
                 ErrorDialog(_("Error saving backup data"), msg)
             self.uistate.set_busy_cursor(False)
@@ -1594,6 +1593,11 @@ def run_plugin(pdata, dbstate, uistate):
     mod = pmgr.load_plugin(pdata)
     if not mod:
         #import of plugin failed
+        failed = pmgr.get_fail_list()
+        if failed:
+            error_msg = failed[-1][1][1]
+        else:
+            error_msg = "(no error message)"
         ErrorDialog(
             _('Failed Loading Plugin'),
             _('The plugin %(name)s did not load and reported an error.\n\n'
@@ -1608,7 +1612,7 @@ def run_plugin(pdata, dbstate, uistate):
                 'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
-                'error_msg': pmgr.get_fail_list()[-1][1][1]})
+                  'error_msg': error_msg})
         return
 
     if pdata.ptype == REPORT:

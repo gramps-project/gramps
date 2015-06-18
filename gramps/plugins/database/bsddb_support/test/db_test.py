@@ -21,8 +21,8 @@
 import unittest
 
 from .. import DbReadBase, DbWriteBase, DbBsddbRead, DbBsddb
-from ...proxy.proxybase import ProxyDbBase
-from ...proxy import LivingProxyDb
+from gramps.gen.proxy.proxybase import ProxyDbBase
+from gramps.gen.proxy import LivingProxyDb
 
 class DbTest(unittest.TestCase):
     READ_METHODS = [

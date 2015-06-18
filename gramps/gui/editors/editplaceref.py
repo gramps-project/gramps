@@ -33,7 +33,7 @@ from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
-from gramps.gen.errors import ValidationError
+from gramps.gen.errors import ValidationError, WindowActiveError
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
@@ -105,7 +105,7 @@ class EditPlaceRef(EditReference):
                                         self.uistate, self.track, 
                                         self.db.readonly)
 
-        if config.get('preferences.place-title'):
+        if not config.get('preferences.place-auto'):
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(self.top.get_object("place_title"),
@@ -119,6 +119,9 @@ class EditPlaceRef(EditReference):
                                     self.db.readonly,
                                     changed=self.name_changed)
         
+        edit_button = self.top.get_object("name_button")
+        edit_button.connect('clicked', self.edit_place_name)
+
         self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.source.set_gramps_id, 
                                   self.source.get_gramps_id, self.db.readonly)
@@ -252,6 +255,18 @@ class EditPlaceRef(EditReference):
         self.track_ref_for_deletion("backref_tab")
 
         self._setup_notebook_tabs(notebook)
+
+    def edit_place_name(self, obj):
+        try:
+            from . import EditPlaceName
+            EditPlaceName(self.dbstate, self.uistate, self.track,
+                          self.source.get_name(), self.edit_callback)
+        except WindowActiveError:
+            return
+
+    def edit_callback(self, obj):
+        value = self.source.get_name().get_value()
+        self.top.get_object("name_entry").set_text(value)
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

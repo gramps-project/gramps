@@ -85,9 +85,9 @@ def import_file(db, filename, user):
                     print("ERROR:", name, exception)
                 return False
             import_function = getattr(mod, pdata.import_function)
-            db.prepare_import()
+            #db.prepare_import()
             retval = import_function(db, filename, user)
-            db.commit_import()
+            #db.commit_import()
             return retval
     return False
 

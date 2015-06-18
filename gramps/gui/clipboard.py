@@ -635,12 +635,18 @@ class ClipText(ClipWrapper):
     def __init__(self, dbstate, obj):
         super(ClipText, self).__init__(dbstate, obj)
         self._type  = _("Text")
-        self._pickle = self._obj
+        if isinstance(self._obj, bytes):
+            self._pickle = str(self._obj, "utf-8")
+        else:
+            self._pickle = self._obj
         self.refresh()
 
     def refresh(self):
         self._title = _("Text")
-        self._value = self._obj
+        if isinstance(self._obj, bytes):
+            self._value = str(self._obj, "utf-8")
+        else:
+            self._value = self._obj
 
 class ClipMediaObj(ClipHandleWrapper):
 
@@ -1139,7 +1145,7 @@ class ClipboardListView(object):
     
     def object_pixbuf(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
-        if o._dbid != self.dbstate.db.get_dbid():
+        if o._dbid is not None and o._dbid != self.dbstate.db.get_dbid():
             if isinstance(o.__class__.UNAVAILABLE_ICON, str):
                 cell.set_property('icon-name',
                                   o.__class__.UNAVAILABLE_ICON)
@@ -1573,7 +1579,8 @@ class MultiTreeView(Gtk.TreeView):
 
     def edit_obj(self, objclass, handle):
         from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
-                                 EditPlace, EditRepository, EditNote, EditMedia)
+                              EditPlace, EditRepository, EditNote, EditMedia,
+                              EditCitation)
         if objclass == 'Person':
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
@@ -1638,6 +1645,14 @@ class MultiTreeView(Gtk.TreeView):
                               self.uistate, [], ref)
                 except WindowActiveError:
                     pass
+        elif objclass == 'Citation':
+            ref = self.dbstate.db.get_citation_from_handle(handle)
+            if ref:
+                try:
+                    EditCitation(self.dbstate, self.uistate, [], ref)
+                except WindowActiveError:
+                    pass
+
 
 def short(val,size=60):
     if len(val) > size:

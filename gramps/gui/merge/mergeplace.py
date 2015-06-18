@@ -41,6 +41,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePlaceQuery
+from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -76,15 +78,20 @@ class MergePlace(ManagedWindow):
                         _("Merge Places"))
         
         # Detailed selection widgets
-        title1 = self.pl1.get_title()
-        title2 = self.pl2.get_title()
-        entry1 = self.get_widget("title1")
-        entry2 = self.get_widget("title2")
-        entry1.set_text(title1)
-        entry2.set_text(title2)
-        if entry1.get_text() == entry2.get_text():
-            for widget_name in ('title1', 'title2', 'title_btn1', 'title_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
+        if not config.get('preferences.place-auto'):
+            title1 = self.pl1.get_title()
+            title2 = self.pl2.get_title()
+            entry1 = self.get_widget("title1")
+            entry2 = self.get_widget("title2")
+            entry1.set_text(title1)
+            entry2.set_text(title2)
+            if entry1.get_text() == entry2.get_text():
+                for widget_name in ('title1', 'title2',
+                                    'title_btn1', 'title_btn2'):
+                    self.get_widget(widget_name).set_sensitive(False)
+            for widget_name in ('title1', 'title2',
+                                'title_btn1', 'title_btn2'):
+                self.get_widget(widget_name).show()
 
         for widget_name in ('name_btn1', 'name_btn2'):
             self.get_widget(widget_name).set_label(PLACE_NAME)
@@ -140,6 +147,8 @@ class MergePlace(ManagedWindow):
                 self.get_widget(widget_name).set_sensitive(False)
 
         # Main window widgets that determine which handle survives
+        title1 = place_displayer.display(database, self.pl1)
+        title2 = place_displayer.display(database, self.pl2)
         rbutton1 = self.get_widget("handle_btn1")
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")

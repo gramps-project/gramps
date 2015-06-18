@@ -279,10 +279,17 @@ class PaperFrame(Gtk.Box):
         return paper_margins
 
     def get_custom_paper_size(self):
-        width   = float(self.pwidth.get_text().replace(",", ".")) * \
+        """Get and validate custom paper size values from dialog entries.
+           Float values returned.
+        """
+        try:
+            width   = float(self.pwidth.get_text().replace(",", ".")) * \
                         self.paper_unit_multiplier
-        height  = float(self.pheight.get_text().replace(",", ".")) * \
+            height  = float(self.pheight.get_text().replace(",", ".")) * \
                         self.paper_unit_multiplier
+        except ValueError:
+            width = float(21.0)
+            height = float(29.7)
 
         paper_size = [max(width, 1.0), max(height, 1.0)]
 

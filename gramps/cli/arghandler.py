@@ -44,7 +44,6 @@ import sys
 #-------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import rm_tempdir, get_empty_tempdir
-from gramps.gen.db import DbBsddb
 from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
@@ -53,6 +52,7 @@ from .plug import cl_report, cl_book
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import conv_to_unicode
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -491,7 +491,8 @@ class ArgHandler(object):
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
-                    newdb = DbBsddb()
+                    dbid = config.get('behavior.database-backend')
+                    newdb = self.dbstate.make_database(dbid)
                     newdb.write_version(self.imp_db_path)
                 
                 try:

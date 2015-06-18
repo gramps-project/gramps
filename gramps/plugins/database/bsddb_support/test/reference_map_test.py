@@ -23,7 +23,7 @@ import logging
 import time
 
 from .. import DbTxn
-from ...lib import Person, Event, Source, Citation
+from gramps.gen.lib import Person, Event, Source, Citation
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 

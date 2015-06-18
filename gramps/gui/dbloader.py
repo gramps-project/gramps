@@ -52,10 +52,10 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.db.dbconst import DBBACKEND
 _ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
-from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
@@ -305,7 +305,14 @@ class DbLoader(CLIDbLoader):
         else:
             mode = 'w'
 
-        db = DbBsddb()
+        dbid_path = os.path.join(filename, DBBACKEND)
+        if os.path.isfile(dbid_path):
+            with open(dbid_path) as fp:
+                dbid = fp.read().strip()
+        else:
+            dbid = "bsddb"
+
+        db = self.dbstate.make_database(dbid)
         db.disable_signals()
         self.dbstate.no_database()
 

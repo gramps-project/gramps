@@ -41,6 +41,9 @@ class PersonForm(forms.ModelForm):
         exclude = ["death", "birth", "handle", "birth_ref_index", 
                    "death_ref_index", "families", "parent_families", 
                    "cache"]
+    def save(self, *args, **kwargs):
+        self.instance.save_cache_q = kwargs.pop("save_cache", True)
+        return super().save(*args, **kwargs)
 
 class NameForm(forms.ModelForm):
     class Meta:

@@ -785,7 +785,8 @@ class SimpleAccess(object):
         """
         
         with self.dbase.get_person_cursor() as cursor:
-            slist = sorted((data[3][3], key) for key, data in cursor)
+            # data[3] is primary_name; data[3][5][0][0] is surname
+            slist = sorted((data[3][5][0][0], key) for key, data in cursor)
 
         for info in slist:
             obj = self.dbase.get_person_from_handle(info[1])
@@ -849,7 +850,7 @@ class SimpleAccess(object):
         :return: list of repositories in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_repsoitory_cursor, 
+        return self.__all_objects(self.dbase.get_repository_cursor, 
                                   self.dbase.get_repository_from_handle)
 
     def all_media(self):

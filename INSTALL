@@ -91,12 +91,6 @@ alternative location on windows, supply the --root argument to setup.py
 
 For example:
    python setup.py install --root ~/test
-   or
-   python setup.py install --root ~/test --enable-packager-mode
-
-The last option, --enable-packager-mode, is needed if you want to disable
-execution of post-install mime processing. If you don't have root/admin
-access, this will be needed
 
 Packager's issues
 ------------------
@@ -104,3 +98,9 @@ There is a MANIFEST.in file to indicate the work needed.
 To create a source distribution run:
 
    python setup.py sdist
+
+If Gramps is built outside of the source tree in a temporary location (e.g. when
+packaging for a distribution), the --resourcepath option can be used to specify
+the path to the installed location of the Gramps resources (e.g. /usr/share):
+
+   python setup.py install --resourcepath=/usr/share

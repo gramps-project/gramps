@@ -108,23 +108,9 @@
                     <property name="label" translatable="yes">Language:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
-                    <property name="mnemonic_widget">language</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="UndoableEntry" id="language">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Language in which the name is written.</property>
-                    <property name="hexpand">True</property>
-                    <property name="invisible_char">●</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
                     <property name="top_attach">2</property>
                   </packing>
                 </child>
@@ -180,7 +166,7 @@
                   <object class="UndoableEntry" id="value">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes" context="place">The name of the place.</property>
+                    <property name="tooltip_text" translatable="yes">The name of the place.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
@@ -197,11 +183,23 @@
                     <property name="label" translatable="yes">Name:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
-                    <property name="mnemonic_widget">language</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
                     <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="ValidatableMaskedEntry" id="language">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Language in which the name is written. Valid values are two character ISO codes. For example:  en, fr, de, nl ...</property>
+                    <property name="hexpand">True</property>
+                    <property name="invisible_char">●</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">2</property>
                   </packing>
                 </child>
                 <child>

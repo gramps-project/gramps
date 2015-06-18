@@ -57,7 +57,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             SrcAttribute, SrcAttributeType, StyledText,
                             StyledTextTag, StyledTextTagType, Surname, Tag, Url)
 from gramps.gen.db import DbTxn
-from gramps.gen.db.write import CLASS_TO_KEY_MAP
+#from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
@@ -68,7 +68,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, 
                                    REPOSITORY_KEY, NOTE_KEY, TAG_KEY, 
-                                   CITATION_KEY)
+                                   CITATION_KEY, CLASS_TO_KEY_MAP)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
 from gramps.gen.config import config
@@ -122,6 +122,7 @@ def importData(database, filename, user):
     line_cnt = 0
     person_cnt = 0
     
+    database.prepare_import()
     with ImportOpenFileContextManager(filename, user) as xml_file:
         if xml_file is None:
             return
@@ -162,6 +163,7 @@ def importData(database, filename, user):
                           "valid Gramps database."))
             return
 
+    database.commit_import()
     database.readonly = read_only
     return info
 

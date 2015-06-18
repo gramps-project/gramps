@@ -47,11 +47,11 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.libformatting import ImportInfo
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-from gramps.gen.errors import GedcomError
+from gramps.gen.errors import GedcomError, GrampsImportError
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation, 
         Date, DateError, Event, EventRef, EventRoleType, EventType, 
         Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, 
-        Place, Source)
+        Place, Source, LdsOrd)
 from gramps.gen.db import DbTxn
 from gramps.gen.constfunc import conv_to_unicode
 from html.entities import name2codepoint
@@ -71,6 +71,73 @@ _cal_map = {
     'F' : Date.CAL_FRENCH,
     }
 
+pevents_map = {
+    "#birt" : EventType.BIRTH, #Epers_Birth
+    "#bapt" : EventType.BAPTISM, #Epers_Baptism
+    "#deat" : EventType.DEATH, #Epers_Death
+    "#buri" : EventType.BURIAL, #Epers_Burial
+    "#crem" : EventType.CREMATION,
+    "#acco" : EventType((EventType.CUSTOM, _('Accomplishment'))) ,
+    "#acqu" : EventType((EventType.CUSTOM, _('Acquisition'))),
+    "#adhe" : EventType((EventType.CUSTOM, _('Adhesion'))),
+    "#awar" : EventType((EventType.CUSTOM, _('Award'))),
+    "#bapl" : LdsOrd.BAPTISM, #Epers_BaptismLDS
+    "#barm" : EventType.BAR_MITZVAH, #Epers_BarMitzvah
+    "#basm" : EventType.BAS_MITZVAH, #Epers_BatMitzvah
+    "#bles" : EventType.BLESS, #Epers_Benediction
+    "#cens" : EventType.CENSUS,
+    "#chgn" : EventType((EventType.CUSTOM, _('Change Name'))),
+    "#circ" : EventType((EventType.CUSTOM, _('Circumcision'))),
+    "#conf" : EventType.CONFIRMATION, #Epers_Confirmation
+    "#conl" : LdsOrd.CONFIRMATION, #Epers_ConfirmationLDS
+    "#degr" : EventType.DEGREE,
+    "#demm" : EventType((EventType.CUSTOM, _('Military Demobilisation'))),
+    "#dist" : EventType((EventType.CUSTOM, _('Award'))),
+    "#dotl" : LdsOrd.ENDOWMENT, #Epers_DotationLDS
+    "#educ" : EventType.EDUCATION, #Epers_Education
+    "#elec" : EventType.ELECTED, #Epers_Election
+    "#emig" : EventType.EMIGRATION,
+    "#endl" : EventType((EventType.CUSTOM, _('Dotation'))),
+    "#exco" : EventType((EventType.CUSTOM, _('Excommunication'))),
+    "#fcom" : EventType.FIRST_COMMUN,
+    "#flkl" : EventType((EventType.CUSTOM, _('LDS Family Link'))),
+    "#fune" : EventType((EventType.CUSTOM, _('Funeral'))),
+    "#grad" : EventType.GRADUATION,
+    "#hosp" : EventType((EventType.CUSTOM, _('Hospitalisation'))),
+    "#illn" : EventType((EventType.CUSTOM, _('Illness'))),
+    "#immi" : EventType.IMMIGRATION,
+    "#lpas" : EventType((EventType.CUSTOM, _('List Passenger'))),
+    "#mdis" : EventType((EventType.CUSTOM, _('Military Distinction'))),
+    "#mobm" : EventType((EventType.CUSTOM, _('Militaty Mobilisation'))),
+    "#mpro" : EventType((EventType.CUSTOM, _('Military Promotion'))),
+    "#mser" : EventType.MILITARY_SERV, #Epers_MilitaryService
+    "#natu" : EventType.NATURALIZATION, #Epers_Naturalisation
+    "#occu" : EventType.OCCUPATION, #Epers_Occupation
+    "#ordn" : EventType.ORDINATION, #Epers_Ordination
+    "#prop" : EventType.PROPERTY, #Epers_Property
+    "#resi" : EventType.RESIDENCE, #Epers_Residence
+    "#reti" : EventType.RETIREMENT,
+    "#slgc" : EventType((EventType.CUSTOM, _('LDS Seal to child'))), #Epers_ScellentChildLDS
+    "#slgp" : LdsOrd.SEAL_TO_PARENTS, #Epers_ScellentParentLDS
+    "#slgs" : LdsOrd.SEAL_TO_SPOUSE,
+    "#vteb" : EventType((EventType.CUSTOM, _('Sold property'))), #Epers_VenteBien
+    "#will" : EventType.WILL, #Epers_Will
+                     }
+
+fevents_map = {
+    "#marr" : EventType.MARRIAGE, #Efam_Marriage
+    "#nmar" : EventType.NUM_MARRIAGES,
+    "#nmen" : EventType((EventType.CUSTOM, _('No mention'))), #Efam_NoMention
+    "#enga" : EventType.ENGAGEMENT, #Efam_Engage
+    "#div"  : EventType.DIVORCE,
+    "#sep"  : EventType((EventType.CUSTOM, _('Separated'))), #Efam_Separated
+    "#anul" : EventType.ANNULMENT, #Efam_Annulation
+    "#marb" : EventType.MARR_BANNS, #Efam_MarriageBann
+    "#marc" : EventType.MARR_CONTR, #Efam_MarriageContract)
+    "#marl" : EventType.MARR_LIC, #Efam_MarriageLicense)
+    "#resi" : EventType.RESIDENCE, #Efam_Residence)
+                  }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -87,7 +154,9 @@ def importData(database, filename, user):
         return
 
     try:
+        database.prepare_import()
         status = g.parse_geneweb_file()
+        database.commit_import()
     except IOError as msg:
         errmsg = _("%s could not be opened\n") % filename
         user.notify_error(errmsg,str(msg))
@@ -97,18 +166,26 @@ def importData(database, filename, user):
 #-------------------------------------------------------------------------
 # For a description of the file format see
 # http://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
+# https://github.com/geneanet/geneweb/issues/315
 #-------------------------------------------------------------------------
 class GeneWebParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
         if file: # Unit tests can create the parser w/o underlying file
-            self.f = open(file, "rU")
+            self.f = open(file, "rUb")
             self.filename = file
             self.encoding = 'iso-8859-1'
+            self.gwplus = False
 
     def get_next_line(self):
         self.lineno += 1
         line = self.f.readline()
+
+        try:
+            line = conv_to_unicode(line)
+        except GrampsImportError as err:
+            self.errmsg(str(err))
+
         if line:
             try:
                 line = str(line.strip())
@@ -148,7 +225,13 @@ class GeneWebParser(object):
                     fields = line.split(" ")
             
                     LOG.debug("LINE: %s" %line)
-                    if fields[0] == "fam":
+
+                    if fields[0] == "gwplus":
+                        self.gwplus = True
+                        self.encoding = 'utf-8'
+                    elif fields[0] == "encoding:":
+                        self.encoding = fields[1]
+                    elif fields[0] == "fam":
                         self.current_mode = "fam"
                         self.read_family_line(line,fields)
                     elif fields[0] == "rel":
@@ -170,12 +253,18 @@ class GeneWebParser(object):
                         self.read_family_comment(line,fields)
                     elif fields[0] == "notes":
                         self.read_person_notes_lines(line,fields)
+                    elif fields[0] == "fevt" and self.current_mode == "fam":
+                        #self.read_fevent_line(self.get_next_line())
+                        pass
+                    elif fields[0] == "pevt":
+                        #self.read_pevent_line(self.get_next_line(), fields)
+                        pass
                     elif fields[0] == "notes-db":
                         self.read_database_notes_lines(line,fields)
+                    elif fields[0] == "pages-ext" or "wizard-note":
+                        pass
                     elif fields[0] == "end":
                         self.current_mode = None
-                    elif fields[0] == "encoding:":
-                        self.encoding = fields[1]
                     else:
                         LOG.warning("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
                                  (fields[0],self.lineno,line))
@@ -853,7 +942,7 @@ class GeneWebParser(object):
         self.db.add_event(event,self.trans)
         self.db.commit_event(event,self.trans)
         return event
-    
+
     def get_or_create_person(self,firstname,lastname):
         person = None
         mykey = firstname+lastname
@@ -893,6 +982,155 @@ class GeneWebParser(object):
         self.db.add_citation(citation, self.trans)
         self.db.commit_citation(citation, self.trans)
         return citation
+
+    def read_fevent_line(self, event):
+
+        if fevents_map.get(event[0:5]) == None:
+            return #need to fix custom event types not in the map
+
+        fev = None
+        # get events for the current family
+        for evr in self.current_family.get_event_ref_list():
+            ev = self.db.get_event_from_handle(evr.get_reference_handle())
+            if ev.get_type() == fevents_map.get(event[0:5]):
+                fev = ev # found. Need to also check EventRef role
+                return
+            if not fev: # No event found create a new one
+                if evr.get_role() != EventRoleType(EventRoleType.FAMILY):
+                    continue
+                else:
+                    LOG.info((ev.get_type(), self.current_family.handle))
+                    self.new_gwplus_fevent(event)
+        while True:
+            line = self.get_next_line()
+            if line and line[0:5] in fevents_map:
+                self.new_gwplus_fevent(line)
+            elif line and line[0:4] == "wit:":
+                continue
+            else:
+                self.current_mode = None
+                #self.db.commit_family(self.current_family,self.trans)
+                break
+
+    def read_pevent_line(self, event, fields):
+
+        name = fields[2] + fields[1]
+
+        try:
+            self.person = self.ikeys[name]
+        # check key on {ikey}
+        except:
+            self.person = "(TO_CHECK: %s)" % fields[1:]
+            #GrampsImportError()
+
+        lastname = fields[1]
+        firstname = fields[2]
+        self.current_person = self.get_or_create_person(firstname, lastname)
+
+        #name = Name()
+        #name.set_type(NameType(NameType.BIRTH))
+        #name.set_first_name(firstname)
+        #surname_obj = name.get_primary_surname()
+        #surname_obj.set_surname(surname)
+        #self.current_person.set_primary_name(name)
+
+        if pevents_map.get(event[0:5]) == None:
+            return #need to fix custom event types not in the map
+
+        self.current_event = None
+        # get events for the current person
+        for evr in self.current_person.get_event_ref_list():
+            ev = self.db.get_event_from_handle(evr.get_reference_handle())
+            if ev.get_type() == pevents_map.get(event[0:5]):
+                self.current_event = ev # found. Need to also check EventRef role
+            if not self.current_event: # No event found create a new one
+                self.current_event = self.new_gwplus_pevent(event)
+        while True:
+            line = self.get_next_line()
+            if line and line[0:5] in pevents_map:
+                self.current_mode = "person_event"
+                self.current_event = self.new_gwplus_pevent(line)
+            elif line and line[0:4] == "note":
+                n = Note()
+                n.set(line[5:])
+                self.db.add_note(n, self.trans)
+                if self.current_event:
+                    self.current_event.add_note(n.handle)
+                    self.db.commit_event(self.current_event, self.trans)
+                else:
+                    print('note', n.handle)
+            else:
+                self.current_mode = None
+                #self.db.commit_person(self.current_person,self.trans)
+                break
+
+    def new_gwplus_fevent(self, line):
+
+        source = place = note = type = None
+        date = self.parse_date(self.decode(line[6:]))
+
+        idx = 0
+        LOG.info((line, fevents_map.get(line[0:5])))
+        type = fevents_map.get(line[0:5])
+        data = line.split()
+        date = self.parse_date(self.decode(line[6:]))
+        for part in data:
+            idx += 1
+            if part == "#p":
+                place = self.get_or_create_place(self.decode(data[idx]))
+            if part == "#s":
+                source = self.get_or_create_source(self.decode(data[idx]))
+        self.current_event = self.create_event(type, None, None, None, None)
+        print('new event', self.current_event.handle)
+        if date:
+            print(date)
+            self.current_event.set_date_object(date)
+        if place:
+            print('place', place.handle)
+            self.current_event.set_place_handle(place.get_handle())
+        if source:
+            print('source', source.handle)
+            self.current_event.add_citation(source.get_handle())
+        self.db.commit_event(self.current_event, self.trans)
+        nev_ref = EventRef()
+        nev_ref.set_reference_handle(self.current_event.get_handle())
+        self.current_family.add_event_ref(nev_ref)
+        self.db.commit_family(self.current_family, self.trans)
+        return self.current_event
+
+    def new_gwplus_pevent(self, line):
+
+        source = place = note = type = None
+        date = self.parse_date(self.decode(line[6:]))
+
+        idx = 0
+        LOG.info((self.person, line, pevents_map.get(line[0:5])))
+        type = pevents_map.get(line[0:5])
+        data = line.split()
+        date = self.parse_date(self.decode(line[6:]))
+        for part in data:
+            idx += 1
+            if part == "#p":
+                place = self.get_or_create_place(self.decode(data[idx]))
+            if part == "#s":
+                source = self.get_or_create_source(self.decode(data[idx]))
+        self.current_event = self.create_event(type, None, None, None, None)
+        print('new event', self.current_event.handle)
+        if date:
+            print(date)
+            self.current_event.set_date_object(date)
+        if place:
+            print('place', place.handle)
+            self.current_event.set_place_handle(place.get_handle())
+        if source:
+            print('source', source.handle)
+            self.current_event.add_citation(source.get_handle())
+        self.db.commit_event(self.current_event, self.trans)
+        nev_ref = EventRef()
+        nev_ref.set_reference_handle(self.current_event.get_handle())
+        self.current_person.add_event_ref(nev_ref)
+        self.db.commit_person(self.current_person, self.trans)
+        return self.current_event
 
     def decode(self,s):
         s = s.replace('_',' ')

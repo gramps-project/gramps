@@ -164,7 +164,7 @@ class DateParserCZ(DateParser):
 
     quality_to_int = {
         'přibližně'  : Date.QUAL_ESTIMATED,
-        'odhadované' : Date.QUAL_ESTIMATED, 
+        'odhadem'    : Date.QUAL_ESTIMATED, 
         'odh.'       : Date.QUAL_ESTIMATED, 
         'vypočteno'  : Date.QUAL_CALCULATED,
         'vypočtené'  : Date.QUAL_CALCULATED, 
@@ -173,6 +173,8 @@ class DateParserCZ(DateParser):
         
     def init_strings(self):
         DateParser.init_strings(self)
+        self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                         % self._mon_str, re.IGNORECASE)
         self._span  = re.compile(
             "(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
             re.IGNORECASE)
@@ -221,7 +223,9 @@ class DateDisplayCZ(DateDisplay):
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
 
-    def display(self, date):
+    display = DateDisplay.display_formatted
+
+    def orig_display(self, date):
         """
         Return a text string representing the date.
         """

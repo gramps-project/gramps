@@ -102,20 +102,21 @@ primary data for the merged place.</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButtonBox" id="vbuttonbox1">
+              <object class="GtkBox" id="vbox3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkRadioButton" id="handle_btn1">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="halign">center</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
-                        <property name="width_request">300</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -133,12 +134,10 @@ primary data for the merged place.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="halign">center</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn2">
-                        <property name="width_request">300</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="wrap">True</property>
@@ -155,7 +154,6 @@ primary data for the merged place.</property>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="padding">5</property>
                 <property name="position">2</property>
               </packing>
             </child>
@@ -206,11 +204,11 @@ primary data for the merged place.</property>
                         <child>
                           <object class="GtkRadioButton" id="title_btn1">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="no_show_all">True</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -221,11 +219,11 @@ primary data for the merged place.</property>
                         <child>
                           <object class="GtkRadioButton" id="title_btn2">
                             <property name="label" translatable="yes">Title:</property>
-                            <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="no_show_all">True</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">title_btn1</property>
                           </object>
@@ -240,8 +238,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -255,8 +253,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">lat_btn1</property>
                           </object>
@@ -271,8 +269,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -286,8 +284,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">long_btn1</property>
                           </object>
@@ -302,8 +300,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -317,8 +315,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">gramps_btn1</property>
                           </object>
@@ -329,8 +327,8 @@ primary data for the merged place.</property>
                         </child>
                         <child>
                           <object class="GtkEntry" id="title1">
-                            <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="no_show_all">True</property>
                             <property name="hexpand">True</property>
                             <property name="editable">False</property>
                           </object>
@@ -341,8 +339,8 @@ primary data for the merged place.</property>
                         </child>
                         <child>
                           <object class="GtkEntry" id="title2">
-                            <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="no_show_all">True</property>
                             <property name="hexpand">True</property>
                             <property name="editable">False</property>
                           </object>
@@ -425,13 +423,13 @@ primary data for the merged place.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn1">
-                            <property name="label" translatable="yes">place|Name:</property>
+                            <property name="label" translatable="yes">Name:</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -442,13 +440,13 @@ primary data for the merged place.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn2">
-                            <property name="label" translatable="yes">place|Name:</property>
+                            <property name="label" translatable="yes">Name:</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">start</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">name_btn1</property>
                           </object>
@@ -489,9 +487,9 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -506,9 +504,9 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">start</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">type_btn1</property>
                           </object>
@@ -549,9 +547,9 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">start</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -566,8 +564,8 @@ primary data for the merged place.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">start</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">code_btn1</property>
                           </object>
@@ -619,7 +617,7 @@ primary data for the merged place.</property>
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Alternate locations, sources, urls, media objects and notes of both places will be combined.</property>
+                        <property name="label" translatable="yes">Alternative names, sources, urls, media objects and notes of both places will be combined.</property>
                         <property name="wrap">True</property>
                       </object>
                       <packing>

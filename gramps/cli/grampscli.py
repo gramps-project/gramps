@@ -47,9 +47,9 @@ LOG = logging.getLogger(".grampscli")
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.config import config
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
+from gramps.gen.db.dbconst import DBBACKEND
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
-from gramps.gen.db import DbBsddb
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
@@ -152,9 +152,16 @@ class CLIDbLoader(object):
         else:
             mode = 'w'
 
-        dbclass = DbBsddb
+        dbid_path = os.path.join(filename, DBBACKEND)
+        if os.path.isfile(dbid_path):
+            with open(dbid_path) as fp:
+                dbid = fp.read().strip()
+        else:
+            dbid = "bsddb"
+
+        db = self.dbstate.make_database(dbid)
         
-        self.dbstate.change_database(dbclass())
+        self.dbstate.change_database(db)
         self.dbstate.db.disable_signals()
 
         self._begin_progress()

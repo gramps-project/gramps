@@ -357,7 +357,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         else:
             return "%d-ésima tía abuela%s" % (level-2, inlaw)
 
-    def _get_distant_aunt(self, level, step, inlae):
+    def _get_distant_aunt(self, level, step, inlaw):
         if step:
             base = 'tiastra'
         else:

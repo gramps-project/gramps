@@ -15,27 +15,27 @@ Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
 Vcs-browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
-X-Python-Version: >= 2.7
+X-Python-Version: >= 3.0
 
 Package: python-gramps
 Architecture: all
 Depends:
  gir1.2-gtk-3.0,
  librsvg2-2,
- python-gi,
- python-gi-cairo,
+ python3-gi,
+ python3-gi-cairo,
  xdg-utils,
  ${misc:Depends},
  ${python:Depends}
 Recommends:
  graphviz,
  libosmgpsmap-1.0-0-dev,
- python-pyicu
+ python3-pyicu
 Suggests:
  fonts-freefont-ttf,
  gir1.2-gexiv2-0.4,
  gir1.2-gtk-gtkspell3-3.0,
- python-pil,
+ python3-pil,
  rcs
 Description: Genealogical research program
  GRAMPS is an Open Source genealogy program written in Python, using

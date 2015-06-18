@@ -30,7 +30,12 @@ from gi.repository import GdkPixbuf
 from gi.repository import GObject
 import cairo
 import sys, os
-import bsddb3 as bsddb
+
+try:
+    import bsddb3 as bsddb # ok, in try/except
+    BSDDB_STR = str(bsddb.__version__) + " " + str(bsddb.db.version())
+except:
+    BSDDB_STR = 'not found'
     
 #-------------------------------------------------------------------------
 #
@@ -166,7 +171,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                "gobject version: %s\n"\
                "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
-                  str(bsddb.__version__) + " " + str(bsddb.db.version()),
+                  BSDDB_STR,
                   str(VERSION),
                   get_env_var('LANG',''),
                   operatingsystem,

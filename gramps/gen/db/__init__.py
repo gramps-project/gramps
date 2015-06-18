@@ -86,11 +86,27 @@ More details can be found in the manual's
 
 from .base import *
 from .dbconst import *
-from .cursor import *
-from .read import *
-from .bsddbtxn import *
 from .txn import *
-from .undoredo import *
 from .exceptions import *
-from .write import *
-from .backup import backup, restore
+from .undoredo import *
+
+def find_surname_name(key, data):
+    """
+    Creating a surname from raw name, to use for sort and index
+    returns a byte string
+    """
+    return __index_surname(data[5])
+
+def __index_surname(surn_list):
+    """
+    All non pa/matronymic surnames are used in indexing.
+    pa/matronymic not as they change for every generation!
+    returns a byte string
+    """
+    from gramps.gen.lib import NameOriginType
+    if surn_list:
+        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
+                    NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
+    else:
+        surn = ""
+    return surn

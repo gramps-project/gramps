@@ -193,7 +193,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                self.oldvalue)
                              )
         for place in self.places:
-            self.plist.append(place)
+            p = (place[0].value, place[1].value, place[2].value, place[3])
+            self.plist.append(p)
         # here, we could add value from geography names services ...
 
         # if we found no place, we must create a default place.

@@ -483,6 +483,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_behavior_panel,
             self.add_famtree_panel,
             self.add_formats_panel,
+            self.add_places_panel,
             self.add_text_panel,
             self.add_prefix_panel,
             self.add_date_panel,
@@ -998,26 +999,6 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
         row += 1
         
-        # Place format:
-        obox = Gtk.ComboBoxText()
-        formats = [_('Title'), _('Automatic')]
-        list(map(obox.append_text, formats))
-        active = config.get('preferences.place-format')
-        if active >= len(formats):
-            active = 0
-        obox.set_active(active)
-        obox.connect('changed', self.place_format_changed)
-        lwidget = BasicLabel("%s: " % _('Place format'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-        
-        # Legacy place title mode
-        self.add_checkbox(grid,
-                          _("Display legacy place title field in editors"),
-                          row, 'preferences.place-title', stop=3)
-        row += 1
-
         # Age precision:
         # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
         obox = Gtk.ComboBoxText()
@@ -1105,7 +1086,7 @@ class GrampsPreferences(ConfigureDialog):
 
         # Text in sidebar:
         self.add_checkbox(grid, 
-                          _("Show text in sidebar buttons (requires restart)"), 
+                          _("Show text label beside Navigator buttons (requires restart)"), 
                           row, 'interface.sidebar-text', stop=3)
         row += 1
 
@@ -1116,6 +1097,45 @@ class GrampsPreferences(ConfigureDialog):
                           extra_callback=self.cb_grampletbar_close)
         row += 1
         return _('Display'), grid
+
+    def add_places_panel(self, configdialog):
+        row = 0
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+
+        self.add_checkbox(grid, _("Enable automatic place title generation"),
+                          row, 'preferences.place-auto', stop=3)
+        row += 1
+
+        self.add_checkbox(grid, _("Suppress comma after house number"),
+                          row, 'preferences.place-number', stop=3)
+        row += 1
+
+        self.add_checkbox(grid, _("Reverse display order"),
+                          row, 'preferences.place-reverse', stop=3)
+        row += 1
+
+        # Place restriction
+        obox = Gtk.ComboBoxText()
+        formats = [_("Full place name"),
+                   _("-> Hamlet/VillageTown/City"),
+                   _("Hamlet/VillageTown/City ->")]
+        list(map(obox.append_text, formats))
+        active = config.get('preferences.place-restrict')
+        obox.set_active(active)
+        obox.connect('changed', self.place_restrict_changed)
+        lwidget = BasicLabel("%s: " % _('Restrict'))
+        grid.attach(lwidget, 0, row, 1, 1)
+        grid.attach(obox, 1, row, 2, 1)
+        row += 1
+
+        self.add_entry(grid, _("Language"),
+                          row, 'preferences.place-lang')
+        row += 1
+
+        return _('Places'), grid
 
     def add_text_panel(self, configdialog):
         row = 0
@@ -1172,17 +1192,14 @@ class GrampsPreferences(ConfigureDialog):
         active = obj.get_active()
         config.set('behavior.check-for-updates', active)
 
+    def place_restrict_changed(self, obj):
+        active = obj.get_active()
+        config.set('preferences.place-restrict', active)
+
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the date format will not take '
-                   'effect until the next time Gramps is started.'),
-                 parent=self.window)
-
-    def place_format_changed(self, obj):
-        config.set('preferences.place-format', obj.get_active())
-        OkDialog(_('Change is not immediate'), 
-                 _('Changing the place format will not take '
                    'effect until the next time Gramps is started.'),
                  parent=self.window)
 
@@ -1370,25 +1387,59 @@ class GrampsPreferences(ConfigureDialog):
 
         self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
+    def database_backend_changed(self, obj):
+        the_list = obj.get_model()
+        the_iter = obj.get_active_iter()
+        db_choice = the_list.get_value(the_iter, 2)
+        config.set('behavior.database-backend', db_choice)
+
     def add_famtree_panel(self, configdialog):
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
+        current_line = 0
+        backend_plugins = self.uistate.viewmanager._pmgr.get_reg_databases()
+        obox = Gtk.ComboBox()
+        cell = Gtk.CellRendererText()
+        obox.pack_start(cell, True)
+        obox.add_attribute(cell, 'text', 1)
+        # Build model:
+        model = Gtk.ListStore(GObject.TYPE_INT, 
+                              GObject.TYPE_STRING, 
+                              GObject.TYPE_STRING)
+        count = 0
+        active = 0
+        default = config.get('behavior.database-backend')
+        for plugin in sorted(backend_plugins, key=lambda plugin: plugin.name):
+            if plugin.id == default:
+                active = count
+            model.append(row=[count, plugin.name, plugin.id])
+            count += 1
+        obox.set_model(model)
+        # set the default value as active in the combo
+        obox.set_active(active)
+        obox.connect('changed', self.database_backend_changed)
+        lwidget = BasicLabel("%s: " % _('Database backend'))
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        grid.attach(obox, 2, current_line, 1, 1)
+        current_line += 1
 
         self.dbpath_entry = Gtk.Entry()
         self.add_path_box(grid, 
                 _('Family Tree Database path'),
-                0, self.dbpath_entry, config.get('behavior.database-path'),
+                current_line, self.dbpath_entry, config.get('behavior.database-path'),
                 self.set_dbpath, self.select_dbpath)
+        current_line += 1
 
         #self.add_entry(grid, 
         #        _('Family Tree Database path'), 
         #        0, 'behavior.database-path')
         self.add_checkbox(grid, 
                 _('Automatically load last Family Tree'), 
-                1, 'behavior.autoload')
+                current_line, 'behavior.autoload')
+        current_line += 1
                 
         return _('Family Tree'), grid
 

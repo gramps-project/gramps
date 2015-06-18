@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013-2014  Nick Hall
+# Copyright (C) 2013-2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,14 +28,14 @@ from ..lib.date import Today
 # get_location_list
 #
 #-------------------------------------------------------------------------
-def get_location_list(db, place, date=None):
+def get_location_list(db, place, date=None, lang=''):
     """
     Return a list of place names for display.
     """
     if date is None:
         date = Today()
     visited = [place.handle]
-    lines = [(__get_name(place, date), place.get_type())]
+    lines = [(__get_name(place, date, lang), place.get_type())]
     while True:
         handle = None
         for placeref in place.get_placeref_list():
@@ -49,14 +49,20 @@ def get_location_list(db, place, date=None):
         if place is None:
             break
         visited.append(handle)
-        lines.append((__get_name(place, date), place.get_type()))
+        lines.append((__get_name(place, date, lang), place.get_type()))
     return lines
 
-def __get_name(place, date):
+def __get_name(place, date, lang):
+    local_name = '?'
     for place_name in place.get_all_names():
         name_date = place_name.get_date_object()
         if name_date.is_empty() or date.match(name_date):
-            return place_name.get_value()
+            name_lang = place_name.get_language()
+            if name_lang == '':
+                local_name = place_name.get_value()
+            if place_name.get_language() == lang:
+                return place_name.get_value()
+    return local_name
 
 #-------------------------------------------------------------------------
 #
