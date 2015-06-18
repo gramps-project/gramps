@@ -2910,7 +2910,7 @@ class GedcomParser(UpdateCallback):
             return True
         return False
     
-    def __find_place(self, title, location):
+    def __find_place(self, title, location, placeref_list):
         """
         Finds an existing place based on the title and primary location.
         
@@ -2924,11 +2924,13 @@ class GedcomParser(UpdateCallback):
             place = self.dbase.get_place_from_handle(place_handle)
             if place.get_title() == title:
                 if self.__loc_is_empty(location) and \
-                   self.__loc_is_empty(self.__get_first_loc(place)):
+                   self.__loc_is_empty(self.__get_first_loc(place)) and \
+                   place.get_placeref_list() == placeref_list:
                     return place
                 elif (not self.__loc_is_empty(location) and \
                       not self.__loc_is_empty(self.__get_first_loc(place)) and
-                      self.__get_first_loc(place).is_equivalent(location) == IDENTICAL):
+                      self.__get_first_loc(place).is_equivalent(location) == IDENTICAL) and \
+                      place.get_placeref_list() == placeref_list:
                     return place
         return None
 
@@ -2946,7 +2948,8 @@ class GedcomParser(UpdateCallback):
         if sub_state.place:
             # see whether this place already exists
             place = self.__find_place(sub_state.place.get_title(),
-                                      self.__get_first_loc(sub_state.place))
+                                      self.__get_first_loc(sub_state.place),
+                                      sub_state.place.get_placeref_list())
             if place is None:
                 place = sub_state.place
                 self.dbase.add_place(place, self.trans)
@@ -4534,7 +4537,7 @@ class GedcomParser(UpdateCallback):
         """
         try:
             title = line.data
-            place = self.__find_place(title, None)
+            place = self.__find_place(title, None, None)
             if place is None:
                 place = Place()
                 place.set_title(title)
@@ -5521,7 +5524,8 @@ class GedcomParser(UpdateCallback):
         
         if self.addr_is_detail and state.place:
             # Commit the enclosing place
-            place = self.__find_place(state.place.get_title(), None)
+            place = self.__find_place(state.place.get_title(), None,
+                                      state.place.get_placeref_list())
             if place is None:
                 place = state.place
                 self.dbase.add_place(place, self.trans)
