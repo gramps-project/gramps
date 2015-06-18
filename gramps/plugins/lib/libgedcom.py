@@ -7901,4 +7901,3 @@ def __build_date_string(day, mon, year, bce, mmap):
     else:
         retval = "%d %s %d%s" % (day, mmap[mon], year, bce)
     return retval
-
