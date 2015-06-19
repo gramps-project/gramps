@@ -7,23 +7,24 @@ Build-Depends-Indep:
  gettext,
  intltool,
  libxml-parser-perl,
- python-all,
- python-setuptools
+ python3-all,
+ python3-setuptools
 Build-Depends:
  debhelper (>= 9.0.0)
 Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
 Vcs-browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
-X-Python-Version: >= 3.0
+X-Python-Version: >= 3.2
 
-Package: python-gramps
+Package: python3-gramps
 Architecture: all
 Depends:
  gir1.2-gtk-3.0,
  librsvg2-2,
  python3-gi,
  python3-gi-cairo,
+ python3-bsddb3,
  xdg-utils,
  ${misc:Depends},
  ${python:Depends}
