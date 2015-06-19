@@ -130,15 +130,15 @@ class TestcaseGenerator(tool.BatchTool):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         if uistate:
-            parent_window = uistate.window
+            self.parent_window = uistate.window
         else:
-            parent_window = None
+            self.parent_window = None
         self.person = None
         if dbstate.db.readonly:
             return
 
         tool.BatchTool.__init__(self, dbstate, user, options_class, name,
-                                parent=parent_window)
+                                parent=self.parent_window)
 
         if self.fail:
             return
@@ -284,7 +284,8 @@ class TestcaseGenerator(tool.BatchTool):
             while Gtk.events_pending():
                 Gtk.main_iteration()
         
-        self.progress = ProgressMeter(_('Generating testcases'),'', parent=self.window)
+        self.progress = ProgressMeter(_('Generating testcases'),'',
+                                      parent=self.parent_window)
         self.transaction_count = 0;
         
         if self.options.handler.options_dict['lowlevel']:
