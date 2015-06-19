@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-07 20:07+0200\n"
-"PO-Revision-Date: 2015-06-14 20:01+0100\n"
+"PO-Revision-Date: 2015-06-19 23:37+0100\n"
 "Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -1909,7 +1909,7 @@ msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:404
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality} od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -1929,42 +1929,42 @@ msgstr "and"
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
-"{date_quality}između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
+"{date_quality} između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:462
 msgid "before-date|"
-msgstr "before "
+msgstr "before"
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:467
 msgid "after-date|"
-msgstr "after "
+msgstr "after"
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:472
 msgid "about-date|"
-msgstr "about "
+msgstr "about"
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:477
 msgid "estimated-date|"
-msgstr "estimated "
+msgstr "estimated"
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "calculated-date|"
-msgstr "calculated "
+msgstr "calculated"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"

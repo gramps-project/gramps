@@ -98,6 +98,8 @@ class DateParserHR(DateParser):
         # match 'Day. MONTH year.' format with or without dots
         self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
                                     % self._mon_str, re.IGNORECASE)
+
+
         # match Day.Month.Year.
         self._numeric = re.compile(
                             "((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
@@ -141,7 +143,13 @@ class DateDisplayHR(DateDisplay):
     def dd_dformat04(self, date_val, inflect, long_months):
         """
         day month_name year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
         """
+        print('LONGMONTH: ', long_months)
+
+        _ = self._locale.translation.sgettext
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
@@ -149,11 +157,33 @@ class DateDisplayHR(DateDisplay):
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
-            return "{day:d}. {long_month.f[G]} {year}.".format(
-                     day = date_val[0],
-                     long_month = long_months[date_val[1]],
-                     year = year)
+            # TRANSLATORS: this month is ALREADY inflected: ignore it
+            return _("{day:d} {long_month} {year}").format(
+                       day = date_val[0],
+                       long_month = self.format_long_month(date_val[1],
+                                        inflect, long_months).replace('.', ''),
+                       year = year)
+
+
+    # def dd_dformat04(self, date_val, inflect, long_months):
+    #     """
+    #     day month_name year
+    #     """
+    #     year = self._slash_year(date_val[2], date_val[3])
+    #     if date_val[0] == 0:
+    #         if date_val[1] == 0:
+    #             return year + '.'
+    #         else:
+    #             return self.format_long_month_year(date_val[1], year,
+    #                                                inflect, long_months)
+    #     else:
+    #         return "{day:d} {long_month} {year}".format(
+    #                  day = date_val[0],
+    #                  long_month = long_months[date_val[1]],
+    #                  year = year)
 
 #-------------------------------------------------------------------------
 #
