@@ -1,4 +1,0 @@
-version=3
-
-opts="dversionmangle=s/\+dfsg//g" \
-http://sf.net/gramps/gramps-(.+)\.tar\.gz
