@@ -1116,16 +1116,21 @@ class ValidatableMaskedEntry(MaskedEntry):
         'changed': 'override', 
     }
 
+    if GLib.MINOR_VERSION < 42:
+        __gparam = GObject.PARAM_READWRITE
+    else:
+        __gparam = GObject.ParamFlags.READWRITE
+
     __gproperties__ = {
         'data-type': (GObject.TYPE_PYOBJECT, 
                        'Data Type of the widget', 
                        'Type object', 
-                       GObject.PARAM_READWRITE), 
+                       __gparam), 
         'mandatory': (GObject.TYPE_BOOLEAN, 
                       'Mandatory', 
                       'Mandatory', 
                       False, 
-                      GObject.PARAM_READWRITE), 
+                      __gparam),
     }
                             
     # FIXME put the data type support back

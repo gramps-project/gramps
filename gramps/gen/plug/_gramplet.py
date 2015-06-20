@@ -309,8 +309,12 @@ class Gramplet(object):
             self.interrupt()
         self._generator = self.main()
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater, 
+        if GObject.pygobject_version < (3,16,0):
+            self._idle_id = GLib.idle_add(self._updater, 
                                          priority=GObject.PRIORITY_LOW - 10)
+        else:
+            self._idle_id = GLib.idle_add(self._updater, 
+                                         priority=GLib.PRIORITY_LOW - 10)
 
     def _updater(self):
         """
@@ -364,8 +368,12 @@ class Gramplet(object):
         """
         from gi.repository import GObject, GLib
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater, 
+        if GObject.pygobject_version < (3,16,0):
+            self._idle_id = GLib.idle_add(self._updater, 
                                          priority=GObject.PRIORITY_LOW - 10)
+        else:
+            self._idle_id = GLib.idle_add(self._updater, 
+                                         priority=GLib.PRIORITY_LOW - 10)
 
     def update_all(self, *args):
         """

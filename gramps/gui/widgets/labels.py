@@ -57,7 +57,11 @@ from ..utils import rgb_to_hex
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
+    if Gtk.get_minor_version() < 16:
+        HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
+    else:
+        HAND_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                                 Gdk.CursorType.HAND2)
 
 #-------------------------------------------------------------------------
 #

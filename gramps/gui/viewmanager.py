@@ -358,7 +358,8 @@ class ViewManager(CLIManager):
 
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
-        self.window.set_has_resize_grip(True)
+        if Gtk.get_minor_version() < 14:
+            self.window.set_has_resize_grip(True)
         self.window.set_default_size(width, height)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
