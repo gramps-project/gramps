@@ -107,7 +107,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.tagapply.connect('clicked', self.applyTagClicked)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title,_('Starting'))
+        self.progress = ProgressMeter(self.title,_('Starting'),
+                                      parent=self.window)
 
         # setup the columns
         self.model = Gtk.TreeStore(
@@ -251,7 +252,8 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
             # if more than 1 person is selected, use a progress indicator
             if rows > 1:
-                progress = ProgressMeter(self.title,_('Starting'))
+                progress = ProgressMeter(self.title,_('Starting'),
+                                         parent=self.window)
                 progress.set_pass(
                     # translators: leave all/any {...} untranslated
                     #TRANS: no singular form needed, as rows is always > 1
