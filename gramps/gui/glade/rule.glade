@@ -879,10 +879,13 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
+                        <property name="valign">start</property>
                         <property name="margin_left">12</property>
                         <property name="margin_right">12</property>
                         <property name="label" translatable="yes">No rule selected</property>
                         <property name="wrap">True</property>
+                        <property name="width_chars">40</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -917,6 +920,8 @@
                         <property name="margin_right">12</property>
                         <property name="label" translatable="yes">No description</property>
                         <property name="wrap">True</property>
+                        <property name="width_chars">40</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
