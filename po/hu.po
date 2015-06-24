@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.2.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-16 08:00+0200\n"
-"PO-Revision-Date: 2015-06-17 13:53+0200\n"
+"PO-Revision-Date: 2015-06-23 22:25+0200\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: magyar <>\n"
 "Language: hu\n"
@@ -2161,51 +2161,51 @@ msgstr "december"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:82
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr "jan"
+msgstr "jan."
 
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr "feb"
+msgstr "febr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr "márc"
+msgstr "márc."
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr "ápr"
+msgstr "ápr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections - short month form||May"
-msgstr "máj"
+msgstr "máj."
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr "jún"
+msgstr "jún."
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr "júl"
+msgstr "júl."
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr "aug"
+msgstr "aug."
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr "szept"
+msgstr "szept."
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr "okt"
+msgstr "okt."
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr "nov"
+msgstr "nov."
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr "dec"
+msgstr "dec."
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -9444,7 +9444,7 @@ msgstr "_Alkalmaz"
 #: ../gramps/plugins/drawreport/ancestortree.py:832
 #: ../gramps/plugins/drawreport/descendtree.py:1535
 msgid "Display"
-msgstr "Mutasd"
+msgstr "Megjelenítés"
 
 #: ../gramps/gui/columnorder.py:132
 msgid "Column Name"
@@ -10106,7 +10106,7 @@ msgstr "Családfa adatbázis útvonal"
 
 #: ../gramps/gui/configure.py:1407
 msgid "Automatically load last Family Tree"
-msgstr "Automatikusan töltse be a legutóbbi Családfát"
+msgstr "A legutóbbi Családfa automatikus betöltése"
 
 #: ../gramps/gui/configure.py:1419
 msgid "Select media directory"
