@@ -10,6 +10,7 @@ Build-Depends-Indep:
  python3-all,
  python3-setuptools
 Build-Depends:
+ dh-python,
  debhelper (>= 9.0.0)
 Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
@@ -27,10 +28,11 @@ Depends:
  python3-bsddb3,
  xdg-utils,
  ${misc:Depends},
- ${python:Depends}
+ ${python3:Depends}
 Recommends:
  graphviz,
  libosmgpsmap-1.0-0-dev,
+ gir1.2-osmgpsmap-1.0,
  python3-pyicu
 Suggests:
  fonts-freefont-ttf,
