@@ -23,6 +23,8 @@
 	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="git" name="github"
 	      href="git://github.com/"/>
+  <repository type="tarball" name="github-tarball"
+	      href="https://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
@@ -52,12 +54,22 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
-	    checkoutdir="gramps-git"/>
+	    checkoutdir="gramps-git" tag="maintenance/gramps42"/>
+    <dependencies>
+      <dep package="meta-python2-modules"/>
+      <dep package="meta-python3-modules"/>
+    </dependencies>
+  </distutils>
+
+  <distutils id="gramps" supports-non-srcdir-builds="no">
+    <branch module="gramps-project/gramps/archive/gramps-4.2.0beta1.tar.gz"
+	    repo="github-tarball" version="4.2.0beta1"
+	    checkoutdir="gramps-gramps-4.2.0beta1"/>
     <dependencies>
       <dep package="meta-python2-modules"/>
       <dep package="meta-python3-modules"/>
@@ -178,6 +190,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  <metamodule id="meta-python3-modules">
    <dependencies>
      <dep package="python3"/>
+     <dep package="berkeleydb"/>
      <dep package="pycairo-python3"/>
      <dep package="pygobject3"/>
      <dep package='pyicu'/>
