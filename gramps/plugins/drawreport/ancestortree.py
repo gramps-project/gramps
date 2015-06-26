@@ -3,8 +3,8 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2015  Craig J. Anderson
 # Copyright (C) 2014       Paul Franklin
+# Copyright (C) 2010-2015  Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -943,11 +943,12 @@ class AncestorTreeOptions(MenuReportOptions):
 
         self.__check_blank()
 
-        self.__include_images = BooleanOption(
-                                 _('Include thumbnail images of people'), False)
-        self.__include_images.set_help(
-                                 _("Whether to include thumbnails of people."))
-        menu.add_option(category_name, "includeImages", self.__include_images)
+        # TODO this code is never used and so I conclude it is for future use
+        # self.__include_images = BooleanOption(
+        #                       _('Include thumbnail images of people'), False)
+        # self.__include_images.set_help(
+        #                       _("Whether to include thumbnails of people."))
+        # menu.add_option(category_name, "includeImages", self.__include_images)
 
         #category_name = _("Notes")
 
@@ -1046,13 +1047,12 @@ class AncestorTreeOptions(MenuReportOptions):
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-note-box", graph_style)
 
-        # TODO - Why is this here twice?
-        #graph_style = GraphicsStyle()
-        #graph_style.set_paragraph_style("AC2-Title")
-        #graph_style.set_color((0, 0, 0))
-        #graph_style.set_fill_color((255, 255, 255))
-        #graph_style.set_line_width(0)
-        #default_style.add_draw_style("AC2-Title", graph_style)
+        graph_style = GraphicsStyle()
+        graph_style.set_paragraph_style("AC2-Title")
+        graph_style.set_color((0, 0, 0))
+        graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_line_width(0)
+        default_style.add_draw_style("AC2-Title", graph_style)
 
         graph_style = GraphicsStyle()
         default_style.add_draw_style("AC2-line", graph_style)
