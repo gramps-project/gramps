@@ -3379,7 +3379,7 @@ class PlacePages(BasePage):
                 )
 
                 handle_list = sorted(place_handles,
-                                     key=lambda x: SORT_KEY(self.dbase_.get_place_from_handle(x).title))
+                                     key=lambda x: SORT_KEY(ReportUtils.place_name(self.dbase_, x)))
                 first = True
 
                 # begin table body
