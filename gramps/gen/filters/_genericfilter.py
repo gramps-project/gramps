@@ -96,7 +96,7 @@ class GenericFilter(object):
     def get_invert(self):
         return self.invert
 
-    def get_name(self):
+    def get_name(self, ulocale=glocale):
         return self.name
     
     def set_name(self, name):
