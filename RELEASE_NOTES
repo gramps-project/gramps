@@ -1,36 +1,13 @@
-$Id$
+Major enhancements in Gramps 4.2.0:
 
-UNSTABLE Gramps 4.0.0 Beta2 release.
+* GEP 36: GEPS 036: Extended Alternative Place Name Handling:
+https://gramps-project.org/wiki/index.php?title=GEPS_036:_Extended_Alternative_Place_Name_Handling
 
-This is a technology preview to allow distribution packagers (and plugin
-writers) to update their scripts (and plugins). This release is not
-production ready, so only use it for testing!
+* GEP interactive search: own interactive-search box.
 
-It is recommended that Gramps 4.0.0 be used with python 2.7 since many
-dependent packages do not yet have python 3 versions.  A determined person
-can probably download their sources and build them, however.
-
-The dependencies for Gramps 4.0.0 are _completely_ different than 3.4 due 
-to the switch to GObject introspection, and the removal of autotools. So 
-only install 4.0.0 if you are certain you can obtain the dependencies, 
-see README and INSTALL. 
-
-For linux, in Ubuntu 12.10 you can install 4.0.0, but you will need to 
-compile and install osmgpsmap manually to have the maps working (see 
-http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography ) 
-
-
-Major enhancements in Gramps 4.0.0:
-
-* GEP 8: code reorganization: http://www.gramps-project.org/wiki/index.php?title=GEPS_008:_File_Organization
-
-* GEP 26: Replace make: http://www.gramps-project.org/wiki/index.php?title=GEPS_026:_Replace_%27make%27_for_Gramps_build
-
-* GEP 29: Gtk 3 :http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion
-
-* GEP 31: Python 3 support: http://www.gramps-project.org/wiki/index.php?title=GEPS_031:_Python_3_support
+* Speedup on Tree and Flat Views
 
 More info in the manual 
-http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_What%27s_new%3F
+http://www.gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_What%27s_new%3F
 
 Everybody is invited to update the manual to make it current!
