@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ from gramps.gen.lib import Place, PlaceType
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.place import (RegExpIdOf, HasData, HasTitle,
+from gramps.gen.filters.rules.place import (RegExpIdOf, HasData, IsEnclosedBy,
                                             HasTag, HasNoteRegexp,
                                             MatchesFilter)
 
@@ -61,7 +61,6 @@ class PlaceSidebarFilter(SidebarFilter):
         self.clicked_func = clicked
 
         self.filter_id = widgets.BasicEntry()
-        self.filter_title = widgets.BasicEntry()
         self.filter_name = widgets.BasicEntry()
         self.filter_place = Place()
         self.filter_place.set_type((PlaceType.CUSTOM, ''))
@@ -72,6 +71,7 @@ class PlaceSidebarFilter(SidebarFilter):
             self.filter_place.set_type,
             self.filter_place.get_type)
         self.filter_code = widgets.BasicEntry()
+        self.filter_enclosed = widgets.PlaceEntry(dbstate, uistate, [])
         self.filter_note = widgets.BasicEntry()
         
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
@@ -95,10 +95,10 @@ class PlaceSidebarFilter(SidebarFilter):
         self.tag.add_attribute(cell, 'text', 0)
 
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Title'), self.filter_title)
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_entry(_('Type'), self.ptype)
         self.add_text_entry(_('Code'), self.filter_code)
+        self.add_text_entry(_('Enclosed By'), self.filter_enclosed)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
@@ -106,9 +106,9 @@ class PlaceSidebarFilter(SidebarFilter):
 
     def clear(self, obj):
         self.filter_id.set_text('')
-        self.filter_title.set_text('')
         self.filter_name.set_text('')
         self.filter_code.set_text('')
+        self.filter_enclosed.set_text('')
         self.filter_note.set_text('')
         self.ptype.get_child().set_text('')
         self.tag.set_active(0)
@@ -116,16 +116,16 @@ class PlaceSidebarFilter(SidebarFilter):
 
     def get_filter(self):
         gid = str(self.filter_id.get_text()).strip()
-        title = str(self.filter_title.get_text()).strip()
         name = str(self.filter_name.get_text()).strip()
         ptype = self.filter_place.get_type().xml_str()
         code = str(self.filter_code.get_text()).strip()
+        enclosed = str(self.filter_enclosed.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or name or ptype or code or note or regex
+        empty = not (gid or name or ptype or code or enclosed or note or regex
                      or tag or gen)
         if empty:
             generic_filter = None
@@ -135,8 +135,8 @@ class PlaceSidebarFilter(SidebarFilter):
                 rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
-            if title:
-                rule = HasTitle([title], use_regex=regex)
+            if enclosed:
+                rule = IsEnclosedBy([enclosed])
                 generic_filter.add_rule(rule)
 
             rule = HasData([name, ptype, code], use_regex=regex)
