@@ -83,7 +83,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             name = "%s.svg" % self.root
 
         try:
-            self.f = open(name,"w")
+            self.f = open(name,"w", encoding="utf-8")
         except IOError as msg:
             raise ReportError(_("Could not create %s") % name, msg)
         except:
