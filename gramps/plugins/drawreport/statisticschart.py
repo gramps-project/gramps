@@ -768,7 +768,8 @@ class StatisticsChart(Report):
 
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'), 
-                                  _('Collecting data...'), 0)
+                                  _('Collecting data...'), 
+                                  database.get_number_of_people())
         tables = _Extract.collect_data(self.database, self.filter, menu,
                                        gender, year_from, year_to, 
                                        get_value('no_years'),
