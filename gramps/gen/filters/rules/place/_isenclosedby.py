@@ -51,9 +51,14 @@ class IsEnclosedBy(Rule):
     category    = _('General filters')
 
     def prepare(self, db):
-        self.handle = db.get_place_from_gramps_id(self.list[0]).handle
+        self.handle = None
+        place = db.get_place_from_gramps_id(self.list[0])
+        if place:
+            self.handle = place.handle
 
     def apply(self, db, place):
+        if self.handle is None:
+            return False
         if located_in(db, place.handle, self.handle):
             return True
         return False
