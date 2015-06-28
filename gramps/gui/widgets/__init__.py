@@ -28,6 +28,7 @@ from .expandcollapsearrow import *
 from .labels import *
 from .linkbox import *
 from .photo import *
+from .placeentry import *
 from .monitoredwidgets import *
 from .selectionwidget import SelectionWidget, Region
 from .shortlistcomboentry import *
