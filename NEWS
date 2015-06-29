@@ -1,3 +1,40 @@
+Version 4.2.0,
+* New date and language fields on place name
+* Review on GtkBuilder, fix some Gtk3 warnings and move from deprecated methods
+* Change icons and buttons handling methods
+* Enhanced Place Editor and new Place Name editor
+* New widget: use own interactive-search
+* Ability to import kml data into Geography views
+* Enhancement for removing multiple selected items from Views (action group)
+* Add drag support on more Views, Selectors and Editors
+* Add right-click "Copy all" to ListModel and all QuickTables
+* Review Alternate Place handling and edition
+* New 'Place' configuration keys set by user (settings)
+* New filter rule: is enclosed by
+* Consistency on Privacy option for reports
+* Consistency on "Name-format" options for reports
+* Add DeferredFilter class (a subclass of GenericFilter)
+* New textual Report: Links on Notes
+* Fix alphabetic index and toc bug in books
+* Enhancements on Style Editor
+* Enhancements on End Notes into textual reports
+* Changes on Individuals complete textual report
+* Changes on Ancestors Tree draw report: Include Siblings
+* Add name-format option, and deferred translation on Records report
+* Add deferred translation on Timeline draw report
+* Enable attributes gramplet on Source and Citation Views
+* New place locations gramplet
+* Optimizations around index, Flat and TreeView models
+* Enhanced samples files
+* All importers return now an ImportInfo object
+* Experimental gwplus (geneweb) import file format support
+* Remove experimental HTML renderer view
+* New test scripts
+* New Date handler for Japanese
+* Review on Slovenian and Czech Date Handlers
+* Implement both "traditional" and "simplfied" Chinese (translations and dates)
+* Serbian review
+
 2015-05-01
 Version 4.1.3, "Thou shalt not count to five", a maintenance release.
 * Fix db upgrade failure
