@@ -692,7 +692,7 @@ def report(dbstate, uistate, person, report_class, options_class,
         if response == Gtk.ResponseType.OK:
             dialog.close()
             try:
-                user = User()
+                user = User(uistate=uistate)
                 MyReport = report_class(dialog.db, dialog.options, user)
                 MyReport.doc.init()
                 MyReport.begin_report()
