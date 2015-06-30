@@ -43,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-07 20:07+0200\n"
-"PO-Revision-Date: 2015-06-10 10:17+0100\n"
+"POT-Creation-Date: 2015-06-16 08:00+0200\n"
+"PO-Revision-Date: 2015-06-30 09:09+0200\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "Language: nl\n"
@@ -52,7 +52,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.2\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -3878,7 +3878,7 @@ msgstr "Type:"
 
 # pad
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48 ../gramps/gui/glade/mergemedia.glade:246
-#: ../gramps/gui/glade/mergemedia.glade:262 ../gramps/gui/viewmanager.py:1229
+#: ../gramps/gui/glade/mergemedia.glade:262 ../gramps/gui/viewmanager.py:1231
 msgid "Path:"
 msgstr "Pad:"
 
@@ -4930,7 +4930,7 @@ msgid "Matches places with a citation of a particular value"
 msgstr "Locaties met een citaat van een bepaalde waarde"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:48 ../gramps/gui/glade/editfamily.glade:118
-#: ../gramps/gui/glade/editfamily.glade:372 ../gramps/gui/glade/editplacename.glade:197
+#: ../gramps/gui/glade/editfamily.glade:372 ../gramps/gui/glade/editplacename.glade:183
 #: ../gramps/gui/glade/editplaceref.glade:214 ../gramps/gui/glade/mergeperson.glade:224
 #: ../gramps/gui/glade/mergeperson.glade:240 ../gramps/gui/glade/mergeplace.glade:426
 #: ../gramps/gui/glade/mergeplace.glade:443 ../gramps/plugins/gramplet/soundgen.py:65
@@ -5712,14 +5712,14 @@ msgstr "Levensgebeurtenissen"
 #. show "V Family: ..." and the rest
 #: ../gramps/gen/lib/eventtype.py:145 ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:526
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
-#: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52 ../gramps/gui/editors/editfamily.py:490
+#: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52 ../gramps/gui/editors/editfamily.py:491
 #: ../gramps/gui/editors/editlink.py:80 ../gramps/gui/editors/filtereditor.py:290
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/plugins/export/exportcsv.py:514
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108 ../gramps/plugins/importer/importcsv.py:181
 #: ../gramps/plugins/quickview/all_events.py:80 ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:139 ../gramps/plugins/quickview/filterbyname.py:214
 #: ../gramps/plugins/quickview/quickview.gpr.py:200 ../gramps/plugins/quickview/references.py:86
-#: ../gramps/plugins/view/relview.py:1366 ../gramps/plugins/view/relview.py:1390
+#: ../gramps/plugins/view/relview.py:1367 ../gramps/plugins/view/relview.py:1391
 #: ../gramps/plugins/webreport/narrativeweb.py:3112
 msgid "Family"
 msgstr "Gezin"
@@ -6941,19 +6941,19 @@ msgstr "PostScript / Helvetica"
 msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:68 ../gramps/plugins/view/pedigreeview.py:2027
+#: ../gramps/gen/plug/docgen/graphdoc.py:68 ../gramps/plugins/view/pedigreeview.py:2028
 msgid "Vertical (↓)"
 msgstr "Verticaal (↓)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:69 ../gramps/plugins/view/pedigreeview.py:2028
+#: ../gramps/gen/plug/docgen/graphdoc.py:69 ../gramps/plugins/view/pedigreeview.py:2029
 msgid "Vertical (↑)"
 msgstr "Verticaal (↑)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:70 ../gramps/plugins/view/pedigreeview.py:2029
+#: ../gramps/gen/plug/docgen/graphdoc.py:70 ../gramps/plugins/view/pedigreeview.py:2030
 msgid "Horizontal (→)"
 msgstr "Horizontaal (→)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:71 ../gramps/plugins/view/pedigreeview.py:2030
+#: ../gramps/gen/plug/docgen/graphdoc.py:71 ../gramps/plugins/view/pedigreeview.py:2031
 msgid "Horizontal (←)"
 msgstr "Horizontaal (←)"
 
@@ -8447,7 +8447,7 @@ msgid "Name"
 msgstr "Naam"
 
 # Plaatsnaam
-#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:85
+#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:129
 msgid "Place Name"
 msgstr "Locatienaam"
 
@@ -8623,7 +8623,7 @@ msgid "Drag and drop the columns to change the order"
 msgstr "Versleep de kolommen om de volgorde te veranderen"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1449
-#: ../gramps/gui/plug/_dialogs.py:123 ../gramps/gui/viewmanager.py:1344
+#: ../gramps/gui/plug/_dialogs.py:123 ../gramps/gui/viewmanager.py:1346
 #: ../gramps/plugins/lib/maps/geography.py:938 ../gramps/plugins/lib/maps/geography.py:1177
 msgid "_Apply"
 msgstr "Toepassen"
@@ -8662,7 +8662,7 @@ msgstr "Het naambewerkingsscherm tonen"
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26 ../gramps/gui/glade/rule.glade:992
 #: ../gramps/gui/glade/tipofday.glade:117 ../gramps/gui/glade/updateaddons.glade:26
 #: ../gramps/gui/plug/_windows.py:103 ../gramps/gui/plug/_windows.py:676 ../gramps/gui/plug/_windows.py:732
-#: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:78 ../gramps/gui/viewmanager.py:1225
+#: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:78 ../gramps/gui/viewmanager.py:1227
 #: ../gramps/gui/views/bookmarks.py:236 ../gramps/gui/views/tags.py:418 ../gramps/gui/widgets/grampletbar.py:615
 #: ../gramps/gui/widgets/grampletpane.py:238 ../gramps/plugins/lib/maps/placeselection.py:120
 msgid "_Close"
@@ -8891,7 +8891,7 @@ msgstr "Voorbeeld"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122 ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115 ../gramps/gui/editors/editfamily.py:140
 #: ../gramps/gui/plug/report/_bookdialog.py:692 ../gramps/gui/views/tags.py:410
-#: ../gramps/gui/widgets/fanchart.py:1801 ../gramps/plugins/view/pedigreeview.py:1598
+#: ../gramps/gui/widgets/fanchart.py:1801 ../gramps/plugins/view/pedigreeview.py:1599
 msgid "_Add"
 msgstr "Toevoegen"
 
@@ -8900,7 +8900,7 @@ msgstr "Toevoegen"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:123 ../gramps/gui/editors/displaytabs/nameembedlist.py:130
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116 ../gramps/gui/glade/editlink.glade:223
 #: ../gramps/gui/viewmanager.py:480 ../gramps/gui/views/tags.py:411 ../gramps/gui/widgets/fanchart.py:1606
-#: ../gramps/plugins/view/pedigreeview.py:1639 ../gramps/plugins/view/pedigreeview.py:1883
+#: ../gramps/plugins/view/pedigreeview.py:1640 ../gramps/plugins/view/pedigreeview.py:1884
 msgid "_Edit"
 msgstr "Be_werken"
 
@@ -8909,7 +8909,7 @@ msgstr "Be_werken"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117 ../gramps/gui/editors/editfamily.py:144
 #: ../gramps/gui/plug/report/_bookdialog.py:659 ../gramps/gui/views/bookmarks.py:232
 #: ../gramps/gui/views/listview.py:211 ../gramps/gui/views/tags.py:412
-#: ../gramps/plugins/lib/libpersonview.py:380
+#: ../gramps/plugins/lib/libpersonview.py:382
 msgid "_Remove"
 msgstr "_Verwijderen"
 
@@ -9281,8 +9281,8 @@ msgstr "Selecteer mediamap"
 #: ../gramps/gui/logger/_errorview.py:138 ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/_guioptions.py:1697 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63 ../gramps/gui/plug/report/_reportdialog.py:160
-#: ../gramps/gui/utils.py:170 ../gramps/gui/viewmanager.py:1342 ../gramps/gui/views/listview.py:1002
-#: ../gramps/gui/views/navigationview.py:360 ../gramps/gui/views/tags.py:620
+#: ../gramps/gui/utils.py:170 ../gramps/gui/viewmanager.py:1344 ../gramps/gui/views/listview.py:1005
+#: ../gramps/gui/views/navigationview.py:361 ../gramps/gui/views/tags.py:623
 #: ../gramps/gui/widgets/progressdialog.py:438 ../gramps/plugins/lib/maps/geography.py:937
 #: ../gramps/plugins/lib/maps/geography.py:1175 ../gramps/plugins/tool/check.py:694
 #: ../gramps/plugins/tool/eventcmp.py:395 ../gramps/plugins/tool/populatesources.py:89
@@ -9795,7 +9795,7 @@ msgstr "Het geselecteerde adres naar beneden verschuiven"
 #: ../gramps/gui/glade/editmedia.glade:244 ../gramps/gui/glade/editmedia.glade:254
 #: ../gramps/gui/glade/editmediaref.glade:583 ../gramps/gui/glade/editmediaref.glade:593
 #: ../gramps/gui/glade/editname.glade:572 ../gramps/gui/glade/editname.glade:582
-#: ../gramps/gui/glade/editplacename.glade:146 ../gramps/gui/glade/editplacename.glade:156
+#: ../gramps/gui/glade/editplacename.glade:132 ../gramps/gui/glade/editplacename.glade:142
 #: ../gramps/gui/selectors/selectevent.py:62 ../gramps/plugins/export/exportcsv.py:472
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72 ../gramps/plugins/gramplet/events.py:77
 #: ../gramps/plugins/gramplet/locations.py:87 ../gramps/plugins/gramplet/personresidence.py:49
@@ -9871,7 +9871,7 @@ msgstr "_Kenmerken"
 #: ../gramps/gui/selectors/selectobject.py:71 ../gramps/gui/selectors/selectperson.py:75
 #: ../gramps/gui/selectors/selectplace.py:62 ../gramps/gui/selectors/selectrepository.py:61
 #: ../gramps/gui/selectors/selectsource.py:62 ../gramps/gui/views/bookmarks.py:218
-#: ../gramps/gui/views/navigationview.py:355 ../gramps/plugins/lib/libpersonview.py:99
+#: ../gramps/gui/views/navigationview.py:356 ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/lib/libplaceview.py:85 ../gramps/plugins/tool/eventcmp.py:251
 #: ../gramps/plugins/tool/notrelated.py:124 ../gramps/plugins/tool/patchnames.py:398
 #: ../gramps/plugins/tool/removeunused.py:196 ../gramps/plugins/tool/sortevents.py:56
@@ -9979,11 +9979,11 @@ msgstr "Bronverwijzingen"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:255
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:275
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:267 ../gramps/gui/editors/displaytabs/gallerytab.py:338
-#: ../gramps/plugins/view/citationtreeview.py:429 ../gramps/plugins/view/citationtreeview.py:484
+#: ../gramps/plugins/view/citationtreeview.py:429 ../gramps/plugins/view/citationtreeview.py:485
 msgid "Cannot share this reference"
 msgstr "Kan deze verwijzing niet delen"
 
-#: ../gramps/gui/editors/displaytabs/citationembedlist.py:191 ../gramps/plugins/view/citationtreeview.py:491
+#: ../gramps/gui/editors/displaytabs/citationembedlist.py:191 ../gramps/plugins/view/citationtreeview.py:493
 msgid ""
 "This citation cannot be created at this time. Either the associated Source object is already being edited, or "
 "another citation associated with the same source is being edited.\n"
@@ -10118,7 +10118,7 @@ msgstr "Map openen"
 msgid "Make Active Media"
 msgstr "Maak actieve media"
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:264 ../gramps/gui/editors/editperson.py:961
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:264 ../gramps/gui/editors/editperson.py:962
 #: ../gramps/plugins/textreport/indivcomplete.py:519
 msgid "Non existing media found in the Gallery"
 msgstr "Onbestaande media gevonden in de galerij"
@@ -10472,7 +10472,7 @@ msgid "_Internet"
 msgstr "_Internet"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:118 ../gramps/gui/glade/editurl.glade:201
-#: ../gramps/gui/views/navigationview.py:361
+#: ../gramps/gui/views/navigationview.py:362
 msgid "_Jump to"
 msgstr "Spring naar"
 
@@ -10527,14 +10527,14 @@ msgstr ""
 "te selecteren. Dan kunt u de gegevens invullen over de plaats van de informatie waarnaar de bron verwijst in "
 "het veld \"Volume/pagina\"."
 
-#: ../gramps/gui/editors/editcitation.py:291
+#: ../gramps/gui/editors/editcitation.py:292
 msgid "Cannot save citation. ID already exists."
 msgstr "Kan citaat niet opslaan. ID bestaat reeds."
 
-#: ../gramps/gui/editors/editcitation.py:292 ../gramps/gui/editors/editevent.py:248
-#: ../gramps/gui/editors/editmedia.py:288 ../gramps/gui/editors/editperson.py:847
+#: ../gramps/gui/editors/editcitation.py:293 ../gramps/gui/editors/editevent.py:249
+#: ../gramps/gui/editors/editmedia.py:288 ../gramps/gui/editors/editperson.py:848
 #: ../gramps/gui/editors/editplace.py:284 ../gramps/gui/editors/editreference.py:287
-#: ../gramps/gui/editors/editrepository.py:179 ../gramps/gui/editors/editsource.py:199
+#: ../gramps/gui/editors/editrepository.py:180 ../gramps/gui/editors/editsource.py:200
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used by "
@@ -10544,17 +10544,17 @@ msgstr ""
 "'%(prim_object)s'. Voer een andere ID in of laat het invoerveld leeg zodat de volgende beschikbare ID kan "
 "gebruikt worden."
 
-#: ../gramps/gui/editors/editcitation.py:304
+#: ../gramps/gui/editors/editcitation.py:305
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Citaat (%s) toevoegen"
 
-#: ../gramps/gui/editors/editcitation.py:310
+#: ../gramps/gui/editors/editcitation.py:311
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Citaat (%s) bewerken"
 
-#: ../gramps/gui/editors/editcitation.py:345
+#: ../gramps/gui/editors/editcitation.py:346
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr "Citaat (%s) verwijderen"
@@ -10635,7 +10635,7 @@ msgstr "Nieuwe gebeurtenis"
 msgid "Edit Event"
 msgstr "Gebeurtenis bewerken"
 
-#: ../gramps/gui/editors/editevent.py:237 ../gramps/gui/editors/editevent.py:260
+#: ../gramps/gui/editors/editevent.py:237 ../gramps/gui/editors/editevent.py:261
 msgid "Cannot save event"
 msgstr "Kan gebeurtenis niet opslaan"
 
@@ -10644,26 +10644,26 @@ msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze gebeurtenis. Gelieve gegevens in te voeren of de gebeurtenis te verwijderen."
 
-#: ../gramps/gui/editors/editevent.py:247 ../gramps/gui/editors/editreference.py:276
+#: ../gramps/gui/editors/editevent.py:248 ../gramps/gui/editors/editreference.py:276
 msgid "Cannot save event. ID already exists."
 msgstr "Kan gebeurtenis niet opslaan. ID bestaat reeds."
 
-#: ../gramps/gui/editors/editevent.py:261
+#: ../gramps/gui/editors/editevent.py:262
 msgid "The event type cannot be empty"
 msgstr "Een gebeurtenis type kan niet leeg zijn"
 
-#: ../gramps/gui/editors/editevent.py:266
+#: ../gramps/gui/editors/editevent.py:267
 #, python-format
 msgid "Add Event (%s)"
 msgstr "Gebeurtenis toevoegen (%s)"
 
 # Gebeuren (korter)
-#: ../gramps/gui/editors/editevent.py:272
+#: ../gramps/gui/editors/editevent.py:273
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Gebeurtenis bewerken (%s)"
 
-#: ../gramps/gui/editors/editevent.py:317
+#: ../gramps/gui/editors/editevent.py:318
 #, python-format
 msgid "Delete Event (%s)"
 msgstr "Gebeurtenis verwijderen (%s)"
@@ -10778,7 +10778,7 @@ msgid "Edit relationship"
 msgstr "Verwantschap bewerken"
 
 #: ../gramps/gui/editors/editfamily.py:210 ../gramps/gui/editors/editfamily.py:225
-#: ../gramps/plugins/view/relview.py:1567
+#: ../gramps/plugins/view/relview.py:1568
 msgid "Select Child"
 msgstr "Kind selecteren"
 
@@ -10796,11 +10796,11 @@ msgstr ""
 "voorkomen zijn enkel de knoppen om ouders te selecteren beschikbaar wanneer een nieuw gezin wordt aangemaakt. "
 "De andere invulvelden zullen beschikbaar zijn wanneer u probeert een ouder te kiezen."
 
-#: ../gramps/gui/editors/editfamily.py:453
+#: ../gramps/gui/editors/editfamily.py:454
 msgid "Family has changed"
 msgstr "Gezin werd gewijzigd"
 
-#: ../gramps/gui/editors/editfamily.py:454
+#: ../gramps/gui/editors/editfamily.py:455
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main "
@@ -10814,57 +10814,57 @@ msgstr ""
 "Om zeker te stellen dat de getoonde informatie nog juist is, werden de gegevens nu vernieuwd. Sommige gemaakte "
 "aanpassingen kunnen verloren zijn gegaan."
 
-#: ../gramps/gui/editors/editfamily.py:459 ../gramps/plugins/importer/importcsv.py:181
-#: ../gramps/plugins/view/familyview.py:258
+#: ../gramps/gui/editors/editfamily.py:460 ../gramps/plugins/importer/importcsv.py:181
+#: ../gramps/plugins/view/familyview.py:261
 msgid "family"
 msgstr "gezin"
 
-#: ../gramps/gui/editors/editfamily.py:489 ../gramps/gui/editors/editfamily.py:492
+#: ../gramps/gui/editors/editfamily.py:490 ../gramps/gui/editors/editfamily.py:493
 msgid "New Family"
 msgstr "Nieuw gezin"
 
-#: ../gramps/gui/editors/editfamily.py:496 ../gramps/gui/editors/editfamily.py:1119
+#: ../gramps/gui/editors/editfamily.py:497 ../gramps/gui/editors/editfamily.py:1123
 #: ../gramps/plugins/view/geofamily.py:391
 msgid "Edit Family"
 msgstr "Gezin bewerken"
 
-#: ../gramps/gui/editors/editfamily.py:529
+#: ../gramps/gui/editors/editfamily.py:530
 msgid "Select a person as the mother"
 msgstr "Een persoon als moeder selecteren"
 
-#: ../gramps/gui/editors/editfamily.py:530
+#: ../gramps/gui/editors/editfamily.py:531
 msgid "Add a new person as the mother"
 msgstr "Een nieuwe persoon als moeder toevoegen"
 
-#: ../gramps/gui/editors/editfamily.py:531
+#: ../gramps/gui/editors/editfamily.py:532
 msgid "Remove the person as the mother"
 msgstr "De persoon als moeder verwijderen"
 
-#: ../gramps/gui/editors/editfamily.py:544
+#: ../gramps/gui/editors/editfamily.py:545
 msgid "Select a person as the father"
 msgstr "Een persoon als vader selecteren"
 
-#: ../gramps/gui/editors/editfamily.py:545
+#: ../gramps/gui/editors/editfamily.py:546
 msgid "Add a new person as the father"
 msgstr "Een nieuwe persoon als vader toevoegen"
 
-#: ../gramps/gui/editors/editfamily.py:546
+#: ../gramps/gui/editors/editfamily.py:547
 msgid "Remove the person as the father"
 msgstr "Persoon als vader verwijderen"
 
-#: ../gramps/gui/editors/editfamily.py:825
+#: ../gramps/gui/editors/editfamily.py:826
 msgid "Select Mother"
 msgstr "Moeder selecteren"
 
-#: ../gramps/gui/editors/editfamily.py:870
+#: ../gramps/gui/editors/editfamily.py:871
 msgid "Select Father"
 msgstr "Vader selecteren"
 
-#: ../gramps/gui/editors/editfamily.py:894
+#: ../gramps/gui/editors/editfamily.py:895
 msgid "Duplicate Family"
 msgstr "Dubbel gezin"
 
-#: ../gramps/gui/editors/editfamily.py:895
+#: ../gramps/gui/editors/editfamily.py:896
 msgid ""
 "A family with these parents already exists in the database. If you save, you will create a duplicate family. "
 "It is recommended that you cancel the editing of this window, and select the existing family"
@@ -10873,44 +10873,44 @@ msgstr ""
 "duplicaatgezin worden aangemaakt. Het is aangeraden dat u deze aanpassing stopt in dit venster en een bestaand "
 "gezin kiest"
 
-#: ../gramps/gui/editors/editfamily.py:943 ../gramps/plugins/view/relview.py:567
+#: ../gramps/gui/editors/editfamily.py:944 ../gramps/plugins/view/relview.py:567
 #: ../gramps/plugins/view/relview.py:989 ../gramps/plugins/view/relview.py:1046
 #: ../gramps/plugins/view/relview.py:1170 ../gramps/plugins/view/relview.py:1276
 #, python-format
 msgid "Edit %s"
 msgstr "Bewerken van %s"
 
-#: ../gramps/gui/editors/editfamily.py:1051
+#: ../gramps/gui/editors/editfamily.py:1052
 msgid "A father cannot be his own child"
 msgstr "Een vader kan niet zijn eigen kind zijn"
 
-#: ../gramps/gui/editors/editfamily.py:1052
+#: ../gramps/gui/editors/editfamily.py:1053
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s is zowel vader als kind van dit gezin."
 
-#: ../gramps/gui/editors/editfamily.py:1061
+#: ../gramps/gui/editors/editfamily.py:1063
 msgid "A mother cannot be her own child"
 msgstr "Een moeder kan niet haar eigen kind zijn"
 
-#: ../gramps/gui/editors/editfamily.py:1062
+#: ../gramps/gui/editors/editfamily.py:1064
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s is zowel moeder als kind van dit gezin."
 
-#: ../gramps/gui/editors/editfamily.py:1069
+#: ../gramps/gui/editors/editfamily.py:1072
 msgid "Cannot save family"
 msgstr "Kan gezin niet opslaan"
 
-#: ../gramps/gui/editors/editfamily.py:1070
+#: ../gramps/gui/editors/editfamily.py:1073
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Er bestaan geen gegevens voor dit gezin. Voer gegevens in of verwerp de aanpassingen."
 
-#: ../gramps/gui/editors/editfamily.py:1077
+#: ../gramps/gui/editors/editfamily.py:1081
 msgid "Cannot save family. ID already exists."
 msgstr "Kan gezin niet opslaan. ID bestaat reeds."
 
-#: ../gramps/gui/editors/editfamily.py:1078 ../gramps/gui/editors/editnote.py:311
+#: ../gramps/gui/editors/editfamily.py:1082 ../gramps/gui/editors/editnote.py:312
 #: ../gramps/gui/editors/editreference.py:294
 #, python-format
 msgid ""
@@ -10920,7 +10920,7 @@ msgstr ""
 "U probeerde de waarde van een bestaande Gramps-ID met waarde in %(id)s te gebruiken. Deze waarde is al in "
 "gebruik. Geef een andere ID op of laat het invoerveld leeg zodat de volgende bruikbare ID kan gebruikt worden."
 
-#: ../gramps/gui/editors/editfamily.py:1093
+#: ../gramps/gui/editors/editfamily.py:1097
 msgid "Add Family"
 msgstr "Gezin toevoegen"
 
@@ -11067,11 +11067,11 @@ msgstr "Toch doorgaan"
 msgid "Return to Name Editor"
 msgstr "Naar naamaanpasscherm teruggaan"
 
-#: ../gramps/gui/editors/editname.py:410
+#: ../gramps/gui/editors/editname.py:411
 msgid "Group all people with the same name?"
 msgstr "Alle personen met dezelfde naam groeperen?"
 
-#: ../gramps/gui/editors/editname.py:411
+#: ../gramps/gui/editors/editname.py:412
 #, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or "
@@ -11080,11 +11080,11 @@ msgstr ""
 "U hebt de keuze om alle personen met naam %(surname)s te groeperen met de naam %(group_name)s, of deze "
 "specifieke naam op te slaan."
 
-#: ../gramps/gui/editors/editname.py:416
+#: ../gramps/gui/editors/editname.py:417
 msgid "Group all"
 msgstr "Alles groeperen"
 
-#: ../gramps/gui/editors/editname.py:417
+#: ../gramps/gui/editors/editname.py:418
 msgid "Group this name only"
 msgstr "Alleen deze naam groeperen"
 
@@ -11112,7 +11112,7 @@ msgid "_Note"
 msgstr "_Opmerking"
 
 # Bronnen vermelden/citeren
-#: ../gramps/gui/editors/editnote.py:283 ../gramps/gui/editors/editnote.py:328
+#: ../gramps/gui/editors/editnote.py:283 ../gramps/gui/editors/editnote.py:329
 #: ../gramps/gui/editors/objectentries.py:436
 msgid "Edit Note"
 msgstr "Opmerking bewerken"
@@ -11126,15 +11126,15 @@ msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze opmerking. Gelieve gegevens in te voeren of de aanpassingen te verwijderen."
 
-#: ../gramps/gui/editors/editnote.py:310
+#: ../gramps/gui/editors/editnote.py:311
 msgid "Cannot save note. ID already exists."
 msgstr "Kan opmerking niet opslaan. ID bestaat reeds."
 
-#: ../gramps/gui/editors/editnote.py:323
+#: ../gramps/gui/editors/editnote.py:324
 msgid "Add Note"
 msgstr "Opmerking toevoegen"
 
-#: ../gramps/gui/editors/editnote.py:343
+#: ../gramps/gui/editors/editnote.py:344
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Opmerking (%s) verwijderen"
@@ -11205,37 +11205,37 @@ msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze persoon. Gelieve gegevens in te voeren of de gebeurtenis te verwijderen."
 
-#: ../gramps/gui/editors/editperson.py:846
+#: ../gramps/gui/editors/editperson.py:847
 msgid "Cannot save person. ID already exists."
 msgstr "Kan persoon niet opslaan. ID bestaat reeds."
 
-#: ../gramps/gui/editors/editperson.py:864
+#: ../gramps/gui/editors/editperson.py:865
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Persoon (%s) toevoegen"
 
-#: ../gramps/gui/editors/editperson.py:870
+#: ../gramps/gui/editors/editperson.py:871
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Persoon (%s) bewerken"
 
-#: ../gramps/gui/editors/editperson.py:1097
+#: ../gramps/gui/editors/editperson.py:1098
 msgid "Unknown gender specified"
 msgstr "Onbekend geslacht opgegeven"
 
-#: ../gramps/gui/editors/editperson.py:1099
+#: ../gramps/gui/editors/editperson.py:1100
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
 msgstr "Het geslacht van de persoon is momenteel onbekend. Dit is meestal een vergissing. Geef geslacht op."
 
-#: ../gramps/gui/editors/editperson.py:1102
+#: ../gramps/gui/editors/editperson.py:1103
 msgid "_Male"
 msgstr "Man"
 
-#: ../gramps/gui/editors/editperson.py:1103
+#: ../gramps/gui/editors/editperson.py:1104
 msgid "_Female"
 msgstr "Vrouw"
 
-#: ../gramps/gui/editors/editperson.py:1104
+#: ../gramps/gui/editors/editperson.py:1105
 msgid "_Unknown"
 msgstr "Onbekend"
 
@@ -11319,15 +11319,19 @@ msgstr "Locatie (%s) bewerken"
 msgid "Delete Place (%s)"
 msgstr "Locatie (%s) verwijderen"
 
-#: ../gramps/gui/editors/editplacename.py:60 ../gramps/gui/editors/editplacename.py:85
+#: ../gramps/gui/editors/editplacename.py:97 ../gramps/gui/editors/editplacename.py:129
 msgid "Place Name Editor"
 msgstr "Locatie-aanpassingscherm"
 
-#: ../gramps/gui/editors/editplacename.py:89
+#: ../gramps/gui/editors/editplacename.py:121
+msgid "Invalid ISO code"
+msgstr "Ongeldige ISO-code"
+
+#: ../gramps/gui/editors/editplacename.py:133
 msgid "Cannot save place name"
 msgstr "Kan locatienaam niet opslaan"
 
-#: ../gramps/gui/editors/editplacename.py:90
+#: ../gramps/gui/editors/editplacename.py:134
 msgid "The place name cannot be empty"
 msgstr "De locatinaam kan niet leeg zijn"
 
@@ -11353,7 +11357,7 @@ msgstr "Wijzigingen opslaan?"
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Als u sluit zonder opslaan, zullen de wijzigingen die u heeft gemaakt verloren gaan"
 
-#: ../gramps/gui/editors/editreference.py:282 ../gramps/gui/editors/editrepository.py:178
+#: ../gramps/gui/editors/editreference.py:282 ../gramps/gui/editors/editrepository.py:179
 msgid "Cannot save repository. ID already exists."
 msgstr "Kan bibliotheek niet opslaan. ID bestaat reeds."
 
@@ -11399,17 +11403,17 @@ msgstr "Kan bibliotheek niet opslaan"
 msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr "Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het bewerken."
 
-#: ../gramps/gui/editors/editrepository.py:191
+#: ../gramps/gui/editors/editrepository.py:192
 #, python-format
 msgid "Add Repository (%s)"
 msgstr "Bibliotheek (%s) toevoegen"
 
-#: ../gramps/gui/editors/editrepository.py:196
+#: ../gramps/gui/editors/editrepository.py:197
 #, python-format
 msgid "Edit Repository (%s)"
 msgstr "Bibliotheek (%s) bewerken"
 
-#: ../gramps/gui/editors/editrepository.py:209
+#: ../gramps/gui/editors/editrepository.py:210
 #, python-format
 msgid "Delete Repository (%s)"
 msgstr "Bibliotheek (%s) verwijderen"
@@ -11431,23 +11435,23 @@ msgstr "Kan bronnen niet opslaan"
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "Er bestaan geen gegevens voor deze bron. Gelieve gegevens in te voeren of de aanpassing teniet te doen."
 
-#: ../gramps/gui/editors/editsource.py:198
+#: ../gramps/gui/editors/editsource.py:199
 msgid "Cannot save source. ID already exists."
 msgstr "Kan bron niet opslaan. ID bestaat reeds."
 
 # Bronnen vermelden/citeren
-#: ../gramps/gui/editors/editsource.py:211
+#: ../gramps/gui/editors/editsource.py:212
 #, python-format
 msgid "Add Source (%s)"
 msgstr "Bron (%s) toevoegen"
 
 # Bronnen vermelden/citeren
-#: ../gramps/gui/editors/editsource.py:216
+#: ../gramps/gui/editors/editsource.py:217
 #, python-format
 msgid "Edit Source (%s)"
 msgstr "Bron (%s) bewerken"
 
-#: ../gramps/gui/editors/editsource.py:231
+#: ../gramps/gui/editors/editsource.py:232
 #, python-format
 msgid "Delete Source (%s)"
 msgstr "Bron (%s) verwijderen"
@@ -11462,7 +11466,7 @@ msgstr "Tagselectie"
 
 #. pylint: disable-msg=E1101
 #: ../gramps/gui/editors/edittaglist.py:100 ../gramps/gui/views/bookmarks.py:205 ../gramps/gui/views/tags.py:381
-#: ../gramps/gui/views/tags.py:597 ../gramps/gui/views/tags.py:613
+#: ../gramps/gui/views/tags.py:600 ../gramps/gui/views/tags.py:616
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
@@ -11537,7 +11541,7 @@ msgstr "_Hulp"
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336 ../gramps/gui/glade/rule.glade:767
 #: ../gramps/gui/glade/styleeditor.glade:103 ../gramps/gui/glade/styleeditor.glade:1743
 #: ../gramps/gui/plug/_guioptions.py:79 ../gramps/gui/plug/report/_reportdialog.py:164
-#: ../gramps/gui/utils.py:184 ../gramps/gui/viewmanager.py:1223 ../gramps/gui/views/tags.py:619
+#: ../gramps/gui/utils.py:184 ../gramps/gui/viewmanager.py:1225 ../gramps/gui/views/tags.py:622
 #: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:90 ../gramps/plugins/tool/testcasegenerator.py:246
 msgid "_OK"
@@ -11861,8 +11865,8 @@ msgstr "%s is niet"
 msgid "%s does not contain"
 msgstr "%s bevat niet"
 
-#: ../gramps/gui/filters/_searchbar.py:165 ../gramps/gui/views/listview.py:1141
-#: ../gramps/gui/views/listview.py:1161
+#: ../gramps/gui/filters/_searchbar.py:165 ../gramps/gui/views/listview.py:1144
+#: ../gramps/gui/views/listview.py:1164
 msgid "Updating display..."
 msgstr "Weergave bijwerken..."
 
@@ -12077,7 +12081,7 @@ msgid "_New"
 msgstr "Nieuw"
 
 #: ../gramps/gui/glade/dbman.glade:237 ../gramps/gui/widgets/fanchart.py:1642
-#: ../gramps/plugins/view/pedigreeview.py:1647 ../gramps/plugins/view/pedigreeview.py:1891
+#: ../gramps/plugins/view/pedigreeview.py:1648 ../gramps/plugins/view/pedigreeview.py:1892
 msgid "_Copy"
 msgstr "Kopieer"
 
@@ -12172,7 +12176,7 @@ msgstr "Sluiten _zonder opslaan"
 
 #. widget
 #: ../gramps/gui/glade/dialog.glade:856 ../gramps/gui/plug/report/_bookdialog.py:662
-#: ../gramps/gui/views/listview.py:1003 ../gramps/gui/widgets/grampletpane.py:575
+#: ../gramps/gui/views/listview.py:1006 ../gramps/gui/widgets/grampletpane.py:575
 #: ../gramps/plugins/tool/eventcmp.py:397
 msgid "_Save"
 msgstr "Opslaan"
@@ -12273,7 +12277,7 @@ msgstr "Privacy"
 #: ../gramps/gui/glade/editevent.glade:127 ../gramps/gui/glade/editeventref.glade:369
 #: ../gramps/gui/glade/editldsord.glade:148 ../gramps/gui/glade/editmedia.glade:235
 #: ../gramps/gui/glade/editmediaref.glade:574 ../gramps/gui/glade/editname.glade:563
-#: ../gramps/gui/glade/editplacename.glade:137
+#: ../gramps/gui/glade/editplacename.glade:123
 msgid "Invoke date editor"
 msgstr "Datum bewerken"
 
@@ -13112,17 +13116,21 @@ msgstr "Het scherm om de plaatsnaam aan te passen tonen."
 msgid "Language:"
 msgstr "Taal:"
 
-#: ../gramps/gui/glade/editplacename.glade:122
-msgid "Language in which the name is written."
-msgstr "Taal waarin de naam geschreven is."
-
-#: ../gramps/gui/glade/editplacename.glade:170
+#: ../gramps/gui/glade/editplacename.glade:156
 msgid "Date range in which the name is valid."
 msgstr "Datumbereik waarin dit een geldige naam was."
 
-#: ../gramps/gui/glade/editplacename.glade:183
+#: ../gramps/gui/glade/editplacename.glade:169
 msgid "The name of the place."
 msgstr "De locatienaam."
+
+#: ../gramps/gui/glade/editplacename.glade:196
+msgid ""
+"Language in which the name is written. Valid values are two character ISO codes. For example:  en, fr, de, "
+"nl ..."
+msgstr ""
+"Taal waarin de naam wordt geschreven. Geldige waarden zijn uit twee tekens bestaande ISO-codes. Bijvoorbeeld: "
+"en, fr, de, nl ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:280
 msgid ""
@@ -13433,7 +13441,7 @@ msgid "Note 2"
 msgstr "Opmerking 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279 ../gramps/gui/glade/mergenote.glade:295
-#: ../gramps/gui/views/listview.py:1007
+#: ../gramps/gui/views/listview.py:1010
 msgid "Format:"
 msgstr "Formaat:"
 
@@ -13721,7 +13729,7 @@ msgstr "_Zwitsers (Arial, Helvetica, sans-serif)"
 msgid "Size"
 msgstr "Grootte"
 
-#: ../gramps/gui/glade/styleeditor.glade:369 ../gramps/gui/plug/report/_styleeditor.py:228
+#: ../gramps/gui/glade/styleeditor.glade:369 ../gramps/gui/plug/report/_styleeditor.py:229
 msgid "point size|pt"
 msgstr "pt"
 
@@ -13916,7 +13924,7 @@ msgstr "Geselecteerde stijl verwijderen"
 msgid "_Display on startup"
 msgstr "_Tonen bij opstarten"
 
-#: ../gramps/gui/glade/tipofday.glade:102 ../gramps/gui/views/navigationview.py:291
+#: ../gramps/gui/glade/tipofday.glade:102 ../gramps/gui/views/navigationview.py:292
 msgid "_Forward"
 msgstr "Vooruit"
 
@@ -14275,7 +14283,7 @@ msgid "Merge Families"
 msgstr "Gezinnen samenvoegen"
 
 #: ../gramps/gui/merge/mergefamily.py:222 ../gramps/gui/merge/mergeperson.py:329
-#: ../gramps/plugins/lib/libpersonview.py:417
+#: ../gramps/plugins/lib/libpersonview.py:419
 msgid "Cannot merge people"
 msgstr "Kan personen niet samenvoegen"
 
@@ -14322,7 +14330,7 @@ msgstr "Gebeurtenissen"
 #. don't show rest
 #: ../gramps/gui/merge/mergeperson.py:216 ../gramps/gui/widgets/fanchart.py:1768
 #: ../gramps/plugins/quickview/all_relations.py:305 ../gramps/plugins/tool/notrelated.py:125
-#: ../gramps/plugins/view/pedigreeview.py:1780 ../gramps/plugins/view/relview.py:525
+#: ../gramps/plugins/view/pedigreeview.py:1781 ../gramps/plugins/view/relview.py:525
 #: ../gramps/plugins/view/relview.py:849 ../gramps/plugins/view/relview.py:885
 #: ../gramps/plugins/webreport/narrativeweb.py:379 ../gramps/plugins/webreport/narrativeweb.py:2912
 #: ../gramps/plugins/webreport/narrativeweb.py:5250 ../gramps/plugins/webreport/narrativeweb.py:6429
@@ -14339,14 +14347,14 @@ msgstr "Geen ouders gevonden"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:227 ../gramps/gui/widgets/fanchart.py:1654
-#: ../gramps/plugins/textreport/kinshipreport.py:124 ../gramps/plugins/view/pedigreeview.py:1660
+#: ../gramps/plugins/textreport/kinshipreport.py:124 ../gramps/plugins/view/pedigreeview.py:1661
 msgid "Spouses"
 msgstr "Echtgenoten"
 
 #: ../gramps/gui/merge/mergeperson.py:237 ../gramps/gui/selectors/selectperson.py:81
 #: ../gramps/gui/widgets/reorderfam.py:89 ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:105 ../gramps/plugins/textreport/familygroup.py:531
-#: ../gramps/plugins/view/relview.py:1393
+#: ../gramps/plugins/view/relview.py:1394
 msgid "Spouse"
 msgstr "Echtgenoot"
 
@@ -14953,7 +14961,7 @@ msgstr "Web Connect"
 #: ../gramps/gui/plug/quick/_quickreports.py:139 ../gramps/gui/plug/quick/_textbufdoc.py:75
 #: ../gramps/gui/plug/quick/_textbufdoc.py:155 ../gramps/gui/plug/quick/_textbufdoc.py:157
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:196 ../gramps/plugins/gramplet/gramplet.gpr.py:203
-#: ../gramps/plugins/lib/libpersonview.py:371 ../gramps/plugins/lib/libplaceview.py:152
+#: ../gramps/plugins/lib/libpersonview.py:373 ../gramps/plugins/lib/libplaceview.py:152
 #: ../gramps/plugins/view/citationlistview.py:182 ../gramps/plugins/view/citationtreeview.py:290
 #: ../gramps/plugins/view/eventview.py:214 ../gramps/plugins/view/familyview.py:209
 #: ../gramps/plugins/view/mediaview.py:219 ../gramps/plugins/view/noteview.py:201
@@ -15145,7 +15153,7 @@ msgstr "Instellingen"
 
 #. Styles Frame
 #: ../gramps/gui/plug/report/_reportdialog.py:320 ../gramps/gui/plug/report/_styleeditor.py:101
-#: ../gramps/gui/plug/report/_styleeditor.py:230
+#: ../gramps/gui/plug/report/_styleeditor.py:231
 msgid "Style"
 msgstr "Stijl"
 
@@ -15259,8 +15267,8 @@ msgid "Report could not be created"
 msgstr "Verslag kon niet worden aangemaakt"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:66 ../gramps/gui/plug/report/_stylecombobox.py:85
-#: ../gramps/gui/plug/report/_styleeditor.py:115 ../gramps/gui/plug/report/_styleeditor.py:157
-#: ../gramps/gui/plug/report/_styleeditor.py:168 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:115 ../gramps/gui/plug/report/_styleeditor.py:158
+#: ../gramps/gui/plug/report/_styleeditor.py:169 gtklist.h:1
 msgid "default"
 msgstr "standaard"
 
@@ -15276,16 +15284,16 @@ msgstr "Nieuwe stijl"
 msgid "Error saving stylesheet"
 msgstr "Fout bij opslaan van het stijlblad"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:227
+#: ../gramps/gui/plug/report/_styleeditor.py:228
 msgid "Style editor"
 msgstr "Stijl bewerken"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:305 ../gramps/gui/plug/report/_styleeditor.py:326
-#: ../gramps/gui/plug/report/_styleeditor.py:342 ../gramps/gui/plug/report/_styleeditor.py:375
+#: ../gramps/gui/plug/report/_styleeditor.py:306 ../gramps/gui/plug/report/_styleeditor.py:327
+#: ../gramps/gui/plug/report/_styleeditor.py:343 ../gramps/gui/plug/report/_styleeditor.py:376
 msgid "No description available"
 msgstr "Geen beschrijving beschikbaar"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:352
+#: ../gramps/gui/plug/report/_styleeditor.py:353
 #, python-format
 msgid "Column %d:"
 msgstr "Kolom %d:"
@@ -15423,11 +15431,11 @@ msgstr ""
 msgid "Undo History"
 msgstr "Bewerkingsgeschiedenis"
 
-#: ../gramps/gui/undohistory.py:72 ../gramps/gui/viewmanager.py:576 ../gramps/gui/viewmanager.py:1167
+#: ../gramps/gui/undohistory.py:72 ../gramps/gui/viewmanager.py:576 ../gramps/gui/viewmanager.py:1169
 msgid "_Undo"
 msgstr "Ongedaan maken"
 
-#: ../gramps/gui/undohistory.py:74 ../gramps/gui/viewmanager.py:581 ../gramps/gui/viewmanager.py:1184
+#: ../gramps/gui/undohistory.py:74 ../gramps/gui/viewmanager.py:581 ../gramps/gui/viewmanager.py:1186
 msgid "_Redo"
 msgstr "Opnieuw"
 
@@ -15705,38 +15713,38 @@ msgstr ""
 msgid "Abort changes"
 msgstr "Wijzigingen annuleren"
 
-#: ../gramps/gui/viewmanager.py:791
+#: ../gramps/gui/viewmanager.py:792
 msgid "Cannot abandon session's changes"
 msgstr "Kan deze veranderingen aan deze sessie niet ongedaan maken"
 
-#: ../gramps/gui/viewmanager.py:792
+#: ../gramps/gui/viewmanager.py:793
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr ""
 "Veranderingen kunnen niet volledig ongedaan gemaakt worden omdat het aantal veranderingen van de sessie het "
 "maximum overschrijdt."
 
-#: ../gramps/gui/viewmanager.py:948
+#: ../gramps/gui/viewmanager.py:950
 msgid "View failed to load. Check error output."
 msgstr "Scherm kon niet geladen worden. Best foutboodschap controleren."
 
-#: ../gramps/gui/viewmanager.py:1087
+#: ../gramps/gui/viewmanager.py:1089
 msgid "Import Statistics"
 msgstr "Statistieken importeren"
 
-#: ../gramps/gui/viewmanager.py:1136
+#: ../gramps/gui/viewmanager.py:1138
 msgid "Read Only"
 msgstr "Alleen lezen"
 
-#: ../gramps/gui/viewmanager.py:1219
+#: ../gramps/gui/viewmanager.py:1221
 msgid "Gramps XML Backup"
 msgstr "Gramps XML reservekopie"
 
-#: ../gramps/gui/viewmanager.py:1249 ../gramps/plugins/importer/importgedcom.glade:289
+#: ../gramps/gui/viewmanager.py:1251 ../gramps/plugins/importer/importgedcom.glade:289
 msgid "File:"
 msgstr "Bestand:"
 
-#: ../gramps/gui/viewmanager.py:1281
+#: ../gramps/gui/viewmanager.py:1283
 msgid "Media:"
 msgstr "Media:"
 
@@ -15746,7 +15754,7 @@ msgstr "Media:"
 #. What to include
 #. #########################
 #. ###############################
-#: ../gramps/gui/viewmanager.py:1286 ../gramps/plugins/drawreport/ancestortree.py:938
+#: ../gramps/gui/viewmanager.py:1288 ../gramps/plugins/drawreport/ancestortree.py:938
 #: ../gramps/plugins/drawreport/descendtree.py:1639 ../gramps/plugins/graph/gvfamilylines.py:184
 #: ../gramps/plugins/graph/gvrelgraph.py:595 ../gramps/plugins/textreport/detancestralreport.py:815
 #: ../gramps/plugins/textreport/detdescendantreport.py:977
@@ -15755,54 +15763,54 @@ msgstr "Media:"
 msgid "Include"
 msgstr "Bijvoegen"
 
-#: ../gramps/gui/viewmanager.py:1287 ../gramps/plugins/gramplet/statsgramplet.py:199
+#: ../gramps/gui/viewmanager.py:1289 ../gramps/plugins/gramplet/statsgramplet.py:199
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../gramps/gui/viewmanager.py:1288 ../gramps/plugins/webreport/narrativeweb.py:8199
+#: ../gramps/gui/viewmanager.py:1290 ../gramps/plugins/webreport/narrativeweb.py:8199
 msgid "Exclude"
 msgstr "Niet toevoegen"
 
-#: ../gramps/gui/viewmanager.py:1304
+#: ../gramps/gui/viewmanager.py:1306
 msgid "Backup file already exists! Overwrite?"
 msgstr "Bestand bestaat reeds! Overschrijven?"
 
-#: ../gramps/gui/viewmanager.py:1305
+#: ../gramps/gui/viewmanager.py:1307
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Het bestand '%s' bestaat."
 
-#: ../gramps/gui/viewmanager.py:1306
+#: ../gramps/gui/viewmanager.py:1308
 msgid "Proceed and overwrite"
 msgstr "Verder gaan en overschrijven"
 
-#: ../gramps/gui/viewmanager.py:1307
+#: ../gramps/gui/viewmanager.py:1309
 msgid "Cancel the backup"
 msgstr "Reservekopie annuleren"
 
-#: ../gramps/gui/viewmanager.py:1315
+#: ../gramps/gui/viewmanager.py:1317
 msgid "Making backup..."
 msgstr "Reservekopie wordt aangemaakt..."
 
-#: ../gramps/gui/viewmanager.py:1327
+#: ../gramps/gui/viewmanager.py:1329
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Reservekopie naar '%s' opgeslagen"
 
-#: ../gramps/gui/viewmanager.py:1330
+#: ../gramps/gui/viewmanager.py:1332
 msgid "Backup aborted"
 msgstr "Reservekopie aanmaken werd afgebroken"
 
 # dit is een soort titel in een file-selector
-#: ../gramps/gui/viewmanager.py:1339
+#: ../gramps/gui/viewmanager.py:1341
 msgid "Select backup directory"
 msgstr "Een map voor de reservekopie selecteren"
 
-#: ../gramps/gui/viewmanager.py:1598
+#: ../gramps/gui/viewmanager.py:1600
 msgid "Failed Loading Plugin"
 msgstr "Laden van de uitbreiding mislukte"
 
-#: ../gramps/gui/viewmanager.py:1599
+#: ../gramps/gui/viewmanager.py:1601
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -15825,11 +15833,11 @@ msgstr ""
 "Wanneer u niet wilt dat Gramps deze plugin opnieuw probeert in te laden, kunt u deze in het "
 "uitbreidingenbeheer in het menu Help verbergen."
 
-#: ../gramps/gui/viewmanager.py:1654
+#: ../gramps/gui/viewmanager.py:1657
 msgid "Failed Loading View"
 msgstr "Scherm kon niet geladen worden"
 
-#: ../gramps/gui/viewmanager.py:1655
+#: ../gramps/gui/viewmanager.py:1658
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -15857,7 +15865,7 @@ msgid "manual|Bookmarks"
 msgstr "Bladwijzers"
 
 #: ../gramps/gui/views/bookmarks.py:205 ../gramps/gui/views/bookmarks.py:212
-#: ../gramps/gui/views/navigationview.py:274
+#: ../gramps/gui/views/navigationview.py:275
 msgid "Organize Bookmarks"
 msgstr "Bladwijzers organiseren"
 
@@ -15865,19 +15873,19 @@ msgstr "Bladwijzers organiseren"
 msgid "Cannot bookmark this reference"
 msgstr "Kan geen bladwijzer van deze verwijzing aanmaken"
 
-#: ../gramps/gui/views/listview.py:209 ../gramps/plugins/lib/libpersonview.py:378
+#: ../gramps/gui/views/listview.py:209 ../gramps/plugins/lib/libpersonview.py:380
 msgid "_Add..."
 msgstr "Toevoegen..."
 
-#: ../gramps/gui/views/listview.py:213 ../gramps/plugins/lib/libpersonview.py:382
+#: ../gramps/gui/views/listview.py:213 ../gramps/plugins/lib/libpersonview.py:384
 msgid "_Merge..."
 msgstr "Samenvoegen..."
 
-#: ../gramps/gui/views/listview.py:215 ../gramps/plugins/lib/libpersonview.py:384
+#: ../gramps/gui/views/listview.py:215 ../gramps/plugins/lib/libpersonview.py:386
 msgid "Export View..."
 msgstr "Exporteer scherm..."
 
-#: ../gramps/gui/views/listview.py:221 ../gramps/plugins/lib/libpersonview.py:369
+#: ../gramps/gui/views/listview.py:221 ../gramps/plugins/lib/libpersonview.py:371
 msgid "action|_Edit..."
 msgstr "Bewerken..."
 
@@ -15895,23 +15903,23 @@ msgstr "Kon geen bladwijzer instellen"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 
-#: ../gramps/gui/views/listview.py:540
+#: ../gramps/gui/views/listview.py:541
 msgid "Multiple Selection Delete"
 msgstr "Meerdere selecties verwijderen"
 
-#: ../gramps/gui/views/listview.py:541
+#: ../gramps/gui/views/listview.py:542
 msgid "More than one item has been selected for deletion. Select the option indicating how to delete the items:"
 msgstr "Er werd méér dan één item geselecteerd om te verwijderen. Kies een optie hoe de items worden verwijderd:"
 
-#: ../gramps/gui/views/listview.py:543
+#: ../gramps/gui/views/listview.py:544
 msgid "Delete All"
 msgstr "Alles verwijderen"
 
-#: ../gramps/gui/views/listview.py:544
+#: ../gramps/gui/views/listview.py:545
 msgid "Confirm Each Delete"
 msgstr "Elke verwijdering bevestigen"
 
-#: ../gramps/gui/views/listview.py:554
+#: ../gramps/gui/views/listview.py:556
 msgid ""
 "This item is currently being used. Deleting it will remove it from the database and from all other items that "
 "reference it."
@@ -15919,37 +15927,37 @@ msgstr ""
 "Dit item is momenteel in gebruik. Als u dit item verwijdert zal het uit het gegevensbestand worden verwijderd "
 "en uit alle items die ernaar verwijzen."
 
-#: ../gramps/gui/views/listview.py:558 ../gramps/plugins/view/familyview.py:265
+#: ../gramps/gui/views/listview.py:560 ../gramps/plugins/view/familyview.py:268
 msgid "Deleting item will remove it from the database."
 msgstr "Verwijderen van het item zal het ook verwijderen uit het gegevensbestand."
 
-#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/lib/libpersonview.py:310
-#: ../gramps/plugins/view/familyview.py:258
+#: ../gramps/gui/views/listview.py:567 ../gramps/plugins/lib/libpersonview.py:312
+#: ../gramps/plugins/view/familyview.py:261
 #, python-format
 msgid "Delete %s?"
 msgstr "%s verwijderen?"
 
-#: ../gramps/gui/views/listview.py:566
+#: ../gramps/gui/views/listview.py:568
 msgid "_Delete Item"
 msgstr "Item verwijderen"
 
-#: ../gramps/gui/views/listview.py:607
+#: ../gramps/gui/views/listview.py:610
 msgid "Column clicked, sorting..."
 msgstr "Kolom aangeklikt, sorteren..."
 
-#: ../gramps/gui/views/listview.py:999
+#: ../gramps/gui/views/listview.py:1002
 msgid "Export View as Spreadsheet"
 msgstr "Scherm als een rekenblad exporteren"
 
-#: ../gramps/gui/views/listview.py:1012
+#: ../gramps/gui/views/listview.py:1015
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1013
+#: ../gramps/gui/views/listview.py:1016
 msgid "OpenDocument Spreadsheet"
 msgstr "OpenDocument-rekenblad"
 
-#: ../gramps/gui/views/listview.py:1209
+#: ../gramps/gui/views/listview.py:1212
 msgid "Columns"
 msgstr "Kolommen"
 
@@ -15963,47 +15971,47 @@ msgstr "Er is een bladwijzer voor %s aangemaakt"
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 
-#: ../gramps/gui/views/navigationview.py:271
+#: ../gramps/gui/views/navigationview.py:272
 msgid "_Add Bookmark"
 msgstr "Bladwijzer toevoegen"
 
-#: ../gramps/gui/views/navigationview.py:274
+#: ../gramps/gui/views/navigationview.py:275
 #, python-format
 msgid "%(title)s..."
 msgstr "%(title)s..."
 
-#: ../gramps/gui/views/navigationview.py:292
+#: ../gramps/gui/views/navigationview.py:293
 msgid "Go to the next object in the history"
 msgstr "Naar het volgende object in de geschiedenis gaan"
 
-#: ../gramps/gui/views/navigationview.py:299
+#: ../gramps/gui/views/navigationview.py:300
 msgid "_Back"
 msgstr "Terug"
 
-#: ../gramps/gui/views/navigationview.py:300
+#: ../gramps/gui/views/navigationview.py:301
 msgid "Go to the previous object in the history"
 msgstr "Naar het vorige object in de geschiedenis gaan"
 
 # Nog geen definieve vertaling gevonden
-#: ../gramps/gui/views/navigationview.py:304 ../gramps/plugins/view/pedigreeview.py:1542
+#: ../gramps/gui/views/navigationview.py:305 ../gramps/plugins/view/pedigreeview.py:1543
 msgid "_Home"
 msgstr "Begin"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
-#: ../gramps/gui/views/navigationview.py:306
+#: ../gramps/gui/views/navigationview.py:307
 msgid "Go to the default person"
 msgstr "Naar de beginpersoon gaan"
 
-#: ../gramps/gui/views/navigationview.py:310
+#: ../gramps/gui/views/navigationview.py:311
 msgid "Set _Home Person"
 msgstr "Be_ginpersoon instellen"
 
-#: ../gramps/gui/views/navigationview.py:335
+#: ../gramps/gui/views/navigationview.py:336
 msgid "No Home Person"
 msgstr "Geen beginpersoon"
 
-#: ../gramps/gui/views/navigationview.py:336
+#: ../gramps/gui/views/navigationview.py:337
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home "
 "Person', then confirm your choice via the menu Edit ->Set Home Person."
@@ -16011,11 +16019,11 @@ msgstr ""
 "U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, selecteer een persoon die u als "
 "'basis' wenst en bevestig uw keuze via het menu Bewerken -> Basispersoon."
 
-#: ../gramps/gui/views/navigationview.py:346 ../gramps/gui/views/navigationview.py:349
+#: ../gramps/gui/views/navigationview.py:347 ../gramps/gui/views/navigationview.py:350
 msgid "Jump to by Gramps ID"
 msgstr "Spring naar en gebruik Gramps ID"
 
-#: ../gramps/gui/views/navigationview.py:373
+#: ../gramps/gui/views/navigationview.py:374
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Fout: %s is geen geldige Gramps ID"
@@ -16091,47 +16099,47 @@ msgstr "Tag '%s' verwijderen?"
 msgid "The tag definition will be removed.  The tag will be also removed from all objects in the database."
 msgstr "De tag-definitie wordt verwijderd en de tag wordt verwijderd voor alle objecten in het gegevensbestand."
 
-#: ../gramps/gui/views/tags.py:516
+#: ../gramps/gui/views/tags.py:518
 msgid "Removing Tags"
 msgstr "Tags verwijderd"
 
-#: ../gramps/gui/views/tags.py:521
+#: ../gramps/gui/views/tags.py:523
 #, python-format
 msgid "Delete Tag (%s)"
 msgstr "Tag (%s) verwijderen"
 
-#: ../gramps/gui/views/tags.py:573
+#: ../gramps/gui/views/tags.py:575
 msgid "Cannot save tag"
 msgstr "Kan tag niet opslaan"
 
-#: ../gramps/gui/views/tags.py:574
+#: ../gramps/gui/views/tags.py:576
 msgid "The tag name cannot be empty"
 msgstr "Een tagnaam kan niet leeg zijn"
 
-#: ../gramps/gui/views/tags.py:578
+#: ../gramps/gui/views/tags.py:581
 #, python-format
 msgid "Add Tag (%s)"
 msgstr "Tag (%s) toevoegen"
 
-#: ../gramps/gui/views/tags.py:584
+#: ../gramps/gui/views/tags.py:587
 #, python-format
 msgid "Edit Tag (%s)"
 msgstr "Tag (%s) bewerken"
 
-#: ../gramps/gui/views/tags.py:594
+#: ../gramps/gui/views/tags.py:597
 #, python-format
 msgid "Tag: %s"
 msgstr "Tag: %s"
 
-#: ../gramps/gui/views/tags.py:596
+#: ../gramps/gui/views/tags.py:599
 msgid "New Tag"
 msgstr "Nieuwe tag"
 
-#: ../gramps/gui/views/tags.py:606
+#: ../gramps/gui/views/tags.py:609
 msgid "Tag Name:"
 msgstr "Tagnaam:"
 
-#: ../gramps/gui/views/tags.py:613
+#: ../gramps/gui/views/tags.py:616
 msgid "Pick a Color"
 msgstr "Kleur kiezen"
 
@@ -16173,8 +16181,8 @@ msgid "Collapse this section"
 msgstr "Deze sectie samenvoegen"
 
 # Mensen
-#: ../gramps/gui/widgets/fanchart.py:1592 ../gramps/plugins/view/pedigreeview.py:1596
-#: ../gramps/plugins/view/pedigreeview.py:1625
+#: ../gramps/gui/widgets/fanchart.py:1592 ../gramps/plugins/view/pedigreeview.py:1597
+#: ../gramps/plugins/view/pedigreeview.py:1626
 msgid "People Menu"
 msgstr "Personen menu"
 
@@ -16188,20 +16196,20 @@ msgstr "Gezinnen herschikken"
 
 #. Go over siblings and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1688 ../gramps/plugins/quickview/quickview.gpr.py:316
-#: ../gramps/plugins/view/pedigreeview.py:1695 ../gramps/plugins/view/relview.py:901
+#: ../gramps/plugins/view/pedigreeview.py:1696 ../gramps/plugins/view/relview.py:901
 msgid "Siblings"
 msgstr "Broers en zussen"
 
 #. Go over children and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1731 ../gramps/plugins/gramplet/gramplet.gpr.py:827
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:841 ../gramps/plugins/textreport/familygroup.py:596
-#: ../gramps/plugins/textreport/indivcomplete.py:588 ../gramps/plugins/view/pedigreeview.py:1740
-#: ../gramps/plugins/view/relview.py:1408 ../gramps/plugins/webreport/narrativeweb.py:745
+#: ../gramps/plugins/textreport/indivcomplete.py:588 ../gramps/plugins/view/pedigreeview.py:1741
+#: ../gramps/plugins/view/relview.py:1409 ../gramps/plugins/webreport/narrativeweb.py:745
 msgid "Children"
 msgstr "Kinderen"
 
 #. Go over parents and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1812 ../gramps/plugins/view/pedigreeview.py:1828
+#: ../gramps/gui/widgets/fanchart.py:1812 ../gramps/plugins/view/pedigreeview.py:1829
 msgid "Related"
 msgstr "Verwant aan"
 
@@ -16213,7 +16221,7 @@ msgstr "Partner aan een persoon toevoegen"
 msgid "Add a person"
 msgstr "Een persoon toevoegen"
 
-#: ../gramps/gui/widgets/fanchart.py:1949 ../gramps/plugins/view/relview.py:1549
+#: ../gramps/gui/widgets/fanchart.py:1949 ../gramps/plugins/view/relview.py:1550
 msgid "Add Child to Family"
 msgstr "Kind aan gezin toevoegen"
 
@@ -24587,25 +24595,25 @@ msgstr "De geselecteerde personen samenvoegen"
 msgid "_Delete Person"
 msgstr "Persoon verwijderen"
 
-#: ../gramps/plugins/lib/libpersonview.py:314
+#: ../gramps/plugins/lib/libpersonview.py:316
 msgid "Deleting the person will remove the person from the database."
 msgstr "Bij het verwijderen van de persoon wordt deze uit het gegevensbestand gehaald."
 
-#: ../gramps/plugins/lib/libpersonview.py:337
+#: ../gramps/plugins/lib/libpersonview.py:339
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Persoon verwijderen (%s)"
 
-#: ../gramps/plugins/lib/libpersonview.py:367 ../gramps/plugins/view/pedigreeview.py:663
+#: ../gramps/plugins/lib/libpersonview.py:369 ../gramps/plugins/view/pedigreeview.py:663
 #: ../gramps/plugins/view/relview.py:421
 msgid "Person Filter Editor"
 msgstr "Aanpassen personenfilter"
 
-#: ../gramps/plugins/lib/libpersonview.py:372
+#: ../gramps/plugins/lib/libpersonview.py:374
 msgid "Web Connection"
 msgstr "Web-verbinding"
 
-#: ../gramps/plugins/lib/libpersonview.py:418
+#: ../gramps/plugins/lib/libpersonview.py:420
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the "
 "control key while clicking on the desired person."
@@ -26270,7 +26278,7 @@ msgstr "Al of niet een nieuwe pagina starten voor de eindopmerkingen."
 #. Content options
 #. Content
 #: ../gramps/plugins/textreport/detancestralreport.py:780
-#: ../gramps/plugins/textreport/detdescendantreport.py:943 ../gramps/plugins/view/relview.py:1714
+#: ../gramps/plugins/textreport/detdescendantreport.py:943 ../gramps/plugins/view/relview.py:1715
 msgid "Content"
 msgstr "Inhoud"
 
@@ -29391,11 +29399,11 @@ msgstr ""
 "Om dit citaat toch aan te passen moet u eerst dit object sluiten."
 
 #: ../gramps/plugins/view/citationlistview.py:311 ../gramps/plugins/view/citationlistview.py:322
-#: ../gramps/plugins/view/citationtreeview.py:514 ../gramps/plugins/view/citationtreeview.py:534
+#: ../gramps/plugins/view/citationtreeview.py:516 ../gramps/plugins/view/citationtreeview.py:536
 msgid "Cannot merge citations."
 msgstr "Kan citaten niet samenvoegen."
 
-#: ../gramps/plugins/view/citationlistview.py:312 ../gramps/plugins/view/citationtreeview.py:515
+#: ../gramps/plugins/view/citationlistview.py:312 ../gramps/plugins/view/citationtreeview.py:517
 msgid ""
 "Exactly two citations must be selected to perform a merge. A second citation can be selected by holding down "
 "the control key while clicking on the desired citation."
@@ -29404,7 +29412,7 @@ msgstr ""
 "worden geselecteerd door op het toetsenbord de 'control-toets' in te drukken en dan de gewenste citaat aan te "
 "klikken."
 
-#: ../gramps/plugins/view/citationlistview.py:323 ../gramps/plugins/view/citationtreeview.py:535
+#: ../gramps/plugins/view/citationlistview.py:323 ../gramps/plugins/view/citationtreeview.py:537
 msgid ""
 "The two selected citations must have the same source to perform a merge. If you want to merge these two "
 "citations, then you must merge the sources first."
@@ -29446,15 +29454,15 @@ msgstr "Alle knopen expanderen"
 msgid "Collapse all Nodes"
 msgstr "Alle knopen inklappen"
 
-#: ../gramps/plugins/view/citationtreeview.py:432
+#: ../gramps/plugins/view/citationtreeview.py:433
 msgid "Cannot add citation."
 msgstr "Kan citaat niet toevoegen."
 
-#: ../gramps/plugins/view/citationtreeview.py:433
+#: ../gramps/plugins/view/citationtreeview.py:434
 msgid "In order to add a citation to an existing source,  you must select a source."
 msgstr "Om een citaat toe te voegen aan een bestaande bron dient u eerst een bron te selecteren."
 
-#: ../gramps/plugins/view/citationtreeview.py:501
+#: ../gramps/plugins/view/citationtreeview.py:503
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or "
 "another citation associated with the same source is being edited.\n"
@@ -29466,11 +29474,11 @@ msgstr ""
 "\n"
 "Om deze bron toch aan te passen moet u het object sluiten."
 
-#: ../gramps/plugins/view/citationtreeview.py:546
+#: ../gramps/plugins/view/citationtreeview.py:548
 msgid "Cannot perform merge."
 msgstr "Kan samenvoegen niet uitvoeren."
 
-#: ../gramps/plugins/view/citationtreeview.py:547
+#: ../gramps/plugins/view/citationtreeview.py:549
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
 msgstr "Beide objecten moeten van het zelfde type zijn. Dus ofwel twee bronnen, ofwel twee citaten."
 
@@ -29548,20 +29556,20 @@ msgstr "Vader de actieve persoon maken"
 msgid "Make Mother Active Person"
 msgstr "Moeder de actieve persoon maken"
 
-#: ../gramps/plugins/view/familyview.py:245
+#: ../gramps/plugins/view/familyview.py:246
 msgid "_Delete Family"
 msgstr "Gezin verwijderen"
 
-#: ../gramps/plugins/view/familyview.py:279
+#: ../gramps/plugins/view/familyview.py:282
 #, python-format
 msgid "Family [%s]"
 msgstr "Gezin [%s]"
 
-#: ../gramps/plugins/view/familyview.py:297
+#: ../gramps/plugins/view/familyview.py:300
 msgid "Cannot merge families."
 msgstr "Kan gezinnen niet samenvoegen."
 
-#: ../gramps/plugins/view/familyview.py:298
+#: ../gramps/plugins/view/familyview.py:301
 msgid ""
 "Exactly two families must be selected to perform a merge. A second family can be selected by holding down the "
 "control key while clicking on the desired family."
@@ -29663,7 +29671,7 @@ msgstr "Grootte proportioneel met aantal afstammelingen"
 #. #        _('Allow radial text'),
 #. #        ??, 'interface.fanview-radialtext')
 #: ../gramps/plugins/view/fanchartdescview.py:329 ../gramps/plugins/view/fanchartview.py:323
-#: ../gramps/plugins/view/pedigreeview.py:2036 ../gramps/plugins/view/relview.py:1697
+#: ../gramps/plugins/view/pedigreeview.py:2037 ../gramps/plugins/view/relview.py:1698
 msgid "Layout"
 msgstr "Layout"
 
@@ -30174,68 +30182,68 @@ msgstr "Spring naar moeder"
 msgid "A person was found to be his/her own ancestor."
 msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 
-#: ../gramps/plugins/view/pedigreeview.py:1540
+#: ../gramps/plugins/view/pedigreeview.py:1541
 msgid "Pre_vious"
 msgstr "Vorige"
 
-#: ../gramps/plugins/view/pedigreeview.py:1541
+#: ../gramps/plugins/view/pedigreeview.py:1542
 msgid "_Next"
 msgstr "Volgende"
 
 #. Mouse scroll direction setting.
-#: ../gramps/plugins/view/pedigreeview.py:1568
+#: ../gramps/plugins/view/pedigreeview.py:1569
 msgid "Mouse scroll direction"
 msgstr "Richting waarin muis scrollt"
 
-#: ../gramps/plugins/view/pedigreeview.py:1572
+#: ../gramps/plugins/view/pedigreeview.py:1573
 msgid "Top <-> Bottom"
 msgstr "Boven <-> Beneden"
 
-#: ../gramps/plugins/view/pedigreeview.py:1580
+#: ../gramps/plugins/view/pedigreeview.py:1581
 msgid "Left <-> Right"
 msgstr "Links <-> Rechts"
 
-#: ../gramps/plugins/view/pedigreeview.py:1817 ../gramps/plugins/view/relview.py:410
+#: ../gramps/plugins/view/pedigreeview.py:1818 ../gramps/plugins/view/relview.py:410
 msgid "Add New Parents..."
 msgstr "Nieuwe ouders toevoegen..."
 
-#: ../gramps/plugins/view/pedigreeview.py:1877
+#: ../gramps/plugins/view/pedigreeview.py:1878
 msgid "Family Menu"
 msgstr "Gezinsmenu"
 
-#: ../gramps/plugins/view/pedigreeview.py:2009
+#: ../gramps/plugins/view/pedigreeview.py:2010
 msgid "Show images"
 msgstr "Afbeeldingen tonen"
 
-#: ../gramps/plugins/view/pedigreeview.py:2012
+#: ../gramps/plugins/view/pedigreeview.py:2013
 msgid "Show marriage data"
 msgstr "Huwelijksgegevens tonen"
 
-#: ../gramps/plugins/view/pedigreeview.py:2015
+#: ../gramps/plugins/view/pedigreeview.py:2016
 msgid "Show unknown people"
 msgstr "Onbekende personen tonen"
 
-#: ../gramps/plugins/view/pedigreeview.py:2018
+#: ../gramps/plugins/view/pedigreeview.py:2019
 msgid "Tree style"
 msgstr "Boomstijl"
 
-#: ../gramps/plugins/view/pedigreeview.py:2020
+#: ../gramps/plugins/view/pedigreeview.py:2021
 msgid "Standard"
 msgstr "Standaard"
 
-#: ../gramps/plugins/view/pedigreeview.py:2021
+#: ../gramps/plugins/view/pedigreeview.py:2022
 msgid "Compact"
 msgstr "Compact"
 
-#: ../gramps/plugins/view/pedigreeview.py:2022
+#: ../gramps/plugins/view/pedigreeview.py:2023
 msgid "Expanded"
 msgstr "Uitgevouwd"
 
-#: ../gramps/plugins/view/pedigreeview.py:2025
+#: ../gramps/plugins/view/pedigreeview.py:2026
 msgid "Tree direction"
 msgstr "Boomrichting"
 
-#: ../gramps/plugins/view/pedigreeview.py:2032
+#: ../gramps/plugins/view/pedigreeview.py:2033
 msgid "Tree size"
 msgstr "Grootte stamboom"
 
@@ -30354,11 +30362,11 @@ msgstr " (1 broer of zus)"
 msgid " (only child)"
 msgstr " (enig kind)"
 
-#: ../gramps/plugins/view/relview.py:943 ../gramps/plugins/view/relview.py:1440
+#: ../gramps/plugins/view/relview.py:943 ../gramps/plugins/view/relview.py:1441
 msgid "Add new child to family"
 msgstr "Nieuw kind aan gezin toevoegen"
 
-#: ../gramps/plugins/view/relview.py:947 ../gramps/plugins/view/relview.py:1444
+#: ../gramps/plugins/view/relview.py:947 ../gramps/plugins/view/relview.py:1445
 msgid "Add existing child to family"
 msgstr "Bestaand kind aan gezin toevoegen"
 
@@ -30401,33 +30409,33 @@ msgid "Please run the Check and Repair Database tool"
 msgstr "Gelieve het gegevensbestand te controleren en repareren"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/view/relview.py:1375 ../gramps/plugins/view/relview.py:1422
+#: ../gramps/plugins/view/relview.py:1376 ../gramps/plugins/view/relview.py:1423
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] " ({number_of} kind)"
 msgstr[1] " ({number_of} kinderen)"
 
-#: ../gramps/plugins/view/relview.py:1379 ../gramps/plugins/view/relview.py:1426
+#: ../gramps/plugins/view/relview.py:1380 ../gramps/plugins/view/relview.py:1427
 msgid " (no children)"
 msgstr " (geen kinderen)"
 
-#: ../gramps/plugins/view/relview.py:1686
+#: ../gramps/plugins/view/relview.py:1687
 msgid "Use shading"
 msgstr "Schaduwen gebruiken"
 
-#: ../gramps/plugins/view/relview.py:1689
+#: ../gramps/plugins/view/relview.py:1690
 msgid "Display edit buttons"
 msgstr "Aanpasknoppen tonen"
 
-#: ../gramps/plugins/view/relview.py:1691
+#: ../gramps/plugins/view/relview.py:1692
 msgid "View links as website links"
 msgstr "Verwijzingen worden als 'website-links' getoond"
 
-#: ../gramps/plugins/view/relview.py:1708
+#: ../gramps/plugins/view/relview.py:1709
 msgid "Show Details"
 msgstr "Details tonen"
 
-#: ../gramps/plugins/view/relview.py:1711
+#: ../gramps/plugins/view/relview.py:1712
 msgid "Show Siblings"
 msgstr "Broers en zussen tonen"
 
@@ -31947,6 +31955,9 @@ msgstr "Minstens één regel moet gelden"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Exact een regel moet gelden"
+
+#~ msgid "Language in which the name is written."
+#~ msgstr "Taal waarin de naam geschreven is."
 
 #~ msgid "Automatic"
 #~ msgstr "Automatisch"
