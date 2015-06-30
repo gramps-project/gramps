@@ -959,7 +959,7 @@ class BookDialog(DocReportDialog):
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        user = User()
+        user = User(uistate=self.uistate)
         self.rptlist = []
         selected_style = StyleSheet()
 
