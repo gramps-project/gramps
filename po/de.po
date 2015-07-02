@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-28 20:11+0200\n"
-"PO-Revision-Date: 2015-06-28 20:48+0200\n"
+"PO-Revision-Date: 2015-07-02 22:54+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -19733,7 +19733,7 @@ msgstr "Diagramme sichern..."
 #: ../gramps/plugins/drawreport/statisticschart.py:906
 #, python-format
 msgid "%s (persons):"
-msgstr "%s (persons):"
+msgstr "%s (Personen):"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:953
 #: ../gramps/plugins/textreport/recordsreport.py:166
