@@ -6,7 +6,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2014 Paul Franklin
+# Copyright (C) 2012-2015 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -763,8 +763,7 @@ class StatisticsChart(Report):
                                          % mapping )
         else:
             span_string = self._("Persons born "
-                                 "%(year_from)04d-%(year_to)04d"
-                                         % mapping )
+                                 "%(year_from)04d-%(year_to)04d") % mapping
 
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'), 
@@ -786,16 +785,12 @@ class StatisticsChart(Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            heading = "%(str1)s -- %(str2)s\n%(str3)s" % {
+            heading = "%(str1)s -- %(str2)s" % {
                         'str1' : self._(table[0]),
-                        'str2' : span_string,
-                        'str3' : filter_name }
-            self.data.append((heading, table[0], table[1], lookup))
+                        'str2' : span_string }
+            self.data.append((heading, filter_name, table[0], table[1], lookup))
             self._user.step_progress()
         self._user.end_progress()
-    #DEBUG
-        #print heading
-        #print table[1]
 
     def index_items(self, data, sort, reverse):
         """creates & stores a sorted index for the items"""
@@ -819,21 +814,21 @@ class StatisticsChart(Report):
         mark = IndexMark(self._('Statistics Charts'), INDEX_TYPE_TOC, 1)
         self._user.begin_progress(_('Statistics Charts'), 
                                   _('Saving charts...'), len(self.data))
-        for data in self.data:
+        for data in sorted(self.data):
             self.doc.start_page()
             if mark:
                 self.doc.draw_text('SC-title', '', 0, 0, mark) # put it in TOC
                 mark = None # crock, but we only want one of them
-            if len(data[2]) < self.bar_items:
-                self.output_piechart(*data[:4])
+            if len(data[3]) < self.bar_items:
+                self.output_piechart(*data[:5])
             else:
-                self.output_barchart(*data[:4])
+                self.output_barchart(*data[:5])
             self.doc.end_page()
             self._user.step_progress()
         self._user.end_progress()
 
 
-    def output_piechart(self, title, typename, data, lookup):
+    def output_piechart(self, title1, title2, typename, data, lookup):
 
         # set layout variables
         middle_w = self.doc.get_usable_width() / 2
@@ -841,11 +836,12 @@ class StatisticsChart(Report):
         middle = min(middle_w,middle_h)
         
         # start output
-        mark = IndexMark(title, INDEX_TYPE_TOC, 2)
-        self.doc.center_text('SC-title', title, middle_w, 0, mark)
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style('SC-Title')
+        mark = IndexMark(title1, INDEX_TYPE_TOC, 2)
+        self.doc.center_text('SC-title', title1, middle_w, 0, mark)
         yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        self.doc.center_text('SC-title', title2, middle_w, yoffset)
         
         # collect data for output
         color = 0
@@ -873,7 +869,7 @@ class StatisticsChart(Report):
         draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
 
-    def output_barchart(self, title, typename, data, lookup):
+    def output_barchart(self, title1, title2, typename, data, lookup):
 
         pt2cm = ReportUtils.pt2cm
         style_sheet = self.doc.get_style_sheet()
@@ -896,11 +892,12 @@ class StatisticsChart(Report):
         maxsize = stopx - margin
 
         # start output
-        mark = IndexMark(title, INDEX_TYPE_TOC, 2)
-        self.doc.center_text('SC-title', title, middle, 0, mark)
         pstyle = style_sheet.get_paragraph_style('SC-Title')
+        mark = IndexMark(title1, INDEX_TYPE_TOC, 2)
+        self.doc.center_text('SC-title', title1, middle, 0, mark)
+        yoffset = pt2cm(pstyle.get_font().get_size())
+        self.doc.center_text('SC-title', title2, middle, yoffset)
         yoffset = 2 * pt2cm(pstyle.get_font().get_size())
-        #print title
 
         # header
         yoffset += (row_h + pad)
@@ -922,7 +919,6 @@ class StatisticsChart(Report):
             # text after bar
             text = "%s (%d)" % (self._(key), data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
-            #print key + ":",
         
         return
 
