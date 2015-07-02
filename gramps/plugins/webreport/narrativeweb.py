@@ -7449,6 +7449,8 @@ class NavWebReport(Report):
 
     def _add_place(self, place_handle, bkref_class, bkref_handle):
         place = self.database.get_place_from_handle(place_handle)
+        if place is None:
+            return
         place_name = _pd.display(self.database, place)
         place_fname = self.build_url_fname(place_handle, "plc",
                                                    False) + self.ext
