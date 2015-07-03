@@ -117,6 +117,8 @@ def _initialize_options(options, dbstate, uistate):
             if not dbase.get_family_from_gramps_id(value):
                 person_handle = uistate.get_active('Person')
                 person = dbase.get_person_from_handle(person_handle)
+                if person is None:
+                    continue
                 family_list = person.get_family_handle_list()
                 if family_list:
                     family_handle = family_list[0]
