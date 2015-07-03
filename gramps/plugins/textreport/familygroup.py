@@ -4,7 +4,8 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013-2014  Paul Franklin
+# Copyright (C) 2013-2015  Paul Franklin
+# Copyright (C) 2015       Gerald Kunzmann <gerald@gkunzmann.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,6 +91,7 @@ class FamilyGroup(Report):
 
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name:get_option_by_name(name).get_value()        
+        self.gramps_ids    = get_value('gramps_ids')
         self.recursive     = get_value('recursive')
         self.missingInfo   = get_value('missinginfo')
         self.generations   = get_value('generations')
@@ -174,6 +176,10 @@ class FamilyGroup(Report):
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 father_name = self._name_display.display(father)
+                if self.gramps_ids:
+                    gid = father.get_gramps_id()
+                    if gid:
+                        father_name += " (%s)" % gid
                 if self.incRelDates:
                     birth_ref = father.get_birth_ref()
                     birth = "  "
@@ -186,11 +192,15 @@ class FamilyGroup(Report):
                         event = self.database.get_event_from_handle(death_ref.ref)
                         death = self._get_date(event.get_date_object())
                     if birth_ref or death_ref:
-                        father_name = "%s (%s - %s)" % (father_name,birth,death)
+                        father_name += " (%s - %s)" % (birth, death)
             mother_handle = family.get_mother_handle() 
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mother_name = self._name_display.display(mother)
+                if self.gramps_ids:
+                    gid = mother.get_gramps_id()
+                    if gid:
+                        mother_name += " (%s)" % gid
                 if self.incRelDates:
                     birth_ref = mother.get_birth_ref()
                     birth = "  "
@@ -203,7 +213,7 @@ class FamilyGroup(Report):
                         event = self.database.get_event_from_handle(death_ref.ref)
                         death = self._get_date(event.get_date_object())
                     if birth_ref or death_ref:
-                        mother_name = "%s (%s - %s)" % (mother_name,birth,death)
+                        mother_name += " (%s - %s)" % (birth, death)
         
         if father_name != "":
             self.doc.start_row()
@@ -283,9 +293,15 @@ class FamilyGroup(Report):
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead',3)
         self.doc.start_paragraph('FGR-ParentName')
-        self.doc.write_text(title + ': ')
         mark = ReportUtils.get_person_mark(self.database,person)
-        self.doc.write_text(name,mark)
+        # translators: needed for French, ignore otherwise
+        self.doc.write_text(self._("%(str1)s: %(str2)s") % {
+                                          'str1' : title,
+                                          'str2' : name }, mark)
+        if self.gramps_ids:
+            gid = person.get_gramps_id()
+            if gid:
+                self.doc.write_text(" (%s)" % gid)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -378,7 +394,11 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
             self.doc.start_paragraph('FGR-ParentName')
-            self.doc.write_text(self._("Marriage:"))
+            header = self._("Marriage")
+            if self.gramps_ids:
+                header += " (%s)" % family.get_gramps_id()
+            # translators: needed for French, ignore otherwise
+            self.doc.write_text(self._("%s:") % header)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -480,6 +500,8 @@ class FamilyGroup(Report):
         self.doc.start_cell('FGR-ChildName',3)
         self.doc.start_paragraph('FGR-ChildText')
         self.doc.write_text(name,mark)
+        if self.gramps_ids:
+            self.doc.write_text(" (%s)" % person.get_gramps_id())
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -536,6 +558,10 @@ class FamilyGroup(Report):
 
                     spouse = self.database.get_person_from_handle(spouse_id)
                     spouse_name = self._name_display.display(spouse)
+                    if self.gramps_ids:
+                        gid = spouse.get_gramps_id()
+                        if gid:
+                            spouse_name += " (%s)" % gid
                     if self.incRelDates:
                         birth = "  "
                         birth_ref = spouse.get_birth_ref()
@@ -548,7 +574,11 @@ class FamilyGroup(Report):
                             event = self.database.get_event_from_handle(death_ref.ref)
                             death = self._get_date(event.get_date_object())
                         if birth_ref or death_ref:
-                            spouse_name = "%s (%s - %s)" % (spouse_name,birth,death)
+                            spouse_name += " (%s - %s)" % (birth, death)
+                    if self.gramps_ids:
+                        fid = family.get_gramps_id()
+                        if fid:
+                            spouse_name += " (%s)" % fid
                     mark = ReportUtils.get_person_mark(self.database,spouse)
                     self.doc.write_text(spouse_name,mark)
                     self.doc.end_paragraph()
@@ -658,6 +688,10 @@ class FamilyGroupOptions(MenuReportOptions):
         ##########################
         add_option = partial(menu.add_option, _("Include"))
         ##########################
+        
+        gramps_ids = BooleanOption(_('Gramps ID'), False)
+        gramps_ids.set_help(_("Whether to include Gramps ID next to names."))
+        add_option("gramps_ids", gramps_ids)
         
         generations = BooleanOption(_("Generation numbers "
                                       "(recursive only)"),True)
