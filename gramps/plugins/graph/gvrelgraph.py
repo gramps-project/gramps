@@ -254,6 +254,8 @@ class RelGraphReport(Report):
             if self.includeimg:
                 self.bUseHtmlOutput = True
             person = self.database.get_person_from_handle(person_handle)
+            if person is None:
+                continue
             p_id = person.get_gramps_id()
             # Output the person's node
             label = self.get_person_label(person)
@@ -272,6 +274,8 @@ class RelGraphReport(Report):
                 family_list = person.get_family_handle_list()
                 for fam_handle in family_list:
                     family = self.database.get_family_from_handle(fam_handle)
+                    if family is None:
+                        continue
                     if fam_handle not in families_done:
                         families_done[fam_handle] = 1
                         self.__add_family(fam_handle)
