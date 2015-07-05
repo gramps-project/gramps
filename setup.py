@@ -429,8 +429,12 @@ SVG_FILES = glob.glob(os.path.join('data', '*.svg'))
 data_files_core.append(('share/icons/gnome/48x48/mimetypes', PNG_FILES))
 data_files_core.append(('share/icons/gnome/scalable/mimetypes', SVG_FILES))
 
+DTD_FILES = glob.glob(os.path.join('data', '*.dtd'))
+RNG_FILES = glob.glob(os.path.join('data', '*.rng'))
 XML_FILES = glob.glob(os.path.join('data', '*.xml'))
 data_files_core.append(('share/gramps', XML_FILES))
+data_files_core.append(('share/gramps', DTD_FILES))
+data_files_core.append(('share/gramps', RNG_FILES))
 
 data_files_gui = []
 IMAGE_FILES = glob.glob(os.path.join('images', '*.*'))
