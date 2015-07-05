@@ -690,7 +690,8 @@ class GrampsParser(UpdateCallback):
             "places": (None, self.stop_places), 
             "placeobj": (self.start_placeobj, self.stop_placeobj), 
             "placeref": (self.start_placeref, self.stop_placeref), 
-            "ptitle": (None, self.stop_ptitle), 
+            "ptitle": (None, self.stop_ptitle),
+            "pname": (self.start_place_name, self.stop_place_name),
             "location": (self.start_location, None), 
             "lds_ord": (self.start_lds_ord, self.stop_lds_ord), 
             "temple": (self.start_temple, None), 
@@ -1701,8 +1702,8 @@ class GrampsParser(UpdateCallback):
     def start_name(self, attrs):
         if self.person:
             self.start_person_name(attrs)
-        else:
-            self.start_place_name(attrs)
+        #else:
+            #self.start_place_name(attrs)
 
     def start_place_name(self, attrs):
         self.place_name = PlaceName()
@@ -2691,8 +2692,8 @@ class GrampsParser(UpdateCallback):
     def stop_name(self, attrs):
         if self.person:
             self.stop_person_name(attrs)
-        else:
-            self.stop_place_name(attrs)
+        #else:
+            #self.stop_place_name(attrs)
 
     def stop_place_name(self, tag):
         self.place_name = None

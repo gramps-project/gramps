@@ -248,7 +248,7 @@ PLACES
 
 <!ELEMENT places (placeobj)*>
 
-<!ELEMENT placeobj (ptitle?, name+, code?, coord?, placeref*, location*,
+<!ELEMENT placeobj (ptitle?, pname+, code?, coord?, placeref*, location*,
                     objref*, url*, noteref*, citationref*, tagref*)>
 <!ATTLIST placeobj
         id        CDATA #IMPLIED
@@ -258,10 +258,9 @@ PLACES
         type      CDATA #REQUIRED
 >
 
+<!ELEMENT pname (daterange|datespan|dateval|datestr)?>
 
-<!ELEMENT name (daterange|datespan|dateval|datestr)?>
-
-<!ATTLIST name
+<!ATTLIST pname
         lang CDATA #IMPLIED
         value CDATA #REQUIRED
 >
