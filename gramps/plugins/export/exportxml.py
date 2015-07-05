@@ -736,7 +736,7 @@ class GrampsXmlWriter(UpdateCallback):
         value = place_name.get_value()
         date = place_name.get_date_object()
         lang = place_name.get_language()
-        self.g.write('%s<name value="%s"' % (sp, self.fix(value)))
+        self.g.write('%s<pname value="%s"' % (sp, self.fix(value)))
         if lang:
             self.g.write(' lang="%s"' % self.fix(lang))
         if date.is_empty():
@@ -744,7 +744,7 @@ class GrampsXmlWriter(UpdateCallback):
         else:
             self.g.write('>\n')
             self.write_date(date, index+1)
-            self.g.write('%s</name>\n' % sp)
+            self.g.write('%s</pname>\n' % sp)
 
     def write_event(self,event,index=1):
         if not event:

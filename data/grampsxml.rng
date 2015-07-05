@@ -481,7 +481,7 @@
     <ref name="primary-object"/>
     <attribute name="type"><text/></attribute>
     <optional><element name="ptitle"><text/></element></optional>
-    <oneOrMore><element name="name">
+    <oneOrMore><element name="pname">
         <ref name="placename-content"/>
     </element></oneOrMore>
     <optional><element name="code"><text/></element></optional>
