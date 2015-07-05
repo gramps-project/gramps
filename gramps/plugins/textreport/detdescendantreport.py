@@ -693,7 +693,7 @@ class DetDescendantReport(Report):
 
         mother_name, father_name = self.__get_mate_names(family)
 
-        first = 1
+        first = True
         for event_ref in family.get_event_ref_list():
             if first:
                 self.doc.start_paragraph('DDR-MoreHeader')
@@ -702,9 +702,9 @@ class DetDescendantReport(Report):
                                 % {'mother_name' : mother_name,
                                    'father_name' : father_name })
                 self.doc.end_paragraph()
-                first = 0
+                first = False
             self.write_event(event_ref)
-            return first
+        return first
 
     def __write_family_attrs(self, family, first):
         """ 
