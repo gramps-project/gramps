@@ -210,16 +210,7 @@
   </define>
 
   <define name="child-rel">
-    <choice>
-      <value>Birth</value>
-      <value>Adopted</value>
-      <value>Stepchild</value>
-      <value>Sponsored</value>
-      <value>Foster</value>
-      <value>None</value>
-      <value>Other</value>
-      <value>Unknown</value>
-    </choice>
+    <text/>
   </define>
 
   <define name="name-content">
@@ -230,13 +221,7 @@
     <optional><attribute name="priv">
         <ref name="priv-content"/>
     </attribute></optional>
-    <optional><attribute name="type"><choice>
-        <value>Unknown</value>
-        <value>Also Known As</value>
-        <value>Birth Name</value>
-        <value>Married Name</value>
-        <value>Other Name</value>
-    </choice></attribute></optional>
+    <optional><attribute name="type"><text/></attribute></optional>
     <optional><attribute name="sort"><text/></attribute></optional>
     <optional><attribute name="display"><text/></attribute></optional>
     <optional><element name="first"><text/></element></optional>
@@ -265,20 +250,7 @@
     <value>1</value>
     <value>0</value>
     </choice></attribute></optional>
-    <optional><attribute name="derivation"><choice>
-    <value>Unknown</value>
-    <value>Inherited</value>
-    <value>Given</value>
-    <value>Taken</value>
-    <value>Patronymic</value>
-    <value>Matronymic</value>
-    <value>Feudal</value>
-    <value>Pseudonym</value>
-    <value>Patrilineal</value>
-    <value>Matrilineal</value>
-    <value>Occupation</value>
-    <value>Location</value>
-    </choice></attribute></optional>
+    <optional><attribute name="derivation"><text/></attribute></optional>
     <optional><attribute name="connector"><text/></attribute></optional>
   </define>
 
