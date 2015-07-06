@@ -1702,6 +1702,8 @@ class GrampsParser(UpdateCallback):
     def start_name(self, attrs):
         if self.person:
             self.start_person_name(attrs)
+        if self.placeobj: # XML 1.7.0
+            self.start_place_name(attrs)
 
     def start_place_name(self, attrs):
         self.place_name = PlaceName()
@@ -2690,6 +2692,8 @@ class GrampsParser(UpdateCallback):
     def stop_name(self, attrs):
         if self.person:
             self.stop_person_name(attrs)
+        if self.placeobj: # XML 1.7.0
+            self.stop_place_name(attrs)
 
     def stop_place_name(self, tag):
         self.place_name = None
