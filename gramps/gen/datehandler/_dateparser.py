@@ -350,6 +350,7 @@ class DateParser(object):
                        match.groups() == ('d', 'b', 'y'))
             self.ymd = (match.groups() == ('y', 'm', 'd') or \
                        match.groups() == ('y', 'b', 'd'))
+            # note ('m','d','y') is valid -- in which case both will be False
         else:
             self.dmy = True
             self.ymd = False
@@ -527,22 +528,38 @@ class DateParser(object):
         match = regex2.match(text.lower())
         if match:
             groups = match.groups()
-            if groups[1] is None:
-                m = 0
-            else:
-                m = mmap[groups[1].lower()]
-            d = self._get_int(groups[0])
-
-            if groups[2] is None:
-                y = None
-                s = False
-            else:
-                if groups[4] is not None: # slash year digit
-                    y = int(groups[3]) + 1 # fullyear + 1
-                    s = True
+            if self.ymd:
+                if groups[3] is None:
+                    m = 0
                 else:
-                    y = int(groups[3])
+                    m = mmap[groups[3].lower()]
+                d = self._get_int(groups[4])
+                if groups[0] is None:
+                    y = None
                     s = False
+                else:
+                    if groups[2] is not None: # slash year digit
+                        y = int(groups[1]) + 1 # fullyear + 1
+                        s = True
+                    else: # regular, non-slash year
+                        y = int(groups[1])
+                        s = False
+            else:
+                if groups[1] is None:
+                    m = 0
+                else:
+                    m = mmap[groups[1].lower()]
+                d = self._get_int(groups[0])
+                if groups[2] is None:
+                    y = None
+                    s = False
+                else:
+                    if groups[4] is not None: # slash year digit
+                        y = int(groups[3]) + 1 # fullyear + 1
+                        s = True
+                    else: # regular, non-slash year
+                        y = int(groups[3])
+                        s = False
             value = (d, m, y, s)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
@@ -621,6 +638,10 @@ class DateParser(object):
                 if groups[1] is None:
                     y = self._get_int(groups[4])
                     m = 0
+                    d = 0
+                elif groups[3] is None:
+                    y = self._get_int(groups[1])
+                    m = self._get_int(groups[4])
                     d = 0
                 else:
                     y = self._get_int(groups[1])
