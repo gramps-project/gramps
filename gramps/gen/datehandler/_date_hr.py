@@ -142,7 +142,7 @@ class DateDisplayHR(DateDisplay):
             return _("{day:d} {long_month} {year}").format(
                        day = date_val[0],
                        long_month = self.format_long_month(date_val[1],
-                                        inflect, long_months).replace('.', ''),
+                                        inflect, long_months).replace(' .', ''),
                        year = year)
 
 #-------------------------------------------------------------------------
