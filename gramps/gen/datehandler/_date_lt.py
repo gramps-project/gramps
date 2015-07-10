@@ -130,6 +130,8 @@ class DateParserLT(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
+        self._text2 = re.compile('((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$'
+                                 % self._mon_str, re.IGNORECASE)
         _span_1 = ['nuo']
         _span_2 = ['iki']
         _range_1 = ['tarp']
@@ -140,27 +142,6 @@ class DateParserLT(DateParser):
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
-
-#------------------------------------------------------------------------
-#
-# FIXME: oficial long date format (ex, 2011 m. vasario 4 d.)
-#      is not recognized correctly:
-#      with self._text2 - day is recognized as year, year - as day
-#      with self._iso   - month not recognized, day recognized,
-#                         year increased by 1, date treated as double
-# TODO: in _DateParser.py in _parse_calendar modify groups
-#
-#------------------------------------------------------------------------
-#
-#     # gregorian and julian
-#
-#        self._text2 = re.compile('(\d+)?\s*?m\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*?d?\.?' %
-#                                 self._mon_str, re.IGNORECASE)
-#        
-#        self._iso = re.compile('(\d+)(/\d+)?\s*?m?\.?\s+?%s\.?\s*((\d+))?\s*?d?\.?' %
-#                                 self._mon_str, re.IGNORECASE)
-#
-#-------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------
 #
