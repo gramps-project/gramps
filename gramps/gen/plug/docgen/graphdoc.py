@@ -47,6 +47,8 @@ from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
 from ...constfunc import win
+if win():
+    from ctypes.wintypes import DWORD
 
 #-------------------------------------------------------------------------
 #
@@ -95,6 +97,8 @@ if win():
         _GS_CMD = "gswin32.exe"
     else:
         _GS_CMD = ""
+    # Process Creation Flags declared in WinBase.h
+    DETACHED_PROCESS = DWORD(0x00000008).value
 else:
     _DOT_FOUND = search_for("dot")
     
@@ -656,7 +660,14 @@ class GVPsDoc(GVDocBase):
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
-        dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
+        if win():
+            dotversion = str(Popen(['dot', '-V'], 
+                                creationflags=DETACHED_PROCESS,
+                                stdin=PIPE, stdout=PIPE,
+                                stderr=PIPE).communicate(input=None)[1])
+        else:
+            dotversion = str(Popen(['dot', '-V'], 
+                                stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
         # result.
@@ -912,7 +923,15 @@ class GVPdfGsDoc(GVDocBase):
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
         
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
-        dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
+        if win():
+            dotversion = str(Popen(['dot', '-V'], 
+                                creationflags=DETACHED_PROCESS,
+                                stdin=PIPE, stdout=PIPE,
+                                stderr=PIPE).communicate(input=None)[1])
+        else:
+            dotversion = str(Popen(['dot', '-V'], 
+                                stderr=PIPE).communicate(input=None)[1])
+
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out 
         # of memory". If the :cairo is skipped for these cases it gives 
         # acceptable result.
