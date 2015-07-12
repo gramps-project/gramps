@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-07 20:07+0200\n"
-"PO-Revision-Date: 2015-06-19 23:37+0100\n"
+"PO-Revision-Date: 2015-07-12 23:13+0100\n"
 "Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -5969,9 +5969,9 @@ msgstr "više od približno"
 #: ../gramps/gen/lib/date.py:406
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] "{number_of} "
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} godina"
+msgstr[1] "{number_of} godine"
+msgstr[2] "{number_of} godina"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
@@ -5989,23 +5989,23 @@ msgstr[2] ""
 #: ../gramps/plugins/gramplet/whatsnext.py:477
 #: ../gramps/plugins/gramplet/whatsnext.py:498
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:417
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} mjesec"
+msgstr[1] "{number_of} mjeseca"
+msgstr[2] "{number_of} mjeseci"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:428
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{number_of} dan"
+msgstr[1] "{number_of} dana"
+msgstr[2] "{number_of} dana"
 
 #: ../gramps/gen/lib/date.py:435
 msgid "0 days"
@@ -15723,9 +15723,9 @@ msgstr "Završeno preuzimanje i instalacija dodataka"
 #: ../gramps/gui/plug/_windows.py:1197
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "%d dodatak je instaliran"
-msgstr[1] "%d dodatka su instalirana"
-msgstr[2] "%d dodataka je instalirano"
+msgstr[0] "{number_of} dodatak je instaliran"
+msgstr[1] "{number_of} dodatka su instalirana"
+msgstr[2] "{number_of} dodataka je instalirano"
 
 #: ../gramps/gui/plug/_windows.py:1200
 msgid "You need to restart Gramps to see new views."
@@ -15905,9 +15905,9 @@ msgstr "Nefiltrirano obiteljsko stablo"
 #: ../gramps/gui/plug/export/_exportoptions.py:552
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
-msgstr[0] "Osoba"
-msgstr[1] "Osobe"
-msgstr[2] "Osoba"
+msgstr[0] "{number_of} Osoba"
+msgstr[1] "{number_of} Osobe"
+msgstr[2] "{number_of} Osoba"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:154
 msgid "Click to see preview of unfiltered data"
@@ -18256,14 +18256,14 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"%(spouse)s i\n"
-" %(person)s, %(nyears)d"
+"{spouse} and\n"
+" {person}, {nyears}"
 msgstr[1] ""
-"%(spouse)s i\n"
-" %(person)s, %(nyears)d"
+"{spouse} and\n"
+" {person}, {nyears}"
 msgstr[2] ""
-"%(spouse)s i\n"
-" %(person)s, %(nyears)d"
+"{spouse} and\n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:470
 #: ../gramps/plugins/webreport/webcal.py:1335
@@ -20792,14 +20792,11 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" sadrži %(count_person)d od %(max_count_person)d osobe (%(percent)s "
-"završeno)\n"
+" sadrži {count_person} od {max_count_person} osobe ({percent}  završeno)\n"
 msgstr[1] ""
-"  sadrži %(count_person)d od %(max_count_person)d osobe (%(percent)s "
-"završeno)\n"
+"  sadrži {count_person} od {max_count_person} osobe ({percent}  završeno)\n"
 msgstr[2] ""
-"  sadrži %(count_person)d od %(max_count_person)d osoba (%(percent)s "
-"završeno)\n"
+"  sadrži {count_person} od {max_count_person} osoba ({percent}  završeno)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:278
 msgid "All generations"
@@ -20813,9 +20810,9 @@ msgstr "Dvoklik za prikaz svih generacija"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:282
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
-msgstr[0] " imaju %d osobu\n"
-msgstr[1] " imaju %d osobe\n"
-msgstr[2] " imaju %d osoba\n"
+msgstr[0] " imaju {number_of} osobu\n"
+msgstr[1] " imaju {number_of} osobe\n"
+msgstr[2] " imaju {number_of} osoba\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:225
 #, python-format
@@ -27991,9 +27988,9 @@ msgstr "%(person)s, rođenje%(relation)s"
 #: ../gramps/plugins/textreport/birthdayreport.py:330
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
-msgstr[1] "%(person)s, %(age)d%(relation)s"
-msgstr[2] "%(person)s, %(age)d%(relation)s"
+msgstr[0] "{person}, {age}{relation}"
+msgstr[1] "{person}, {age}{relation}"
+msgstr[2] "{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/birthdayreport.py:414
@@ -29927,8 +29924,8 @@ msgstr[2] "{quantity} mjesta je referncirano ali nije pronađeno\n"
 #: ../gramps/plugins/tool/check.py:2319
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "%(quantity)d referenca na nepostojeći citat\n"
-msgstr[1] "{quantity}  reference na nepostojeći citat\n"
+msgstr[0] "{quantity} referenca na nepostojeći citat\n"
+msgstr[1] "{quantity} reference na nepostojeći citat\n"
 msgstr[2] "{quantity} referenci na nepostojeći citat\n"
 
 #. translators: leave all/any {...} untranslated
@@ -32537,25 +32534,25 @@ msgstr "Ukloni osobu kao roditelja iz obitelji"
 #: ../gramps/plugins/view/relview.py:860 ../gramps/plugins/view/relview.py:916
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] "({number_of } brat ili sestra)"
-msgstr[1] "({number_of } brata ili sestre)"
-msgstr[2] "({number_of } braće ili sestara)"
+msgstr[0] " ({number_of } brat ili sestra)"
+msgstr[1] " ({number_of } brata ili sestre)"
+msgstr[2] " ({number_of } braće ili sestara)"
 
 #: ../gramps/plugins/view/relview.py:867 ../gramps/plugins/view/relview.py:923
 msgid " (1 brother)"
-msgstr "(1 brat)"
+msgstr " (1 brat)"
 
 #: ../gramps/plugins/view/relview.py:869 ../gramps/plugins/view/relview.py:925
 msgid " (1 sister)"
-msgstr "(1 sestra)"
+msgstr " (1 sestra)"
 
 #: ../gramps/plugins/view/relview.py:871 ../gramps/plugins/view/relview.py:927
 msgid " (1 sibling)"
-msgstr "(1 brat ili sestra)"
+msgstr " (1 brat ili sestra)"
 
 #: ../gramps/plugins/view/relview.py:873 ../gramps/plugins/view/relview.py:929
 msgid " (only child)"
-msgstr "(jedino dijete)"
+msgstr " (jedino dijete)"
 
 #: ../gramps/plugins/view/relview.py:943
 #: ../gramps/plugins/view/relview.py:1440
