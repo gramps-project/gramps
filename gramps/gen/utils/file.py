@@ -195,4 +195,6 @@ def create_checksum(full_path):
             md5sum = hashlib.md5(media_file.read()).hexdigest()
     except IOError:
             md5sum = ''
+    except UnicodeEncodeError:
+            md5sum = ''
     return md5sum
