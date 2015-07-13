@@ -1004,7 +1004,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
             return self.nodemap.node(iter.user_data)
         else:
             print ('Problem', iter, iter.user_data)
-            raise NotImplementedError
             return None
 
     def do_get_path(self, iter):
