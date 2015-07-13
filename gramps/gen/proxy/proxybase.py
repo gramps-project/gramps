@@ -56,7 +56,7 @@ class ProxyCursor(object):
         
     def __iter__(self):
         for handle in self.get_handles():
-            yield handle, self.get_raw(handle)
+            yield bytes(handle, "utf-8"), self.get_raw(handle)
 
 class ProxyMap(object):
     """
@@ -72,7 +72,7 @@ class ProxyMap(object):
         return self.get_raw(handle)
 
     def keys(self):
-        return self.get_keys()
+        return [bytes(key, "utf-8") for key in self.get_keys()]
 
 class ProxyDbBase(DbReadBase):
     """
