@@ -115,8 +115,16 @@ class DbState(Callback):
         Add a proxy to the current database. Use pop_proxy() to
         revert to previous db.
 
-        >>> dbstate.apply_proxy(gen.proxy.LivingProxyDb, 1)
-        >>> dbstate.apply_proxy(gen.proxy.PrivateProxyDb)
+        >>> dbstate.apply_proxy(gramps.gen.proxy.LivingProxyDb, 0)
+        >>> dbstate.apply_proxy(gramps.gen.proxy.PrivateProxyDb)
+
+        >>> from gramps.gen.filters.rules.person import IsDescendantOf, IsAncestorOf
+        >>> from gramps.gen.filters import GenericFilter
+        >>> filter = GenericFilter()
+        >>> filter.set_logical_op("or")
+        >>> filter.add_rule(IsDescendantOf([db.get_default_person().gramps_id, True]))
+        >>> filter.add_rule(IsAncestorOf([db.get_default_person().gramps_id, True]))
+        >>> dbstate.apply_proxy(gramps.gen.proxy.FilterProxyDb, filter)
         """
         self.stack.append(self.db)
         self.db = proxy(self.db, *args, **kwargs)
