@@ -174,8 +174,9 @@ class PersonEvents(Events):
                 return True
             for family_handle in active_person.get_family_handle_list():
                 family = self.dbstate.db.get_family_from_handle(family_handle)
-                for event_ref in family.get_event_ref_list():
-                    return True
+                if family:
+                    for event_ref in family.get_event_ref_list():
+                        return True
         return False
 
     def main(self): # return false finishes
