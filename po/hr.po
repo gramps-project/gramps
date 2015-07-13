@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-07 20:07+0200\n"
-"PO-Revision-Date: 2015-07-12 23:13+0100\n"
+"PO-Revision-Date: 2015-07-13 23:42+0100\n"
 "Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -12792,7 +12792,7 @@ msgstr "Svezak/Stranica"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Izvor: Mala pouzdanost|m. pouz."
+msgstr "min. pouz."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
@@ -32534,9 +32534,9 @@ msgstr "Ukloni osobu kao roditelja iz obitelji"
 #: ../gramps/plugins/view/relview.py:860 ../gramps/plugins/view/relview.py:916
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] " ({number_of } brat ili sestra)"
-msgstr[1] " ({number_of } brata ili sestre)"
-msgstr[2] " ({number_of } braće ili sestara)"
+msgstr[0] " ({number_of} brat ili sestra)"
+msgstr[1] " ({number_of} brata ili sestre)"
+msgstr[2] " ({number_of} braće ili sestara)"
 
 #: ../gramps/plugins/view/relview.py:867 ../gramps/plugins/view/relview.py:923
 msgid " (1 brother)"
