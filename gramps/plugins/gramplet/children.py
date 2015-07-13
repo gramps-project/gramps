@@ -117,7 +117,7 @@ class PersonChildren(Children):
             return False
         for family_handle in active_person.get_family_handle_list():
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            if family.get_child_ref_list():
+            if family and family.get_child_ref_list():
                 return True
         return False
 
