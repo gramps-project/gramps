@@ -1507,7 +1507,8 @@ class MultiTreeView(Gtk.TreeView):
             o = None
             if node:
                 o = store.get_value(node, 1)
-            popup = Gtk.Menu()
+            self.newmenu = Gtk.Menu()
+            popup = self.newmenu
             # ---------------------------
             if o:
                 objclass, handle = o._objclass, o._handle
