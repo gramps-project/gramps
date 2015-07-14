@@ -48,6 +48,7 @@ _ = glocale.translation.gettext
 
 MIN_PYGOBJECT_VERSION = (3, 3, 2)
 PYGOBJ_ERR = False
+MIN_GTK_VERSION = "3.10"
 
 try:
     #import gnome introspection, part of pygobject
@@ -80,7 +81,7 @@ if PYGOBJ_ERR:
 try:
     gi.require_version('Pango', '1.0')
     gi.require_version('PangoCairo', '1.0')
-    gi.require_version('Gtk', '3.0')
+    gi.require_version('Gtk', MIN_GTK_VERSION)
     #It is important to import Pango before Gtk, or some things start to go
     #wrong in GTK3 !
     from gi.repository import Pango, PangoCairo
@@ -92,6 +93,10 @@ except (ImportError, ValueError):
              "Then install introspection data for Gdk, Gtk, Pango and "
              "PangoCairo\n\n"
              "Gramps will terminate now.")))
+    try: # be explicit
+        gi.require_version('Gtk', MIN_GTK_VERSION)
+    except (ImportError, ValueError):
+        print(_("\n(Gtk must be %s or later)" % MIN_GTK_VERSION))
     sys.exit(0)
 
 try:
