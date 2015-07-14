@@ -1,0 +1,9 @@
+# Make Github recognise Gramps as a Python project,
+# by marking .sql files as text files!
+# See: https://github.com/github/linguist/issues/2462
+# https://github.com/github/linguist/blob/master/README.md
+*.sql linguist-language=txt
+
+# Have Github ignore js vendored files.
+# https://github.com/gramps-project/gramps/tree/master/data/javascript
+#data/javascript/*.js linguist-vendored
