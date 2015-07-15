@@ -48,6 +48,7 @@ _ = glocale.translation.gettext
 
 MIN_PYGOBJECT_VERSION = (3, 3, 2)
 PYGOBJ_ERR = False
+MIN_GTK_VERSION = (3, 10)
 
 try:
     #import gnome introspection, part of pygobject
@@ -92,6 +93,17 @@ except (ImportError, ValueError):
              "Then install introspection data for Gdk, Gtk, Pango and "
              "PangoCairo\n\n"
              "Gramps will terminate now.")))
+    sys.exit(0)
+
+gtk_major = Gtk.get_major_version()
+gtk_minor = Gtk.get_minor_version()
+if (gtk_major, gtk_minor) < MIN_GTK_VERSION:
+    print(_("Your Gtk version does not meet the requirements.\n"
+            "At least %(major)d.%(minor)d "
+            "is needed to start Gramps with a GUI.\n\n"
+            "Gramps will terminate now.") % 
+                { 'major' : MIN_GTK_VERSION[0], 
+                  'minor' : MIN_GTK_VERSION[1] } )
     sys.exit(0)
 
 try:
