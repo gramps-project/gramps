@@ -28,6 +28,7 @@
 import sys
 import re
 import os
+import io
 from argparse import ArgumentParser
 
 all_total = {}
@@ -118,7 +119,8 @@ class Check_named_fmt( Check ):
 
 class Check_mapping_fmt( Check ):
     # A pattern to find all {}
-    find_map_pat = re.compile('\{ \w+ \}', re.VERBOSE)
+    find_map_pat = re.compile('\{\w+\.?f?\[?.*?\]?\}',
+                              re.UNICODE) # needed for Russian index letters
 
     def __init__( self ):
         Check.__init__( self )
@@ -136,7 +138,10 @@ class Check_mapping_fmt( Check ):
             fmts1.sort()
             fmts2.sort()
             if fmts1 != fmts2:
-                self.msgs.append( msg )
+                for idx in range(len(fmts2)):
+                    fmts2[idx] = re.sub( r'\.f\[.+\]', '', fmts2[idx] )
+                if fmts1 != fmts2:
+                    self.msgs.append( msg )
 
     def process( self, msg ):
         msgid = msg.msgid
@@ -173,9 +178,13 @@ class Check_runaway( Check ):
         self.summary_text = "Runaway context:"
 
     def __process( self, msg, msgid, msgstr ):
-        # Runaway context. In the translated part we only to see
+        # Runaway context. In the translated part we only want to see
         # the translation of the word after the |
-        if msgid.count('|') > 0 and msgstr.count('|') > 0 and msgid != msgstr:
+        if (msgid.count('|') > 0 and msgstr.count('|') > 0
+            and msgid != msgstr
+            and not (' lexeme' in msgid) # _datestrings.py keyword
+            and not ('alternative month names ' in msgid) # this one too
+           ):
             self.msgs.append( msg )
 
     def process( self, msg ):
@@ -339,7 +348,7 @@ def read_msgs( fname ):
     str_pat     = re.compile( r'"',            re.VERBOSE )
     old_pat     = re.compile( r'\#~ \s+ ',     re.VERBOSE )
 
-    f = open( fname )
+    f = io.open( fname, encoding='utf-8' )
     lines = f.readlines()
 
     # parse it like a statemachine
