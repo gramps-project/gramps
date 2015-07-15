@@ -160,8 +160,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         label = Gtk.Label(label=self.get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
-        if (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3, 10):
-            label.set_max_width_chars(60)
+        label.set_max_width_chars(60)
         
         image = Gtk.Image()
         image.set_from_file(SPLASH)

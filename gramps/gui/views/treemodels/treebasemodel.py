@@ -736,7 +736,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         rows_reordered, so to propagate the change to the view, you need to
         reattach the model to the view. 
         """
-        self.GTK38PLUS = (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3,8)
         self.__reverse = not self.__reverse
         top_node = self.tree[None]
         self._reverse_level(top_node)
@@ -758,8 +757,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 path = self.do_get_path(iternode)
             # activate when https://bugzilla.gnome.org/show_bug.cgi?id=684558
             # is resolved
-            if False and self.GTK38PLUS:
-                ##rows_reordered is only exposed in gi starting GTK 3.8
+            if False:
                 self.rows_reordered(path, iter, rows)
             if self.nrgroups > 1:
                 for child in node.children:

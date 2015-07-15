@@ -208,8 +208,7 @@ class IntroductionPage(Gtk.Box):
         label = Gtk.Label(label=self.__get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
-        if (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3, 10):
-            label.set_max_width_chars(60)
+        label.set_max_width_chars(60)
 
         self.pack_start(image, False, False, 0)
         self.pack_start(label, False, False, 5)
