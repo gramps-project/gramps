@@ -162,11 +162,7 @@ class InteractiveSearchBox():
         vbox.set_border_width(3)
 
         """ add entry """
-        # To be change by Gtk 3.10 SearchEntry when agreed
-        if (Gtk.get_major_version(), Gtk.get_minor_version()) >= (3, 6):
-            self._search_entry = Gtk.SearchEntry()
-        else:
-            self._search_entry = Gtk.Entry()
+        self._search_entry = Gtk.SearchEntry()
         self._search_entry.show()
         self._search_entry.connect("populate-popup", self._disable_popdown)
         self._search_entry.connect("activate", self._activate)

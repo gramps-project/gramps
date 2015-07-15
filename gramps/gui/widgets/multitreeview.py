@@ -43,19 +43,6 @@ class MultiTreeView(Gtk.TreeView):
         self.connect('key_press_event', self.key_press_event)
         self.defer_select = False
 
-    if (Gtk.get_major_version(), Gtk.get_minor_version()) < (3, 8):
-        __grid_lines_remove_vertical = {
-            Gtk.TreeViewGridLines.NONE : Gtk.TreeViewGridLines.NONE,
-            Gtk.TreeViewGridLines.HORIZONTAL : Gtk.TreeViewGridLines.HORIZONTAL,
-            Gtk.TreeViewGridLines.VERTICAL : Gtk.TreeViewGridLines.NONE,
-            Gtk.TreeViewGridLines.BOTH : Gtk.TreeViewGridLines.HORIZONTAL
-        }
-        def set_grid_lines(self, grid_lines):
-            if self.get_direction() == Gtk.TextDirection.RTL:
-                # Work around a gtk RTL bug, see #6871
-                grid_lines = MultiTreeView.__grid_lines_remove_vertical[grid_lines]
-            super(MultiTreeView, self).set_grid_lines(grid_lines)
-
     def key_press_event(self, widget, event):
         if event.type == Gdk.EventType.KEY_PRESS:
             if event.keyval == Gdk.KEY_Delete:
