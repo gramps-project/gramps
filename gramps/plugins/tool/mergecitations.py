@@ -196,6 +196,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                     "that has a citation reference." % class_name)
 
                 citation = db.get_citation_from_handle(citation_handle)
+                if citation is None:
+                    continue
                 key = citation.get_page()
                 if fields != IGNORE_DATE and fields != IGNORE_BOTH:
                     key += "\n" + get_date(citation)
