@@ -159,6 +159,7 @@ class CLIDbManager(object):
             database = self.dbstate.make_database(dbid)
             database.load(dirpath, None)
             retval = database.get_summary()
+            database.close()
         except Exception as msg:
             retval = {"Unavailable": str(msg)[:74] + "..."}
         retval.update({
