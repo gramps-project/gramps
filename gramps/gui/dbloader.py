@@ -345,7 +345,7 @@ class DbLoader(CLIDbLoader):
                                          "this Family Tree?"), 
                                        str(msg), 
                                        _("I have made a backup,\n"
-                                         "please upgrade my tree"), 
+                                         "please upgrade my Family Tree"), 
                                        _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
