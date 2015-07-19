@@ -1514,7 +1514,7 @@ class MultiTreeView(Gtk.TreeView):
                 objclass, handle = o._objclass, o._handle
             else:
                 objclass, handle = None, None
-            if objclass in ['Person', 'Event', 'Media', 'Source',
+            if objclass in ['Person', 'Event', 'Media', 'Source', 'Citation',
                             'Repository', 'Family', 'Note', 'Place']:
                 menu_item = Gtk.MenuItem(label=_("the object|See %s details") % glocale.trans_objclass(objclass))
                 menu_item.connect("activate", 
