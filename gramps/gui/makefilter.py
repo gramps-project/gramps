@@ -35,7 +35,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
     >>> make_filter(dbstate, uistate, 'Person', ['I0003', ...])
     """
     FilterClass = GenericFilterFactory(objclass)
-    rule = getattr(getattr(rules, objclass),'RegExpIdOf')
+    rule = getattr(getattr(rules, objclass.lower()),'RegExpIdOf')
     filter = FilterClass()
     if title is None:
         title = _("Filter %s from Clipboard") % objclass
@@ -48,7 +48,9 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         'month': struct_time.tm_mon,
         'day': struct_time.tm_mday})
     re = "|".join(["^%s$" % gid for gid in sorted(gramps_ids)])
-    filter.add_rule(rule([re]))
+    re_rule = rule([re])
+    re_rule.use_regex = True
+    filter.add_rule(re_rule)
     filterdb = FilterList(CUSTOM_FILTERS)
     filterdb.load()
     EditFilter(objclass, dbstate, uistate, [],
