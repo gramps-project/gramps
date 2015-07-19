@@ -24,7 +24,7 @@
 #
 
 """
-Family Lines, a GraphViz-based plugin for Gramps.
+Family Lines, a Graphviz-based plugin for Gramps.
 """
 
 #------------------------------------------------------------------------

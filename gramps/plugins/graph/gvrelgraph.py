@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Adapted from GraphViz.py (now deprecated)
+# Adapted from Graphviz.py (now deprecated)
 #    Copyright (C) 2000-2007  Donald N. Allingham
 #    Copyright (C) 2005-2006  Eero Tamminen
 #    Copyright (C) 2007-2008  Brian G. Matherly
@@ -186,7 +186,7 @@ class RelGraphReport(Report):
 
     def add_child_links_to_families(self):
         """
-        returns string of GraphViz edges linking parents to families or
+        returns string of Graphviz edges linking parents to families or
         children
         """
         # Hash people in a dictionary for faster inclusion checking
