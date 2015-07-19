@@ -7628,8 +7628,8 @@ msgstr "Apačioje"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz išdėstymas"
+msgid "Graphviz Layout"
+msgstr "Graphviz išdėstymas"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7668,11 +7668,11 @@ msgstr "Puslapių kiekis horizontaliai"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz gali sukurti labai dideles diagramas paskirstydamas diagramą po "
+"Graphviz gali sukurti labai dideles diagramas paskirstydamas diagramą po "
 "stačiakampį puslapių masyvą. Šis parametras kontroliuoja horizontalių "
 "puslapių skaičių masyve. Naudojamas tik dot ir pdf per Ghostscript."
 
@@ -7682,11 +7682,11 @@ msgstr "Vertikalių puslapių skaičius"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz gali sukurti labai dideles diagramas paskirstydamas diagramą po "
+"Graphviz gali sukurti labai dideles diagramas paskirstydamas diagramą po "
 "stačiakampį puslapių masyvą. Šis parametras kontroliuoja vertikalių puslapių "
 "skaičių masyve. Naudojamas tik dot ir pdf per Ghostscript."
 
@@ -7704,8 +7704,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz Parinktys"
+msgid "Graphviz Options"
+msgstr "Graphviz Parinktys"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7789,10 +7789,10 @@ msgstr "Naudoti pografius"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Pografiai (subgraphs) gali padėti GraphViz patalpinti sutuoktinius arčiau "
+"Pografiai (subgraphs) gali padėti Graphviz patalpinti sutuoktinius arčiau "
 "vienas kito, bet gali sukurti ilgesnes linijas ir didesnes diagramas."
 
 #. ###############################
@@ -7887,7 +7887,7 @@ msgstr "PNG nuotrauka"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:997
 msgid "Graphviz File"
-msgstr "GraphViz rinkmena"
+msgstr "Graphviz rinkmena"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 #, fuzzy
@@ -21938,8 +21938,8 @@ msgid "Family Lines Graph"
 msgstr "Šeimos linijos diagrama"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Sukuria šeimų ryšių diagramas, naudojant GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Sukuria šeimų ryšių diagramas, naudojant Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"

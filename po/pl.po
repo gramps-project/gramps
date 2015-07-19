@@ -7677,8 +7677,8 @@ msgstr "Dół"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Układ graficzny GraphViz"
+msgid "Graphviz Layout"
+msgstr "Układ graficzny Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7717,11 +7717,11 @@ msgstr "Liczba stron poziomych"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Program GraphViz może tworzyć bardzo duże grafy poprzez ich rozciągnięcie na "
+"Program Graphviz może tworzyć bardzo duże grafy poprzez ich rozciągnięcie na "
 "prostokątnej tablicy stron. To ustawienie określa ilość stron pionowo. "
 "Ustawienie to dotyczy tylko plików dot oraz pdf wygenerowanych za pomocą "
 "GhostScript'a."
@@ -7732,11 +7732,11 @@ msgstr "Liczba stron pionowych"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"Program GraphViz może tworzyć bardzo duże grafy poprzez ich rozciągnięcie na "
+"Program Graphviz może tworzyć bardzo duże grafy poprzez ich rozciągnięcie na "
 "prostokątnej tablicy stron. To ustawienie określa ilość stron pionowo. "
 "Ustawienie to dotyczy tylko plików dot oraz pdf wygenerowanych za pomocą "
 "GhostScript'a."
@@ -7755,8 +7755,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Opcje programu GraphViz"
+msgid "Graphviz Options"
+msgstr "Opcje programu Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7840,10 +7840,10 @@ msgstr "Użyj podgrafów"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Subgraphs może pomóc GraphViz ułożyć pewne połączone ze sobą elementy bliżej "
+"Subgraphs może pomóc Graphviz ułożyć pewne połączone ze sobą elementy bliżej "
 "siebie, ale dla nietrywialnych grafów wynikiem będą większe grafy i dłuższe "
 "linie."
 
@@ -21945,8 +21945,8 @@ msgid "Family Lines Graph"
 msgstr "Graf linii rodzin"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Generuje grafy linii rodzin za pomocą GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Generuje grafy linii rodzin za pomocą Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"

@@ -7145,8 +7145,8 @@ msgstr "下"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz レイアウト"
+msgid "Graphviz Layout"
+msgstr "Graphviz レイアウト"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7186,7 +7186,7 @@ msgstr "横ページの数"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7197,7 +7197,7 @@ msgstr "縦ページの数"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7214,8 +7214,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz オプション"
+msgid "Graphviz Options"
+msgstr "Graphviz オプション"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7283,10 +7283,10 @@ msgstr "サブグラフの使用"
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 #, fuzzy
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 
 #. ###############################
@@ -21192,7 +21192,7 @@ msgid "Family Lines Graph"
 msgstr "ガイドラインを追加する"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr ""
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

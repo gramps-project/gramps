@@ -212,7 +212,7 @@ their own plugins which could be new reports, charts, or research tools.
 
 18. In what formats can Gramps output its reports?
 
-Text reports are available in HTML, PDF, ODT, LaTeX, and RTF formats. Graphical reports (charts and diagrams) are available in PostScript, PDF, SVG, ODS, and GraphViz formats.
+Text reports are available in HTML, PDF, ODT, LaTeX, and RTF formats. Graphical reports (charts and diagrams) are available in PostScript, PDF, SVG, ODS, and Graphviz formats.
 
 
 19. How can I change the default language in reports? 

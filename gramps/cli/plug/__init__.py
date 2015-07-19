@@ -225,7 +225,7 @@ class CommandLineReport(object):
         self.raw_name = name
         self.option_class = option_class(name, database)
         if category == CATEGORY_GRAPHVIZ:
-            # Need to include GraphViz options
+            # Need to include Graphviz options
             self.__gvoptions = graphdoc.GVOptions()
             menu = self.option_class.menu
             self.__gvoptions.add_menu_options(menu)

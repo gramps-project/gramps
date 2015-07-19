@@ -6133,8 +6133,8 @@ msgstr "Alhaalla"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz pohja"
+msgid "Graphviz Layout"
+msgstr "Graphviz pohja"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133 ../gramps/gui/widgets/styledtexteditor.py:479
@@ -6166,16 +6166,16 @@ msgid "Number of Horizontal Pages"
 msgstr "Sivujen määrä vaakasuunnassa"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle sivulle. Tämä asetus määrittää sivujen määrän vaakasuunnassa. Vain Ghostscript:llä luoduille dot ja pdf tiedostoille."
+msgid "Graphviz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
+msgstr "Graphviz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle sivulle. Tämä asetus määrittää sivujen määrän vaakasuunnassa. Vain Ghostscript:llä luoduille dot ja pdf tiedostoille."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:161
 msgid "Number of Vertical Pages"
 msgstr "Sivujen määrä pystysuunnassa"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle sivulle. Tämä asetus määrittää sivujen määrän pystysuunnassa. Vain Ghostscript:llä luoduille dot ja pdf tiedostoille."
+msgid "Graphviz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
+msgstr "Graphviz saattaa luoda hyvinkin laajan kaavion levittämällä sen usealle sivulle. Tämä asetus määrittää sivujen määrän pystysuunnassa. Vain Ghostscript:llä luoduille dot ja pdf tiedostoille."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:169
 msgid "Paging Direction"
@@ -6187,8 +6187,8 @@ msgstr "Sivujen järjestys tulostuksessa. Tällä on vaikutusta vain jos sivuja 
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz asetukset"
+msgid "Graphviz Options"
+msgstr "Graphviz asetukset"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -6246,8 +6246,8 @@ msgid "Use subgraphs"
 msgstr "Käytä alikaavioita"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
-msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
-msgstr "Alikaaviot auttavat GraphViz-ohjelmaa sijoittamaan tietyt linkitetyt asiat lähemmäksi toisiaan, mutta monimutkaisissa kaavioissa seurauksena on pidemmät viivat ja isompi kaavio."
+msgid "Subgraphs can help Graphviz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr "Alikaaviot auttavat Graphviz-ohjelmaa sijoittamaan tietyt linkitetyt asiat lähemmäksi toisiaan, mutta monimutkaisissa kaavioissa seurauksena on pidemmät viivat ja isompi kaavio."
 
 #. ###############################
 #. 3
@@ -6320,7 +6320,7 @@ msgstr "PNG-kuva"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:997
 msgid "Graphviz File"
-msgstr "GraphViz tiedosto"
+msgstr "Graphviz tiedosto"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 msgid "paper size|Letter"
@@ -17878,8 +17878,8 @@ msgid "Family Lines Graph"
 msgstr "Perhelinja-kaavio"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Tuottaa perhelinjakaavion käyttäen GraphViz-ohjelmaa."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Tuottaa perhelinjakaavion käyttäen Graphviz-ohjelmaa."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -17887,7 +17887,7 @@ msgstr "Tiimalasi-kaavio"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Tuottaa tiimalasikaavion käyttäen GraphViz-ohjelmaa."
+msgstr "Tuottaa tiimalasikaavion käyttäen Graphviz-ohjelmaa."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
@@ -17895,7 +17895,7 @@ msgstr "Suhdekaavio"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Tuottaa suhdekaavion käyttäen GraphViz-ohjelmaa."
+msgstr "Tuottaa suhdekaavion käyttäen Graphviz-ohjelmaa."
 
 #. ------------------------------------------------------------------------
 #.

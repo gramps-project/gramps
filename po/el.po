@@ -7880,8 +7880,8 @@ msgstr "Κάτω"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Διάταξη GraphViz"
+msgid "Graphviz Layout"
+msgstr "Διάταξη Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7923,7 +7923,7 @@ msgstr "Αριθμός οριζοντίων σελίδων"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7935,7 +7935,7 @@ msgstr "Αριθμός οριζοντίων σελίδων"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7954,7 +7954,7 @@ msgstr ""
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
 #, fuzzy
-msgid "GraphViz Options"
+msgid "Graphviz Options"
 msgstr "Επιλογές χαρτιού"
 
 #. ###############################
@@ -8019,7 +8019,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 
@@ -22405,7 +22405,7 @@ msgid "Family Lines Graph"
 msgstr "Γράφημα οικογενειακών γραμμών"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "Παράγει γράφημα οικογενειακών γραμμών με χρήση του Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

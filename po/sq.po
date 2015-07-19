@@ -7736,8 +7736,8 @@ msgstr "Poshtë"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Struktura GraphViz "
+msgid "Graphviz Layout"
+msgstr "Struktura Graphviz "
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7782,11 +7782,11 @@ msgstr "Numri i Faqeve Horizontale"
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 #, fuzzy
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz mund të krijojë grafiqe shum të mëdhaja duke shpërndarë grafin "
+"Graphviz mund të krijojë grafiqe shum të mëdhaja duke shpërndarë grafin "
 "përmes një rreshti drejtkëndësh të faqeve. Kjo kontrrollon numrin e faqeve "
 "në rresht horizontalisht. "
 
@@ -7797,11 +7797,11 @@ msgstr "Numri i faqeve vertikale"
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 #, fuzzy
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz mund të krijojë grafiqe shumë të mëdhaja duke shpërndarë grafikun "
+"Graphviz mund të krijojë grafiqe shumë të mëdhaja duke shpërndarë grafikun "
 "përmes një rreshti drejtkëndësh të faqeve. Kjo kontrrollon numrin e faqeve "
 "në rresht horizontalisht.  "
 
@@ -7820,8 +7820,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Opcione GraphViz"
+msgid "Graphviz Options"
+msgstr "Opcione Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7895,7 +7895,7 @@ msgstr "Përdor nëngrafe"
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 #, fuzzy
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Nëngrafet mund të ndihmojnë GrafViz të pozicionojë nyje të caktuara të "
@@ -18176,7 +18176,7 @@ msgstr "Numri i Fëmijëve"
 #: ../gramps/gui/widgets/grampletpane.py:1533
 #, fuzzy
 msgid "Gramplet Layout"
-msgstr "Struktura GraphViz "
+msgstr "Struktura Graphviz "
 
 #: ../gramps/gui/widgets/grampletpane.py:1563
 msgid "Use maximum height available"
@@ -22353,7 +22353,7 @@ msgstr "Grafi i Rreshatve familjare"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
 #, fuzzy
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "Krijon grafe të rreshtave familjare duke përdotur GrafViz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

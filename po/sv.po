@@ -7613,8 +7613,8 @@ msgstr "Nederkant"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz Layout"
+msgid "Graphviz Layout"
+msgstr "Graphviz Layout"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7655,11 +7655,11 @@ msgstr "Antal sidor i horisontalled"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"Graphviz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Endast giltigt för dot och pdf via Ghostscript."
 
@@ -7669,11 +7669,11 @@ msgstr "Antal sidor i vertikalled"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"Graphviz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Endast giltigt för dot och pdf via Ghostscript."
 
@@ -7691,8 +7691,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz-alternativ"
+msgid "Graphviz Options"
+msgstr "Graphviz-alternativ"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7778,10 +7778,10 @@ msgstr "Använd underordnade stycken"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Underordnade stycken kan hjälpa GraphViz att placera makar ihop, men kan "
+"Underordnade stycken kan hjälpa Graphviz att placera makar ihop, men kan "
 "även orsaka längre linjer och större diagram vid komplicerade sådana."
 
 #. ###############################
@@ -21813,8 +21813,8 @@ msgid "Family Lines Graph"
 msgstr "Släktlinjediagram"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Skapar ett diagram för en släktlinje med GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Skapar ett diagram för en släktlinje med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"

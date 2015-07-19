@@ -7549,8 +7549,8 @@ msgstr "Đáy "
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Trình bày GraphViz "
+msgid "Graphviz Layout"
+msgstr "Trình bày Graphviz "
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7589,11 +7589,11 @@ msgstr "số lượng trang theo chiều ngang "
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz có thể tạo biểu đồ rất to băng cách trãi đồ họa xuyên qua một dãy "
+"Graphviz có thể tạo biểu đồ rất to băng cách trãi đồ họa xuyên qua một dãy "
 "trang hình chữ nhật. Nó kiểm soát số trang theo chiều ngang. Chỉ hiệu lực "
 "cho dot và pdf thông qua Ghostscript."
 
@@ -7603,11 +7603,11 @@ msgstr "Số trang theo chiếu đứng "
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz có thể tạo ra các đồ họa to bằng cách trãi đồ họa xuyên qua hình "
+"Graphviz có thể tạo ra các đồ họa to bằng cách trãi đồ họa xuyên qua hình "
 "chữ nhật. Nó kiểm soát số trang của chuỗi theo chiều đứng. Chỉ hiệu lực cho "
 "dot và pdf qua Ghostscript. "
 
@@ -7625,8 +7625,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Các tùy chọn GraphViz "
+msgid "Graphviz Options"
+msgstr "Các tùy chọn Graphviz "
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7698,7 +7698,7 @@ msgstr "Dùng subgraphs "
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Biểu đồ phụ có thể giúp GrphViz sắp xếp bạn đời cùng nhau, nhưng đối với "
@@ -21735,8 +21735,8 @@ msgid "Family Lines Graph"
 msgstr "Biểu đồ đường thẳng gia đình "
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "TẠo biểu đồ đường thẳng gia đình dùng trình GraphViz. "
+msgid "Produces family line graphs using Graphviz."
+msgstr "TẠo biểu đồ đường thẳng gia đình dùng trình Graphviz. "
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -21744,7 +21744,7 @@ msgstr "Biểu đồ đồng hồ cát "
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Tạo biểu đồ đồng hồ cát dùng trình GraphViz "
+msgstr "Tạo biểu đồ đồng hồ cát dùng trình Graphviz "
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
@@ -21752,7 +21752,7 @@ msgstr "Biểu đồ quan hệ "
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Tạo biểu đồ quan hệ bằng cách dùng trình GraphViz "
+msgstr "Tạo biểu đồ quan hệ bằng cách dùng trình Graphviz "
 
 #. ------------------------------------------------------------------------
 #.

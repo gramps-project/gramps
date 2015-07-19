@@ -7572,8 +7572,8 @@ msgstr "Внизу"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Розмітка GraphViz"
+msgid "Graphviz Layout"
+msgstr "Розмітка Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7613,11 +7613,11 @@ msgstr "Кількість сторінок по горизонталі"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz може генерувати дуже великі діаграми, розбиваючи його на декілька "
+"Graphviz може генерувати дуже великі діаграми, розбиваючи його на декілька "
 "сторінок. Тут можна вказати кількість сторінок по горизонталі. Це дійсно "
 "лише для dot та pdf через Ghostscript."
 
@@ -7627,11 +7627,11 @@ msgstr "Кількість сторінок по вертикалі"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz може генерувати дуже великі діаграми, розбиваючи його на декілька "
+"Graphviz може генерувати дуже великі діаграми, розбиваючи його на декілька "
 "сторінок. Тут можна вказати кількість сторінок по вертикалі. Це дійсно лише "
 "для dot та pdf через Ghostscript."
 
@@ -7649,8 +7649,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Параметри GraphViz"
+msgid "Graphviz Options"
+msgstr "Параметри Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7734,10 +7734,10 @@ msgstr "Використовувати під-діаграми"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Під-діаграми GraphViz можуть допомогти розташувати подружжя разом, але на "
+"Під-діаграми Graphviz можуть допомогти розташувати подружжя разом, але на "
 "складних графіках це приведе до більш довгих ліній, та більшого розміру "
 "самого графіку."
 
@@ -21694,8 +21694,8 @@ msgid "Family Lines Graph"
 msgstr "Діаграма Родинних Ліній"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Будує графік родинних ліній з допомогою GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Будує графік родинних ліній з допомогою Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"

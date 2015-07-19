@@ -7844,8 +7844,8 @@ msgstr "Abajo"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Diseño de GraphViz"
+msgid "Graphviz Layout"
+msgstr "Diseño de Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7887,11 +7887,11 @@ msgstr "Número de páginas horizontales"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz puede crear gráficos muy grandes extendiendo el gŕafico en una "
+"Graphviz puede crear gráficos muy grandes extendiendo el gŕafico en una "
 "distribución rectangular de páginas. Aquí se controla el número de páginas "
 "en horizontal.  Sólo es válido para salidas dot y PDF (mediante Ghostscript)."
 
@@ -7901,11 +7901,11 @@ msgstr "Número de páginas verticales"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz puede crear gráficos muy grandes extendiendo el gŕafico en una "
+"Graphviz puede crear gráficos muy grandes extendiendo el gŕafico en una "
 "distribución rectangular de páginas. Aquí se controla el número de páginas "
 "en vertical.  Sólo es válido para salidas dot y PDF (mediante Ghostscript)."
 
@@ -7923,8 +7923,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Opciones GraphViz"
+msgid "Graphviz Options"
+msgstr "Opciones Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -8010,10 +8010,10 @@ msgstr "Usar subgrafos"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Los subgrafos pueden ayudar a GraphViz a posicionar los cónyuges más "
+"Los subgrafos pueden ayudar a Graphviz a posicionar los cónyuges más "
 "cercanos entre sí, pero con gráficos no triviales, se producirán líneas más "
 "largas y gráficos más grandes."
 
@@ -8109,7 +8109,7 @@ msgstr "Imagen PNG"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:997
 msgid "Graphviz File"
-msgstr "Archivo de GraphViz"
+msgstr "Archivo de Graphviz"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 #, fuzzy
@@ -22194,8 +22194,8 @@ msgid "Family Lines Graph"
 msgstr "Diagrama de líneas familiares"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Produce diagramas de líneas familiares con GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Produce diagramas de líneas familiares con Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -22203,7 +22203,7 @@ msgstr "Diagrama reloj de arena"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Produce un diagrama reloj de arena usando GraphViz."
+msgstr "Produce un diagrama reloj de arena usando Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"

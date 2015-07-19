@@ -7500,8 +7500,8 @@ msgstr "Dole"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Návrh GraphViz"
+msgid "Graphviz Layout"
+msgstr "Návrh Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7540,11 +7540,11 @@ msgstr "Počet horizontálnych strán"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží na "
+"Graphviz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží na "
 "pravoúhle pole tvorené stránkami. Tento prvok určuje počet strán v poli "
 "horizontálne. Platí len pre dot a pdf cez Ghostscript."
 
@@ -7554,11 +7554,11 @@ msgstr "Počet strán zvisle"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží  na "
+"Graphviz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží  na "
 "pravoúhle pole tvorené stránkami. Tento prvok určuje počet strán v poli "
 "vertikálne. Platí len pre dot a pdf cez Ghostscript."
 
@@ -7576,8 +7576,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Možnosti GraphViz"
+msgid "Graphviz Options"
+msgstr "Možnosti Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7657,10 +7657,10 @@ msgstr "Použiť vetvenie na grafy"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Vetvenie na menšie grafy umožní aby GraphViz umiestňoval isté súvisiace uzly "
+"Vetvenie na menšie grafy umožní aby Graphviz umiestňoval isté súvisiace uzly "
 "bližšie spolu. Netriviálne grafy budú mať ale dlhšie línie a grafy budú "
 "väčšie."
 
@@ -21590,7 +21590,7 @@ msgid "Family Lines Graph"
 msgstr "Graf rodinnej línie"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "Generuje grafy rodinnej línie pomocou Grapviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

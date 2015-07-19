@@ -7623,8 +7623,8 @@ msgstr "Alul"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz réteg"
+msgid "Graphviz Layout"
+msgstr "Graphviz réteg"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7664,11 +7664,11 @@ msgstr "A fekvő oldalak száma"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"A GraphViz nagyon nagy grafikonokat is képes létrehozni derékszögű rácson a "
+"A Graphviz nagyon nagy grafikonokat is képes létrehozni derékszögű rácson a "
 "lapok szétosztásával. Ez ellenőrzés alatt tudja tartani a lapok számát "
 "vízszintesen. Ghostscripten keresztül csak .dot és .pdf állományokra "
 "érvényes."
@@ -7679,11 +7679,11 @@ msgstr "Függőleges lapok száma"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"A GraphViz nagyon nagy grafikonokat is képes létrehozni derékszögű rácson a "
+"A Graphviz nagyon nagy grafikonokat is képes létrehozni derékszögű rácson a "
 "lapok szétosztásával. Ez ellenőrzés alatt tudja tartani a lapok számát "
 "vízszintesen. Ghostscripten keresztül csak .dot és .pdf állományokra "
 "érvényes."
@@ -7702,8 +7702,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz opciók"
+msgid "Graphviz Options"
+msgstr "Graphviz opciók"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7788,7 +7788,7 @@ msgstr "Al-grafikonok használata"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Az al-grafikonok segíthetnek a házastársak jobb elhelyezésében, de nem "
@@ -21795,7 +21795,7 @@ msgid "Family Lines Graph"
 msgstr "Családvonal diagram"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "Családvonal diagramot hoz létre GrahWiz-zel."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

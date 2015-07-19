@@ -7570,7 +7570,7 @@ msgstr "Доле"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
+msgid "Graphviz Layout"
 msgstr "Распоред Графвиза"
 
 #. ###############################
@@ -7610,7 +7610,7 @@ msgstr "Број водоравних страница"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7624,7 +7624,7 @@ msgstr "Број усправних страница"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
@@ -7646,7 +7646,7 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
+msgid "Graphviz Options"
 msgstr "Могућности Графвиза"
 
 #. ###############################
@@ -7732,7 +7732,7 @@ msgstr "Користи подграфиконе"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Подграфикони могу помоћи Графвизу да постави супружнике заједно, али са "
@@ -21749,7 +21749,7 @@ msgid "Family Lines Graph"
 msgstr "График породичне линије"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "Прави графике породичне линије користећи Граф-виз."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

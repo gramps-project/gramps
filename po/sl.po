@@ -6667,8 +6667,8 @@ msgstr "Spodaj"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Postavitev GraphViz"
+msgid "Graphviz Layout"
+msgstr "Postavitev Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -6702,16 +6702,16 @@ msgid "Number of Horizontal Pages"
 msgstr "Število strani vodoravno"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz lahko ustvari zelo velike grafične prikaze tako, da razporedi prikaz na pravokotno mrežo več strani. Tu nastavimo število strani vodoravno. Veljavno je samo za vrsto dot, postscript in pdf preko Ghostscript."
+msgid "Graphviz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
+msgstr "Graphviz lahko ustvari zelo velike grafične prikaze tako, da razporedi prikaz na pravokotno mrežo več strani. Tu nastavimo število strani vodoravno. Veljavno je samo za vrsto dot, postscript in pdf preko Ghostscript."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:161
 msgid "Number of Vertical Pages"
 msgstr "Število strani navpično"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz lahko ustvari zelo velike grafične prikaze tako, da razporedi prikaz na pravokotno mrežo več strani. Tu nastavimo število strani navpično. Veljavno je samo za vrsto dot, postscript in pdf preko Ghostscript."
+msgid "Graphviz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
+msgstr "Graphviz lahko ustvari zelo velike grafične prikaze tako, da razporedi prikaz na pravokotno mrežo več strani. Tu nastavimo število strani navpično. Veljavno je samo za vrsto dot, postscript in pdf preko Ghostscript."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:169
 msgid "Paging Direction"
@@ -6723,8 +6723,8 @@ msgstr "Vrstni red, v katerem naj bodo prikazane strani grafičnega prikaza. Ta 
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Nastavitve za GraphViz"
+msgid "Graphviz Options"
+msgstr "Nastavitve za Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -6782,8 +6782,8 @@ msgid "Use subgraphs"
 msgstr "Uporabi podsklope"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
-msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
-msgstr "Podsklopi lahko pomagajo, da GraphViz izriše posamezna povezana vozlišča bliže drug drugemu. Pri zapletenejših prikazih pa to lahko povzroči daljše črte in širše grafične prikaze."
+msgid "Subgraphs can help Graphviz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr "Podsklopi lahko pomagajo, da Graphviz izriše posamezna povezana vozlišča bliže drug drugemu. Pri zapletenejših prikazih pa to lahko povzroči daljše črte in širše grafične prikaze."
 
 #. ###############################
 #. 3
@@ -16237,7 +16237,7 @@ msgstr "Število stolpcev"
 
 #: ../gramps/gui/widgets/grampletpane.py:1533
 msgid "Gramplet Layout"
-msgstr "Postavitev GraphViz"
+msgstr "Postavitev Graphviz"
 
 #: ../gramps/gui/widgets/grampletpane.py:1563
 msgid "Use maximum height available"
@@ -20011,8 +20011,8 @@ msgid "Family Lines Graph"
 msgstr "Prikaz družinskih linij"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Ustvari grafični prikaz družinskih linij s pomočjo programa GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Ustvari grafični prikaz družinskih linij s pomočjo programa Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -20020,7 +20020,7 @@ msgstr "Prikaz v obliki peščene ure"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Ustvari grafični prikaz v obliki peščene ure s pomočjo programa GraphViz."
+msgstr "Ustvari grafični prikaz v obliki peščene ure s pomočjo programa Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
@@ -20028,7 +20028,7 @@ msgstr "Prikaz sorodstvenih povezav"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Ustvari grafični prikaz sorodstvenih povezav s pomočjo programa GraphViz."
+msgstr "Ustvari grafični prikaz sorodstvenih povezav s pomočjo programa Graphviz."
 
 #. ------------------------------------------------------------------------
 #.

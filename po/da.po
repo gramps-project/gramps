@@ -7673,8 +7673,8 @@ msgstr "Nederst"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz-layout"
+msgid "Graphviz Layout"
+msgstr "Graphviz-layout"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7715,11 +7715,11 @@ msgstr "Antal vandrette sider"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan danne meget store tavler ved at sprede indholdet henover en "
+"Graphviz kan danne meget store tavler ved at sprede indholdet henover en "
 "rektangulær række af sider. Dette bestemmer antallet af sider i den "
 "vandrette retning. Gælder kun for dot, postscript og pdf via Ghostscript."
 
@@ -7729,11 +7729,11 @@ msgstr "Antal lodrette sider"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan danne meget store tavler ved at sprede indholdet henover en "
+"Graphviz kan danne meget store tavler ved at sprede indholdet henover en "
 "rektangulær række af sider. Dette bestemmer antallet af sider i den lodrette "
 "retning. Gælder kun for dot, postscript og pdf via Ghostscript."
 
@@ -7751,8 +7751,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz-indstillinger"
+msgid "Graphviz Options"
+msgstr "Graphviz-indstillinger"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7825,10 +7825,10 @@ msgstr "Brug delgrafer"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Delgrafer kan hjælpe GraphViz med at placere ægtefæller sammen, men med mere "
+"Delgrafer kan hjælpe Graphviz med at placere ægtefæller sammen, men med mere "
 "komplicerede grafer, vil dette medføre længere linjer og større grafer."
 
 #. ###############################
@@ -7923,7 +7923,7 @@ msgstr "PNG-billede"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:997
 msgid "Graphviz File"
-msgstr "GraphViz-fil"
+msgstr "Graphviz-fil"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:78
 #, fuzzy
@@ -21957,8 +21957,8 @@ msgid "Family Lines Graph"
 msgstr "Tavle over slægtslinjer"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Laver slægtslinjetavler med GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Laver slægtslinjetavler med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -21966,7 +21966,7 @@ msgstr "Timeglas-tavle"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Laver en timeglas-tavle med GraphViz."
+msgstr "Laver en timeglas-tavle med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:76
 msgid "Relationship Graph"
@@ -21974,7 +21974,7 @@ msgstr "Slægtstavle"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:77
 msgid "Produces relationship graphs using Graphviz."
-msgstr "Laver slægtskabstavler med GraphViz."
+msgstr "Laver slægtskabstavler med Graphviz."
 
 #. ------------------------------------------------------------------------
 #.
