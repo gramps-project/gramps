@@ -10223,7 +10223,7 @@ msgid "greater than"
 msgstr "enemmän kuin"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "vähemmän kuin"
 
 #: ../gramps/gui/editors/filtereditor.py:285

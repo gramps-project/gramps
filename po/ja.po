@@ -12246,7 +12246,7 @@ msgid "greater than"
 msgstr "より多い"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "より少ない"
 
 #: ../gramps/gui/editors/filtereditor.py:285

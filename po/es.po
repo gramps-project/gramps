@@ -13039,7 +13039,7 @@ msgid "greater than"
 msgstr "mayor que"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "menor que"
 
 #: ../gramps/gui/editors/filtereditor.py:285

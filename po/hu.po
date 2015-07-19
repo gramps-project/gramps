@@ -12757,7 +12757,7 @@ msgid "greater than"
 msgstr "nagyobb mint"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "kevesebb mint"
 
 #: ../gramps/gui/editors/filtereditor.py:285

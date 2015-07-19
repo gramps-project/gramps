@@ -11801,7 +11801,7 @@ msgid "greater than"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:285

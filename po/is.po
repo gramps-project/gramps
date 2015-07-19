@@ -11995,7 +11995,7 @@ msgid "greater than"
 msgstr "stærra en"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "minna en"
 
 #: ../gramps/gui/editors/filtereditor.py:285

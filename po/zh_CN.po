@@ -12512,7 +12512,7 @@ msgid "greater than"
 msgstr "大于"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "小于"
 
 #: ../gramps/gui/editors/filtereditor.py:285

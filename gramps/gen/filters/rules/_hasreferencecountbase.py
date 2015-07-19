@@ -47,7 +47,7 @@ class HasReferenceCountBase(Rule):
 
     def prepare(self, db):
         # things we want to do just once, not for every handle
-        if  self.list[0] == 'lesser than':
+        if  self.list[0] == 'less than':
             self.count_type = 0
         elif self.list[0] == 'greater than':
             self.count_type = 2
@@ -63,7 +63,7 @@ class HasReferenceCountBase(Rule):
         for item in db.find_backlink_handles(handle):
             count += 1
 
-        if self.count_type == 0:     # "lesser than"
+        if self.count_type == 0:     # "less than"
             return count < self.userSelectedCount
         elif self.count_type == 2:   # "greater than"
             return count > self.userSelectedCount

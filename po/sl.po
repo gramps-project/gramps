@@ -11546,7 +11546,7 @@ msgid "greater than"
 msgstr "več kot"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "manj kot"
 
 #: ../gramps/gui/editors/filtereditor.py:285

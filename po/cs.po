@@ -12671,7 +12671,7 @@ msgid "greater than"
 msgstr "větší než"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "menší než"
 
 #: ../gramps/gui/editors/filtereditor.py:285

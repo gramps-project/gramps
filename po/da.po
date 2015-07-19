@@ -12813,7 +12813,7 @@ msgid "greater than"
 msgstr "større end"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "mindre end"
 
 #: ../gramps/gui/editors/filtereditor.py:285

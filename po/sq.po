@@ -12995,7 +12995,7 @@ msgid "greater than"
 msgstr "më shumë se"
 
 #: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
+msgid "less than"
 msgstr "më pak se"
 
 #: ../gramps/gui/editors/filtereditor.py:285
