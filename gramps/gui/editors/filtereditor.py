@@ -243,8 +243,8 @@ class MyLesserEqualGreater(Gtk.ComboBox):
         cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
-        self.clist = ['lesser than', 'equal to', 'greater than']
-        self.clist_trans = [_('lesser than'), _('equal to'), _('greater than')]
+        self.clist = ['less than', 'equal to', 'greater than']
+        self.clist_trans = [_('less than'), _('equal to'), _('greater than')]
         for name in self.clist_trans:
             store.append(row=[name])
         self.set_active(default)
