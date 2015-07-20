@@ -222,6 +222,8 @@ class DocBackend(object):
             return self.format_link(s_tag.value)
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
+        if s_tagvalue is None:
+            return None
         tag_name = None
         if tagtype.STYLE_TYPE[typeval] == bool:
             return self.STYLETAG_MARKUP[self.STYLETYPE_MAP[typeval]]
