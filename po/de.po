@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 21:06+0200\n"
-"PO-Revision-Date: 2015-07-15 22:10+0200\n"
+"POT-Creation-Date: 2015-07-20 20:13+0200\n"
+"PO-Revision-Date: 2015-07-20 20:29+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -2167,51 +2167,51 @@ msgstr "heute"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:64
+#: ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
 msgstr "Januar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:65
+#: ../gramps/gen/datehandler/_datestrings.py:80
 msgid "localized lexeme inflections||February"
 msgstr "Februar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:66
+#: ../gramps/gen/datehandler/_datestrings.py:81
 msgid "localized lexeme inflections||March"
 msgstr "März"
 
-#: ../gramps/gen/datehandler/_datestrings.py:67
+#: ../gramps/gen/datehandler/_datestrings.py:82
 msgid "localized lexeme inflections||April"
 msgstr "April"
 
-#: ../gramps/gen/datehandler/_datestrings.py:68
+#: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections||May"
 msgstr "Mai"
 
-#: ../gramps/gen/datehandler/_datestrings.py:69
+#: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections||June"
 msgstr "Juni"
 
-#: ../gramps/gen/datehandler/_datestrings.py:70
+#: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections||July"
 msgstr "Juli"
 
-#: ../gramps/gen/datehandler/_datestrings.py:71
+#: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections||August"
 msgstr "August"
 
-#: ../gramps/gen/datehandler/_datestrings.py:72
+#: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections||September"
 msgstr "September"
 
-#: ../gramps/gen/datehandler/_datestrings.py:73
+#: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections||October"
 msgstr "Oktober"
 
-#: ../gramps/gen/datehandler/_datestrings.py:74
+#: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections||November"
 msgstr "November"
 
-#: ../gramps/gen/datehandler/_datestrings.py:75
+#: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections||December"
 msgstr "Dezember"
 
@@ -2219,51 +2219,51 @@ msgstr "Dezember"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:82
+#: ../gramps/gen/datehandler/_datestrings.py:97
 msgid "localized lexeme inflections - short month form||Jan"
 msgstr "Jan"
 
-#: ../gramps/gen/datehandler/_datestrings.py:83
+#: ../gramps/gen/datehandler/_datestrings.py:98
 msgid "localized lexeme inflections - short month form||Feb"
 msgstr "Feb"
 
-#: ../gramps/gen/datehandler/_datestrings.py:84
+#: ../gramps/gen/datehandler/_datestrings.py:99
 msgid "localized lexeme inflections - short month form||Mar"
 msgstr "Mrz"
 
-#: ../gramps/gen/datehandler/_datestrings.py:85
+#: ../gramps/gen/datehandler/_datestrings.py:100
 msgid "localized lexeme inflections - short month form||Apr"
 msgstr "Apr"
 
-#: ../gramps/gen/datehandler/_datestrings.py:86
+#: ../gramps/gen/datehandler/_datestrings.py:101
 msgid "localized lexeme inflections - short month form||May"
 msgstr "Mai"
 
-#: ../gramps/gen/datehandler/_datestrings.py:87
+#: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "localized lexeme inflections - short month form||Jun"
 msgstr "Jun"
 
-#: ../gramps/gen/datehandler/_datestrings.py:88
+#: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "localized lexeme inflections - short month form||Jul"
 msgstr "Jul"
 
-#: ../gramps/gen/datehandler/_datestrings.py:89
+#: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "localized lexeme inflections - short month form||Aug"
 msgstr "Aug"
 
-#: ../gramps/gen/datehandler/_datestrings.py:90
+#: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "localized lexeme inflections - short month form||Sep"
 msgstr "Sep"
 
-#: ../gramps/gen/datehandler/_datestrings.py:91
+#: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "localized lexeme inflections - short month form||Oct"
 msgstr "Okt"
 
-#: ../gramps/gen/datehandler/_datestrings.py:92
+#: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "localized lexeme inflections - short month form||Nov"
 msgstr "Nov"
 
-#: ../gramps/gen/datehandler/_datestrings.py:93
+#: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "localized lexeme inflections - short month form||Dec"
 msgstr "Dez"
 
@@ -2271,85 +2271,85 @@ msgstr "Dez"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
-#: ../gramps/gen/datehandler/_datestrings.py:101
+#: ../gramps/gen/datehandler/_datestrings.py:116
 msgid "alternative month names for January||"
 msgstr "Jänner|Jenner|Hartung|Hartmonat|Hartmond|Eismonat|Eismond|Lassmonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:102
+#: ../gramps/gen/datehandler/_datestrings.py:117
 msgid "alternative month names for February||"
 msgstr ""
 "Feber|Hornung|Hintester|Rebmonat|Rebmond|Schmelzmond|Taumond|Narrenmond|"
 "letzter Wintermonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:103
+#: ../gramps/gen/datehandler/_datestrings.py:118
 msgid "alternative month names for March||"
 msgstr "Märzen|Lenzing|Lenzmond|Lenzmonat|Frühlingsmonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:104
+#: ../gramps/gen/datehandler/_datestrings.py:119
 msgid "alternative month names for April||"
 msgstr "Launing|Grasmond|Ostermond|Ostermonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:105
+#: ../gramps/gen/datehandler/_datestrings.py:120
 msgid "alternative month names for May||"
 msgstr "Bleuet|Blühmond|Blumenmond|Winnemond|Wonnemond|Wonnemonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:106
+#: ../gramps/gen/datehandler/_datestrings.py:121
 msgid "alternative month names for June||"
 msgstr "Brachet|Brachmond|Brachmonat|Johannismond|Weidemaent"
 
-#: ../gramps/gen/datehandler/_datestrings.py:107
+#: ../gramps/gen/datehandler/_datestrings.py:122
 msgid "alternative month names for July||"
 msgstr "Heuet|Heuert|Heumond|Heumonat|Bärenmonat|Honigmonat|Honigmond"
 
-#: ../gramps/gen/datehandler/_datestrings.py:108
+#: ../gramps/gen/datehandler/_datestrings.py:123
 msgid "alternative month names for August||"
 msgstr "Ernting|Erntemond|Erntemonat|Bisemond"
 
-#: ../gramps/gen/datehandler/_datestrings.py:109
+#: ../gramps/gen/datehandler/_datestrings.py:124
 msgid "alternative month names for September||"
 msgstr ""
 "Holzing|Holzmond|Herbstmonat|Erster Herbstmond|Scheiding|Scheidung|Engelmonat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:110
+#: ../gramps/gen/datehandler/_datestrings.py:125
 msgid "alternative month names for October||"
 msgstr "Gilbhart|Gilbhard|Weinmond|Weinmonat|zweiter Herbstmond"
 
-#: ../gramps/gen/datehandler/_datestrings.py:111
+#: ../gramps/gen/datehandler/_datestrings.py:126
 msgid "alternative month names for November||"
 msgstr ""
 "Nebelung|Windmond|Windmonat|Nebelmond|Wintermonat|Schlachtmond|Dritter "
 "Herbstmond"
 
-#: ../gramps/gen/datehandler/_datestrings.py:112
+#: ../gramps/gen/datehandler/_datestrings.py:127
 msgid "alternative month names for December||"
 msgstr "Christmond|Christmonat|Julmond|Dustermond|Heilmond|Heiligenmonat"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
-#: ../gramps/gen/datehandler/_datestrings.py:116 ../gramps/gen/lib/date.py:583
+#: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:583
 msgid "calendar|Gregorian"
 msgstr "Gregorianisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:584
+#: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:584
 msgid "calendar|Julian"
 msgstr "Julianisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:118 ../gramps/gen/lib/date.py:585
+#: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:585
 msgid "calendar|Hebrew"
 msgstr "Hebräisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:119 ../gramps/gen/lib/date.py:586
+#: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:586
 msgid "calendar|French Republican"
 msgstr "Französisch-Republikanisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:120 ../gramps/gen/lib/date.py:587
+#: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:587
 msgid "calendar|Persian"
 msgstr "Persisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:121 ../gramps/gen/lib/date.py:588
+#: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:588
 msgid "calendar|Islamic"
 msgstr "Islamisch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:122 ../gramps/gen/lib/date.py:589
+#: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:589
 msgid "calendar|Swedish"
 msgstr "Schwedisch"
 
@@ -2357,55 +2357,55 @@ msgstr "Schwedisch"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:131
+#: ../gramps/gen/datehandler/_datestrings.py:146
 msgid "Hebrew month lexeme|Tishri"
 msgstr "Tischri"
 
-#: ../gramps/gen/datehandler/_datestrings.py:132
+#: ../gramps/gen/datehandler/_datestrings.py:147
 msgid "Hebrew month lexeme|Heshvan"
 msgstr "Cheschwan"
 
-#: ../gramps/gen/datehandler/_datestrings.py:133
+#: ../gramps/gen/datehandler/_datestrings.py:148
 msgid "Hebrew month lexeme|Kislev"
 msgstr "Kislew"
 
-#: ../gramps/gen/datehandler/_datestrings.py:134
+#: ../gramps/gen/datehandler/_datestrings.py:149
 msgid "Hebrew month lexeme|Tevet"
 msgstr "Tevet"
 
-#: ../gramps/gen/datehandler/_datestrings.py:135
+#: ../gramps/gen/datehandler/_datestrings.py:150
 msgid "Hebrew month lexeme|Shevat"
 msgstr "Schevat"
 
-#: ../gramps/gen/datehandler/_datestrings.py:136
+#: ../gramps/gen/datehandler/_datestrings.py:151
 msgid "Hebrew month lexeme|AdarI"
 msgstr "Adar I"
 
-#: ../gramps/gen/datehandler/_datestrings.py:137
+#: ../gramps/gen/datehandler/_datestrings.py:152
 msgid "Hebrew month lexeme|AdarII"
 msgstr "Adar II"
 
-#: ../gramps/gen/datehandler/_datestrings.py:138
+#: ../gramps/gen/datehandler/_datestrings.py:153
 msgid "Hebrew month lexeme|Nisan"
 msgstr "Nisan"
 
-#: ../gramps/gen/datehandler/_datestrings.py:139
+#: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "Hebrew month lexeme|Iyyar"
 msgstr "Ijjar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:140
+#: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "Hebrew month lexeme|Sivan"
 msgstr "Siwan"
 
-#: ../gramps/gen/datehandler/_datestrings.py:141
+#: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "Hebrew month lexeme|Tammuz"
 msgstr "Tammus"
 
-#: ../gramps/gen/datehandler/_datestrings.py:142
+#: ../gramps/gen/datehandler/_datestrings.py:157
 msgid "Hebrew month lexeme|Av"
 msgstr "Aw"
 
-#: ../gramps/gen/datehandler/_datestrings.py:143
+#: ../gramps/gen/datehandler/_datestrings.py:158
 msgid "Hebrew month lexeme|Elul"
 msgstr "Elul"
 
@@ -2413,55 +2413,55 @@ msgstr "Elul"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:152
+#: ../gramps/gen/datehandler/_datestrings.py:167
 msgid "French month lexeme|Vendémiaire"
 msgstr "Vendémiaire"
 
-#: ../gramps/gen/datehandler/_datestrings.py:153
+#: ../gramps/gen/datehandler/_datestrings.py:168
 msgid "French month lexeme|Brumaire"
 msgstr "Brumaire"
 
-#: ../gramps/gen/datehandler/_datestrings.py:154
+#: ../gramps/gen/datehandler/_datestrings.py:169
 msgid "French month lexeme|Frimaire"
 msgstr "Frimaire"
 
-#: ../gramps/gen/datehandler/_datestrings.py:155
+#: ../gramps/gen/datehandler/_datestrings.py:170
 msgid "French month lexeme|Nivôse"
 msgstr "Nivôse"
 
-#: ../gramps/gen/datehandler/_datestrings.py:156
+#: ../gramps/gen/datehandler/_datestrings.py:171
 msgid "French month lexeme|Pluviôse"
 msgstr "Pluviôse"
 
-#: ../gramps/gen/datehandler/_datestrings.py:157
+#: ../gramps/gen/datehandler/_datestrings.py:172
 msgid "French month lexeme|Ventôse"
 msgstr "Ventôse"
 
-#: ../gramps/gen/datehandler/_datestrings.py:158
+#: ../gramps/gen/datehandler/_datestrings.py:173
 msgid "French month lexeme|Germinal"
 msgstr "Germinal"
 
-#: ../gramps/gen/datehandler/_datestrings.py:159
+#: ../gramps/gen/datehandler/_datestrings.py:174
 msgid "French month lexeme|Floréal"
 msgstr "Floréal"
 
-#: ../gramps/gen/datehandler/_datestrings.py:160
+#: ../gramps/gen/datehandler/_datestrings.py:175
 msgid "French month lexeme|Prairial"
 msgstr "Prairial"
 
-#: ../gramps/gen/datehandler/_datestrings.py:161
+#: ../gramps/gen/datehandler/_datestrings.py:176
 msgid "French month lexeme|Messidor"
 msgstr "Messidor"
 
-#: ../gramps/gen/datehandler/_datestrings.py:162
+#: ../gramps/gen/datehandler/_datestrings.py:177
 msgid "French month lexeme|Thermidor"
 msgstr "Thermidor"
 
-#: ../gramps/gen/datehandler/_datestrings.py:163
+#: ../gramps/gen/datehandler/_datestrings.py:178
 msgid "French month lexeme|Fructidor"
 msgstr "Fructidor"
 
-#: ../gramps/gen/datehandler/_datestrings.py:164
+#: ../gramps/gen/datehandler/_datestrings.py:179
 msgid "French month lexeme|Extra"
 msgstr "Sansculottiden"
 
@@ -2469,51 +2469,51 @@ msgstr "Sansculottiden"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:173
+#: ../gramps/gen/datehandler/_datestrings.py:188
 msgid "Islamic month lexeme|Muharram"
 msgstr "Muḥarram"
 
-#: ../gramps/gen/datehandler/_datestrings.py:174
+#: ../gramps/gen/datehandler/_datestrings.py:189
 msgid "Islamic month lexeme|Safar"
 msgstr "Ṣafar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:175
+#: ../gramps/gen/datehandler/_datestrings.py:190
 msgid "Islamic month lexeme|Rabi`al-Awwal"
 msgstr "Rabīʿ al-awwal"
 
-#: ../gramps/gen/datehandler/_datestrings.py:176
+#: ../gramps/gen/datehandler/_datestrings.py:191
 msgid "Islamic month lexeme|Rabi`ath-Thani"
 msgstr "Rabīʿ aṯ-ṯānī"
 
-#: ../gramps/gen/datehandler/_datestrings.py:177
+#: ../gramps/gen/datehandler/_datestrings.py:192
 msgid "Islamic month lexeme|Jumada l-Ula"
 msgstr "Ǧumādā l-ūlā"
 
-#: ../gramps/gen/datehandler/_datestrings.py:178
+#: ../gramps/gen/datehandler/_datestrings.py:193
 msgid "Islamic month lexeme|Jumada t-Tania"
 msgstr "Ǧumādā ṯ-ṯāniya"
 
-#: ../gramps/gen/datehandler/_datestrings.py:179
+#: ../gramps/gen/datehandler/_datestrings.py:194
 msgid "Islamic month lexeme|Rajab"
 msgstr "Raǧab"
 
-#: ../gramps/gen/datehandler/_datestrings.py:180
+#: ../gramps/gen/datehandler/_datestrings.py:195
 msgid "Islamic month lexeme|Sha`ban"
 msgstr "Šaʿbān"
 
-#: ../gramps/gen/datehandler/_datestrings.py:181
+#: ../gramps/gen/datehandler/_datestrings.py:196
 msgid "Islamic month lexeme|Ramadan"
 msgstr "Ramaḍān"
 
-#: ../gramps/gen/datehandler/_datestrings.py:182
+#: ../gramps/gen/datehandler/_datestrings.py:197
 msgid "Islamic month lexeme|Shawwal"
 msgstr "Šauwāl"
 
-#: ../gramps/gen/datehandler/_datestrings.py:183
+#: ../gramps/gen/datehandler/_datestrings.py:198
 msgid "Islamic month lexeme|Dhu l-Qa`da"
 msgstr "Ḏū l-qaʿda"
 
-#: ../gramps/gen/datehandler/_datestrings.py:184
+#: ../gramps/gen/datehandler/_datestrings.py:199
 msgid "Islamic month lexeme|Dhu l-Hijja"
 msgstr "Ḏū l-ḥiǧǧa"
 
@@ -2521,105 +2521,105 @@ msgstr "Ḏū l-ḥiǧǧa"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:193
+#: ../gramps/gen/datehandler/_datestrings.py:208
 msgid "Persian month lexeme|Farvardin"
 msgstr "Farwardin"
 
-#: ../gramps/gen/datehandler/_datestrings.py:194
+#: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "Persian month lexeme|Ordibehesht"
 msgstr "Ordibehescht"
 
-#: ../gramps/gen/datehandler/_datestrings.py:195
+#: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "Persian month lexeme|Khordad"
 msgstr "Chordād"
 
-#: ../gramps/gen/datehandler/_datestrings.py:196
+#: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "Persian month lexeme|Tir"
 msgstr "Tir"
 
-#: ../gramps/gen/datehandler/_datestrings.py:197
+#: ../gramps/gen/datehandler/_datestrings.py:212
 msgid "Persian month lexeme|Mordad"
 msgstr "Mordād"
 
-#: ../gramps/gen/datehandler/_datestrings.py:198
+#: ../gramps/gen/datehandler/_datestrings.py:213
 msgid "Persian month lexeme|Shahrivar"
 msgstr "Schahriwar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:199
+#: ../gramps/gen/datehandler/_datestrings.py:214
 msgid "Persian month lexeme|Mehr"
 msgstr "Mehr"
 
-#: ../gramps/gen/datehandler/_datestrings.py:200
+#: ../gramps/gen/datehandler/_datestrings.py:215
 msgid "Persian month lexeme|Aban"
 msgstr "Ābān"
 
-#: ../gramps/gen/datehandler/_datestrings.py:201
+#: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "Persian month lexeme|Azar"
 msgstr "Āzar"
 
-#: ../gramps/gen/datehandler/_datestrings.py:202
+#: ../gramps/gen/datehandler/_datestrings.py:217
 msgid "Persian month lexeme|Dey"
 msgstr "Déi"
 
-#: ../gramps/gen/datehandler/_datestrings.py:203
+#: ../gramps/gen/datehandler/_datestrings.py:218
 msgid "Persian month lexeme|Bahman"
 msgstr "Bahman"
 
-#: ../gramps/gen/datehandler/_datestrings.py:204
+#: ../gramps/gen/datehandler/_datestrings.py:219
 msgid "Persian month lexeme|Esfand"
 msgstr "Esfand"
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:210
+#: ../gramps/gen/datehandler/_datestrings.py:225
 msgid "date modifier|before "
 msgstr "vor "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:213
+#: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "date modifier|after "
 msgstr "nach "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:216
+#: ../gramps/gen/datehandler/_datestrings.py:231
 msgid "date modifier|about "
 msgstr "etwa "
 
-#: ../gramps/gen/datehandler/_datestrings.py:220
+#: ../gramps/gen/datehandler/_datestrings.py:235
 msgid "date quality|estimated "
 msgstr "geschätzt "
 
-#: ../gramps/gen/datehandler/_datestrings.py:221
+#: ../gramps/gen/datehandler/_datestrings.py:236
 msgid "date quality|calculated "
 msgstr "errechnet "
 
-#: ../gramps/gen/datehandler/_datestrings.py:227
+#: ../gramps/gen/datehandler/_datestrings.py:242
 msgid "Sunday"
 msgstr "Sonntag"
 
-#: ../gramps/gen/datehandler/_datestrings.py:228
+#: ../gramps/gen/datehandler/_datestrings.py:243
 msgid "Monday"
 msgstr "Montag"
 
-#: ../gramps/gen/datehandler/_datestrings.py:229
+#: ../gramps/gen/datehandler/_datestrings.py:244
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: ../gramps/gen/datehandler/_datestrings.py:230
+#: ../gramps/gen/datehandler/_datestrings.py:245
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: ../gramps/gen/datehandler/_datestrings.py:231
+#: ../gramps/gen/datehandler/_datestrings.py:246
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: ../gramps/gen/datehandler/_datestrings.py:232
+#: ../gramps/gen/datehandler/_datestrings.py:247
 msgid "Friday"
 msgstr "Freitag"
 
-#: ../gramps/gen/datehandler/_datestrings.py:233
+#: ../gramps/gen/datehandler/_datestrings.py:248
 msgid "Saturday"
 msgstr "Samstag"
 
@@ -6926,7 +6926,7 @@ msgid "Uncleared"
 msgstr "Nicht freigegeben"
 
 #: ../gramps/gen/lib/markertype.py:59
-#: ../gramps/gui/logger/_errorreportassistant.py:669
+#: ../gramps/gui/logger/_errorreportassistant.py:670
 msgid "Complete"
 msgstr "Fertig"
 
@@ -8368,9 +8368,8 @@ msgid ""
 msgstr ""
 "Fehler bei der Analyse der Liste aktueller DBs aus Datei {fname}: {error}.\n"
 "Dies könnte auf eine Beschädigung deiner Dateien hinweisen.\n"
-"Wenn du dir sicher bist, das es kein Problem mit anderen Dateien gibt, lösche "
-"sie und restarte "
-"Gramps."
+"Wenn du dir sicher bist, das es kein Problem mit anderen Dateien gibt, "
+"lösche sie und restarte Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1496
@@ -9601,7 +9600,7 @@ msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1424
 #: ../gramps/gui/configure.py:1449 ../gramps/gui/plug/_dialogs.py:123
-#: ../gramps/gui/viewmanager.py:1347
+#: ../gramps/gui/viewmanager.py:1348
 #: ../gramps/plugins/lib/maps/geography.py:938
 #: ../gramps/plugins/lib/maps/geography.py:1177
 msgid "_Apply"
@@ -10337,7 +10336,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/plug/_guioptions.py:1697 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
 #: ../gramps/gui/plug/report/_reportdialog.py:160 ../gramps/gui/utils.py:170
-#: ../gramps/gui/viewmanager.py:1345 ../gramps/gui/views/listview.py:1005
+#: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1005
 #: ../gramps/gui/views/navigationview.py:361 ../gramps/gui/views/tags.py:623
 #: ../gramps/gui/widgets/progressdialog.py:438
 #: ../gramps/plugins/lib/maps/geography.py:937
@@ -10436,7 +10435,8 @@ msgstr ""
 msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr "Willst du wirklich den Stammbaum aktualisieren?"
 
-#: ../gramps/gui/dbloader.py:333 ../gramps/gui/dbloader.py:375
+#: ../gramps/gui/dbloader.py:333 ../gramps/gui/dbloader.py:347
+#: ../gramps/gui/dbloader.py:375
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
@@ -10451,14 +10451,6 @@ msgstr ""
 #: ../gramps/gui/viewmanager.py:783
 msgid "Cancel"
 msgstr "Abbrechen"
-
-#: ../gramps/gui/dbloader.py:347
-msgid ""
-"I have made a backup,\n"
-"please upgrade my tree"
-msgstr ""
-"Ich habe eine Sicherung erstellt,\n"
-"bitte aktualisiere meinen Baum"
 
 #: ../gramps/gui/dbloader.py:358
 msgid "Are you sure you want to downgrade this Family Tree?"
@@ -15821,12 +15813,12 @@ msgstr ""
 "Wenn du irgendwelche persönliche Informationen in dem Fehler findest, "
 "entferne diese."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:303
-#: ../gramps/gui/logger/_errorreportassistant.py:331
+#: ../gramps/gui/logger/_errorreportassistant.py:304
+#: ../gramps/gui/logger/_errorreportassistant.py:332
 msgid "Error Details"
 msgstr "Fehlerdetails"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:308
+#: ../gramps/gui/logger/_errorreportassistant.py:309
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
@@ -15837,7 +15829,7 @@ msgstr ""
 "Details über den Fehler auf den folgenden Seiten des Assistenten "
 "hinzuzufügen."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:338
+#: ../gramps/gui/logger/_errorreportassistant.py:339
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
@@ -15846,12 +15838,12 @@ msgstr ""
 "Bitte überprüfe die Informationen unterhalb und verbessere, was falsch ist "
 "oder was du nicht mit dem Fehlerbericht verschicken möchtest."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:383
-#: ../gramps/gui/logger/_errorreportassistant.py:409
+#: ../gramps/gui/logger/_errorreportassistant.py:384
+#: ../gramps/gui/logger/_errorreportassistant.py:410
 msgid "System Information"
 msgstr "Systeminformationen"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:388
+#: ../gramps/gui/logger/_errorreportassistant.py:389
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
@@ -15859,7 +15851,7 @@ msgstr ""
 "Das sind die Informationen über dein System, die den Entwicklern helfen, den "
 "Fehler zu beheben."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:416
+#: ../gramps/gui/logger/_errorreportassistant.py:417
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured."
@@ -15867,19 +15859,19 @@ msgstr ""
 "Bitte gib so viele Informationen wie möglich an über das an, was du getan "
 "hast, als der Fehler auftrat. "
 
-#: ../gramps/gui/logger/_errorreportassistant.py:455
-#: ../gramps/gui/logger/_errorreportassistant.py:480
+#: ../gramps/gui/logger/_errorreportassistant.py:456
+#: ../gramps/gui/logger/_errorreportassistant.py:481
 msgid "Further Information"
 msgstr "Weitere Informationen"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:460
+#: ../gramps/gui/logger/_errorreportassistant.py:461
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
 msgstr ""
 "Hier besteht die Möglichkeit zu beschreiben, wie der Fehler entstanden ist."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:487
+#: ../gramps/gui/logger/_errorreportassistant.py:488
 msgid ""
 "Please check that the information is correct, do not worry if you don't "
 "understand the detail of the error information. Just make sure that it does "
@@ -15890,12 +15882,12 @@ msgstr ""
 "dich, dass nichts enthalten ist, was du nicht an die Entwickler senden "
 "willst."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:519
-#: ../gramps/gui/logger/_errorreportassistant.py:546
+#: ../gramps/gui/logger/_errorreportassistant.py:520
+#: ../gramps/gui/logger/_errorreportassistant.py:547
 msgid "Bug Report Summary"
 msgstr "Fehlerberichtzusammenfassung"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:524
+#: ../gramps/gui/logger/_errorreportassistant.py:525
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -15904,7 +15896,7 @@ msgstr ""
 "dir helfen, einen Fehlerbericht auf der Gramps bug tracking Website zu "
 "erstellen (in Englisch)."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:555
+#: ../gramps/gui/logger/_errorreportassistant.py:556
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
@@ -15913,7 +15905,7 @@ msgstr ""
 "die Zwischenablage zu kopieren, und zweitens einen Browser zu öffnen, um "
 "darin einen Fehlerbericht auszufüllen auf "
 
-#: ../gramps/gui/logger/_errorreportassistant.py:564
+#: ../gramps/gui/logger/_errorreportassistant.py:565
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
@@ -15921,7 +15913,7 @@ msgstr ""
 "Benutze diese Schaltfläche um einen Browser zu öffnen und einen "
 "Fehlerbericht im Gramps bug tracking system auszufüllen."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:586
+#: ../gramps/gui/logger/_errorreportassistant.py:587
 msgid ""
 "Use this button to copy the bug report onto the clipboard. Then go to the "
 "bug tracking website by using the button below, paste the report and click "
@@ -15931,12 +15923,12 @@ msgstr ""
 "kopieren. Gehe dann zur bug tracking Webseite, indem du die Schaltfläche "
 "unten benutzt. Kopiere den Bericht und klicke Bericht senden."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:618
-#: ../gramps/gui/logger/_errorreportassistant.py:645
+#: ../gramps/gui/logger/_errorreportassistant.py:619
+#: ../gramps/gui/logger/_errorreportassistant.py:646
 msgid "Send Bug Report"
 msgstr "Fehlerbericht senden"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:623
+#: ../gramps/gui/logger/_errorreportassistant.py:624
 msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
@@ -15945,7 +15937,7 @@ msgstr ""
 "zu starten und einen Fehlerbericht in dem Gramps bug tracking system "
 "auszufüllen."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:652
+#: ../gramps/gui/logger/_errorreportassistant.py:653
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
@@ -17591,7 +17583,7 @@ msgstr "Medium:"
 #. What to include
 #. #########################
 #. ###############################
-#: ../gramps/gui/viewmanager.py:1289
+#: ../gramps/gui/viewmanager.py:1290
 #: ../gramps/plugins/drawreport/ancestortree.py:938
 #: ../gramps/plugins/drawreport/descendtree.py:1639
 #: ../gramps/plugins/graph/gvfamilylines.py:184
@@ -17605,55 +17597,55 @@ msgstr "Medium:"
 msgid "Include"
 msgstr "Einbeziehen"
 
-#: ../gramps/gui/viewmanager.py:1290
+#: ../gramps/gui/viewmanager.py:1291
 #: ../gramps/plugins/gramplet/statsgramplet.py:199
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1291
+#: ../gramps/gui/viewmanager.py:1292
 #: ../gramps/plugins/webreport/narrativeweb.py:8201
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../gramps/gui/viewmanager.py:1307
+#: ../gramps/gui/viewmanager.py:1308
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../gramps/gui/viewmanager.py:1308
+#: ../gramps/gui/viewmanager.py:1309
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../gramps/gui/viewmanager.py:1309
+#: ../gramps/gui/viewmanager.py:1310
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1311
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../gramps/gui/viewmanager.py:1318
+#: ../gramps/gui/viewmanager.py:1319
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../gramps/gui/viewmanager.py:1330
+#: ../gramps/gui/viewmanager.py:1331
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../gramps/gui/viewmanager.py:1333
+#: ../gramps/gui/viewmanager.py:1334
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
-#: ../gramps/gui/viewmanager.py:1342
+#: ../gramps/gui/viewmanager.py:1343
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
-#: ../gramps/gui/viewmanager.py:1601
+#: ../gramps/gui/viewmanager.py:1602
 msgid "Failed Loading Plugin"
 msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1602
+#: ../gramps/gui/viewmanager.py:1603
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -17679,11 +17671,11 @@ msgstr ""
 "laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
 "verstecken."
 
-#: ../gramps/gui/viewmanager.py:1658
+#: ../gramps/gui/viewmanager.py:1659
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1659
+#: ../gramps/gui/viewmanager.py:1660
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -20484,6 +20476,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sWie füge ich einen zusätzlichen "
+"Partner hinzu?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -20491,6 +20485,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sWie entferne ich einen Partner?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -20502,6 +20498,9 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sWie erstelle ich eine sichere "
+"Sicherung?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
 #, python-format
@@ -20522,6 +20521,8 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
+"  6. %(gramps_manual_html_start)s%(section)sWie sollten Informationen über "
+"Hochzeiten eingegeben werden?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
 #, python-format
@@ -20560,11 +20561,15 @@ msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sWie kann ich eine Website mit "
+"Gramps und meinem Baum erstellen?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
+" 11. %(web_html_start)sWie kann ich den Beruf einer Person eingeben?%"
+"(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
@@ -20597,6 +20602,7 @@ msgstr ""
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
 msgstr ""
+" 15. %(gramps_wiki_html_start)s%(section)sWie mache ich ...?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
@@ -22991,7 +22997,7 @@ msgstr "LDS Siegelung zum Kind"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
 msgid "Sold property"
-msgstr ""
+msgstr "Verkauftes Eigentum"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
 msgid "No mention"
@@ -31550,12 +31556,12 @@ msgstr "Prüfe Quellen"
 msgid "Looking for citation fields"
 msgstr "Suche nach Fundstellenfelder"
 
-#: ../gramps/plugins/tool/mergecitations.py:227
+#: ../gramps/plugins/tool/mergecitations.py:229
 msgid "Number of merges done"
 msgstr "Anzahl erfolgter Zusammenfassungen"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/mergecitations.py:229
+#: ../gramps/plugins/tool/mergecitations.py:231
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
@@ -35289,6 +35295,13 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
+
+#~ msgid ""
+#~ "I have made a backup,\n"
+#~ "please upgrade my tree"
+#~ msgstr ""
+#~ "Ich habe eine Sicherung erstellt,\n"
+#~ "bitte aktualisiere meinen Baum"
 
 #~ msgid "Marriage:"
 #~ msgstr "Hochzeit:"
