@@ -21,6 +21,21 @@
 
 """
 Date strings to translate per each language for display and parsing.
+
+__main__
+--------
+
+Run this code with the appropriate ``LANG`` and ``LC_DATE`` set for your target
+language, in order to generate the .po snippets initialized with the strings
+from your locale (from the deprecated data provided in _grampslocale).
+
+E.g., for French::
+
+    LANG=fr_FR.utf8 LC_ALL=fr_FR.utf8 GRAMPS_RESOURCES=$PWD python -m gramps.gen.datehandler._datestrings
+
+Then merge the output into your language's .po file, and further modify the
+strings as needed. Then remove the strings from your language's
+:class:`DateParserXX` and :class:`DateHandlerXX` classes.
 """
 
 #-------------------------------------------------------------------------
@@ -232,23 +247,6 @@ class DateStrings(object):
                 _("Friday"),
                 _("Saturday"),
             )
-
-__doc__ += """
-__main__
---------
-
-Run this code with the appropriate ``LANG`` and ``LC_DATE`` set for your target
-language, in order to generate the .po snippets initialized with the strings
-from your locale (from the deprecated data provided in _grampslocale).
-
-E.g., for French::
-
-    LANG=fr_FR.utf8 LC_ALL=fr_FR.utf8 GRAMPS_RESOURCES=$PWD python -m gramps.gen.datehandler._datestrings
-
-Then merge the output into your language's .po file, and further modify the
-strings as needed. Then remove the strings from your language's
-:class:`DateParserXX` and :class:`DateHandlerXX` classes.
-"""
 
 if __name__ == '__main__':
     import sys

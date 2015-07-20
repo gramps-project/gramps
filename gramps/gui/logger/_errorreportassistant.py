@@ -301,7 +301,8 @@ class ErrorReportAssistant(Gtk.Assistant):
         error_details_box.pack_start(button_box, False, False, 0)
         error_details_box.set_hexpand(True)
         error_details_box.set_vexpand(True)
-        error_details_box.set_margin_start(12)
+
+        error_details_box.set_property("margin", 12)
         
         error_details_frame = Gtk.Frame()
         error_details_frame.set_border_width(3)
@@ -381,7 +382,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         sys_information_box.pack_start(button_box, False, False, 0)
         sys_information_box.set_hexpand(True)
         sys_information_box.set_vexpand(True)
-        sys_information_box.set_margin_start(12)
+        sys_information_box.set_property("margin", 12)
 
         sys_information_frame = Gtk.Frame()
         sys_information_frame.set_border_width(3)
@@ -453,7 +454,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         user_information_box.pack_start(button_box, False, False, 0)
         user_information_box.set_hexpand(True)
         user_information_box.set_vexpand(True)
-        user_information_box.set_margin_start(12)
+        user_information_box.set_property("margin", 12)
 
         user_information_frame = Gtk.Frame()
         user_information_frame.set_border_width(3)
@@ -517,7 +518,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         summary_box.pack_start(sw_frame, True, True, 0)
         summary_box.set_hexpand(True)
         summary_box.set_vexpand(True)
-        summary_box.set_margin_start(12)
+        summary_box.set_property("margin", 12)
 
         summary_frame = Gtk.Frame()
         summary_frame.set_border_width(3)
@@ -583,7 +584,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         url_box.pack_start(url_label, True, True, 0)
         url_box.pack_start(url_button_vbox, False, False, 0)
         url_box.set_hexpand(True)
-        url_box.set_margin_start(12)
+        url_box.set_property("margin", 12)
 
         url_frame = Gtk.Frame()
         url_frame.add(url_box)
@@ -607,7 +608,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clip_box.pack_start(clip_label, True, True, 0)
         clip_box.pack_start(clip_button_vbox, False, False, 0)
         clip_box.set_hexpand(True)
-        clip_box.set_margin_start(12)
+        clip_box.set_property("margin", 12)
 
         clip_frame = Gtk.Frame()
         clip_frame.add(clip_box)
@@ -616,7 +617,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         inner_box.pack_start(label, False, False, 0)
         inner_box.pack_start(clip_frame, False, False, 0)
         inner_box.pack_start(url_frame, False, False, 0)
-        inner_box.set_margin_start(12)
+        inner_box.set_property("margin", 12)
 
         outer_frame = Gtk.Frame()
         outer_frame.set_border_width(3)

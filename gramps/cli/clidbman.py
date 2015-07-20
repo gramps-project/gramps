@@ -155,19 +155,22 @@ class CLIDbManager(object):
         dbid_path = os.path.join(dirpath, "database.txt")
         if os.path.isfile(dbid_path):
             dbid = open(dbid_path).read().strip()
-        try:
-            database = self.dbstate.make_database(dbid)
-            database.load(dirpath, None)
-            retval = database.get_summary()
-        except Exception as msg:
-            retval = {"Unavailable": str(msg)[:74] + "..."}
-        retval.update({
-            _("Family Tree"): name,
-            _("Path"): dirpath,
-            _("Database backend"): dbid,
-            _("Last accessed"): time_val(dirpath)[1],
-            _("Locked?"): self.is_locked(dirpath),
-        })
+        if not self.is_locked(dirpath):
+            try:
+                database = self.dbstate.make_database(dbid)
+                database.load(dirpath, None)
+                retval = database.get_summary()
+                database.close()
+            except Exception as msg:
+                retval = {_("Unavailable"): str(msg)[:74] + "..."}
+        else:
+            retval = {_("Unavailable"): "locked"}
+        retval.update({_("Family Tree"): name,
+                       _("Path"): dirpath,
+                       _("Database backend"): dbid,
+                       _("Last accessed"): time_val(dirpath)[1],
+                       _("Locked?"): self.is_locked(dirpath),
+                   })
         return retval
 
     def family_tree_summary(self):
