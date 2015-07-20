@@ -1282,8 +1282,9 @@ class ViewManager(CLIManager):
         label.set_size_request(90, -1)
         label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
-        include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
-                                                        mbytes, _("Megabyte|MB")))
+        include = Gtk.RadioButton.new_with_mnemonic_from_widget(
+            None, "%s (%s %s)" % (_("Include"),
+                                  mbytes, _("Megabyte|MB")))
         exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
         hbox.pack_start(include, False, True, 0)
