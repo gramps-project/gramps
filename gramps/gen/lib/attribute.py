@@ -67,6 +67,9 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         self.type = None
         self.value = None
 
+    def __str__(self):
+        return str(self.value)
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
