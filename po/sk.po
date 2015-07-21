@@ -1945,7 +1945,7 @@ msgstr "a"
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}medzi {date_start} a {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -1984,27 +1984,27 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:581
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:607
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:633
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:659
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:400
 msgid "today"
@@ -6848,7 +6848,7 @@ msgstr "Obec"
 
 #: ../gramps/gen/lib/placetype.py:86
 msgid "Hamlet"
-msgstr "Vieska"
+msgstr "Ves"
 
 #: ../gramps/gen/lib/placetype.py:87
 msgid "Farm"
@@ -7946,7 +7946,7 @@ msgstr "Osobné"
 
 #: ../gramps/gen/recentfiles.py:236
 msgid "Unable to open list of recent DBs file {fname}: {error}"
-msgstr ""
+msgstr "Nemožno otvoriť súbor so zoznamom posledných databáz {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:240
 msgid ""
@@ -7954,7 +7954,10 @@ msgid ""
 "This might indicate a damage to your files.\n"
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
-msgstr ""
+msgstr "Chyba pri načítaní súboru so zoznamom posledných databáz {fname}: {error}.\n"
+"To môže indokovať poškodenie Vašich súborov.\n"
+"Ak ste si istí, že nieje problém s ostatnými súbormi, zmažte ho a reštartujte "
+"Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1496
@@ -9554,7 +9557,7 @@ msgstr "Zobrazí tlačidlo zavrieť v lište grampletu"
 
 #: ../gramps/gui/configure.py:1108
 msgid "Enable automatic place title generation"
-msgstr ""
+msgstr "Povoliť automatické generovanie názvov lokalít"
 
 #: ../gramps/gui/configure.py:1112
 msgid "Suppress comma after house number"
@@ -9570,11 +9573,11 @@ msgstr "Celý názov lokality"
 
 #: ../gramps/gui/configure.py:1123
 msgid "-> Hamlet/VillageTown/City"
-msgstr ""
+msgstr "-> Ves/Obec/Mesto"
 
 #: ../gramps/gui/configure.py:1124
 msgid "Hamlet/VillageTown/City ->"
-msgstr ""
+msgstr "Ves/Obec/Mesto ->"
 
 #: ../gramps/gui/configure.py:1129
 msgid "Restrict"
@@ -12721,7 +12724,7 @@ msgstr "Vymazať poznámku"
 #: ../gramps/gui/filters/_searchbar.py:55
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:56
 msgid "_Find"
-msgstr ""
+msgstr "Vyhľadať"
 
 #: ../gramps/gui/filters/_searchbar.py:56
 #: ../gramps/gui/glade/clipboard.glade:56
@@ -12976,13 +12979,13 @@ msgstr "Otvoriť rodinný strom"
 
 #: ../gramps/gui/glade/dbman.glade:221 ../gramps/gui/glade/editlink.glade:209
 msgid "_New"
-msgstr ""
+msgstr "Nový"
 
 #: ../gramps/gui/glade/dbman.glade:237 ../gramps/gui/widgets/fanchart.py:1642
 #: ../gramps/plugins/view/pedigreeview.py:1647
 #: ../gramps/plugins/view/pedigreeview.py:1891
 msgid "_Copy"
-msgstr ""
+msgstr "Kopírovať"
 
 #: ../gramps/gui/glade/dbman.glade:268
 msgid "_Rename"
@@ -13036,7 +13039,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/dialog.glade:421
 msgid "Cancel the rest of the operations"
-msgstr ""
+msgstr "Zrušiť zvyšné operácie"
 
 #: ../gramps/gui/glade/dialog.glade:432
 msgid "_No"
@@ -13044,15 +13047,15 @@ msgstr "Nie"
 
 #: ../gramps/gui/glade/dialog.glade:437
 msgid "Do not apply the operation to this item"
-msgstr ""
+msgstr "Neaplikovať operáciu na túto položku"
 
 #: ../gramps/gui/glade/dialog.glade:448
 msgid "_Yes"
-msgstr ""
+msgstr "Áno"
 
 #: ../gramps/gui/glade/dialog.glade:455
 msgid "Apply the operation to this item"
-msgstr ""
+msgstr "Aplikovať operáciu na túto položku"
 
 #: ../gramps/gui/glade/dialog.glade:528
 msgid "_Use this answer for the rest of the items"
@@ -15762,7 +15765,7 @@ msgstr "Chyba pluginu"
 
 #: ../gramps/gui/plug/_windows.py:736
 msgid "_Execute"
-msgstr ""
+msgstr "Vykonať"
 
 #: ../gramps/gui/plug/_windows.py:1027
 #: ../gramps/plugins/tool/ownereditor.py:162
@@ -16210,7 +16213,7 @@ msgstr "Prosím zvoliť položku ktorá sa má konfigurovať."
 #: ../gramps/gui/plug/report/_bookdialog.py:656
 #: ../gramps/gui/views/bookmarks.py:230 ../gramps/gui/views/tags.py:408
 msgid "_Up"
-msgstr ""
+msgstr "Hore"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:657
 #: ../gramps/gui/views/bookmarks.py:231 ../gramps/gui/views/tags.py:409
@@ -17015,7 +17018,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"ak sa Vám nepodarí opraviť chybu, zašlite správu o chybe na "
+"Ak sa Vám nepodarí opraviť chybu, zašlite správu o chybe na "
 "%(gramps_bugtracker_url)s, prípadne sa spojte s autorom modulu "
 "(%(firstauthoremail)s).\n"
 "\n"
@@ -17044,7 +17047,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"ak sa Vám nepodarí opraviť chybu, zašlite správu o chybe na "
+"Ak sa Vám nepodarí opraviť chybu, zašlite správu o chybe na "
 "%(gramps_bugtracker_url)s, prípadne sa spojte s autorom pohľadu "
 "(%(firstauthoremail)s).\n"
 "\n"
@@ -22110,7 +22113,7 @@ msgstr "%s sa nepodarilo otvoriť\n"
 #: ../gramps/plugins/importer/importprogen.py:87
 #: ../gramps/plugins/importer/importvcard.py:76
 msgid "Results"
-msgstr ""
+msgstr "Výsledky"
 
 #: ../gramps/plugins/importer/importcsv.py:113
 #: ../gramps/plugins/importer/importgedcom.py:149
@@ -22118,7 +22121,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importprogen.py:87
 #: ../gramps/plugins/importer/importvcard.py:76
 msgid "done"
-msgstr ""
+msgstr "hotovo"
 
 #: ../gramps/plugins/importer/importcsv.py:135
 msgid "Given name"
@@ -22357,15 +22360,15 @@ msgstr "Chyba pri čítaní súboru GEDCOM"
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
 msgid "Accomplishment"
-msgstr ""
+msgstr "Výsledok"
 
 #: ../gramps/plugins/importer/importgeneweb.py:81
 msgid "Acquisition"
-msgstr ""
+msgstr "Získanie"
 
 #: ../gramps/plugins/importer/importgeneweb.py:82
 msgid "Adhesion"
-msgstr ""
+msgstr "Spojenie"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
@@ -22414,7 +22417,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:110
 msgid "Military Distinction"
-msgstr ""
+msgstr "Vojenské vyznamenanie"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
 msgid "Militaty Mobilisation"
@@ -29428,7 +29431,7 @@ msgstr "Štýl použitý pre nadpis zostavy."
 
 #: ../gramps/plugins/textreport/placereport.py:456
 msgid "The style used for place title."
-msgstr "Štýl použitý pre titulok."
+msgstr "Štýl použitý pre názov lokality."
 
 #: ../gramps/plugins/textreport/placereport.py:468
 msgid "The style used for place details."
@@ -29436,7 +29439,7 @@ msgstr "Štýl použitý pre podrobnosti o mieste."
 
 #: ../gramps/plugins/textreport/placereport.py:480
 msgid "The style used for a column title."
-msgstr "Štýl použitý pre titulok."
+msgstr "Štýl použitý pre názov stĺpca."
 
 #: ../gramps/plugins/textreport/placereport.py:494
 msgid "The style used for each section."
@@ -30331,21 +30334,22 @@ msgstr "Skontrolovať a opraviť"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:67
 msgid "Start date test?"
-msgstr ""
+msgstr "Spustiť test dátumov?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:68
 msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
-msgstr ""
+msgstr "Tento test vytvorí množstvo osôb a udalostí v aktuálnej databáze. "
+"Naozaj si želáte test spustiť?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
-msgstr ""
+msgstr "Spustiť test"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:80
 msgid "Running Date Test"
-msgstr ""
+msgstr "Vykonáva sa test dátumov"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:82
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:183
@@ -30523,7 +30527,7 @@ msgstr "Extrahovať údaje o mieste"
 
 #: ../gramps/plugins/tool/extractcity.py:436
 msgid "Checking Place Titles"
-msgstr "Kontrola názvov miesta"
+msgstr "Kontrola názvov lokalít"
 
 #: ../gramps/plugins/tool/extractcity.py:437
 msgid "Looking for place fields"
@@ -31292,7 +31296,8 @@ msgstr "Vygenerovať testovacie scenáre"
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
-msgstr ""
+msgstr "Vygenerovať nízkourovňové chyby databázy\n"
+"Úprava vyžaduje znovunačítanie databázy"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:209
 msgid "Generate database errors"
@@ -31323,6 +31328,8 @@ msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
+"Počet generovaných ľudí\n"
+"(Počet je približný pretože sa generujú rodiny)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:284
 msgid "Generating testcases"
@@ -31409,7 +31416,7 @@ msgstr "Generujú sa chyby databázy"
 #: ../gramps/plugins/tool/testcasegenerator.py:1449
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Krok generátora testovacích scenárov %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -34587,7 +34594,7 @@ msgstr "Požadovaný %s neexistuje."
 #: ../gramps/webapp/grampsdb/views.py:147
 #: ../gramps/webapp/grampsdb/views.py:477
 msgid "Browse"
-msgstr ""
+msgstr "Prechádzať"
 
 #: ../gramps/webapp/grampsdb/views.py:69
 #: ../gramps/webapp/grampsdb/views.py:388
