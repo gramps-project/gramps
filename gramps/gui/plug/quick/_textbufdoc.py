@@ -174,8 +174,8 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_page(self):
-        return
         self.f.write('\012')
+        return
 
     def start_bold(self):
         pass
@@ -223,10 +223,10 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def start_table(self, name,style_name):
-        return
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()
+        return
 
     #--------------------------------------------------------------------
     #
@@ -234,8 +234,8 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_table(self):
-        return
         self.in_cell = 0
+        return
 
     #--------------------------------------------------------------------
     #
@@ -245,8 +245,6 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def start_row(self):
-        return
-
         self.cellpars = [''] * self.ncols
         self.cell_lines = [0] * self.ncols
         self.cell_widths = [0] * self.ncols
@@ -256,6 +254,7 @@ class TextBufDoc(BaseDoc, TextDoc):
         for cell in range(self.ncols):
             self.cell_widths[cell] = int( table_width * \
                                 self.tbl_style.get_column_width(cell) / 100.0 )
+        return
 
     #--------------------------------------------------------------------
     #
@@ -264,8 +263,6 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_row(self):
-        return
-
         self.in_cell = 0
         cell_text = [None]*self.ncols
         for cell in range(self.ncols):
@@ -280,6 +277,7 @@ class TextBufDoc(BaseDoc, TextDoc):
                 if self.cell_widths[cell]:
                     self.f.write(cell_text[cell][line])
             self.f.write('\n')
+        return
 
     #--------------------------------------------------------------------
     #
@@ -287,15 +285,14 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def start_cell(self,style_name,span=1):
-        return
-
         self.in_cell = 1
         self.cellnum = self.cellnum + span
         span -= 1
         while span:
             self.cell_widths[self.cellnum-span] = 0
             span -= 1
-            
+        return
+
     #--------------------------------------------------------------------
     #
     # End a cell. Find out the number of lines in this cell, correct
@@ -303,25 +300,21 @@ class TextBufDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_cell(self):
-        return
-
         self.in_cell = 0
         self.cell_lines[self.cellnum] = self.cellpars[self.cellnum].count('\n')
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
-
-    def add_media_object(self, name, align, w_cm, h_cm, alt=''):
         return
 
+    def add_media_object(self, name, align, w_cm, h_cm, alt=''):
         this_text = '(photo)'
         if self.in_cell:
             self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text
         else:
             self.f.write(this_text)
-
-    def write_note(self,text,format,style_name):
         return
 
+    def write_note(self,text,format,style_name):
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
@@ -334,6 +327,7 @@ class TextBufDoc(BaseDoc, TextDoc):
                 line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
+        return
 
     #--------------------------------------------------------------------
     #
