@@ -128,7 +128,7 @@ class GVOptions():
         :return: nothing
         """
         ################################
-        category = _("GraphViz Layout")
+        category = _("Graphviz Layout")
         ################################
         font_family = EnumeratedListOption(_("Font family"), "")
         for item in _FONTS:
@@ -151,7 +151,7 @@ class GVOptions():
         menu.add_option(category, "rank_dir", rank_dir)
 
         h_pages = NumberOption(_("Number of Horizontal Pages"), 1, 1, 25)
-        h_pages.set_help(_("GraphViz can create very large graphs by "
+        h_pages.set_help(_("Graphviz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array horizontally. "
@@ -159,7 +159,7 @@ class GVOptions():
         menu.add_option(category, "h_pages", h_pages)
         
         v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
-        v_pages.set_help(_("GraphViz can create very large graphs by "
+        v_pages.set_help(_("Graphviz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array vertically. "
@@ -187,7 +187,7 @@ class GVOptions():
         self.v_pages.connect('value-changed', self.pages_changed)
 
         ################################
-        category = _("GraphViz Options")
+        category = _("Graphviz Options")
         ################################
         
         aspect_ratio = EnumeratedListOption(_("Aspect ratio"), "fill")
@@ -234,7 +234,7 @@ class GVOptions():
         menu.add_option(category, "ranksep", ranksep)
 
         use_subgraphs = BooleanOption(_('Use subgraphs'), True)
-        use_subgraphs.set_help(_("Subgraphs can help GraphViz position "
+        use_subgraphs.set_help(_("Subgraphs can help Graphviz position "
                                 "spouses together, but with non-trivial "
                                 "graphs will result in longer lines and "
                                 "larger graphs."))
@@ -510,7 +510,7 @@ class GVDocBase(BaseDoc, GVDoc):
             text += ' style="%s"'       % style
 
         # note that we always output a label -- even if an empty string --
-        # otherwise GraphViz uses the node ID as the label which is unlikely
+        # otherwise Graphviz uses the node ID as the label which is unlikely
         # to be what the user wants to see in the graph
         if label.startswith("<") or htmloutput:
             text += ' label=<%s>'       % label
@@ -645,7 +645,7 @@ class GVPsDoc(GVDocBase):
         # Generate the PS file.
         # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
         # Some testing with Tps:cairo. Non Latin-1 letters are OK i all cases:
-        # Output format:   ps       PDF-GostScript  PDF-GraphViz
+        # Output format:   ps       PDF-GostScript  PDF-Graphviz
         # Single page      OK           OK              OK
         # Multip page    1 page,        OK             1 page,
         #               corrupted                    set by gramps

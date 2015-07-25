@@ -23,7 +23,7 @@
 #
 
 """
-Generate an hourglass graph using the GraphViz generator.
+Generate an hourglass graph using the Graphviz generator.
 """
 #------------------------------------------------------------------------
 #

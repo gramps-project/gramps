@@ -30,7 +30,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     Without this the GeoView will not be active, see
                     http://gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Main_Window#Geography_Category
 
-   GraphViz         Enable creation of graphs using GraphViz engine.
+   Graphviz         Enable creation of graphs using Graphviz engine.
                     Without this, three reports cannot be run.
                     Obtain it from: http://www.graphviz.org
 

@@ -360,8 +360,8 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * GEDCOM Repositories not imported correctly from FTM for Windows and Heredis.
 * Fixes to a number of errors in filtering notes.
 * Fix some errors in determining whether someone is alive (e.g. for filtering out alive people).
-* Make availability of GraphViz settings depend on output format
-* Improve the descriptions and tooltip for GraphViz aspect ratio option
+* Make availability of Graphviz settings depend on output format
+* Improve the descriptions and tooltip for Graphviz aspect ratio option
 * Fixed update problems with citation bottombar gramplet (bug #6336)
 * Fixed Open Document Text output in Book report (bug #6457)
 * A number of changes to Narrative Web:
