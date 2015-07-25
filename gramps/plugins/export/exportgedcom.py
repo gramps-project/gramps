@@ -1095,7 +1095,7 @@ class GedcomWriter(UpdateCallback):
 
         if event.get_place_handle():
             place = self.dbase.get_place_from_handle(event.get_place_handle())
-            self._place(place, 2)
+            self._place(place, dateobj, 2)
 
         for attr in event.get_attribute_list():
             attr_type = attr.get_type()
@@ -1166,8 +1166,8 @@ class GedcomWriter(UpdateCallback):
         if lds_ord.get_temple():
             self._writeln(index+1, 'TEMP', lds_ord.get_temple())
         if lds_ord.get_place_handle():
-            self._place(
-                self.dbase.get_place_from_handle(lds_ord.get_place_handle()), 2)
+            place = self.dbase.get_place_from_handle(lds_ord.get_place_handle())
+            self._place(place, lds_ord.get_date_object(), 2)
         if lds_ord.get_status() != LdsOrd.STATUS_NONE:
             self._writeln(2, 'STAT', LDS_STATUS[lds_ord.get_status()])
         
@@ -1371,7 +1371,7 @@ class GedcomWriter(UpdateCallback):
 
             self._note_references(photo_obj.get_note_list(), level+1)
 
-    def _place(self, place, level):
+    def _place(self, place, dateobj, level):
         """
         PLACE_STRUCTURE:=
             n PLAC <PLACE_NAME> {1:1}
@@ -1386,7 +1386,7 @@ class GedcomWriter(UpdateCallback):
             +1 <<NOTE_STRUCTURE>> {0:M} 
         """
         if place is None: return
-        place_name = place_displayer.display(self.dbase, place)
+        place_name = place_displayer.display(self.dbase, place, dateobj)
         self._writeln(level, "PLAC", place_name.replace('\r', ' '), limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
