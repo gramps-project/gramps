@@ -12994,10 +12994,6 @@ msgstr "i barabartë me"
 msgid "greater than"
 msgstr "më shumë se"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "më pak se"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "ID e pavlefshme"

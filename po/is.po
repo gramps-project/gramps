@@ -11994,10 +11994,6 @@ msgstr "jafnt og"
 msgid "greater than"
 msgstr "stærra en"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "minna en"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr ""

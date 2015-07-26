@@ -12754,10 +12754,6 @@ msgstr "lika med"
 msgid "greater than"
 msgstr "större än"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "mindre än"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Ogiltigt ID"

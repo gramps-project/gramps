@@ -12812,10 +12812,6 @@ msgstr "lig med"
 msgid "greater than"
 msgstr "større end"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "mindre end"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Ugyldig id"

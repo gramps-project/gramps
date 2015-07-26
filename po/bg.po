@@ -12887,10 +12887,6 @@ msgstr "равно на"
 msgid "greater than"
 msgstr "повече от"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "по-малко от"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Невалиден индекс"

@@ -12562,11 +12562,6 @@ msgstr "يساوي لـ"
 msgid "greater than"
 msgstr "أكبر من"
 
-# شك
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "أقل من"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "معرّف غير صالح"

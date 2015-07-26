@@ -11915,10 +11915,6 @@ msgstr ""
 msgid "greater than"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr ""
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr ""

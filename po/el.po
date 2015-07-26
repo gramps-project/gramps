@@ -13085,10 +13085,6 @@ msgstr "ίσο με"
 msgid "greater than"
 msgstr "μεγαλύτερο από"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "λιγότερο από"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Μη έγκυρος ΑΑ"

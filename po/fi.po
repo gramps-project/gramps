@@ -10222,10 +10222,6 @@ msgstr "sama kuin"
 msgid "greater than"
 msgstr "enemmän kuin"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "vähemmän kuin"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "ID ei kelpaa"

@@ -12245,10 +12245,6 @@ msgstr "に等しい"
 msgid "greater than"
 msgstr "より多い"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "より少ない"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "有効なIDではありません"

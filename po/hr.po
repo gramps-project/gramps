@@ -12470,10 +12470,6 @@ msgstr "jednak"
 msgid "greater than"
 msgstr "veće od"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "manje od"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Neispravni ID"

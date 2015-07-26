@@ -12836,10 +12836,6 @@ msgstr "równy"
 msgid "greater than"
 msgstr "większy niż"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "mniejszy niż"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Nierprawidłowy identyfikator"

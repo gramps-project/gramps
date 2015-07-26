@@ -13038,10 +13038,6 @@ msgstr "igual a"
 msgid "greater than"
 msgstr "mayor que"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "menor que"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "No es un ID válido"

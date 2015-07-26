@@ -12771,10 +12771,6 @@ msgstr "lygus"
 msgid "greater than"
 msgstr "daugiau kaip"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "mažiau kaip"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Netinkamas ID"

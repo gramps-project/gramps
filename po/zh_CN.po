@@ -12511,10 +12511,6 @@ msgstr "等于"
 msgid "greater than"
 msgstr "大于"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "less than"
-msgstr "小于"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "不是一个有效的ID编号"
