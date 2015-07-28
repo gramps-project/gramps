@@ -30669,7 +30669,7 @@ msgstr "Weblinks"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2292
 msgid " [Click to Go]"
-msgstr " [Klik om de gaan naar]"
+msgstr " [Klik om te gaan naar]"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2315
 msgid "Latter-Day Saints/ LDS Ordinance"
