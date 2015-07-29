@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-27 08:38+0200\n"
+"POT-Creation-Date: 2015-07-29 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9353,7 +9353,7 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:438
 #: ../gramps/plugins/lib/maps/geography.py:937
 #: ../gramps/plugins/lib/maps/geography.py:1175
-#: ../gramps/plugins/tool/check.py:694 ../gramps/plugins/tool/eventcmp.py:395
+#: ../gramps/plugins/tool/check.py:694 ../gramps/plugins/tool/eventcmp.py:396
 #: ../gramps/plugins/tool/populatesources.py:89
 #: ../gramps/plugins/tool/testcasegenerator.py:245
 msgid "_Cancel"
@@ -12391,7 +12391,7 @@ msgstr ""
 #: ../gramps/gui/plug/report/_bookdialog.py:664
 #: ../gramps/gui/views/listview.py:1006
 #: ../gramps/gui/widgets/grampletpane.py:575
-#: ../gramps/plugins/tool/eventcmp.py:397
+#: ../gramps/plugins/tool/eventcmp.py:398
 msgid "_Save"
 msgstr ""
 
@@ -14239,7 +14239,7 @@ msgstr ""
 #: ../gramps/gui/grampsgui.py:90
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-"Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
+"Install Gnome Introspection, and pygobject version 3.12 or later.\n"
 "Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
