@@ -15348,7 +15348,7 @@ msgstr "从剪贴板 筛查 %s"
 #: ../gramps/gui/makefilter.py:46
 #, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "创建于%(year)4d年%(month)d月%(day)d日"
+msgstr "创建于%(year)4d年%(month)02d月%(day)02d日"
 
 #: ../gramps/gui/merge/mergecitation.py:47
 msgid "manual|Merge_Citations"
