@@ -7399,7 +7399,7 @@ msgstr "底部"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
+msgid "Graphviz Layout"
 msgstr "Graphviz 排版"
 
 #. ###############################
@@ -7439,11 +7439,11 @@ msgstr "水平頁面數量"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz 可以通過擴展矩形頁面組建立非常大影象. 這控制水平組的數字頁面. 僅僅對"
+"Graphviz 可以通過擴展矩形頁面組建立非常大影象. 這控制水平組的數字頁面. 僅僅對"
 "Ghostscript 的dot和pdf檔案有效。"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:161
@@ -7452,11 +7452,11 @@ msgstr "垂直頁面數量"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz 可以通過延展頁面的矩形陣列建立非常大的影象，這控制在垂直方向上的數字"
+"Graphviz 可以通過延展頁面的矩形陣列建立非常大的影象，這控制在垂直方向上的數字"
 "頁面。僅僅對Ghostscript的dot和Pdf有效。"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:169
@@ -7472,7 +7472,7 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
+msgid "Graphviz Options"
 msgstr "Graphviz 選項"
 
 #. ###############################
@@ -7543,7 +7543,7 @@ msgstr "使用子圖"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "子圖表可以幫助 Graphviz 把配偶放在一起，但對於不平凡的圖表將會產生更長的線和"
@@ -12512,10 +12512,6 @@ msgstr "等於"
 msgid "greater than"
 msgstr "大於"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
-msgstr "小於"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "不是一個有效的ID編號"
@@ -15085,7 +15081,7 @@ msgstr ""
 #: ../gramps/gui/grampsgui.py:89
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-"Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
+"Install Gnome Introspection, and pygobject version 3.12 or later.\n"
 "Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
@@ -15353,7 +15349,7 @@ msgstr "從剪貼簿 篩查 %s"
 #: ../gramps/gui/makefilter.py:46
 #, python-format
 msgid "Created on %(year)4d/%(month)02d/%(day)02d"
-msgstr "建立於%(year)4d年%(month)d月%(day)d日"
+msgstr "建立於%(year)4d年%(month)02d月%(day)02d日"
 
 #: ../gramps/gui/merge/mergecitation.py:47
 msgid "manual|Merge_Citations"
@@ -21494,7 +21490,7 @@ msgid "Family Lines Graph"
 msgstr "家庭線圖表"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
+msgid "Produces family line graphs using Graphviz."
 msgstr "使用 Graphviz 生成家庭線圖。"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54

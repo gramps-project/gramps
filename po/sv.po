@@ -7613,8 +7613,8 @@ msgstr "Nederkant"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "GraphViz Layout"
+msgid "Graphviz Layout"
+msgstr "Graphviz Layout"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7655,11 +7655,11 @@ msgstr "Antal sidor i horisontalled"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"Graphviz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Endast giltigt för dot och pdf via Ghostscript."
 
@@ -7669,11 +7669,11 @@ msgstr "Antal sidor i vertikalled"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"Graphviz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Endast giltigt för dot och pdf via Ghostscript."
 
@@ -7691,8 +7691,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "GraphViz-alternativ"
+msgid "Graphviz Options"
+msgstr "Graphviz-alternativ"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7778,10 +7778,10 @@ msgstr "Använd underordnade stycken"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Underordnade stycken kan hjälpa GraphViz att placera makar ihop, men kan "
+"Underordnade stycken kan hjälpa Graphviz att placera makar ihop, men kan "
 "även orsaka längre linjer och större diagram vid komplicerade sådana."
 
 #. ###############################
@@ -12754,10 +12754,6 @@ msgstr "lika med"
 msgid "greater than"
 msgstr "större än"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
-msgstr "mindre än"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Ogiltigt ID"
@@ -15425,13 +15421,13 @@ msgstr ""
 #: ../gramps/gui/grampsgui.py:89
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-"Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
+"Install Gnome Introspection, and pygobject version 3.12 or later.\n"
 "Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
 "Gdk, Gtk Pango eller PangoCairo typelib ej installerade.\n"
-"Installera Gnome Introspection, och pygobject version 3.3.2 eller senare.\n"
+"Installera Gnome Introspection, och pygobject version 3.12 eller senare.\n"
 "Installera sedan instrospection data för Gdk, Gtk, Pango  och PangoCairo\n"
 "\n"
 "Gramps kommer att avslutas nu."
@@ -18756,11 +18752,11 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"%(spouse)s och\n"
-" %(person)s, %(nyears)d"
+"{spouse} och\n"
+" {person}, {nyears}"
 msgstr[1] ""
-"%(spouse)s och\n"
-" %(person)s, %(nyears)d"
+"{spouse} och\n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:470
 #: ../gramps/plugins/webreport/webcal.py:1335
@@ -21289,10 +21285,10 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" består av %(count_person)d av %(max_count_person)d individ (%(percent)s "
+" består av {count_person} av {max_count_person} individ ({percent} "
 "komplett)\n"
 msgstr[1] ""
-" består av %(count_person)d av %(max_count_person)d individer (%(percent)s "
+" består av {count_person} av {max_count_person} individer ({percent} "
 "komplett)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:278
@@ -21813,8 +21809,8 @@ msgid "Family Lines Graph"
 msgstr "Släktlinjediagram"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Skapar ett diagram för en släktlinje med GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Skapar ett diagram för en släktlinje med Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -30398,7 +30394,7 @@ msgstr "Inga fel hittades: databasen har klarat interna kontroller."
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} trasig barn/familjelänk lagades\n"
-msgstr[1] "trasig barn/familjelänkar lagades\n"
+msgstr[1] "{quantity} trasig barn/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2130
 msgid "Non existing child"
@@ -30414,7 +30410,7 @@ msgstr "%(person)s togs bort från familjen %(family)s\n"
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} trasig maka-/make-/familjelänk lagades\n"
-msgstr[1] "trasig maka-/make-/familjelänkar lagades\n"
+msgstr[1] "{quantity} trasig maka-/make-/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2154 ../gramps/plugins/tool/check.py:2180
 msgid "Non existing person"
@@ -34763,8 +34759,8 @@ msgstr "%(couple)s, <em>bröllop</em>"
 #: ../gramps/plugins/webreport/webcal.py:1722
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "%(couple)s, <em>%(years)d</em>-års jubileum"
-msgstr[1] "%(couple)s, <em>%(years)d</em>-års jubileum"
+msgstr[0] "{couple}, {years} års jubileum"
+msgstr[1] "{couple}, {years} års jubileum"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:31
 msgid "Narrated Web Site"

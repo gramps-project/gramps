@@ -1872,7 +1872,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
 msgid "before|{long_month} {year}"
-msgstr "{long_month} {year"
+msgstr "{long_month} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1962,7 +1962,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:278
 msgid "after|{short_month} {year}"
-msgstr "{short_month} {year"
+msgstr "{short_month} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -7648,8 +7648,8 @@ msgstr "Nederst"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-msgid "GraphViz Layout"
-msgstr "Innstillingar for GraphViz"
+msgid "Graphviz Layout"
+msgstr "Innstillingar for Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7689,11 +7689,11 @@ msgstr "Talet på vassrette sider"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan laga svært store grafar ved å dela grafen på ei rektangelforma "
+"Graphviz kan laga svært store grafar ved å dela grafen på ei rektangelforma "
 "samling av sider.  Dette kontrollerer kor mange sider som skal brukast "
 "horisontalt.  Dette gjeld berre for dot og pdf via Ghostscript."
 
@@ -7703,11 +7703,11 @@ msgstr "Tal på sider loddrett"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
 msgid ""
-"GraphViz can create very large graphs by spreading the graph across a "
+"Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
-"GraphViz kan laga svært store slektstre ved å dela grafen på ei "
+"Graphviz kan laga svært store slektstre ved å dela grafen på ei "
 "rektangelforma samling av sider.  Dette kontrollerer kor mange sider som "
 "skal brukast loddrett.  Dette gjeld berre for dot og pdf via Ghostscript."
 
@@ -7725,8 +7725,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-msgid "GraphViz Options"
-msgstr "Innstillingar for GraphViz"
+msgid "Graphviz Options"
+msgstr "Innstillingar for Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7811,10 +7811,10 @@ msgstr "Bruk delgrafar"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
 msgid ""
-"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Delgrafar kan hjelpa GraphViz med å plassera partnarar nærare einannan, men "
+"Delgrafar kan hjelpa Graphviz med å plassera partnarar nærare einannan, men "
 "det kan føra til at linjene blir lengre og at grafen difor blir større."
 
 #. ###############################
@@ -12796,10 +12796,6 @@ msgstr "Er lik"
 msgid "greater than"
 msgstr "større enn"
 
-#: ../gramps/gui/editors/filtereditor.py:247
-msgid "lesser than"
-msgstr "mindre enn"
-
 #: ../gramps/gui/editors/filtereditor.py:285
 msgid "Not a valid ID"
 msgstr "Ugyldig ID"
@@ -15480,13 +15476,13 @@ msgstr ""
 #, fuzzy
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-"Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
+"Install Gnome Introspection, and pygobject version 3.12 or later.\n"
 "Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
 "Gdk, Gtk or Pango typelib er ikkje installert.\n"
-"Installer Gnome Introspection, og pygobject versjon 3.3.2 eller seinare.\n"
+"Installer Gnome Introspection, og pygobject versjon 3.12 eller seinare.\n"
 "Installer deretter instrospection data for Gdk, Gtk and Pango\n"
 "\n"
 "Gramps vil bli avslutta no."
@@ -21892,8 +21888,8 @@ msgid "Family Lines Graph"
 msgstr "Graf for slektslinjer"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-msgid "Produces family line graphs using GraphViz."
-msgstr "Lagar ein graf for slektslinjer ved å bruka GraphViz."
+msgid "Produces family line graphs using Graphviz."
+msgstr "Lagar ein graf for slektslinjer ved å bruka Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
 msgid "Hourglass Graph"
@@ -22611,7 +22607,7 @@ msgstr "CSV-import"
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] "Importen er ferdig: {number_of} sekund"
-msgstr[1] "Importen er ferdig: number_of} sekundar"
+msgstr[1] "Importen er ferdig: {number_of} sekundar"
 
 #: ../gramps/plugins/importer/importgedcom.glade:31
 msgid "Gramps - GEDCOM Encoding"
@@ -31294,13 +31290,13 @@ msgstr[1] "Finn relasjonar mellom {number_of} personar"
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] "Søkjer etter {number_of} person"
-msgstr[1] "Søkjer etter {number_of personar"
+msgstr[1] "Søkjer etter {number_of} personar"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:409
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "Hentar namnet til {number_of } person"
+msgstr[0] "Hentar namnet til {number_of} person"
 msgstr[1] "Hentar namna for {number_of} personar"
 
 #: ../gramps/plugins/tool/ownereditor.glade:164
