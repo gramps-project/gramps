@@ -15132,7 +15132,7 @@ msgstr ""
 #: ../gramps/gui/grampsgui.py:89
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-"Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
+"Install Gnome Introspection, and pygobject version 3.12 or later.\n"
 "Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
