@@ -62,7 +62,7 @@ if sys.platform == 'win32':
     msgfmtCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgfmt.exe')
     msgattribCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgattrib.exe')
     xgettextCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'xgettext.exe')
-    pythonCmd = os.path.join(sys.prefix, 'bin', 'python3.exe')
+    pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
 
 # Others OS
 
