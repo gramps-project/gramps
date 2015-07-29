@@ -341,7 +341,7 @@ class ODSTab(TabbedDoc):
         except:
             raise ReportError(_("Could not create %s") % self.content_xml)
 
-        self.f = open(self.content_xml,"w")
+        self.f = open(self.content_xml,"w", encoding='utf-8')
         self.f.write(
             '<?xml version="1.0" encoding="UTF-8"?>\n' +
             '<office:document-content ' +

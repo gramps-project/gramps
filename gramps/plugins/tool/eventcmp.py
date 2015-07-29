@@ -391,6 +391,7 @@ class DisplayChart(ManagedWindow):
 
     def on_write_table(self, obj):
         f = Gtk.FileChooserDialog(_("Select filename"),
+                                  parent=self.window,
                                   action=Gtk.FileChooserAction.SAVE,
                                   buttons=(_('_Cancel'),
                                            Gtk.ResponseType.CANCEL,
