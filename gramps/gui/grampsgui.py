@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 
-MIN_PYGOBJECT_VERSION = (3, 3, 2)
+MIN_PYGOBJECT_VERSION = (3, 12, 0)
 PYGOBJ_ERR = False
 MIN_GTK_VERSION = (3, 10)
 
@@ -89,7 +89,7 @@ try:
 except (ImportError, ValueError):
     print((_("Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
              "Install Gnome Introspection, and "
-             "pygobject version 3.3.2 or later.\n"
+             "pygobject version 3.12 or later.\n"
              "Then install introspection data for Gdk, Gtk, Pango and "
              "PangoCairo\n\n"
              "Gramps will terminate now.")))
@@ -333,9 +333,6 @@ def __startgramps(errors, argparser):
 def startgtkloop(errors, argparser):
     """ We start the gtk loop and run the function to start up Gramps
     """
-    if GObject.pygobject_version < (3, 10, 2):
-        GObject.threads_init()
-
     GLib.timeout_add(100, __startgramps, errors, argparser, priority=100)
     if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
         Gtk.AccelMap.load(os.path.join(DATA_DIR, "gramps.accel"))
