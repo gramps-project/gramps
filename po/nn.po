@@ -1872,7 +1872,7 @@ msgstr "{long_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
 msgid "before|{long_month} {year}"
-msgstr "{long_month} {year"
+msgstr "{long_month} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1962,7 +1962,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:278
 msgid "after|{short_month} {year}"
-msgstr "{short_month} {year"
+msgstr "{short_month} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -22607,7 +22607,7 @@ msgstr "CSV-import"
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] "Importen er ferdig: {number_of} sekund"
-msgstr[1] "Importen er ferdig: number_of} sekundar"
+msgstr[1] "Importen er ferdig: {number_of} sekundar"
 
 #: ../gramps/plugins/importer/importgedcom.glade:31
 msgid "Gramps - GEDCOM Encoding"
@@ -31290,13 +31290,13 @@ msgstr[1] "Finn relasjonar mellom {number_of} personar"
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] "Søkjer etter {number_of} person"
-msgstr[1] "Søkjer etter {number_of personar"
+msgstr[1] "Søkjer etter {number_of} personar"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:409
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "Hentar namnet til {number_of } person"
+msgstr[0] "Hentar namnet til {number_of} person"
 msgstr[1] "Hentar namna for {number_of} personar"
 
 #: ../gramps/plugins/tool/ownereditor.glade:164

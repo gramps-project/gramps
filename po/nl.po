@@ -1765,7 +1765,7 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 msgid "estimated|{short_month} {year}"
-msgstr "{day:d} {short_month} {year}"
+msgstr "{short_month} {year}"
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1773,7 +1773,7 @@ msgstr "{day:d} {short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 msgid "calculated|{short_month} {year}"
-msgstr "{day:d} {short_month} {year}"
+msgstr "{short_month} {year}"
 
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,

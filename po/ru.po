@@ -8946,8 +8946,7 @@ msgstr "Неизвестно. Создано вместо отсутствующ
 #: ../gramps/gen/utils/unknown.py:149
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr ""
-"Неизвестная метка. Отсутствовала %(count)d раз на %(time)s. (%(count)d)"
+msgstr "Неизвестная метка. Отсутствовала %(count)d раз на %(time)s."
 
 #: ../gramps/gen/utils/unknown.py:168
 #, python-format

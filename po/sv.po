@@ -18752,11 +18752,11 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"%(spouse)s och\n"
-" %(person)s, %(nyears)d"
+"{spouse} och\n"
+" {person}, {nyears}"
 msgstr[1] ""
-"%(spouse)s och\n"
-" %(person)s, %(nyears)d"
+"{spouse} och\n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:470
 #: ../gramps/plugins/webreport/webcal.py:1335
@@ -21285,10 +21285,10 @@ msgid ""
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" består av %(count_person)d av %(max_count_person)d individ (%(percent)s "
+" består av {count_person} av {max_count_person} individ ({percent} "
 "komplett)\n"
 msgstr[1] ""
-" består av %(count_person)d av %(max_count_person)d individer (%(percent)s "
+" består av {count_person} av {max_count_person} individer ({percent} "
 "komplett)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:278
@@ -30394,7 +30394,7 @@ msgstr "Inga fel hittades: databasen har klarat interna kontroller."
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} trasig barn/familjelänk lagades\n"
-msgstr[1] "trasig barn/familjelänkar lagades\n"
+msgstr[1] "{quantity} trasig barn/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2130
 msgid "Non existing child"
@@ -30410,7 +30410,7 @@ msgstr "%(person)s togs bort från familjen %(family)s\n"
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} trasig maka-/make-/familjelänk lagades\n"
-msgstr[1] "trasig maka-/make-/familjelänkar lagades\n"
+msgstr[1] "{quantity} trasig maka-/make-/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2154 ../gramps/plugins/tool/check.py:2180
 msgid "Non existing person"
@@ -34759,8 +34759,8 @@ msgstr "%(couple)s, <em>bröllop</em>"
 #: ../gramps/plugins/webreport/webcal.py:1722
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "%(couple)s, <em>%(years)d</em>-års jubileum"
-msgstr[1] "%(couple)s, <em>%(years)d</em>-års jubileum"
+msgstr[0] "{couple}, {years} års jubileum"
+msgstr[1] "{couple}, {years} års jubileum"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:31
 msgid "Narrated Web Site"
