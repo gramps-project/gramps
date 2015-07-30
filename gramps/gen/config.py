@@ -384,7 +384,7 @@ if not os.path.exists(CONFIGMAN.filename):
             previous_grampsini = os.path.join(fullpath, "gramps" + str(digits), filename)
             if os.path.exists(previous_grampsini):
                 logging.warning("Importing old config file '%s'..." % previous_grampsini)
-                CONFIGMAN.load(os.path.join(HOME_DIR, "keys.ini"))
+                CONFIGMAN.load(previous_grampsini)
                 logging.warning("Done importing old config file '%s'" % previous_grampsini)
                 break
 
