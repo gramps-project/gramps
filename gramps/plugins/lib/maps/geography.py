@@ -805,7 +805,8 @@ class GeoGraphyView(OsmGps, NavigationView):
                 path = media_obj.get_path()
                 name, extension = os.path.splitext(path)
                 if extension == ".kml":
-                    self.kml_layer.add_kml(path)
+                    if os.path.isfile(path):
+                        self.kml_layer.add_kml(path)
 
     #-------------------------------------------------------------------------
     #
