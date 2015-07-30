@@ -32,6 +32,7 @@ This package implements access to GRAMPS configuration.
 #
 #---------------------------------------------------------------
 import os, sys
+import re
 import logging
 
 #---------------------------------------------------------------
@@ -365,6 +366,27 @@ if not os.path.exists(CONFIGMAN.filename):
                             oldstyle=True)
         logging.warning("Done importing old key file 'keys.ini'")
     # other version upgrades here...
+    # check previous version of gramps:
+    fullpath, filename = os.path.split(CONFIGMAN.filename)
+    fullpath, previous = os.path.split(fullpath)
+    match = re.match('gramps(\d*)', previous)
+    if match:
+        # cycle back looking for previous versions of gramps
+        for i in range(1, 20): # check back 2 gramps versions
+            # -----------------------------------------
+            # TODO: Assumes minor version is a decimal, not semantic versioning
+            #       Uses ordering ... 4.9, 5.0, 5.1, ...
+            #       Not ... 4.9, 4.10, 4.11, 5.0, 5.1, ...
+            # If not true, need to add a different method to auto upgrade.
+            # Perhaps addings specific list of versions to check
+            # -----------------------------------------
+            digits = str(int(match.groups()[0]) - i)
+            previous_grampsini = os.path.join(fullpath, "gramps" + str(digits), filename)
+            if os.path.exists(previous_grampsini):
+                logging.warning("Importing old config file '%s'..." % previous_grampsini)
+                CONFIGMAN.load(os.path.join(HOME_DIR, "keys.ini"))
+                logging.warning("Done importing old config file '%s'" % previous_grampsini)
+                break
 
 #---------------------------------------------------------------
 #
