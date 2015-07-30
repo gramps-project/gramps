@@ -7,7 +7,7 @@
     <property name="can_focus">False</property>
     <child>
       <object class="GtkImageMenuItem" id="copy_from_db_to_preferences">
-        <property name="label">Copy from DB to Preferences</property>
+        <property name="label" translatable="yes">Copy from DB to Preferences</property>
         <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -19,7 +19,7 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="copy_from_preferences_to_db">
-        <property name="label">Copy from Preferences to DB</property>
+        <property name="label" translatable="yes">Copy from Preferences to DB</property>
         <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>

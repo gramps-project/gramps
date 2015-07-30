@@ -163,12 +163,12 @@ class OwnerEditor(tool.Tool, ManagedWindow):
 
     def on_menu_activate(self, menuitem):
         """Copies the owner information from/to the preferences"""
-        if menuitem.name == 'copy_from_preferences_to_db':
+        if menuitem.props.name == 'copy_from_preferences_to_db':
             self.owner.set_from(get_researcher())
             for entry in self.entries:
                 entry.update()
                 
-        elif menuitem.name == 'copy_from_db_to_preferences':
+        elif menuitem.props.name == 'copy_from_db_to_preferences':
             for i in range(len(config_keys)):
                 config.set(config_keys[i], self.owner.get()[i])
         
