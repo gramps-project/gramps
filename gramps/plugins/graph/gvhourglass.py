@@ -204,6 +204,8 @@ class HourGlassReport(Report):
             label = "%s (%s)\\n(%s - %s)" % (name, p_id, birth, death)
         elif self.includeid == 2: # own line
             label = "%s \\n(%s - %s)\\n(%s)" % (name, birth, death, p_id)
+
+        label = label.replace('"', '\\\"')
             
         (shape, style, color, fill) = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
