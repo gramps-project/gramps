@@ -173,12 +173,13 @@ def get_event_ref(db, family, event_type):
     Return a reference to a primary family event of the given event type.
     """
     from ..lib.eventroletype import EventRoleType
-    for event_ref in family.get_event_ref_list():
-        event = db.get_event_from_handle(event_ref.ref)
-        if (event and event.get_type() == event_type and 
-            (event_ref.get_role() == EventRoleType.FAMILY or 
-             event_ref.get_role() == EventRoleType.PRIMARY)):
-            return event_ref
+    if family:
+        for event_ref in family.get_event_ref_list():
+            event = db.get_event_from_handle(event_ref.ref)
+            if (event and event.get_type() == event_type and
+                (event_ref.get_role() == EventRoleType.FAMILY or
+                 event_ref.get_role() == EventRoleType.PRIMARY)):
+                return event_ref
     return None
 
 def get_primary_event_ref_list(db, family):
