@@ -44,10 +44,6 @@ _ = glocale.translation.gettext
 from ..constfunc import handle2internal
 from ..lib.markertype import MarkerType
 from ..lib.nameorigintype import NameOriginType
-from ..lib.place import Place
-from ..lib.placeref import PlaceRef
-from ..lib.placetype import PlaceType
-from ..lib.placename import PlaceName
 from ..lib.eventtype import EventType
 from ..lib.tag import Tag
 from ..utils.file import create_checksum
@@ -95,14 +91,10 @@ def gramps_upgrade_18(self):
     for handle in self.place_map.keys():
         place = self.place_map[handle]
         new_place = list(place)
-        name = PlaceName()
-        name.set_value(new_place[6])
-        new_place[6] = name.serialize()
+        new_place[6] = (new_place[6], None, '')
         alt_names = []
         for name in new_place[7]:
-            alt_name = PlaceName()
-            alt_name.set_value(name)
-            alt_names.append(alt_name.serialize())
+            alt_names.append((name, None, ''))
         new_place[7] = alt_names
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -204,15 +196,13 @@ def gramps_upgrade_17(self):
             n -= 1
 
         if parent_handle is not None:
-            placeref = PlaceRef()
-            placeref.ref = handle2internal(parent_handle)
-            placeref_list = [placeref.serialize()]
+            placeref_list = [(handle2internal(parent_handle), None)]
         else:
             placeref_list = []
 
-        type_num = 7 - level if name else PlaceType.UNKNOWN
+        type_num = 7 - level if name else -1
         new_place = new_place[:5] + [placeref_list, name, [],
-                    PlaceType(type_num).serialize(), zip_code] + \
+                    (type_num, ''), zip_code] + \
                     new_place[6:12] + [[]] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -335,21 +325,19 @@ def get_location(loc):
 
 def add_place(self, name, level, parent, title):
     handle = create_id()
-    place = Place()
-    place.handle = handle
     self.max_id += 1
-    place.gramps_id = self.place_prefix % self.max_id
-    place.set_name(name)
-    place.set_title(title)
-    place.set_type(PlaceType(7-level))
+    gid = self.place_prefix % self.max_id
+    placetype = (7-level, '')
     if parent is not None:
-        placeref = PlaceRef()
-        placeref.ref = handle2internal(parent)
-        place.set_placeref_list([placeref])
+        placeref_list = [(handle2internal(parent), None)]
+    else:
+        placeref_list = []
+    place = (handle, gid, title, '', '', placeref_list, name, [], placetype,
+             '', [], [], [], [], [], 0, [], False)
     with BSDDBTxn(self.env, self.place_map) as txn:
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
-        txn.put(handle, place.serialize())
+        txn.put(handle, place)
     return handle
 
 def upgrade_datamap_17(datamap):
