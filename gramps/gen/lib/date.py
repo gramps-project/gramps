@@ -408,6 +408,11 @@ class Span(object):
                               ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
+            if diff_tuple[1] >= 6: # round up years
+                # translators: leave all/any {...} untranslated
+                retval = ngettext("{number_of} year", "{number_of} years",
+                                  diff_tuple[0] + 1
+                              ).format(number_of=diff_tuple[0] + 1)
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
