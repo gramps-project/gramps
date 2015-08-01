@@ -724,8 +724,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">definition_cancel</action-widget>
-      <action-widget response="0">definition_ok</action-widget>
+      <action-widget response="-6">definition_cancel</action-widget>
+      <action-widget response="-5">definition_ok</action-widget>
       <action-widget response="-11">definition_help</action-widget>
     </action-widgets>
   </object>
