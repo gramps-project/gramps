@@ -1703,8 +1703,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button8</action-widget>
-      <action-widget response="0">button7</action-widget>
+      <action-widget response="-6">button8</action-widget>
+      <action-widget response="-5">button7</action-widget>
     </action-widgets>
   </object>
   <object class="GtkDialog" id="styles">
@@ -1939,8 +1939,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button2</action-widget>
-      <action-widget response="0">button1</action-widget>
+      <action-widget response="-6">button2</action-widget>
+      <action-widget response="-5">button1</action-widget>
     </action-widgets>
   </object>
 </interface>

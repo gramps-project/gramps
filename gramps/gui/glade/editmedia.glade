@@ -430,8 +430,8 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button91</action-widget>
-      <action-widget response="0">ok</action-widget>
+      <action-widget response="-6">button91</action-widget>
+      <action-widget response="-5">ok</action-widget>
       <action-widget response="-11">button102</action-widget>
     </action-widgets>
   </object>

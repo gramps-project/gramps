@@ -800,8 +800,8 @@ Indicate that the surname consists of different parts. Every surname has its own
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button15</action-widget>
-      <action-widget response="0">ok</action-widget>
+      <action-widget response="-6">button15</action-widget>
+      <action-widget response="-5">ok</action-widget>
       <action-widget response="-11">button134</action-widget>
     </action-widgets>
   </object>
