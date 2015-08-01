@@ -3,9 +3,17 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2015-07-04" version="4.2.0"/>
+    <created date="2015-08-01" version="5.0.0"/>
     <researcher>
-      <resname>Alex Roitman,,,</resname>
+      <resname>Alex Roitman</resname>
+      <resaddr>1122 Boogie Boogie Ave</resaddr>
+      <reslocality>Suburb 1</reslocality>
+      <rescity>Gotham City</rescity>
+      <resstate>NY</resstate>
+      <rescountry>USA</rescountry>
+      <respostal>11111</respostal>
+      <resphone>(555)123-4567</resphone>
+      <resemail>anyone@someplace.com</resemail>
     </researcher>
   </header>
   <tags>
