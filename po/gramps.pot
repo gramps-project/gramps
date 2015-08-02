@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 20:14+0200\n"
+"POT-Creation-Date: 2015-08-02 15:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2281,53 +2281,53 @@ msgstr ""
 msgid "_Redo %s"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:406
+#: ../gramps/gen/db/upgrade.py:394
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:407
+#: ../gramps/gen/db/upgrade.py:395
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:408
+#: ../gramps/gen/db/upgrade.py:396
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:409
+#: ../gramps/gen/db/upgrade.py:397
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:410
+#: ../gramps/gen/db/upgrade.py:398
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:411
+#: ../gramps/gen/db/upgrade.py:399
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:412
+#: ../gramps/gen/db/upgrade.py:400
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:797
+#: ../gramps/gen/db/upgrade.py:785
 msgid "Number of new objects upgraded:\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:806
+#: ../gramps/gen/db/upgrade.py:794
 msgid ""
 "\n"
 "\n"
@@ -2337,7 +2337,7 @@ msgid ""
 "information"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:810
+#: ../gramps/gen/db/upgrade.py:798
 msgid "Upgrade Statistics"
 msgstr ""
 
@@ -5407,7 +5407,7 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/lib/date.py:273 ../gramps/gen/lib/date.py:401
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
-#: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:521
+#: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:522
 #: ../gramps/gui/editors/editperson.py:352
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -6920,12 +6920,12 @@ msgid "Expand uniformly"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:88
-#: ../gramps/gui/glade/styleeditor.glade:1347
+#: ../gramps/gui/glade/styleeditor.glade:1340
 msgid "Top"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
-#: ../gramps/gui/glade/styleeditor.glade:1362
+#: ../gramps/gui/glade/styleeditor.glade:1355
 msgid "Bottom"
 msgstr ""
 
@@ -7696,12 +7696,12 @@ msgstr ""
 msgid "true"
 msgstr ""
 
-#: ../gramps/gen/utils/db.py:293 ../gramps/gen/utils/db.py:312
+#: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
 msgid "%s, ..."
 msgstr ""
 
-#: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:243
+#: ../gramps/gen/utils/db.py:532 ../gramps/plugins/lib/librecords.py:243
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr ""
@@ -8670,8 +8670,8 @@ msgstr ""
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1424
 #: ../gramps/gui/configure.py:1449 ../gramps/gui/plug/_dialogs.py:123
 #: ../gramps/gui/viewmanager.py:1348
-#: ../gramps/plugins/lib/maps/geography.py:938
-#: ../gramps/plugins/lib/maps/geography.py:1177
+#: ../gramps/plugins/lib/maps/geography.py:939
+#: ../gramps/plugins/lib/maps/geography.py:1178
 msgid "_Apply"
 msgstr ""
 
@@ -8971,7 +8971,7 @@ msgstr ""
 #: ../gramps/gui/glade/editfamily.glade:594
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:466
-#: ../gramps/gui/glade/styleeditor.glade:1876
+#: ../gramps/gui/glade/styleeditor.glade:1869
 #: ../gramps/gui/plug/_windows.py:149 ../gramps/gui/plug/_windows.py:204
 #: ../gramps/gui/plug/report/_bookdialog.py:666
 #: ../gramps/plugins/gramplet/descendant.py:115
@@ -9343,7 +9343,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergesource.glade:22
 #: ../gramps/gui/glade/reorder.glade:24 ../gramps/gui/glade/rule.glade:319
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:86
-#: ../gramps/gui/glade/styleeditor.glade:1727
+#: ../gramps/gui/glade/styleeditor.glade:1720
 #: ../gramps/gui/logger/_errorview.py:138 ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/_guioptions.py:1697 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
@@ -9351,8 +9351,8 @@ msgstr ""
 #: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1005
 #: ../gramps/gui/views/navigationview.py:361 ../gramps/gui/views/tags.py:623
 #: ../gramps/gui/widgets/progressdialog.py:438
-#: ../gramps/plugins/lib/maps/geography.py:937
-#: ../gramps/plugins/lib/maps/geography.py:1175
+#: ../gramps/plugins/lib/maps/geography.py:938
+#: ../gramps/plugins/lib/maps/geography.py:1176
 #: ../gramps/plugins/tool/check.py:694 ../gramps/plugins/tool/eventcmp.py:396
 #: ../gramps/plugins/tool/populatesources.py:89
 #: ../gramps/plugins/tool/testcasegenerator.py:245
@@ -9975,8 +9975,8 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:22
 #: ../gramps/gui/glade/editperson.glade:361 ../gramps/gui/glade/rule.glade:425
 #: ../gramps/gui/glade/rule.glade:432
+#: ../gramps/gui/glade/styleeditor.glade:1830
 #: ../gramps/gui/glade/styleeditor.glade:1837
-#: ../gramps/gui/glade/styleeditor.glade:1844
 #: ../gramps/gui/widgets/fanchart.py:1847
 #: ../gramps/plugins/view/relview.py:408
 msgid "Add"
@@ -9990,8 +9990,8 @@ msgstr ""
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
 #: ../gramps/gui/glade/rule.glade:493 ../gramps/gui/glade/rule.glade:500
+#: ../gramps/gui/glade/styleeditor.glade:1894
 #: ../gramps/gui/glade/styleeditor.glade:1901
-#: ../gramps/gui/glade/styleeditor.glade:1908
 msgid "Remove"
 msgstr ""
 
@@ -11436,7 +11436,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:182
-#: ../gramps/plugins/lib/maps/geography.py:852
+#: ../gramps/plugins/lib/maps/geography.py:853
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -11736,7 +11736,7 @@ msgstr ""
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336
 #: ../gramps/gui/glade/rule.glade:767
 #: ../gramps/gui/glade/styleeditor.glade:103
-#: ../gramps/gui/glade/styleeditor.glade:1743
+#: ../gramps/gui/glade/styleeditor.glade:1736
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:164 ../gramps/gui/utils.py:184
 #: ../gramps/gui/viewmanager.py:1226 ../gramps/gui/views/tags.py:622
@@ -12580,7 +12580,7 @@ msgstr ""
 #: ../gramps/gui/glade/editchildref.glade:240
 #: ../gramps/gui/glade/editfamily.glade:279
 #: ../gramps/gui/glade/editfamily.glade:587 ../gramps/gui/glade/rule.glade:459
-#: ../gramps/gui/glade/styleeditor.glade:1869
+#: ../gramps/gui/glade/styleeditor.glade:1862
 msgid "Edition"
 msgstr ""
 
@@ -13804,14 +13804,14 @@ msgstr ""
 #: ../gramps/gui/glade/papermenu.glade:271
 #: ../gramps/gui/glade/papermenu.glade:284
 #: ../gramps/gui/glade/papermenu.glade:345
-#: ../gramps/gui/glade/styleeditor.glade:670
-#: ../gramps/gui/glade/styleeditor.glade:683
-#: ../gramps/gui/glade/styleeditor.glade:696
-#: ../gramps/gui/glade/styleeditor.glade:792
-#: ../gramps/gui/glade/styleeditor.glade:805
-#: ../gramps/gui/glade/styleeditor.glade:986
-#: ../gramps/gui/glade/styleeditor.glade:1302
-#: ../gramps/gui/glade/styleeditor.glade:1648
+#: ../gramps/gui/glade/styleeditor.glade:602
+#: ../gramps/gui/glade/styleeditor.glade:615
+#: ../gramps/gui/glade/styleeditor.glade:628
+#: ../gramps/gui/glade/styleeditor.glade:724
+#: ../gramps/gui/glade/styleeditor.glade:737
+#: ../gramps/gui/glade/styleeditor.glade:869
+#: ../gramps/gui/glade/styleeditor.glade:1295
+#: ../gramps/gui/glade/styleeditor.glade:1641
 #: ../gramps/gui/plug/report/_papermenu.py:208
 msgid "cm"
 msgstr ""
@@ -13995,7 +13995,7 @@ msgid "point size|pt"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:384
-#: ../gramps/gui/glade/styleeditor.glade:1437
+#: ../gramps/gui/glade/styleeditor.glade:1430
 #: ../gramps/gui/plug/_guioptions.py:1469 ../gramps/gui/views/tags.py:397
 msgid "Color"
 msgstr ""
@@ -14016,170 +14016,170 @@ msgstr ""
 msgid "Font options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:545
-msgid "_Left"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:562
-msgid "_Right"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:579
-msgid "J_ustify"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:596
-msgid "Cen_ter"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:619
+#: ../gramps/gui/glade/styleeditor.glade:551
 msgid "Alignment"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:638
+#: ../gramps/gui/glade/styleeditor.glade:570
 #: ../gramps/plugins/drawreport/fanchart.py:671
 msgid "Background color"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:655
+#: ../gramps/gui/glade/styleeditor.glade:587
 msgid "First li_ne:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:710
+#: ../gramps/gui/glade/styleeditor.glade:642
 msgid "R_ight:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:726
+#: ../gramps/gui/glade/styleeditor.glade:658
 msgid "L_eft:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:744
+#: ../gramps/gui/glade/styleeditor.glade:676
 msgid "Spacing"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:761
+#: ../gramps/gui/glade/styleeditor.glade:693
 msgid "Abo_ve:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:777
+#: ../gramps/gui/glade/styleeditor.glade:709
 msgid "Belo_w:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:821
-#: ../gramps/gui/glade/styleeditor.glade:1260
+#: ../gramps/gui/glade/styleeditor.glade:753
+#: ../gramps/gui/glade/styleeditor.glade:1253
 #: ../gramps/plugins/drawreport/calendarreport.py:645
 msgid "Borders"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:904
-msgid "Le_ft"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:921
-msgid "Righ_t"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:937
-msgid "_Top"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:957
+#: ../gramps/gui/glade/styleeditor.glade:840
 msgid "_Padding:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:996
-msgid "_Bottom"
-msgstr ""
-
-#: ../gramps/gui/glade/styleeditor.glade:1027
+#: ../gramps/gui/glade/styleeditor.glade:894
 msgid "Indentation"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1128
+#: ../gramps/gui/glade/styleeditor.glade:924
+msgid "_Left"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:942
+msgid "_Right"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:959
+msgid "J_ustify"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:976
+msgid "Cen_ter"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:1005
+msgid "Le_ft"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:1023
+msgid "Righ_t"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:1040
+msgid "_Top"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:1057
+msgid "_Bottom"
+msgstr ""
+
+#: ../gramps/gui/glade/styleeditor.glade:1121
 msgid "Paragraph options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1150
+#: ../gramps/gui/glade/styleeditor.glade:1143
 msgid "Width"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1165
+#: ../gramps/gui/glade/styleeditor.glade:1158
 msgid "Column widths"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1209
+#: ../gramps/gui/glade/styleeditor.glade:1202
 msgid "%"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1235
+#: ../gramps/gui/glade/styleeditor.glade:1228
 msgid "Table options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1291
+#: ../gramps/gui/glade/styleeditor.glade:1284
 msgid "Padding:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1316
+#: ../gramps/gui/glade/styleeditor.glade:1309
 msgid "Left"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1332
+#: ../gramps/gui/glade/styleeditor.glade:1325
 msgid "Right"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1391
+#: ../gramps/gui/glade/styleeditor.glade:1384
 msgid "Cell options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1416
+#: ../gramps/gui/glade/styleeditor.glade:1409
 msgid "Line"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1456
+#: ../gramps/gui/glade/styleeditor.glade:1449
 msgid "Style:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1469
+#: ../gramps/gui/glade/styleeditor.glade:1462
 msgid "Width:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1482
+#: ../gramps/gui/glade/styleeditor.glade:1475
 msgid "Line:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1495
+#: ../gramps/gui/glade/styleeditor.glade:1488
 msgid "Fill:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1510
+#: ../gramps/gui/glade/styleeditor.glade:1503
 msgid "Shadow"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1586
+#: ../gramps/gui/glade/styleeditor.glade:1579
 msgid "pt"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1609
+#: ../gramps/gui/glade/styleeditor.glade:1602
 msgid "Spacing:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1631
+#: ../gramps/gui/glade/styleeditor.glade:1624
 msgid "Draw shadow"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1673
+#: ../gramps/gui/glade/styleeditor.glade:1666
 msgid "Draw options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1828
+#: ../gramps/gui/glade/styleeditor.glade:1821
 msgid "Add a new style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1860
+#: ../gramps/gui/glade/styleeditor.glade:1853
 msgid "Edit the selected style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1892
+#: ../gramps/gui/glade/styleeditor.glade:1885
 msgid "Delete the selected style"
 msgstr ""
 
@@ -15406,7 +15406,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/statisticschart.py:944
 #: ../gramps/plugins/drawreport/timeline.py:383
 #: ../gramps/plugins/graph/gvfamilylines.py:105
-#: ../gramps/plugins/graph/gvhourglass.py:285
+#: ../gramps/plugins/graph/gvhourglass.py:287
 #: ../gramps/plugins/graph/gvrelgraph.py:574
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:264
@@ -16896,7 +16896,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:770
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:652
-#: ../gramps/plugins/graph/gvhourglass.py:287
+#: ../gramps/plugins/graph/gvhourglass.py:289
 #: ../gramps/plugins/graph/gvrelgraph.py:584
 #: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:422
@@ -20365,20 +20365,20 @@ msgstr ""
 
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:133
-#: ../gramps/plugins/graph/gvhourglass.py:327
+#: ../gramps/plugins/graph/gvhourglass.py:329
 #: ../gramps/plugins/graph/gvrelgraph.py:702
 msgid "Use rounded corners"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:134
-#: ../gramps/plugins/graph/gvhourglass.py:329
+#: ../gramps/plugins/graph/gvhourglass.py:331
 #: ../gramps/plugins/graph/gvrelgraph.py:704
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 
 #. ###############################
 #: ../gramps/plugins/graph/gvfamilylines.py:138
-#: ../gramps/plugins/graph/gvhourglass.py:318
+#: ../gramps/plugins/graph/gvhourglass.py:320
 #: ../gramps/plugins/graph/gvrelgraph.py:669
 msgid "Graph coloring"
 msgstr ""
@@ -20432,32 +20432,32 @@ msgstr ""
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:187
-#: ../gramps/plugins/graph/gvhourglass.py:305
+#: ../gramps/plugins/graph/gvhourglass.py:307
 #: ../gramps/plugins/graph/gvrelgraph.py:627
 #: ../gramps/plugins/textreport/indivcomplete.py:972
 msgid "Include Gramps ID"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:188
-#: ../gramps/plugins/graph/gvhourglass.py:306
+#: ../gramps/plugins/graph/gvhourglass.py:308
 #: ../gramps/plugins/graph/gvrelgraph.py:628
 msgid "Do not include"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:189
-#: ../gramps/plugins/graph/gvhourglass.py:307
+#: ../gramps/plugins/graph/gvhourglass.py:309
 #: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "Share an existing line"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:190
-#: ../gramps/plugins/graph/gvhourglass.py:308
+#: ../gramps/plugins/graph/gvhourglass.py:310
 #: ../gramps/plugins/graph/gvrelgraph.py:630
 msgid "On a line of its own"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:191
-#: ../gramps/plugins/graph/gvhourglass.py:309
+#: ../gramps/plugins/graph/gvhourglass.py:311
 #: ../gramps/plugins/graph/gvrelgraph.py:631
 msgid "Whether (and where) to include Gramps IDs"
 msgstr ""
@@ -20591,35 +20591,35 @@ msgid_plural "{number_of} children"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:288
+#: ../gramps/plugins/graph/gvhourglass.py:290
 msgid "The Center person for the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:295
+#: ../gramps/plugins/graph/gvhourglass.py:297
 #: ../gramps/plugins/textreport/kinshipreport.py:347
 msgid "Max Descendant Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:296
+#: ../gramps/plugins/graph/gvhourglass.py:298
 msgid "The number of generations of descendants to include in the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:300
+#: ../gramps/plugins/graph/gvhourglass.py:302
 #: ../gramps/plugins/textreport/kinshipreport.py:351
 msgid "Max Ancestor Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:301
+#: ../gramps/plugins/graph/gvhourglass.py:303
 msgid "The number of generations of ancestors to include in the graph"
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/graph/gvhourglass.py:315
+#: ../gramps/plugins/graph/gvhourglass.py:317
 #: ../gramps/plugins/graph/gvrelgraph.py:666
 msgid "Graph Style"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:321
+#: ../gramps/plugins/graph/gvhourglass.py:323
 #: ../gramps/plugins/graph/gvrelgraph.py:672
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
@@ -25596,7 +25596,7 @@ msgstr ""
 msgid "Clear the '%(map)s' tiles cache."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:856
+#: ../gramps/plugins/lib/maps/geography.py:857
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -25611,15 +25611,15 @@ msgstr ""
 msgid "Center on this place"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:935
+#: ../gramps/plugins/lib/maps/geography.py:936
 msgid "Select a kml file used to add places"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:997
+#: ../gramps/plugins/lib/maps/geography.py:998
 msgid "You have at least two places with the same title."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:998
+#: ../gramps/plugins/lib/maps/geography.py:999
 #, python-format
 msgid ""
 "The title of the places is:\n"
@@ -25630,45 +25630,45 @@ msgid ""
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1122
+#: ../gramps/plugins/lib/maps/geography.py:1123
 msgid "Nothing for this view."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1123
+#: ../gramps/plugins/lib/maps/geography.py:1124
 msgid "Specific parameters"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1141
+#: ../gramps/plugins/lib/maps/geography.py:1142
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1145
+#: ../gramps/plugins/lib/maps/geography.py:1146
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1150
+#: ../gramps/plugins/lib/maps/geography.py:1151
 msgid "Zoom used when centering"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1154
+#: ../gramps/plugins/lib/maps/geography.py:1155
 msgid "The maximum number of places to show"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1158
+#: ../gramps/plugins/lib/maps/geography.py:1159
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1163
+#: ../gramps/plugins/lib/maps/geography.py:1164
 msgid "The map"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1173
+#: ../gramps/plugins/lib/maps/geography.py:1174
 msgid "Select tile cache directory for offline mode"
 msgstr ""
 
