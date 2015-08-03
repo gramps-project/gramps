@@ -69,7 +69,10 @@ class PlaceSidebarFilter(SidebarFilter):
         self.place_menu = widgets.MonitoredDataType(
             self.ptype,
             self.filter_place.set_type,
-            self.filter_place.get_type)
+            self.filter_place.get_type,
+            False, # read-only
+            dbstate.db.get_place_types()
+        )
         self.filter_code = widgets.BasicEntry()
         self.filter_enclosed = widgets.PlaceEntry(dbstate, uistate, [])
         self.filter_note = widgets.BasicEntry()
