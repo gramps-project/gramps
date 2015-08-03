@@ -188,7 +188,7 @@ msgid ""
 msgstr ""
 "<b>Ordinare i figli in una famiglia</b><br/>L'ordine di nascita dei figli in "
 "una famiglia può essere impostato tramite trascinamento. Quest'ordine è "
-"mantenuto anche quando non i figli non hanno date di nascita."
+"mantenuto anche quando i figli non hanno date di nascita."
 
 #: ../data/tips.xml.in.h:5
 msgid ""
