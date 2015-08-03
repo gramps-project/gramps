@@ -67,7 +67,9 @@ class RepoSidebarFilter(SidebarFilter):
         self.event_menu = widgets.MonitoredDataType(
             self.rtype,
             self.repo.set_type,
-            self.repo.get_type)
+            self.repo.get_type,
+            False, # read-only?
+            dbstate.db.get_repository_types())
 
         self.filter_note = widgets.BasicEntry()
 

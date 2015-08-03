@@ -66,7 +66,9 @@ class NoteSidebarFilter(SidebarFilter):
         self.event_menu = widgets.MonitoredDataType(
             self.ntype,
             self.note.set_type,
-            self.note.get_type)
+            self.note.get_type,
+            False, # read-only?
+            dbstate.db.get_note_types())
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 
