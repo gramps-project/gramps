@@ -49,11 +49,15 @@ LOG = logging.getLogger(".ImportCSV")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
+from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType, 
+                            Family, FamilyRelType, Name, NameType, Note, 
+                            NoteType, Person, Place, Source, Surname, Tag, 
+                            PlaceName, PlaceType, PlaceRef)
 from gramps.gen.db import DbTxn
 from gramps.gen.datehandler import parser as _dp
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
+from gramps.gen.utils.location import located_in
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
@@ -125,8 +129,19 @@ class CSVParser(object):
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
+        self.place_count = 0
         self.pref  = {} # person ref, internal to this sheet
         self.fref  = {} # family ref, internal to this sheet        
+        self.placeref = {}
+        self.place_types = {}
+        # Build reverse dictionary, name to type number
+        for items in PlaceType().get_map().items(): # (0, 'Custom')
+            self.place_types[items[1]] = items[0]
+            if _(items[1]) != items[1]:
+                self.place_types[_(items[1])] = items[0]
+        # Add custom types:
+        for custom_type in self.db.get_place_types():
+            self.place_types[custom_type] = 0
         column2label = {
             "surname": ("Lastname", "Surname", _("Surname"), "lastname",
                 "last_name", "surname", _("surname")),
@@ -189,7 +204,15 @@ class CSVParser(object):
             "marriage": ("Marriage", _("Marriage"), "marriage", _("marriage")),
             "date": ("Date", _("Date"), "date", _("date")),
             "place": ("Place", _("Place"), "place", _("place")),
-            }
+            "title": ("Title", _("Title"), "title", _("title")),
+            "name": ("Name", _("Name"), "name", _("name")),
+            "type": ("Type", _("Type"), "type", _("type")),
+            "latitude": ("Latitude", _("latitude"), "latitude", _("latitude")),
+            "longitude": ("Longitude", _("Longitude"), "longitude", _("longitude")),
+            "code": ("Code", _("Code"), "code", _("code")),
+            "enclosed_by": ("Enclosed by", _("Enclosed by"), "enclosed by", _("enclosed by"), 
+                            "enclosed_by", _("enclosed_by"), "Enclosed_by", _("Enclosed_by"))
+        }
         lab2col_dict = []
         for key in list(column2label.keys()):
             for val in column2label[key]:
@@ -251,6 +274,18 @@ class CSVParser(object):
                 return self.pref[id_.lower()]
             else:
                 return None
+        elif type_ == "place":
+            if id_.startswith("[") and id_.endswith("]"):
+                id_ = self.db.id2user_format(id_[1:-1])
+                db_lookup = self.db.get_place_from_gramps_id(id_)
+                if db_lookup is None:
+                    return self.lookup(type_, id_)
+                else:
+                    return db_lookup
+            elif id_.lower() in self.placeref:
+                return self.placeref[id_.lower()]
+            else:
+                return None
         else:
             LOG.warn("invalid lookup type in CSV import: '%s'" % type_)
             return None
@@ -266,6 +301,9 @@ class CSVParser(object):
         elif type_ == "family":
             id_ = self.db.fid2user_format(id_)
             self.fref[id_.lower()] = object_
+        elif type_ == "place":
+            id_ = self.db.pid2user_format(id_)
+            self.placeref[id_.lower()] = object_
         else:
             LOG.warn("invalid storeup type in CSV import: '%s'" % type_)
 
@@ -305,8 +343,10 @@ class CSVParser(object):
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
+        self.place_count = 0
         self.pref  = {} # person ref, internal to this sheet
         self.fref  = {} # family ref, internal to this sheet        
+        self.placeref = {}
         header = None
         line_number = 0
         for row in data:
@@ -324,7 +364,7 @@ class CSVParser(object):
                     col[key] = count
                     count += 1
                 continue
-            # three different kinds of data: person, family, and marriage
+            # four different kinds of data: person, family, and marriage
             if (("marriage" in header) or
                 ("husband" in header) or
                 ("wife" in header)):
@@ -333,6 +373,8 @@ class CSVParser(object):
                 self._parse_family(line_number, row, col)
             elif "surname" in header:
                 self._parse_person(line_number, row, col)
+            elif "place" in header:
+                self._parse_place(line_number, row, col)
             else:
                 LOG.warn("ignoring line %d" % line_number)
         return None
@@ -670,6 +712,56 @@ class CSVParser(object):
             self.find_and_set_citation(person, source)
         self.db.commit_person(person, self.trans)
 
+    def _parse_place(self, line_number, row, col):
+        "Parse the content of a Place line."
+        place_id = rd(line_number, row, col, "place")
+        place_title = rd(line_number, row, col, "title")
+        place_name = rd(line_number, row, col, "name")
+        place_type_str = rd(line_number, row, col, "type")
+        place_latitude = rd(line_number, row, col, "latitude")
+        place_longitude = rd(line_number, row, col, "longitude")
+        place_code = rd(line_number, row, col, "code")
+        place_enclosed_by_id = rd(line_number, row, col, "enclosed_by")
+        place_date = rd(line_number, row, col, "date")
+        #########################################################
+        # if this place already exists, don't create it
+        place = self.lookup("place", place_id)
+        if place is None:
+            # new place
+            place = self.create_place()
+            self.storeup("place", place_id.lower(), place)
+        if place_title is not None:
+            place.title = place_title
+        if place_name is not None:
+            place.name = PlaceName(value=place_name)
+        if place_type_str is not None:
+            place.place_type = self.get_place_type(place_type_str)
+        if place_latitude is not None:
+            place.lat = place_latitude
+        if place_longitude is not None:
+            place.long = place_longitude
+        if place_code is not None:
+            place.code = place_code
+        if place_enclosed_by_id is not None:
+            place_enclosed_by = self.lookup("place", place_enclosed_by_id)
+            if place_enclosed_by is None:
+                raise Exception("cannot enclose %s in %s as it doesn't exist" % (place.gramps_id, place_enclosed_by_id))
+            if not place_enclosed_by.handle in place.placeref_list:
+                placeref = PlaceRef()
+                placeref.ref = place_enclosed_by.handle
+                if place_date:
+                    placeref.date = _dp.parse(place_date)
+                place.placeref_list.append(placeref)
+        #########################################################
+        self.db.commit_place(place, self.trans)
+
+    def get_place_type(self, place_type_str):
+        if place_type_str in self.place_types:
+            return PlaceType((self.place_types[place_type_str], place_type_str))
+        else:
+            # New custom type:
+            return PlaceType((0, place_type_str))
+
     def get_or_create_family(self, family_ref, husband, wife):
         "Return the family object for the give family ID."
         # if a gramps_id and exists:
@@ -763,6 +855,15 @@ class CSVParser(object):
         self.indi_count += 1
         return person
 
+    def create_place(self):
+        """ Used to create a new person we know doesn't exist """
+        place = Place()
+        if self.default_tag:
+            place.add_tag(self.default_tag.handle)
+        self.db.add_place(place, self.trans)
+        self.place_count += 1
+        return place
+
     def get_or_create_place(self, place_name):
         "Return the requested place object tuple-packed with a new indicator."
         LOG.debug("get_or_create_place: looking for: %s", place_name)
@@ -773,6 +874,7 @@ class CSVParser(object):
                 return (0, place)
         place = Place()
         place.set_title(place_name)
+        place.name = PlaceName(value=place_name)
         self.db.add_place(place, self.trans)
         return (1, place)
 

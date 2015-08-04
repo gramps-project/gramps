@@ -181,13 +181,16 @@ class CSVWriterOptionBox(WriterOptionBox):
     """
     def __init__(self, person, dbstate, uistate):
         WriterOptionBox.__init__(self, person, dbstate, uistate)
+        ## TODO: add place filter selection
         self.include_individuals = 1
         self.include_marriages = 1
         self.include_children = 1
+        self.include_places = 1
         self.translate_headers = 1
         self.include_individuals_check = None
         self.include_marriages_check = None
         self.include_children_check = None
+        self.include_places_check = None
         self.translate_headers_check = None
 
     def get_option_box(self):
@@ -197,16 +200,19 @@ class CSVWriterOptionBox(WriterOptionBox):
         self.include_individuals_check = Gtk.CheckButton(label=_("Include people"))
         self.include_marriages_check = Gtk.CheckButton(label=_("Include marriages"))
         self.include_children_check = Gtk.CheckButton(label=_("Include children"))
+        self.include_places_check = Gtk.CheckButton(label=_("Include places"))
         self.translate_headers_check = Gtk.CheckButton(label=_("Translate headers"))
 
         self.include_individuals_check.set_active(1) 
         self.include_marriages_check.set_active(1) 
         self.include_children_check.set_active(1) 
+        self.include_places_check.set_active(1) 
         self.translate_headers_check.set_active(1) 
 
         option_box.pack_start(self.include_individuals_check, False, True, 0)
         option_box.pack_start(self.include_marriages_check, False, True, 0)
         option_box.pack_start(self.include_children_check, False, True, 0)
+        option_box.pack_start(self.include_places_check, False, True, 0)
         option_box.pack_start(self.translate_headers_check, False, True, 0)
 
         return option_box
@@ -217,6 +223,7 @@ class CSVWriterOptionBox(WriterOptionBox):
             self.include_individuals = self.include_individuals_check.get_active()
             self.include_marriages = self.include_marriages_check.get_active()
             self.include_children = self.include_children_check.get_active()
+            self.include_places = self.include_places_check.get_active()
             self.translate_headers = self.translate_headers_check.get_active()
 
 #-------------------------------------------------------------------------
@@ -237,6 +244,7 @@ class CSVWriter(object):
 
         self.plist = {}
         self.flist = {}
+        self.place_list = {}
         
         self.persons_details_done = []
         self.persons_notes_done = []
@@ -246,6 +254,7 @@ class CSVWriter(object):
             self.include_individuals = 1
             self.include_marriages = 1
             self.include_children = 1
+            self.include_places = 1
             self.translate_headers = 1
         else:
             self.option_box.parse_options()
@@ -254,9 +263,24 @@ class CSVWriter(object):
             self.include_individuals = self.option_box.include_individuals
             self.include_marriages = self.option_box.include_marriages
             self.include_children = self.option_box.include_children
+            self.include_places = self.option_box.include_places
             self.translate_headers = self.option_box.translate_headers
             
         self.plist = [x for x in self.db.iter_person_handles()]
+
+        # make place list so that dependencies are first:
+        self.place_list = []
+        place_list = [x for x in self.db.iter_place_handles()]
+        while place_list:
+            handle = place_list[0]
+            place = self.db.get_place_from_handle(handle)
+            if place:
+                if all([(x.ref in self.place_list) for x in place.placeref_list]):
+                    self.place_list.append(place_list.pop(0))
+                else: # put at the back of the line:
+                    place_list.append(place_list.pop(0))
+            else:
+                place_list.pop(0)
         # get the families for which these people are spouses:
         self.flist = {}
         for key in self.plist:
@@ -313,9 +337,12 @@ class CSVWriter(object):
             self.total += len(self.flist)
         if self.include_children:
             self.total += len(self.flist)
+        if self.include_places:
+            self.total += len(self.place_list)
         ######################## 
         LOG.debug("Possible people to export: %s", len(self.plist))
         LOG.debug("Possible families to export: %s", len(self.flist))
+        LOG.debug("Possible places to export: %s", len(self.place_list))
         ########################### sort:
         sortorder = []
         dropped_surnames = set()
@@ -529,6 +556,43 @@ class CSVWriter(object):
                             grampsid_ref = "[" + grampsid + "]"
                         self.write_csv(family_id, grampsid_ref)
                 self.update()
+            self.writeln()
+        ########################### 
+        if self.include_places:
+            if self.translate_headers:
+                self.write_csv(_("Place"), _("Title"), _("Name"), 
+                               _("Type"), _("Latitude"), _("Longitude"), 
+                               _("Code"), _("Enclosed_by"), _("Date"))
+            else:
+                self.write_csv("Place", "Title", "Name", 
+                               "Type", "Latitude", "Longitude", 
+                               "Code", "Enclosed_by", "Date")
+            for key in self.place_list:
+                place = self.db.get_place_from_handle(key)
+                if place:
+                    place_id = place.gramps_id
+                    place_title = place.title
+                    place_name = place.name.value
+                    place_type = str(place.place_type)
+                    place_latitude = place.lat
+                    place_longitude = place.long
+                    place_code = place.code
+                    if place.placeref_list:
+                        for placeref in place.placeref_list:
+                            placeref_obj = self.db.get_place_from_handle(placeref.ref)
+                            placeref_date = ""
+                            if not placeref.date.is_empty():
+                                placeref_date = placeref.date
+                            placeref_id = ""
+                            if placeref_obj:
+                                placeref_id = "[%s]" % placeref_obj.gramps_id
+                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                           place_latitude, place_longitude, place_code, placeref_id,
+                                           placeref_date)
+                    else:
+                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                       place_latitude, place_longitude, place_code, "",
+                                       "")
             self.writeln()
         self.g.close()
         return True 
