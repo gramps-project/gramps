@@ -137,11 +137,13 @@ class CSVParser(object):
         # Build reverse dictionary, name to type number
         for items in PlaceType().get_map().items(): # (0, 'Custom')
             self.place_types[items[1]] = items[0]
+            self.place_types[items[1].lower()] = items[0]
             if _(items[1]) != items[1]:
                 self.place_types[_(items[1])] = items[0]
         # Add custom types:
         for custom_type in self.db.get_place_types():
             self.place_types[custom_type] = 0
+            self.place_types[custom_type.lower()] = 0
         column2label = {
             "surname": ("Lastname", "Surname", _("Surname"), "lastname",
                 "last_name", "surname", _("surname")),
