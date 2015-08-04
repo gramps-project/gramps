@@ -67,12 +67,10 @@ The following packages are optional
 
    ttf-freefont     More font support in the reports
 
-   gir-webkit       Required for the (user-downloadable) HtmlView plugin
-
    goocanvas2       Required for the (user-downloadable) GraphView plugin
 
-No longer needed in 4.1:
-   ?
+No longer needed in 4.2:
+   gir-webkit
 No longer needed in 4.0:
    pygoocanvas, pygtk, pyexiv2
 No longer needed in 3.3:
