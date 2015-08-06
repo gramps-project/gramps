@@ -765,7 +765,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.surname_list = self.get_surname_list()
 
         self.set_save_path(directory)
-        self.undolog = os.path.join(self._directory, DBUNDOFN)
+        if self._directory:
+            self.undolog = os.path.join(self._directory, DBUNDOFN)
+        else:
+            self.undolog = None
         self.undodb = DbGenericUndo(self, self.undolog)
         self.undodb.open()
 

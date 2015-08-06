@@ -176,6 +176,7 @@ def import_as_dict(filename, user=None):
     if user is None:
         user = User()
     db = DictionaryDb()
+    db.load(None)
     db.set_feature("skip-import-additions", True)
     dbstate = DbState()
     climanager = CLIManager(dbstate, setloader=False, user=user)

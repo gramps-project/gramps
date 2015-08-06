@@ -970,6 +970,7 @@ class DictionaryDb(DbGeneric):
         # Dictionary-specific load:
         from gramps.plugins.importer.importxml import importData
         from gramps.cli.user import User 
-        filename = os.path.join(self._directory, "data.gramps")
-        if os.path.isfile(filename):
-            importData(self, filename, User())
+        if self._directory:
+            filename = os.path.join(self._directory, "data.gramps")
+            if os.path.isfile(filename):
+                importData(self, filename, User())
