@@ -149,7 +149,8 @@ class MyInteger(Gtk.SpinButton):
 
     def __init__(self, min, max):
         GObject.GObject.__init__(self)
-        self.set_adjustment(Gtk.Adjustment(min, min, max, 1))
+        self.set_adjustment(Gtk.Adjustment(value=min, lower=min, upper=max,
+                                           step_increment=1))
         self.show()
 
     def get_text(self):

@@ -299,10 +299,10 @@ class GuiNumberOption(Gtk.SpinButton):
 
         decimals = 0
         step = self.__option.get_step()
-        adj = Gtk.Adjustment(1, 
-                             self.__option.get_min(), 
-                             self.__option.get_max(), 
-                             step)
+        adj = Gtk.Adjustment(value=1,
+                             lower=self.__option.get_min(),
+                             upper=self.__option.get_max(),
+                             step_increment=step)
         
         # Calculate the number of decimal places if necessary
         if step < 1:
