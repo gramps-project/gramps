@@ -153,7 +153,7 @@ class CSVParser(object):
             "callname": ("Callname", "Call name", _("Call name"), "Call",
                 _("Call"), "callname", "call_name", "call name", "call",
                 _("call")),
-            "title": ("Title", _("Person|Title"), "title", _("Person|title")),
+            "title": ("Title", _("Person or Place|Title"), "title", _("Person or Place|title")),
             "prefix": ("Prefix", _("Prefix"), "prefix", _("prefix")),
             "suffix": ("Suffix", _("Suffix"), "suffix", _("suffix")),
             "gender": ("Gender", _("Gender"), "gender", _("gender")),
@@ -206,14 +206,14 @@ class CSVParser(object):
             "marriage": ("Marriage", _("Marriage"), "marriage", _("marriage")),
             "date": ("Date", _("Date"), "date", _("date")),
             "place": ("Place", _("Place"), "place", _("place")),
-            "title": ("Title", _("Title"), "title", _("title")),
             "name": ("Name", _("Name"), "name", _("name")),
             "type": ("Type", _("Type"), "type", _("type")),
             "latitude": ("Latitude", _("latitude"), "latitude", _("latitude")),
             "longitude": ("Longitude", _("Longitude"), "longitude", _("longitude")),
             "code": ("Code", _("Code"), "code", _("code")),
             "enclosed_by": ("Enclosed by", _("Enclosed by"), "enclosed by", _("enclosed by"), 
-                            "enclosed_by", _("enclosed_by"), "Enclosed_by", _("Enclosed_by"))
+                            "enclosed_by", _("enclosed_by"), "Enclosed_by", _("Enclosed_by"),
+                            "enclosedby")
         }
         lab2col_dict = []
         for key in list(column2label.keys()):
