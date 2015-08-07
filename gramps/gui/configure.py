@@ -443,7 +443,9 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_slider
         lwidget = BasicLabel("%s: " % label)
-        adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        adj = Gtk.Adjustment(value=config.get(constant), lower=range[0],
+                             upper=range[1], step_increment=1,
+                             page_increment=0, page_size=0)
         slider = Gtk.Scale(adjustment=adj)
         slider.set_digits(0)
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
@@ -463,7 +465,9 @@ class ConfigureDialog(ManagedWindow):
         if not callback:
             callback = self.update_spinner
         lwidget = BasicLabel("%s: " % label)
-        adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
+        adj = Gtk.Adjustment(value=config.get(constant), lower=range[0],
+                             upper=range[1], step_increment=1,
+                             page_increment=0, page_size=0)
         spinner = Gtk.SpinButton(adjustment=adj, climb_rate=0.0, digits=0)
         spinner.connect('value-changed', callback, constant)
         spinner.set_hexpand(True)
