@@ -398,7 +398,6 @@ class CSVParser(object):
     def _parse_marriage(self, line_number, row, col):
         "Parse the content of a Marriage,Husband,Wife line."
         marriage_ref   = rd(line_number, row, col, "marriage")
-        import pdb; pdb.set_trace()
         husband  = rd(line_number, row, col, "husband")
         wife     = rd(line_number, row, col, "wife")
         marriagedate = rd(line_number, row, col, "date")
