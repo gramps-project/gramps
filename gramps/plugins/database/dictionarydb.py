@@ -574,7 +574,7 @@ class DictionaryDb(DbGeneric):
                 transaction.add(PERSON_KEY, TXNDEL, person.handle, 
                                 person.serialize(), None)
 
-    def __do_remove(self, handle, transaction, data_map, data_id_map, key):
+    def _do_remove(self, handle, transaction, data_map, data_id_map, key):
         key2table = {
             PERSON_KEY:     "person", 
             FAMILY_KEY:     "family", 
@@ -630,7 +630,7 @@ class DictionaryDb(DbGeneric):
             if person:
                 return person
         if len(self._person_dict) > 0:
-            return self._person_dict.values()[0]
+            return list(self._person_dict.values())[0]
 
     def iter_person_handles(self):
         return (handle for handle in self._person_dict.keys())
@@ -893,7 +893,7 @@ class DictionaryDb(DbGeneric):
         gstats = {}
         for person in self._person_dict.values():
             if person.primary_name:
-                first_name = person.primary_name[0].first_name
+                first_name = person.primary_name.first_name
                 if first_name not in gstats:
                     gstats[first_name] = [0, 0, 0]
                 gstats[first_name][int(person.gender_type)] += 1
@@ -915,9 +915,9 @@ class DictionaryDb(DbGeneric):
         surname_list = []
         for person in self._person_dict.values():
             if person.primary_name:
-                if person.primary_name[0].surname_list:
-                    if person.primary_name[0].surname_list[0].surname not in surname_list:
-                        surname_list.append(person.primary_name[0].surname_list[0].surname)
+                if person.primary_name.surname_list:
+                    if person.primary_name.surname_list[0].surname not in surname_list:
+                        surname_list.append(person.primary_name.surname_list[0].surname)
         return surname_list
 
     def save_surname_list(self):

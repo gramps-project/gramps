@@ -1537,7 +1537,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Source specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.source_map, 
+        self._do_remove(handle, transaction, self.source_map, 
                          self.source_id_map, SOURCE_KEY)
 
     def remove_citation(self, handle, transaction):
@@ -1545,7 +1545,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Citation specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.citation_map, 
+        self._do_remove(handle, transaction, self.citation_map, 
                          self.citation_id_map, CITATION_KEY)
 
     def remove_event(self, handle, transaction):
@@ -1553,7 +1553,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.event_map, 
+        self._do_remove(handle, transaction, self.event_map, 
                          self.event_id_map, EVENT_KEY)
 
     def remove_object(self, handle, transaction):
@@ -1561,7 +1561,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the MediaObjectPerson specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.media_map, 
+        self._do_remove(handle, transaction, self.media_map, 
                          self.media_id_map, MEDIA_KEY)
 
     def remove_place(self, handle, transaction):
@@ -1569,7 +1569,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Place specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.place_map, 
+        self._do_remove(handle, transaction, self.place_map, 
                          self.place_id_map, PLACE_KEY)
 
     def remove_family(self, handle, transaction):
@@ -1577,7 +1577,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Family specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.family_map, 
+        self._do_remove(handle, transaction, self.family_map, 
                          self.family_id_map, FAMILY_KEY)
 
     def remove_repository(self, handle, transaction):
@@ -1585,7 +1585,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Repository specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.repository_map, 
+        self._do_remove(handle, transaction, self.repository_map, 
                          self.repository_id_map, REPOSITORY_KEY)
 
     def remove_note(self, handle, transaction):
@@ -1593,7 +1593,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Note specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.note_map, 
+        self._do_remove(handle, transaction, self.note_map, 
                          self.note_id_map, NOTE_KEY)
 
     def remove_tag(self, handle, transaction):
@@ -1601,7 +1601,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Remove the Tag specified by the database handle from the
         database, preserving the change in the passed transaction. 
         """
-        self.__do_remove(handle, transaction, self.tag_map, 
+        self._do_remove(handle, transaction, self.tag_map, 
                          None, TAG_KEY)
 
     def is_empty(self):
