@@ -334,7 +334,8 @@ class CLIDbManager(object):
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
 
-                dbase = self.dbstate.make_database("bsddb")
+                dbid = config.get('behavior.database-backend')
+                dbase = self.dbstate.make_database(dbid)
                 dbase.load(new_path, user.callback)
     
                 import_function = plugin.get_import_function()

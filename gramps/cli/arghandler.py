@@ -489,7 +489,8 @@ class ArgHandler(object):
             if not self.open:
                 # Create empty dir for imported database(s)
                 if self.gui:
-                    self.imp_db_path, title = self.dbman.create_new_db_cli()
+                    dbid = config.get('behavior.database-backend')
+                    self.imp_db_path, title = self.dbman.create_new_db_cli(dbid=dbid)
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
                     dbid = config.get('behavior.database-backend')
