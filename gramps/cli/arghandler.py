@@ -228,7 +228,8 @@ class ArgHandler(object):
             return db_path
         elif create:
             # create the tree here, and continue
-            db_path, title = self.dbman.create_new_db_cli(title=value)
+            dbid = config.get('behavior.database-backend')
+            db_path, title = self.dbman.create_new_db_cli(title=value, dbid=dbid)
             return db_path
         else:
             self.__error( _('Error: Input Family Tree "%s" does not exist.\n'
