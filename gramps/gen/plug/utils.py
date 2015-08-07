@@ -315,10 +315,10 @@ def load_addon_file(path, callback=None):
         # evaluate the contents:
         try:
             exec(contents, env)
-        except:
+        except Exception as exp:
             if callback:
                 msg = _("Error in '%s' file: cannot load.") % gpr_file
-                callback("   " + msg + "\n")
+                callback("   " + msg + "\n" + str(exp))
             continue
         # There can be multiple addons per gpr file:
         for results in globals()["register_results"]:
