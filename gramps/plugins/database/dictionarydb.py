@@ -695,8 +695,9 @@ class DictionaryDb(DbGeneric):
         callback(5)
 
     def rebuild_secondary(self, update):
-        gstats = self.rebuild_gender_stats()
+        gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats) 
+        self.surname_list = self.build_surname_list()
 
     def has_handle_for_person(self, key):
         return key in self._person_dict
@@ -887,8 +888,20 @@ class DictionaryDb(DbGeneric):
 
     def rebuild_gender_stats(self):
         """
+        Builds and returns a dictionary of 
+        {given_name: (male_count, female_count, unknown_count)} 
+        """
+        # In dictionarydb, there is no separate persistent storage of 
+        # gender stats, so we just get from the source:
+        return self.get_gender_stats()
+
+    def get_gender_stats(self):
+        """
         Returns a dictionary of 
         {given_name: (male_count, female_count, unknown_count)} 
+        UNKNOWN = 2
+        MALE    = 1
+        FEMALE  = 0
         """
         gstats = {}
         for person in self._person_dict.values():
@@ -896,22 +909,29 @@ class DictionaryDb(DbGeneric):
                 first_name = person.primary_name.first_name
                 if first_name not in gstats:
                     gstats[first_name] = [0, 0, 0]
-                gstats[first_name][int(person.gender_type)] += 1
+                if person.gender == Person.MALE:
+                    gstats[first_name][0] += 1
+                elif person.gender == Person.FEMALE:
+                    gstats[first_name][1] += 1
+                else:
+                    gstats[first_name][2] += 1
         return gstats
 
     def save_gender_stats(self, gstats):
         # FIXME: save?
         pass
 
-    def get_gender_stats(self):
+    def save_surname_list(self):
         """
-        Returns a dictionary of 
-        {given_name: (male_count, female_count, unknown_count)} 
+        Save the surname_list into persistant storage.
         """
-        # FIXME: load?
-        return {}
-        
-    def get_surname_list(self):
+        # Nothing for to do
+        pass
+
+    def build_surname_list(self):
+        """
+        Rebuild the surname_list.
+        """
         surname_list = []
         for person in self._person_dict.values():
             if person.primary_name:
@@ -919,20 +939,6 @@ class DictionaryDb(DbGeneric):
                     if person.primary_name.surname_list[0].surname not in surname_list:
                         surname_list.append(person.primary_name.surname_list[0].surname)
         return surname_list
-
-    def save_surname_list(self):
-        """
-        Save the surname_list into persistant storage.
-        """
-        # Nothing for DB-API to do; saves in person table
-        pass
-
-    def build_surname_list(self):
-        """
-        Rebuild the surname_list.
-        """
-        # Nothing for DB-API to do; saves in person table
-        pass
 
     def drop_tables(self):
         """
@@ -974,3 +980,5 @@ class DictionaryDb(DbGeneric):
             filename = os.path.join(self._directory, "data.gramps")
             if os.path.isfile(filename):
                 importData(self, filename, User())
+                self.reindex_reference_map(lambda progress: None)
+                self.rebuild_secondary(lambda progress: None)
