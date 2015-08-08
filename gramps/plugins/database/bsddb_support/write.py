@@ -252,6 +252,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_person_handles,
                 "add_func": self.add_person,
                 "commit_func": self.commit_person,
+                "count_func": self.get_number_of_people,
             })
         self._tables['Family'].update(
             {
@@ -262,6 +263,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_family_handles,
                 "add_func": self.add_family,
                 "commit_func": self.commit_family,
+                "count_func": self.get_number_of_families,
             })
         self._tables['Source'].update(
             {
@@ -272,6 +274,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_source_handles,
                 "add_func": self.add_source,
                 "commit_func": self.commit_source,
+                "count_func": self.get_number_of_sources,
                 })
         self._tables['Citation'].update(
             {
@@ -282,6 +285,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_citation_handles,
                 "add_func": self.add_citation,
                 "commit_func": self.commit_citation,
+                "count_func": self.get_number_of_citations,
             })
         self._tables['Event'].update(
             {
@@ -292,6 +296,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_event_handles,
                 "add_func": self.add_event,
                 "commit_func": self.commit_event,
+                "count_func": self.get_number_of_events,
             })
         self._tables['Media'].update(
             {
@@ -302,6 +307,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_media_object_handles,
                 "add_func": self.add_object,
                 "commit_func": self.commit_media_object,
+                "count_func": self.get_number_of_media_objects,
             })
         self._tables['Place'].update(
             {
@@ -312,6 +318,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_place_handles,
                 "add_func": self.add_place,
                 "commit_func": self.commit_place,
+                "count_func": self.get_number_of_places,
             })
         self._tables['Repository'].update(
             {
@@ -322,6 +329,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_repository_handles,
                 "add_func": self.add_repository,
                 "commit_func": self.commit_repository,
+                "count_func": self.get_number_of_repositories,
             })
         self._tables['Note'].update(
             {
@@ -332,6 +340,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_note_handles,
                 "add_func": self.add_note,
                 "commit_func": self.commit_note,
+                "count_func": self.get_number_of_notes,
             })
         self._tables['Tag'].update(
             {
@@ -342,6 +351,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_tag_handles,
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
+                "count_func": self.get_number_of_tags,
             })
 
         self.secondary_connected = False
