@@ -91,7 +91,7 @@ def intltool_version():
         except:
             return (0,0,0)
     else:
-        cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
+        cmd = 'intltool-update --version 2> /dev/null | head -1 | cut -d" " -f3'
         retcode, version_str = subprocess.getstatusoutput(cmd)
         if retcode != 0:
             return None
