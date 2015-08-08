@@ -1547,7 +1547,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         handle = self.__add_object(person, transaction, 
                     self.find_next_person_gramps_id if set_gid else None, 
                     self.commit_person)
-        self.genderStats.count_person(person)
         return handle
 
     def add_family(self, family, transaction, set_gid=True):
