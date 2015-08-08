@@ -104,25 +104,23 @@ class DisplayNameEditor(ManagedWindow):
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Display Name Editor'), None)
         grid = self.dialog._build_custom_name_ui()
-        label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:
-<tt>  
-  <b>Given</b>      - given name (first name) <b>Surname</b>      - surnames (with prefix and connectors)
-  <b>Title</b>      - title (Dr., Mrs.)       <b>Suffix</b>       - suffix (Jr., Sr.)
-  <b>Call</b>       - call name               <b>Nickname</b>     - nick name
-  <b>Initials</b>   - first letters of Given  <b>Common</b>       - nick name, otherwise first of Given
+        label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:<tt>  
+  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames (with prefix and connectors)
+  <b>Title</b>   - title (Dr., Mrs.)           <b>Suffix</b>   - suffix (Jr., Sr.)
+  <b>Call</b>    - call name                   <b>Nickname</b> - nick name
+  <b>Initials</b>- first letters of given      <b>Common</b>   - nick name, call, or first of given
+  <b>Prefix</b>  - all prefixes (von, de)  
+Surnames:
+  <b>Rest</b>      - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary
+  <b>Familynick</b>- family nick name        <b>Rawsurnames</b>  - surnames (no prefixes and connectors)
   <b>Primary, Primary[pre] or [sur] or [con]</b>- full primary surname, prefix, surname only, connector   
   <b>Patronymic, or [pre] or [sur] or [con]</b> - full pa/matronymic surname, prefix, surname only, connector 
-  <b>Familynick</b> - family nick name        <b>Prefix</b>       - all prefixes (von, de)  
-  <b>Rest</b>       - non primary surnames    <b>Notpatronymic</b>- all surnames, except pa/matronymic &amp; primary
-  <b>Rawsurnames</b>- surnames (no prefixes and connectors)
-
 </tt>
 UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other text appears literally.
 
-<b>Example</b>: 'Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills'
-     <i>Edwin Jose</i> is given name, <i>von der</i> is the prefix, <i>Smith</i> and <i>Weston</i> surnames, 
-     <i>and</i> a connector, <i>Wilson</i> patronymic surname, <i>Dr.</i> title, <i>Sr</i> suffix, <i>Ed</i> nick name, 
-     <i>Underhills</i> family nick name, <i>Jose</i> callname.
+<b>Example</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr ("Ed") - Underhills
+     <i>Edwin Jose</i>: Given, <i>von der</i>: Prefix, <i>Smith</i> and <i>Weston</i>: Primary, <i>and</i>: [con], <i>Wilson</i>: Patronymic, 
+     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, <i>Underhills</i>: Familynick, <i>Jose</i>: Call.
 """))
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, False, True, 0)        
