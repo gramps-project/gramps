@@ -32,7 +32,7 @@ Specific symbols for parts of a name are defined:
     'f'     given (first names)
     'l'     full surname (lastname)
     'c'     callname
-    'x'     nick name if existing, otherwise first first name (common name)
+    'x'     nick name, call, or otherwise first first name (common name)
     'i'     initials of the first names
     'm'     primary surname (main)
     '0m'    primary surname prefix
@@ -567,7 +567,7 @@ class NameDisplay(object):
         'f' : given      = given (first names)
         'l' : surname    = full surname (lastname)
         'c' : call       = callname
-        'x' : common     = nick name if existing, otherwise first first name (common name)
+        'x' : common     = nick name, call, otherwise first first name (common name)
         'i' : initials   = initials of the first names
         'm' : primary    = primary surname (main)
         '0m': primary[pre]= prefix primary surname (main)
@@ -601,7 +601,7 @@ class NameDisplay(object):
                                 _("suffix")),
              "c": ("raw_data[_CALL]",      "call",       
                                 _("Name|call")),
-             "x": ("(raw_data[_NICK] or raw_data[_FIRSTNAME].split(' ')[0])",
+             "x": ("(raw_data[_NICK] or raw_data[_CALL] or raw_data[_FIRSTNAME].split(' ')[0])",
                                 "common",
                                 _("Name|common")),
              "i": ("''.join([word[0] +'.' for word in ('. ' +" +
@@ -668,7 +668,7 @@ class NameDisplay(object):
         'f' : given      = given (first names)
         'l' : surname    = full surname (lastname)
         'c' : call       = callname
-        'x' : common     = nick name if existing, otherwise first first name (common name)
+        'x' : common     = nick name, call, or otherwise first first name (common name)
         'i' : initials   = initials of the first names
         'm' : primary    = primary surname (main)
         '0m': primary[pre]= prefix primary surname (main)
@@ -701,7 +701,7 @@ class NameDisplay(object):
                         _("suffix")),
              "c": ("call",       "call",       
                         _("Name|call")),
-             "x": ("(nick or first.split(' ')[0])", "common", 
+             "x": ("(nick or call or first.split(' ')[0])", "common", 
                         _("Name|common")),
              "i": ("''.join([word[0] +'.' for word in ('. ' + first).split()][1:])",
                         "initials", 
@@ -770,7 +770,7 @@ class NameDisplay(object):
         '%f' : given (first names)
         '%l' : full surname (lastname)
         '%c' : callname
-        '%x' : nick name if existing, otherwise first first name (common name)
+        '%x' : nick name, call, or otherwise first first name (common name)
         '%i' : initials of the first names
         '%m' : primary surname (main)
         '%0m': prefix primary surname (main)
