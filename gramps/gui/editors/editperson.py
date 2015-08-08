@@ -436,6 +436,7 @@ class EditPerson(EditPrimary):
 
         #make sure title updates automatically
         for obj in [self.top.get_object("given_name"),
+                    self.top.get_object("nickname"),
                     self.top.get_object("call"),
                     self.top.get_object("suffix"),
                     self.top.get_object("prefix"),
