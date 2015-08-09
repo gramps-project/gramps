@@ -1747,8 +1747,9 @@ class DbWriteBase(DbReadBase):
                 self.find_backlink_handles(family_handle, ['Person'])]
         for phandle in person_list:
             person = self.get_person_from_handle(phandle)
-            person.remove_handle_references('Family', [family_handle])
-            self.commit_person(person, trans)
+            if person:
+                person.remove_handle_references('Family', [family_handle])
+                self.commit_person(person, trans)
         self.remove_family(family_handle, trans)
 
     def remove_parent_from_family(self, person_handle, family_handle,
