@@ -1937,8 +1937,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _order_by_media_key(self, media):
         return glocale.sort_key(media.desc)
 
-    def _order_by_tag_key(self, tag):
-        return glocale.sort_key(tag.get_name())
+    def _order_by_tag_key(self, key):
+        return glocale.sort_key(key)
 
     def backup(self):
         """
