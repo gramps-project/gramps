@@ -454,7 +454,7 @@ class AscendPerson(_StopRecurse, _PersonSeen):
                 return
         self.__fill((index*2)+1, generation+1, mx_fill-1)
 
-    def __iterate(self, person_handle, generation, index):
+    def __iterate(self, generation, index, person_handle, full_family_handle):
         """
         Recursive function to walk back all parents of the current person.
         When max_generations are hit, we stop the traversal.
@@ -477,69 +477,48 @@ class AscendPerson(_StopRecurse, _PersonSeen):
         # we have to handle that parents may not
         person = self.database.get_person_from_handle(person_handle)
 
-        father_handle = None
-        mother_handle = None
-        fam_handle = None
-        for family_handle in person.get_parent_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-
-            # filter the child_ref_list to find the reference that matches
-            # the passed person. There should be exactly one, but there is
-            # nothing that prevents the same child in the list multiple times.
-
-            ref = [c for c in family.get_child_ref_list()
-                   if c.get_reference_handle() == person_handle]
-            if ref:
-
-                # If the father_handle is not defined and the relationship is
-                # BIRTH, then we have found the birth father. Same applies to
-                # the birth mother. If for some reason, the we have multiple
-                # people defined as the birth parents, we will select based on
-                # priority in the list
-
-                if not father_handle and \
-                   ref[0].get_father_relation() == ChildRefType.BIRTH:
-                    father_handle = family.get_father_handle()
-                    if fam_handle is None:  # Take the first seen only
-                        fam_handle = family_handle 
-                if not mother_handle and \
-                   ref[0].get_mother_relation() == ChildRefType.BIRTH:
-                    mother_handle = family.get_mother_handle()
-                    if fam_handle is None:
-                        fam_handle = family_handle
-            if father_handle and mother_handle:
-                break
-
         # we have a valid person, add him/her
-        self._add_person((generation, index), person_handle, fam_handle)
+        self._add_person((generation, index), person_handle, full_family_handle)
 
         # has the user canceled recursion?
         if not self.can_recurse():
             self.continue_recursion()
             return
 
+
+        #Now recurse on the parents
+        family_handle = person.get_main_parents_family_handle()
+
+        if family_handle is not None:
+            family = self.database.get_family_from_handle(family_handle)
+            father_handle = family.get_father_handle()
+            mother_handle = family.get_mother_handle()
+        else:
+            father_handle = None
+            mother_handle = None
+
         # Recursively call the function. It is okay if the handle is None,
-        self.__iterate(father_handle, generation+1, index*2)  #recurse on dad
+        self.__iterate(generation+1, index*2, father_handle, family_handle)  #recurse on dad
         if generation < self.max_generations:
             if father_handle is not None:  # Stil winin max_generations
-                self.add_marriage((generation+1, index*2), father_handle, fam_handle)
+                self.add_marriage((generation+1, index*2), father_handle, family_handle)
             elif mother_handle is not None:
-                self.add_marriage((generation+1, index*2), mother_handle, fam_handle)
-            elif fam_handle is not None:
-                self.add_marriage((generation+1, index*2), None, fam_handle)
+                self.add_marriage((generation+1, index*2), mother_handle, family_handle)
+            elif family_handle is not None:
+                self.add_marriage((generation+1, index*2), None, family_handle)
             elif self.fill_out > 0:
                 self.add_marriage((generation+1, index*2), None, None)
 
             if not self.can_recurse():
                 self.continue_recursion()
                 return
-        self.__iterate(mother_handle, generation+1, (index*2)+1)  #recurse mom
+        self.__iterate(generation+1, (index*2)+1, mother_handle, family_handle)  #recurse mom
 
     def recurse(self, person_handle):
         """
         A simple header to make sure we pass in the correct information
         """
-        return self.__iterate(person_handle, 1, 1)
+        return self.__iterate(1, 1, person_handle, None)
 
 
 #------------
