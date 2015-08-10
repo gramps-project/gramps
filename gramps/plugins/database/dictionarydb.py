@@ -915,13 +915,19 @@ class DictionaryDb(DbGeneric):
             if person.primary_name:
                 first_name = person.primary_name.first_name
                 if first_name not in gstats:
-                    gstats[first_name] = [0, 0, 0]
+                    gstats[first_name] = (0, 0, 0)
                 if person.gender == Person.MALE:
-                    gstats[first_name][0] += 1
+                    gstats[first_name] = (gstats[first_name][0] + 1, 
+                                          gstats[first_name][1],
+                                          gstats[first_name][2])
                 elif person.gender == Person.FEMALE:
-                    gstats[first_name][1] += 1
+                    gstats[first_name] = (gstats[first_name][0], 
+                                          gstats[first_name][1] + 1,
+                                          gstats[first_name][2])
                 else:
-                    gstats[first_name][2] += 1
+                    gstats[first_name] = (gstats[first_name][0], 
+                                          gstats[first_name][1],
+                                          gstats[first_name][2] + 1)
         return gstats
 
     def save_gender_stats(self, gstats):
