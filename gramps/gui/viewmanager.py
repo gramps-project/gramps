@@ -1091,7 +1091,7 @@ class ViewManager(CLIManager):
         Called when the Open button is clicked, opens the DbManager
         """
         from .dbman import DbManager
-        dialog = DbManager(self.dbstate, self.window)
+        dialog = DbManager(self.uistate, self.dbstate, self.window)
         value = dialog.run()
         if value:
             (filename, title) = value
