@@ -81,6 +81,7 @@ from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.config import config
+from gramps.gui.listmodel import ListModel
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -106,7 +107,7 @@ ICON_COL = 6
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
 class Information(ManagedWindow):
-    def __init__(self, uistate, text, parent):
+    def __init__(self, uistate, data, parent):
         super().__init__(uistate, [], self)
         self.window = Gtk.Dialog('Gramp')
         self.set_window(self.window, None, _("Database Information"))
@@ -116,10 +117,16 @@ class Information(ManagedWindow):
         self.window.set_position(Gtk.WindowPosition.CENTER)
         self.window.set_default_size(600, 400)
         s = Gtk.ScrolledWindow()
+        titles = [
+            (_('Setting'),0,150),
+            (_('Value'),1,450)
+        ]
+        treeview = Gtk.TreeView()
+        model = ListModel(treeview, titles)
+        for key, value in data.items():
+            model.add((key, str(value),), key)
+        s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
-        self.textview = Gtk.TextView()
-        self.textview.get_buffer().set_text(text)
-        s.add(self.textview)
         self.show()
         
     def on_ok_clicked(self, obj):
@@ -669,11 +676,8 @@ class DbManager(CLIDbManager):
         name = store[node][0]
         dirname = store[node][1]
         # if this is open, get info from there, otherwise, temp open?
-        result = self.get_dbdir_summary(dirname, name)
-        result_str = ""
-        for key in sorted(result.keys()):
-            result_str += "%s: %s\n" % (key, result[key])
-        Information(self.uistate, result_str, parent=self.top)
+        summary = self.get_dbdir_summary(dirname, name)
+        Information(self.uistate, summary, parent=self.top)
 
     def __repair_db(self, obj):
         """
