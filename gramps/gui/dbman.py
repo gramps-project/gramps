@@ -123,7 +123,7 @@ class Information(ManagedWindow):
         ]
         treeview = Gtk.TreeView()
         model = ListModel(treeview, titles)
-        for key, value in data.items():
+        for key, value in sorted(data.items()):
             model.add((key, str(value),), key)
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
