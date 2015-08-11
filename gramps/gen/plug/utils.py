@@ -379,13 +379,16 @@ def load_addon_file(path, callback=None):
 #-------------------------------------------------------------------------
 class OpenFileOrStdout:
     """Context manager to open a file or stdout for writing."""
-    def __init__(self, filename):
+    def __init__(self, filename, encoding=None):
         self.filename = filename
         self.filehandle = None
+        self.encoding = encoding
 
     def __enter__(self):
         if self.filename == '-':
             self.filehandle = sys.stdout
+        elif self.encoding:
+            self.filehandle = open(self.filename, 'w', encoding=self.encoding)
         else:
             self.filehandle = open(self.filename, 'w')
         return self.filehandle
@@ -402,14 +405,17 @@ class OpenFileOrStdout:
 #-------------------------------------------------------------------------
 class OpenFileOrStdin:
     """Context manager to open a file or stdin for reading."""
-    def __init__(self, filename, add_mode=''):
+    def __init__(self, filename, add_mode='', encoding=None):
         self.filename = filename
         self.mode = 'r%s' % add_mode
         self.filehandle = None
+        self.encoding = encoding
 
     def __enter__(self):
         if self.filename == '-':
             self.filehandle = sys.stdin
+        elif self.encoding:
+            self.filehandle = open(self.filename, self.mode, encoding=self.encoding)
         else:
             self.filehandle = open(self.filename, self.mode)
         return self.filehandle
