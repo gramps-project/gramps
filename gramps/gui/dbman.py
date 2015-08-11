@@ -119,7 +119,7 @@ class Information(ManagedWindow):
         s = Gtk.ScrolledWindow()
         titles = [
             (_('Setting'),0,150),
-            (_('Value'),1,450)
+            (_('Value'),1,400)
         ]
         treeview = Gtk.TreeView()
         model = ListModel(treeview, titles)

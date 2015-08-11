@@ -2480,6 +2480,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             bsddb_version = _("Unknown")
         return {
             _("Number of people"): self.get_number_of_people(),
+            _("Number of families"): self.get_number_of_families(),
+            _("Number of sources"): self.get_number_of_sources(),
+            _("Number of citations"): self.get_number_of_citations(),
+            _("Number of events"): self.get_number_of_events(),
+            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of places"): self.get_number_of_places(),
+            _("Number of repositories"): self.get_number_of_repositories(),
+            _("Number of notes"): self.get_number_of_notes(),
+            _("Number of tags"): self.get_number_of_tags(),
             _("Schema version"): schema_version,
             _("Version"): bsddb_version,
         }
