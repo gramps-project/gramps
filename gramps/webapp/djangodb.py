@@ -401,6 +401,7 @@ class DbDjango(DbGeneric):
             PLACE_KEY:      "place", 
             REPOSITORY_KEY: "repository", 
             NOTE_KEY:       "note", 
+            TAG_KEY:        "tag",
             }
         table = getattr(self.dji, key2table[key].title())
         table.filter(handle=handle)[0].delete()
