@@ -46,7 +46,7 @@ from django.db.models import Q
 import gramps.webapp.grampsdb.models as models
 import gramps.webapp.grampsdb.forms as forms
 from gramps.webapp import libdjango
-from gramps.webapp.dbdjango import DbDjango
+from gramps.webapp.djangodb import DbDjango
 from gramps.cli.user import User as GUser # gramps user
 
 #------------------------------------------------------------------------

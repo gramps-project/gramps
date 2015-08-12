@@ -38,8 +38,8 @@ import os
 #     settings.configure(default_settings)
 # except:
 #     pass
-# import dbdjango
-# db = dbdjango.DbDjango()
+# import djangodb
+# db = djangodb.DbDjango()
 # run_report(db, "ancestor_report", off="txt", of="ar.txt", pid="I0363")
 
 def get_plugin_options(db, pid):

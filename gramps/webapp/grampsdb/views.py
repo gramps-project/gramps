@@ -60,7 +60,7 @@ import gramps.webapp
 from gramps.webapp.utils import _, build_args
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.view import *
-from gramps.webapp.dbdjango import DbDjango
+from gramps.webapp.djangodb import DbDjango
 import gramps.cli.user
 
 # Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 

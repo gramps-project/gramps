@@ -55,7 +55,7 @@ from gramps.gen.constfunc import conv_to_unicode
 #    tuple = dji.get_person(djperson)
 #    gperson = lib.gen.Person(tuple)
 # OR
-#    gperson = dbdjango.DbDjango().get_person_from_handle(handle)
+#    gperson = djangodb.DbDjango().get_person_from_handle(handle)
 
 def check_diff(item, raw):
     encoded = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")

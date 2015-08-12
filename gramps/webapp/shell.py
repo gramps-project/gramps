@@ -71,7 +71,7 @@ django.setup()
 
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.forms import *
-from gramps.webapp.dbdjango import DbDjango
+from gramps.webapp.djangodb import DbDjango
 from gramps.webapp.reports import import_file, export_file
 from gramps.webapp.libdjango import DjangoInterface, totime, todate
 from gramps.gen.datehandler import displayer, parser

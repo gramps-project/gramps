@@ -24,7 +24,7 @@ from gramps.webapp.utils import _, boolean, update_last_changed, StyledNoteForma
 from gramps.webapp.grampsdb.models import Note
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.libdjango import DjangoInterface
-from gramps.webapp.dbdjango import DbDjango
+from gramps.webapp.djangodb import DbDjango
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
