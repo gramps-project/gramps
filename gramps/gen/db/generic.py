@@ -638,6 +638,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_note_id_prefix('N%04d')
         # ----------------------------------
         self.undodb = None
+        self.id_trans  = DbGenericTxn("ID Transaction", self)
+        self.fid_trans = DbGenericTxn("FID Transaction", self)
+        self.pid_trans = DbGenericTxn("PID Transaction", self)
+        self.cid_trans = DbGenericTxn("CID Transaction", self)
+        self.sid_trans = DbGenericTxn("SID Transaction", self)
+        self.oid_trans = DbGenericTxn("OID Transaction", self)
+        self.rid_trans = DbGenericTxn("RID Transaction", self)
+        self.nid_trans = DbGenericTxn("NID Transaction", self)
+        self.eid_trans = DbGenericTxn("EID Transaction", self)        
         self.cmap_index = 0
         self.smap_index = 0
         self.emap_index = 0

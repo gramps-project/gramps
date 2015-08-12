@@ -39,18 +39,6 @@ class DictionaryDb(DbGeneric):
         """
         pass
 
-    def prepare_import(self):
-        """
-        Do anything needed before an import.
-        """
-        pass
-
-    def commit_import(self):
-        """
-        Do anything needed after an import.
-        """
-        self.reindex_reference_map(lambda n: n)
-
     def write_version(self, directory):
         """Write files for a newly created DB."""
         versionpath = os.path.join(directory, str(DBBACKEND))

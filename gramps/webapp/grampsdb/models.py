@@ -693,13 +693,14 @@ class Repository(PrimaryObject):
     #   .address_set
     #   .url_set
 
-class Place(PrimaryObject):
+class Place(DateObject, PrimaryObject):
     place_type = models.ForeignKey('PlaceType', verbose_name="Type")
     title = models.TextField(blank=True)
     #locations = models.ManyToManyField('Location', null=True, blank=True)
     long = models.TextField(blank=True)
     lat = models.TextField(blank=True)
     name = models.TextField(blank=True)
+    lang = models.TextField(blank=True)
     code = models.TextField(blank=True) # zipcode
 
     #url_list = models.ManyToManyField('Url', null=True, blank=True)

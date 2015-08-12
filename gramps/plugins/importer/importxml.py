@@ -122,7 +122,6 @@ def importData(database, filename, user):
     line_cnt = 0
     person_cnt = 0
     
-    database.prepare_import()
     with ImportOpenFileContextManager(filename, user) as xml_file:
         if xml_file is None:
             return
@@ -163,7 +162,6 @@ def importData(database, filename, user):
                           "valid Gramps database."))
             return
 
-    database.commit_import()
     database.readonly = read_only
     return info
 

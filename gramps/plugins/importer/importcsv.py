@@ -107,10 +107,8 @@ def importData(dbase, filename, user):
         parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if 
                                          config.get('preferences.tag-on-import') else None))
     try:
-        dbase.prepare_import()
         with open(filename, 'r') as filehandle:
             parser.parse(filehandle)
-        dbase.commit_import()
     except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))
         return

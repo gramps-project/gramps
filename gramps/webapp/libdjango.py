@@ -303,7 +303,7 @@ class DjangoInterface(object):
     def get_place_handle(self, obj): # obj is event
         if obj.place:
             return obj.place.handle
-        return ''
+        return None
 
     ## Packers:
 
@@ -371,11 +371,11 @@ class DjangoInterface(object):
         if family.father:
             father_handle = family.father.handle
         else:
-            father_handle = ''
+            father_handle = None
         if family.mother:
             mother_handle = family.mother.handle
         else:
-            mother_handle = ''
+            mother_handle = None
         return (str(family.handle), family.gramps_id, 
                 father_handle, mother_handle,
                 child_ref_list, tuple(family.family_rel_type), 
@@ -522,6 +522,14 @@ class DjangoInterface(object):
         return (obj.calendar, obj.modifier, obj.quality, dateval, 
                 obj.text, obj.sortval, obj.newyear)
 
+    def get_placename(self, place):
+        placename_date = self.get_date(place)
+        placename_value = place.name
+        placename_lang = place.lang
+        return (placename_value,
+                placename_date,
+                placename_lang)
+
     def get_place(self, place):
         locations = place.location_set.all().order_by("order")
         alt_location_list = [self.pack_location(location, True) for location in locations]
@@ -531,13 +539,14 @@ class DjangoInterface(object):
         note_list = self.get_note_list(place)
         tag_list = self.get_tag_list(place)
         place_ref_list = self.get_place_ref_list(place)
+        placename = self.get_placename(place)
         return (str(place.handle), 
                 place.gramps_id,
                 place.title, 
                 place.long, 
                 place.lat,
                 place_ref_list,
-                place.name,
+                placename,
                 [], ## FIXME: get_alt_names
                 tuple(place.place_type),
                 place.code,
@@ -1585,10 +1594,11 @@ class DjangoInterface(object):
         #obj.save()
     
     def add_place(self, data):
-        ## ('cef246c95c132bcf6a0255d4d17', 'P0036', 'Santa Clara Co., CA, USA', '', '', [('cef243fb5634559442323368f63', None)], 'Santa Clara Co.', [], (3, ''), '', [], [], [], [], [], 1422124781, [], False)
+        ## ('cef246c95c132bcf6a0255d4d17', 'P0036', ('Santa Clara Co., CA, USA', DATE, "English"), 
+        ## '', '', [('cef243fb5634559442323368f63', None)], 'Santa Clara Co.', [], (3, ''), '', [], [], [], [], [], 1422124781, [], False)
         (handle, gid, title, long, lat,
          place_ref_list,
-         name,
+         (placename, date, placelang),
          alt_name_list,
          place_type,
          code,
@@ -1606,7 +1616,8 @@ class DjangoInterface(object):
             title=title,
             long=long, 
             lat=lat, 
-            name=name,
+            name=placename,
+            lang=placelang,
             place_type=models.get_type(models.PlaceType, place_type), 
             code=code, 
             last_changed=todate(change),
@@ -1619,7 +1630,7 @@ class DjangoInterface(object):
     def add_place_detail(self, data):
         (handle, gid, title, long, lat,
          place_ref_list,
-         name,
+         (placename, date, placelang),
          alt_name_list,
          place_type,
          code,
@@ -1637,6 +1648,7 @@ class DjangoInterface(object):
             print(("ERROR: Place does not exist: '%s'" % 
                                   str(handle)), file=sys.stderr)
             return
+        self.add_date(place, date) 
         place.save(save_cache=False)
         self.add_url_list("place", place, url_list)
         self.add_media_ref_list(place, media_list)

@@ -131,9 +131,7 @@ def importData(database, filename, user):
     try:
         read_only = database.readonly
         database.readonly = False
-        database.prepare_import()
         gedparse.parse_gedcom_file(False)
-        database.commit_import()
         database.readonly = read_only
         ifile.close()
     except IOError as msg:
