@@ -23,6 +23,7 @@
 # Python Modules
 #
 #------------------------------------------------------------------------
+import random
 import pickle
 import base64
 import time
@@ -1354,6 +1355,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             person.handle = create_id()
         if (not person.gramps_id) and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
+        if (not person.gramps_id):
+            # give it a random value for the moment:
+            person.gramps_id = str(random.random())
         self.commit_person(person, trans)
         return person.handle
 
@@ -1362,6 +1366,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             family.handle = create_id()
         if (not family.gramps_id) and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
+        if (not family.gramps_id):
+            # give it a random value for the moment:
+            family.gramps_id = str(random.random())
         self.commit_family(family, trans)
         return family.handle
 
@@ -1370,6 +1377,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             citation.handle = create_id()
         if (not citation.gramps_id) and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
+        if (not citation.gramps_id):
+            # give it a random value for the moment:
+            citation.gramps_id = str(random.random())
         self.commit_citation(citation, trans)
         return citation.handle
 
@@ -1378,6 +1388,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             source.handle = create_id()
         if (not source.gramps_id) and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
+        if (not source.gramps_id):
+            # give it a random value for the moment:
+            source.gramps_id = str(random.random())
         self.commit_source(source, trans)
         return source.handle
 
@@ -1386,6 +1399,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             repository.handle = create_id()
         if (not repository.gramps_id) and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
+        if (not repository.gramps_id):
+            # give it a random value for the moment:
+            repository.gramps_id = str(random.random())
         self.commit_repository(repository, trans)
         return repository.handle
 
@@ -1394,6 +1410,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             note.handle = create_id()
         if (not note.gramps_id) and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
+        if (not note.gramps_id):
+            # give it a random value for the moment:
+            note.gramps_id = str(random.random())
         self.commit_note(note, trans)
         return note.handle
 
@@ -1402,6 +1421,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             place.handle = create_id()
         if (not place.gramps_id) and set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
+        if (not place.gramps_id):
+            # give it a random value for the moment:
+            place.gramps_id = str(random.random())
         self.commit_place(place, trans)
         return place.handle
 
@@ -1410,6 +1432,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             event.handle = create_id()
         if (not event.gramps_id) and set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
+        if (not event.gramps_id):
+            # give it a random value for the moment:
+            event.gramps_id = str(random.random())
         self.commit_event(event, trans)
         return event.handle
 
@@ -1430,6 +1455,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
             obj.gramps_id = self.find_next_object_gramps_id()
+        if (not obj.gramps_id):
+            # give it a random value for the moment:
+            obj.gramps_id = str(random.random())
         self.commit_media_object(obj, transaction)
         return obj.handle
 
