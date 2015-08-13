@@ -138,7 +138,7 @@ from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 
 from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.gen.plug import BasePluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.location import get_main_location
@@ -439,7 +439,7 @@ wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
 
-PLUGMAN = GuiPluginManager.get_instance()
+PLUGMAN = BasePluginManager.get_instance()
 CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
 
 
