@@ -65,6 +65,32 @@ from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                                  get_age, get_timeperiod, preset_name)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import (
+    PIXELS_PER_GENERATION,
+    BORDER_EDGE_WIDTH, 
+    CHILDRING_WIDTH, 
+    TRANSLATE_PX, 
+    PAD_PX, 
+    PAD_TEXT, 
+    BACKGROUND_SCHEME1, 
+    BACKGROUND_SCHEME2, 
+    BACKGROUND_GENDER, 
+    BACKGROUND_WHITE, 
+    BACKGROUND_GRAD_GEN, 
+    BACKGROUND_GRAD_AGE, 
+    BACKGROUND_SINGLE_COLOR, 
+    BACKGROUND_GRAD_PERIOD, 
+    GENCOLOR,
+    MAX_AGE, 
+    GRADIENTSCALE, 
+    FORM_CIRCLE, 
+    FORM_HALFCIRCLE, 
+    FORM_QUADRANT, 
+    COLLAPSED, 
+    NORMAL, 
+    EXPANDED, 
+    TYPE_BOX_NORMAL, 
+    TYPE_BOX_FAMILY)
 _ = glocale.translation.gettext
 from gramps.gui.utilscairo import warpPath
 
@@ -81,62 +107,6 @@ def gender_code(is_male):
         return Person.MALE
     else:
         return Person.FEMALE
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-
-PIXELS_PER_GENERATION = 50 # size of radius for generation
-BORDER_EDGE_WIDTH = 10     # empty white box size at edge to indicate parents
-CHILDRING_WIDTH = 12       # width of the children ring inside the person
-TRANSLATE_PX = 10          # size of the central circle, used to move the chart
-PAD_PX = 4                 # padding with edges
-PAD_TEXT = 2               # padding for text in boxes
-
-BACKGROUND_SCHEME1 = 0
-BACKGROUND_SCHEME2 = 1
-BACKGROUND_GENDER = 2
-BACKGROUND_WHITE = 3
-BACKGROUND_GRAD_GEN = 4
-BACKGROUND_GRAD_AGE = 5
-BACKGROUND_SINGLE_COLOR = 6
-BACKGROUND_GRAD_PERIOD = 7
-GENCOLOR = {
-    BACKGROUND_SCHEME1: ((255, 63,  0),
-                         (255,175, 15),
-                         (255,223, 87),
-                         (255,255,111),
-                         (159,255,159),
-                         (111,215,255),
-                         ( 79,151,255),
-                         (231, 23,255),
-                         (231, 23,121),
-                         (210,170,124),
-                         (189,153,112)),
-    BACKGROUND_SCHEME2: ((229,191,252),
-                         (191,191,252),
-                         (191,222,252),
-                         (183,219,197),
-                         (206,246,209)),
-    BACKGROUND_WHITE: ((255,255,255),
-                       (255,255,255),),
-    }
-
-MAX_AGE = 100
-GRADIENTSCALE = 5
-
-FORM_CIRCLE = 0
-FORM_HALFCIRCLE = 1
-FORM_QUADRANT = 2
-
-COLLAPSED = 0
-NORMAL = 1
-EXPANDED = 2
-
-TYPE_BOX_NORMAL = 0
-TYPE_BOX_FAMILY = 1
 
 #-------------------------------------------------------------------------
 #
