@@ -24,13 +24,21 @@
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+import pickle
+import sys
+import os
+
+## add this directory to sys path, so we can find django_support later:
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+#------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#------------------------------------------------------------------------
 from gramps.gen.db.generic import *
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-
-## add this directory to sys path, so we can find django_support later:
-import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 class DbDjango(DbGeneric):
 
@@ -54,7 +62,7 @@ class DbDjango(DbGeneric):
         self.load(directory)
 
     def initialize_backend(self, directory):
-        self._metadata = {}
+        pass
 
     def close_backend(self):
         pass
@@ -118,16 +126,24 @@ class DbDjango(DbGeneric):
     def transaction_abort(self, txn):
         pass
 
-    def get_metadata(self, key, default=[]):
-        if key in self._metadata:
-            return self._metadata[key]
+    def get_metadata(self, setting, default=[]):
+        metadata = self.dji.Metadata.filter(setting=setting)
+        if metadata.count() > 0:
+            return pickle.loads(metadata[0].value)
         elif default == []:
             return []
         else:
             return default
 
-    def set_metadata(self, key, value):
-        self._metadata[key] = value
+    def set_metadata(self, setting, value):
+        from gramps.webapp.grampsdb.models import Metadata
+        metadata = self.dji.Metadata.filter(setting=setting)
+        if metadata.count() > 0:
+            metadata = metadata[0]
+            metadata.value = pickle.dumps(value)
+        else:
+            metadata = Metadata(setting=setting, value=pickle.dumps(value))
+        metadata.save()
 
     def get_name_group_keys(self):
         return []
@@ -634,20 +650,14 @@ class DbDjango(DbGeneric):
              force_bsddb_upgrade=False, 
              force_bsddb_downgrade=False, 
              force_python_upgrade=False):
-        super().load(directory, 
-                     callback, 
-                     mode, 
-                     force_schema_upgrade, 
-                     force_bsddb_upgrade, 
-                     force_bsddb_downgrade, 
-                     force_python_upgrade)
+
         # Django-specific loads:
         from django.conf import settings
 
         LOG.info("Django loading...")
         default_settings = {"__file__": 
-                            os.path.join(self._directory, "default_settings.py")}
-        settings_file = os.path.join(self._directory, "default_settings.py")
+                            os.path.join(directory, "default_settings.py")}
+        settings_file = os.path.join(directory, "default_settings.py")
         with open(settings_file) as f:
             code = compile(f.read(), settings_file, 'exec')
             exec(code, globals(), default_settings)
@@ -658,7 +668,7 @@ class DbDjango(DbGeneric):
             def __getattr__(self, item):
                 return self.dictionary[item]
 
-        LOG.info("Django loading defaults from: " + self._directory)
+        LOG.info("Django loading defaults from: " + directory)
         try:
             settings.configure(Module(default_settings))
         except RuntimeError:
@@ -671,6 +681,13 @@ class DbDjango(DbGeneric):
         from gramps.webapp.libdjango import DjangoInterface
 
         self.dji = DjangoInterface()
+        super().load(directory, 
+                     callback, 
+                     mode, 
+                     force_schema_upgrade, 
+                     force_bsddb_upgrade, 
+                     force_bsddb_downgrade, 
+                     force_python_upgrade)
 
     def _make_repository(self, repository):
         if self.use_db_cache and repository.cache:

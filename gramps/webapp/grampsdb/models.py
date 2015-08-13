@@ -1104,6 +1104,10 @@ class Result(models.Model):
     def __str__(self):
         return str(self.name)
 
+class Metadata(models.Model):
+    setting = models.TextField(blank=False, null=False)
+    value = models.BinaryField()
+
 TABLES = [
     ("abstract", mGrampsType),
     ("type", NameType),
