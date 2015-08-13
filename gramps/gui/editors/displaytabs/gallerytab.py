@@ -54,7 +54,7 @@ from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
                                    create_checksum)
-from ...thumbnails import get_thumbnail_image
+from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.mime import get_type, is_valid_type
 from ...ddtargets import DdTargets

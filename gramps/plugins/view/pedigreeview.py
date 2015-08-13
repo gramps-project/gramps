@@ -57,7 +57,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.db import find_children, find_parents, find_witnessed_people
 from gramps.gen.utils.libformatting import FormattingHelper
-from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.ddtargets import DdTargets

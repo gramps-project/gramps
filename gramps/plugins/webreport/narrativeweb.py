@@ -121,7 +121,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gen.constfunc import win, conv_to_unicode, get_curr_dir
 from gramps.gen.config import config
-from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
+from gramps.gen.utils.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
 from gramps.gen.display.name import displayer as _nd

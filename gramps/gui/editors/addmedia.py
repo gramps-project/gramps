@@ -55,7 +55,7 @@ from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
                                    find_file)
 from gramps.gen.mime import get_type
-from ..thumbnails import find_mime_type_pixbuf
+from gramps.gen.utils.thumbnails import find_mime_type_pixbuf
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..dialog import ErrorDialog, WarningDialog

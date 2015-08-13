@@ -47,7 +47,7 @@ from ..utils import open_file_with_default_application
 from gramps.gen.lib import MediaObject, NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
-from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
+from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
 from .editprimary import EditPrimary
 from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,

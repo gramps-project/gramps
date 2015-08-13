@@ -51,7 +51,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.file import media_path_full
-from ..thumbnails import get_thumbnail_image
+from gramps.gen.utils.thumbnails import get_thumbnail_image
 from ..utils import is_right_click, open_file_with_default_application
 from gramps.gen.utils.db import get_birth_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname

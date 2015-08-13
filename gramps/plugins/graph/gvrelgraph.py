@@ -56,7 +56,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
-from gramps.gui.thumbnails import get_thumbnail_path
+from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.display.place import displayer as place_displayer

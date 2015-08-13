@@ -36,9 +36,14 @@ from hashlib import md5
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GdkPixbuf
+
+try:
+    from gi.repository import Gtk
+    _icon_theme = Gtk.IconTheme.get_default()
+except:
+    _icon_theme = None
 
 #-------------------------------------------------------------------------
 #
@@ -220,7 +225,6 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
 # find_mime_type_pixbuf
 #
 #-------------------------------------------------------------------------
-_icon_theme = Gtk.IconTheme.get_default()
 
 def find_mime_type_pixbuf(mime_type):
     try:

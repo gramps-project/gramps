@@ -69,7 +69,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.datehandler import displayer, get_date
-from gramps.gui.thumbnails import get_thumbnail_image
+from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.config import config
 from gramps.gui import widgets
 from gramps.gui.widgets.reorderfam import Reorder

@@ -31,7 +31,7 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
+from gramps.gen.utils.thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
 from ..utils import is_right_click, open_file_with_default_application
 from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import GRAMPS_LOCALE as glocale
