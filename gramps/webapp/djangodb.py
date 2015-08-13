@@ -237,11 +237,11 @@ class DbDjango(DbGeneric):
         return self.dji.Repository.count()
 
     def has_name_group_key(self, key):
-        # FIXME:
+        # FIXME: need a NameGroup table (name, grouping)
         return False
 
     def set_name_group_mapping(self, name, grouping):
-        # FIXME:
+        # FIXME: need a NameGroup table (name, grouping)
         pass
 
     def commit_person(self, person, trans, change_time=None):
@@ -398,7 +398,28 @@ class DbDjango(DbGeneric):
         else:
             trans.add(MEDIA_KEY, TXNADD, media.handle, old, raw)
 
+    def find_backlink_handles(self, handle, include_classes=None):
+        """
+        Find all objects that hold a reference to the object handle.
+        
+        Returns an interator over a list of (class_name, handle) tuples.
+
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
+            Default: None means include all classes.
+        :type include_classes: list of class names
+
+        Note that this is a generator function, it returns a iterator for
+        use in loops. If you want a list of the results use::
+
+            result_list = list(find_backlink_handles(handle))
+        """
+        # FIXME: need Reference (obj_handle, obj_class, ref_handle, ref_class)
+        return []
+
     def update_backlinks(self, obj):
+        # FIXME: need Reference (obj_handle, obj_class, ref_handle, ref_class)
         pass
 
     # Removals:
@@ -422,9 +443,6 @@ class DbDjango(DbGeneric):
         table = getattr(self.dji, key2table[key].title())
         table.filter(handle=handle)[0].delete()
         self.emit("%s-delete" % key2table[key], ([handle],))
-
-    def find_backlink_handles(self, handle, include_classes=None):
-        return []
 
     def find_initial_person(self):
         handle = self.get_default_handle()
@@ -468,9 +486,11 @@ class DbDjango(DbGeneric):
         return (tag.handle for tag in self.dji.Tag.all())
 
     def reindex_reference_map(self, callback):
+        # FIXME
         pass
 
     def rebuild_secondary(self, update):
+        # FIXME
         pass
 
     def has_handle_for_person(self, key):
@@ -622,7 +642,7 @@ class DbDjango(DbGeneric):
         return {}
 
     def save_gender_stats(self, gstats):
-        # FIXME: save
+        # FIXME: need GenderStats (name, female, male, unknown)
         pass
 
     def get_gender_stats(self):
@@ -630,19 +650,22 @@ class DbDjango(DbGeneric):
         Returns a dictionary of 
         {given_name: (male_count, female_count, unknown_count)} 
         """
-        # FIXME: load?
+        # FIXME: need GenderStats (name, female, male, unknown)
         return {}
 
     def get_surname_list(self):
-        return []
+        return [x['surname'] for x in self.dji.Surname.values('surname').order_by('surname').distinct()]
 
     def save_surname_list(self):
+        # Nothing to do
         pass
 
     def build_surname_list(self):
+        # Nothing to do
         pass
 
     def drop_tables(self):
+        # Nothing to do
         pass
 
     def load(self, directory, callback=None, mode=None, 
