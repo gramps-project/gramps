@@ -57,7 +57,8 @@ class DbDjango(DbGeneric):
         LOG.debug("Copy defaults from: " + defaults)
         for filename in os.listdir(defaults):
             fullpath = os.path.abspath(os.path.join(defaults, filename))
-            shutil.copy2(fullpath, directory)
+            if os.path.isfile(fullpath):
+                shutil.copy2(fullpath, directory)
         # force load, to get all modules loaded because of reset issue
         self.load(directory)
 
@@ -68,61 +69,32 @@ class DbDjango(DbGeneric):
         pass
         
     def transaction_commit(self, txn):
-        # do the details, dbconst:
-
-        # PERSON_KEY     = 0
-        # FAMILY_KEY     = 1
-        # SOURCE_KEY     = 2
-        # EVENT_KEY      = 3
-        # MEDIA_KEY      = 4
-        # PLACE_KEY      = 5
-        # REPOSITORY_KEY = 6
-        # REFERENCE_KEY  = 7
-        # NOTE_KEY       = 8
-        # TAG_KEY        = 9
-        # CITATION_KEY   = 10
-
-        # TXNADD, TXNUPD, TXNDEL = 0, 1, 2
-
         for (obj_type, trans_type) in txn.keys():
-            if trans_type in [TXNADD, TXNUPD]:
+            if trans_type in [TXNUPD, TXNADD]:
                 for (handle, new_data) in txn[(obj_type, trans_type)]:
                     if obj_type == PERSON_KEY:
-                        self.dji.add_person_detail(new_data)
-                        item = "person"
+                        self.commit_person_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == FAMILY_KEY:
-                        self.dji.add_family_detail(new_data)
-                        item = "family"
+                        self.commit_family_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == EVENT_KEY:
-                        self.dji.add_event_detail(new_data)
-                        item = "event"
+                        self.commit_event_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == PLACE_KEY:
-                        self.dji.add_place_detail(new_data)
-                        item = "place"
+                        self.commit_place_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == REPOSITORY_KEY:
-                        self.dji.add_repository_detail(new_data)
-                        item = "repository"
+                        self.commit_repository_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == CITATION_KEY:
-                        self.dji.add_citation_detail(new_data)
-                        item = "citation"
+                        self.commit_citation_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == SOURCE_KEY:
-                        self.dji.add_source_detail(new_data)
-                        item = "source"
+                        self.commit_source_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == NOTE_KEY:
-                        self.dji.add_note_detail(new_data)
-                        item = "note"
+                        self.commit_note_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == MEDIA_KEY:
-                        self.dji.add_media_detail(new_data)
-                        item = "media"
+                        self.commit_media_object_detail(handle, new_data, trans_type, txn.batch)
                     elif obj_type == TAG_KEY:
-                        self.dji.add_tag_detail(new_data)
-                        item = "tag"
-                    if not txn.batch:
-                        if trans_type == TXNUPD:
-                            self.emit(item + "-update", ([handle],))
-                        else:
-                            self.emit(item + "-add", ([handle],))
-
+                        self.commit_tag_detail(handle, new_data, trans_type, txn.batch)
+        if txn.batch and self.has_changed:
+            self.rebuild_secondary(None)
+                    
     def transaction_abort(self, txn):
         pass
 
@@ -146,10 +118,15 @@ class DbDjango(DbGeneric):
         metadata.save()
 
     def get_name_group_keys(self):
-        return []
+        rows = self.dji.NameGroup.all().order_by('name')
+        return [row.name for row in rows]
 
     def get_name_group_mapping(self, key):
-        return None
+        rows = self.dji.NameGroup.filter(name=key)
+        if rows:
+            return row[0].name
+        else:
+            return key
 
     def get_person_handles(self, sort_handles=False):
         if sort_handles:
@@ -237,12 +214,16 @@ class DbDjango(DbGeneric):
         return self.dji.Repository.count()
 
     def has_name_group_key(self, key):
-        # FIXME: need a NameGroup table (name, grouping)
-        return False
+        return len(self.dji.NameGroup.filter(name=key)) > 0
 
     def set_name_group_mapping(self, name, grouping):
-        # FIXME: need a NameGroup table (name, grouping)
-        pass
+        from gramps.webapp.grampsdb.models import NameGroup
+        if self.has_name_group_key(name):
+            namegroup = self.dji.NameGroup.get(name=name)
+        else:
+            namegroup = NameGroup(name=name)
+        namegroup.grouping = grouping
+        namegroup.save()    
 
     def commit_person(self, person, trans, change_time=None):
         raw = person.serialize()
@@ -258,6 +239,55 @@ class DbDjango(DbGeneric):
             trans.add(PERSON_KEY, TXNUPD, person.handle, old, raw)
         else:
             trans.add(PERSON_KEY, TXNADD, person.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_person_detail(self, handle, new_data, trans_type, batch):
+        old_obj = self.get_person_from_handle(handle)
+        self.dji.add_person_detail(new_data)
+        obj = self.get_person_from_handle(handle)
+        if trans_type == TXNUPD:
+            if (old_obj.gender != obj.gender or
+                old_obj.primary_name.first_name !=
+                obj.primary_name.first_name):
+                self.genderStats.uncount_person(old_obj)
+                self.genderStats.count_person(obj)
+            elif trans_type == TXNADD:
+                self.genderStats.count_person(person)
+        person = obj
+        # Other misc update tasks:
+        self.individual_attributes.update(
+            [str(attr.type) for attr in person.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        self.event_role_names.update([str(eref.role)
+                                      for eref in person.event_ref_list
+                                      if eref.role.is_custom()])
+
+        self.name_types.update([str(name.type)
+                                for name in ([person.primary_name]
+                                             + person.alternate_names)
+                                if name.type.is_custom()])
+        all_surn = []  # new list we will use for storage
+        all_surn += person.primary_name.get_surname_list() 
+        for asurname in person.alternate_names:
+            all_surn += asurname.get_surname_list()
+        self.origin_types.update([str(surn.origintype) for surn in all_surn
+                                if surn.origintype.is_custom()])
+        all_surn = None
+        self.url_types.update([str(url.type) for url in person.urls
+                               if url.type.is_custom()])
+        attr_list = []
+        for mref in person.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("person-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("person-add", ([handle],))
+        self.has_changed = True
 
     def commit_family(self, family, trans, change_time=None):
         raw = family.serialize()
@@ -273,6 +303,45 @@ class DbDjango(DbGeneric):
             trans.add(FAMILY_KEY, TXNUPD, family.handle, old, raw)
         else:
             trans.add(FAMILY_KEY, TXNADD, family.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_family_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_family_detail(new_data)
+        obj = self.get_family_from_handle(handle)
+        family = obj
+        # Misc updates:
+        self.family_attributes.update(
+            [str(attr.type) for attr in family.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        rel_list = []
+        for ref in family.child_ref_list:
+            if ref.frel.is_custom():
+                rel_list.append(str(ref.frel))
+            if ref.mrel.is_custom():
+                rel_list.append(str(ref.mrel))
+        self.child_ref_types.update(rel_list)
+
+        self.event_role_names.update(
+            [str(eref.role) for eref in family.event_ref_list
+             if eref.role.is_custom()])
+
+        if family.type.is_custom():
+            self.family_rel_types.add(str(family.type))
+
+        attr_list = []
+        for mref in family.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("family-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("family-add", ([handle],))
+        self.has_changed = True
 
     def commit_citation(self, citation, trans, change_time=None):
         raw = citation.serialize()
@@ -288,6 +357,29 @@ class DbDjango(DbGeneric):
             trans.add(CITATION_KEY, TXNUPD, citation.handle, old, raw)
         else:
             trans.add(CITATION_KEY, TXNADD, citation.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_citation_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_citation_detail(new_data)
+        obj = self.get_citation_from_handle(handle)
+        citation = obj
+        # Misc updates:
+        attr_list = []
+        for mref in citation.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+
+        self.source_attributes.update(
+            [str(attr.type) for attr in citation.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("citation-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("citation-add", ([handle],))
+        self.has_changed = True
 
     def commit_source(self, source, trans, change_time=None):
         raw = source.serialize()
@@ -303,6 +395,32 @@ class DbDjango(DbGeneric):
             trans.add(SOURCE_KEY, TXNUPD, source.handle, old, raw)
         else:
             trans.add(SOURCE_KEY, TXNADD, source.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_source_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_source_detail(new_data)
+        obj = self.get_source_from_handle(handle)
+        source = obj
+        # Misc updates:
+        self.source_media_types.update(
+            [str(ref.media_type) for ref in source.reporef_list
+             if ref.media_type.is_custom()])       
+
+        attr_list = []
+        for mref in source.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+        self.source_attributes.update(
+            [str(attr.type) for attr in source.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("source-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("source-add", ([handle],))
+        self.has_changed = True
 
     def commit_repository(self, repository, trans, change_time=None):
         raw = repository.serialize()
@@ -318,6 +436,25 @@ class DbDjango(DbGeneric):
             trans.add(REPOSITORY_KEY, TXNUPD, repository.handle, old, raw)
         else:
             trans.add(REPOSITORY_KEY, TXNADD, repository.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_repository_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_repository_detail(new_data)
+        obj = self.get_repository_from_handle(handle)
+        repository = obj
+        # Misc updates:
+        if repository.type.is_custom():
+            self.repository_types.add(str(repository.type))
+
+        self.url_types.update([str(url.type) for url in repository.urls
+                               if url.type.is_custom()])
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("repository-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("repository-add", ([handle],))
+        self.has_changed = True
 
     def commit_note(self, note, trans, change_time=None):
         raw = note.serialize()
@@ -333,6 +470,23 @@ class DbDjango(DbGeneric):
             trans.add(NOTE_KEY, TXNUPD, note.handle, old, raw)
         else:
             trans.add(NOTE_KEY, TXNADD, note.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_note_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_note_detail(new_data)
+        obj = self.get_note_from_handle(handle)
+        note = obj
+        # Misc updates:
+        if note.type.is_custom():
+            self.note_types.add(str(note.type))        
+        # Emit after added:
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("note-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("note-add", ([handle],))
+        self.has_changed = True
 
     def commit_place(self, place, trans, change_time=None):
         raw = place.serialize()
@@ -348,6 +502,31 @@ class DbDjango(DbGeneric):
             trans.add(PLACE_KEY, TXNUPD, place.handle, old, raw)
         else:
             trans.add(PLACE_KEY, TXNADD, place.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_place_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_place_detail(new_data)
+        obj = self.get_place_from_handle(handle)
+        place = obj
+        # Misc updates:
+        if place.get_type().is_custom():
+            self.place_types.add(str(place.get_type()))
+
+        self.url_types.update([str(url.type) for url in place.urls
+                               if url.type.is_custom()])
+
+        attr_list = []
+        for mref in place.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("place-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("place-add", ([handle],))
+        self.has_changed = True
 
     def commit_event(self, event, trans, change_time=None):
         raw = event.serialize()
@@ -363,6 +542,30 @@ class DbDjango(DbGeneric):
             trans.add(EVENT_KEY, TXNUPD, event.handle, old, raw)
         else:
             trans.add(EVENT_KEY, TXNADD, event.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_event_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_event_detail(new_data)
+        obj = self.get_event_from_handle(handle)
+        event = obj
+        # Misc updates:
+        self.event_attributes.update(
+            [str(attr.type) for attr in event.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+        if event.type.is_custom():
+            self.event_names.add(str(event.type))
+        attr_list = []
+        for mref in event.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("event-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("event-add", ([handle],))
+        self.has_changed = True
 
     def commit_tag(self, tag, trans, change_time=None):
         raw = tag.serialize()
@@ -378,6 +581,19 @@ class DbDjango(DbGeneric):
             trans.add(TAG_KEY, TXNUPD, tag.handle, old, raw)
         else:
             trans.add(TAG_KEY, TXNADD, tag.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_tag_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_tag_detail(new_data)
+        obj = self.get_tag_from_handle(handle)
+        tag = obj
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("tag-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("tag-add", ([handle],))
+        self.has_changed = True
 
     def commit_media_object(self, media, trans, change_time=None):
         """
@@ -397,6 +613,23 @@ class DbDjango(DbGeneric):
             trans.add(MEDIA_KEY, TXNUPD, media.handle, old, raw)
         else:
             trans.add(MEDIA_KEY, TXNADD, media.handle, old, raw)
+        # Contiued in transaction_commit...
+
+    def commit_media_object_detail(self, handle, new_data, trans_type, batch):
+        self.dji.add_media_detail(new_data)
+        obj = self.get_object_from_handle(handle)
+        media = obj
+        # Misc updates:
+        self.media_attributes.update(
+            [str(attr.type) for attr in media.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+        if not batch:
+            self.update_backlinks(obj)
+            if trans_type == TXNUPD:
+                self.emit("media-update", ([handle],))
+            elif trans_type == TXNADD:
+                self.emit("media-add", ([handle],))
+        self.has_changed = True
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -415,12 +648,23 @@ class DbDjango(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
-        # FIXME: need Reference (obj_handle, obj_class, ref_handle, ref_class)
-        return []
+        rows = self.dji.Reference.filter(ref_handle=handle)
+        for row in rows:
+            if (include_classes is None) or (row.obj_class in include_classes):
+                yield (row.obj_class, row.obj_handle)
 
     def update_backlinks(self, obj):
-        # FIXME: need Reference (obj_handle, obj_class, ref_handle, ref_class)
-        pass
+        from gramps.webapp.grampsdb.models import Reference
+        # First, delete the current references:
+        self.dji.Reference.filter(obj_handle=obj.handle).delete()
+        # Now, add the current ones:
+        references = set(obj.get_referenced_handles_recursively())
+        for (ref_class_name, ref_handle) in references:
+            reference = Reference(obj_handle=obj.handle, 
+                                  obj_class=obj.__class__.__name__, 
+                                  ref_handle=ref_handle, 
+                                  ref_class=ref_class_name)
+            reference.save()
 
     # Removals:
     def remove_person(self, handle, transaction):
@@ -486,12 +730,42 @@ class DbDjango(DbGeneric):
         return (tag.handle for tag in self.dji.Tag.all())
 
     def reindex_reference_map(self, callback):
-        # FIXME
-        pass
+        from gramps.webapp.grampsdb.models import Reference
+        callback(4)
+        self.dji.Reference.all().delete()
+        primary_table = (
+            (self.get_person_cursor, Person),
+            (self.get_family_cursor, Family),
+            (self.get_event_cursor, Event),
+            (self.get_place_cursor, Place),
+            (self.get_source_cursor, Source),
+            (self.get_citation_cursor, Citation),
+            (self.get_media_cursor, MediaObject),
+            (self.get_repository_cursor, Repository),
+            (self.get_note_cursor, Note),
+            (self.get_tag_cursor, Tag),
+        )
+        # Now we use the functions and classes defined above
+        # to loop through each of the primary object tables.
+        for cursor_func, class_func in primary_table:
+            logging.info("Rebuilding %s reference map" %
+                         class_func.__name__)
+            with cursor_func() as cursor:
+                for found_handle, val in cursor:
+                    obj = class_func.create(val)
+                    references = set(obj.get_referenced_handles_recursively())
+                    # handle addition of new references
+                    for (ref_class_name, ref_handle) in references:
+                        reference = Reference(obj_handle=obj.handle,
+                                              obj_class=obj.__class__.__name__,
+                                              ref_handle=ref_handle,
+                                              ref_class=ref_class_name)
+                        reference.save()
+        callback(5)
 
     def rebuild_secondary(self, update):
-        # FIXME
-        pass
+        gstats = self.rebuild_gender_stats()
+        self.genderStats = GenderStats(gstats) 
 
     def has_handle_for_person(self, key):
         return self.dji.Person.filter(handle=key).count() > 0
@@ -638,20 +912,53 @@ class DbDjango(DbGeneric):
         """
         Returns a dictionary of 
         {given_name: (male_count, female_count, unknown_count)} 
+        Not called: this is a database-efficient version
         """
-        return {}
+        UNKNOWN = 2
+        MALE    = 1
+        FEMALE  = 0
+        self.dji.GenderStats.all().delete()
+        gstats = {}
+        for person in self.dji.Person.all():
+            for first_name in person.name_set.all():
+                for name in first_name.first_name.split():
+                    if name not in gstats:
+                        gstats[name] = [0, 0, 0]
+                    if person.gender_type.val == MALE:
+                        gstats[name][0] += 1
+                    elif person.gender_type.val == FEMALE:
+                        gstats[name][1] += 1
+                    else:
+                        gstats[name][2] += 1
+        for key in gstats:
+            gstats[key] = tuple(gstats[key])
+        return gstats
 
-    def save_gender_stats(self, gstats):
-        # FIXME: need GenderStats (name, female, male, unknown)
-        pass
+    def save_gender_stats(self, genderStats):
+        """
+        {name: (male_count, female_count, unknown_count), ...}
+        """
+        from gramps.webapp.grampsdb.models import GenderStats
+        self.dji.GenderStats.all().delete()
+        gstats = genderStats.stats
+        for key in gstats:
+            data = gstats[key]
+            stat = GenderStats(name=key, 
+                               male=data[0], 
+                               female=data[1], 
+                               unknown=data[2])
+            stat.save()
 
     def get_gender_stats(self):
         """
         Returns a dictionary of 
         {given_name: (male_count, female_count, unknown_count)} 
         """
-        # FIXME: need GenderStats (name, female, male, unknown)
-        return {}
+        rows = self.dji.GenderStats.values('name', 'male', 'female', 'unknown')
+        gstats = {}
+        for dict in rows:
+            gstats[dict['name']] = (dict['male'], dict['female'], dict['unknown'])
+        return gstats
 
     def get_surname_list(self):
         return [x['surname'] for x in self.dji.Surname.values('surname').order_by('surname').distinct()]

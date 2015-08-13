@@ -886,6 +886,7 @@ class DictionaryDb(DbGeneric):
         """
         Builds and returns a dictionary of 
         {given_name: (male_count, female_count, unknown_count)} 
+        Called locally: this is a database-efficient version
         """
         # In dictionarydb, there is no separate persistent storage of 
         # gender stats, so we just get from the source:
@@ -920,7 +921,7 @@ class DictionaryDb(DbGeneric):
         return gstats
 
     def save_gender_stats(self, gstats):
-        # FIXME: save?
+        # Gender stats are not saved in the dictionary db
         pass
 
     def save_surname_list(self):

@@ -1108,6 +1108,25 @@ class Metadata(models.Model):
     setting = models.TextField(blank=False, null=False)
     value = models.BinaryField()
 
+class GenderStats(models.Model):
+    # GenderStats (name, female, male, unknown)
+    name = models.TextField(null=False)
+    female = models.IntegerField(blank=False)
+    male = models.IntegerField(blank=False)
+    unknown = models.IntegerField(blank=False)
+
+class Reference(models.Model):
+    # Reference (obj_handle, obj_class, ref_handle, ref_class)
+    obj_handle = models.CharField(max_length=19)
+    obj_class = models.TextField(null=False)
+    ref_handle = models.CharField(max_length=19)
+    ref_class = models.TextField(null=False)
+
+class NameGroup(models.Model):
+    # NameGroup table (name, grouping)
+    name = models.TextField(blank=False, null=False)
+    grouping = models.TextField(null=False)
+
 TABLES = [
     ("abstract", mGrampsType),
     ("type", NameType),
