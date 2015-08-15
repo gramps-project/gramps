@@ -1714,8 +1714,12 @@ class PlaceParser(object):
             if name:
                 break
 
-        place.set_name(name)
-        type_num = 7 - level if name else PlaceType.UNKNOWN
+        if name:
+            type_num = 7 - level
+        else:
+            name = place.title
+            type_num = PlaceType.UNKNOWN
+        place.name.set_value(name)
         place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)
@@ -4541,6 +4545,7 @@ class GedcomParser(UpdateCallback):
             if place is None:
                 place = Place()
                 place.set_title(title)
+                place.name.set_value(title)
                 self.dbase.add_place(place, self.trans)
                 self.place_names[place.get_title()].append(place.get_handle())
             else:
@@ -5399,11 +5404,13 @@ class GedcomParser(UpdateCallback):
                 else:
                     # This is the first PLAC
                     place.set_title(line.data)
+                    place.name.set_value(line.data)
             else:
                 # The first thing we encounter is PLAC
                 state.place = Place()
                 place = state.place
                 place.set_title(line.data)
+                place.name.set_value(line.data)
                 
             sub_state = CurrentState()
             sub_state.place = place
