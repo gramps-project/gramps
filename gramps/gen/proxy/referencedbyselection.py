@@ -340,6 +340,11 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_media_ref_list(place)
         self.process_urls(place)
 
+        for placeref in place.get_placeref_list():
+            place = self.db.get_place_from_handle(placeref.ref)
+            if place:
+                self.process_place(place)
+
     def process_source(self, source):
         """
         Follow the source object and find all of the primary objects
