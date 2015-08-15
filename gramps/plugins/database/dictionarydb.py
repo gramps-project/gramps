@@ -677,7 +677,7 @@ class DictionaryDb(DbGeneric):
         return (key for key in self._place_dict.keys())
 
     def iter_repository_handles(self):
-        return (key for key in self._repositories_dict.keys())
+        return (key for key in self._repository_dict.keys())
 
     def iter_source_handles(self):
         return (key for key in self._source_dict.keys())
