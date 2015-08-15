@@ -200,7 +200,11 @@ def gramps_upgrade_17(self):
         else:
             placeref_list = []
 
-        type_num = 7 - level if name else -1
+        if name:
+            type_num = 7 - level
+        else:
+            name = new_place[2]
+            type_num = -1
         new_place = new_place[:5] + [placeref_list, name, [],
                     (type_num, ''), zip_code] + \
                     new_place[6:12] + [[]] + new_place[12:]

@@ -2619,6 +2619,8 @@ class GrampsParser(UpdateCallback):
         self.placeobj.add_alternative_name(place_name)
 
     def stop_placeobj(self, *tag):
+        if self.placeobj.name.get_value() == '':
+            self.placeobj.name.set_value(self.placeobj.title)
         self.db.commit_place(self.placeobj, self.trans, 
                              self.placeobj.get_change_time())
         self.placeobj = None
