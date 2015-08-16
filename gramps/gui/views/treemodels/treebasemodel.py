@@ -583,49 +583,24 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         status = progressdlg.LongOpStatus(msg=_("Building View"),
                               total_steps=3, interval=1)
         pmon.add_op(status)
-        status_ppl = progressdlg.LongOpStatus(msg=_("Obtaining all rows"),
+        status_ppl = progressdlg.LongOpStatus(msg=_("Loading items..."),
                         total_steps=items, interval=items//10)
         pmon.add_op(status_ppl)
         
         self.__total += items
 
-        def beat(key):
-            status_ppl.heartbeat()
-            # for python3 this returns a byte object, so conversion needed
-            if not isinstance(key, str):
-                key = key.decode('utf-8')
-            return key
-        
         with gen_cursor() as cursor:
-            handle_list = [beat(key) for key, data in cursor]
+            for handle, data in cursor:
+                if not isinstance(handle, str):
+                    handle = handle.decode('utf-8')
+                status_ppl.heartbeat()
+                if not handle in skip:
+                    if not dfilter or dfilter.apply(self.db, [handle]):
+                        add_func(handle, data)
+                    self.__displayed += 1
         status_ppl.end()
-        status.heartbeat()
-
-        if dfilter:
-            _LOG.debug("rebuild filter %s" % dfilter)
-            _LOG.debug("    list before filter %s" % handle_list)
-            status_filter = progressdlg.LongOpStatus(msg=_("Applying filter"),
-                        total_steps=items, interval=items//10)
-            pmon.add_op(status_filter)
-            handle_list = dfilter.apply(self.db, handle_list, 
-                                        cb_progress=status_filter.heartbeat)
-            _LOG.debug("    list after filter %s" % handle_list)
-            status_filter.end()
-        status.heartbeat()
-
-        todisplay = len(handle_list)
-        status_col = progressdlg.LongOpStatus(msg=_("Constructing column data"),
-                total_steps=todisplay, interval=todisplay//10)
-        pmon.add_op(status_col)
-        for handle in handle_list:
-            status_col.heartbeat()
-            data = data_map(handle)
-            if not handle in skip:
-                add_func(handle, data)
-                self.__displayed += 1
-        status_col.end()
         status.end()
-        
+
     def add_node(self, parent, child, sortkey, handle, add_parent=True,
                  secondary=False):
         """
