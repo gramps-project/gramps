@@ -53,9 +53,9 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import gramps.gui.widgets.progressdialog as progressdlg
-from .lru import LRU
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
+from .basemodel import BaseModel
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +231,7 @@ class NodeMap(object):
 # TreeBaseModel
 #
 #-------------------------------------------------------------------------
-class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
+class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     """
     The base class for all hierarchical treeview models.  The model defines the
     mapping between a unique node and a path. Paths are defined by a tuple.
@@ -274,9 +274,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                       secondary object type.
     """
 
-    # LRU cache size
-    _CACHE_SIZE = 250
-   
     def __init__(self, db,
                     search=None, skip=set(),
                     scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
@@ -284,7 +281,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                     group_can_have_handle = False,
                     has_secondary=False):
         cput = time.clock()
-        super(TreeBaseModel, self).__init__()
+        GObject.GObject.__init__(self)
+        BaseModel.__init__(self)
         #We create a stamp to recognize invalid iterators. From the docs:
         #Set the stamp to be equal to your model's stamp, to mark the 
         #iterator as valid. When your model's structure changes, you should 
@@ -332,8 +330,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
     
         self._in_build = False
         
-        self.lru_data  = LRU(TreeBaseModel._CACHE_SIZE)
-
         self.__total = 0
         self.__displayed = 0
 
@@ -350,6 +346,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Unset all elements that prevent garbage collection
         """
+        BaseModel.destroy(self)
         self.db = None
         self.sort_func = None
         if self.has_secondary:
@@ -364,8 +361,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.search2 = None
         self.current_filter = None
         self.current_filter2 = None
-        self.clear_cache()
-        self.lru_data = None
 
     def _set_base_data(self):
         """
@@ -409,18 +404,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         Return the color column.
         """
         return None
-
-    def clear_cache(self, handle=None):
-        """
-        Clear the LRU cache.
-        """
-        if handle:
-            try:
-                del self.lru_data[handle]
-            except KeyError:
-                pass
-        else:
-            self.lru_data.clear()
 
     def clear(self):
         """
@@ -958,16 +941,16 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         if secondary is None:
             raise NotImplementedError
+
+        cached, data = self.get_cached_value(handle, col)
         
-        if handle in self.lru_data:
-            data = self.lru_data[handle]
-        else:
+        if not cached:
             if not secondary:
                 data = self.map(handle)
             else:
                 data = self.map2(handle)
-            if not self._in_build:
-                self.lru_data[handle] = data
+            if store_cache:
+                self.set_cached_value(handle, col, data)
                 
         if not secondary:
             # None is used to indicate this column has no data

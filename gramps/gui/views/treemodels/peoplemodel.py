@@ -38,6 +38,7 @@ from html import escape
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
@@ -59,15 +60,15 @@ from gramps.gen.lib import (Name, EventRef, EventType, EventRoleType,
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-from .lru import LRU
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
+from .basemodel import BaseModel
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
-# COLUMN constants
+# COLUMN constants; positions in raw data structure
 #
 #-------------------------------------------------------------------------
 COLUMN_ID     = 1
@@ -90,19 +91,17 @@ invalid_date_format = config.get('preferences.invalid-date-format')
 # PeopleBaseModel
 #
 #-------------------------------------------------------------------------
-class PeopleBaseModel(object):
+class PeopleBaseModel(BaseModel):
     """
     Basic Model interface to handle the PersonViews
     """
     _GENDER = [ _('female'), _('male'), _('unknown') ]
 
-    # LRU cache size
-    _CACHE_SIZE = 250
-
     def __init__(self, db):
         """
         Initialize the model building the initial data
         """
+        BaseModel.__init__(self)
         self.db = db
         self.gen_cursor = db.get_person_cursor
         self.map = db.get_raw_person_data
@@ -144,24 +143,16 @@ class PeopleBaseModel(object):
             self.column_tag_color,
             ]
 
-        #columns are accessed on every mouse over, so it is worthwhile to
-        #cache columns visible in one screen to avoid expensive database 
-        #lookup of derived values
-        self.lru_name  = LRU(PeopleBaseModel._CACHE_SIZE)
-        self.lru_spouse = LRU(PeopleBaseModel._CACHE_SIZE)
-        self.lru_bdate = LRU(PeopleBaseModel._CACHE_SIZE)
-        self.lru_ddate = LRU(PeopleBaseModel._CACHE_SIZE)
-
     def destroy(self):
         """
         Unset all elements that can prevent garbage collection
         """
+        BaseModel.destroy(self)
         self.db = None
         self.gen_cursor = None
         self.map = None
         self.fmap = None
         self.smap = None
-        self.clear_local_cache()
 
     def color_column(self):
         """
@@ -169,63 +160,38 @@ class PeopleBaseModel(object):
         """
         return 15
 
-    def clear_local_cache(self, handle=None):
-        """ Clear the LRU cache """
-        if handle:
-            try:
-                del self.lru_name[handle]
-            except KeyError:
-                pass
-            try:
-                del self.lru_spouse[handle]
-            except KeyError:
-                pass
-            try:
-                del self.lru_bdate[handle]
-            except KeyError:
-                pass
-            try:
-                del self.lru_ddate[handle]
-            except KeyError:
-                pass
-        else:
-            self.lru_name.clear()
-            self.lru_spouse.clear()
-            self.lru_bdate.clear()
-            self.lru_ddate.clear()
-
     def on_get_n_columns(self):
         """ Return the number of columns in the model """
         return len(self.fmap)+1
 
     def sort_name(self, data):
-        name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
-        # internally we work with utf-8
-        if not isinstance(name, str):
-            name = name.decode('utf-8')
+        handle = data[0]
+        cached, name = self.get_cached_value(handle, "SORT_NAME")
+        if not cached:
+            name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
+            # internally we work with utf-8
+            if not isinstance(name, str):
+                name = name.decode('utf-8')
+            self.set_cached_value(handle, "SORT_NAME", name)
         return name
 
     def column_name(self, data):
         handle = data[0]
-        if handle in self.lru_name:
-            name = self.lru_name[handle]
-        else:
+        cached, name = self.get_cached_value(handle, "NAME")
+        if not cached:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
             # internally we work with utf-8 for python 2.7
             if not isinstance(name, str):
                 name = name.encode('utf-8')
-            if not self._in_build:
-                self.lru_name[handle] = name
+            self.set_cached_value(handle, "NAME", name)
         return name
 
     def column_spouse(self, data):
         handle = data[0]
-        if handle in self.lru_spouse:
-            value = self.lru_spouse[handle]
-        else:
+        cached, value = self.get_cached_value(handle, "SPOUSE")
+        if not cached:
             value = self._get_spouse_data(data)
-            if not self._in_build:
-                self.lru_spouse[handle] = value
+            self.set_cached_value(handle, "SPOUSE", value)
         return value
 
     def column_private(self, data):
@@ -265,17 +231,19 @@ class PeopleBaseModel(object):
 
     def column_birth_day(self, data):
         handle = data[0]
-        if handle in self.lru_bdate:
-            value = self.lru_bdate[handle]
-        else:
+        cached, value = self.get_cached_value(handle, "BIRTH_DAY")
+        if not cached:
             value = self._get_birth_data(data, False)
-            if not self._in_build:
-                self.lru_bdate[handle] = value
+            self.set_cached_value(handle, "BIRTH_DAY", value)
         return value
         
     def sort_birth_day(self, data):
         handle = data[0]
-        return self._get_birth_data(data, True)
+        cached, value = self.get_cached_value(handle, "SORT_BIRTH_DAY")
+        if not cached:
+            value = self._get_birth_data(data, True)
+            self.set_cached_value(handle, "SORT_BIRTH_DAY", value)
+        return value
 
     def _get_birth_data(self, data, sort_mode):
         index = data[COLUMN_BIRTH]
@@ -320,17 +288,19 @@ class PeopleBaseModel(object):
 
     def column_death_day(self, data):
         handle = data[0]
-        if handle in self.lru_ddate:
-            value = self.lru_ddate[handle]
-        else:
+        cached, value = self.get_cached_value(handle, "DEATH_DAY")
+        if not cached:
             value = self._get_death_data(data, False)
-            if not self._in_build:
-                self.lru_ddate[handle] = value
+            self.set_cached_value(handle, "DEATH_DAY", value)
         return value
         
     def sort_death_day(self, data):
         handle = data[0]
-        return self._get_death_data(data, True)
+        cached, value = self.get_cached_value(handle, "SORT_DEATH_DAY")
+        if not cached:
+            value = self._get_death_data(data, True)
+            self.set_cached_value(handle, "SORT_DEATH_DAY", value)
+        return value
 
     def _get_death_data(self, data, sort_mode):
         index = data[COLUMN_DEATH]
@@ -375,61 +345,86 @@ class PeopleBaseModel(object):
         return ""
 
     def column_birth_place(self, data):
-        index = data[COLUMN_BIRTH]
-        if index != -1:
-            try:
-                local = data[COLUMN_EVENT][index]
-                br = EventRef()
-                br.unserialize(local)
-                event = self.db.get_event_from_handle(br.ref)
-                if event:
-                    place_title = place_displayer.display_event(self.db, event)
-                    if place_title:
-                        return escape(place_title)
-            except:
-                return ''
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "BIRTH_PLACE")
+        if cached:
+            return value
+        else:
+            index = data[COLUMN_BIRTH]
+            if index != -1:
+                try:
+                    local = data[COLUMN_EVENT][index]
+                    br = EventRef()
+                    br.unserialize(local)
+                    event = self.db.get_event_from_handle(br.ref)
+                    if event:
+                        place_title = place_displayer.display_event(self.db, event)
+                        if place_title:
+                            value = escape(place_title)
+                            self.set_cached_value(handle, "BIRTH_PLACE", value)
+                            return value
+                except:
+                    value = ''
+                    self.set_cached_value(handle, "BIRTH_PLACE", value)
+                    return value
         
-        for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()
-            if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
-                er.get_role() == EventRoleType.PRIMARY):
-
-                    place_title = place_displayer.display_event(self.db, event)
-                    if place_title:
-                        return "<i>%s</i>" % escape(place_title)
-        return ""
+            for event_ref in data[COLUMN_EVENT]:
+                er = EventRef()
+                er.unserialize(event_ref)
+                event = self.db.get_event_from_handle(er.ref)
+                etype = event.get_type()
+                if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
+                    er.get_role() == EventRoleType.PRIMARY):
+                        place_title = place_displayer.display_event(self.db, event)
+                        if place_title:
+                            value = "<i>%s</i>" % escape(place_title)
+                            self.set_cached_value(handle, "BIRTH_PLACE", value)
+                            return value
+            value = ""
+            self.set_cached_value(handle, "BIRTH_PLACE", value)
+            return value
 
     def column_death_place(self, data):
-        index = data[COLUMN_DEATH]
-        if index != -1:
-            try:
-                local = data[COLUMN_EVENT][index]
-                dr = EventRef()
-                dr.unserialize(local)
-                event = self.db.get_event_from_handle(dr.ref)
-                if event:
-                    place_title = place_displayer.display_event(self.db, event)
-                    if place_title:
-                        return escape(place_title)
-            except:
-                return ''
-        
-        for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
-            etype = event.get_type()
-            if (etype in [EventType.BURIAL, EventType.CREMATION,
-                          EventType.CAUSE_DEATH]
-                and er.get_role() == EventRoleType.PRIMARY):
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "DEATH_PLACE")
+        if cached:
+            return value
+        else:
+            index = data[COLUMN_DEATH]
+            if index != -1:
+                try:
+                    local = data[COLUMN_EVENT][index]
+                    dr = EventRef()
+                    dr.unserialize(local)
+                    event = self.db.get_event_from_handle(dr.ref)
+                    if event:
+                        place_title = place_displayer.display_event(self.db, event)
+                        if place_title:
+                            value = escape(place_title)
+                            self.set_cached_value(handle, "DEATH_PLACE", value)
+                            return value
+                except:
+                    value = ''
+                    self.set_cached_value(handle, "DEATH_PLACE", value)
+                    return value
 
-                    place_title = place_displayer.display_event(self.db, event)
-                    if place_title:
-                        return "<i>%s</i>" % escape(place_title)
-        return ""
+            for event_ref in data[COLUMN_EVENT]:
+                er = EventRef()
+                er.unserialize(event_ref)
+                event = self.db.get_event_from_handle(er.ref)
+                etype = event.get_type()
+                if (etype in [EventType.BURIAL, EventType.CREMATION,
+                              EventType.CAUSE_DEATH]
+                    and er.get_role() == EventRoleType.PRIMARY):
+
+                        place_title = place_displayer.display_event(self.db, event)
+                        if place_title:
+                            value = "<i>%s</i>" % escape(place_title)
+                            self.set_cached_value(handle, "DEATH_PLACE", value)
+                            return value
+            value = ""
+            self.set_cached_value(handle, "DEATH_PLACE", value)
+            return value
 
     def _get_parents_data(self, data):
         parents = 0
@@ -468,56 +463,110 @@ class PeopleBaseModel(object):
         return todo
 
     def column_parents(self, data):
-        return str(self._get_parents_data(data))
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "PARENTS")
+        if not cached:
+            value = self._get_parents_data(data)
+            self.set_cached_value(handle, "PARENTS", value)
+        return str(value)
 
     def sort_parents(self, data):
-        return '%06d' % self._get_parents_data(data)
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_PARENTS")
+        if not cached:
+            value = self._get_parents_data(data)
+            self.set_cached_value(handle, "SORT_PARENTS", value)
+        return '%06d' % value
 
     def column_marriages(self, data):
-        return str(self._get_marriages_data(data))
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "MARRIAGES")
+        if not cached:
+            value = self._get_marriages_data(data)
+            self.set_cached_value(handle, "MARRIAGES", value)
+        return str(value)
 
     def sort_marriages(self, data):
-        return '%06d' % self._get_marriages_data(data)
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_MARRIAGES")
+        if not cached:
+            value = self._get_marriages_data(data)
+            self.set_cached_value(handle, "SORT_MARRIAGES", value)
+        return '%06d' % value
 
     def column_children(self, data):
-        return str(self._get_children_data(data))
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "CHILDREN")
+        if not cached:
+            value = self._get_children_data(data)
+            self.set_cached_value(handle, "CHILDREN", value)
+        return str(value)
 
     def sort_children(self, data):
-        return '%06d' % self._get_children_data(data)
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_CHILDREN")
+        if not cached:
+            value = self._get_children_data(data)
+            self.set_cached_value(handle, "SORT_CHILDREN", value)
+        return '%06d' % value
 
     def column_todo(self, data):
-        return str(self._get_todo_data(data))
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "TODO")
+        if not cached:
+            value = self._get_todo_data(data)
+            self.set_cached_value(handle, "TODO", value)
+        return str(value)
 
     def sort_todo(self, data):
-        return '%06d' % self._get_todo_data(data)
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_TODO")
+        if not cached:
+            value = self._get_todo_data(data)
+            self.set_cached_value(handle, "SORT_TODO", value)
+        return '%06d' % value
 
     def get_tag_name(self, tag_handle):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
-        
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)        
+        return value 
+
     def column_tag_color(self, data):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[COLUMN_TAGS]:
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
-                this_priority = tag.get_priority()
-                if tag_priority is None or this_priority < tag_priority:
-                    tag_color = tag.get_color()
-                    tag_priority = this_priority
-        return tag_color
+        tag_handle = data[0]
+        cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[COLUMN_TAGS]:
+                tag = self.db.get_tag_from_handle(handle)
+                if tag:
+                    this_priority = tag.get_priority()
+                    if tag_priority is None or this_priority < tag_priority:
+                        tag_color = tag.get_color()
+                        tag_priority = this_priority
+            value = tag_color
+            self.set_cached_value(tag_handle, "TAG_COLOR", value)        
+        return value 
 
     def column_tags(self, data):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
-        return ', '.join(sorted(tag_list, key=glocale.sort_key))
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "TAGS")
+        if not cached:
+            tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+            value = ', '.join(sorted(tag_list, key=glocale.sort_key))
+            self.set_cached_value(handle, "TAGS", value)
+        return value
 
 class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
@@ -528,10 +577,6 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
         PeopleBaseModel.__init__(self, db)
         FlatBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
                                order=order, sort_map=sort_map)
-
-    def clear_cache(self, handle=None):
-        """ Clear the LRU cache """
-        PeopleBaseModel.clear_local_cache(self, handle)
 
     def destroy(self):
         """
@@ -546,7 +591,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
-
         PeopleBaseModel.__init__(self, db)
         TreeBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
                                order=order, sort_map=sort_map)
@@ -563,13 +607,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         """See TreeBaseModel, we also set some extra lru caches
         """
         self.number_items = self.db.get_number_of_people
-
-    def clear_cache(self, handle=None):
-        """ Clear the LRU cache 
-        overwrite of base methods
-        """
-        TreeBaseModel.clear_cache(self, handle)
-        PeopleBaseModel.clear_local_cache(self, handle)
 
     def get_tree_levels(self):
         """

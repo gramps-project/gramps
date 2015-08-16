@@ -137,22 +137,31 @@ class NoteModel(FlatBaseModel):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)        
+        return value 
         
     def column_tag_color(self, data):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[Note.POS_TAGS]:
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
-                this_priority = tag.get_priority()
-                if tag_priority is None or this_priority < tag_priority:
-                    tag_color = tag.get_color()
-                    tag_priority = this_priority
-        return tag_color
+        tag_handle = data[0]
+        cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[Note.POS_TAGS]:
+                tag = self.db.get_tag_from_handle(handle)
+                if tag:
+                    this_priority = tag.get_priority()
+                    if tag_priority is None or this_priority < tag_priority:
+                        tag_color = tag.get_color()
+                        tag_priority = this_priority
+            value = tag_color
+            self.set_cached_value(tag_handle, "TAG_COLOR", value)        
+        return value 
 
     def column_tags(self, data):
         """

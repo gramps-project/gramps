@@ -174,20 +174,28 @@ class MediaModel(FlatBaseModel):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
         
     def column_tag_color(self, data):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[11]:
-            tag = self.db.get_tag_from_handle(handle)
-            this_priority = tag.get_priority()
-            if tag_priority is None or this_priority < tag_priority:
-                tag_color = tag.get_color()
-                tag_priority = this_priority
+        tag_handle = data[0]
+        cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[11]:
+                tag = self.db.get_tag_from_handle(handle)
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+            self.set_cached_value(tag_handle, "TAG_COLOR", tag_color)
         return tag_color
 
     def column_tags(self, data):
