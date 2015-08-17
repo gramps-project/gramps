@@ -905,7 +905,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             val = self._get_value(node.handle, col, node.secondary)
         #GTK 3 should convert unicode objects automatically, but this
         # gives wrong column values, so convert for python 2.7
-        if not isinstance(val, str):
+        if val is None:
+            return ''
+        elif not isinstance(val, str):
             return val.encode('utf-8')
         else:
             return val
@@ -927,6 +929,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             if store_cache:
                 self.set_cached_value(handle, col, data)
                 
+        if data is None:
+            return ''
         if not secondary:
             # None is used to indicate this column has no data
             if self.fmap[col] is None:
@@ -952,7 +956,10 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             pathlist = path.get_indices()
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
-            node = self.nodemap.node(node.children[_index][1])
+            if len(node.children[_index]) > 0:
+                node = self.nodemap.node(node.children[_index][1])
+            else:
+                return False, Gtk.TreeIter()
         return True, self._get_iter(node)
 
     def get_node_from_iter(self, iter):
