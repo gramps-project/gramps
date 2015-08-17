@@ -34,11 +34,13 @@ class BaseModel(object):
 
     def __init__(self):
         self.lru_data  = LRU(BaseModel._CACHE_SIZE)
+        self.lru_path = LRU(BaseModel._CACHE_SIZE)
 
     def destroy(self):
         """
         """
         self.lru_data = None
+        self.lru_path = None
 
     def clear_cache(self, handle=None):
         """
@@ -49,6 +51,8 @@ class BaseModel(object):
                 del self.lru_data[handle]
         else:
             self.lru_data.clear()
+        # Invalidates all paths
+        self.lru_path.clear()
 
     def get_cached_value(self, handle, col):
         """
@@ -64,4 +68,17 @@ class BaseModel(object):
             if handle not in self.lru_data:
                 self.lru_data[handle] = {}
             self.lru_data[handle][col] = data
+    
+    ## Cached Path's for TreeView:
+    def get_cached_path(self, handle):
+        """
+        """
+        if handle in self.lru_path:
+            return (True, self.lru_path[handle])
+        return (False, None)
 
+    def set_cached_path(self, handle, path):
+        """
+        """
+        if not self._in_build:
+            self.lru_path[handle] = path

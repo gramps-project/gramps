@@ -966,6 +966,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         Returns a path from a given node.
         """
+        cached, value = self.get_cached_path(iter.user_data)
+        if cached:
+            return value
         node = self.get_node_from_iter(iter)
         pathlist = []
         while node.parent is not None:
@@ -978,12 +981,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 index += 1
             pathlist.append(index)
             node = parent
-
         if pathlist:
             pathlist.reverse()
-            return Gtk.TreePath(tuple(pathlist))
+            retval = Gtk.TreePath(tuple(pathlist))
         else:
-            return None
+            retval = None
+        self.set_cached_path(iter.user_data, retval)
+        return retval
 
     def do_iter_next(self, iter):
         """
