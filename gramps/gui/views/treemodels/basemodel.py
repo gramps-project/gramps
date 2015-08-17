@@ -26,11 +26,12 @@
 #
 #-------------------------------------------------------------------------
 from .lru import LRU
+from gramps.gen.config import config
 
 class BaseModel(object):
 
     # LRU cache size
-    _CACHE_SIZE = 10000 # 250
+    _CACHE_SIZE = config.get('interface.treemodel-cache-size')
 
     def __init__(self):
         self.lru_data  = LRU(BaseModel._CACHE_SIZE)
@@ -38,13 +39,15 @@ class BaseModel(object):
 
     def destroy(self):
         """
+        Destroy the items in memory.
         """
         self.lru_data = None
         self.lru_path = None
 
     def clear_cache(self, handle=None):
         """
-        Clear the LRU cache.
+        Clear the LRU cache. Always clear lru_path, because paths may have 
+        changed.
         """
         if handle:
             if handle in self.lru_data:
@@ -56,6 +59,8 @@ class BaseModel(object):
 
     def get_cached_value(self, handle, col):
         """
+        Get the value of a "col". col may be a number (position in a model)
+        or a name (special value used by view).
         """
         if handle in self.lru_data and col in self.lru_data[handle]:
             return (True, self.lru_data[handle][col])
@@ -63,6 +68,7 @@ class BaseModel(object):
 
     def set_cached_value(self, handle, col, data):
         """
+        Set the data associated with handle + col.
         """
         if not self._in_build:
             if handle not in self.lru_data:
@@ -72,6 +78,7 @@ class BaseModel(object):
     ## Cached Path's for TreeView:
     def get_cached_path(self, handle):
         """
+        Saves the Gtk iter path.
         """
         if handle in self.lru_path:
             return (True, self.lru_path[handle])
@@ -79,6 +86,7 @@ class BaseModel(object):
 
     def set_cached_path(self, handle, path):
         """
+        Set the Gtk iter path value.
         """
         if not self._in_build:
             self.lru_path[handle] = path

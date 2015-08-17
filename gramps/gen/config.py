@@ -271,6 +271,7 @@ register('interface.url-width', 600)
 register('interface.view', True)
 register('interface.width', 775)
 register('interface.surname-box-height', 150)
+register('interface.treemodel-cache-size', 1000)
 
 register('paths.recent-export-dir', '')
 register('paths.recent-file', '')
