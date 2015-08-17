@@ -40,7 +40,7 @@ def get_location_list(db, place, date=None, lang=''):
         handle = None
         for placeref in place.get_placeref_list():
             ref_date = placeref.get_date_object()
-            if ref_date.is_empty() or date.match(ref_date):
+            if ref_date.is_empty() or date.match_exact(ref_date):
                 handle = placeref.ref
                 break
         if handle is None or handle in visited:
@@ -56,7 +56,7 @@ def __get_name(place, date, lang):
     local_name = '?'
     for place_name in place.get_all_names():
         name_date = place_name.get_date_object()
-        if name_date.is_empty() or date.match(name_date):
+        if name_date.is_empty() or date.match_exact(name_date):
             name_lang = place_name.get_language()
             if name_lang == '':
                 local_name = place_name.get_value()
