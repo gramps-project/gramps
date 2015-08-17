@@ -409,6 +409,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         Clear the data map.
         """
+        self.clear_cache()
         self.tree.clear()
         self.handle2node.clear()
         self.stamp += 1
@@ -618,6 +619,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         add_parent  Bool, if True, check if parent is present, if not add the 
                     parent as a top group with no handle
         """
+        self.clear_path_cache()
         if add_parent and not (parent in self.tree):
             #add parent to self.tree as a node with no handle, as the first
             #group level
@@ -668,6 +670,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         Remove a node from the map.
         """
+        self.clear_path_cache()
         if node.children:
             del self.handle2node[node.handle]
             node.set_handle(None)
@@ -694,6 +697,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         rows_reordered, so to propagate the change to the view, you need to
         reattach the model to the view. 
         """
+        self.clear_path_cache()
         self.__reverse = not self.__reverse
         top_node = self.tree[None]
         self._reverse_level(top_node)
@@ -729,16 +733,17 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         
     def add_row(self, handle, data):
         """
-        Add a row to the model.  In general this will add more then one node by
+        Add a row to the model.  In general this will add more than one node by
         using the add_node method.
         """
-        raise NotImplementedError
+        self.clear_path_cache()
 
     def add_row_by_handle(self, handle):
         """
         Add a row to the model.
         """
         assert isinstance(handle, str)
+        self.clear_path_cache()
         if self._get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
@@ -763,11 +768,11 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         assert isinstance(handle, str)
         cput = time.clock()
+        self.clear_cache(handle)
         node = self._get_node(handle)
         if node is None:
             return # row not currently displayed
 
-        self.clear_cache(handle)
         parent = self.nodemap.node(node.parent)
         self.remove_node(node)
         
@@ -793,6 +798,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Update a row in the model.
         """
         assert isinstance(handle, str)
+        self.clear_cache(handle)
         if self._get_node(handle) is None:
             return # row not currently displayed
 
@@ -956,9 +962,12 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             pathlist = path.get_indices()
         for index in pathlist:
             _index = (-index - 1) if self.__reverse else index
-            if len(node.children[_index]) > 0:
-                node = self.nodemap.node(node.children[_index][1])
-            else:
+            try:
+                if len(node.children[_index]) > 0:
+                    node = self.nodemap.node(node.children[_index][1])
+                else:
+                    return False, Gtk.TreeIter()
+            except IndexError:
                 return False, Gtk.TreeIter()
         return True, self._get_iter(node)
 

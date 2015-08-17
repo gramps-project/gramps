@@ -63,7 +63,9 @@ class BaseModel(object):
         or a name (special value used by view).
         """
         if handle in self.lru_data and col in self.lru_data[handle]:
+            #print("hit", handle, col)
             return (True, self.lru_data[handle][col])
+        #print("MISS", handle, col)
         return (False, None)
 
     def set_cached_value(self, handle, col, data):
@@ -71,9 +73,10 @@ class BaseModel(object):
         Set the data associated with handle + col.
         """
         if not self._in_build:
-            if handle not in self.lru_data:
-                self.lru_data[handle] = {}
-            self.lru_data[handle][col] = data
+            if self.lru_data.count > 0:
+                if handle not in self.lru_data:
+                    self.lru_data[handle] = {}
+                self.lru_data[handle][col] = data
     
     ## Cached Path's for TreeView:
     def get_cached_path(self, handle):
@@ -90,3 +93,9 @@ class BaseModel(object):
         """
         if not self._in_build:
             self.lru_path[handle] = path
+
+    def clear_path_cache(self):
+        """
+        Clear path cache for all.
+        """
+        self.lru_path.clear()
