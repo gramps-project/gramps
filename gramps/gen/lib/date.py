@@ -936,6 +936,25 @@ class Date(object):
         # return tuples not lists, for comparisons
         return (tuple(startmin), tuple(stopmax))
         
+    def match_exact(self, other_date):
+        """
+        Perform an extact match between two dates. The dates are not treated
+        as being person-centric. This is used to match date ranges in places.
+        """
+        if other_date.modifier == Date.MOD_NONE:
+            return other_date.sortval == self.sortval
+        elif other_date.modifier == Date.MOD_BEFORE:
+            return other_date.sortval > self.sortval
+        elif other_date.modifier == Date.MOD_AFTER:
+            return other_date.sortval < self.sortval
+        elif other_date.is_compound():
+            start, stop = other_date.get_start_stop_range()
+            start = Date(*start)
+            stop = Date(*stop)
+            return start.sortval <= self.sortval <= stop.sortval
+        else:
+            return False
+
     def match(self, other_date, comparison="="):
         """
         Compare two dates using sophisticated techniques looking for any match 
