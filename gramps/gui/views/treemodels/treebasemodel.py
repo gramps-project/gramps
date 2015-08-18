@@ -982,9 +982,10 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         Returns a path from a given node.
         """
-        cached, value = self.get_cached_path(iter.user_data)
+        cached, path = self.get_cached_path(iter.user_data)
         if cached:
-            return value
+            (treepath, pathtup) = path
+            return treepath
         node = self.get_node_from_iter(iter)
         pathlist = []
         while node.parent is not None:
@@ -993,16 +994,32 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             while node is not None:
                 # Step backwards
                 nodeid = node.next if self.__reverse else node.prev
+                # Let's see if sibling is cached:
+                cached,  sib_path = self.get_cached_path(nodeid)
+                if cached:
+                    (sib_treepath, sib_pathtup) = sib_path
+                    # Does it have an actual path?
+                    if sib_pathtup:
+                        # Compute path to here from sibling:
+                        # parent_path + sib_path + offset
+                        newtup = (sib_pathtup[:-1] + 
+                                  (sib_pathtup[-1] + index + 2, ) + 
+                                  tuple(reversed(pathlist)))
+                        #print("computed path:", iter.user_data, newtup)
+                        retval = Gtk.TreePath(newtup)
+                        self.set_cached_path(iter.user_data, (retval, newtup))
+                        return retval
                 node = nodeid and self.nodemap.node(nodeid)
                 index += 1
             pathlist.append(index)
             node = parent
         if pathlist:
             pathlist.reverse()
+            #print("actual path :", iter.user_data, tuple(pathlist))
             retval = Gtk.TreePath(tuple(pathlist))
         else:
             retval = None
-        self.set_cached_path(iter.user_data, retval)
+        self.set_cached_path(iter.user_data, (retval, tuple(pathlist) if pathlist else None))
         return retval
 
     def do_iter_next(self, iter):
