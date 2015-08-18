@@ -423,7 +423,7 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]
 
 #------------------------------------------------------------------------
 #
-# Records Report
+# Note Link Report
 #
 #------------------------------------------------------------------------
 
