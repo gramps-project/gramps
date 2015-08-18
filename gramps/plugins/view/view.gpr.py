@@ -196,7 +196,6 @@ authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 category = ("People", _("People")),
 viewclass = 'PersonListView',
-order = START,
 stock_icon = 'gramps-tree-list',
   )
   
@@ -212,7 +211,6 @@ authors = ["The Gramps project"],
 authors_email = ["http://gramps-project.org"],
 category = ("Places", _("Places")),
 viewclass = 'PlaceListView',
-order = START,
 stock_icon = 'gramps-tree-list',
   )
 
@@ -229,6 +227,7 @@ authors_email = [""],
 category = ("Places", _("Places")),
 viewclass = 'PlaceTreeView',
 stock_icon = 'gramps-tree-group',
+order = START,
   )
 
 register(VIEW, 
