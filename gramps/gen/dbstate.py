@@ -74,7 +74,6 @@ class DbState(Callback):
             config.get('preferences.rprefix'),
             config.get('preferences.nprefix') )
         self.open = True
-        self.signal_change()
 
     def signal_change(self):
         """
