@@ -152,6 +152,7 @@ def expanded_vars_path(path):
     $GRAMPSHOME is set and restored afterwards,
     because undefined $GRAMPSHOME has a special meaning (see const.py).
     """
+    grampshome_added = False
     if not 'GRAMPSHOME' in os.environ:
         os.environ['GRAMPSHOME'] = USER_HOME
         grampshome_added = True
