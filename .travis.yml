@@ -8,16 +8,18 @@ language: c
 #    - 3.4
 
 install:
-    - git clone --depth=50 --branch=master git://github.com/gramps-project/gramps.git gramps-project/gramps
-    - cd gramps-project/gramps 
     - time sudo apt-get update
-    - travis_retry sudo apt-get install gir1.2-pango gir1.2-gtk xdg-utils librsvg2-common libglib2.0-dev intltool 
+    - travis_retry sudo apt-get install gir1.2-pango gir1.2-gtk xdg-utils librsvg2-common libglib2.0-dev intltool
     - travis_retry sudo apt-get install python3-gobject python3-gi python3-cairo python3-gi-cairo python3-bsddb3 python3-dev python3-nose
 
     - travis_retry curl https://bootstrap.pypa.io/get-pip.py | sudo python3
     - travis_retry sudo pip3 install Django==1.7
     - travis_retry sudo pip3 install pyicu==1.8
     - travis_retry sudo pip3 install mock
+
+    - cd $TRAVIS_BUILD_DIR
+    # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
+    # for example: /home/travis/build/gramps-project/gramps
     - python3 setup.py build
 
 #before_script:
@@ -25,5 +27,5 @@ install:
 #    - export DISPLAY=:99
 
 script:
-    -  mkdir -p /home/travis/.gramps/grampsdb/
+    -  mkdir -p ~/.gramps/grampsdb/
     -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps
