@@ -62,7 +62,7 @@ from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown, create_explanation_note
-from gramps.gen.utils.file import create_checksum
+from gramps.gen.utils.file import create_checksum, media_path, norm_media_path
 from gramps.gen.datehandler import parser, set_date
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
@@ -165,35 +165,6 @@ def importData(database, filename, user):
     database.readonly = read_only
     return info
 
-##  TODO - WITH MEDIA PATH, IS THIS STILL NEEDED? 
-##         BETTER LEAVE ALL RELATIVE TO NEW RELATIVE PATH
-##   save_path is in .gramps/dbbase, no good place !
-##    # copy all local images into <database>.images directory
-##    db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
-##    db_base = os.path.basename(database.get_save_path())
-##    img_dir = os.path.join(db_dir, db_base)
-##    first = not os.path.exists(img_dir)
-##    
-##    for m_id in database.get_media_object_handles():
-##        mobject = database.get_object_from_handle(m_id)
-##        oldfile = mobject.get_path()
-##        if oldfile and not os.path.isabs(oldfile):
-##            if first:
-##                os.mkdir(img_dir)
-##                first = 0
-##            newfile = os.path.join(img_dir, oldfile)
-##
-##            try:
-##                oldfilename = os.path.join(basefile, oldfile)
-##                shutil.copyfile(oldfilename, newfile)
-##                try:
-##                    shutil.copystat(oldfilename, newfile)
-##                except:
-##                    pass
-##                mobject.set_path(newfile)
-##                database.commit_media_object(mobject, None, change)
-##            except (IOError, OSError), msg:
-##                ErrorDialog(_('Could not copy file'), str(msg))
 
 #-------------------------------------------------------------------------
 #
@@ -965,14 +936,13 @@ class GrampsParser(UpdateCallback):
                 person = self.db.get_person_from_handle(self.home)
                 self.db.set_default_person_handle(person.handle)
     
-            #set media path, this should really do some parsing to convert eg
-            # windows path to unix ?
+            # Set media path
+            # The paths are normalized before being compared.
             if self.mediapath:
-                oldpath = self.db.get_mediapath()
-                if not oldpath:
+                if not self.db.get_mediapath():
                     self.db.set_mediapath(self.mediapath)
-                elif not oldpath == self.mediapath:
-                    self.user.notify_error(_("Could not change media path"), 
+                elif not media_path(self.db) == norm_media_path(self.mediapath, self.db):
+                    self.user.notify_error(_("Could not change media path"),
                         _("The opened file has media path %s, which conflicts with"
                           " the media path of the Family Tree you import into. "
                           "The original media path has been retained. Copy the "

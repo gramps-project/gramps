@@ -53,6 +53,7 @@ from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
 from gramps.gen.utils.alive import update_constants
+from gramps.gen.utils.file import media_path
 from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
@@ -1460,9 +1461,7 @@ class GrampsPreferences(ConfigureDialog):
                                            _('_Apply'),
                                            Gtk.ResponseType.OK)
                                   )
-        mpath = self.dbstate.db.get_mediapath()
-        if not mpath:
-            mpath = HOME_DIR
+        mpath = media_path(self.dbstate.db)
         f.set_current_folder(os.path.dirname(mpath))
 
         status = f.run()

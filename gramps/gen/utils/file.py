@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -91,7 +91,7 @@ def get_empty_tempdir(dirname):
     """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
 
     makes intervening directories if required
-    fails if _file_ by that name already exists, 
+    fails if _file_ by that name already exists,
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
@@ -121,10 +121,10 @@ def relative_path(original, base):
         return original
     original = os.path.normpath(original)
     base = os.path.normpath(base)
-    
+
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base) 
+    (base_drive, base) = os.path.splitdrive(base)
     (orig_drive, orig_name) = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
@@ -133,7 +133,7 @@ def relative_path(original, base):
     # shared by base and target.
     base_list = (base).split(os.sep)
     target_list = (orig_name).split(os.sep)
-    # make sure '/home/person' and 'c:/home/person' both give 
+    # make sure '/home/person' and 'c:/home/person' both give
     #   list ['home', 'person']
     base_list = [_f for _f in base_list if _f]
     target_list = [_f for _f in target_list if _f]
@@ -146,14 +146,48 @@ def relative_path(original, base):
     rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
     return os.path.join(*rel_list)
 
+def expanded_vars_path(path):
+    """
+    Expand environment variables in a path
+    $GRAMPSHOME is set and restored afterwards,
+    because undefined $GRAMPSHOME has a special meaning (see const.py).
+    """
+    if not 'GRAMPSHOME' in os.environ:
+        os.environ['GRAMPSHOME'] = USER_HOME
+        grampshome_added = True
+    path = os.path.expandvars(path)
+    if (grampshome_added):
+        del os.environ['GRAMPSHOME']
+    return path
+
 def media_path(db):
     """
     Given a database, return the mediapath to use as basedir for media
     """
     mpath = db.get_mediapath()
+    return norm_media_path(mpath, db)
+
+def norm_media_path(mpath, db):
+    """
+    Normalize a mediapath:
+     - Relative mediapath are considered as relative to the database
+     - Expand variables ($GRAMPSHOME, $GRAMPS_RESOURCES, etc.)
+     - Convert to absolute path
+     - Convert slashes and case (on Windows)
+    """
+    # Use home dir if no media_path specified
     if mpath is None:
-        #use home dir
-        mpath = USER_HOME
+        mpath = os.path.abspath(USER_HOME)
+    # Expand environment variables
+    mpath = expanded_vars_path(mpath)
+    # Relative mediapath are considered as relative to the database
+    if not os.path.isabs(mpath):
+        basepath = db.get_save_path()
+        if not basepath:
+            basepath = USER_HOME
+        mpath = os.path.join(os.path.abspath(basepath), mpath)
+    # Normalize path
+    mpath = os.path.normcase(os.path.normpath(os.path.abspath(mpath)))
     return mpath
 
 def media_path_full(db, filename):
@@ -178,7 +212,7 @@ def search_for(name):
                 return 1
         if os.access(name, os.X_OK) and not os.path.isdir(name):
             return 1
-    else: 
+    else:
         for i in os.environ['PATH'].split(':'): #not win()
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
