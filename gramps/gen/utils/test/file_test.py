@@ -35,11 +35,10 @@ import unittest
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import TEMP_DIR, USER_HOME, USER_PLUGINS
+from gramps.gen.const import TEMP_DIR, USER_HOME, USER_PLUGINS, VERSION
 from gramps.gen.constfunc import get_env_var
 from gramps.gen.utils.file import media_path, get_empty_tempdir
 from gramps.gen.dbstate import DbState
-from gramps.version import VERSION
 
 #-------------------------------------------------------------------------
 #
@@ -71,29 +70,27 @@ class FileTest(unittest.TestCase):
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath(TEMP_DIR + "/utils_file_test/test_rel"))))
 
         # Test with environment variable
-        db.set_mediapath("/test/$GRAMPS_VERSION/test_var")
+        db.set_mediapath("/test/{VERSION}/test_var")
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath("/test/" + VERSION + "/test_var"))))
-        db.set_mediapath("${GRAMPS_USER_PLUGINS}/test_var")
+        db.set_mediapath("{USER_PLUGINS}/test_var")
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath(USER_PLUGINS + "/test_var"))))
+        db.set_mediapath("{VERSION}/test_var")
+        self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath(TEMP_DIR + "/utils_file_test/" + VERSION + "/test_var"))))
 
         # Test with $GRAMPSHOME environment variable not set
-        grampshome = None
+        old_env = os.environ.copy()
         if 'GRAMPSHOME' in os.environ:
-            grampshome = os.environ['GRAMPSHOME']
             del os.environ['GRAMPSHOME']
-        db.set_mediapath("$GRAMPSHOME/test_var")
+        db.set_mediapath("{GRAMPSHOME}/test_var")
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath(USER_HOME + "/test_var"))))
 
         # Test with $GRAMPSHOME environment variable set
         os.environ['GRAMPSHOME'] = "/this/is/a/test"
-        db.set_mediapath("$GRAMPSHOME/test_var")
+        db.set_mediapath("{GRAMPSHOME}/test_var")
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(os.path.abspath("/this/is/a/test/test_var"))))
 
-        # Restore $GRAMPSHOME
-        if grampshome:
-            os.environ['GRAMPSHOME'] = grampshome
-        else:
-            del os.environ['GRAMPSHOME']
+        # Restore environment
+        os.environ = old_env
 
 
 #-------------------------------------------------------------------------

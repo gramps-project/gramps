@@ -62,7 +62,7 @@ from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown, create_explanation_note
-from gramps.gen.utils.file import create_checksum, media_path, norm_media_path
+from gramps.gen.utils.file import create_checksum, media_path, expand_media_path
 from gramps.gen.datehandler import parser, set_date
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
@@ -941,7 +941,7 @@ class GrampsParser(UpdateCallback):
             if self.mediapath:
                 if not self.db.get_mediapath():
                     self.db.set_mediapath(self.mediapath)
-                elif not media_path(self.db) == norm_media_path(self.mediapath, self.db):
+                elif not media_path(self.db) == expand_media_path(self.mediapath, self.db):
                     self.user.notify_error(_("Could not change media path"),
                         _("The opened file has media path %s, which conflicts with"
                           " the media path of the Family Tree you import into. "

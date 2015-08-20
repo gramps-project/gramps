@@ -116,22 +116,6 @@ USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
 
-# Update environment
-# This could be of general use, for example when using os.path.expandvars
-os.environ['GRAMPS_VERSION'] = VERSION
-os.environ['GRAMPS_VERSION_MAJOR'] = major_version
-os.environ['GRAMPS_VERSION_DIR'] = VERSION_DIR
-os.environ['GRAMPS_ENV_DIR'] = ENV_DIR
-os.environ['GRAMPS_TEMP_DIR'] = TEMP_DIR
-os.environ['GRAMPS_THUMB_DIR'] = THUMB_DIR
-os.environ['GRAMPS_THUMB_NORMAL'] = THUMB_NORMAL
-os.environ['GRAMPS_THUMB_LARGE'] = THUMB_LARGE
-os.environ['GRAMPS_USER_PLUGINS'] = USER_PLUGINS
-# Attention: $GRAMPSHOME should NOT be set, because it redefines the HOME_DIR behavior
-# This leads to bugs, especially when a test calls GRAMPS again:
-# the HOME_DIR is then re-computed with a wrong $GRAMPSHOME
-
-
 #-------------------------------------------------------------------------
 #
 # Paths to python modules - assumes that the root directory is one level
@@ -187,6 +171,32 @@ LOGO = os.path.join(IMAGE_DIR, "logo.png")
 SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
 
 LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS environment variables dictionary
+#
+#-------------------------------------------------------------------------
+ENV = {
+    "USER_HOME": USER_HOME,
+    "HOME_DIR": HOME_DIR,
+    "VERSION": VERSION,
+    "major_version": major_version,
+    "VERSION_DIR": VERSION_DIR,
+    "ENV_DIR": ENV_DIR,
+    "TEMP_DIR": TEMP_DIR,
+    "THUMB_DIR": THUMB_DIR,
+    "THUMB_NORMAL": THUMB_NORMAL,
+    "THUMB_LARGE": THUMB_LARGE,
+    "USER_PLUGINS": USER_PLUGINS,
+    "ROOT_DIR": ROOT_DIR,
+    "GLADE_DIR": GLADE_DIR,
+    "PLUGINS_DIR": PLUGINS_DIR,
+    "WEB_DIR": WEB_DIR,
+    "DATA_DIR": DATA_DIR,
+    "IMAGE_DIR": IMAGE_DIR,
+}
+
 #-------------------------------------------------------------------------
 #
 # Init Localization

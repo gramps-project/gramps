@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 #
 #-------------------------------------------------------------------------
 from ..constfunc import win, mac, conv_to_unicode, get_env_var
-from ..const import TEMP_DIR, USER_HOME, GRAMPS_LOCALE as glocale
+from ..const import TEMP_DIR, USER_HOME, ENV, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -146,19 +146,21 @@ def relative_path(original, base):
     rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
     return os.path.join(*rel_list)
 
-def expanded_vars_path(path):
+def expand_path(path, normalize = True):
     """
     Expand environment variables in a path
-    $GRAMPSHOME is set and restored afterwards,
-    because undefined $GRAMPSHOME has a special meaning (see const.py).
+    Uses both the environment variables and the GRAMPS environment
+    The expansion uses the str.format, e.g. "~/{GRAMPSHOME}/{VERSION}/filename.txt"
+    We make the assumption that the user will not use a path that contain variable names
+    (it is technically possible to use characters "{", "}" in  paths)
     """
-    grampshome_added = False
-    if not 'GRAMPSHOME' in os.environ:
-        os.environ['GRAMPSHOME'] = USER_HOME
-        grampshome_added = True
-    path = os.path.expandvars(path)
-    if (grampshome_added):
-        del os.environ['GRAMPSHOME']
+    environment = dict(os.environ)
+    environment.update(ENV)
+    if not 'GRAMPSHOME' in environment:
+        environment['GRAMPSHOME'] = USER_HOME
+    path = path.format(**environment)
+    if normalize:
+        path = os.path.normcase(os.path.normpath(os.path.abspath(path)))
     return path
 
 def media_path(db):
@@ -166,13 +168,13 @@ def media_path(db):
     Given a database, return the mediapath to use as basedir for media
     """
     mpath = db.get_mediapath()
-    return norm_media_path(mpath, db)
+    return expand_media_path(mpath, db)
 
-def norm_media_path(mpath, db):
+def expand_media_path(mpath, db):
     """
     Normalize a mediapath:
      - Relative mediapath are considered as relative to the database
-     - Expand variables ($GRAMPSHOME, $GRAMPS_RESOURCES, etc.)
+     - Expand variables, see expand_path
      - Convert to absolute path
      - Convert slashes and case (on Windows)
     """
@@ -180,7 +182,7 @@ def norm_media_path(mpath, db):
     if mpath is None:
         mpath = os.path.abspath(USER_HOME)
     # Expand environment variables
-    mpath = expanded_vars_path(mpath)
+    mpath = expand_path(mpath, False)
     # Relative mediapath are considered as relative to the database
     if not os.path.isabs(mpath):
         basepath = db.get_save_path()
