@@ -7,7 +7,7 @@
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
-    <mediapath>/home/pierre/Gramps/master/example/gramps</mediapath>
+    <mediapath>{GRAMPS_RESOURCES}/example/gramps</mediapath>
   </header>
   <name-formats>
     <format number="-1" name="SURNAME, Given (Common)" fmt_str="SURNAME, given (common)" active="1"/>

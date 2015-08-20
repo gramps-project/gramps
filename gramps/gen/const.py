@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -85,16 +85,16 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 #
 #-------------------------------------------------------------------------
 if 'GRAMPSHOME' in os.environ:
-    USER_HOME = get_env_var('GRAMPSHOME') 
+    USER_HOME = get_env_var('GRAMPSHOME')
     HOME_DIR = os.path.join(USER_HOME, 'gramps')
 elif 'USERPROFILE' in os.environ:
-    USER_HOME = get_env_var('USERPROFILE') 
+    USER_HOME = get_env_var('USERPROFILE')
     if 'APPDATA' in os.environ:
         HOME_DIR = os.path.join(get_env_var('APPDATA'), 'gramps')
     else:
         HOME_DIR = os.path.join(USER_HOME, 'gramps')
 else:
-    USER_HOME = get_env_var('HOME') 
+    USER_HOME = get_env_var('HOME')
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
 
 
@@ -115,9 +115,10 @@ USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
+
 #-------------------------------------------------------------------------
 #
-# Paths to python modules - assumes that the root directory is one level 
+# Paths to python modules - assumes that the root directory is one level
 # above this one, and that the plugins directory is below the root directory.
 #
 #-------------------------------------------------------------------------
@@ -170,6 +171,32 @@ LOGO = os.path.join(IMAGE_DIR, "logo.png")
 SPLASH = os.path.join(IMAGE_DIR, "splash.jpg")
 
 LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS environment variables dictionary
+#
+#-------------------------------------------------------------------------
+ENV = {
+    "USER_HOME": USER_HOME,
+    "HOME_DIR": HOME_DIR,
+    "VERSION": VERSION,
+    "major_version": major_version,
+    "VERSION_DIR": VERSION_DIR,
+    "ENV_DIR": ENV_DIR,
+    "TEMP_DIR": TEMP_DIR,
+    "THUMB_DIR": THUMB_DIR,
+    "THUMB_NORMAL": THUMB_NORMAL,
+    "THUMB_LARGE": THUMB_LARGE,
+    "USER_PLUGINS": USER_PLUGINS,
+    "ROOT_DIR": ROOT_DIR,
+    "GLADE_DIR": GLADE_DIR,
+    "PLUGINS_DIR": PLUGINS_DIR,
+    "WEB_DIR": WEB_DIR,
+    "DATA_DIR": DATA_DIR,
+    "IMAGE_DIR": IMAGE_DIR,
+}
+
 #-------------------------------------------------------------------------
 #
 # Init Localization
@@ -192,21 +219,21 @@ COMMENTS       = _("Gramps\n (Genealogical Research and Analysis "
                    "is a personal genealogy program.")
 AUTHORS        = [
     "Alexander Roitman",
-    "Benny Malengier", 
+    "Benny Malengier",
     "Brian Matherly",
-    "Donald A. Peterson", 
-    "Donald N. Allingham", 
-    "David Hampton",  
+    "Donald A. Peterson",
+    "Donald N. Allingham",
+    "David Hampton",
     "Martin Hawlisch",
-    "Richard Taylor", 
+    "Richard Taylor",
     "Tim Waugh",
     "John Ralls"
     ]
-    
+
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
 
 DOCUMENTERS    = [
-    'Alexander Roitman', 
+    'Alexander Roitman',
     ]
 
 #-------------------------------------------------------------------------
@@ -232,14 +259,14 @@ ARABIC_SEMICOLON = "؛"
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 POPT_TABLE = [
     ("config",  'c',  str, None, 0, "Set config setting(s) and start Gramps",  ""),
-    ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"), 
-    ("create",  'C', str, None, 0, "Create or Open family tree",  "FAMILY_TREE"), 
-    ("import",  'i', str, None, 0, "Import file",       "FILENAME"), 
+    ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"),
+    ("create",  'C', str, None, 0, "Create or Open family tree",  "FAMILY_TREE"),
+    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
     ("export",  'e', str, None, 0, "Export file",       "FILENAME"),
-    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"), 
-    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"), 
-    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"), 
-    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"), 
+    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
+    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
+    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
+    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
     ("",        'l', None, None, 0, 'List Family Trees', ""),
     ("",        'L', None, None, 0, 'List Family Tree Details', ""),
     ("show",    's', None, None, 0, "Show config settings",  ""),
@@ -248,42 +275,42 @@ POPT_TABLE = [
 ]
 
 LONGOPTS = [
-    "action=", 
+    "action=",
     "class=",
     "config=",
     "debug=",
     "display=",
-    "disable-sound", 
-    "disable-crash-dialog", 
+    "disable-sound",
+    "disable-crash-dialog",
     "enable-sound",
     "espeaker=",
     "export=",
     "force-unlock",
     "format=",
-    "gdk-debug=", 
-    "gdk-no-debug=", 
-    "gtk-debug=", 
-    "gtk-no-debug=", 
-    "gtk-module=", 
+    "gdk-debug=",
+    "gdk-no-debug=",
+    "gtk-debug=",
+    "gtk-no-debug=",
+    "gtk-module=",
     "g-fatal-warnings",
     "help",
-    "import=", 
+    "import=",
     "load-modules=",
-    "list" 
+    "list"
     "name=",
-    "oaf-activate-iid=", 
-    "oaf-ior-fd=", 
+    "oaf-activate-iid=",
+    "oaf-ior-fd=",
     "oaf-private",
     "open=",
     "create=",
     "options=",
     "screen=",
-    "show", 
-    "sm-client-id=", 
-    "sm-config-prefix=", 
+    "show",
+    "sm-client-id=",
+    "sm-config-prefix=",
     "sm-disable",
     "sync",
-    "usage", 
+    "usage",
     "version",
     "qml",
     "yes",

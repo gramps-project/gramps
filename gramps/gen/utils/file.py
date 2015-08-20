@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -43,7 +43,7 @@ LOG = logging.getLogger(".gen.utils.file")
 #
 #-------------------------------------------------------------------------
 from ..constfunc import win, mac, conv_to_unicode, get_env_var
-from ..const import TEMP_DIR, USER_HOME, GRAMPS_LOCALE as glocale
+from ..const import TEMP_DIR, USER_HOME, ENV, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +91,7 @@ def get_empty_tempdir(dirname):
     """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
 
     makes intervening directories if required
-    fails if _file_ by that name already exists, 
+    fails if _file_ by that name already exists,
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
@@ -121,10 +121,10 @@ def relative_path(original, base):
         return original
     original = os.path.normpath(original)
     base = os.path.normpath(base)
-    
+
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base) 
+    (base_drive, base) = os.path.splitdrive(base)
     (orig_drive, orig_name) = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
@@ -133,7 +133,7 @@ def relative_path(original, base):
     # shared by base and target.
     base_list = (base).split(os.sep)
     target_list = (orig_name).split(os.sep)
-    # make sure '/home/person' and 'c:/home/person' both give 
+    # make sure '/home/person' and 'c:/home/person' both give
     #   list ['home', 'person']
     base_list = [_f for _f in base_list if _f]
     target_list = [_f for _f in target_list if _f]
@@ -146,14 +146,51 @@ def relative_path(original, base):
     rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
     return os.path.join(*rel_list)
 
+def expand_path(path, normalize = True):
+    """
+    Expand environment variables in a path
+    Uses both the environment variables and the GRAMPS environment
+    The expansion uses the str.format, e.g. "~/{GRAMPSHOME}/{VERSION}/filename.txt"
+    We make the assumption that the user will not use a path that contain variable names
+    (it is technically possible to use characters "{", "}" in  paths)
+    """
+    environment = dict(os.environ)
+    environment.update(ENV)
+    if not 'GRAMPSHOME' in environment:
+        environment['GRAMPSHOME'] = USER_HOME
+    path = path.format(**environment)
+    if normalize:
+        path = os.path.normcase(os.path.normpath(os.path.abspath(path)))
+    return path
+
 def media_path(db):
     """
     Given a database, return the mediapath to use as basedir for media
     """
     mpath = db.get_mediapath()
+    return expand_media_path(mpath, db)
+
+def expand_media_path(mpath, db):
+    """
+    Normalize a mediapath:
+     - Relative mediapath are considered as relative to the database
+     - Expand variables, see expand_path
+     - Convert to absolute path
+     - Convert slashes and case (on Windows)
+    """
+    # Use home dir if no media_path specified
     if mpath is None:
-        #use home dir
-        mpath = USER_HOME
+        mpath = os.path.abspath(USER_HOME)
+    # Expand environment variables
+    mpath = expand_path(mpath, False)
+    # Relative mediapath are considered as relative to the database
+    if not os.path.isabs(mpath):
+        basepath = db.get_save_path()
+        if not basepath:
+            basepath = USER_HOME
+        mpath = os.path.join(os.path.abspath(basepath), mpath)
+    # Normalize path
+    mpath = os.path.normcase(os.path.normpath(os.path.abspath(mpath)))
     return mpath
 
 def media_path_full(db, filename):
@@ -178,7 +215,7 @@ def search_for(name):
                 return 1
         if os.access(name, os.X_OK) and not os.path.isdir(name):
             return 1
-    else: 
+    else:
         for i in os.environ['PATH'].split(':'): #not win()
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
