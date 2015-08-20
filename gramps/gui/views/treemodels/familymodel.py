@@ -106,56 +106,86 @@ class FamilyModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_father(self, data):
-        if data[2]:
-            person = self.db.get_person_from_handle(data[2])
-            return name_displayer.display_name(person.primary_name)
-        else:
-            return ""
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "FATHER")
+        if not cached:
+            if data[2]:
+                person = self.db.get_person_from_handle(data[2])
+                value = name_displayer.display_name(person.primary_name)
+            else:
+                value = ""
+            self.set_cached_value(handle, "FATHER", value)
+        return value
 
     def sort_father(self, data):
-        if data[2]:
-            person = self.db.get_person_from_handle(data[2])
-            return name_displayer.sorted_name(person.primary_name)
-        else:
-            return ""
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_FATHER")
+        if not cached:
+            if data[2]:
+                person = self.db.get_person_from_handle(data[2])
+                value = name_displayer.sorted_name(person.primary_name)
+            else:
+                value = ""
+            self.set_cached_value(handle, "SORT_FATHER", value)
+        return value
 
     def column_mother(self, data):
-        if data[3]:
-            person = self.db.get_person_from_handle(data[3])
-            return name_displayer.display_name(person.primary_name)
-        else:
-            return ""
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "MOTHER")
+        if not cached:
+            if data[3]:
+                person = self.db.get_person_from_handle(data[3])
+                value = name_displayer.display_name(person.primary_name)
+            else:
+                value = ""
+            self.set_cached_value(handle, "MOTHER", value)
+        return value
 
     def sort_mother(self, data):
-        if data[3]:
-            person = self.db.get_person_from_handle(data[3])
-            return name_displayer.sorted_name(person.primary_name)
-        else:
-            return ""
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_MOTHER")
+        if not cached:
+            if data[3]:
+                person = self.db.get_person_from_handle(data[3])
+                value = name_displayer.sorted_name(person.primary_name)
+            else:
+                value = ""
+            self.set_cached_value(handle, "SORT_MOTHER", value)
+        return value
 
     def column_type(self, data):
         return str(FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        family = self.db.get_family_from_handle(data[0])
-        event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
-        if event:
-            if event.date.format:
-                return event.date.format % displayer.display(event.date)
-            elif not get_date_valid(event):
-                return invalid_date_format % displayer.display(event.date)
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "MARRIAGE")
+        if not cached:
+            family = self.db.get_family_from_handle(data[0])
+            event = get_marriage_or_fallback(self.db, family, "<i>%s</i>")
+            if event:
+                if event.date.format:
+                    value = event.date.format % displayer.display(event.date)
+                elif not get_date_valid(event):
+                    value = invalid_date_format % displayer.display(event.date)
+                else:
+                    value = "%s" % displayer.display(event.date)
             else:
-                return "%s" % displayer.display(event.date)
-        else:
-            return ''
+                value = ''
+            self.set_cached_value(handle, "MARRIAGE", value)
+        return value
 
     def sort_marriage(self, data):
-        family = self.db.get_family_from_handle(data[0])
-        event = get_marriage_or_fallback(self.db, family)
-        if event:
-            return "%09d" % event.date.get_sort_value()
-        else:
-            return ''
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "SORT_MARRIAGE")
+        if not cached:
+            family = self.db.get_family_from_handle(data[0])
+            event = get_marriage_or_fallback(self.db, family)
+            if event:
+                value = "%09d" % event.date.get_sort_value()
+            else:
+                value = ''
+            self.set_cached_value(handle, "SORT_MARRIAGE", value)
+        return value
 
     def column_id(self, data):
         return str(data[1])
@@ -177,20 +207,28 @@ class FamilyModel(FlatBaseModel):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
         
     def column_tag_color(self, data):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[13]:
-            tag = self.db.get_tag_from_handle(handle)
-            this_priority = tag.get_priority()
-            if tag_priority is None or this_priority < tag_priority:
-                tag_color = tag.get_color()
-                tag_priority = this_priority
+        tag_handle = data[0]
+        cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[13]:
+                tag = self.db.get_tag_from_handle(handle)
+                this_priority = tag.get_priority()
+                if tag_priority is None or this_priority < tag_priority:
+                    tag_color = tag.get_color()
+                    tag_priority = this_priority
+            self.set_cached_value(tag_handle, "TAG_COLOR", tag_color)
         return tag_color
 
     def column_tags(self, data):

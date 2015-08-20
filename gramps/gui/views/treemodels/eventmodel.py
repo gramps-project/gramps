@@ -49,7 +49,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
-# COLUMN constants
+# Positions in raw data structure
 #
 #-------------------------------------------------------------------------
 COLUMN_HANDLE      = 0
@@ -75,7 +75,7 @@ class EventModel(FlatBaseModel):
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
-        
+
         self.fmap = [
             self.column_description,
             self.column_id,
@@ -127,13 +127,22 @@ class EventModel(FlatBaseModel):
         return data[COLUMN_DESCRIPTION]
 
     def column_participant(self,data):
-        return get_participant_from_event(self.db, data[COLUMN_HANDLE])
+        handle = data[0]
+        cached, value = self.get_cached_value(handle, "PARTICIPANT")
+        if not cached:
+            value = get_participant_from_event(self.db, data[COLUMN_HANDLE])
+            self.set_cached_value(handle, "PARTICIPANT", value)
+        return value
         
     def column_place(self,data):
         if data[COLUMN_PLACE]:
-            event = Event()
-            event.unserialize(data)
-            return place_displayer.display_event(self.db, event)
+            cached, value = self.get_cached_value(data[0], "PLACE")
+            if not cached:
+                event = Event()
+                event.unserialize(data)
+                value = place_displayer.display_event(self.db, event)
+                self.set_cached_value(data[0], "PLACE", value)
+            return value
         else:
             return ''
 
@@ -185,21 +194,29 @@ class EventModel(FlatBaseModel):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
+        # TAG_NAME isn't a column, but we cache it
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
         
     def column_tag_color(self, data):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[COLUMN_TAGS]:
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
+        tag_handle = data[0]
+        cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[COLUMN_TAGS]:
+                tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
                     tag_color = tag.get_color()
                     tag_priority = this_priority
+            self.set_cached_value(tag_handle, "TAG_COLOR", tag_color)
         return tag_color
 
     def column_tags(self, data):

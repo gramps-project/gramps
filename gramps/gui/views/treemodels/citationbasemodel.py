@@ -135,15 +135,18 @@ class CitationBaseModel(object):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[COLUMN_TAGS]:
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
+        tag_handle = data[0]
+        cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[COLUMN_TAGS]:
+                tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
                     tag_color = tag.get_color()
                     tag_priority = this_priority
+            self.set_cached_value(tag_handle, "TAG_COLOR", tag_color)
         return tag_color
 
     def citation_change(self, data):
@@ -157,72 +160,104 @@ class CitationBaseModel(object):
     
     def citation_src_title(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return str(source.get_title())
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_TITLE")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = str(source.get_title())
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_TITLE", value)
+        return value
 
     def citation_src_id(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return str(source.gramps_id)
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_ID")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = str(source.gramps_id)
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_ID", value)
+        return value
 
     def citation_src_auth(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return str(source.get_author())
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_AUTH")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = str(source.get_author())
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_AUTH", value)
+        return value
 
     def citation_src_abbr(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return str(source.get_abbreviation())
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_ABBR")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = str(source.get_abbreviation())
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_ABBR", value)
+        return value
 
     def citation_src_pinfo(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return str(source.get_publication_info())
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_PINFO")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = str(source.get_publication_info())
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_PINFO", value)
+        return value
 
     def citation_src_private(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            if source.get_privacy():
-                return 'gramps-lock'
-            else:
-                # There is a problem returning None here.
-                return ''
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_PRIVATE")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                if source.get_privacy():
+                    value = 'gramps-lock'
+                else:
+                    # There is a problem returning None here.
+                    value = ''
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_PRIVATE", value)
+        return value
 
     def citation_src_tags(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            tag_list = list(map(self.get_tag_name, source.get_tag_list()))
-            return ', '.join(sorted(tag_list, key=glocale.sort_key))
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_TAGS")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                tag_list = list(map(self.get_tag_name, source.get_tag_list()))
+                value = ', '.join(sorted(tag_list, key=glocale.sort_key))
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_TAGS", value)
+        return value
 
     def citation_src_chan(self, data):
         source_handle = data[COLUMN_SOURCE]
-        try:
-            source = self.db.get_source_from_handle(source_handle)
-            return format_time(source.change)
-        except:
-            return ''
+        cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = format_time(source.change)
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_CHAN", value)
+        return value
 
 # Fields access when 'data' is a Source
 
@@ -259,15 +294,18 @@ class CitationBaseModel(object):
         """
         Return the tag color.
         """
-        tag_color = "#000000000000"
-        tag_priority = None
-        for handle in data[COLUMN2_TAGS]:
-            tag = self.db.get_tag_from_handle(handle)
-            if tag:
+        tag_handle = data[0]
+        cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
+        if not cached:
+            tag_color = "#000000000000"
+            tag_priority = None
+            for handle in data[COLUMN2_TAGS]:
+                tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
                     tag_color = tag.get_color()
                     tag_priority = this_priority
+            self.set_cached_value(tag_handle, "TAG_COLOR", tag_color)
         return tag_color
 
     def source_src_chan(self, data):
@@ -284,4 +322,8 @@ class CitationBaseModel(object):
         """
         Return the tag name from the given tag handle.
         """
-        return self.db.get_tag_from_handle(tag_handle).get_name()
+        cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
+        if not cached:
+            value = self.db.get_tag_from_handle(tag_handle).get_name()
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value

@@ -73,6 +73,7 @@ from gi.repository import Gtk
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.constfunc import conv_to_unicode, handle2internal
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from .basemodel import BaseModel
 
 #-------------------------------------------------------------------------
 #
@@ -442,7 +443,7 @@ class FlatNodeMap(object):
 # FlatBaseModel
 #
 #-------------------------------------------------------------------------
-class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
+class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     """
     The base class for all flat treeview models. 
     It keeps a FlatNodeMap, and obtains data from database as needed
@@ -454,7 +455,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
                  search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()
-        super(FlatBaseModel, self).__init__()
+        GObject.GObject.__init__(self)
+        BaseModel.__init__(self)
         #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
@@ -491,6 +493,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Unset all elements that prevent garbage collection
         """
+        BaseModel.destroy(self)
         self.db = None
         self.sort_func = None
         if self.node_map:
@@ -555,15 +558,6 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         Return the color column.
         """
         return None
-
-    def clear_cache(self, handle=None):
-        """
-        If you use a cache, overwrite here so it is cleared when this 
-        method is called (on rebuild)
-        :param handle: if None, clear entire cache, otherwise clear the handle
-                       entry if present
-        """
-        pass
 
     def sort_keys(self):
         """
@@ -775,7 +769,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         We need this to search in the column in the GUI
         """
         if handle != self.prev_handle:
-            data = self.map(handle)
+            cached, data = self.get_cached_value(handle, col)
+            if not cached:
+                data = self.map(handle)
+                self.set_cached_value(handle, col, data)
             if data is None:
                 #object is no longer present
                 return ''
