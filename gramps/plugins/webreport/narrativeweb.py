@@ -4805,7 +4805,7 @@ class ThumbnailPreviewPage(BasePage):
             return
         media_list.sort(key=lambda x: SORT_KEY(x[0]))
 
-        # reate thumbnail preview page...
+        # Create thumbnail preview page...
         of, sio = self.report.create_file("thumbnails")
         thumbnailpage, head, body = self.write_header(_("Thumbnails"))
 
@@ -4837,7 +4837,7 @@ class ThumbnailPreviewPage(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                ltrs = ["G", "r", "a", "m", "p", "s", "3.4.0"]
+                ltrs = ["&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;"]
                 for ltr in ltrs:
                     trow += Html("th", ltr, class_ ="weekend", inline =True) 
 
