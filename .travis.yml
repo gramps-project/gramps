@@ -28,4 +28,4 @@ install:
 
 script:
     -  mkdir -p ~/.gramps/grampsdb/
-    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps
+    -  DJANGO_SETTINGS_MODULE=gramps.webapp.default_settings nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps
