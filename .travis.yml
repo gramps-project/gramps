@@ -21,6 +21,9 @@ install:
     # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
     # for example: /home/travis/build/gramps-project/gramps
     - python3 setup.py build
+    - cd gramps/webapp
+    - make create
+    - cd ../..
 
 #before_script:
 #    - sudo Xvfb :99 -ac &

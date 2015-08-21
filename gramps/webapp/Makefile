@@ -7,6 +7,9 @@ update: grampsdb/fixtures/initial_data.json
 	$(PYTHON) manage.py createsuperuser --username=admin --email=bugs@gramps-project.org
 	$(PYTHON) manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
 
+create: grampsdb/fixtures/initial_data.json
+	$(PYTHON) manage.py syncdb --noinput
+
 grampsdb/fixtures/initial_data.json: init.py
 	mkdir -p grampsdb/fixtures
 	$(PYTHON) init.py > grampsdb/fixtures/initial_data.json
@@ -36,7 +39,7 @@ backup:
 restore: empty
 	$(PYTHON) manage.py loaddata backup.json
 
-initial_data: 
+initial_data:
 	$(PYTHON) manage.py loaddata grampsdb/fixtures/initial_data.json
 
 docs:
