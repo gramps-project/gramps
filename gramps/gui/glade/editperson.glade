@@ -108,6 +108,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="valign">start</property>
+            <property name="visible_window">False</property>
             <child>
               <object class="GtkBox" id="vbox1">
                 <property name="visible">True</property>
