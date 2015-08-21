@@ -150,7 +150,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
             self.view.cb_childmenu_changed(None, self.person.get_handle())
             return True
         return False
-        
+
     def get_image(self, dbstate, person):
         """
         Return a thumbnail image for the given person.
@@ -197,7 +197,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
-        self.img_surf = None    
+        self.img_surf = None
         if image:
             image_path = self.get_image(dbstate, person)
             if image_path and os.path.exists(image_path):
@@ -981,7 +981,7 @@ class PedigreeView(NavigationView):
                     rela = lst[2*i+1][1]
                 line = LineWidget2(1, rela, self.tree_direction)
 
-                if lst[((i+1) // 2) - 1] and lst[((i+1) // 2) - 1][2]:
+                if lst[i] and lst[i][2]:
                     # Required for popup menu
                     line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
                     line.connect("button-press-event",
@@ -1019,7 +1019,7 @@ class PedigreeView(NavigationView):
                 if self.tree_style == 0 and level == size - 1:
                     height -= 2
                     y_pos += 1
- 
+
                 if i > 0 and i % 2 == 0 and (pbw or last_pbw):
                     frela = mrela = None
                     if lst[i]:
@@ -1031,8 +1031,8 @@ class PedigreeView(NavigationView):
                                       last_pbw, frela,
                                       pbw, mrela,
                                       self.tree_direction)
-                        
-                    if lst[i] and lst[i][2]:
+
+                    if lst[((i+1) // 2) - 1] and lst[((i+1) // 2) - 1][2]:
                         # Required for popup menu
                         line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
                         line.connect("button-press-event",
