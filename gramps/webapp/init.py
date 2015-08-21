@@ -19,14 +19,14 @@
 
 """
 Creates a JSON representation of data for Django's fixture
-architecture. We could have done this in Python, or SQL, 
+architecture. We could have done this in Python, or SQL,
 but this makes it useful for all Django-based backends
 but still puts it into their syncdb API.
 """
 import time
 import os
-os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
-import settings
+os.environ["DJANGO_SETTINGS_MODULE"] = "default_settings"
+import default_settings
 
 from gramps.gen.config import config
 from gramps.gen.lib.nametype import NameType
@@ -43,8 +43,8 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.lib.notetype import NoteType
 from gramps.gen.lib.styledtexttagtype import StyledTextTagType
 
-from gramps.webapp.grampsdb.models import (GenderType, LdsType, LdsStatus, 
-                                           NameFormatType, NameOriginType, 
+from gramps.webapp.grampsdb.models import (GenderType, LdsType, LdsStatus,
+                                           NameFormatType, NameOriginType,
                                            ThemeType)
 
 def get_datamap(x):
@@ -54,18 +54,18 @@ def get_datamap(x):
     return (x[0],x[2])
 
 print("[")
-for table, entries in [("grampsdb.config", 
-                        [(("setting", "\"sitename\""), 
+for table, entries in [("grampsdb.config",
+                        [(("setting", "\"sitename\""),
                           ("description", "\"site name of family tree\""),
-                          ("value_type", "\"str\""), 
+                          ("value_type", "\"str\""),
                           ("value", "\"Gramps-Connect\"")),
-                         (("setting", "\"db_version\""), 
+                         (("setting", "\"db_version\""),
                           ("description", "\"database scheme version\""),
-                          ("value_type", "\"str\""), 
+                          ("value_type", "\"str\""),
                           ("value", "\"0.6.1\"")),
-                         (("setting", "\"db_created\""), 
+                         (("setting", "\"db_created\""),
                           ("description", "\"database creation date/time\""),
-                          ("value_type", "\"str\""), 
+                          ("value_type", "\"str\""),
                           ("value", ('"%s"' % time.strftime("%Y-%m-%d %H:%M")))),
                          ]),
                        ("grampsdb.report",
@@ -176,7 +176,7 @@ for section in config.get_sections():
         key = "%s.%s" % (section, setting)
         value = config.get_default(key)
         print("   {")
-        print("      \"model\": \"grampsdb.config\",") 
+        print("      \"model\": \"grampsdb.config\",")
         print("      \"pk\": %d," % pk)
         print("      \"fields\":")
         print("         {")
@@ -186,11 +186,11 @@ for section in config.get_sections():
         print("         }")
         print("   },", end=' ')
         pk += 1
-        
+
 ## Add the data for the type models:
 
-type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
-               RepositoryType, EventType, FamilyRelType, SourceMediaType, 
+type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType,
+               RepositoryType, EventType, FamilyRelType, SourceMediaType,
                EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
                NameFormatType, StyledTextTagType, ThemeType, PlaceType]
 for type in type_models:

@@ -67,7 +67,7 @@ class DbDjango(DbGeneric):
 
     def close_backend(self):
         pass
-        
+
     def transaction_commit(self, txn):
         for (obj_type, trans_type) in txn.keys():
             if trans_type in [TXNUPD, TXNADD]:
@@ -94,7 +94,7 @@ class DbDjango(DbGeneric):
                         self.commit_tag_detail(handle, new_data, trans_type, txn.batch)
         if txn.batch and self.has_changed:
             self.rebuild_secondary(None)
-                    
+
     def transaction_abort(self, txn):
         pass
 
@@ -223,7 +223,7 @@ class DbDjango(DbGeneric):
         else:
             namegroup = NameGroup(name=name)
         namegroup.grouping = grouping
-        namegroup.save()    
+        namegroup.save()
 
     def commit_person(self, person, trans, change_time=None):
         raw = person.serialize()
@@ -268,7 +268,7 @@ class DbDjango(DbGeneric):
                                              + person.alternate_names)
                                 if name.type.is_custom()])
         all_surn = []  # new list we will use for storage
-        all_surn += person.primary_name.get_surname_list() 
+        all_surn += person.primary_name.get_surname_list()
         for asurname in person.alternate_names:
             all_surn += asurname.get_surname_list()
         self.origin_types.update([str(surn.origintype) for surn in all_surn
@@ -404,7 +404,7 @@ class DbDjango(DbGeneric):
         # Misc updates:
         self.source_media_types.update(
             [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])       
+             if ref.media_type.is_custom()])
 
         attr_list = []
         for mref in source.media_list:
@@ -478,7 +478,7 @@ class DbDjango(DbGeneric):
         note = obj
         # Misc updates:
         if note.type.is_custom():
-            self.note_types.add(str(note.type))        
+            self.note_types.add(str(note.type))
         # Emit after added:
         if not batch:
             self.update_backlinks(obj)
@@ -634,7 +634,7 @@ class DbDjango(DbGeneric):
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        
+
         Returns an interator over a list of (class_name, handle) tuples.
 
         :param handle: handle of the object to search for.
@@ -660,9 +660,9 @@ class DbDjango(DbGeneric):
         # Now, add the current ones:
         references = set(obj.get_referenced_handles_recursively())
         for (ref_class_name, ref_handle) in references:
-            reference = Reference(obj_handle=obj.handle, 
-                                  obj_class=obj.__class__.__name__, 
-                                  ref_handle=ref_handle, 
+            reference = Reference(obj_handle=obj.handle,
+                                  obj_class=obj.__class__.__name__,
+                                  ref_handle=ref_handle,
                                   ref_class=ref_class_name)
             reference.save()
 
@@ -673,15 +673,15 @@ class DbDjango(DbGeneric):
 
     def _do_remove(self, handle, transaction, data_map, data_id_map, key):
         key2table = {
-            PERSON_KEY:     "person", 
-            FAMILY_KEY:     "family", 
-            SOURCE_KEY:     "source", 
-            CITATION_KEY:   "citation", 
-            EVENT_KEY:      "event", 
-            MEDIA_KEY:      "media", 
-            PLACE_KEY:      "place", 
-            REPOSITORY_KEY: "repository", 
-            NOTE_KEY:       "note", 
+            PERSON_KEY:     "person",
+            FAMILY_KEY:     "family",
+            SOURCE_KEY:     "source",
+            CITATION_KEY:   "citation",
+            EVENT_KEY:      "event",
+            MEDIA_KEY:      "media",
+            PLACE_KEY:      "place",
+            REPOSITORY_KEY: "repository",
+            NOTE_KEY:       "note",
             TAG_KEY:        "tag",
             }
         table = getattr(self.dji, key2table[key].title())
@@ -765,7 +765,7 @@ class DbDjango(DbGeneric):
 
     def rebuild_secondary(self, update):
         gstats = self.rebuild_gender_stats()
-        self.genderStats = GenderStats(gstats) 
+        self.genderStats = GenderStats(gstats)
 
     def has_handle_for_person(self, key):
         return self.dji.Person.filter(handle=key).count() > 0
@@ -852,66 +852,123 @@ class DbDjango(DbGeneric):
         return [x.gramps_id for x in self.dji.Note.all()]
 
     def _get_raw_person_data(self, key):
-        return self.dji.get_person(self.dji.Person.get(handle=key))
+        try:
+            return self.dji.get_person(self.dji.Person.get(handle=key))
+        except:
+            return None
 
     def _get_raw_person_from_id_data(self, key):
-        return self.dji.get_person(self.dji.Person.get(gramps_id=key))
+        try:
+            return self.dji.get_person(self.dji.Person.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_family_data(self, key):
-        return self.dji.get_family(self.dji.Family.get(handle=key))
+        try:
+            return self.dji.get_family(self.dji.Family.get(handle=key))
+        except:
+            return None
 
     def _get_raw_family_from_id_data(self, key):
-        return self.dji.get_family(self.dji.Family.get(gramps_id=key))
+        try:
+            return self.dji.get_family(self.dji.Family.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_source_data(self, key):
-        return self.dji.get_source(self.dji.Source.get(handle=key))
+        try:
+            return self.dji.get_source(self.dji.Source.get(handle=key))
+        except:
+            return None
 
     def _get_raw_source_from_id_data(self, key):
-        return self.dji.get_source(self.dji.Source.get(gramps_id=key))
+        try:
+            return self.dji.get_source(self.dji.Source.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_citation_data(self, key):
-        return self.dji.get_citation(self.dji.Citation.get(handle=key))
+        try:
+            return self.dji.get_citation(self.dji.Citation.get(handle=key))
+        except:
+            return None
 
     def _get_raw_citation_from_id_data(self, key):
-        return self.dji.get_citation(self.dji.Citation.get(gramps_id=key))
+        try:
+            return self.dji.get_citation(self.dji.Citation.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_event_data(self, key):
-        return self.dji.get_event(self.dji.Event.get(handle=key))
+        try:
+            return self.dji.get_event(self.dji.Event.get(handle=key))
+        except:
+            return None
 
     def _get_raw_event_from_id_data(self, key):
-        return self.dji.get_event(self.dji.Event.get(gramps_id=key))
+        try:
+            return self.dji.get_event(self.dji.Event.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_media_data(self, key):
-        return self.dji.get_media(self.dji.Media.get(handle=key))
+        try:
+            return self.dji.get_media(self.dji.Media.get(handle=key))
+        except:
+            return None
 
     def _get_raw_media_from_id_data(self, key):
-        return self.dji.get_media(self.dji.Media.get(gramps_id=key))
+        try:
+            return self.dji.get_media(self.dji.Media.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_place_data(self, key):
-        return self.dji.get_place(self.dji.Place.get(handle=key))
+        try:
+            return self.dji.get_place(self.dji.Place.get(handle=key))
+        except:
+            return None
 
     def _get_raw_place_from_id_data(self, key):
-        return self.dji.get_place(self.dji.Place.get(gramps_id=key))
+        try:
+            return self.dji.get_place(self.dji.Place.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_repository_data(self, key):
-        return self.dji.get_repository(self.dji.Repository.get(handle=key))
+        try:
+            return self.dji.get_repository(self.dji.Repository.get(handle=key))
+        except:
+            return None
 
     def _get_raw_repository_from_id_data(self, key):
-        return self.dji.get_repository(self.dji.Repository.get(gramps_id=key))
+        try:
+            return self.dji.get_repository(self.dji.Repository.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_note_data(self, key):
-        return self.dji.get_note(self.dji.Note.get(handle=key))
+        try:
+            return self.dji.get_note(self.dji.Note.get(handle=key))
+        except:
+            return None
 
     def _get_raw_note_from_id_data(self, key):
-        return self.dji.get_note(self.dji.Note.get(gramps_id=key))
+        try:
+            return self.dji.get_note(self.dji.Note.get(gramps_id=key))
+        except:
+            return None
 
     def _get_raw_tag_data(self, key):
-        return self.dji.get_tag(self.dji.Tag.get(handle=key))
+        try:
+            return self.dji.get_tag(self.dji.Tag.get(handle=key))
+        except:
+            return None
 
     def rebuild_gender_stats(self):
         """
-        Returns a dictionary of 
-        {given_name: (male_count, female_count, unknown_count)} 
+        Returns a dictionary of
+        {given_name: (male_count, female_count, unknown_count)}
         Not called: this is a database-efficient version
         """
         UNKNOWN = 2
@@ -943,16 +1000,16 @@ class DbDjango(DbGeneric):
         gstats = genderStats.stats
         for key in gstats:
             data = gstats[key]
-            stat = GenderStats(name=key, 
-                               male=data[0], 
-                               female=data[1], 
+            stat = GenderStats(name=key,
+                               male=data[0],
+                               female=data[1],
                                unknown=data[2])
             stat.save()
 
     def get_gender_stats(self):
         """
-        Returns a dictionary of 
-        {given_name: (male_count, female_count, unknown_count)} 
+        Returns a dictionary of
+        {given_name: (male_count, female_count, unknown_count)}
         """
         rows = self.dji.GenderStats.values('name', 'male', 'female', 'unknown')
         gstats = {}
@@ -975,17 +1032,17 @@ class DbDjango(DbGeneric):
         # Nothing to do
         pass
 
-    def load(self, directory, callback=None, mode=None, 
-             force_schema_upgrade=False, 
-             force_bsddb_upgrade=False, 
-             force_bsddb_downgrade=False, 
+    def load(self, directory, callback=None, mode=None,
+             force_schema_upgrade=False,
+             force_bsddb_upgrade=False,
+             force_bsddb_downgrade=False,
              force_python_upgrade=False):
 
         # Django-specific loads:
         from django.conf import settings
 
         LOG.info("Django loading...")
-        default_settings = {"__file__": 
+        default_settings = {"__file__":
                             os.path.join(directory, "default_settings.py")}
         settings_file = os.path.join(directory, "default_settings.py")
         with open(settings_file) as f:
@@ -1011,12 +1068,12 @@ class DbDjango(DbGeneric):
         from gramps.webapp.libdjango import DjangoInterface
 
         self.dji = DjangoInterface()
-        super().load(directory, 
-                     callback, 
-                     mode, 
-                     force_schema_upgrade, 
-                     force_bsddb_upgrade, 
-                     force_bsddb_downgrade, 
+        super().load(directory,
+                     callback,
+                     mode,
+                     force_schema_upgrade,
+                     force_bsddb_upgrade,
+                     force_bsddb_downgrade,
                      force_python_upgrade)
 
     def _make_repository(self, repository):
@@ -1079,7 +1136,7 @@ class DbDjango(DbGeneric):
             data = self.dji.get_place(place)
         return Place.create(data)
 
-    def _make_media(self, media): 
+    def _make_media(self, media):
         if self.use_db_cache and media.cache:
             data = media.from_cache()
         else:
@@ -1090,4 +1147,3 @@ class DbDjango(DbGeneric):
         # caches are ok, but let's compute public's
         self.dji.update_publics()
         super().request_rebuild()
-
