@@ -37,12 +37,12 @@ import re
 class BaseObject(object):
     """
     The BaseObject is the base class for all data objects in Gramps,
-    whether primary or not. 
-    
-    Its main goal is to provide common capabilites to all objects, such as 
+    whether primary or not.
+
+    Its main goal is to provide common capabilites to all objects, such as
     searching through all available information.
     """
-    
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
@@ -55,12 +55,12 @@ class BaseObject(object):
         """
         assert False, "Needs to be overridden in the derived class"
         return self
-    
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -178,7 +178,7 @@ class BaseObject(object):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: Returns the list of (classname, handle) tuples for referenced
                   objects.
         :rtype: list
@@ -189,7 +189,7 @@ class BaseObject(object):
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -199,13 +199,13 @@ class BaseObject(object):
         """
         Return the list of (classname, handle) tuples for all referenced
         primary objects, whether directly or through child objects.
-        
+
         :returns: Returns the list of (classname, handle) tuples for referenced
                   objects.
         :rtype: list
         """
         ret = self.get_referenced_handles()
-        
+
         # Run through child objects
         for obj in self.get_handle_referents():
             ret += obj.get_referenced_handles_recursively()
@@ -228,4 +228,5 @@ class BaseObject(object):
 
     @classmethod
     def create(cls, data):
-        return cls().unserialize(data)
+        if data:
+            return cls().unserialize(data)
