@@ -67,7 +67,9 @@ RECORDS = [
     (_T_("Living couple married most recently"), 'family_youngestmarried',True),
     (_T_("Living couple married most long ago"), 'family_oldestmarried',  True),
     (_T_("Shortest past marriage"),          'family_shortest',         False),
-    (_T_("Longest past marriage"),           'family_longest',          True)]
+    (_T_("Longest past marriage"),           'family_longest',          True),
+    (_T_("Couple with smallest age difference"), 'family_smallestagediff',  True),
+    (_T_("Couple with biggest age difference"),  'family_biggestagediff',   True)]
 
 #------------------------------------------------------------------------
 #
@@ -221,6 +223,8 @@ def find_records(db, filter, top_size, callname,
     family_oldestmarried = []
     family_shortest = []
     family_longest = []
+    family_smallestagediff = []
+    family_biggestagediff = []
 
     for family in db.iter_families():
         #family = db.get_family_from_handle(family_handle)
@@ -249,6 +253,28 @@ def find_records(db, filter, top_size, callname,
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
                 name, 'Family', family.handle, top_size)
+
+        father_birth_ref = father.get_birth_ref()
+        if father_birth_ref:
+            father_birth_date = db.get_event_from_handle(father_birth_ref.ref).get_date_object()
+        else:
+            father_birth_date = None
+
+        mother_birth_ref = mother.get_birth_ref()
+        if mother_birth_ref:
+            mother_birth_date = db.get_event_from_handle(mother_birth_ref.ref).get_date_object()
+        else:
+            mother_birth_date = None
+
+        if _good_date(father_birth_date) and _good_date(mother_birth_date):
+            if father_birth_date >> mother_birth_date:
+                _record(family_smallestagediff, family_biggestagediff,
+                        father_birth_date - mother_birth_date,
+                        name, 'Family', family.handle, top_size)
+            elif mother_birth_date >> father_birth_date:
+                _record(family_smallestagediff, family_biggestagediff,
+                        mother_birth_date - father_birth_date,
+                        name, 'Family', family.handle, top_size)
 
         marriage_date = None
         divorce = None
