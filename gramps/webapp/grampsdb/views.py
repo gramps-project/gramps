@@ -57,13 +57,13 @@ from gramps.version import VERSION
 
 # Gramps-connect imports:
 import gramps.webapp
-from gramps.webapp.utils import _, build_args
+from gramps.webapp.utils import _, build_args, db
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.view import *
 from gramps.webapp.djangodb import DbDjango
 import gramps.cli.user
 
-# Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication ) 
+# Menu: (<Nice name>, /<path>/, <Model> | None, Need authentication )
 MENU = [
     (_('Browse'), 'browse', None, False),
     (_('Reports'), 'report', Report, True),
@@ -71,7 +71,7 @@ MENU = [
 ]
 # Views: [(<Nice name plural>, /<name>/handle, <Model>), ]
 VIEWS = [
-    (_('People'), 'person', Name), 
+    (_('People'), 'person', Name),
     (_('Families'), 'family', Family),
     (_('Events'), 'event', Event),
     (_('Notes'), 'note', Note),
@@ -107,8 +107,8 @@ def context_processor(request):
 
     search = request.GET.get("search", "") or request.POST.get("search", "")
     page = request.GET.get("page", "") or request.POST.get("page", "")
-    context["page"] = page 
-    context["search"] = search 
+    context["page"] = page
+    context["search"] = search
     context["args"] = build_args(search=search, page=page)
     return context
 
@@ -120,7 +120,7 @@ def main_page(request):
     context["view"] = 'home'
     context["tview"] = _('Home')
     return render_to_response("main_page.html", context)
-                              
+
 def logout_page(request):
     """
     Logout a user.
@@ -174,10 +174,10 @@ def timestamp():
     return time.strftime("%Y-%m-%d:%H:%M:%S")
 
 def send_file(request, filename, mimetype):
-    """                                                                         
-    Send a file through Django without loading the whole file into              
-    memory at once. The FileWrapper will turn the file object into an           
-    iterator for chunks of 8KB.                                                 
+    """
+    Send a file through Django without loading the whole file into
+    memory at once. The FileWrapper will turn the file object into an
+    iterator for chunks of 8KB.
     """
     from django.core.servers.basehttp import FileWrapper
     wrapper = FileWrapper(open(filename, mode="rb"))
@@ -196,7 +196,6 @@ def process_report_run(request, handle):
     from gramps.webapp.reports import import_file, export_file, download
     from gramps.cli.plug import run_report
     import traceback
-    db = DbDjango()
     if request.user.is_authenticated():
         profile = request.user.profile
         report = Report.objects.get(handle=handle)
@@ -227,7 +226,7 @@ def process_report_run(request, handle):
             export_file(db, filename, gramps.cli.user.User()) # callback
             mimetype = 'text/plain'
         elif report.report_type == "import":
-            filename = download(args["i"], "/tmp/%s-%s-%s.%s" % (str(profile.user.username), 
+            filename = download(args["i"], "/tmp/%s-%s-%s.%s" % (str(profile.user.username),
                                                                  str(handle),
                                                                  timestamp(),
                                                                  args["iff"]))
@@ -311,7 +310,7 @@ def view_list(request, view):
         object_list = Note.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_notes.html'
         total = Note.objects.all().count()
     elif view == "person":
@@ -321,7 +320,7 @@ def view_list(request, view):
         object_list = Name.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_people.html'
         total = Name.objects.all().count()
     elif view == "family":
@@ -331,7 +330,7 @@ def view_list(request, view):
         object_list = Family.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_families.html'
         total = Family.objects.all().count()
     elif view == "place":
@@ -341,7 +340,7 @@ def view_list(request, view):
         object_list = Place.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_places.html'
         total = Place.objects.all().count()
     elif view == "repository":
@@ -351,7 +350,7 @@ def view_list(request, view):
         object_list = Repository.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_repositories.html'
         total = Repository.objects.all().count()
     elif view == "citation":
@@ -361,7 +360,7 @@ def view_list(request, view):
         object_list = Citation.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_citations.html'
         total = Citation.objects.all().count()
     elif view == "source":
@@ -371,7 +370,7 @@ def view_list(request, view):
         object_list = Source.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_sources.html'
         total = Source.objects.all().count()
     elif view == "tag":
@@ -381,7 +380,7 @@ def view_list(request, view):
         object_list = Tag.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_tags.html'
         total = Tag.objects.all().count()
     elif view == "report":
@@ -391,16 +390,16 @@ def view_list(request, view):
         object_list = Report.objects \
             .filter(query) \
             .order_by(*order) \
-            .distinct() 
+            .distinct()
         view_template = 'view_report.html'
         total = Report.objects.all().count()
     else:
         raise Http404("Requested page type '%s' not known" % view)
 
     if request.user.is_authenticated():
-        paginator = Paginator(object_list, 20) 
+        paginator = Paginator(object_list, 20)
     else:
-        paginator = Paginator(object_list, 20) 
+        paginator = Paginator(object_list, 20)
 
     try:
         page = int(request.GET.get('page', '1'))
@@ -445,7 +444,7 @@ def add_share(request, view, item, handle):
     """
     # /person/share/family/handle
     # Use an existing person with this family
-    # r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+    # r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$',
     act = "share"
     if "action" in request.POST:
         act = request.POST.get("action") # can be "save-share"
@@ -465,7 +464,6 @@ def action(request, view, handle, act, add_to=None):
     /object/handle/action, or /object/add.
     """
     from gramps.webapp.reports import get_plugin_options
-    db = DbDjango()
     # redirect:
     rd = None
     obj = None
@@ -641,7 +639,7 @@ def action(request, view, handle, act, add_to=None):
                 obj = Report.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
-        override = {} 
+        override = {}
         if obj.options:
             for pair in obj.options.split("\\n"):
                 key, value = pair.split("=", 1)
@@ -689,11 +687,11 @@ def build_string_query(field, value, exact=False, startswith=False, endswith=Fal
     if exact:
         retval = Q(**{"%s" % field: value})
     elif startswith:
-        retval = Q(**{"%s__istartswith" % field: value}) 
+        retval = Q(**{"%s__istartswith" % field: value})
     elif endswith:
-        retval = Q(**{"%s__iendswith" % field: value}) 
+        retval = Q(**{"%s__iendswith" % field: value})
     else: # default
-        retval = Q(**{"%s__icontains" % field: value}) 
+        retval = Q(**{"%s__icontains" % field: value})
     return retval
 
 def build_person_query(request, search):
@@ -704,11 +702,11 @@ def build_person_query(request, search):
     protect = not request.user.is_authenticated()
     ### Build the order:
     if protect:
-        # Do this to get the names sorted by private/alive 
+        # Do this to get the names sorted by private/alive
         # NOTE: names can be private
         terms = ["surname", "given", "id", "tag"]
         query = Q(private=False) & Q(person__private=False)
-        order = ["surname__surname", "private", "person__probably_alive", 
+        order = ["surname__surname", "private", "person__probably_alive",
                  "first_name"]
     else:
         terms = ["surname", "given", "id", "tag", "public", "private"]
@@ -775,11 +773,11 @@ def build_person_query(request, search):
                     make_message(request, "Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
-                query &= (Q(surname__surname__icontains=search) | 
+                query &= (Q(surname__surname__icontains=search) |
                               Q(surname__prefix__icontains=search) |
                               Q(person__gramps_id__icontains=search))
             else:
-                query &= (Q(surname__surname__icontains=search) | 
+                query &= (Q(surname__surname__icontains=search) |
                               Q(first_name__icontains=search) |
                               Q(suffix__icontains=search) |
                               Q(surname__prefix__icontains=search) |
@@ -798,21 +796,21 @@ def build_family_query(request, search):
     protect = not request.user.is_authenticated()
     if protect:
         terms = ["father", "mother", "id", "type", "surnames", "tag"]
-        query = (Q(private=False) & Q(father__private=False) & 
+        query = (Q(private=False) & Q(father__private=False) &
                  Q(mother__private=False))
-        order = ["father__name__surname__surname", 
-                 "father__private", "father__probably_alive", 
+        order = ["father__name__surname__surname",
+                 "father__private", "father__probably_alive",
                  "father__name__first_name",
-                 "mother__name__surname__surname", 
-                 "mother__private", "mother__probably_alive", 
+                 "mother__name__surname__surname",
+                 "mother__private", "mother__probably_alive",
                  "mother__name__first_name"]
     else:
-        terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", 
+        terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name",
                  "mother.name.first_name", "tag", "public", "private"]
         query = Q()
-        order = ["father__name__surname__surname", 
+        order = ["father__name__surname__surname",
                  "father__name__first_name",
-                 "mother__name__surname__surname", 
+                 "mother__name__surname__surname",
                  "mother__name__first_name"]
     if search:
         if "," in search or "=" in search:
@@ -912,13 +910,13 @@ def build_media_query(request, search):
                 if "." in field and not protect:
                     query &= build_string_query(field.replace(".", "__"), value, exact, startswith, endswith)
                 elif field == "id":
-                    query &= build_string_query("gramps_id", value, exact, startswith, endswith) 
+                    query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "path":
-                    query &= build_string_query("path", value, exact, startswith, endswith) 
+                    query &= build_string_query("path", value, exact, startswith, endswith)
                 elif field == "description":
-                    query &= build_string_query("desc", value, exact, startswith, endswith) 
+                    query &= build_string_query("desc", value, exact, startswith, endswith)
                 elif field == "mime":
-                    query &= build_string_query("mime", value, exact, startswith, endswith) 
+                    query &= build_string_query("mime", value, exact, startswith, endswith)
                 elif field == "tag":
                     query &= build_string_query("tags__name", value, exact, startswith, endswith)
                 elif field == "private":
@@ -926,17 +924,17 @@ def build_media_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
                           Q(path__icontains=search) |
-                          Q(desc__icontains=search) | 
+                          Q(desc__icontains=search) |
                           Q(mime__icontains=search))
             else:
                 query &= (Q(gramps_id__icontains=search) |
                           Q(path__icontains=search) |
-                          Q(desc__icontains=search) | 
+                          Q(desc__icontains=search) |
                           Q(mime__icontains=search))
     else: # no search
         pass # nothing left to do
@@ -978,9 +976,9 @@ def build_note_query(request, search):
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "type":
-                    query &= build_string_query("note_type__name", value, exact, startswith, endswith) 
+                    query &= build_string_query("note_type__name", value, exact, startswith, endswith)
                 elif field == "text":
-                    query &= build_string_query("text", value, exact, startswith, endswith) 
+                    query &= build_string_query("text", value, exact, startswith, endswith)
                 elif field == "tag":
                     query &= build_string_query("tags__name", value, exact, startswith, endswith)
                 elif field == "private":
@@ -988,7 +986,7 @@ def build_note_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
@@ -1041,13 +1039,13 @@ def build_place_query(request, search):
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "title":
-                    query &= build_string_query("title", value, exact, startswith, endswith) 
+                    query &= build_string_query("title", value, exact, startswith, endswith)
                 elif field == "private":
                     query &= Q(private=boolean(value))
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
@@ -1095,7 +1093,7 @@ def build_repository_query(request, search):
                 elif field == "id":
                     query &= build_string_query("gramps_id", value, exact, startswith, endswith)
                 elif field == "name":
-                    query &= build_string_query("name", value, exact, startswith, endswith) 
+                    query &= build_string_query("name", value, exact, startswith, endswith)
                 elif field == "type":
                     query &= build_string_query("repository_type__name", value, exact, startswith, endswith)
                 elif field == "private":
@@ -1103,7 +1101,7 @@ def build_repository_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
@@ -1159,7 +1157,7 @@ def build_citation_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search))
@@ -1209,7 +1207,7 @@ def build_source_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= Q(gramps_id__icontains=search)
@@ -1255,7 +1253,7 @@ def build_tag_query(request, search):
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= Q(name__icontains=search)
@@ -1302,7 +1300,7 @@ def build_report_query(request, search):
                 elif field == "name":
                     query &= Q(name__icontains=value)
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= Q(name__icontains=search)
@@ -1358,7 +1356,7 @@ def build_event_query(request, search):
                 elif field == "public":
                     query &= Q(public=boolean(value))
                 else:
-                    request.user.message_set.create(message="Invalid query field '%s'" % field)                
+                    request.user.message_set.create(message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
             if protect:
                 query &= (Q(gramps_id__icontains=search) |
@@ -1393,12 +1391,12 @@ def process_reference(request, ref_by, handle, ref_to, order):
     ref_to_class = dji.get_model("%sRef" % ref_to.title())
     exclude = ["last_changed_by", "last_changed", "object_type", "object_id", "ref_object"]
     if order == "new":
-        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
+        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id,
                                                     object_type=object_type,
                                                     order=0)
         form = modelformset_factory(ref_to_class, exclude=exclude, extra=1)(queryset=referenced_to)
     else:
-        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id, 
+        referenced_to = ref_to_class.objects.filter(object_id=referenced_by.id,
                                                     object_type=object_type,
                                                     order=order)
         form = modelformset_factory(ref_to_class, exclude=exclude, extra=0)(queryset=referenced_to)
@@ -1410,7 +1408,7 @@ def process_reference(request, ref_by, handle, ref_to, order):
     context["object"] = referenced_by
     context["handle"] = referenced_by.handle
     context["url"] = referenced_to[0].get_reference_to().get_url()
-    #"/%s/%s" % (referenced_to[0].ref_object.__class__.__name__.lower(), 
+    #"/%s/%s" % (referenced_to[0].ref_object.__class__.__name__.lower(),
     #                             referenced_to[0].ref_object.handle)
     context["referenced_by"] = "/%s/%s" % (referenced_by.__class__.__name__.lower(),
                                            referenced_by.handle)
@@ -1451,7 +1449,7 @@ def process_child(request, handle, act, child):
     elif act == "down":
         if int(child) <= len(childrefs) - 1:
             childrefs[int(child) - 1].order = int(child) + 1
-            childrefs[int(child)].order = int(child) 
+            childrefs[int(child)].order = int(child)
             childrefs[int(child) - 1].save()
             childrefs[int(child)].save()
             dji.rebuild_cache(family)
@@ -1465,12 +1463,12 @@ def process_list_item(request, view, handle, act, item, index):
     # /citation/872323636232635/down/attribute/2
     index = int(index)
     tab = {
-        "eventref":       "#tab-events", 
-        "citationref":    "#tab-citations", 
-        "repositoryref":  "#tab-repositories", 
-        "noteref":        "#tab-notes", 
-        "attribute":      "#tab-attributes", 
-        "media":          "#tab-media", 
+        "eventref":       "#tab-events",
+        "citationref":    "#tab-citations",
+        "repositoryref":  "#tab-repositories",
+        "noteref":        "#tab-notes",
+        "attribute":      "#tab-attributes",
+        "media":          "#tab-media",
         "lds":            "#tab-lds",
         "parentfamily":   "#tab-references",
         "family":         "#tab-references",
@@ -1548,11 +1546,10 @@ def process_json_request(request):
     """
     import gramps.gen.lib
     from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
-    db = DbDjango()
     if not request.user.is_authenticated():
         db = PrivateProxyDb(db)
-        db = LivingProxyDb(db, 
-                           LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY, 
+        db = LivingProxyDb(db,
+                           LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
                            None,            # current year
                            1)               # years after death
     field = request.GET.get("field", None)

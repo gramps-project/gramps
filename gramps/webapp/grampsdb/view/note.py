@@ -20,7 +20,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from gramps.webapp.utils import _, boolean, update_last_changed, StyledNoteFormatter, parse_styled_text, build_search
+from gramps.webapp.utils import _, boolean, update_last_changed, StyledNoteFormatter, parse_styled_text, build_search, db
 from gramps.webapp.grampsdb.models import Note
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.libdjango import DjangoInterface
@@ -32,7 +32,6 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
-db = DbDjango()
 snf = StyledNoteFormatter(db)
 
 # add a note to a person:
@@ -59,24 +58,24 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
     # Handle: edit, view, add, create, save, delete, share, save-share
     if act == "share":
         item, handle = add_to
-        context["pickform"] = PickForm("Pick note", 
-                                       Note, 
+        context["pickform"] = PickForm("Pick note",
+                                       Note,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick note", 
-                            Note, 
+        item, handle = add_to
+        pickform = PickForm("Pick note",
+                            Note,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             parent_model = dji.get_model(item) # what model?
             parent_obj = parent_model.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Note.objects.get(handle=ref_handle) 
+            ref_obj = Note.objects.get(handle=ref_handle)
             dji.add_note_ref(parent_obj, ref_obj)
             parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-notes" % (item, handle, build_search(request)))
@@ -90,13 +89,13 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
         notetext = ""
         noteform = NoteForm(instance=note, initial={"notetext": notetext})
         noteform.model = note
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         note = Note.objects.get(handle=handle)
         genlibnote = db.get_note_from_handle(note.handle)
         notetext = snf.format(genlibnote)
         noteform = NoteForm(instance=note, initial={"notetext": notetext})
         noteform.model = note
-    elif act == "save": 
+    elif act == "save":
         note = Note.objects.get(handle=handle)
         notetext = ""
         noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
@@ -108,12 +107,12 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
             note = noteform.save()
             dji.save_note_markup(note, notedata[1])
             note.save_cache()
-            notetext = noteform.data["notetext"] 
+            notetext = noteform.data["notetext"]
             act = "view"
         else:
-            notetext = noteform.data["notetext"] 
+            notetext = noteform.data["notetext"]
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         note = Note(handle=create_id())
         notetext = ""
         noteform = NoteForm(request.POST, instance=note, initial={"notetext": notetext})
@@ -132,12 +131,12 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
                 dji.add_note_ref(obj, note)
                 obj.save_cache()
                 return redirect("/%s/%s#tab-notes" % (item, handle))
-            notetext = noteform.data["notetext"] 
+            notetext = noteform.data["notetext"]
             act = "view"
         else:
-            notetext = noteform.data["notetext"] 
+            notetext = noteform.data["notetext"]
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         # FIXME: delete markup too for this note
         note = Note.objects.get(handle=handle)
         note.delete()
@@ -150,5 +149,5 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
     context["notetext"] = notetext
     context["note"] = note
     context["action"] = act
-    
+
     return render_to_response(view_template, context)

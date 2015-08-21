@@ -20,7 +20,7 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from gramps.webapp.utils import _, boolean, update_last_changed, build_search
+from gramps.webapp.utils import _, boolean, update_last_changed, build_search, db
 from gramps.webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.libdjango import DjangoInterface, lookup_role_index
@@ -33,7 +33,6 @@ from django.template import Context, RequestContext
 
 ## Globals
 dji = DjangoInterface()
-db = DbDjango()
 dd = displayer.display
 dp = parser.parse
 
@@ -94,8 +93,8 @@ def recheck_birth_death_refs(person):
     obj_type = ContentType.objects.get_for_model(person)
     # Update Birth event references:
     events = EventRef.objects.filter(
-        object_id=person.id, 
-        object_type=obj_type, 
+        object_id=person.id,
+        object_type=obj_type,
         role_type=get_type_from_name(EventRoleType, "Primary"),
         ref_object__event_type__val=EventType.BIRTH).order_by("order")
     if events:
@@ -108,8 +107,8 @@ def recheck_birth_death_refs(person):
         person.birth_ref_index = -1
     # Update Death event references:
     events = EventRef.objects.filter(
-        object_id=person.id, 
-        object_type=obj_type, 
+        object_id=person.id,
+        object_type=obj_type,
         role_type=get_type_from_name(EventRoleType, "Primary"),
         ref_object__event_type__val=EventType.DEATH).order_by("order")
     if events:
@@ -120,7 +119,7 @@ def recheck_birth_death_refs(person):
     else:
         person.death = None
         person.death_ref_index = -1
-    
+
 def process_event(request, context, handle, act, add_to=None): # view, edit, save
     """
     Process act on person. Can return a redirect.
@@ -138,24 +137,24 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
     # Handle: edit, view, add, create, save, delete, share, save-share
     if act == "share":
         item, handle = add_to
-        context["pickform"] = PickForm("Pick event", 
-                                       Event, 
+        context["pickform"] = PickForm("Pick event",
+                                       Event,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick event", 
-                            Event, 
+        item, handle = add_to
+        pickform = PickForm("Pick event",
+                            Event,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             parent_model = dji.get_model(item) # what model?
             parent_obj = parent_model.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Event.objects.get(handle=ref_handle) 
+            ref_obj = Event.objects.get(handle=ref_handle)
             dji.add_event_ref_default(parent_obj, ref_obj)
             if item == "person": # then need to recheck birth/death indexes:
                 recheck_birth_death_refs(parent_obj)
@@ -171,7 +170,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
         event = Event(gramps_id=dji.get_next_id(Event, "E"))
         eventform = EventForm(instance=event)
         eventform.model = event
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         event = Event.objects.get(handle=handle)
         genlibevent = db.get_event_from_handle(handle)
         if genlibevent:
@@ -179,7 +178,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             event.text = dd(date)
         eventform = EventForm(instance=event)
         eventform.model = event
-    elif act == "save": 
+    elif act == "save":
         event = Event.objects.get(handle=handle)
         eventform = EventForm(request.POST, instance=event)
         eventform.model = event
@@ -193,7 +192,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         event = Event(handle=create_id())
         eventform = EventForm(request.POST, instance=event)
         eventform.model = event
@@ -213,7 +212,7 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         event = Event.objects.get(handle=handle)
         delete_event(event)
         return redirect("/event/")
@@ -224,5 +223,5 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
     context["object"] = event
     context["event"] = event
     context["action"] = act
-    
+
     return render_to_response(view_template, context)

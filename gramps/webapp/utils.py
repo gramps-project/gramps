@@ -25,6 +25,7 @@
 #
 #------------------------------------------------------------------------
 import sys
+import os
 import re
 import datetime
 from html.parser import HTMLParser
@@ -74,7 +75,7 @@ _ = glocale.translation.gettext
 TAB_HEIGHT = 200
 
 util_filters = [
-    'nbsp', 
+    'nbsp',
     'date_as_text',
     'render_name',
     ]
@@ -83,7 +84,7 @@ util_tags = [
     'render',
     'media_link',
     'render_name',
-    "get_person_from_handle", 
+    "get_person_from_handle",
     "event_table",
     "history_table",
     "name_table",
@@ -117,10 +118,10 @@ util_tags = [
 # Module Constants
 #
 #------------------------------------------------------------------------
-dji = libdjango.DjangoInterface()
 dd = displayer.display
 dp = parser.parse
 db = DbDjango()
+db.load(os.path.abspath(os.path.dirname(__file__)))
 
 def register_plugins(user):
     dbstate = DbState()
@@ -199,7 +200,7 @@ class Table(object):
     """
     def __init__(self, id, style=None):
         self.id = id # css id
-        self.db = DbDjango()
+        self.db = db
         self.access = SimpleAccess(self.db)
         self.table = SimpleTable(self.access)
         self.column_widths = None
@@ -210,24 +211,24 @@ class Table(object):
         # None is paperstyle, which is ignored:
         self.doc =  Doc(HtmlDoc(
                 make_basic_stylesheet(
-                    Table={"set_width":95}, 
+                    Table={"set_width":95},
                     TableHeaderCell={"set_bottom_border": True,
                                      "set_right_border": True,
                                      "set_padding": .1,
                                      },
-                    TableDataCell={"set_bottom_border": True, 
+                    TableDataCell={"set_bottom_border": True,
                                    "set_right_border": True,
                                    "set_padding": .1,
                                    },
-                    ), 
+                    ),
                 None))
         self.doc.doc._backend = HtmlBackend()
         self.doc.doc.use_table_headers = True
         # You can set elements id, class, etc:
         self.doc.doc.htmllist += [
-            Html('div', 
-                 class_="content", 
-                 id=self.id, 
+            Html('div',
+                 class_="content",
+                 id=self.id,
                  style=("overflow: auto; height:%spx; background-color: #f4f0ec;" % TAB_HEIGHT) if not style else style)]
 
     def columns(self, *args):
@@ -292,7 +293,7 @@ def make_button(text, url, *args):
     if text[0] in "+$-?x" or text in ["x", "^", "v", "<", "<<", ">", ">>"]:
         return mark_safe(make_image_button(text, url, kwargs, last))
     else:
-        return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
+        return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" %
                          (text, url, kwargs, last))
 
 def make_image_button(text, url, kwargs, last):
@@ -335,7 +336,7 @@ def make_image_button(text, url, kwargs, last):
     return make_image_button2(button, text, url, kwargs, last)
 
 def make_image_button2(button, text, url, kwargs="", last=""):
-    if button == "cancel": 
+    if button == "cancel":
         filename = "/images/gtk-remove.png"
     elif button == "x": # delete
         filename = "/images/gtk-remove.png"
@@ -374,7 +375,7 @@ def event_table(obj, user, act, url, args):
     table = Table("event_table")
     table.columns(
         "",
-        _("Description"), 
+        _("Description"),
         _("Type"),
         _("ID"),
         _("Date"),
@@ -384,7 +385,7 @@ def event_table(obj, user, act, url, args):
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         event_ref_list = models.EventRef.objects.filter(
-            object_id=obj.id, 
+            object_id=obj.id,
             object_type=obj_type).order_by("order")
         event_list = [(o.ref_object, o) for o in event_ref_list]
         links = []
@@ -393,7 +394,7 @@ def event_table(obj, user, act, url, args):
             table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and act == "view" else "",
                 djevent.description,
                 table.db.get_event_from_handle(djevent.handle),
-                djevent.gramps_id, 
+                djevent.gramps_id,
                 display_date(djevent),
                 get_title(djevent.place),
                 str(event_ref.role_type))
@@ -429,16 +430,16 @@ def history_table(obj, user, act):
     cssid = "tab-history"
     table = Table("history_table")
     table.columns(
-        _("Action"), 
+        _("Action"),
         _("Comment"),
         )
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
         for entry in models.Log.objects.filter(
-            object_id=obj.id, 
+            object_id=obj.id,
             object_type=obj_type):
             table.row(
-                "%s on %s by %s" % (entry.log_type, 
+                "%s on %s by %s" % (entry.log_type,
                                     entry.last_changed,
                                     entry.last_changed_by),
                 entry.reason)
@@ -458,7 +459,7 @@ def name_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-names"
     table = Table("name_table")
-    table.columns(_("Name"), 
+    table.columns(_("Name"),
                   _("Type"),
                   _("Group As"),
                   _("Source"),
@@ -467,14 +468,14 @@ def name_table(obj, user, act, url=None, *args):
         links = []
         for name in obj.name_set.all().order_by("order"):
             obj_type = ContentType.objects.get_for_model(name)
-            citationq = dji.CitationRef.filter(object_type=obj_type,
+            citationq = db.dji.CitationRef.filter(object_type=obj_type,
                                                object_id=name.id).count() > 0
-            note_refs = dji.NoteRef.filter(object_type=obj_type,
+            note_refs = db.dji.NoteRef.filter(object_type=obj_type,
                                            object_id=name.id)
             note = ""
             if note_refs.count() > 0:
                 try:
-                    note = dji.Note.get(id=note_refs[0].object_id).text[:50]
+                    note = db.dji.Note.get(id=note_refs[0].object_id).text[:50]
                 except:
                     note = None
             table.row(make_name(name, user),
@@ -482,7 +483,7 @@ def name_table(obj, user, act, url=None, *args):
                       name.group_as,
                       ["No", "Yes"][citationq],
                       note)
-            links.append(('URL', 
+            links.append(('URL',
                           # url is "/person/%s/name"
                           (url % name.person.handle) + ("/%s" % name.order)))
             has_data = True
@@ -535,14 +536,14 @@ def citation_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-sources"
     table = Table("citation_table")
-    table.columns("", 
-                  _("ID"), 
+    table.columns("",
+                  _("ID"),
                   _("Confidence"),
                   _("Page"))
     table.column_widths = [11, 10, 49, 30]
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
-        citation_refs = dji.CitationRef.filter(object_type=obj_type,
+        citation_refs = db.dji.CitationRef.filter(object_type=obj_type,
                                                object_id=obj.id).order_by("order")
         links = []
         count = 1
@@ -603,7 +604,7 @@ def repository_table(obj, user, act, url=None, *args):
     retval += """</div>"""
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
-        refs = dji.RepositoryRef.filter(object_type=obj_type,
+        refs = db.dji.RepositoryRef.filter(object_type=obj_type,
                                         object_id=obj.id)
         count = 1
         for repo_ref in refs:
@@ -612,7 +613,7 @@ def repository_table(obj, user, act, url=None, *args):
                 Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                 repository.gramps_id,
                 repository.name,
-                repo_ref.call_number, 
+                repo_ref.call_number,
                 str(repository.repository_type),
                 )
             has_data = True
@@ -645,7 +646,7 @@ def note_table(obj, user, act, url=None, *args):
     table.column_widths = [11, 10, 20, 59]
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
-        note_refs = dji.NoteRef.filter(object_type=obj_type,
+        note_refs = db.dji.NoteRef.filter(object_type=obj_type,
                                        object_id=obj.id).order_by("order")
         links = []
         count = 1
@@ -690,7 +691,7 @@ def data_table(obj, user, act, url=None, *args):
     table = Table("data_table")
     table.columns(
         "",
-        _("Type"), 
+        _("Type"),
         _("Value"),
         )
     table.column_widths = [11, 39, 50]
@@ -739,12 +740,12 @@ def attribute_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-attributes"
     table = Table("attribute_table")
-    table.columns(_("Type"), 
+    table.columns(_("Type"),
                   _("Value"),
                   )
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
-        attributes = dji.Attribute.filter(object_type=obj_type,
+        attributes = db.dji.Attribute.filter(object_type=obj_type,
                                           object_id=obj.id)
         for attribute in attributes:
             table.row(attribute.attribute_type.name,
@@ -766,7 +767,7 @@ def address_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-addresses"
     table = Table("address_table")
-    table.columns(_("Date"), 
+    table.columns(_("Date"),
                   _("Address"),
                   _("City"),
                   _("State"),
@@ -797,13 +798,13 @@ def media_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-media"
     table = Table("media_table")
-    table.columns(_("Description"), 
+    table.columns(_("Description"),
                   _("Type"),
                   _("Path/Filename"),
                   )
     if user.is_authenticated() or obj.public:
         obj_type = ContentType.objects.get_for_model(obj)
-        media_refs = dji.MediaRef.filter(object_type=obj_type,
+        media_refs = db.dji.MediaRef.filter(object_type=obj_type,
                                         object_id=obj.id)
         for media_ref in media_refs:
             media = table.db.get_object_from_handle(
@@ -833,7 +834,7 @@ def internet_table(obj, user, act, url=None, *args):
                   _("Path"),
                   _("Description"))
     if user.is_authenticated() or obj.public:
-        urls = dji.Url.filter(person=obj)
+        urls = db.dji.Url.filter(person=obj)
         for url_obj in urls:
             table.row(str(url_obj.url_type),
                       url_obj.path,
@@ -855,7 +856,7 @@ def association_table(obj, user, act, url=None, *args):
     has_data = False
     cssid = "tab-associations"
     table = Table("association_table")
-    table.columns(_("Name"), 
+    table.columns(_("Name"),
                   _("ID"),
                   _("Association"))
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
@@ -872,11 +873,11 @@ def association_table(obj, user, act, url=None, *args):
             associations = person.get_person_ref_list()
             for association in associations: # PersonRef
                 table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
-                          association.ref_object.get_primary_name(), 
-                          association.ref_object.gramps_id, 
-                          association.description, 
+                          association.ref_object.get_primary_name(),
+                          association.ref_object.gramps_id,
+                          association.description,
                           )
-                links.append(('URL', "/person/%s/association/%d" % (obj.handle, count))) 
+                links.append(('URL', "/person/%s/association/%d" % (obj.handle, count)))
                 has_data = True
                 count += 1
             table.links(links)
@@ -893,17 +894,17 @@ def association_table(obj, user, act, url=None, *args):
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
-def location_table(obj, user, act, url=None, *args):	 
+def location_table(obj, user, act, url=None, *args):
     # obj is Place or Address
     retval = ""
-    has_data = False	 
-    cssid = "tab-alternatelocations"	 
-    table = Table("location_table")	 
-    table.columns(_("Street"),	 
-                  _("Locality"),	 
-                  _("City"),	 
-                  _("State"),	 
-                  _("Country"))	 
+    has_data = False
+    cssid = "tab-alternatelocations"
+    table = Table("location_table")
+    table.columns(_("Street"),
+                  _("Locality"),
+                  _("City"),
+                  _("State"),
+                  _("Country"))
     if user.is_authenticated() or obj.public:
         # FIXME: location confusion!
         # The single Location on the Location Tab is here too?
@@ -918,22 +919,22 @@ def location_table(obj, user, act, url=None, *args):
                 location.country)
             has_data = True
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
-    if user.is_superuser and url and act == "view":	 
-        retval += make_button(_("+Add Address"), (url % args))	 
-    else:	 
-        retval += nbsp("") # to keep tabs same height	 
+    if user.is_superuser and url and act == "view":
+        retval += make_button(_("+Add Address"), (url % args))
+    else:
+        retval += nbsp("") # to keep tabs same height
     retval += """</div>"""
-    retval += table.get_html()	 
-    if has_data:	 
-        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid	 
-    return retval	 
+    retval += table.get_html()
+    if has_data:
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
+    return retval
 
 def lds_table(obj, user, act, url=None, *args):
     retval = ""
     has_data = False
     cssid = "tab-lds"
     table = Table("lds_table")
-    table.columns(_("Type"), 
+    table.columns(_("Type"),
                   _("Date"),
                   _("Status"),
                   _("Temple"),
@@ -969,14 +970,14 @@ def person_reference_table(obj, user, act):
     table1.columns(
         "As Spouse",
         _("ID"),
-        _("Reference"), 
+        _("Reference"),
         )
     table1.column_widths = [11, 10, 79]
     table2 = Table("person_reference_table", style="background-color: #f4f0ec;")
     table2.columns(
         "As Child",
         _("ID"),
-        _("Reference"), 
+        _("Reference"),
         )
     table2.column_widths = [11, 10, 79]
     if (user.is_authenticated() or obj.public) and act != "add":
@@ -1023,25 +1024,25 @@ def person_reference_table(obj, user, act):
             count += 1
 
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
-    retval += make_image_button2("add spouse to new family", 
-                                 _("Add as Spouse to New Family"), 
+    retval += make_image_button2("add spouse to new family",
+                                 _("Add as Spouse to New Family"),
                                  "/family/add/spouse/%s" % obj.handle)
-    retval += make_image_button2("add spouse to existing family", 
-                                 _("Add as Spouse to Existing Family"), 
+    retval += make_image_button2("add spouse to existing family",
+                                 _("Add as Spouse to Existing Family"),
                                  "/family/share/spouse/%s" % obj.handle)
     retval += "&nbsp;"
-    retval += make_image_button2("add child to new family", 
-                                 _("Add as Child to New Family"), 
+    retval += make_image_button2("add child to new family",
+                                 _("Add as Child to New Family"),
                                  "/family/add/child/%s" % obj.handle)
-    retval += make_image_button2("add child to existing family", 
-                                 _("Add as Child to Existing Family"), 
+    retval += make_image_button2("add child to existing family",
+                                 _("Add as Child to Existing Family"),
                                  "/family/share/child/%s" % obj.handle)
     retval += """</div>"""
     retval += """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
     retval += text1 + text2 + "</div>"
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def note_reference_table(obj, user, act):
     retval = ""
@@ -1050,7 +1051,7 @@ def note_reference_table(obj, user, act):
     table = Table("note_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated()  or obj.public) and act != "add":
         for reference in models.NoteRef.objects.filter(ref_object=obj):
@@ -1065,7 +1066,7 @@ def note_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def event_reference_table(obj, user, act):
     retval = ""
@@ -1074,7 +1075,7 @@ def event_reference_table(obj, user, act):
     table = Table("event_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.EventRef.objects.filter(ref_object=obj):
@@ -1093,7 +1094,7 @@ def event_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def repository_reference_table(obj, user, act):
     retval = ""
@@ -1102,7 +1103,7 @@ def repository_reference_table(obj, user, act):
     table = Table("repository_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.RepositoryRef.objects.filter(ref_object=obj):
@@ -1117,7 +1118,7 @@ def repository_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def citation_reference_table(obj, user, act):
     retval = ""
@@ -1126,7 +1127,7 @@ def citation_reference_table(obj, user, act):
     table = Table("citation_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
 #        _("ID")
         )
     if (user.is_authenticated() or obj.public) and act != "add":
@@ -1141,7 +1142,7 @@ def citation_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def source_reference_table(obj, user, act):
     retval = ""
@@ -1150,7 +1151,7 @@ def source_reference_table(obj, user, act):
     table = Table("source_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated() or obj.public) and act != "add":
         for item in obj.citation_set.all():
@@ -1163,7 +1164,7 @@ def source_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def media_reference_table(obj, user, act):
     retval = ""
@@ -1172,7 +1173,7 @@ def media_reference_table(obj, user, act):
     table = Table("media_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated() or obj.public) and act != "add":
         for reference in models.MediaRef.objects.filter(ref_object=obj):
@@ -1187,7 +1188,7 @@ def media_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def place_reference_table(obj, user, act):
     retval = ""
@@ -1210,7 +1211,7 @@ def place_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 def tag_reference_table(obj, user, act):
     retval = ""
@@ -1219,7 +1220,7 @@ def tag_reference_table(obj, user, act):
     table = Table("tag_reference_table")
     table.columns(
         _("Type"),
-        _("Reference"), 
+        _("Reference"),
         _("ID"))
     if (user.is_authenticated() or obj.public) and act != "add":
         querysets = [obj.person_set, obj.family_set, obj.note_set, obj.media_set]
@@ -1234,7 +1235,7 @@ def tag_reference_table(obj, user, act):
     retval += nbsp("") # to keep tabs same height
     if has_data:
         retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
-    return retval 
+    return retval
 
 class Link(object):
     def __init__(self, string, url=None):
@@ -1260,11 +1261,11 @@ def children_table(obj, user, act, url=None, *args):
         _("Maternal"),
         _("Birth Date"),
         )
-    table.column_widths = [11, 5, 10, 29, 8, 8, 10, 19] 
+    table.column_widths = [11, 5, 10, 29, 8, 8, 10, 19]
 
     family = obj
     obj_type = ContentType.objects.get_for_model(family)
-    childrefs = dji.ChildRef.filter(object_id=family.id,
+    childrefs = db.dji.ChildRef.filter(object_id=family.id,
                                     object_type=obj_type).order_by("order")
     links = []
     count = 1
@@ -1272,7 +1273,7 @@ def children_table(obj, user, act, url=None, *args):
         child = childref.ref_object
         if user.is_authenticated() or obj.public:
             table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
-                      str(count), 
+                      str(count),
                       "[%s]" % child.gramps_id,
                       render_name(child, user),
                       child.gender_type,
@@ -1285,7 +1286,7 @@ def children_table(obj, user, act, url=None, *args):
             count += 1
         else:
             table.row("",
-                      str(count), 
+                      str(count),
                       "[%s]" % child.gramps_id,
                       render_name(child, user) if not child.private else "[Private]",
                       child.gender_type if not child.private else "[Private]",
@@ -1331,7 +1332,7 @@ def get_title(place):
         return ""
 
 def display_date(obj):
-    date_tuple = dji.get_date(obj)
+    date_tuple = db.dji.get_date(obj)
     if date_tuple:
         gdate = GDate()
         gdate.unserialize(date_tuple)
@@ -1341,7 +1342,7 @@ def display_date(obj):
 
 def media_link(handle, user, act):
     retval = """<a href="%s"><img src="%s" /></a>""" % (
-        "/media/%s/full" % handle, 
+        "/media/%s/full" % handle,
         "/media/%s/thumbnail" % handle)
     return retval
 
@@ -1375,7 +1376,7 @@ def render(formfield, user, act, id=None, url=None, *args):
         except:
             # name, "prefix"
             try:
-                retval = str(formfield.form.data[fieldname]) 
+                retval = str(formfield.form.data[fieldname])
             except:
                 retval = "[None]"
     else: # show as widget
@@ -1409,7 +1410,7 @@ def render_name(name, user, act=None):
             surname = name.model.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return "%s, %s" % (surname, 
+        return "%s, %s" % (surname,
                            name.model.first_name)
     elif isinstance(name, Person): # name is a Person
         person = name
@@ -1446,7 +1447,7 @@ def date_as_text(obj, user):
     """
     if user.is_authenticated() or (obj and obj.public):
         if obj:
-            date_tuple = dji.get_date(obj)
+            date_tuple = db.dji.get_date(obj)
             if date_tuple:
                 gdate = GDate().unserialize(date_tuple)
                 return dd(gdate)
@@ -1455,7 +1456,7 @@ def date_as_text(obj, user):
         return ""
 
 def person_get_event(person, event_type=None):
-    event_ref_list = dji.get_event_ref_list(person)
+    event_ref_list = db.dji.get_event_ref_list(person)
     if event_type:
         index = libdjango.lookup_role_index(event_type, event_ref_list)
         if index >= 0:
@@ -1470,8 +1471,8 @@ def person_get_event(person, event_type=None):
         else:
             return ""
     else:
-        retval = [[obj.ref_object for obj in 
-                   models.EventRef.objects.filter(ref_object__handle=event_handle[3])] 
+        retval = [[obj.ref_object for obj in
+                   models.EventRef.objects.filter(ref_object__handle=event_handle[3])]
                   for event_handle in event_ref_list]
         return [j for i in retval for j in i]
 
@@ -1485,7 +1486,7 @@ def update_last_changed(obj, user):
 register_plugins(GUser())
 
 # works after registering plugins:
-from gramps.plugins.docgen.htmldoc import HtmlDoc 
+from gramps.plugins.docgen.htmldoc import HtmlDoc
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, DocBackend, process_spaces
 from gramps.plugins.lib.libhtml import Html
 
@@ -1537,10 +1538,10 @@ class StyledNoteFormatter(object):
                 if obj:
                     handle = obj.handle
                 else:
-                    raise AttributeError("gramps_id '%s' not found in '%s'" % 
+                    raise AttributeError("gramps_id '%s' not found in '%s'" %
                                          (handle, obj_class))
             else:
-                raise AttributeError("invalid gramps_id lookup " + 
+                raise AttributeError("invalid gramps_id lookup " +
                                      "in table name '%s'" % obj_class)
         # handle, ppl
         return "/%s/%s" % (obj_class.lower(), handle)
@@ -1696,7 +1697,7 @@ def make_log(obj, log_type, last_changed_by, reason, cache):
                      last_changed_by=last_changed_by,
                      cache=cache)
     log.save()
-    
+
 def person_get_birth_date(person):
     #db = DbDjango()
     #event = get_birth_or_fallback(db, db.get_person_from_handle(person.handle))
@@ -1710,4 +1711,3 @@ def person_get_death_date(person):
     #if event:
     #    return event.date
     return None
-

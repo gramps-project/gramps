@@ -20,7 +20,7 @@
 #### This sets up Django so you can interact with it via the Python
 #### command line.
 #### Start with something like:
-####    $ PYTHONPATH=..:../plugins/lib python -i shell.py 
+####    $ PYTHONPATH=..:../plugins/lib python -i shell.py
 ####    >>> Person.objects.all()
 
 import os
@@ -58,7 +58,7 @@ with open(pystartup) as f:
     exec(code, globals(), locals())
 
 from django.conf import settings
-import gramps.webapp.settings as default_settings
+from gramps.webapp import default_settings
 try:
     settings.configure(default_settings)
 except RuntimeError:
@@ -82,12 +82,13 @@ from gramps.cli.user import User as GUser # gramps user
 from django.db.models import Q
 
 db = DbDjango()
-dji = DjangoInterface()
+
+db.load(os.path.abspath(os.path.dirname(__file__)))
 dd = displayer.display
 dp = parser.parse
 
-#import_file(db, 
-#            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
+#import_file(db,
+#            "/home/dblank/gramps/trunk/example/gramps/data.gramps",
 #            GUser())
 
 #snf = StyledNoteFormatter(db)
