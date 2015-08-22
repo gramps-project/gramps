@@ -981,7 +981,7 @@ class PedigreeView(NavigationView):
                     rela = lst[2*i+1][1]
                 line = LineWidget2(1, rela, self.tree_direction)
 
-                if lst[((i+1) // 2) - 1] and lst[((i+1) // 2) - 1][2]:
+                if lst[i] and lst[i][2]:
                     # Required for popup menu
                     line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
                     line.connect("button-press-event",
@@ -1032,7 +1032,7 @@ class PedigreeView(NavigationView):
                                       pbw, mrela,
                                       self.tree_direction)
                         
-                    if lst[i] and lst[i][2]:
+                    if lst[((i+1) // 2) - 1] and lst[((i+1) // 2) - 1][2]:
                         # Required for popup menu
                         line.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
                         line.connect("button-press-event",
