@@ -62,7 +62,7 @@ the order).
 
 For a class, use :cvar variable: for class variable, :ivar variable: for instance class
 variable, .. attribute:: attribute: for attributes, .... 
-See http://sphinx.pocoo.org/markup/desc.html and http://sphinx.pocoo.org/markup/inline.html
+See http://sphinx-doc.org/markup/ and http://sphinx-doc.org/markup/inline.html
 
 Tips and Tricks
 ===============
