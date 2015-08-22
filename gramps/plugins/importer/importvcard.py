@@ -48,9 +48,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.errors import GrampsImportError
-from gramps.gen.lib import (Address, Date, DateError, Event, EventRef, 
+from gramps.gen.lib import (Address, Date, DateError, Event, EventRef,
         EventType, Name, NameType, Person, Surname, Url, UrlType)
-from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
 from gramps.gen.utils.libformatting import ImportInfo
 
@@ -218,13 +217,13 @@ class VCardParser(object):
     def parse(self, filehandle):
         """
         Prepare the database and parse the input file.
-        
+
         :param filehandle: open file handle positioned at start of the file
         """
         tym = time.time()
         self.person = None
         self.database.disable_signals()
-        with DbTxn(_("vCard import"), self.database, batch=True) as self.trans:
+        with self.database.DbTxn(_("vCard import"), batch=True) as self.trans:
             self._parse_vCard_file(filehandle)
         self.database.enable_signals()
         self.database.request_rebuild()
@@ -244,16 +243,16 @@ class VCardParser(object):
                 break
             if line == "":
                 continue
-            
+
             if line.find(":") == -1:
                 continue
             line_parts = self.name_value_split(line)
             if not line_parts:
                 continue
-        
+
             # No check for escaped ; because only fields[0] is used.
             fields = line_parts[0].split(";")
-            
+
             property_name = fields[0].upper()
             if property_name == "BEGIN":
                 self.next_person()
@@ -373,14 +372,14 @@ class VCardParser(object):
         if len(data_fields) > 4 and data_fields[4].strip():
             name.set_suffix(' '.join(self.unesc(
                              self.split_unescaped(data_fields[4], ','))))
-        
+
         self.person.set_primary_name(name)
         return True
 
     def add_firstname(self, given_name, additional_names, name):
         """
         Combine given_name and additional_names and add as firstname to name.
-        
+
         If possible try to add given_name as call name.
         """
         default = "%s %s" % (given_name, additional_names)
@@ -478,7 +477,7 @@ class VCardParser(object):
             try:
                 date.set(value=(d, m, y, False))
             except DateError as e:
-                # TRANSLATORS: leave the {date} and {vcard_snippet} untranslated 
+                # TRANSLATORS: leave the {date} and {vcard_snippet} untranslated
                 # in the format string, but you may re-order them if needed.
                 LOG.warning(_(
                     "Invalid date {date} in BDAY {vcard_snippet}, "

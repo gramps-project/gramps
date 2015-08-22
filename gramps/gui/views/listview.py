@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -46,7 +46,7 @@ from gi.repository import Pango
 
 #----------------------------------------------------------------
 #
-# GRAMPS 
+# GRAMPS
 #
 #----------------------------------------------------------------
 from .pageview import PageView
@@ -102,11 +102,11 @@ class ListView(NavigationView):
     def __init__(self, title, pdata, dbstate, uistate,
                  make_model, signal_map, bm_type, nav_group,
                  multiple=False, filter_class=None):
-        NavigationView.__init__(self, title, pdata, dbstate, uistate, 
+        NavigationView.__init__(self, title, pdata, dbstate, uistate,
                                 bm_type, nav_group)
         #default is listviews keep themself in sync with database
         self._dirty_on_change_inactive = False
-        
+
         self.filter_class = filter_class
         self.pb_renderer = Gtk.CellRendererPixbuf()
         self.renderer = Gtk.CellRendererText()
@@ -123,14 +123,14 @@ class ListView(NavigationView):
         self.connect_signals()
 
     def no_database(self):
-        ## TODO GTK3: This is never called!! Dbguielement disconnects 
+        ## TODO GTK3: This is never called!! Dbguielement disconnects
         ## signals on database changed, so it cannot be called
         ## Undo part of Revision 20296 if all works good.
         self.list.set_model(None)
         self.model.destroy()
         self.model = None
         self.build_tree()
-        
+
     ####################################################################
     # Build interface
     ####################################################################
@@ -143,31 +143,32 @@ class ListView(NavigationView):
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
-        
-        self.search_bar = SearchBar(self.dbstate, self.uistate, 
+
+        self.search_bar = SearchBar(self.dbstate, self.uistate,
                                     self.search_build_tree)
         filter_box = self.search_bar.build()
 
         self.list = Gtk.TreeView()
+        self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
         self.list.connect('key-press-event', self._key_press)
         self.searchbox = InteractiveSearchBox(self.list)
-        
+
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
             self.list.connect('drag_begin', self.drag_begin)
         if self.drag_dest_info():
             self.list.connect('drag_data_received', self.drag_data_received)
             self.list.drag_dest_set(Gtk.DestDefaults.MOTION |
-                                    Gtk.DestDefaults.DROP, 
-                                    [self.drag_dest_info().target()], 
+                                    Gtk.DestDefaults.DROP,
+                                    [self.drag_dest_info().target()],
                                     Gdk.DragAction.MOVE |
                                     Gdk.DragAction.COPY)
             tglist = Gtk.TargetList.new([])
-            tglist.add(self.drag_dest_info().atom_drag_type, 
+            tglist.add(self.drag_dest_info().atom_drag_type,
                        self.drag_dest_info().target_flags,
                        self.drag_dest_info().app_id)
             self.list.drag_dest_set_target_list(tglist)
@@ -197,11 +198,11 @@ class ListView(NavigationView):
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
-        group information required. We extend beyond the normal here, 
+        group information required. We extend beyond the normal here,
         since we want to have more than one action group for the PersonView.
         Most PageViews really won't care about this.
         """
-        
+
         NavigationView.define_actions(self)
 
         self.edit_action = ActionGroup(name=self.title + '/ChangeOrder')
@@ -222,10 +223,10 @@ class ListView(NavigationView):
                          accel="<PRIMARY>Return",
                          tip=self.EDIT_MSG,
                          callback=self.edit)
-        
+
     def build_columns(self):
         list(map(self.list.remove_column, self.columns))
-            
+
         self.columns = []
 
         index = 0
@@ -249,7 +250,7 @@ class ListView(NavigationView):
                 image.set_tooltip_text(col_name)
                 image.show()
                 column.set_widget(image)
-            
+
             if self.model and self.model.color_column() is not None:
                 column.set_cell_data_func(self.renderer, self.foreground_color)
 
@@ -259,7 +260,7 @@ class ListView(NavigationView):
             column.set_clickable(True)
             column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
             column.set_fixed_width(pair[2])
-            
+
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -292,8 +293,8 @@ class ListView(NavigationView):
         """
         NavigationView.set_active(self)
         self.uistate.viewmanager.tags.tag_enable()
-        self.uistate.show_filter_results(self.dbstate, 
-                                         self.model.displayed(), 
+        self.uistate.show_filter_results(self.dbstate,
+                                         self.model.displayed(),
                                          self.model.total())
 
     def set_inactive(self):
@@ -319,7 +320,7 @@ class ListView(NavigationView):
                 if self.model:
                     self.list.set_model(None)
                     self.model.destroy()
-                self.model = self.make_model(self.dbstate.db, self.sort_col, 
+                self.model = self.make_model(self.dbstate.db, self.sort_col,
                                              search=filter_info,
                                              sort_map=self.column_order())
             else:
@@ -328,7 +329,7 @@ class ListView(NavigationView):
                 self.list.set_model(None)
                 self.model.set_search(filter_info)
                 self.model.rebuild_data()
-            
+
             cput1 = time.clock()
             self.build_columns()
             cput2 = time.clock()
@@ -339,17 +340,17 @@ class ListView(NavigationView):
 
             self.dirty = False
             cput4 = time.clock()
-            self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed(), 
+            self.uistate.show_filter_results(self.dbstate,
+                                             self.model.displayed(),
                                              self.model.total())
             LOG.debug(self.__class__.__name__ + ' build_tree ' +
                     str(time.clock() - cput0) + ' sec')
-            LOG.debug('parts ' + str(cput1-cput0) + ' , ' 
-                             + str(cput2-cput1) + ' , ' 
-                             + str(cput3-cput2) + ' , ' 
-                             + str(cput4-cput3) + ' , ' 
+            LOG.debug('parts ' + str(cput1-cput0) + ' , '
+                             + str(cput2-cput1) + ' , '
+                             + str(cput3-cput2) + ' , '
+                             + str(cput4-cput3) + ' , '
                              + str(time.clock() - cput4))
-            
+
         else:
             self.dirty = True
 
@@ -369,7 +370,7 @@ class ListView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS, 
+            FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS,
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return
@@ -396,14 +397,14 @@ class ListView(NavigationView):
         """
         Go to a given handle in the list.
         Required by the NavigationView interface.
-        
+
         We have a bit of a problem due to the nature of how GTK works.
-        We have to unselect the previous path and select the new path. However, 
+        We have to unselect the previous path and select the new path. However,
         these cause a row change, which calls the row_change callback, which
         can end up calling change_active_person, which can call
         goto_active_person, causing a bit of recusion. Confusing, huh?
 
-        Unfortunately, row_change has to be able to call change_active_person, 
+        Unfortunately, row_change has to be able to call change_active_person,
         because this can occur from the interface in addition to programatically.
 
         To handle this, we set the self.inactive variable that we can check
@@ -433,7 +434,7 @@ class ListView(NavigationView):
             self.list.scroll_to_cell(path, None, 1, 0.5, 0)
         else:
             self.selection.unselect_all()
-            self.uistate.push_message(self.dbstate, 
+            self.uistate.push_message(self.dbstate,
                                       _("Active object not visible"))
 
     def add_bookmark(self, obj):
@@ -445,12 +446,12 @@ class ListView(NavigationView):
         else:
             from ..dialog import WarningDialog
             WarningDialog(
-                _("Could Not Set a Bookmark"), 
+                _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "nothing was selected."))
 
     ####################################################################
-    # 
+    #
     ####################################################################
 
     def drag_info(self):
@@ -473,11 +474,11 @@ class ListView(NavigationView):
 
     def drag_begin(self, widget, context):
         widget.drag_source_set_icon_name(self.get_stock())
-        
+
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
 
-        #Gtk.selection_add_target(widget, sel_data.get_selection(), 
+        #Gtk.selection_add_target(widget, sel_data.get_selection(),
         #                         Gdk.atom_intern(self.drag_info().drag_type, False),
         #                         self.drag_info().app_id)
 
@@ -485,9 +486,9 @@ class ListView(NavigationView):
             data = (self.drag_info().drag_type, id(self), selected_ids[0], 0)
             sel_data.set(self.drag_info().atom_drag_type, 8, pickle.dumps(data))
         elif len(selected_ids) > 1:
-            data = (self.drag_list_info().drag_type, id(self), 
+            data = (self.drag_list_info().drag_type, id(self),
                     [(self.drag_list_info().drag_type, handle)
-                        for handle in selected_ids], 
+                        for handle in selected_ids],
                     0)
             sel_data.set(self.drag_list_info().atom_drag_type, 8, pickle.dumps(data))
         else:
@@ -502,8 +503,8 @@ class ListView(NavigationView):
         """
         #now we need to rebuild the model so it contains correct column info
         self.dirty = True
-        #make sure we sort on first column. We have no idea where the 
-        # column that was sorted on before is situated now. 
+        #make sure we sort on first column. We have no idea where the
+        # column that was sorted on before is situated now.
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
         self.setup_filter()
@@ -511,7 +512,7 @@ class ListView(NavigationView):
 
     def column_order(self):
         """
-        Column order is obtained from the config file of the listview. 
+        Column order is obtained from the config file of the listview.
         A column order is a list of 3-tuples. The order in the list is the
         order the columns must appear in.
         For a column, the 3-tuple should be (enable, modelcol, sizecol), where
@@ -543,7 +544,7 @@ class ListView(NavigationView):
                 _("Delete All"),
                 _("Confirm Each Delete"))
             prompt = not q.run()
-            
+
         if not prompt:
             self.uistate.set_busy_cursor(True)
 
@@ -556,7 +557,7 @@ class ListView(NavigationView):
                             'from all other items that reference it.')
                 else:
                     msg = _('Deleting item will remove it from the database.')
-                
+
                 msg += ' ' + data_recover_msg
                 #descr = object.get_description()
                 #if descr == "":
@@ -570,7 +571,7 @@ class ListView(NavigationView):
 
         if not prompt:
             self.uistate.set_busy_cursor(False)
-        
+
     def blist(self, store, path, iter_, sel_list):
         '''GtkTreeSelectionForeachFunc
             construct a list sel_list with all selected handles
@@ -639,9 +640,9 @@ class ListView(NavigationView):
                 self.model.reverse_order()
                 self.list.set_model(self.model)
         else:
-            self.model = self.make_model(self.dbstate.db, self.sort_col, 
-                                         self.sort_order, 
-                                         search=filter_info, 
+            self.model = self.make_model(self.dbstate.db, self.sort_col,
+                                         self.sort_order,
+                                         search=filter_info,
                                          sort_map=self.column_order())
 
             self.list.set_model(self.model)
@@ -654,9 +655,9 @@ class ListView(NavigationView):
         # set the search column to be the sorted column
         search_col = self.column_order()[data][1]
         self.list.set_search_column(search_col)
-        
+
         self.uistate.set_busy_cursor(False)
-        
+
         LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
                     str(time.clock() - cput) + ' sec')
 
@@ -703,8 +704,8 @@ class ListView(NavigationView):
 
         if len(selected_ids) == 1:
             if self.drag_info():
-                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                      [], 
+                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
+                                      [],
                                       Gdk.DragAction.COPY)
                 #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
                 tglist = Gtk.TargetList.new([])
@@ -713,8 +714,8 @@ class ListView(NavigationView):
                 self.list.drag_source_set_target_list(tglist)
         elif len(selected_ids) > 1:
             if self.drag_list_info():
-                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                      [], 
+                self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
+                                      [],
                                       Gdk.DragAction.COPY)
                 #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
                 tglist = Gtk.TargetList.new([])
@@ -735,8 +736,8 @@ class ListView(NavigationView):
             LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
-                self.uistate.show_filter_results(self.dbstate, 
-                                                 self.model.displayed(), 
+                self.uistate.show_filter_results(self.dbstate,
+                                                 self.model.displayed(),
                                                  self.model.total())
         else:
             self.dirty = True
@@ -775,8 +776,8 @@ class ListView(NavigationView):
             LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
-                self.uistate.show_filter_results(self.dbstate, 
-                                                 self.model.displayed(), 
+                self.uistate.show_filter_results(self.dbstate,
+                                                 self.model.displayed(),
                                                  self.model.total())
         else:
             self.dirty = True
@@ -830,8 +831,8 @@ class ListView(NavigationView):
                             get_widget('/Popup/QuickReport')
                 if qr_menu and self.QR_CATEGORY > -1 :
                     (ui, qr_actions) = create_quickreport_menu(
-                                            self.QR_CATEGORY, 
-                                            self.dbstate, 
+                                            self.QR_CATEGORY,
+                                            self.dbstate,
                                             self.uistate,
                                             self.first_selected())
                     self.__build_menu(qr_menu, qr_actions)
@@ -841,7 +842,7 @@ class ListView(NavigationView):
                                 get_widget('/Popup/WebConnect')
                 if web_menu:
                     web_actions = create_web_connect_menu(
-                                        self.dbstate, 
+                                        self.dbstate,
                                         self.uistate,
                                         self.navigation_type(),
                                         self.first_selected())
@@ -849,7 +850,7 @@ class ListView(NavigationView):
 
                 menu.popup(None, None, None, None, event.button, event.time)
                 return True
-            
+
         return False
 
     def __build_menu(self, menu, actions):
@@ -877,7 +878,7 @@ class ListView(NavigationView):
         else:
             # Tree
             return self._key_press_tree(obj, event)
-    
+
     def _key_press_flat(self, obj, event):
         """
         Called when a key is pressed on a flat listview
@@ -967,8 +968,8 @@ class ListView(NavigationView):
         """
         NavigationView.change_page(self)
         if self.model:
-            self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed(), 
+            self.uistate.show_filter_results(self.dbstate,
+                                             self.model.displayed(),
                                              self.model.total())
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
@@ -996,9 +997,9 @@ class ListView(NavigationView):
     ####################################################################
     def export(self, obj):
         chooser = Gtk.FileChooserDialog(
-            _("Export View as Spreadsheet"), 
-            self.uistate.window, 
-            Gtk.FileChooserAction.SAVE, 
+            _("Export View as Spreadsheet"),
+            self.uistate.window,
+            Gtk.FileChooserAction.SAVE,
             (_('_Cancel'), Gtk.ResponseType.CANCEL,
              _('_Save'), Gtk.ResponseType.OK))
         chooser.set_do_overwrite_confirmation(True)
@@ -1031,8 +1032,8 @@ class ListView(NavigationView):
 
     def write_tabbed_file(self, name, type):
         """
-        Write a tabbed file to the specified name. 
-        
+        Write a tabbed file to the specified name.
+
         The output file type is determined by the type variable.
         """
         from gramps.gen.utils.docgen import CSVTab, ODSTab
@@ -1041,10 +1042,10 @@ class ListView(NavigationView):
 
         column_names = [self.COLUMNS[i][0] for i in data_cols]
         if type == 0:
-            ofile = CSVTab(len(column_names))                        
+            ofile = CSVTab(len(column_names))
         else:
             ofile = ODSTab(len(column_names))
-        
+
         ofile.open(name)
         ofile.start_page()
         ofile.start_row()
@@ -1072,10 +1073,10 @@ class ListView(NavigationView):
             iter_ = self.model.get_iter((0,))
             if iter_:
                 self.write_node(iter_, len(levels), [], ofile, data_cols)
-        
+
         ofile.end_page()
         ofile.close()
-        
+
     def write_node(self, iter_, depth, level, ofile, data_cols):
 
         while iter_:
@@ -1102,7 +1103,7 @@ class ListView(NavigationView):
         We could implement this in the NavigationView
         """
         raise NotImplementedError
-        
+
     def edit(self, obj, data=None):
         """
         Template function to allow the editing of the selected object
@@ -1136,7 +1137,7 @@ class ListView(NavigationView):
     def open_all_nodes(self, obj):
         """
         Method for Treeviews to open all groups
-        obj: for use of method in event callback 
+        obj: for use of method in event callback
         """
         self.uistate.status_text(_("Updating display..."))
         self.uistate.set_busy_cursor(True)
@@ -1160,14 +1161,14 @@ class ListView(NavigationView):
         """
         self.uistate.status_text(_("Updating display..."))
         self.uistate.set_busy_cursor(True)
-        
+
         store, selected = self.selection.get_selected_rows()
         for path in selected:
             self.list.expand_row(path, False)
 
         self.uistate.set_busy_cursor(False)
         self.uistate.modify_statusbar(self.dbstate)
-        
+
     def close_branch(self, obj):
         """
         Collapse the selected branches.
@@ -1180,7 +1181,7 @@ class ListView(NavigationView):
 
     def can_configure(self):
         """
-        See :class:`~gui.views.pageview.PageView 
+        See :class:`~gui.views.pageview.PageView
         :return: bool
         """
         return True
@@ -1198,9 +1199,9 @@ class ListView(NavigationView):
 
     def _get_configure_page_funcs(self):
         """
-        Return a list of functions that create gtk elements to use in the 
+        Return a list of functions that create gtk elements to use in the
         notebook pages of the Configure dialog
-        
+
         :return: list of functions
         """
         def columnpage(configdialog):

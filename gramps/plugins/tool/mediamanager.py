@@ -50,7 +50,6 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
 from gramps.gen.lib import MediaObject
-from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gen.utils.file import media_path_full, relative_path, media_path
@@ -94,16 +93,16 @@ class MediaMan(tool.Tool):
         intro = IntroductionPage()
         self.add_page(intro, Gtk.AssistantPageType.INTRO, _('Introduction'))
         self.selection = SelectionPage(self.batch_ops)
-        self.add_page(self.selection, Gtk.AssistantPageType.CONTENT, 
+        self.add_page(self.selection, Gtk.AssistantPageType.CONTENT,
                       _('Selection'))
         self.settings = SettingsPage(self.batch_ops, self.assistant)
         self.add_page(self.settings, Gtk.AssistantPageType.CONTENT)
         self.confirmation = ConfirmationPage(self.batch_ops)
-        self.add_page(self.confirmation, Gtk.AssistantPageType.CONFIRM, 
+        self.add_page(self.confirmation, Gtk.AssistantPageType.CONFIRM,
                       _('Final confirmation'))
         self.conclusion = ConclusionPage(self.assistant)
         self.add_page(self.conclusion, Gtk.AssistantPageType.SUMMARY)
-        
+
         self.assistant.show()
         self.assistant.set_forward_page_func(self.forward_page, None)
 
@@ -173,7 +172,7 @@ class MediaMan(tool.Tool):
         success = self.batch_ops[index].run_tool()
         self.conclusion.set_result(success)
         self.post_run()
-        
+
     def pre_run(self):
         """
         Code to run prior to the batch op.
@@ -200,7 +199,7 @@ class IntroductionPage(Gtk.Box):
     def __init__(self):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
-        # Using set_page_side_image causes window sizing problems, so put the 
+        # Using set_page_side_image causes window sizing problems, so put the
         # image in the main page instead.
         image = Gtk.Image()
         image.set_from_file(SPLASH)
@@ -245,7 +244,7 @@ class SelectionPage(Gtk.Box):
     """
     def __init__(self, batch_ops):
         Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
-        
+
         self.batch_op_buttons = []
 
         self.set_spacing(12)
@@ -253,7 +252,7 @@ class SelectionPage(Gtk.Box):
         grid = Gtk.Grid()
         grid.set_row_spacing(6)
         grid.set_column_spacing(6)
-        
+
         button = None
         for index in range(len(batch_ops)):
             title = batch_ops[index].title
@@ -263,13 +262,13 @@ class SelectionPage(Gtk.Box):
             button.set_tooltip_text(description)
             self.batch_op_buttons.append(button)
             grid.attach(button, 0, 2 * index, 2, 1)
-        
+
         self.add(grid)
 
     def get_index(self):
         """
-        Query the selection radiobuttons and return the index number 
-        of the selected batch op. 
+        Query the selection radiobuttons and return the index number
+        of the selected batch op.
         """
         for index in range(len(self.batch_op_buttons)):
             button = self.batch_op_buttons[index]
@@ -305,7 +304,7 @@ class SettingsPage(Gtk.Box):
 
 class ConfirmationPage(Gtk.Box):
     """
-    A page to display the summary of the proposed action, as well as the 
+    A page to display the summary of the proposed action, as well as the
     list of affected paths.
     """
     def __init__(self, batch_ops):
@@ -354,7 +353,7 @@ class ConfirmationPage(Gtk.Box):
 
 class ConclusionPage(Gtk.Box):
     """
-    A page to display the summary of the proposed action, as well as the 
+    A page to display the summary of the proposed action, as well as the
     list of affected paths.
     """
     def __init__(self, assistant):
@@ -370,7 +369,7 @@ class ConclusionPage(Gtk.Box):
 
         self.pack_start(image, False, False, 0)
         self.pack_start(self.label, False, False, 5)
-        
+
     def set_result(self, success):
         if success:
             conclusion_title =  _('Operation successfully finished')
@@ -435,7 +434,7 @@ class BatchOp(UpdateCallback):
         Should not be overridden without good reasons.
         """
         self.db.disable_signals()
-        with DbTxn(self.title, self.db, batch=True) as self.trans:
+        with self.db.DbTxn(self.title, batch=True) as self.trans:
             success = self._run()
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -491,7 +490,7 @@ class PathChange(BatchOp):
         self.from_entry = Gtk.Entry()
         self.from_entry.set_hexpand(True)
         grid.attach(self.from_entry, 1, 0, 1, 1)
-        
+
         from_label = Gtk.Label(label=_('_Replace:'))
         from_label.set_halign(Gtk.Align.START)
         from_label.set_use_underline(True)
@@ -520,11 +519,11 @@ class PathChange(BatchOp):
             'Operation:\t%(title)s\n'
             'Replace:\t\t%(src_fname)s\n'
             'With:\t\t%(dest_fname)s') % {
-            'title' : self.title.replace('_',''), 
-            'src_fname' : from_text, 
+            'title' : self.title.replace('_',''),
+            'src_fname' : from_text,
             'dest_fname' : to_text }
         return text
-        
+
     def _prepare(self):
         from_text = str(self.from_entry.get_text())
         self.set_total(self.db.get_number_of_media_objects())
@@ -692,7 +691,7 @@ class ImagesNotIncluded(BatchOp):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class MediaManOptions(tool.ToolOptions):

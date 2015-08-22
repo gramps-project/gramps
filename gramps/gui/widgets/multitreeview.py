@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -38,6 +38,7 @@ class MultiTreeView(Gtk.TreeView):
     '''
     def __init__(self):
         Gtk.TreeView.__init__(self)
+        self.set_rules_hint(True)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
         self.connect('key_press_event', self.key_press_event)
@@ -62,7 +63,7 @@ class MultiTreeView(Gtk.TreeView):
         # Here we intercept mouse clicks on selected items so that we can
         # drag multiple items without the click selecting only one
         target = self.get_path_at_pos(int(event.x), int(event.y))
-        if (target 
+        if (target
             and event.type == Gdk.EventType.BUTTON_PRESS
             and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
@@ -73,12 +74,11 @@ class MultiTreeView(Gtk.TreeView):
     def on_button_release(self, widget, event):
         # re-enable selection
         self.get_selection().set_select_function(lambda *ignore: True, None)
-        
-        target = self.get_path_at_pos(int(event.x), int(event.y))	
-        if (self.defer_select and target 
+
+        target = self.get_path_at_pos(int(event.x), int(event.y))
+        if (self.defer_select and target
             and self.defer_select == target[0]
             and not (event.x==0 and event.y==0)): # certain drag and drop
             self.set_cursor(target[0], target[1], False)
-            
-        self.defer_select=False
 
+        self.defer_select=False

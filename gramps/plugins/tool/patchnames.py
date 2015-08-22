@@ -49,7 +49,6 @@ from gramps.gui.dialog import OkDialog
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.display import display_help
 from gramps.gen.lib import NameOriginType, Surname
-from gramps.gen.db import DbTxn
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
@@ -100,7 +99,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
     nickid  = 2
     pref1id = 3
     compid  = 4
-    
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = _('Name and title extraction tool')
@@ -110,12 +109,12 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if self.fail:
             return
-        
+
         winprefix = Gtk.Dialog(_("Default prefix and connector settings"),
                                 self.uistate.window,
                                 Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                 (_('_OK'), Gtk.ResponseType.ACCEPT))
-        
+
         winprefix.vbox.set_spacing(5)
         hboxpref = Gtk.Box()
         label = Gtk.Label(label=_('Prefixes to search for:'))
@@ -151,7 +150,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         self.connector_list_nonsplit = self.connsbox.get_text().split(',')
         self.connector_list_nonsplit = list(map(strip, self.connector_list_nonsplit))
         self.connsbox = None
-        
+
         # Find a prefix in the first_name
         self._fn_prefix_re = re.compile("(\S+)\s+(%s)\s*$" % '|'.join(self.prefix_list),
                            re.IGNORECASE)
@@ -177,7 +176,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
             name = person.get_primary_name()
             first = name.get_first_name()
             sname = name.get_surname()
-            
+
             old_prefix = []
             old_surn = []
             old_con = []
@@ -257,7 +256,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         self.handle_to_action[key] = {self.compid: compoundval}
                     #we cannot check compound surnames, so continue the loop
                     continue
-                    
+
             # Next, try to split surname in compounds: prefix surname connector
             found = False
             new_prefix_list = []
@@ -267,7 +266,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
             new_orig_list = []
             ind = 0
             cont = True
-            for pref, surn, con, prim, orig in zip(old_prefix, old_surn, 
+            for pref, surn, con, prim, orig in zip(old_prefix, old_surn,
                                         old_con, old_prim, old_orig):
                 surnval = surn.split()
                 if surnval == []:
@@ -285,7 +284,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                     new_connector_list.append(con)
                     new_prim_list.append(prim)
                     new_orig_list.append(orig)
-                    
+
                     while cont and (val.lower() in self.prefix_list):
                         found = True
                         if new_prefix_list[-1]:
@@ -336,7 +335,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         except IndexError:
                             val = ''
                             cont = False
-                    #initialize for a next surname in case there are still 
+                    #initialize for a next surname in case there are still
                     #val
                     if cont:
                         found = True  # we split surname
@@ -346,7 +345,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         orig = NameOriginType()
                 ind += 1
             if found:
-                compoundval = (new_surname_list, new_prefix_list, 
+                compoundval = (new_surname_list, new_prefix_list,
                             new_connector_list, new_prim_list, new_orig_list)
                 if key in self.handle_to_action:
                     self.handle_to_action[key][self.compid] = compoundval
@@ -429,7 +428,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 self.model.set_value(handle, 3, nick)
                 self.model.set_value(handle, 4, p.get_primary_name().get_name())
                 self.nick_hash[key] = handle
-                
+
             if self.titleid in data:
                 title, given = data[self.titleid]
                 handle = self.model.append()
@@ -439,7 +438,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 self.model.set_value(handle, 3, title)
                 self.model.set_value(handle, 4, p.get_primary_name().get_name())
                 self.title_hash[key] = handle
-            
+
             if self.pref1id in data:
                 given, prefixtotal, new_prefix = data[self.pref1id]
                 handle = self.model.append()
@@ -449,7 +448,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 self.model.set_value(handle, 3, prefixtotal)
                 self.model.set_value(handle, 4, p.get_primary_name().get_name())
                 self.prefix1_hash[key] = handle
-            
+
             if self.compid in data:
                 surn_list, pref_list, con_list, prims, origs = data[self.compid]
                 handle = self.model.append()
@@ -470,7 +469,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                 self.model.set_value(handle, 3, newval)
                 self.model.set_value(handle, 4, p.get_primary_name().get_name())
                 self.compound_hash[key] = handle
-                
+
             self.progress.step()
 
         self.progress.close()
@@ -481,7 +480,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        with DbTxn(_("Extract information from names"), self.db, batch=True
+        with self.db.DbTxn(_("Extract information from names"), batch=True
                    ) as trans:
             self.db.disable_signals()
 
@@ -495,7 +494,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         name = p.get_primary_name()
                         name.set_first_name(given.strip())
                         name.set_nick_name(nick.strip())
-                
+
                 if self.titleid in data:
                     modelhandle = self.title_hash[key]
                     val = self.model.get_value(modelhandle, 0)
@@ -504,7 +503,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                         name = p.get_primary_name()
                         name.set_first_name(given.strip())
                         name.set_title(title.strip())
-                
+
                 if self.pref1id in data:
                     modelhandle = self.prefix1_hash[key]
                     val = self.model.get_value(modelhandle, 0)
@@ -517,7 +516,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                             name.get_surname_list()[0].set_prefix(prefix)
                         else:
                             name.get_surname_list()[0].set_prefix('%s %s' % (prefix, oldpref))
-                
+
                 if self.compid in data:
                     modelhandle = self.compound_hash[key]
                     val = self.model.get_value(modelhandle, 0)
@@ -534,9 +533,9 @@ class PatchNames(tool.BatchTool, ManagedWindow):
                             new_surn_list[-1].set_primary(prim)
                             new_surn_list[-1].set_origintype(orig)
                         name.set_surname_list(new_surn_list)
-                    
+
                 self.db.commit_person(p, trans)
-    
+
         self.db.enable_signals()
         self.db.request_rebuild()
         self.close()
@@ -552,4 +551,3 @@ class PatchNamesOptions(tool.ToolOptions):
 
 def strip(arg):
     return arg.strip()
-

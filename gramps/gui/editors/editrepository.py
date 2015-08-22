@@ -40,7 +40,6 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Repository
-from gramps.gen.db import DbTxn
 
 from ..widgets import (MonitoredEntry, MonitoredDataType, PrivacyButton,
                        MonitoredTagList)
@@ -53,8 +52,8 @@ class EditRepository(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, repository, callback=None):
 
-        EditPrimary.__init__(self, dbstate, uistate, track, repository, 
-                             dbstate.db.get_repository_from_handle, 
+        EditPrimary.__init__(self, dbstate, uistate, track, repository,
+                             dbstate.db.get_repository_from_handle,
                              dbstate.db.get_repository_from_gramps_id)
 
     def empty_object(self):
@@ -74,17 +73,17 @@ class EditRepository(EditPrimary):
     def _local_init(self):
         self.width_key = 'interface.repo-width'
         self.height_key = 'interface.repo-height'
-        
+
         self.glade = Glade()
-        
-        self.set_window(self.glade.toplevel, None, 
+
+        self.set_window(self.glade.toplevel, None,
                         self.get_menu_title())
 
     def build_menu_names(self, source):
-        return (_('Edit Repository'), self.get_menu_title())        
+        return (_('Edit Repository'), self.get_menu_title())
 
     def _setup_fields(self):
-        
+
         self.name = MonitoredEntry(self.glade.get_object("repository_name"),
                                    self.obj.set_name, self.obj.get_name,
                                    self.db.readonly)
@@ -96,22 +95,22 @@ class EditRepository(EditPrimary):
 
         self.call_number = MonitoredEntry(self.glade.get_object('gid'),
                                           self.obj.set_gramps_id,
-                                          self.obj.get_gramps_id, 
+                                          self.obj.get_gramps_id,
                                           self.db.readonly)
 
-        self.tags = MonitoredTagList(self.glade.get_object("tag_label"), 
-                                     self.glade.get_object("tag_button"), 
-                                     self.obj.set_tag_list, 
+        self.tags = MonitoredTagList(self.glade.get_object("tag_label"),
+                                     self.glade.get_object("tag_button"),
+                                     self.obj.set_tag_list,
                                      self.obj.get_tag_list,
                                      self.db,
                                      self.uistate, self.track,
                                      self.db.readonly)
 
-        self.privacy = PrivacyButton(self.glade.get_object("private"), 
+        self.privacy = PrivacyButton(self.glade.get_object("private"),
                                      self.obj, self.db.readonly)
 
     def _create_tabbed_pages(self):
-        
+
         notebook = Gtk.Notebook()
 
         self.addr_tab = AddrEmbedList(self.dbstate,
@@ -127,7 +126,7 @@ class EditRepository(EditPrimary):
                                     self.obj.get_url_list())
         self._add_tab(notebook, self.url_tab)
         self.track_ref_for_deletion("url_tab")
-        
+
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
                                 self.track,
@@ -156,7 +155,7 @@ class EditRepository(EditPrimary):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('repository-rebuild', self._do_close)
@@ -177,7 +176,7 @@ class EditRepository(EditPrimary):
             name = prim_object.get_name()
             msg1 = _("Cannot save repository. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '" 
+                         "value %(id)s. This value is already used by '"
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
@@ -185,7 +184,7 @@ class EditRepository(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
+        with self.db.DbTxn('') as trans:
             if not self.obj.get_handle():
                 self.db.add_repository(self.obj, trans)
                 msg = _("Add Repository (%s)") % self.obj.get_name()
@@ -195,7 +194,7 @@ class EditRepository(EditPrimary):
                 self.db.commit_repository(self.obj, trans)
                 msg = _("Edit Repository (%s)") % self.obj.get_name()
             trans.set_description(msg)
-            
+
         self.close()
 
 class DeleteRepositoryQuery(object):
@@ -206,9 +205,9 @@ class DeleteRepositoryQuery(object):
         self.sources = sources
 
     def query_response(self):
-        with DbTxn(_("Delete Repository (%s)") % self.obj.get_name(),
-                   self.db) as trans:
-        
+        with self.db.DbTxn(_("Delete Repository (%s)") % self.obj.get_name()
+                   ) as trans:
+
             repos_handle_list = [self.obj.get_handle()]
 
             for handle in self.sources:

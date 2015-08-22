@@ -48,11 +48,10 @@ from gramps.gen.utils.libformatting import ImportInfo
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.errors import GedcomError, GrampsImportError
-from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation, 
-        Date, DateError, Event, EventRef, EventRoleType, EventType, 
-        Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, 
+from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
+        Date, DateError, Event, EventRef, EventRoleType, EventType,
+        Family, FamilyRelType, Name, NameType, Note, Person, PersonRef,
         Place, Source, LdsOrd)
-from gramps.gen.db import DbTxn
 from gramps.gen.constfunc import conv_to_unicode
 from html.entities import name2codepoint
 
@@ -192,21 +191,21 @@ class GeneWebParser(object):
         else:
             line = None
         return line
-        
+
     def parse_geneweb_file(self):
-        with DbTxn(_("GeneWeb import"), self.db, batch=True) as self.trans:
+        with self.db.DbTxn(_("GeneWeb import"), batch=True) as self.trans:
             self.db.disable_signals()
             t = time.time()
             self.lineno = 0
             self.index = 0
             self.fam_count = 0
             self.indi_count = 0
-        
+
             self.fkeys = []
             self.ikeys = {}
             self.pkeys = {}
             self.skeys = {}
-        
+
             self.current_mode = None
             self.current_family = None
             self.current_husband_handle = None
@@ -219,9 +218,9 @@ class GeneWebParser(object):
                         break
                     if line == "":
                         continue
-                
+
                     fields = line.split(" ")
-            
+
                     LOG.debug("LINE: %s" %line)
 
                     if fields[0] == "gwplus":
@@ -264,20 +263,20 @@ class GeneWebParser(object):
                     elif fields[0] == "end":
                         self.current_mode = None
                     else:
-                        LOG.warning("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
+                        LOG.warning("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" %
                                  (fields[0],self.lineno,line))
             except GedcomError as err:
                 self.errmsg(str(err))
-                
+
             t = time.time() - t
             # translators: leave all/any {...} untranslated
             msg = ngettext('Import Complete: {number_of} second',
                            'Import Complete: {number_of} seconds', t
                           ).format(number_of=t)
-    
+
         self.db.enable_signals()
         self.db.request_rebuild()
-        
+
         LOG.debug(msg)
         LOG.debug("Families: %d" % len(self.fkeys))
         LOG.debug("Individuals: %d" % len(self.ikeys))
@@ -292,7 +291,7 @@ class GeneWebParser(object):
         #self.db.commit_family(self.current_family,self.trans)
         self.fkeys.append(self.current_family.get_handle())
         idx = 1;
-        
+
         LOG.debug("\nHusband:")
         (idx, husband) = self.parse_person(fields,idx,Person.MALE,None)
         if husband:
@@ -360,7 +359,7 @@ class GeneWebParser(object):
         self.current_family.add_citation(source.get_handle())
         self.db.commit_family(self.current_family,self.trans)
         return None
-    
+
     def read_witness_line(self,line,fields):
         LOG.debug("Witness:")
         if fields[1] == "m:":
@@ -441,7 +440,7 @@ class GeneWebParser(object):
                 break
         self.current_mode = None
         return None
-            
+
 
     def read_children_birthplace_line(self,line,fields):
         cbp = self.get_or_create_place(self.decode(fields[1]))
@@ -508,7 +507,7 @@ class GeneWebParser(object):
 
         sep_date = None
         div_date = None
-        
+
         married = 1
         engaged = 0
 
@@ -585,12 +584,12 @@ class GeneWebParser(object):
         if not married:
             self.current_family.set_relationship(
                 FamilyRelType(FamilyRelType.UNMARRIED))
-            
+
         self.db.commit_family(self.current_family,self.trans)
         return idx
 
     def parse_person(self,fields,idx,gender,father_surname):
-        
+
         if not father_surname:
             if not idx < len(fields):
                 LOG.warning("Missing surname of person in line %d!" % self.lineno)
@@ -600,7 +599,7 @@ class GeneWebParser(object):
             idx += 1
         else:
             surname = father_surname
-        
+
         if not idx < len(fields):
             LOG.warning("Missing firstname of person in line %d!" % self.lineno)
             firstname = ""
@@ -626,7 +625,7 @@ class GeneWebParser(object):
         self.db.commit_person(person,self.trans)
         personDataRe = re.compile("^[kmes0-9<>~#\[({!].*$")
         dateRe = re.compile("^[kmes0-9~<>?]+.*$")
-        
+
         source = None
         birth_parsed = False
         birth_date = None
@@ -646,13 +645,13 @@ class GeneWebParser(object):
         bur_date = None
         bur_place = None
         bur_source = None
-        
+
         public_name = None
         firstname_aliases = []
         nick_names = []
         name_aliases = []
         surname_aliases = []
-        
+
         while idx < len(fields) and personDataRe.match(fields[idx]):
             field = fields[idx]
             idx += 1
@@ -793,7 +792,7 @@ class GeneWebParser(object):
             else:
                 LOG.warning(("parse_person(): Unknown field " +
                           "'%s' for person in line %d!") % (field, self.lineno))
-        
+
         if public_name:
             name = person.get_primary_name()
             name.set_type(NameType(NameType.BIRTH))
@@ -804,7 +803,7 @@ class GeneWebParser(object):
             surname_obj = name.get_primary_surname()
             surname_obj.set_surname(surname)
             person.set_primary_name(name)
-        
+
         for aka in nick_names:
             name = Attribute()
             name.set_type(AttributeType(AttributeType.NICKNAME))
@@ -877,7 +876,7 @@ class GeneWebParser(object):
         self.db.commit_person(person,self.trans)
 
         return (idx,person)
-        
+
     def parse_date(self,field):
         if field == "0":
             return None
@@ -905,7 +904,7 @@ class GeneWebParser(object):
                 date.set(Date.QUAL_NONE,mod, cal1,
                          (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
             except DateError as e:
-                # TRANSLATORS: leave the {date} and {gw_snippet} untranslated 
+                # TRANSLATORS: leave the {date} and {gw_snippet} untranslated
                 # in the format string, but you may re-order them if needed.
                 LOG.warning(_(
                     "Invalid date {date} in {gw_snippet}, "
@@ -924,7 +923,7 @@ class GeneWebParser(object):
             return (0,int(vals[0]),int(vals[1]))
         else:
             return (int(vals[0]),int(vals[1]),int(vals[2]))
-        
+
     def create_event(self,type,desc=None,date=None,place=None,source=None):
         event = Event()
         if type:
@@ -1142,7 +1141,7 @@ class GeneWebParser(object):
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
-        
+
         # replace named entities
         entref_re = re.compile('(&)([a-zA-Z]+)(;)')
         for match in entref_re.finditer(s):
@@ -1152,7 +1151,7 @@ class GeneWebParser(object):
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
-        
+
         return( s)
 
     def debug( self, txt):

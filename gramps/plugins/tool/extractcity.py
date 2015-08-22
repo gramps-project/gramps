@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -45,7 +45,6 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.db import DbTxn
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.display import display_help
 from gramps.plugins.lib.libplaceimport import PlaceImport
@@ -65,238 +64,238 @@ STATE_ZIP = re.compile("(.+)\s+([\d-]+)", re.UNICODE)
 COUNTRY = ( _("United States of America"), _("Canada"), _("France"),_("Sweden"))
 
 STATE_MAP = {
-    "AL"            : ("Alabama", 0), 
-    "AL."           : ("Alabama", 0), 
-    "ALABAMA"       : ("Alabama", 0), 
-    "AK"            : ("Alaska" , 0), 
-    "AK."           : ("Alaska" , 0), 
-    "ALASKA"        : ("Alaska" , 0), 
-    "AS"            : ("American Samoa", 0), 
-    "AS."           : ("American Samoa", 0), 
-    "AMERICAN SAMOA": ("American Samoa", 0), 
-    "AZ"            : ("Arizona", 0), 
-    "AZ."           : ("Arizona", 0), 
-    "ARIZONA"       : ("Arizona", 0), 
-    "AR"            : ("Arkansas" , 0), 
-    "AR."           : ("Arkansas" , 0), 
-    "ARKANSAS"      : ("Arkansas" , 0), 
-    "ARK."          : ("Arkansas" , 0), 
-    "ARK"           : ("Arkansas" , 0), 
-    "CA"            : ("California" , 0), 
-    "CA."           : ("California" , 0), 
-    "CALIFORNIA"    : ("California" , 0), 
-    "CO"            : ("Colorado" , 0), 
-    "COLO"          : ("Colorado" , 0), 
-    "COLO."         : ("Colorado" , 0), 
-    "COLORADO"      : ("Colorado" , 0), 
-    "CT"            : ("Connecticut" , 0), 
-    "CT."           : ("Connecticut" , 0), 
-    "CONNECTICUT"   : ("Connecticut" , 0), 
-    "DE"            : ("Delaware" , 0), 
-    "DE."           : ("Delaware" , 0), 
-    "DELAWARE"      : ("Delaware" , 0), 
-    "DC"            : ("District of Columbia" , 0), 
-    "D.C."          : ("District of Columbia" , 0), 
-    "DC."           : ("District of Columbia" , 0), 
-    "DISTRICT OF COLUMBIA" : ("District of Columbia" , 0), 
-    "FL"            : ("Florida" , 0), 
-    "FL."           : ("Florida" , 0), 
-    "FLA"           : ("Florida" , 0), 
-    "FLA."          : ("Florida" , 0), 
-    "FLORIDA"       : ("Florida" , 0), 
-    "GA"            : ("Georgia" , 0), 
-    "GA."           : ("Georgia" , 0), 
-    "GEORGIA"       : ("Georgia" , 0), 
-    "GU"            : ("Guam" , 0), 
-    "GU."           : ("Guam" , 0), 
-    "GUAM"          : ("Guam" , 0), 
-    "HI"            : ("Hawaii" , 0), 
-    "HI."           : ("Hawaii" , 0), 
-    "HAWAII"        : ("Hawaii" , 0), 
-    "ID"            : ("Idaho" , 0), 
-    "ID."           : ("Idaho" , 0), 
-    "IDAHO"         : ("Idaho" , 0), 
-    "IL"            : ("Illinois" , 0), 
-    "IL."           : ("Illinois" , 0), 
-    "ILLINOIS"      : ("Illinois" , 0), 
-    "ILL"           : ("Illinois" , 0), 
-    "ILL."          : ("Illinois" , 0), 
-    "ILLS"          : ("Illinois" , 0), 
-    "ILLS."         : ("Illinois" , 0), 
-    "IN"            : ("Indiana" , 0), 
-    "IN."           : ("Indiana" , 0), 
-    "INDIANA"       : ("Indiana" , 0), 
-    "IA"            : ("Iowa" , 0), 
-    "IA."           : ("Iowa" , 0), 
-    "IOWA"          : ("Iowa" , 0), 
-    "KS"            : ("Kansas" , 0), 
-    "KS."           : ("Kansas" , 0), 
-    "KANSAS"        : ("Kansas" , 0), 
-    "KY"            : ("Kentucky" , 0), 
-    "KY."           : ("Kentucky" , 0), 
-    "KENTUCKY"      : ("Kentucky" , 0), 
-    "LA"            : ("Louisiana" , 0), 
-    "LA."           : ("Louisiana" , 0), 
-    "LOUISIANA"     : ("Louisiana" , 0), 
-    "ME"            : ("Maine" , 0), 
-    "ME."           : ("Maine" , 0), 
-    "MAINE"         : ("Maine" , 0), 
-    "MD"            : ("Maryland" , 0), 
-    "MD."           : ("Maryland" , 0), 
-    "MARYLAND"      : ("Maryland" , 0), 
-    "MA"            : ("Massachusetts" , 0), 
-    "MA."           : ("Massachusetts" , 0), 
-    "MASSACHUSETTS" : ("Massachusetts" , 0), 
-    "MI"            : ("Michigan" , 0), 
-    "MI."           : ("Michigan" , 0), 
-    "MICH."         : ("Michigan" , 0), 
-    "MICH"          : ("Michigan" , 0), 
-    "MN"            : ("Minnesota" , 0), 
-    "MN."           : ("Minnesota" , 0), 
-    "MINNESOTA"     : ("Minnesota" , 0), 
-    "MS"            : ("Mississippi" , 0), 
-    "MS."           : ("Mississippi" , 0), 
-    "MISSISSIPPI"   : ("Mississippi" , 0), 
-    "MO"            : ("Missouri" , 0), 
-    "MO."           : ("Missouri" , 0), 
-    "MISSOURI"      : ("Missouri" , 0), 
-    "MT"            : ("Montana" , 0), 
-    "MT."           : ("Montana" , 0), 
-    "MONTANA"       : ("Montana" , 0), 
-    "NE"            : ("Nebraska" , 0), 
-    "NE."           : ("Nebraska" , 0), 
-    "NEBRASKA"      : ("Nebraska" , 0), 
-    "NV"            : ("Nevada" , 0), 
-    "NV."           : ("Nevada" , 0), 
-    "NEVADA"        : ("Nevada" , 0), 
-    "NH"            : ("New Hampshire" , 0), 
-    "NH."           : ("New Hampshire" , 0), 
-    "N.H."          : ("New Hampshire" , 0), 
-    "NEW HAMPSHIRE" : ("New Hampshire" , 0), 
-    "NJ"            : ("New Jersey" , 0), 
-    "NJ."           : ("New Jersey" , 0), 
-    "N.J."          : ("New Jersey" , 0), 
-    "NEW JERSEY"    : ("New Jersey" , 0), 
-    "NM"            : ("New Mexico" , 0), 
-    "NM."           : ("New Mexico" , 0), 
-    "NEW MEXICO"    : ("New Mexico" , 0), 
-    "NY"            : ("New York" , 0), 
-    "N.Y."          : ("New York" , 0), 
-    "NY."           : ("New York" , 0), 
-    "NEW YORK"      : ("New York" , 0), 
-    "NC"            : ("North Carolina" , 0), 
-    "NC."           : ("North Carolina" , 0), 
-    "N.C."          : ("North Carolina" , 0), 
-    "NORTH CAROLINA": ("North Carolina" , 0), 
-    "ND"            : ("North Dakota" , 0), 
-    "ND."           : ("North Dakota" , 0), 
-    "N.D."          : ("North Dakota" , 0), 
-    "NORTH DAKOTA"  : ("North Dakota" , 0), 
-    "OH"            : ("Ohio" , 0), 
-    "OH."           : ("Ohio" , 0), 
-    "OHIO"          : ("Ohio" , 0), 
-    "OK"            : ("Oklahoma" , 0), 
-    "OKLA"          : ("Oklahoma" , 0), 
-    "OKLA."         : ("Oklahoma" , 0), 
-    "OK."           : ("Oklahoma" , 0), 
-    "OKLAHOMA"      : ("Oklahoma" , 0), 
-    "OR"            : ("Oregon" , 0), 
-    "OR."           : ("Oregon" , 0), 
-    "OREGON"        : ("Oregon" , 0), 
-    "PA"            : ("Pennsylvania" , 0), 
-    "PA."           : ("Pennsylvania" , 0), 
-    "PENNSYLVANIA"  : ("Pennsylvania" , 0), 
-    "PR"            : ("Puerto Rico" , 0), 
-    "PUERTO RICO"   : ("Puerto Rico" , 0), 
-    "RI"            : ("Rhode Island" , 0), 
-    "RI."           : ("Rhode Island" , 0), 
-    "R.I."          : ("Rhode Island" , 0), 
-    "RHODE ISLAND"  : ("Rhode Island" , 0), 
-    "SC"            : ("South Carolina" , 0), 
-    "SC."           : ("South Carolina" , 0), 
-    "S.C."          : ("South Carolina" , 0), 
-    "SOUTH CAROLINA": ("South Carolina" , 0), 
-    "SD"            : ("South Dakota" , 0), 
-    "SD."           : ("South Dakota" , 0), 
-    "S.D."          : ("South Dakota" , 0), 
-    "SOUTH DAKOTA"  : ("South Dakota" , 0), 
-    "TN"            : ("Tennessee" , 0), 
-    "TN."           : ("Tennessee" , 0), 
-    "TENNESSEE"     : ("Tennessee" , 0), 
-    "TENN."         : ("Tennessee" , 0), 
-    "TENN"          : ("Tennessee" , 0), 
-    "TX"            : ("Texas" , 0), 
-    "TX."           : ("Texas" , 0), 
-    "TEXAS"         : ("Texas" , 0), 
-    "UT"            : ("Utah" , 0), 
-    "UT."           : ("Utah" , 0), 
-    "UTAH"          : ("Utah" , 0), 
-    "VT"            : ("Vermont" , 0), 
-    "VT."           : ("Vermont" , 0), 
-    "VERMONT"       : ("Vermont" , 0), 
-    "VI"            : ("Virgin Islands" , 0), 
-    "VIRGIN ISLANDS": ("Virgin Islands" , 0), 
-    "VA"            : ("Virginia" , 0), 
-    "VA."           : ("Virginia" , 0), 
-    "VIRGINIA"      : ("Virginia" , 0), 
-    "WA"            : ("Washington" , 0), 
-    "WA."           : ("Washington" , 0), 
-    "WASHINGTON"    : ("Washington" , 0), 
-    "WV"            : ("West Virginia" , 0), 
-    "WV."           : ("West Virginia" , 0), 
-    "W.V."          : ("West Virginia" , 0), 
-    "WEST VIRGINIA" : ("West Virginia" , 0), 
-    "WI"            : ("Wisconsin" , 0), 
-    "WI."           : ("Wisconsin" , 0), 
-    "WISCONSIN"     : ("Wisconsin" , 0), 
-    "WY"            : ("Wyoming" , 0), 
-    "WY."           : ("Wyoming" , 0), 
-    "WYOMING"       : ("Wyoming" , 0), 
-    "AB"            : ("Alberta", 1), 
-    "AB."           : ("Alberta", 1), 
-    "ALBERTA"       : ("Alberta", 1), 
-    "BC"            : ("British Columbia", 1), 
-    "BC."           : ("British Columbia", 1), 
-    "B.C."          : ("British Columbia", 1), 
-    "MB"            : ("Manitoba", 1), 
-    "MB."           : ("Manitoba", 1), 
-    "MANITOBA"      : ("Manitoba", 1), 
-    "NB"            : ("New Brunswick", 1), 
-    "N.B."          : ("New Brunswick", 1), 
-    "NB."           : ("New Brunswick", 1), 
-    "NEW BRUNSWICK" : ("New Brunswick", 1), 
-    "NL"            : ("Newfoundland and Labrador", 1), 
-    "NL."           : ("Newfoundland and Labrador", 1), 
-    "N.L."          : ("Newfoundland and Labrador", 1), 
-    "NEWFOUNDLAND"  : ("Newfoundland and Labrador", 1), 
-    "NEWFOUNDLAND AND LABRADOR" : ("Newfoundland and Labrador", 1), 
-    "LABRADOR"      : ("Newfoundland and Labrador", 1), 
-    "NT"            : ("Northwest Territories", 1), 
-    "NT."           : ("Northwest Territories", 1), 
-    "N.T."          : ("Northwest Territories", 1), 
-    "NORTHWEST TERRITORIES" : ("Northwest Territories", 1), 
-    "NS"            : ("Nova Scotia", 1), 
-    "NS."           : ("Nova Scotia", 1), 
-    "N.S."          : ("Nova Scotia", 1), 
-    "NOVA SCOTIA"   : ("Nova Scotia", 1), 
-    "NU"            : ("Nunavut", 1), 
-    "NU."           : ("Nunavut", 1), 
-    "NUNAVUT"       : ("Nunavut", 1), 
-    "ON"            : ("Ontario", 1), 
-    "ON."           : ("Ontario", 1), 
-    "ONTARIO"       : ("Ontario", 1), 
-    "PE"            : ("Prince Edward Island", 1), 
-    "PE."           : ("Prince Edward Island", 1), 
-    "PRINCE EDWARD ISLAND" : ("Prince Edward Island", 1), 
-    "QC"            : ("Quebec", 1), 
-    "QC."           : ("Quebec", 1), 
-    "QUEBEC"        : ("Quebec", 1), 
-    "SK"            : ("Saskatchewan", 1), 
-    "SK."           : ("Saskatchewan", 1), 
-    "SASKATCHEWAN"  : ("Saskatchewan", 1), 
-    "YT"            : ("Yukon", 1), 
-    "YT."           : ("Yukon", 1), 
-    "YUKON"         : ("Yukon", 1), 
+    "AL"            : ("Alabama", 0),
+    "AL."           : ("Alabama", 0),
+    "ALABAMA"       : ("Alabama", 0),
+    "AK"            : ("Alaska" , 0),
+    "AK."           : ("Alaska" , 0),
+    "ALASKA"        : ("Alaska" , 0),
+    "AS"            : ("American Samoa", 0),
+    "AS."           : ("American Samoa", 0),
+    "AMERICAN SAMOA": ("American Samoa", 0),
+    "AZ"            : ("Arizona", 0),
+    "AZ."           : ("Arizona", 0),
+    "ARIZONA"       : ("Arizona", 0),
+    "AR"            : ("Arkansas" , 0),
+    "AR."           : ("Arkansas" , 0),
+    "ARKANSAS"      : ("Arkansas" , 0),
+    "ARK."          : ("Arkansas" , 0),
+    "ARK"           : ("Arkansas" , 0),
+    "CA"            : ("California" , 0),
+    "CA."           : ("California" , 0),
+    "CALIFORNIA"    : ("California" , 0),
+    "CO"            : ("Colorado" , 0),
+    "COLO"          : ("Colorado" , 0),
+    "COLO."         : ("Colorado" , 0),
+    "COLORADO"      : ("Colorado" , 0),
+    "CT"            : ("Connecticut" , 0),
+    "CT."           : ("Connecticut" , 0),
+    "CONNECTICUT"   : ("Connecticut" , 0),
+    "DE"            : ("Delaware" , 0),
+    "DE."           : ("Delaware" , 0),
+    "DELAWARE"      : ("Delaware" , 0),
+    "DC"            : ("District of Columbia" , 0),
+    "D.C."          : ("District of Columbia" , 0),
+    "DC."           : ("District of Columbia" , 0),
+    "DISTRICT OF COLUMBIA" : ("District of Columbia" , 0),
+    "FL"            : ("Florida" , 0),
+    "FL."           : ("Florida" , 0),
+    "FLA"           : ("Florida" , 0),
+    "FLA."          : ("Florida" , 0),
+    "FLORIDA"       : ("Florida" , 0),
+    "GA"            : ("Georgia" , 0),
+    "GA."           : ("Georgia" , 0),
+    "GEORGIA"       : ("Georgia" , 0),
+    "GU"            : ("Guam" , 0),
+    "GU."           : ("Guam" , 0),
+    "GUAM"          : ("Guam" , 0),
+    "HI"            : ("Hawaii" , 0),
+    "HI."           : ("Hawaii" , 0),
+    "HAWAII"        : ("Hawaii" , 0),
+    "ID"            : ("Idaho" , 0),
+    "ID."           : ("Idaho" , 0),
+    "IDAHO"         : ("Idaho" , 0),
+    "IL"            : ("Illinois" , 0),
+    "IL."           : ("Illinois" , 0),
+    "ILLINOIS"      : ("Illinois" , 0),
+    "ILL"           : ("Illinois" , 0),
+    "ILL."          : ("Illinois" , 0),
+    "ILLS"          : ("Illinois" , 0),
+    "ILLS."         : ("Illinois" , 0),
+    "IN"            : ("Indiana" , 0),
+    "IN."           : ("Indiana" , 0),
+    "INDIANA"       : ("Indiana" , 0),
+    "IA"            : ("Iowa" , 0),
+    "IA."           : ("Iowa" , 0),
+    "IOWA"          : ("Iowa" , 0),
+    "KS"            : ("Kansas" , 0),
+    "KS."           : ("Kansas" , 0),
+    "KANSAS"        : ("Kansas" , 0),
+    "KY"            : ("Kentucky" , 0),
+    "KY."           : ("Kentucky" , 0),
+    "KENTUCKY"      : ("Kentucky" , 0),
+    "LA"            : ("Louisiana" , 0),
+    "LA."           : ("Louisiana" , 0),
+    "LOUISIANA"     : ("Louisiana" , 0),
+    "ME"            : ("Maine" , 0),
+    "ME."           : ("Maine" , 0),
+    "MAINE"         : ("Maine" , 0),
+    "MD"            : ("Maryland" , 0),
+    "MD."           : ("Maryland" , 0),
+    "MARYLAND"      : ("Maryland" , 0),
+    "MA"            : ("Massachusetts" , 0),
+    "MA."           : ("Massachusetts" , 0),
+    "MASSACHUSETTS" : ("Massachusetts" , 0),
+    "MI"            : ("Michigan" , 0),
+    "MI."           : ("Michigan" , 0),
+    "MICH."         : ("Michigan" , 0),
+    "MICH"          : ("Michigan" , 0),
+    "MN"            : ("Minnesota" , 0),
+    "MN."           : ("Minnesota" , 0),
+    "MINNESOTA"     : ("Minnesota" , 0),
+    "MS"            : ("Mississippi" , 0),
+    "MS."           : ("Mississippi" , 0),
+    "MISSISSIPPI"   : ("Mississippi" , 0),
+    "MO"            : ("Missouri" , 0),
+    "MO."           : ("Missouri" , 0),
+    "MISSOURI"      : ("Missouri" , 0),
+    "MT"            : ("Montana" , 0),
+    "MT."           : ("Montana" , 0),
+    "MONTANA"       : ("Montana" , 0),
+    "NE"            : ("Nebraska" , 0),
+    "NE."           : ("Nebraska" , 0),
+    "NEBRASKA"      : ("Nebraska" , 0),
+    "NV"            : ("Nevada" , 0),
+    "NV."           : ("Nevada" , 0),
+    "NEVADA"        : ("Nevada" , 0),
+    "NH"            : ("New Hampshire" , 0),
+    "NH."           : ("New Hampshire" , 0),
+    "N.H."          : ("New Hampshire" , 0),
+    "NEW HAMPSHIRE" : ("New Hampshire" , 0),
+    "NJ"            : ("New Jersey" , 0),
+    "NJ."           : ("New Jersey" , 0),
+    "N.J."          : ("New Jersey" , 0),
+    "NEW JERSEY"    : ("New Jersey" , 0),
+    "NM"            : ("New Mexico" , 0),
+    "NM."           : ("New Mexico" , 0),
+    "NEW MEXICO"    : ("New Mexico" , 0),
+    "NY"            : ("New York" , 0),
+    "N.Y."          : ("New York" , 0),
+    "NY."           : ("New York" , 0),
+    "NEW YORK"      : ("New York" , 0),
+    "NC"            : ("North Carolina" , 0),
+    "NC."           : ("North Carolina" , 0),
+    "N.C."          : ("North Carolina" , 0),
+    "NORTH CAROLINA": ("North Carolina" , 0),
+    "ND"            : ("North Dakota" , 0),
+    "ND."           : ("North Dakota" , 0),
+    "N.D."          : ("North Dakota" , 0),
+    "NORTH DAKOTA"  : ("North Dakota" , 0),
+    "OH"            : ("Ohio" , 0),
+    "OH."           : ("Ohio" , 0),
+    "OHIO"          : ("Ohio" , 0),
+    "OK"            : ("Oklahoma" , 0),
+    "OKLA"          : ("Oklahoma" , 0),
+    "OKLA."         : ("Oklahoma" , 0),
+    "OK."           : ("Oklahoma" , 0),
+    "OKLAHOMA"      : ("Oklahoma" , 0),
+    "OR"            : ("Oregon" , 0),
+    "OR."           : ("Oregon" , 0),
+    "OREGON"        : ("Oregon" , 0),
+    "PA"            : ("Pennsylvania" , 0),
+    "PA."           : ("Pennsylvania" , 0),
+    "PENNSYLVANIA"  : ("Pennsylvania" , 0),
+    "PR"            : ("Puerto Rico" , 0),
+    "PUERTO RICO"   : ("Puerto Rico" , 0),
+    "RI"            : ("Rhode Island" , 0),
+    "RI."           : ("Rhode Island" , 0),
+    "R.I."          : ("Rhode Island" , 0),
+    "RHODE ISLAND"  : ("Rhode Island" , 0),
+    "SC"            : ("South Carolina" , 0),
+    "SC."           : ("South Carolina" , 0),
+    "S.C."          : ("South Carolina" , 0),
+    "SOUTH CAROLINA": ("South Carolina" , 0),
+    "SD"            : ("South Dakota" , 0),
+    "SD."           : ("South Dakota" , 0),
+    "S.D."          : ("South Dakota" , 0),
+    "SOUTH DAKOTA"  : ("South Dakota" , 0),
+    "TN"            : ("Tennessee" , 0),
+    "TN."           : ("Tennessee" , 0),
+    "TENNESSEE"     : ("Tennessee" , 0),
+    "TENN."         : ("Tennessee" , 0),
+    "TENN"          : ("Tennessee" , 0),
+    "TX"            : ("Texas" , 0),
+    "TX."           : ("Texas" , 0),
+    "TEXAS"         : ("Texas" , 0),
+    "UT"            : ("Utah" , 0),
+    "UT."           : ("Utah" , 0),
+    "UTAH"          : ("Utah" , 0),
+    "VT"            : ("Vermont" , 0),
+    "VT."           : ("Vermont" , 0),
+    "VERMONT"       : ("Vermont" , 0),
+    "VI"            : ("Virgin Islands" , 0),
+    "VIRGIN ISLANDS": ("Virgin Islands" , 0),
+    "VA"            : ("Virginia" , 0),
+    "VA."           : ("Virginia" , 0),
+    "VIRGINIA"      : ("Virginia" , 0),
+    "WA"            : ("Washington" , 0),
+    "WA."           : ("Washington" , 0),
+    "WASHINGTON"    : ("Washington" , 0),
+    "WV"            : ("West Virginia" , 0),
+    "WV."           : ("West Virginia" , 0),
+    "W.V."          : ("West Virginia" , 0),
+    "WEST VIRGINIA" : ("West Virginia" , 0),
+    "WI"            : ("Wisconsin" , 0),
+    "WI."           : ("Wisconsin" , 0),
+    "WISCONSIN"     : ("Wisconsin" , 0),
+    "WY"            : ("Wyoming" , 0),
+    "WY."           : ("Wyoming" , 0),
+    "WYOMING"       : ("Wyoming" , 0),
+    "AB"            : ("Alberta", 1),
+    "AB."           : ("Alberta", 1),
+    "ALBERTA"       : ("Alberta", 1),
+    "BC"            : ("British Columbia", 1),
+    "BC."           : ("British Columbia", 1),
+    "B.C."          : ("British Columbia", 1),
+    "MB"            : ("Manitoba", 1),
+    "MB."           : ("Manitoba", 1),
+    "MANITOBA"      : ("Manitoba", 1),
+    "NB"            : ("New Brunswick", 1),
+    "N.B."          : ("New Brunswick", 1),
+    "NB."           : ("New Brunswick", 1),
+    "NEW BRUNSWICK" : ("New Brunswick", 1),
+    "NL"            : ("Newfoundland and Labrador", 1),
+    "NL."           : ("Newfoundland and Labrador", 1),
+    "N.L."          : ("Newfoundland and Labrador", 1),
+    "NEWFOUNDLAND"  : ("Newfoundland and Labrador", 1),
+    "NEWFOUNDLAND AND LABRADOR" : ("Newfoundland and Labrador", 1),
+    "LABRADOR"      : ("Newfoundland and Labrador", 1),
+    "NT"            : ("Northwest Territories", 1),
+    "NT."           : ("Northwest Territories", 1),
+    "N.T."          : ("Northwest Territories", 1),
+    "NORTHWEST TERRITORIES" : ("Northwest Territories", 1),
+    "NS"            : ("Nova Scotia", 1),
+    "NS."           : ("Nova Scotia", 1),
+    "N.S."          : ("Nova Scotia", 1),
+    "NOVA SCOTIA"   : ("Nova Scotia", 1),
+    "NU"            : ("Nunavut", 1),
+    "NU."           : ("Nunavut", 1),
+    "NUNAVUT"       : ("Nunavut", 1),
+    "ON"            : ("Ontario", 1),
+    "ON."           : ("Ontario", 1),
+    "ONTARIO"       : ("Ontario", 1),
+    "PE"            : ("Prince Edward Island", 1),
+    "PE."           : ("Prince Edward Island", 1),
+    "PRINCE EDWARD ISLAND" : ("Prince Edward Island", 1),
+    "QC"            : ("Quebec", 1),
+    "QC."           : ("Quebec", 1),
+    "QUEBEC"        : ("Quebec", 1),
+    "SK"            : ("Saskatchewan", 1),
+    "SK."           : ("Saskatchewan", 1),
+    "SASKATCHEWAN"  : ("Saskatchewan", 1),
+    "YT"            : ("Yukon", 1),
+    "YT."           : ("Yukon", 1),
+    "YUKON"         : ("Yukon", 1),
     "ALSACE"        : ("Alsace", 2),
     "ALS"           : ("ALS-Alsace", 2),
     "AQUITAINE"     : ("Aquitaine", 2),
@@ -342,15 +341,15 @@ STATE_MAP = {
     "RHONE-ALPES"   : ("Rhône-Alpes", 2),
     "RAL"           : ("RAL-Rhône-Alpes", 2),
     "AOM"           : ("AOM-Autres Territoires d'Outre-Mer", 2),
-    "COM"           : ("COM-Collectivité Territoriale d'Outre-Mer", 2),  
-    "DOM"           : ("DOM-Départements d'Outre-Mer", 2), 
+    "COM"           : ("COM-Collectivité Territoriale d'Outre-Mer", 2),
+    "DOM"           : ("DOM-Départements d'Outre-Mer", 2),
     "TOM"           : ("TOM-Territoires d'Outre-Mer", 2),
     "GUA"           : ("GUA-Guadeloupe", 2),
     "GUADELOUPE"    : ("Guadeloupe", 2),
     "MAR"           : ("MAR-Martinique", 2),
-    "MARTINIQUE"    : ("Martinique", 2),    
+    "MARTINIQUE"    : ("Martinique", 2),
     "GUY"           : ("GUY-Guyane", 2),
-    "GUYANE"        : ("Guyane", 2),  
+    "GUYANE"        : ("Guyane", 2),
     "REU"           : ("REU-Réunion", 2),
     "REUNION"       : ("Réunion", 2),
     "MIQ"           : ("MIQ-Saint-Pierre et Miquelon", 2),
@@ -384,11 +383,11 @@ STATE_MAP = {
     "(BD)"          : ("Norrbottens län", 3),
 }
 
-COLS = [ 
-    (_('Place title'), 1), 
-    (_('City'), 2), 
-    (_('State'), 3), 
-    (_('ZIP/Postal Code'), 4), 
+COLS = [
+    (_('Place title'), 1),
+    (_('City'), 2),
+    (_('State'), 3),
+    (_('ZIP/Postal Code'), 4),
     (_('Country'), 5)
     ]
 
@@ -417,7 +416,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = _('Extract Place data')
-        
+
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')
 
@@ -434,7 +433,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         """
 
         self.progress = ProgressMeter(_('Checking Place Titles'), '')
-        self.progress.set_pass(_('Looking for place fields'), 
+        self.progress.set_pass(_('Looking for place fields'),
                                self.db.get_number_of_places())
 
         self.name_list = []
@@ -452,23 +451,23 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                         (loc.get(PlaceType.COUNTY, '')),
                         (loc.get(PlaceType.STATE, '')),
                         (loc.get(PlaceType.COUNTRY, '')))
-            self.place_import.store_location(location, place.handle)           
+            self.place_import.store_location(location, place.handle)
 
             if len(place.get_placeref_list()) == 0:
 
                 match = CITY_STATE_ZIP.match(descr.strip())
                 if match:
                     data = match.groups()
-                    city = data[0] 
+                    city = data[0]
                     state = data[2]
                     postal = data[5]
-                    
+
                     val = " ".join(state.strip().split()).upper()
                     if state:
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (place.handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal,
                                           COUNTRY[new_state[1]])))
                     continue
 
@@ -476,7 +475,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                 match = CITY_LAEN.match(descr.strip().replace(","," "))
                 if match:
                     data = match.groups()
-                    city = data[0] 
+                    city = data[0]
                     state = '(' + data[1] + ')'
                     postal = None
                     val = " ".join(state.strip().split()).upper()
@@ -484,26 +483,26 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (place.handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal,
                                           COUNTRY[new_state[1]])))
                     continue
                 match = CITY_STATE.match(descr.strip())
                 if match:
                     data = match.groups()
-                    city = data[0] 
+                    city = data[0]
                     state = data[1]
                     postal = None
                     if state:
                         m0 = STATE_ZIP.match(state)
                         if m0:
-                            (state, postal) = m0.groups() 
+                            (state, postal) = m0.groups()
 
                     val = " ".join(state.strip().split()).upper()
                     if state:
                         new_state = STATE_MAP.get(val.upper())
                         if new_state:
                             self.name_list.append(
-                                (place.handle, (city, new_state[0], postal, 
+                                (place.handle, (city, new_state[0], postal,
                                           COUNTRY[new_state[1]])))
                     continue
 
@@ -511,7 +510,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                 new_state = STATE_MAP.get(val)
                 if new_state:
                     self.name_list.append(
-                        (place.handle, (None, new_state[0], None, 
+                        (place.handle, (None, new_state[0], None,
                                   COUNTRY[new_state[1]])))
         self.progress.close()
 
@@ -520,7 +519,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         else:
             self.close()
             from gramps.gui.dialog import OkDialog
-            OkDialog(_('No modifications made'), 
+            OkDialog(_('No modifications made'),
                      _("No place information could be extracted."))
 
     def display(self):
@@ -528,12 +527,12 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         self.top = Glade("changenames.glade")
         window = self.top.toplevel
         self.top.connect_signals({
-            "destroy_passed_object" : self.close, 
-            "on_ok_clicked" : self.on_ok_clicked, 
-            "on_help_clicked" : self.on_help_clicked, 
+            "destroy_passed_object" : self.close,
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_help_clicked" : self.on_help_clicked,
             "on_delete_event"   : self.close,
             })
-        
+
         self.list = self.top.get_object("list")
         self.set_window(window, self.top.get_object('title'), self.label)
         lbl = self.top.get_object('info')
@@ -543,9 +542,9 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
               'be extracted from the place title. Select the places you '
               'wish Gramps to convert.'))
 
-        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
-                                   GObject.TYPE_STRING, GObject.TYPE_STRING, 
-                                   GObject.TYPE_STRING, GObject.TYPE_STRING, 
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING, GObject.TYPE_STRING,
                                    GObject.TYPE_STRING)
 
         r = Gtk.CellRendererToggle()
@@ -558,7 +557,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             if col > 1:
                 render.set_property('editable', True)
                 render.connect('edited', self.__change_name, col)
-            
+
             self.list.append_column(
                 Gtk.TreeViewColumn(title, render, text=col))
         self.list.set_model(self.model)
@@ -585,7 +584,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             self.iter_list.append(handle)
             self.progress.step()
         self.progress.close()
-            
+
         self.show()
 
     def __change_name(self, text, path, new_text, col):
@@ -605,7 +604,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         display_help()
 
     def on_ok_clicked(self, obj):
-        with DbTxn(_("Extract Place data"), self.db, batch=True) as self.trans:
+        with self.db.DbTxn(_("Extract Place data"), batch=True) as self.trans:
             self.db.disable_signals()
             changelist = [node for node in self.iter_list
                           if self.model.get_value(node, 0)]
@@ -627,10 +626,10 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         self.db.enable_signals()
         self.db.request_rebuild()
         self.close()
-        
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class ExtractCityOptions(tool.ToolOptions):

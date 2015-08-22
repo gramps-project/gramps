@@ -48,7 +48,6 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
 from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
-from gramps.gen.db import DbTxn
 
 #-------------------------------------------------------------------------
 #
@@ -81,9 +80,9 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.dbstate = dbstate
         self.uistate = uistate
         self.db = dbstate.db
-        
+
         topDialog = Glade()
-        
+
         topDialog.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
@@ -229,7 +228,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
 
     def applyTagClicked(self, button) :
@@ -238,7 +237,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         tag_name    = str(self.tagcombo.get_active_text())
 
         # start the db transaction
-        with DbTxn("Tag not related", self.db) as transaction:
+        with self.db.DbTxn("Tag not related") as transaction:
 
             tag = self.db.get_tag_from_name(tag_name)
             if not tag:
@@ -258,18 +257,18 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
                     # translators: leave all/any {...} untranslated
                     #TRANS: no singular form needed, as rows is always > 1
                     ngettext("Setting tag for {number_of} person",
-                             "Setting tag for {number_of} people", 
+                             "Setting tag for {number_of} people",
                              rows).format(number_of=rows),
                     rows)
 
-    
+
             # iterate through all of the selected rows
             (model, paths) = self.treeSelection.get_selected_rows()
 
             for path in paths:
                 if progress:
                     progress.step()
-    
+
                 # for the current row, get the GID and the person from the database
                 iter        = self.model.get_iter(path)
                 personGid   = self.model.get_value(iter, 1)
@@ -475,7 +474,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
     def get_tag_list(self, person):
         """
-        Return a sorted list of tag names for the given person. 
+        Return a sorted list of tag names for the given person.
         """
         tags = []
         for handle in person.get_tag_list():

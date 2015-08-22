@@ -44,7 +44,6 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
-from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
 from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
@@ -67,7 +66,7 @@ class EditPlace(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, place, callback=None):
         EditPrimary.__init__(self, dbstate, uistate, track, place,
-                             dbstate.db.get_place_from_handle, 
+                             dbstate.db.get_place_from_handle,
                              dbstate.db.get_place_from_gramps_id, callback)
 
     def empty_object(self):
@@ -76,7 +75,7 @@ class EditPlace(EditPrimary):
     def _local_init(self):
         self.width_key = 'interface.place-width'
         self.height_key = 'interface.place-height'
-        
+
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
         self.place_name_label = self.top.get_object('place_name_label')
@@ -97,43 +96,43 @@ class EditPlace(EditPrimary):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('place-rebuild', self._do_close)
         self._add_db_signal('place-delete', self.check_for_close)
 
     def _setup_fields(self):
-        
+
         if not config.get('preferences.place-auto'):
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(self.top.get_object("place_title"),
                                         self.obj.set_title, self.obj.get_title,
                                         self.db.readonly)
-        
+
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.obj.get_name().set_value,
                                     self.obj.get_name().get_value,
                                     self.db.readonly,
                                     changed=self.name_changed)
-        
+
         edit_button = self.top.get_object("name_button")
         edit_button.connect('clicked', self.edit_place_name)
 
         self.gid = MonitoredEntry(self.top.get_object("gid"),
-                                  self.obj.set_gramps_id, 
+                                  self.obj.set_gramps_id,
                                   self.obj.get_gramps_id, self.db.readonly)
-        
-        self.tags = MonitoredTagList(self.top.get_object("tag_label"), 
-                                     self.top.get_object("tag_button"), 
-                                     self.obj.set_tag_list, 
+
+        self.tags = MonitoredTagList(self.top.get_object("tag_label"),
+                                     self.top.get_object("tag_button"),
+                                     self.obj.set_tag_list,
                                      self.obj.get_tag_list,
                                      self.db,
                                      self.uistate, self.track,
                                      self.db.readonly)
 
-        self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
+        self.privacy = PrivacyButton(self.top.get_object("private"), self.obj,
                                      self.db.readonly)
 
         self.place_type = MonitoredDataType(self.top.get_object("place_type"),
@@ -162,7 +161,7 @@ class EditPlace(EditPrimary):
         self.latitude.connect("validate", self._validate_coordinate, "lat")
         #force validation now with initial entry
         self.top.get_object("lat_entry").validate(force=True)
-        
+
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(_("Invalid latitude (syntax: 18\u00b09'") +
@@ -185,7 +184,7 @@ class EditPlace(EditPrimary):
         """
         Create the notebook tabs and inserts them into the main
         window.
-        
+
         """
         notebook = self.top.get_object('notebook3')
 
@@ -197,7 +196,7 @@ class EditPlace(EditPrimary):
                                                self.update_title)
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
-        
+
         self.alt_name_list = PlaceNameEmbedList(self.dbstate,
                                                 self.uistate,
                                                 self.track,
@@ -212,7 +211,7 @@ class EditPlace(EditPrimary):
                                               self.obj.alt_loc)
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
-        
+
         self.citation_list = CitationEmbedList(self.dbstate,
                                                self.uistate,
                                                self.track,
@@ -220,7 +219,7 @@ class EditPlace(EditPrimary):
                                                self.get_menu_title())
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
-        
+
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
                                 self.track,
@@ -229,14 +228,14 @@ class EditPlace(EditPrimary):
                                 notetype=NoteType.PLACE)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
                                       self.track,
                                       self.obj.get_media_list())
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
-       
+
         self.web_list = WebEmbedList(self.dbstate,
                                      self.uistate,
                                      self.track,
@@ -271,7 +270,7 @@ class EditPlace(EditPrimary):
 
         if self.obj.get_name().get_value().strip() == '':
             msg1 = _("Cannot save place. Name not entered.")
-            msg2 = _("You must enter a name before saving.") 
+            msg2 = _("You must enter a name before saving.")
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
@@ -282,7 +281,7 @@ class EditPlace(EditPrimary):
             name = place_displayer.display(self.db, prim_object)
             msg1 = _("Cannot save place. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '" 
+                         "value %(id)s. This value is already used by '"
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
@@ -290,7 +289,7 @@ class EditPlace(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
+        with self.db.DbTxn('') as trans:
             place_title = place_displayer.display(self.db, self.obj)
             if not self.obj.get_handle():
                 self.db.add_place(self.obj, trans)
@@ -301,7 +300,7 @@ class EditPlace(EditPrimary):
                 self.db.commit_place(self.obj, trans)
                 msg = _("Edit Place (%s)") % place_title
             trans.set_description(msg)
-        
+
         self.close()
         if self.callback:
             self.callback(self.obj)
@@ -313,7 +312,7 @@ class EditPlace(EditPrimary):
 #-------------------------------------------------------------------------
 class DeletePlaceQuery(object):
 
-    def __init__(self, dbstate, uistate, place, person_list, family_list, 
+    def __init__(self, dbstate, uistate, place, person_list, family_list,
                  event_list):
         self.db = dbstate.db
         self.uistate = uistate
@@ -321,12 +320,12 @@ class DeletePlaceQuery(object):
         self.person_list = person_list
         self.family_list = family_list
         self.event_list  = event_list
-        
+
     def query_response(self):
         place_title = place_displayer.display(self.db, self.obj)
-        with DbTxn(_("Delete Place (%s)") % place_title, self.db) as trans:
+        with self.db.DbTxn(_("Delete Place (%s)") % place_title) as trans:
             self.db.disable_signals()
-        
+
             place_handle = self.obj.get_handle()
 
             for handle in self.person_list:

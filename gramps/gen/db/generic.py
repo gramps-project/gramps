@@ -1481,6 +1481,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return DbGenericTxn
 
+    def DbTxn(self, message, batch=False, **kwargs):
+        """
+        Create a transaction for this database type.
+
+        kwargs may contain:
+           no_magic
+        """
+        return DbGenericTxn(message, batch, **kwargs)
+
     def get_from_name_and_handle(self, table_name, handle):
         """
         Returns a gen.lib object (or None) given table_name and

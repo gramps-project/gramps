@@ -49,10 +49,9 @@ from gi.repository import Pango
 from gramps.gen.config import config
 from .editprimary import EditPrimary
 from .displaytabs import GrampsTab, NoteBackRefList
-from ..widgets import (MonitoredDataType, MonitoredCheckbox, 
+from ..widgets import (MonitoredDataType, MonitoredCheckbox,
                          MonitoredEntry, PrivacyButton, MonitoredTagList)
 from gramps.gen.lib import Note
-from gramps.gen.db import DbTxn
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -106,28 +105,28 @@ class NoteTab(GrampsTab):
 #-------------------------------------------------------------------------
 
 class EditNote(EditPrimary):
-    def __init__(self, dbstate, uistate, track, note, callback=None, 
+    def __init__(self, dbstate, uistate, track, note, callback=None,
                  callertitle = None, extratype = None):
         """Create an EditNote window. Associate a note with the window.
-        
-        @param callertitle: Text passed by calling object to add to title 
+
+        @param callertitle: Text passed by calling object to add to title
         @type callertitle: str
         @param extratype: Extra L{NoteType} values to add to the default types.
         They are removed from the ignorelist of L{NoteType}.
         @type extratype: list of int
-        
+
         """
         self.callertitle = callertitle
         self.extratype = extratype
-        EditPrimary.__init__(self, dbstate, uistate, track, note, 
-                             dbstate.db.get_note_from_handle, 
+        EditPrimary.__init__(self, dbstate, uistate, track, note,
+                             dbstate.db.get_note_from_handle,
                              dbstate.db.get_note_from_gramps_id, callback)
 
     def empty_object(self):
         """Return an empty Note object for comparison for changes.
-        
+
         It is used by the base class L{EditPrimary}.
-        
+
         """
         empty_note = Note();
         if self.extratype:
@@ -149,24 +148,24 @@ class EditNote(EditPrimary):
                     'context' : self.callertitle
                 }
             else :
-                title = _('New Note')  
-            
+                title = _('New Note')
+
         return title
-    
+
     def get_custom_notetypes(self):
         return self.dbstate.db.get_note_types()
 
     def _local_init(self):
         """Local initialization function.
-        
+
         Perform basic initialization, including setting up widgets
         and the glade interface. It is called by the base class L{EditPrimary},
         and overridden here.
-        
+
         """
         self.width_key = 'interface.note-width'
         self.height_key = 'interface.note-height'
-        
+
         self.top = Glade()
 
         win = self.top.toplevel
@@ -177,12 +176,12 @@ class EditNote(EditPrimary):
         notebook = self.top.get_object('note_notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.ntab = NoteTab(self.dbstate, self.uistate, self.track, 
+        self.ntab = NoteTab(self.dbstate, self.uistate, self.track,
                               _('_Note'), vboxnote)
         self.track_ref_for_deletion("ntab")
-        
+
         self.build_interface()
-        
+
     def _setup_fields(self):
         """Get control widgets and attach them to Note's attributes."""
         self.type_selector = MonitoredDataType(
@@ -199,17 +198,17 @@ class EditNote(EditPrimary):
             self.obj.set_format,
             self.obj.get_format,
             readonly = self.db.readonly)
-        
+
         self.gid = MonitoredEntry(
             self.top.get_object('id'),
             self.obj.set_gramps_id,
             self.obj.get_gramps_id,
             self.db.readonly)
-            
+
         self.tags = MonitoredTagList(
-            self.top.get_object("tag_label"), 
-            self.top.get_object("tag_button"), 
-            self.obj.set_tag_list, 
+            self.top.get_object("tag_label"),
+            self.top.get_object("tag_button"),
+            self.obj.set_tag_list,
             self.obj.get_tag_list,
             self.db,
             self.uistate, self.track,
@@ -218,12 +217,12 @@ class EditNote(EditPrimary):
         self.priv = PrivacyButton(
             self.top.get_object("private"),
             self.obj, self.db.readonly)
-        
+
     def _connect_signals(self):
         """Connects any signals that need to be connected.
-        
+
         Called by the init routine of the base class L{EditPrimary}.
-        
+
         """
         self.define_ok_button(self.top.get_object('ok'), self.save)
         self.define_cancel_button(self.top.get_object('cancel'))
@@ -231,7 +230,7 @@ class EditNote(EditPrimary):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('note-rebuild', self._do_close)
@@ -251,7 +250,7 @@ class EditNote(EditPrimary):
         self.backref_tab = self._add_tab(notebook, self.rlist)
         self.track_ref_for_deletion("rlist")
         self.track_ref_for_deletion("backref_tab")
-        
+
         self._setup_notebook_tabs(notebook)
 
     def build_interface(self):
@@ -263,7 +262,7 @@ class EditNote(EditPrimary):
         if not self.dbstate.db.readonly:
             vbox = self.top.get_object('container')
             vbox.pack_start(self.texteditor.get_toolbar(), False, False, 0)
-                
+
         # setup initial values for textview and textbuffer
         if self.obj:
             self.empty = False
@@ -295,16 +294,16 @@ class EditNote(EditPrimary):
     def save(self, *obj):
         """Save the data."""
         self.ok_button.set_sensitive(False)
-        
+
         self.update_note()
-        
+
         if self.object_is_empty():
-            ErrorDialog(_("Cannot save note"), 
+            ErrorDialog(_("Cannot save note"),
                         _("No data exists for this note. Please "
                           "enter data or cancel the edit."))
             self.ok_button.set_sensitive(True)
             return
-        
+
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save note. ID already exists.")
@@ -316,8 +315,8 @@ class EditNote(EditPrimary):
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
-        
-        with DbTxn('', self.db) as trans:
+
+        with self.db.DbTxn('') as trans:
             if not self.obj.get_handle():
                 self.db.add_note(self.obj, trans)
                 msg = _("Add Note")
@@ -327,7 +326,7 @@ class EditNote(EditPrimary):
                 self.db.commit_note(self.obj, trans)
                 msg = _("Edit Note")
             trans.set_description(msg)
-            
+
         if self.callback:
             self.callback(self.obj.get_handle())
         self.close()
@@ -340,10 +339,10 @@ class DeleteNoteQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        with DbTxn(_("Delete Note (%s)") % self.note.get_gramps_id(),
-                   self.db) as trans:
+        with self.db.DbTxn(_("Delete Note (%s)") % self.note.get_gramps_id()
+                   ) as trans:
             self.db.disable_signals()
-        
+
             (person_list, family_list, event_list, place_list, source_list,
              citation_list, media_list, repo_list) = self.the_lists
 

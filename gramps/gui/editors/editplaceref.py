@@ -32,7 +32,6 @@ from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
                           GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gramps.gen.lib import NoteType
-from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError, WindowActiveError
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
@@ -66,13 +65,13 @@ class EditPlaceRef(EditReference):
         notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
         tblref =  self.top.get_object('table62')
         notebook = self.top.get_object('notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track,
                               _('_General'), tblref)
 
     def _connect_signals(self):
@@ -83,7 +82,7 @@ class EditPlaceRef(EditReference):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('place-rebuild', self.close)
@@ -102,7 +101,7 @@ class EditPlaceRef(EditReference):
         self.date_field = MonitoredDate(self.top.get_object("date_entry"),
                                         self.top.get_object("date_stat"),
                                         self.source_ref.get_date_object(),
-                                        self.uistate, self.track, 
+                                        self.uistate, self.track,
                                         self.db.readonly)
 
         if not config.get('preferences.place-auto'):
@@ -112,29 +111,29 @@ class EditPlaceRef(EditReference):
                                         self.source.set_title,
                                         self.source.get_title,
                                         self.db.readonly)
-        
+
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.source.get_name().set_value,
                                     self.source.get_name().get_value,
                                     self.db.readonly,
                                     changed=self.name_changed)
-        
+
         edit_button = self.top.get_object("name_button")
         edit_button.connect('clicked', self.edit_place_name)
 
         self.gid = MonitoredEntry(self.top.get_object("gid"),
-                                  self.source.set_gramps_id, 
+                                  self.source.set_gramps_id,
                                   self.source.get_gramps_id, self.db.readonly)
-        
-        self.tags = MonitoredTagList(self.top.get_object("tag_label"), 
-                                     self.top.get_object("tag_button"), 
-                                     self.source.set_tag_list, 
+
+        self.tags = MonitoredTagList(self.top.get_object("tag_label"),
+                                     self.top.get_object("tag_button"),
+                                     self.source.set_tag_list,
                                      self.source.get_tag_list,
                                      self.db,
                                      self.uistate, self.track,
                                      self.db.readonly)
 
-        self.privacy = PrivacyButton(self.top.get_object("private"), self.source, 
+        self.privacy = PrivacyButton(self.top.get_object("private"), self.source,
                                      self.db.readonly)
 
         self.place_type = MonitoredDataType(self.top.get_object("place_type"),
@@ -183,7 +182,7 @@ class EditPlaceRef(EditReference):
         """
         Create the notebook tabs and inserts them into the main
         window.
-        
+
         """
         notebook = self.top.get_object('notebook')
         notebook_ref = self.top.get_object('notebook_ref')
@@ -201,7 +200,7 @@ class EditPlaceRef(EditReference):
                                                self.update_title)
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
-        
+
         self.alt_name_list = PlaceNameEmbedList(self.dbstate,
                                                 self.uistate,
                                                 self.track,
@@ -216,14 +215,14 @@ class EditPlaceRef(EditReference):
                                               self.source.alt_loc)
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
-        
+
         self.citation_list = CitationEmbedList(self.dbstate,
                                                self.uistate,
                                                self.track,
                                                self.source.get_citation_list())
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
-        
+
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
                                 self.track,
@@ -231,14 +230,14 @@ class EditPlaceRef(EditReference):
                                 notetype=NoteType.PLACE)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
                                       self.track,
                                       self.source.get_media_list())
         self._add_tab(notebook, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
-       
+
         self.web_list = WebEmbedList(self.dbstate,
                                      self.uistate,
                                      self.track,
@@ -279,15 +278,15 @@ class EditPlaceRef(EditReference):
             return
 
         if self.source.handle:
-            with DbTxn(_("Modify Place"), self.db) as trans:
+            with self.db.DbTxn(_("Modify Place")) as trans:
                 self.db.commit_place(self.source, trans)
         else:
             if self.check_for_duplicate_id('Place'):
                 return
-            with DbTxn(_("Add Place"), self.db) as trans:
+            with self.db.DbTxn(_("Add Place")) as trans:
                 self.db.add_place(self.source, trans)
             self.source_ref.ref = self.source.handle
-        
+
         if self.update:
             self.update(self.source_ref, self.source)
 
