@@ -28,7 +28,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
                     but the Python bindings for this must also be present.
                     Without this the GeoView will not be active, see
-                    http://gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Main_Window#Geography_Category
+                    https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Categories#Geography_Category
 
    Graphviz         Enable creation of graphs using Graphviz engine.
                     Without this, three reports cannot be run.
@@ -42,7 +42,8 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     sorting is done through built-in libraries. PyICU is
                     fairly widely available through the package managers of
                     distributions. See http://pyicu.osafoundation.org/
-                    (These are Python bindings for the ICU package.)
+                    (These are Python bindings for the ICU package. 
+                    https://pypi.python.org/pypi/PyICU/)
 
 The following packages are optional
 
@@ -52,7 +53,7 @@ The following packages are optional
 
    rcs              The GNU Revision Control System (RCS) can be used to manage
                     multiple revisions of your family trees. See info at
-                    http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
+                    https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
                     Only rcs is needed, NO python bindings are required
 
    PIL              Python Image Library is needed to crop
