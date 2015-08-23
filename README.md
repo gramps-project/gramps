@@ -1,10 +1,14 @@
+The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)
+===================
+We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
+
 Please read the **COPYING** file first.
 
 Please read the **INSTALL** file if you intend to build from source.
 
 Requirements
-==========
-The following packages *MUST* be installed in order for Gramps to work:
+============
+The following packages **MUST** be installed in order for Gramps to work:
 
 * Python 3.2 or greater
 * GTK 3.10 or greater
@@ -108,16 +112,9 @@ No longer needed:
 * Since Gramps 3.1:
    **yelp** -             Gnome help browser. No offline help is shipped see Gramps website for User manual
 
-
 Documentation
 -------------
 The User Manual is maintained on the Gramps website:
 
 * https://www.gramps-project.org/wiki/index.php?title=User_manual
-
-
-The Gramps Project ( https://gramps-project.org )
--------------------------------------------------
-We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
-
 
