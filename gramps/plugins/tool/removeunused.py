@@ -54,6 +54,7 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.datehandler import displayer as _dd
@@ -157,7 +158,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.warn_tree.connect('button_press_event', self.double_click)
 
         self.selection = self.warn_tree.get_selection()
-
+        
         self.mark_button = self.top.get_object('mark_button')
         self.mark_button.connect('clicked', self.mark_clicked)
 
@@ -167,10 +168,10 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.invert_button = self.top.get_object('invert_button')
         self.invert_button.connect('clicked', self.invert_clicked)
 
-        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
-                                        GObject.TYPE_STRING,
-                                        GObject.TYPE_STRING,
-                                        GObject.TYPE_STRING,
+        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
+                                        GObject.TYPE_STRING, 
                                         GObject.TYPE_STRING)
         self.sort_model = self.real_model.sort_new_with_model()
         self.warn_tree.set_model(self.sort_model)
@@ -185,11 +186,11 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                                            active=RemoveUnused.MARK_COL)
         mark_column.set_sort_column_id(RemoveUnused.MARK_COL)
         self.warn_tree.append_column(mark_column)
-
+        
         # Add image column
         img_column = Gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer, self.get_image)
-        self.warn_tree.append_column(img_column)
+        self.warn_tree.append_column(img_column)        
 
         # Add column with object gramps_id
         id_column = Gtk.TreeViewColumn(_('ID'), self.renderer,
@@ -248,7 +249,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.uistate.set_busy_cursor(False)
         self.window.get_window().set_cursor(None)
         self.reset()
-
+        
         # Save options
         self.options.handler.save_options()
 
@@ -276,13 +277,13 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
-                        self.add_results((the_type, handle2internal(handle),
+                        self.add_results((the_type, handle2internal(handle), 
                                           data))
                     self.update()
             self.reset()
 
     def do_remove(self, obj):
-        with self.db.DbTxn(_("Remove unused objects"), batch=False) as trans:
+        with DbTxn(_("Remove unused objects"), self.db, batch=False) as trans:
             self.db.disable_signals()
 
             for row_num in range(len(self.real_model)-1, -1, -1):
@@ -344,7 +345,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             editor_str = 'from gramps.gui.editors import %s as editor' % (
                             self.tables[the_type]['editor']
                             )
-            exec(editor_str, globals())
+            exec(editor_str, globals())            
             editor(self.dbstate, self.uistate, [], obj)
         except WindowActiveError:
             pass
@@ -369,7 +370,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             name_ix = self.tables[the_type]['name_ix']
             text = data[name_ix]
 
-        # insert a new row into the table
+        # insert a new row into the table        
         self.real_model.append(row=[False, gramps_id, text, the_type, handle])
 
     def get_event_text(self, the_type, handle, data):
@@ -401,7 +402,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 text += '; %s' % _pd.display_event(self.db, event)
 
         return text
-
+        
     def get_note_text(self, the_type, handle, data):
         """
         We need just the first few words of a note as a summary.
@@ -423,7 +424,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
 #------------------------------------------------------------------------
 #
-#
+# 
 #
 #------------------------------------------------------------------------
 class CheckOptions(tool.ToolOptions):

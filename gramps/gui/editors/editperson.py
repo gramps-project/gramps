@@ -55,6 +55,7 @@ from gramps.gen.utils.thumbnails import get_thumbnail_image
 from ..utils import is_right_click, open_file_with_default_application
 from gramps.gen.utils.db import get_birth_or_fallback
 from gramps.gen.lib import NoteType, Person, Surname
+from gramps.gen.db import DbTxn
 from .. import widgets
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
@@ -258,8 +259,8 @@ class EditPerson(EditPrimary):
         tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
                    DdTargets.PERSON_LINK.target_flags,
                    DdTargets.PERSON_LINK.app_id)
-        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                   [],
+        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                   [], 
                                    Gdk.DragAction.COPY)
         self.contexteventbox.drag_source_set_target_list(tglist)
         self.contexteventbox.drag_source_set_icon_name('gramps-person')
@@ -483,7 +484,7 @@ class EditPerson(EditPrimary):
         self.srcref_list = CitationEmbedList(self.dbstate,
                                            self.uistate,
                                            self.track,
-                                           self.obj.get_citation_list(),
+                                           self.obj.get_citation_list(), 
                                            self.get_menu_title())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
@@ -857,7 +858,7 @@ class EditPerson(EditPrimary):
 
         self.db.set_birth_death_index(self.obj)
 
-        with self.db.DbTxn('') as trans:
+        with DbTxn('', self.db) as trans:
             self._update_family_ids()
             if not self.obj.get_handle():
                 self.db.add_person(self.obj, trans)
@@ -970,8 +971,8 @@ class EditPerson(EditPrimary):
         Load the person's main photo using the Thumbnailer.
         """
         pixbuf = get_thumbnail_image(
-                        media_path_full(self.dbstate.db,
-                                              obj.get_path()),
+                        media_path_full(self.dbstate.db, 
+                                              obj.get_path()), 
                         obj.get_mime_type(),
                         ref.get_rectangle())
 

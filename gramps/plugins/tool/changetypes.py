@@ -34,6 +34,7 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.lib import EventType
+from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 
@@ -62,16 +63,16 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
     def init_gui(self):
         # Draw dialog and make it handle everything
-
+        
         self.glade = Glade()
-
+            
         self.auto1 = self.glade.get_object("original")
         self.auto2 = self.glade.get_object("new")
 
         # Need to display localized event names
         etype = EventType()
         event_names = sorted(etype.get_standard_names(), key=glocale.sort_key)
-
+        
         fill_combo(self.auto1,event_names)
         fill_combo(self.auto2,event_names)
 
@@ -89,7 +90,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
             "on_apply_clicked"  : self.on_apply_clicked,
             "on_delete_event"   : self.close,
             })
-
+            
         self.show()
 
     def build_menu_names(self, obj):
@@ -103,7 +104,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         modified = 0
 
-        with self.db.DbTxn(_('Change types'), batch=True) as self.trans:
+        with DbTxn(_('Change types'), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             with self.user.progress(
                     _('Analyzing Events'), '',
@@ -138,17 +139,17 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         the_type.set(self.auto2.get_child().get_text())
         self.options.handler.options_dict['totype'] = the_type.xml_str()
-
+        
         self.run_tool(self.window)
 
         # Save options
         self.options.handler.save_options()
-
+        
         self.close()
 
 #------------------------------------------------------------------------
 #
-#
+# 
 #
 #------------------------------------------------------------------------
 class ChangeTypesOptions(tool.ToolOptions):

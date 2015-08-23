@@ -43,6 +43,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Date, Event, EventRef, EventType, Name, Person, Surname, Tag
+from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.dialog import QuestionDialog
@@ -129,7 +130,7 @@ class DateParserDisplayTest(tool.Tool):
                   "This is a textual date")
             dates.append( d)
             self.progress.step()
-
+        
         # test invalid dates
         #dateval = (4,7,1789,False,5,8,1876,False)
         #for l in range(1,len(dateval)):
@@ -176,8 +177,8 @@ class DateParserDisplayTest(tool.Tool):
         #      Date.CAL_GREGORIAN,
         #      (4,7,1789,False,5,88,1876,False),"Text comment")
         #dates.append( d)
-
-        with self.db.DbTxn(_("Date Test Plugin"), batch=True) as self.trans:
+        
+        with DbTxn(_("Date Test Plugin"), self.db, batch=True) as self.trans:
             self.db.disable_signals()
             self.progress.set_pass(_('Generating dates'),
                                    len(dates))
@@ -226,7 +227,7 @@ class DateParserDisplayTest(tool.Tool):
                     ndate = Date()
                     ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                     person.add_tag(fail_handle)
-
+                
                 if dateval.get_modifier() != Date.MOD_TEXTONLY \
                        and ndate.get_modifier() == Date.MOD_TEXTONLY:
                     # parser was unable to correctly parse the string
@@ -236,7 +237,7 @@ class DateParserDisplayTest(tool.Tool):
                         and dateval.get_text().count("Traceback") \
                         and pass_handle in person.get_tag_list():
                     person.add_tag(fail_handle)
-
+                
                 devent = Event()
                 devent.set_type(EventType.DEATH)
                 devent.set_date_object(ndate)

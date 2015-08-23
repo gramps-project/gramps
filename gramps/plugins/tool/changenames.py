@@ -35,6 +35,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.db import find_surname_name, DbTxn
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
@@ -73,7 +74,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         uistate = user.uistate
         self.label = _('Capitalization changes')
         self.cb = callback
-
+        
         ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.set_window(Gtk.Window(),Gtk.Label(),'')
 
@@ -85,9 +86,9 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
         self.name_list = []
-
+        
         for name in self.db.get_surname_list():
-            name.strip()
+            name.strip()            
             namesplitSP= name.split()
             lSP = len(namesplitSP)
             namesplitHY= name.split('-')
@@ -130,10 +131,10 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
                 if notcap:
                     # Multiple surnames possibly after frefix
                     self.name_list.append(name)
-
+                    
             if uistate:
                 self.progress.step()
-
+        
         if self.name_list:
             self.display()
         else:
@@ -144,7 +145,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
                      parent=uistate.window)
 
     def name_cap(self, name):
-        name.strip()
+        name.strip()            
         namesplitSP = name.split()
         lSP = len(namesplitSP)
         lHY = len(name.split('-'))
@@ -157,10 +158,10 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
             #if name != name.capitalize():
             # Single surname without space(s) or hyphen(s), normal case
             return name.capitalize()
-        else:
+        else: 
             # more than one string in surname but no hyphen
             # check if first string is in prefix_list, if so CAP the rest
-            # Names like (von) Kohl(-)Brandt
+            # Names like (von) Kohl(-)Brandt 
             result = ""
             s1 = 0
             if namesplitSP[0].lower() in prefix_list:
@@ -181,11 +182,11 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
             "on_help_clicked" : self.on_help_clicked,
             "on_delete_event"   : self.close,
             })
-
+        
         self.list = self.top.get_object("list")
         self.set_window(window,self.top.get_object('title'),self.label)
 
-        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
                                    GObject.TYPE_STRING)
 
         r = Gtk.CellRendererToggle()
@@ -214,7 +215,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
             self.iter_list.append(handle)
             self.progress.step()
         self.progress.close()
-
+            
         self.show()
 
     def toggled(self,cell,path_string):
@@ -230,7 +231,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
-        with self.db.DbTxn(_("Capitalization changes"), batch=True
+        with DbTxn(_("Capitalization changes"), self.db, batch=True
                    ) as self.trans:
             self.db.disable_signals()
             changelist = set(self.model.get_value(node,1)
@@ -261,10 +262,10 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         # self.parent.bookmarks.redraw()
         self.close()
         self.cb()
-
+        
 #------------------------------------------------------------------------
 #
-#
+# 
 #
 #------------------------------------------------------------------------
 class ChangeNamesOptions(tool.ToolOptions):

@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -59,6 +59,7 @@ from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
 from gramps.gen.lib import MediaObject
+from gramps.gen.db import DbTxn
 from gramps.gui.editors import EditMedia, DeleteMediaQuery
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.filters.sidebar import MediaSidebarFilter
@@ -88,7 +89,7 @@ class MediaView(ListView):
     COL_PRIV = 5
     COL_TAGS = 6
     COL_CHAN = 7
-
+    
     # column definitions
     COLUMNS = [
         (_('Title'), TEXT, None),
@@ -107,8 +108,8 @@ class MediaView(ListView):
         ('columns.rank', [COL_TITLE, COL_ID, COL_TYPE, COL_PATH,
                            COL_DATE, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [200, 75, 100, 200, 150, 40, 100, 150])
-        )
-
+        )    
+    
     ADD_MSG     = _("Add a new media object")
     EDIT_MSG    = _("Edit the selected media object")
     DEL_MSG     = _("Delete the selected media object")
@@ -119,23 +120,23 @@ class MediaView(ListView):
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
 
         signal_map = {
-            'media-add'     : self.row_add,
-            'media-update'  : self.row_update,
-            'media-delete'  : self.row_delete,
+            'media-add'     : self.row_add, 
+            'media-update'  : self.row_update, 
+            'media-delete'  : self.row_delete, 
             'media-rebuild' : self.object_build,
             }
 
         ListView.__init__(
-            self, _('Media'), pdata, dbstate, uistate,
-            MediaModel,
+            self, _('Media'), pdata, dbstate, uistate, 
+            MediaModel, 
             signal_map,
             MediaBookmarks, nav_group,
             filter_class=MediaSidebarFilter,
             multiple=True)
 
         self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            '<PRIMARY>BackSpace' : self.key_delete,
+            '<PRIMARY>J' : self.jump, 
+            '<PRIMARY>BackSpace' : self.key_delete, 
             })
 
         self.additional_uis.append(self.additional_ui())
@@ -145,7 +146,7 @@ class MediaView(ListView):
 
     def drag_info(self):
         """
-        Return the type of DND targets that this view will accept. For Media
+        Return the type of DND targets that this view will accept. For Media 
         View, we will accept media objects.
         """
         return DdTargets.MEDIAOBJ
@@ -166,9 +167,9 @@ class MediaView(ListView):
         """
         Handle the standard gtk interface for drag_data_received.
 
-        If the selection data is define, extract the value from sel_data.data,
+        If the selection data is define, extract the value from sel_data.data, 
         and decide if this is a move or a reorder.
-        The only data we accept on mediaview is dropping a file, so URI_LIST.
+        The only data we accept on mediaview is dropping a file, so URI_LIST. 
         We assume this is what we obtain
         """
         if not sel_data:
@@ -193,10 +194,10 @@ class MediaView(ListView):
                 basename = os.path.basename(name)
                 (root, ext) = os.path.splitext(basename)
                 photo.set_description(root)
-                with self.dbstate.db.DbTxn(_("Drag Media Object")) as trans:
+                with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
                     self.dbstate.db.add_object(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
-
+                
     def define_actions(self):
         """
         Defines the UIManager actions specific to Media View. We need to make
@@ -205,18 +206,18 @@ class MediaView(ListView):
         """
         ListView.define_actions(self)
 
-        self._add_action('FilterEdit', None, _('Media Filter Editor'),
+        self._add_action('FilterEdit', None, _('Media Filter Editor'), 
                          callback=self.filter_editor)
-        self._add_action('OpenMedia', 'gramps-viewmedia', _('View'),
-                         tip=_("View in the default viewer"),
+        self._add_action('OpenMedia', 'gramps-viewmedia', _('View'), 
+                         tip=_("View in the default viewer"), 
                          callback=self.view_media)
-        self._add_action('OpenContainingFolder', None,
-                         _('Open Containing _Folder'),
-                         tip=_("Open the folder containing the media file"),
+        self._add_action('OpenContainingFolder', None, 
+                         _('Open Containing _Folder'), 
+                         tip=_("Open the folder containing the media file"), 
                          callback=self.open_containing_folder)
 
         self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-
+                        
     def view_media(self, obj):
         """
         Launch external viewers for the selected objects.
@@ -279,8 +280,8 @@ class MediaView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>

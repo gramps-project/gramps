@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -44,6 +44,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import EventRoleType
+from gramps.gen.db import DbTxn
 from gramps.gen.utils.db import family_name
 
 from gramps.gui.plug import tool
@@ -56,12 +57,12 @@ from gramps.gen.display.name import displayer as name_displayer
 #-------------------------------------------------------------------------
 class EventNames(tool.BatchTool):
     """
-    Look for events that do not have a description, and build the description
-    from the item that contains it.
-
-    Looks for a PRIMARY role type for events attached to a persons, and a
+    Look for events that do not have a description, and build the description 
+    from the item that contains it. 
+    
+    Looks for a PRIMARY role type for events attached to a persons, and a 
     FAMILY role for an event that is attached to a family.
-
+    
     """
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
@@ -75,11 +76,11 @@ class EventNames(tool.BatchTool):
         """
         Perform the actual extraction of information.
         """
-        with self.db.DbTxn(_("Event name changes"), batch=True) as trans:
+        with DbTxn(_("Event name changes"), self.db, batch=True) as trans:
             self.db.disable_signals()
             self.change = False
             counter = 0
-
+        
             with self.user.progress(
                     _("Extract Event Description"), '',
                     2) as step:
@@ -112,12 +113,12 @@ class EventNames(tool.BatchTool):
 
         if self.change == True:
             # translators: leave all/any {...} untranslated
-            message = ngettext("{quantity} event description has been added",
+            message = ngettext("{quantity} event description has been added", 
                                "{quantity} event descriptions have been added",
                                counter).format(quantity=counter)
             self.user.info(_('Modifications made'), message)
         else:
-            self.user.info(_('No modifications made'),
+            self.user.info(_('No modifications made'), 
                            _("No event description has been added."))
 
 #-------------------------------------------------------------------------
@@ -137,8 +138,8 @@ def person_event_name(event, person):
     """
     if not event.get_description():
         text = EVENT_PERSON_STR % {
-            'event_name' : str(event.get_type()),
-            'person' : name_displayer.display(person),
+            'event_name' : str(event.get_type()), 
+            'person' : name_displayer.display(person), 
             }
         event.set_description(text)
 
@@ -148,14 +149,14 @@ def family_event_name(event, family, dbase):
     """
     if not event.get_description():
         text = EVENT_FAMILY_STR % {
-            'event_name' : str(event.get_type()),
-            'family' : family_name(family, dbase),
+            'event_name' : str(event.get_type()), 
+            'family' : family_name(family, dbase), 
             }
         event.set_description(text)
-
+            
 #------------------------------------------------------------------------
 #
-#
+# 
 #
 #------------------------------------------------------------------------
 class EventNamesOptions(tool.ToolOptions):

@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -35,6 +35,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from gramps.gen.sort import Sort
+from gramps.gen.db import DbTxn
 from gramps.gui.plug import MenuToolOptions, PluginWindows
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.menu import FilterOption, PersonOption, \
@@ -93,7 +94,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.sort = Sort(self.db)
-        with self.db.DbTxn(_("Sort event changes"), batch=True) as trans:
+        with DbTxn(_("Sort event changes"), self.db, batch=True) as trans:
             self.db.disable_signals()
             family_handles = self.sort_person_events(trans)
             if len(family_handles) > 0:
@@ -144,7 +145,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
 
 #------------------------------------------------------------------------
 #
-#
+# 
 #
 #------------------------------------------------------------------------
 class SortEventOptions(MenuToolOptions):
@@ -166,14 +167,14 @@ class SortEventOptions(MenuToolOptions):
         self.__filter.set_help(_("Select the people to sort"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-
+        
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
-
+        
         sort_by = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):

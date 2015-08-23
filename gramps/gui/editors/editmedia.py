@@ -45,6 +45,7 @@ _ = glocale.translation.gettext
 from gramps.gen.constfunc import conv_to_unicode
 from ..utils import open_file_with_default_application
 from gramps.gen.lib import MediaObject, NoteType
+from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
 from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
@@ -67,11 +68,11 @@ class EditMedia(EditPrimary):
     def __init__(self, dbstate, uistate, track, obj, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, obj,
-                             dbstate.db.get_object_from_handle,
+                             dbstate.db.get_object_from_handle, 
                              dbstate.db.get_object_from_gramps_id, callback)
         if not self.obj.get_handle():
             #show the addmedia dialog immediately, with track of parent.
-            AddMediaObject(dbstate, self.uistate, self.track, self.obj,
+            AddMediaObject(dbstate, self.uistate, self.track, self.obj, 
                            self._update_addmedia)
 
     def empty_object(self):
@@ -95,9 +96,9 @@ class EditMedia(EditPrimary):
         assert(self.obj)
         self.width_key = 'interface.media-width'
         self.height_key = 'interface.media-height'
-
+        
         self.glade = Glade()
-        self.set_window(self.glade.toplevel,
+        self.set_window(self.glade.toplevel, 
                         None, self.get_menu_title())
 
     def _connect_signals(self):
@@ -107,7 +108,7 @@ class EditMedia(EditPrimary):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected.
+        Connect any signals that need to be connected. 
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('media-rebuild', self._do_close)
@@ -124,15 +125,15 @@ class EditMedia(EditPrimary):
                                            self.obj.set_description,
                                            self.obj.get_description,
                                            self.db.readonly)
-
+        
         self.gid = MonitoredEntry(self.glade.get_object("gid"),
-                                  self.obj.set_gramps_id,
+                                  self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
 
         self.tags = MonitoredTagList(
-            self.glade.get_object("tag_label"),
-            self.glade.get_object("tag_button"),
-            self.obj.set_tag_list,
+            self.glade.get_object("tag_label"), 
+            self.glade.get_object("tag_button"), 
+            self.obj.set_tag_list, 
             self.obj.get_tag_list,
             self.db,
             self.uistate, self.track,
@@ -144,7 +145,7 @@ class EditMedia(EditPrimary):
         self.pixmap = self.glade.get_object("pixmap")
         ebox = self.glade.get_object('eventbox')
         ebox.connect('button-press-event', self.button_press_event)
-
+        
         self.mimetext = self.glade.get_object("type")
         self.setup_filepath()
         self.determine_mime()
@@ -174,7 +175,7 @@ class EditMedia(EditPrimary):
         mtype = self.obj.get_mime_type()
         if mtype:
             pb = get_thumbnail_image(
-                        media_path_full(self.db, self.obj.get_path()),
+                        media_path_full(self.db, self.obj.get_path()), 
                         mtype)
             self.pixmap.set_from_pixbuf(pb)
         else:
@@ -195,7 +196,7 @@ class EditMedia(EditPrimary):
         self.citation_tab = CitationEmbedList(self.dbstate,
                                               self.uistate,
                                               self.track,
-                                              self.obj.get_citation_list(),
+                                              self.obj.get_citation_list(), 
                                               self.get_menu_title())
         self._add_tab(notebook, self.citation_tab)
         self.track_ref_for_deletion("citation_tab")
@@ -206,11 +207,11 @@ class EditMedia(EditPrimary):
                                       self.obj.get_attribute_list())
         self._add_tab(notebook, self.attr_tab)
         self.track_ref_for_deletion("attr_tab")
-
+        
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
                                 self.track,
-                                self.obj.get_note_list(),
+                                self.obj.get_note_list(), 
                                 notetype=NoteType.MEDIA)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
@@ -246,7 +247,7 @@ class EditMedia(EditPrimary):
         self.determine_mime()
         path = self.file_path.get_text()
         self.obj.set_path(conv_to_unicode(path))
-        AddMediaObject(self.dbstate, self.uistate, self.track, self.obj,
+        AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
                        self._update_addmedia)
 
     def _update_addmedia(self, obj):
@@ -285,7 +286,7 @@ class EditMedia(EditPrimary):
             name = prim_object.get_description()
             msg1 = _("Cannot save media object. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '"
+                         "value %(id)s. This value is already used by '" 
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
@@ -297,19 +298,19 @@ class EditMedia(EditPrimary):
         full_path = media_path_full(self.db, path)
         if os.path.isfile(full_path):
             self.determine_mime()
-        else:
-            msg1 = _("There is no media matching the current path value!")
-            msg2 = _("You have attempted to use the path with "
-                            "value '%(path)s'. This path does not exist!"
-                            " Please enter a different path") % {
-                            'path' : path }
-            ErrorDialog(msg1, msg2)
-            self.ok_button.set_sensitive(True)
-            return
+        else:                                                              
+            msg1 = _("There is no media matching the current path value!") 
+            msg2 = _("You have attempted to use the path with "            
+                            "value '%(path)s'. This path does not exist!"     
+                            " Please enter a different path") % {             
+                            'path' : path }                                   
+            ErrorDialog(msg1, msg2)                                    
+            self.ok_button.set_sensitive(True)                             
+            return                                                         
 
         self.obj.set_path(path)
 
-        with self.db.DbTxn('') as trans:
+        with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
                 self.db.add_object(self.obj, trans)
                 msg = _("Add Media Object (%s)") % self.obj.get_description()
@@ -331,7 +332,7 @@ class EditMedia(EditPrimary):
         entered date when importing from a XML file, so we can get an
         incorrect fail.
         """
-
+        
         if self.db.readonly:
             return False
         elif self.obj.handle:
@@ -352,11 +353,11 @@ class DeleteMediaQuery(object):
         self.uistate = uistate
         self.media_handle = media_handle
         self.the_lists = the_lists
-
+        
     def query_response(self):
-        with self.db.DbTxn(_("Remove Media Object")) as trans:
+        with DbTxn(_("Remove Media Object"), self.db) as trans:
             self.db.disable_signals()
-
+        
             (person_list, family_list, event_list,
                     place_list, source_list, citation_list) = self.the_lists
 
