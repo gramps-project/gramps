@@ -2430,14 +2430,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return DbTxn
 
-    def DbTxn(self, message, batch=False, **kwargs):
+    def DbTxn(self, message, batch=False, no_magic=False):
         """
         Create a transaction for this database type.
 
         kwargs may contain:
            no_magic
         """
-        return DbTxn(message, self, batch, **kwargs)
+        return DbTxn(message, self, batch, no_magic)
 
     def backup(self):
         """
