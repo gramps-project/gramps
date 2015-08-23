@@ -385,7 +385,7 @@ class Bookmarks(object):
 
 
 class DbGenericTxn(DbTxn):
-    def __init__(self, message, batch=False):
+    def __init__(self, message, db, batch=False):
         DbTxn.__init__(self, message, db, batch)
 
     def get(self, key, default=None, txn=None, **kwargs):
@@ -1488,7 +1488,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         kwargs may contain:
            no_magic
         """
-        return DbGenericTxn(message, self, batch)
+        return DbGenericTxn(message, batch)
 
     def get_from_name_and_handle(self, table_name, handle):
         """
