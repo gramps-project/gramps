@@ -385,7 +385,7 @@ class Bookmarks(object):
 
 
 class DbGenericTxn(DbTxn):
-    def __init__(self, message, batch=False):
+    def __init__(self, message, db, batch=False):
         DbTxn.__init__(self, message, db, batch)
 
     def get(self, key, default=None, txn=None, **kwargs):
