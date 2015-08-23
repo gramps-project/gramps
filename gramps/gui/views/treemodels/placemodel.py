@@ -158,7 +158,7 @@ class PlaceBaseModel(object):
         value = conv_lat_lon(data[4], '0', format='ISO-DMS') if data[4] else ''
         if not value:
             return _("Error in format")
-        return value 
+        return value
 
     def column_id(self, data):
         return str(data[1])
@@ -175,10 +175,10 @@ class PlaceBaseModel(object):
         else:
             # There is a problem returning None here.
             return ''
-    
+
     def sort_change(self, data):
         return "%012x" % data[15]
-    
+
     def column_change(self, data):
         return format_time(data[15])
 
@@ -189,9 +189,9 @@ class PlaceBaseModel(object):
         cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
         if not cached:
             value = self.db.get_tag_from_handle(tag_handle).get_name()
-            self.set_cached_value(tag_handle, "TAG_NAME", value)        
-        return value 
-        
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
+
     def column_tag_color(self, data):
         """
         Return the tag color.
@@ -209,8 +209,8 @@ class PlaceBaseModel(object):
                         tag_color = tag.get_color()
                         tag_priority = this_priority
             value = tag_color
-            self.set_cached_value(tag_handle, "TAG_COLOR", value)        
-        return value 
+            self.set_cached_value(tag_handle, "TAG_COLOR", value)
+        return value
 
     def column_tags(self, data):
         """

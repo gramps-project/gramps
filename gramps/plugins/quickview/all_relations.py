@@ -41,17 +41,17 @@ _FMT_VOID = "    %s"
 _FMT_DET1 = "%-3s %-15s"
 _FMT_DET2 = "%-30s %-15s\t%-10s %-2s"
 
-    
+
 def run(database, document, person):
-    """ 
+    """
     Create the report class, and produce the quick report
     """
     report = AllRelReport(database, document, person)
     report.run()
-    
+
 class AllRelReport():
     """
-    Obtains all relationships, displays the relations, and in details, the 
+    Obtains all relationships, displays the relations, and in details, the
     relation path
     """
     def __init__(self, database, document, person):
@@ -77,11 +77,11 @@ class AllRelReport():
         if self.person.handle == self.home_person.handle :
             self.sdoc.paragraph(_FMT_VOID % (
                 _("%(person)s and %(active_person)s are the same person.")) % {
-                'person' : p1, 'active_person' : p2 }) 
+                'person' : p1, 'active_person' : p2 })
             return
 
         #check if not a family too:
-        is_spouse = self.rel_class.is_spouse(self.database, self.home_person, 
+        is_spouse = self.rel_class.is_spouse(self.database, self.home_person,
                                              self.person)
         if is_spouse:
             rel_string = is_spouse
@@ -94,13 +94,13 @@ class AllRelReport():
         #obtain all relationships, assume home person has largest tree
         common, self.msg_list = self.rel_class.get_relationship_distance_new(
                     self.database, self.person, self.home_person,
-                    all_families=True, 
-                    all_dist=True, 
+                    all_families=True,
+                    all_dist=True,
                     only_birth=False)
         #all relations
         if (not common or common[0][0]== -1 ) and not is_spouse:
             rstr = _("%(person)s and %(active_person)s are not "
-                     "directly related.") % {'person' : p2, 
+                     "directly related.") % {'person' : p2,
                                              'active_person' : p1 }
             self.sdoc.paragraph(_FMT_VOID % (rstr))
             self.sdoc.paragraph("")
@@ -111,8 +111,8 @@ class AllRelReport():
                                   skip_list_text=None)
         self.print_details_path(commonnew, self.home_person, self.person)
         self.print_details_path(commonnew, self.home_person, self.person,
-                                first=False) 
-        
+                                first=False)
+
         if not common or common[0][0]== -1 :
             self.remarks(self.msg_list)
             self.msg_list = []
@@ -120,7 +120,7 @@ class AllRelReport():
         else:
             #stop
             return
-        
+
         #we check the inlaw relationships if not partners.
         if is_spouse:
             return
@@ -141,8 +141,8 @@ class AllRelReport():
                 common, msg = \
                     self.rel_class.get_relationship_distance_new(
                             self.database, inlawpers, inlawhome,
-                            all_families=True, 
-                            all_dist=True, 
+                            all_families=True,
+                            all_dist=True,
                             only_birth=False)
                 if msg:
                     self.msg_list += msg
@@ -150,12 +150,12 @@ class AllRelReport():
                     if not inlawwritten:
                         rstr = _("%(person)s and %(active_person)s have "
                                  "following in-law relations:"
-                                ) % {'person' : p2, 
+                                ) % {'person' : p2,
                                      'active_person' : p1 }
                         self.sdoc.paragraph(_FMT_VOID % (rstr))
                         self.sdoc.paragraph("")
                         inlawwritten = True
-                else: 
+                else:
                     continue
                 inlawb = not inlawpers.handle == self.person.handle
                 inlawa = not inlawhome.handle == self.home_person.handle
@@ -165,10 +165,10 @@ class AllRelReport():
         skip_text = []
         count = 1
         for inlawa, inlawb, inlawhome, inlawpers, commonrel in commonnew:
-            count = self.print_details_header(commonrel, 
+            count = self.print_details_header(commonrel,
                                 inlawhome, inlawpers,
                                 inlawa = inlawa, inlawb = inlawb,
-                                count=count, 
+                                count=count,
                                 skip_list=skip, skip_list_text = skip_text)
         count = 1
         for inlawa, inlawb, inlawhome, inlawpers, commonrel in commonnew:
@@ -206,15 +206,15 @@ class AllRelReport():
             'person' : p1 ,'active_person' : p2 })
         self.sdoc.paragraph("")
 
-    def print_details_header(self, relations, pers1, pers2, 
-                             inlawa=False, inlawb=False, count=1, 
+    def print_details_header(self, relations, pers1, pers2,
+                             inlawa=False, inlawb=False, count=1,
                              skip_list=[], skip_list_text = []):
         if not relations or relations[0][0] == -1:
             return count
 
         sdoc = self.sdoc
         rel_class = self.rel_class
-        for relation in relations: 
+        for relation in relations:
             birth = self.rel_class.only_birth(relation[2])\
                         and self.rel_class.only_birth(relation[4])
             distorig = len(relation[4])
@@ -223,15 +223,15 @@ class AllRelReport():
                     and not inlawb:
                 rel_str = self.rel_class.get_sibling_relationship_string(
                             self.rel_class.get_sibling_type(
-                                self.database, pers1, pers2), 
+                                self.database, pers1, pers2),
                             self.home_person.get_gender(),
                             self.person.get_gender())
             else:
                 rel_str = self.rel_class.get_single_relationship_string(
-                                    distorig, distother, 
-                                    self.home_person.get_gender(), 
+                                    distorig, distother,
+                                    self.home_person.get_gender(),
                                     self.person.get_gender(),
-                                    relation[4], relation[2], 
+                                    relation[4], relation[2],
                                     only_birth = birth,
                                     in_law_a = inlawa, in_law_b = inlawb)
             if not skip_list_text is None:
@@ -244,8 +244,8 @@ class AllRelReport():
                 sdoc.paragraph(_FMT % (count, rel_str))
             count += 1
         return count
-        
-    def print_details_path(self, relations, pers1, pers2, 
+
+    def print_details_path(self, relations, pers1, pers2,
                             inlawa=False, inlawb=False,
                             count = 1, skip_list = [], first=True):
         if not relations or relations[0][0] == -1:
@@ -260,7 +260,7 @@ class AllRelReport():
         if first:
             pers = p1
             inlaw = inlawb
-        
+
         if count == 1:
             sdoc.paragraph("")
             sdoc.header1(_("Detailed path from %(person)s to common ancestor"
@@ -273,7 +273,7 @@ class AllRelReport():
             if count in skip_list:
                 count += 1
                 continue
-            counter = str(count - len([x for x in range(count) if x+1 in skip_list])) 
+            counter = str(count - len([x for x in range(count) if x+1 in skip_list]))
             name = _('Unknown')
             if relation[1]:
                 name = self.sdb.name(self.database.get_person_from_handle(
@@ -298,17 +298,17 @@ class AllRelReport():
                 if rel == rel_class.REL_FATHER \
                         or rel == rel_class.REL_FATHER_NOTBIRTH:
                     par_str = _('Father')
-                if (rel == rel_class.REL_FAM_BIRTH 
-                        or rel == rel_class.REL_FAM_NONBIRTH 
+                if (rel == rel_class.REL_FAM_BIRTH
+                        or rel == rel_class.REL_FAM_NONBIRTH
                         or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY
                         or rel == rel_class.REL_FAM_BIRTH_FATH_ONLY):
                     par_str = _('Parents')
                 birth_str = _('Yes')
-                if (rel == rel_class.REL_MOTHER_NOTBIRTH 
-                        or rel == rel_class.REL_FATHER_NOTBIRTH 
+                if (rel == rel_class.REL_MOTHER_NOTBIRTH
+                        or rel == rel_class.REL_FATHER_NOTBIRTH
                         or rel == rel_class.REL_FAM_NONBIRTH):
                     birth_str = _('No')
-                elif (rel == rel_class.REL_FAM_BIRTH_FATH_ONLY 
+                elif (rel == rel_class.REL_FAM_BIRTH_FATH_ONLY
                         or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY):
                     birth_str = _('Partial')
                 famstr = ''
@@ -323,7 +323,7 @@ class AllRelReport():
                 name = ''
             count += 1
         return count
-        
+
     def remarks(self, msg_list, inlaw=False):
         if msg_list :
             sdoc = self.sdoc
@@ -334,7 +334,7 @@ class AllRelReport():
                 sdoc.header1(_("Remarks"))
             sdoc.paragraph("")
             sdoc.paragraph(_("The following problems were encountered:"))
-            
+
             list(map(sdoc.paragraph, msg_list))
             sdoc.paragraph("")
             sdoc.paragraph("")

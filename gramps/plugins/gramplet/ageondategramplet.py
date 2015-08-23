@@ -17,7 +17,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 """
-AgeOnDateGramplet computes the age for everyone thought to be alive 
+AgeOnDateGramplet computes the age for everyone thought to be alive
 on a particular date.
 """
 
@@ -50,7 +50,7 @@ class AgeOnDateGramplet(Gramplet):
     """
     def init(self):
         """
-        Constructs the GUI, consisting of a message, an entry, and 
+        Constructs the GUI, consisting of a message, an entry, and
         a Run button.
         """
         from gi.repository import Gtk
@@ -73,7 +73,7 @@ class AgeOnDateGramplet(Gramplet):
         self.entry = Gtk.Entry()
         button = Gtk.Button(label=_("Run"))
         button.connect("clicked", self.run)
-        ##self.filter = 
+        ##self.filter =
         hbox.pack_start(label, False, True, 0)
         hbox.pack_start(self.entry, True, True, 0)
         vbox.pack_start(description, True, True, 0)
@@ -94,7 +94,7 @@ class AgeOnDateGramplet(Gramplet):
         """
         text = self.entry.get_text()
         date = parser.parse(text)
-        run_quick_report_by_name(self.gui.dbstate, 
-                                 self.gui.uistate, 
-                                 'ageondate', 
+        run_quick_report_by_name(self.gui.dbstate,
+                                 self.gui.uistate,
+                                 'ageondate',
                                  date)

@@ -120,9 +120,9 @@ class UTF8Recoder(object):
 
 class UnicodeReader(object):
     """
-    A CSV reader which will iterate over lines in the CSV file "f", which is 
+    A CSV reader which will iterate over lines in the CSV file "f", which is
     encoded in the given encoding.
-    
+
     """
 
     def __init__(self, f, encoding="utf-8", **kwds):
@@ -138,9 +138,9 @@ class UnicodeReader(object):
 
 class UnicodeWriter(object):
     """
-    A CSV writer which will write rows to CSV file "f", which is encoded in 
+    A CSV writer which will write rows to CSV file "f", which is encoded in
     the given encoding.
-    
+
     """
 
     def __init__(self, f, encoding="utf-8", **kwds):
@@ -176,8 +176,8 @@ class UnicodeWriter(object):
 class CSVWriterOptionBox(WriterOptionBox):
     """
     Create a VBox with the option widgets and define methods to retrieve
-    the options. 
-    
+    the options.
+
     """
     def __init__(self, person, dbstate, uistate):
         WriterOptionBox.__init__(self, person, dbstate, uistate)
@@ -203,11 +203,11 @@ class CSVWriterOptionBox(WriterOptionBox):
         self.include_places_check = Gtk.CheckButton(label=_("Include places"))
         self.translate_headers_check = Gtk.CheckButton(label=_("Translate headers"))
 
-        self.include_individuals_check.set_active(1) 
-        self.include_marriages_check.set_active(1) 
-        self.include_children_check.set_active(1) 
-        self.include_places_check.set_active(1) 
-        self.translate_headers_check.set_active(1) 
+        self.include_individuals_check.set_active(1)
+        self.include_marriages_check.set_active(1)
+        self.include_children_check.set_active(1)
+        self.include_places_check.set_active(1)
+        self.translate_headers_check.set_active(1)
 
         option_box.pack_start(self.include_individuals_check, False, True, 0)
         option_box.pack_start(self.include_marriages_check, False, True, 0)
@@ -245,11 +245,11 @@ class CSVWriter(object):
         self.plist = {}
         self.flist = {}
         self.place_list = {}
-        
+
         self.persons_details_done = []
         self.persons_notes_done = []
         self.person_ids = {}
-        
+
         if not option_box:
             self.include_individuals = 1
             self.include_marriages = 1
@@ -265,7 +265,7 @@ class CSVWriter(object):
             self.include_children = self.option_box.include_children
             self.include_places = self.option_box.include_places
             self.translate_headers = self.option_box.translate_headers
-            
+
         self.plist = [x for x in self.db.iter_person_handles()]
 
         # make place list so that dependencies are first:
@@ -297,7 +297,7 @@ class CSVWriter(object):
                         child_handle = child_ref.ref
                         if child_handle in self.plist:
                             self.flist[family_handle] = 1
-                        
+
     def update_empty(self):
         pass
 
@@ -339,7 +339,7 @@ class CSVWriter(object):
             self.total += len(self.flist)
         if self.include_places:
             self.total += len(self.place_list)
-        ######################## 
+        ########################
         LOG.debug("Possible people to export: %s", len(self.plist))
         LOG.debug("Possible families to export: %s", len(self.flist))
         LOG.debug("Possible places to export: %s", len(self.place_list))
@@ -366,7 +366,7 @@ class CSVWriter(object):
                         "{count} dropped").format(
                             count=len(dropped_surnames)) )
             LOG.debug(
-                    "Dropped surnames: " + 
+                    "Dropped surnames: " +
                     ', '.join([("%s %s %s" % (surname.get_prefix(),
                     surname.get_surname(), surname.get_connector())).strip()
                     for surname in dropped_surnames]))
@@ -376,22 +376,22 @@ class CSVWriter(object):
         if self.include_individuals:
             if self.translate_headers:
                 self.write_csv(
-                    _("Person"), _("Surname"), _("Given"), 
-                    _("Call"), _("Suffix"), _("Prefix"), 
-                    _("Person|Title"), _("Gender"), 
+                    _("Person"), _("Surname"), _("Given"),
+                    _("Call"), _("Suffix"), _("Prefix"),
+                    _("Person|Title"), _("Gender"),
                     _("Birth date"), _("Birth place"), _("Birth source"),
                     _("Baptism date"), _("Baptism place"), _("Baptism source"),
-                    _("Death date"), _("Death place"), _("Death source"), 
+                    _("Death date"), _("Death place"), _("Death source"),
                     _("Burial date"), _("Burial place"), _("Burial source"),
                     _("Note"))
             else:
                 self.write_csv(
-                    "Person", "Surname", "Given", 
-                    "Call", "Suffix", "Prefix", 
-                    "Title", "Gender", 
+                    "Person", "Surname", "Given",
+                    "Call", "Suffix", "Prefix",
+                    "Title", "Gender",
                     "Birth date", "Birth place", "Birth source",
                     "Baptism date", "Baptism place", "Baptism source",
-                    "Death date", "Death place", "Death source", 
+                    "Death date", "Death place", "Death source",
                     "Burial date", "Burial place", "Burial source",
                     "Note")
             for key in plist:
@@ -492,13 +492,13 @@ class CSVWriter(object):
                     )
         sortorder.sort() # will sort on tuples
         flist = [data[1] for data in sortorder]
-        ########################### 
+        ###########################
         if self.include_marriages:
             if self.translate_headers:
-                self.write_csv(_("Marriage"), _("Husband"), _("Wife"), 
+                self.write_csv(_("Marriage"), _("Husband"), _("Wife"),
                                _("Date"), _("Place"), _("Source"), _("Note"))
             else:
-                self.write_csv("Marriage", "Husband", "Wife", 
+                self.write_csv("Marriage", "Husband", "Wife",
                                "Date", "Place", "Source", "Note")
             for key in flist:
                 family = self.db.get_family_from_handle(key)
@@ -557,15 +557,15 @@ class CSVWriter(object):
                         self.write_csv(family_id, grampsid_ref)
                 self.update()
             self.writeln()
-        ########################### 
+        ###########################
         if self.include_places:
             if self.translate_headers:
-                self.write_csv(_("Place"), _("Title"), _("Name"), 
-                               _("Type"), _("Latitude"), _("Longitude"), 
+                self.write_csv(_("Place"), _("Title"), _("Name"),
+                               _("Type"), _("Latitude"), _("Longitude"),
                                _("Code"), _("Enclosed_by"), _("Date"))
             else:
-                self.write_csv("Place", "Title", "Name", 
-                               "Type", "Latitude", "Longitude", 
+                self.write_csv("Place", "Title", "Name",
+                               "Type", "Latitude", "Longitude",
                                "Code", "Enclosed_by", "Date")
             for key in self.place_list:
                 place = self.db.get_place_from_handle(key)
@@ -595,7 +595,7 @@ class CSVWriter(object):
                                        "")
             self.writeln()
         self.g.close()
-        return True 
-    
+        return True
+
     def format_date(self, date):
         return get_date(date)

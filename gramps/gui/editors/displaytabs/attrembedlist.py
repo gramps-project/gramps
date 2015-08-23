@@ -40,7 +40,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class AttrEmbedList(EmbeddedList):
@@ -63,7 +63,7 @@ class AttrEmbedList(EmbeddedList):
         (_('Value'), 1, 200, TEXT_COL, -1, None),
         (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         """
         Initialize the displaytab. The dbstate and uistate is needed
@@ -72,7 +72,7 @@ class AttrEmbedList(EmbeddedList):
             edit
         """
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'),
                               AttrModel, move_buttons=True)
 
     def get_editor(self):
@@ -80,11 +80,11 @@ class AttrEmbedList(EmbeddedList):
         return EditAttribute
 
     def get_user_values(self):
-        return self.dbstate.db.get_person_attribute_types()        
+        return self.dbstate.db.get_person_attribute_types()
 
     def get_icon_name(self):
         return 'gramps-attribute'
-    
+
     def get_data(self):
         return self.data
 
@@ -96,7 +96,7 @@ class AttrEmbedList(EmbeddedList):
         attr = Attribute()
         try:
             self.get_editor()(
-                self.dbstate, self.uistate, self.track, attr, 
+                self.dbstate, self.uistate, self.track, attr,
                 pname, self.get_user_values(), self.add_callback)
         except WindowActiveError:
             pass
@@ -114,7 +114,7 @@ class AttrEmbedList(EmbeddedList):
             pname = ''
             try:
                 self.get_editor()(
-                    self.dbstate, self.uistate, self.track, attr, 
+                    self.dbstate, self.uistate, self.track, attr,
                     pname, self.get_user_values(), self.edit_callback)
             except WindowActiveError:
                 pass

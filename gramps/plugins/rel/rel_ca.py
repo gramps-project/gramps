@@ -884,7 +884,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 # than the first person.
 
                 rel_str = _get_nebots_valencians(Ga, Gb, inlaw)
-            
+
         else:
             rel_str = "Error in get_plural_relationship_string()"
 
@@ -977,7 +977,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     rel_str = "la cunyada"
                 else:			# gender_b == Person.UNKNOWN:
                     rel_str = "un cunyat"
-		
+
             elif gender_b == Person.MALE :
                 rel_str = _get_uncle(Ga, inlaw, step)
             elif gender_b == Person.FEMALE :
@@ -1109,7 +1109,7 @@ if __name__ == "__main__":
     # (Above not needed here)
 
     #""
-    #   TRANSLATORS, copy this if statement at the bottom of your 
+    #   TRANSLATORS, copy this if statement at the bottom of your
     #   rel_xx.py module, and test your work with:
     #   python src/plugins/rel/rel_xx.py
     #""

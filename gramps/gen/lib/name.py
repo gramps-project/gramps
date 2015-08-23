@@ -60,7 +60,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
     FNLN = 2  # first name last name
     FN   = 4  # first name
     LNFNP= 5  # primary name primconnector rest, given pa/ma suffix, primprefix
-    
+
     NAMEFORMATS = (DEF, LNFN, FNLN, FN, LNFNP)
     #deprecated :
     PTFN = 3  # patronymic first name
@@ -70,7 +70,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         We should connect here to 'person-groupname-rebuild' and do something
         correct when first parameter is the name, and second parameter is
         different from the group here. However, that would be complicated and
-        no real errors that cannot be ammended can be done if group is 
+        no real errors that cannot be ammended can be done if group is
         saved differently.
         """
         PrivacyBase.__init__(self, source)
@@ -120,10 +120,10 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 DateBase.serialize(self),
-                self.first_name, 
+                self.first_name,
                 SurnameBase.serialize(self),
                 self.suffix, self.title,
-                self.type.serialize(), 
+                self.type.serialize(),
                 self.group_as, self.sort_as, self.display_as, self.call,
                 self.nick, self.famnick)
 
@@ -131,7 +131,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -152,16 +152,16 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),
-                "first_name": self.first_name, 
+                "first_name": self.first_name,
                 "surname_list": SurnameBase.to_struct(self),
-                "suffix": self.suffix, 
+                "suffix": self.suffix,
                 "title": self.title,
-                "type": self.type.to_struct(), 
-                "group_as": self.group_as, 
-                "sort_as": self.sort_as, 
-                "display_as": self.display_as, 
+                "type": self.type.to_struct(),
+                "group_as": self.group_as,
+                "sort_as": self.sort_as,
+                "display_as": self.display_as,
                 "call": self.call,
-                "nick": self.nick, 
+                "nick": self.nick,
                 "famnick": self.famnick}
 
     @classmethod
@@ -175,19 +175,19 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         return (PrivacyBase.from_struct(struct.get("private", default.private)),
                 CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
                 NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                DateBase.from_struct(struct.get("date", {})), 
+                DateBase.from_struct(struct.get("date", {})),
                 struct.get("first_name", default.first_name),
-                SurnameBase.from_struct(struct.get("surname_list", default.surname_list)), 
-                struct.get("suffix", default.suffix), 
-                struct.get("title", default.title), 
-                NameType.from_struct(struct.get("type", {})), 
+                SurnameBase.from_struct(struct.get("surname_list", default.surname_list)),
+                struct.get("suffix", default.suffix),
+                struct.get("title", default.title),
+                NameType.from_struct(struct.get("type", {})),
                 struct.get("group_as", default.group_as),
                 struct.get("sort_as", default.sort_as),
                 struct.get("display_as", default.display_as),
                 struct.get("call", default.call),
                 struct.get("nick", default.nick),
                 struct.get("famnick", default.famnick))
-        
+
     def is_empty(self):
         """
         Indicate if the name is empty.
@@ -195,7 +195,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         namefieldsempty = (self.first_name == "" and
                 self.suffix == "" and self.title == "" and self.nick == ""
                 and self.famnick == "")
-        surnamefieldsempty = not (False in 
+        surnamefieldsempty = not (False in
                             [surn.is_empty() for surn in self.surname_list])
         return namefieldsempty and surnamefieldsempty
 
@@ -205,7 +205,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         (privacy, citation_list, note_list, date,
          self.first_name, surname_list, self.suffix, self.title, name_type,
-         self.group_as, self.sort_as, self.display_as, self.call, 
+         self.group_as, self.sort_as, self.display_as, self.call,
          self.nick, self.famnick) = data
         self.type = NameType(name_type)
         PrivacyBase.unserialize(self, privacy)
@@ -238,7 +238,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -248,7 +248,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -258,7 +258,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -289,7 +289,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this name.
-        Normally the person merge code should opt for adding an alternate 
+        Normally the person merge code should opt for adding an alternate
         name if names are actually different (like not equal surname list)
 
         Lost: type, first, call, suffix, title, nick, famnick and date of
@@ -306,12 +306,12 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def set_group_as(self, name):
         """
-        Set the grouping name for a person. 
-        
-        Normally, this is the person's surname. However, some locales group 
-        equivalent names (e.g. Ivanova and Ivanov in Russian are usually 
+        Set the grouping name for a person.
+
+        Normally, this is the person's surname. However, some locales group
+        equivalent names (e.g. Ivanova and Ivanov in Russian are usually
         considered equivalent.
-        
+
         .. note:: There is also a database wide grouping set_name_group_mapping
           So one might map a name Smith to SmithNew, and have one person still
           grouped with name Smith. Hence, group_as can be equal to surname!
@@ -335,62 +335,62 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def set_sort_as(self, value):
         """
-        Specifies the sorting method for the specified name. 
-        
-        Typically the locale's default should be used. However, there may be 
-        names where a specific sorting structure is desired for a name. 
+        Specifies the sorting method for the specified name.
+
+        Typically the locale's default should be used. However, there may be
+        names where a specific sorting structure is desired for a name.
         """
         self.sort_as = value
 
     def get_sort_as(self):
         """
-        Return the selected sorting method for the name. 
-        
-        The options are LNFN (last name, first name), FNLN (first name, last 
+        Return the selected sorting method for the name.
+
+        The options are LNFN (last name, first name), FNLN (first name, last
         name), etc.
         """
-        return self.sort_as 
+        return self.sort_as
 
     def set_display_as(self, value):
         """
-        Specifies the display format for the specified name. 
-        
-        Typically the locale's default should be used. However, there may be 
-        names where a specific display format is desired for a name. 
+        Specifies the display format for the specified name.
+
+        Typically the locale's default should be used. However, there may be
+        names where a specific display format is desired for a name.
         """
         self.display_as = value
 
     def get_display_as(self):
         """
-        Return the selected display format for the name. 
-        
-        The options are LNFN (last name, first name), FNLN (first name, last 
+        Return the selected display format for the name.
+
+        The options are LNFN (last name, first name), FNLN (first name, last
         name), etc.
         """
         return self.display_as
 
     def get_call_name(self):
         """
-        Return the call name. 
-        
-        The call name's exact definition is not predetermined, and may be 
+        Return the call name.
+
+        The call name's exact definition is not predetermined, and may be
         locale specific.
         """
         return self.call
 
     def set_call_name(self, val):
         """
-        Set the call name. 
-        
-        The call name's exact definition is not predetermined, and may be 
+        Set the call name.
+
+        The call name's exact definition is not predetermined, and may be
         locale specific.
         """
         self.call = val
 
     def get_nick_name(self):
         """
-        Return the nick name. 
-        
+        Return the nick name.
+
         The nick name of the person, a not official name the person is known
         with.
         """
@@ -398,8 +398,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def set_nick_name(self, val):
         """
-        Set the nick name. 
-        
+        Set the nick name.
+
         The nick name of the person, a not official name the person is known
         with.
         """
@@ -407,8 +407,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def get_family_nick_name(self):
         """
-        Return the family nick name. 
-        
+        Return the family nick name.
+
         The family nick name of the family of the person, a not official name
         use to denote the entire family.
         """
@@ -416,13 +416,13 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def set_family_nick_name(self, val):
         """
-        Set the family nick name. 
-        
+        Set the family nick name.
+
         The family nick name of the family of the person, a not official name
         use to denote the entire family.
         """
         self.famnick = val
-        
+
     def set_type(self, the_type):
         """Set the type of the Name instance."""
         self.type.set(the_type)
@@ -457,7 +457,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def get_name(self):
         """
-        Return a name string built from the components of the Name instance, 
+        Return a name string built from the components of the Name instance,
         in the form of: surname, Firstname.
         """
         first = self.first_name
@@ -472,7 +472,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def get_upper_name(self):
         """
-        Return a name string built from the components of the Name instance, 
+        Return a name string built from the components of the Name instance,
         in the form of SURNAME, Firstname.
         """
         first = self.first_name
@@ -487,7 +487,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     def get_regular_name(self):
         """
-        Return a name string built from the components of the Name instance, 
+        Return a name string built from the components of the Name instance,
         in the form of Firstname surname.
         """
         first = self.first_name
@@ -503,7 +503,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         Returns a GEDCOM-formatted name dictionary.
 
-        .. note:: Fields patronymic and prefix are deprecated, prefix_list and 
+        .. note:: Fields patronymic and prefix are deprecated, prefix_list and
                   surname list, added.
         """
         retval = {}

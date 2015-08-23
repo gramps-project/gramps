@@ -45,7 +45,7 @@ class MediaPreview(Gramplet):
         self.dbstate.db.connect('media-update', self.update)
         self.connect_signal('Media', self.update)
 
-    def update_has_data(self): 
+    def update_has_data(self):
         active_handle = self.get_active('Media')
         if active_handle:
             active_media = self.dbstate.db.get_object_from_handle(active_handle)

@@ -145,42 +145,42 @@ class PaperStyle(object):
         self.__rmargin = rmargin
         self.__tmargin = tmargin
         self.__bmargin = bmargin
-        
+
     def get_size(self):
         """
         Return the size of the paper.
 
         :returns: object indicating the paper size
         :rtype: :class:`.PaperSize`
-        
+
         """
         return self.__size
-        
+
     def get_orientation(self):
         """
         Return the orientation of the page.
 
         :returns: PAPER_PORTRIAT or PAPER_LANDSCAPE
         :rtype: int
-        
+
         """
         return self.__orientation
-        
+
     def get_usable_width(self):
         """
         Return the width of the page area in centimeters.
-        
+
         The value is the page width less the margins.
-        
+
         """
         return self.__size.get_width() - (self.__rmargin + self.__lmargin)
 
     def get_usable_height(self):
         """
         Return the height of the page area in centimeters.
-        
+
         The value is the page height less the margins.
-        
+
         """
         return self.__size.get_height() - (self.__tmargin + self.__bmargin)
 
@@ -190,7 +190,7 @@ class PaperStyle(object):
 
         :returns: Right margin in centimeters
         :rtype: float
-        
+
         """
         return self.__rmargin
 
@@ -200,7 +200,7 @@ class PaperStyle(object):
 
         :returns: Left margin in centimeters
         :rtype: float
-        
+
         """
         return self.__lmargin
 
@@ -210,7 +210,7 @@ class PaperStyle(object):
 
         :returns: Top margin in centimeters
         :rtype: float
-        
+
         """
         return self.__tmargin
 
@@ -220,6 +220,6 @@ class PaperStyle(object):
 
         :returns: Bottom margin in centimeters
         :rtype: float
-        
+
         """
         return self.__bmargin

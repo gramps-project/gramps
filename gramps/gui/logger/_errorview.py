@@ -48,7 +48,7 @@ class ErrorView(object):
     """
     A Dialog for displaying errors.
     """
-    
+
     def __init__(self, error_detail, rotate_handler):
         """
         Initialize the handler with the buffer size.
@@ -56,7 +56,7 @@ class ErrorView(object):
 
         self._error_detail = error_detail
         self._rotate_handler = rotate_handler
-        
+
         self.draw_window()
         self.run()
 
@@ -76,7 +76,7 @@ class ErrorView(object):
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
-        
+
         display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def draw_window(self):
@@ -114,25 +114,25 @@ class ErrorView(object):
         instructions_label.set_use_markup(True)
 
         vbox.pack_start(instructions_label, False, False, 5)
-        
+
         tb_frame = Gtk.Frame(label=_("Error Detail"))
         tb_frame.set_border_width(6)
         tb_label = Gtk.TextView()
         tb_label.get_buffer().set_text(self._error_detail.get_formatted_log())
         tb_label.set_border_width(6)
         tb_label.set_editable(False)
-        
+
         scroll = Gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         scroll.set_size_request(-1, 60)
-        
+
         tb_frame.add(scroll)
         scroll.add(tb_label)
 
         tb_expander = Gtk.Expander(label='<span weight="bold">%s</span>' % _("Error Detail"))
         tb_expander.set_use_markup(True)
         tb_expander.add(tb_frame)
-        
+
         vbox.pack_start(tb_expander, True, True, 5)
 
         self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)

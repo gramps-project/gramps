@@ -100,7 +100,7 @@ class OsmGps():
 
     def build_widget(self):
         """
-        create the vbox 
+        create the vbox
         """
         self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         cache_path = config.get('geography.path')

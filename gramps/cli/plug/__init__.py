@@ -47,14 +47,14 @@ log = logging.getLogger(".")
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
-from gramps.gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
-                           MediaOption, PersonListOption, NumberOption, 
-                           BooleanOption, DestinationOption, StringOption, 
+from gramps.gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
+                           MediaOption, PersonListOption, NumberOption,
+                           BooleanOption, DestinationOption, StringOption,
                            TextOption, EnumeratedListOption, Option)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import ReportError, FilterError
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
-                                    CATEGORY_GRAPHVIZ, CATEGORY_CODE, 
+                                    CATEGORY_GRAPHVIZ, CATEGORY_CODE,
                                     ReportOptions, append_styles)
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
@@ -75,7 +75,7 @@ def _convert_str_to_match_type(str_val, type_val):
     """
     str_val = str_val.strip()
     ret_type = type(type_val)
-    
+
     if isinstance(type_val, str):
         if ( str_val.startswith("'") and str_val.endswith("'") ) or \
            ( str_val.startswith('"') and str_val.endswith('"') ):
@@ -83,21 +83,21 @@ def _convert_str_to_match_type(str_val, type_val):
             return str(str_val[1:-1])
         else:
             return str(str_val)
-        
+
     elif ret_type == int:
         if str_val.isdigit():
             return int(str_val)
         else:
             print("'%s' is not an integer number" % str_val)
             return 0
-        
+
     elif ret_type == float:
         try:
             return float(str_val)
         except ValueError:
             print("'%s' is not a decimal number" % str_val)
             return 0.0
-        
+
     elif ret_type == bool:
         if str_val == str(True):
             return True
@@ -106,16 +106,16 @@ def _convert_str_to_match_type(str_val, type_val):
         else:
             print("'%s' is not a boolean-- try 'True' or 'False'" % str_val)
             return False
-    
+
     elif ret_type == list:
         ret_val = []
         if not ( str_val.startswith("[") and str_val.endswith("]") ):
             print("'%s' is not a list-- try: [%s]" % (str_val, str_val))
             return ret_val
-        
+
         entry = ""
         quote_type = None
-        
+
         # Search through characters between the brackets
         for char in str_val[1:-1]:
             if (char == "'" or char == '"') and quote_type == None:
@@ -135,21 +135,21 @@ def _convert_str_to_match_type(str_val, type_val):
         if entry != "":
             # Add the last entry
             ret_val.append(entry.strip())
-            
+
         return ret_val
 
 def _validate_options(options, dbase):
     """
     Validate all options by making sure that their values are consistent with
     the database.
-    
+
     menu: The Menu class
     dbase: the database the options will be applied to
     """
     if not hasattr(options, "menu"):
         return
     menu = options.menu
-    
+
     for name in menu.get_all_option_names():
         option = menu.get_option_by_name(name)
 
@@ -169,7 +169,7 @@ def _validate_options(options, dbase):
                                   file=sys.stderr)
             if person:
                 option.set_value(person.get_gramps_id())
-            
+
         elif isinstance(option, FamilyOption):
             fid = option.get_value()
             family = dbase.get_family_from_gramps_id(fid)
@@ -204,7 +204,7 @@ class CommandLineReport(object):
 
     def __init__(self, database, name, category, option_class, options_str_dict,
                  noopt=False):
-        
+
         pmgr = BasePluginManager.get_instance()
         self.__textdoc_plugins = []
         self.__drawdoc_plugins = []
@@ -218,7 +218,7 @@ class CommandLineReport(object):
                plugin.get_draw_support() and \
                plugin.get_extension():
                 self.__bookdoc_plugins.append(plugin)
-        
+
         self.database = database
         self.category = category
         self.format = None
@@ -282,20 +282,20 @@ class CommandLineReport(object):
         if noopt:
             return
 
-        self.options_help['of'][2] = os.path.join(USER_HOME, 
+        self.options_help['of'][2] = os.path.join(USER_HOME,
                                                   "whatever_name")
 
         if self.category == CATEGORY_TEXT:
             for plugin in self.__textdoc_plugins:
-                self.options_help['off'][2].append( 
+                self.options_help['off'][2].append(
                     plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_DRAW:
             for plugin in self.__drawdoc_plugins:
-                self.options_help['off'][2].append(  
+                self.options_help['off'][2].append(
                     plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_BOOK:
             for plugin in self.__bookdoc_plugins:
-                self.options_help['off'][2].append(  
+                self.options_help['off'][2].append(
                     plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
@@ -305,7 +305,7 @@ class CommandLineReport(object):
             self.options_help['off'][2] = "NA"
 
         self.options_help['papers'][2] = \
-            [ paper.get_name() for paper in paper_sizes 
+            [ paper.get_name() for paper in paper_sizes
                         if paper.get_name() != 'Custom Size' ]
 
         self.options_help['papero'][2] = [
@@ -322,9 +322,9 @@ class CommandLineReport(object):
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
             self.style_list = StyleSheetList(style_file, default_style)
-            
+
             self.options_help['style'][2] = self.style_list.get_style_names()
-            
+
     def init_report_options(self):
         """
         Initialize the options that are defined by each report.
@@ -344,7 +344,7 @@ class CommandLineReport(object):
         for name in menu.get_all_option_names():
             option = menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
-            
+
     def init_report_options_help(self):
         """
         Initialize help for the options that are defined by each report.
@@ -356,7 +356,7 @@ class CommandLineReport(object):
         for name in menu.get_all_option_names():
             option = menu.get_option_by_name(name)
             self.options_help[name] = [ "", option.get_help() ]
-            
+
             if isinstance(option, PersonOption):
                 id_list = []
                 for person_handle in self.database.get_person_handles(True):
@@ -426,7 +426,7 @@ class CommandLineReport(object):
                         "and acceptable values")
                                % {'donottranslate' : "show=option"},
                                                         file=sys.stderr)
-                
+
     def parse_options(self):
         """
         Load the options that the user has entered.
@@ -440,7 +440,7 @@ class CommandLineReport(object):
         _format_str = self.options_str_dict.pop('off', None)
         if _format_str:
             self.options_dict['off'] = _format_str
-        
+
         self.css_filename = None
         _chosen_format = None
 
@@ -489,7 +489,7 @@ class CommandLineReport(object):
         for opt in self.options_str_dict:
             if opt in self.options_dict:
                 self.options_dict[opt] = \
-                    _convert_str_to_match_type(self.options_str_dict[opt], 
+                    _convert_str_to_match_type(self.options_str_dict[opt],
                                                self.options_dict[opt])
 
                 self.option_class.handler.options_dict[opt] = \
@@ -498,7 +498,7 @@ class CommandLineReport(object):
                 if menu and opt in menu_opt_names:
                     option = menu.get_option_by_name(opt)
                     option.set_value(self.options_dict[opt])
-                
+
             else:
                 print(_("Ignoring unknown option: %s") % opt, file=sys.stderr)
                 print(_("   Valid options are:"),
@@ -507,7 +507,7 @@ class CommandLineReport(object):
                 print(_("   Use '%(donottranslate)s' to see description "
                          "and acceptable values") %
                        {'donottranslate' : "show=option"}, file=sys.stderr)
-        
+
         self.option_class.handler.output = self.options_dict['of']
 
         self.paper = paper_sizes[0] # make sure one exists
@@ -517,7 +517,7 @@ class CommandLineReport(object):
         self.option_class.handler.set_paper(self.paper)
 
         self.orien = self.options_dict['papero']
-        
+
         self.marginl = self.options_dict['paperml']
         self.marginr = self.options_dict['papermr']
         self.margint = self.options_dict['papermt']
@@ -609,11 +609,11 @@ class CommandLineReport(object):
 # Command-line report generic task
 #
 #------------------------------------------------------------------------
-def cl_report(database, name, category, report_class, options_class, 
+def cl_report(database, name, category, report_class, options_class,
               options_str_dict):
-    
+
     err_msg = _("Failed to write report. ")
-    clr = CommandLineReport(database, name, category, options_class, 
+    clr = CommandLineReport(database, name, category, options_class,
                             options_str_dict)
 
     # Exit here if show option was given
@@ -676,7 +676,7 @@ def run_report(db, name, **options_str_dict):
 
     options_str_dict is the same kind of options
     given at the command line. For example:
-    
+
     >>> run_report(db, "ancestor_report", off="txt",
                    of="ancestor-007.txt", pid="I37")
 
@@ -703,10 +703,10 @@ def run_report(db, name, **options_str_dict):
             report_class = getattr(mod, pdata.reportclass)
             options_class = getattr(mod, pdata.optionclass)
             if category in (CATEGORY_BOOK, CATEGORY_CODE):
-                options_class(db, name, category, 
+                options_class(db, name, category,
                               options_str_dict)
             else:
-                clr = cl_report(db, name, category, 
+                clr = cl_report(db, name, category,
                                 report_class, options_class,
                                 options_str_dict)
                 return clr
@@ -725,7 +725,7 @@ def cl_book(database, name, book, options_str_dict):
     # Exit here if show option was given
     if clr.show:
         return
-    
+
     # write report
     doc = clr.format(None,
                      PaperStyle(clr.paper, clr.orien, clr.marginl,

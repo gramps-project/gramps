@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -145,11 +145,11 @@ date_tests[testset] = dates
 # test for all other different calendars
 testset = "Non-gregorian"
 dates = []
-for calendar in (Date.CAL_JULIAN, 
-                 Date.CAL_HEBREW, 
-                 Date.CAL_ISLAMIC, 
-                 Date.CAL_FRENCH, 
-                 Date.CAL_PERSIAN, 
+for calendar in (Date.CAL_JULIAN,
+                 Date.CAL_HEBREW,
+                 Date.CAL_ISLAMIC,
+                 Date.CAL_FRENCH,
+                 Date.CAL_PERSIAN,
                  ):
     for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
         for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
@@ -184,9 +184,9 @@ with Context(Date.CAL_SWEDISH) as calendar:
 
 quality = Date.QUAL_NONE
 modifier = Date.MOD_NONE
-for calendar in (Date.CAL_JULIAN, 
-                 Date.CAL_ISLAMIC, 
-                 Date.CAL_PERSIAN, 
+for calendar in (Date.CAL_JULIAN,
+                 Date.CAL_ISLAMIC,
+                 Date.CAL_PERSIAN,
                  ):
     for month in range(1,13):
         d = Date()
@@ -238,13 +238,13 @@ class ParserDateTest(BaseDateTest):
         for date_format in range(len(get_date_formats())):
             set_format(date_format)
 
-            for dateval in date_tests[testset]:            
+            for dateval in date_tests[testset]:
                 datestr = _dd.display(dateval)
                 ndate = _dp.parse(datestr)
                 self.assertTrue(dateval.is_equal(ndate),
                                 "dateval fails is_equal in format %d:\n"
                                 "   '%s' != '%s'\n"
-                                "   '%s' != '%s'\n" % 
+                                "   '%s' != '%s'\n" %
                                 (date_format, dateval, ndate, dateval.to_struct(), ndate.to_struct()))
 
     def test_basic(self):
@@ -280,7 +280,7 @@ class MatchDateTest(BaseDateTest):
              ("before 1961", "before 1961", True),
              ("jan 1, 1960", "jan 1, 1960", True),
              ("dec 31, 1959", "dec 31, 1959", True),
-             ("before 1960", "jan 1, 1960", False), 
+             ("before 1960", "jan 1, 1960", False),
              ("before 1960", "dec 31, 1959", True),
              ("abt 1960", "1960", True),
              ("abt 1960", "before 1960", True),
@@ -329,24 +329,24 @@ class MatchDateTest(BaseDateTest):
              ("jan 1, 2000/1", "jan 14, 2001", True),
              ("jan 1, 2000/1", "jan 1, 2001 (julian)", True),
              ("about 1984", "about 2005", False),
-             ("about 1990", "about 2005", True), 
-             ("about 2007", "about 2006", True), 
-             ("about 1995", "after 2000", True), 
+             ("about 1990", "about 2005", True),
+             ("about 2007", "about 2006", True),
+             ("about 1995", "after 2000", True),
              ("about 1995", "after 2005", False),
-             ("about 2007", "about 2003", True), 
-             ("before 2007", "2000", True), 
+             ("about 2007", "about 2003", True),
+             ("before 2007", "2000", True),
              # offsets
              # different calendar, same date
-             ("1800-8-3", "15 Thermidor 8 (French Republican)", True),  
-             ("after 1800-8-3", "before 15 Thermidor 8 (French Republican)", False), 
+             ("1800-8-3", "15 Thermidor 8 (French Republican)", True),
+             ("after 1800-8-3", "before 15 Thermidor 8 (French Republican)", False),
              ("ab cd", "54 ab cd 2000", True, False),
-             ("1700-02-29 (Julian)", "1700-03-01 (Swedish)", True),  
-             ("1706-12-31 (Julian)", "1707-01-01 (Swedish)", True),  
-             ("1712-02-28 (Julian)", "1712-02-29 (Swedish)", True),  
-             ("1712-02-29 (Julian)", "1712-02-30 (Swedish)", True),  
+             ("1700-02-29 (Julian)", "1700-03-01 (Swedish)", True),
+             ("1706-12-31 (Julian)", "1707-01-01 (Swedish)", True),
+             ("1712-02-28 (Julian)", "1712-02-29 (Swedish)", True),
+             ("1712-02-29 (Julian)", "1712-02-30 (Swedish)", True),
              # See bug# 7100
-             ("1233-12-01", "1234-12-01 (Mar25)", True),  
-             ("1234-01-04", "1234-01-04 (Mar25)", True),  
+             ("1233-12-01", "1234-12-01 (Mar25)", True),
+             ("1234-01-04", "1234-01-04 (Mar25)", True),
              # See bug# 7158
 # Some issues passing Travis close to midnight; not sure why:
 #             ("today", Today(), True),
@@ -354,8 +354,8 @@ class MatchDateTest(BaseDateTest):
              ("today", "today", True),
              (Today(), Today(), True),
              # See bug# 7197
-             ("1788-03-27", "1789-03-27 (Mar25)", True),  
-             ("1788-03-27 (Julian)", "1789-03-27 (Julian, Mar25)", True),  
+             ("1788-03-27", "1789-03-27 (Mar25)", True),
+             ("1788-03-27 (Julian)", "1789-03-27 (Julian, Mar25)", True),
              ]
 
     def convert_to_date(self, d):
@@ -370,14 +370,14 @@ class MatchDateTest(BaseDateTest):
 
         self.assertMatch(d1, d2, expected1)
         self.assertMatch(d2, d1, expected2)
-        
+
     def assertMatch(self, d1, d2, expected):
         date1 = self.convert_to_date(d1)
         date2 = self.convert_to_date(d2)
         result = date2.match(date1)
-        self.assertEqual(result, expected, 
+        self.assertEqual(result, expected,
                          "'{}' {} '{}'\n({} vs {})".format(
-                             d1, 
+                             d1,
                              ("did not match" if expected else "matched"),
                              d2,
                              date1.to_struct(), date2.to_struct()))
@@ -428,7 +428,7 @@ class ArithmeticDateTest(BaseDateTest):
         for exp1, exp2 in self.tests:
             val1 = eval(exp1)
             val2 = eval(exp2)
-            self.assertEqual(val1, val2, 
+            self.assertEqual(val1, val2,
                         "'%s' should be '%s' but was '%s'" % (exp1, val2, val1))
 
 #-------------------------------------------------------------------------
@@ -442,7 +442,7 @@ class SwedishDateTest(BaseDateTest):
     """
     def test_swedish(self):
         for date in swedish_dates:
-            self.assertEqual(date.sortval, 
+            self.assertEqual(date.sortval,
                              date.to_calendar('gregorian').sortval)
 
 class Test_set2(BaseDateTest):
@@ -493,7 +493,7 @@ class Test_set2(BaseDateTest):
         self.assertEqual(stop, (2009, 1, 1))
 
     def test_copy_ymd_preserves_orig(self):
-        copied = self.date.copy_ymd(year=1000, month=10, day=10, 
+        copied = self.date.copy_ymd(year=1000, month=10, day=10,
                 remove_stop_date=True)
         self.testStartStopSanity()
         start,stop = copied.get_start_stop_range()
@@ -501,7 +501,7 @@ class Test_set2(BaseDateTest):
         self.assertEqual(stop, (1000, 10, 10))
 
     def _test_set2_function_raises_error_unless_compound(self, function):
-        for mod in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, 
+        for mod in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER,
                        Date.MOD_ABOUT,
                        Date.MOD_TEXTONLY):
             self.date.set_modifier(mod)

@@ -49,9 +49,9 @@ class EnumeratedListOption(Option):
     This class describes an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
-    
+
     __signals__ = { 'options-changed' : None }
-    
+
     def __init__(self, label, value):
         """
         :param label: A friendly label to be applied to this option.
@@ -68,7 +68,7 @@ class EnumeratedListOption(Option):
     def add_item(self, value, description):
         """
         Add an item to the list of possible values.
-        
+
         :param value: The value that corresponds to this item.
             Example: 5
         :type value: int
@@ -79,11 +79,11 @@ class EnumeratedListOption(Option):
         """
         self.__items.append((value, description))
         self.emit('options-changed')
-        
+
     def set_items(self, items):
         """
         Add a list of items to the list of possible values.
-        
+
         :param items: A list of tuples containing value, description pairs.
             Example: [ (5,"8.5 x 11"), (6,"11 x 17")]
         :type items: array
@@ -91,28 +91,28 @@ class EnumeratedListOption(Option):
         """
         self.__items = items
         self.emit('options-changed')
-        
+
     def get_items(self):
         """
         Get all the possible values for this option.
-        
+
         :return: an array of tuples containing (value,description) pairs.
         """
         return self.__items
-    
+
     def clear(self):
         """
         Clear all possible values from this option.
-        
+
         :return: nothing.
         """
         self.__items = []
         self.emit('options-changed')
-        
+
     def set_value(self, value):
         """
         Set the value of this option.
-        
+
         :param value: A value for this option.
             Example: True
         :type value: The type will depend on the type of option.

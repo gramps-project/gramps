@@ -58,7 +58,7 @@ class IsRelatedWith(Rule):
 
     def reset(self):
         self.relatives = []
-        
+
     def apply(self, db, person):
         return person.handle in self.relatives
 
@@ -77,7 +77,7 @@ class IsRelatedWith(Rule):
             if person is None or (person.handle in relatives):
                 continue
             relatives[person.handle] = True
-        
+
             for family_handle in person.get_parent_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -88,7 +88,7 @@ class IsRelatedWith(Rule):
             # Check Sibilings
                     for child_ref in family.get_child_ref_list():
                         expand.append(self.db.get_person_from_handle(child_ref.ref))
-    
+
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
@@ -99,6 +99,6 @@ class IsRelatedWith(Rule):
             # Check Children
                     for child_ref in family.get_child_ref_list():
                         expand.append(self.db.get_person_from_handle(child_ref.ref))
-    
+
         self.relatives = list(relatives.keys())
-        return 
+        return

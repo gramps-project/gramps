@@ -83,10 +83,10 @@ Example of usage of Gramps command line interface
 
 1. To import four databases (whose formats can be determined from their names)
 and then check the resulting database for errors, one may type:
-gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check. 
+gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p name=check.
 
 2. To explicitly specify the formats in the above example, append filenames with appropriate -f options:
-gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check. 
+gramps -i file1.ged -f gedcom -i file2.gpkg -f gramps-pkg -i ~/db3.gramps -f gramps-xml -i file4.wft -f wft -a tool -p name=check.
 
 3. To record the database resulting from all imports, supply -e flag
 (use -f if the filename does not allow Gramps to guess the format):
@@ -154,32 +154,32 @@ class ArgParser(object):
     -h, --help                      Display the help
     --usage                         Display usage information
 
-    If the filename (no options) is specified, the interactive session is 
-    launched using data from filename.  In this mode (filename, no options), the 
+    If the filename (no options) is specified, the interactive session is
+    launched using data from filename.  In this mode (filename, no options), the
     rest of the arguments are ignored.  This is a mode suitable by default for
     GUI launchers, mime type handlers, and the like.
-    
+
     If no filename or -i option is given, a new interactive session (empty
     database) is launched, since no data is given anyway.
-    
+
     If -O or -i option is given, but no -e or -a options are given, an
-    interactive session is launched with the ``FILENAME`` (specified with -i). 
-    
+    interactive session is launched with the ``FILENAME`` (specified with -i).
+
     If both input (-O or -i) and processing (-e or -a) options are given,
     interactive session will not be launched.
-    
+
     When using import ot export options (-i or -e), the -f option may be
     specified to indicate the family tree format.
-    
+
     Possible values for ``ACTION`` are:  'report', 'book' and 'tool'.
-    
+
     Configuration ``SETTINGS`` may be specified using the -c option.  The
     settings are of the form config.setting[:value].  If used without a value,
-    the setting is shown. 
-    
-    If the -y option is given, the user's acceptance of any CLI prompt is 
+    the setting is shown.
+
+    If the -y option is given, the user's acceptance of any CLI prompt is
     assumed. (see :meth:`.cli.user.User.prompt`)
-    
+
     If the -q option is given, extra noise on sys.stderr, such as progress
     indicators, is suppressed.
     """
@@ -240,9 +240,9 @@ class ArgParser(object):
             cliargs += "]"
             # Must first do str() of the msg object.
             msg = str(msg)
-            self.errors += [(_('Error parsing the arguments'), 
+            self.errors += [(_('Error parsing the arguments'),
                         msg + '\n' +
-                        _("Error parsing the arguments: %s \n" 
+                        _("Error parsing the arguments: %s \n"
                         "Type gramps --help for an overview of commands, or "
                         "read the manual pages.") % cliargs)]
             return
@@ -273,13 +273,13 @@ class ArgParser(object):
             elif option in ['-i', '--import']:
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
-                   and options[opt_ix + 1][0] in ( '-f', '--format'): 
+                   and options[opt_ix + 1][0] in ( '-f', '--format'):
                     family_tree_format = options[opt_ix + 1][1]
                 self.imports.append((value, family_tree_format))
             elif option in ['-e', '--export']:
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
-                   and options[opt_ix + 1][0] in ( '-f', '--format'): 
+                   and options[opt_ix + 1][0] in ( '-f', '--format'):
                     family_tree_format = options[opt_ix + 1][1]
                 self.exports.append((value, family_tree_format))
             elif option in ['-a', '--action']:
@@ -290,7 +290,7 @@ class ArgParser(object):
                     continue
                 options_str = ""
                 if opt_ix < len(options)-1 \
-                            and options[opt_ix+1][0] in ( '-p', '--options' ): 
+                            and options[opt_ix+1][0] in ( '-p', '--options' ):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ['-d', '--debug']:
@@ -362,12 +362,12 @@ class ArgParser(object):
                 self.auto_accept = True
             elif option in ['-q', '--quiet']:
                 self.quiet = True
-        
+
         #clean options list
         cleandbg.reverse()
         for ind in cleandbg:
             del options[ind]
-        
+
         if len(options) > 0 and self.open is None and self.imports == [] \
                 and not (self.list or self.list_more or self.list_table or
                          self.help or self.runqml):
@@ -394,10 +394,10 @@ class ArgParser(object):
         """
         Determine whether we need a GUI session for the given tasks.
         """
-        if self.errors: 
+        if self.errors:
             #errors in argument parsing ==> give cli error, no gui needed
             return False
-        
+
         if self.list or self.list_more or self.list_table or self.help:
             return False
 
@@ -419,10 +419,10 @@ class ArgParser(object):
             else:
                 # data given, but no action/export => GUI
                 return True
-        
+
         # No data, can only do GUI here
         return True
-    
+
     def print_help(self):
         """
         If the user gives the --help or -h option, print the output to terminal.

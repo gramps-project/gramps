@@ -112,7 +112,7 @@ class DateParserPL(DateParser):
     month_to_int["paz"] = 10
 
     modifier_to_int = {
-        'przed'    : Date.MOD_BEFORE, 
+        'przed'    : Date.MOD_BEFORE,
         'po'   : Date.MOD_AFTER,
         'około'  : Date.MOD_ABOUT,
         'ok.'     : Date.MOD_ABOUT,
@@ -135,7 +135,7 @@ class DateParserPL(DateParser):
         'francuski republikański': Date.CAL_FRENCH,
         'franc.'         : Date.CAL_FRENCH,
         'perski'         : Date.CAL_PERSIAN,
-        'szwedzki'       : Date.CAL_SWEDISH, 
+        'szwedzki'       : Date.CAL_SWEDISH,
         's'              : Date.CAL_SWEDISH,
     # Alternative forms: nouns without polish accent letters
     # (misspellings sometimes used in emails)
@@ -153,7 +153,7 @@ class DateParserPL(DateParser):
 
     bce = ["przed naszą erą", "przed Chrystusem",
            "p.n.e."] + DateParser.bce
-    
+
     def init_strings(self):
         DateParser.init_strings(self)
         self._span  = re.compile("(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE)
@@ -171,26 +171,26 @@ class DateParserPL(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayPL(DateDisplay):
     """
-    Polish language date display class. 
+    Polish language date display class.
     """
 
-    long_months = ( "", "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", 
-                    "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", 
+    long_months = ( "", "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj",
+                    "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik",
                     "Listopad", "Grudzień" )
-    
-    short_months = ( "", "Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", 
+
+    short_months = ( "", "Sty", "Lut", "Mar", "Kwi", "Maj", "Cze",
                      "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru" )
-    
+
     calendar = (
-        "", "juliański", "hebrajski", 
-        "francuski republikański", "perski", "islamski", 
-        "swedish" 
+        "", "juliański", "hebrajski",
+        "francuski republikański", "perski", "islamski",
+        "swedish"
         )
 
     _mod_str = ("", "przed ", "po ", "ok. ", "", "", "")
-    
+
     _qual_str = ("", "szacowany ", "obliczony ")
-    
+
     _bce_str = "%s p.n.e."
 
     formats = (
@@ -198,7 +198,7 @@ class DateDisplayPL(DateDisplay):
         "Dzień.Miesiąc.Rok", "Dzień Miesiąc Rok", "Dzień MieRzym Rok"
         )
         # this definition must agree with its "_display_gregorian" method
-    
+
     roman_months = (
         "",
         "I",
@@ -242,7 +242,7 @@ class DateDisplayPL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%s %d, %s" % (self.long_months[date_val[1]], 
+                value = "%s %d, %s" % (self.long_months[date_val[1]],
                                        date_val[0], year)
         elif self.format == 3:
             # day. month_number. year
@@ -261,7 +261,7 @@ class DateDisplayPL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
+                value = "%d %s %s" % (date_val[0],
                                       self.long_months[date_val[1]], year)
         else:
             # day Roman_number_month year
@@ -271,7 +271,7 @@ class DateDisplayPL(DateDisplay):
                 else:
                     value = "%s %s" % (self.roman_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
+                value = "%d %s %s" % (date_val[0],
                                       self.roman_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
@@ -289,7 +289,7 @@ class DateDisplayPL(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -298,18 +298,18 @@ class DateDisplayPL(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'od', d1, 'do', d2, 
+            return "%s%s %s %s %s%s" % (qual_str, 'od', d1, 'do', d2,
                                         scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'między', d1, 'a', d2, 
+            return "%s%s %s %s %s%s" % (qual_str, 'między', d1, 'a', d2,
                                         scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text,
                                  scal)
 
 #-------------------------------------------------------------------------

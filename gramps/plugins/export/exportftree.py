@@ -57,7 +57,7 @@ from gramps.gui.glade import Glade
 def writeData(database, filename, user, option_box=None):
     writer = FtreeWriter(database, filename, user, option_box)
     return writer.export_data()
-    
+
 #-------------------------------------------------------------------------
 #
 # FtreeWriter
@@ -159,7 +159,7 @@ class FtreeWriter(object):
             #    alive = probably_alive(p, self.db)
             #else:
             #    alive = 0
-                
+
             if birth:
                 if death:
                     dates = "%s-%s" % (fdate(birth), fdate(death))
@@ -170,10 +170,10 @@ class FtreeWriter(object):
                     dates = fdate(death)
                 else:
                     dates = ""
-                        
-            f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web, 
+
+            f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web,
                                              dates))
-            
+
         f.close()
         return True
 
@@ -181,7 +181,7 @@ def fdate(val):
     if val.get_year_valid():
         if val.get_month_valid():
             if val.get_day_valid():
-                return "%d/%d/%d" % (val.get_day(), val.get_month(), 
+                return "%d/%d/%d" % (val.get_day(), val.get_month(),
                                      val.get_year())
             else:
                 return "%d/%d" % (val.get_month(), val.get_year())
@@ -193,7 +193,7 @@ def fdate(val):
 def get_name(name, surname, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
-    
+
     return (name.first_name + ' ' +
            surname +
            (str(count) if count != -1 else '') +

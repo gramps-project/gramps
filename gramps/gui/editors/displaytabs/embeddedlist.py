@@ -54,7 +54,7 @@ from .buttontab import ButtonTab
 #
 #----------------------------------------------------------------
 TEXT_COL = 0
-MARKUP_COL = 1 
+MARKUP_COL = 1
 ICON_COL = 2
 TEXT_EDIT_COL = 3
 
@@ -65,22 +65,22 @@ TEXT_EDIT_COL = 3
 #-------------------------------------------------------------------------
 class EmbeddedList(ButtonTab):
     """
-    This class provides the base class for all the list tabs. 
-    
+    This class provides the base class for all the list tabs.
+
     It maintains a Gtk.TreeView, including the selection and button sensitivity.
     """
-    
+
     _HANDLE_COL = -1
     _DND_TYPE   = None
     _DND_EXTRA  = None
-    
+
     def __init__(self, dbstate, uistate, track, name, build_model,
                  share_button=False, move_buttons=False, jump_button=False,
                  top_label=None):
         """
         Create a new list, using the passed build_model to populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share_button, 
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share_button,
                            move_buttons, jump_button, top_label)
 
         self.changed = False
@@ -143,7 +143,7 @@ class EmbeddedList(ButtonTab):
         If image == False, then only text label with title is shown
         If image == True, and image is a tuple (stock_id, text), the image
             of the stock id (eg 'gramps-family') is shown, and the label text
-            If image is not a tuple, then it should be a stock_id, and the 
+            If image is not a tuple, then it should be a stock_id, and the
             image is shown, with label the default stock_id label.
         """
         if self.share_btn:
@@ -200,13 +200,13 @@ class EmbeddedList(ButtonTab):
         """
 
         if self._DND_EXTRA:
-            dnd_types = [self._DND_TYPE, 
+            dnd_types = [self._DND_TYPE,
                          self._DND_EXTRA]
         else:
             dnd_types = [self._DND_TYPE]
-        
+
         #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-        self.tree.enable_model_drag_dest([], Gdk.DragAction.COPY)        
+        self.tree.enable_model_drag_dest([], Gdk.DragAction.COPY)
         self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, [],
                                            Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
@@ -222,7 +222,7 @@ class EmbeddedList(ButtonTab):
         if not self.dbstate.db.readonly:
             self.tree.connect('drag_data_received', self.drag_data_received)
             self.tree.connect('drag_motion', self.tree_drag_motion)
-        
+
     def drag_data_get(self, widget, context, sel_data, info, time):
         """
         Provide the drag_data_get function, which passes a tuple consisting of:
@@ -261,20 +261,20 @@ class EmbeddedList(ButtonTab):
             data = pickle.loads(sel_data.get_data())
             if isinstance(data, list):
                 data = [pickle.loads(x) for x in data]
-            else: 
+            else:
                 data = [data]
             for value in data:
                 (mytype, selfid, obj, row_from) = value
 
                 # make sure this is the correct DND type for this object
                 if mytype == self._DND_TYPE.drag_type:
-                    
+
                     # determine the destination row
                     row = self._find_row(x, y)
 
                     # if the is same object, we have a move, otherwise,
                     # it is a standard drag-n-drop
-                    
+
                     if id(self) == selfid and self.get_selected() is not None:
                         self._move(row_from, row, obj)
                     else:
@@ -285,7 +285,7 @@ class EmbeddedList(ButtonTab):
 
     def tree_drag_motion(self, *args):
         """
-        On drag motion one wants the list to show as the database 
+        On drag motion one wants the list to show as the database
         representation so it is clear how save will change the data.
         """
         pass
@@ -318,9 +318,9 @@ class EmbeddedList(ButtonTab):
             del dlist[row_from]
             dlist.insert(row_to, obj)
         self.changed = True
-    
+
     def _move_up(self, row_from, obj, selmethod=None):
-        """ 
+        """
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
@@ -333,14 +333,14 @@ class EmbeddedList(ButtonTab):
         self.changed = True
         self.rebuild()
         #select the row
-        path = '%d' % (row_from-1) 
+        path = '%d' % (row_from-1)
         self.tree.get_selection().select_path(path)
         # The height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
         GLib.idle_add(self.tree.scroll_to_cell, path)
-        
+
     def _move_down(self, row_from, obj, selmethod=None):
-        """ 
+        """
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
@@ -353,7 +353,7 @@ class EmbeddedList(ButtonTab):
         self.changed = True
         self.rebuild()
         #select the row
-        path = '%d' % (row_from+1) 
+        path = '%d' % (row_from+1)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
 
@@ -373,14 +373,14 @@ class EmbeddedList(ButtonTab):
             ref_list.remove(ref)
             self.changed = True
             self.rebuild()
-            
+
     def up_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
             if pos > 0 :
                 self._move_up(pos, ref)
-                
+
     def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
@@ -396,7 +396,7 @@ class EmbeddedList(ButtonTab):
 
         # create the tree, turn on rule hinting and connect the
         # button press to the double click function.
-        
+
         self.tree = Gtk.TreeView()
         self.tree.set_reorderable(True)
         self.tree.connect('button_press_event', self.double_click)
@@ -428,7 +428,7 @@ class EmbeddedList(ButtonTab):
         0. Typically, get_data returns the list of associated data.
         """
         return len(self.get_data()) == 0
-    
+
     def get_data(self):
         """
         Return the data associated with the list. This is typically
@@ -453,7 +453,7 @@ class EmbeddedList(ButtonTab):
         """
         inherit this and set the variables needed for editable columns
         Variable edit_col_funcs needs to be a dictionary from model col_nr to
-        function to call for 
+        function to call for
         Example:
         self.edit_col_funcs ={1: {'edit_start': self.on_edit_start,
                                   'edited': self.on_edited
@@ -465,12 +465,12 @@ class EmbeddedList(ButtonTab):
         """
         Builds the columns and inserts them into the TreeView. Any
         previous columns exist, they will be in the self.columns array,
-        and removed. 
+        and removed.
         """
 
         # remove any existing columns, which would be stored in
         # self.columns
-        
+
         list(map(self.tree.remove_column, self.columns))
         self.columns = []
         self.setup_editable_col()
@@ -489,7 +489,7 @@ class EmbeddedList(ButtonTab):
             col_icon = self._column_names[pair[1]][5]
             model_col = self._column_names[pair[1]][1]
             type_col = self._column_names[pair[1]][3]
-            
+
             if (type_col in [TEXT_COL, MARKUP_COL, TEXT_EDIT_COL]):
                 renderer = Gtk.CellRendererText()
                 renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
@@ -499,7 +499,7 @@ class EmbeddedList(ButtonTab):
                     column = Gtk.TreeViewColumn(name, renderer, markup=pair[1])
                 if not self._column_names[pair[1]][4] == -1:
                     #apply weight attribute
-                    column.add_attribute(renderer, "weight", 
+                    column.add_attribute(renderer, "weight",
                                          self._column_names[pair[1]][4])
                 #set up editable
                 if type_col == TEXT_EDIT_COL:
@@ -507,7 +507,7 @@ class EmbeddedList(ButtonTab):
                     callbacks = self.edit_col_funcs[model_col]
                     for renderer in column.get_cells():
                         renderer.set_property('editable', not self.dbstate.db.readonly)
-                        renderer.connect('editing_started', 
+                        renderer.connect('editing_started',
                                             callbacks['edit_start'], model_col)
                         renderer.connect('edited', callbacks['edited'], model_col)
             elif self._column_names[pair[1]][3] == ICON_COL:
@@ -548,13 +548,13 @@ class EmbeddedList(ButtonTab):
         elif icon_name == True:
             icon_name = self.col_icons[col_num]
         renderer.set_property('icon-name', icon_name)
-        
+
     def construct_model(self):
         """
         Method that creates the model using the passed build_model parameter
         """
         return self.build_model(self.get_data(), self.dbstate.db)
-        
+
     def rebuild(self):
         """
         Rebuilds the data in the database by creating a new model,
@@ -591,19 +591,19 @@ class EmbeddedList(ButtonTab):
         if self.tree.get_realized():
             GLib.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
         self.post_rebuild(selectedpath)
-    
+
     def post_rebuild(self, prebuildpath):
         """
-        Allow post rebuild embeddedlist specific handling. 
+        Allow post rebuild embeddedlist specific handling.
         @param prebuildpath: path selected before rebuild, None if none
         @type prebuildpath: tree path
         """
         pass
-    
+
     def rebuild_callback(self):
         """
         The view must be remade when data changes outside this tab.
-        Use this method to connect to after a db change. It makes sure the 
+        Use this method to connect to after a db change. It makes sure the
         data is obtained again from the present object and the db what is not
         present in the obj, and the view rebuild
         """

@@ -35,7 +35,7 @@ import datetime
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText, 
+from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText,
                             StyledTextTag, StyledTextTagType)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
@@ -165,12 +165,12 @@ def find_records(db, filter, top_size, callname,
             divorce_date = None
             for event_ref in family.get_event_ref_list():
                 event = db.get_event_from_handle(event_ref.ref)
-                if (event.get_type().is_marriage() and 
-                    (event_ref.get_role().is_family() or 
+                if (event.get_type().is_marriage() and
+                    (event_ref.get_role().is_family() or
                      event_ref.get_role().is_primary())):
                     marriage_date = event.get_date_object()
-                elif (event.get_type().is_divorce() and 
-                      (event_ref.get_role().is_family() or 
+                elif (event.get_type().is_divorce() and
+                      (event_ref.get_role().is_family() or
                        event_ref.get_role().is_primary())):
                     divorce_date = event.get_date_object()
 
@@ -281,12 +281,12 @@ def find_records(db, filter, top_size, callname,
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if (event.get_type().is_marriage() and 
-                (event_ref.get_role().is_family() or 
+            if (event.get_type().is_marriage() and
+                (event_ref.get_role().is_family() or
                  event_ref.get_role().is_primary())):
                 marriage_date = event.get_date_object()
-            if (event and event.get_type().is_divorce() and 
-                (event_ref.get_role().is_family() or 
+            if (event and event.get_type().is_divorce() and
+                (event_ref.get_role().is_family() or
                  event_ref.get_role().is_primary())):
                 divorce = event
                 divorce_date = event.get_date_object()
@@ -310,16 +310,16 @@ def find_records(db, filter, top_size, callname,
             # Mother died but death date unknown or inexact
             continue
 
-        if (divorce_date is None 
-            and father_death_date is None 
+        if (divorce_date is None
+            and father_death_date is None
             and mother_death_date is None):
             # Still married and alive
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
                         today_date - marriage_date,
                         name, 'Family', family.handle, top_size)
-        elif (_good_date(divorce_date) or 
-              _good_date(father_death_date) or 
+        elif (_good_date(divorce_date) or
+              _good_date(father_death_date) or
               _good_date(mother_death_date)):
             end = None
             if _good_date(father_death_date) and _good_date(mother_death_date):
@@ -339,7 +339,7 @@ def find_records(db, filter, top_size, callname,
                     duration, name, 'Family', family.handle, top_size)
     #python 3 workaround: assign locals to tmp so we work with runtime version
     tmp = locals()
-    return [(trans_text(text), varname, tmp[varname]) 
+    return [(trans_text(text), varname, tmp[varname])
                 for (text, varname, default) in RECORDS]
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):

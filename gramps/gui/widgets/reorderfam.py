@@ -61,7 +61,7 @@ class Reorder(ManagedWindow):
     """
     Interface to reorder the families a person is parent in
     """
-    
+
     def __init__(self, state, uistate, track, handle):
         xml = Glade('reorder.glade')
         top = xml.toplevel
@@ -79,15 +79,15 @@ class Reorder(ManagedWindow):
         self.set_window(top, None, _("Reorder Relationships"))
 
         self.ptree = xml.get_object('ptree')
-        self.pmodel = ListModel(self.ptree, 
-                               [(_('Father'), -1, 200), 
-                                (_('Mother'), -1, 200), 
+        self.pmodel = ListModel(self.ptree,
+                               [(_('Father'), -1, 200),
+                                (_('Mother'), -1, 200),
                                 ('', -1, 0)])
 
         self.ftree = xml.get_object('ftree')
-        self.fmodel = ListModel(self.ftree, 
-                               [(_('Spouse'), -1, 200), 
-                                (_('Relationship'), -1, 200), 
+        self.fmodel = ListModel(self.ftree,
+                               [(_('Spouse'), -1, 200),
+                                (_('Relationship'), -1, 200),
                                 ('', -1, 0)])
 
         xml.get_object('ok').connect('clicked', self.ok_clicked)

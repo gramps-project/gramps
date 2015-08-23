@@ -21,14 +21,14 @@
 
 # plugins/webstuff/webstuff.gpr.py
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
 # Stylesheets
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'system webstuff',
 category = "WEBSTUFF",
 name  = _("Webstuff"),

@@ -35,8 +35,8 @@ class Connection(object):
             self.token = [x.value for x in cookies.cookiejar if x.name == 'csrftoken'][0]
         except IndexError:
             return Exception("no csrftoken")
-        params = dict(username=username, 
-                      password=password, 
+        params = dict(username=username,
+                      password=password,
                       next="/",
                       csrfmiddlewaretoken=self.token,
                       )

@@ -37,7 +37,7 @@ from . import StringOption
 #-------------------------------------------------------------------------
 class PersonOption(StringOption):
     """
-    This class describes an option that allows a person from the 
+    This class describes an option that allows a person from the
     database to be selected.
     """
     def __init__(self, label):

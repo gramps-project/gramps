@@ -60,7 +60,7 @@ class RepositoryDetails(Gramplet):
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
-        
+
     def clear_grid(self):
         """
         Remove all the rows from the grid.
@@ -71,7 +71,7 @@ class RepositoryDetails(Gramplet):
         self.dbstate.db.connect('repository-update', self.update)
         self.connect_signal('Repository', self.update)
 
-    def update_has_data(self): 
+    def update_has_data(self):
         active_handle = self.get_active('Repository')
         if active_handle:
             repo = self.dbstate.db.get_repository_from_handle(active_handle)

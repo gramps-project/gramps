@@ -71,24 +71,24 @@ CITATION_KEY   = 10
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2
 
-CLASS_TO_KEY_MAP = {"Person": PERSON_KEY, 
-                    "Family": FAMILY_KEY, 
-                    "Source": SOURCE_KEY, 
-                    "Citation": CITATION_KEY, 
-                    "Event": EVENT_KEY, 
-                    "MediaObject": MEDIA_KEY, 
-                    "Place": PLACE_KEY, 
+CLASS_TO_KEY_MAP = {"Person": PERSON_KEY,
+                    "Family": FAMILY_KEY,
+                    "Source": SOURCE_KEY,
+                    "Citation": CITATION_KEY,
+                    "Event": EVENT_KEY,
+                    "MediaObject": MEDIA_KEY,
+                    "Place": PLACE_KEY,
                     "Repository": REPOSITORY_KEY,
                     "Note" : NOTE_KEY,
                     "Tag": TAG_KEY}
 
-KEY_TO_CLASS_MAP = {PERSON_KEY: "Person", 
-                    FAMILY_KEY: "Family", 
-                    SOURCE_KEY: "Source", 
-                    CITATION_KEY: "Citation", 
-                    EVENT_KEY: "Event", 
-                    MEDIA_KEY: "MediaObject", 
-                    PLACE_KEY: "Place", 
+KEY_TO_CLASS_MAP = {PERSON_KEY: "Person",
+                    FAMILY_KEY: "Family",
+                    SOURCE_KEY: "Source",
+                    CITATION_KEY: "Citation",
+                    EVENT_KEY: "Event",
+                    MEDIA_KEY: "MediaObject",
+                    PLACE_KEY: "Place",
                     REPOSITORY_KEY: "Repository",
                     NOTE_KEY: "Note",
                     TAG_KEY: "Tag"}

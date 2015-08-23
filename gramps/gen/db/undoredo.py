@@ -76,34 +76,34 @@ class DbUndo(object):
         """
         Close the backing storage.  Needs to be overridden in the derived
         class.
-        """        
+        """
         raise NotImplementedError
 
     def append(self, value):
         """
         Add a new entry on the end.  Needs to be overridden in the derived
         class.
-        """        
+        """
         raise NotImplementedError
 
     def __getitem__(self, index):
         """
         Returns an entry by index number.  Needs to be overridden in the
         derived class.
-        """        
+        """
         raise NotImplementedError
 
     def __setitem__(self, index, value):
         """
         Set an entry to a value.  Needs to be overridden in the derived class.
-        """           
+        """
         raise NotImplementedError
 
     def __len__(self):
         """
         Returns the number of entries.  Needs to be overridden in the derived
         class.
-        """         
+        """
         raise NotImplementedError
 
     def __redo(self, update_history):

@@ -71,7 +71,7 @@ class IsDescendantOf(Rule):
             return
         if not first:
             self.map.add(person.handle)
-        
+
         for fam_id in person.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             if fam:

@@ -46,7 +46,7 @@ TABLE  = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
 def soundex(strval):
     "Return the soundex value to a string argument."
 
-    strval = unicodedata.normalize('NFKD', 
+    strval = unicodedata.normalize('NFKD',
         str(strval.upper().strip())).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"

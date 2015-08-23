@@ -96,7 +96,7 @@ def download(url, filename=None):
     def getFilename(url,openUrl):
         if 'Content-Disposition' in openUrl.info():
             # If the response has Content-Disposition, try to get filename from it
-            cd = dict([x.strip().split('=') if '=' in x else (x.strip(),'') 
+            cd = dict([x.strip().split('=') if '=' in x else (x.strip(),'')
                                         for x in openUrl.info().split(';')])
             if 'filename' in cd:
                 fname = cd['filename'].strip("\"'")

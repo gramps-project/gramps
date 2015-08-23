@@ -51,7 +51,7 @@ class SelectEvent(BaseSelector):
 
     def get_window_title(self):
         return _("Select Event")
-        
+
     def get_model_class(self):
         return EventModel
 

@@ -41,11 +41,11 @@ class Filter(Gramplet):
     The base class for all filter gramplets.
     """
     FILTER_CLASS = None
-    
+
     def init(self):
         self.filter = self.FILTER_CLASS(self.dbstate, self.uistate,
                                         self.__filter_clicked)
-        self.widget = self.filter.get_widget()                          
+        self.widget = self.filter.get_widget()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.widget)
         self.widget.show_all()
@@ -144,7 +144,7 @@ class RepositoryFilter(Filter):
     A gramplet providing a Repository Filter.
     """
     FILTER_CLASS = RepoSidebarFilter
-    
+
 #-------------------------------------------------------------------------
 #
 # NoteFilter class

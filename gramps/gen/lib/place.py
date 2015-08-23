@@ -53,7 +53,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     information (since place names can change with time), longitude, latitude,
     a collection of images and URLs, a note and a source.
     """
-    
+
     def __init__(self, source=None):
         """
         Create a new Place object, copying from the source if present.
@@ -90,9 +90,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     def serialize(self):
         """
         Convert the data held in the Place to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
         These elements may be primitive Python types (string, integers),
@@ -106,7 +106,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
-                [pr.serialize() for pr in self.placeref_list], 
+                [pr.serialize() for pr in self.placeref_list],
                 self.name.serialize(),
                 [an.serialize() for an in self.alt_names],
                 self.place_type.serialize(), self.code,
@@ -121,7 +121,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -138,22 +138,22 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: dict
         """
         return {"_class": "Place",
-                "handle": Handle("Place", self.handle), 
-                "gramps_id": self.gramps_id, 
-                "title": self.title, 
-                "long": self.long, 
+                "handle": Handle("Place", self.handle),
+                "gramps_id": self.gramps_id,
+                "title": self.title,
+                "long": self.long,
                 "lat": self.lat,
                 "placeref_list": [pr.to_struct() for pr in self.placeref_list],
                 "name": self.name.to_struct(),
                 "alt_names": [an.to_struct() for an in self.alt_names],
-                "place_type": self.place_type.to_struct(), 
-                "code": self.code, 
+                "place_type": self.place_type.to_struct(),
+                "code": self.code,
                 "alt_loc": [al.to_struct() for al in self.alt_loc],
                 "urls": UrlBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
-                "change": self.change, 
+                "change": self.change,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
@@ -173,14 +173,14 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 [PlaceRef.from_struct(pr) for pr in struct.get("placeref_list", default.placeref_list)],
                 PlaceName.from_struct(struct.get("name", {})),
                 [PlaceName.from_struct(an) for an in struct.get("alt_names", default.alt_names)],
-                PlaceType.from_struct(struct.get("place_type", {})), 
+                PlaceType.from_struct(struct.get("place_type", {})),
                 struct.get("code", default.code),
                 [Location.from_struct(al) for al in struct.get("alt_loc", default.alt_loc)],
                 UrlBase.from_struct(struct.get("urls", default.urls)),
                 MediaBase.from_struct(struct.get("media_list", default.media_list)),
                 CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
                 NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                struct.get("change", default.change), 
+                struct.get("change", default.change),
                 TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
 
@@ -245,7 +245,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                 refer notes.
         :rtype: list
         """
@@ -255,7 +255,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -265,7 +265,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -454,14 +454,14 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                 this object type.
         :rtype: bool
         """
@@ -519,8 +519,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     def get_alternate_locations(self):
         """
         Return a list of alternate :class:`~.location.Location` objects the
-        present alternate information about the current Place. 
-        
+        present alternate information about the current Place.
+
         A Place can have more than one :class:`~.location.Location`, since names
         and jurisdictions can change over time for the same place.
 

@@ -40,7 +40,7 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
     context["tviews"] = _("Repositories")
     context["action"] = "view"
     view_template = "view_repository_detail.html"
-    
+
     if handle == "add":
         act = "add"
     if "action" in request.POST:
@@ -49,24 +49,24 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
     # Handle: edit, view, add, create, save, delete, share, save-share
     if act == "share":
         item, handle = add_to
-        context["pickform"] = PickForm("Pick repository", 
-                                       Repository, 
+        context["pickform"] = PickForm("Pick repository",
+                                       Repository,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick repository", 
-                            Repository, 
+        item, handle = add_to
+        pickform = PickForm("Pick repository",
+                            Repository,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             parent_model = dji.get_model(item) # what model?
             parent_obj = parent_model.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Repository.objects.get(handle=ref_handle) 
+            ref_obj = Repository.objects.get(handle=ref_handle)
             dji.add_repository_ref_default(parent_obj, ref_obj)
             parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-repositories" % (item, handle, build_search(request)))
@@ -79,11 +79,11 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
         repository = Repository(gramps_id=dji.get_next_id(Repository, "R"))
         repositoryform = RepositoryForm(instance=repository)
         repositoryform.model = repository
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         repository = Repository.objects.get(handle=handle)
         repositoryform = RepositoryForm(instance=repository)
         repositoryform.model = repository
-    elif act == "save": 
+    elif act == "save":
         repository = Repository.objects.get(handle=handle)
         repositoryform = RepositoryForm(request.POST, instance=repository)
         repositoryform.model = repository
@@ -93,7 +93,7 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         repository = Repository(handle=create_id())
         repositoryform = RepositoryForm(request.POST, instance=repository)
         repositoryform.model = repository
@@ -110,7 +110,7 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         repository = Repository.objects.get(handle=handle)
         repository.delete()
         return redirect("/repository/")
@@ -121,6 +121,6 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
     context["object"] = repository
     context["repository"] = repository
     context["action"] = act
-    
+
     return render_to_response(view_template, context)
 

@@ -76,7 +76,7 @@ class MergePlace(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget('place_title'),
                         _("Merge Places"))
-        
+
         # Detailed selection widgets
         if not config.get('preferences.place-auto'):
             title1 = self.pl1.get_title()
@@ -196,7 +196,7 @@ class MergePlace(ManagedWindow):
         else:
             phoenix = self.pl2
             titanic = self.pl1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Place')
 
@@ -217,7 +217,7 @@ class MergePlace(ManagedWindow):
 
         query = MergePlaceQuery(self.dbstate, phoenix, titanic)
         query.execute()
-        
+
         if self.callback:
             self.callback()
         self.uistate.set_busy_cursor(False)

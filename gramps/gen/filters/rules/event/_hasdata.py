@@ -50,7 +50,7 @@ class HasData(Rule):
     description = _("Matches events with data of a particular value")
     category    = _('General filters')
     allow_regex = True
-    
+
     def prepare(self, dbase):
         self.event_type = self.list[0]
         self.date = self.list[1]
@@ -61,7 +61,7 @@ class HasData(Rule):
 
         if self.date:
             self.date = parser.parse(self.date)
-        
+
     def apply(self, db, event):
         if self.event_type and event.get_type() != self.event_type:
             # No match

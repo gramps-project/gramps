@@ -41,11 +41,11 @@ URL_BACKUP2_START = URL_MANUAL_START + '#Backing_up_a_Family_Tree">'
 URL_EXPORT_START = URL_MANUAL_START + '#Export_into_Gramps_formats">'
 
 class DbException(Exception):
-    
+
     def __init__(self, value):
         Exception.__init__(self)
         self.value = value
-        
+
     def __str__(self):
         return self.value
 
@@ -57,13 +57,13 @@ class DbWriteFailure(Exception):
         Exception.__init__(self)
         self.value = value
         self.value2 = value2
-        
+
     def __str__(self):
         return self.value
-    
+
     def messages(self):
         return self.value, self.value2
-    
+
 class DbTransactionCancel(Exception):
     """
     Error used to indicate that a transaction needs to be canceled,
@@ -78,7 +78,7 @@ class DbTransactionCancel(Exception):
 
 class DbVersionError(Exception):
     """
-    Error used to report that a file could not be read because it is written 
+    Error used to report that a file could not be read because it is written
     in an unsupported version of the file format.
     """
     def __init__(self, tree_vers, min_vers, max_vers):
@@ -98,7 +98,7 @@ class DbVersionError(Exception):
                  {'tree_vers': self.tree_vers,
                   'min_vers': self.min_vers,
                   'max_vers': self.max_vers}
-    
+
 class BsddbDowngradeError(Exception):
     """
     Error used to report that the Berkeley database used to create the family
@@ -214,10 +214,10 @@ class DbEnvironmentError(Exception):
                   "in an empty Family Tree. Alternatively, it may be possible "
                   "to use the Berkeley database recovery tools.")
                   + '\n\n' + str(self.msg))
-    
+
 class DbUpgradeRequiredError(Exception):
     """
-    Error used to report that a database needs to be upgraded before it can be 
+    Error used to report that a database needs to be upgraded before it can be
     used.
     """
     def __init__(self, oldschema, newschema):
@@ -229,7 +229,7 @@ class DbUpgradeRequiredError(Exception):
         return _('The Family Tree you are trying to load is in the schema '
                  'version %(oldschema)s format. This version of Gramps uses '
                  'schema version %(newschema)s. Therefore you cannot load this '
-                 'Family Tree without upgrading the schema version of the ' 
+                 'Family Tree without upgrading the schema version of the '
                  'Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
@@ -251,7 +251,7 @@ class DbUpgradeRequiredError(Exception):
                      'bold_end'   : '</b>' ,
                      'oldschema'  : self.oldschema,
                      'newschema'  : self.newschema }
-                 
+
 class PythonDowngradeError(Exception):
     """
     Error used to report that the Python version used to create the family tree
@@ -323,7 +323,7 @@ class PythonUpgradeRequiredError(Exception):
 if __name__ == "__main__":
     """
     Call this from the CLI (in order to find the imported modules):
-        cd /path/to/gramps; GRAMPS_RESOURCES=. ; PYTHONPATH=. 
+        cd /path/to/gramps; GRAMPS_RESOURCES=. ; PYTHONPATH=.
         python gramps/gen/db/exceptions.py
     """
     import sys

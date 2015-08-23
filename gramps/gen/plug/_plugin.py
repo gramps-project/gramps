@@ -21,8 +21,8 @@
 
 """
 This module provides the base class for plugins.
-""" 
-    
+"""
+
 class Plugin(object):
     """
     This class serves as a base class for all plugins that can be registered
@@ -44,28 +44,28 @@ class Plugin(object):
         self.__name = name
         self.__desc = description
         self.__mod_name = module_name
-        
+
     def get_name(self):
         """
         Get the name of this plugin.
-        
+
         :return: a string representing the name of the plugin
         """
         return self.__name
-    
+
     def get_description(self):
         """
         Get the description of this plugin.
-        
+
         :return: a string that describes the plugin
         """
         return self.__desc
-    
+
     def get_module_name(self):
         """
         Get the name of the module that this plugin lives in.
-        
+
         :return: a string representing the name of the module for this plugin
         """
         return self.__mod_name
-    
+

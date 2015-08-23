@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -51,7 +51,7 @@ from ._datestrings import DateStrings
 #-------------------------------------------------------------------------
 class DateDisplay(object):
     """
-    Base date display class. 
+    Base date display class.
     """
     _locale = GrampsLocale(lang='en_US', languages='en')
 
@@ -60,23 +60,23 @@ class DateDisplay(object):
     _ = _grampslocale.glocale.translation.sgettext
     formats = (
         # format 0 - must always be ISO
-        _("YYYY-MM-DD (ISO)"), 
+        _("YYYY-MM-DD (ISO)"),
 
         # format # 1 - must always be locale-preferred numerical format
         # such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
-        # This should be the format that is used under the locale by 
+        # This should be the format that is used under the locale by
         # strftime() for '%x'.
         # You may translate this as "Numerical", "System preferred", or similar.
-        _("date format|Numerical"), 
+        _("date format|Numerical"),
 
         # Full month name, day, year
-        _("Month Day, Year"), 
+        _("Month Day, Year"),
 
         # Abbreviated month name, day, year
-        _("MON DAY, YEAR"), 
+        _("MON DAY, YEAR"),
 
         # Day, full month name, year
-        _("Day Month Year"), 
+        _("Day Month Year"),
 
         # Day, abbreviated month name, year
         _("DAY MON YEAR")
@@ -84,7 +84,7 @@ class DateDisplay(object):
     """
     .. note:: Will be overridden if a locale-specific date displayer exists.
 
-    If your localized :meth:`~_display_calendar`/:meth:`~_display_gregorian` 
+    If your localized :meth:`~_display_calendar`/:meth:`~_display_gregorian`
     are overridden, you should override the whole formats list according
     to your own formats, and you need not localize the format names here.
     This ``formats`` must agree with
@@ -93,7 +93,7 @@ class DateDisplay(object):
     del _
 
     newyear = ("", "Mar1", "Mar25", "Sep1")
-    
+
     _bce_str = "%s B.C.E."
     # this will be overridden if a locale-specific date displayer exists
 
@@ -110,12 +110,12 @@ class DateDisplay(object):
         self.persian = self._ds.persian
         self.islamic = self._ds.islamic
         self.display_cal = [
-            self._display_gregorian, 
-            self._display_julian, 
-            self._display_hebrew, 
-            self._display_french, 
-            self._display_persian, 
-            self._display_islamic, 
+            self._display_gregorian,
+            self._display_julian,
+            self._display_hebrew,
+            self._display_french,
+            self._display_persian,
+            self._display_islamic,
             self._display_swedish]
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
@@ -129,7 +129,7 @@ class DateDisplay(object):
         self._ = _ = self._locale.translation.sgettext
         self.FORMATS_long_month_year = {
 # Inflection control due to modifier.
-# Protocol: DateDisplayXX passes a key to the dictionary in the 
+# Protocol: DateDisplayXX passes a key to the dictionary in the
 # parameter ``inflect`` to ``_display_calendar``.
 # The modifier passed is not necessarily the one printed, it's just
 # a representative that induces the same inflection control.
@@ -137,7 +137,7 @@ class DateDisplay(object):
 # all require genitive form for May, whereas no modifier (just "May 1234")
 # require nominative, so DateDisplayRU.display will pass "before"
 # in all 3 cases, collapsing the 3 modifiers into 1.
-# 
+#
 # Another example in Russian is that "between April 1234 and June 1235"
 # requires the same inflection for both April and June, so just "between"
 # is used by DateDisplayRU.display, collapsing two more modifiers into 1.
@@ -231,7 +231,7 @@ class DateDisplay(object):
                 ""
                 : _("{short_month} {year}"),
 
-                "from" 
+                "from"
                 # first date in a span
                 # If "from <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
@@ -239,7 +239,7 @@ class DateDisplay(object):
                 # else leave it untranslated
                 : _("from|{short_month} {year}"),
 
-                "to" 
+                "to"
                 # second date in a span
                 # If "to <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
@@ -247,7 +247,7 @@ class DateDisplay(object):
                 # else leave it untranslated
                 : _("to|{short_month} {year}"),
 
-                "between" 
+                "between"
                 # first date in a range
                 # If "between <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
@@ -255,7 +255,7 @@ class DateDisplay(object):
                 # else leave it untranslated
                 : _("between|{short_month} {year}"),
 
-                "and" 
+                "and"
                 # second date in a range
                 # If "and <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
@@ -263,21 +263,21 @@ class DateDisplay(object):
                 # else leave it untranslated
                 : _("and|{short_month} {year}"),
 
-                "before" 
+                "before"
                 # If "before <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
                 # else leave it untranslated
                 : _("before|{short_month} {year}"),
 
-                "after" 
+                "after"
                 # If "after <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
                 # else leave it untranslated
                 : _("after|{short_month} {year}"),
 
-                "about" 
+                "about"
                 # If "about <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
@@ -338,7 +338,7 @@ class DateDisplay(object):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -356,7 +356,7 @@ class DateDisplay(object):
     def _slash_year(self, val, slash):
         if val < 0:
             val = - val
-            
+
         if slash:
             if (val-1) % 100 == 99:
                 year = "%d/%d" % (val - 1, (val%1000))
@@ -366,9 +366,9 @@ class DateDisplay(object):
                 year = "%d/%d" % (val - 1, (val%10))
         else:
             year = "%d" % (val)
-        
+
         return year
-        
+
     def display_iso(self, date_val):
         # YYYY-MM-DD (ISO)
         year = self._slash_year(date_val[2], date_val[3])
@@ -391,21 +391,21 @@ class DateDisplay(object):
         cal = date.get_calendar()
         qual_str = self._qual_str[date.get_quality()]
         scal = self.format_extras(cal, date.get_new_year())
-        d1 = self.display_cal[cal](date.get_start_date(), 
+        d1 = self.display_cal[cal](date.get_start_date(),
             # If there is no special inflection for "from <Month>"
             # in your language, DON'T translate this string.  Otherwise,
             # "translate" this to "from" in ENGLISH!!! ENGLISH!!!
                                    inflect=self._("from-date|"))
-        d2 = self.display_cal[cal](date.get_stop_date(), 
+        d2 = self.display_cal[cal](date.get_stop_date(),
             # If there is no special inflection for "to <Month>"
             # in your language, DON'T translate this string.  Otherwise,
             # "translate" this to "to" in ENGLISH!!! ENGLISH!!!
                                    inflect=self._("to-date|"))
         return self._("{date_quality}from {date_start} to {date_stop}"
                       "{nonstd_calendar_and_ny}").format(
-                            date_quality=qual_str, 
-                            date_start=d1, 
-                            date_stop=d2, 
+                            date_quality=qual_str,
+                            date_start=d1,
+                            date_stop=d2,
                             nonstd_calendar_and_ny=scal)
 
     def dd_range(self, date):
@@ -428,9 +428,9 @@ class DateDisplay(object):
                                    inflect=self._("and-date|"))
         return self._("{date_quality}between {date_start} and {date_stop}"
                       "{nonstd_calendar_and_ny}").format(
-                            date_quality=qual_str, 
-                            date_start=d1, 
-                            date_stop=d2, 
+                            date_quality=qual_str,
+                            date_start=d1,
+                            date_stop=d2,
                             nonstd_calendar_and_ny=scal)
 
     def display_formatted(self, date):
@@ -445,7 +445,7 @@ class DateDisplay(object):
 
         qual_str = self._qual_str[qual]
         _ = self._
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -500,13 +500,13 @@ class DateDisplay(object):
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}{noncompound_modifier}{date}"
                      "{nonstd_calendar_and_ny}").format(
-                         date_quality=qual_str, 
+                         date_quality=qual_str,
                          noncompound_modifier=modifier,
-                         date=text, 
+                         date=text,
                          nonstd_calendar_and_ny=scal)
 
     def _display_gregorian(self, date_val, **kwargs):
-        return self._display_calendar(date_val, self.long_months, 
+        return self._display_calendar(date_val, self.long_months,
                 self.short_months, **kwargs)
 
     # Julian and Swedish date display is the same as Gregorian
@@ -713,7 +713,7 @@ class DateDisplay(object):
 
 class DateDisplayEn(DateDisplay):
     """
-    English language date display class. 
+    English language date display class.
     """
 
 

@@ -48,7 +48,7 @@ from .citationbase import IndirectCitationBase
 class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         PrimaryObject):
     """A record of a source of information."""
-    
+
     def __init__(self):
         """Create a new Source instance."""
         PrimaryObject.__init__(self)
@@ -60,7 +60,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         self.pubinfo = ""
         self.abbrev = ""
         self.reporef_list = []
-        
+
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
@@ -83,7 +83,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -100,13 +100,13 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :rtype: dict
         """
         return {"_class": "Source",
-                "handle": Handle("Source", self.handle), 
-                "gramps_id": self.gramps_id, 
+                "handle": Handle("Source", self.handle),
+                "gramps_id": self.gramps_id,
                 "title": str(self.title),
-                "author": str(self.author), 
+                "author": str(self.author),
                 "pubinfo": str(self.pubinfo),
                 "note_list": NoteBase.to_struct(self),
-                "media_list": MediaBase.to_struct(self), 
+                "media_list": MediaBase.to_struct(self),
                 "abbrev": str(self.abbrev),
                 "change": self.change,
                 "srcattr_list": SrcAttributeBase.to_struct(self),
@@ -129,7 +129,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 struct.get("author", default.author),
                 struct.get("pubinfo", default.pubinfo),
                 NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                MediaBase.from_struct(struct.get("media_list", default.media_list)), 
+                MediaBase.from_struct(struct.get("media_list", default.media_list)),
                 struct.get("abbrev", default.abbrev),
                 struct.get("change", default.change),
                 SrcAttributeBase.from_struct(struct.get("srcattr_list", {})),
@@ -163,17 +163,17 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         SrcAttributeBase.unserialize(self, srcattr_list)
         self.reporef_list = [RepoRef().unserialize(item) for item in reporef_list]
         return self
-        
+
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                   this object type.
         :rtype: bool
         """
@@ -222,7 +222,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         return [self.title, self.author, self.pubinfo, self.abbrev,
                 self.gramps_id]
-    
+
     def get_text_data_child_list(self):
         """
         Return the list of child objects that may carry textual data.
@@ -236,7 +236,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -246,7 +246,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -256,7 +256,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -266,7 +266,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -388,7 +388,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
 
         :param repo_handle: The Repository handle to be checked.
         :type repo_handle: str
-        :returns: Returns whether the Source has reference to this Repository 
+        :returns: Returns whether the Source has reference to this Repository
                   handle.
         :rtype: bool
         """

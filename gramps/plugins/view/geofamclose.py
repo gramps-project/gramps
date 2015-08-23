@@ -91,8 +91,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
   <toolitem action="HomePerson"/>
   <toolitem action="RefFamily"/>
 </placeholder>
@@ -136,7 +136,7 @@ class GeoFamClose(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have these two families been able to meet?"),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -171,11 +171,11 @@ class GeoFamClose(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-family'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -224,7 +224,7 @@ class GeoFamClose(GeoGraphyView):
                 'gramps_id' : family.gramps_id,
                 }
         return label
- 
+
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given family handle as reference.
@@ -385,7 +385,7 @@ class GeoFamClose(GeoGraphyView):
                             self.possible_meeting(child, ref_person)
             else:
                 self.possible_meeting(person, ref_person)
-       
+
 
     def _possible_family_meeting(self, reference, family):
         """
@@ -421,11 +421,11 @@ class GeoFamClose(GeoGraphyView):
                             self._expose_persone_to_family(child, family)
             else:
                 self._expose_persone_to_family(person, family)
-       
+
 
     def _createmap_for_one_person(self, person, color, place_list, reference):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         self.place_list = []
@@ -585,7 +585,7 @@ class GeoFamClose(GeoGraphyView):
 
     def _createmap(self, family_x, color, place_list, reference):
         """
-        Create all markers for each family's person in the database which has 
+        Create all markers for each family's person in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -633,7 +633,7 @@ class GeoFamClose(GeoGraphyView):
                         continue
                     else:
                         events.append(plce[10])
-                      
+
                     if plce[0] != oldplace:
                         message = "%s :" % plce[0]
                         self.add_place_bubble_message(event, lat, lon,
@@ -682,10 +682,10 @@ class GeoFamClose(GeoGraphyView):
                                None, event.button, event.time)
         return 0
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
@@ -720,7 +720,7 @@ class GeoFamClose(GeoGraphyView):
                   'The value is in tenth of degree.'),
                 1, line_wrap=False)
         self.config_meeting_slider = configdialog.add_slider(grid,
-                "", 
+                "",
                 2, 'geography.maximum_meeting_zone',
                 (1, 9))
         return _('The selection parameters'), grid

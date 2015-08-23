@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
-# Copyright (C) 2008       Gary Burton 
+# Copyright (C) 2008       Gary Burton
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -73,8 +73,8 @@ _ = glocale.translation.gettext
 class CitationListView(ListView):
     """
     A list view of citations.
-    
-    The citation list view only shows the citations (it does not show 
+
+    The citation list view only shows the citations (it does not show
     sources as separate list entries).
     """
     # The data items here have to correspond, in order, to the items in
@@ -116,11 +116,11 @@ class CitationListView(ListView):
                              COL_CONFIDENCE]),
         ('columns.rank', [COL_TITLE_PAGE, COL_ID, COL_DATE, COL_CONFIDENCE,
                           COL_PRIV, COL_TAGS, COL_CHAN, COL_SRC_TITLE,
-                          COL_SRC_ID, COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO, 
+                          COL_SRC_ID, COL_SRC_AUTH, COL_SRC_ABBR, COL_SRC_PINFO,
                           COL_SRC_PRIV, COL_SRC_CHAN]),
-        ('columns.size', [200, 75, 100, 100, 40, 100, 100, 200, 75, 75, 100, 
+        ('columns.size', [200, 75, 100, 100, 40, 100, 100, 200, 75, 75, 100,
                           150, 40, 100])
-        )    
+        )
     ADD_MSG = _("Add a new citation and a new source")
     ADD_SOURCE_MSG = _("Add a new source")
     ADD_CITATION_MSG = _("Add a new citation to an existing source")
@@ -140,7 +140,7 @@ class CitationListView(ListView):
             }
 
         ListView.__init__(
-            self, _('Citation View'), pdata, dbstate, uistate, 
+            self, _('Citation View'), pdata, dbstate, uistate,
             CitationListModel, signal_map,
             CitationBookmarks, nav_group,
             multiple=True,
@@ -158,19 +158,19 @@ class CitationListView(ListView):
 
     def drag_info(self):
         return DdTargets.CITATION_LINK
-    
+
     def define_actions(self):
         """
         This defines the possible actions for the citation views.
         Possible actions are:
-        add:        Add a new citation and a new source (this can also be done 
-                      by source view add a source, then citation view add a new 
+        add:        Add a new citation and a new source (this can also be done
+                      by source view add a source, then citation view add a new
                       citation to an existing source)
         edit:       Edit a citation.
         merge:      Merge the selected citations.
         remove:     Delete the selected citations.
-        
-        
+
+
         """
         ListView.define_actions(self)
 
@@ -223,8 +223,8 @@ class CitationListView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -248,19 +248,19 @@ class CitationListView(ListView):
 
     def add(self, obj):
         """
-        add:        Add a new citation and a new source (this can also be done 
-                      by source view add a source, then citation view add a new 
+        add:        Add a new citation and a new source (this can also be done
+                      by source view add a source, then citation view add a new
                       citation to an existing source)
-        
-        Create a new Source instance and Citation instance and call the 
-        EditCitation editor with the new source and new citation. 
-        
-        Called when the Add button is clicked. 
-        If the window already exists (WindowActiveError), we ignore it. 
+
+        Create a new Source instance and Citation instance and call the
+        EditCitation editor with the new source and new citation.
+
+        Called when the Add button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
         This prevents the dialog from coming up twice on the same object.
-        
+
         However, since the window is identified by the Source object, and
-        we have just created a new one, it seems to be impossible for the 
+        we have just created a new one, it seems to be impossible for the
         window to already exist, so this is just an extra safety measure.
         """
         try:
@@ -275,7 +275,7 @@ class CitationListView(ListView):
     def remove_object_from_handle(self, handle):
         the_lists = get_citation_referents(handle, self.dbstate.db)
         object = self.dbstate.db.get_citation_from_handle(handle)
-        query = DeleteCitationQuery(self.dbstate, self.uistate, object, 
+        query = DeleteCitationQuery(self.dbstate, self.uistate, object,
                                     the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
@@ -306,7 +306,7 @@ class CitationListView(ListView):
         Merge the selected citations.
         """
         mlist = self.selected_handles()
-        
+
         if len(mlist) != 2:
             msg = _("Cannot merge citations.")
             msg2 = _("Exactly two citations must be selected to perform a "
@@ -318,7 +318,7 @@ class CitationListView(ListView):
             citation1 = self.dbstate.db.get_citation_from_handle(mlist[0])
             citation2 = self.dbstate.db.get_citation_from_handle(mlist[1])
             if not citation1.get_reference_handle()  == \
-                            citation2.get_reference_handle():         
+                            citation2.get_reference_handle():
                 msg = _("Cannot merge citations.")
                 msg2 = _("The two selected citations must have the same "
                          "source to perform a merge. If you want to merge "
@@ -354,7 +354,7 @@ class CitationListView(ListView):
         citation = self.dbstate.db.get_citation_from_handle(citation_handle)
         citation.add_tag(tag_handle)
         self.dbstate.db.commit_citation(citation, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

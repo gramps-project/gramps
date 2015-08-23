@@ -79,28 +79,28 @@ class DetailView(QtCore.QObject):
 
     def _name(self):
         return self.__name
-    
+
     changed = QtCore.Signal()
 
-    #make Model.Column.property available in QML 
+    #make Model.Column.property available in QML
     name = QtCore.Property(str, _name, notify=changed)
-    
+
 class DetViewSumModel(QtCore.QAbstractListModel):
     """
     A simple ListModel for the different detailed views
     """
     COLUMNS = ('name', )
- 
+
     def __init__(self, detviews):
         QtCore.QAbstractListModel.__init__(self)
         self._detviews = detviews
         self.setRoleNames(dict(enumerate(DetViewSumModel.COLUMNS)))
- 
+
     def rowCount(self, parent=QtCore.QModelIndex()):
         return len(self._detviews)
- 
+
     def data(self, index, role):
-        print('role', role, DetViewSumModel.COLUMNS.index('name')) 
+        print('role', role, DetViewSumModel.COLUMNS.index('name'))
         if index.isValid() and role == DetViewSumModel.COLUMNS.index('name'):
             return self._detviews[index.row()]
         return None
@@ -112,7 +112,7 @@ class DetViewSumModel(QtCore.QAbstractListModel):
 #-------------------------------------------------------------------------
 
 class CentralView(QtCore.QObject):
-    """ 
+    """
     Manages family tree list widget
     """
     def __init__(self, dbstate, engine, viewshow):
@@ -139,7 +139,7 @@ class CentralView(QtCore.QObject):
         self.centralviewcontext = QtDeclarative.QDeclarativeContext(parentcontext)
         #Create ListModel to use
         detviews = DetViewSumModel([DetailView('People')])
-        
+
         #register them in the context
         self.centralviewcontext.setContextProperty('Const', self.const)
         self.centralviewcontext.setContextProperty('CentralView', self)
@@ -162,7 +162,7 @@ class CentralView(QtCore.QObject):
         mainwindow.setCentralWidget(graphicsview)
         mainwindow.show()
 
-    @QtCore.Slot(QtCore.QObject) 
+    @QtCore.Slot(QtCore.QObject)
     def detviewSelected(self, detview):
         """
         We load the selected family tree

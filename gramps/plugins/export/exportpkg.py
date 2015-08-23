@@ -85,7 +85,7 @@ def writeData(database, filename, user, option_box=None):
 
     writer = PackageWriter(database, filename, user)
     return writer.export()
-    
+
 #-------------------------------------------------------------------------
 #
 # PackageWriter
@@ -97,7 +97,7 @@ class PackageWriter(object):
         self.db = database
         self.user = user
         self.filename = filename
-            
+
     def export(self):
 #        missmedia_action = 0
         #--------------------------------------------------------------
@@ -108,7 +108,7 @@ class PackageWriter(object):
         #         nl = p.get_media_list()
         #         for o in nl:
         #             if o.get_reference_handle() == m_id:
-        #                 nl.remove(o) 
+        #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_family(p,None)
         #     for key in self.db.iter_person_handles():
@@ -116,7 +116,7 @@ class PackageWriter(object):
         #         nl = p.get_media_list()
         #         for o in nl:
         #             if o.get_reference_handle() == m_id:
-        #                 nl.remove(o) 
+        #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_person(p,None)
         #     for key in self.db.get_source_handles():
@@ -124,7 +124,7 @@ class PackageWriter(object):
         #         nl = p.get_media_list()
         #         for o in nl:
         #             if o.get_reference_handle() == m_id:
-        #                 nl.remove(o) 
+        #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_source(p,None)
         #     for key in self.db.get_place_handles():
@@ -132,7 +132,7 @@ class PackageWriter(object):
         #         nl = p.get_media_list()
         #         for o in nl:
         #             if o.get_reference_handle() == m_id:
-        #                 nl.remove(o) 
+        #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_place(p,None)
         #     for key in self.db.get_event_handles():
@@ -140,7 +140,7 @@ class PackageWriter(object):
         #         nl = p.get_media_list()
         #         for o in nl:
         #             if o.get_reference_handle() == m_id:
-        #                 nl.remove(o) 
+        #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_event(p,None)
         #     self.db.remove_object(m_id,None)
@@ -158,7 +158,7 @@ class PackageWriter(object):
         #         name = conv_to_unicode(fs_top.get_filename())
         #         if os.path.isfile(name):
         #             archive.add(name)
-                    
+
         #     fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
         #                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
         #                          gtk.STOCK_OK, Gtk.ResponseType.OK)
@@ -178,8 +178,8 @@ class PackageWriter(object):
             log.warn(str(msg))
             self.user.notify_error(_('Failure writing %s') % self.filename, str(msg))
             return 0
-        
-        # Write media files first, since the database may be modified 
+
+        # Write media files first, since the database may be modified
         # during the process (i.e. when removing object)
         for m_id in self.db.get_media_object_handles(sort_handles=True):
             mobject = self.db.get_object_from_handle(m_id)
@@ -194,7 +194,7 @@ class PackageWriter(object):
 #                         _("Media object could not be found"),
 #                         _("%(file_name)s is referenced in the database, "
 #                           "but no longer exists. The file may have been "
-#                           "deleted or moved to a different location. " 
+#                           "deleted or moved to a different location. "
 #                           "You may choose to either remove the reference "
 #                           "from the database, keep the reference to the "
 #                           "missing file, or select a new file."
@@ -207,7 +207,7 @@ class PackageWriter(object):
 #                     leave_clicked()
 #                 elif missmedia_action == 3:
 #                     select_clicked()
-        
+
         # Write XML now
         g = BytesIO()
         gfile = XmlWriter(self.db, self.user, 2)

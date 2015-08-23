@@ -39,7 +39,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class LdsEmbedList(EmbeddedList):
@@ -58,17 +58,17 @@ class LdsEmbedList(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150, TEXT_COL, -1, None), 
-        (_('Date'),    1, 150, MARKUP_COL, -1, None), 
-        (_('Status'),  3, 75, TEXT_COL, -1, None), 
-        (_('Temple'),  2, 200, TEXT_COL, -1, None), 
+        (_('Type'),    0, 150, TEXT_COL, -1, None),
+        (_('Date'),    1, 150, MARKUP_COL, -1, None),
+        (_('Status'),  3, 75, TEXT_COL, -1, None),
+        (_('Temple'),  2, 200, TEXT_COL, -1, None),
         (_('Place'),   3, 100, TEXT_COL, -1, None),
         (_('Private'), 5,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_LDS'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_LDS'),
                               LdsModel, move_buttons=True)
 
     def get_editor(self):
@@ -77,7 +77,7 @@ class LdsEmbedList(EmbeddedList):
 
     def new_data(self):
         return LdsOrd()
-    
+
     def get_data(self):
         return self.data
 
@@ -86,7 +86,7 @@ class LdsEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         try:
-            self.get_editor()(self.dbstate, self.uistate, self.track, 
+            self.get_editor()(self.dbstate, self.uistate, self.track,
                               self.new_data(), self.add_callback)
         except WindowActiveError:
             pass
@@ -101,7 +101,7 @@ class LdsEmbedList(EmbeddedList):
         lds = self.get_selected()
         if lds:
             try:
-                self.get_editor()(self.dbstate, self.uistate, self.track, 
+                self.get_editor()(self.dbstate, self.uistate, self.track,
                                   lds, self.edit_callback)
             except WindowActiveError:
                 pass

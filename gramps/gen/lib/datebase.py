@@ -42,7 +42,7 @@ class DateBase(object):
     def __init__(self, source=None):
         """
         Create a new DateBase, copying from source if not None.
-        
+
         :param source: Object used to initialize the new object
         :type source: DateBase
         """
@@ -65,7 +65,7 @@ class DateBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.

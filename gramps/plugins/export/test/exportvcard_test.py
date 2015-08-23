@@ -25,7 +25,7 @@ import unittest
 import time
 import subprocess
 import os
-import xml.etree.ElementTree as ET 
+import xml.etree.ElementTree as ET
 
 from ...lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
@@ -33,12 +33,12 @@ from ..exportvcard import VCardWriter
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
-        self.expect = ["BEGIN:VCARD", "VERSION:3.0", 
-                       "PRODID:-//Gramps//NONSGML Gramps %s//EN" % VERSION, 
-                       "FN:Lastname", "N:Lastname;;;;", 
+        self.expect = ["BEGIN:VCARD", "VERSION:3.0",
+                       "PRODID:-//Gramps//NONSGML Gramps %s//EN" % VERSION,
+                       "FN:Lastname", "N:Lastname;;;;",
                        "SORT-STRING:" + "Lastname".ljust(55), "END:VCARD"]
         date = time.localtime(time.time())
-        self.input_list = ["BEGIN:VCARD", "VERSION:3.0", "FN:Lastname", 
+        self.input_list = ["BEGIN:VCARD", "VERSION:3.0", "FN:Lastname",
                            "N:Lastname;;;;", "END:VCARD"]
         self.header = """<?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"
@@ -72,17 +72,17 @@ class VCardCheck(unittest.TestCase):
 
         process = subprocess.Popen('python Gramps.py '
                                    '-i - -f gramps -e - -f vcf',
-                                   stdin=subprocess.PIPE, 
-                                   stdout=subprocess.PIPE, 
-                                   stderr=subprocess.PIPE, 
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE,
                                    shell=True)
-        input_str = (self.header.encode('utf-8') + 
+        input_str = (self.header.encode('utf-8') +
                      ET.tostring(input_doc, encoding='utf-8'))
         result_str, err_str = process.communicate(input_str)
-        
+
         separator = '\r' + os.linesep
         expect_str = separator.join(expect_str) + (separator * 2)
-        
+
         if debug:
             print(err_str)
             print(result_str)
@@ -189,7 +189,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(name, 'nick').text = 'N.'
         self.expect.insert(6, "NICKNAME:Nick,N.")
         self.do_case(self.database, self.expect)
-    
+
     def test_write_birthdate_regular(self):
         events = ET.Element('events')
         self.database.insert(1, events)

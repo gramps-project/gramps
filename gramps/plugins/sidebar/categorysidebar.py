@@ -76,7 +76,7 @@ class CategorySidebar(BaseSidebar):
         self.window.add(vbox)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
-        
+
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_name, cat_icon in categories:
 
@@ -84,7 +84,7 @@ class CategorySidebar(BaseSidebar):
             button = self.__make_sidebar_button(use_text, cat_num,
                                                 cat_name, cat_icon)
             vbox.pack_start(button, False, True, 0)
-            
+
             # Enable view switching during DnD
             button.drag_dest_set(0, [], 0)
             button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
@@ -124,14 +124,14 @@ class CategorySidebar(BaseSidebar):
             else:
                 button.set_active(False)
         self.__handlers_unblock()
-        
+
     def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
         """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_block(self.button_handlers[idx])
-        
+
     def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
@@ -173,7 +173,7 @@ class CategorySidebar(BaseSidebar):
         self.button_handlers.append(handler_id)
         button.show()
 
-        # add the image. If we are using text, use the BUTTON (larger) size. 
+        # add the image. If we are using text, use the BUTTON (larger) size.
         # otherwise, use the smaller size
         hbox = Gtk.Box()
         hbox.show()
@@ -191,7 +191,7 @@ class CategorySidebar(BaseSidebar):
             label = Gtk.Label(label=page_title)
             label.show()
             hbox.pack_start(label, False, True, 0)
-            
+
         button.add(hbox)
         return button
 

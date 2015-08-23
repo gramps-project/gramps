@@ -32,7 +32,7 @@ from .attribute import Attribute
 from .srcattribute import SrcAttribute
 from .eventref import EventRef
 from .ldsord import LdsOrd
-from .mediaref import MediaRef 
+from .mediaref import MediaRef
 from .name import Name
 from .placename import PlaceName
 from .placeref import PlaceRef

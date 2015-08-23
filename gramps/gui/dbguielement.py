@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -44,20 +44,20 @@ class DbGUIElement(object):
     On initialization, the method :meth:`_connect_db_signals` is called.
     Inheriting objects are advised to group the setup of the callman attribute
     here.
-    
+
     .. attribute callman: a :class:`.CallbackManager` object, to be used to
                           track specific changes in the db and set up callbacks
     """
     def __init__(self, database):
         self.callman = CallbackManager(database)
         self._connect_db_signals()
-    
+
     def _add_db_signal(self, name, callback):
         """
         Convenience function to add a custom db signal. The attributes are just
-        passed to the callman object. 
+        passed to the callman object.
         For primary objects, use the register method of the callman attribute.
-        
+
         :param name: name of the signal to connect to
         :type name: string
         :param callback: function to call when signal is emitted
@@ -65,18 +65,18 @@ class DbGUIElement(object):
                 signal
         """
         self.callman.add_db_signal(name, callback)
-    
+
     def _connect_db_signals(self):
         """
-        Convenience method that is called on initialization of DbGUIElement. 
+        Convenience method that is called on initialization of DbGUIElement.
         Use this to group setup of the callman attribute.
         Also called in _change_db method
         """
         pass
-    
+
     def _cleanup_callbacks(self):
         """
-        Remove all db callbacks. 
+        Remove all db callbacks.
         This is done automatically on destruction of the object, but is
         normally needed earlier, calling this method does so.
         Use _change_db method if you need to remove the callbacks because the
@@ -91,9 +91,9 @@ class DbGUIElement(object):
 
     def _change_db(self, database):
         """
-        Change the database the GUI element works on to database. 
+        Change the database the GUI element works on to database.
         This removes all callbacks and all registered handles.
-        
+
         :param database: the new database to connect to
         """
         dbold = self.callman.database

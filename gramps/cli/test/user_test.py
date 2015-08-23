@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -33,7 +33,7 @@ try:
         from unittest.mock import Mock, patch
 
     MOCKING = True
-    
+
 except:
     MOCKING = False
     print ("Mocking disabled", sys.exc_info()[0:2])
@@ -69,7 +69,7 @@ class TestUser_prompt(unittest.TestCase):
         self.user._input.assert_called_once_with()
 
     def assert_prompt_contains_text(self, text,
-            title=TestUser.TITLE, msg=TestUser.MSG, 
+            title=TestUser.TITLE, msg=TestUser.MSG,
             accept=TestUser.ACCEPT, reject=TestUser.REJECT):
         self.user._input.configure_mock(return_value = TestUser.REJECT)
         self.user.prompt(title, msg, accept, reject)
@@ -160,7 +160,7 @@ class TestUser_progress(unittest.TestCase):
         self.expected_output = list(self.user._fileout.method_calls)
         self.user._fileout.reset_mock()
         self.assertTrue(
-                len(self.user._fileout.method_calls) == 0, 
+                len(self.user._fileout.method_calls) == 0,
                 list(self.user._fileout.method_calls))
 
         with self.user.progress("Foo", "Bar", 0) as step:
@@ -168,7 +168,7 @@ class TestUser_progress(unittest.TestCase):
                 step()
 
         # Output using `with' differs from one with `progress_...'
-        self.assertEqual(self.expected_output, 
+        self.assertEqual(self.expected_output,
                 list(self.user._fileout.method_calls))
 
     def test_ends_progress_upon_exception_in_with(self):

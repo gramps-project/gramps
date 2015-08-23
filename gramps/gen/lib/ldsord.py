@@ -55,8 +55,8 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 class LdsOrd(SecondaryObject, CitationBase, NoteBase,
              DateBase, PlaceBase, PrivacyBase):
     """
-    Class that contains information about LDS Ordinances. 
-    
+    Class that contains information about LDS Ordinances.
+
     LDS ordinances are similar to events, but have very specific additional
     information related to data collected by the Church of Jesus Christ
     of Latter Day Saints (Mormon church). The LDS church is the largest
@@ -68,7 +68,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
     SEAL_TO_PARENTS = 2
     SEAL_TO_SPOUSE  = 3
     CONFIRMATION    = 4
-    
+
     DEFAULT_TYPE = BAPTISM
 
 
@@ -97,7 +97,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         (SEAL_TO_PARENTS, _('Sealed to Parents'), 'sealed_to_parents'),
         (SEAL_TO_SPOUSE,  _('Sealed to Spouse'),  'sealed_to_spouse' ),
     ]
-    
+
     _STATUS_MAP = [
         (STATUS_NONE,      _("<No Status>"), ""),
         (STATUS_BIC,       _("BIC"),         "BIC"),
@@ -122,7 +122,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         DateBase.__init__(self, source)
         PlaceBase.__init__(self, source)
         PrivacyBase.__init__(self, source)
-        
+
         if source:
             self.type = source.type
             self.famc = source.famc
@@ -148,7 +148,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -168,11 +168,11 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),
-                "type": self.type, 
+                "type": self.type,
                 "place": self.place,
-                "famc": self.famc, 
-                "temple": self.temple, 
-                "status": self.status, 
+                "famc": self.famc,
+                "temple": self.temple,
+                "status": self.status,
                 "private": self.private}
 
     @classmethod
@@ -227,7 +227,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -237,7 +237,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -253,7 +253,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -322,8 +322,8 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
     def set_status(self, val):
         """
-        Set the status of the LDS ordinance. 
-        
+        Set the status of the LDS ordinance.
+
         The status is a text string that matches a predefined set of strings.
         """
         self.status = val
@@ -342,15 +342,15 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
     def is_empty(self):
         """Return 1 if the ordinance is actually empty."""
-        if (self.famc or 
-                (self.date and not self.date.is_empty()) or 
-                self.temple or 
-                self.status or 
+        if (self.famc or
+                (self.date and not self.date.is_empty()) or
+                self.temple or
+                self.status or
                 self.place):
             return False
         else:
             return True
-        
+
     def are_equal(self, other):
         """Return 1 if the specified ordinance is the same as the instance."""
         warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
@@ -377,7 +377,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
     def set_type_from_xml(self, xml_str):
         """
         Set type based on a given string from XML.
-        
+
         Return boolean on success.
         """
         for item in LdsOrd._TYPE_MAP:
@@ -407,7 +407,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
     def set_status_from_xml(self, xml_str):
         """
         Set status based on a given string from XML.
-        
+
         Return boolean on success.
         """
         for item in LdsOrd._STATUS_MAP:

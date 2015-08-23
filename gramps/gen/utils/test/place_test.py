@@ -239,10 +239,10 @@ class PlaceTest(unittest.TestCase):
         """A given lat/lon is converted to RT90 and back"""
         x, y = conv_lat_lon('59:40:9.09', '12:58:57.74', 'RT90')
         lat, lon = conv_SWED_RT90_WGS84(float(x), float(y))
-        
+
         expetced_lat = 59.0 + 40.0/60. + 9.09/3600.0
         expetced_lon = 12.0 + 58.0/60.0 + 57.74/3600.0
-        
+
         self.assertAlmostEqual(lat, expetced_lat, places=3)
         self.assertAlmostEqual(lon, expetced_lon, places=3)
 
@@ -262,7 +262,7 @@ def conv_SWED_RT90_WGS84(X, Y):
     at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n,2)+1.0/64.0*pow(n,4))
     FN = -667.711 # m
     FE = 1500064.274 # m
-    
+
     xi = (X - FN)/(k0*at)
     eta = (Y - FE)/(k0*at)
     D1 = 1.0/2.0*n - 2.0/3.0*pow(n,2) + 37.0/96.0*pow(n,3) - 1.0/360.0*pow(n,4)

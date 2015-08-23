@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -42,7 +42,7 @@ _ = glocale.translation.gettext
 
 #----------------------------------------------------------------
 #
-# GRAMPS 
+# GRAMPS
 #
 #----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
@@ -59,10 +59,10 @@ from ..actiongroup import ActionGroup
 #------------------------------------------------------------------------------
 class PageView(DbGUIElement):
     """
-    The PageView class is the base class for all Data Views in GRAMPS.  All 
+    The PageView class is the base class for all Data Views in GRAMPS.  All
     Views should derive from this class. The ViewManager understands the public
     interface of this class
-    
+
     The following attributes are available
     ..attribute:: active
       is the view active at the moment (visible in Gramps as the main view)
@@ -70,11 +70,11 @@ class PageView(DbGUIElement):
       bool, is the view current with the database or not. A dirty view triggers
       a rebuild when it becomes active
     ..attribute:: _dirty_on_change_inactive
-      read/write bool by inheriting classes. 
+      read/write bool by inheriting classes.
       Views can behave two ways to signals:
-      1. if the view is inactive, set it dirty, and rebuild the view when 
+      1. if the view is inactive, set it dirty, and rebuild the view when
           it becomes active. In this case, this method returns True
-      2. if the view is inactive, try to stay in sync with database. Only 
+      2. if the view is inactive, try to stay in sync with database. Only
          rebuild or other large changes make view dirty
     ..attribute:: title
       title of the view
@@ -115,7 +115,7 @@ class PageView(DbGUIElement):
         self.active = False
         self._dirty_on_change_inactive = True
         self.func_list = {}
-        
+
         if isinstance(self.pdata.category, tuple):
             self.category, self.translated_category = self.pdata.category
         else:
@@ -125,11 +125,11 @@ class PageView(DbGUIElement):
         self.dbstate.connect('no-database', self.disable_action_group)
         self.dbstate.connect('database-changed', self.enable_action_group)
         self.uistate.window.connect("key-press-event", self.key_press_handler)
-        
+
         self.model = None
         self.selection = None
         self.handle_col = 0
-        
+
         self._config = None
         self.init_config()
 
@@ -202,7 +202,7 @@ class PageView(DbGUIElement):
         Returns a 2-tuple.  The first element is a tuple of sidebar gramplets
         and the second element is a tuple of bottombar gramplets.
 
-        Views should override this method to define default gramplets. 
+        Views should override this method to define default gramplets.
         """
         return ((), ())
 
@@ -262,7 +262,7 @@ class PageView(DbGUIElement):
                 handled = True
         return handled
 
-    def call_paste(self): 
+    def call_paste(self):
         """
         This code is called on Control+V in a navigation view. If the
         copy can be handled, it returns true, otherwise false.
@@ -290,7 +290,7 @@ class PageView(DbGUIElement):
         Called after a page is created.
         """
         pass
-    
+
     def set_active(self):
         """
         Called with the PageView is set as active. If the page is "dirty",
@@ -303,7 +303,7 @@ class PageView(DbGUIElement):
             self.uistate.set_busy_cursor(True)
             self.build_tree()
             self.uistate.set_busy_cursor(False)
-            
+
     def set_inactive(self):
         """
         Marks page as being inactive (not currently displayed)
@@ -318,7 +318,7 @@ class PageView(DbGUIElement):
         class.
         """
         raise NotImplementedError
-    
+
     def ui_definition(self):
         """
         returns the XML UI definition for the UIManager
@@ -348,7 +348,7 @@ class PageView(DbGUIElement):
 
     def get_stock(self):
         """
-        Return image associated with the view category, which is used for the 
+        Return image associated with the view category, which is used for the
         icon for the button.
         """
         return 'image-missing'
@@ -399,20 +399,20 @@ class PageView(DbGUIElement):
     def define_actions(self):
         """
         Defines the UIManager actions. Called by the ViewManager to set up the
-        View. The user typically defines self.action_list and 
-        self.action_toggle_list in this function. 
+        View. The user typically defines self.action_list and
+        self.action_toggle_list in this function.
         """
-        self._add_toggle_action('Sidebar', None, _('_Sidebar'), 
+        self._add_toggle_action('Sidebar', None, _('_Sidebar'),
              "<shift><PRIMARY>R", None, self.__sidebar_toggled,
              self.sidebar.get_property('visible'))
-        self._add_toggle_action('Bottombar', None, _('_Bottombar'), 
+        self._add_toggle_action('Bottombar', None, _('_Bottombar'),
              "<shift><PRIMARY>B", None, self.__bottombar_toggled,
              self.bottombar.get_property('visible'))
 
     def __build_action_group(self):
         """
         Create an UIManager ActionGroup from the values in self.action_list
-        and self.action_toggle_list. The user should define these in 
+        and self.action_toggle_list. The user should define these in
         self.define_actions
         """
         self.action_group = ActionGroup(name=self.title)
@@ -424,7 +424,7 @@ class PageView(DbGUIElement):
     def _add_action(self, name, icon_name, label, accel=None, tip=None,
                    callback=None):
         """
-        Add an action to the action list for the current view. 
+        Add an action to the action list for the current view.
         """
         self.action_list.append((name, icon_name, label, accel, tip,
                                  callback))
@@ -432,15 +432,15 @@ class PageView(DbGUIElement):
     def _add_toggle_action(self, name, icon_name, label, accel=None,
                            tip=None, callback=None, value=False):
         """
-        Add a toggle action to the action list for the current view. 
+        Add a toggle action to the action list for the current view.
         """
         self.action_toggle_list.append((name, icon_name, label, accel,
                                         tip, callback, value))
-    
-    def _add_toolmenu_action(self, name, label, tooltip, callback, 
+
+    def _add_toolmenu_action(self, name, label, tooltip, callback,
                              arrowtooltip):
         """
-        Add a menu action to the action list for the current view. 
+        Add a menu action to the action list for the current view.
         """
         self.action_toolmenu_list.append((name, label, tooltip, callback,
                                           arrowtooltip))
@@ -448,13 +448,13 @@ class PageView(DbGUIElement):
     def get_actions(self):
         """
         Return the actions that should be used for the view. This includes the
-        standard action group (which handles the main toolbar), along with 
+        standard action group (which handles the main toolbar), along with
         additional action groups.
 
-        If the action group is not defined, we build it the first time. This 
+        If the action group is not defined, we build it the first time. This
         allows us to delay the intialization until it is really needed.
 
-        The ViewManager uses this function to extract the actions to install 
+        The ViewManager uses this function to extract the actions to install
         into the UIManager.
         """
         if not self.action_group:
@@ -463,7 +463,7 @@ class PageView(DbGUIElement):
 
     def _add_action_group(self, group):
         """
-        Allows additional action groups to be added to the view. 
+        Allows additional action groups to be added to the view.
         """
         self.additional_action_groups.append(group)
 
@@ -496,7 +496,7 @@ class PageView(DbGUIElement):
         Template function to allow the adding of a new object
         """
         raise NotImplementedError
-    
+
     def _key_press(self, obj, event):
         """
         Define the action for a key press event
@@ -518,21 +518,21 @@ class PageView(DbGUIElement):
 
     def init_config(self):
         """
-        If you need a view with a config, then call this method in the 
-        build_widget or __init__ method. It will set up a config file for the 
-        view, and use CONFIGSETTINGS to set the config defaults. 
+        If you need a view with a config, then call this method in the
+        build_widget or __init__ method. It will set up a config file for the
+        view, and use CONFIGSETTINGS to set the config defaults.
         The config is later accessbile via self._config
-        So you can do 
+        So you can do
         self._config.get("section.variable1")
         self._config.set("section.variable1", value)
         self._config.save()
-        
-        CONFIGSETTINGS should be a list with tuples like 
+
+        CONFIGSETTINGS should be a list with tuples like
         ("section.variable1", value)
         """
         if self._config:
             return
-        self._config = config.register_manager(self.ident, 
+        self._config = config.register_manager(self.ident,
                                                use_config_path=True)
         for section, value in self.CONFIGSETTINGS:
             self._config.register(section, value)
@@ -564,9 +564,9 @@ class PageView(DbGUIElement):
 
     def _get_configure_page_funcs(self):
         """
-        Return a list of functions that create gtk elements to use in the 
+        Return a list of functions that create gtk elements to use in the
         notebook pages of the Configure view
-        
+
         :return: list of functions
         """
         raise NotImplementedError
@@ -576,7 +576,7 @@ class PageView(DbGUIElement):
         Open the configure dialog for the view.
         """
         title = _("Configure %(cat)s - %(view)s") % \
-                        {'cat': self.get_translated_category(), 
+                        {'cat': self.get_translated_category(),
                          'view': self.get_title()}
 
         if self.can_configure():
@@ -589,10 +589,10 @@ class PageView(DbGUIElement):
             config_funcs += self.bottombar.get_config_funcs()
 
         try:
-            ViewConfigureDialog(self.uistate, self.dbstate, 
+            ViewConfigureDialog(self.uistate, self.dbstate,
                             config_funcs,
                             self, self._config, dialogtitle=title,
-                            ident=_("%(cat)s - %(view)s") % 
+                            ident=_("%(cat)s - %(view)s") %
                                     {'cat': self.get_translated_category(),
                                      'view': self.get_title()})
         except WindowActiveError:
@@ -609,7 +609,7 @@ class ViewConfigureDialog(ConfigureDialog):
         ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
                                  configobj, configmanager,
                                  dialogtitle=dialogtitle, on_close=on_close)
-        
+
     def build_menu_names(self, obj):
         return (_('Configure %s View') % self.ident, None)
 
@@ -621,7 +621,7 @@ class DummyPage(PageView):
         self.msg = msg1
         self.msg2 = msg2
         PageView.__init__(self, title, pdata, dbstate, uistate)
-    
+
     def build_widget(self):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
         #top widget at the top

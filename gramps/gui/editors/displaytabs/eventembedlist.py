@@ -55,7 +55,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     _DND_TYPE   = DdTargets.EVENTREF
     _DND_EXTRA  = DdTargets.EVENT
     _WORKGROUP = EventRefModel._ROOTINDEX
-    
+
     _WORKNAME = _("Family")
     _FATHNAME = _("Father")
     _MOTHNAME = _("Mother")
@@ -95,10 +95,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self._groups = []
         self._data = []
         DbGUIElement.__init__(self, dbstate.db)
-        GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'), 
-                              build_model, share_button=True, 
+        GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'),
+                              build_model, share_button=True,
                               move_buttons=True, **kwargs)
-    
+
     def _connect_db_signals(self):
         """
         called on init of DbGUIElement, connect to db as required.
@@ -114,15 +114,15 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         Callback method called when a tracked event changes (description
         changes, source added, ...)
-        Note that adding an event 
+        Note that adding an event
         """
         self.rebuild_callback()
-    
+
     def event_delete(self, obj):
         """
-        Callback method called when a tracked event is deleted. 
-        There are two possibilities: 
-        * a tracked non-workgroup event is deleted, just rebuilding the view  
+        Callback method called when a tracked event is deleted.
+        There are two possibilities:
+        * a tracked non-workgroup event is deleted, just rebuilding the view
             will correct this.
         * a workgroup event is deleted. The event must be removed from the obj
             so that no inconsistent data is shown.
@@ -188,7 +188,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def column_order(self):
         """
-        The columns to show as a tuple containing 
+        The columns to show as a tuple containing
         tuples (show/noshow, model column)
         """
         return ((1, 1),  # type
@@ -249,7 +249,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     "or another event reference that is associated with "
                     "the same event is being edited.\n\nTo edit this event "
                     "reference, you need to close the event.")
-    
+
     def share_button_clicked(self, obj):
         SelectEvent = SelectorFactory('Event')
 
@@ -288,7 +288,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         reference.ref = primary.handle
         data = self.get_data()[self._WORKGROUP]
         data.append(reference)
-        self.callman.register_handles({'event': [primary.handle]}) 
+        self.callman.register_handles({'event': [primary.handle]})
         self.changed = True
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell,
@@ -296,8 +296,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def object_edited(self, ref, event):
         """
-        Called as callback after eventref has been edited. 
-        Note that if the event changes too (so not only the ref data), then 
+        Called as callback after eventref has been edited.
+        Note that if the event changes too (so not only the ref data), then
         an event-update signal from the database will also be raised, and the
         rebuild done here will not be needed. There is no way to avoid this ...
         """
@@ -366,7 +366,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     def editnotworkgroup(self, key):
         """
         Edit non native event in own editor
-        """ 
+        """
         person = self.dbstate.db.get_person_from_handle(key)
         try:
             from .. import EditPerson
@@ -386,7 +386,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         we allow to change the default name like this
         """
         self.dropnotworkgroup(None, None)
-    
+
     def move_to_work(self, row_from, row_to, obj):
         """
         move from a non workgroup to the workgroup
@@ -408,7 +408,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def post_rebuild(self, prebuildpath):
         """
-        Allow post rebuild specific handling. 
+        Allow post rebuild specific handling.
         @param prebuildpath: path selected before rebuild, None if none
         @type prebuildpath: tree path
         """

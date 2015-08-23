@@ -66,8 +66,8 @@ class RefBase(object):
         """
         Returns the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
-        :returns: Returns the list of (classname, handle) tuples for referenced 
+
+        :returns: Returns the list of (classname, handle) tuples for referenced
                   objects.
         :rtype: list
         """

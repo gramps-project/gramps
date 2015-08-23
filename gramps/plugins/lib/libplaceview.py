@@ -98,7 +98,7 @@ class PlaceBaseView(ListView):
         ('columns.rank', [COL_NAME, COL_TITLE, COL_ID, COL_TYPE, COL_CODE,
                           COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [250, 250, 75, 100, 100, 150, 150, 40, 100, 100])
-        )    
+        )
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
     DEL_MSG     = _("Delete the selected place")
@@ -134,7 +134,7 @@ class PlaceBaseView(ListView):
 
     def navigation_type(self):
         return 'Place'
-    
+
     def define_actions(self):
         ListView.define_actions(self)
         self._add_toolmenu_action('MapsList', _('Loading...'),
@@ -158,7 +158,7 @@ class PlaceBaseView(ListView):
         tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
         tb.remove(self.maptoolbtn)
         ListView.set_inactive(self)
-        
+
     def change_page(self):
         """
         Called by viewmanager at end of realization when arriving on the page
@@ -188,7 +188,7 @@ class PlaceBaseView(ListView):
             return
 
         self.mapslistlabel = []
-        if not self.mapservice in self.mapservicedata: 
+        if not self.mapservice in self.mapservicedata:
             #stored val no longer exists, use the first key instead
             self.set_mapservice(list(self.mapservicedata.keys())[0])
 
@@ -208,7 +208,7 @@ class PlaceBaseView(ListView):
               [],
               Gdk.DragAction.COPY)
             tglist = Gtk.TargetList.new([])
-            tglist.add(self.drag_info().atom_drag_type, 
+            tglist.add(self.drag_info().atom_drag_type,
                        self.drag_info().target_flags,
                        self.drag_info().app_id)
             tglist.add_text_targets (0)
@@ -220,13 +220,13 @@ class PlaceBaseView(ListView):
         from the menutoolbutton
         """
         menu = Gtk.Menu()
-        
+
         #select the map services to show
         self.mapservicedata = {}
         servlist = GuiPluginManager.get_instance().get_reg_mapservices()
         for i, pdata in enumerate(servlist):
             key = pdata.id.replace(' ', '-')
-            add_menuitem(menu, pdata.name, None, 
+            add_menuitem(menu, pdata.name, None,
                                make_callback(self.set_mapservice, key))
             self.mapservicedata[key] = pdata
 
@@ -243,7 +243,7 @@ class PlaceBaseView(ListView):
             label.show()
         config.set('interface.mapservice', mapkey)
         config.save()
-    
+
     def mapservice_label(self):
         """
         return the current label for the menutoolbutton
@@ -252,7 +252,7 @@ class PlaceBaseView(ListView):
 
     def gotomap(self, obj):
         """
-        Run the map service 
+        Run the map service
         """
         #First test if any map service is available
         if not len(self.mapservicedata):
@@ -260,7 +260,7 @@ class PlaceBaseView(ListView):
             msg2 = _("Check your installation.")
             ErrorDialog(msg, msg2)
             return
-        
+
         place_handles = self.selected_handles()
         try:
             place_handle = self.selected_handles()[0]
@@ -271,11 +271,11 @@ class PlaceBaseView(ListView):
                      " selections.")
             ErrorDialog(msg, msg2)
             return
-        
+
         #TODO: support for descriptions in some cases. For now, pass None
         #TODO: Later this might be 'Birth of William' ....
         places = [(x, None) for x in place_handles]
-        
+
         #run the mapservice:
         pmgr = GuiPluginManager.get_instance()
         serv = self.mapservicedata[self.mapservice]
@@ -325,8 +325,8 @@ class PlaceBaseView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -365,7 +365,7 @@ class PlaceBaseView(ListView):
                          "First remove the places it contains.")
                 ErrorDialog(msg, msg2)
                 return
-        self.remove_selected_objects()       
+        self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
         person_list = [
@@ -375,11 +375,11 @@ class PlaceBaseView(ListView):
         family_list = [
             item[1] for item in
             self.dbstate.db.find_backlink_handles(handle,['Family'])]
-        
+
         event_list = [
             item[1] for item in
             self.dbstate.db.find_backlink_handles(handle,['Event'])]
-        
+
         object = self.dbstate.db.get_place_from_handle(handle)
         query = DeletePlaceQuery(self.dbstate, self.uistate, object,
                                  person_list, family_list, event_list)
@@ -400,7 +400,7 @@ class PlaceBaseView(ListView):
         Merge the selected places.
         """
         mlist = self.selected_handles()
-        
+
         if len(mlist) != 2:
             msg = _("Cannot merge places.")
             msg2 = _("Exactly two places must be selected to perform a merge. "
@@ -451,7 +451,7 @@ class PlaceBaseView(ListView):
         place = self.dbstate.db.get_place_from_handle(place_handle)
         place.add_tag(tag_handle)
         self.dbstate.db.commit_place(place, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

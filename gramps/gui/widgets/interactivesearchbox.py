@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -487,7 +487,7 @@ class InteractiveSearchBox():
         """
         Search among the currently set search-column for a cell starting with
         text
-        It assumes that this column is currently sorted, and as 
+        It assumes that this column is currently sorted, and as
         a LIST_ONLY view it therefore contains index2hndl = model.node_map._index2hndl
         which is a _sorted_ list of (sortkey, handle) tuples
         """

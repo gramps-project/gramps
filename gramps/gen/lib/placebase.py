@@ -33,9 +33,9 @@ class PlaceBase(object):
     """
     def __init__(self, source=None):
         """
-        Initialize a PlaceBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a PlaceBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
@@ -64,4 +64,4 @@ class PlaceBase(object):
         :returns: :class:`~.place.Place` database handle
         :rtype: str
         """
-        return self.place 
+        return self.place

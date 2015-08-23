@@ -46,14 +46,14 @@ class HasPlace(Rule):
     """Rule that checks for a place with a particular value"""
 
     labels      = [ _('Title:'),
-                    _('Street:'), 
-                    _('Locality:'), 
-                    _('City:'), 
-                    _('County:'), 
-                    _('State:'), 
-                    _('Country:'), 
+                    _('Street:'),
+                    _('Locality:'),
+                    _('City:'),
+                    _('County:'),
+                    _('State:'),
+                    _('Country:'),
                     _('ZIP/Postal Code:'),
-                    _('Church Parish:'), 
+                    _('Church Parish:'),
                     ]
     name        = _('Places matching parameters')
     description = _("Matches places with particular parameters")
@@ -78,7 +78,7 @@ class HasPlace(Rule):
         # If no location data was given then we're done: match
         if not any(self.list[1:7] + [self.list[8]]):
             return True
-            
+
         for location in get_locations(db, place):
             if self.check(location):
                 return True

@@ -35,15 +35,15 @@ class PrivacyBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize a PrivacyBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a PrivacyBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
         :type source: PrivacyBase
         """
-        
+
         if source:
             self.private = source.private
         else:
@@ -59,7 +59,7 @@ class PrivacyBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -97,7 +97,7 @@ class PrivacyBase(object):
         """
         Set or clears the privacy flag of the data.
 
-        :param val: value to assign to the privacy flag. True indicates that 
+        :param val: value to assign to the privacy flag. True indicates that
             the record is private, False indicates that it is public.
         :type val: bool
         """
@@ -105,7 +105,7 @@ class PrivacyBase(object):
 
     def get_privacy(self):
         """
-        Return the privacy level of the data. 
+        Return the privacy level of the data.
 
         :returns: True indicates that the record is private
         :rtype: bool

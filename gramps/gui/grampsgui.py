@@ -59,7 +59,7 @@ except:
             "You need a version which has the function 'require_version' "
             "to start Gramps"))
     sys.exit(0)
-            
+
 if not PYGOBJ_ERR:
     try:
         from gi.repository import GObject, GLib
@@ -72,8 +72,8 @@ if PYGOBJ_ERR:
     print((_("Your pygobject version does not meet the requirements.\n"
              "At least pygobject %(major)d.%(feature)d.%(minor)d "
              "is needed to start Gramps with a GUI.\n\n"
-             "Gramps will terminate now.") % 
-            {'major':MIN_PYGOBJECT_VERSION[0], 
+             "Gramps will terminate now.") %
+            {'major':MIN_PYGOBJECT_VERSION[0],
             'feature':MIN_PYGOBJECT_VERSION[1],
             'minor':MIN_PYGOBJECT_VERSION[2]}))
     sys.exit(0)
@@ -101,8 +101,8 @@ if (gtk_major, gtk_minor) < MIN_GTK_VERSION:
     print(_("Your Gtk version does not meet the requirements.\n"
             "At least %(major)d.%(minor)d "
             "is needed to start Gramps with a GUI.\n\n"
-            "Gramps will terminate now.") % 
-                { 'major' : MIN_GTK_VERSION[0], 
+            "Gramps will terminate now.") %
+                { 'major' : MIN_GTK_VERSION[0],
                   'minor' : MIN_GTK_VERSION[1] } )
     sys.exit(0)
 
@@ -196,7 +196,7 @@ class Gramps(object):
                      'bold_end'   : '</b>' } )
 
         dbstate = DbState()
-        self.vm = ViewManager(dbstate, 
+        self.vm = ViewManager(dbstate,
                 config.get("interface.view-categories"))
         self.vm.init_interface()
 
@@ -283,7 +283,7 @@ def __startgramps(errors, argparser):
     "You can also change manually the startup view in the gramps.ini file \n"
     "by changing the last-view parameter.\n"
                    ), exc_info=True)
-    
+
     # start Gramps, errors stop the gtk loop
     try:
         quit_now = False

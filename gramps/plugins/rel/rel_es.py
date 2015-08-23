@@ -100,7 +100,7 @@ _mother_level = [ "", "madre%(inlaw)s",
 # other marry again. Divorce is common now, so these relationships abound, but history has left us
 # without support in the language. So, in this case, we will be more liberal than in other cases and
 # or coin a few new words or accept others that seem to have some use, but always patterned
-# after the style of the well-documented cases, so that users can intuitively guess their meaning. 
+# after the style of the well-documented cases, so that users can intuitively guess their meaning.
 # Notice that "that relationship does not exist in Spanish" is not a valid objection. Once the Gramps
 # core has computed a relationship, it *has* to be named *somehow*. The only alternative is to change
 # the Gramps core so that it does not find relationships that cannot be named in Spanish.
@@ -140,7 +140,7 @@ _son_level = [ "", "hijo%(inlaw)s",
 _step_son_level = [ "", "hijastro%(inlaw)s",
                     "nietastro%(inlaw)s" ]
 
-_daughter_level = [ "", "hija%(inlaw)s", 
+_daughter_level = [ "", "hija%(inlaw)s",
                     "nieta%(inlaw)s",
                     "bisnieta%(inlaw)s",
                     "tataranieta%(inlaw)s",
@@ -480,7 +480,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 return "%s %s%s" % (prim,_level_name_male[level], inlaw)
             else:
                 return "%s %d-ésimo%s" % (prim, level, inlaw)
-        elif removed > 0 and lower: 
+        elif removed > 0 and lower:
             if gender_c == MALE:
                 return "%s de un %s" % (self._get_son(removed,step,inlaw),
                                         self._get_male_cousin(level, 0, lower, step, inlaw, gender_c))
@@ -500,7 +500,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return "%s de un %s" % (self._get_male_cousin(level, 0, lower, step, inlaw, gender_c),
                                         self._get_father(removed,step,inlaw))
-                                        
+
         else:
             return "%s %scousin%s (%d-%d)" % (_level_name[level],
                                         step, inlaw,
@@ -521,7 +521,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 return "%s %s%s" % (prim,_level_name_female[level], inlaw)
             else:
                 return "%s %d-ésima%s" % (prim, level, inlaw)
-        elif removed > 0 and lower: 
+        elif removed > 0 and lower:
             if gender_c == MALE:
                 return "%s de un %s" % (self._get_daughter(removed,step,inlaw),
                                         self._get_male_cousin(level, 0, lower, step, inlaw, gender_c))
@@ -541,7 +541,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return "%s de un %s" % (self._get_female_cousin(level, 0, lower, step, inlaw, gender_c),
                                         self._get_father(removed,step,inlaw))
-                                        
+
         else:
             return "%s %sprima%s (%d-%d)" % (_level_name[level],
                                         step, inlaw,
@@ -616,28 +616,28 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = "sobrinos %d-ésimos" % (Gb-1)
         elif Ga > 1 and Ga > Gb:
-            # These are cousins in different generations with the second person 
-            # being in a higher generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a higher generation from the common ancestor than the
             # first person.
             rel_str = "%s de los %s" % (
                 self.get_plural_relationship_string(0, Gb),
                 self.get_plural_relationship_string(Ga, 0) )
         elif Gb > 1 and Gb > Ga:
-            # These are cousins in different generations with the second person 
-            # being in a lower generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a lower generation from the common ancestor than the
             # first person.
             rel_str = "%s de los %s" % (
                 self.get_plural_relationship_string(0, Gb),
                 self.get_plural_relationship_string(Ga, 0) )
-                
+
         if in_law_b == True:
             rel_str = "cónyuges de los %s" % rel_str
-                
+
         return rel_str
-    
+
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """Spanish version of method to create relation string - check relationship.py
         """
@@ -695,10 +695,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Ga == Gb:
             # a and b cousins in the same generation
             if gender_b == MALE:
-                rel_str = self._get_male_cousin(Ga-1, 0, lower=False, step=step, 
+                rel_str = self._get_male_cousin(Ga-1, 0, lower=False, step=step,
                                               inlaw=inlaw)
             elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(Ga-1, 0, lower=False, step=step, 
+                rel_str = self._get_female_cousin(Ga-1, 0, lower=False, step=step,
                                               inlaw=inlaw)
             else:
                 rel_str = "%s o %s" % (self._get_male_cousin(Ga-1, 0, step=step, inlaw=inlaw),
@@ -720,8 +720,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "%s o %s" % (self._get_distant_nephew(Gb-1, 0, step=step, inlaw=inlaw),
                                        self._get_distant_niece(Gb-1, 0, step=step, inlaw=inlaw))
         elif Ga > Gb:
-            # These are cousins in different generations with the second person 
-            # being in a higher generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a higher generation from the common ancestor than the
             # first person.
             # We need to know the gender of the ancestor of the first person who is on
             # the same generation as the other person
@@ -732,10 +732,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 gender_c = UNKNOWN
             if gender_b == MALE:
-                rel_str = self._get_male_cousin(Gb-1, Ga-Gb, lower=False, 
+                rel_str = self._get_male_cousin(Gb-1, Ga-Gb, lower=False,
                                                 step=step, inlaw=inlaw, gender_c=gender_c)
             elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(Gb-1, Ga-Gb, lower=False, 
+                rel_str = self._get_female_cousin(Gb-1, Ga-Gb, lower=False,
                                                 step=step, inlaw=inlaw, gender_c=gender_c)
             else:
                 rel_str = "%s o %s" % (self._get_male_cousin(Gb-1, Ga-Gb, lower=False,
@@ -744,8 +744,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                                                step=step, inlaw=inlaw))
 
         elif Gb > Ga:
-            # These are cousins in different generations with the second person 
-            # being in a lower generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a lower generation from the common ancestor than the
             # first person.
             # We need to know the gender of the person who is an ancestor of the second person and
             # is on the same generation that the first person
@@ -756,10 +756,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 gender_c = UNKNOWN
             if gender_b == MALE:
-                rel_str = self._get_male_cousin(Ga-1, Gb-Ga, lower=True, 
+                rel_str = self._get_male_cousin(Ga-1, Gb-Ga, lower=True,
                                                 step=step, inlaw=inlaw, gender_c=gender_c)
             elif gender_b == FEMALE:
-                rel_str = self._get_female_cousin(Ga-1, Gb-Ga, lower=True, 
+                rel_str = self._get_female_cousin(Ga-1, Gb-Ga, lower=True,
                                                 step=step, inlaw=inlaw, gender_c=gender_c)
             else:
                 rel_str = "%s o %s" % (self._get_male_cousin(Ga-1, Gb-Ga, lower=True,
@@ -769,7 +769,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         return rel_str
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         """
         """
@@ -810,7 +810,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_es.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

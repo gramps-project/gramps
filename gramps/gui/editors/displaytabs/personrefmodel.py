@@ -45,7 +45,7 @@ class PersonRefModel(Gtk.ListStore):
         for obj in obj_list:
             p = self.db.get_person_from_handle(obj.ref)
             if p:
-                data = [name_displayer.display(p), p.gramps_id, obj.rel, 
+                data = [name_displayer.display(p), p.gramps_id, obj.rel,
                         obj.get_privacy(), obj]
             else:
                 data = ['unknown','unknown', obj.rel, obj.get_privacy(), obj]

@@ -50,10 +50,10 @@ from ._datehandler import register_datehandler
 class DateParserPT(DateParser):
 
     modifier_to_int = {
-        'antes de'     : Date.MOD_BEFORE, 
-        'antes'        : Date.MOD_BEFORE, 
-        'ant.'         : Date.MOD_BEFORE, 
-        'ant'          : Date.MOD_BEFORE, 
+        'antes de'     : Date.MOD_BEFORE,
+        'antes'        : Date.MOD_BEFORE,
+        'ant.'         : Date.MOD_BEFORE,
+        'ant'          : Date.MOD_BEFORE,
         'até'          : Date.MOD_BEFORE,
         'depois de'    : Date.MOD_AFTER,
         'depois'       : Date.MOD_AFTER,
@@ -85,8 +85,8 @@ class DateParserPT(DateParser):
         'r'                     : Date.CAL_FRENCH,
         'persa'                 : Date.CAL_PERSIAN,
         'p'                     : Date.CAL_PERSIAN,
-        'swedish'               : Date.CAL_SWEDISH, 
-        's'                     : Date.CAL_SWEDISH, 
+        'swedish'               : Date.CAL_SWEDISH,
+        's'                     : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
@@ -118,19 +118,19 @@ class DateParserPT(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayPT(DateDisplay):
     """
-    Portuguese language date display class. 
+    Portuguese language date display class.
     """
-    long_months = ( "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", 
-                    "Junho", "Julho", "Agosto", "Setembro", "Outubro", 
+    long_months = ( "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
+                    "Junho", "Julho", "Agosto", "Setembro", "Outubro",
                     "Novembro", "Dezembro" )
-    
-    short_months = ( "", "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", 
+
+    short_months = ( "", "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
                      "Jul", "Ago", "Set", "Out", "Nov", "Dez" )
-    
+
     calendar = (
-        "", "Juliano", "Hebreu", 
-        "Revolucionário", "Persa", "Islâmico", 
-        "Sueco" 
+        "", "Juliano", "Hebreu",
+        "Revolucionário", "Persa", "Islâmico",
+        "Sueco"
         )
 
     _mod_str = ("","antes de ","depois de ","por volta de ","","","")
@@ -143,7 +143,7 @@ class DateDisplayPT(DateDisplay):
         )
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
-    
+
     def display(self,date):
         """
         Return a text string representing the date.
@@ -155,7 +155,7 @@ class DateDisplayPT(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:

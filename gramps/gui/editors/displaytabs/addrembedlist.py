@@ -44,13 +44,13 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class AddrEmbedList(EmbeddedList):
     """
-    Address List display tab for edit dialogs. 
-    
+    Address List display tab for edit dialogs.
+
     Derives from the EmbeddedList class.
     """
 
@@ -76,12 +76,12 @@ class AddrEmbedList(EmbeddedList):
         (_('Country'),      5,  75, TEXT_COL, -1, None),
         (_('Private'),      6,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Addresses'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Addresses'),
                               AddressModel, move_buttons=True)
-                            
+
     def get_icon_name(self):
         """
         Return the stock-id icon name associated with the display tab
@@ -104,13 +104,13 @@ class AddrEmbedList(EmbeddedList):
         """
         Called when the Add button is clicked. Creates a new Address instance
         and calls the EditAddress editor with the new address. If the window
-        already exists (WindowActiveError), we ignore it. This prevents 
+        already exists (WindowActiveError), we ignore it. This prevents
         the dialog from coming up twice on the same object.
         """
         addr = Address()
         try:
             from .. import EditAddress
-            EditAddress(self.dbstate, self.uistate, self.track, 
+            EditAddress(self.dbstate, self.uistate, self.track,
                         addr, self.add_callback)
         except WindowActiveError:
             return
@@ -128,14 +128,14 @@ class AddrEmbedList(EmbeddedList):
         """
         Called with the Edit button is clicked. Gets the selected Address instance
         and calls the EditAddress editor with the address. If the window
-        already exists (WindowActiveError), we ignore it. This prevents 
+        already exists (WindowActiveError), we ignore it. This prevents
         the dialog from coming up twice on the same object.
         """
         addr = self.get_selected()
         if addr:
             try:
                 from .. import EditAddress
-                EditAddress(self.dbstate, self.uistate, self.track, 
+                EditAddress(self.dbstate, self.uistate, self.track,
                             addr, self.edit_callback)
             except WindowActiveError:
                 return

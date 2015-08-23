@@ -100,8 +100,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
   <toolitem action="HomePerson"/>
 </placeholder>
 <placeholder name="CommonEdit">
@@ -148,7 +148,7 @@ class GeoPerson(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Person places map"),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -173,11 +173,11 @@ class GeoPerson(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-person'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -277,7 +277,7 @@ class GeoPerson(GeoGraphyView):
             i += 1
             self.large_move = False
             stepyear = 1
-        # if geography.speed = 100 => 100ms => 1s per 10 years. 
+        # if geography.speed = 100 => 100ms => 1s per 10 years.
         # For a 100 years person, it takes 10 secondes.
         # if large_move, one step is the difflat or difflon / geography.steps
         # in this case, stepyear is >= 9000
@@ -289,7 +289,7 @@ class GeoPerson(GeoGraphyView):
 
     def _createmap(self,obj):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -494,10 +494,10 @@ class GeoPerson(GeoGraphyView):
                    None, event.button, event.time)
         return 1
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
@@ -527,14 +527,14 @@ class GeoPerson(GeoGraphyView):
                 _('Animation speed in milliseconds (big value means slower)'),
                 1, line_wrap=False)
         configdialog.add_slider(grid,
-                "", 
+                "",
                 2, 'geography.speed',
                 (100, 1000))
         configdialog.add_text(grid,
                 _('How many steps between two markers when we are on large move ?'),
                 3, line_wrap=False)
         configdialog.add_slider(grid,
-                "", 
+                "",
                 4, 'geography.steps',
                 (10, 100))
         configdialog.add_text(grid,
@@ -542,7 +542,7 @@ class GeoPerson(GeoGraphyView):
                   'The value is in tenth of degree.'),
                 5, line_wrap=False)
         configdialog.add_slider(grid,
-                "", 
+                "",
                 6, 'geography.maximum_lon_lat',
                 (5, 50))
         return _('The animation parameters'), grid

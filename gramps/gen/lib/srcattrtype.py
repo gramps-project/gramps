@@ -56,15 +56,15 @@ class SrcAttributeType(GrampsType):
     def get_ignore_list(self, exception=None):
         """
         Return a list of the types to ignore and not include in default lists.
-        
+
         Exception is a sublist of types that may not be ignored
-        
+
         :param exception: list of integer values corresponding with types that
                           have to be excluded from the ignore list
         :type exception: list
-        :returns: list of integers corresponding with the types to ignore when 
+        :returns: list of integers corresponding with the types to ignore when
                   showing a list of different types
         :rtype: list
-        
+
         """
         return []

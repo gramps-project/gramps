@@ -147,7 +147,7 @@ class MergeMedia(ManagedWindow):
         else:
             phoenix = self.mo2
             titanic = self.mo1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Media')
 

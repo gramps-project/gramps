@@ -38,31 +38,31 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #
-# Root object for Attribute 
+# Root object for Attribute
 #
 #-------------------------------------------------------------------------
 class AttributeRoot(SecondaryObject, PrivacyBase):
     """
-    Provide a simple key/value pair for describing properties. 
+    Provide a simple key/value pair for describing properties.
     Used to store descriptive information.
-    
+
     In GEDCOM only used for Persons:
-    Individual attributes should describe situations that may be permanent or 
+    Individual attributes should describe situations that may be permanent or
     temporary (start at some date, end at some date, etc.), may be associated
-    to a place (a position held, residence, etc.) or may not (eye colour, 
-    height, caste, profession, etc.).  They may have sources and notes and 
-    media. 
+    to a place (a position held, residence, etc.) or may not (eye colour,
+    height, caste, profession, etc.).  They may have sources and notes and
+    media.
     Compare with :class:`~.event.Event`
-    
+
     Gramps at the moment does not support this GEDCOM Attribute structure.
     """
-    
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
         """
         PrivacyBase.__init__(self, source)
-        
+
         #type structure depends on inheriting classes
         self.type = None
         self.value = None
@@ -81,7 +81,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -99,7 +99,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         return {"_class": self.__class__.__name__,
                 "private": PrivacyBase.serialize(self),
-                "type": self.type.to_struct(), 
+                "type": self.type.to_struct(),
                 "value": self.value}
 
     @classmethod
@@ -111,7 +111,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         default = Attribute()
         return (PrivacyBase.from_struct(struct.get("private", default.private)),
-                AttributeType.from_struct(struct.get("type", {})), 
+                AttributeType.from_struct(struct.get("type", {})),
                 struct.get("value", default.value))
 
     def unserialize(self, data):
@@ -145,7 +145,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                 refer notes.
         :rtype: list
         """
@@ -155,7 +155,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -165,7 +165,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -222,7 +222,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
 #
 #-------------------------------------------------------------------------
 class Attribute(AttributeRoot, CitationBase, NoteBase):
-        
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
@@ -230,7 +230,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         AttributeRoot.__init__(self, source)
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
-        
+
         if source:
             self.type = AttributeType(source.type)
             self.value = source.value
@@ -250,7 +250,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -270,7 +270,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
                 "private": PrivacyBase.serialize(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
-                "type": self.type.to_struct(), 
+                "type": self.type.to_struct(),
                 "value": self.value}
 
     @classmethod
@@ -283,7 +283,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         return (PrivacyBase.from_struct(struct["private"]),
                 CitationBase.from_struct(struct["citation_list"]),
                 NoteBase.from_struct(struct["note_list"]),
-                AttributeType.from_struct(struct["type"]), 
+                AttributeType.from_struct(struct["type"]),
                 struct["value"])
 
     def unserialize(self, data):
@@ -301,7 +301,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """

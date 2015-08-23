@@ -137,7 +137,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def get_age_comp(self, orig_person, other_person):
         # in 3.X api we can't know persons age
         return 0
-          
+
 
     def get_age_brother (self, level):
         if   level == 0  : return "testvére"
@@ -151,7 +151,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     #---------------------------------------------
     #
-    # en: father-in-law, mother-in-law, son-in-law, daughter-in-law  
+    # en: father-in-law, mother-in-law, son-in-law, daughter-in-law
     # hu: após, anyós, vő, meny
     #
     #---------------------------------------------
@@ -161,14 +161,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             family = self.db.get_family_from_handle(f)
             sp_id = None
             if family:
-                if other == family.get_father_handle(): 
+                if other == family.get_father_handle():
                     sp_id = family.get_mother_handle()
-                elif other == family.get_mother_handle(): 
+                elif other == family.get_mother_handle():
                     sp_id = family.get_father_handle()
                 for g in orig.get_family_handle_list():
                     family = self.db.get_family_from_handle(g)
                     if family:
-                        if sp_id in family.get_child_handle_list(): 
+                        if sp_id in family.get_child_handle_list():
                             return 1
         return 0
 
@@ -184,16 +184,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             family = self.db.get_family_from_handle(f)
             sp_id = None
             if family:
-                if orig ==  family.get_father_handle(): 
+                if orig ==  family.get_father_handle():
                     sp_id = family.get_mother_handle()
-                elif other == family.get_mother_handle(): 
+                elif other == family.get_mother_handle():
                     sp_id = family.get_father_handler()
 
                 p = other.get_main_parents_family_handle()
                 family = self.db.get_family_from_handle(p)
                 if family:
                     c = family.get_child_handle_list()
-                    if (other.get_handle() in c) and (sp_id in c): 
+                    if (other.get_handle() in c) and (sp_id in c):
                         return 1
         return 0
 
@@ -274,11 +274,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         return self.get_relationship(Ga, Gb, gender_a, gender_b, in_law_a, in_law_b)[0]
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         return self.get_relationship(1, 1, gender_a, gender_b, in_law_a, in_law_b)[0]
 
@@ -290,7 +290,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_hu.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

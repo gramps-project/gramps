@@ -51,7 +51,7 @@ class Tag(TableObject):
         """
 
         TableObject.__init__(self, source)
-        
+
         if source:
             self.__name = source.__name
             self.__color = source.__color
@@ -64,9 +64,9 @@ class Tag(TableObject):
     def serialize(self):
         """
         Convert the data held in the event to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
         These elements may be primitive Python types (string, integers),
@@ -159,8 +159,8 @@ class Tag(TableObject):
 
     def set_color(self, color):
         """
-        Set the color of the Tag to the passed string. 
-        
+        Set the color of the Tag to the passed string.
+
         The string is of the format #rrrrggggbbbb.
 
         :param color: Color to assign to the Tag
@@ -181,8 +181,8 @@ class Tag(TableObject):
 
     def set_priority(self, priority):
         """
-        Set the priority of the Tag to the passed integer. 
-        
+        Set the priority of the Tag to the passed integer.
+
         The lower the value the higher the priority.
 
         :param priority: Priority to assign to the Tag
@@ -203,7 +203,7 @@ class Tag(TableObject):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -239,6 +239,6 @@ class Tag(TableObject):
                 struct.get("color", default.color),
                 struct.get("priority", default.priority),
                 struct.get("change", default.change))
-        
+
     priority = property(get_priority, set_priority, None,
                      'Returns or sets priority of the tag')

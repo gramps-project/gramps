@@ -153,7 +153,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.window.vbox.pack_start(self.scroll, True, True, 0)
         self.label2 = Gtk.Label()
         self.label2.set_markup('<span background="green" foreground="black"'
-                               '>%s</span>' % 
+                               '>%s</span>' %
              _('The green values in the row correspond '
                'to the current place values.'))
         self.label2.set_valign(Gtk.Align.END)

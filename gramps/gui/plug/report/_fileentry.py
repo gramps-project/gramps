@@ -56,7 +56,7 @@ class FileEntry(Gtk.Box):
             my_action = Gtk.FileChooserAction.SELECT_FOLDER
         else:
             my_action = Gtk.FileChooserAction.SAVE
-        
+
         dialog = Gtk.FileChooserDialog(self.title,
                                        self.parent,
                                        action=my_action,
@@ -97,8 +97,8 @@ class FileEntry(Gtk.Box):
         return self.entry.get_text()
 
     def set_directory_entry(self, opt):
-        """ 
-        Configure the FileEntry to either select a directory or a file. 
+        """
+        Configure the FileEntry to either select a directory or a file.
         Set it to True to select a directory.
         Set it to False to select a file.
         """

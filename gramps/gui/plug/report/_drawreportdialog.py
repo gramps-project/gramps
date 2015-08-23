@@ -49,13 +49,13 @@ class _DrawFormatComboBox(Gtk.ComboBox):
     def __init__(self, active):
 
         GObject.GObject.__init__(self)
-        
+
         pmgr = GuiPluginManager.get_instance()
         self.__drawdoc_plugins = []
         for plugin in pmgr.get_docgen_plugins():
             if plugin.get_draw_support():
                 self.__drawdoc_plugins.append(plugin)
-        
+
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
         cell = Gtk.CellRendererText()
@@ -95,7 +95,7 @@ class DrawReportDialog(DocReportDialog):
         """
         self.format_menu = None
         self.category = CATEGORY_DRAW
-        DocReportDialog.__init__(self, dbstate, uistate, opt, 
+        DocReportDialog.__init__(self, dbstate, uistate, opt,
                                  name, translated_name)
 
     def make_doc_menu(self,active=None):

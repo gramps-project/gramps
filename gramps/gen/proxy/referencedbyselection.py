@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -31,7 +31,7 @@ a person.
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Person, Family, Source, Citation, Event, MediaObject, 
+from ..lib import (Person, Family, Source, Citation, Event, MediaObject,
                    Place, Repository, Note, Tag)
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
@@ -44,7 +44,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
 
     def __init__(self, dbase, all_people=False):
         """
-        Create a new ReferencedByPeopleProxyDb instance.  
+        Create a new ReferencedByPeopleProxyDb instance.
 
         :param all_people: if True, get all people, and the items they link to;
                            if False, get all people that are connected to
@@ -62,7 +62,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.queue = []
         if all_people:
             # Do not add references to those not already included
-            self.restricted_to["Person"] = [x for x in 
+            self.restricted_to["Person"] = [x for x in
                                             self.db.iter_person_handles()]
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
@@ -152,7 +152,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         if person.handle in self.referenced["Person"]:
             return
         # A person that we should not add:
-        if (self.restricted_to["Person"] and 
+        if (self.restricted_to["Person"] and
             person.handle not in self.restricted_to["Person"]):
             return
         if reference:
@@ -162,7 +162,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         for (class_name, handle) in self.db.find_backlink_handles(
             person.handle, ["Person", "Family"]):
             self.queue_object(class_name, handle)
-                
+
         name = person.get_primary_name()
         if name:
             self.process_name(name)
@@ -245,7 +245,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             place = self.db.get_place_from_handle(place_handle)
             if place:
                 self.process_place(place)
-    
+
     def process_place(self, place):
         """
         Follow the place object and find all of the primary objects
@@ -275,7 +275,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         for repo_ref in source.get_reporef_list():
             if repo_ref:
                 self.process_notes(repo_ref)
-                handle = repo_ref.get_reference_handle()                
+                handle = repo_ref.get_reference_handle()
                 repo = self.db.get_repository_from_handle(handle)
                 if repo:
                     self.process_repository(repo)
@@ -361,7 +361,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         """ Find all of the primary objects referred to """
         self.process_citation_ref_list(name)
         self.process_notes(name)
-    
+
     def process_addresses(self, original_obj):
         """ Find all of the primary objects referred to """
         for address in original_obj.get_address_list():
@@ -451,25 +451,25 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Filter for person
         """
         return handle in self.referenced["Person"]
-        
+
     def include_place(self, handle):
         """
         Filter for places
         """
         return handle in self.referenced["Place"]
-        
+
     def include_family(self, handle):
         """
         Filter for families
         """
         return handle in self.referenced["Family"]
-        
+
     def include_media_object(self, handle):
         """
         Filter for media objects
         """
         return handle in self.referenced["MediaObject"]
-        
+
     def include_event(self, handle):
         """
         Filter for events
@@ -481,36 +481,36 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Filter for sources
         """
         return handle in self.referenced["Source"]
-    
+
     def include_citation(self, handle):
         """
         Filter for citations
         """
         return handle in self.referenced["Citation"]
-    
+
     def include_repository(self, handle):
         """
         Filter for repositories
         """
         return handle in self.referenced["Repository"]
-        
+
     def include_note(self, handle):
         """
         Filter for notes
         """
         return handle in self.referenced["Note"]
-    
+
     def include_tag(self, handle):
         """
         Filter for tags
         """
         return handle in self.referenced["Tag"]
-    
+
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Return appropriate backlink handles for this proxy.
         """
-        for (objclass, handle) in self.db.find_backlink_handles(handle, 
+        for (objclass, handle) in self.db.find_backlink_handles(handle,
                                                         include_classes):
             if handle in self.referenced[objclass]:
                 yield (objclass, handle)

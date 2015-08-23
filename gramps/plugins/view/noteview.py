@@ -73,7 +73,7 @@ class NoteView(ListView):
     COL_PRIV = 3
     COL_TAGS = 4
     COL_CHAN = 5
-    
+
     # column definitions
     COLUMNS = [
         (_('Preview'), TEXT, None),
@@ -86,7 +86,7 @@ class NoteView(ListView):
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
         ('columns.visible', [COL_PREVIEW, COL_ID, COL_TYPE]),
-        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS, 
+        ('columns.rank', [COL_PREVIEW, COL_ID, COL_TYPE, COL_PRIV, COL_TAGS,
                           COL_CHAN]),
         ('columns.size', [350, 75, 100, 40, 100, 100]))
 
@@ -171,8 +171,8 @@ class NoteView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>

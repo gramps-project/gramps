@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -92,7 +92,7 @@ class UndoableEntry(Gtk.Entry):
       - Undo and Redo on CTRL-Z/CTRL-SHIFT-Z
     """
     __gtype_name__ = 'UndoableEntry'
-    
+
     insertclass = UndoableInsertEntry
     deleteclass = UndoableDeleteEntry
 
@@ -121,10 +121,10 @@ class UndoableEntry(Gtk.Entry):
     def _on_key_press_event(self, widget, event):
         """Signal handler.
         Handle formatting undo/redo key press.
-        
+
         """
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and 
+            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
             (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
@@ -165,7 +165,7 @@ class UndoableEntry(Gtk.Entry):
             self.__empty_redo_stack()
         if self.not_undoable_action:
             return
-        undo_action = self.insertclass(text, length, editable.get_position(), 
+        undo_action = self.insertclass(text, length, editable.get_position(),
                                        editable)
         try:
             prev_insert = self.undo_stack.pop()
@@ -239,16 +239,16 @@ class UndoableEntry(Gtk.Entry):
 
     def begin_not_undoable_action(self):
         """don't record the next actions
-        
+
         toggles self.not_undoable_action"""
-        self.not_undoable_action = True        
+        self.not_undoable_action = True
 
     def end_not_undoable_action(self):
         """record next actions
-        
+
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
-    
+
     def reset(self):
         """
         Resets buffer to initial state.

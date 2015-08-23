@@ -48,7 +48,7 @@ class MatchesSourceConfidenceBase(Rule):
     name        = 'Object with at least one direct source >= <confidence level>'
     description = "Matches objects with at least one direct source with confidence level(s)"
     category    = _('Citation/source filters')
-    
+
     def apply(self, db, obj):
         required_conf = int(self.list[0])
         for citation_handle in obj.get_citation_list():

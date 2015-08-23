@@ -13,7 +13,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -51,7 +51,7 @@ from gi.repository import Gtk, Gdk
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
-            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
+            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
             PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
             GraphicsStyle)
 from ...listmodel import ListModel
@@ -65,7 +65,7 @@ from ...glade import Glade
 #------------------------------------------------------------------------
 class StyleListDisplay(object):
     """
-    Shows the available paragraph/font styles. Allows the user to select, 
+    Shows the available paragraph/font styles. Allows the user to select,
     add, edit, and delete styles from a StyleSheet.
     """
 
@@ -78,26 +78,26 @@ class StyleListDisplay(object):
         callback - task called with an object has been added.
         """
         self.callback = callback
-        
+
         self.sheetlist = stylesheetlist
-        
+
         self.top = Glade(toplevel='styles')
         self.window = self.top.toplevel
 
-        set_titles(self.window, self.top.get_object('title'), 
+        set_titles(self.window, self.top.get_object('title'),
                    _('Document Styles'))
 
         self.top.connect_signals({
             "destroy_passed_object" : self.__close,
-            "on_ok_clicked" : self.on_ok_clicked, 
-            "on_add_clicked" : self.on_add_clicked, 
-            "on_delete_clicked" : self.on_delete_clicked, 
-            "on_button_press" : self.on_button_press, 
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_add_clicked" : self.on_add_clicked,
+            "on_delete_clicked" : self.on_delete_clicked,
+            "on_button_press" : self.on_button_press,
             "on_edit_clicked" : self.on_edit_clicked,
             "on_save_style_clicked" : dummy_callback,
             })
 
-        self.list = ListModel(self.top.get_object("list"), 
+        self.list = ListModel(self.top.get_object("list"),
                                         [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
@@ -110,7 +110,7 @@ class StyleListDisplay(object):
 
     def redraw(self):
         """Redraws the list of styles that are current available"""
-        
+
         self.list.model.clear()
         self.list.add([_("default")])
 
@@ -128,7 +128,7 @@ class StyleListDisplay(object):
         StyleEditor(_("New Style"), style, self)
 
     def on_ok_clicked(self, obj):
-        """Called with the OK button is clicked; Calls the callback task, 
+        """Called with the OK button is clicked; Calls the callback task,
         then saves the stylesheet."""
         if self.callback is not None:
             self.callback()
@@ -143,7 +143,7 @@ class StyleListDisplay(object):
     def on_button_press(self, obj, event):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.on_edit_clicked(obj)
-            
+
     def on_edit_clicked(self, obj):
         """
         Called with the EDIT button is clicked.
@@ -152,7 +152,7 @@ class StyleListDisplay(object):
         store, node = self.list.selection.get_selected()
         if not node:
             return
-        
+
         name = str(self.list.model.get_value(node, 0))
         if name == _('default'): # the default style cannot be edited
             return
@@ -180,7 +180,7 @@ class StyleEditor(object):
     Edits the current style definition. Presents a dialog allowing the values
     of the paragraphs in the style to be altered.
     """
-    
+
     def __init__(self, name, style, parent):
         """
         Create the StyleEditor.
@@ -191,19 +191,19 @@ class StyleEditor(object):
         """
         self.current_style = None
         self.current_name = None
-        
+
         self.style = StyleSheet(style)
         self.parent = parent
         self.top = Glade(toplevel='editor')
         self.window = self.top.toplevel
-        
+
         self.top.connect_signals({
-            "on_save_style_clicked" : self.on_save_style_clicked, 
+            "on_save_style_clicked" : self.on_save_style_clicked,
             "destroy_passed_object" : self.__close,
-            "on_ok_clicked" : dummy_callback, 
-            "on_add_clicked" : dummy_callback, 
-            "on_delete_clicked" : dummy_callback, 
-            "on_button_press" : dummy_callback, 
+            "on_ok_clicked" : dummy_callback,
+            "on_add_clicked" : dummy_callback,
+            "on_delete_clicked" : dummy_callback,
+            "on_button_press" : dummy_callback,
             "on_edit_clicked" : dummy_callback,
             })
 
@@ -223,12 +223,12 @@ class StyleEditor(object):
         self.line_style.pack_start(renderer_text, True)
         self.line_style.add_attribute(renderer_text, "text", 1)
 
-        set_titles(self.window, self.top.get_object('title'), 
+        set_titles(self.window, self.top.get_object('title'),
                    _('Style editor'))
         self.top.get_object("label6").set_text(_("point size|pt"))
-        
+
         titles = [(_('Style'), 0, 130)]
-        self.plist = ListModel(self.top.get_object("ptree"), titles, 
+        self.plist = ListModel(self.top.get_object("ptree"), titles,
                                          self.change_display)
 
         for widget_name in ('color', 'bgcolor', 'line_color', 'fill_color'):
@@ -257,7 +257,7 @@ class StyleEditor(object):
         for d_name in names:
             self.plist.add([d_name], self.style.get_draw_style(d_name))
         self.plist.select_row(0)
-        
+
         if self.parent:
             self.window.set_transient_for(parent.window)
         self.window.run()
@@ -373,7 +373,7 @@ class StyleEditor(object):
 
         descr = p.get_description()
         self.pdescription.set_text(descr or _("No description available") )
-        
+
         font = p.get_font()
         self.top.get_object("size").set_value(font.get_size())
         if font.get_type_face() == FONT_SERIF:
@@ -475,7 +475,7 @@ class StyleEditor(object):
         p = self.current_style
         font = p.get_font()
         font.set_size(self.top.get_object("size").get_value_as_int())
-    
+
         if self.top.get_object("roman").get_active():
             font.set_type_face(FONT_SERIF)
         else:
@@ -489,9 +489,9 @@ class StyleEditor(object):
         elif self.top.get_object("ralign").get_active():
             p.set_alignment(PARA_ALIGN_RIGHT)
         elif self.top.get_object("calign").get_active():
-            p.set_alignment(PARA_ALIGN_CENTER)            
+            p.set_alignment(PARA_ALIGN_CENTER)
         else:
-            p.set_alignment(PARA_ALIGN_JUSTIFY)            
+            p.set_alignment(PARA_ALIGN_JUSTIFY)
 
         p.set_right_margin(self.top.get_object("rmargin").get_value())
         p.set_left_margin(self.top.get_object("lmargin").get_value())
@@ -508,7 +508,7 @@ class StyleEditor(object):
         font.set_color(color2rgb(color))
         bg_color = self.top.get_object("bgcolor").get_color()
         p.set_background_color(color2rgb(bg_color))
-        
+
         self.style.add_paragraph_style(self.current_name, self.current_style)
 
     def on_save_style_clicked(self, obj):
@@ -554,8 +554,8 @@ def color2rgb(color):
     return (color.red >> 8, color.green >> 8, color.blue >> 8)
 
 def dummy_callback(obj):
-    """Dummy callback to satisfy gtkbuilder on connect of signals. 
-    There are two widgets in the glade file, although only one is needed, 
+    """Dummy callback to satisfy gtkbuilder on connect of signals.
+    There are two widgets in the glade file, although only one is needed,
     the signals of the other must be connected too
     """
     pass

@@ -112,20 +112,20 @@ class FamTreeListModel(QtCore.QAbstractListModel):
     A simple ListModel
     """
     COLUMNS = ('name', 'path', 'last_access', 'use_icon', 'icon')
- 
+
     def __init__(self, famtrees):
         QtCore.QAbstractListModel.__init__(self)
         self._famtrees = famtrees
         self.setRoleNames(dict(enumerate(FamTreeListModel.COLUMNS)))
- 
+
     def rowCount(self, parent=QtCore.QModelIndex()):
         return len(self._famtrees)
- 
+
     def data(self, index, role):
         if index.isValid() and role == FamTreeListModel.COLUMNS.index('name'):
             return self._famtrees[index.row()]
         return None
-    
+
     def append_famtree(self, famtree):
         """
         Append a FamTreeWrapper to the family tree litsmodel
@@ -141,7 +141,7 @@ class FamTreeListModel(QtCore.QAbstractListModel):
 #-------------------------------------------------------------------------
 
 class DbManager(CLIDbManager, QtCore.QObject):
-    """ 
+    """
     Manages family tree list widget
     """
     def __init__(self, dbstate, engine, onselectcallback):
@@ -172,7 +172,7 @@ class DbManager(CLIDbManager, QtCore.QObject):
         #Create ListModel to use
         famtreesQT = [FamTreeWrapper(obj, self) for obj in self.current_names]
         self.famtrees = FamTreeListModel(famtreesQT)
-        
+
         #register them in the context
         self.famtreecontext.setContextProperty('Const', self.const)
         self.famtreecontext.setContextProperty('DbManager', self)
@@ -218,7 +218,7 @@ class DbManager(CLIDbManager, QtCore.QObject):
         new_path, title = self.create_new_db_cli(None)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
-        self.famtrees.append_famtree(FamTreeWrapper([title, new_path, path_name, 
+        self.famtrees.append_famtree(FamTreeWrapper([title, new_path, path_name,
                                         last, tval, False, '']))
         self.__busy = False
 

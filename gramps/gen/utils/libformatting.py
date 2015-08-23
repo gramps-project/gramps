@@ -20,7 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Format of commonly used expressions, making use of a cache to not 
+"""Format of commonly used expressions, making use of a cache to not
 recompute
 """
 #-------------------------------------------------------------------------
@@ -39,7 +39,7 @@ from ..lib import EventType
 from ..datehandler import get_date
 from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
-from .db import (get_birth_or_fallback, get_death_or_fallback, 
+from .db import (get_birth_or_fallback, get_death_or_fallback,
                  get_marriage_or_fallback)
 
 #-------------------------------------------------------------------------
@@ -48,14 +48,14 @@ from .db import (get_birth_or_fallback, get_death_or_fallback,
 #
 #-------------------------------------------------------------------------
 class FormattingHelper(object):
-    """Format of commonly used expressions, making use of a cache to not 
+    """Format of commonly used expressions, making use of a cache to not
     recompute
     """
     def __init__(self, dbstate):
         self.dbstate = dbstate
         self._text_cache = {}
         self._markup_cache = {}
-    
+
     def format_relation(self, family, line_count, use_markup=False):
         """ Format a relation between parents of a family
         """
@@ -101,10 +101,10 @@ class FormattingHelper(object):
         if line_count >= 3:
             text += mplace
             text += "\n"
-        
+
         if not text:
             text = str(family.get_relationship())
-            
+
         if use_markup:
             if not family.handle in self._markup_cache:
                 self._markup_cache[family.handle] = {}
@@ -113,7 +113,7 @@ class FormattingHelper(object):
             if not family.handle in self._text_cache:
                 self._text_cache[family.handle] = {}
             self._text_cache[family.handle][line_count] = text
-    
+
         return text
 
     def get_place_name(self, place_handle):
@@ -175,7 +175,7 @@ class FormattingHelper(object):
             else:
                 ddate = ""
                 dplace = ""
-            
+
             if line_count < 5:
                 text = "%s\n* %s\n+ %s" % (name, bdate, ddate)
             else:
@@ -205,14 +205,14 @@ class ImportInfo(object):
     def __init__(self, default_info=None):
         """
         Init of the import class.
-        
+
         This creates the datastructures to hold info
         """
         if default_info is None:
             self.info = {}
         else:
             self.info = default_info
-        
+
     def info_text(self):
         """
         Construct an info message from the data in the class.

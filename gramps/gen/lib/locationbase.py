@@ -32,10 +32,10 @@ class LocationBase(object):
     """
     Base class for all things Address.
     """
-    
+
     def __init__(self, source=None):
         """
-        Create a LocationBase object, copying from the source object if it 
+        Create a LocationBase object, copying from the source object if it
         exists.
         """
         if source:
@@ -68,7 +68,7 @@ class LocationBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -86,13 +86,13 @@ class LocationBase(object):
         """
         return {
             "_class": "LocationBase",
-            "street": self.street, 
-            "locality": self.locality, 
-            "city": self.city, 
-            "county": self.county, 
+            "street": self.street,
+            "locality": self.locality,
+            "city": self.city,
+            "county": self.county,
             "state": self.state,
-            "country": self.country, 
-            "postal": self.postal, 
+            "country": self.country,
+            "postal": self.postal,
             "phone": self.phone
         }
 

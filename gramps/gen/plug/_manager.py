@@ -69,7 +69,7 @@ class BasePluginManager(object):
     """ unique singleton storage class for a :class:`.PluginManager`. """
 
     __instance = None
-    
+
     def get_instance():
         """
         Use this function to get the instance of the :class:`.PluginManager`
@@ -79,7 +79,7 @@ class BasePluginManager(object):
             BasePluginManager.__instance = BasePluginManager()
         return BasePluginManager.__instance
     get_instance = staticmethod(get_instance)
-    
+
     def __init__(self):
         """ This function should only be run once by get_instance() """
         if BasePluginManager.__instance is not 1:
@@ -98,34 +98,34 @@ class BasePluginManager(object):
 
         self.__mod2text          = {}
         self.__modules           = {}
-        
+
         self.__pgr = PluginRegister.get_instance()
         self.__registereddir_set = set()
         self.__loaded_plugins = {}
 
-    def reg_plugins(self, direct, dbstate=None, uistate=None, 
+    def reg_plugins(self, direct, dbstate=None, uistate=None,
                     load_on_reg=False):
         """
         Searches the specified directory, and registers python plugin that
-        are being defined in gpr.py files. 
-        
-        If a relationship calculator for env var LANG is present, it is 
+        are being defined in gpr.py files.
+
+        If a relationship calculator for env var LANG is present, it is
         immediately loaded so it is available for all.
         """
         # if the directory does not exist, do nothing
         if not os.path.isdir(direct):
             return False # return value is True for error
-        
+
         for (dirpath, dirnames, filenames) in os.walk(direct):
             root, subdir = os.path.split(dirpath)
-            if subdir.startswith("."): 
+            if subdir.startswith("."):
                 dirnames[:] = []
                 continue
             for dirname in dirnames:
                 # Skip hidden and system directories:
                 if dirname.startswith(".") or dirname in ["po", "locale"]:
                     dirnames.remove(dirname)
-            # if the path has not already been loaded, save it in the 
+            # if the path has not already been loaded, save it in the
             # registereddir_list list for use on reloading.
             self.__registereddir_set.add(dirpath)
             self.__pgr.scan_dir(dirpath)
@@ -192,7 +192,7 @@ class BasePluginManager(object):
 
     def load_plugin(self, pdata):
         """
-        Load a :class:`.PluginData` object. This means import of the python 
+        Load a :class:`.PluginData` object. This means import of the python
         module. Plugin directories are added to sys path, so files are found
         """
         if pdata.id in self.__loaded_plugins:
@@ -219,7 +219,7 @@ class BasePluginManager(object):
                 del self.__failmsg_list[index]
         else:
             self.__attempt_list.append(filename)
-        try: 
+        try:
             _module = self.import_plugin(pdata)
             if need_reload:
                 # For some strange reason second importing of a failed plugin
@@ -285,25 +285,25 @@ class BasePluginManager(object):
         return module
 
     def empty_managed_plugins(self):
-        """ For some plugins, managed Plugin are used. These are only 
+        """ For some plugins, managed Plugin are used. These are only
         reobtained from the registry if this method is called
         """
         # TODO: do other lists need to be reset here, too?
         self.__import_plugins = []
         self.__export_plugins = []
         self.__docgen_plugins = []
-        
+
     def reload_plugins(self):
         """ Reload previously loaded plugins """
         pymod = re.compile(r"^(.*)\.py$")
-    
+
         oldfailmsg = self.__failmsg_list[:]
         self.__failmsg_list = []
-    
+
         # attempt to reload all plugins that have succeeded in the past
         self.empty_managed_plugins()
         self.__loaded_plugins = {}
-        
+
         oldmodules = self.__modules
         self.__modules = {}
         dellist = []
@@ -316,7 +316,7 @@ class BasePluginManager(object):
             if filename in self.__modules:
                 #module already reloaded, a second plugin in same module
                 continue
-            try: 
+            try:
                 self.reload(plugin[1], pdata)
                 self.__modules[filename] = plugin[1]
                 self.__loaded_plugins[pdata.id] = plugin[1]
@@ -327,11 +327,11 @@ class BasePluginManager(object):
         dellist.reverse()
         for index in dellist:
             del self.__success_list[index]
-            
+
         # Remove previously good plugins that are now bad
         # from the registered lists
         self.__purge_failed()
-    
+
         # attempt to load the plugins that have failed in the past
         for (filename, message, pdata) in oldfailmsg:
             self.load_plugin(pdata)
@@ -357,13 +357,13 @@ class BasePluginManager(object):
     def get_fail_list(self):
         """ Return the list of failed plugins. """
         return self.__failmsg_list
-    
+
     def get_success_list(self):
         """ Return the list of succeeded plugins. """
         return self.__success_list
 
     def get_plugin(self, id):
-        """ 
+        """
         Returns a plugin object from :class:`.PluginRegister` by id.
         """
         return self.__pgr.get_plugin(id)
@@ -374,24 +374,24 @@ class BasePluginManager(object):
         returned
         """
         return self.__pgr.report_plugins(gui)
-    
+
     def get_reg_tools(self, gui=True):
         """ Return list of registered tools
         :aram gui: bool indicating if GUI reports or CLI reports must be
         returned
         """
         return self.__pgr.tool_plugins(gui)
-    
+
     def get_reg_quick_reports(self):
         """ Return list of registered quick reports
         """
         return self.__pgr.quickreport_plugins()
-    
+
     def get_reg_views(self):
         """ Return list of registered views
         """
         return self.__pgr.view_plugins()
-    
+
     def get_reg_mapservices(self):
         """ Return list of registered mapservices
         """
@@ -401,45 +401,45 @@ class BasePluginManager(object):
         """ Return list of reports registered as bookitem
         """
         return self.__pgr.bookitem_plugins()
-    
+
     def get_reg_gramplets(self):
         """ Return list of non hidden gramplets.
         """
         return self.__pgr.gramplet_plugins()
-    
+
     def get_reg_sidebars(self):
         """ Return list of registered sidebars.
         """
         return self.__pgr.sidebar_plugins()
-    
+
     def get_reg_databases(self):
         """ Return list of registered database backends
         """
         return self.__pgr.database_plugins()
-    
+
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict
-    
+
     def get_module_description(self, module):
         """ Given a module name, return the module description. """
         return self.__mod2text.get(module, '')
-    
+
     def get_reg_importers(self):
         """ Return list of registered importers
         """
         return self.__pgr.import_plugins()
-    
+
     def get_reg_exporters(self):
         """ Return list of registered exporters
         """
         return self.__pgr.export_plugins()
-    
+
     def get_reg_docgens(self):
         """ Return list of registered docgen
         """
         return self.__pgr.docgen_plugins()
-    
+
     def get_reg_general(self, category=None):
         """ Return list of registered general libs
         """
@@ -471,7 +471,7 @@ class BasePluginManager(object):
             except:
                 retval.append(data)
         return retval
-    
+
     def process_plugin_data(self, category):
         """
         Gathers all of the data from general plugins of type category,
@@ -499,11 +499,11 @@ class BasePluginManager(object):
         if process:
             return process(retval)
         return retval
-    
+
     def get_import_plugins(self):
         """
         Get the list of import plugins.
-        
+
         :return: :class:`.ImportPlugin` (a list of ImportPlugin instances)
         """
         ## TODO: would it not be better to remove ImportPlugin and use
@@ -515,18 +515,18 @@ class BasePluginManager(object):
                     continue
                 mod = self.load_plugin(pdata)
                 if mod:
-                    imp = ImportPlugin(name=pdata.name, 
+                    imp = ImportPlugin(name=pdata.name,
                         description     = pdata.description,
                         import_function = getattr(mod, pdata.import_function),
                         extension       = pdata.extension)
                     self.__import_plugins.append(imp)
 
         return self.__import_plugins
-    
+
     def get_export_plugins(self):
         """
         Get the list of export plugins.
-        
+
         :return: :class:`.ExportPlugin` (a list of ExportPlugin instances)
         """
         ## TODO: would it not be better to remove ExportPlugin and use
@@ -539,26 +539,26 @@ class BasePluginManager(object):
                 mod = self.load_plugin(pdata)
                 if mod:
                     options = None
-                    if (pdata.export_options and 
+                    if (pdata.export_options and
                         hasattr(mod, pdata.export_options)):
                         options = getattr(mod, pdata.export_options)
-                    exp = ExportPlugin(name=pdata.name_accell, 
+                    exp = ExportPlugin(name=pdata.name_accell,
                         description     = pdata.description,
                         export_function = getattr(mod, pdata.export_function),
                         extension       = pdata.extension,
                         config          = (pdata.export_options_title, options))
                     self.__export_plugins.append(exp)
-                
+
         return self.__export_plugins
-    
+
     def get_docgen_plugins(self):
         """
         Get the list of docgen plugins.
-        
+
         :return: :class:`.DocGenPlugin` (a list of DocGenPlugin instances)
         """
         ## TODO: would it not be better to return list of plugindata, and only
-        ##       import those docgen that will then actuallly be needed? 
+        ##       import those docgen that will then actuallly be needed?
         ##       So, only do import when docgen.get_basedoc() is requested
         if self.__docgen_plugins == []:
             #The modules still need to be imported
@@ -571,22 +571,22 @@ class BasePluginManager(object):
                     oclass = None
                     if pdata.optionclass:
                         oclass = getattr(mod, pdata.optionclass)
-                    dgp = DocGenPlugin(name=pdata.name, 
+                    dgp = DocGenPlugin(name=pdata.name,
                             description = pdata.description,
                             basedoc     = getattr(mod, pdata.docclass),
                             paper       = pdata.paper,
-                            style       = pdata.style, 
+                            style       = pdata.style,
                             extension   = pdata.extension,
                             docoptclass = oclass,
                             basedocname = pdata.docclass )
                     self.__docgen_plugins.append(dgp)
-                
+
         return self.__docgen_plugins
 
     def get_docgen_names(self):
         """
         Get the list of docgen plugin names.
-        
+
         :return: a list of :class:`.DocGenPlugin` names
         """
         if self.__docgen_names == []:

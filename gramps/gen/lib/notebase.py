@@ -41,7 +41,7 @@ class NoteBase(object):
     def __init__(self, source=None):
         """
         Create a new NoteBase, copying from source if not None.
-        
+
         :param source: Object used to initialize the new object
         :type source: NoteBase
         """
@@ -57,7 +57,7 @@ class NoteBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -83,7 +83,7 @@ class NoteBase(object):
         :returns: Returns a serialized object
         """
         return [Handle.from_struct(n) for n in struct]
-        
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
@@ -119,16 +119,16 @@ class NoteBase(object):
             self.note_list.remove(handle)
         for item in self.get_note_child_list():
             item.remove_note(handle)
-    
+
     def get_note_child_list(self):
         """
         Return the list of child secondary objects that may refer notes.
-        
+
         All methods which inherit from NoteBase and have other child objects
-        with notes, should return here a list of child objects which are 
+        with notes, should return here a list of child objects which are
         NoteBase
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                 refer notes.
         :rtype: list
         """
@@ -146,7 +146,7 @@ class NoteBase(object):
 
     def has_note_reference(self, note_handle):
         """
-        Return True if the object or any of its child objects has reference 
+        Return True if the object or any of its child objects has reference
         to this note handle.
 
         :param note_handle: The note handle to be checked.
@@ -190,10 +190,10 @@ class NoteBase(object):
     def get_referenced_note_handles(self):
         """
         Return the list of (classname, handle) tuples for all referenced notes.
-        
+
         This method should be used to get the :class:`~.note.Note` portion of
         the list by objects that store note lists.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """

@@ -60,13 +60,13 @@ class PlaceTreeView(PlaceBaseView):
         Override the default icon.  Set for hierarchical view.
         """
         return 'gramps-tree-group'
-        
+
     def define_actions(self):
         """
         Define actions for the popup menu specific to the tree view.
         """
         PlaceBaseView.define_actions(self)
-        
+
         self._add_action('OpenBranch', None, _("Expand this Entire Group"),
                          callback=self.open_branch)
         self._add_action('CloseBranch', None, _("Collapse this Entire Group"),
@@ -112,8 +112,8 @@ class PlaceTreeView(PlaceBaseView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -153,7 +153,7 @@ class PlaceTreeView(PlaceBaseView):
         place = Place()
         if len(parent_list) > 0:
             place.placeref_list = parent_list
-        
+
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
         except WindowActiveError:

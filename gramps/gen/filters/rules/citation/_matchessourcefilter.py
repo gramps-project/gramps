@@ -57,11 +57,11 @@ class MatchesSourceFilter(MatchesFilterBase):
     def prepare(self, db):
         MatchesFilterBase.prepare(self, db)
         self.MRF_filt = self.find_filter()
-            
+
     def apply(self, db, object):
         if self.MRF_filt is None :
             return False
-        
+
         source_handle = object.source_handle
         if self.MRF_filt.check(db, source_handle):
             return True

@@ -76,7 +76,7 @@ DISABLED = -1
 
 class Bookmarks :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, callback=None):
         """
         Create the bookmark editor.
@@ -115,7 +115,7 @@ class Bookmarks :
 
     def update_bookmarks(self):
         """
-        Assign bookmarks 
+        Assign bookmarks
         """
         self.bookmarks = self.get_bookmarks()
 
@@ -164,7 +164,7 @@ class Bookmarks :
                 except AttributeError:
                     pass
             text.write('</placeholder>')
-            
+
         text.write(BTM)
         self.action_group.add_actions(actions)
         self.uistate.uimanager.insert_action_group(self.action_group, 1)
@@ -214,7 +214,7 @@ class Bookmarks :
         self.top.vbox.pack_start(label, 0, 0, 5)
         box = Gtk.Box()
         self.top.vbox.pack_start(box, 1, 1, 5)
-        
+
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]
         self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
@@ -241,7 +241,7 @@ class Bookmarks :
         bbox.add(delete)
         box.pack_start(bbox, 0, 0, 5)
         self.top.show_all()
-    
+
     def close(self, widget, event):
         """Stop the bookmark organizer"""
         self.top.response(Gtk.ResponseType.CLOSE)
@@ -312,7 +312,7 @@ class ListBookmarks(Bookmarks):
     def __init__(self, dbstate, uistate, change_active):
         self.change_active = change_active
         Bookmarks.__init__(self, dbstate, uistate)
-    
+
     def callback(self, handle):
         return make_callback(handle, self.do_callback)
 
@@ -321,25 +321,25 @@ class ListBookmarks(Bookmarks):
 
 class PersonBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Person', handle)
 
     def connect_signals(self):
         self.dbstate.db.connect('person-delete', self.remove_handles)
-        
+
     def get_bookmarks(self):
         return self.dbstate.db.get_bookmarks()
-        
+
 class FamilyBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Family', handle)
 
@@ -348,13 +348,13 @@ class FamilyBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()
-        
+
 class EventBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Event', handle)
 
@@ -363,13 +363,13 @@ class EventBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_event_bookmarks()
-        
+
 class SourceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Source', handle)
 
@@ -378,13 +378,13 @@ class SourceBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
-        
+
 class CitationBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Citation', handle)
 
@@ -399,7 +399,7 @@ class CitationBookmarks(ListBookmarks) :
             # Probably trying to bookmark a source when the navigation type is
             # citation. This can occur when in the Citation Tree View and we
             # bookmark a source.
-            
+
             # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
@@ -416,13 +416,13 @@ class CitationBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_citation_bookmarks()
-        
+
 class MediaBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Media', handle)
 
@@ -431,13 +431,13 @@ class MediaBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
-        
+
 class RepoBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Repository', handle)
 
@@ -446,13 +446,13 @@ class RepoBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
-        
+
 class PlaceBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Place', handle)
 
@@ -461,13 +461,13 @@ class PlaceBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
-        
+
 class NoteBookmarks(ListBookmarks) :
     "Handle the bookmarks interface for Gramps."
-    
+
     def __init__(self, dbstate, uistate, change_active):
         ListBookmarks.__init__(self, dbstate, uistate, change_active)
-        
+
     def make_label(self, handle):
         return navigation_label(self.dbstate.db, 'Note', handle)
 
@@ -476,7 +476,7 @@ class NoteBookmarks(ListBookmarks) :
 
     def get_bookmarks(self):
         return self.dbstate.db.get_note_bookmarks()
-        
+
 def make_callback(handle, function):
     """
     Build a unique call to the function with the associated handle.

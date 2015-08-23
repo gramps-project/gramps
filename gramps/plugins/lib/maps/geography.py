@@ -154,7 +154,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.select_fct = None
         self.geo_mainmap = None
         theme = Gtk.IconTheme.get_default()
-        self.geo_mainmap = theme.load_surface('gramps-geo-mainmap', 48, 1, 
+        self.geo_mainmap = theme.load_surface('gramps-geo-mainmap', 48, 1,
                                               None, 0)
         self.geo_altmap = theme.load_surface('gramps-geo-altmap', 48, 1,
                                              None, 0)
@@ -181,10 +181,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         else:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
-                _("Could Not Set a Bookmark"), 
+                _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."))
-        
+
 
     def add_bookmark_from_popup(self, menu, handle):
         if handle:
@@ -194,7 +194,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         else:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
-                _("Could Not Set a Bookmark"), 
+                _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."))
 
@@ -216,7 +216,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         requisition.height = 300
 
     def do_get_preferred_width(self):
-        """ GTK3 uses width for height sizing model. This method will 
+        """ GTK3 uses width for height sizing model. This method will
             override the virtual method
         """
         req = Gtk.Requisition()
@@ -224,7 +224,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         return req.width, req.width
 
     def do_get_preferred_height(self):
-        """ GTK3 uses width for height sizing model. This method will 
+        """ GTK3 uses width for height sizing model. This method will
             override the virtual method
         """
         req = Gtk.Requisition()
@@ -400,7 +400,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         We need to clean the tiles cache for the current map
         """
         import shutil
-     
+
         path = "%s%c%s" % ( config.get('geography.path'), os.sep, the_map )
         shutil.rmtree(path)
         pass
@@ -720,9 +720,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         signmaxlon = _get_sign(self.maxlon)
         signmaxlat = _get_sign(self.maxlat)
         current = osmgpsmap.MapPoint.new_degrees(self.minlat, self.minlon)
-        self.end_selection = current 
+        self.end_selection = current
         current = osmgpsmap.MapPoint.new_degrees(self.maxlat, self.maxlon)
-        self.begin_selection = current 
+        self.begin_selection = current
         if signminlon == signmaxlon:
             maxlong = abs(abs(self.minlon) - abs(self.maxlon))
         else:
@@ -1155,8 +1155,8 @@ class GeoGraphyView(OsmGps, NavigationView):
                 _('The maximum number of places to show'),
                 4, 'geography.max_places',
                 (1000, 10000))
-        configdialog.add_checkbox(grid, 
-                _('Use keypad for shortcuts :\n' 
+        configdialog.add_checkbox(grid,
+                _('Use keypad for shortcuts :\n'
                   'Either we choose the + and - from the keypad if we select this,\n'
                   'or we use the characters from the keyboard.'),
                 5, 'geography.use-keypad',

@@ -29,7 +29,7 @@ try:
         from unittest.mock import Mock
 
     MOCKING = True
-    
+
 except:
     MOCKING = False
     print ("Mocking disabled, some testing skipped", sys.exc_info()[0:2])
@@ -74,7 +74,7 @@ class LexGettextTest(unittest.TestCase):
         translated = "def=Default|v1=Option1|a=AnotherOption"
         self.setup_sgettext_mock(translated)
         lex = self.trans.lexgettext(self.MSGID)
-        formatted = "{}".format(lex) 
+        formatted = "{}".format(lex)
         self.assertEqual(formatted, "Default")
 
 class LexemeTest(unittest.TestCase):
@@ -89,7 +89,7 @@ class LexemeTest(unittest.TestCase):
 
     # test delegation to an arbitrary string method pulled in from unicode
     def testDefaultStringStartsWithAA(self):
-        self.assertTrue(self.lex.startswith('aa'), 
+        self.assertTrue(self.lex.startswith('aa'),
                 msg="default string: {} dict: {}".format(
                     self.lex, self.lex.__dict__))
 

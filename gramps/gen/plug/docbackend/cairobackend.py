@@ -59,7 +59,7 @@ class CairoBackend(DocBackend):
     """
     Implementation for cairo docs
     """
-    
+
     STYLETAG_TO_PROPERTY = {
         DocBackend.FONTCOLOR : 'foreground',
         DocBackend.HIGHLIGHT : 'background',
@@ -84,7 +84,7 @@ class CairoBackend(DocBackend):
         DocBackend.UNDERLINE   : ("<u>", "</u>"),
         DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
     }
-    
+
     ESCAPE_FUNC = lambda x: escape
 
     def _create_xmltag(self, tagtype, value):
@@ -97,7 +97,7 @@ class CairoBackend(DocBackend):
         if tagtype == DocBackend.FONTSIZE:
             #size is in thousandths of a point in pango
             value = str(1000 * value)
-        
-        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype], 
-                                    self.ESCAPE_FUNC()(value)), 
+
+        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype],
+                                    self.ESCAPE_FUNC()(value)),
                 '</span>')

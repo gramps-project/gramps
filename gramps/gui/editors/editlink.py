@@ -45,7 +45,7 @@ OBJECT_MAP = {
     MEDIA: "Media",
     NOTE: "Note",
     PERSON: "Person",
-    PLACE: "Place", 
+    PLACE: "Place",
     REPOSITORY: "Repository",
     SOURCE: "Source",
     }
@@ -76,8 +76,8 @@ class EditLink(ManagedWindow):
                         _('Link Editor'))
         self.uri_list = self.top.get_object('link_type')
         for text in [_("Internet Address"),       # 0 this order range above
-                     _("Event"),      # 1 
-                     _("Family"),     # 2 
+                     _("Event"),      # 1
+                     _("Family"),     # 2
                      _("Media"),      # 3
                      _("Note"),       # 4
                      _("Person"),     # 5
@@ -116,7 +116,7 @@ class EditLink(ManagedWindow):
             # set texts:
             self.selected.set_text(self.display_link(
                     object_class, prop, value))
-            self.url_link.set_text("gramps://%s/%s/%s" % 
+            self.url_link.set_text("gramps://%s/%s/%s" %
                                    (object_class, prop, value))
         else:
             self.uri_list.set_active(WEB)
@@ -135,32 +135,32 @@ class EditLink(ManagedWindow):
     def display_link(self, obj_class, prop, value):
         return self.simple_access.display(obj_class, prop, value)
 
-    def _on_new_callback(self, obj): 
+    def _on_new_callback(self, obj):
         object_class = obj.__class__.__name__
         self.selected.set_text(self.display_link(
                 object_class, "handle", obj.handle))
-        self.url_link.set_text("gramps://%s/%s/%s" % 
+        self.url_link.set_text("gramps://%s/%s/%s" %
                                (object_class, "handle", obj.handle))
 
     def _on_new(self, widget):
         from ..editors import EditObject
         object_class = OBJECT_MAP[self.uri_list.get_active()]
-        EditObject(self.dbstate, 
-                   self.uistate, 
-                   self.track, 
+        EditObject(self.dbstate,
+                   self.uistate,
+                   self.track,
                    object_class,
                    callback=self._on_new_callback)
-        
+
     def _on_edit_one(self, widget):
         from ..editors import EditObject
         uri = self.url_link.get_text()
         if uri.startswith("gramps://"):
             obj_class, prop, value = uri[9:].split("/", 2)
-            EditObject(self.dbstate, 
-                       self.uistate, 
-                       self.track, 
+            EditObject(self.dbstate,
+                       self.uistate,
+                       self.track,
                        obj_class, prop, value)
-        
+
     def _on_pick_one(self, widget):
         from ..selectors import SelectorFactory
         object_class = OBJECT_MAP[self.uri_list.get_active()]
@@ -172,12 +172,12 @@ class EditLink(ManagedWindow):
             if object_class == obj_class:
                 if prop == "handle":
                     default = value
-                elif (prop == "gramps_id" and 
+                elif (prop == "gramps_id" and
                       object_class in self.dbstate.db.get_table_names()):
                     person = self.dbstate.db.get_table_metadata(object_class)["gramps_id_func"](value)
                     if person:
                         default = person.handle
-        d = Select(self.dbstate, self.uistate, self.track, 
+        d = Select(self.dbstate, self.uistate, self.track,
                    default=default)
 
         result = d.run()
@@ -186,7 +186,7 @@ class EditLink(ManagedWindow):
             value = result.handle
             self.selected.set_text(self.display_link(
                     object_class, prop, value))
-            self.url_link.set_text("gramps://%s/%s/%s" % 
+            self.url_link.set_text("gramps://%s/%s/%s" %
                                    (object_class, prop, value))
 
     def _on_type_changed(self, widget):
@@ -207,14 +207,14 @@ class EditLink(ManagedWindow):
             return self.url_link.get_text()
         else:
             return self.url_link.get_text()
-            
+
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button125'))
         self.ok_button = self.top.get_object('button124')
         self.define_ok_button(self.ok_button, self.save)
         self.define_help_button(self.top.get_object('button130'))
         self.update_ui(self.url_link)
-        
+
     def build_menu_names(self, obj):
         etitle =_('Link Editor')
         return (etitle, etitle)

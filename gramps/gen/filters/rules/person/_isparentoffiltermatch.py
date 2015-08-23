@@ -69,7 +69,7 @@ class IsParentOfFilterMatch(Rule):
             fam = self.db.get_family_from_handle(fam_id)
             if fam:
                 self.map.update(parent_id
-                                for parent_id in [fam.get_father_handle(), 
+                                for parent_id in [fam.get_father_handle(),
                                                   fam.get_mother_handle()]
                                 if parent_id)
-                
+

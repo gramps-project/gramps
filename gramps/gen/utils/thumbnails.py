@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -50,7 +50,7 @@ except:
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, 
+from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL,
                               THUMBSCALE, THUMBSCALE_LARGE, USE_THUMBNAILER)
 from gramps.gen.constfunc import win
 
@@ -62,7 +62,7 @@ from gramps.gen.constfunc import win
 #-------------------------------------------------------------------------
 try:
     #test first for the key to avoid an error in the importer that causes
-    #the error logger to activate 
+    #the error logger to activate
     ##TODO GTK3: Is this the best way to avoid error?
     import gi.repository as repo
     repo.__dict__['GConf']
@@ -159,7 +159,7 @@ def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
 # __create_thumbnail_image
 #
 #-------------------------------------------------------------------------
-def __create_thumbnail_image(src_file, mtype=None, rectangle=None, 
+def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                              size=SIZE_NORMAL):
     """
     Generates the thumbnail image for a file. If the mime type is specified,
@@ -182,7 +182,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
         # Not an image, so run the thumbnailer
         return run_thumbnailer(mtype, src_file, filename)
     else:
-        # build a thumbnail by scaling the image using GTK's built in 
+        # build a thumbnail by scaling the image using GTK's built in
         # routines.
         try:
             pixbuf = GdkPixbuf.Pixbuf.new_from_file(src_file)
@@ -202,17 +202,17 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
                     pixbuf = pixbuf.new_subpixbuf(sub_x, sub_y, sub_width, sub_height)
                     width = sub_width
                     height = sub_height
-                    
+
             if size == SIZE_LARGE:
                 thumbscale = THUMBSCALE_LARGE
             else:
                 thumbscale = THUMBSCALE
             scale = thumbscale / (float(max(width, height)))
-            
+
             scaled_width = int(width * scale)
             scaled_height = int(height * scale)
-            
-            pixbuf = pixbuf.scale_simple(scaled_width, scaled_height, 
+
+            pixbuf = pixbuf.scale_simple(scaled_width, scaled_height,
                                          GdkPixbuf.InterpType.BILINEAR)
             pixbuf.savev(filename, "png", "", "")
             return True
@@ -259,17 +259,17 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
     :type src_file: unicode
     :param dest_file: destination file for the thumbnail image
     :type dest_file: unicode
-    :param size: option parameters specifying the desired size of the 
+    :param size: option parameters specifying the desired size of the
       thumbnail
     :type size: int
     :returns: True if the thumbnail was successfully generated
     :rtype: bool
     """
-    # only try this if GCONF is present, the thumbnailer has not been 
+    # only try this if GCONF is present, the thumbnailer has not been
     # disabled, and if the src_file actually exists
     if GCONF and USE_THUMBNAILER and os.path.isfile(src_file):
-        
-        # find the command and enable for the associated mime types by 
+
+        # find the command and enable for the associated mime types by
         # querying the gconf database
         base = '/desktop/gnome/thumbnailers/%s' % mime_type.replace('/', '@')
         cmd = __get_gconf_string(base + '/command')
@@ -284,8 +284,8 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
                 thumbscale = THUMBSCALE
             sublist = {
                 '%s' : "%d" % int(thumbscale),
-                '%u' : src_file, 
-                '%o' : dest_file, 
+                '%u' : src_file,
+                '%o' : dest_file,
                 }
             cmdlist = [ sublist.get(x, x) for x in cmd.split() ]
             return os.spawnvpe(os.P_WAIT, cmdlist[0], cmdlist, os.environ) == 0
@@ -299,7 +299,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=SIZE_NORMAL):
 def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the thumbnail image (in GTK Pixbuf format) associated with the
-    source file passed to the function. If no thumbnail could be found, 
+    source file passed to the function. If no thumbnail could be found,
     the associated icon for the mime type is returned, or if that cannot be
     found, a generic document icon is returned.
 
@@ -333,7 +333,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
 def get_thumbnail_path(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     """
     Return the path to the thumbnail image associated with the
-    source file passed to the function. If the thumbnail does not exist, 
+    source file passed to the function. If the thumbnail does not exist,
     or if it is older than the source file, we create a new thumbnail image.
 
     :param src_file: Source media file

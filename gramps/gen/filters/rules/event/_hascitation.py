@@ -45,8 +45,8 @@ from .._hascitationbase import HasCitationBase
 class HasCitation(HasCitationBase):
     """Rule that checks for an event with a particular value"""
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
+    labels      = [ _('Volume/Page:'),
+                    _('Date:'),
                     _('Confidence level:')]
     name        =  _('Events with the <citation>')
     description = _("Matches events with a citation of a particular "

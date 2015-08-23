@@ -50,7 +50,7 @@ class HasAddress(Rule):
     description = _("Matches people with a certain number of personal addresses")
     category    = _('General filters')
 
-    
+
     def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[1] == 'less than':
@@ -61,7 +61,7 @@ class HasAddress(Rule):
             self.count_type = 1 # "equal to"
 
         self.userSelectedCount = int(self.list[0])
-        
+
     def apply(self, db, person):
         count = len( person.get_address_list())
         if self.count_type == 0:     # "less than"

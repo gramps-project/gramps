@@ -51,7 +51,7 @@ import imp
 imp.reload(module)
 
 from gramps.gen.config import config
-    
+
 #-------------------------------------------------------------------------
 #
 # importData
@@ -116,15 +116,15 @@ def importData(database, filename, user):
                 database, ifile, filename, user, stage_one, None, None)
         else:
             gedparse = libgedcom.GedcomParser(
-                database, ifile, filename, user, stage_one, 
+                database, ifile, filename, user, stage_one,
                 config.get('preferences.default-source'),
-                (config.get('preferences.tag-on-import-format') if 
+                (config.get('preferences.tag-on-import-format') if
                  config.get('preferences.tag-on-import') else None))
     except IOError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
     except GedcomError as msg:
-        user.notify_error(_("Invalid GEDCOM file"), 
+        user.notify_error(_("Invalid GEDCOM file"),
                           _("%s could not be imported") % filename + "\n" + str(msg))
         return
 

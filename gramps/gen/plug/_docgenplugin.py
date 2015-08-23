@@ -39,7 +39,7 @@ class DocGenPlugin(Plugin):
         :param description: A short description of the plugin.
             Example: "This plugin will generate text documents in plain text."
         :type description: string
-        :param basedoc: A class that implements the BaseDoc 
+        :param basedoc: A class that implements the BaseDoc
             interface.
         :type basedoc: BaseDoc
         :param paper: Indicates whether the plugin uses paper or not.
@@ -65,35 +65,35 @@ class DocGenPlugin(Plugin):
         self.__extension = extension
         self.__docoptclass = docoptclass
         self.__basedocname = basedocname
-    
+
     def get_basedoc(self):
         """
         Get the :class:`.BaseDoc` class for this plugin.
-        
+
         :return: the :class:`.BaseDoc` class passed into :meth:`__init__`
         """
         return self.__basedoc
-    
+
     def get_paper_used(self):
         """
         Get the paper flag for this plugin.
-        
+
         :return: bool - True = use paper; False = do not use paper
         """
         return self.__paper
-    
+
     def get_style_support(self):
         """
         Get the style flag for this plugin.
-        
+
         :return: bool - True = use styles; False = do not use styles
         """
         return self.__style
-    
+
     def get_extension(self):
         """
         Get the file extension for the output file.
-        
+
         :return: str
         """
         return self.__extension
@@ -101,7 +101,7 @@ class DocGenPlugin(Plugin):
     def get_doc_option_class(self):
         """
         Get the :class:`.DocOptions` subclass for this plugin, if any
-        
+
         :return: the :class:`.DocOptions` subclass passed into :meth:`__init__`
         """
         return self.__docoptclass
@@ -109,15 +109,15 @@ class DocGenPlugin(Plugin):
     def get_basedocname(self):
         """
         Get the :class:`.BaseDoc` name for this plugin.
-        
-        :return: the :class:`.BaseDoc` name passed into :meth:`__init__` 
+
+        :return: the :class:`.BaseDoc` name passed into :meth:`__init__`
         """
         return self.__basedocname
-    
+
     def get_text_support(self):
         """
         Check if the plugin supports the :class:`.TextDoc` interface.
-        
+
         :return: bool: True if :class:`.TextDoc` is supported; False if
                        :class:`.TextDoc` is not supported.
         """
@@ -126,7 +126,7 @@ class DocGenPlugin(Plugin):
     def get_draw_support(self):
         """
         Check if the plugin supports the :class:`.DrawDoc` interface.
-        
+
         :return: bool: True if :class:`.DrawDoc` is supported; False if
                        :class:`.DrawDoc` is not supported.
         """

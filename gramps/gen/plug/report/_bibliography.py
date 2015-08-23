@@ -49,16 +49,16 @@ class Citation(object):
         """
         self.__src_handle = None
         self.__ref_list = []
-          
+
     def get_source_handle(self):
         """
         Provide the handle to the source that this citation is for.
-        
+
         :return: Source Handle
         :rtype: handle
         """
         return self.__src_handle
-    
+
     def set_source_handle(self, handle):
         """
         Set the handle for the source that this citation is for.
@@ -67,7 +67,7 @@ class Citation(object):
         :type handle: handle
         """
         self.__src_handle = handle
-        
+
     def get_ref_list(self):
         """
         List all the references to this citation.
@@ -102,12 +102,12 @@ class Citation(object):
                                              float(letter_count)))
         # Exclude index for number_of_letters-1
         for n in range(1, number_of_letters-1):
-            ref_count -= pow(letter_count, n) 
+            ref_count -= pow(letter_count, n)
         # Adjust number_of_letters for new index
         number_of_letters = 1 + int(math.log(float(ref_count),
                                              float(letter_count)))
         for n in range(1, number_of_letters):
-            x_ref_count -= pow(letter_count, n) 
+            x_ref_count -= pow(letter_count, n)
         for letter in range(1, number_of_letters):
             index = x_ref_count // pow(letter_count, letter) % letter_count
             key += letters[index]
@@ -132,7 +132,7 @@ class Bibliography(object):
         citations (citations). Duplicate entries will not be added. To change
         what is considered duplicate, you can tell the bibliography what source
         ref information you are interested in by passing in the mode.
-        
+
         Possible modes include:
 
         - MODE_DATE
@@ -141,7 +141,7 @@ class Bibliography(object):
         - MODE_NOTE
         - MODE_MEDIA
         - MODE_ALL
-        
+
         If you only care about pages, set "mode=MODE_PAGE".
         If you only care about dates and pages, set "mode=MODE_DATE|MODE_PAGE".
         If you care about everything, set "mode=MODE_ALL".
@@ -157,13 +157,13 @@ class Bibliography(object):
 
         :param citation: Citation object
         :type citation: :class:`~.citation.Citation`
-        :return: A tuple containing the index of the source among all the 
+        :return: A tuple containing the index of the source among all the
                  sources and the key of the reference among all the references.
                  If there is no reference information, the second element will
                  be None.
         :rtype: (int,char) or (int,None)
-        
-        .. note:: 
+
+        .. note::
             Within this file, the name 'citation' is used both for
             gen.lib.Citation, and for _bibliography.Citation. It is not clear
             how best to rename the concepts in this file to avoid the clash,
@@ -182,7 +182,7 @@ class Bibliography(object):
                 citation_found = True
                 break
             cindex += 1
-            
+
         if not citation_found:
             citation = Citation()
             citation.set_source_handle(source_handle)
@@ -192,13 +192,13 @@ class Bibliography(object):
         if self.__sref_has_info(lib_citation):
             for key, ref in citation.get_ref_list():
                 if self.__srefs_are_equal(ref, lib_citation):
-                    # if a reference like this already exists, don't add 
+                    # if a reference like this already exists, don't add
                     # another one
                     return (cindex, key)
             rkey = citation.add_reference(lib_citation)
-        
+
         return (cindex, rkey)
-    
+
     def get_citation_count(self):
         """
         Report the number of citations in this bibliography.
@@ -207,7 +207,7 @@ class Bibliography(object):
         :rtype: int
         """
         return len(self.__citation_list)
-    
+
     def get_citation_list(self):
         """
         Return a list containing all the citations in this bibliography.
@@ -219,7 +219,7 @@ class Bibliography(object):
 
     def __sref_has_info(self, source_ref):
         """
-        Determine if this source_ref has any useful information based on the 
+        Determine if this source_ref has any useful information based on the
         current mode.
         """
         if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
@@ -242,10 +242,10 @@ class Bibliography(object):
                 return True
         # Can't find anything interesting.
         return False
-        
+
     def __srefs_are_equal(self, source_ref1, source_ref2):
         """
-        Determine if two source references are equal based on the 
+        Determine if two source references are equal based on the
         current mode.
         """
         # The criterion for equality (in mode==MODE_ALL) is changed for

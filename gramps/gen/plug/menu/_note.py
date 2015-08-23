@@ -37,7 +37,7 @@ from . import StringOption
 #-------------------------------------------------------------------------
 class NoteOption(StringOption):
     """
-    This class describes an option that allows a note from the 
+    This class describes an option that allows a note from the
     database to be selected.
     """
     def __init__(self, label):

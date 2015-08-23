@@ -62,4 +62,4 @@ class UrlType(GrampsType):
         GrampsType.__init__(self, value)
 
 
-        
+

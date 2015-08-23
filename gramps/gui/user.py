@@ -36,7 +36,7 @@ import sys
 #-------------------------------------------------------------------------
 from gramps.gen import user
 from .utils import ProgressMeter
-from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
+from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
                             InfoDialog, QuestionDialog2)
 #-------------------------------------------------------------------------
 #
@@ -52,11 +52,11 @@ class User(user.User):
         user.User.__init__(self, callback, error)
         self._progress = None
         self.uistate = uistate
-    
+
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
-        
+
         :param title: the title of the progress meter
         :type title: str
         :param message: the message associated with the progress meter
@@ -75,7 +75,7 @@ class User(user.User):
             self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:
             self._progress.set_pass(message, mode=ProgressMeter.MODE_ACTIVITY)
-    
+
     def step_progress(self):
         """
         Advance the progress meter.
@@ -90,11 +90,11 @@ class User(user.User):
         if self._progress:
             self._progress.close()
             self._progress = None
-    
+
     def prompt(self, title, message, accept_label, reject_label, parent=None):
         """
         Prompt the user with a message to select an alternative.
-        
+
         :param title: the title of the question, e.g.: "Undo history warning"
         :type title: str
         :param message: the message, e.g.: "Proceeding with the tool will erase
@@ -112,11 +112,11 @@ class User(user.User):
         dialog = QuestionDialog2(title, message, accept_label, reject_label,
                                  parent)
         return dialog.run()
-    
+
     def warn(self, title, warning=""):
         """
         Warn the user.
-        
+
         :param title: the title of the warning
         :type title: str
         :param warning: the warning
@@ -124,11 +124,11 @@ class User(user.User):
         :returns: none
         """
         WarningDialog(title, warning)
-    
+
     def notify_error(self, title, error=""):
         """
         Notify the user of an error.
-        
+
         :param title: the title of the error
         :type title: str
         :param error: the error message
@@ -143,7 +143,7 @@ class User(user.User):
     def notify_db_error(self, error):
         """
         Notify the user of a DB error.
-        
+
         :param error: the DB error message
         :type error: str
         :returns: none

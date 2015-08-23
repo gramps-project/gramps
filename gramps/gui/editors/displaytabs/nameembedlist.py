@@ -50,7 +50,7 @@ from .groupembeddedlist import GroupEmbeddedList
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class NameEmbedList(GroupEmbeddedList):
@@ -70,8 +70,8 @@ class NameEmbedList(GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Name'), -1, 250, TEXT_COL, NameModel.COL_FONTWEIGHT[0], None), 
-        (_('Type'), NameModel.COL_TYPE[0], 100, TEXT_COL, -1, None), 
+        (_('Name'), -1, 250, TEXT_COL, NameModel.COL_FONTWEIGHT[0], None),
+        (_('Type'), NameModel.COL_TYPE[0], 100, TEXT_COL, -1, None),
         None,
         None,
         (_('Group As'), NameModel.COL_GROUPAS[0],100, TEXT_COL, -1, None),
@@ -79,15 +79,15 @@ class NameEmbedList(GroupEmbeddedList):
         (_('Notes Preview'), NameModel.COL_NOTEPREVIEW[0], 250, TEXT_COL, -1, None),
         (_('Private'), NameModel.COL_PRIVATE[0], 30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data, person, callback):
         """callback is the function to call when preferred name changes
            on the namelist """
         self.data = data
         self.person = person
         self.callback = callback
-        
-        GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Names'), 
+
+        GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Names'),
                               NameModel, move_buttons=True)
         self.tree.expand_all()
 
@@ -100,7 +100,7 @@ class NameEmbedList(GroupEmbeddedList):
         self.data = None
 
     def get_data(self):
-        return ([self.person.get_primary_name()], 
+        return ([self.person.get_primary_name()],
                  self.data)
 
     def groups(self):
@@ -111,7 +111,7 @@ class NameEmbedList(GroupEmbeddedList):
 
     def column_order(self):
         """
-        The columns to show as a tuple of tuples containing 
+        The columns to show as a tuple of tuples containing
         tuples (show/noshow, model column)
         """
         return ((1, 0), (1, 7), (1, 1), (1, 4), (1, 5), (1, 6))
@@ -134,7 +134,7 @@ class NameEmbedList(GroupEmbeddedList):
         name = self.get_selected()
         if name and name[1]:
             self.set_default_name(name[1])
-        
+
     def set_default_name(self, name):
         pname = self.person.get_primary_name()
         self.person.set_primary_name(name)
@@ -160,7 +160,7 @@ class NameEmbedList(GroupEmbeddedList):
         name.set_primary_surname(0)
         try:
             from .. import EditName
-            EditName(self.dbstate, self.uistate, self.track, 
+            EditName(self.dbstate, self.uistate, self.track,
                      name, self.add_callback)
         except WindowActiveError:
             pass
@@ -178,10 +178,10 @@ class NameEmbedList(GroupEmbeddedList):
             try:
                 from .. import EditName
                 if name[0] == NameModel.ALTINDEX:
-                    EditName(self.dbstate, self.uistate, self.track, 
+                    EditName(self.dbstate, self.uistate, self.track,
                              name[1], self.edit_callback)
                 elif name[0] == NameModel.DEFINDEX:
-                    EditName(self.dbstate, self.uistate, self.track, 
+                    EditName(self.dbstate, self.uistate, self.track,
                              name[1], self.editdef_callback)
             except WindowActiveError:
                 pass
@@ -214,7 +214,7 @@ class NameEmbedList(GroupEmbeddedList):
 
     def post_rebuild(self, prebuildpath):
         """
-        Allow post rebuild specific handling. 
+        Allow post rebuild specific handling.
         @param prebuildpath: path selected before rebuild, None if none
         @type prebuildpath: tree path
         """

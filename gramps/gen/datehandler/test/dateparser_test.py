@@ -83,11 +83,11 @@ class Test_generate_variants(unittest.TestCase):
         from .._dateparser import _generate_variants
         self.ds = ds = _datestrings.DateStrings(GrampsLocale(languages=('ru')))
         self.month_variants = list(_generate_variants(
-                    zip(ds.long_months, ds.short_months, 
+                    zip(ds.long_months, ds.short_months,
                         ds.swedish_SV, ds.alt_long_months)))
 
     def testVariantsSameLengthAsLongMonths(self):
-        self.assertEqual(len(self.ds.long_months), 
+        self.assertEqual(len(self.ds.long_months),
                 len(self.month_variants))
 
     def testRussianHasDifferentVariantsForEachMonth(self):

@@ -51,11 +51,11 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
         place = Place(gramps_id=dji.get_next_id(Place, "P"))
         placeform = PlaceForm(instance=place)
         placeform.model = place
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         place = Place.objects.get(handle=handle)
         placeform = PlaceForm(instance=place)
         placeform.model = place
-    elif act == "save": 
+    elif act == "save":
         place = Place.objects.get(handle=handle)
         placeform = PlaceForm(request.POST, instance=place)
         placeform.model = place
@@ -65,7 +65,7 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         place = Place(handle=create_id())
         placeform = PlaceForm(request.POST, instance=place)
         placeform.model = place
@@ -82,7 +82,7 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         place = Place.objects.get(handle=handle)
         place.delete()
         return redirect("/place/")
@@ -93,5 +93,5 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
     context["object"] = place
     context["place"] = place
     context["action"] = act
-    
+
     return render_to_response(view_template, context)

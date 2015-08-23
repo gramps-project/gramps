@@ -49,7 +49,7 @@ class HasLDSBase(Rule):
     name        = 'Objects with LDS events'
     description = "Matches objects with LDS events"
     category    = _('General filters')
-    
+
     def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[1] == 'less than':
@@ -60,7 +60,7 @@ class HasLDSBase(Rule):
             self.count_type = 1 # "equal to"
 
         self.userSelectedCount = int(self.list[0])
-        
+
     def apply(self, db, obj):
         count = len( obj.get_lds_ord_list())
         if self.count_type == 0:     # "less than"

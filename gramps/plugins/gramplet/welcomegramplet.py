@@ -83,7 +83,7 @@ class WelcomeGramplet(Gramplet):
         Build the GUI interface.
         """
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        
+
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
@@ -92,7 +92,7 @@ class WelcomeGramplet(Gramplet):
         scrolledwindow.add(self.texteditor)
 
         self.set_text()
-        
+
         top.pack_start(scrolledwindow, True, True, 0)
         top.show_all()
         return top
@@ -108,15 +108,15 @@ class WelcomeGramplet(Gramplet):
         'some unique and powerful features.\n\n')
         welcome += boldst(_('Links')) + '\n\n'
         welcome += linkst(_('Home Page'), URL_HOMEPAGE) + '\n'
-        welcome += linkst(_('Start with Genealogy and Gramps'), 
+        welcome += linkst(_('Start with Genealogy and Gramps'),
                           '%(gramps_wiki_url)sStart_with_Genealogy' %
                               {'gramps_wiki_url': URL_WIKISTRING} ) + '\n'
-        welcome += linkst(_('Gramps online manual'), 
+        welcome += linkst(_('Gramps online manual'),
             URL_WIKISTRING + URL_MANUAL_PAGE + _('locale_suffix|')) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
                           '%(gramps_home_url)scontact/' %
                               {'gramps_home_url': URL_HOMEPAGE} ) + '\n\n'
-        
+
         welcome += boldst(_('Who makes Gramps?')) + '\n\n' + _(
         'Gramps is created by genealogists for genealogists, organized in the'
         ' Gramps Project.'
@@ -148,4 +148,4 @@ class WelcomeGramplet(Gramplet):
         Return True if the gramplet has data, else return False.
         """
         return True
-    
+

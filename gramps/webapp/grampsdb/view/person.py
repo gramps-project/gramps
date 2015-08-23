@@ -144,10 +144,10 @@ def process_surname(request, handle, order, sorder, act="view"):
                     neworder += 1
         else:
             request.user.message_set.create(message="You can't delete the only surname")
-        return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order, 
+        return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
                                                                build_search(request)))
     elif act in ["add"]:
-        surname = Surname(name=name, primary=False, 
+        surname = Surname(name=name, primary=False,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
     elif act == "create":
@@ -155,7 +155,7 @@ def process_surname(request, handle, order, sorder, act="view"):
         sorder = 1
         for surname in surnames:
             sorder += 1
-        surname = Surname(name=name, primary=True, 
+        surname = Surname(name=name, primary=True,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),
                           order=sorder)
         sf = SurnameForm(request.POST, instance=surname)
@@ -166,8 +166,8 @@ def process_surname(request, handle, order, sorder, act="view"):
             check_primary(surname, surnames)
             surname.save()
             person.save_cache()
-            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
-                            (person.handle, name.order, sorder, 
+            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" %
+                            (person.handle, name.order, sorder,
                              build_search(request)))
         act = "add"
         surname.prefix = make_empty(True, surname.prefix, " prefix ")
@@ -181,7 +181,7 @@ def process_surname(request, handle, order, sorder, act="view"):
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
             person.save_cache()
-            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
+            return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" %
                             (person.handle, name.order, sorder,
                              build_search(request)))
         act = "edit"
@@ -231,15 +231,15 @@ def process_name(request, handle, order, act="view"):
                                                     build_search(request)))
     elif act == "add": # add name
         person = Person.objects.get(handle=handle)
-        name = Name(person=person, 
+        name = Name(person=person,
                     preferred=False,
-                    display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
-                    sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                    display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]),
+                    sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]),
                     name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
         nf = NameForm(instance=name)
         nf.model = name
-        surname = Surname(name=name, 
-                          primary=True, 
+        surname = Surname(name=name,
+                          primary=True,
                           order=1,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         sf = SurnameForm(request.POST, instance=surname)
@@ -249,9 +249,9 @@ def process_name(request, handle, order, act="view"):
         person = Person.objects.get(handle=handle)
         name = Name(preferred=False)
         next_order = max([name.order for name in person.name_set.all()]) + 1
-        surname = Surname(name=name, 
-                          primary=True, 
-                          order=next_order, 
+        surname = Surname(name=name,
+                          primary=True,
+                          order=next_order,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
         # combine with user data:
         nf = NameForm(request.POST, instance=name)
@@ -280,7 +280,7 @@ def process_name(request, handle, order, act="view"):
             surname.primary = True # FIXME: why is this False? Remove from form?
             surname.save()
             person.save_cache()
-            return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,             
+            return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
                                                                    build_search(request)))
         else:
             act = "add"
@@ -346,19 +346,19 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
     if request.user.is_authenticated():
         if act == "share":
             item, handle = add_to
-            context["pickform"] = PickForm("Pick a person", 
-                                           Person, 
-                                           ("name__surname__surname", 
+            context["pickform"] = PickForm("Pick a person",
+                                           Person,
+                                           ("name__surname__surname",
                                             "name__first_name"),
-                                      request.POST)     
+                                      request.POST)
             context["object_handle"] = handle
             context["object_type"] = item
             return render_to_response("pick.html", context)
         elif act == "save-share":
             item, handle = add_to # ("Family", handle)
-            pickform = PickForm("Pick a person", 
-                                Person, 
-                                ("name__surname__surname", 
+            pickform = PickForm("Pick a person",
+                                Person,
+                                ("name__surname__surname",
                                  "name__first_name"),
                                 request.POST)
             if pickform.data["picklist"]:
@@ -393,7 +393,7 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
         elif act in ["save", "create"]: # could be create a new person
             # look up old data, if any:
             logform = LogForm(request.POST)
-            if handle: 
+            if handle:
                 person = Person.objects.get(handle=handle)
                 name = person.name_set.get(preferred=True)
                 surname = name.surname_set.get(primary=True)
@@ -401,8 +401,8 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                 person = Person(handle=create_id())
                 name = Name(person=person, preferred=True)
                 surname = Surname(name=name, primary=True, order=1)
-                surname = Surname(name=name, 
-                                  primary=True, 
+                surname = Surname(name=name,
+                                  primary=True,
                                   order=1,
                                   name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]))
             # combine with user data:
@@ -449,7 +449,7 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                     return redirect("/%s/%s%s" % (item, handle, build_search(request)))
                 person.save_cache()
                 return redirect("/person/%s%s" % (person.handle, build_search(request)))
-            else: 
+            else:
                 # need to edit again
                 if handle:
                     act = "edit"
@@ -496,14 +496,14 @@ def get_person_forms(handle, protect=False, empty=False, order=None):
             name = person.name_set.get(preferred=True)
         except:
             name = Name(person=person, preferred=True,
-                        display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
-                        sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]), 
+                        display_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]),
+                        sort_as=NameFormatType.objects.get(val=NameFormatType._DEFAULT[0]),
                         name_type=NameType.objects.get(val=NameType._DEFAULT[0]))
     ## get a surname
     try:
         surname = name.surname_set.get(primary=True)
     except:
-        surname = Surname(name=name, primary=True, 
+        surname = Surname(name=name, primary=True,
                           name_origin_type=NameOriginType.objects.get(val=NameOriginType._DEFAULT[0]),
                           order=1)
 

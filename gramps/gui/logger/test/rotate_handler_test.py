@@ -28,11 +28,11 @@ class RotateHandlerTest(unittest.TestCase):
 
     def test_buffer_recall(self):
         """Test that simple recall of messages works."""
-        
+
         rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
-        
+
         l.addHandler(rh)
 
         log_message = "Debug message"
@@ -46,29 +46,29 @@ class RotateHandlerTest(unittest.TestCase):
 
         l.removeHandler(rh)
 
-        
+
     def test_buffer_rotation(self):
         """Test that buffer correctly rolls over when capacity is reached."""
 
         rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
-        
+
         l.addHandler(rh)
 
         log_messages = 20 * [None]
         for i in range(0,20):
             log_messages[i] = "Message %d" % (i)
 
-        
+
         [l.info(log_messages[i]) for i in range(0,10)]
 
-        self.assertEqual(len(rh.get_buffer()), 10, 
+        self.assertEqual(len(rh.get_buffer()), 10,
                "Message buffer wrong size, should be '10' is '%d'" %
                (len(rh.get_buffer())))
 
         buffer = rh.get_buffer()
-        
+
         for i in range(0,10):
             self.assertEqual(buffer[i].getMessage(), log_messages[i],
                    "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'"
@@ -86,16 +86,16 @@ class RotateHandlerTest(unittest.TestCase):
 
 
         [l.info(log_messages[i]) for i in range(11,20)]
-        
+
         buffer = rh.get_buffer()
         for i in range(0,10):
             self.assertEqual(buffer[i].getMessage(), log_messages[i+10],
                    "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'"
                    % (log_messages[i+10], buffer[i].getMessage(),i))
-            
+
         l.removeHandler(rh)
 
-        
+
 def testSuite():
     suite = unittest.makeSuite(RotateHandlerTest,'test')
     return suite

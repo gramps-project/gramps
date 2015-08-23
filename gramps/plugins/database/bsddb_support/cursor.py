@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -47,16 +47,16 @@ except:
 class BsddbBaseCursor(object):
     """
     Provide a basic iterator that allows the user to cycle through
-    the elements in a particular map. 
-    
-    A cursor should never be directly instantiated. Instead, in should be 
+    the elements in a particular map.
+
+    A cursor should never be directly instantiated. Instead, in should be
     created by the database class.
 
     A cursor should only be used for a single pass through the
     database. If multiple passes are needed, multiple cursors
     should be used.
     """
-    
+
     def __init__(self, txn=None, update=False, commit=False):
         """
         Instantiate the object. Note, this method should be overridden in
@@ -87,12 +87,12 @@ class BsddbBaseCursor(object):
         if self.txn and self.commit:
             self.txn.commit()
         return exc_type is None
-        
+
     def __iter__(self):
         """
         Iterator
         """
-        
+
         data = self.first()
         _n = self.next      # Saved attribute lookup in the loop
         while data:

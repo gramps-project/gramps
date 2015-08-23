@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 class DropdownSidebar(BaseSidebar):
     """
-    A sidebar displaying toggle buttons and buttons with drop-down menus that 
+    A sidebar displaying toggle buttons and buttons with drop-down menus that
     allows the user to change the current view.
     """
     def __init__(self, dbstate, uistate, categories, views):
@@ -62,7 +62,7 @@ class DropdownSidebar(BaseSidebar):
         self.window.add(grid)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
-        
+
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_name, cat_icon in categories:
             self.__make_category(grid, use_text, cat_num, cat_name, cat_icon)
@@ -87,14 +87,14 @@ class DropdownSidebar(BaseSidebar):
             else:
                 button.set_active(False)
         self.__handlers_unblock()
-        
+
     def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
         """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_block(self.button_handlers[idx])
-        
+
     def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
@@ -152,7 +152,7 @@ class DropdownSidebar(BaseSidebar):
         if len(self.views[cat_num]) > 1:
             dropdown = Gtk.Button()
             dropdown.set_relief(Gtk.ReliefStyle.NONE)
-            arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+            arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
                                         shadow_type=Gtk.ShadowType.NONE)
             dropdown.add(arrow)
             dropdown.connect('clicked', self.__view_clicked, cat_num)
@@ -167,7 +167,7 @@ class DropdownSidebar(BaseSidebar):
         self.button_handlers.append(handler_id)
         button.show()
 
-        # add the image. If we are using text, use the BUTTON (larger) size. 
+        # add the image. If we are using text, use the BUTTON (larger) size.
         # otherwise, use the smaller size
         hbox = Gtk.Box()
         hbox.show()
@@ -187,12 +187,12 @@ class DropdownSidebar(BaseSidebar):
             hbox.pack_start(label, False, True, 0)
 
         button.add(hbox)
-            
+
         # Enable view switching during DnD
         button.drag_dest_set(0, [], 0)
         button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
 
-        grid.attach(button, 0, cat_num, 1, 1)        
+        grid.attach(button, 0, cat_num, 1, 1)
 
     def cb_switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
         """
@@ -218,5 +218,5 @@ def cb_menu_position(*args):
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
-    
+
     return (x_pos, y_pos, False)

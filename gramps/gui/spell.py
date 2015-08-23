@@ -86,13 +86,13 @@ class Spell(object):
     """Attach a gtkspell instance to the passed TextView instance.
     """
     _spellcheck_options = {'off': _('Off')}
-    
+
     if HAVE_GTKSPELL:
         _spellcheck_options['on'] = _('On')
-    
+
     def __init__(self, textview):
         self.textview = textview
-        
+
         if HAVE_GTKSPELL and config.get('behavior.spellcheck'):
             self.spellcheck = 'on'
         else:
@@ -102,7 +102,7 @@ class Spell(object):
         self.__real_set_active_spellcheck(self.spellcheck)
 
     # Private
-    
+
     def __real_set_active_spellcheck(self, spellcheck_code):
         """Set active spellcheck by its code."""
         if self._active_spellcheck == 'off':
@@ -157,7 +157,7 @@ class Spell(object):
                     self._active_spellcheck = spellcheck_code
 
     # Public API
-    
+
     def get_all_spellchecks(self):
         """Get the list of installed spellcheck names."""
         return list(self._spellcheck_options.values())
@@ -168,7 +168,7 @@ class Spell(object):
             if name == spellcheck:
                 self.__real_set_active_spellcheck(code)
                 return
-        
+
     def get_active_spellcheck(self):
         """Get the name of the active spellcheck."""
         return self._spellcheck_options[self._active_spellcheck]

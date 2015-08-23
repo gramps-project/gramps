@@ -54,22 +54,22 @@ from .shortlistcomboentry import ShortlistComboEntry
 class ToolComboEntry(ValueToolItem):
     """Tool bar item containing a ShortlistComboEntry widget."""
     __gtype_name__ = "ToolComboEntry"
-    
+
     def _create_widget(self, items, editable, shortlist=True, validator=None):
         self.set_border_width(2)
         self.set_homogeneous(False)
         self.set_expand(False)
-        
+
         combo = ShortlistComboEntry(items, shortlist, validator)
         combo.set_focus_on_click(False)
         combo.set_entry_editable(editable)
         combo.show()
         self.add(combo)
-        
+
         combo.connect('changed', self._on_widget_changed)
 
     def set_value(self, value):
         self.get_child().set_active_data(value)
-    
+
     def get_value(self):
         return self.get_child().get_active_data()

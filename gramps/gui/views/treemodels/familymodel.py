@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -56,30 +56,30 @@ invalid_date_format = config.get('preferences.invalid-date-format')
 #-------------------------------------------------------------------------
 class FamilyModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None, 
+    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
-            self.column_id, 
-            self.column_father, 
-            self.column_mother, 
-            self.column_type, 
-            self.column_marriage, 
+            self.column_id,
+            self.column_father,
+            self.column_mother,
+            self.column_type,
+            self.column_marriage,
             self.column_private,
             self.column_tags,
-            self.column_change, 
+            self.column_change,
             self.column_tag_color,
             ]
         self.smap = [
-            self.column_id, 
-            self.sort_father, 
-            self.sort_mother, 
-            self.column_type, 
-            self.sort_marriage, 
+            self.column_id,
+            self.sort_father,
+            self.sort_mother,
+            self.column_type,
+            self.sort_marriage,
             self.column_private,
             self.column_tags,
-            self.sort_change, 
+            self.sort_change,
             self.column_tag_color,
             ]
         FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
@@ -199,7 +199,7 @@ class FamilyModel(FlatBaseModel):
 
     def sort_change(self, data):
         return "%012x" % data[12]
-    
+
     def column_change(self, data):
         return format_time(data[12])
 
@@ -212,7 +212,7 @@ class FamilyModel(FlatBaseModel):
             value = self.db.get_tag_from_handle(tag_handle).get_name()
             self.set_cached_value(tag_handle, "TAG_NAME", value)
         return value
-        
+
     def column_tag_color(self, data):
         """
         Return the tag color.

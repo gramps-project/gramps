@@ -61,16 +61,16 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_src_pub = BasicEntry()
         self.filter_src_note = BasicEntry()
         self.filter_id = Gtk.Entry()
-        self.filter_page = Gtk.Entry()       
+        self.filter_page = Gtk.Entry()
         self.filter_date = DateEntry(uistate, [])
-        
+
         self.filter_conf = Gtk.ComboBox()
         model = Gtk.ListStore(str)
         for conf_value in sorted(conf_strings.keys()):
             model.append((_(conf_strings[conf_value]),))
         self.filter_conf.set_model(model)
         self.filter_conf.set_active(Citation.CONF_NORMAL)
-        
+
         self.filter_note = Gtk.Entry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
@@ -169,15 +169,15 @@ class CitationSidebarFilter(SidebarFilter):
 
             rule = HasCitation([page, date, conf], use_regex=regex)
             generic_filter.add_rule(rule)
-            
+
             if src_id:
                 rule = RegExpSourceIdOf([src_id], use_regex=regex)
                 generic_filter.add_rule(rule)
-            
+
             rule = HasSource([src_title, src_author, src_abbr, src_pub],
                              use_regex=regex)
             generic_filter.add_rule(rule)
-                
+
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)

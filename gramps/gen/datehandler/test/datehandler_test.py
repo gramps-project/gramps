@@ -66,7 +66,7 @@ class DateHandlerTest(unittest.TestCase):
                     test_date.to_struct(), new_date.to_struct()))
 
     def test_simple(self):
-        
+
         dates = []
         for calendar in (Date.CAL_GREGORIAN, Date.CAL_JULIAN):
             for newyear in (Date.NEWYEAR_JAN1, Date.NEWYEAR_MAR25, (5,5)):
@@ -78,8 +78,8 @@ class DateHandlerTest(unittest.TestCase):
                             for month in range(1, 13):
                                 for day in (5, 27):
                                     d = Date()
-                                    d.set(quality, modifier, calendar, 
-                                          (day, month, 1789, slash1), 
+                                    d.set(quality, modifier, calendar,
+                                          (day, month, 1789, slash1),
                                           "Text comment",
                                           newyear)
                                     dates.append(d)
@@ -99,26 +99,26 @@ class DateHandlerTest(unittest.TestCase):
                         for month in range(1, 13):
                             for day in (5, 27):
                                 d = Date()
-                                d.set(quality, modifier, calendar, 
-                                      (day, month, 1789, slash1, 
+                                d.set(quality, modifier, calendar,
+                                      (day, month, 1789, slash1,
                                        day, month, 1876, slash2),
                                       "Text comment")
                                 dates.append(d)
                                 d = Date()
-                                d.set(quality, modifier, calendar, 
-                                      (day, month, 1789, slash1, 
+                                d.set(quality, modifier, calendar,
+                                      (day, month, 1789, slash1,
                                        day, 13-month, 1876, slash2),
                                       "Text comment")
                                 dates.append(d)
                                 d = Date()
-                                d.set(quality, modifier, calendar, 
-                                      (day, month, 1789, slash1, 
+                                d.set(quality, modifier, calendar,
+                                      (day, month, 1789, slash1,
                                        32-day, month, 1876, slash2),
                                       "Text comment")
                                 dates.append(d)
                                 d = Date()
-                                d.set(quality, modifier, calendar, 
-                                      (day, month, 1789, slash1, 
+                                d.set(quality, modifier, calendar,
+                                      (day, month, 1789, slash1,
                                        32-day, 13-month, 1876, slash2),
                                       "Text comment")
                                 dates.append(d)
@@ -141,7 +141,7 @@ class DateHandlerTest(unittest.TestCase):
         for l in range(1, len(dateval)):
             d = Date()
             with self.assertRaises(DateError):
-                d.set(Date.QUAL_NONE, Date.MOD_NONE, Date.CAL_GREGORIAN, 
+                d.set(Date.QUAL_NONE, Date.MOD_NONE, Date.CAL_GREGORIAN,
                       dateval[:l], "Text comment")
 
     def test_too_few_span_arguments(self):
@@ -149,7 +149,7 @@ class DateHandlerTest(unittest.TestCase):
         for l in range(1, len(dateval)):
             d = Date()
             with self.assertRaises(DateError):
-                d.set(Date.QUAL_NONE, Date.MOD_SPAN, Date.CAL_GREGORIAN, 
+                d.set(Date.QUAL_NONE, Date.MOD_SPAN, Date.CAL_GREGORIAN,
                       dateval[:l], "Text comment")
 
     def test_invalid_day(self):

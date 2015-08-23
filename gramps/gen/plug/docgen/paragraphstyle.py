@@ -49,7 +49,7 @@ log = logging.getLogger(".paragraphstyle")
 #
 #-------------------------------------------------------------------------
 PARA_ALIGN_CENTER  = 0
-PARA_ALIGN_LEFT    = 1 
+PARA_ALIGN_LEFT    = 1
 PARA_ALIGN_RIGHT   = 2
 PARA_ALIGN_JUSTIFY = 3
 
@@ -165,7 +165,7 @@ class ParagraphStyle(object):
             self.set_top_margin(tmargin)
         if bmargin is not None:
             self.set_bottom_margin(bmargin)
-            
+
     def set_header_level(self, level):
         """
         Set the header level for the paragraph. This is useful for

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -79,7 +79,7 @@ class LinkLabel(Gtk.EventBox):
         self.emph = emph
 
         GObject.GObject.__init__(self)
-        
+
         st_cont = self.get_style_context()
         col = st_cont.lookup_color('link_color')
         if col[0]:
@@ -123,7 +123,7 @@ class LinkLabel(Gtk.EventBox):
                     'Click Edit icon (enable in configuration dialog) to edit')
 
             self.set_tooltip_text(msg)
-        
+
         self.label = Gtk.Label(label=text)
         self.label.set_use_markup(True)
         self.label.set_halign(Gtk.Align.START)
@@ -143,7 +143,7 @@ class LinkLabel(Gtk.EventBox):
 
     def set_padding(self, x, y):
         self.label.set_padding(x, y)
-        
+
     def enter_text(self, obj, event, handle):
         if self.emph:
             #emphasize a link
@@ -171,7 +171,7 @@ class LinkLabel(Gtk.EventBox):
                 format = 'underline="single" foreground="' + self.color + '"'
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
-        
+
         text = '<span %s>%s</span>' % (format, self.orig_text)
         self.label.set_text(text)
         self.label.set_use_markup(True)

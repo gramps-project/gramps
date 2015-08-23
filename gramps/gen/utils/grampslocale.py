@@ -968,8 +968,8 @@ class Lexeme(str):
     Prints out::
 
         In English locale:
-            CHRISTMAS 
-            Christmas is celebrated in December 
+            CHRISTMAS
+            Christmas is celebrated in December
             Merry Christmas!
 
         In Russian locale:
@@ -983,17 +983,17 @@ class Lexeme(str):
     These forms are accessible under dictionary keys for each form.
     The names of the forms are language-specific. They are assigned
     by the human translator of the corresponding language (in XX.po)
-    as in the example above, 
-    see :meth:`~GrampsTranslations.lexgettext` docs 
+    as in the example above,
+    see :meth:`~GrampsTranslations.lexgettext` docs
     for more info.
 
     The translated format string can then refer to a specific form
-    of the lexeme using ``.``:attr:`~Lexeme.f` and square brackets: 
+    of the lexeme using ``.``:attr:`~Lexeme.f` and square brackets:
     ``{holiday.f[GENITIVE]}``
     expects holiday to be a Lexeme which has a form ``'GENITIVE'`` in it.
 
     An instance of Lexeme can also be used as a regular unicode string.
-    In this case, the work will be delegated to the string for the very 
+    In this case, the work will be delegated to the string for the very
     first form provided in the translated string. In the example above,
     ``{holiday}`` in the translated string will expand to the Russian
     nominative form for Christmas, and ``xmas.upper()`` will produce
@@ -1001,9 +1001,9 @@ class Lexeme(str):
 
     .. rubric:: Motivation
 
-    Lexeme is the term used in linguistics for the set of forms taken 
+    Lexeme is the term used in linguistics for the set of forms taken
     by a particular word, e.g. cases for a noun or tenses for a verb.
-    
+
     Gramps often needs to compose sentences from several blocks of
     text and single words, often by using python string formatting.
 
@@ -1016,7 +1016,7 @@ class Lexeme(str):
                  enddate_month = m2,
                  enddate_year = y2)
 
-    To make such text translatable, the arguments injected into 
+    To make such text translatable, the arguments injected into
     format string need to bear all the linguistical information
     on how to plug them into a sentence, i.e., the forms, depending
     on the linguistic context of where the argument appears.
@@ -1025,8 +1025,8 @@ class Lexeme(str):
 
     On the other hand, for languages where there is no linguistic
     variation in such sentences, the code needs not to be aware of
-    the underlying :class:`~Lexeme` complexity; 
-    and so they can be processed just like simple strings 
+    the underlying :class:`~Lexeme` complexity;
+    and so they can be processed just like simple strings
     both when passed around in the code and when formatted.
     """
 
@@ -1036,7 +1036,7 @@ class Lexeme(str):
         else:
             od = collections.OrderedDict(iterable)
             l = list(od.values()) or [""]
-            newobj = str.__new__(cls, l[0], *args, **kwargs) 
+            newobj = str.__new__(cls, l[0], *args, **kwargs)
             newobj._forms = od
         return newobj
 
@@ -1044,7 +1044,7 @@ class Lexeme(str):
         """All lexeme forms, in the same order as given upon construction.
         The first one returned is the default form, which is used when the
         Lexeme instance is used in lieu of a string object.
-        
+
         Same as ``f.values()``"""
         return self._forms.values()
 
@@ -1125,7 +1125,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         stripping the '|'-separated context using :meth:`~sgettext`
 
         The *resulting* message provided by the translator
-        is supposed to be '|'-separated as well. 
+        is supposed to be '|'-separated as well.
         The possible formats are either (1) a single string
         for a language with no inflections, or (2) a list of
         <inflection name>=<inflected form>, separated with '|'.

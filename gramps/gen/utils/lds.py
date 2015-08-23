@@ -36,7 +36,7 @@ class LdsTemples(object):
     """
     Parsing class for the LDS temples file
     """
-    
+
     def __init__(self):
         """
         Parses the lds.xml file to load the LDS temple code to name
@@ -82,18 +82,18 @@ class LdsTemples(object):
 
     def name(self, code):
         """
-        returns the name associated with the LDS Temple code 
+        returns the name associated with the LDS Temple code
         """
         return self.__temple_to_abrev.get(code, _("Unknown"))
-       
+
     def name_code_data(self):
         """
         returns a list of temple codes, temple name tuples
         """
-        return sorted([(code, name) for name, code 
+        return sorted([(code, name) for name, code
                        in self.__temple_codes.items()],
                       key=lambda v: v[1])
- 
+
     def __start_element(self, tag, attrs):
         """
         XML parsing function that is called when an XML element is first found

@@ -37,7 +37,7 @@ from . import StringOption
 #-------------------------------------------------------------------------
 class MediaOption(StringOption):
     """
-    This class describes an option that allows a media object from the 
+    This class describes an option that allows a media object from the
     database to be selected.
     """
     def __init__(self, label):

@@ -39,7 +39,7 @@ from gramps.gui.display import display_url
 class MapService():
     """Generic base class for map services
        A service is a singleton, we only need one to exist
-       Usage is as a callable when used 
+       Usage is as a callable when used
     """
     def __init__(self):
         self.database = None
@@ -49,7 +49,7 @@ class MapService():
     def __call__(self, database, items):
         """Callable class, usable as a function. This guarantees the class is
            instantiated once when a service is registered. Afterward only calls
-           occur 
+           occur
            database: Database to work on
            items: list of tuples (place_handle, description), where description
                   is None or a string to use for marker (eg 'birth John Doe')
@@ -65,10 +65,10 @@ class MapService():
     def _get_first_place(self):
         """Obtain the first place object"""
         place_handle = self.items[0][0]
-        
+
         return self.database.get_place_from_handle(place_handle), \
                         self.items[0][1]
-        
+
     def _all_places(self):
         """Obtain a list generator of all place objects
             Usage as an iterator:
@@ -76,12 +76,12 @@ class MapService():
         """
         for handle, descr in self.items:
             yield self.database.get_place_from_handle(handle), descr
-    
+
     def _lat_lon(self, place, format="D.D8"):
         """return the lat, lon value of place in the requested format
            None, None if invalid
         """
-        return conv_lat_lon(place.get_latitude(), 
+        return conv_lat_lon(place.get_latitude(),
                             place.get_longitude(), format)
 
     def calc_url(self):
@@ -92,7 +92,7 @@ class MapService():
         """Show the url in an external browser"""
         if self.url:
             display_url(self.url)
-    
+
     def _free(self):
         """Allow garbage collection to do it's work"""
         self.items = None

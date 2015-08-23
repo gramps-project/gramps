@@ -75,7 +75,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
     """Render the document into a file using a Cairo surface.
     """
     def create_cairo_surface(self, fobj, width_in_points, height_in_points):
-        # See 
+        # See
 # http://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
         # for the arg semantics.
         raise "Missing surface factory override!!!"
@@ -146,7 +146,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
                         rebuild_required = True
                 else:
                     toc_pages = []
-        
+
                 # paginate the index
                 if index_page is not None:
                     index_pages = self.__generate_index(layout, page_width,
@@ -157,7 +157,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
                         rebuild_required = True
                 else:
                     index_pages = []
-            
+
                 # rebuild the table of contents and index if required
                 if rebuild_required:
                     if toc_page is not None:
@@ -193,7 +193,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
             except Exception as err:
                 errmsg = "%s\n%s" % (_("Could not create %s") % filename, err)
                 raise ReportError(errmsg)
- 
+
     def __increment_pages(self, toc, index, start_page, offset):
         """
         Increment the page numbers in the table of contents and index.
@@ -226,7 +226,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
         write_index(index, self)
         self.paginate_document(layout, page_width, page_height, DPI, DPI)
         return self._pages
-        
+
 def write_toc(toc, doc):
     """
     Write the table of contents.
@@ -237,7 +237,7 @@ def write_toc(toc, doc):
     doc.start_paragraph('TOC-Title')
     doc.write_text(doc.toc_title)
     doc.end_paragraph()
-    
+
     doc.start_table('toc', 'TOC-Table')
     for mark, page_nr in toc:
         doc.start_row()
@@ -259,7 +259,7 @@ def write_toc(toc, doc):
         doc.end_cell()
         doc.end_row()
     doc.end_table()
-    
+
 def write_index(index, doc):
     """
     Write the alphabetical index.
@@ -270,7 +270,7 @@ def write_index(index, doc):
     doc.start_paragraph('IDX-Title')
     doc.write_text(doc.index_title)
     doc.end_paragraph()
-    
+
     doc.start_table('index', 'IDX-Table')
     for key in sorted(index.keys()):
         doc.start_row()

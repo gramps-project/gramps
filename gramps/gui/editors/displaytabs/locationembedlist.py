@@ -40,29 +40,29 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class LocationEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
     _DND_TYPE   = DdTargets.LOCATION
-    
+
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Street'),         0, 150, TEXT_COL, -1, None), 
-        (_('Locality'),       1, 100, TEXT_COL, -1, None), 
-        (_('City'),           2, 100, TEXT_COL, -1, None), 
-        (_('County'),         3, 100, TEXT_COL, -1, None), 
-        (_('State'),          4, 100, TEXT_COL, -1, None), 
-        (_('Country'),        5, 75, TEXT_COL, -1, None), 
+        (_('Street'),         0, 150, TEXT_COL, -1, None),
+        (_('Locality'),       1, 100, TEXT_COL, -1, None),
+        (_('City'),           2, 100, TEXT_COL, -1, None),
+        (_('County'),         3, 100, TEXT_COL, -1, None),
+        (_('State'),          4, 100, TEXT_COL, -1, None),
+        (_('Country'),        5, 75, TEXT_COL, -1, None),
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Alternate _Locations'), LocationModel, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Alternate _Locations'), LocationModel,
                               move_buttons=True)
 
     def get_data(self):
@@ -75,7 +75,7 @@ class LocationEmbedList(EmbeddedList):
         loc = Location()
         try:
             from .. import EditLocation
-            EditLocation(self.dbstate, self.uistate, self.track, 
+            EditLocation(self.dbstate, self.uistate, self.track,
                          loc, self.add_callback)
         except WindowActiveError:
             pass
@@ -91,7 +91,7 @@ class LocationEmbedList(EmbeddedList):
         if loc:
             try:
                 from .. import EditLocation
-                EditLocation(self.dbstate, self.uistate, self.track, 
+                EditLocation(self.dbstate, self.uistate, self.track,
                              loc, self.edit_callback)
             except WindowActiveError:
                 pass

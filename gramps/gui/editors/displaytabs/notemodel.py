@@ -41,8 +41,8 @@ class NoteModel(Gtk.ListStore):
             if len(text) > 80:
                 text = text[:80]+"..."
             self.append(row=[
-                str(note.get_type()), 
-                text, 
+                str(note.get_type()),
+                text,
                 note.get_privacy(),
-                handle, 
+                handle,
                 ])

@@ -112,7 +112,7 @@ class Zipfile(object):
         names = self.zip_obj.namelist()
         for name in self.get_paths(names):
             fullname = os.path.join(path, name)
-            if not os.path.exists(fullname): 
+            if not os.path.exists(fullname):
                 os.mkdir(fullname)
         for name in self.get_files(names):
             fullname = os.path.join(path, name)
@@ -307,8 +307,8 @@ def load_addon_file(path, callback=None):
             callback((_("Examining '%s'...") % gpr_file) + "\n")
         contents = file_obj.extractfile(gpr_file).read()
         # Put a fake register and _ function in environment:
-        env = make_environment(register=register, 
-                               newplugin=newplugin, 
+        env = make_environment(register=register,
+                               newplugin=newplugin,
                                _=lambda text: text)
         # clear out the result variable:
         globals()["register_results"] = []

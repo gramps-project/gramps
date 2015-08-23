@@ -43,10 +43,10 @@ class HasRepo(Rule):
     """Rule that checks for a repo with a particular value"""
 
 
-    labels      = [ _('repo|Name:'), 
-                    _('Type:'), 
+    labels      = [ _('repo|Name:'),
+                    _('Type:'),
                     _('Address:'),
-                    _('URL:'), 
+                    _('URL:'),
                     ]
     name        = _('Repositories matching parameters')
     description = _("Matches Repositories with particular parameters")
@@ -59,7 +59,7 @@ class HasRepo(Rule):
             self.rtype.set_from_xml_str(self.list[1])
         else:
             self.rtype = None
-        
+
     def apply(self, db, repo):
         if not self.match_substring(0, repo.get_name()):
             return False

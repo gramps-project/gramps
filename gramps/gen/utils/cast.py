@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -68,7 +68,7 @@ def get_type_converter(val):
 def type_name(val):
     """
     Return the name the type of val.
-    
+
     Only numbers and strings are supported.
     The rest becomes strings (unicode).
     """
@@ -86,7 +86,7 @@ def type_name(val):
 def get_type_converter_by_name(val_str):
     """
     Return function that converts strings into the type given by val_str.
-    
+
     Only numbers and strings are supported.
     The rest becomes strings (unicode).
     """

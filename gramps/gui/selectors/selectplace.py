@@ -52,7 +52,7 @@ class SelectPlace(BaseSelector):
 
     def get_window_title(self):
         return _("Select Place")
-        
+
     def get_model_class(self):
         return PlaceTreeModel
 

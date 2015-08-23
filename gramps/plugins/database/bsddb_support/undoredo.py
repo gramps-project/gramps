@@ -42,7 +42,7 @@ except:
         DBAccessError = 0
         DBPageNotFoundError = 0
         DBInvalidArgError = 0
-        
+
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -61,9 +61,9 @@ from gramps.gen.errors import DbError
 # Local Constants
 #
 #-------------------------------------------------------------------------
-DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
+DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
-               
+
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
             'place', 'repository', 'reference', 'note', 'tag', 'citation')
 
@@ -71,7 +71,7 @@ _SIGBASE = ('person', 'family', 'source', 'event', 'media',
 #
 # DbUndo class
 #
-#-------------------------------------------------------------------------            
+#-------------------------------------------------------------------------
 class DbUndo(object):
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
@@ -141,34 +141,34 @@ class DbUndo(object):
         """
         Close the backing storage.  Needs to be overridden in the derived
         class.
-        """        
+        """
         raise NotImplementedError
 
     def append(self, value):
         """
         Add a new entry on the end.  Needs to be overridden in the derived
         class.
-        """        
+        """
         raise NotImplementedError
 
     def __getitem__(self, index):
         """
         Returns an entry by index number.  Needs to be overridden in the
         derived class.
-        """        
+        """
         raise NotImplementedError
 
     def __setitem__(self, index, value):
         """
         Set an entry to a value.  Needs to be overridden in the derived class.
-        """           
+        """
         raise NotImplementedError
 
     def __len__(self):
         """
         Returns the number of entries.  Needs to be overridden in the derived
         class.
-        """         
+        """
         raise NotImplementedError
 
     def commit(self, txn, msg):
@@ -216,12 +216,12 @@ class DbUndo(object):
                 self.db._log_error()
                 raise DbError(msg)
 
-        return try_        
+        return try_
 
     @undoredo
     def __undo(self, update_history=True):
         """
-        Access the last committed transaction, and revert the data to the 
+        Access the last committed transaction, and revert the data to the
         state before the transaction was committed.
         """
         txn = self.undoq.pop()
@@ -246,7 +246,7 @@ class DbUndo(object):
                 db.undo_callback(_("_Undo %s")
                                    % self.undoq[-1].get_description())
             else:
-                db.undo_callback(None)    
+                db.undo_callback(None)
 
         if db.redo_callback:
             db.redo_callback(_("_Redo %s")
@@ -259,7 +259,7 @@ class DbUndo(object):
     @undoredo
     def __redo(self, db=None, update_history=True):
         """
-        Access the last undone transaction, and revert the data to the state 
+        Access the last undone transaction, and revert the data to the state
         before the transaction was undone.
         """
         txn = self.redoq.pop()
@@ -289,11 +289,11 @@ class DbUndo(object):
                 db.redo_callback(_("_Redo %s")
                                    % new_transaction.get_description())
             else:
-                db.redo_callback(None)       
+                db.redo_callback(None)
 
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
-        return True        
+        return True
 
     def undo_reference(self, data, handle, db_map):
         """
@@ -409,7 +409,7 @@ class DbUndoBSDDB(DbUndo):
         """
         path = self.path
         self.undodb.open(path, db.DB_RECNO, db.DB_CREATE)
-        
+
     def close(self):
         """
         Close the undo/redo database
@@ -418,12 +418,12 @@ class DbUndoBSDDB(DbUndo):
         self.undodb = None
         self.mapbase = None
         self.db = None
-        
+
         try:
             os.remove(self.path)
         except OSError:
             pass
-        self.clear()      
+        self.clear()
 
     def append(self, value):
         """

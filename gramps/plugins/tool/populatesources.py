@@ -53,18 +53,18 @@ class PopulateSources(tool.Tool, ManagedWindow):
     """
     Gramplet that populates the database with sources and citations.
     """
-    
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = 'Populate sources and citations tool'
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')
         tool.Tool.__init__(self, dbstate, options_class, name)
-        
+
         dialog = self.display()
         response = dialog.run()
         dialog.destroy()
-        
+
         if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
             OkDialog('Data generated',
@@ -107,7 +107,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
         self.citations_entry.set_text("%d" % num_citations)
         hbox2.pack_start(label_citations, False, True, 0)
         hbox2.pack_start(self.citations_entry, True, True, 0)
-        
+
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         vbox.pack_start(label, True, True, 0)
         vbox.pack_start(hbox1, False, True, 0)
@@ -117,14 +117,14 @@ class PopulateSources(tool.Tool, ManagedWindow):
         dialog.vbox.pack_start(vbox, True, True, 0)
         dialog.show_all()
         return dialog
-    
+
     def on_ok_clicked(self):
         """
         Method that is run when you click the OK button. The numbers of sources
         and citations are retrieved from the entry box and used to govern the
         amount of data generated
         """
-      
+
         num_sources_text = self.sources_entry.get_text()
         try:
             num_sources = int(num_sources_text)
@@ -132,17 +132,17 @@ class PopulateSources(tool.Tool, ManagedWindow):
             return
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
-        
+
         self.progress = ProgressMeter(
             'Generating data', '')
         self.progress.set_pass('Generating data',
                                num_sources*num_citations)
-        LOG.debug("sources %04d citations %04d" % (num_sources, 
+        LOG.debug("sources %04d citations %04d" % (num_sources,
                                                      num_citations))
-        
+
         source = Source()
         citation = Citation()
-        
+
         self.db.disable_signals()
         with DbTxn('Populate sources and citations', self.db) as trans:
             for i in range(num_sources):
@@ -150,7 +150,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
                 source.handle = None
                 source.title = "Source %04d" % (i + 1)
                 source_handle = self.db.add_source(source, trans)
-                
+
                 for j in range(num_citations):
                     citation.gramps_id = None
                     citation.handle = None
@@ -162,7 +162,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
         self.db.enable_signals()
         self.db.request_rebuild()
         self.progress.close()
-        
+
         self.options.handler.options_dict['sources'] = num_sources
         self.options.handler.options_dict['citations'] = num_citations
         # Save options
@@ -182,8 +182,8 @@ class PopulateSourcesOptions(tool.ToolOptions):
             'citations' : 2,
         }
         self.options_help = {
-            'sources'   : ("=num", 
-                           "Number of sources to generate", 
+            'sources'   : ("=num",
+                           "Number of sources to generate",
                            "Integer number"),
             'citations' : ("=num",
                            "Number of citations to generate for each source",

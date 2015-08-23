@@ -87,12 +87,12 @@ class FamilyView(ListView):
         ]
     #default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
+        ('columns.visible', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL,
                              COL_MARDATE]),
-        ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL, 
+        ('columns.rank', [COL_ID, COL_FATHER, COL_MOTHER, COL_REL,
                            COL_MARDATE, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [75, 200, 200, 100, 100, 40, 100, 100])
-        )    
+        )
 
     ADD_MSG     = _("Add a new family")
     EDIT_MSG    = _("Edit the selected family")
@@ -166,8 +166,8 @@ class FamilyView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -199,7 +199,7 @@ class FamilyView(ListView):
 
         self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
-                        
+
         self.all_action = Gtk.ActionGroup(name=self.title + "/FamilyAll")
         self.all_action.add_actions([
                 ('MakeFatherActive', None, _("Make Father Active Person"),
@@ -217,10 +217,10 @@ class FamilyView(ListView):
         else:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
-                _("Could Not Set a Bookmark"), 
+                _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."))
-        
+
     def add(self, obj):
         family = Family()
         try:
@@ -240,13 +240,13 @@ class FamilyView(ListView):
             msg1 = self._message1_format(family)
             msg2 = self._message2_format(family)
             msg2 = "%s %s" % (msg2, data_recover_msg)
-            QuestionDialog(msg1, 
-                           msg2, 
-                           _('_Delete Family'), 
+            QuestionDialog(msg1,
+                           msg2,
+                           _('_Delete Family'),
                            lambda: self.delete_family_response(family))
         else:
             MultiSelectDialog(self._message1_format,
-                              self._message2_format, 
+                              self._message2_format,
                               handles,
                               self.dbstate.db.get_family_from_handle,
                               yes_func=self.delete_family_response)
@@ -255,7 +255,7 @@ class FamilyView(ListView):
         """
         Header format for remove dialogs.
         """
-        return _('Delete %s?') % (_('family') + 
+        return _('Delete %s?') % (_('family') +
                                   (" [%s]" % family.gramps_id))
 
     def _message2_format(self, family):
@@ -278,7 +278,7 @@ class FamilyView(ListView):
             self.dbstate.db.remove_family_relationships(family.handle, trans)
             trans.set_description(_("Family [%s]") % gramps_id)
         self.uistate.set_busy_cursor(False)
-    
+
     def edit(self, obj):
         for handle in self.selected_handles():
             family = self.dbstate.db.get_family_from_handle(handle)
@@ -286,7 +286,7 @@ class FamilyView(ListView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except WindowActiveError:
                 pass
-                
+
     def merge(self, obj):
         """
         Merge the selected families.
@@ -321,7 +321,7 @@ class FamilyView(ListView):
             family = self.dbstate.db.get_family_from_handle(fhandle)
             if family:
                 self.uistate.set_active(family.mother_handle, 'Person')
-            
+
     def drag_info(self):
         """
         Indicate that the drag type is a FAMILY_LINK

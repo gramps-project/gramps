@@ -61,7 +61,7 @@ editor_rule_list = [
     MatchesFilter,
     MatchesPageSubstringOf,
     MatchesRepositoryFilter,
-    MatchesSourceFilter, 
+    MatchesSourceFilter,
     RegExpIdOf,
     RegExpSourceIdOf,
     HasTag

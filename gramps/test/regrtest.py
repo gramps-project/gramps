@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # test/regrtest.py
-# Original: RunAllTests.py Written by Richard Taylor 
+# Original: RunAllTests.py Written by Richard Taylor
 # (jgs: revised for embedded "test" subdirs as regrtest.py )
 
 """
@@ -29,7 +29,7 @@ Testing framework for performing a variety of unttests for GRAMPS.
 # TODO: review whether logging is really useful for unittest
 #  it does seem to work .. try -v5
 import logging
- 
+
 import os
 import sys
 import unittest
@@ -41,12 +41,12 @@ gramps_root=tu.path_append_parent()
 def make_parser():
     usage = "usage: %prog [options]"
     parser = OptionParser(usage)
-    parser.add_option("-v", "--verbosity", type="int", 
+    parser.add_option("-v", "--verbosity", type="int",
                       dest="verbose_level", default=0,
-                      help="Level of verboseness")  
-    parser.add_option("-p", "--performance", action="store_true", 
+                      help="Level of verboseness")
+    parser.add_option("-p", "--performance", action="store_true",
                       dest="performance", default=False,
-                      help="Run the performance tests.")  
+                      help="Run the performance tests.")
     return parser
 
 
@@ -79,7 +79,7 @@ def getTestSuites(loc=gramps_root):
     perf_suites = []
     # note that test_mod and match_mod modify passed-in lists
     paths = [(path,files) for path,dirs,files in os.walk(loc)
-                if test_mod(path,dirs) and match_mod(files)] 
+                if test_mod(path,dirs) and match_mod(files)]
 
     ## NO -- see explanation below
     ##  oldpath = list(sys.path)
@@ -98,7 +98,7 @@ def getTestSuites(loc=gramps_root):
                 perf_suites.append(mod.perfSuite())
             except:
                 pass
-        # NO: was: remove temporary paths added 
+        # NO: was: remove temporary paths added
         # this seems like it should be reasonable,
         # but it causes failure in _GrampsDbWRFactories_test.py
         #  (I suspect it is an actual bug in the runner
@@ -110,7 +110,7 @@ def getTestSuites(loc=gramps_root):
         ## sys.path = list(oldpath)
     return (test_suites,perf_suites)
 
-    
+
 if __name__ == '__main__':
     def logging_init():
         global logger
@@ -122,7 +122,7 @@ if __name__ == '__main__':
         logger = logging.getLogger('Gramps')
         logger.addHandler(console)
         return console, logger
-    
+
     def logging_adjust(verbose_level):
         if verbose_level == 1:
             logger.setLevel(logging.INFO)
@@ -140,7 +140,7 @@ if __name__ == '__main__':
         else:
             logger.setLevel(logging.ERROR)
             console.setLevel(logging.ERROR)
-  
+
     console,logger = logging_init()
     options,args = make_parser().parse_args()
     logging_adjust(options.verbose_level)
@@ -159,7 +159,7 @@ if __name__ == '__main__':
         suite = unittest.TestSuite(ptests)
     else:
         suite = unittest.TestSuite(utests)
-        
+
     unittest.TextTestRunner(verbosity=options.verbose_level).run(suite)
 
 #===eof===

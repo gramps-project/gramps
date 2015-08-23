@@ -71,7 +71,7 @@ class Url(SecondaryObject, PrivacyBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -88,9 +88,9 @@ class Url(SecondaryObject, PrivacyBase):
         :rtype: dict
         """
         return {"_class": "Url",
-                "private": self.private, 
-                "path": self.path, 
-                "desc": self.desc, 
+                "private": self.private,
+                "path": self.path,
+                "desc": self.desc,
                 "type": self.type.to_struct()}
 
     @classmethod
@@ -101,11 +101,11 @@ class Url(SecondaryObject, PrivacyBase):
         :returns: Returns a serialized object
         """
         default = Url()
-        return (struct.get("private", default.private), 
-                struct.get("path", default.path), 
-                struct.get("desc", default.desc), 
+        return (struct.get("private", default.private),
+                struct.get("path", default.path),
+                struct.get("desc", default.desc),
                 UrlType.from_struct(struct.get("type", {})))
-        
+
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)
@@ -196,7 +196,7 @@ class Url(SecondaryObject, PrivacyBase):
         netloc   1     Network location part
         path     2     Hierarchical path
         params   3     Parameters for last path element
-        query    4     Query component 
+        query    4     Query component
         fragment 5     Fragment identifier
         ======== ===   =================================
         """

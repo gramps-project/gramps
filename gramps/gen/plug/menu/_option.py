@@ -37,14 +37,14 @@ from ...utils.callback import Callback
 #-------------------------------------------------------------------------
 class Option(Callback):
     """
-    This class serves as a base class for all options. All Options must 
-    minimally provide the services provided by this class. Options are allowed 
+    This class serves as a base class for all options. All Options must
+    minimally provide the services provided by this class. Options are allowed
     to add additional functionality.
     """
-    
+
     __signals__ = { 'value-changed' : None,
                     'avail-changed' : None}
-    
+
     def __init__(self, label, value):
         """
         :param label: A friendly label to be applied to this option.
@@ -60,38 +60,38 @@ class Option(Callback):
         self.__label = label
         self.__help_str = ""
         self.__available = True
-        
+
     def get_label(self):
         """
         Get the friendly label for this option.
-        
+
         :return: string
         """
         return self.__label
-    
+
     def set_label(self, label):
         """
         Set the friendly label for this option.
-        
+
         :param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
         :type label: string
         :return: nothing
         """
         self.__label = label
-        
+
     def get_value(self):
         """
         Get the value of this option.
-        
+
         :return: The option value.
         """
         return self.__value
-    
+
     def set_value(self, value):
         """
         Set the value of this option.
-        
+
         :param value: A value for this option.
             Example: True
         :type value: The type will depend on the type of option.
@@ -99,33 +99,33 @@ class Option(Callback):
         """
         self.__value = value
         self.emit('value-changed')
-        
+
     def get_help(self):
         """
         Get the help information for this option.
-        
+
         :return: A string that provides additional help beyond the label.
         """
         return self.__help_str
-        
+
     def set_help(self, help_text):
         """
         Set the help information for this option.
-        
+
         :param help: A string that provides additional help beyond the label.
-            Example: "Whether to include or exclude people who are calculated 
+            Example: "Whether to include or exclude people who are calculated
             to be alive at the time of the generation of this report"
         :type value: string
         :return: nothing
         """
         self.__help_str = help_text
-        
+
     def set_available(self, avail):
         """
         Set the availability of this option.
-        
-        :param avail: An indicator of whether this option is currently 
-                      available. True indicates that the option is available. 
+
+        :param avail: An indicator of whether this option is currently
+                      available. True indicates that the option is available.
                       False indicates that the option is not available.
         :type avail: Bool
         :return: nothing
@@ -133,12 +133,12 @@ class Option(Callback):
         if avail != self.__available:
             self.__available = avail
             self.emit('avail-changed')
-        
+
     def get_available(self):
         """
         Get the availability of this option.
-        
-        :return: A Bool indicating the availablity of this option. True 
+
+        :return: A Bool indicating the availablity of this option. True
                  indicates that the option is available. False indicates that
                  the option is not available.
         """

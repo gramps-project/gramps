@@ -195,11 +195,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                     reltocommon_a, reltocommon_b,
-                                    only_birth=True, 
+                                    only_birth=True,
                                     in_law_a=False, in_law_b=False):
         return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0]
- 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         if gender_b == Person.MALE:
             return self.get_ancestors_brother("")
@@ -214,7 +214,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_fi.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

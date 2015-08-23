@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -73,13 +73,13 @@ DISABLED = -1
 #
 #-------------------------------------------------------------------------
 class History(Callback):
-    """ History manages the objects of a certain type that have been viewed, 
-        with ability to go back, or forward. 
+    """ History manages the objects of a certain type that have been viewed,
+        with ability to go back, or forward.
         When accessing an object, it should be pushed on the History.
     """
 
     __signals__ = {
-        'active-changed' : (str, ), 
+        'active-changed' : (str, ),
         'mru-changed' : (list, )
         }
 
@@ -100,7 +100,7 @@ class History(Callback):
         """
         for sig in self.signal_map:
             dbstate.connect(sig, self.signal_map[sig])
-            
+
     def clear(self):
         """
         Clears the history, resetting the values back to their defaults
@@ -128,7 +128,7 @@ class History(Callback):
         for c in range(history_count):
             self.history.remove(del_id)
             self.index -= 1
-        
+
         mhc = self.mru.count(del_id)
         for c in range(mhc):
             self.mru.remove(del_id)
@@ -156,7 +156,7 @@ class History(Callback):
             if not isinstance(newact, str):
                 newact = str(newact)
             self.emit('active-changed', (newact,))
- 
+
     def forward(self, step=1):
         """
         Moves forward in the history list
@@ -191,7 +191,7 @@ class History(Callback):
             return newact
         except IndexError:
             return ""
-        
+
     def present(self):
         """
         return the person handle that is now active in the history
@@ -203,7 +203,7 @@ class History(Callback):
                 return ""
         except IndexError:
             return ""
-        
+
     def at_end(self):
         """
         returns True if we are at the end of the history list
@@ -230,7 +230,7 @@ class History(Callback):
         """
         for handle in handle_list:
             self.remove(handle)
-            
+
     def history_changed(self):
         """
         Called in response to an object-rebuild signal.
@@ -238,7 +238,7 @@ class History(Callback):
         """
         self.clear()
         self.emit('mru-changed', (self.mru, ))
-        
+
 #-------------------------------------------------------------------------
 #
 # Recent Docs Menu
@@ -270,13 +270,13 @@ class RecentDocsMenu(object):
         gramps_rf = RecentFiles()
 
         count = 0
-        
+
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
             self.action_group = Gtk.ActionGroup(name='RecentFiles')
             self.active = DISABLED
-            
+
         actions = []
         rfiles = gramps_rf.gramps_recent_files
         rfiles.sort(key=lambda x: x.get_time(), reverse=True)
@@ -289,7 +289,7 @@ class RecentDocsMenu(object):
                 filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
                 buf.write('<menuitem action="%s"/>' % action_id)
-                actions.append((action_id, None, title, None, None, 
+                actions.append((action_id, None, title, None, None,
                                 make_callback(item, self.load)))
                 mitem = Gtk.MenuItem(label=title, use_underline=False)
                 mitem.connect('activate', make_callback(item, self.load))
@@ -298,7 +298,7 @@ class RecentDocsMenu(object):
             except RuntimeError:
                 _LOG.info("Ignoring the RecentItem %s (%s)" % (title, filename))
                 pass    # ignore no longer existing files
-            
+
             count += 1
         buf.write(_RCT_BTM)
         self.action_group.add_actions(actions)
@@ -367,13 +367,13 @@ class WarnHandler(RotateHandler):
 class DisplayState(Callback):
 
     __signals__ = {
-        'filters-changed' : (str, ), 
-        'filter-name-changed' : (str, str, str), 
-        'nameformat-changed' : None, 
-        'grampletbar-close-changed' : None, 
-        'update-available' : (list, ), 
+        'filters-changed' : (str, ),
+        'filter-name-changed' : (str, str, str),
+        'nameformat-changed' : None,
+        'grampletbar-close-changed' : None,
+        'update-available' : (list, ),
         }
-    
+
     #nav_type to message
     NAV2MES = {
         'Person': _("No active person"),
@@ -416,7 +416,7 @@ class DisplayState(Callback):
         self.rhandler.setLevel(logging.WARNING)
         self.log = logging.getLogger()
         self.log.addHandler(self.rhandler)
-        # This call has been moved one level up, 
+        # This call has been moved one level up,
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
 
@@ -473,7 +473,7 @@ class DisplayState(Callback):
 
     def set_sensitive(self, state):
         self.window.set_sensitive(state)
-        
+
     def db_changed(self, db):
         db.connect('long-op-start', self.progress_monitor.add_op)
         self.clear_history()
@@ -488,10 +488,10 @@ class DisplayState(Callback):
         """ Set the generations we search back for showing relationships
             on GRAMPS interface. Value must be integer > 0
             This method will be used by the preference editor when user changes
-            the generations. 
+            the generations.
         """
         self.relationship.set_depth(value)
-        
+
     def display_relationship(self, dbstate, active_handle):
         """ Construct the relationship in order to show it in the statusbar
             This can be a time intensive calculation, so we only want to do
@@ -539,7 +539,7 @@ class DisplayState(Callback):
             else:
                 self.window.get_window().set_cursor(self.cursor)
                 if self.window.get_window().is_visible():
-                    #avoid critical gdk error: 
+                    #avoid critical gdk error:
                     #Gdk-CRITICAL **: gdk_error_trap_pop_internal: assertion `trap != NULL' failed
                     #only process events if window is actually visible
                     process_pending_events()
@@ -556,7 +556,7 @@ class DisplayState(Callback):
 
     def show_filter_results(self, dbstate, matched, total):
         #nav_type = self.viewmanager.active_page.navigation_type()
-        #text = ((_("%(nav_type)s View") % {"nav_type": _(nav_type)}) + 
+        #text = ((_("%(nav_type)s View") % {"nav_type": _(nav_type)}) +
         text = (self.viewmanager.active_page.get_title() +
                 (": %d/%d" % (matched, total)))
         self.status.set_filter(text)
@@ -571,7 +571,7 @@ class DisplayState(Callback):
 
         nav_type = view.navigation_type()
         active_handle = self.get_active(nav_type, view.navigation_group())
-        
+
         self.status.pop(self.status_id)
 
         name, obj = navigation_label(dbstate.db, nav_type, active_handle)

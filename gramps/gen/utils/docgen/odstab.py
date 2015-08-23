@@ -20,7 +20,7 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python Modules 
+# Standard Python Modules
 #
 #-------------------------------------------------------------------------
 import os
@@ -69,37 +69,37 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
 _DOC_FONTS = '''\
 <office:font-face-decls>
-    <style:font-face style:name="Nimbus Sans L" 
-        svg:font-family="'Nimbus Sans L'" 
-        style:font-family-generic="swiss" 
+    <style:font-face style:name="Nimbus Sans L"
+        svg:font-family="'Nimbus Sans L'"
+        style:font-family-generic="swiss"
         style:font-pitch="variable"/>
-    <style:font-face style:name="DejaVu Sans" 
-        svg:font-family="'DejaVu San'" 
-        style:font-family-generic="system" 
+    <style:font-face style:name="DejaVu Sans"
+        svg:font-family="'DejaVu San'"
+        style:font-family-generic="system"
         style:font-pitch="variable"/>
 </office:font-face-decls>
 '''
 
 _DOC_STYLES = '''\
 <office:automatic-styles>
-    <style:style style:name="co1" 
+    <style:style style:name="co1"
         style:family="table-column">
         <style:table-column-properties
-            fo:break-before="auto" 
+            fo:break-before="auto"
             style:column-width="3cm"/>
     </style:style>
-    <style:style style:name="ro1" 
+    <style:style style:name="ro1"
         style:family="table-row">
-        <style:table-row-properties 
-            style:row-height="0.189in" 
-            fo:break-before="auto" 
+        <style:table-row-properties
+            style:row-height="0.189in"
+            fo:break-before="auto"
             style:use-optimal-row-height="true"/>
     </style:style>
-    <style:style style:name="ta1" 
-        style:family="table" 
+    <style:style style:name="ta1"
+        style:family="table"
         style:master-page-name="Default">
-        <style:table-properties 
-            table:display="true" 
+        <style:table-properties
+            table:display="true"
             style:writing-mode="lr-tb"/>
     </style:style>
 </office:automatic-styles>
@@ -121,86 +121,86 @@ _STYLES_FONTS = '''\
 _STYLES_STYLES = '''\
 <office:styles>
     <style:default-style style:family="table-cell">
-        <style:table-cell-properties 
+        <style:table-cell-properties
             style:decimal-places="2"/>
-        <style:paragraph-properties 
+        <style:paragraph-properties
             style:tab-stop-distance="0.2835inch"/>
-        <style:text-properties 
+        <style:text-properties
             style:font-name="Arial"/>
     </style:default-style>
-    
-    <style:style style:name="Default" 
-        style:family="table-cell" 
+
+    <style:style style:name="Default"
+        style:family="table-cell"
         style:data-style-name="N0"/>
-        
+
     <style:default-style style:family="graphic">
-        <style:text-properties fo:color="#000000" 
-            fo:font-family="'Times New Roman'" 
-            style:font-style-name="" 
-            style:font-family-generic="roman" 
-            style:font-pitch="variable" 
-            fo:font-size="12pt" 
-            fo:language="none" 
-            fo:country="none" 
-            style:text-autospace="ideograph-alpha" 
-            style:punctuation-wrap="simple" 
+        <style:text-properties fo:color="#000000"
+            fo:font-family="'Times New Roman'"
+            style:font-style-name=""
+            style:font-family-generic="roman"
+            style:font-pitch="variable"
+            fo:font-size="12pt"
+            fo:language="none"
+            fo:country="none"
+            style:text-autospace="ideograph-alpha"
+            style:punctuation-wrap="simple"
             style:line-break="strict"/>
-    </style:default-style>       
+    </style:default-style>
 </office:styles>
 '''
 _STYLES_AUTOMATIC = '''\
 <office:automatic-styles>
     <style:page-layout style:name="pm1">
         <style:header-style>
-            <style:header-footer-properties 
-                fo:min-height="0.2957inch" 
-                fo:margin-left="0inch" 
-                fo:margin-right="0inch" 
+            <style:header-footer-properties
+                fo:min-height="0.2957inch"
+                fo:margin-left="0inch"
+                fo:margin-right="0inch"
                 fo:margin-bottom="0.0984inch"/>
         </style:header-style>
         <style:footer-style>
-            <style:header-footer-properties 
-                fo:min-height="0.2957inch" 
-                fo:margin-left="0inch" 
-                fo:margin-right="0inch" 
+            <style:header-footer-properties
+                fo:min-height="0.2957inch"
+                fo:margin-left="0inch"
+                fo:margin-right="0inch"
                 fo:margin-top="0.0984inch"/>
         </style:footer-style>
     </style:page-layout>
     <style:page-layout style:name="pm2">
         <style:header-style>
-            <style:header-footer-properties 
-                fo:min-height="0.2957inch" 
-                fo:margin-left="0inch" 
-                fo:margin-right="0inch" 
-                fo:margin-bottom="0.0984inch" 
-                fo:border="0.0346inch solid #000000" 
-                fo:border-top="0.0346inch solid #000000" 
-                fo:border-bottom="0.0346inch solid #000000" 
-                fo:border-left="0.0346inch solid #000000" 
-                fo:border-right="0.0346inch solid #000000" 
-                fo:padding="0.0071inch" 
-                fo:padding-top="0.0071inch" 
-                fo:padding-bottom="0.0071inch" 
-                fo:padding-left="0.0071inch" 
-                fo:padding-right="0.0071inch" 
+            <style:header-footer-properties
+                fo:min-height="0.2957inch"
+                fo:margin-left="0inch"
+                fo:margin-right="0inch"
+                fo:margin-bottom="0.0984inch"
+                fo:border="0.0346inch solid #000000"
+                fo:border-top="0.0346inch solid #000000"
+                fo:border-bottom="0.0346inch solid #000000"
+                fo:border-left="0.0346inch solid #000000"
+                fo:border-right="0.0346inch solid #000000"
+                fo:padding="0.0071inch"
+                fo:padding-top="0.0071inch"
+                fo:padding-bottom="0.0071inch"
+                fo:padding-left="0.0071inch"
+                fo:padding-right="0.0071inch"
                 fo:background-color="#c0c0c0"/>
         </style:header-style>
         <style:footer-style>
-            <style:header-footer-properties 
-                fo:min-height="0.2957inch" 
-                fo:margin-left="0inch" 
-                fo:margin-right="0inch" 
-                fo:margin-top="0.0984inch" 
-                fo:border="0.0346inch solid #000000" 
-                fo:border-top="0.0346inch solid #000000" 
-                fo:border-bottom="0.0346inch solid #000000" 
-                fo:border-left="0.0346inch solid #000000" 
-                fo:border-right="0.0346inch solid #000000" 
-                fo:padding="0.0071inch" 
-                fo:padding-top="0.0071inch" 
-                fo:padding-bottom="0.0071inch" 
-                fo:padding-left="0.0071inch" 
-                fo:padding-right="0.0071inch" 
+            <style:header-footer-properties
+                fo:min-height="0.2957inch"
+                fo:margin-left="0inch"
+                fo:margin-right="0inch"
+                fo:margin-top="0.0984inch"
+                fo:border="0.0346inch solid #000000"
+                fo:border-top="0.0346inch solid #000000"
+                fo:border-bottom="0.0346inch solid #000000"
+                fo:border-left="0.0346inch solid #000000"
+                fo:border-right="0.0346inch solid #000000"
+                fo:padding="0.0071inch"
+                fo:padding-top="0.0071inch"
+                fo:padding-bottom="0.0071inch"
+                fo:padding-left="0.0071inch"
+                fo:padding-right="0.0071inch"
                 fo:background-color="#c0c0c0"/>
         </style:footer-style>
     </style:page-layout>
@@ -209,7 +209,7 @@ _STYLES_AUTOMATIC = '''\
 
 _STYLES_MASTER = '''\
 <office:master-styles>
-    <style:master-page style:name="Default" 
+    <style:master-page style:name="Default"
         style:page-layout-name="pm1">
         <style:header>
             <text:p>
@@ -222,27 +222,27 @@ _STYLES_MASTER = '''\
             </text:p>
         </style:footer>
     </style:master-page>
-    <style:master-page style:name="Report" 
+    <style:master-page style:name="Report"
         style:page-layout-name="pm2">
         <style:header>
             <style:region-left>
                 <text:p>
-                    <text:sheet-name>???</text:sheet-name> 
+                    <text:sheet-name>???</text:sheet-name>
                     (<text:file-name>???</text:file-name>)
                 </text:p>
             </style:region-left>
             <style:region-right>
                 <text:p>
-                    <text:date style:data-style-name="N2" 
+                    <text:date style:data-style-name="N2"
                         text:date-value="2001-05-16">05/16/2001
-                    </text:date>, 
+                    </text:date>,
                         <text:time>10:53:17</text:time>
                 </text:p>
             </style:region-right>
         </style:header>
         <style:footer>
-            <text:p>Page 
-                <text:page-number>1</text:page-number> / 
+            <text:p>Page
+                <text:page-number>1</text:page-number> /
                 <text:page-count>99</text:page-count>
             </text:p>
         </style:footer>
@@ -252,33 +252,33 @@ _STYLES_MASTER = '''\
 
 _MANIFEST = '''\
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest:manifest 
+<manifest:manifest
     xmlns:manifest=
         "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
-    <manifest:file-entry 
+    <manifest:file-entry
         manifest:media-type=
-            "application/vnd.oasis.opendocument.spreadsheet" 
+            "application/vnd.oasis.opendocument.spreadsheet"
         manifest:full-path="/"/>
-    <manifest:file-entry manifest:media-type="" 
+    <manifest:file-entry manifest:media-type=""
         manifest:full-path="Pictures/"/>
-    <manifest:file-entry manifest:media-type="text/xml" 
+    <manifest:file-entry manifest:media-type="text/xml"
         manifest:full-path="content.xml"/>
-    <manifest:file-entry manifest:media-type="text/xml" 
+    <manifest:file-entry manifest:media-type="text/xml"
         manifest:full-path="styles.xml"/>
-    <manifest:file-entry manifest:media-type="text/xml" 
+    <manifest:file-entry manifest:media-type="text/xml"
         manifest:full-path="meta.xml"/>
 </manifest:manifest>
 '''
 
 _META = '''\
 <?xml version="1.0" encoding="UTF-8"?>
-<office:document-meta 
+<office:document-meta
     xmlns:office=
-        "urn:oasis:names:tc:opendocument:xmlns:office:1.0" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+        "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:meta=
-        "urn:oasis:names:tc:opendocument:xmlns:meta:1.0" 
+        "urn:oasis:names:tc:opendocument:xmlns:meta:1.0"
     office:class="text" office:version="1.0">
     <office:meta>
         <meta:generator>
@@ -325,7 +325,7 @@ class ODSTab(TabbedDoc):
 
     def open(self,filename):
         import time
-        
+
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % t[:6]
 
@@ -397,7 +397,7 @@ class ODSTab(TabbedDoc):
 
     def _write_zip(self):
         try:
-            file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)    
+            file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
@@ -415,10 +415,10 @@ class ODSTab(TabbedDoc):
         os.unlink(self.content_xml)
         os.unlink(self.meta_xml)
         os.unlink(self.styles_xml)
-        
+
     def _write_styles_file(self):
         self.styles_xml = tempfile.mktemp()
-        
+
         try:
             self.f = open(self.styles_xml,"wb")
         except IOError as msg:
@@ -439,7 +439,7 @@ class ODSTab(TabbedDoc):
         self.f.write(_STYLES_STYLES)
         self.f.write(_STYLES_AUTOMATIC)
         self.f.write(_STYLES_MASTER)
-        
+
         self.f.write('</office:document-styles>\n')
         self.f.close()
 
@@ -450,7 +450,7 @@ class ODSTab(TabbedDoc):
 
     def end_page(self):
         self.f.write('</table:table>\n')
-        
+
     def _write_manifest(self):
         self.manifest_xml = tempfile.mktemp()
 
@@ -480,7 +480,7 @@ class ODSTab(TabbedDoc):
             raise ReportError(_("Could not create %s") % self.meta_xml)
 
         self.f = open(self.meta_xml,"w")
-        
+
         self.f.write(_META %
                 {'program': PROGRAM_NAME,
                  'version': VERSION,

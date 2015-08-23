@@ -315,7 +315,7 @@ class ProgressMeter(object):
 
 class SystemFonts(object):
     """
-    Define fonts available to Gramps    
+    Define fonts available to Gramps
 
     This is a workaround for bug which prevents the list_families method
     being called more than once.
@@ -323,7 +323,7 @@ class SystemFonts(object):
     The bug is described here: https://bugzilla.gnome.org/show_bug.cgi?id=679654
 
     This code generates a warning:
-    /usr/local/lib/python2.7/site-packages/gi/types.py:47: 
+    /usr/local/lib/python2.7/site-packages/gi/types.py:47:
     Warning: g_value_get_object: assertion `G_VALUE_HOLDS_OBJECT (value)' failed
 
     To get a list of fonts, instantiate this class and call
@@ -582,7 +582,7 @@ def edit_object(dbstate, uistate, reftype, ref):
                              "To edit the citation, close the source "
                              "editor and open an editor for the citation "
                              "alone")
-            
+
             from .dialog import WarningDialog
             WarningDialog(_("Cannot open new citation editor"),
                           blocked_text)
@@ -630,7 +630,7 @@ class AvailableUpdates(threading.Thread):
         if len(self.addon_update_list) > 0:
             GLib.idle_add(self.emit_update_available)
 
-def model_to_text(model, cols=None, treeiter=None, indent="", 
+def model_to_text(model, cols=None, treeiter=None, indent="",
                   level=None, sep=", "):
     """
     Given a model, return the text from the rows as a string.
@@ -656,20 +656,20 @@ def model_to_text(model, cols=None, treeiter=None, indent="",
         if model.iter_has_child(treeiter):
             childiter = model.iter_children(treeiter)
             if level is not None:
-                text += model_to_text(model, cols, childiter, indent + (" " * 4), 
+                text += model_to_text(model, cols, childiter, indent + (" " * 4),
                                       level + 1, sep)
             else:
-                text += model_to_text(model, cols, childiter, indent + (" " * 4), 
+                text += model_to_text(model, cols, childiter, indent + (" " * 4),
                                       sep=sep)
         treeiter = model.iter_next(treeiter)
     return text
-        
+
 def text_to_clipboard(text):
     """
     Put any text into the clipboard
     """
     from gi.repository import Gdk
     from gi.repository import Gtk
-    clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+    clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
                                               Gdk.SELECTION_CLIPBOARD)
     clipboard.set_text(text, -1)

@@ -47,7 +47,7 @@ class RepoRefModel(Gtk.ListStore):
             self.append(row=[
                 repo.gramps_id,
                 repo.name,
-                ref.call_number, 
+                ref.call_number,
                 str(repo.get_type()),
                 ref.get_privacy(),
                 ref, ])

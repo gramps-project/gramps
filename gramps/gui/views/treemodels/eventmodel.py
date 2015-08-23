@@ -133,7 +133,7 @@ class EventModel(FlatBaseModel):
             value = get_participant_from_event(self.db, data[COLUMN_HANDLE])
             self.set_cached_value(handle, "PARTICIPANT", value)
         return value
-        
+
     def column_place(self,data):
         if data[COLUMN_PLACE]:
             cached, value = self.get_cached_value(data[0], "PLACE")
@@ -174,7 +174,7 @@ class EventModel(FlatBaseModel):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-            
+
         return ''
 
     def column_private(self, data):
@@ -183,7 +183,7 @@ class EventModel(FlatBaseModel):
         else:
             # There is a problem returning None here.
             return ''
-    
+
     def sort_change(self,data):
         return "%012x" % data[COLUMN_CHANGE]
 
@@ -200,7 +200,7 @@ class EventModel(FlatBaseModel):
             value = self.db.get_tag_from_handle(tag_handle).get_name()
             self.set_cached_value(tag_handle, "TAG_NAME", value)
         return value
-        
+
     def column_tag_color(self, data):
         """
         Return the tag color.

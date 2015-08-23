@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"""Html and Html format management for the different reports 
+"""Html and Html format management for the different reports
 """
 
 #------------------------------------------------------------------------
@@ -59,13 +59,13 @@ def process_spaces(intext, format):
     Function to process spaces in text lines for pre-formatted notes.
     line : text to process
     format : = 0 : Flowed, = 1 : Preformatted
-    
+
     If the text is pre-formatted (format==1), then leading spaces  (after ignoring XML)
     are replaced by alternating non-breaking spaces and ordinary spaces.
     After the first non-space character, single spaces are left
     but multiple spaces are replaced by alternating NBSP and space
     If the text is flowed, the text is unchanged.
-    
+
     Returns the processed text, and the number of significant
     (i.e. non-xml non-white-space) chars.
     """
@@ -74,7 +74,7 @@ def process_spaces(intext, format):
     NBSP=3
     XML=4
     SPACEHOLD=5
-    
+
     sigcount = 0
     state = NORMAL
     outtext = ""
@@ -129,7 +129,7 @@ def process_spaces(intext, format):
                     outtext += " "+char
                     sigcount += 1
                     state = NORMAL
-    
+
     else:
     # format == 0 flowed
         for char in intext:
@@ -159,7 +159,7 @@ class HtmlBackend(DocBackend):
     Contrary to other backends, we do not write to file but to a Html object
     instead, writing out the file on close.
     """
-    
+
     STYLETAG_TO_PROPERTY = {
         DocBackend.FONTCOLOR : 'color:%s;',
         DocBackend.HIGHLIGHT : 'background-color:%s;',
@@ -176,18 +176,18 @@ class HtmlBackend(DocBackend):
             DocBackend.FONTSIZE,
             DocBackend.FONTCOLOR,
             DocBackend.HIGHLIGHT,
-            DocBackend.SUPERSCRIPT, 
+            DocBackend.SUPERSCRIPT,
             DocBackend.LINK,
             ]
 
     STYLETAG_MARKUP = {
         DocBackend.BOLD        : ("<strong>", "</strong>"),
         DocBackend.ITALIC      : ("<em>", "</em>"),
-        DocBackend.UNDERLINE   : ('<span style="text-decoration:underline;">', 
+        DocBackend.UNDERLINE   : ('<span style="text-decoration:underline;">',
                                     "</span>"),
         DocBackend.SUPERSCRIPT : ("<sup>", "</sup>"),
     }
-    
+
     ESCAPE_FUNC = lambda self: escape
 
     def __init__(self, filename=None):
@@ -201,7 +201,7 @@ class HtmlBackend(DocBackend):
         self._subdir = None
         self.title = None
         self.build_link = None
-        
+
     def _create_xmltag(self, tagtype, value):
         """
         overwrites the method in DocBackend
@@ -218,7 +218,7 @@ class HtmlBackend(DocBackend):
             #fonts can have strange symbols in them, ' needs to be escaped
             value = value.replace("'", "\\'") if value else ""
         return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
-                                       (value)), 
+                                       (value)),
                 '</span>')
 
     def _checkfilename(self):
@@ -226,7 +226,7 @@ class HtmlBackend(DocBackend):
         Check to make sure filename satisfies the standards for this filetype
         """
         fparts = os.path.basename(self._filename).split('.')
-        if not len(fparts) >= 2 and not (fparts[-1] == 'html' or 
+        if not len(fparts) >= 2 and not (fparts[-1] == 'html' or
                 fparts[-1] == 'htm' or fparts[-1] == 'php'):
             self._filename = self._filename + ".htm"
         fparts = os.path.basename(self._filename).split('.')
@@ -252,7 +252,7 @@ class HtmlBackend(DocBackend):
         except:
             raise ReportError(_("Could not create %s") %
                                      self._filename)
-        if not os.path.isdir(self.datadirfull()): 
+        if not os.path.isdir(self.datadirfull()):
             try:
                 os.mkdir(self.datadirfull())
             except IOError as msg:
@@ -274,20 +274,20 @@ class HtmlBackend(DocBackend):
         """ write to the html page. One can pass a html object, or a string
         """
         self.html_body += obj
-        
+
     def close(self):
         """
         write out the html to the page
         """
         self.html_page.write(self.__write, indent='  ')
         DocBackend.close(self)
-    
+
     def datadir(self):
         """
         the directory where to save extra files
         """
         return self._subdir
-    
+
     def datadirfull(self):
         """
         full path of the datadir directory
@@ -309,6 +309,6 @@ class HtmlBackend(DocBackend):
                     return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
             else:
                 return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
-        return ('<a href="%s">' % self.ESCAPE_FUNC()(value), 
+        return ('<a href="%s">' % self.ESCAPE_FUNC()(value),
                 '</a>')
-        
+

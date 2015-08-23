@@ -128,7 +128,7 @@ class Information(ManagedWindow):
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
         self.show()
-        
+
     def on_ok_clicked(self, obj):
         self.window.close()
 
@@ -148,7 +148,7 @@ class DbManager(CLIDbManager):
                }
 
     ERROR = ErrorDialog
-        
+
     def __init__(self, uistate, dbstate, parent=None):
         """
         Create the top level window from the glade description, and extracts
@@ -179,7 +179,7 @@ class DbManager(CLIDbManager):
 
     def __connect_signals(self):
         """
-        Connects the signals to the buttons on the interface. 
+        Connects the signals to the buttons on the interface.
         """
         ddtarget = DdTargets.URI_LIST
         self.top.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
@@ -205,7 +205,7 @@ class DbManager(CLIDbManager):
 
     def __button_press(self, obj, event):
         """
-        Checks for a double click event. In the tree view, we want to 
+        Checks for a double click event. In the tree view, we want to
         treat a double click as if it was OK button press. However, we have
         to make sure that an item was selected first.
         """
@@ -228,7 +228,7 @@ class DbManager(CLIDbManager):
 
     def __selection_changed(self, selection):
         """
-        Called when the selection is changed in the TreeView. 
+        Called when the selection is changed in the TreeView.
         """
         self.__update_buttons(selection)
 
@@ -240,7 +240,7 @@ class DbManager(CLIDbManager):
         buttons are disabled, and the Open button is disabled if the
         row represents a open database.
         """
-            
+
         # Get the current selection
         store, node = selection.get_selected()
 
@@ -253,7 +253,7 @@ class DbManager(CLIDbManager):
             self.repair.set_sensitive(False)
             self.remove.set_sensitive(False)
             return
-        
+
         path = self.model.get_path(node)
         if path is None:
             return
@@ -278,7 +278,7 @@ class DbManager(CLIDbManager):
             self.repair.set_sensitive(os.path.isfile(backup))
         else:
             self.repair.set_sensitive(False)
-            
+
         self.rename.set_sensitive(True)
         self.info.set_sensitive(True)
         self.remove.set_sensitive(True)
@@ -297,7 +297,7 @@ class DbManager(CLIDbManager):
         'edited' signal, so that we can change the name when the user changes
         the column.
 
-        The last accessed column simply displays the last time famtree was 
+        The last accessed column simply displays the last time famtree was
         opened.
         """
 
@@ -307,7 +307,7 @@ class DbManager(CLIDbManager):
         render.connect('edited', self.__change_name)
         render.connect('editing-canceled', self.__stop_edit)
         render.connect('editing-started', self.__start_edit)
-        self.column = Gtk.TreeViewColumn(_('Family Tree name'), render, 
+        self.column = Gtk.TreeViewColumn(_('Family Tree name'), render,
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_sort_indicator(True)
@@ -318,7 +318,7 @@ class DbManager(CLIDbManager):
 
         # build the icon column
         render = Gtk.CellRendererPixbuf()
-        #icon_column = Gtk.TreeViewColumn(_('Status'), render, 
+        #icon_column = Gtk.TreeViewColumn(_('Status'), render,
                                          #icon_name=ICON_COL)
         icon_column = Gtk.TreeViewColumn(_('Status'), render)
         icon_column.set_cell_data_func(render, bug_fix)
@@ -336,7 +336,7 @@ class DbManager(CLIDbManager):
         """
         self._populate_cli()
         self._populate_model()
-        
+
     def _populate_model(self):
         """
         Builds the display model.
@@ -382,7 +382,7 @@ class DbManager(CLIDbManager):
                 # don't open a locked file
                 if store.get_value(node, ICON_COL) == 'gramps-lock':
                     self.__ask_to_break_lock(store, node)
-                    continue 
+                    continue
                 # don't open a version
                 if len(store.get_path(node).get_indices()) > 1:
                     continue
@@ -455,9 +455,9 @@ class DbManager(CLIDbManager):
     def __change_name(self, renderer_sel, path, new_text):
         """
         Change the name of the database. This is a callback from the
-        column, which has been marked as editable. 
+        column, which has been marked as editable.
 
-        If the new string is empty, do nothing. Otherwise, renaming the	
+        If the new string is empty, do nothing. Otherwise, renaming the
         database is simply changing the contents of the name file.
         """
         #path is a string, convert to TreePath first
@@ -471,13 +471,13 @@ class DbManager(CLIDbManager):
                     self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
-        
+
         self.name_renderer.set_property('editable', False)
         self.__update_buttons(self.selection)
 
     def __rename_revision(self, path, new_text):
         """
-        Renames the RCS revision using the rcs command. The rcs command 
+        Renames the RCS revision using the rcs command. The rcs command
         is in the format of:
 
            rcs -mREV:NEW_NAME archive
@@ -517,7 +517,7 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            DbManager.ERROR(_("Could not rename the Family Tree."), 
+            DbManager.ERROR(_("Could not rename the Family Tree."),
                   _("Family Tree already exists, choose a unique name."))
             return
         old_text, new_text = self.rename_database(filename, new_text)
@@ -547,24 +547,24 @@ class DbManager(CLIDbManager):
             self.__checkout_copy(parent_name, name, revision, db_path)
         else:
             base_path = self.dbstate.db.get_save_path()
-            archive = os.path.join(base_path, ARCHIVE) 
+            archive = os.path.join(base_path, ARCHIVE)
             check_in(self.dbstate.db, archive, User(), self.__start_cursor)
             self.__end_cursor()
 
         self.__populate()
-        
+
     def __checkout_copy(self, parent_name, name, revision, db_path):
         """
         Create a new database, then extracts a revision from RCS and
         imports it into the db
         """
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
-        
+
         self.__start_cursor(_("Extracting archive..."))
 
         dbase = self.dbstate.make_database("bsddb")
         dbase.load(new_path, None)
-        
+
         self.__start_cursor(_("Importing archive..."))
         check_out(dbase, revision, db_path, User())
         self.__end_cursor()
@@ -590,7 +590,7 @@ class DbManager(CLIDbManager):
             parent = store[(path[0],)][0]
             QuestionDialog(
                 _("Remove the '%(revision)s' version of '%(database)s'") % {
-                    'revision' : rev, 
+                    'revision' : rev,
                     'database' : parent
                     },
                 _("Removing this version will prevent you from "
@@ -609,7 +609,7 @@ class DbManager(CLIDbManager):
         # active database
         if self.data_to_delete[PATH_COL] == self.active:
             self.dbstate.no_database()
-            
+
         store, node = self.selection.get_selected()
         path = store.get_path(node)
         node = self.model.get_iter(path)
@@ -629,7 +629,7 @@ class DbManager(CLIDbManager):
                             str(msg))
         # rebuild the display
         self.__populate()
-            
+
     def __really_delete_version(self):
         """
         Delete the selected database. If the database is open, close it first.
@@ -657,10 +657,10 @@ class DbManager(CLIDbManager):
 
         # rebuild the display
         self.__populate()
-            
+
     def __rename_db(self, obj):
         """
-        Start the rename process by calling the start_editing option on 
+        Start the rename process by calling the start_editing option on
         the line with the cursor.
         """
         store, node = self.selection.get_selected()
@@ -681,12 +681,12 @@ class DbManager(CLIDbManager):
 
     def __repair_db(self, obj):
         """
-        Start the repair process by calling the start_editing option on 
+        Start the repair process by calling the start_editing option on
         the line with the cursor.
         """
         store, node = self.selection.get_selected()
         dirname = store[node][1]
-        
+
         #First ask user if he is really sure :-)
         yes_no = QuestionDialog2(
             _("Repair Family Tree?"),
@@ -727,11 +727,11 @@ class DbManager(CLIDbManager):
         prompt = yes_no.run()
         if not prompt:
             return
-        
+
         opened = store[node][OPEN_COL]
         if opened:
             self.dbstate.no_database()
-        
+
         # delete files that are not backup files or the .txt file
         for filename in os.listdir(dirname):
             if os.path.splitext(filename)[1] not in (".gbkp", ".txt"):
@@ -746,7 +746,7 @@ class DbManager(CLIDbManager):
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))
-        
+
         try:
             dbase.restore()
         except DbException as msg:
@@ -778,7 +778,7 @@ class DbManager(CLIDbManager):
     def __new_db(self, obj):
         """
         Callback wrapper around the actual routine that creates the
-        new database. Catch OSError and IOError and display a warning 
+        new database. Catch OSError and IOError and display a warning
         message.
         """
         self.new.set_sensitive(False)
@@ -799,7 +799,7 @@ class DbManager(CLIDbManager):
                                                  create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
-        node = self.model.append(None, [title, new_path, path_name, 
+        node = self.model.append(None, [title, new_path, path_name,
                                         last, tval, False, ''])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
@@ -807,7 +807,7 @@ class DbManager(CLIDbManager):
         self.dblist.set_cursor(path, self.column, True)
         return new_path, title
 
-    def __drag_data_received(self, widget, context, xpos, ypos, selection, 
+    def __drag_data_received(self, widget, context, xpos, ypos, selection,
                              info, rtime):
         """
         Handle the reception of drag data
@@ -860,7 +860,7 @@ def find_revisions(name):
     date_str = ""
     rev_str = ""
     com_str = ""
-    
+
     get_next = False
     if os.path.isfile(name):
         for line in proc.stdout:
@@ -875,7 +875,7 @@ def find_revisions(name):
             if match:
                 date_str = time.strftime('%x %X',
                         time.strptime(match.groups()[0], '%Y-%m-%d %H:%M:%S'))
-                
+
                 get_next = True
                 continue
             if get_next:
@@ -908,7 +908,7 @@ def check_out(dbase, rev, path, user):
             _("An attempt to retrieve the data failed "
               "with the following message:\n\n%s") % message
             )
-        return 
+        return
 
     pmgr = GuiPluginManager.get_instance()
     for plugin in pmgr.get_import_plugins():
@@ -926,7 +926,7 @@ def check_in(dbase, filename, user, cursor_func = None):
     init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"Gramps database"' ]
     ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
     archive_name = filename + ",v"
-    
+
     glade = Glade(toplevel='comment')
     top = glade.toplevel
     text = glade.get_object('description')
@@ -942,7 +942,7 @@ def check_in(dbase, filename, user, cursor_func = None):
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
         del proc
-        
+
         if status != 0:
             ErrorDialog(
                 _("Archiving failed"),
@@ -952,7 +952,7 @@ def check_in(dbase, filename, user, cursor_func = None):
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
-        
+
     plugin_manager = GuiPluginManager.get_instance()
     for plugin in plugin_manager.get_export_plugins():
         if plugin.get_extension() == "gramps":
@@ -961,9 +961,9 @@ def check_in(dbase, filename, user, cursor_func = None):
 
     if cursor_func:
         cursor_func(_("Saving archive..."))
-        
+
     cmd = ci_cmd + ['-m%s' % comment, filename, archive_name ]
-    proc = subprocess.Popen(cmd, 
+    proc = subprocess.Popen(cmd,
                             stderr = subprocess.PIPE)
 
     status = proc.wait()
@@ -981,7 +981,7 @@ def check_in(dbase, filename, user, cursor_func = None):
 def bug_fix(column, renderer, model, iter_, data):
     """
     Cell data function to set the status column.
-    
+
     There is a bug in pygobject which prevents us from setting a value to
     None using the TreeModel set_value method.  Instead we set it to an empty
     string and convert it to None here.

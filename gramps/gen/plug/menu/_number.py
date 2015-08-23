@@ -37,7 +37,7 @@ from . import Option
 #-------------------------------------------------------------------------
 class NumberOption(Option):
     """
-    This class describes an option that is a simple number with defined maximum 
+    This class describes an option that is a simple number with defined maximum
     and minimum values.
     """
     def __init__(self, label, value, min_val, max_val, step = 1):
@@ -63,27 +63,27 @@ class NumberOption(Option):
         self.__min = min_val
         self.__max = max_val
         self.__step = step
-    
+
     def get_min(self):
         """
         Get the minimum value for this option.
-        
+
         :return: an int that represents the minimum value for this option.
         """
         return self.__min
-    
+
     def get_max(self):
         """
         Get the maximum value for this option.
-        
+
         :return: an int that represents the maximum value for this option.
         """
         return self.__max
-    
+
     def get_step(self):
         """
         Get the step size for this option.
-        
+
         :return: an int that represents the step size for this option.
         """
         return self.__step

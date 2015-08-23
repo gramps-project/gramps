@@ -40,7 +40,7 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
     context["tviews"] = _("Tags")
     context["action"] = "view"
     view_template = "view_tag_detail.html"
-    
+
     if handle == "add":
         act = "add"
     if "action" in request.POST:
@@ -51,11 +51,11 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
         tag = Tag()
         tagform = TagForm(instance=tag)
         tagform.model = tag
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         tag = Tag.objects.get(handle=handle)
         tagform = TagForm(instance=tag)
         tagform.model = tag
-    elif act == "save": 
+    elif act == "save":
         tag = Tag.objects.get(handle=handle)
         tagform = TagForm(request.POST, instance=tag)
         tagform.model = tag
@@ -65,7 +65,7 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         tag = Tag(handle=create_id())
         tagform = TagForm(request.POST, instance=tag)
         tagform.model = tag
@@ -82,7 +82,7 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         tag = Tag.objects.get(handle=handle)
         tag.delete()
         return redirect("/tag/")
@@ -93,5 +93,5 @@ def process_tag(request, context, handle, act, add_to=None): # view, edit, save
     context["object"] = tag
     context["tag"] = tag
     context["action"] = act
-    
+
     return render_to_response(view_template, context)

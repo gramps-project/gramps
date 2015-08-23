@@ -33,7 +33,7 @@ usage_note="""
   Testing (and runing) Gramps requires that PYTHONPATH include
   the path to the top Gramps directory (where gramps.py resides).
 
-  For example, in bash, a shell export would look like 
+  For example, in bash, a shell export would look like
     export PYTHONPATH=/.../src
   with the ... filled in appropriately.
   **************************************************************
@@ -45,8 +45,8 @@ usage_note="""
 # strongly advised to test this module to 100% coverage,
 # and in all calling variations, eg:
 #  run directly, from this dir with and without ./ prefix
-#  run from other dirs (with path prefix) 
-#  run from within regrtest.py 
+#  run from other dirs (with path prefix)
+#  run from within regrtest.py
 #  run from regrtest.py with other test modules present
 #    which use the test_util module itself
 #
@@ -57,16 +57,16 @@ try:
     ##here = tu.absdir()
 except ImportError:
     print("Cannot import 'test_util' from package 'test'" + usage_note)
-    exit(1) 
+    exit(1)
 
 
 # grouping into multiple TestCases (classes) is not required,
-# but may be useful for various reasons, such as collecting 
-# tests that share a setUp/tearDown mechanism or that share 
+# but may be useful for various reasons, such as collecting
+# tests that share a setUp/tearDown mechanism or that share
 # some test data, or just because they're related.
 #
 # The test function name should not have docstrings, but should
-# have names which add to the value of failure reporting, and 
+# have names which add to the value of failure reporting, and
 # which make it easy to find them within the source.
 
 
@@ -98,12 +98,12 @@ class Test2(U.TestCase):
         e = os.path.basename(__file__).rstrip(".co")   # eg in *.py[co]
         g = os.path.basename(tu._caller_context()[0]).rstrip('co')
         self.assertEqual(g,e, tu.msg(g,e, "_caller_context"))
-  
+
     def test2b_absdir(self):
         here = tu.absdir();
         g=tu.absdir(__file__)
         self.assertEqual(g, here, tu.msg(g, here, "absdir"))
-  
+
     def test2c_path_append_parent(self):
         here = tu.absdir();
         par = os.path.dirname(here)
@@ -112,7 +112,7 @@ class Test2(U.TestCase):
             while par in sys.path:
                 sys.path.remove(par)
         np = len(sys.path)
-        
+
         for p in (None, __file__):
             self.assertFalse(par in sys.path, "par not in initial path")
             if not p:
@@ -141,7 +141,7 @@ class Test3(U.TestCase):
         for sub in self.asubs:
             if os.path.isdir(sub):
                 shutil.rmtree(sub)
-  
+
     def setUp(self):
         self._rmsubs()
         if self.home and not os.path.isdir(self.home_junk):
@@ -158,7 +158,7 @@ class Test3(U.TestCase):
             b,d = os.path.dirname(sub), os.path.basename(sub)
             md = tu.make_subdir(d, b)
             self.assertTrue(os.path.isdir(sub), "made dir %r" % sub)
-            self.assertEqual(md,sub, tu.msg(md,sub, 
+            self.assertEqual(md,sub, tu.msg(md,sub,
                 "make_subdir returns path"))
 
             s2 = os.path.join(sub,"sub2")
@@ -169,7 +169,7 @@ class Test3(U.TestCase):
             open(f,"w").write("testing..")
             self.assertTrue(os.path.isfile(f), "file %r exists" % f)
             tu.delete_tree(sub)
-            self.assertFalse(os.path.isdir(sub), 
+            self.assertFalse(os.path.isdir(sub),
                 "delete_tree removes subdir %r" % sub )
 
     def test3b_delete_tree_constraint(self):
@@ -179,7 +179,7 @@ class Test3(U.TestCase):
                 tu.delete_tree(self.home_junk)
             except tu.TestError as e:
                 err = e.value
-            self.assertFalse(err is None, 
+            self.assertFalse(err is None,
                 "deltree on %r raises TestError" % (self.home_junk))
         else:
             self.fail("Skip deltree constraint test, no '$HOME' var")
@@ -202,7 +202,7 @@ class Test4(U.TestCase):
             logging.error(emsg)
             ll = tl.logfile_getlines()
             nl = len(ll)
-            self.assertEquals(nl,3, 
+            self.assertEquals(nl,3,
                 tu.msg(nl,3, "pass %d: expected line count" % i))
             #del tl
 

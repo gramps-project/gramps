@@ -89,7 +89,7 @@ class GrampsQML(object):
         else:
             # open without fam tree loaded
             self.vm.post_init_interface()
-        
+
         #start the QT loop
         self.app.exec_()
 
@@ -104,14 +104,14 @@ def startqml(errors, argparser):
     First action inside the gtk loop
     """
     from guiQML.questiondialog import ErrorDialog, run_dialog_standalone
-    
+
     #handle first existing errors in GUI fashion
     if errors:
         run_dialog_standalone(ErrorDialog,errors[0], errors[1])
         sys.exit()
 
     if argparser.errors:
-        run_dialog_standalone(ErrorDialog, argparser.errors[0], 
+        run_dialog_standalone(ErrorDialog, argparser.errors[0],
                               argparser.errors[1])
         sys.exit()
 

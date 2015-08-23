@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -33,7 +33,7 @@ try:
         from unittest.mock import Mock, patch
 
     MOCKING = True
-    
+
 except:
     MOCKING = False
     print ("Mocking disabled", sys.exc_info()[0:2])
@@ -45,9 +45,9 @@ class TestUser_prompt(unittest.TestCase):
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_runs_QuestionDialog2(self):
         with patch('gramps.gui.user.QuestionDialog2') as MockQD:
-            self.user.prompt(TestUser.TITLE, TestUser.MSG, 
+            self.user.prompt(TestUser.TITLE, TestUser.MSG,
                              TestUser.ACCEPT, TestUser.REJECT, None)
-        MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG, 
+        MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG,
                                        TestUser.ACCEPT, TestUser.REJECT, None)
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...

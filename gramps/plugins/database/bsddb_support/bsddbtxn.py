@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -81,7 +81,7 @@ class BSDDBTxn(object):
         if self.txn:
             self.commit()
         return True
-        
+
     # Methods implementing txn_ methods in DBEnv
 
     def begin(self, *args, **kwargs):
@@ -183,7 +183,7 @@ class BSDDBTxn(object):
         self.db.delete(key, txn or self.txn, **kwargs)
 
 # test code
-if __name__ == "__main__": 
+if __name__ == "__main__":
     print("1")
     from bsddb3 import db, dbshelve
     print("2")

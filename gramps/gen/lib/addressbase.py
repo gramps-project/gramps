@@ -43,9 +43,9 @@ class AddressBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize a AddressBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a AddressBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
@@ -63,7 +63,7 @@ class AddressBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -110,7 +110,7 @@ class AddressBase(object):
     def remove_address(self, address):
         """
         Remove the specified :class:`~.address.Address` instance from the address list.
-        
+
         If the instance does not exist in the list, the operation has
         no effect.
 
@@ -142,7 +142,7 @@ class AddressBase(object):
         """
         Assign the passed list to the object's list of
         :class:`~.address.Address` instances.
-        
+
         :param address_list: List of :class:`~.address.Address` instances to be
                              associated with the object
         :type address_list: list

@@ -44,15 +44,15 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 
-    
+
 class MenuItemWithData(Gtk.MenuItem):
-    """ A MenuItem that stores a data property. As set_data in GTK3 is not 
+    """ A MenuItem that stores a data property. As set_data in GTK3 is not
     working, this is a workaround to have set_data"""
     data = GObject.Property(type=object)
 
     def __init__(self, label=''):
         GObject.GObject.__init__(self, label=label)
-    
+
     def set_data(self, data):
         self.data = data
 

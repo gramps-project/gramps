@@ -109,28 +109,28 @@ def set_font_families():
     """Set the used font families depending on availability.
     """
     global font_families
-    
-    fonts = SystemFonts()        
+
+    fonts = SystemFonts()
     family_names = fonts.get_system_fonts()
-    
+
     fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
     if len(fam) == len(_TTF_FREEFONT):
         font_families = _TTF_FREEFONT
         log.debug('Using FreeFonts: %s' % font_families)
         return
-    
+
     fam = [f for f in _MS_TTFONT.values() if f in family_names]
     if len(fam) == len(_MS_TTFONT):
         font_families = _MS_TTFONT
         log.debug('Using MS TrueType fonts: %s' % font_families)
         return
-    
+
     fam = [f for f in _GNOME_FONT.values() if f in family_names]
     if len(fam) == len(_GNOME_FONT):
         font_families = _GNOME_FONT
         log.debug('Using Gnome fonts: %s' % font_families)
         return
-    
+
     log.debug('No fonts found.')
 
 set_font_families()
@@ -143,26 +143,26 @@ set_font_families()
 
 def fontstyle_to_fontdescription(font_style):
     """Convert a FontStyle instance to a Pango.FontDescription one.
-    
+
     Font color and underline are not implemented in Pango.FontDescription,
     and have to be set with Pango.Layout.set_attributes(attrlist) method.
-    
+
     """
     if font_style.get_bold():
         f_weight = Pango.Weight.BOLD
     else:
         f_weight = Pango.Weight.NORMAL
-        
+
     if font_style.get_italic():
         f_style = Pango.Style.ITALIC
     else:
         f_style = Pango.Style.NORMAL
-        
+
     font_description = Pango.FontDescription(font_families[font_style.face])
     font_description.set_size(int(round(font_style.get_size() * Pango.SCALE)))
     font_description.set_weight(f_weight)
     font_description.set_style(f_style)
-    
+
     return font_description
 
 def tabstops_to_tabarray(tab_stops, dpi):
@@ -170,11 +170,11 @@ def tabstops_to_tabarray(tab_stops, dpi):
     """
     tab_array = Pango.TabArray.new(initial_size=len(tab_stops),
                                             positions_in_pixels=False)
-    
+
     for index in range(len(tab_stops)):
         location = tab_stops[index] * dpi * Pango.SCALE / 2.54
         tab_array.set_tab(index, Pango.TabAlign.LEFT, int(location))
-        
+
     return tab_array
 
 def raw_length(s):
@@ -194,16 +194,16 @@ def raw_length(s):
 ### Table row style
 ###
 ###------------------------------------------------------------------------
-        
+
 ##class RowStyle(list):
     ##"""Specifies the format of a table row.
-    
-    ##RowStyle extents the available styles in 
-    
+
+    ##RowStyle extents the available styles in
+
     ##The RowStyle contains the width of each column as a percentage of the
     ##width of the full row. Note! The width of the row is not known until
     ##divide() or draw() method is called.
-    
+
     ##"""
     ##def __init__(self):
         ##self.columns = []
@@ -213,21 +213,21 @@ def raw_length(s):
 
         ##@param columns: number of columns that should be used.
         ##@param type: int
-        
+
         ##"""
         ##self.columns = columns
 
     ##def get_columns(self):
         ##"""Return the number of columns.
         ##"""
-        ##return self.columns 
+        ##return self.columns
 
     ##def set_column_widths(self, clist):
         ##"""Set the width of all the columns at once.
-        
+
         ##@param clist: list of width of columns in % of the full row.
         ##@param tyle: list
-        
+
         ##"""
         ##self.columns = len(clist)
         ##for i in range(self.columns):
@@ -253,89 +253,89 @@ def raw_length(s):
 
 class FrameStyle(object):
     """Define the style properties of a Frame.
-    
+
     - width: Width of the frame in cm.
     - height: Height of the frame in cm.
     - align: Horizontal position to entire page.
              Available values: 'left','center', 'right'.
     - spacing: Tuple of spacing around the frame in cm. Order of values:
                (left, right, top, bottom).
-    
+
     """
     def __init__(self, width=0, height=0, align='left', spacing=(0, 0, 0, 0)):
         self.width = width
         self.height = height
         self.align = align
         self.spacing = spacing
-    
+
 #------------------------------------------------------------------------
 #
 # Document element classes
 #
 #------------------------------------------------------------------------
-        
+
 class GtkDocBaseElement(object):
     """Base of all document elements.
-    
+
     Support document element structuring and can render itself onto
     a Cairo surface.
-    
+
     There are two categories of methods:
       1. hierarchy building methods (add_child, get_children, set_parent,
          get_parent);
       2. rendering methods (divide, draw).
-      
+
     The hierarchy building methods generally don't have to be overridden in
     the subclass, while the rendering methods (divide, draw) must be
     implemented in the subclasses.
-    
+
     """
     _type = 'BASE'
     _allowed_children = []
-    
+
     def __init__(self, style=None):
         self._parent = None
         self._children = []
         self._style = style
-    
+
     def get_type(self):
         """Get the type of this element.
         """
         return self._type
-    
+
     def set_parent(self, parent):
         """Set the parent element of this element.
         """
         self._parent = parent
-        
+
     def get_parent(self):
         """Get the parent element of this element.
         """
         return self._parent
-    
+
     def add_child(self, element):
         """Add a child element.
-        
+
         Returns False if the child cannot be added (e.g. not an allowed type),
         or True otherwise.
-        
+
         """
         # check if it is an allowed child for this type
         if element.get_type() not in self._allowed_children:
             log.debug("%r is not an allowed child for %r" %
                       (element.__class__, self.__class__))
             return False
-        
+
         # append the child and set its parent
         self._children.append(element)
         element.set_parent(self)
         return True
-        
+
     def get_children(self):
         """Get the list of children of this element.
         """
         return self._children
-    
+
     def get_marks(self):
         """Get the list of index marks for this element.
         """
@@ -346,7 +346,7 @@ class GtkDocBaseElement(object):
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
         """Divide the element into two depending on available space.
-        
+
         @param layout: pango layout to write on
         @param type: Pango.Layout
         @param width: width of available space for this element
@@ -357,16 +357,16 @@ class GtkDocBaseElement(object):
         @param type: dots per inch
         @param dpi_y: the vertical resolution
         @param type: dots per inch
-        
+
         @return: the divided element, and the height of the first part
         @rtype: (GtkDocXXX-1, GtkDocXXX-2), device points
-        
+
         """
         raise NotImplementedError
-    
+
     def draw(self, cairo_context, pango_layout, width, dpi_x, dpi_y):
         """Draw itself onto a cairo surface.
-        
+
         @param cairo_context: context to draw on
         @param type: cairo.Context class
         @param pango_layout: pango layout to write on
@@ -376,31 +376,31 @@ class GtkDocBaseElement(object):
         @param dpi_x: the horizontal resolution
         @param type: dots per inch
         @param dpi_y: the vertical resolution
-        @param type: dots per inch        
-        
+        @param type: dots per inch
+
         @return: height of the element
         @rtype: device points
-        
+
         """
         raise NotImplementedError
-    
+
 class GtkDocDocument(GtkDocBaseElement):
     """The whole document or a page.
     """
     _type = 'DOCUMENT'
     _allowed_children = ['PARAGRAPH', 'PAGEBREAK', 'TABLE', 'IMAGE', 'FRAME',
                          'TOC', 'INDEX']
-    
+
     def draw(self, cairo_context, pango_layout, width, dpi_x, dpi_y):
-            
+
         x = y = elem_height = 0
-        
+
         for elem in self._children:
             cairo_context.translate(x, elem_height)
             elem_height = elem.draw(cairo_context, pango_layout,
                                     width, dpi_x, dpi_y)
             y += elem_height
-            
+
         return y
 
     def has_toc(self):
@@ -420,16 +420,16 @@ class GtkDocPagebreak(GtkDocBaseElement):
     """
     _type = 'PAGEBREAK'
     _allowed_children = []
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (None, None), 0
-    
+
 class GtkDocTableOfContents(GtkDocBaseElement):
     """Implement a table of contents.
     """
     _type = 'TOC'
     _allowed_children = []
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (self, None), 0
 
@@ -441,7 +441,7 @@ class GtkDocAlphabeticalIndex(GtkDocBaseElement):
     """
     _type = 'INDEX'
     _allowed_children = []
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         return (self, None), 0
 
@@ -453,10 +453,10 @@ class GtkDocParagraph(GtkDocBaseElement):
     """
     _type = 'PARAGRAPH'
     _allowed_children = []
-    
+
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2
-    
+
     def __init__(self, style, leader=None):
         GtkDocBaseElement.__init__(self, style)
 
@@ -466,18 +466,18 @@ class GtkDocParagraph(GtkDocBaseElement):
             self._style.set_tabs([-1 * self._style.get_first_indent()])
         else:
             self._text = ''
-            
+
         self._plaintext = None
         self._attrlist = None
-        
+
         self._marklist = []
-        
+
     def add_text(self, text):
         if self._plaintext is not None:
             raise PluginError('CairoDoc: text is already parsed.'
                             ' You cannot add text anymore')
         self._text = self._text + text
-    
+
     def add_mark(self, mark):
         """
         Add an index mark to this paragraph
@@ -504,25 +504,25 @@ class GtkDocParagraph(GtkDocBaseElement):
             self._plaintext = conv_to_unicode(plaintext, 'utf-8')
         else:
             self._plaintext = plaintext
-        
+
     def __set_attrlist(self, attrlist):
         """
         Internal method to allow for splitting of paragraphs
         """
         self._attrlist = attrlist
-    
+
     def __parse_text(self):
         """
-        Parse the markup text. This method will only do this if not 
+        Parse the markup text. This method will only do this if not
         done already
         """
         if self._plaintext is None:
             parse_ok, self._attrlist, self._plaintext, accel_char= \
                                 Pango.parse_markup(self._text, -1, '\000')
-        
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         self.__parse_text()
-        
+
         l_margin = self._style.get_left_margin() * dpi_x / 2.54
         r_margin = self._style.get_right_margin() * dpi_x / 2.54
         t_margin = self._style.get_top_margin() * dpi_y / 2.54
@@ -530,15 +530,15 @@ class GtkDocParagraph(GtkDocBaseElement):
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
         f_indent = self._style.get_first_indent() * dpi_x / 2.54
-        
+
         # calculate real width available for text
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
         layout.set_width(int(text_width * Pango.SCALE))
-        
+
         # set paragraph properties
-        layout.set_wrap(Pango.WrapMode.WORD_CHAR)        
+        layout.set_wrap(Pango.WrapMode.WORD_CHAR)
         layout.set_indent(int(f_indent * Pango.SCALE))
         layout.set_tabs(tabstops_to_tabarray(self._style.get_tabs(), dpi_x))
         #
@@ -553,7 +553,7 @@ class GtkDocParagraph(GtkDocBaseElement):
             layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
-            #We have a problem, in pango, justify works only on full lines, 
+            #We have a problem, in pango, justify works only on full lines,
             # and we need an alignment for the partial lines. We don't know
             # for justify what alignment the user wants however. We assume
             # here LEFT ...
@@ -567,32 +567,32 @@ class GtkDocParagraph(GtkDocBaseElement):
         #set line spacing based on font:
         spacing = font_style.get_size() * self.spacingfractionfont
         layout.set_spacing(int(round(spacing * Pango.SCALE)))
-        
+
         text_height = height - t_margin - 2 * v_padding
-        
+
         # calculate where to cut the paragraph
         layout.set_text(self._plaintext, -1)
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         line_count = layout.get_line_count()
         spacing = layout.get_spacing() / Pango.SCALE
-        
+
         # if all paragraph fits we don't need to cut
         if layout_height - spacing <= text_height:
             paragraph_height = layout_height + spacing +t_margin + (2 * v_padding)
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
             return (self, None), paragraph_height
-        
+
         # we need to cut paragraph:
-        
+
         # 1. if paragraph part of a cell, we do not divide if only small part,
         # of paragraph can be shown, instead move to next page
         if  line_count < 4 and self._parent._type == 'CELL':
             return (None, self), 0
-        
+
         lineiter = layout.get_iter()
-        
+
         linenr = 0
         linerange = lineiter.get_line_yrange()
         # 2. if nothing fits, move to next page without split
@@ -600,7 +600,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         if linerange[1] - linerange[0] + 2.*spacing \
                     > text_height * Pango.SCALE:
             return (None, self), 0
-        
+
         # 3. split the paragraph
         startheight = linerange[0]
         endheight = linerange[1]
@@ -638,9 +638,9 @@ class GtkDocParagraph(GtkDocBaseElement):
         #now recalculate the attrilist:
         newattrlist = layout.get_attributes().copy()
         newattrlist.filter(self.filterattr, index)
-        
+
 ##      GTK3 PROBLEM: get_iterator no longer available!!
-##      REFERENCES: 
+##      REFERENCES:
 ##          http://www.gramps-project.org/bugs/view.php?id=6208
 ##          https://bugzilla.gnome.org/show_bug.cgi?id=646788
 ##          workaround: https://github.com/matasbbb/pitivit/commit/da815339e5ce3631b122a72158ba9ffcc9ee4372
@@ -713,7 +713,7 @@ class GtkDocParagraph(GtkDocBaseElement):
 
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         self.__parse_text()
-        
+
         l_margin = self._style.get_left_margin() * dpi_x / 2.54
         r_margin = self._style.get_right_margin() * dpi_x / 2.54
         t_margin = self._style.get_top_margin() * dpi_y / 2.54
@@ -721,13 +721,13 @@ class GtkDocParagraph(GtkDocBaseElement):
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
         f_indent = self._style.get_first_indent() * dpi_x / 2.54
-        
+
         # calculate real width available for text
         text_width = width - l_margin - 2 * h_padding - r_margin
         if f_indent < 0:
             text_width -= f_indent
         layout.set_width(int(text_width * Pango.SCALE))
-        
+
         # set paragraph properties
         layout.set_wrap(Pango.WrapMode.WORD_CHAR)
         layout.set_indent(int(f_indent * Pango.SCALE))
@@ -744,7 +744,7 @@ class GtkDocParagraph(GtkDocBaseElement):
             layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
-            #We have a problem, in pango, justify works only on full lines, 
+            #We have a problem, in pango, justify works only on full lines,
             # and we need an alignment for the partial lines. We don't know
             # for justify what alignment the user wants however. We assume
             # here LEFT ...
@@ -761,7 +761,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_text(self._plaintext, -1)
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
-        
+
         # render the layout onto the cairo surface
         x = l_margin + h_padding
         if f_indent < 0:
@@ -770,7 +770,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         cr.move_to(x, t_margin + v_padding + spacing * 0.75)
         cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
         PangoCairo.show_layout(cr, layout)
-        
+
         # calculate the full paragraph height
         height = layout_height + spacing + t_margin + 2*v_padding + b_margin
 
@@ -791,7 +791,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         cr.set_line_width(1)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
-        
+
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(1.0, 0, 0)
@@ -801,19 +801,19 @@ class GtkDocParagraph(GtkDocBaseElement):
             cr.rectangle(l_margin, t_margin,
                          width-l_margin-r_margin, height-t_margin-b_margin)
             cr.stroke()
-        
+
         return height
-        
+
 class GtkDocTable(GtkDocBaseElement):
     """Implement a table.
     """
     _type = 'TABLE'
     _allowed_children = ['ROW']
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         #calculate real table width
         table_width = width * self._style.get_width() / 100
-        
+
         # calculate the height of each row
         table_height = 0
         row_index = 0
@@ -827,7 +827,7 @@ class GtkDocTable(GtkDocBaseElement):
             table_height += row_height
             row_index += 1
             height -= row_height
-            
+
         # divide the table if any row did not fit
         new_table = None
         if row_index < len(self._children):
@@ -836,15 +836,15 @@ class GtkDocTable(GtkDocBaseElement):
             new_table.add_child(r2)
             list(map(new_table.add_child, self._children[row_index+1:]))
             del self._children[row_index+1:]
-            
+
         return (self, new_table), table_height
-    
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         #calculate real table width
         table_width = width * self._style.get_width() / 100
         # TODO is a table always left aligned??
         table_height = 0
-        
+
         # draw all the rows
         for row in self._children:
             cr.save()
@@ -852,7 +852,7 @@ class GtkDocTable(GtkDocBaseElement):
             row_height = row.draw(cr, layout, table_width, dpi_x, dpi_y)
             cr.restore()
             table_height += row_height
-            
+
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(1.0, 0, 0)
@@ -887,11 +887,11 @@ class GtkDocTableRow(GtkDocBaseElement):
             else:
                 dividedrow = True
                 new_row.add_child(c2)
-        
+
         # save height [inch] of the row to be able to draw exact cell border
         row_height = max(cell_heights)
         self.height = row_height / dpi_y
-        
+
         # return the new row if dividing was needed
         if dividedrow:
             if row_height == 0:
@@ -902,7 +902,7 @@ class GtkDocTableRow(GtkDocBaseElement):
             return (self, new_row), row_height
         else:
             return (self, None), row_height
-    
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         cr.save()
 
@@ -925,7 +925,7 @@ class GtkDocTableRow(GtkDocBaseElement):
             cr.set_source_rgb(0, 0, 1.0)
             cr.rectangle(0, 0, width, row_height)
             cr.stroke()
-            
+
         return row_height
 
 class GtkDocTableCell(GtkDocBaseElement):
@@ -933,14 +933,14 @@ class GtkDocTableCell(GtkDocBaseElement):
     """
     _type = 'CELL'
     _allowed_children = ['PARAGRAPH', 'IMAGE']
-    
+
     def __init__(self, style, span=1):
         GtkDocBaseElement.__init__(self, style)
         self._span = span
 
     def get_span(self):
         return self._span
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
@@ -953,11 +953,11 @@ class GtkDocTableCell(GtkDocBaseElement):
         cell_height = 0
         new_cell = None
         e2 = None
-        
+
         childnr = 0
         for child in self._children:
             if new_cell is None:
-                (e1, e2), child_height = child.divide(layout, width, 
+                (e1, e2), child_height = child.divide(layout, width,
                                                 available_height, dpi_x, dpi_y)
                 cell_height += child_height
                 available_height -= child_height
@@ -975,31 +975,31 @@ class GtkDocTableCell(GtkDocBaseElement):
             else:
                 #cell has been divided
                 new_cell.add_child(child)
-        
+
         self._children = self._children[:childnr]
         # calculate real height
         if cell_height != 0:
             cell_height += 2 * v_padding
-        
+
         # a cell can't be divided, return the height
         return (self, new_cell), cell_height
-    
+
     def draw(self, cr, layout, width, cell_height, dpi_x, dpi_y):
         """Draw a cell.
-        
+
         This draw method is a bit different from the others, as common
         cell height of all cells in a row is also given as parameter.
         This is needed to be able to draw proper vertical borders around
         each cell, i.e. the border should be as long as the highest cell
         in the given row.
-        
+
         """
         h_padding = self._style.get_padding() * dpi_x / 2.54
         v_padding = self._style.get_padding() * dpi_y / 2.54
 
         # calculate real available width
         i_width = width - 2 * h_padding
-        
+
         # draw children
         cr.save()
         cr.translate(h_padding, v_padding)
@@ -1007,7 +1007,7 @@ class GtkDocTableCell(GtkDocBaseElement):
             child_height = child.draw(cr, layout, i_width, dpi_x, dpi_y)
             cr.translate(0, child_height)
         cr.restore()
-        
+
         # draw the borders
         if self._style.get_top_border():
             cr.move_to(0, 0)
@@ -1025,13 +1025,13 @@ class GtkDocTableCell(GtkDocBaseElement):
         cr.set_line_width(1)
         cr.set_source_rgb(0, 0, 0)
         cr.stroke()
-        
+
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(0, 1.0, 0)
             cr.rectangle(0, 0, width, cell_height)
             cr.stroke()
-            
+
         return cell_height
 
 class GtkDocPicture(GtkDocBaseElement):
@@ -1039,18 +1039,18 @@ class GtkDocPicture(GtkDocBaseElement):
     """
     _type = 'IMAGE'
     _allowed_children = []
-    
+
     def __init__(self, style, filename, width, height, crop=None):
         GtkDocBaseElement.__init__(self, style)
         self._filename = filename
         self._width = width
         self._height = height
         self._crop = crop
-    
+
     def divide(self, layout, width, height, dpi_x, dpi_y):
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
-        
+
         # image can't be divided, a new page must begin
         # if it can't fit on the current one
         if img_height <= height:
@@ -1062,28 +1062,28 @@ class GtkDocPicture(GtkDocBaseElement):
         from gi.repository import Gtk, Gdk
         img_width = self._width * dpi_x / 2.54
         img_height = self._height * dpi_y / 2.54
-        
+
         if self._style == 'right':
             l_margin = width - img_width
         elif self._style == 'center':
             l_margin = (width - img_width) / 2.0
         else:
             l_margin = 0
-        
+
         # load the image and get its extents
-        pixbuf = resize_to_buffer(self._filename, [img_width, img_height], 
+        pixbuf = resize_to_buffer(self._filename, [img_width, img_height],
                                   self._crop)
         pixbuf_width = pixbuf.get_width()
         pixbuf_height = pixbuf.get_height()
-        
+
         # calculate the scale to fit image into the set extents
         scale = min(img_width / pixbuf_width, img_height / pixbuf_height)
-        
+
         # draw the image
         cr.save()
         cr.translate(l_margin, 0)
         cr.scale(scale, scale)
-        Gdk.cairo_set_source_pixbuf(cr, pixbuf, 
+        Gdk.cairo_set_source_pixbuf(cr, pixbuf,
                               (img_width / scale - pixbuf_width) / 2,
                               (img_height / scale - pixbuf_height) / 2)
         cr.rectangle(0 , 0, img_width / scale, img_height / scale)
@@ -1094,7 +1094,7 @@ class GtkDocPicture(GtkDocBaseElement):
         ##cr.scale(scale, scale)
         cr.fill()
         cr.restore()
-        
+
         if DEBUG:
             cr.set_line_width(0.1)
             cr.set_source_rgb(1.0, 0, 0)
@@ -1114,7 +1114,7 @@ class GtkDocFrame(GtkDocBaseElement):
         frame_height = round(self._style.height * dpi_y / 2.54)
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
-        
+
         # frame can't be divided, a new page must begin
         # if it can't fit on the current one
         if frame_height + t_margin + b_margin <= height:
@@ -1131,7 +1131,7 @@ class GtkDocFrame(GtkDocBaseElement):
         r_margin = self._style.spacing[1] * dpi_x / 2.54
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
- 
+
         if self._style.align == 'left':
             x_offset = l_margin
         elif self._style.align == 'right':
@@ -1146,10 +1146,10 @@ class GtkDocFrame(GtkDocBaseElement):
         cr.translate(x_offset, t_margin)
         cr.rectangle(0, 0, frame_width, frame_height)
         cr.clip()
-        
+
         for elem in self._children:
             elem.draw(cr, layout, frame_width, dpi_x, dpi_y)
-        
+
         cr.restore()
 
         if DEBUG:
@@ -1159,7 +1159,7 @@ class GtkDocFrame(GtkDocBaseElement):
             cr.stroke()
 
         return frame_height + t_margin + b_margin
-    
+
 class GtkDocLine(GtkDocBaseElement):
     """Implement a line.
     """
@@ -1170,12 +1170,12 @@ class GtkDocLine(GtkDocBaseElement):
         GtkDocBaseElement.__init__(self, style)
         self._start = (x1, y1)
         self._end = (x2, y2)
-        
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         start = (self._start[0] * dpi_x / 2.54, self._start[1] * dpi_y / 2.54)
         end = (self._end[0] * dpi_x / 2.54, self._end[1] * dpi_y / 2.54)
         line_color = ReportUtils.rgb_color(self._style.get_color())
-        
+
         cr.save()
         cr.set_source_rgb(*line_color)
         cr.set_line_width(self._style.get_line_width())
@@ -1187,7 +1187,7 @@ class GtkDocLine(GtkDocBaseElement):
         cr.line_to(*end)
         cr.stroke()
         cr.restore()
-        
+
         return 0
 
 class GtkDocPolygon(GtkDocBaseElement):
@@ -1199,13 +1199,13 @@ class GtkDocPolygon(GtkDocBaseElement):
     def __init__(self, style, path):
         GtkDocBaseElement.__init__(self, style)
         self._path = path
-        
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         path = [(x * dpi_x / 2.54, y * dpi_y / 2.54) for (x, y) in self._path]
         path_start = path.pop(0)
         path_stroke_color = ReportUtils.rgb_color(self._style.get_color())
         path_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
-        
+
         cr.save()
         cr.move_to(*path_start)
         for (x, y) in path:
@@ -1221,9 +1221,9 @@ class GtkDocPolygon(GtkDocBaseElement):
             cr.set_dash(self._style.get_dash_style(line_style), 0)
         cr.stroke()
         cr.restore()
-        
+
         return 0
-    
+
 class GtkDocBox(GtkDocBaseElement):
     """Implement a box with optional shadow around it.
     """
@@ -1236,19 +1236,19 @@ class GtkDocBox(GtkDocBaseElement):
         self._y = y
         self._width = width
         self._height = height
-        
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         box_x = self._x * dpi_x / 2.54
         box_y = self._y * dpi_y / 2.54
         box_width = self._width * dpi_x / 2.54
         box_height = self._height * dpi_y / 2.54
-        
+
         box_stroke_color = ReportUtils.rgb_color((0, 0, 0))
         box_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
         shadow_color = ReportUtils.rgb_color((192, 192, 192))
-        
+
         cr.save()
-        
+
         cr.set_line_width(self._style.get_line_width())
         # TODO line style
         line_style = self._style.get_line_style()
@@ -1262,7 +1262,7 @@ class GtkDocBox(GtkDocBaseElement):
             cr.set_source_rgb(*shadow_color)
             cr.rectangle(shadow_x, shadow_y, box_width, box_height)
             cr.fill()
-            
+
         cr.rectangle(box_x, box_y, box_width, box_height)
         cr.set_source_rgb(*box_fill_color)
         cr.fill_preserve()
@@ -1270,9 +1270,9 @@ class GtkDocBox(GtkDocBaseElement):
         cr.stroke()
 
         cr.restore()
-        
+
         return 0
-        
+
 class GtkDocText(GtkDocBaseElement):
     """Implement a text on graphical reports.
     """
@@ -1281,7 +1281,7 @@ class GtkDocText(GtkDocBaseElement):
 
     # line spacing is not defined in ParagraphStyle
     spacingfractionfont = 0.2
-    
+
     def __init__(self, style, vertical_alignment, text, x, y,
                  angle=0, mark=None):
         GtkDocBaseElement.__init__(self, style)
@@ -1293,14 +1293,14 @@ class GtkDocText(GtkDocBaseElement):
         self._marklist = []
         if mark:
             self._marklist = [mark]
-        
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         text_x = self._x * dpi_x / 2.54
         text_y = self._y * dpi_y / 2.54
 
         # turn off text wrapping
         layout.set_width(-1)
-        
+
         # set paragraph properties
         align = self._style.get_alignment_text()
         if align == 'left':
@@ -1313,7 +1313,7 @@ class GtkDocText(GtkDocBaseElement):
             layout.set_justify(False)
             layout.set_alignment(Pango.Alignment.CENTER)
         elif align == 'justify':
-            #We have a problem, in pango, justify works only on full lines, 
+            #We have a problem, in pango, justify works only on full lines,
             # and we need an alignment for the partial lines. We don't know
             # for justify what alignment the user wants however. We assume
             # here CENTER ...
@@ -1350,7 +1350,7 @@ class GtkDocText(GtkDocBaseElement):
             align_y = - layout_height
         else:
             raise ValueError
-        
+
         # render the layout onto the cairo surface
         cr.save()
         cr.translate(text_x, text_y)
@@ -1375,31 +1375,31 @@ class GtkDocText(GtkDocBaseElement):
 #------------------------------------------------------------------------
 class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     """Act as an abstract document that can render onto a cairo context.
-    
+
     Maintains an abstract model of the document. The root of this abstract
     document is self._doc. The model is build via the subclassed BaseDoc, and
     the implemented TextDoc, DrawDoc interface methods.
-    
+
     It can render the model onto cairo context pages, according to the received
     page style.
-        
+
     """
-    
+
     # BaseDoc implementation
-    EXT = 'pdf' 
-    
+    EXT = 'pdf'
+
     def open(self, filename):
         fe = filename.split('.')
         if len(fe) == 1:
             filename = filename + '.' + self.EXT
         elif fe[-1] != self.EXT:
-            # NOTE: the warning will be bogus 
+            # NOTE: the warning will be bogus
             # if the EXT isn't properly overridden by derived class
             log.warn(_(
 """Mismatch between selected extension %(ext)s and actual format.
- Writing to %(filename)s in format %(impliedext)s.""") % 
-                {'ext' : fe[-1], 
-                 'filename' : filename, 
+ Writing to %(filename)s in format %(impliedext)s.""") %
+                {'ext' : fe[-1],
+                 'filename' : filename,
                  'impliedext' : self.EXT} )
         self._backend = CairoBackend(filename)
         self._doc = GtkDocDocument()
@@ -1407,77 +1407,77 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         self._pages = []
         self._elements_to_paginate = []
         self._links_error = False
-    
+
     def close(self):
         self.run()
 
     # TextDoc implementation
-    
+
     def page_break(self):
         self._active_element.add_child(GtkDocPagebreak())
 
     def start_bold(self):
         self.__write_text('<b>', markup=True)
-    
+
     def end_bold(self):
         self.__write_text('</b>', markup=True)
-    
+
     def start_superscript(self):
         self.__write_text('<small><sup>', markup=True)
-    
+
     def end_superscript(self):
         self.__write_text('</sup></small>', markup=True)
-    
+
     def start_paragraph(self, style_name, leader=None):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_paragraph_style(style_name)
-        
+
         new_paragraph = GtkDocParagraph(style, leader)
         self._active_element.add_child(new_paragraph)
         self._active_element = new_paragraph
-    
+
     def end_paragraph(self):
         self._active_element = self._active_element.get_parent()
-    
+
     def start_table(self, name, style_name):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_table_style(style_name)
-        
+
         new_table = GtkDocTable(style)
         self._active_element.add_child(new_table)
         self._active_element = new_table
-        
+
         # we need to remember the column width list from the table style.
         # this is an ugly hack, but got no better idea.
         self._active_row_style = list(map(style.get_column_width,
                                         list(range(style.get_columns()))))
-    
+
     def end_table(self):
         self._active_element = self._active_element.get_parent()
-    
+
     def start_row(self):
         new_row = GtkDocTableRow(self._active_row_style)
         self._active_element.add_child(new_row)
         self._active_element = new_row
-    
+
     def end_row(self):
         self._active_element = self._active_element.get_parent()
-    
+
     def start_cell(self, style_name, span=1):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_cell_style(style_name)
-        
+
         new_cell = GtkDocTableCell(style, span)
         self._active_element.add_child(new_cell)
         self._active_element = new_cell
-    
+
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the cairo doc. 
+        Convenience function to write a styledtext to the cairo doc.
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
@@ -1491,7 +1491,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
 
         s_tags = styledtext.get_tags()
         #FIXME: following split should be regex to match \n\s*\n instead?
-        markuptext = self._backend.add_markup_from_styled(text, s_tags, 
+        markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                           split='\n\n')
 
         if format == 1:
@@ -1514,12 +1514,12 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
                     newlines.append(' '.join(singleline.split()))
                 self.__write_text('\n'.join(newlines), markup=True, links=links)
                 self.end_paragraph()
-    
+
     def __markup(self, text, markup=None):
-        if not markup:            
+        if not markup:
             # We need to escape the text here for later Pango.Layout.set_markup
             # calls. This way we save the markup created by the report
-            # The markup in the note editor is not in the text so is not 
+            # The markup in the note editor is not in the text so is not
             # considered. It must be added by pango too
             text = self._backend.ESCAPE_FUNC()(text)
         return text
@@ -1528,7 +1528,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         """
         @param text: text to write.
         @param mark:  IndexMark to use for indexing
-        @param markup: True if text already contains markup info. 
+        @param markup: True if text already contains markup info.
                        Then text will no longer be escaped
         @param links:  True if URLs should be made clickable
         """
@@ -1564,12 +1564,12 @@ links (like ODF) and write PDF from that format.
         @param links:  True if URLs should be made clickable
         """
         self.__write_text(text, mark, links=links)
-    
+
     def write_markup(self, text, s_tags, mark=None):
         """
         Writes the text in the current paragraph.  Should only be used after a
-        start_paragraph and before an end_paragraph. 
-        
+        start_paragraph and before an end_paragraph.
+
         @param text: text to write. The text is assumed to be _not_ escaped
         @param s_tags:  assumed to be list of styledtexttags to apply to the
                         text
@@ -1577,8 +1577,8 @@ links (like ODF) and write PDF from that format.
         """
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(markuptext, mark=mark, markup=True)
-    
-    def add_media_object(self, name, pos, x_cm, y_cm, alt='', 
+
+    def add_media_object(self, name, pos, x_cm, y_cm, alt='',
                          style_name=None, crop=None):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm, crop=crop)
         self._active_element.add_child(new_image)
@@ -1610,23 +1610,23 @@ links (like ODF) and write PDF from that format.
         self._doc.add_child(GtkDocAlphabeticalIndex())
 
     # DrawDoc implementation
-    
+
     def start_page(self):
         # if this is not the first page we need to "close" the previous one
         children = self._doc.get_children()
         if children and children[-1].get_type() != 'PAGEBREAK':
             self._doc.add_child(GtkDocPagebreak())
-            
+
         new_frame_style = FrameStyle(width=self.get_usable_width(),
                                      height=self.get_usable_height())
         new_frame = GtkDocFrame(new_frame_style)
-        
+
         self._active_element.add_child(new_frame)
         self._active_element = new_frame
-    
+
     def end_page(self):
         self._active_element = self._active_element.get_parent()
-    
+
     def draw_line(self, style_name, x1, y1, x2, y2):
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_draw_style(style_name)
@@ -1640,7 +1640,7 @@ links (like ODF) and write PDF from that format.
 
         new_polygon = GtkDocPolygon(style, path)
         self._active_element.add_child(new_polygon)
-        
+
     def draw_box(self, style_name, text, x, y, w, h, mark=None):
         """ @param mark:  IndexMark to use for indexing """
         # we handle the box and...
@@ -1655,19 +1655,19 @@ links (like ODF) and write PDF from that format.
         if paragraph_style_name:
             paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
             paragraph_style.set_alignment(PARA_ALIGN_LEFT)
-            
+
             # horizontal position of the text is not included in the style,
             # we assume that it is the size of the shadow, or 0.2mm
             if style.get_shadow():
                 x_offset = style.get_shadow_space()
             else:
                 x_offset = 0.2
-                
-            new_text = GtkDocText(paragraph_style, 'center', 
+
+            new_text = GtkDocText(paragraph_style, 'center',
                                   self.__markup(text),
                                   x + x_offset, y + h / 2, angle=0, mark=mark)
             self._active_element.add_child(new_text)
-    
+
     def draw_text(self, style_name, text, x, y, mark=None):
         """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
@@ -1675,11 +1675,11 @@ links (like ODF) and write PDF from that format.
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_LEFT)
-        
-        new_text = GtkDocText(paragraph_style, 'top', 
+
+        new_text = GtkDocText(paragraph_style, 'top',
                               self.__markup(text), x, y, angle=0, mark=mark)
         self._active_element.add_child(new_text)
-        
+
     def center_text(self, style_name, text, x, y, mark=None):
         """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
@@ -1687,11 +1687,11 @@ links (like ODF) and write PDF from that format.
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
-        
-        new_text = GtkDocText(paragraph_style, 'top', 
+
+        new_text = GtkDocText(paragraph_style, 'top',
                               self.__markup(text), x, y, angle=0, mark=mark)
         self._active_element.add_child(new_text)
-    
+
     def rotate_text(self, style_name, text, x, y, angle, mark=None):
         """ @param mark:  IndexMark to use for indexing """
         style_sheet = self.get_style_sheet()
@@ -1699,20 +1699,20 @@ links (like ODF) and write PDF from that format.
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(PARA_ALIGN_CENTER)
-        
-        new_text = GtkDocText(paragraph_style, 'center', 
+
+        new_text = GtkDocText(paragraph_style, 'center',
                               self.__markup('\n'.join(text)), x, y, angle, mark)
         self._active_element.add_child(new_text)
-    
+
     # paginating and drawing interface
-    
+
     def run(self):
         """Create the physical output from the meta document.
-        
+
         It must be implemented in the subclasses. The idea is that with
         different subclass different output could be generated:
         e.g. Print, PDF, PS, PNG (which are currently supported by Cairo).
-        
+
         """
         raise NotImplementedError
 
@@ -1724,7 +1724,7 @@ links (like ODF) and write PDF from that format.
 
     def paginate(self, layout, page_width, page_height, dpi_x, dpi_y):
         """Paginate the meta document in chunks.
-        
+
         Only one document level element is handled at one run.
 
         """
@@ -1733,7 +1733,7 @@ links (like ODF) and write PDF from that format.
             self._elements_to_paginate = self._doc.get_children()[:]
             self._pages.append(GtkDocDocument())
             self._available_height = page_height
-        
+
         # try to fit the next element to current page, divide it if needed
         if not self._elements_to_paginate:
             #this is a self._doc where nothing has been added. Empty page.
@@ -1760,9 +1760,9 @@ links (like ODF) and write PDF from that format.
         if (e1 is None) or (e2 is not None):
             self._pages.append(GtkDocDocument())
             self._available_height = page_height
-        
+
         return len(self._elements_to_paginate) == 0
-        
+
     def draw_page(self, page_nr, cr, layout, width, height, dpi_x, dpi_y):
         """Draw a page on a Cairo context.
         """

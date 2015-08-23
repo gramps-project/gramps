@@ -214,7 +214,7 @@ class Tags(DbGUIElement):
             tag_menu += '<menuitem action="TAG_%s"/>' % handle
             actions.append(('TAG_%s' % handle, None, tag_name, None, None,
                          make_callback(self.tag_selected_rows, handle)))
-        
+
         self.tag_ui = TAG_1 + tag_menu + TAG_2 + tag_menu + TAG_3
 
         actions.append(('Tag', 'gramps-tag', _('Tag'), None, None, None))
@@ -224,10 +224,10 @@ class Tags(DbGUIElement):
                         self.cb_organize_tags))
         actions.append(('TagButton', 'gramps-tag', _('Tag'), None,
                         _('Tag selected rows'), self.cb_tag_button))
- 
+
         self.tag_action = ActionGroup(name='Tag')
         self.tag_action.add_actions(actions)
-        
+
     def cb_tag_button(self, action):
         """
         Display the popup menu when the toolbar button is clicked.
@@ -235,7 +235,7 @@ class Tags(DbGUIElement):
         menu = self.uistate.uimanager.get_widget('/TagPopup')
         button = self.uistate.uimanager.get_widget('/ToolBar/TagTool/TagButton')
         menu.popup(None, None, cb_menu_position, button, 0, 0)
-        
+
     def cb_organize_tags(self, action):
         """
         Display the Organize Tags dialog.
@@ -263,7 +263,7 @@ class Tags(DbGUIElement):
         selected = view.selected_handles()
         # Make the dialog modal so that the user can't start another
         # database transaction while the one setting tags is still running.
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
                 ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
         status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
                                           total_steps=len(selected),
@@ -293,7 +293,7 @@ def cb_menu_position(*args):
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
-    
+
     return (x_pos, y_pos, False)
 
 def make_callback(func, tag_handle):
@@ -372,7 +372,7 @@ class OrganizeTagsDialog(object):
 
         for row in sorted(tags):
             self.namemodel.add(row)
-        
+
     def _create_dialog(self):
         """
         Create a dialog box to organize tags.
@@ -390,7 +390,7 @@ class OrganizeTagsDialog(object):
         top.vbox.pack_start(label, 0, 0, 5)
         box = Gtk.Box()
         top.vbox.pack_start(box, 1, 1, 5)
-        
+
         name_titles = [('', NOSORT, 20, INTEGER), # Priority
                        ('', NOSORT, 100), # Handle
                        (_('Name'), NOSORT, 200),
@@ -466,10 +466,10 @@ class OrganizeTagsDialog(object):
         tag = self.db.get_tag_from_handle(store.get_value(iter_, 1))
         edit_dialog = EditTag(self.db, top, tag)
         edit_dialog.run()
-        
+
         store.set_value(iter_, 2, tag.get_name())
         store.set_value(iter_, 3, tag.get_color())
-        
+
     def cb_remove_clicked(self, button, top):
         """
         Remove the selected tag.
@@ -479,7 +479,7 @@ class OrganizeTagsDialog(object):
             return
         tag_handle = store.get_value(iter_, 1)
         tag_name = store.get_value(iter_, 2)
-    
+
         yes_no = QuestionDialog2(
             _("Remove tag '%s'?") % tag_name,
             _("The tag definition will be removed.  "
@@ -511,7 +511,7 @@ class OrganizeTagsDialog(object):
             links = [link for link in self.db.find_backlink_handles(tag_handle)]
             # Make the dialog modal so that the user can't start another
             # database transaction while the one removing tags is still running.
-            pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog, 
+            pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
                        ("", self.parent_window, Gtk.DialogFlags.MODAL), popup_time=2)
             status = progressdlg.LongOpStatus(msg=_("Removing Tags"),
                                               total_steps=len(links),
@@ -615,7 +615,7 @@ class EditTag(object):
         hbox.pack_start(label, False, False, 5)
         hbox.pack_start(self.entry, True, True, 5)
         hbox.pack_start(self.color, False, False, 5)
-        
+
         top.add_button(_('_OK'), Gtk.ResponseType.OK)
         top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         top.show_all()

@@ -27,7 +27,7 @@ class ValidatableMaskedEntry(Gtk.Entry):
 
 class UndoableEntry(Gtk.Entry):
     __gtype_name__ = 'UndoableEntry'
-    
+
 class StyledTextEditor(Gtk.TextView):
     __gtype_name__ = 'StyledTextEditor'
 

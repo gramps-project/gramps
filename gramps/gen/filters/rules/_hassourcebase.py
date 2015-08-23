@@ -43,8 +43,8 @@ class HasSourceBase(Rule):
     """Rule that checks for a source with a particular value"""
 
 
-    labels      = [ 'Title:', 
-                    'Author:', 
+    labels      = [ 'Title:',
+                    'Author:',
                     'Abbreviation:',
                     'Publication:' ]
     name        = 'Sources matching parameters'

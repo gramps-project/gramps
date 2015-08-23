@@ -61,7 +61,7 @@ class DocReportDialog(ReportDialog):
     def __init__(self, dbstate, uistate, option_class, name, trans_name):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
-        
+
         self.style_name = "default"
         self.firstpage_added = False
         self.CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
@@ -93,7 +93,7 @@ class DocReportDialog(ReportDialog):
         """Create a document of the type requested by the user.
         """
         pstyle = self.paper_frame.get_paper_style()
-        
+
         if self.doc_options:
             self.doc = self.format(self.selected_style, pstyle,
                                    self.doc_options)
@@ -102,7 +102,7 @@ class DocReportDialog(ReportDialog):
         if not self.format_menu.get_active_plugin().get_paper_used():
             #set css filename
             self.doc.set_css_filename(self.css_filename)
-        
+
         self.options.set_document(self.doc)
 
     def doc_type_changed(self, obj, preserve_tab=True):
@@ -142,7 +142,7 @@ class DocReportDialog(ReportDialog):
         if ext_val:
             fname = self.target_fileentry.get_full_path(0)
             (spath, ext) = os.path.splitext(fname)
-            
+
             fname = spath + "." + ext_val
             self.target_fileentry.set_filename(fname)
             self.target_fileentry.set_sensitive(True)
@@ -192,7 +192,7 @@ class DocReportDialog(ReportDialog):
                 base = "%s.%s" % (default_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
-                
+
     def setup_report_options_frame(self):
         self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),
                                       self.options.handler.get_paper_name(),
@@ -223,7 +223,7 @@ class DocReportDialog(ReportDialog):
         css_filename = self.options.handler.get_css_filename()
         active_index = 0
         index = 0
-        for (name, id) in sorted([(self.CSS[key]["translation"], self.CSS[key]["id"]) 
+        for (name, id) in sorted([(self.CSS[key]["translation"], self.CSS[key]["id"])
                                 for key in self.CSS]):
             if self.CSS[id]["user"]:
                 self.css_combo.append_text(self.CSS[id]["translation"])
@@ -273,15 +273,15 @@ class DocReportDialog(ReportDialog):
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
-        
+
         self.parse_user_options()
 
         # Create the output document.
         self.make_document()
-        
+
         self.parse_doc_options()
 
         # Save options
         self.options.handler.save_options()
-        config.set('interface.open-with-default-viewer', 
+        config.set('interface.open-with-default-viewer',
                    self.open_with_app.get_active())

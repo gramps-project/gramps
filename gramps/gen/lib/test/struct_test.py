@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -22,7 +22,7 @@
 
 import unittest
 
-from  .. import (Person, Family, Event, Source, Place, Citation, 
+from  .. import (Person, Family, Event, Source, Place, Citation,
                  Repository, MediaObject, Note, Tag)
 from gramps.gen.merge.diff import import_as_dict, from_struct
 from gramps.cli.user import User
@@ -120,10 +120,10 @@ class StructTest(unittest.TestCase):
         self.assertEqual(s["gramps_id"], "F0001")
         s["gramps_id"] = "TEST"
         self.assertEqual(s["gramps_id"], "TEST")
-        self.assertEqual(s.father_handle.primary_name.first_name, 
+        self.assertEqual(s.father_handle.primary_name.first_name,
                          "Allen Carl")
         s["father_handle.primary_name.first_name"] = "Edward"
-        self.assertEqual(s["father_handle.primary_name.first_name"], 
+        self.assertEqual(s["father_handle.primary_name.first_name"],
                          "Edward")
 
 if __name__ == "__main__":

@@ -50,7 +50,7 @@ class HasDeath(Rule):
     description = _("Matches people with death data of a particular value")
     category    = _('Event filters')
     allow_regex = True
-    
+
     def prepare(self, db):
         if self.list[0]:
             self.date = parser.parse(self.list[0])

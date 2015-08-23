@@ -119,7 +119,7 @@ def run(database, document, person):
     else:
         rule = IncompleteSurname([])
     filter.add_rule(rule)
-    people = filter.apply(database, 
+    people = filter.apply(database,
                           database.iter_person_handles())
 
     matches = 0
@@ -164,9 +164,9 @@ def run_given(database, document, person):
     else:
         rule = IncompleteGiven([])
     filter.add_rule(rule)
-    people = filter.apply(database, 
+    people = filter.apply(database,
                           database.iter_person_handles())
-    
+
     matches = 0
     for person_handle in people:
         person = database.get_person_from_handle(person_handle)

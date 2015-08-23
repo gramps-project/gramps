@@ -46,56 +46,56 @@ import gramps.gen.relationship
 #-------------------------------------------------------------------------
 
 _level = [
-     "", "prim%(gen)s", "second%(gen)s", "terz%(gen)s", "quart%(gen)s", 
+     "", "prim%(gen)s", "second%(gen)s", "terz%(gen)s", "quart%(gen)s",
      "quint%(gen)s", "sest%(gen)s",
-     "settim%(gen)s", "ottav%(gen)s", "non%(gen)s", "decim%(gen)s", 
+     "settim%(gen)s", "ottav%(gen)s", "non%(gen)s", "decim%(gen)s",
      "undicesim%(gen)s", "dodicesim%(gen)s",
      "tredicesim%(gen)s", "quattordicesim%(gen)s", "quindicesim%(gen)s",
-     "sedicesim%(gen)s", "diciasettesim%(gen)s", "diciottesim%(gen)s", 
+     "sedicesim%(gen)s", "diciasettesim%(gen)s", "diciottesim%(gen)s",
      "diciannovesim%(gen)s", "ventesim%(gen)s"
          ]
 
 _level_m = [
-     "", "primo", "secondo", "terzo", "quarto", 
+     "", "primo", "secondo", "terzo", "quarto",
      "quinto", "sesto",
-     "settimo", "ottavo", "nono", "decimo", 
+     "settimo", "ottavo", "nono", "decimo",
      "undicesimo", "dodicesimo",
      "tredicesimo", "quattordicesimo", "quindicesimo",
-     "sedicesimo", "diciasettesimo", "diciottesimo", 
+     "sedicesimo", "diciasettesimo", "diciottesimo",
      "diciannovesimo", "ventesimo"
          ]
 
 _level_f = [
-     "", "prima", "seconda", "terza", "quarta", 
+     "", "prima", "seconda", "terza", "quarta",
      "quinta", "sesta",
-     "settima", "ottava", "nona", "decima", 
+     "settima", "ottava", "nona", "decima",
      "undicesima", "dodicesima",
      "tredicesima", "quattordicesima", "quindicesima",
-     "sedicesima", "diciasettesima", "diciottesima", 
+     "sedicesima", "diciasettesima", "diciottesima",
      "diciannovesima", "ventesima"
          ]
 
-_father_level = [ "", 
-                  "il padre%(step)s%(inlaw)s", 
-                  "il nonno%(step)s%(inlaw)s", 
-                  "il bisnonno%(step)s%(inlaw)s", 
+_father_level = [ "",
+                  "il padre%(step)s%(inlaw)s",
+                  "il nonno%(step)s%(inlaw)s",
+                  "il bisnonno%(step)s%(inlaw)s",
                   "il trisnonno%(step)s%(inlaw)s",
                 ]
 
-_mother_level = [ "", 
-                  "la madre%(step)s%(inlaw)s", 
-                  "la nonna%(step)s%(inlaw)s", 
-                  "la bisnonna%(step)s%(inlaw)s", 
+_mother_level = [ "",
+                  "la madre%(step)s%(inlaw)s",
+                  "la nonna%(step)s%(inlaw)s",
+                  "la bisnonna%(step)s%(inlaw)s",
                   "la trisnonna%(step)s%(inlaw)s",
                 ]
 
 _son_level = [  "", "il figlio%(step)s%(inlaw)s",
-                "il nipote%(step)s%(inlaw)s diretto", 
+                "il nipote%(step)s%(inlaw)s diretto",
                 "il pronipote%(step)s%(inlaw)s diretto"
              ]
 
 _daughter_level = [ "", "la figlia%(step)s%(inlaw)s",
-                    "la nipote%(step)s%(inlaw)s diretta", 
+                    "la nipote%(step)s%(inlaw)s diretta",
                     "la pronipote%(step)s%(inlaw)s diretta"
                   ]
 
@@ -126,9 +126,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
-    
+
     INLAW = ' acquisit%(gen)s'
-    
+
     STEP = ' adottiv%(gen)s'
 
     def __init__(self):
@@ -143,12 +143,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     # please, drop me an email.
     #
     #-------------------------------------------------------------------------
-    
+
     def __gen_suffix(self, gender):
         if gender == Person.MALE:
             return 'o'
         return 'a'
-    
+
     def get_parents (self, level):
         if level > len(_level)-1:
             return "remote ancestors"
@@ -157,7 +157,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_father (self, level,  step='', inlaw=''):
         gen = "o"
-        
+
         if level < len(_father_level):
             return _father_level[level] % {'step': step, 'inlaw': inlaw} \
                                         % {'gen': gen}
@@ -172,7 +172,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_mother (self, level,  step='', inlaw=''):
         gen = "a"
-        
+
         if level < len(_father_level):
             return _mother_level[level] % {'step': step, 'inlaw': inlaw} \
                                         % {'gen': gen}
@@ -187,7 +187,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_parent_unknown(self, level,  step='', inlaw=''):
         gen = "o/a"
-        
+
         if level == 1:
             return "uno dei genitori%(step)s%(inlaw)s" % {'step': step, 'inlaw': inlaw} \
                                         % {'gen': gen}
@@ -297,7 +297,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                    "(%(levA)d-%(levB)d)" \
                    % {'level': levelA+levelB-1,
                       'step': step, 'inlaw': inlaw,
-                      'levA': levelA, 
+                      'levA': levelA,
                       'levB': levelB} % {'gen': gen}
 
     def get_female_cousin (self, levelA, levelB, step="", inlaw=""):
@@ -306,7 +306,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                    "(%(levA)d-%(levB)d)" \
                    % {'level': levelA+levelB-1,
                       'step': step, 'inlaw': inlaw,
-                      'levA': levelA, 
+                      'levA': levelA,
                       'levB': levelB} % {'gen': gen}
 
     #-------------------------------------------------------------------------
@@ -331,7 +331,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if is_spouse:
             return (is_spouse, [])
 
-        #get_relationship_distance changed, first data is relation to 
+        #get_relationship_distance changed, first data is relation to
         #orig person, apperently secondRel in this function
         (secondRel, firstRel, common) = \
                      self.get_relationship_distance(db, orig_person, other_person)
@@ -376,7 +376,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
         See Comment in Relationship Class (relationship.py)
@@ -458,16 +458,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = self.get_female_cousin(Gb-1, Ga-1, step, inlaw)
         return rel_str
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         """
         Determine the string giving the relation between two siblings of
         type sib_type.
         Eg: b is the brother of a
         Here 'brother' is the string we need to determine
-        This method gives more details about siblings than 
+        This method gives more details about siblings than
         get_single_relationship_string can do.
-        
+
         .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
                      LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
                      get_sibling)
@@ -476,7 +476,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             inlaw = self.INLAW
         else:
             inlaw = ''
-        
+
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             if not inlaw:
                 if gender_b == Person.MALE:
@@ -514,10 +514,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src 
-    #    python src/plugins/rel/rel_it.py 
-    
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    #    export PYTHONPATH=/path/to/gramps/src
+    #    python src/plugins/rel/rel_it.py
+
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

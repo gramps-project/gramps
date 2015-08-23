@@ -32,11 +32,11 @@ class Menu(object):
     """
     **Introduction**
 
-    A Menu is used to maintain a collection of options that need to be 
+    A Menu is used to maintain a collection of options that need to be
     represented to the user in a non-implementation specific way. The options
     can be described using the various option classes. A menu contains many
     options and associates them with a unique name and category.
-    
+
     **Usage**
 
     Menus are used in the following way.
@@ -45,7 +45,7 @@ class Menu(object):
     2. Add the option to the menu by specifying the option, name and category.
     3. Add as many options as necessary.
     4. When all the options are added, the menu can be stored and passed to
-       the part of the system that will actually represent the menu to 
+       the part of the system that will actually represent the menu to
        the user.
     """
     def __init__(self):
@@ -53,13 +53,13 @@ class Menu(object):
         self.__options = {}
         # __categories holds the order of all categories
         self.__categories = []
-    
+
     def add_option(self, category, name, option):
         """
         Add an option to the menu.
-        
-        :param category: A label that describes the category that the option 
-            belongs to. 
+
+        :param category: A label that describes the category that the option
+            belongs to.
             Example: "Report Options"
         :type category: string
         :param name: A name that is unique to this option.
@@ -73,41 +73,41 @@ class Menu(object):
             self.__categories.append(category)
             self.__options[category] = []
         self.__options[category].append((name, option))
-        
+
     def get_categories(self):
         """
         Get a list of categories in this menu.
-        
+
         :return: a list of strings
         """
         return self.__categories
-    
+
     def get_option_names(self, category):
         """
         Get a list of option names for the specified category.
-        
+
         :return: a list of strings
         """
         names = []
         for (name, option) in self.__options[category]:
             names.append(name)
         return names
-    
+
     def get_option(self, category, name):
         """
         Get an option with the specified category and name.
-        
+
         :return: an :class:`.Option` instance or None on failure.
         """
         for (oname, option) in self.__options[category]:
             if oname == name:
                 return option
         return None
-    
+
     def get_all_option_names(self):
         """
         Get a list of all the option names in this menu.
-        
+
         :return: a list of strings
         """
         names = []
@@ -115,11 +115,11 @@ class Menu(object):
             for (name, option) in self.__options[category]:
                 names.append(name)
         return names
-    
+
     def get_option_by_name(self, name):
         """
         Get an option with the specified name.
-        
+
         :return: an :class:`.Option` instance or None on failure.
         """
         for category in self.__options:

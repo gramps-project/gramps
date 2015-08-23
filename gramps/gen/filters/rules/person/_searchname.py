@@ -53,7 +53,7 @@ class SearchName(Rule):
             return False
 
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            for field in [name.first_name, name.get_surname(), name.suffix, 
+            for field in [name.first_name, name.get_surname(), name.suffix,
                           name.title, name.nick, name.famnick, name.call]:
                 if src and field.upper().find(src) != -1:
                     return True

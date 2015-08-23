@@ -52,7 +52,7 @@ class FilterComboBox(Gtk.ComboBox):
         self.add_attribute(cell,'text',0)
 
         self.map = {}
-        
+
         active = 0
         cnt = 0
         for filt in local_filters:
@@ -61,7 +61,7 @@ class FilterComboBox(Gtk.ComboBox):
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
-        
+
         #for filt in SystemFilters.get_filters():
             #self.store.append(row=[filt.get_name()])
             #self.map[unicode(filt.get_name())] = filt

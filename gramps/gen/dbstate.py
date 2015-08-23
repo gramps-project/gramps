@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -45,8 +45,8 @@ class DbState(Callback):
     """
 
     __signals__ = {
-        'database-changed' : ((DbReadBase, ProxyDbBase), ), 
-        'no-database' :  None, 
+        'database-changed' : ((DbReadBase, ProxyDbBase), ),
+        'no-database' :  None,
         }
 
     def __init__(self):
@@ -102,7 +102,7 @@ class DbState(Callback):
         self.db.db_is_open = False
         self.open = False
         self.emit('database-changed', (self.db, ))
-        
+
     def get_database(self):
         """
         Get a reference to the current database.
@@ -128,7 +128,7 @@ class DbState(Callback):
         self.stack.append(self.db)
         self.db = proxy(self.db, *args, **kwargs)
         self.emit('database-changed', (self.db, ))
-        
+
     def pop_proxy(self):
         """
         Remove the previously applied proxy.
@@ -150,7 +150,7 @@ class DbState(Callback):
 
         pmgr = BasePluginManager.get_instance()
         pdata = pmgr.get_plugin(id)
-        
+
         if not pdata:
             # This might happen if using gramps from outside, and
             # we haven't loaded plugins yet

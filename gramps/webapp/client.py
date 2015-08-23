@@ -44,4 +44,4 @@ def login(base_address, username=None, password=None):
         return None
     LOG.info('\t%s is logged in' % username)
     # save the cookies/opener for further actions
-    return opener 
+    return opener

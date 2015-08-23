@@ -44,7 +44,7 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SERIF, PARA_ALIGN_RIGHT,
                                     PARA_ALIGN_LEFT, PARA_ALIGN_CENTER,
                                     IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
+from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
                                   EnumeratedListOption, FilterOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report
@@ -101,20 +101,20 @@ class BirthdayReport(Report):
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         pid = mgobn('pid')
-        
+
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
-        
+
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
     def get_name(self, person, maiden_name = None):
-        """ 
-        Return person's name, unless maiden_name given, unless married_name 
-        listed. 
+        """
+        Return person's name, unless maiden_name given, unless married_name
+        listed.
         """
         # Get all of a person's names:
         primary_name = person.get_primary_name()
@@ -151,7 +151,7 @@ class BirthdayReport(Report):
         holiday_table.load_holidays(self.year, country)
         for month in range(1, 13):
             for day in range(1, 32):
-                holiday_names = holiday_table.get_holidays(month, day) 
+                holiday_names = holiday_table.get_holidays(month, day)
                 for holiday_name in holiday_names:
                     self.add_day_item(self._(holiday_name), month, day)
                     # FIXME translation only works for a limited set of things
@@ -179,7 +179,7 @@ class BirthdayReport(Report):
         # get data from database:
         self.collect_data()
         # generate the report:
-        self.doc.start_paragraph('BIR-Title') 
+        self.doc.start_paragraph('BIR-Title')
         if self.titletext == _(_TITLE0):
             title = self._(_TITLE0) + ": " + str(self.year)
         else:
@@ -215,7 +215,7 @@ class BirthdayReport(Report):
             self.doc.write_text(self._("Relationships shown are to %s") %
                                 self._name_display.display_name(name), mark)
             self.doc.end_paragraph()
-        with self._user.progress(_('Birthday and Anniversary Report'), 
+        with self._user.progress(_('Birthday and Anniversary Report'),
                 _('Formatting months...'), 12) as step:
             for month in range(1, 13):
                 step()
@@ -254,17 +254,17 @@ class BirthdayReport(Report):
         and text.
         """
         people = self.database.iter_person_handles()
-        with self._user.progress(_('Birthday and Anniversary Report'), 
-                                  _('Applying Filter...'), 
+        with self._user.progress(_('Birthday and Anniversary Report'),
+                                  _('Applying Filter...'),
                                   self.database.get_number_of_people()) as step:
-            people = self.filter.apply(self.database, people, 
+            people = self.filter.apply(self.database, people,
                                        step)
-        
+
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
         rel_calc = get_relationship_calculator(reinit=True,
                                                clocale=self._locale)
 
-        with self._user.progress(_('Birthday and Anniversary Report'), 
+        with self._user.progress(_('Birthday and Anniversary Report'),
                 _('Reading database...'), len(people)) as step:
             for person_handle in people:
                 step()
@@ -314,8 +314,8 @@ class BirthdayReport(Report):
                         comment = ""
                         if self.relationships:
                             relation = rel_calc.get_one_relationship(
-                                                             self.database, 
-                                                             self.center_person, 
+                                                             self.database,
+                                                             self.center_person,
                                                              person,
                                                              olocale=self._locale)
                             if relation:
@@ -327,7 +327,7 @@ class BirthdayReport(Report):
                                 'relation' : comment}
                         else:
                             # translators: leave all/any {...} untranslated
-                            text = ngettext('{person}, {age}{relation}', 
+                            text = ngettext('{person}, {age}{relation}',
                                             '{person}, {age}{relation}',
                                             nyears).format(person=short_name,
                                                            age=nyears,
@@ -336,7 +336,7 @@ class BirthdayReport(Report):
                         self.add_day_item(text, month, day, person)
                 if self.anniversaries:
                     family_list = person.get_family_handle_list()
-                    for fhandle in family_list: 
+                    for fhandle in family_list:
                         fam = self.database.get_family_from_handle(fhandle)
                         father_handle = fam.get_father_handle()
                         mother_handle = fam.get_mother_handle()
@@ -355,11 +355,11 @@ class BirthdayReport(Report):
                                 are_married = None
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)
-                                    if event.type in [EventType.MARRIAGE, 
+                                    if event.type in [EventType.MARRIAGE,
                                                       EventType.MARR_ALT]:
                                         are_married = event
-                                    elif event.type in [EventType.DIVORCE, 
-                                                        EventType.ANNULMENT, 
+                                    elif event.type in [EventType.DIVORCE,
+                                                        EventType.ANNULMENT,
                                                         EventType.DIV_FILING]:
                                         are_married = None
                                 if are_married is not None:
@@ -376,14 +376,14 @@ class BirthdayReport(Report):
                                         if event_obj.is_valid():
                                             if nyears == 0:
                                                 text = self._("%(spouse)s and\n %(person)s, wedding") % {
-                                                         'spouse' : spouse_name, 
+                                                         'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
                                                 # translators: leave all/any {...} untranslated
                                                 text = ngettext("{spouse} and\n {person}, {nyears}",
                                                                 "{spouse} and\n {person}, {nyears}",
                                                                 nyears).format(spouse=spouse_name, person=short_name, nyears=nyears)
-     
+
                                                 prob_alive_date = Date(self.year, month, day)
                                                 alive1 = probably_alive(person, self.database,
                                                                         prob_alive_date)
@@ -404,12 +404,12 @@ class BirthdayOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         MenuReportOptions.__init__(self, name, dbase)
-    
+
     def add_menu_options(self, menu):
         """ Add the options for the text birthday report """
         category_name = _("Report Options")
 
-        year = NumberOption(_("Year of report"), time.localtime()[0], 
+        year = NumberOption(_("Year of report"), time.localtime()[0],
                             1000, 3000)
         year.set_help(_("Year of report"))
         menu.add_option(category_name, "year", year)
@@ -418,7 +418,7 @@ class BirthdayOptions(MenuReportOptions):
         self.__filter.set_help(
                _("Select filter to restrict people that appear on report"))
         menu.add_option(category_name, "filter", self.__filter)
-        
+
         self.__pid = PersonOption(_("Center Person"))
         self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
@@ -439,7 +439,7 @@ class BirthdayOptions(MenuReportOptions):
         holiday_table = libholiday.HolidayTable()
         countries = holiday_table.get_countries()
         countries.sort()
-        if (len(countries) == 0 or 
+        if (len(countries) == 0 or
             (len(countries) > 0 and countries[0] != '')):
             countries.insert(0, '')
         count = 0
@@ -453,9 +453,9 @@ class BirthdayOptions(MenuReportOptions):
         long_days = date_displayer.long_days
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
-            start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
+            start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize())
         start_dow.set_help(_("Select the first day of the week for the report"))
-        menu.add_option(category_name, "start_dow", start_dow) 
+        menu.add_option(category_name, "start_dow", start_dow)
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
@@ -471,8 +471,8 @@ class BirthdayOptions(MenuReportOptions):
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Include anniversaries in the report"))
         menu.add_option(category_name, "anniversaries", anniversaries)
-        
-        option = BooleanOption(_("Include relationships to center person"), 
+
+        option = BooleanOption(_("Include relationships to center person"),
                                False)
         option.set_help(_("Include relationships to center person (slower)"))
         menu.add_option(category_name, "relationships", option)
@@ -480,12 +480,12 @@ class BirthdayOptions(MenuReportOptions):
         stdoptions.add_localization_option(menu, category_name)
 
         category_name = _("Text Options")
-        
+
         titletext = StringOption(_("Title text"), _(_TITLE0))
         titletext.set_help(_("Title of report"))
         menu.add_option(category_name, "titletext", titletext)
 
-        text1 = StringOption(_("Text Area 1"), _(_TITLE1)) 
+        text1 = StringOption(_("Text Area 1"), _(_TITLE1))
         text1.set_help(_("First line of text at bottom of report"))
         menu.add_option(category_name, "text1", text1)
 
@@ -496,7 +496,7 @@ class BirthdayOptions(MenuReportOptions):
         text3 = StringOption(_("Text Area 3"), URL_HOMEPAGE,)
         text3.set_help(_("Third line of text at bottom of report"))
         menu.add_option(category_name, "text3", text3)
-        
+
     def __update_filters(self):
         """
         Update the filter list based on the selected person
@@ -509,9 +509,9 @@ class BirthdayOptions(MenuReportOptions):
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
 
-    def make_my_style(self, default_style, name, description, 
-                      size=9, font=FONT_SERIF, justified ="left", 
-                      color=None, align=PARA_ALIGN_CENTER, 
+    def make_my_style(self, default_style, name, description,
+                      size=9, font=FONT_SERIF, justified ="left",
+                      color=None, align=PARA_ALIGN_CENTER,
                       shadow = None, italic=0, bold=0, borders=0, indent=None):
         """ Create paragraph and graphic styles of the same name """
         # Paragraph:
@@ -531,11 +531,11 @@ class BirthdayOptions(MenuReportOptions):
         if indent:
             p.set(first_indent=indent)
         if justified == "left":
-            p.set_alignment(PARA_ALIGN_LEFT)       
+            p.set_alignment(PARA_ALIGN_LEFT)
         elif justified == "right":
-            p.set_alignment(PARA_ALIGN_RIGHT)       
+            p.set_alignment(PARA_ALIGN_RIGHT)
         elif justified == "center":
-            p.set_alignment(PARA_ALIGN_CENTER)       
+            p.set_alignment(PARA_ALIGN_CENTER)
         default_style.add_paragraph_style(name, p)
         # Graphics:
         g = GraphicsStyle()
@@ -547,22 +547,22 @@ class BirthdayOptions(MenuReportOptions):
         if not borders:
             g.set_line_width(0)
         default_style.add_draw_style(name, g)
-        
+
     def make_default_style(self, default_style):
         """ Add the styles used in this report """
-        self.make_my_style(default_style, "BIR-Title", 
-                           _('Title text style'), 14, 
+        self.make_my_style(default_style, "BIR-Title",
+                           _('Title text style'), 14,
                            bold=1, justified="center")
-        self.make_my_style(default_style, "BIR-Datastyle", 
+        self.make_my_style(default_style, "BIR-Datastyle",
                            _('Data text display'), 12, indent=1.0)
-        self.make_my_style(default_style, "BIR-Daystyle", 
-                           _('Day text style'), 12, indent=.5, 
+        self.make_my_style(default_style, "BIR-Daystyle",
+                           _('Day text style'), 12, indent=.5,
                            italic=1, bold=1)
-        self.make_my_style(default_style, "BIR-Monthstyle", 
+        self.make_my_style(default_style, "BIR-Monthstyle",
                            _('Month text style'), 14, bold=1)
-        self.make_my_style(default_style, "BIR-Text1style", 
+        self.make_my_style(default_style, "BIR-Text1style",
                            _('Text at bottom, line 1'), 12, justified="center")
-        self.make_my_style(default_style, "BIR-Text2style", 
+        self.make_my_style(default_style, "BIR-Text2style",
                            _('Text at bottom, line 2'), 12, justified="center")
-        self.make_my_style(default_style, "BIR-Text3style", 
+        self.make_my_style(default_style, "BIR-Text3style",
                            _('Text at bottom, line 3'), 12, justified="center")

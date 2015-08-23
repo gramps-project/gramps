@@ -57,7 +57,7 @@ class HasGalleryBase(Rule):
             self.count_type = 1 # "equal to"
 
         self.userSelectedCount = int(self.list[0])
-        
+
     def apply(self, db, obj):
         count = len( obj.get_media_list())
         if self.count_type == 0:     # "less than"

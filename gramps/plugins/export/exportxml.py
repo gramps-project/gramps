@@ -81,7 +81,7 @@ except:
 strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)))
 
 def escxml(d):
-    return escape(d, 
+    return escape(d,
                   {'"' : '&quot;',
                    '<' : '&lt;',
                    '>' : '&gt;',
@@ -145,7 +145,7 @@ class GrampsXmlWriter(UpdateCallback):
                                        'Please select another directory '
                                        'or create it.') % base )
                 return 0
-                
+
             if os.path.exists(filename):
                 if not os.access(filename, os.W_OK):
                     raise DbWriteFailure(
@@ -155,7 +155,7 @@ class GrampsXmlWriter(UpdateCallback):
                             "Please make sure you have write access to the "
                             "file and try again."))
                     return 0
-        
+
             self.fileroot = os.path.dirname(filename)
             try:
                 if self.compress and _gzip_ok:
@@ -196,7 +196,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_xml_data()
         g.close()
         return 1
-            
+
     def write_xml_data(self):
 
         date = time.localtime(time.time())
@@ -210,16 +210,16 @@ class GrampsXmlWriter(UpdateCallback):
         place_len = self.db.get_number_of_places()
         repo_len = self.db.get_number_of_repositories()
         obj_len = self.db.get_number_of_media_objects()
-        note_len = self.db.get_number_of_notes()        
-        tag_len = self.db.get_number_of_tags()        
-        
+        note_len = self.db.get_number_of_notes()
+        tag_len = self.db.get_number_of_tags()
+
         total_steps = (person_len + family_len + event_len + citation_len +
                        source_len + place_len + repo_len + obj_len + note_len +
                        tag_len
                       )
 
         self.set_total(total_steps)
-        
+
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
                      'PUBLIC "-//Gramps//DTD Gramps XML %s//EN"\n'
@@ -343,7 +343,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_namemaps()
 
         self.g.write("</database>\n")
-        
+
 #        self.status.end()
 #        self.status = None
 
@@ -357,7 +357,7 @@ class GrampsXmlWriter(UpdateCallback):
     def write_namemaps(self):
         group_map = self.db.get_name_group_keys()
         name_len = len(group_map)
-        
+
         if name_len > 0:
             self.g.write("  <namemaps>\n")
             for key in group_map:
@@ -381,7 +381,7 @@ class GrampsXmlWriter(UpdateCallback):
                   bm_source_len + bm_place_len + bm_repo_len +
                   bm_citation_len + bm_obj_len + bm_note_len
                   )
-        
+
         if bm_len > 0:
             self.g.write("  <bookmarks>\n")
 
@@ -421,7 +421,7 @@ class GrampsXmlWriter(UpdateCallback):
             for number, name,fmt_str,active in self.db.name_formats:
                 self.g.write('%s<format number="%d" name="%s" '
                              'fmt_str="%s" active="%d"/>\n'
-                             % ('    ', number, 
+                             % ('    ', number,
                                 escxml(name), escxml(fmt_str), int(active)) )
             self.g.write("  </name-formats>\n")
 
@@ -437,7 +437,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write(' color="%s"' % tag.get_color())
         self.g.write(' priority="%d"' % tag.get_priority())
         self.g.write('/>\n')
-        
+
     def fix(self,line):
         try:
             l = str(line)
@@ -466,7 +466,7 @@ class GrampsXmlWriter(UpdateCallback):
         if format != note.FLOWED:
             self.g.write(' format="%d"' % format)
         self.g.write('>\n')
-        
+
         self.write_text('text', text, index + 1)
 
         if styles:
@@ -476,30 +476,30 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_ref("tagref", tag_handle, index+1)
 
         self.g.write('  ' * index + '</note>\n')
-        
+
     def write_styles(self, styles, index=3):
         for style in styles:
             name = style.name.xml_str()
             value = style.value
-            
+
             self.g.write('  ' * index + '<style name="%s"' % name)
             if value:
                 self.g.write(' value="%s"' % escxml(str(value)))
             self.g.write('>\n')
-            
+
             for (start, end) in style.ranges:
                 self.g.write(('  ' * (index + 1)) +
                              '<range start="%d" end="%d"/>\n' % (start, end))
-            
+
             self.g.write('  ' * index + '</style>\n')
-    
+
     def write_text(self, val, text, indent=0):
         if not text:
             return
-        
+
         if indent:
             self.g.write('  ' * indent)
-        
+
         self.g.write('<%s>' % val)
         self.g.write(self.fix(text.rstrip()))
         self.g.write("</%s>\n" % val)
@@ -697,7 +697,7 @@ class GrampsXmlWriter(UpdateCallback):
                 self.write_ref("citationref", citation_handle, index+1)
             self.write_note_list(nreflist,index+1)
             self.g.write('%s</childref>\n' % sp)
-        
+
     def dump_event_ref(self,eventref,index=1):
         if not eventref or not eventref.ref:
             return
@@ -760,7 +760,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_line("description",event.get_description(),index+1)
         self.write_attribute_list(event.get_attribute_list(),index+1)
         self.write_note_list(event.get_note_list(),index+1)
-            
+
         for citation_handle in event.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
         self.write_media_list(event.get_media_list(),index+1)
@@ -789,7 +789,7 @@ class GrampsXmlWriter(UpdateCallback):
         if ord.get_status() != 0:
             self.g.write('%s<status val="%s"/>\n' % (sp2, ord.status2xml()))
         if ord.get_family_handle():
-            self.g.write('%s<sealed_to hlink="%s"/>\n' % 
+            self.g.write('%s<sealed_to hlink="%s"/>\n' %
                          (sp2,"_"+ord.get_family_handle()))
         self.write_note_list(ord.get_note_list(),index+1)
         for citation_handle in ord.get_citation_list():
@@ -831,9 +831,9 @@ class GrampsXmlWriter(UpdateCallback):
             change_text = ' change="%d"' %  obj.get_change_time()
         except:
             change_text = ' change="%d"' %  0
-            
+
         handle_text = ' handle="_%s"' % obj.get_handle()
-        
+
         obj_text = '%s<%s' % (sp, tagname)
         self.g.write(obj_text + handle_text + change_text)
         if close:
@@ -865,7 +865,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write(' connector="%s"' % escxml(con))
         if der:
             self.g.write(' derivation="%s"' % escxml(der))
-            
+
         self.g.write('>%s</surname>\n' % self.fix(nam))
 
     def write_line(self,tagname,value,indent=1):
@@ -874,7 +874,7 @@ class GrampsXmlWriter(UpdateCallback):
                          ('  '*indent,tagname,self.fix(value),tagname))
 
     def write_line_nofix(self,tagname,value,indent=1):
-        """Writes a line, but does not escape characters. 
+        """Writes a line, but does not escape characters.
             Use this instead of write_line if the value is already fixed,
             this avoids &amp; becoming &amp;amp;
         """
@@ -892,7 +892,7 @@ class GrampsXmlWriter(UpdateCallback):
             y = "????"
         else:
             y = "%04d" % date[2]
-            
+
         if date[1] == 0:
             if date[0] == 0:
                 m = ""
@@ -927,7 +927,7 @@ class GrampsXmlWriter(UpdateCallback):
             qual_str = ' quality="calculated"'
         else:
             qual_str = ""
-            
+
         dualdated = date.get_slash()
         if dualdated:
             dualdated_str = ' dualdated="1"'
@@ -941,12 +941,12 @@ class GrampsXmlWriter(UpdateCallback):
             newyear_str = ''
 
         mode = date.get_modifier()
-        
+
         if date.is_compound():
             if mode == Date.MOD_RANGE:
                 tagname = 'daterange'
             else:
-                tagname = 'datespan'         
+                tagname = 'datespan'
 
             d1 = self.get_iso_date(date.get_start_date())
             d2 = self.get_iso_date(date.get_stop_date())
@@ -958,7 +958,7 @@ class GrampsXmlWriter(UpdateCallback):
             date_str = self.get_iso_date(date.get_start_date())
             if date_str == "":
                 return
-            
+
             if mode == Date.MOD_BEFORE:
                 mode_str = ' type="before"'
             elif mode == Date.MOD_AFTER:
@@ -1008,7 +1008,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_note_list(name.get_note_list(),index+1)
         for citation_handle in name.get_citation_list():
             self.write_ref("citationref", citation_handle, index+1)
-    
+
         self.g.write('%s</name>\n' % sp)
 
     def append_value(self, orig,val):
@@ -1058,7 +1058,7 @@ class GrampsXmlWriter(UpdateCallback):
         country = self.fix(loc.get_country())
         zip_code = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
-        
+
         self.g.write('      <location')
         if street:
             self.g.write(' street="%s"' % street)
@@ -1167,7 +1167,7 @@ class GrampsXmlWriter(UpdateCallback):
                 callno_text = ''
             else:
                 callno_text = ' callno="%s"' % escxml(reporef.call_number)
-                
+
             mtype = reporef.media_type.xml_str()
             if mtype:
                 type_text = ' medium="%s"' % escxml(mtype)
@@ -1183,8 +1183,8 @@ class GrampsXmlWriter(UpdateCallback):
                                extra_text=priv_text+callno_text+type_text)
                 self.write_note_list(note_list, index+1)
                 sp = "  "*index
-                self.g.write('%s</reporef>\n' % sp)            
-            
+                self.g.write('%s</reporef>\n' % sp)
+
     def write_url_list(self, list, index=1):
         sp = "  "*index
         for url in list:
@@ -1265,10 +1265,10 @@ class GrampsXmlWriter(UpdateCallback):
             path = path[1:]
         if win():
             # Always export path with \ replaced with /. Otherwise import
-            # from Windows to Linux of gpkg's path to images does not work. 
+            # from Windows to Linux of gpkg's path to images does not work.
             path = path.replace('\\','/')
         self.g.write('%s<file src="%s" mime="%s"%s%s/>\n'
-                     % ("  "*(index+1), self.fix(path), self.fix(mime_type), 
+                     % ("  "*(index+1), self.fix(path), self.fix(mime_type),
                         checksum_text, desc_text))
         self.write_attribute_list(obj.get_attribute_list())
         self.write_note_list(obj.get_note_list(), index+1)

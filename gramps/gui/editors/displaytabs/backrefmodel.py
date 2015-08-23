@@ -46,7 +46,7 @@ from gramps.gen.utils.db import family_name, get_participant_from_event
 #
 #-------------------------------------------------------------------------
 class BackRefModel(Gtk.ListStore):
-    
+
     dispstr = _('%(part1)s - %(part2)s')
 
     def __init__(self, sref_list, db):
@@ -63,8 +63,8 @@ class BackRefModel(Gtk.ListStore):
 
     def load_model(self):
         """
-        Objects can have very large backreferences. To avoid blocking the 
-        interface up to the moment that the model is created, this method is 
+        Objects can have very large backreferences. To avoid blocking the
+        interface up to the moment that the model is created, this method is
         called via GLib.idle_add.
         WARNING: a consequence of above is that loading can still be happening
             while the GUI using this model is no longer used. Disconnect any

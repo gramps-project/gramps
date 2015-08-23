@@ -46,47 +46,47 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 class ValueToolItem(Gtk.ToolItem):
     """ValueToolItem is an abstract toolbar proxy for ValueAction.
-    
+
     For each kind of widget a separete tool item proxy has to be
     subclassed from this ValueToolItem.
-    
+
     """
     __gtype_name__ = "ValueToolItem"
-    
+
     __gsignals__ = {
-        'changed': (GObject.SignalFlags.RUN_FIRST, 
+        'changed': (GObject.SignalFlags.RUN_FIRST,
                     None, #return value
                     ()), # arguments
-    }    
+    }
 
     def __init__(self, data_type, args):
         GObject.GObject.__init__(self)
-        
+
         self._data_type = data_type
-        
+
         self._create_widget(*args)
-    
+
     def _on_widget_changed(self, widget):
         self.emit('changed')
 
     def _create_widget(self, args):
         """Create the apropriate widget for the actual proxy."""
         raise NotImplementedError
-    
+
     def set_value(self, value):
         """Set new value for the proxied widget.
-        
+
         The method is responsible converting the data type between action and
         widget.
-        
+
         """
         raise NotImplementedError
-    
+
     def get_value(self):
         """Get value from the proxied widget.
-        
+
         The method is responsible converting the data type between action and
         widget.
-        
+
         """
         raise NotImplementedError

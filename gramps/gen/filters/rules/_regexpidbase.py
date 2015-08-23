@@ -41,7 +41,7 @@ from . import Rule
 #-------------------------------------------------------------------------
 class RegExpIdBase(Rule):
     """
-    Objects with a Gramps ID that contains a substring or matches a 
+    Objects with a Gramps ID that contains a substring or matches a
     regular expression.
     """
 

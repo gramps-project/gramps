@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -84,7 +84,7 @@ class MergePersonQuery(object):
             if main_family_handle in child.parent_family_list:
                 child.remove_handle_references('Family', [family_handle])
             else:
-                child.replace_handle_reference('Family', family_handle, 
+                child.replace_handle_reference('Family', family_handle,
                     main_family_handle)
             self.database.commit_person(child, trans)
         if self.phoenix:

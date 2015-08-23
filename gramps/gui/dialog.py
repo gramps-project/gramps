@@ -55,19 +55,19 @@ except:
 class SaveDialog(object):
     def __init__(self, msg1, msg2, task1, task2, parent=None):
         self.xml = Glade(toplevel='savedialog')
-        
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
-        
+
         self.dontask = self.xml.get_object('dontask')
         self.task1 = task1
         self.task2 = task2
-        
+
         label1 = self.xml.get_object('sd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
-        
+
         label2 = self.xml.get_object('sd_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
@@ -86,7 +86,7 @@ class SaveDialog(object):
 class QuestionDialog(object):
     def __init__(self, msg1, msg2, label, task, parent=None):
         self.xml = Glade(toplevel='questiondialog')
-                
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
@@ -94,7 +94,7 @@ class QuestionDialog(object):
         label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
-        
+
         label2 = self.xml.get_object('qd_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
@@ -118,7 +118,7 @@ def on_activate_link(label, uri):
 class QuestionDialog2(object):
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
@@ -126,7 +126,7 @@ class QuestionDialog2(object):
         label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
-        
+
         label2 = self.xml.get_object('qd_label2')
         # see https://github.com/emesene/emesene/issues/723
         label2.connect('activate-link', on_activate_link)
@@ -137,7 +137,7 @@ class QuestionDialog2(object):
         self.xml.get_object('okbutton').set_use_underline(True)
         self.xml.get_object('no').set_label(label_msg2)
         self.xml.get_object('no').set_use_underline(True)
-        
+
         if parent:
             self.top.set_transient_for(parent)
         self.top.show()
@@ -150,7 +150,7 @@ class QuestionDialog2(object):
 class OptionDialog(object):
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel='optiondialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
@@ -158,7 +158,7 @@ class OptionDialog(object):
         label1 = self.xml.get_object('od_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
-        
+
         label2 = self.xml.get_object('od_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
@@ -182,7 +182,7 @@ class OptionDialog(object):
 
 class ErrorDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
-        
+
         Gtk.MessageDialog.__init__(self, parent,
                                    flags=Gtk.DialogFlags.MODAL,
                                    type=Gtk.MessageType.ERROR,
@@ -258,7 +258,7 @@ class InfoDialog(object):
     """
     def __init__(self, msg1, infotext, parent=None, monospaced=False):
         self.xml = Glade(toplevel='infodialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
@@ -266,7 +266,7 @@ class InfoDialog(object):
         label = self.xml.get_object('toplabel')
         label.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label.set_use_markup(True)
-        
+
         infoview = self.xml.get_object('infoview')
         infobuffer = Gtk.TextBuffer()
         infobuffer.set_text(infotext)
@@ -288,7 +288,7 @@ class InfoDialog(object):
 class MissingMediaDialog(object):
     def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
         self.xml = Glade(toplevel='missmediadialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % msg1)
@@ -296,11 +296,11 @@ class MissingMediaDialog(object):
         self.task1 = task1
         self.task2 = task2
         self.task3 = task3
-        
+
         label1 = self.xml.get_object('label4')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
-        
+
         label2 = self.xml.get_object('label3')
         label2.set_text(msg2)
         label2.set_use_markup(True)
@@ -341,15 +341,15 @@ class MissingMediaDialog(object):
 
 class MultiSelectDialog(object):
     def __init__(self, msg1_func, msg2_func, items, lookup,
-                 cancel_func=None, no_func=None, yes_func=None, 
+                 cancel_func=None, no_func=None, yes_func=None,
                  parent=None):
         """
         """
         self.xml = Glade(toplevel='multiselectdialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        
+
         self.msg1_func = msg1_func
         self.msg2_func = msg2_func
         self.items = items
@@ -357,7 +357,7 @@ class MultiSelectDialog(object):
         self.cancel_func = cancel_func
         self.no_func = no_func
         self.yes_func = yes_func
-        
+
         label1 = self.xml.get_object('label6')
         label2 = self.xml.get_object('label5')
         check_button = self.xml.get_object('apply_to_rest')
@@ -372,14 +372,14 @@ class MultiSelectDialog(object):
             if default_action == 0:
                 msg1 = self.msg1_func(item)
                 msg2 = self.msg2_func(item)
-                
+
                 self.top.set_title("%s - Gramps" % msg1)
                 label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
                 label1.set_use_markup(True)
                 label2.set_text(msg2)
                 label2.set_use_markup(True)
                 self.top.show()
-                
+
                 # Need some magic here, because an attempt to close the dialog
                 # with the X button not only emits the 'delete_event' signal
                 # but also exits with the RESPONSE_DELETE_EVENT
@@ -413,10 +413,10 @@ class MultiSelectDialog(object):
         return True
 
 class MessageHideDialog(object):
-    
+
     def __init__(self, title, message, key, parent=None):
         self.xml = Glade(toplevel='hidedialog')
-              
+
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - Gramps" % title)
@@ -427,9 +427,9 @@ class MessageHideDialog(object):
         title_label.set_text(
             '<span size="larger" weight="bold">%s</span>' % title)
         title_label.set_use_markup(True)
-        
+
         self.xml.get_object('message').set_text(message)
-        
+
         dont_show.connect('toggled', self.update_checkbox, key)
         self.top.run()
         self.top.destroy()
@@ -454,11 +454,11 @@ def main(args):
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
-    
+
     btn1 = Gtk.Button('Info dialog')
     btn1.connect('clicked', test_info)
     vbox.pack_start(btn1, True, True, 0)
-    
+
     win.show_all()
     Gtk.main()
 

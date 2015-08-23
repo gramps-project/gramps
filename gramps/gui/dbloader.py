@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -56,9 +56,9 @@ from gramps.gen.db.dbconst import DBBACKEND
 _ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
-from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
-                                      BsddbDowngradeError, 
-                                      DbVersionError, 
+from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
+                                      BsddbDowngradeError,
+                                      DbVersionError,
                                       DbEnvironmentError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
@@ -66,7 +66,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       PythonDowngradeError)
 from gramps.gen.constfunc import conv_to_unicode
 from .pluginmanager import GuiPluginManager
-from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
+from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2,
                             WarningDialog)
 from .user import User
 from gramps.gen.errors import DbError
@@ -81,18 +81,18 @@ class DbLoader(CLIDbLoader):
         CLIDbLoader.__init__(self, dbstate)
         self.uistate = uistate
         self.import_info = None
-    
+
     def _warn(self, title, warnmessage):
         WarningDialog(title, warnmessage, parent=self.uistate.window)
-    
+
     def _errordialog(self, title, errormessage):
         """
-        Show the error. 
+        Show the error.
         In the GUI, the error is shown, and a return happens
         """
         ErrorDialog(title, errormessage, parent=self.uistate.window)
         return 1
-    
+
     def _dberrordialog(self, msg):
         import traceback
         exc = traceback.format_exc()
@@ -102,12 +102,12 @@ class DbLoader(CLIDbLoader):
         except:
             DBErrorDialog(str(msg), parent=self.uistate.window)
             _LOG.error(str(msg) +"\n" + exc)
-    
+
     def _begin_progress(self):
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
         self.uistate.pulse_progressbar(0)
-    
+
     def _pulse_progress(self, value):
         self.uistate.pulse_progressbar(value)
 
@@ -132,15 +132,15 @@ class DbLoader(CLIDbLoader):
                 self.uistate.window)
             if not warn_dialog.run():
                 return False
-            
+
         pmgr = GuiPluginManager.get_instance()
-        
-        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'), 
-                                       self.uistate.window, 
-                                       Gtk.FileChooserAction.OPEN, 
+
+        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'),
+                                       self.uistate.window,
+                                       Gtk.FileChooserAction.OPEN,
                                        (_('_Cancel'),
-                                            Gtk.ResponseType.CANCEL, 
-                                        _('Import'), 
+                                            Gtk.ResponseType.CANCEL,
+                                        _('Import'),
                                             Gtk.ResponseType.OK))
         import_dialog.set_local_only(False)
 
@@ -159,7 +159,7 @@ class DbLoader(CLIDbLoader):
         (box, type_selector) = format_maker()
         import_dialog.set_extra_widget(box)
 
-        # Suggested folder: try last open file, import, then last export, 
+        # Suggested folder: try last open file, import, then last export,
         # then home.
         default_dir = config.get('paths.recent-import-dir')
         if len(default_dir)<=1:
@@ -178,24 +178,24 @@ class DbLoader(CLIDbLoader):
 
                 (the_path, the_file) = os.path.split(filename)
                 config.set('paths.recent-import-dir', the_path)
-                
+
                 extension = type_selector.get_value()
                 if extension == 'auto':
                     # Guess the file format based on the file extension.
-                    # This will get the lower case extension without a period, 
+                    # This will get the lower case extension without a period,
                     # or an empty string.
                     extension = os.path.splitext(filename)[-1][1:].lower()
-                
+
                 for plugin in pmgr.get_import_plugins():
                     if extension == plugin.get_extension():
-                        self.do_import(import_dialog, 
-                                       plugin.get_import_function(), 
+                        self.do_import(import_dialog,
+                                       plugin.get_import_function(),
                                        filename)
                         return True
 
                 # Finally, we give up and declare this an unknown format
                 ErrorDialog(
-                    _("Could not open file: %s") % filename, 
+                    _("Could not open file: %s") % filename,
                     _('File type "%s" is unknown to Gramps.\n\n'
                       'Valid types are: Gramps database, Gramps XML, '
                       'Gramps package, GEDCOM, and others.') % extension,
@@ -207,9 +207,9 @@ class DbLoader(CLIDbLoader):
     def check_errors(self, filename):
         """
         Run common error checks and return True if any found.
-        
+
         In this process, a warning dialog can pop up.
-        
+
         """
         if not isinstance(filename, str):
             return True
@@ -220,14 +220,14 @@ class DbLoader(CLIDbLoader):
             return True
         elif os.path.isdir(filename):
             ErrorDialog(
-                _('Cannot open file'), 
+                _('Cannot open file'),
                 _('The selected file is a directory, not a file.\n'),
                 parent=self.uistate.window)
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
                 ErrorDialog(
-                    _('Cannot open file'), 
+                    _('Cannot open file'),
                     _('You do not have read access to the selected file.'),
                     parent=self.uistate.window)
                 return True
@@ -251,7 +251,7 @@ class DbLoader(CLIDbLoader):
         self._begin_progress()
 
         try:
-            #an importer can return an object with info, object.info_text() 
+            #an importer can return an object with info, object.info_text()
             #returns that info. Otherwise None is set to import_info
             self.import_info = importer(self.dbstate.db, filename,
                             User(callback=self._pulse_progress,
@@ -260,7 +260,7 @@ class DbLoader(CLIDbLoader):
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError as msg:
             ErrorDialog(
-                _("Could not import file: %s") % filename, 
+                _("Could not import file: %s") % filename,
                 _("This file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "
                   "encoding, and import again") + "\n\n %s" % msg,
@@ -268,7 +268,7 @@ class DbLoader(CLIDbLoader):
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
         self._end_progress()
-    
+
     def import_info_text(self):
         """
         On import the importer can construct an info object about the import.
@@ -278,13 +278,13 @@ class DbLoader(CLIDbLoader):
         if self.import_info is None:
             return ""
         return self.import_info.info_text()
-    
+
     def read_file(self, filename):
         """
         This method takes care of changing database, and loading the data.
-        In 3.0 we only allow reading of real databases of filetype 
+        In 3.0 we only allow reading of real databases of filetype
         'x-directory/normal'
-        
+
         This method should only return on success.
         Returning on failure makes no sense, because we cannot recover,
         since database has already been changed.
@@ -297,7 +297,7 @@ class DbLoader(CLIDbLoader):
         if os.path.exists(filename):
             if not os.access(filename, os.W_OK):
                 mode = "r"
-                self._warn(_('Read only database'), 
+                self._warn(_('Read only database'),
                                              _('You do not have write access '
                                                'to the selected file.'))
             else:
@@ -317,7 +317,7 @@ class DbLoader(CLIDbLoader):
         self.dbstate.no_database()
 
         self._begin_progress()
-        
+
         force_schema_upgrade = False
         force_bsddb_upgrade = False
         force_bsddb_downgrade = False
@@ -325,7 +325,7 @@ class DbLoader(CLIDbLoader):
         try:
             while True:
                 try:
-                    db.load(filename, self._pulse_progress, 
+                    db.load(filename, self._pulse_progress,
                             mode, force_schema_upgrade,
                             force_bsddb_upgrade,
                             force_bsddb_downgrade,
@@ -335,10 +335,10 @@ class DbLoader(CLIDbLoader):
                     break
                 except DbUpgradeRequiredError as msg:
                     if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"), 
-                                       str(msg), 
+                                         "this Family Tree?"),
+                                       str(msg),
                                        _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"), 
+                                         "please upgrade my Family Tree"),
                                        _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
@@ -349,10 +349,10 @@ class DbLoader(CLIDbLoader):
                         break
                 except BsddbUpgradeRequiredError as msg:
                     if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"), 
-                                       str(msg), 
+                                         "this Family Tree?"),
+                                       str(msg),
                                        _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"), 
+                                         "please upgrade my Family Tree"),
                                        _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
@@ -363,10 +363,10 @@ class DbLoader(CLIDbLoader):
                         break
                 except BsddbDowngradeRequiredError as msg:
                     if QuestionDialog2(_("Are you sure you want to downgrade "
-                                         "this Family Tree?"), 
-                                       str(msg), 
+                                         "this Family Tree?"),
+                                       str(msg),
                                        _("I have made a backup,\n"
-                                         "please downgrade my Family Tree"), 
+                                         "please downgrade my Family Tree"),
                                        _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
@@ -377,10 +377,10 @@ class DbLoader(CLIDbLoader):
                         break
                 except PythonUpgradeRequiredError as msg:
                     if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"), 
-                                       str(msg), 
+                                         "this Family Tree?"),
+                                       str(msg),
                                        _("I have made a backup,\n"
-                                         "please upgrade my Family Tree"), 
+                                         "please upgrade my Family Tree"),
                                        _("Cancel"), self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
@@ -421,7 +421,7 @@ class DbLoader(CLIDbLoader):
 #
 #-------------------------------------------------------------------------
 def get_default_dir():
-    # Suggested folder: try last open file, last import, last export, 
+    # Suggested folder: try last open file, last import, last export,
     # then home.
     default_dir = os.path.dirname(config.get('paths.recent-file'))
     if default_dir:
@@ -467,7 +467,7 @@ class GrampsFormatWidget(Gtk.ComboBox):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
         self.format_list = format_list
-        
+
         for format, label in format_list:
             self.store.append(row=[label])
         self.set_active(False)
@@ -481,14 +481,14 @@ class GrampsFormatWidget(Gtk.ComboBox):
 def format_maker():
     """
     A factory function making format selection widgets.
-    
+
     Accepts a list of formats to include into selector.
     The auto selection is always added as the first one.
     The returned box contains both the label and the selector.
     """
     pmgr = GuiPluginManager.get_instance()
     format_list = [ ('auto', _('Automatically detected')) ]
-    
+
     for plugin in pmgr.get_import_plugins():
         format_list.append( (plugin.get_extension(), plugin.get_name()) )
 

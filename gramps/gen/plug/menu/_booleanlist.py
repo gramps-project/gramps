@@ -51,7 +51,7 @@ class BooleanListOption(Option):
     def add_button(self, description, default):
         """
         Add a check button to the list.
-                
+
         :param description: A description for this check button.
             Example: "Census"
         :type description: string
@@ -67,22 +67,22 @@ class BooleanListOption(Option):
         else:
             value = value + ',' + str(default)
         self.set_value(value)
-        
+
     def get_descriptions(self):
         """
         Get a list of check button descriptions for this option.
-        
+
         :return: a list of check button descriptions.
         """
         return self.__descriptions
-        
+
     def get_selected(self):
         """
         Get a list of descriptions where the check button is selected.
-        
+
         :return: a list of check button descriptions.
         """
         descriptions = self.__descriptions
         values = self.get_value().split(',')
         return [x[0] for x in zip(descriptions, values) if x[1] == 'True']
-        
+

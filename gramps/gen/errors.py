@@ -28,7 +28,7 @@ class FilterError(Exception):
         Exception.__init__(self)
         self.value = value
         self.value2 = value2
-        
+
     def __str__(self):
         "Return string representation"
         return self.value

@@ -72,7 +72,7 @@ editor_rule_list = [
     HasReferenceCountOf,
     HasSourceCount,
     HasSourceOf,
-    HasCitation, 
+    HasCitation,
     FamilyPrivate,
     HasEvent,
     HasAttribute,

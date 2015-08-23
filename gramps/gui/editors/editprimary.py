@@ -52,14 +52,14 @@ from ..dbguielement import DbGUIElement
 class EditPrimary(ManagedWindow, DbGUIElement):
 
     QR_CATEGORY = -1
-    
-    def __init__(self, state, uistate, track, obj, get_from_handle, 
+
+    def __init__(self, state, uistate, track, obj, get_from_handle,
                  get_from_gramps_id, callback=None):
         """
-        Create an edit window.  
-        
+        Create an edit window.
+
         Associate a person with the window.
-        
+
         """
         self.dp  = parser
         self.dd  = displayer
@@ -85,7 +85,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         self._connect_signals()
         #if the database is changed, all info shown is invalid and the window
         # should close
-        self.dbstate_connect_key = self.dbstate.connect('database-changed', 
+        self.dbstate_connect_key = self.dbstate.connect('database-changed',
                                    self._do_close)
         self.show()
         self._post_init()
@@ -139,7 +139,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         if not pag == -1:
             notebook.get_nth_page(pag).key_pressed(obj, event)
 
-    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, 
+    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook,
                             page_no):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
@@ -188,7 +188,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
 
     def _cleanup_db_connects(self):
         """
-        All connects that happened to signals of the db must be removed on 
+        All connects that happened to signals of the db must be removed on
         closed. This implies two things:
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected
@@ -198,7 +198,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         for tab in self.__tabs:
             if hasattr(tab, 'callman'):
                 tab._cleanup_callbacks()
-    
+
     def _cleanup_connects(self):
         """
         Connects to interface elements to things outside the element should be
@@ -218,7 +218,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
 
     def check_for_close(self, handles):
         """
-        Callback method for delete signals. 
+        Callback method for delete signals.
         If there is a delete signal of the primary object we are editing, the
         editor (and all child windows spawned) should be closed
         """
@@ -242,8 +242,8 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             return False
 
     def empty_object(self):
-        #empty_object should be overridden in base class and will throw an 
-        #exception if it is not because self.empty_object().serialize() is 
+        #empty_object should be overridden in base class and will throw an
+        #exception if it is not because self.empty_object().serialize() is
         #called and PrimaryObject does not implement serialize(). See
         #BaseObject.serialize()
         return PrimaryObject
@@ -266,7 +266,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         """ Save changes and close. Inheriting classes must implement this
         """
         self.close()
-        
+
     def set_contexteventbox(self, eventbox):
         """Set the contextbox that grabs button presses if not grabbed
             by overlying widgets.
@@ -274,7 +274,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         self.contexteventbox = eventbox
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)
-        
+
     def _contextmenu_button_press(self, obj, event) :
         """
         Button press event that is caught when a mousebutton has been
@@ -284,12 +284,12 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         if is_right_click(event):
             if self.obj.get_handle() == 0 :
                 return False
-            
+
             #build the possible popup menu
             self._build_popup_ui()
             #set or unset sensitivity in popup
             self._post_build_popup_ui()
-                
+
             menu = self.popupmanager.get_widget('/Popup')
             if menu:
                 menu.popup(None, None, None, None, event.button, event.time)
@@ -300,8 +300,8 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         """
         Create actions and ui of context menu
         """
-        from ..plug.quick import create_quickreport_menu        
-        
+        from ..plug.quick import create_quickreport_menu
+
         self.popupmanager = Gtk.UIManager()
         #add custom actions
         (ui_top, action_groups) = self._top_contextmenu()
@@ -311,29 +311,29 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         ui_qr = ''
         if self.QR_CATEGORY > -1 :
             (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
-                                    self.dbstate, self.uistate, 
+                                    self.dbstate, self.uistate,
                                     self.obj.get_handle())
             self.report_action = Gtk.ActionGroup(name="/PersonReport")
             self.report_action.add_actions(reportactions)
             self.report_action.set_visible(True)
             self.popupmanager.insert_action_group(self.report_action, -1)
-        
+
         popupui = '''
         <ui>
           <popup name="Popup">''' + ui_top + '''
             <separator/>''' + ui_qr + '''
           </popup>
         </ui>'''
-        
+
         self.popupmanager.add_ui_from_string(popupui)
-        
+
     def _top_contextmenu(self):
         """
-        Derived class can create a ui with menuitems and corresponding list of 
+        Derived class can create a ui with menuitems and corresponding list of
         actiongroups
         """
         return "", []
-        
+
     def _post_build_popup_ui(self):
         """
         Derived class should do extra actions here on the menu
@@ -343,9 +343,9 @@ class EditPrimary(ManagedWindow, DbGUIElement):
     def _uses_duplicate_id(self):
         """
         Check whether a changed or added GRAMPS ID already exists in the DB.
-        
+
         Return True if a duplicate GRAMPS ID has been detected.
-        
+
         """
         original = self.get_from_handle(self.obj.get_handle())
         if original and original.get_gramps_id() == self.obj.get_gramps_id():
@@ -355,4 +355,4 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             if self.get_from_gramps_id(idval):
                 return (True, idval)
             return (False, 0)
-            
+

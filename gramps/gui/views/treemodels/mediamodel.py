@@ -58,7 +58,7 @@ class MediaModel(FlatBaseModel):
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_media_cursor
         self.map = db.get_raw_object_data
-        
+
         self.fmap = [
             self.column_description,
             self.column_id,
@@ -70,7 +70,7 @@ class MediaModel(FlatBaseModel):
             self.column_change,
             self.column_tag_color,
             ]
-        
+
         self.smap = [
             self.column_description,
             self.column_id,
@@ -179,7 +179,7 @@ class MediaModel(FlatBaseModel):
             value = self.db.get_tag_from_handle(tag_handle).get_name()
             self.set_cached_value(tag_handle, "TAG_NAME", value)
         return value
-        
+
     def column_tag_color(self, data):
         """
         Return the tag color.

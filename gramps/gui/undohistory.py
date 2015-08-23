@@ -57,7 +57,7 @@ class UndoHistory(ManagedWindow):
     steps available for undo/redo. Selecting a line in the list
     will revert/advance to the appropriate step in editing history.
     """
-    
+
     def __init__(self, dbstate, uistate):
 
         self.title = _("Undo History")
@@ -77,16 +77,16 @@ class UndoHistory(ManagedWindow):
                                               Gtk.ResponseType.APPLY)
         self.close_button = window.add_button(_('_Close'),
                                               Gtk.ResponseType.CLOSE)
-     
+
         self.set_window(window, None, self.title)
         self.window.set_size_request(400, 200)
         self.window.connect('response', self._response)
 
         scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, 
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC,
                                    Gtk.PolicyType.AUTOMATIC)
         self.tree = Gtk.TreeView()
-        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
+        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
                                    GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection = self.tree.get_selection()
 
@@ -111,7 +111,7 @@ class UndoHistory(ManagedWindow):
 
         self._build_model()
         self._update_ui()
-        
+
         self.selection.connect('changed', self._selection_changed)
         self.show()
 
@@ -146,7 +146,7 @@ class UndoHistory(ManagedWindow):
             the_iter = self.model.get_iter( (idx,) )
             self.model.set(the_iter, 2, fg)
             self.model.set(the_iter, 3, bg)
-            
+
     def _response(self, obj, response_id):
         if response_id == Gtk.ResponseType.CLOSE:
             self.close(obj)
@@ -219,7 +219,7 @@ class UndoHistory(ManagedWindow):
                 mod_text = _('Database opened')
             else:
                 mod_text = _('History cleared')
-            time_text = time.ctime(self.undodb.undo_history_timestamp)           
+            time_text = time.ctime(self.undodb.undo_history_timestamp)
             self.model.append(row=[time_text, mod_text, fg, bg])
 
         # Add the undo and redo queues to the model
@@ -255,7 +255,7 @@ def get_colors(obj, state):
 def bug_fix(column, renderer, model, iter_, data):
     """
     Cell data function to set the column colors.
-    
+
     There is a bug in pygobject which prevents us from setting a value to
     None using the TreeModel set_value method.  Instead we set it to an empty
     string and convert it to None here.

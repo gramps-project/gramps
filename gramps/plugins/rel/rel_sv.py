@@ -40,25 +40,25 @@ import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 
-_cousin_level = [ "", "kusin", 
-"tremänning", "fyrmänning", "femmänning", 
+_cousin_level = [ "", "kusin",
+"tremänning", "fyrmänning", "femmänning",
 "sexmänning", "sjumänning", "åttamänning",
-"niomänning", "tiomänning", "elvammänning", 
+"niomänning", "tiomänning", "elvammänning",
 "tolvmänning", "trettonmänning", "fjortonmänning",
 "femtonmänning", "sextonmänning", "sjuttonmänning",
 "artonmänning", "nittonmänning", "tjugomänning",
 "tjugoettmänning", "tjugotvåmänning", "tjugotremänning",
 "tjugofyramänning","tjugofemmänning","tjugoexmänning",
 "tjugosjumänning","tjugoåttamänning","tjugoniomänning",
-"trettiomänning" ] 
+"trettiomänning" ]
 
 _children_level = 20
 
-_level_name = [ "", "första", 
+_level_name = [ "", "första",
 "andra", "tredje", "fjärde", "femte",
-"sjätte", "sjunde", "åttonde", "nionde", 
-"tionde", "elfte", "tolfte", "trettonde", 
-"fjortonde", "femtonde", "sextonde", "sjuttonde", 
+"sjätte", "sjunde", "åttonde", "nionde",
+"tionde", "elfte", "tolfte", "trettonde",
+"fjortonde", "femtonde", "sextonde", "sjuttonde",
 "artonde", "nittonde", "tjugonde" ]
 
 #-------------------------------------------------------------------------
@@ -76,7 +76,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     HALF = 'halv'
     #in-law string
     INLAW = 'ingift '
-        
+
 
     def __init__(self):
         gramps.gen.relationship.RelationshipCalculator.__init__(self)
@@ -271,16 +271,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             result[-2] = result[-2] + 's '
         return self.pair_up(result, step)
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         """
         Determine the string giving the relation between two siblings of
         type sib_type.
         Eg: b is the brother of a
         Here 'brother' is the string we need to determine
-        This method gives more details about siblings than 
+        This method gives more details about siblings than
         get_single_relationship_string can do.
-        
+
         .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
                      LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
                      get_sibling)
@@ -320,26 +320,26 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         Provide a string that describes the relationsip between a person, and
         a group of people with the same relationship. E.g. "grandparents" or
         "children".
-        
+
         Ga and Gb can be used to mathematically calculate the relationship.
 
         .. seealso::
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-        
-        :param Ga: The number of generations between the main person and the 
+
+        :param Ga: The number of generations between the main person and the
                    common ancestor.
         :type Ga: int
         :param Gb: The number of generations between the group of people and the
                    common ancestor
         :type Gb: int
         :param reltocommon_a: relation path to common ancestor or common
-                              Family for person a. 
+                              Family for person a.
                               Note that length = Ga
-        :type reltocommon_a: str 
+        :type reltocommon_a: str
         :param reltocommon_b: relation path to common ancestor or common
-                              Family for person b. 
+                              Family for person b.
                               Note that length = Gb
-        :type reltocommon_b: str 
+        :type reltocommon_b: str
         :param only_birth: True if relation between a and b is by birth only
                            False otherwise
         :type only_birth: bool
@@ -361,7 +361,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             if Gb < _children_level:
                 for AntBarn in range(Gb):
                     result.append("barn")
-                rel_str = self.pair_up(result,'')                
+                rel_str = self.pair_up(result,'')
             else:
                 rel_str = "avlägsna ättlingar"
         elif Gb == 0:
@@ -389,63 +389,63 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 result.append("syskonbarn")
                 for AntBarn in range(Gb-2):
                     result.append("barn")
-                rel_str = self.pair_up(result,'')                
+                rel_str = self.pair_up(result,'')
             else:
                 rel_str = "avlägsna brorsöner/systersöner/brorsdöttrar/systerdöttrar"
         elif Ga > 1 and Ga == Gb:
             # These are cousins in the same generation
             rel_str = self._get_cousin_kinship(Ga)
         elif Ga > 1 and Ga > Gb:
-            # These are cousins in different generations with the second person 
-            # being in a higher generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a higher generation from the common ancestor than the
             # first person.
             if Gb <= len(_level_name):
                 rel_str = "förfäders " + self._get_cousin_kinship(Ga) + \
-                    " i "+ _level_name[Gb] +  " generationen" 
+                    " i "+ _level_name[Gb] +  " generationen"
             else:
                 rel_str =  "avlägsna kusiner"
         elif Gb > 1 and Gb > Ga:
-            # These are cousins in different generations with the second person 
-            # being in a lower generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a lower generation from the common ancestor than the
             # first person.
             if Ga <= len(_level_name):
                 result = []
                 result.append(self._get_cousin(Ga-1, False, ''))
                 for AntBarn in range(Gb-Ga):
                     result.append("barn")
-                rel_str = self.pair_up(result,'')                
+                rel_str = self.pair_up(result,'')
             else:
                 rel_str =  "avlägsna kusiner"
-                
+
         if in_law_b == True:
             rel_str = "makar till %s" % rel_str
-                
+
         return rel_str
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
         Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
-        
+
         To be used as: 'person b is the grandparent of a', this will be in
         translation string:  'person b is the %(relation)s of a'
 
-        Note that languages with gender should add 'the' inside the 
+        Note that languages with gender should add 'the' inside the
         translation, so eg in french:  'person b est %(relation)s de a'
         where relation will be here: le grandparent
-        
+
         Ga and Gb can be used to mathematically calculate the relationship.
-        
+
         .. seealso::
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-        
+
         Some languages need to know the specific path to the common ancestor.
-        Those languages should use reltocommon_a and reltocommon_b which is 
+        Those languages should use reltocommon_a and reltocommon_b which is
         a string like 'mfmf'.
-        
+
         The possible string codes are:
 
         =======================  ===========================================
@@ -461,27 +461,27 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         REL_FAM_BIRTH_FATH_ONLY  # going up to fam, only birth rel to father
         =======================  ===========================================
 
-        Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
+        Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present.
         If the relation starts with the inlaw of the person a, then 'in_law_a'
         is True, if it starts with the inlaw of person b, then 'in_law_b' is
         True.
 
-        Also REL_SIBLING (# going sideways to sibling (no parents)) is not 
-        passed to this routine. The collapse_relations changes this to a 
-        family relation. 
+        Also REL_SIBLING (# going sideways to sibling (no parents)) is not
+        passed to this routine. The collapse_relations changes this to a
+        family relation.
 
-        Hence, calling routines should always strip REL_SIBLING and 
+        Hence, calling routines should always strip REL_SIBLING and
         REL_FAM_INLAW_PREFIX before calling get_single_relationship_string()
         Note that only_birth=False, means that in the reltocommon one of the
         NOTBIRTH specifiers is present.
 
-        The REL_FAM identifiers mean that the relation is not via a common 
-        ancestor, but via a common family (note that that is not possible for 
+        The REL_FAM identifiers mean that the relation is not via a common
+        ancestor, but via a common family (note that that is not possible for
         direct descendants or direct ancestors!). If the relation to one of the
         parents in that common family is by birth, then 'only_birth' is not
         set to False. The only_birth() method is normally used for this.
-            
-        :param Ga: The number of generations between the main person and the 
+
+        :param Ga: The number of generations between the main person and the
                    common ancestor.
         :type Ga: int
         :param Gb: The number of generations between the other person and the
@@ -492,13 +492,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         :param gender_b: gender of person b
         :type gender_b: int gender
         :param reltocommon_a: relation path to common ancestor or common
-                              Family for person a. 
+                              Family for person a.
                               Note that length = Ga
-        :type reltocommon_a: str 
+        :type reltocommon_a: str
         :param reltocommon_b: relation path to common ancestor or common
-                              Family for person b. 
+                              Family for person b.
                               Note that length = Gb
-        :type reltocommon_b: str 
+        :type reltocommon_b: str
         :param in_law_a:  True if path to common ancestors is via the partner
                           of person a
         :type in_law_a: bool
@@ -510,10 +510,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         :type only_birth: bool
         :returns: A string describing the relationship between the two people
         :rtype: str
-        
-        .. note:: 1. the self.REL_SIBLING should not be passed to this routine, 
+
+        .. note:: 1. the self.REL_SIBLING should not be passed to this routine,
                      so we should not check on it. All other self.
-                  2. for better determination of siblings, use if Ga=1=Gb 
+                  2. for better determination of siblings, use if Ga=1=Gb
                      get_sibling_relationship_string
         """
         if only_birth:
@@ -538,22 +538,22 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif Gb == 1:
             # b is sibling/aunt/uncle of a
             # handles brother and unknown gender as second person,
-            # shows up in "testing unknown cousins same generation"                
+            # shows up in "testing unknown cousins same generation"
             if gender_b == Person.MALE or gender_b == Person.UNKNOWN:
                 rel_str = self._get_ancestors_brother(reltocommon_a, gender_b, step, inlaw)
             elif gender_b == Person.FEMALE:
                 rel_str = self._get_ancestors_sister(reltocommon_a, step, inlaw)
         elif Ga == Gb:
             # a and b cousins in the same generation
-            rel_str = self._get_cousin(Ga-1, step, inlaw) 
+            rel_str = self._get_cousin(Ga-1, step, inlaw)
         elif Ga > Gb:
-            # These are cousins in different generations with the second person 
-            # being in a higher generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a higher generation from the common ancestor than the
             # first person.
             rel_str = self._get_ancestors_cousin(reltocommon_a, reltocommon_b, step, inlaw)
         elif Gb > Ga:
-            # These are cousins in different generations with the second person 
-            # being in a lower generation from the common ancestor than the 
+            # These are cousins in different generations with the second person
+            # being in a lower generation from the common ancestor than the
             # first person.
             rel_str = self._get_cousins_descendant(gender_b, reltocommon_b, reltocommon_a, step, inlaw)
         return rel_str
@@ -562,11 +562,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src 
-    # python src/plugins/rel/rel_sv.py 
+    #    export PYTHONPATH=/path/to/gramps/src
+    # python src/plugins/rel/rel_sv.py
     # (Above not needed here)
-    
-    """TRANSLATORS, copy this if statement at the bottom of your 
+
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

@@ -52,7 +52,7 @@ from ..glade import Glade
 from .editsecondary import EditSecondary
 from .objectentries import PlaceEntry
 from .displaytabs import CitationEmbedList,NoteTab
-from ..widgets import (PrivacyButton, MonitoredDate, 
+from ..widgets import (PrivacyButton, MonitoredDate,
                      MonitoredMenu, MonitoredStrMenu)
 from ..selectors import SelectorFactory
 
@@ -118,7 +118,7 @@ _DATA_MAP = {
         LdsOrd.STATUS_UNCLEARED,
         ],
     }
-    
+
 #-------------------------------------------------------------------------
 #
 # EditLdsOrd class
@@ -143,7 +143,7 @@ class EditLdsOrd(EditSecondary):
     def _local_init(self):
         self.width_key = 'interface.lds-width'
         self.height_key = 'interface.lds-height'
-        
+
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
@@ -241,18 +241,18 @@ class EditLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
-        self.citation_list = CitationEmbedList(self.dbstate, self.uistate, 
-                                             self.track, 
+        self.citation_list = CitationEmbedList(self.dbstate, self.uistate,
+                                             self.track,
                                              self.obj.get_citation_list())
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
-        
+
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
                     notetype=NoteType.LDS)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook, True, True, 0)
@@ -336,8 +336,8 @@ class EditFamilyLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = Glade() 
-        self.set_window(self.top.toplevel, 
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
         self.share_btn = self.top.get_object('share_place')
@@ -408,18 +408,18 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _create_tabbed_pages(self):
         notebook = Gtk.Notebook()
-        self.srcref_list = CitationEmbedList(self.dbstate,self.uistate, 
-                                             self.track, 
+        self.srcref_list = CitationEmbedList(self.dbstate,self.uistate,
+                                             self.track,
                                              self.obj.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
-        
+
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
                     notetype=NoteType.LDS)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 

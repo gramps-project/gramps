@@ -20,11 +20,11 @@ def get_dbdir_summary(dirpath, name):
         bsddb_version = vers_file.readline().strip()
     else:
         return "Unknown", "Unknown", "Unknown"
-        
+
     current_bsddb_version = str(db.version())
     if bsddb_version != current_bsddb_version:
         return "Unknown", bsddb_version, "Unknown"
-        
+
     env = db.DBEnv()
     flags = db.DB_CREATE | db.DB_PRIVATE |\
         db.DB_INIT_MPOOL |\

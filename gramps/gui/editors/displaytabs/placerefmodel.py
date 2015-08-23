@@ -47,6 +47,6 @@ class PlaceRefModel(Gtk.ListStore):
             place = self.db.get_place_from_handle(obj.ref)
             self.append(row=[place.get_gramps_id(),
                              place.get_name().get_value(),
-                             str(place.get_type()), 
-                             displayer.display(obj.date), 
+                             str(place.get_type()),
+                             displayer.display(obj.date),
                              obj, ])

@@ -1,6 +1,6 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
-# 
+#
 # Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -50,12 +50,12 @@ class LivingProxyDb(ProxyDbBase):
     def __init__(self, dbase, mode, current_year=None, years_after_death=0):
         """
         Create a new LivingProxyDb instance.
-        
+
         :param dbase: The database to be a proxy for
         :type dbase: DbBase
         :param mode:
-            The method for handling living people. 
-            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether. 
+            The method for handling living people.
+            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether.
             LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
             information and change their given name to "[Living]" or what has
             been set in Preferences -> Text.
@@ -65,7 +65,7 @@ class LivingProxyDb(ProxyDbBase):
         :param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
         :type current_year: int or None
-        :param years_after_death: The number of years after a person's death to 
+        :param years_after_death: The number of years after a person's death to
                                   still consider them living.
         :type years_after_death: int
         """
@@ -106,7 +106,7 @@ class LivingProxyDb(ProxyDbBase):
         """
         for person in filter(None, self.db.iter_people()):
             if self.__is_living(person):
-                if self.mode == self.MODE_EXCLUDE_ALL: 
+                if self.mode == self.MODE_EXCLUDE_ALL:
                     continue
                 else:
                     yield self.__restrict_person(person)
@@ -141,8 +141,8 @@ class LivingProxyDb(ProxyDbBase):
             person = self.get_unfiltered_person(handle)
             if person and self.__is_living(person):
                 return False
-        return True        
-        
+        return True
+
     def get_default_person(self):
         """returns the default Person of the database"""
         person_handle = self.db.get_default_handle()
@@ -173,7 +173,7 @@ class LivingProxyDb(ProxyDbBase):
         :param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
         :type include_classes: list of class names
-        
+
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
         override this method to provide much faster implementations that
@@ -191,7 +191,7 @@ class LivingProxyDb(ProxyDbBase):
                     continue
             yield (class_name, handle)
         return
-    
+
     def __is_living(self, person):
         """
         Check if a person is considered living.
@@ -204,7 +204,7 @@ class LivingProxyDb(ProxyDbBase):
                                self.db,
                                self.current_date,
                                self.years_after_death )
-    
+
     def __remove_living_from_family(self, family):
         """
         Remove information from a family that pertains to living people.
@@ -213,9 +213,9 @@ class LivingProxyDb(ProxyDbBase):
         """
         if family is None:
             return None
-        
+
         parent_is_living = False
-        
+
         father_handle = family.get_father_handle()
         if father_handle:
             father = self.db.get_person_from_handle(father_handle)
@@ -223,7 +223,7 @@ class LivingProxyDb(ProxyDbBase):
                 parent_is_living = True
                 if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_father_handle(None)
-    
+
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self.db.get_person_from_handle(mother_handle)
@@ -231,29 +231,29 @@ class LivingProxyDb(ProxyDbBase):
                 parent_is_living = True
                 if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_mother_handle(None)
-                    
+
         if parent_is_living:
             # Clear all events for families where a parent is living.
             family.set_event_ref_list([])
-            
+
         if self.mode == self.MODE_EXCLUDE_ALL:
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 child = self.db.get_person_from_handle(child_handle)
                 if child and self.__is_living(child):
                     family.remove_child_ref(child_ref)
-        
+
         return family
 
     def __restrict_person(self, person):
         """
-        Remove information from a person and replace the first name with 
+        Remove information from a person and replace the first name with
         "[Living]" or what has been set in Preferences -> Text.
         """
         new_person = Person()
         new_name = Name()
         old_name = person.get_primary_name()
-        
+
         new_name.set_group_as(old_name.get_group_as())
         new_name.set_sort_as(old_name.get_sort_as())
         new_name.set_display_as(old_name.get_display_as())
@@ -268,7 +268,7 @@ class LivingProxyDb(ProxyDbBase):
         surnlst = []
         for surn in old_name.get_surname_list():
             surname = Surname(source=surn)
-            if int(surname.origintype) in [NameOriginType.PATRONYMIC, 
+            if int(surname.origintype) in [NameOriginType.PATRONYMIC,
                                            NameOriginType.MATRONYMIC]:
                 surname.set_surname(config.get('preferences.private-surname-text'))
             surnlst.append(surname)
@@ -280,9 +280,9 @@ class LivingProxyDb(ProxyDbBase):
         new_person.set_handle(person.get_handle())
         new_person.set_change_time(person.get_change_time())
         new_person.set_family_handle_list(person.get_family_handle_list())
-        new_person.set_parent_family_handle_list( 
+        new_person.set_parent_family_handle_list(
                                         person.get_parent_family_handle_list() )
         new_person.set_tag_list(person.get_tag_list())
-    
+
         return new_person
 

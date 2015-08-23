@@ -51,13 +51,13 @@ from ._datehandler import register_datehandler
 #-------------------------------------------------------------------------
 class DateParserHR(DateParser):
     modifier_to_int = {
-        'prije'    : Date.MOD_BEFORE, 
+        'prije'    : Date.MOD_BEFORE,
         'pr. '    : Date.MOD_BEFORE,
         'poslije'   : Date.MOD_AFTER,
         'po. '   : Date.MOD_AFTER,
         'okolo'  : Date.MOD_ABOUT,
         'ok. '     : Date.MOD_ABOUT,
-       
+
         }
 
     quality_to_int = {
@@ -76,8 +76,8 @@ class DateParserHR(DateParser):
         """
         DateParser.init_strings(self)
         #~ DateParser.calendar_to_int.update({
-            #~ 'персидский'    : Date.CAL_PERSIAN, 
-            #~ 'п'             : Date.CAL_PERSIAN, 
+            #~ 'персидский'    : Date.CAL_PERSIAN,
+            #~ 'п'             : Date.CAL_PERSIAN,
         #~ })
         _span_1 = ['od']
         _span_2 = ['do']
@@ -97,10 +97,10 @@ class DateParserHR(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayHR(DateDisplay):
     """
-    Croatian language date display class. 
+    Croatian language date display class.
     """
      # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
-    # not refactoring _bce_str into base class because it'll be gone under #7064  
+    # not refactoring _bce_str into base class because it'll be gone under #7064
     _bce_str = "%s p.n.e."
 
     display = DateDisplay.display_formatted

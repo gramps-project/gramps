@@ -41,7 +41,7 @@ class Notes(Gramplet):
         Build the GUI interface.
         """
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        
+
         hbox = Gtk.Box()
         self.left = SimpleButton('go-previous', self.left_clicked)
         self.left.set_sensitive(False)
@@ -51,7 +51,7 @@ class Notes(Gramplet):
         hbox.pack_start(self.right, False, False, 0)
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
-        
+
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
@@ -63,7 +63,7 @@ class Notes(Gramplet):
         top.pack_start(scrolledwindow, True, True, 0)
         top.show_all()
         return top
-        
+
     def get_notes(self, obj):
         """
         Get the note list for the current object.
@@ -125,7 +125,7 @@ class Notes(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if obj is None: 
+        if obj is None:
             return False
         if obj.get_note_list():
             return True

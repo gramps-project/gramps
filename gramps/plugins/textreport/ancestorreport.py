@@ -41,7 +41,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.lib import ChildRefType
 from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption)
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                                    FONT_SANS_SERIF, INDEX_TYPE_TOC, 
+                                    FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
@@ -72,7 +72,7 @@ class AncestorReport(Report):
     def __init__(self, database, options, user):
         """
         Create the AncestorReport object that produces the Ahnentafel report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -81,7 +81,7 @@ class AncestorReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         gen       - Maximum number of generations to include.
         pagebbg   - Whether to include page breaks between generations.
         name_format   - Preferred format to display names
@@ -123,7 +123,7 @@ class AncestorReport(Report):
         if not person_handle or generation > self.max_generations:
             return
 
-        # store the person in the map based off their index number 
+        # store the person in the map based off their index number
         # which is passed to the routine.
         self.map[index] = person_handle
 
@@ -148,8 +148,8 @@ class AncestorReport(Report):
             if ref:
 
                 # If the father_handle is not defined and the relationship is
-                # BIRTH, then we have found the birth father. Same applies to 
-                # the birth mother. If for some reason, the we have multiple 
+                # BIRTH, then we have found the birth father. Same applies to
+                # the birth mother. If for some reason, the we have multiple
                 # people defined as the birth parents, we will select based on
                 # priority in the list
 
@@ -160,7 +160,7 @@ class AncestorReport(Report):
                    ref[0].get_mother_relation() == ChildRefType.BIRTH:
                     mother_handle = family.get_mother_handle()
 
-        # Recursively call the function. It is okay if the handle is None,  
+        # Recursively call the function. It is okay if the handle is None,
         # since routine handles a handle of None
 
         self.apply_filter(father_handle, index*2, generation+1)
@@ -172,7 +172,7 @@ class AncestorReport(Report):
         is opened and ready for writing.
         """
 
-        # Call apply_filter to build the self.map array of people in the 
+        # Call apply_filter to build the self.map array of people in the
         # database that match the ancestry.
 
         self.apply_filter(self.center_person.get_handle(), 1)
@@ -183,11 +183,11 @@ class AncestorReport(Report):
         name = self._name_display.display_formal(self.center_person)
         # feature request 2356: avoid genitive form
         title = self._("Ahnentafel Report for %s") % name
-        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("AHN-Title")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
-    
+
         # get the entries out of the map, and sort them.
 
         generation = 0
@@ -217,13 +217,13 @@ class AncestorReport(Report):
             person = self.database.get_person_from_handle(self.map[key])
             name = self._name_display.display(person)
             mark = ReportUtils.get_person_mark(self.database, person)
-        
+
             # write the name in bold
             self.doc.start_bold()
             self.doc.write_text(name.strip(), mark)
             self.doc.end_bold()
 
-            # terminate with a period if it is not already terminated. 
+            # terminate with a period if it is not already terminated.
             # This can happen if the person's name ends with something 'Jr.'
             if name[-1:] == '.':
                 self.doc.write_text(" ")
@@ -240,7 +240,7 @@ class AncestorReport(Report):
             self.doc.write_text(self.__narrator.get_christened_string())
             self.doc.write_text(self.__narrator.get_died_string())
             self.doc.write_text(self.__narrator.get_buried_string())
-                        
+
             self.doc.end_paragraph()
 
 #------------------------------------------------------------------------
@@ -256,30 +256,30 @@ class AncestorOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the ancestor report.
         """
         category_name = _("Report Options")
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
 
         stdoptions.add_name_format_option(menu, category_name)
-        
+
         stdoptions.add_private_data_option(menu, category_name)
 
         maxgen = NumberOption(_("Generations"), 10, 1, 100)
         maxgen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "maxgen", maxgen)
-        
+
         pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
         menu.add_option(category_name, "pagebbg", pagebbg)
-        
+
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
@@ -308,7 +308,7 @@ class AncestorOptions(MenuReportOptions):
                         14pt
             Paragraph : Second level header
                         0.125cm top and bottom margins
-                        
+
         AHN - Normal text display for each entry
 
             Font      : default
@@ -326,10 +326,10 @@ class AncestorOptions(MenuReportOptions):
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_alignment(PARA_ALIGN_CENTER)       
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_paragraph_style("AHN-Title", para)
-    
+
         #
         # AHN-Generation
         #
@@ -339,16 +339,16 @@ class AncestorOptions(MenuReportOptions):
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.125)
-        para.set_bottom_margin(0.125)        
+        para.set_bottom_margin(0.125)
         para.set_description(_('The style used for the generation header.'))
         default_style.add_paragraph_style("AHN-Generation", para)
-    
+
         #
         # AHN-Entry
         #
         para = ParagraphStyle()
         para.set(first_indent=-1.0, lmargin=1.0)
         para.set_top_margin(0.125)
-        para.set_bottom_margin(0.125)        
+        para.set_bottom_margin(0.125)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("AHN-Entry", para)

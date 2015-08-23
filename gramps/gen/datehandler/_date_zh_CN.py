@@ -52,7 +52,7 @@ class DateParserZH_CN(DateParser):
     Convert a text string into a Date object. If the date cannot be
     converted, the text string is assigned.
     """
-    
+
     # modifiers before the date
     modifier_to_int = {
         '以前'   : Date.MOD_BEFORE,
@@ -89,7 +89,7 @@ class DateParserZH_CN(DateParser):
     month_to_int["shí'èryuè"] = 12
     month_to_int["假閏"] = 13
     month_to_int["jiǎ rùn yùe"] = 13
-    
+
     calendar_to_int = {
         '阳历'             : Date.CAL_GREGORIAN,
         'g'                : Date.CAL_GREGORIAN,
@@ -102,16 +102,16 @@ class DateParserZH_CN(DateParser):
         '法国共和历'       : Date.CAL_FRENCH,
         'f'                : Date.CAL_FRENCH,
         '伊郎历'           : Date.CAL_PERSIAN,
-        'p'                : Date.CAL_PERSIAN, 
+        'p'                : Date.CAL_PERSIAN,
         '瑞典历'           : Date.CAL_SWEDISH,
         's'                : Date.CAL_SWEDISH,
         }
-        
+
     quality_to_int = {
         '据估计'     : Date.QUAL_ESTIMATED,
         '据计算'     : Date.QUAL_CALCULATED,
         }
-        
+
     # FIXME translate these English strings into simplified-Chinese ones
     bce = ["before calendar", "negative year"] + DateParser.bce
 
@@ -131,7 +131,7 @@ class DateParserZH_CN(DateParser):
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
         self._numeric = re.compile("((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
-                                    
+
 #-------------------------------------------------------------------------
 #
 # Simplified-Chinese display
@@ -139,14 +139,14 @@ class DateParserZH_CN(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayZH_CN(DateDisplay):
     """
-    Simplified-Chinese language date display class. 
+    Simplified-Chinese language date display class.
     """
 
     formats = (
         "年年年年-月月-日日 (ISO)",  "数字格式",
         )
         # this definition must agree with its "_display_calendar" method
-    
+
     # FIXME translate these English strings into simplified-Chinese ones
     _bce_str = "%s B.C.E."
 
@@ -178,5 +178,5 @@ class DateDisplayZH_CN(DateDisplay):
 #
 #-------------------------------------------------------------------------
 
-register_datehandler(('zh_CN', 'zh_SG', 'zh', 'chinese', 'Chinese'), 
+register_datehandler(('zh_CN', 'zh_SG', 'zh', 'chinese', 'Chinese'),
                      DateParserZH_CN, DateDisplayZH_CN)

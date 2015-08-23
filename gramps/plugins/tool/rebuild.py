@@ -62,25 +62,25 @@ class Rebuild(tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        
+
         tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
             return
 
         self.db.disable_signals()
-        
+
         if uistate:
             self.callback = uistate.pulse_progressbar
             uistate.set_busy_cursor(True)
             uistate.progress.show()
             uistate.push_message(dbstate, _("Rebuilding secondary indexes..."))
-            
+
             UpdateCallback.__init__(self, self.callback)
             self.set_total(12)
             self.db.rebuild_secondary(self.update)
             self.reset()
-            
+
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
             OkDialog(_("Secondary indexes rebuilt"),
@@ -95,7 +95,7 @@ class Rebuild(tool.Tool, UpdateCallback):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class RebuildOptions(tool.ToolOptions):

@@ -200,7 +200,7 @@ class PeopleBaseModel(BaseModel):
         else:
             # There is a problem returning None here.
             return ''
-    
+
     def _get_spouse_data(self, data):
         spouses_names = ""
         for family_handle in data[COLUMN_FAMILY]:
@@ -236,7 +236,7 @@ class PeopleBaseModel(BaseModel):
             value = self._get_birth_data(data, False)
             self.set_cached_value(handle, "BIRTH_DAY", value)
         return value
-        
+
     def sort_birth_day(self, data):
         handle = data[0]
         cached, value = self.get_cached_value(handle, "SORT_BIRTH_DAY")
@@ -265,7 +265,7 @@ class PeopleBaseModel(BaseModel):
                     return retval
             except:
                 return ''
-        
+
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
             er.unserialize(event_ref)
@@ -283,7 +283,7 @@ class PeopleBaseModel(BaseModel):
                     return invalid_date_format % retval
                 else:
                     return retval
-        
+
         return ""
 
     def column_death_day(self, data):
@@ -293,7 +293,7 @@ class PeopleBaseModel(BaseModel):
             value = self._get_death_data(data, False)
             self.set_cached_value(handle, "DEATH_DAY", value)
         return value
-        
+
     def sort_death_day(self, data):
         handle = data[0]
         cached, value = self.get_cached_value(handle, "SORT_DEATH_DAY")
@@ -322,7 +322,7 @@ class PeopleBaseModel(BaseModel):
                     return retval
             except:
                 return ''
-        
+
         for event_ref in data[COLUMN_EVENT]:
             er = EventRef()
             er.unserialize(event_ref)
@@ -367,7 +367,7 @@ class PeopleBaseModel(BaseModel):
                     value = ''
                     self.set_cached_value(handle, "BIRTH_PLACE", value)
                     return value
-        
+
             for event_ref in data[COLUMN_EVENT]:
                 er = EventRef()
                 er.unserialize(event_ref)
@@ -449,7 +449,7 @@ class PeopleBaseModel(BaseModel):
         for family_handle in data[COLUMN_FAMILY]:
             family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
-                if (child_ref.get_father_relation() == ChildRefType.BIRTH and 
+                if (child_ref.get_father_relation() == ChildRefType.BIRTH and
                     child_ref.get_mother_relation() == ChildRefType.BIRTH):
                     children += 1
         return children
@@ -533,8 +533,8 @@ class PeopleBaseModel(BaseModel):
         cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
         if not cached:
             value = self.db.get_tag_from_handle(tag_handle).get_name()
-            self.set_cached_value(tag_handle, "TAG_NAME", value)        
-        return value 
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
 
     def column_tag_color(self, data):
         """
@@ -553,8 +553,8 @@ class PeopleBaseModel(BaseModel):
                         tag_color = tag.get_color()
                         tag_priority = this_priority
             value = tag_color
-            self.set_cached_value(tag_handle, "TAG_COLOR", value)        
-        return value 
+            self.set_cached_value(tag_handle, "TAG_COLOR", value)
+        return value
 
     def column_tags(self, data):
         """
@@ -616,7 +616,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
 
     def column_header(self, node):
         return node.name
-    
+
     def add_row(self, handle, data):
         """
         Add nodes to the node map for a single person.
@@ -625,7 +625,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         data        The object data.
         """
         ngn = name_displayer.name_grouping_data
-        
+
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
         #if isinstance(group_name, str):
@@ -635,7 +635,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         #if group_name not in self.group_list:
             #self.group_list.append(group_name)
             #self.add_node(None, group_name, group_name, None)
-            
-        # add as node: parent, child, sortkey, handle; parent and child are 
+
+        # add as node: parent, child, sortkey, handle; parent and child are
         # nodes in the treebasemodel, and will be used as iters
         self.add_node(group_name, handle, sort_key, handle)

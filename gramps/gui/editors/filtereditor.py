@@ -39,7 +39,7 @@ log = logging.getLogger(".filtereditor")
 
 #-------------------------------------------------------------------------
 #
-# GTK/GNOME 
+# GTK/GNOME
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -53,7 +53,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.filters import (GenericFilterFactory, FilterList, 
+from gramps.gen.filters import (GenericFilterFactory, FilterList,
                                 reload_custom_filters)
 from gramps.gen.filters.rules._matchesfilterbase import MatchesFilterBase
 from ..listmodel import ListModel
@@ -123,13 +123,13 @@ class MyBoolean(Gtk.CheckButton):
 
     def get_text(self):
         """
-        Return the text to save. 
-        
-        It should be the same no matter the present locale (English or numeric 
+        Return the text to save.
+
+        It should be the same no matter the present locale (English or numeric
         types).
         This class sets this to get_display_text, but when localization
         is an issue (events/attr/etc types) then it has to be overridden.
-        
+
         """
         return str(int(self.get_active()))
 
@@ -171,10 +171,10 @@ class MyFilters(Gtk.ComboBox):
     def __init__(self, filters, filter_name=None):
         """
         Construct the combobox from the entries of the filters list.
-        
+
         Filter_name is name of calling filter.
         If filter_name is given, it will be excluded from the dropdown box.
-        
+
         """
         GObject.GObject.__init__(self)
         store = Gtk.ListStore(GObject.TYPE_STRING)
@@ -191,7 +191,7 @@ class MyFilters(Gtk.ComboBox):
             store.append(row=[fname])
         self.set_active(0)
         self.show()
-        
+
     def get_text(self):
         active = self.get_active()
         if active < 0:
@@ -208,7 +208,7 @@ class MyFilters(Gtk.ComboBox):
 #
 #-------------------------------------------------------------------------
 class MyList(Gtk.ComboBox):
- 
+
     def __init__(self, clist, clist_trans, default=0):
         GObject.GObject.__init__(self)
         store = Gtk.ListStore(GObject.TYPE_STRING)
@@ -221,7 +221,7 @@ class MyList(Gtk.ComboBox):
             store.append(row=[name])
         self.set_active(default)
         self.show()
-    
+
     def get_text(self):
         active = self.get_active()
         return self.clist[active]
@@ -270,13 +270,13 @@ class MyLesserEqualGreater(Gtk.ComboBox):
 #
 #-------------------------------------------------------------------------
 class MyPlaces(Gtk.Entry):
-    
+
     def __init__(self, places):
         GObject.GObject.__init__(self)
-        
+
         fill_entry(self, places)
         self.show()
-        
+
 #-------------------------------------------------------------------------
 #
 # MyID - Person/GRAMPS ID selection box with a standard interface
@@ -297,7 +297,7 @@ class MyID(Gtk.Box):
         'Note'   : _('Note'),
         'Citation' : _('Citation'),
         }
-    
+
     def __init__(self, dbstate, uistate, track, namespace='Person'):
         GObject.GObject.__init__(self)
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
@@ -307,7 +307,7 @@ class MyID(Gtk.Box):
         self.db = dbstate.db
         self.uistate = uistate
         self.track = track
-        
+
         self.namespace = namespace
         self.entry = Gtk.Entry()
         self.entry.show()
@@ -331,7 +331,7 @@ class MyID(Gtk.Box):
             self.set_text('')
         else:
             self.set_text(val.get_gramps_id())
-        
+
     def get_text(self):
         return str(self.entry.get_text())
 
@@ -383,7 +383,7 @@ class MyID(Gtk.Box):
 #
 #-------------------------------------------------------------------------
 class MySource(MyID):
-    
+
     _empty_id_txt = _('Give or select a source ID, leave empty to find objects'
               ' with no source.')
     def __init__(self, dbstate, uistate, track):
@@ -396,7 +396,7 @@ class MySource(MyID):
 #
 #-------------------------------------------------------------------------
 class MySelect(Gtk.ComboBox):
-    
+
     def __init__(self, type_class, additional):
         #we need to inherit and have an combobox with an entry
         Gtk.ComboBox.__init__(self, has_entry=True)
@@ -407,7 +407,7 @@ class MySelect(Gtk.ComboBox):
                                           additional,
                                           type_class._MENU)
         self.show()
-        
+
     def get_text(self):
         return self.type_class(self.sel.get_values()).xml_str()
 
@@ -422,11 +422,11 @@ class MySelect(Gtk.ComboBox):
 #
 #-------------------------------------------------------------------------
 class MyEntry(Gtk.Entry):
-    
+
     def __init__(self):
         GObject.GObject.__init__(self)
         self.show()
-        
+
 #-------------------------------------------------------------------------
 #
 # EditRule
@@ -447,7 +447,7 @@ class EditRule(ManagedWindow):
 
         self.active_rule = val
         self.define_glade('rule_editor', RULE_GLADE)
-        
+
         self.set_window(self.get_widget('rule_editor'),
                         self.get_widget('rule_editor_title'),label)
         self.window.hide()
@@ -483,7 +483,7 @@ class EditRule(ManagedWindow):
             class_list = rules.repository.editor_rule_list
         elif self.namespace == 'Note':
             class_list = rules.note.editor_rule_list
-        
+
         for class_obj in class_list:
             arglist = class_obj.labels
             vallist = []
@@ -512,7 +512,7 @@ class EditRule(ManagedWindow):
                 elif v == _('Number of generations:'):
                     t = MyInteger(1, 32)
                 elif v == _('ID:'):
-                    t = MyID(self.dbstate, self.uistate, self.track, 
+                    t = MyID(self.dbstate, self.uistate, self.track,
                              self.namespace)
                 elif v == _('Source ID:'):
                     t = MySource(self.dbstate, self.uistate, self.track)
@@ -570,7 +570,7 @@ class EditRule(ManagedWindow):
                     taglist = taglist + [tag.get_name() for tag in dbstate.db.iter_tags()]
                     t = MyList(taglist, taglist)
                 elif v == _('Confidence level:'):
-                    t = MyList(list(map(str, list(range(5)))), 
+                    t = MyList(list(map(str, list(range(5)))),
                                [_(conf_strings[i]) for i in range(5)])
                 elif v == _('Date:'):
                     t = DateEntry(self.uistate, self.track)
@@ -578,7 +578,7 @@ class EditRule(ManagedWindow):
                     long_days = displayer.long_days
                     days_of_week = long_days[2:] + long_days[1:2]
                     t = MyList(map(str, range(7)), days_of_week)
-                else:                    
+                else:
                     t = MyEntry()
                 t.set_hexpand(True)
                 tlist.append(t)
@@ -616,7 +616,7 @@ class EditRule(ManagedWindow):
         self.page_num = 0
         self.store = Gtk.TreeStore(GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
         self.selection = self.rname.get_selection()
-        col = Gtk.TreeViewColumn(_('Rule Name'), Gtk.CellRendererText(), 
+        col = Gtk.TreeViewColumn(_('Rule Name'), Gtk.CellRendererText(),
                                  text=0)
         self.rname.append_column(col)
         self.rname.set_model(self.store)
@@ -666,7 +666,7 @@ class EditRule(ManagedWindow):
                 tlist[i].set_text(r[i])
             if class_obj.allow_regex:
                 use_regex.set_active(self.active_rule.use_regex)
-            
+
         self.selection.connect('changed', self.on_node_selected)
         self.rname.connect('button-press-event', self._button_press)
         self.rname.connect('key-press-event', self._key_press)
@@ -695,8 +695,8 @@ class EditRule(ManagedWindow):
     def _key_press(self, obj, event):
         if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             return self.expand_collapse()
-        return False    
-    
+        return False
+
     def expand_collapse(self):
         """
         Expand or collapse the selected parent name node.
@@ -722,7 +722,7 @@ class EditRule(ManagedWindow):
 
     def on_node_selected(self, obj):
         """
-        Update the informational display on the right hand side of the dialog 
+        Update the informational display on the right hand side of the dialog
         box with the description of the selected report.
         """
         store, node = self.selection.get_selected()
@@ -766,7 +766,7 @@ class EditRule(ManagedWindow):
 #
 #-------------------------------------------------------------------------
 class EditFilter(ManagedWindow):
-    
+
     def __init__(self, namespace, dbstate, uistate, track, gfilter,
                  filterdb, update=None, selection_callback=None):
 
@@ -780,20 +780,20 @@ class EditFilter(ManagedWindow):
         self.filter = gfilter
         self.filterdb = filterdb
         self.selection_callback = selection_callback
-        
+
         self.define_glade('define_filter', RULE_GLADE)
-        
+
         self.set_window(
             self.get_widget('define_filter'),
             self.get_widget('definition_title'),
             _('Define filter'))
-        
+
         self.rlist = ListModel(
             self.get_widget('rule_list'),
             [(_('Name'),-1,150),(_('Values'),-1,150)],
             self.select_row,
             self.on_edit_clicked)
-                                         
+
         self.fname = self.get_widget('filter_name')
         self.logical = self.get_widget('rule_apply')
         self.logical_not = self.get_widget('logical_not')
@@ -807,7 +807,7 @@ class EditFilter(ManagedWindow):
         self.edit_btn.connect('clicked', self.on_edit_clicked)
         self.del_btn.connect('clicked', self.on_delete_clicked)
         self.add_btn.connect('clicked', self.on_add_clicked)
-        
+
         self.get_widget('definition_help').connect('clicked',
                                         self.on_help_clicked)
         self.get_widget('definition_cancel').connect('clicked',
@@ -841,7 +841,7 @@ class EditFilter(ManagedWindow):
                  for filt in self.filterdb.get_filters(self.namespace)
                  if filt != self.filter]
         self.ok_btn.set_sensitive((len(name) != 0) and (name not in names))
-    
+
     def select_row(self, obj):
         store, node = self.rlist.get_selected()
         if node:
@@ -855,7 +855,7 @@ class EditFilter(ManagedWindow):
         self.rlist.clear()
         for r in self.filter.get_rules():
             self.rlist.add([r.name,r.display_values()],r)
-            
+
     def on_ok_clicked(self, obj):
         n = str(self.fname.get_text()).strip()
         if n == '':
@@ -871,9 +871,9 @@ class EditFilter(ManagedWindow):
                 break
         val = self.logical.get_active()
         # WARNING: must be listed in this order:
-        op = ('and' if val == 0 else 
-              'or' if val == 1 else 
-              'one' if val == 2 else 
+        op = ('and' if val == 0 else
+              'or' if val == 1 else
+              'one' if val == 2 else
               'sequence')
         self.logical.set_active(val)
         self.filter.set_logical_op(op)
@@ -884,7 +884,7 @@ class EditFilter(ManagedWindow):
         if self.selection_callback:
             self.selection_callback(self.filterdb, self.filter.get_name())
         self.close()
-        
+
     def on_add_clicked(self, obj):
         try:
             EditRule(self.namespace, self.dbstate, self.uistate, self.track,
@@ -917,7 +917,7 @@ class EditFilter(ManagedWindow):
             gfilter = self.rlist.get_object(node)
             self.filter.delete_rule(gfilter)
             self.draw_rules()
-            
+
 #-------------------------------------------------------------------------
 #
 # ShowResults
@@ -938,7 +938,7 @@ class ShowResults(ManagedWindow):
             _('Filter Test'))
 
         render = Gtk.CellRendererText()
-        
+
         tree = self.get_widget('list')
         model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         tree.set_model(model)
@@ -1002,7 +1002,7 @@ class ShowResults(ManagedWindow):
                 name = name[:80]+"..."
             gid = note.get_gramps_id()
         return (name, gid)
-        
+
     def sort_val_from_handle(self, handle):
         if self.namespace == 'Person':
             name = self.db.get_person_from_handle(handle).get_primary_name()
@@ -1059,7 +1059,7 @@ class FilterEditor(ManagedWindow):
 
         self.set_window(self.get_widget('filter_list'),
                         self.get_widget('filter_list_title'),
-                        _TITLES[self.namespace]) 
+                        _TITLES[self.namespace])
 
         self.edit.connect('clicked', self.edit_filter)
         self.clone.connect('clicked', self.clone_filter)
@@ -1069,7 +1069,7 @@ class FilterEditor(ManagedWindow):
         self.connect_button('filter_list_help', self.help_clicked)
         self.connect_button('filter_list_close', self.close)
         self.connect_button('filter_list_add', self.add_new_filter)
-        
+
         self.uistate.connect('filter-name-changed', self.clean_after_rename)
 
         self.clist = ListModel(
@@ -1083,7 +1083,7 @@ class FilterEditor(ManagedWindow):
 
     def build_menu_names(self, obj):
         return (_("Custom Filter Editor"), _("Custom Filter Editor"))
-        
+
     def help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
         display_help()
@@ -1100,14 +1100,14 @@ class FilterEditor(ManagedWindow):
             self.clone.set_sensitive(False)
             self.delete.set_sensitive(False)
             self.test.set_sensitive(False)
-    
+
     def close(self, *obj):
         self.filterdb.save()
         reload_custom_filters()
         #reload_system_filters()
         self.uistate.emit('filters-changed', (self.namespace,))
         ManagedWindow.close(self, *obj)
-        
+
     def draw_filters(self):
         self.clist.clear()
         for f in self.filterdb.get_filters(self.namespace):
@@ -1183,7 +1183,7 @@ class FilterEditor(ManagedWindow):
 
         The filter_set is amended with the found filters.
         """
-        filters = self.filterdb.get_filters(space)        
+        filters = self.filterdb.get_filters(space)
         name = gfilter.get_name()
         for the_filter in filters:
             if the_filter.get_name() == name:

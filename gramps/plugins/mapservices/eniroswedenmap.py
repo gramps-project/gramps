@@ -44,17 +44,17 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 # Make upper case of translaed country so string search works later
-MAP_NAMES_SWEDEN = [_("Sweden").upper(), 
-                      "SVERIGE", 
+MAP_NAMES_SWEDEN = [_("Sweden").upper(),
+                      "SVERIGE",
                       "SWEDEN",
-                      "SUEDOIS", 
+                      "SUEDOIS",
                       "ROUTSI",
                       "SCHWEDEN", ]
-MAP_NAMES_DENMARK = [_("Denmark").upper(), 
-                       "DANMARK", 
-                       "DENMARK", 
-                       "DANOIS", 
-                       "TANSKA", 
+MAP_NAMES_DENMARK = [_("Denmark").upper(),
+                       "DANMARK",
+                       "DENMARK",
+                       "DANOIS",
+                       "TANSKA",
                        "DÄNEMARK", ]
 
 
@@ -83,7 +83,7 @@ def _build_title(db, place):
     if state:
         title_descr += ', ' + state.strip() + _(" state")
     return _strip_leading_comma(title_descr)
- 
+
 def _build_city(db, place):
     """ Builds description string for city parameter in url """
     location = get_main_location(db, place)
@@ -102,9 +102,9 @@ def _build_area(db, place):
     # Build a title description string that will work for Eniro
     area_descr = ""
     if street:
-        area_descr += street.strip() 
+        area_descr += street.strip()
     if city:
-        area_descr += ', ' + city 
+        area_descr += ', ' + city
     return _strip_leading_comma(area_descr)
 
 
@@ -131,12 +131,12 @@ class EniroSVMapService(MapService):
                         country in MAP_NAMES_DENMARK) and (country != "")
         # if no country given, check if we might be in the vicinity defined by
         # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
-        # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15 
+        # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15
         latitude, longitude = self._lat_lon(place)
         if latitude is None or longitude is None:
             coord_ok = False
         else:
-            latitude = float(latitude) 
+            latitude = float(latitude)
             longitude = float(longitude)
             # Check if coordinates are inside Sweden and Denmark
             if (54.55 < latitude < 69.05) and (8.05 < longitude < 24.15):
@@ -176,7 +176,7 @@ class EniroSVMapService(MapService):
                 self.url = ""
                 return
 
-        WarningDialog(_("Eniro map not available"), 
+        WarningDialog(_("Eniro map not available"),
                       _("Latitude and longitude,\n" \
                     "or street and city needed") )
         return

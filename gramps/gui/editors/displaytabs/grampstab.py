@@ -40,9 +40,9 @@ _RIGHT = Gdk.keyval_from_name("Right")
 class GrampsTab(Gtk.Box):
     """
     This class provides the base level class for 'tabs', which are used to
-    fill in notebook tabs for GRAMPS edit dialogs. 
-    
-    Each tab returns a gtk container widget which can be inserted into a 
+    fill in notebook tabs for GRAMPS edit dialogs.
+
+    Each tab returns a gtk container widget which can be inserted into a
     Gtk.Notebook by the instantiating object.
 
     All tab classes should inherit from GrampsTab
@@ -72,10 +72,10 @@ class GrampsTab(Gtk.Box):
         self.track = track
         self.changed = False
         self.__refs_for_deletion = []
-        
+
         # save name used for notebook label, and build the widget used
         # for the label
-        
+
         self.tab_name = name
         self.track_ref_for_deletion("tab_name")
         self.label_container = self.build_label_widget()
@@ -111,7 +111,7 @@ class GrampsTab(Gtk.Box):
             name = icon[1]
         else:
             name = icon
-        
+
         self.tab_image = Gtk.Image.new_from_icon_name(name, Gtk.IconSize.MENU)
         self.track_ref_for_deletion("tab_image")
         self.label = Gtk.Label(label=self.tab_name)
@@ -144,7 +144,7 @@ class GrampsTab(Gtk.Box):
 
     def key_pressed(self, obj, event):
         """
-        Handles the key being pressed. 
+        Handles the key being pressed.
         The inheriting object must contain a widget that connects at mimimum
         to this method, eg an eventbox, tree, ...
         """
@@ -212,6 +212,6 @@ class GrampsTab(Gtk.Box):
         Remove any instance variables from scope which point to non-glade
         GTK objects so that the class can be garbage collected.
         """
-        while len(self.__refs_for_deletion): 
+        while len(self.__refs_for_deletion):
             attr = self.__refs_for_deletion.pop()
             delattr(self, attr)

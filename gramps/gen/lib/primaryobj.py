@@ -42,22 +42,22 @@ from .tagbase import TagBase
 class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     """
     The BasicPrimaryObject is the base class for :class:`~.note.Note` objects.
-    
-    It is also the base class for the :class:`PrimaryObject` class.    
-    
+
+    It is also the base class for the :class:`PrimaryObject` class.
+
     The :class:`PrimaryObject` is the base class for all other primary objects
     in the database. Primary objects are the core objects in the database.
     Each object has a database handle and a Gramps ID value. The database
     handle is used as the record number for the database, and the Gramps
     ID is the user visible version.
     """
-    
+
     def __init__(self, source=None):
         """
-        Initialize a PrimaryObject. 
-        
-        If source is None, both the ID and handle are assigned as empty 
-        strings. If source is not None, then object is initialized from values 
+        Initialize a PrimaryObject.
+
+        If source is None, both the ID and handle are assigned as empty
+        strings. If source is not None, then object is initialized from values
         of the source object.
 
         :param source: Object used to initialize the new object
@@ -74,7 +74,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     def set_gramps_id(self, gramps_id):
         """
         Set the Gramps ID for the primary object.
-        
+
         :param gramps_id: Gramps ID
         :type gramps_id: str
         """
@@ -91,16 +91,16 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
     def has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
 
-        :returns: 
-          Returns whether the object has reference to this handle of 
+        :returns:
+          Returns whether the object has reference to this handle of
           this object type.
 
         :rtype: bool
@@ -133,27 +133,27 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
     def has_media_reference(self, handle):
         """
-        Indicate if the object has a media references. 
-        
-        In the base class, no such references exist. Derived classes should 
+        Indicate if the object has a media references.
+
+        In the base class, no such references exist. Derived classes should
         override this if they provide media references.
         """
         return False
 
     def remove_citation_references(self, handle_list):
         """
-        Remove the specified source references from the object. 
-        
-        In the base class no such references exist. Derived classes should 
+        Remove the specified source references from the object.
+
+        In the base class no such references exist. Derived classes should
         override this if they provide source references.
         """
         pass
 
     def remove_media_references(self, handle_list):
         """
-        Remove the specified media references from the object. 
-        
-        In the base class no such references exist. Derived classes should 
+        Remove the specified media references from the object.
+
+        In the base class no such references exist. Derived classes should
         override this if they provide media references.
         """
         pass
@@ -172,20 +172,20 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 class PrimaryObject(BasicPrimaryObject):
     """
     The PrimaryObject is the base class for all primary objects in the
-    database. 
-    
+    database.
+
     Primary objects are the core objects in the database.
     Each object has a database handle and a Gramps ID value. The database
     handle is used as the record number for the database, and the Gramps
     ID is the user visible version.
     """
-    
+
     def __init__(self, source=None):
         """
-        Initialize a PrimaryObject. 
-        
-        If source is None, both the ID and handle are assigned as empty 
-        strings. If source is not None, then object is initialized from values 
+        Initialize a PrimaryObject.
+
+        If source is None, both the ID and handle are assigned as empty
+        strings. If source is not None, then object is initialized from values
         of the source object.
 
         :param source: Object used to initialize the new object
@@ -195,14 +195,14 @@ class PrimaryObject(BasicPrimaryObject):
 
     def has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle 
+        :returns: Returns whether the object has reference to this handle
                   of this object type.
         :rtype: bool
         """

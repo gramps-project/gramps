@@ -32,10 +32,10 @@ _ = glocale.translation.gettext
 def run(database, document, person):
     """
     Loops through the person events and the family events of any family
-    in which the person is a parent (to catch Marriage events), displaying 
+    in which the person is a parent (to catch Marriage events), displaying
     the basic details of the event
     """
-    
+
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
@@ -43,7 +43,7 @@ def run(database, document, person):
     # get the personal events
     event_list = sdb.events(person)
 
-    # get the events of each family in which the person is 
+    # get the events of each family in which the person is
     # a parent
     for family in sdb.parent_in(person):
         event_list += sdb.events(family)
@@ -60,41 +60,41 @@ def run(database, document, person):
     stab.columns(_("Event Type"), _("Event Date"), _("Event Place"))
     document.has_data = False
     for event in event_list:
-        stab.row(event, 
-                 sdb.event_date_obj(event), 
+        stab.row(event,
+                 sdb.event_date_obj(event),
                  sdb.event_place(event))
         document.has_data = True
     stab.write(sdoc)
 
 def run_fam(database, document, family):
     """
-    Loops through the family events and the events of all parents, displaying 
+    Loops through the family events and the events of all parents, displaying
     the basic details of the event
     """
-    
+
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = QuickTable(sdb)
-    
+
     # get the family events
     event_list = [(_('Family'), x) for x in sdb.events(family)]
-    
+
     # get the events of father and mother
     #fathername = sdb.first_name(sdb.father(family))
     event_list += [(sdb.father(family), x) for x in sdb.events(sdb.father(family))]
     #mothername = sdb.first_name(sdb.mother(family))
     event_list += [(sdb.mother(family), x) for x in sdb.events(sdb.mother(family))]
-    
+
     # children events
     event_list_children = []
     for child in sdb.children(family) :
         #name = sdb.first_name(child)
         event_list_children += [(child, x) for x in sdb.events(child)]
-        
+
     # Sort the events by their date
     event_list.sort(key=lambda x: x[1].get_date_object())
     event_list_children.sort(key=lambda x: x[1].get_date_object())
-    
+
     # display the results
 
     sdoc.title(_("Sorted events of family\n %(father)s - %(mother)s") % {
@@ -102,23 +102,23 @@ def run_fam(database, document, family):
     sdoc.paragraph("")
 
     document.has_data = False
-    stab.columns(_("Family Member"), _("Event Type"), 
+    stab.columns(_("Family Member"), _("Event Type"),
                  _("Event Date"), _("Event Place"))
 
     for (person, event) in event_list:
-        stab.row(person, sdb.event_type(event), 
-                 sdb.event_date_obj(event), 
+        stab.row(person, sdb.event_type(event),
+                 sdb.event_date_obj(event),
                  sdb.event_place(event))
         document.has_data = True
     stab.write(sdoc)
 
     stab = QuickTable(sdb)
     sdoc.header1(_("Personal events of the children"))
-    stab.columns(_("Family Member"), _("Event Type"), 
+    stab.columns(_("Family Member"), _("Event Type"),
                  _("Event Date"), _("Event Place"))
     for (person, event) in event_list_children:
-        stab.row(person, sdb.event_type(event), 
-                 sdb.event_date_obj(event), 
+        stab.row(person, sdb.event_type(event),
+                 sdb.event_date_obj(event),
                  sdb.event_place(event))
         document.has_data = True
     stab.write(sdoc)

@@ -83,7 +83,7 @@ def __convert_structure_to_float(sign, degs, mins=0, secs=0.0) :
     """helper function which converts a structure to a nice
     representation
     """
-    v = float(degs) 
+    v = float(degs)
     if mins is not None:
         v += float(mins) / 60.
     if secs is not None:
@@ -94,8 +94,8 @@ def __convert_using_float_repr(stringValue):
     """ helper function that tries to convert the string using the float
     representation
     """
-    try : 
-        v = float(stringValue)      
+    try :
+        v = float(stringValue)
         return v
     except ValueError :
         return None;
@@ -174,7 +174,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
     if len(l) != 2:
         return None
 
-    try: 
+    try:
         degs = int(l[0])  #degrees must be integer value
         if degs < 0:
             return None
@@ -214,7 +214,7 @@ def __convert_using_classic_repr(stringValue, typedeg):
     last = l3[0]
     secs = 0.
     if len(l3) > 2:
-        return None 
+        return None
     if len(l3) == 2:
         last = l3[1]
         try:
@@ -269,14 +269,14 @@ def __convert_using_modgedcom_repr(val, typedeg):
                 stringValue = '-' + val[:pos]
             else:
                 return None
-    try : 
-        v = float(stringValue)      
+    try :
+        v = float(stringValue)
         return v
     except ValueError :
         return None;
 
 def __convert_float_val(val, typedeg = "lat"):
-    # function converting input to float, recognizing decimal input, or 
+    # function converting input to float, recognizing decimal input, or
     # degree notation input. Only english input
     # There is no check on maximum/minimum of degree
     # In case of degree minutes seconds direction input,
@@ -284,32 +284,32 @@ def __convert_float_val(val, typedeg = "lat"):
     # 0<= seconds <= 60, direction is in the directions dic.
 
     #change , to . so that , input works in non , localization
-    #this is no problem, as a number like 100,000.20 cannot appear in 
+    #this is no problem, as a number like 100,000.20 cannot appear in
     #lat/lon
-    #change XX,YY into XX.YY 
+    #change XX,YY into XX.YY
     if val.find(r'.') == -1 :
         val = val.replace(',', '.')
-    
+
     # format: XX.YYYY
-    v = __convert_using_float_repr(val) 
+    v = __convert_using_float_repr(val)
     if v is not None:
         return v
 
     # format: XX:YY:ZZ
-    v = __convert_using_colon_repr(val) 
-    if v is not None : 
+    v = __convert_using_colon_repr(val)
+    if v is not None :
         return v
 
     # format: XX° YY' ZZ" [NSWE]
-    v = __convert_using_classic_repr(val, typedeg) 
-    if v is not None : 
+    v = __convert_using_classic_repr(val, typedeg)
+    if v is not None :
         return v
 
     # format XX.YYYY[NSWE]
     v = __convert_using_modgedcom_repr(val, typedeg)
     if v is not None :
         return v
-    
+
     # no format succeeded
     return None
 
@@ -321,7 +321,7 @@ def __convert_float_val(val, typedeg = "lat"):
 
 def conv_lat_lon(latitude, longitude, format="D.D4"):
     """
-    Convert given string latitude and longitude to a required format. 
+    Convert given string latitude and longitude to a required format.
 
     :param latitude: Latitude
     :type latitude: string
@@ -354,14 +354,14 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 i.e. ±DDMMSS.SS±DDDMMSS.SS
     'RT90'      Output format for the Swedish coordinate system RT90
     =========   ============================================================
-                    
+
     Some generalities:
 
     * -90 <= latitude <= +90 with +00 the equator
     * -180 <= longitude < +180 with +000 prime meridian and -180 the 180th
       meridian
     """
-    
+
     # we start the function changing latitude/longitude in english
     if latitude.find('N') == -1 and latitude.find('S') == -1:
         # entry is not in english, convert to english
@@ -398,7 +398,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             return None
         else:
             return (None, None)
-    
+
     if format == "D.D4":
         # correct possible roundoff error
         str_lon = "%.4f" % (lon_float)
@@ -416,7 +416,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             return ("%i" %  tx[0], "%i" % tx[1])
         else:
             return ("%.8f" % lat_float , str_lon)
-    
+
     if format == "GEDCOM":
         # The 5.5.1 spec is inconsistent.  Length is supposedly 5 to 8 chars,
         # but the sample values are longer, using up to 6 fraction digits.
@@ -431,11 +431,11 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 str_lon = "E" + str_lon
         else:
             str_lon = "W" + "%.6f" % (-lon_float)
-        str_lon = str_lon[:-5] + str_lon[-5:].rstrip("0") 
+        str_lon = str_lon[:-5] + str_lon[-5:].rstrip("0")
         str_lat = ("%s%.6f" % (("N", lat_float) if lat_float >= 0 else ("S", -lat_float)))
-        str_lat = str_lat[:-5] + str_lat[-5:].rstrip("0") 
+        str_lat = str_lat[:-5] + str_lat[-5:].rstrip("0")
         return (str_lat, str_lon)
-    
+
     deg_lat = int(lat_float)
     deg_lon = int(lon_float)
     min_lat = int(60.   * (lat_float - float(deg_lat)                       ))
@@ -471,7 +471,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
     else:
         dir_lon = translate_en_loc['W']
         sign_lon= "-"
-    
+
     if format == "DEG":
         str_lat = ("%d°%02d'%05.2f\"" % (deg_lat, min_lat, sec_lat)) + dir_lat
         str_lon = ("%d°%02d'%05.2f\"" % (deg_lon, min_lon, sec_lon)) + dir_lon
@@ -506,7 +506,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         str_lon = sign_lon_h + ("%d:%02d:%05.2f" % (deg_lon, min_lon, sec_lon))
 
         # correct possible roundoff error in seconds
-      
+
         if str_lat[-5] == '6':
             if min_lat == 59:
                 str_lat = sign_lat + ("%d:%02d:%05.2f" % (deg_lat+1, 0, 0.))
@@ -523,7 +523,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             else:
                 str_lon = sign_lon_h + \
                           ("%d:%02d:%05.2f" % (deg_lon, min_lon+1, 0.))
-          
+
         return (str_lat, str_lon)
 
     if format == "ISO-D":  # ±DD.DDDD±DDD.DDDD
@@ -546,19 +546,19 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 str_lon = "-" + ("%03d%06.3f" % (180, 0.))
             else:
                 str_lon = sign_lon + ("%03d%06.3f" % (deg_lon+1, 0.))
-        return str_lat + str_lon 
+        return str_lat + str_lon
 
     if format == "ISO-DMS":  # ±DDMMSS.SS±DDDMMSS.SS
         str_lat = sign_lat + ("%02d%02d%06.3f" % (deg_lat, min_lat, sec_lat))
         str_lon = sign_lon + ("%03d%02d%06.3f" % (deg_lon, min_lon, sec_lon))
         # correct possible roundoff error
-        if str_lat[5:] == "60.000": 
+        if str_lat[5:] == "60.000":
             if min_lat == 59:
                 str_lat = sign_lat + ("%02d%02d%06.3f" % (deg_lat+1, 0, 0.))
             else:
                 str_lat = sign_lat + \
                           ("%02d%02d%06.3f" % (deg_lat, min_lat +1, 0.))
-        if str_lon[6:] == "60.000": 
+        if str_lon[6:] == "60.000":
             if min_lon == 59:
                 if deg_lon == 179 and sign_lon == "+":
                     str_lon = "-" + ("%03d%02d%06.3f" % (180, 0, 0))
@@ -575,14 +575,14 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
 def atanh(x):
     """arctangent hyperbolicus"""
     return 1.0/2.0*math.log((1.0 + x)/(1.0 -x))
-    
+
 
 def __conv_WGS84_SWED_RT90(lat, lon):
     """
     Input is lat and lon as two float numbers
     Output is X and Y coordinates in RT90
     as a tuple of float numbers
-    
+
     The code below converts to/from the Swedish RT90 koordinate
     system. The converion functions use "Gauss Conformal Projection
     (Transverse Marcator)" Krüger Formulas.
@@ -631,7 +631,7 @@ def __conv_WGS84_SWED_RT90(lat, lon):
     X = X*k0*at + FN
     Y = Y*k0*at + FE
     return (X, Y)
-    
+
 def __conv_SWED_RT90_WGS84(X, Y):
     """
     Input is X and Y coordinates in RT90 as float
@@ -647,7 +647,7 @@ def __conv_SWED_RT90_WGS84(X, Y):
     at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n,2)+1.0/64.0*pow(n,4))
     FN = -667.711 # m
     FE = 1500064.274 # m
-    
+
     xi = (X - FN)/(k0*at)
     eta = (Y - FE)/(k0*at)
     D1 = 1.0/2.0*n - 2.0/3.0*pow(n,2) + 37.0/96.0*pow(n,3) - 1.0/360.0*pow(n,4)
@@ -681,7 +681,7 @@ def __conv_SWED_RT90_WGS84(X, Y):
 #-------------------------------------------------------------------------
 #
 # For Testing the convert function in this module, apply it as a script:
-#     ==> in command line do "python PlaceUtils.py" 
+#     ==> in command line do "python PlaceUtils.py"
 #
 #-------------------------------------------------------------------------
 
@@ -715,12 +715,12 @@ if __name__ == '__main__':
         print(lat1,lon1,"in format",format7, "is",res1,res2,"\n")
         res1, res2 = conv_lat_lon(lat1,lon1,format8)
         print(lat1,lon1,"in format",format8, "is",res1,res2,"\n")
-    
+
     def test_formats_fail(lat1,lon1,text=''):
         print("This test should make conv_lat_lon function fail, "+text+":")
         res1, res2 = conv_lat_lon(lat1,lon1)
         print(lat1,lon1," fails to convert, result=", res1,res2,"\n")
-    
+
     def test_RT90_conversion():
         """
         a given lat/lon is converted to RT90 and back as a test:
@@ -731,7 +731,7 @@ if __name__ == '__main__':
         lanew, lonew = __conv_SWED_RT90_WGS84(x,y)
         assert math.fabs(lanew - la) < 1e-6, math.fabs(lanew - la)
         assert math.fabs(lonew - lo) < 1e-6, math.fabs(lonew - lo)
- 
+
     lat, lon = '50.849888888888', '2.885897222222'
     test_formats_success(lat,lon)
     lat, lon = ' 50°50\'59.60"N', '  2°53\'9.23"E'

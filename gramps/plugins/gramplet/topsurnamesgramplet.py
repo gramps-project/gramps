@@ -103,6 +103,6 @@ class TopSurnamesGramplet(Gramplet):
             line += 1
             if line >= self.top_size:
                 break
-        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
+        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") %
                          total_surnames)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")

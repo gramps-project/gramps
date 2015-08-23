@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -66,7 +66,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     This function exploits the fact that all import methods basically do the
     same thing: Create an object of the right type, fill it with some
     attributes, store it in the database. This function does the same, so
-    the observation is why not use the creation and storage methods that the 
+    the observation is why not use the creation and storage methods that the
     import routines use themselves, that makes nice reuse of code. To do this
     formally correct we would need to specify a interface (in the OOP sence)
     which the import methods would need to implement. For now, that is deemed

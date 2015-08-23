@@ -27,7 +27,7 @@ from .attrembedlist import AttrEmbedList
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class FamilyAttrEmbedList(AttrEmbedList):
@@ -40,4 +40,4 @@ class FamilyAttrEmbedList(AttrEmbedList):
         return EditAttribute
 
     def get_user_values(self):
-        return self.dbstate.db.get_family_attribute_types()        
+        return self.dbstate.db.get_family_attribute_types()

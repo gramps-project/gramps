@@ -48,7 +48,7 @@ from ..lib.tag import Tag
 #-------------------------------------------------------------------------
 class GenericFilter(object):
     """Filter class that consists of several rules."""
-    
+
     logical_functions = ['or', 'and', 'xor', 'one']
 
     def __init__(self, source=None):
@@ -77,8 +77,8 @@ class GenericFilter(object):
             return False
 
     def is_empty(self):
-        return ((len(self.flist) == 0) or 
-                (len(self.flist) == 1 and ((self.flist[0].is_empty() and 
+        return ((len(self.flist) == 0) or
+                (len(self.flist) == 1 and ((self.flist[0].is_empty() and
                                             not self.invert))))
 
     def set_logical_op(self, val):
@@ -98,7 +98,7 @@ class GenericFilter(object):
 
     def get_name(self, ulocale=glocale):
         return self.name
-    
+
     def set_name(self, name):
         self.name = name
 
@@ -107,7 +107,7 @@ class GenericFilter(object):
 
     def get_comment(self):
         return self.comment
-    
+
     def add_rule(self, rule):
         self.flist.append(rule)
 
@@ -131,7 +131,7 @@ class GenericFilter(object):
 
     def check_func(self, db, id_list, task, cb_progress=None, tupleind=None):
         final_list = []
-        
+
         if id_list is None:
             with self.get_cursor(db) as cursor:
                 for handle, data in cursor:
@@ -210,7 +210,7 @@ class GenericFilter(object):
         return found_one
 
     def or_test(self, db, person):
-        return any(rule.apply(db, person) for rule in self.flist) 
+        return any(rule.apply(db, person) for rule in self.flist)
 
     def get_check_func(self):
         try:
@@ -228,17 +228,17 @@ class GenericFilter(object):
         If id_list given, the handles in id_list are used. If not given
         a database cursor will be used over all entries.
 
-        cb_progress is optional. If present it must be a function that takes no 
-        parameters. If cb_progress given, it will be called occasionally to 
+        cb_progress is optional. If present it must be a function that takes no
+        parameters. If cb_progress given, it will be called occasionally to
         indicate progress of the filtering.
-        
-        If tupleind is given, id_list is supposed to consist of a list of 
-        tuples, with the handle being index tupleind. So 
+
+        If tupleind is given, id_list is supposed to consist of a list of
+        tuples, with the handle being index tupleind. So
         handle_0 = id_list[0][tupleind]
-        
-        :Returns: if id_list given, it is returned with the items that 
+
+        :Returns: if id_list given, it is returned with the items that
                 do not match the filter, filtered out.
-                if id_list not given, all items in the database that 
+                if id_list not given, all items in the database that
                 match the filter are returned as a list of handles
         """
         m = self.get_check_func()
@@ -276,7 +276,7 @@ class GenericEventFilter(GenericFilter):
 
     def find_from_handle(self, db, handle):
         return db.get_event_from_handle(handle)
-   
+
 class GenericSourceFilter(GenericFilter):
 
     def __init__(self, source=None):

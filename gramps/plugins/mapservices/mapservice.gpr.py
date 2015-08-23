@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
@@ -26,7 +26,7 @@ MODULE_VERSION="5.0"
 #
 #------------------------------------------------------------------------
 
-register(MAPSERVICE, 
+register(MAPSERVICE,
 id    = 'EniroMaps',
 name  = _("EniroMaps"),
 description =  _("Opens on kartor.eniro.se"),
@@ -45,7 +45,7 @@ mapservice = 'EniroSVMapService'
 #
 #------------------------------------------------------------------------
 
-register(MAPSERVICE, 
+register(MAPSERVICE,
 id    = 'GoogleMaps',
 name  = _("GoogleMaps"),
 description =  _("Open on maps.google.com"),
@@ -64,7 +64,7 @@ mapservice = 'GoogleMapService'
 #
 #------------------------------------------------------------------------
 
-register(MAPSERVICE, 
+register(MAPSERVICE,
 id    = 'OpenStreetMap',
 name  = _("OpenStreetMap"),
 description =  _("Open on openstreetmap.org"),

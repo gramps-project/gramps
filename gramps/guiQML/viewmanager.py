@@ -73,7 +73,7 @@ from guiQML.questiondialog import ErrorDialog
 #-------------------------------------------------------------------------
 
 class ViewManager(CLIManager):
-    """ 
+    """
     Manages main widget by holding what state it is in.
     """
     def __init__(self, dbstate, user = None):
@@ -146,7 +146,7 @@ class ViewManager(CLIManager):
         """
         if not self.__centralview:
             from guiQML.views.centralview import CentralView
-            self.__centralview = CentralView(self.dbstate, self.engine, 
+            self.__centralview = CentralView(self.dbstate, self.engine,
                             self.open_view)
         self.__centralview.show(self.mainview, self.mainwindow)
 

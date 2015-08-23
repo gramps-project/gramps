@@ -87,7 +87,7 @@ class ReportDialog(ManagedWindow):
                  track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
-        
+
         self.style_name = "default"
         self.firstpage_added = False
         self.raw_name = name
@@ -95,7 +95,7 @@ class ReportDialog(ManagedWindow):
         self.uistate = uistate
         self.db = dbstate.db
         self.report_name = trans_name
-        
+
         ManagedWindow.__init__(self, uistate, track, self)
 
         self.init_options(option_class)
@@ -215,7 +215,7 @@ class ReportDialog(ManagedWindow):
         name = self.report_name
         category = standalone_categories[self.category][1]
         return "%s - %s - Gramps" % (name, category)
-    
+
     #------------------------------------------------------------------------
     #
     # Functions related to extending the options
@@ -230,13 +230,13 @@ class ReportDialog(ManagedWindow):
 
     def parse_user_options(self):
         """Called to allow parsing of added widgets.
-        It is called when OK is pressed in a dialog. 
+        It is called when OK is pressed in a dialog.
         All custom widgets should provide a parsing code here."""
         try:
             self.options.parse_user_options()
         except:
             LOG.error("Failed to parse user options.", exc_info=True)
-            
+
     def add_option(self, label_text, widget):
         """Takes a text string and a Gtk Widget, and stores them to be
         appended to the Options section of the dialog. The text string
@@ -256,13 +256,13 @@ class ReportDialog(ManagedWindow):
         all managing of the widgets, including extracting the final value
         before the report executes. This task should only be called in
         the add_user_options task."""
-        
+
         if frame_name in self.frames:
             self.frames[frame_name].append((label_text, widget))
         else:
             self.frames[frame_name] = [(label_text, widget)]
             self.frame_names.append(frame_name)
-        
+
     #------------------------------------------------------------------------
     #
     # Functions to create a default output style.
@@ -277,13 +277,13 @@ class ReportDialog(ManagedWindow):
         created here instead of inline with the rest of the style
         frame, because it must be recreated to reflect any changes
         whenever the user closes the style editor dialog."""
-        
+
         if default is None:
             default = self.style_name
-            
+
         style_sheet_map = self.style_sheet_list.get_style_sheet_map()
         self.style_menu.set(style_sheet_map, default)
-        
+
     #------------------------------------------------------------------------
     #
     # Functions related to setting up the dialog window.
@@ -297,11 +297,11 @@ class ReportDialog(ManagedWindow):
 
     def setup_header(self):
         """Set up the header line bar of the dialog."""
-        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % 
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' %
                           self.report_name)
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, False, False, self.border_pad)
-        
+
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
         on other routines to create the default style for this report,
@@ -329,7 +329,7 @@ class ReportDialog(ManagedWindow):
         self.grid.attach(self.style_menu, 2, self.row, 1, 1)
         self.grid.attach(self.style_button, 3, self.row, 1, 1)
         self.row += 1
-        
+
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
@@ -359,11 +359,11 @@ class ReportDialog(ManagedWindow):
         grid.set_border_width(6)
         grid.set_column_spacing(12)
         grid.set_row_spacing(6)
-        
+
         label = Gtk.Label(label="<b>%s</b>" % _("Report Options"))
         label.set_halign(Gtk.Align.START)
         label.set_use_markup(True)
-        
+
         self.notebook.append_page(grid, label)
 
         # Setup requested widgets
@@ -404,13 +404,13 @@ class ReportDialog(ManagedWindow):
                 else:
                     grid.attach(widget, 2, row, 1, 1)
                 row += 1
-                
+
     #------------------------------------------------------------------------
     #
     # Customization hooks for stand-alone reports (subclass ReportDialog)
     #
     #------------------------------------------------------------------------
-    def setup_format_frame(self): 
+    def setup_format_frame(self):
         """Not used in bare report dialogs. Override in the subclass."""
         pass
 
@@ -455,7 +455,7 @@ class ReportDialog(ManagedWindow):
         self.grid.set_border_width(12)
         self.grid.attach(label, 0, self.row, 4, 1)
         self.row += 1
-        
+
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
         relies on several target_xxx() customization functions to
@@ -471,7 +471,7 @@ class ReportDialog(ManagedWindow):
         self.target_fileentry.set_hexpand(True)
         self.grid.attach(self.target_fileentry, 2, self.row, 2, 1)
         self.row += 1
-        
+
     #------------------------------------------------------------------------
     #
     # Functions related to retrieving data from the dialog window
@@ -511,7 +511,7 @@ class ReportDialog(ManagedWindow):
                                  _('_Overwrite'), None,
                                  _('_Change filename'), None,
                                  parent=self.window)
-                             
+
                 if a.get_response() == Gtk.ResponseType.YES:
                     return None
 
@@ -536,11 +536,11 @@ class ReportDialog(ManagedWindow):
                               'or create it.') % parent_dir,
                             parent=self.window)
                 return None
-        
+
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
         self.options.handler.output = self.target_path
         return 1
-    
+
     def parse_style_frame(self):
         """Parse the style frame of the dialog.  Save the user
         selected output style for later use.  Note that this routine
@@ -568,17 +568,17 @@ class ReportDialog(ManagedWindow):
         # Preparation
         self.parse_style_frame()
         self.parse_user_options()
-        
+
         # Save options
         self.options.handler.save_options()
-        
+
     def on_cancel(self, *obj):
         pass
 
     def on_help_clicked(self, *obj):
         from ...display import display_help
         display_help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
-        
+
     def on_style_edit_clicked(self, *obj):
         """The user has clicked on the 'Edit Styles' button.  Create a
         style sheet editor object and let them play.  When they are
@@ -632,7 +632,7 @@ class ReportDialog(ManagedWindow):
     def parse_doc_options(self):
         """
         Called to allow parsing of added docgen widgets.
-        It is called when OK is pressed in a dialog. 
+        It is called when OK is pressed in a dialog.
         """
         if not self.doc_options:
             return
@@ -681,7 +681,7 @@ def report(dbstate, uistate, person, report_class, options_class,
             report_class(dbstate, uistate)
         except WindowActiveError:
             pass
-        return        
+        return
     else:
         dialog_class = ReportDialog
 
@@ -699,14 +699,14 @@ def report(dbstate, uistate, person, report_class, options_class,
                 MyReport.write_report()
                 MyReport.end_report()
 
-                # Web reports do not have a target frame      
+                # Web reports do not have a target frame
                 # The GtkPrint generator can not be "opened"
                 if hasattr(dialog, "open_with_app")                        and \
                    dialog.open_with_app.get_property('sensitive') == True  and \
                    dialog.open_with_app.get_active():
                     out_file = dialog.options.get_output()
                     open_file_with_default_application(out_file)
-                
+
             except FilterError as msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2, parent=uistate.window)
@@ -716,13 +716,13 @@ def report(dbstate, uistate, person, report_class, options_class,
             except ReportError as msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2, parent=uistate.window)
-            except DatabaseError as msg:                
+            except DatabaseError as msg:
                 ErrorDialog(_("Report could not be created"), str(msg),
                             parent=uistate.window)
 #           The following except statement will catch all "NoneType" exceptions.
 #           This is useful for released code where the exception is most likely
 #           a corrupt database. But it is less useful for developing new reports
-#           where the exception is most likely a report bug.                
+#           where the exception is most likely a report bug.
 #            except AttributeError,msg:
 #                if str(msg).startswith("'NoneType' object has no attribute"):
 #                    # "'NoneType' object has no attribute ..." usually means

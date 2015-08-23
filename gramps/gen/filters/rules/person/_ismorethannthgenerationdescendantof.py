@@ -47,8 +47,8 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     category    = _("Descendant filters")
     description = _("Matches people that are descendants of a specified "
                  "person at least N generations away")
-    
-    
+
+
     def prepare(self ,db):
         self.db = db
         self.map = set()

@@ -88,7 +88,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         uistate = user.uistate
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         tool.Tool.__init__(self, dbstate, options_class, name)
-       
+
         self.display()
 
     def display(self):
@@ -105,7 +105,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         action_area = topDialog.get_object("action_area")
         help_button = topDialog.get_object("help_button")
         action_area.set_child_secondary(help_button, True)
-        
+
         # connect signals
         topDialog.connect_signals({
             "on_ok_button_clicked": self.on_ok_button_clicked,
@@ -122,7 +122,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()
-        
+
         self.entries = []
         entry = [
             ("name", self.owner.set_name, self.owner.get_name),
@@ -167,11 +167,11 @@ class OwnerEditor(tool.Tool, ManagedWindow):
             self.owner.set_from(get_researcher())
             for entry in self.entries:
                 entry.update()
-                
+
         elif menuitem.props.name == 'copy_from_db_to_preferences':
             for i in range(len(config_keys)):
                 config.set(config_keys[i], self.owner.get()[i])
-        
+
 #-------------------------------------------------------------------------
 #
 # OwnerEditorOptions (None at the moment)

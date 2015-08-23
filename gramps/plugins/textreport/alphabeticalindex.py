@@ -34,7 +34,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle,
                                     TableCellStyle, FONT_SANS_SERIF,
                                     IndexMark, INDEX_TYPE_TOC)
 
@@ -48,7 +48,7 @@ class AlphabeticalIndex(Report):
     def __init__(self, database, options, user):
         """
         Create AlphabeticalIndex object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -78,11 +78,11 @@ class AlphabeticalIndexOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-    
+
     def __init__(self, name, dbase):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """ Add the options for this report """
         category_name = _("Report Options")
@@ -97,17 +97,17 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("IDX-Title", para)
-        
+
         table = TableStyle()
         table.set_width(100)
         table.set_columns(2)
         table.set_column_width(0, 80)
         table.set_column_width(1, 20)
         default_style.add_table_style("IDX-Table", table)
-        
+
         cell = TableCellStyle()
         default_style.add_cell_style("IDX-Cell", cell)
-        
+
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=10)
         para = ParagraphStyle()

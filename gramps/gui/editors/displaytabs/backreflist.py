@@ -60,10 +60,10 @@ class BackRefList(EmbeddedList):
         (_('ID'),  1,  75, TEXT_COL, -1, None),
         (_('Name'), 2, 250, TEXT_COL, -1, None),
         ]
-    
+
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('_References'), refmodel)
         self._callback = callback
         self.connectid = self.model.connect('row-inserted', self.update_label)
@@ -91,7 +91,7 @@ class BackRefList(EmbeddedList):
 
     def _create_buttons(self, share=False, move=False, jump=False, top_label=None):
         """
-        Create a button box consisting of one button: Edit. 
+        Create a button box consisting of one button: Edit.
         This button box is then appended hbox (self).
         Method has signature of, and overrides create_buttons from _ButtonTab.py
         """
@@ -103,7 +103,7 @@ class BackRefList(EmbeddedList):
         hbox.pack_start(self.edit_btn, False, True, 0)
         hbox.show_all()
         self.pack_start(hbox, False, True, 0)
-        
+
         self.add_btn = None
         self.del_btn = None
 
@@ -131,7 +131,7 @@ class BackRefList(EmbeddedList):
             return (model.get_value(node, 4), model.get_value(node, 3))
         except:
             return (None, None)
-    
+
     def edit_button_clicked(self, obj):
         (reftype, ref) = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)

@@ -41,7 +41,7 @@ class MetadataViewer(Gramplet):
         """
         self.view = MetadataView()
         return self.view
-        
+
     def main(self):
         active_handle = self.get_active('Media')
         if active_handle:

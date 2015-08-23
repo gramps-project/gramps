@@ -64,7 +64,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 def make_launcher(path):
@@ -86,7 +86,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         DbGUIElement.__init__(self, dbstate.db)
         self.track_ref_for_deletion("iconlist")
         self.media_list = media_list
-        self.callman.register_handles({'media': [mref.ref for mref 
+        self.callman.register_handles({'media': [mref.ref for mref
                                                           in self.media_list]})
         self.update = update
 
@@ -94,7 +94,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
         self.rebuild()
         self.show_all()
-    
+
     def _connect_db_signals(self):
         """
         Implement base class DbGUIElement method
@@ -108,7 +108,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def double_click(self, obj, event):
         """
-        Handle the button press event: double click or right click on iconlist. 
+        Handle the button press event: double click or right click on iconlist.
         If the double click occurs, the Edit button handler is called.
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
@@ -151,7 +151,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item = Gtk.SeparatorMenuItem()
             item.show()
             self.menu.append(item)
-        
+
             item = Gtk.MenuItem(_('Make Active Media'))
             item.connect('activate', lambda obj: self.uistate.set_active(ref_obj.handle, "Media"))
             item.show()
@@ -159,7 +159,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item = Gtk.SeparatorMenuItem()
             item.show()
             self.menu.append(item)
-        
+
         for (needs_write_access, image, title, func) in itemlist:
             if image:
                 item = Gtk.ImageMenuItem()
@@ -173,7 +173,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.show()
             self.menu.append(item)
         self.menu.popup(None, None, None, None, event.button, event.time)
-        
+
     def get_icon_name(self):
         return 'gramps-media'
 
@@ -181,7 +181,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         return len(self.media_list)==0
 
     def _build_icon_model(self):
-        self.iconmodel = Gtk.ListStore(GdkPixbuf.Pixbuf, GObject.TYPE_STRING, 
+        self.iconmodel = Gtk.ListStore(GdkPixbuf.Pixbuf, GObject.TYPE_STRING,
                                       object)
         self.track_ref_for_deletion("iconmodel")
 
@@ -192,16 +192,16 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def build_interface(self):
         """Setup the GUI.
-        
+
         It includes an IconView placed inside of a ScrolledWindow.
-        
+
         """
         # create the model used with the icon view
         self._build_icon_model()
 
         # pixels to pad the image
         padding = 6
-        
+
         # build the icon view
         self.iconlist.set_pixbuf_column(0)
         self.iconlist.set_item_width(int(THUMBSCALE) + padding * 2)
@@ -212,23 +212,23 @@ class GalleryTab(ButtonTab, DbGUIElement):
         text_renderer.set_property('alignment', Pango.Alignment.CENTER)
         self.iconlist.pack_end(text_renderer, True)
         self.iconlist.add_attribute(text_renderer, "text", 1)
-        
+
         # set basic properties of the icon view
         self.iconlist.set_margin(padding)
         self.iconlist.set_column_spacing(padding)
         self.iconlist.set_reorderable(True)
         self.iconlist.set_selection_mode(Gtk.SelectionMode.SINGLE)
-        
+
         # connect the signals
         self.__id_connect_sel = self.iconlist.connect('selection-changed', self._selection_changed)
         self.iconlist.connect('button_press_event', self.double_click)
         self.iconlist.connect('key_press_event', self.key_pressed)
         self._connect_icon_model()
-        
+
         # create the scrolled window
         scroll = Gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
-        
+
         # put everything together
         scroll.add(self.iconlist)
         self.pack_end(scroll, True, True, 0)
@@ -264,8 +264,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
                             _('Non existing media found in the Gallery'))
             else :
                 pixbuf = get_thumbnail_image(
-                                media_path_full(self.dbstate.db, 
-                                                      obj.get_path()), 
+                                media_path_full(self.dbstate.db,
+                                                      obj.get_path()),
                                 obj.get_mime_type(),
                                 ref.get_rectangle())
                 self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
@@ -274,7 +274,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self._selection_changed()
         if self.update:
             self.update()
-        
+
     def get_selected(self):
         node = self.iconlist.get_selected_items()
         if len(node) > 0:
@@ -285,7 +285,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
     def add_button_clicked(self, obj):
         try:
             from .. import EditMediaRef
-            EditMediaRef(self.dbstate, self.uistate, self.track, 
+            EditMediaRef(self.dbstate, self.uistate, self.track,
                          MediaObject(), MediaRef(),
                          self.add_callback)
         except WindowActiveError:
@@ -318,10 +318,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def share_button_clicked(self, obj):
         """
-        Function called when the Share button is clicked. 
-        
+        Function called when the Share button is clicked.
+
         This function should be overridden by the derived class.
-        
+
         """
         SelectObject = SelectorFactory('MediaObject')
 
@@ -331,7 +331,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             sref = MediaRef()
             try:
                 from .. import EditMediaRef
-                EditMediaRef(self.dbstate, self.uistate, self.track, 
+                EditMediaRef(self.dbstate, self.uistate, self.track,
                              src, sref, self.add_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
@@ -351,7 +351,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                                                 ref.get_reference_handle())
             try:
                 from .. import EditMediaRef
-                EditMediaRef(self.dbstate, self.uistate, self.track, 
+                EditMediaRef(self.dbstate, self.uistate, self.track,
                              obj, ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
@@ -381,7 +381,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     pos = ref_handles.index(handle)
                 except ValueError :
                     break
-            
+
                 if pos is not None:
                     #oeps, we need to remove this reference, and rebuild tab
                     del self.media_list[pos]
@@ -427,7 +427,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)
-        
+
     def drag_data_get(self, widget, context, sel_data, info, time):
         """
         Provide the drag_data_get function, which passes a tuple consisting of:
@@ -452,9 +452,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
             if not obj:
                 return
-            
+
             # pickle the data, and build the tuple to be passed
-            value = (self._DND_TYPE.drag_type, id(self), obj, 
+            value = (self._DND_TYPE.drag_type, id(self), obj,
                      self.find_index(obj))
             data = pickle.dumps(value)
 
@@ -476,7 +476,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
                 # make sure this is the correct DND type for this object
                 if mytype == self._DND_TYPE.drag_type:
-                    
+
                     # determine the destination row
                     data = self.iconlist.get_dest_item_at_pos(x, y)
                     if data:
@@ -490,10 +490,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
                             row = min(row+1, len(self.get_data()))
                     else:
                         row = len(self.get_data())
-                    
+
                     # if the is same object, we have a move, otherwise,
                     # it is a standard drag-n-drop
-                    
+
                     if id(self) == selfid:
                         self._move(row_from, row, obj)
                     else:

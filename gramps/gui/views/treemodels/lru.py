@@ -34,7 +34,7 @@ class Node(object):
         self.value = value
         self.next = None
 
-class LRU(object): 
+class LRU(object):
     """
     Implementation of a length-limited O(1) LRU cache
     """

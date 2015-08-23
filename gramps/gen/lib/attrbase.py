@@ -46,7 +46,7 @@ class AttributeRootBase(object):
     def __init__(self, source=None):
         """
         Initialize a AttributeBase.
-        
+
         If the source is not None, then object is initialized from values of
         the source object.
 
@@ -69,7 +69,7 @@ class AttributeRootBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -117,7 +117,7 @@ class AttributeRootBase(object):
         """
         Remove the specified :class:`~.attribute.Attribute` instance from the
         attribute list.
-        
+
         If the instance does not exist in the list, the operation has
         no effect.
 
@@ -139,7 +139,7 @@ class AttributeRootBase(object):
         """
         Return the list of :class:`~.attribute.Attribute` instances associated
         with the object.
-        
+
         :returns: Returns the list of :class:`~.attribute.Attribute` instances.
         :rtype: list
         """

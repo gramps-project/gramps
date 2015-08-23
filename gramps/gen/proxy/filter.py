@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -39,10 +39,10 @@ class FilterProxyDb(ProxyDbBase):
     the user.
     """
 
-    def __init__(self, db, person_filter=None, event_filter=None, 
+    def __init__(self, db, person_filter=None, event_filter=None,
                  note_filter=None):
         """
-        Create a new FilterProxyDb instance. 
+        Create a new FilterProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
@@ -57,7 +57,7 @@ class FilterProxyDb(ProxyDbBase):
                     self.db, self.db.iter_event_handles()))
         else:
             self.elist = set(self.db.iter_event_handles())
-        
+
         if note_filter:
             self.nlist = set(note_filter.apply(
                     self.db, self.db.iter_note_handles()))
@@ -104,25 +104,25 @@ class FilterProxyDb(ProxyDbBase):
                 person.set_birth_ref(bref)
             if dref in new_eref_list:
                 person.set_death_ref(dref)
-            
+
             # Filter notes out
             self.sanitize_person(person)
-            
+
             return person
         else:
             return None
 
     def include_person(self, handle):
-        return handle in self.plist               
+        return handle in self.plist
 
     def include_family(self, handle):
-        return handle in self.flist               
+        return handle in self.flist
 
     def include_event(self, handle):
-        return handle in self.elist               
+        return handle in self.elist
 
     def include_note(self, handle):
-        return handle in self.nlist               
+        return handle in self.nlist
 
     def get_source_from_handle(self, handle):
         """
@@ -134,14 +134,14 @@ class FilterProxyDb(ProxyDbBase):
         if source:
             # Filter notes out
             self.sanitize_notebase(source)
-            
+
             media_ref_list = source.get_media_list()
             for media_ref in media_ref_list:
                 self.sanitize_notebase(media_ref)
                 attributes = media_ref.get_attribute_list()
                 for attribute in attributes:
                     self.sanitize_notebase(attribute)
-            
+
             repo_ref_list = source.get_reporef_list()
             for repo_ref in repo_ref_list:
                 self.sanitize_notebase(repo_ref)
@@ -168,7 +168,7 @@ class FilterProxyDb(ProxyDbBase):
         if media:
             # Filter notes out
             self.sanitize_notebase(media)
-            
+
             attributes = media.get_attribute_list()
             for attr in attributes:
                 self.sanitize_notebase(attr)
@@ -181,11 +181,11 @@ class FilterProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
-        
+
         if place:
             # Filter notes out
             self.sanitize_notebase(place)
-            
+
             media_ref_list = place.get_media_list()
             for media_ref in media_ref_list:
                 self.sanitize_notebase(media_ref)
@@ -223,20 +223,20 @@ class FilterProxyDb(ProxyDbBase):
 
             if family.get_father_handle() not in self.plist:
                 family.set_father_handle(None)
-                
+
             if family.get_mother_handle() not in self.plist:
                 family.set_mother_handle(None)
 
             clist = [ cref for cref in family.get_child_ref_list()
                       if cref.ref in self.plist ]
             family.set_child_ref_list(clist)
-            
+
             # Filter notes out
             for cref in clist:
                 self.sanitize_notebase(cref)
-            
+
             self.sanitize_notebase(family)
-            
+
             attributes = family.get_attribute_list()
             for attr in attributes:
                 self.sanitize_notebase(attr)
@@ -247,7 +247,7 @@ class FilterProxyDb(ProxyDbBase):
                 attributes = event_ref.get_attribute_list()
                 for attribute in attributes:
                     self.sanitize_notebase(attribute)
-                
+
             media_ref_list = family.get_media_list()
             for media_ref in media_ref_list:
                 self.sanitize_notebase(media_ref)
@@ -394,7 +394,7 @@ class FilterProxyDb(ProxyDbBase):
     def iter_person_handles(self):
         """
         Return an iterator over database handles, one handle for each Person in
-        the database. 
+        the database.
         """
         return self.plist
 
@@ -407,14 +407,14 @@ class FilterProxyDb(ProxyDbBase):
     def get_event_handles(self):
         """
         Return a list of database handles, one handle for each Event in
-        the database. 
+        the database.
         """
         return list(self.elist)
-        
+
     def iter_event_handles(self):
         """
         Return an iterator over database handles, one handle for each Event in
-        the database. 
+        the database.
         """
         return self.elist
 
@@ -430,11 +430,11 @@ class FilterProxyDb(ProxyDbBase):
         the database.
         """
         return list(self.flist)
-        
+
     def iter_family_handles(self):
         """
         Return an iterator over database handles, one handle for each Family in
-        the database. 
+        the database.
         """
         return self.flist
 
@@ -442,7 +442,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Families in the database
         """
-        return map(self.get_family_from_handle, self.flist)        
+        return map(self.get_family_from_handle, self.flist)
 
     def get_note_handles(self):
         """
@@ -454,7 +454,7 @@ class FilterProxyDb(ProxyDbBase):
     def iter_note_handles(self):
         """
         Return an iterator over database handles, one handle for each Note in
-        the database. 
+        the database.
         """
         return self.nlist
 
@@ -462,7 +462,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Notes in the database
         """
-        return map(self.get_note_from_handle, self.nlist)        
+        return map(self.get_note_from_handle, self.nlist)
 
     def get_default_person(self):
         """returns the default Person of the database"""
@@ -479,7 +479,7 @@ class FilterProxyDb(ProxyDbBase):
             return handle
         else:
             return None
-    
+
     def has_person_handle(self, handle):
         """
         returns True if the handle exists in the current Person database.
@@ -492,7 +492,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return handle in self.elist
 
-    def has_family_handle(self, handle):            
+    def has_family_handle(self, handle):
         """
         returns True if the handle exists in the current Family database.
         """
@@ -514,7 +514,7 @@ class FilterProxyDb(ProxyDbBase):
         :param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
         :type include_classes: list of class names
-        
+
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
         override this method to provide much faster implementations that
@@ -527,7 +527,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         #FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)
-    
+
     def sanitize_notebase(self, notebase):
         """
         Filters notes out of the passed notebase object according to the Note Filter.
@@ -539,13 +539,13 @@ class FilterProxyDb(ProxyDbBase):
             note_list = notebase.get_note_list()
             new_note_list = [ note for note in note_list if note in self.nlist ]
             notebase.set_note_list(new_note_list)
-     
+
     def sanitize_addressbase(self, addressbase):
         if addressbase:
             addresses = addressbase.get_address_list()
             for address in addresses:
                 self.sanitize_notebase(address)
-       
+
     def sanitize_person(self, person):
         """
         Cleans filtered notes out of the passed person

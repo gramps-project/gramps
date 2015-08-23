@@ -53,19 +53,19 @@ class ImportPlugin(Plugin):
         Plugin.__init__(self, name, description, import_function.__module__ )
         self.__import_func = import_function
         self.__extension = extension
-    
+
     def get_import_function(self):
         """
         Get the import function for this plugins.
-        
-        :return: the callable import_function passed into :meth:`__init__` 
+
+        :return: the callable import_function passed into :meth:`__init__`
         """
         return self.__import_func
-    
+
     def get_extension(self):
         """
         Get the extension for the files imported by this plugin.
-        
+
         :return: str
         """
         return self.__extension

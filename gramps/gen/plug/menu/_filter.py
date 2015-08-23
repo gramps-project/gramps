@@ -52,29 +52,29 @@ class FilterOption(EnumeratedListOption):
         """
         EnumeratedListOption.__init__(self, label, value)
         self.__filters = []
-            
+
     def set_filters(self, filter_list):
         """
         Set the list of filters available to be chosen from.
-        
+
         :param filter_list: An array of person filters.
         :type filter_list: array
         :return: nothing
         """
         curval = self.get_value()
-        items = [(value, filt.get_name()) 
+        items = [(value, filt.get_name())
                     for value, filt in enumerate(filter_list)]
-        
+
         self.__filters = filter_list
         self.clear()
         self.set_items( items )
-        
+
         self.set_value(curval)
-    
+
     def get_filter(self):
         """
         Return the currently selected filter object.
-        
+
         :return: A filter object.
         """
         return self.__filters[self.get_value()]

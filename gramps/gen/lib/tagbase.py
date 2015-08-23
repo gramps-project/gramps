@@ -36,9 +36,9 @@ class TagBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize a TagBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a TagBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
@@ -59,7 +59,7 @@ class TagBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -106,7 +106,7 @@ class TagBase(object):
     def remove_tag(self, tag):
         """
         Remove the specified tag from the tag list.
-        
+
         If the tag does not exist in the list, the operation has no effect.
 
         :param tag: tag to remove from the list.
@@ -124,7 +124,7 @@ class TagBase(object):
     def get_tag_list(self):
         """
         Return the list of tags associated with the object.
-        
+
         :returns: Returns the list of tags.
         :rtype: list
         """
@@ -142,10 +142,10 @@ class TagBase(object):
     def get_referenced_tag_handles(self):
         """
         Return the list of (classname, handle) tuples for all referenced tags.
-        
+
         This method should be used to get the :class:`~.tag.Tag` portion
         of the list by objects that store tag lists.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """

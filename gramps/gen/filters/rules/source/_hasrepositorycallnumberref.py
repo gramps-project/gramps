@@ -46,9 +46,9 @@ class HasRepositoryCallNumberRef(Rule):
                     "containing a substring in \"Call Number\"")
     category    = _('General filters')
     allow_regex = True
-      
+
     def apply(self, db, obj):
         for repo_ref in obj.get_reporef_list():
             if self.match_substring(0, repo_ref.call_number):
-                return True			
+                return True
         return False

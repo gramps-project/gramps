@@ -41,7 +41,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class PersonRefEmbedList(EmbeddedList):
@@ -66,11 +66,11 @@ class PersonRefEmbedList(EmbeddedList):
         (_('Association'), 2, 100, TEXT_COL, -1, None),
         (_('Private'),     3,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Associations'), PersonRefModel, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('_Associations'), PersonRefModel,
                               move_buttons=True)
 
     def get_ref_editor(self):

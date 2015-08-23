@@ -74,8 +74,8 @@ from .utils import AvailableUpdates
 from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
-from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
-                              URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
+from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
+                              URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
                               WIKI_EXTRAPLUGINS, URL_BUGHOME)
 from gramps.gen.constfunc import is_quartz, conv_to_unicode
 from gramps.gen.config import config
@@ -610,7 +610,7 @@ class ViewManager(CLIManager):
 
     def __gocat(self, action):
         """
-        Callback that is called on ctrl+number press. It moves to the 
+        Callback that is called on ctrl+number press. It moves to the
         requested category like __next_view/__prev_view. 0 is 10
         """
         cat = int(action.get_name()[-1])
@@ -625,7 +625,7 @@ class ViewManager(CLIManager):
     def __next_view(self, action):
         """
         Callback that is called when the next category action is selected.
-        It selects the next category as the active category. If we reach the end, 
+        It selects the next category as the active category. If we reach the end,
         we wrap around to the first.
         """
         curpage = self.notebook.get_current_page()
@@ -945,7 +945,7 @@ class ViewManager(CLIManager):
         from .views.pageview import DummyPage
         return DummyPage(pdata.name, pdata, self.dbstate, self.uistate,
                     _("View failed to load. Check error output."), error)
-    
+
     def __create_page(self, pdata, page_def):
         """
         Create a new page and set it as the current page.
@@ -1627,8 +1627,8 @@ def run_plugin(pdata, dbstate, uistate):
         tool.gui_tool(dbstate = dbstate, user = User(uistate = uistate),
                       tool_class = getattr(mod, pdata.toolclass),
                       options_class = getattr(mod, pdata.optionclass),
-                      translated_name = pdata.name, 
-                      name = pdata.id, 
+                      translated_name = pdata.name,
+                      name = pdata.id,
                       category = pdata.category,
                       callback = dbstate.db.request_rebuild)
 

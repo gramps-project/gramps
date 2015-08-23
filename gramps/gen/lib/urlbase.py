@@ -42,9 +42,9 @@ class UrlBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize an UrlBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize an UrlBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
@@ -62,7 +62,7 @@ class UrlBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -144,11 +144,11 @@ class UrlBase(object):
         :type url: :class:`~.url.Url`
         """
         self.urls.append(url)
-    
+
     def remove_url(self, url):
         """
         Remove the specified :class:`~.url.Url` instance from the url list.
-        
+
         If the instance does not exist in the list, the operation has no effect.
 
         :param url: :class:`~.url.Url` instance to remove from the list

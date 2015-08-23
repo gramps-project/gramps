@@ -70,7 +70,7 @@ _HTML5 = ""
 
 #------------------------------------------------------------------------
 #
-# XML Namespace constant for use in <html xmlns=...> tags 
+# XML Namespace constant for use in <html xmlns=...> tags
 #
 #------------------------------------------------------------------------
 
@@ -85,15 +85,15 @@ _XMLNS = "http://www.w3.org/1999/xhtml"
 # Set of html tags that do not use a complementary closing tag, but close with
 # /> instead
 _START_CLOSE = set([
-    'area', 
-    'base', 
-    'br', 
-    'frame', 
+    'area',
+    'base',
+    'br',
+    'frame',
     'hr',
-    'img', 
-    'input', 
-    'link', 
-    'meta', 
+    'img',
+    'input',
+    'link',
+    'meta',
     'param'
     ])
 
@@ -137,16 +137,16 @@ class Html(list):
         :type  public: string
         :param public: class of this DOCTYPE. Defaults to 'PUBLIC
         :type  external_id: string
-        :param external_id: external identifier of this DOCTYPE. 
+        :param external_id: external identifier of this DOCTYPE.
                             Defaults to XHTML 1.0 STRICT
         :type  args: object
-        :param args: 0 or more positional parameters to be added to this    
+        :param args: 0 or more positional parameters to be added to this
                      DOCTYPE.
         """
         return (
             '<!DOCTYPE %s %s %s' % (
                 name,
-                public, 
+                public,
                 external_id,
                 )
             ).rstrip() + '>'
@@ -162,7 +162,7 @@ class Html(list):
         :param lang: language to be used. Defaul = 'en'
         :rtype:   reference to new Html instance
         :returns:  reference to the newly-created Html instances for <html> object
-        """      
+        """
         return Html('html',
             indent=False,
             xmlns=xmlns,
@@ -174,9 +174,9 @@ class Html(list):
     def head(title=None, encoding='utf-8', html5=True, *args, **keywargs):
         """
         Build and return a properly-formated <head> object
-    
+
         :type  title: string or None
-        :param title: title for HTML page. Default=None. If None no 
+        :param title: title for HTML page. Default=None. If None no
                     title tag is written
         :type  encoding: string
         :param encoding: encoding to be used. Default = 'utf-8'
@@ -184,10 +184,10 @@ class Html(list):
                       if pre-html5 syntax required
         :rtype:  reference to new Html instance
         :returns: reference to the newly-created Html instances for <head> object
-        """ 
+        """
 
-        head = Html('head', *args, **keywargs) 
-        if title is not None: 
+        head = Html('head', *args, **keywargs)
+        if title is not None:
             head += (Html('title', title, inline=True, indent=True))
         if html5:
             head += Html('meta', charset=encoding, indent=True)
@@ -202,7 +202,7 @@ class Html(list):
     def page(title=None, encoding='utf-8', lang='en', html5=True, *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
-    
+
         :type  title: string
         :param title: title for HTML page. Default=None
         :type  encoding: string
@@ -227,7 +227,7 @@ class Html(list):
                lang=lang,
                html5=html5,
                indent=False,
-               *args, **keywargs 
+               *args, **keywargs
                )
 #
         body = Html('body', indent=False, *args, **keywargs)
@@ -237,7 +237,7 @@ class Html(list):
     def __init__(self, tag='html', *args, **keywargs):
         """
         Class Constructor: Returns a new instance of the Html class
-        
+
         :type  tag: string
         :param tag: The HTML tag. Default is 'html'
         :type  args: optional positional parameters
@@ -266,7 +266,7 @@ class Html(list):
                          attributes
         :rtype:   object reference
         :returns:  reference to the newly-created Html instance
-        
+
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
@@ -277,8 +277,8 @@ class Html(list):
         self.indent, self.close, self.inline = True, True, False
 #
 #       Handle keyword arguments passed to this constructor.
-#       Keywords that we process directly are handled. 
-#       Keywords we don't recognize are saved for later 
+#       Keywords that we process directly are handled.
+#       Keywords we don't recognize are saved for later
 #       addition to the opening tag as attributes.
 #
         for keyw, arg in keywargs.items():
@@ -295,7 +295,7 @@ class Html(list):
         if tag[0] == '<':               # if caller provided preformatted tag?
             self[0:] = [tag]            #   add it in
             self.close = None           #   caller must close the tag
-        else: 
+        else:
             if tag in _START_CLOSE:     # if tag in special list
                 self.close = False      #   it needs no closing tag
             begin = '<%s%s%s>' % (      # build opening tag with attributes
@@ -402,7 +402,7 @@ class Html(list):
         """
         if self.indent is None:
             tabs = ''
-        elif self.indent: 
+        elif self.indent:
             tabs += indent
         if self.inline:                         # if inline, write all list and
             method(str('%s%s' % (tabs, self)))       # nested list elements
@@ -440,10 +440,10 @@ class Html(list):
         :type  name: string
         :param name: name of this DOCTYPE. Defaults to "html"
         :type  external_id: string
-        :param external_id: external identifier of this DOCTYPE. 
+        :param external_id: external identifier of this DOCTYPE.
                             Defaults to XHTML 1.0 STRICT
         :type  args: object
-        :param args: 0 or more positional parameters to be added to this    
+        :param args: 0 or more positional parameters to be added to this
                      DOCTYPE.
         """
         doctype = (
@@ -478,9 +478,9 @@ class Html(list):
         :param name: new HTML tag
         """
         curtag = self.tag
-        
+
         # Replace closing tag, if any
-        
+
         if self[-1] == '</%s>' % curtag:
             self[-1] = '</%s>' % newtag
 
@@ -509,9 +509,9 @@ class Html(list):
         beg = len(self.tag) + 1
 
         # See if self-closed or normal
-        
+
         end = -2 if self.close is False else -1
-        self[0] = self[0][:beg] + ' ' + value + self[0][end:]        
+        self[0] = self[0][:beg] + ' ' + value + self[0][end:]
 #
     def __delattr(self):
         """
@@ -520,7 +520,7 @@ class Html(list):
         self[0] = '<' + self.tag + (
 
                 # Set correct closing delimiter(s)
-        
+
                 ' />' if self.close is False else '>'
                 )
 #
@@ -531,7 +531,7 @@ class Html(list):
         Returns list of items between opening and closing tags
 
         :rtype:  list
-        :returns: list of items between opening and closing HTML tags 
+        :returns: list of items between opening and closing HTML tags
         """
         return self[1:-1]
 #
@@ -582,4 +582,4 @@ def htmltest():
 
 if __name__ == '__main__':
     from libhtmltest import htmltest
-    htmltest()    
+    htmltest()

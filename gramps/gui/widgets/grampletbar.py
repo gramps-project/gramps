@@ -62,12 +62,12 @@ from gramps.gen.config import config
 from gramps.gen.constfunc import win
 from ..managedwindow import ManagedWindow
 from ..display import display_help, display_url
-from .grampletpane import (AVAILABLE_GRAMPLETS, 
-                           GET_AVAILABLE_GRAMPLETS, 
-                           GET_GRAMPLET_LIST, 
-                           get_gramplet_opts, 
-                           get_gramplet_options_by_name, 
-                           make_requested_gramplet, 
+from .grampletpane import (AVAILABLE_GRAMPLETS,
+                           GET_AVAILABLE_GRAMPLETS,
+                           GET_GRAMPLET_LIST,
+                           get_gramplet_opts,
+                           get_gramplet_options_by_name,
+                           make_requested_gramplet,
                            GuiGramplet)
 from .undoablebuffer import UndoableBuffer
 from ..utils import is_right_click
@@ -109,7 +109,7 @@ class GrampletBar(Gtk.Notebook):
         book_button = Gtk.Button()
         # Arrow is too small unless in a box
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
                                     shadow_type=Gtk.ShadowType.NONE)
         arrow.show()
         box.add(arrow)
@@ -130,7 +130,7 @@ class GrampletBar(Gtk.Notebook):
         for opts in opts_list:
             if opts["name"] in AVAILABLE_GRAMPLETS():
                 all_opts = get_gramplet_opts(opts["name"], opts)
-                gramplet = make_requested_gramplet(TabGramplet, self, all_opts, 
+                gramplet = make_requested_gramplet(TabGramplet, self, all_opts,
                                                    self.dbstate, self.uistate)
                 if gramplet:
                     self.__add_tab(gramplet)
@@ -209,7 +209,7 @@ class GrampletBar(Gtk.Notebook):
         fp.write("[Bar Options]" + NL)
         fp.write(("visible=%s" + NL) % self.get_property('visible'))
         fp.write(("page=%d" + NL) % self.get_current_page())
-        fp.write(NL) 
+        fp.write(NL)
 
         if self.empty:
             gramplet_list = []
@@ -226,7 +226,7 @@ class GrampletBar(Gtk.Notebook):
                         base_opts[key] = gramplet.__dict__[key]
                 fp.write(("[%s]" + NL) % gramplet.gname)
                 for key in base_opts:
-                    if key in ["content", "title", "tname", "row", "column", 
+                    if key in ["content", "title", "tname", "row", "column",
                                "page", "version", "gramps"]: # don't save
                         continue
                     elif key == "data":
@@ -440,7 +440,7 @@ class GrampletBar(Gtk.Notebook):
         if self.get_n_pages() == 0:
             self.empty = True
             self.__create_empty_tab()
-        
+
     def __create_window(self, grampletbar, gramplet, x_pos, y_pos):
         """
         Called when the user has switched to a new GrampletBar page.
@@ -650,7 +650,7 @@ class DetachedWindow(ManagedWindow):
                 else:
                     display_help(self.gramplet.help_url)
             else:
-                display_help(WIKI_HELP_PAGE, 
+                display_help(WIKI_HELP_PAGE,
                                    self.gramplet.tname.replace(" ", "_"))
 
     def get_notebook(self):
@@ -693,7 +693,7 @@ class TabLabel(Gtk.Box):
     """
     def __init__(self, gramplet, callback):
         Gtk.Box.__init__(self)
-        
+
         self.text = gramplet.title
         self.set_spacing(4)
 
@@ -745,5 +745,5 @@ def cb_menu_position(*args):
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
-    
+
     return (x_pos, y_pos, False)

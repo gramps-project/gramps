@@ -31,7 +31,7 @@ Report output generator for html documents, based on Html and HtmlBackend
 
 #------------------------------------------------------------------------
 #
-# python modules 
+# python modules
 #
 #------------------------------------------------------------------------
 import os
@@ -40,7 +40,7 @@ import time
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules 
+# GRAMPS modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -76,20 +76,20 @@ _CLICKABLE = r'''<a href="\1">\1</a>'''
 #
 #------------------------------------------------------------------------
 class HtmlDoc(BaseDoc, TextDoc):
-    """Implementation of the BaseDoc and TextDoc gen.plug.docgen api for the 
+    """Implementation of the BaseDoc and TextDoc gen.plug.docgen api for the
     creation of Html files. This is achieved by writing on a HtmlBackend
     object
-    
+
     div id's defined here:
         id="grampstextdoc" : the entire text report
         id="grampsheading" : a small defined heading, but not h1 to h6 !
-        id="grampsstylednote" : start of part with a styled note, divided in 
+        id="grampsstylednote" : start of part with a styled note, divided in
                                 paragraphs
-        id="grampsnote" : start of part with a note. This id is normally not 
+        id="grampsnote" : start of part with a note. This id is normally not
                           used
-    
+
     The styles as defined in the stylesheed of the textdoc, will be converted
-    to css class. Color is removed to avoid conflicts with the css. Also 
+    to css class. Color is removed to avoid conflicts with the css. Also
     Fontface is removed. Size, italic, bold, margins, borders are retained
     """
 
@@ -110,7 +110,7 @@ class HtmlDoc(BaseDoc, TextDoc):
 
     def set_css_filename(self, css_filename):
         """
-        Set the css file to use. The path must be included. 
+        Set the css file to use. The path must be included.
         Note: DocReportDialog sets this for html doc
         """
         if css_filename and os.path.basename(css_filename):
@@ -127,7 +127,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.htmllist += [self._backend.html_body]
         #start a gramps report
         self.htmllist += [Html('div', id="grampstextdoc")]
-        
+
         self.build_header()
 
     def build_header(self):
@@ -138,24 +138,24 @@ class HtmlDoc(BaseDoc, TextDoc):
         # create additional meta tags
         _meta1 = 'name="generator" content="%s %s %s"' % (PROGRAM_NAME,
                     VERSION, URL_HOMEPAGE)
-        meta = Html('meta', attr = _meta1) 
-        
+        meta = Html('meta', attr = _meta1)
+
         #set styles of the report as inline css
         self.build_style_declaration()
-        
-        
+
+
         # GRAMPS favicon en css
         fname1 = '/'.join([self._backend.datadir(), 'favicon.ico'])
         fname2 = '/'.join([self._backend.datadir(), _TEXTDOCSCREEN])
         fname3 = '/'.join([self._backend.datadir(), _HTMLSCREEN])
-        
+
         # links for GRAMPS favicon and stylesheets
         links = Html('link', rel='shortcut icon', href=fname1,
                         type='image/x-icon') + (
                 Html('link', rel='stylesheet', href=fname2, type='text/css',
                         media='screen', indent=False),)
         if self.css_filename:
-            links += (Html('link', rel='stylesheet', href=fname3, 
+            links += (Html('link', rel='stylesheet', href=fname3,
                       type='text/css', media='screen', indent=False),
                 )
         self._backend.html_header += (meta, links)
@@ -165,7 +165,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         Convert the styles of the report into inline css for the html doc
         """
         styles = self.get_style_sheet()
-        
+
         text = []
 
         for sname in styles.get_cell_style_names():
@@ -182,9 +182,9 @@ class HtmlDoc(BaseDoc, TextDoc):
                 right = 'thin solid #000000'
             text.append('#%s .%s {\n'
                         '\tpadding: %s %s %s %s;\n'
-                        '\tborder-top:%s; border-bottom:%s;\n' 
-                        '\tborder-left:%s; border-right:%s;\n}' 
-                    % (id, sname, pad, pad, pad, pad, top, bottom, 
+                        '\tborder-top:%s; border-bottom:%s;\n'
+                        '\tborder-left:%s; border-right:%s;\n}'
+                    % (id, sname, pad, pad, pad, pad, top, bottom,
                        left, right))
 
 
@@ -219,18 +219,18 @@ class HtmlDoc(BaseDoc, TextDoc):
             #    family = '"Helvetica","Arial","sans-serif"'
             #else:
             #    family = '"Times New Roman","Times","serif"'
-            # do not allow color, set in base css ! 
-            #    so no : 'color: %s' % font_color 
+            # do not allow color, set in base css !
+            #    so no : 'color: %s' % font_color
             #    so no : 'font-family:%s;' % family
             text.append('#%s .%s {\n'
-                        '\tfont-size: %dpt;\n' 
-                        '\ttext-align: %s; text-indent: %scm;\n' 
-                        '\tmargin-right: %scm; margin-left: %scm;\n' 
-                        '\tmargin-top: %scm; margin-bottom: %scm;\n' 
-                        '\tborder-top:%s; border-bottom:%s;\n' 
-                        '\tborder-left:%s; border-right:%s;\n' 
-                        '\t%s%s\n}' 
-                        % (id, style_name, font_size, 
+                        '\tfont-size: %dpt;\n'
+                        '\ttext-align: %s; text-indent: %scm;\n'
+                        '\tmargin-right: %scm; margin-left: %scm;\n'
+                        '\tmargin-top: %scm; margin-bottom: %scm;\n'
+                        '\tborder-top:%s; border-bottom:%s;\n'
+                        '\tborder-left:%s; border-right:%s;\n'
+                        '\t%s%s\n}'
+                        % (id, style_name, font_size,
                            align, text_indent,
                            right_margin, left_margin,
                            top_margin, bottom_margin,
@@ -279,13 +279,13 @@ class HtmlDoc(BaseDoc, TextDoc):
                   "a different directory to store your generated "
                   "web pages."))
             self.warn_dir = False
-    
+
     def write_support_files(self):
         """
         Copy support files to the datadir that needs to hold them
         """
         #css of textdoc styles
-        tdfile = open(os.path.join(self._backend.datadirfull(), 
+        tdfile = open(os.path.join(self._backend.datadirfull(),
                       _TEXTDOCSCREEN), 'w')
         tdfile.write(self.style_declaration)
         tdfile.close()
@@ -296,26 +296,26 @@ class HtmlDoc(BaseDoc, TextDoc):
             if os.path.exists(fullpath):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
-        self.copy_file(os.path.join(IMAGE_DIR, 'webstuff', 'favicon.ico'), 
+        self.copy_file(os.path.join(IMAGE_DIR, 'webstuff', 'favicon.ico'),
                         'favicon.ico')
 
     def __reduce_list(self):
         """
-        Takes the internal list of html objects, and adds the last to the 
+        Takes the internal list of html objects, and adds the last to the
         previous. This closes the upper tag
         """
         self.htmllist[-2] += self.htmllist[-1]
         self.htmllist.pop()
-    
+
     def __write_text(self, text, mark=None, markup=False, links=False):
         """
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (not supported)
-        @param markup: True if text already contains markup info. 
+        @param markup: True if text already contains markup info.
                        Then text will no longer be escaped
         @param links: make URLs clickable if True
         """
-        if not markup:            
+        if not markup:
             text = self._backend.ESCAPE_FUNC()(text)
         if self.__title_written == 0 :
             self.title += text
@@ -323,14 +323,14 @@ class HtmlDoc(BaseDoc, TextDoc):
             import re
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
         self.htmllist[-1] += text
-    
+
     def __empty_char(self):
         """
-        Output a non breaking whitespace so as to have browser behave ok on 
+        Output a non breaking whitespace so as to have browser behave ok on
         empty content
         """
         self.__write_text('&nbsp;', markup=True)
-    
+
     def write_text(self, text, mark=None, links=False):
         """
         Overwrite base method
@@ -343,9 +343,9 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Add title field to header
         """
-        self._backend.html_header += Html('title', self.title, 
+        self._backend.html_header += Html('title', self.title,
                                           inline=True)
-        
+
     def start_table(self, name, style):
         """
         Overwrite base method
@@ -386,11 +386,11 @@ class HtmlDoc(BaseDoc, TextDoc):
             tag = "td"
         self._empty = 1
         if span > 1:
-            self.htmllist += (Html(tag, colspan=str(span), 
+            self.htmllist += (Html(tag, colspan=str(span),
                                     class_=style_name),)
             self._col += span
         else:
-            self.htmllist += (Html(tag, colspan=str(span), 
+            self.htmllist += (Html(tag, colspan=str(span),
                                 width=str(self._tbl.get_column_width(
                                             self._col))+ '%',
                                 class_=style_name),)
@@ -456,7 +456,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         Overwrite base method
         """
         self.__reduce_list()
-        
+
     def start_superscript(self):
         """
         Overwrite base method
@@ -472,14 +472,14 @@ class HtmlDoc(BaseDoc, TextDoc):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the html doc. 
+        Convenience function to write a styledtext to the html doc.
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        contains_html: bool, the backend should not check if html is present. 
-            If contains_html=True, then the textdoc is free to handle that in 
+        contains_html: bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
             some way. Eg, a textdoc could remove all tags, or could make sure
-            a link is clickable. HtmlDoc will show the html as pure text, so 
+            a link is clickable. HtmlDoc will show the html as pure text, so
             no escaping will happen.
         links: bool, make URLs clickable if True
         """
@@ -488,13 +488,13 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.htmllist += [Html('div', id='grampsstylednote')]
         if contains_html:
             #just dump the note out as it is. Adding markup would be dangerous
-            # as it could destroy the html. If html code, one can do the 
+            # as it could destroy the html. If html code, one can do the
             self.start_paragraph(style_name)
             self.__write_text(text, markup=True, links=links)
             self.end_paragraph()
         else:
             s_tags = styledtext.get_tags()
-            markuptext = self._backend.add_markup_from_styled(text, s_tags, 
+            markuptext = self._backend.add_markup_from_styled(text, s_tags,
                                                               split='\n')
             self.start_paragraph(style_name)
             inpara = True
@@ -528,7 +528,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                     linenb += 1
             if inpara == True:
                 self.end_paragraph()
-            if sigcount == 0:        
+            if sigcount == 0:
                 # if the last line was blank, then as well as outputting the previous para,
                 # which we have just done,
                 # we also output a new blank para
@@ -551,7 +551,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         try:
             resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
         except:
-            LOG.warn(_("Could not create jpeg version of image %(name)s") % 
+            LOG.warn(_("Could not create jpeg version of image %(name)s") %
                         {'name' : name})
             return
 
@@ -566,7 +566,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                     Html('p', class_="DDR-Caption") + alt
                 )
             else:
-                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname,
                             border = '0', alt=alt)
         else:
             if len(alt):
@@ -576,7 +576,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                     Html('p', class_="DDR-Caption") + alt
                 )
             else:
-                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname,
                             border = '0', alt=alt, align=pos)
 
     def page_break(self):

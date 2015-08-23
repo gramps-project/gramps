@@ -39,7 +39,7 @@ from .grampstype import GrampsType
 class ChildRefType(GrampsType):
     """
     Provide the different ChildRef types.
-    
+
     .. attribute NONE : None - no relationship
     .. attribute BIRTH : Birth - relation by birth. Implicates genetic
             relationship if no other families with other types are present
@@ -50,7 +50,7 @@ class ChildRefType(GrampsType):
     .. attribute SPONSORED : Sponsored - parent is sponsoring the child
     .. attribute FOSTER : Foster - taking care of the child while the real
             parents are around and know of it. This can be due to the parents
-            not being able to care for the child, or because government has 
+            not being able to care for the child, or because government has
             ordered this
     .. attribute UNKNOWN : Unknown - unknown relationship
     .. attribute CUSTOM : Custom - a relationship given by the user
@@ -82,5 +82,5 @@ class ChildRefType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
 
-        
-        
+
+

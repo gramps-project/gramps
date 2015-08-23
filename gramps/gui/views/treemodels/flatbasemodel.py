@@ -24,25 +24,25 @@
 This module provides the flat treemodel that is used for all flat treeviews.
 
 For performance, GRAMPS does not use Gtk.TreeStore, as that would mean keeping
-the entire database table of an object in memory. 
-Instead, it suffices to keep in memory the sortkey and the matching handle, 
-as well as a map of sortkey,handle to treeview path, and vice versa. 
+the entire database table of an object in memory.
+Instead, it suffices to keep in memory the sortkey and the matching handle,
+as well as a map of sortkey,handle to treeview path, and vice versa.
 
 For a flat view, the index of sortkey,handle will be the path, so it suffices
 to keep in memory a map that given a sortkey,handle returns the path.
 As we need to be able to insert/delete/update objects, and for that the handle
-is all we know initially, and as sortkey,handle is uniquely determined by 
+is all we know initially, and as sortkey,handle is uniquely determined by
 handle, instead of keeping a map of sortkey,handle to path, we keep a map of
 handle to path
 
 As a user selects another column to sort, the sortkey must be rebuild, and the
-map remade. 
+map remade.
 
 The class FlatNodeMap keeps a sortkeyhandle list with (sortkey, handle) entries,
 and a handle2path dictionary. As the Map is flat, the index in sortkeyhandle
 corresponds to the path.
 
-The class FlatBaseModel, is the base class for all flat treeview models. 
+The class FlatBaseModel, is the base class for all flat treeview models.
 It keeps a FlatNodeMap, and obtains data from database as needed
 """
 
@@ -56,7 +56,7 @@ import bisect
 import time
 
 _LOG = logging.getLogger(".gui.basetreemodel")
-    
+
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -88,27 +88,27 @@ class FlatNodeMap(object):
     A NodeMap for a flat treeview. In such a TreeView, the paths possible are
     0, 1, 2, ..., n-1, where n is the number of items to show. For the model
     it is needed to keep the Path to Iter mappings of the TreeView in memory
-    
+
     The order of what is shown is based on the unique key: (sortkey, handle)
     Naming:
         * srtkey : key on which to sort
-        * hndl   : handle of the object, makes it possible to retrieve the 
+        * hndl   : handle of the object, makes it possible to retrieve the
                    object from the database. As handle is unique, it is used
                    in the iter for the TreeView
-        * index  : the index in the internal lists. When a view is in reverse, 
+        * index  : the index in the internal lists. When a view is in reverse,
                     this is not kept physically, but instead via an offset
         * path   : integer path in the TreeView. This will be index if view is
                     ascending, but will begin at back of list if view shows
                     the entries in reverse.
-        * index2hndl : list of (srtkey, hndl) tuples. The index gives the 
-                        (srtkey, hndl) it belongs to. 
-                       This normally is only a part of all possible data 
+        * index2hndl : list of (srtkey, hndl) tuples. The index gives the
+                        (srtkey, hndl) it belongs to.
+                       This normally is only a part of all possible data
         * hndl2index : dictionary of *hndl: index* values
-        
+
     The implementation provides a list of (srtkey, hndl) of which the index is
     the path, and a dictionary mapping hndl to index.
     To obtain index given a path, method real_index() is available
-    
+
     ..Note: glocale.sort_key is applied to the underlying sort key,
             so as to have localized sort
     """
@@ -124,11 +124,11 @@ class FlatNodeMap(object):
         self._reverse = False
         self.__corr = (0, 1)
         #We create a stamp to recognize invalid iterators. From the docs:
-        #Set the stamp to be equal to your model's stamp, to mark the 
-        #iterator as valid. When your model's structure changes, you should 
-        #increment your model's stamp to mark all older iterators as invalid. 
-        #They will be recognised as invalid because they will then have an 
-        #incorrect stamp. 
+        #Set the stamp to be equal to your model's stamp, to mark the
+        #iterator as valid. When your model's structure changes, you should
+        #increment your model's stamp to mark all older iterators as invalid.
+        #They will be recognised as invalid because they will then have an
+        #incorrect stamp.
         self.stamp = 0
 
     def destroy(self):
@@ -145,20 +145,20 @@ class FlatNodeMap(object):
         This is the core method to set up the FlatNodeMap
         Input is a list of (srtkey, handle), of which the index is the path
         Calling this method sets the index2hndllist, and creates the hndl2index
-        map. 
-        fullhndllist is the entire list of (srtkey, handle) that is possible, 
+        map.
+        fullhndllist is the entire list of (srtkey, handle) that is possible,
         normally index2hndllist is only part of this list as determined by
         filtering. To avoid memory, if both lists are the same, pass only one
         list twice and set identical to True.
         Reverse sets up how the path is determined from the index. If True the
         first index is the last path
-        
-        :param index2hndllist: the ascending sorted (sortkey, handle) values 
-                    as they will appear in the flat treeview. This often is 
+
+        :param index2hndllist: the ascending sorted (sortkey, handle) values
+                    as they will appear in the flat treeview. This often is
                     a subset of all possible data.
         :type index2hndllist: a list of (sortkey, handle) tuples
-        :param fullhndllist: the list of all possilbe ascending sorted 
-                    (sortkey, handle) values as they will appear in the flat 
+        :param fullhndllist: the list of all possilbe ascending sorted
+                    (sortkey, handle) values as they will appear in the flat
                      treeview if all data is shown.
         :type fullhndllist: a list of (sortkey, handl) tuples
         :param identical: identify if index2hndllist and fullhndllist are the
@@ -172,25 +172,25 @@ class FlatNodeMap(object):
         self._fullhndl = self._index2hndl if identical else fullhndllist
         self._reverse = reverse
         self.reverse_order()
-    
+
     def full_srtkey_hndl_map(self):
         """
-        The list of all possible (sortkey, handle) tuples. 
-        This is stored in FlatNodeMap so that it would not be needed to 
+        The list of all possible (sortkey, handle) tuples.
+        This is stored in FlatNodeMap so that it would not be needed to
         reiterate over the database to obtain all posibilities.
         """
         return self._fullhndl
 
     def reverse_order(self):
         """
-        This method keeps the index2hndl map, but sets it up the index in 
+        This method keeps the index2hndl map, but sets it up the index in
         reverse order. If the hndl2index map does not exist yet, it is created
         in the acending order as given in index2hndl
         The result is always a hndl2index map wich is correct, so or ascending
         order, or reverse order.
         """
         if self._hndl2index:
-            #if hndl2index is build already, invert order, otherwise keep 
+            #if hndl2index is build already, invert order, otherwise keep
             # requested order
             self._reverse = not self._reverse
         if self._reverse:
@@ -200,19 +200,19 @@ class FlatNodeMap(object):
         if not self._hndl2index:
             self._hndl2index = dict((key[1], index)
                 for index, key in enumerate(self._index2hndl))
-    
+
     def real_path(self, index):
         """
-        Given the index in the maps, return the real path. 
-        If reverse = False, then index is path, otherwise however, the 
+        Given the index in the maps, return the real path.
+        If reverse = False, then index is path, otherwise however, the
         path must be calculated so that the last index is the first path
         """
         return self.__corr[0] + self.__corr[1] * index
-    
+
     def real_index(self, path):
         """
         Given the path in the view, return the real index.
-        If reverse = False, then path is index, otherwise however, the 
+        If reverse = False, then path is index, otherwise however, the
         index must be calculated so that the last index is the first path
         """
         return self.__corr[0] + self.__corr[1] * path
@@ -229,7 +229,7 @@ class FlatNodeMap(object):
     def get_path(self, iter):
         """
         Return the path from the passed iter.
-        
+
         :param handle: the key of the object for which the path in the treeview
                         is needed
         :type handle: an object handle
@@ -247,7 +247,7 @@ class FlatNodeMap(object):
     def get_path_from_handle(self, handle):
         """
         Return the path from the passed handle
-        
+
         :param handle: the key of the object for which the path in the treeview
                         is needed
         :type handle: an object handle
@@ -262,7 +262,7 @@ class FlatNodeMap(object):
     def get_sortkey(self, handle):
         """
         Return the sortkey used for the passed handle.
-        
+
         :param handle: the key of the object for which the sortkey
                         is needed
         :type handle: an object handle
@@ -289,10 +289,10 @@ class FlatNodeMap(object):
         Return an iter from the path. The path is assumed to be an integer.
         This is accomplished by indexing into the index2hndl
         iters are always created afresh
-        
+
         Will raise IndexError if the maps are not filled yet, or if it is empty.
         Caller should take care of this if it allows calling with invalid path
-        
+
         :param path: path as it appears in the treeview
         :type path: integer
         """
@@ -303,10 +303,10 @@ class FlatNodeMap(object):
         """
         Return the handle from the path. The path is assumed to be an integer.
         This is accomplished by indexing into the index2hndl
-        
+
         Will raise IndexError if the maps are not filled yet, or if it is empty.
         Caller should take care of this if it allows calling with invalid path
-        
+
         :param path: path as it appears in the treeview
         :type path: integer
         :return handle: unicode form of the handle
@@ -321,7 +321,7 @@ class FlatNodeMap(object):
         Increments the iter y finding the index associated with the iter,
         adding or substracting one.
         False is returned if no next handle
-        
+
         :param iter: Gtk.TreeModel iterator
         :param type: Gtk.TreeIter
         """
@@ -333,7 +333,7 @@ class FlatNodeMap(object):
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
             index = 0
 
-        if self._reverse : 
+        if self._reverse :
             index -= 1
             if index < 0:
                 # -1 does not raise IndexError, as -1 is last element. Catch.
@@ -344,11 +344,11 @@ class FlatNodeMap(object):
                 return False
         iter.user_data = index
         return True
-    
+
     def get_first_iter(self):
         """
         Return the first handle that must be shown (corresponding to path 0)
-        
+
         Will raise IndexError if the maps are not filled yet, or if it is empty.
         Caller should take care of this if it allows calling with invalid path
         """
@@ -359,23 +359,23 @@ class FlatNodeMap(object):
         Return the number of entries in the map.
         """
         return len(self._index2hndl)
-    
+
     def max_rows(self):
         """
-        Return maximum number of entries that might be present in the 
+        Return maximum number of entries that might be present in the
         map
         """
         return len(self._fullhndl)
-    
+
     def insert(self, srtkey_hndl, allkeyonly=False):
         """
         Insert a node. Given is a tuple (sortkey, handle), and this is added
         in the correct place, while the hndl2index map is updated.
         Returns the path of the inserted row
-        
+
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
         :type srtkey_hndl: sortkey key already transformed by self.sort_func, object handle
-        
+
         :Returns: path of the row inserted in the treeview
         :Returns type: Gtk.TreePath or None
         """
@@ -398,7 +398,7 @@ class FlatNodeMap(object):
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         return Gtk.TreePath((self.real_path(insert_pos),))
-    
+
     def delete(self, srtkey_hndl):
         """
         Delete the row with the given (sortkey, handle).
@@ -406,9 +406,9 @@ class FlatNodeMap(object):
         greater than the deleted index.
         path of deleted row is returned
         If handle is not present, None is returned
-        
+
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
-        
+
         :Returns: path of the row deleted from the treeview
         :Returns type: Gtk.TreePath or None
         """
@@ -445,7 +445,7 @@ class FlatNodeMap(object):
 #-------------------------------------------------------------------------
 class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     """
-    The base class for all flat treeview models. 
+    The base class for all flat treeview models.
     It keeps a FlatNodeMap, and obtains data from database as needed
     ..Note: glocale.sort_key is applied to the underlying sort key,
             so as to have localized sort
@@ -482,7 +482,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
         self.node_map = FlatNodeMap()
         self.set_search(search)
-            
+
         self._reverse = (order == Gtk.SortType.DESCENDING)
 
         self.rebuild_data()
@@ -504,9 +504,9 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
     def set_search(self, search):
         """
-        Change the search function that filters the data in the model. 
+        Change the search function that filters the data in the model.
         When this method is called, make sure:
-        # you call self.rebuild_data() to recalculate what should be seen 
+        # you call self.rebuild_data() to recalculate what should be seen
           in the model
         # you reattach the model to the treeview so that the treeview updates
           with the new entries
@@ -561,12 +561,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
     def sort_keys(self):
         """
-        Return the (sort_key, handle) list of all data that can maximally 
-        be shown. 
-        This list is sorted ascending, via localized string sort. 
+        Return the (sort_key, handle) list of all data that can maximally
+        be shown.
+        This list is sorted ascending, via localized string sort.
         """
         # use cursor as a context manager
-        with self.gen_cursor() as cursor:   
+        with self.gen_cursor() as cursor:
             #loop over database and store the sort field, and the handle
             srt_keys=[(self.sort_func(data), key.decode('utf8'))
                       for key, data in cursor]
@@ -596,7 +596,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 ident = False
                 dlist = [h for h in allkeys
                              if h[1] not in self.skip and h[1] != ignore]
-            self.node_map.set_path_map(dlist, allkeys, identical=ident, 
+            self.node_map.set_path_map(dlist, allkeys, identical=ident,
                                        reverse=self._reverse)
         else:
             self.node_map.clear_map()
@@ -617,7 +617,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 if ignore is None:
                     dlist = self.search.apply(self.db, allkeys, tupleind=1)
                 else:
-                    dlist = self.search.apply(self.db, 
+                    dlist = self.search.apply(self.db,
                                 [ k for k in allkeys if k[1] != ignore],
                                 tupleind=1)
             elif ignore is None :
@@ -626,12 +626,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             else:
                 ident = False
                 dlist = [ k for k in allkeys if k[1] != ignore ]
-            self.node_map.set_path_map(dlist, allkeys, identical=ident, 
+            self.node_map.set_path_map(dlist, allkeys, identical=ident,
                                        reverse=self._reverse)
         else:
             self.node_map.clear_map()
         self._in_build = False
-        
+
     def add_row_by_handle(self, handle):
         """
         Add a row. This is called after object with handle is created.
@@ -664,7 +664,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         delete_val = (self.node_map.get_sortkey(handle), handle)
         delete_path = self.node_map.delete(delete_val)
         #delete_path is an integer from 0 to n-1
-        if delete_path is not None: 
+        if delete_path is not None:
             self.row_deleted(delete_path)
 
     def update_row_by_handle(self, handle):
@@ -678,7 +678,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         newsortkey = self.sort_func(self.map(handle))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
-            #or the order of the object must change. 
+            #or the order of the object must change.
             self.delete_row_by_handle(handle)
             self.add_row_by_handle(handle)
         else:
@@ -779,10 +779,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             self.prev_data = data
             self.prev_handle = handle
         return self.fmap[col](self.prev_data)
-        
+
     def do_get_value(self, iter, col):
         """
-        See Gtk.TreeModel. 
+        See Gtk.TreeModel.
         col is the model column that is needed, not the visible column!
         """
         #print ('do_get_val', iter, iter.user_data, col)

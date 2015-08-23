@@ -65,7 +65,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_place = Place()
         self.filter_place.set_type((PlaceType.CUSTOM, ''))
         self.ptype = Gtk.ComboBox(has_entry=True)
-       
+
         self.place_menu = widgets.MonitoredDataType(
             self.ptype,
             self.filter_place.set_type,
@@ -76,7 +76,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_code = widgets.BasicEntry()
         self.filter_enclosed = widgets.PlaceEntry(dbstate, uistate, [])
         self.filter_note = widgets.BasicEntry()
-        
+
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
@@ -144,7 +144,7 @@ class PlaceSidebarFilter(SidebarFilter):
 
             rule = HasData([name, ptype, code], use_regex=regex)
             generic_filter.add_rule(rule)
-                
+
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)

@@ -36,7 +36,7 @@ class Data(object):
 
 ##     def __repr__(self):
 ##         return repr((self.handle,self.surname,self.name))
-    
+
 class CursorTest(unittest.TestCase):
     """Test the cursor handling."""
 
@@ -73,7 +73,7 @@ class CursorTest(unittest.TestCase):
         self.env.open(env_name,env_flags)
         (self.person_map,self.surnames) = self._open_tables()
         (self.place_map, self.placerefs) = self._open_treetables()
-        
+
     def _open_tables(self):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
@@ -87,13 +87,13 @@ class CursorTest(unittest.TestCase):
         surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         surnames.open(self.full_name, "surnames", db.DB_BTREE,
                                flags=table_flags)
-        
+
         def find_surname(key,data):
             val = data.surname
             if isinstance(val, str):
                 val = val.encode('utf-8')
             return val
-        
+
         person_map.associate(surnames, find_surname, table_flags)
 
         return (person_map,surnames)
@@ -129,7 +129,7 @@ class CursorTest(unittest.TestCase):
         self.placerefs.close()
         self.env.close()
         shutil.rmtree(self._tmpdir)
-        
+
     def test_simple_insert(self):
         """test insert and retrieve works."""
 
@@ -137,27 +137,27 @@ class CursorTest(unittest.TestCase):
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
-        
+
         v = self.person_map.get(data.handle)
 
         self.assertEqual(v.handle, data.handle)
 
     def test_insert_with_curor_closed(self):
         """test_insert_with_curor_closed"""
-        
+
         cursor_txn = self.env.txn_begin()
-        
+
         cursor = self.surnames.cursor(txn=cursor_txn)
         cursor.first()
         cursor.next()
         cursor.close()
         cursor_txn.commit()
-        
+
         data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
-                
+
         v = self.person_map.get(data.handle)
 
         self.assertEqual(v.handle, data.handle)
@@ -165,20 +165,20 @@ class CursorTest(unittest.TestCase):
     @unittest.skip("Insert expected to fail with open cursor")
     def test_insert_with_curor_open(self):
         """test_insert_with_curor_open"""
-        
+
         cursor_txn = self.env.txn_begin()
         cursor = self.surnames.cursor(txn=cursor_txn)
         cursor.first()
         cursor.next()
-        
+
         data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
-        
+
         cursor.close()
         cursor_txn.commit()
-        
+
         v = self.person_map.get(data.handle)
 
         self.assertEqual(v.handle, data.handle)
@@ -188,20 +188,20 @@ class CursorTest(unittest.TestCase):
         """test_insert_with_curor_open_and_db_open"""
 
         (person2,surnames2) = self._open_tables()
-        
+
         cursor_txn = self.env.txn_begin()
         cursor = surnames2.cursor(txn=cursor_txn)
         cursor.first()
         cursor.next()
-        
+
         data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
-        
+
         cursor.close()
         cursor_txn.commit()
-        
+
         v = self.person_map.get(data.handle)
 
         self.assertEqual(v.handle, data.handle)
@@ -223,7 +223,7 @@ class CursorTest(unittest.TestCase):
         cursor = DbBsddbTreeCursor(self.placerefs, self.place_map, False,
                                    cursor_txn)
         placenames = set([d[1] for handle, d in cursor])
-        
+
         cursor.close()
         cursor_txn.commit()
         pldata = set([d[1] for d in data])

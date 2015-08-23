@@ -21,7 +21,7 @@
 class HandleClass(str):
     def __init__(self, handle):
         super(HandleClass, self).__init__()
-        
+
 def Handle(classname, handle):
     if handle is None:
         return None

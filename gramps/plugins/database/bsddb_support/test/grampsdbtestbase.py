@@ -25,18 +25,18 @@ import shutil
 from .. import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
-from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person, 
+from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person,
                             Family, Event, Place, MediaObject)
 
 class GrampsDbBaseTest(unittest.TestCase):
     """Base class for unittest that need to be able to create
     test databases."""
-    
-    def setUp(self):        
+
+    def setUp(self):
         def dummy_callback(dummy):
             pass
         self._tmpdir = tempfile.mkdtemp()
-        
+
         self._db = DbBsddb()
         dbman = CLIDbManager(DbState())
         self._filename, title = dbman.create_new_db_cli(title="Test")
@@ -69,7 +69,7 @@ class GrampsDbBaseTest(unittest.TestCase):
                               (num_events, self._add_event_with_sources),
                               (num_places, self._add_place_with_sources),
                               (num_media_objects, self._add_media_object_with_sources)):
-                                   
+
             source_idx = 1
             for person_idx in xrange(0, num):
 
@@ -108,7 +108,7 @@ class GrampsDbBaseTest(unittest.TestCase):
 
     def _add_repository(self):
         # Add a Repository
-        
+
         with DbTxn("Add Repository", self._db) as tran:
             repos = Repository()
             self._db.add_repository(repos, tran)
@@ -116,8 +116,8 @@ class GrampsDbBaseTest(unittest.TestCase):
 
         return repos
 
-                           
-    def _add_object_with_source(self, citations, object_class, add_method, 
+
+    def _add_object_with_source(self, citations, object_class, add_method,
                                 commit_method):
 
         object = object_class()

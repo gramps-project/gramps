@@ -280,7 +280,7 @@ class MakeAncestorTree(AscendPerson):
         first off of a forumula, then remove blank areas around the edges,
         then compress the tree if desired
         '''
-        min_y = self.y_index(self.canvas.boxes[0].level[LVL_GEN], 
+        min_y = self.y_index(self.canvas.boxes[0].level[LVL_GEN],
                 self.canvas.boxes[0].level[LVL_INDX])
         for box in self.canvas.boxes:
             if "fam" in box.boxstr:
@@ -310,7 +310,7 @@ class MakeAncestorTree(AscendPerson):
             y_index = box.level[LVL_Y]
             if y_index > current_y:
                 current_y = y_index
-                y_level += 1 
+                y_level += 1
             box.level = box.level[:LVL_Y] + (y_level,)
 
     def do_sibs(self):
@@ -334,7 +334,7 @@ class MakeAncestorTree(AscendPerson):
             for box in self.canvas.boxes:
                 box.level = (box.level[0], box.level[1], box.level[2]-move)
             move = 0
-        
+
 
         line.start = []
         r = -1  # if len(mykids)%2 == 1 else 0

@@ -88,9 +88,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             raise ReportError(_("Could not create %s") % name, msg)
         except:
             raise ReportError(_("Could not create %s") % name)
-        
+
         self.t = StringIO()
-            
+
         width = self.paper.get_size().get_width()
         height = self.paper.get_size().get_height()
 
@@ -121,8 +121,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
         centerx, centery = units(( x+self.paper.get_left_margin(),
                                   y+self.paper.get_top_margin() ))
-        xpos = (centerx - (width/2.0)) 
-        ypos = (centery - (height/2.0)) 
+        xpos = (centerx - (width/2.0))
+        ypos = (centery - (height/2.0))
 
         self.t.write(
             '<text ' +
@@ -140,7 +140,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         else:
             self.t.write('font-family:serif;')
         self.t.write('">')
-    
+
         for line in text:
             # Center this line relative to the rest of the text
             linex = xpos + (width - self.string_width(font, line) ) / 2
@@ -150,15 +150,15 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                 '</tspan>'
                 )
         self.t.write('</text>\n')
-                           
+
     def end_page(self):
-        # Print the text last for each page so that it is rendered on top of 
+        # Print the text last for each page so that it is rendered on top of
         # other graphic elements.
         self.f.write(self.t.getvalue())
         self.t.close()
         self.f.write('</svg>\n')
         self.f.close()
-    
+
     def draw_line(self, style, x1, y1, x2, y2):
         x1 += self.paper.get_left_margin()
         x2 += self.paper.get_left_margin()
@@ -230,7 +230,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         if box_style.get_line_style() != SOLID:
             line_out += 'stroke-dasharray: %s; ' % (
                 ",".join(map(str, box_style.get_dash_style()))
-                )            
+                )
         line_out += 'stroke-width:%f;"/>\n' % box_style.get_line_width()
         self.f.write(line_out)
 
@@ -272,12 +272,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         """ @param mark:  IndexMark to use for indexing (not supported) """
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
-        
+
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
         p = style_sheet.get_paragraph_style(para_name)
-        
+
         font = p.get_font()
         font_size = font.get_size()
         fs = (font_size/28.35) * 1.2
@@ -328,7 +328,7 @@ class SvgDrawDocOptions(DocOptions):
 
     def __init__(self, name, dbase):
         DocOptions.__init__(self, name)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the document menu for the docgen.

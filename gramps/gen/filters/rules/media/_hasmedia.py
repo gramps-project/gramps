@@ -43,10 +43,10 @@ class HasMedia(Rule):
     """Rule that checks for a media with a particular value"""
 
 
-    labels      = [ _('Title:'), 
-                    _('Type:'), 
+    labels      = [ _('Title:'),
+                    _('Type:'),
                     _('Path:'),
-                    _('Date:'), 
+                    _('Date:'),
                     ]
     name        = _('Media objects matching parameters')
     description = _("Matches media objects with particular parameters")

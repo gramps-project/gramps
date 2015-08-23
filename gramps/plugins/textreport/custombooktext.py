@@ -20,7 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# Written by Alex Roitman, 
+# Written by Alex Roitman,
 # largely based on the SimpleBookTitle.py by Don Allingham
 
 #------------------------------------------------------------------------
@@ -59,7 +59,7 @@ class CustomText(Report):
     def __init__(self, database, options, user):
         """
         Create CustomText object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -68,7 +68,7 @@ class CustomText(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         top   - Text on the top.
         mid   - Text in the middle.
         bot   - Text on the bottom.
@@ -79,7 +79,7 @@ class CustomText(Report):
         self.top_text = menu.get_option_by_name('top').get_value()
         self.middle_text = menu.get_option_by_name('mid').get_value()
         self.bottom_text = menu.get_option_by_name('bot').get_value()
-        
+
     def write_report(self):
         mark_text = _("Custom Text")
         if self.top_text[0]:
@@ -117,22 +117,22 @@ class CustomTextOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-    
+
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
-        
+
         category_name = _("Text")
-        
+
         top = TextOption(_("Initial Text"), [""] )
         top.set_help(_("Text to display at the top."))
         menu.add_option(category_name, "top", top)
-        
+
         mid = TextOption(_("Middle Text"), [""] )
         mid.set_help(_("Text to display in the middle"))
         menu.add_option(category_name, "mid", mid)
-        
+
         bot = TextOption(_("Final Text"), [""] )
         bot.set_help(_("Text to display last."))
         menu.add_option(category_name, "bot", bot)

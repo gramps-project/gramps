@@ -64,7 +64,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        
+
         tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
@@ -79,7 +79,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
         else:
             self.callback = None
             print(_("Rebuilding reference maps..."))
-            
+
         UpdateCallback.__init__(self, self.callback)
         self.set_total(6)
         self.db.reindex_reference_map(self.update)
@@ -97,7 +97,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class RebuildRefMapOptions(tool.ToolOptions):

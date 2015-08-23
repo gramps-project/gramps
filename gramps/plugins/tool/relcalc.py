@@ -68,13 +68,13 @@ column_names = [column[0] for column in BasePersonView.COLUMNS]
 #
 #-------------------------------------------------------------------------
 class RelCalc(tool.Tool, ManagedWindow):
-    
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         """
         Relationship calculator class.
         """
-        
+
         tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self,uistate,[],self.__class__)
 
@@ -111,12 +111,12 @@ class RelCalc(tool.Tool, ManagedWindow):
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name},
                         self.title)
-    
+
         self.tree = self.glade.get_object("peopleList")
         self.text = self.glade.get_object("text1")
         self.textbuffer = Gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
-        
+
         self.model = PersonTreeModel(self.db)
         self.tree.set_model(self.model)
 
@@ -169,14 +169,14 @@ class RelCalc(tool.Tool, ManagedWindow):
         model, iter_ = self.tree.get_selection().get_selected()
         if not iter_:
             return
-        
+
         handle = model.get_handle_from_iter(iter_)
-        other_person = self.db.get_person_from_handle(handle)        
+        other_person = self.db.get_person_from_handle(handle)
         if other_person is None :
             self.textbuffer.set_text("")
             return
-        
-        #now determine the relation, and print it out        
+
+        #now determine the relation, and print it out
         rel_strings, common_an = self.relationship.get_all_relationships(
                                             self.db, self.person, other_person)
 
@@ -184,7 +184,7 @@ class RelCalc(tool.Tool, ManagedWindow):
         p2 = name_displayer.display(other_person)
 
         text = []
-        if other_person is None: 
+        if other_person is None:
             pass
         elif self.person.handle == other_person.handle:
             rstr = _("%(person)s and %(active_person)s are the same person.") % {
@@ -240,7 +240,7 @@ class RelCalc(tool.Tool, ManagedWindow):
         for val in text:
             textval += "%s %s\n" % (val[0], val[1])
         self.textbuffer.set_text(textval)
-    
+
     def _key_press(self, obj, event):
         if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             store, paths = self.selection.get_selected_rows()
@@ -254,7 +254,7 @@ class RelCalc(tool.Tool, ManagedWindow):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class RelCalcOptions(tool.ToolOptions):

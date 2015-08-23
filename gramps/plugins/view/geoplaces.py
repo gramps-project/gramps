@@ -95,8 +95,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
 </placeholder>
 <placeholder name="CommonEdit">
   <toolitem action="PrintView"/>
@@ -117,7 +117,7 @@ class GeoPlaces(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Places map'),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       PlaceBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -143,11 +143,11 @@ class GeoPlaces(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-place'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -222,7 +222,7 @@ class GeoPlaces(GeoGraphyView):
 
     def _createmap(self,place_x):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -363,10 +363,10 @@ class GeoPlaces(GeoGraphyView):
                    None, event.button, event.time)
         return 1
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)

@@ -120,7 +120,7 @@ class BasePersonView(ListView):
                            COL_TAGS, COL_CHAN]),
         ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 30, 30, 30, 30,
                           30, 100, 100])
-        )  
+        )
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
     DEL_MSG     = _("Remove the selected person")
@@ -140,14 +140,14 @@ class BasePersonView(ListView):
             'person-groupname-rebuild' : self.object_build,
             'no-database': self.no_database,
             }
- 
+
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
             model, signal_map,
             PersonBookmarks, nav_group,
             multiple=True,
             filter_class=PersonSidebarFilter)
-            
+
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
             '<PRIMARY>BackSpace' : self.key_delete,
@@ -168,7 +168,7 @@ class BasePersonView(ListView):
         Specify the drag type for a single selection
         """
         return DdTargets.PERSON_LINK
-        
+
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search
@@ -222,7 +222,7 @@ class BasePersonView(ListView):
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
               <toolitem action="Back"/>
-              <toolitem action="Forward"/>  
+              <toolitem action="Forward"/>
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
@@ -249,7 +249,7 @@ class BasePersonView(ListView):
 
     def get_handle_from_gramps_id(self, gid):
         """
-        Return the handle of the person having the given Gramps ID. 
+        Return the handle of the person having the given Gramps ID.
         """
         obj = self.dbstate.db.get_person_from_gramps_id(gid)
         if obj:
@@ -265,12 +265,12 @@ class BasePersonView(ListView):
         #the editor requires a surname
         person.primary_name.add_surname(Surname())
         person.primary_name.set_primary_surname(0)
-        
+
         try:
             EditPerson(self.dbstate, self.uistate, [], person)
         except WindowActiveError:
             pass
- 
+
     def edit(self, obj):
         """
         Edit an existing person in the database.
@@ -293,21 +293,21 @@ class BasePersonView(ListView):
             msg2 = self._message2_format(person)
             msg2 = "%s %s" % (msg2, data_recover_msg)
             # This gets person to delete deom self.active_person:
-            QuestionDialog(msg1, 
-                           msg2, 
-                           _('_Delete Person'), 
+            QuestionDialog(msg1,
+                           msg2,
+                           _('_Delete Person'),
                            self.delete_person_response)
         else:
             # Ask to delete; option to cancel, delete rest
             # This gets person to delete from parameter
             MultiSelectDialog(self._message1_format,
-                              self._message2_format, 
+                              self._message2_format,
                               handles,
                               self._lookup_person,
                               yes_func=self.delete_person_response) # Yes
 
     def _message1_format(self, person):
-        return _('Delete %s?') % (name_displayer.display(person) + 
+        return _('Delete %s?') % (name_displayer.display(person) +
                                   (" [%s]" % person.gramps_id))
 
     def _message2_format(self, person):
@@ -331,13 +331,13 @@ class BasePersonView(ListView):
 
         # create the transaction
         with DbTxn('', self.dbstate.db) as trans:
-        
+
             # create name to save
             person = self.active_person
             active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
             # delete the person from the database
-            # Above will emit person-delete, which removes the person via 
+            # Above will emit person-delete, which removes the person via
             # callback to the model, so row delete is signaled
             self.dbstate.db.delete_person_from_database(person, trans)
             trans.set_description(active_name)
@@ -347,7 +347,7 @@ class BasePersonView(ListView):
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
-        group information required. We extend beyond the normal here, 
+        group information required. We extend beyond the normal here,
         since we want to have more than one action group for the PersonView.
         Most PageViews really won't care about this.
 
@@ -367,9 +367,9 @@ class BasePersonView(ListView):
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
                 ('Edit', 'gtk-edit', _("action|_Edit..."),
-                "<PRIMARY>Return", self.EDIT_MSG, self.edit), 
-                ('QuickReport', None, _("Quick View"), None, None, None), 
-                ('WebConnect', None, _("Web Connection"), None, None, None), 
+                "<PRIMARY>Return", self.EDIT_MSG, self.edit),
+                ('QuickReport', None, _("Quick View"), None, None, None),
+                ('WebConnect', None, _("Web Connection"), None, None, None),
                 ])
 
 
@@ -396,7 +396,7 @@ class BasePersonView(ListView):
         self.all_action.set_visible(True)
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
-        
+
     def disable_action_group(self):
         """
         Turns off the visibility of the View's action group.
@@ -414,7 +414,7 @@ class BasePersonView(ListView):
 
         if len(mlist) != 2:
             ErrorDialog(
-        _("Cannot merge people"), 
+        _("Cannot merge people"),
         _("Exactly two people must be selected to perform a merge. "
           "A second person can be selected by holding down the "
           "control key while clicking on the desired person."))
@@ -440,7 +440,7 @@ class BasePersonView(ListView):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         person.add_tag(tag_handle)
         self.dbstate.db.commit_person(person, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

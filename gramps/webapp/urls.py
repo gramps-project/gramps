@@ -37,7 +37,7 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-from gramps.webapp.grampsdb.views import * 
+from gramps.webapp.grampsdb.views import *
 
 urlpatterns = patterns('',
     # Specific matches first:
@@ -67,10 +67,10 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     (r'^$', main_page),
     ## Prior to django 1.5, use this:
-    ##(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', 
+    ##(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
     ##{'url': '/styles/images/favicon.ico'}),
     # Django 1.5.4:
-    (r'^favicon\.ico$', 'django.shortcuts.redirect', 
+    (r'^favicon\.ico$', 'django.shortcuts.redirect',
      {'url': '/styles/images/favicon.ico'}),
     (r'^user/$', user_page),
     (r'^json/$', process_json_request),
@@ -78,32 +78,32 @@ urlpatterns += patterns('',
     (r'^browse/$', browse_page),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
-    (r'^(?P<view>(\w+))/$', 
+    (r'^(?P<view>(\w+))/$',
      view_list),                    # /view/
-    (r'^(?P<view>(\w+))/add$', 
+    (r'^(?P<view>(\w+))/add$',
      action,
      {"handle": None, "act": "add"}),                   # /view/add
-    (r'^(?P<view>(\w+))/add/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+    (r'^(?P<view>(\w+))/add/(?P<item>(\w+))/(?P<handle>(\w+))$',
      add_to),             # /view/add/item/handle
-    (r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$', 
+    (r'^(?P<view>(\w+))/share/(?P<item>(\w+))/(?P<handle>(\w+))$',
      add_share),          # /view/share/item/handle
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action, 
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/$', action,
      {"act": "view"}),    # /view/handle/
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))$', 
-     action),             # /view/handle/action 
-    (r'^(?P<ref_by>(\w+))/(?P<handle>(\w+))/reference/(?P<ref_to>(\w+))/(?P<order>(\w+))$', 
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))$',
+     action),             # /view/handle/action
+    (r'^(?P<ref_by>(\w+))/(?P<handle>(\w+))/reference/(?P<ref_to>(\w+))/(?P<order>(\w+))$',
      process_reference),  # /view/handle/reference/item/order
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name), 
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<act>(\w+))$', 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))$', process_name),
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/(?P<act>(\w+))$',
      process_name),
 
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$', 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))$',
      process_surname),
-    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<act>(\w+))$', 
+    (r'^person/(?P<handle>(\w+))/name/(?P<order>(\w+))/surname/(?P<sorder>(\w+))/(?P<act>(\w+))$',
      process_surname),
     (r'^family/(?P<handle>(\w+))/(?P<act>(\w+))/child/(?P<child>(\w+))$', process_child),
 ##    (r'^profile/(?P<position>(\w+)/)$', ),
-    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))/(?P<item>(\w+))/(?P<index>(\w+))$', 
+    (r'^(?P<view>(\w+))/(?P<handle>(\w+))/(?P<act>(\w+))/(?P<item>(\w+))/(?P<index>(\w+))$',
      process_list_item),
     (r'^note/(?P<action>(\w+))/person/(?P<handle>(\w+))/name/(?P<order>(\w+))$',
      process_note_on_name),

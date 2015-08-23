@@ -35,12 +35,12 @@ from ._searchfilter import SearchFilter, ExactSearchFilter
     #global SystemFilters
     #SystemFilters = FilterList(SYSTEM_FILTERS)
     #SystemFilters.load()
-    
+
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
-    
+
 #if not SystemFilters:
     #reload_system_filters()
 

@@ -45,16 +45,16 @@ from .._haseventbase import HasEventBase
 class HasEvent(HasEventBase):
     """Rule that checks for a person with a particular value"""
 
-    labels      = [ _('Personal event:'), 
-                    _('Date:'), 
-                    _('Place:'), 
+    labels      = [ _('Personal event:'),
+                    _('Date:'),
+                    _('Place:'),
                     _('Description:'),
                     _('Main Participants:'),
                     _('Primary Role:') ]
     name        =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular "
                     "value")
-    
+
     def apply(self, dbase, person):
         for event_ref in person.get_event_ref_list():
             if not event_ref:

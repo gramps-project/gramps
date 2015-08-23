@@ -101,7 +101,7 @@ class GraphvizFormatComboBox(Gtk.ComboBox):
 
     def get_clname(self):
         return graphdoc.FORMATS[self.get_active()]["type"]
-    
+
 #-----------------------------------------------------------------------
 #
 # GraphvizReportDialog
@@ -118,23 +118,23 @@ class GraphvizReportDialog(ReportDialog):
         self.dbname = dbstate.db.get_dbname()
         ReportDialog.__init__(self, dbstate, uistate, opt,
                               name, translated_name)
-        
+
     def init_options(self, option_class):
         try:
             if issubclass(option_class, object):     # Old-style class
                 self.options = option_class(self.raw_name,
                                         self.dbstate.get_database())
         except TypeError:
-            self.options = option_class 
-            
+            self.options = option_class
+
         menu = Menu()
         self.__gvoptions.add_menu_options(menu)
-        
+
         for category in menu.get_categories():
             for name in menu.get_option_names(category):
                 option = menu.get_option(category, name)
                 self.options.add_menu_option(category, name, option)
-        
+
         self.options.load_previous_values()
 
     def init_interface(self):
@@ -172,7 +172,7 @@ class GraphvizReportDialog(ReportDialog):
                 base = "%s%s" % (default_name, ext) # "ext" already has a dot
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
-                
+
     def setup_report_options_frame(self):
         self.paper_label = Gtk.Label(label='<b>%s</b>' % _("Paper Options"))
         self.paper_label.set_use_markup(True)
@@ -199,7 +199,7 @@ class GraphvizReportDialog(ReportDialog):
         file.  Those changes are made here.
         """
         self.open_with_app.set_sensitive(True)
-            
+
         fname = self.target_fileentry.get_full_path(0)
         (spath, ext) = os.path.splitext(fname)
 
@@ -209,7 +209,7 @@ class GraphvizReportDialog(ReportDialog):
         else:
             fname = spath
         self.target_fileentry.set_filename(fname)
-            
+
         output_format_str = obj.get_oformat_str()
         if output_format_str in ['gvpdf', 'gspdf', 'ps']:
             # Always use 72 DPI for PostScript and PDF files.
@@ -232,11 +232,11 @@ class GraphvizReportDialog(ReportDialog):
         """Create a document of the type requested by the user.
         """
         pstyle = self.paper_frame.get_paper_style()
-        
+
         self.doc = self.format(self.options, pstyle)
-        
+
         self.options.set_document(self.doc)
-            
+
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate
         the output file name before doing anything else.  If there is
@@ -257,22 +257,22 @@ class GraphvizReportDialog(ReportDialog):
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(
                                        self.paper_frame.get_custom_paper_size())
-        
+
         # Create the output document.
         self.make_document()
-        
+
         # Save options
         self.options.handler.save_options()
-        config.set('interface.open-with-default-viewer', 
+        config.set('interface.open-with-default-viewer',
                    self.open_with_app.get_active())
-        
+
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
         self.format = self.format_menu.get_reference()
         format_name = self.format_menu.get_clname()
         self.options.handler.set_format_name(format_name)
-            
+
     def setup_style_frame(self):
         """Required by ReportDialog"""
         pass

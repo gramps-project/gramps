@@ -56,14 +56,14 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
         self.dd = self.display = self.display_RU
         self.months = self.dd._ds.long_months
         # TODO hardwired magic numbers! Bad API smell.
-        self.dd.set_format(4) # day month_name year 
+        self.dd.set_format(4) # day month_name year
         self.may = self.months[5]
 
     def assertInflectionInDate(self, inflection, date, month=None):
         if month is None:
             month = date.get_month()
         month_lexeme = self.months[month]
-        self.assertIn(month_lexeme.f[inflection], 
+        self.assertIn(month_lexeme.f[inflection],
                 self.dd.display(date))
 
     def test_month_only_date_nominative(self):
@@ -85,11 +85,11 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
 # this depends on the fact that in Russian the short and long forms for May
 # will be the same!
             self.assertIn("до мая", self.dd.display(d1945may))
-            
+
     def test_between_month_only_dates_ablative(self):
         b1945may_1946may = Date()
         b1945may_1946may.set(
-                modifier=Date.MOD_RANGE, 
+                modifier=Date.MOD_RANGE,
                 value=(0, 5, 1945, False, 0, 5, 1946, False))
         # TODO hardwired magic numbers! Bad API smell.
         for inflecting_format in (3,4):
@@ -102,7 +102,7 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
     def test_month_only_date_span_from_genitive_to_accusative(self):
         f1945may_t1946may = Date()
         f1945may_t1946may.set(
-                modifier=Date.MOD_SPAN, 
+                modifier=Date.MOD_SPAN,
                 value=(0, 5, 1945, False, 0, 5, 1946, False))
         # TODO hardwired magic numbers! Bad API smell.
         for inflecting_format in (3,4):

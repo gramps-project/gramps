@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -38,24 +38,24 @@ class CompleteCheck(unittest.TestCase):
     def tearDown(self):
         os.remove(TEMP_INI)
         os.remove(TEST2_INI)
-    
+
     def testAll(self):
         self.CM = ConfigManager(TEMP_INI)
         self.CM.register("section.setting1", 1) # int
         self.CM.register("section.setting2", 3.1415) # float
         self.CM.register("section.setting3", "String") # string
         self.CM.register("section.setting4", False) # boolean
-    
+
         self.assertEqual(self.CM.get("section.setting1"), 1)
         self.assertEqual(self.CM.get("section.setting2"), 3.1415)
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
-    
+
         self.CM.set("section.setting1", 2)
         self.CM.set("section.setting2", 8.6)
         self.CM.set("section.setting3", "Another String")
         self.CM.set("section.setting4", True)
-    
+
         self.assertEqual(self.CM.get("section.setting1"), 2)
         self.assertEqual(self.CM.get("section.setting2"), 8.6)
         self.assertEqual(self.CM.get("section.setting3"), "Another String")
@@ -70,35 +70,35 @@ class CompleteCheck(unittest.TestCase):
         self.assertEqual(self.CM.get("section.setting2"), 8.6)
         self.assertEqual(self.CM.get("section.setting3"), "Another String")
         self.assertTrue(self.CM.get("section.setting4"))
-    
+
         # Try to set one that doesn't exist:
         self.assertRaises(AttributeError, self.CM.set, "section.setting5", 1)
-    
+
         self.CM.save()
-    
+
         self.CM.reset() # to defaults
-    
+
         self.assertEqual(self.CM.get("section.setting1"), 1)
         self.assertEqual(self.CM.get("section.setting2"), 3.1415, self.CM.get("section.setting2"))
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
-    
+
         self.CM._x = None
-    
+
         cbid = self.CM.connect("section.setting1", callback)
         self.assertIsNone(self.CM._x)
-    
+
         self.CM.set("section.setting1", 1024)
         self.assertEqual(self.CM._x, "1024", "x was '%s'" % self.CM._x)
-    
+
         self.CM.disconnect(cbid)
-    
+
         self.CM.set("section.setting1", -1)
         self.assertEqual(self.CM._x, "1024")
-    
+
         self.CM.reset("section.setting1")
         self.assertEqual(self.CM.get("section.setting1"), 1)
-    
+
         # No callback:
         self.CM._x = None
         self.CM.set("section.setting1", 200)
@@ -108,7 +108,7 @@ class CompleteCheck(unittest.TestCase):
         # Now, call it:
         self.CM.emit("section.setting1")
         self.assertEqual(self.CM._x, "200")
-    
+
         self.CM.set("section.setting1", 2)
         self.CM.set("section.setting2", 8.6)
         self.CM.set("section.setting3", "Another String")
@@ -126,14 +126,14 @@ class CompleteCheck(unittest.TestCase):
         self.assertEqual(self.CM.get("section.setting2"), 3.1415)
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
-    
+
         self.CM.load(TEST2_INI)
-    
+
         self.assertEqual(self.CM.get("section.setting1"), 2, self.CM.get("section.setting1"))
         self.assertEqual(self.CM.get("section.setting2"), 8.6)
         self.assertEqual(self.CM.get("section.setting3"), "Another String")
         self.assertTrue(self.CM.get("section.setting4"))
-    
+
         self.assertEqual(self.CM.get("section2.windows-file"), r"c:\drive\path\o'malley\file.pdf")
         self.assertEqual(self.CM.get("section2.list"), [1, 2, 3, 4])
         self.assertEqual(self.CM.get("section2.dict"), {'a': "apple", "b": "banana"})

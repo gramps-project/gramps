@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -48,36 +48,36 @@ from ._datehandler import register_datehandler
 class DateParserSK(DateParser):
 
     modifier_to_int = {
-        'pred'   : Date.MOD_BEFORE, 
-        'do'     : Date.MOD_BEFORE, 
-        'po'     : Date.MOD_AFTER, 
-        'asi'    : Date.MOD_ABOUT, 
-        'okolo'  : Date.MOD_ABOUT, 
-        'pribl.' : Date.MOD_ABOUT, 
+        'pred'   : Date.MOD_BEFORE,
+        'do'     : Date.MOD_BEFORE,
+        'po'     : Date.MOD_AFTER,
+        'asi'    : Date.MOD_ABOUT,
+        'okolo'  : Date.MOD_ABOUT,
+        'pribl.' : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        'gregoriánsky'  : Date.CAL_GREGORIAN, 
-        'g'             : Date.CAL_GREGORIAN, 
-        'juliánsky'     : Date.CAL_JULIAN, 
-        'j'             : Date.CAL_JULIAN, 
-        'hebrejský'     : Date.CAL_HEBREW, 
-        'h'             : Date.CAL_HEBREW, 
-        'islamský'      : Date.CAL_ISLAMIC, 
-        'i'             : Date.CAL_ISLAMIC, 
-        'republikánsky' : Date.CAL_FRENCH, 
-        'r'             : Date.CAL_FRENCH, 
-        'perzský'       : Date.CAL_PERSIAN, 
-        'p'             : Date.CAL_PERSIAN, 
-        'švédsky'      : Date.CAL_SWEDISH, 
-        's'            : Date.CAL_SWEDISH, 
+        'gregoriánsky'  : Date.CAL_GREGORIAN,
+        'g'             : Date.CAL_GREGORIAN,
+        'juliánsky'     : Date.CAL_JULIAN,
+        'j'             : Date.CAL_JULIAN,
+        'hebrejský'     : Date.CAL_HEBREW,
+        'h'             : Date.CAL_HEBREW,
+        'islamský'      : Date.CAL_ISLAMIC,
+        'i'             : Date.CAL_ISLAMIC,
+        'republikánsky' : Date.CAL_FRENCH,
+        'r'             : Date.CAL_FRENCH,
+        'perzský'       : Date.CAL_PERSIAN,
+        'p'             : Date.CAL_PERSIAN,
+        'švédsky'      : Date.CAL_SWEDISH,
+        's'            : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
-        'odhadovaný' : Date.QUAL_ESTIMATED, 
-        'odh.'       : Date.QUAL_ESTIMATED, 
-        'vypočítaný' : Date.QUAL_CALCULATED, 
-        'vyp.'       : Date.QUAL_CALCULATED, 
+        'odhadovaný' : Date.QUAL_ESTIMATED,
+        'odh.'       : Date.QUAL_ESTIMATED,
+        'vypočítaný' : Date.QUAL_CALCULATED,
+        'vyp.'       : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
@@ -87,10 +87,10 @@ class DateParserSK(DateParser):
         _range_1 = ['medzi']
         _range_2 = ['a']
         self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)), 
+                                 ('|'.join(_span_1), '|'.join(_span_2)),
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)), 
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -100,27 +100,27 @@ class DateParserSK(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplaySK(DateDisplay):
     """
-    Slovak language date display class. 
+    Slovak language date display class.
     """
-    long_months = ( "", "január", "február", "marec", "apríl", "máj", 
-                    "jún", "júl", "august", "september", "október", 
+    long_months = ( "", "január", "február", "marec", "apríl", "máj",
+                    "jún", "júl", "august", "september", "október",
                     "november", "december" )
-    
-    short_months = ( "", "jan", "feb", "mar", "apr", "máj", "jún", 
+
+    short_months = ( "", "jan", "feb", "mar", "apr", "máj", "jún",
                      "júl", "aug", "sep", "okt", "nov", "dec" )
-    
+
     calendar = (
-        "", "juliánsky", "hebrejský", 
-        "republikánsky", "perzský", "islamský", 
-        "švédsky" 
+        "", "juliánsky", "hebrejský",
+        "republikánsky", "perzský", "islamský",
+        "švédsky"
         )
 
     _mod_str = ("", "pred ", "po ", "okolo ", "", "", "")
-    
+
     _qual_str = ("", "odh. ", "vyp. ")
 
     formats = (
-        "RRRR-MM-DD (ISO)", "numerický", "Mesiac Deň, Rok", 
+        "RRRR-MM-DD (ISO)", "numerický", "Mesiac Deň, Rok",
         "MES Deň, Rok", "Deň, Mesiac, Rok", "Deň MES Rok"
         )
         # this must agree with DateDisplayEn's "formats" definition
@@ -137,7 +137,7 @@ class DateDisplaySK(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -146,13 +146,13 @@ class DateDisplaySK(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'od', d1, 
+            return "%s%s %s %s %s%s" % (qual_str, 'od', d1,
                                         'do', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'medzi', 
+            return "%s%s %s %s %s%s" % (qual_str, 'medzi',
                                         d1, 'a', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

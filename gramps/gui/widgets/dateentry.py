@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -50,7 +50,7 @@ from gramps.gen.lib.date import Date
 #
 #-------------------------------------------------------------------------
 class DateEntry(Gtk.Box):
-    
+
     def __init__(self, uistate, track):
         Gtk.Box.__init__(self)
         self.entry = ValidatableMaskedEntry()
@@ -58,12 +58,12 @@ class DateEntry(Gtk.Box):
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
         image.set_from_icon_name('gramps-date-edit', Gtk.IconSize.BUTTON)
-        button = Gtk.Button() 
+        button = Gtk.Button()
         button.set_image(image)
         button.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pack_start(button, False, True, 0)
         self.date = Date()
-        self.date_entry = MonitoredDate(self.entry, button, self.date, 
+        self.date_entry = MonitoredDate(self.entry, button, self.date,
                                         uistate, track)
         self.show_all()
 

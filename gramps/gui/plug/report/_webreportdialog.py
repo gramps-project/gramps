@@ -51,7 +51,7 @@ class WebReportDialog(ReportDialog):
     def setup_target_frame(self):
         """Target frame is not used."""
         pass
-    
+
     def parse_target_frame(self):
         """Target frame is not used."""
         return 1

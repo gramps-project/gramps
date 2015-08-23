@@ -85,7 +85,7 @@ class RelGraphReport(Report):
     def __init__(self, database, options, user):
         """
         Create RelGraphReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -94,7 +94,7 @@ class RelGraphReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         filter     - Filter to be applied to the people of the database.
                      The option class carries its number, and the function
                      returning the list of filters.
@@ -179,7 +179,7 @@ class RelGraphReport(Report):
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
                     self.database.iter_person_handles())
-        
+
         if len(self.person_handles) > 1:
             self.add_persons_and_families()
             self.add_child_links_to_families()
@@ -192,7 +192,7 @@ class RelGraphReport(Report):
         # Hash people in a dictionary for faster inclusion checking
         person_dict = dict([conv_to_unicode(handle, 'utf-8'), 1]
                                 for handle in self.person_handles)
-            
+
         for person_handle in self.person_handles:
             person = self.database.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
@@ -229,9 +229,9 @@ class RelGraphReport(Report):
             adopted = False
         if adopted and self.adoptionsdashed:
             style = 'dotted'
-        self.doc.add_link( family.get_gramps_id(), p_id, style,  
+        self.doc.add_link( family.get_gramps_id(), p_id, style,
                            self.arrowheadstyle, self.arrowtailstyle )
-        
+
     def add_parent_link(self, p_id, parent_handle, rel):
         "Links the child to a parent"
         style = 'solid'
@@ -240,12 +240,12 @@ class RelGraphReport(Report):
         parent = self.database.get_person_from_handle(parent_handle)
         self.doc.add_link( parent.get_gramps_id(), p_id, style,
                            self.arrowheadstyle, self.arrowtailstyle )
-        
+
     def add_persons_and_families(self):
         "adds nodes for persons and their families"
         # variable to communicate with get_person_label
         self.bUseHtmlOutput = False
-            
+
         # The list of families for which we have output the node,
         # so we don't do it twice
         families_done = {}
@@ -266,9 +266,9 @@ class RelGraphReport(Report):
                 dirpath = "ppl/%s/%s" % (h[-1], h[-2])
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
-                
+
             self.doc.add_node(p_id, label, shape, color, style, fill, url)
-  
+
             # Output families where person is a parent
             if self.show_families:
                 family_list = person.get_family_handle_list()
@@ -279,7 +279,7 @@ class RelGraphReport(Report):
                     if fam_handle not in families_done:
                         families_done[fam_handle] = 1
                         self.__add_family(fam_handle)
-                    # If subgraphs are not chosen then each parent is linked 
+                    # If subgraphs are not chosen then each parent is linked
                     # separately to the family. This gives Graphviz greater
                     # control over the layout of the whole graph but
                     # may leave spouses not positioned together.
@@ -287,7 +287,7 @@ class RelGraphReport(Report):
                         self.doc.add_link(p_id, family.get_gramps_id(), "",
                                           self.arrowheadstyle,
                                           self.arrowtailstyle)
-                        
+
     def __add_family(self, fam_handle):
         """Add a node for a family and optionally link the spouses to it"""
         fam = self.database.get_family_from_handle(fam_handle)
@@ -301,7 +301,7 @@ class RelGraphReport(Report):
             if event is None:
                 continue
             if (event.type == EventType.MARRIAGE and
-                (event_ref.get_role() == EventRoleType.FAMILY or 
+                (event_ref.get_role() == EventRoleType.FAMILY or
                  event_ref.get_role() == EventRoleType.PRIMARY)
                ):
                 date_label = self.get_date_string(event)
@@ -341,7 +341,7 @@ class RelGraphReport(Report):
             fill = self.colors['family']
             style = "filled"
         self.doc.add_node(fam_id, label, "ellipse", color, style, fill)
-        
+
         # If subgraphs are used then we add both spouses here and Graphviz
         # will attempt to position both spouses closely together.
         # TODO: A person who is a parent in more than one family may only be
@@ -354,13 +354,13 @@ class RelGraphReport(Report):
             if f_handle:
                 father = self.database.get_person_from_handle(f_handle)
                 self.doc.add_link(father.get_gramps_id(),
-                                  fam_id, "", 
+                                  fam_id, "",
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
             if m_handle:
                 mother = self.database.get_person_from_handle(m_handle)
                 self.doc.add_link(mother.get_gramps_id(),
-                                  fam_id, "", 
+                                  fam_id, "",
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
             self.doc.end_subgraph()
@@ -410,7 +410,7 @@ class RelGraphReport(Report):
                 mediaMimeType = media.get_mime_type()
                 if mediaMimeType[0:5] == "image":
                     imagePath = get_thumbnail_path(
-                                    media_path_full(self.database, 
+                                    media_path_full(self.database,
                                                     media.get_path()),
                                     rectangle=mediaList[0].get_rectangle())
                     # test if thumbnail actually exists in thumbs
@@ -500,7 +500,7 @@ class RelGraphReport(Report):
         else :
             # non html label is enclosed by "" so escape other "
             return label.replace('"', '\\\"')
-    
+
     def get_event_strings(self, person):
         "returns tuple of birth/christening and death/burying date strings"
 
@@ -521,7 +521,7 @@ class RelGraphReport(Report):
     def get_date_string(self, event):
         """
         return date string for an event label.
-        
+
         Based on the data availability and preferences, we select one
         of the following for a given event:
             year only
@@ -540,7 +540,7 @@ class RelGraphReport(Report):
     def get_place_string(self, event):
         """
         return place string for an event label.
-        
+
         Based on the data availability and preferences, we select one
         of the following for a given event:
             place name
@@ -552,7 +552,7 @@ class RelGraphReport(Report):
 
 #------------------------------------------------------------------------
 #
-# RelGraphOptions class 
+# RelGraphOptions class
 #
 #------------------------------------------------------------------------
 class RelGraphOptions(MenuReportOptions):
@@ -568,7 +568,7 @@ class RelGraphOptions(MenuReportOptions):
         self.__image_on_side = None
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         ################################
         category_name = _("Report Options")
@@ -580,7 +580,7 @@ class RelGraphOptions(MenuReportOptions):
                          _("Determines what people are included in the graph"))
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-        
+
         self.__pid = PersonOption(_("Center Person"))
         self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
@@ -623,14 +623,14 @@ class RelGraphOptions(MenuReportOptions):
                        "to the files generated by the 'Narrated "
                        "Web Site' report."))
         add_option("url", url)
-        
+
         include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
         include_id.add_item(0, _('Do not include'))
         include_id.add_item(1, _('Share an existing line'))
         include_id.add_item(2, _('On a line of its own'))
         include_id.set_help(_("Whether (and where) to include Gramps IDs"))
         add_option("incid", include_id)
-        
+
         self.__show_relships = BooleanOption(
                             _("Include relationship to center person"), False)
         self.__show_relships.set_help(_("Whether to show every "
@@ -645,7 +645,7 @@ class RelGraphOptions(MenuReportOptions):
                                  _("Whether to include thumbnails of people."))
         add_option("includeImages", self.__include_images)
         self.__include_images.connect('value-changed', self.__image_changed)
-        
+
         self.__image_on_side = EnumeratedListOption(_("Thumbnail Location"), 0)
         self.__image_on_side.add_item(0, _('Above the name'))
         self.__image_on_side.add_item(1, _('Beside the name'))
@@ -653,7 +653,7 @@ class RelGraphOptions(MenuReportOptions):
                               _("Where the thumbnail image should appear "
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
-        
+
         if __debug__:
             self.__show_GaGb = BooleanOption(_("Include relationship "
                                                "debugging numbers also"),
@@ -691,7 +691,7 @@ class RelGraphOptions(MenuReportOptions):
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The color to use to display families.'))
         add_option('colorfamilies', color_family)
-        
+
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
         for i in range( 0, len(_ARROWS) ):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
@@ -704,18 +704,18 @@ class RelGraphOptions(MenuReportOptions):
                     _("Use rounded corners to differentiate "
                       "between women and men."))
         add_option("useroundedcorners", roundedcorners)
-        
+
         dashed = BooleanOption(
                   _("Indicate non-birth relationships with dotted lines"), True)
         dashed.set_help(_("Non-birth relationships will show up "
                           "as dotted lines in the graph."))
         add_option("dashed", dashed)
-        
+
         showfamily = BooleanOption(_("Show family nodes"), True)
         showfamily.set_help(_("Families will show up as ellipses, linked "
                               "to parents and children."))
         add_option("showfamily", showfamily)
-        
+
     def __update_filters(self):
         """
         Update the filter list based on the selected person
@@ -727,7 +727,7 @@ class RelGraphOptions(MenuReportOptions):
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
-        
+
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,
@@ -749,7 +749,7 @@ class RelGraphOptions(MenuReportOptions):
         image location option unavailable.
         """
         self.__image_on_side.set_available(self.__include_images.get_value())
-        
+
     def __show_relships_changed(self):
         """
         Enable/disable menu items if relationships are required

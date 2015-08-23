@@ -73,12 +73,12 @@ class ButtonTab(GrampsTab):
         'up'    : _('Move Up'),
         'down'  : _('Move Down'),
     }
-    
+
     def __init__(self, dbstate, uistate, track, name, share_button=False,
                     move_buttons=False, jump_button=False, top_label=None):
         """
         Similar to the base class, except after Build.
-        
+
         @param dbstate: The database state. Contains a reference to
         the database, along with other state information. The GrampsTab
         uses this to access the database and to pass to and created
@@ -105,13 +105,13 @@ class ButtonTab(GrampsTab):
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self._create_buttons(share_button, move_buttons, jump_button, top_label)
 
-    def _create_buttons(self, share_button, move_buttons, jump_button, 
+    def _create_buttons(self, share_button, move_buttons, jump_button,
                          top_label):
         """
         Create a button box consisting of three buttons, one for Add,
-        one for Edit, and one for Delete. 
-        
-        Add buttons for Share, Move and Jump depending on parameters. This 
+        one for Edit, and one for Delete.
+
+        Add buttons for Share, Move and Jump depending on parameters. This
         button box is then appended hbox (self).
         Prepend a label if top_label given
 
@@ -132,14 +132,14 @@ class ButtonTab(GrampsTab):
         self.add_btn.set_tooltip_text(self._MSG['add'])
         self.edit_btn.set_tooltip_text(self._MSG['edit'])
         self.del_btn.set_tooltip_text(self._MSG['del'])
-        
+
         if share_button:
             self.share_btn = SimpleButton('gtk-index', self.share_button_clicked)
             self.share_btn.set_tooltip_text(self._MSG['share'])
             self.track_ref_for_deletion("share_btn")
         else:
             self.share_btn = None
-            
+
         if move_buttons:
             self.up_btn = SimpleButton('go-up', self.up_button_clicked)
             self.up_btn.set_tooltip_text(self._MSG['up'])
@@ -266,17 +266,17 @@ class ButtonTab(GrampsTab):
         class.
         """
         print("Uncaught Edit clicked")
-        
+
     def up_button_clicked(self, obj):
         """
-        Function called with the Up button is clicked. 
+        Function called with the Up button is clicked.
         This function should be overridden by the derived class.
         """
         print("Uncaught Up clicked")
-        
+
     def down_button_clicked(self, obj):
         """
-        Function called with the Down button is clicked. 
+        Function called with the Down button is clicked.
         This function should be overridden by the derived class.
         """
         print("Uncaught Down clicked")
@@ -289,7 +289,7 @@ class ButtonTab(GrampsTab):
         """
         # Comparing to None is important, as empty strings
         # and 0 can be returned
-        # This method is called as callback on change, and can be called 
+        # This method is called as callback on change, and can be called
         # explicitly, dirty_selection must make sure they do not interact
         if self.dirty_selection:
             return

@@ -46,7 +46,7 @@ class Attributes(Gramplet):
                   (_('Value'), 2, 100)]
         self.model = ListModel(top, titles, event_func=self.display_report)
         return top
-        
+
     def display_attributes(self, obj):
         """
         Display the attributes of an object.
@@ -54,7 +54,7 @@ class Attributes(Gramplet):
         for attr in obj.get_attribute_list():
             self.model.add((str(attr.get_type()), attr.get_value()))
         self.set_has_data(self.model.count > 0)
-        
+
     def display_report(self, treeview):
         """
         Display the quick report for matching attribute key.
@@ -62,16 +62,16 @@ class Attributes(Gramplet):
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             key = model.get_value(iter_, 0)
-            run_quick_report_by_name(self.dbstate, 
-                                     self.uistate, 
-                                     'attribute_match', 
+            run_quick_report_by_name(self.dbstate,
+                                     self.uistate,
+                                     'attribute_match',
                                      key)
 
     def get_has_data(self, obj):
         """
         Return True if the gramplet has data, else return False.
         """
-        if obj is None: 
+        if obj is None:
             return False
         if obj.get_attribute_list():
             return True
@@ -94,7 +94,7 @@ class PersonAttributes(Attributes):
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
-    
+
     def main(self):
         self.model.clear()
         active_handle = self.get_active('Person')
@@ -122,7 +122,7 @@ class EventAttributes(Attributes):
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
-    
+
     def main(self):
         self.model.clear()
         active_handle = self.get_active('Event')
@@ -150,7 +150,7 @@ class FamilyAttributes(Attributes):
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
-    
+
     def main(self):
         self.model.clear()
         active_handle = self.get_active('Family')
@@ -178,7 +178,7 @@ class MediaAttributes(Attributes):
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
-    
+
     def main(self):
         self.model.clear()
         active_handle = self.get_active('Media')

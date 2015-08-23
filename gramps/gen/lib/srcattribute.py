@@ -42,16 +42,16 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 #-------------------------------------------------------------------------
 class SrcAttribute(AttributeRoot):
     """
-    Provide a simple key/value pair for describing properties. 
+    Provide a simple key/value pair for describing properties.
     Used to store descriptive information.
     """
-    
+
     def __init__(self, source=None):
         """
         Create a new Attribute object, copying from the source if provided.
         """
         AttributeRoot.__init__(self, source)
-        
+
         if source:
             self.type = SrcAttributeType(source.type)
             self.value = source.value

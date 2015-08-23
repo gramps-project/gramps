@@ -46,7 +46,7 @@ from gramps.gui.basesidebar import BaseSidebar
 #-------------------------------------------------------------------------
 class ExpanderSidebar(BaseSidebar):
     """
-    A sidebar displaying toggle buttons and buttons with drop-down menus that 
+    A sidebar displaying toggle buttons and buttons with drop-down menus that
     allows the user to change the current view.
     """
     def __init__(self, dbstate, uistate, categories, views):
@@ -64,7 +64,7 @@ class ExpanderSidebar(BaseSidebar):
         self.window.add(vbox)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
-        
+
         use_text = config.get('interface.sidebar-text')
         for cat_num, cat_name, cat_icon in categories:
 
@@ -90,7 +90,7 @@ class ExpanderSidebar(BaseSidebar):
                 viewbox.pack_start(button, False, False, 0)
             expander.add(viewbox)
             vbox.pack_start(expander, False, True, 0)
-            
+
             # Enable view switching during DnD
             #catbox.drag_dest_set(0, [], 0)
             #catbox.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
@@ -119,14 +119,14 @@ class ExpanderSidebar(BaseSidebar):
             else:
                 button.set_active(False)
         self.__handlers_unblock()
-        
+
     def __handlers_block(self):
         """
         Block signals to the buttons to prevent spurious events.
         """
         for idx in range(len(self.buttons)):
             self.buttons[idx].handler_block(self.button_handlers[idx])
-        
+
     def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
@@ -168,7 +168,7 @@ class ExpanderSidebar(BaseSidebar):
         the button.
         """
         top = Gtk.Box()
-        
+
         # create the button
         button = Gtk.ToggleButton()
         button.set_relief(Gtk.ReliefStyle.NONE)
@@ -183,7 +183,7 @@ class ExpanderSidebar(BaseSidebar):
         self.button_handlers.append(handler_id)
         button.show()
 
-        # add the image. If we are using text, use the BUTTON (larger) size. 
+        # add the image. If we are using text, use the BUTTON (larger) size.
         # otherwise, use the smaller size
         hbox = Gtk.Box()
         hbox.show()
@@ -201,11 +201,11 @@ class ExpanderSidebar(BaseSidebar):
             label = Gtk.Label(label=view_name)
             label.show()
             hbox.pack_start(label, False, True, 0)
-            
+
         button.add(hbox)
-        
+
         top.pack_start(button, False, True, 0)
-       
+
         return top
 
     def cb_switch_page_on_dnd(self, widget, context, xpos, ypos, time, page_no):
@@ -232,5 +232,5 @@ def cb_menu_position(*args):
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
-    
+
     return (x_pos, y_pos, False)

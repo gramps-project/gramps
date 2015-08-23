@@ -66,7 +66,7 @@ class ColumnOrder(Gtk.Box):
     def __init__(self, config, column_names, widths, on_apply, tree=False):
         """
         Create the Column Ordering widget based on config
-        
+
         config: a configuration file with column data
         column_names: translated names for the possible columns
         widths: the widths of the visible columns
@@ -80,13 +80,13 @@ class ColumnOrder(Gtk.Box):
         self.colnames = column_names
         self.config = config
         self.on_apply = on_apply
-        
+
         self.pack_start(Gtk.Label(label=' '), False, False, 0)
-        
+
         self.startrow = 0
         if self.treeview:
             label = Gtk.Label(label=
-                    _('Tree View: first column "%s" cannot be changed') % 
+                    _('Tree View: first column "%s" cannot be changed') %
                       column_names[0])
             self.startrow = 1
             self.pack_start(label, False, False, 0)
@@ -116,15 +116,15 @@ class ColumnOrder(Gtk.Box):
         # str : name of the column
         # int : order of the column
         # int : size (width) of the column
-        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING, 
+        self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
                                    GObject.TYPE_INT, GObject.TYPE_INT)
-        
+
         self.tree.set_model(self.model)
 
         checkbox = Gtk.CellRendererToggle()
         checkbox.connect('toggled', toggled, self.model)
         renderer = Gtk.CellRendererText()
-        
+
         column_n = Gtk.TreeViewColumn(_('Display'), checkbox, active=0)
         column_n.set_min_width(50)
         self.tree.append_column(column_n)

@@ -141,7 +141,7 @@ class SurnameCloudGramplet(Gramplet):
                 include_greater_than = s
                 break
         # now, limit counts to only include those that we can display:
-        
+
         mins = self.min_font
         maxs = self.max_font
         # Ok, now we can show those counts > include_greater_than:
@@ -161,12 +161,12 @@ class SurnameCloudGramplet(Gramplet):
                     text = surname
                 size = make_tag_size(count, counts, mins=mins, maxs=maxs)
                 self.link(text, 'Surname', representative_handle[surname], size,
-                          "%s, %d%% (%d)" % (text, 
-                                             int((float(count)/total_people) * 100), 
+                          "%s, %d%% (%d)" % (text,
+                                             int((float(count)/total_people) * 100),
                                              count))
                 self.append_text(" ")
                 showing += 1
-        self.append_text(("\n\n" + _("Total unique surnames") + ": %d\n") % 
+        self.append_text(("\n\n" + _("Total unique surnames") + ": %d\n") %
                          len(namelist))
         self.append_text((_("Total surnames showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")

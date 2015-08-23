@@ -88,7 +88,7 @@ class PluginStatus(ManagedWindow):
     HIDDEN = '<span color="red">%s</span>' % _('Hidden')
     AVAILABLE = '<span weight="bold" color="blue">%s</span>'\
                                 % _('Visible')
-    
+
     def __init__(self, dbstate, uistate, track=[]):
         self.dbstate = dbstate
         self.__uistate = uistate
@@ -104,15 +104,15 @@ class PluginStatus(ManagedWindow):
                         None, self.title)
         self.window.set_size_request(750, 400)
         self.window.connect('response', self.close)
-        
+
         notebook = Gtk.Notebook()
-        
+
         #first page with all registered plugins
         vbox_reg = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled_window_reg =  Gtk.ScrolledWindow()
         self.list_reg =  Gtk.TreeView()
         #  model: plugintype, hidden, pluginname, plugindescr, pluginid
-        self.model_reg = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
+        self.model_reg = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
                 GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection_reg = self.list_reg.get_selection()
         self.list_reg.set_model(self.model_reg)
@@ -143,7 +143,7 @@ class PluginStatus(ManagedWindow):
         self.__info_btn.connect('clicked', self.__info, self.list_reg, 4) # id_col
         self.__hide_btn = Gtk.Button(label=_("Hide/Unhide"))
         hbutbox.add(self.__hide_btn)
-        self.__hide_btn.connect('clicked', self.__hide, 
+        self.__hide_btn.connect('clicked', self.__hide,
                                 self.list_reg, 4, 1) # list, id_col, hide_col
         if __debug__:
             self.__edit_btn = Gtk.Button(label=_("Edit"))
@@ -153,16 +153,16 @@ class PluginStatus(ManagedWindow):
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list_reg, 4) # id_col
         vbox_reg.pack_start(hbutbox, False, False, 0)
-        
-        notebook.append_page(vbox_reg, 
+
+        notebook.append_page(vbox_reg,
                              tab_label=Gtk.Label(label=_('Registered Plugins')))
-        
+
         #second page with loaded plugins
         vbox_loaded = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled_window = Gtk.ScrolledWindow()
         self.list = Gtk.TreeView()
-        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
-                                   GObject.TYPE_STRING, object, 
+        self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING, object,
                                    GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection = self.list.get_selection()
         self.list.set_model(self.model)
@@ -173,12 +173,12 @@ class PluginStatus(ManagedWindow):
         col.set_sort_column_id(0)
         col.set_resizable(True)
         self.list.append_column(col)
-        col1 = Gtk.TreeViewColumn(_('File'), Gtk.CellRendererText(), 
+        col1 = Gtk.TreeViewColumn(_('File'), Gtk.CellRendererText(),
                                   text=1)
         col1.set_sort_column_id(1)
         col1.set_resizable(True)
         self.list.append_column(col1)
-        col = Gtk.TreeViewColumn(_('Status'), Gtk.CellRendererText(), 
+        col = Gtk.TreeViewColumn(_('Status'), Gtk.CellRendererText(),
                                  markup=5)
         col.set_sort_column_id(5)
         self.list.append_column(col)
@@ -209,7 +209,7 @@ class PluginStatus(ManagedWindow):
             hbutbox.add(self.__load_btn)
             self.__load_btn.connect('clicked', self.__load, self.list, 4) # id_col
         vbox_loaded.pack_start(hbutbox, False, False, 5)
-        notebook.append_page(vbox_loaded, 
+        notebook.append_page(vbox_loaded,
                              tab_label=Gtk.Label(label=_('Loaded Plugins')))
 
         #third page with method to install plugin
@@ -217,15 +217,15 @@ class PluginStatus(ManagedWindow):
         scrolled_window = Gtk.ScrolledWindow()
         self.addon_list = Gtk.TreeView()
         # model: help_name, name, ptype, image, desc, use, rating, contact, download, url
-        self.addon_model = Gtk.ListStore(GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
-                                         GObject.TYPE_STRING, 
+        self.addon_model = Gtk.ListStore(GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
+                                         GObject.TYPE_STRING,
                                          GObject.TYPE_STRING)
         self.addon_list.set_model(self.addon_model)
         #self.addon_list.connect('button-press-event', self.button_press)
@@ -269,27 +269,27 @@ class PluginStatus(ManagedWindow):
         self.__add_btn.connect('clicked', self.__get_addon_top)
         self.__add_all_btn = Gtk.Button(label=_("Install All Addons"))
         hbutbox.add(self.__add_all_btn)
-        self.__add_all_btn.connect('clicked', self.__get_all_addons) 
+        self.__add_all_btn.connect('clicked', self.__get_all_addons)
         self.__refresh_btn = Gtk.Button(label=_("Refresh Addon List"))
         hbutbox.add(self.__refresh_btn)
-        self.__refresh_btn.connect('clicked', self.__refresh_addon_list) 
+        self.__refresh_btn.connect('clicked', self.__refresh_addon_list)
         install_page.pack_start(hbutbox, False, True, 5)
-        # notebook.append_page(install_page, 
+        # notebook.append_page(install_page,
         #                      tab_label=Gtk.Label(label=_('Install Addons')))
 
         #add the notebook to the window
         self.window.get_content_area().pack_start(notebook, True, True, 0)
-        
+
         if __debug__:
-            # Only show the "Reload" button when in debug mode 
+            # Only show the "Reload" button when in debug mode
             # (without -O on the command line)
             self.__reload_btn = Gtk.Button(label=_("Reload"))
             self.window.action_area.add(self.__reload_btn)
             self.__reload_btn.connect('clicked', self.__reload)
-        
+
         #obtain hidden plugins from the pluginmanager
         self.hidden = self.__pmgr.get_hidden_plugin_ids()
-        
+
         self.window.show_all()
         self.__populate_lists()
         self.list_reg.columns_autosize()
@@ -356,7 +356,7 @@ class PluginStatus(ManagedWindow):
                 if "|" in url:
                     url, text = url.split("|", 1)
                 # need to get a page that says where it is:
-                fp = urlopen("%s%s%s" % (URL_WIKISTRING, url, 
+                fp = urlopen("%s%s%s" % (URL_WIKISTRING, url,
                                 "&action=edit&externaledit=true&mode=file"))
                 for line in fp:
                     if line.startswith("URL="):
@@ -367,14 +367,14 @@ class PluginStatus(ManagedWindow):
                 url = download[1:-1]
                 if " " in url:
                     url, text = url.split(" ", 1)
-            if (url.endswith(".zip") or 
-                url.endswith(".ZIP") or 
-                url.endswith(".tar.gz") or 
+            if (url.endswith(".zip") or
+                url.endswith(".ZIP") or
+                url.endswith(".tar.gz") or
                 url.endswith(".tgz")):
                 # Then this is ok:
-                self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
+                self.addon_model.append(row=[help_name, name, ptype, image, desc, use,
                                              rating, contact, download, url])
-                config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use, 
+                config.get('plugin.addonplugins').append([help_name, name, ptype, image, desc, use,
                                                           rating, contact, download, url])
         pm.close()
         config.save()
@@ -389,7 +389,7 @@ class PluginStatus(ManagedWindow):
         errors = []
         for row in self.addon_model:
             pm.step()
-            (help_name, name, ptype, image, desc, use, rating, contact, 
+            (help_name, name, ptype, image, desc, use, rating, contact,
              download, url) = row
             load_addon_file(url, callback=pm.append_message)
         self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
@@ -423,7 +423,7 @@ class PluginStatus(ManagedWindow):
         """
         Select a file from the file system.
         """
-        fcd = Gtk.FileChooserDialog(_("Load Addon"), 
+        fcd = Gtk.FileChooserDialog(_("Load Addon"),
                                     buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
                                              _('_Open'),
@@ -462,13 +462,13 @@ class PluginStatus(ManagedWindow):
                 help_name, name, ptype, image, desc, use, rating, contact, download, url = row
             except:
                 continue
-            self.addon_model.append(row=[help_name, name, ptype, image, desc, use, 
+            self.addon_model.append(row=[help_name, name, ptype, image, desc, use,
                                          rating, contact, download, url])
 
     def __populate_load_list(self):
         """ Build list of loaded plugins"""
         fail_list = self.__pmgr.get_fail_list()
-        
+
         for i in fail_list:
             # i = (filename, (exception-type, exception, traceback), pdata)
             err = i[1][0]
@@ -501,7 +501,7 @@ class PluginStatus(ManagedWindow):
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], pdata.description, None, pdata.id, hiddenstr])
-        
+
     def __populate_reg_list(self):
         """ Build list of registered plugins"""
         for (type, typestr) in PTYPE_STR.items():
@@ -521,7 +521,7 @@ class PluginStatus(ManagedWindow):
     def __rebuild_load_list(self):
         self.model.clear()
         self.__populate_load_list()
-    
+
     def __rebuild_reg_list(self):
         self.model_reg.clear()
         self.__populate_reg_list()
@@ -543,13 +543,13 @@ class PluginStatus(ManagedWindow):
             name = model.get_value(node, 1)
             if data:
                 PluginTrace(self.uistate, [], data, name)
-                
+
     def button_press_reg(self, obj, event):
         """ Callback function from the user clicking on a line in reg plugin
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             self.__info(obj, self.list_reg, 4)
-    
+
     def button_press_addon(self, obj):
         """ Callback function from the user clicking on a line in reg plugin
         """
@@ -559,16 +559,16 @@ class PluginStatus(ManagedWindow):
             if node:
                 url = model.get_value(node, 9)
                 self.install_addon_path.set_text(url)
-    
+
     def build_menu_names(self, obj):
         return (self.title, "")
-    
+
     def __reload(self, obj):
         """ Callback function from the "Reload" button """
         self.__pmgr.reload_plugins()
         self.__rebuild_load_list()
         self.__rebuild_reg_list()
-    
+
     def __info(self, obj, list_obj, id_col):
         """ Callback function from the "Info" button
         """
@@ -581,9 +581,9 @@ class PluginStatus(ManagedWindow):
         typestr = pdata.ptype
         auth = ' - '.join(pdata.authors)
         email = ' - '.join(pdata.authors_email)
-        if len(auth) > 60: 
+        if len(auth) > 60:
             auth = auth[:60] + '...'
-        if len(email) > 60: 
+        if len(email) > 60:
             email = email[:60] + '...'
         if pdata:
             infotxt = """%(plugnam)s: %(name)s [%(typestr)s]
@@ -612,7 +612,7 @@ class PluginStatus(ManagedWindow):
             'plugpat': _("Location"),
             }
             InfoDialog(_('Detailed Info'), infotxt, parent=self.window)
-    
+
     def __hide(self, obj, list_obj, id_col, hide_col):
         """ Callback function from the "Hide" button
         """
@@ -631,7 +631,7 @@ class PluginStatus(ManagedWindow):
             self.hidden.add(id)
             model.set_value(node, hide_col, self.HIDDEN)
             self.__pmgr.hide_plugin(id)
-    
+
     def __load(self, obj, list_obj, id_col):
         """ Callback function from the "Load" button
         """
@@ -665,7 +665,7 @@ class PluginStatus(ManagedWindow):
 #-------------------------------------------------------------------------
 class PluginTrace(ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
-    
+
     def __init__(self, uistate, track, data, name):
         self.name = name
         title = "%s: %s" % (_("Plugin Error"), name)
@@ -677,7 +677,7 @@ class PluginTrace(ManagedWindow):
                         None, title)
         self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
-        
+
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.text = Gtk.TextView()
@@ -748,15 +748,15 @@ class ToolManagedWindowBase(ManagedWindow):
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
         self.add_user_options()
-        
+
         self.notebook = Gtk.Notebook()
         self.notebook.set_border_width(6)
         self.window.get_content_area().add(self.notebook)
 
-        self.results_text = Gtk.TextView() 
-        self.results_text.connect('button-press-event', 
-                                  self.on_button_press) 
-        self.results_text.connect('motion-notify-event', 
+        self.results_text = Gtk.TextView()
+        self.results_text.connect('button-press-event',
+                                  self.on_button_press)
+        self.results_text.connect('motion-notify-event',
                                   self.on_motion)
         self.tags = []
         self.link_cursor = Gdk.Cursor.new(Gdk.CursorType.LEFT_PTR)
@@ -790,8 +790,8 @@ class ToolManagedWindowBase(ManagedWindow):
         return None
 
     def on_motion(self, view, event):
-        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
-                                                       int(event.x), 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
+                                                       int(event.x),
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         for (tag, person_handle) in self.tags:
@@ -803,8 +803,8 @@ class ToolManagedWindowBase(ManagedWindow):
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
-        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
-                                                       int(event.x), 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
+                                                       int(event.x),
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         for (tag, person_handle) in self.tags:
@@ -831,20 +831,20 @@ class ToolManagedWindowBase(ManagedWindow):
         end = buffer.get_end_iter()
         self.tags.append((LinkTag(person_handle, buffer), person_handle))
         buffer.apply_tag(self.tags[-1][0], start, end)
-        
+
     def results_write(self, text):
         buffer = self.results_text.get_buffer()
         mark = buffer.create_mark("end", buffer.get_end_iter())
         self.results_text.scroll_to_mark(mark, 0.0, True, 0, 0)
         buffer.insert_at_cursor(text)
-        buffer.delete_mark_by_name("end")        
+        buffer.delete_mark_by_name("end")
 
     def write_to_page(self, page, text):
         buffer = page.get_buffer()
         mark = buffer.create_mark("end", buffer.get_end_iter())
         page.scroll_to_mark(mark, 0.0, True, 0, 0)
         buffer.insert_at_cursor(text)
-        buffer.delete_mark_by_name("end")        
+        buffer.delete_mark_by_name("end")
 
     def clear(self, text):
         # Remove all tags and clear text
@@ -869,11 +869,11 @@ class ToolManagedWindowBase(ManagedWindow):
             tag_table.remove(tag)
         self.tags = []
         buffer.set_text("")
-        
+
     def pre_run(self):
         from ..utils import ProgressMeter
         self.progress = ProgressMeter(self.get_title())
-        
+
     def run(self):
         raise NotImplementedError("tool needs to define a run() method")
 
@@ -896,7 +896,7 @@ class ToolManagedWindowBase(ManagedWindow):
         some indication of what the report will be, i.e. 'Descendant
         Report for %s'."""
         return self.get_title()
-        
+
     def setup_title(self):
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
@@ -913,7 +913,7 @@ class ToolManagedWindowBase(ManagedWindow):
         title = self.get_header(self.get_title())
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
-        self.window.get_content_area().pack_start(label, False, False, 
+        self.window.get_content_area().pack_start(label, False, False,
                                                   self.border_pad)
 
     def add_frame_option(self, frame_name, label_text, widget):
@@ -925,7 +925,7 @@ class ToolManagedWindowBase(ManagedWindow):
         all managing of the widgets, including extracting the final value
         before the report executes. This task should only be called in
         the add_user_options task."""
-        
+
         if frame_name in self.frames:
             self.frames[frame_name].append((label_text, widget))
         else:
@@ -950,7 +950,7 @@ class ToolManagedWindowBase(ManagedWindow):
             window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             window.add(self.results_text)
             window.set_shadow_type(Gtk.ShadowType.IN)
-            self.frames[frame_name] = [[frame_name, window]] 
+            self.frames[frame_name] = [[frame_name, window]]
             self.frame_names.append(frame_name)
             l = Gtk.Label(label="<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
@@ -962,13 +962,13 @@ class ToolManagedWindowBase(ManagedWindow):
 
     def add_page(self, frame_name="Help"):
         if frame_name not in self.frames:
-            text = Gtk.TextView() 
+            text = Gtk.TextView()
             text.set_wrap_mode(Gtk.WrapMode.WORD)
             window = Gtk.ScrolledWindow()
             window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             window.add(text)
             window.set_shadow_type(Gtk.ShadowType.IN)
-            self.frames[frame_name] = [[frame_name, window]] 
+            self.frames[frame_name] = [[frame_name, window]]
             self.frame_names.append(frame_name)
             l = Gtk.Label(label="<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
@@ -1036,7 +1036,7 @@ class ToolManagedWindowBatch(tool.BatchTool, ToolManagedWindowBase):
         self.uistate = uistate
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if not self.fail:
-            ToolManagedWindowBase.__init__(self, dbstate, uistate, 
+            ToolManagedWindowBase.__init__(self, dbstate, uistate,
                                            options_class, name, callback)
 
 class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
@@ -1044,7 +1044,7 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
         self.dbstate = dbstate
         self.uistate = uistate
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
+        ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class,
                                        name, callback)
 
 #-------------------------------------------------------------------------
@@ -1092,7 +1092,7 @@ class UpdateAddons():
         for (status,plugin_url,plugin_dict) in addon_update_list:
             count = get_count(addon_update_list, plugin_dict["t"])
             category = _("%(adjective)s: %(addon)s") % {
-                "adjective": status, 
+                "adjective": status,
                 "addon": _(plugin_dict["t"])}
             if last_category != category:
                 last_category = category

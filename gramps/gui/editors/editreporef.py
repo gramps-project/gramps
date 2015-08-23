@@ -55,10 +55,10 @@ class EditRepoRef(EditReference):
     def _local_init(self):
         self.width_key = 'interface.repo-ref-width'
         self.height_key = 'interface.repo-ref-height'
-        
+
         self.top = Glade()
         self.set_window(self.top.toplevel,
-                        self.top.get_object('repo_title'),        
+                        self.top.get_object('repo_title'),
                         _('Repository Reference Editor'))
 
         self.define_warn_box(self.top.get_object("warn_box"))
@@ -68,13 +68,13 @@ class EditRepoRef(EditReference):
         notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
         tblref =  self.top.get_object('table69')
         notebook = self.top.get_object('notebook_src')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track,
                               _('_General'), tblref)
         self.track_ref_for_deletion("primtab")
 
@@ -84,7 +84,7 @@ class EditRepoRef(EditReference):
 
     def _connect_db_signals(self):
         """
-        Connect any signals that need to be connected. 
+        Connect any signals that need to be connected.
         Called by the init routine of the base class (_EditPrimary).
         """
         self._add_db_signal('repository-rebuild', self.close)
@@ -96,7 +96,7 @@ class EditRepoRef(EditReference):
             self.source_ref.set_call_number,
             self.source_ref.get_call_number,
             self.db.readonly)
-        
+
         self.gid = MonitoredEntry(
             self.top.get_object('gid'),
             self.source.set_gramps_id,
@@ -118,7 +118,7 @@ class EditRepoRef(EditReference):
             self.source.set_name,
             self.source.get_name,
             self.db.readonly)
-        
+
         self.type_selector = MonitoredDataType(
             self.top.get_object("media_type"),
             self.source_ref.set_media_type,
@@ -152,7 +152,7 @@ class EditRepoRef(EditReference):
                                 notetype=NoteType.REPO)
         self._add_tab(notebook_src, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-        
+
         self.comment_tab = NoteTab(self.dbstate, self.uistate, self.track,
                                    self.source_ref.get_note_list(),
                                    notetype=NoteType.REPOREF)
@@ -169,7 +169,7 @@ class EditRepoRef(EditReference):
         self._add_tab(notebook_src, self.web_list)
         self.track_ref_for_deletion("web_list")
 
-        self.backref_tab = SourceBackRefList(self.dbstate, self.uistate, 
+        self.backref_tab = SourceBackRefList(self.dbstate, self.uistate,
                             self.track,
                             self.db.find_backlink_handles(self.source.handle),
                             self.enable_warnbox)
@@ -186,7 +186,7 @@ class EditRepoRef(EditReference):
         else:
             submenu_label = _('New Repository')
         return (_('Repo Reference Editor'),submenu_label)
-        
+
     def ok_clicked(self, obj):
 
         if self.source.handle:

@@ -66,8 +66,8 @@ from ..glade import Glade
 from .editprimary import EditPrimary
 from .editchildref import EditChildRef
 from .editperson import EditPerson
-from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList, 
-                         FamilyAttrEmbedList, NoteTab, GalleryTab, 
+from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList,
+                         FamilyAttrEmbedList, NoteTab, GalleryTab,
                          FamilyLdsEmbedList, ChildModel,
                          TEXT_COL, MARKUP_COL, ICON_COL)
 from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
@@ -123,13 +123,13 @@ class ChildEmbedList(EmbeddedList):
         None,
         (_('Private'), 13,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, family):
         """
         Create the object, storing the passed family value
         """
         self.family = family
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('Chil_dren'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('Chil_dren'),
                               ChildModel, share_button=True, move_buttons=True)
 
     def get_popup_menu_items(self):
@@ -158,16 +158,16 @@ class ChildEmbedList(EmbeddedList):
         return self.family.get_child_ref_list()
 
     def column_order(self):
-        return [(1, 13), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
+        return [(1, 13), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
                 (0, 8), (0, 9)]
 
     def add_button_clicked(self, obj=None):
         person = Person()
         autoname = config.get('behavior.surname-guessing')
-        #_("Father's surname"), 
-        #_("None"), 
-        #_("Combination of mother's and father's surname"), 
-        #_("Icelandic style"), 
+        #_("Father's surname"),
+        #_("None"),
+        #_("Combination of mother's and father's surname"),
+        #_("Icelandic style"),
         if autoname == 0:
             name = self.north_american()
         elif autoname == 2:
@@ -181,7 +181,7 @@ class ChildEmbedList(EmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         """
-        Called when a person is dropped onto the list.  objtype will be 
+        Called when a person is dropped onto the list.  objtype will be
         'person-link' and obj will contain a person handle.
         """
         person = self.dbstate.db.get_person_from_handle(obj)
@@ -208,7 +208,7 @@ class ChildEmbedList(EmbeddedList):
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select Child"), skip=skip_list)
         person = sel.run()
-        
+
         if person:
             ref = ChildRef()
             ref.ref = person.get_handle()
@@ -252,7 +252,7 @@ class ChildEmbedList(EmbeddedList):
                        p, self.child_ref_edited)
             except WindowActiveError:
                 pass
-    
+
     def north_american(self):
         """
         Child inherits name from father
@@ -332,9 +332,9 @@ class FastFemaleFilter(object):
 class EditFamily(EditPrimary):
 
     QR_CATEGORY = CATEGORY_QR_FAMILY
-    
+
     def __init__(self, dbstate, uistate, track, family, callback=None):
-        
+
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle,
                              dbstate.db.get_family_from_gramps_id,
@@ -342,7 +342,7 @@ class EditFamily(EditPrimary):
 
         # look for the scenerio of a child and no parents on a new
         # family
-        
+
         if (self.added and
           not self.obj.get_father_handle() and
           not self.obj.get_mother_handle() and
@@ -379,13 +379,13 @@ class EditFamily(EditPrimary):
 
     def _local_init(self):
         self.build_interface()
-        
+
         self.added = self.obj.handle is None
         if self.added:
             self.obj.handle = create_id()
-            
+
         self.load_data()
-    
+
     def _connect_db_signals(self):
         """
         implement from base class DbGUIElement
@@ -411,9 +411,9 @@ class EditFamily(EditPrimary):
     def check_for_family_change(self, handles):
         """
         Callback for family-update signal
-        1. This method checks to see if the family shown has been changed. This 
-            is possible eg in the relationship view. If the family was changed, 
-            the view is refreshed and a warning dialog shown to indicate all 
+        1. This method checks to see if the family shown has been changed. This
+            is possible eg in the relationship view. If the family was changed,
+            the view is refreshed and a warning dialog shown to indicate all
             changes have been lost.
             If a source/note/event is deleted, this method is called too. This
             is unfortunate as the displaytabs can track themself a delete and
@@ -422,7 +422,7 @@ class EditFamily(EditPrimary):
             remove/change of children in relationship view reloads the family
             from db.
         2. Changes in other families are of no consequence to the family shown
-        """ 
+        """
         if self.obj.get_handle() in handles:
             #rebuild data
             ## Todo: Gallery and note tab are not rebuild ??
@@ -450,7 +450,7 @@ class EditFamily(EditPrimary):
             # the user
             WarningDialog(
             _("Family has changed"),
-            _("The %(object)s you are editing has changed outside this editor." 
+            _("The %(object)s you are editing has changed outside this editor."
               " This can be due to a change in one of the main views, for "
               "example a source used here is deleted in the source view.\n"
               "To make sure the information shown is still correct, the "
@@ -459,9 +459,9 @@ class EditFamily(EditPrimary):
 
     def topdata_updated(self, *obj):
         """
-        Callback method called if data shown in top part of family editor 
+        Callback method called if data shown in top part of family editor
         (a parent, birth/death event of parent) changes
-        Note: person events shown in the event list are not tracked, the 
+        Note: person events shown in the event list are not tracked, the
               tabpage itself tracks it
         """
         self.load_data()
@@ -497,7 +497,7 @@ class EditFamily(EditPrimary):
     def build_interface(self):
         self.width_key = 'interface.family-width'
         self.height_key = 'interface.family-height'
-        
+
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
 
@@ -511,7 +511,7 @@ class EditFamily(EditPrimary):
         self.fdeath  = self.top.get_object('fdeath')
         self.fbirth_label = self.top.get_object('label578')
         self.fdeath_label = self.top.get_object('label579')
-        
+
         self.mbirth  = self.top.get_object('mbirth')
         self.mdeath  = self.top.get_object('mdeath')
         self.mbirth_label = self.top.get_object('label567')
@@ -519,7 +519,7 @@ class EditFamily(EditPrimary):
 
         self.mname    = self.top.get_object('mname')
         self.fname    = self.top.get_object('fname')
-        
+
         self.mbutton_index = self.top.get_object('mbutton_index')
         self.mbutton_add = self.top.get_object('mbutton_add')
         self.mbutton_del = self.top.get_object('mbutton_del')
@@ -553,7 +553,7 @@ class EditFamily(EditPrimary):
         #allow for a context menu
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
         #allow for drag of the family object from eventboxtop
-        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                                    [], Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
         tglist.add(DdTargets.FAMILY_LINK.atom_drag_type,
@@ -575,8 +575,8 @@ class EditFamily(EditPrimary):
         if parent_handle:
             # Allow drag
             if not event_box.drag_source_get_target_list():
-                event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                           [], 
+                event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
+                                           [],
                                            Gdk.DragAction.COPY)
                 tglist = Gtk.TargetList.new([])
                 tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
@@ -624,7 +624,7 @@ class EditFamily(EditPrimary):
         pass
 
     def _setup_fields(self):
-        
+
         self.private = PrivacyButton(
             self.top.get_object('private'),
             self.obj,
@@ -635,11 +635,11 @@ class EditFamily(EditPrimary):
             self.obj.set_gramps_id,
             self.obj.get_gramps_id,
             self.db.readonly)
-        
+
         self.tags = MonitoredTagList(
-            self.top.get_object("tag_label"), 
-            self.top.get_object("tag_button"), 
-            self.obj.set_tag_list, 
+            self.top.get_object("tag_label"),
+            self.top.get_object("tag_button"),
+            self.obj.set_tag_list,
             self.obj.get_tag_list,
             self.db,
             self.uistate, self.track,
@@ -666,7 +666,7 @@ class EditFamily(EditPrimary):
 
         self.phandles = [mhandle, fhandle]
         self.phandles.extend(x.ref for x in self.obj.get_child_ref_list())
-        
+
         self.phandles = [_f for _f in self.phandles if _f]
 
     def get_start_date(self):
@@ -688,31 +688,31 @@ class EditFamily(EditPrimary):
         self.child_tab = self._add_tab(notebook, self.child_list)
         self.track_ref_for_deletion("child_list")
         self.track_ref_for_deletion("child_tab")
-        
+
         self.event_list = EventEmbedList(self.dbstate,
-                                         self.uistate, 
+                                         self.uistate,
                                          self.track,
                                          self.obj,
                                          start_date=self.get_start_date())
 
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
-            
+
         self.citation_list = CitationEmbedList(self.dbstate,
-                                           self.uistate, 
+                                           self.uistate,
                                            self.track,
-                                           self.obj.get_citation_list(), 
+                                           self.obj.get_citation_list(),
                                            self.get_menu_title())
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
 
         self.attr_list = FamilyAttrEmbedList(self.dbstate,
-                                              self.uistate, 
+                                              self.uistate,
                                               self.track,
                                               self.obj.get_attribute_list())
         self._add_tab(notebook, self.attr_list)
         self.track_ref_for_deletion("attr_list")
-            
+
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
                                 self.track,
@@ -721,7 +721,7 @@ class EditFamily(EditPrimary):
                                 notetype=NoteType.FAMILY)
         self._add_tab(notebook, self.note_tab)
         self.track_ref_for_deletion("note_tab")
-            
+
         self.gallery_tab = GalleryTab(self.dbstate,
                                       self.uistate,
                                       self.track,
@@ -730,7 +730,7 @@ class EditFamily(EditPrimary):
         self.track_ref_for_deletion("gallery_tab")
 
         self.lds_embed = FamilyLdsEmbedList(self.dbstate,
-                                            self.uistate, 
+                                            self.uistate,
                                             self.track,
                                             self.obj.get_lds_ord_list())
         self._add_tab(notebook, self.lds_embed)
@@ -744,7 +744,7 @@ class EditFamily(EditPrimary):
 
     def update_father(self, handle):
         self.load_parent(handle, self.fname, self.fbirth, self.fbirth_label,
-                         self.fdeath, self.fdeath_label, 
+                         self.fdeath, self.fdeath_label,
                          self.fbutton_index, self.fbutton_add,
                          self.fbutton_del, self.fbutton_edit)
         self._update_parent_dnd_handler(self.top.get_object('ftable_event_box'),
@@ -754,7 +754,7 @@ class EditFamily(EditPrimary):
 
     def update_mother(self, handle):
         self.load_parent(handle, self.mname, self.mbirth, self.mbirth_label,
-                         self.mdeath, self.mdeath_label, 
+                         self.mdeath, self.mdeath_label,
                          self.mbutton_index, self.mbutton_add,
                          self.mbutton_del, self.mbutton_edit)
         self._update_parent_dnd_handler(self.top.get_object('mtable_event_box'),
@@ -766,10 +766,10 @@ class EditFamily(EditPrimary):
         person = Person()
         person.set_gender(Person.FEMALE)
         autoname = config.get('behavior.surname-guessing')
-        #_("Father's surname"), 
-        #_("None"), 
-        #_("Combination of mother's and father's surname"), 
-        #_("Icelandic style"), 
+        #_("Father's surname"),
+        #_("None"),
+        #_("Combination of mother's and father's surname"),
+        #_("Icelandic style"),
         if autoname == 2:
             name = self.latin_american_child("mother")
         else:
@@ -782,10 +782,10 @@ class EditFamily(EditPrimary):
         person = Person()
         person.set_gender(Person.MALE)
         autoname = config.get('behavior.surname-guessing')
-        #_("Father's surname"), 
-        #_("None"), 
-        #_("Combination of mother's and father's surname"), 
-        #_("Icelandic style"), 
+        #_("Father's surname"),
+        #_("None"),
+        #_("Combination of mother's and father's surname"),
+        #_("Icelandic style"),
         if autoname == 0:
             name = self.north_american_child()
         elif autoname == 2:
@@ -799,13 +799,13 @@ class EditFamily(EditPrimary):
     def new_mother_added(self, person):
         for i in self.hidden:
             i.set_sensitive(True)
-        self.obj.set_mother_handle(person.handle) 
+        self.obj.set_mother_handle(person.handle)
         self.update_mother(person.handle)
 
     def new_father_added(self, person):
         for i in self.hidden:
             i.set_sensitive(True)
-        self.obj.set_father_handle(person.handle) 
+        self.obj.set_father_handle(person.handle)
         self.update_father(person.handle)
 
     def del_mother_clicked(self, obj):
@@ -830,27 +830,27 @@ class EditFamily(EditPrimary):
             self.check_for_existing_family(self.obj.get_father_handle(),
                                            person.handle,
                                            self.obj.handle)
-            self.obj.set_mother_handle(person.handle) 
+            self.obj.set_mother_handle(person.handle)
             self.update_mother(person.handle)
 
     def on_change_father(self, selector_window, obj):
         if  obj.__class__ == Person:
             try:
                 person = obj
-                self.obj.set_father_handle(person.get_handle()) 
-                self.update_father(person.get_handle())                    
+                self.obj.set_father_handle(person.get_handle())
+                self.update_father(person.get_handle())
             except:
                 log.warn("Failed to update father: \n"
                          "obj returned from selector was: %s\n"
-                         % (repr(obj),))                
+                         % (repr(obj),))
                 raise
-            
+
         else:
             log.warn(
                 "Object selector returned obj.__class__ = %s, it should "
                 "have been of type %s." % (obj.__class__.__name__,
                                            Person.__name__))
-            
+
         selector_window.close()
 
     def del_father_clicked(self, obj):
@@ -874,7 +874,7 @@ class EditFamily(EditPrimary):
             self.check_for_existing_family(person.handle,
                                            self.obj.get_mother_handle(),
                                            self.obj.handle)
-            self.obj.set_father_handle(person.handle) 
+            self.obj.set_father_handle(person.handle)
             self.update_father(person.handle)
 
     def check_for_existing_family(self, father_handle, mother_handle,
@@ -995,7 +995,7 @@ class EditFamily(EditPrimary):
                 self.check_for_existing_family(person.handle,
                                                self.obj.get_mother_handle(),
                                                self.obj.handle)
-                self.obj.set_father_handle(person.handle) 
+                self.obj.set_father_handle(person.handle)
                 self.update_father(person.handle)
 
     def on_drag_motherdata_received(self, widget, context, x, y, sel_data,
@@ -1015,7 +1015,7 @@ class EditFamily(EditPrimary):
                 self.check_for_existing_family(self.obj.get_father_handle(),
                                                person.handle,
                                                self.obj.handle)
-                self.obj.set_mother_handle(person.handle) 
+                self.obj.set_mother_handle(person.handle)
                 self.update_mother(person.handle)
 
     def object_is_empty(self):
@@ -1023,7 +1023,7 @@ class EditFamily(EditPrimary):
                 not self.obj.get_mother_handle() and
                 len(self.obj.get_child_ref_list()) == 0
                )
-            
+
     def save(self, *obj):
         ## FIXME: how to catch a specific error?
         #try:
@@ -1071,7 +1071,7 @@ class EditFamily(EditPrimary):
                   "Please enter data or cancel the edit."))
             self.ok_button.set_sensitive(True)
             return
-        
+
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
             msg1 = _("Cannot save family. ID already exists.")
@@ -1088,7 +1088,7 @@ class EditFamily(EditPrimary):
         # This prevents the signals originating in any of the following
         # commits from being caught by us again.
         self._cleanup_callbacks()
-            
+
         if not original and not self.object_is_empty():
             with DbTxn(_("Add Family"), self.db) as trans:
 
@@ -1105,7 +1105,7 @@ class EditFamily(EditPrimary):
                     parent = self.db.get_person_from_handle(handle)
                     parent.add_family_handle(self.obj.handle)
                     self.db.commit_person(parent, trans)
-                
+
                 # for each child, add the family handle to the child
                 for ref in self.obj.get_child_ref_list():
                     child = self.db.get_person_from_handle(ref.ref)
@@ -1131,7 +1131,7 @@ class EditFamily(EditPrimary):
                     person = self.db.get_person_from_handle(ref.ref)
                     person.remove_parent_family_handle(self.obj.handle)
                     self.db.commit_person(person, trans)
-            
+
                 # add the family to children which have been added
                 for ref in new_set.difference(orig_set):
                     person = self.db.get_person_from_handle(ref.ref)

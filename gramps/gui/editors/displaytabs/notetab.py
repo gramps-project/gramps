@@ -54,8 +54,8 @@ from ...ddtargets import DdTargets
 #-------------------------------------------------------------------------
 class NoteTab(EmbeddedList, DbGUIElement):
     """
-    Note List display tab for edit dialogs. 
-    
+    Note List display tab for edit dialogs.
+
     Derives from the EmbeddedList class.
     """
 
@@ -79,13 +79,13 @@ class NoteTab(EmbeddedList, DbGUIElement):
         (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
     ]
 
-    def __init__(self, dbstate, uistate, track, data, callertitle=None, 
+    def __init__(self, dbstate, uistate, track, data, callertitle=None,
                     notetype=None):
         self.data = data
         self.callertitle = callertitle
         self.notetype = notetype
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("_Notes"), NoteModel, share_button=True, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _("_Notes"), NoteModel, share_button=True,
                               move_buttons=True)
         DbGUIElement.__init__(self, dbstate.db)
         self.callman.register_handles({'note': self.data})
@@ -121,11 +121,11 @@ class NoteTab(EmbeddedList, DbGUIElement):
 
     def add_button_clicked(self, obj):
         """
-        Create a new Note instance and call the EditNote editor with the new 
-        note. 
-        
-        Called when the Add button is clicked. 
-        If the window already exists (WindowActiveError), we ignore it. 
+        Create a new Note instance and call the EditNote editor with the new
+        note.
+
+        Called when the Add button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
         This prevents the dialog from coming up twice on the same object.
         """
         note = Note()
@@ -133,7 +133,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
             note.set_type(self.notetype)
         try:
             from .. import EditNote
-            EditNote(self.dbstate, self.uistate, self.track, 
+            EditNote(self.dbstate, self.uistate, self.track,
                             note, self.add_callback,
                             self.callertitle, extratype = [self.notetype])
         except WindowActiveError:
@@ -152,11 +152,11 @@ class NoteTab(EmbeddedList, DbGUIElement):
 
     def edit_button_clicked(self, obj):
         """
-        Get the selected Note instance and call the EditNote editor with the 
-        note. 
-        
-        Called when the Edit button is clicked. 
-        If the window already exists (WindowActiveError), we ignore it. 
+        Get the selected Note instance and call the EditNote editor with the
+        note.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
         This prevents the dialog from coming up twice on the same object.
         """
         handle = self.get_selected()
@@ -169,7 +169,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
                         extratype = [self.notetype] )
             except WindowActiveError:
                 pass
-    
+
     def share_button_clicked(self, obj):
         SelectNote = SelectorFactory('Note')
 
@@ -177,13 +177,13 @@ class NoteTab(EmbeddedList, DbGUIElement):
         note = sel.run()
         if note:
             self.add_callback(note.handle)
-    
+
     def get_icon_name(self):
         """
         Return the stock-id icon name associated with the display tab
         """
         return 'gramps-notes'
-        
+
     def note_delete(self, del_note_handle_list):
         """
         Outside of this tab note objects have been deleted. Check if tab
@@ -198,7 +198,7 @@ class NoteTab(EmbeddedList, DbGUIElement):
                 rebuild = True
         if rebuild:
             self.rebuild()
-                
+
     def note_update(self, upd_note_handle_list):
         """
         Outside of this tab note objects have been updated. Check if tab

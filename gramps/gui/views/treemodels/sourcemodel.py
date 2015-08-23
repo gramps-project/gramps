@@ -122,7 +122,7 @@ class SourceModel(FlatBaseModel):
 
     def column_change(self,data):
         return format_time(data[8])
-    
+
     def sort_change(self,data):
         return "%012x" % data[8]
 
@@ -133,9 +133,9 @@ class SourceModel(FlatBaseModel):
         cached, value = self.get_cached_value(tag_handle, "TAG_NAME")
         if not cached:
             value = self.db.get_tag_from_handle(tag_handle).get_name()
-            self.set_cached_value(tag_handle, "TAG_NAME", value)        
-        return value 
-        
+            self.set_cached_value(tag_handle, "TAG_NAME", value)
+        return value
+
     def column_tag_color(self, data):
         """
         Return the tag color.
@@ -153,8 +153,8 @@ class SourceModel(FlatBaseModel):
                         tag_color = tag.get_color()
                         tag_priority = this_priority
             value = tag_color
-            self.set_cached_value(tag_handle, "TAG_COLOR", value)        
-        return value 
+            self.set_cached_value(tag_handle, "TAG_COLOR", value)
+        return value
 
     def column_tags(self, data):
         """

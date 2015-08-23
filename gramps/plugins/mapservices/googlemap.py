@@ -43,7 +43,7 @@ class GoogleMapService(MapService):
     """Map  service using http://maps.google.com"""
     def __init__(self):
         MapService.__init__(self)
-    
+
     def calc_url(self):
         """ Determine the url to use on maps.google.com
             Logic: use lat lon if present
@@ -53,17 +53,17 @@ class GoogleMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://maps.google.com/maps/mm?sll=%s,%s&z=15" % (latitude, 
+            self.url = "http://maps.google.com/maps/mm?sll=%s,%s&z=15" % (latitude,
                                                                longitude)
             return
-        
+
         location = get_main_location(self.database, place)
         city = location.get(PlaceType.CITY)
         country = location.get(PlaceType.COUNTRY)
         if city and country:
             self.url = "http://maps.google.com/maps?q=%s,%s" % (city, country)
             return
-        
+
         titledescr = place_displayer.display(self.database, place)
         self.url = "http://maps.google.com/maps?q=%s" % \
                                             '+'.join(titledescr.split())

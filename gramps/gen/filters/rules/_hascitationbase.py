@@ -42,12 +42,12 @@ from . import Rule
 #-------------------------------------------------------------------------
 class HasCitationBase(Rule):
     """Rule that checks for a citation with a particular value
-    
+
     First parameter is [Volume/page, Date, Confidence]
     """
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
+    labels      = [ _('Volume/Page:'),
+                    _('Date:'),
                     _('Confidence:') ]
     name        = _('Citations matching parameters')
     description = _("Matches citations with particular parameters")
@@ -68,7 +68,7 @@ class HasCitationBase(Rule):
             if self._apply(dbase, citation):
                 return True
         return False
-    
+
     def _apply(self, db, citation):
         if not self.match_substring(0, citation.get_page()):
             return False
@@ -76,7 +76,7 @@ class HasCitationBase(Rule):
         if self.date:
             if not citation.get_date_object().match(self.date):
                 return False
-        
+
         if self.list[2]:
             if citation.get_confidence_level() < int(self.list[2]):
                 return False

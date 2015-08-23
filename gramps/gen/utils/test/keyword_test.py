@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -22,7 +22,7 @@
 
 import unittest
 
-from ..keyword import (KEYWORDS, get_translation_from_keyword, 
+from ..keyword import (KEYWORDS, get_translation_from_keyword,
                        get_keyword_from_translation)
 
 class TestCase(unittest.TestCase):

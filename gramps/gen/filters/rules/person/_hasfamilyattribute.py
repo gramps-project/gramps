@@ -47,7 +47,7 @@ class HasFamilyAttribute(Rule):
                     "of a particular value")
     category    = _('General filters')
     allow_regex = True
-    
+
     def apply(self,db,person):
         if not self.list[0]:
             return False

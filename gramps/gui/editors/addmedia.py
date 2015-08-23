@@ -71,13 +71,13 @@ class AddMediaObject(ManagedWindow):
     Displays the Add Media Dialog window, allowing the user to select
     a file from the file system, while providing a description.
     """
-    
+
     def __init__(self, dbstate, uistate, track, mediaobj, callback=None):
         """
         Create and displays the dialog box
 
         db - the database in which the new object is to be stored
-        The mediaobject is updated with the information, and on save, the 
+        The mediaobject is updated with the information, and on save, the
         callback function is called
         """
         ManagedWindow.__init__(self, uistate, track, self)
@@ -88,13 +88,13 @@ class AddMediaObject(ManagedWindow):
 
         self.last_directory = config.get('behavior.addmedia-image-dir')
         self.relative_path  = config.get('behavior.addmedia-relative-path')
-        
+
         self.glade = Glade()
         self.set_window(
             self.glade.toplevel,
             self.glade.get_object('title'),
             _('Select a media object'))
-            
+
         self.description = self.glade.get_object("photoDescription")
         self.image = self.glade.get_object("image")
         self.file_text = self.glade.get_object("fname")
@@ -170,7 +170,7 @@ class AddMediaObject(ManagedWindow):
         self.obj.set_mime_type(mtype)
         name = filename
         self.obj.set_path(name)
-        
+
         self.last_directory = os.path.dirname(full_file)
         self.relative_path = self.relpath.get_active()
 
@@ -195,7 +195,7 @@ class AddMediaObject(ManagedWindow):
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)
         self.temp_name = root
-        
+
         filename = find_file( filename)
         if filename:
             mtype = get_type(filename)
@@ -223,12 +223,12 @@ def scale_image(path, size):
     title_msg = _("Cannot display %s") % path
     detail_msg =  _('Gramps is not able to display the image file. '
                     'This may be caused by a corrupt file.')
-    
+
     try:
         image1 = GdkPixbuf.Pixbuf.new_from_file(path)
         width  = image1.get_width()
         height = image1.get_height()
-        
+
         scale = size / float(max(width, height))
         return image1.scale_simple(int(scale*width), int(scale*height),
                                    GdkPixbuf.InterpType.BILINEAR)

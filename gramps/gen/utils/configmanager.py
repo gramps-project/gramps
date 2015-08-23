@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
-# Copyright (C) 2008-2009  Gary Burton 
+# Copyright (C) 2008-2009  Gary Burton
 # Copyright (C) 2009       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -62,13 +62,13 @@ def safe_eval(exp):
 #---------------------------------------------------------------
 class ConfigManager(object):
     """
-    Class to construct the singleton CONFIGMAN where all 
+    Class to construct the singleton CONFIGMAN where all
     settings are stored.
     """
     PLUGINS = {}
 
     def __init__(self, filename=None, plugins=None):
-        """ 
+        """
         Configure manager constructor takes an optional filename, and
         plugin path.
 
@@ -112,10 +112,10 @@ class ConfigManager(object):
         self.data = {}
         self.reset()
 
-    def register_manager(self, name, override="", use_plugins_path=True, 
+    def register_manager(self, name, override="", use_plugins_path=True,
                          use_config_path=False):
         """
-        Register a plugin manager. 
+        Register a plugin manager.
 
         :param name: is used as the key of the config manager singleton. It is
                      also be used as the base filename (unless an override is
@@ -128,9 +128,9 @@ class ConfigManager(object):
 
         Override is either:
 
-        - a full path+filename ending in .ini 
-        - a filename ending in .ini 
-        - a dir path to put ini file into 
+        - a full path+filename ending in .ini
+        - a filename ending in .ini
+        - a dir path to put ini file into
         - a full path+filename to get dir to put ini file into
         - a ConfigManager instance
 
@@ -196,13 +196,13 @@ class ConfigManager(object):
         For item access, such as config["interface.dont-ask"]
         """
         return self.get(item)
-    
+
     def __setitem__(self, item, value):
         """
         For item assignment, such as config["interface.dont-ask"] = True
         """
-        self.set(item, value)    
-        
+        self.set(item, value)
+
     def reset(self, key=None):
         """
         Resets one, a section, or all settings values to their defaults.
@@ -247,7 +247,7 @@ class ConfigManager(object):
         return list(self.data[section].keys())
 
     def load(self, filename=None, oldstyle=False):
-        """ 
+        """
         Loads an .ini into self.data.
         """
         if filename is None:
@@ -276,7 +276,7 @@ class ConfigManager(object):
                     setting = opt.lower()
                     if oldstyle:
                     ####################### Upgrade from oldstyle < 3.2
-                    # Oldstyle didn't mark setting type, but had it 
+                    # Oldstyle didn't mark setting type, but had it
                     # set in preferences. New style gets it from evaling
                     # the setting's value
                     #######################
@@ -299,7 +299,7 @@ class ConfigManager(object):
                     else:
                         value = safe_eval(raw_value)
                     ####################### Now, let's test and set:
-                    if (name in self.default and 
+                    if (name in self.default and
                         setting in self.default[name]):
                         if isinstance(self.default[name][setting], bool):
                             #make sure 0 and 1 are False and True
@@ -311,7 +311,7 @@ class ConfigManager(object):
                             self.data[name][setting] = value
                         else:
                             logging.warning("WARNING: ignoring key with wrong type "
-                                   "'%s.%s' %s needed instead of %s" % 
+                                   "'%s.%s' %s needed instead of %s" %
                                            (name, setting,
                                             type(self.data[name][setting]),
                                             type(value)))
@@ -341,7 +341,7 @@ class ConfigManager(object):
                 return;
 
             key_file.write(";; Gramps key file\n")
-            key_file.write((";; Automatically created at %s" % 
+            key_file.write((";; Automatically created at %s" %
                       time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
             sections = sorted(self.data)
             for section in sections:
@@ -357,8 +357,8 @@ class ConfigManager(object):
                             default = ""
                         if isinstance(value, int):
                             value = int(value)
-                        key_file.write(("%s%s=%s\n")% (default, 
-                                                       key, 
+                        key_file.write(("%s%s=%s\n")% (default,
+                                                       key,
                                                        repr(value)))
                 key_file.write("\n")
             key_file.close()
@@ -372,12 +372,12 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.data:
             raise AttributeError("No such config section name: '%s'" % section)
         if setting not in self.data[section]:
-            raise AttributeError("No such config setting name: '%s.%s'" % 
+            raise AttributeError("No such config setting name: '%s.%s'" %
                                  (section, setting))
         return self.data[section][setting]
 
@@ -398,7 +398,7 @@ class ConfigManager(object):
 
     def has_default(self, key):
         """
-        Does the setting have a default value? Returns True if it does, 
+        Does the setting have a default value? Returns True if it does,
         False otherwise. Key is a sting in the "section.setting" format.
         """
         if "." in key:
@@ -419,12 +419,12 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.default:
             raise AttributeError("No such config section name: '%s'" % section)
         if setting not in self.default[section]:
-            raise AttributeError("No such config setting name: '%s.%s'" % 
+            raise AttributeError("No such config setting name: '%s.%s'" %
                                  (section, setting))
         return self.default[section][setting]
 
@@ -437,7 +437,7 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.data:
             self.data[section] = {}
@@ -460,12 +460,12 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.data:
             raise AttributeError("No such config section name: '%s'" % section)
         if setting not in self.data[section]:
-            raise AttributeError("No such config setting name: '%s.%s'" % 
+            raise AttributeError("No such config setting name: '%s.%s'" %
                                  (section, setting))
         self._cb_id += 1
         self.callbacks[section][setting].append((self._cb_id, func))
@@ -490,15 +490,15 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.callbacks:
             raise AttributeError("No such config section name: '%s'" % section)
         if setting not in self.callbacks[section]:
-            raise AttributeError("No such config setting name: '%s.%s'" % 
+            raise AttributeError("No such config setting name: '%s.%s'" %
                                  (section, setting))
         for (cbid, func) in self.callbacks[section][setting]:
-            func(self, 0, str(self.data[section][setting]), None) 
+            func(self, 0, str(self.data[section][setting]), None)
 
     def set(self, key, value):
         """
@@ -509,21 +509,21 @@ class ConfigManager(object):
         if "." in key:
             section, setting = key.split(".", 1)
         else:
-            raise AttributeError("Invalid config section.setting name: '%s'" % 
+            raise AttributeError("Invalid config section.setting name: '%s'" %
                                  key)
         if section not in self.data:
             raise AttributeError("No such config section name: '%s'" % section)
         if setting not in self.data[section]:
-            raise AttributeError("No such config setting name: '%s.%s'" % 
+            raise AttributeError("No such config setting name: '%s.%s'" %
                                  (section, setting))
         # Check value to see if right type:
         if self.has_default(key):
             if not self.check_type(self.get_default(key), value):
                 raise AttributeError("attempting to set '%s' to wrong type "
                                      "'%s'; should be '%s'" %
-                                     (key, type(value), 
+                                     (key, type(value),
                                       type(self.get_default(key))))
-        if (setting in self.data[section] and 
+        if (setting in self.data[section] and
             self.data[section][setting] == value):
             # Do nothing if existed and is the same
             pass
@@ -531,7 +531,7 @@ class ConfigManager(object):
             # Set the value:
             self.data[section][setting] = value
             # Only call callback if the value changed!
-            if (section in self.callbacks and 
+            if (section in self.callbacks and
                 setting in self.callbacks[section]):
                 self.emit(key)
 
@@ -546,7 +546,7 @@ class ConfigManager(object):
         elif (isinstance(value1, str) and
               isinstance(value2, str)):
             return True
-        elif (type1 in [int, float] and 
+        elif (type1 in [int, float] and
               type2 in [int, float]):
             return True
         else:

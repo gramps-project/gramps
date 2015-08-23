@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -50,7 +50,7 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
     """
     Get the usual traceback information, followed by a listing of all the
     local variables in each frame.
-    Based on: 
+    Based on:
     code.activestate.com/recipes/52215-get-more-information-from-tracebacks
     """
     import sys
@@ -81,7 +81,7 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
             #We have to be careful not to cause a new error in our error
             #handler! Calling str() on an unknown object could cause an
             #error we don't want.
-            try:                   
+            try:
                 line = "  %s = %s\n" % (key, str(value))
             except:
                 line = "  %s = %s\n" % (key, "<ERROR PRINTING VALUE>")

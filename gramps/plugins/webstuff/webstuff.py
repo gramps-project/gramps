@@ -82,10 +82,10 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Mainz style sheet with its images
         ["Mainz",         1, _("Mainz"),
-         path_css('Web_Mainz.css'),         None, 
-         [path_img("Web_Mainz_Bkgd.png"), 
-          path_img("Web_Mainz_Header.png"), 
-          path_img("Web_Mainz_Mid.png"), 
+         path_css('Web_Mainz.css'),         None,
+         [path_img("Web_Mainz_Bkgd.png"),
+          path_img("Web_Mainz_Header.png"),
+          path_img("Web_Mainz_Mid.png"),
           path_img("Web_Mainz_MidLight.png")], [] ],
 
         # Nebraska style sheet
@@ -104,7 +104,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # media reference regions style sheet
         ["behaviour",     0, "Behaviour",
-         path_css('behaviour.css'),         None,  [], [] ], 
+         path_css('behaviour.css'),         None,  [], [] ],
 
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
         ["NarrativeMaps",  0, "",

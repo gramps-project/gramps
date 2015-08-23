@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
-# Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at> 
+# Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2013-2014 Paul Franklin
 #
@@ -59,7 +59,7 @@ class KinshipReport(Report):
     def __init__(self, database, options, user):
         """
         Create the KinshipReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -68,7 +68,7 @@ class KinshipReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         maxdescend    - Maximum generations of descendants to include.
         maxascend     - Maximum generations of ancestors to include.
         incspouses    - Whether to include spouses.
@@ -110,7 +110,7 @@ class KinshipReport(Report):
         is opened and ready for writing.
         """
         pname = self._name_display.display(self.person)
-        
+
         self.doc.start_paragraph("KIN-Title")
         # feature request 2356: avoid genitive form
         title = self._("Kinship Report for %s") % pname
@@ -125,14 +125,14 @@ class KinshipReport(Report):
 
         # Collect all descendants of the person
         self.traverse_down(self.person.get_handle(), 0, 1)
-        
+
         # Collect all ancestors/aunts/uncles/nephews/cousins of the person
         self.traverse_up(self.person.get_handle(), 1, 0)
-                
+
         # Write Kin
         for Ga, Gbs in self.kinship_map.items():
             for Gb in Gbs:
-                # To understand these calculations, see: 
+                # To understand these calculations, see:
                 # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
                 x = min (Ga, Gb)
                 y = abs(Ga-Gb)
@@ -141,12 +141,12 @@ class KinshipReport(Report):
                     continue
                 elif x > 1 and not self.inc_cousins:
                     continue
-                
+
                 get_rel_str = self.rel_calc.get_plural_relationship_string
-                
+
                 title = get_rel_str(Ga, Gb, in_law_b=False)
                 self.write_people(self._(title), self.kinship_map[Ga][Gb])
-                
+
                 if (self.inc_spouses and
                    Ga in self.spouse_map and
                    Gb in self.spouse_map[Ga]):
@@ -158,14 +158,14 @@ class KinshipReport(Report):
         Populate a map of arrays containing person handles for the descendants
         of the passed person. This function calls itself recursively until it
         reaches max_descend.
-        
+
         Parameters:
         person_handle: the handle of the person to go to next
-        Ga: The number of generations from the main person to the common 
-           ancestor. This should be incremented when going up generations, and 
+        Ga: The number of generations from the main person to the common
+           ancestor. This should be incremented when going up generations, and
            left alone when going down generations.
-        Gb: The number of generations from this person (person_handle) to the 
-           common ancestor. This should be incremented when going down 
+        Gb: The number of generations from this person (person_handle) to the
+           common ancestor. This should be incremented when going down
            generations and set back to zero when going up generations.
         skip_handle: an optional handle to skip when going down. This is useful
            to skip the descendant that brought you this generation in the first
@@ -174,27 +174,27 @@ class KinshipReport(Report):
         for child_handle in self.get_children_handles(person_handle):
             if child_handle != skip_handle:
                 self.add_kin(child_handle, Ga, Gb)
-            
+
                 if self.inc_spouses:
                     for spouse_handle in self.get_spouse_handles(child_handle):
                         self.add_spouse(spouse_handle, Ga, Gb)
-                    
+
                 if Gb < self.max_descend:
                     self.traverse_down(child_handle, Ga, Gb+1)
-                    
+
     def traverse_up(self, person_handle, Ga, Gb):
         """
         Populate a map of arrays containing person handles for the ancestors
         of the passed person. This function calls itself recursively until it
         reaches max_ascend.
-        
+
         Parameters:
         person_handle: the handle of the person to go to next
-        Ga: The number of generations from the main person to the common 
-           ancestor. This should be incremented when going up generations, and 
+        Ga: The number of generations from the main person to the common
+           ancestor. This should be incremented when going up generations, and
            left alone when going down generations.
-        Gb: The number of generations from this person (person_handle) to the 
-           common ancestor. This should be incremented when going down 
+        Gb: The number of generations from this person (person_handle) to the
+           common ancestor. This should be incremented when going down
            generations and set back to zero when going up generations.
         """
         parent_handles = self.get_parent_handles(person_handle)
@@ -203,7 +203,7 @@ class KinshipReport(Report):
             self.traverse_down(parent_handle, Ga, Gb+1, person_handle)
             if Ga < self.max_ascend:
                 self.traverse_up(parent_handle, Ga+1, 0)
-                
+
     def add_kin(self, person_handle, Ga, Gb):
         """
         Add a person handle to the kin map.
@@ -214,7 +214,7 @@ class KinshipReport(Report):
             self.kinship_map[Ga][Gb] = []
         if person_handle not in self.kinship_map[Ga][Gb]:
             self.kinship_map[Ga][Gb].append(person_handle)
-        
+
     def add_spouse(self, spouse_handle, Ga, Gb):
         """
         Add a person handle to the spouse map.
@@ -225,10 +225,10 @@ class KinshipReport(Report):
             self.spouse_map[Ga][Gb] = []
         if spouse_handle not in self.spouse_map[Ga][Gb]:
             self.spouse_map[Ga][Gb].append(spouse_handle)
-                
+
     def get_parent_handles(self, person_handle):
         """
-        Return an array of handles for all the parents of the 
+        Return an array of handles for all the parents of the
         given person handle.
         """
         parent_handles = []
@@ -243,10 +243,10 @@ class KinshipReport(Report):
             if mother_handle:
                 parent_handles.append(mother_handle)
         return parent_handles
-                
+
     def get_spouse_handles(self, person_handle):
         """
-        Return an array of handles for all the spouses of the 
+        Return an array of handles for all the spouses of the
         given person handle.
         """
         spouses = []
@@ -260,14 +260,14 @@ class KinshipReport(Report):
                 spouse_handle = mother_handle
             elif father_handle and mother_handle == person_handle:
                 spouse_handle = father_handle
-            
+
             if spouse_handle and spouse_handle not in spouses:
                 spouses.append(spouse_handle)
         return spouses
-    
+
     def get_children_handles(self, person_handle):
         """
-        Return an array of handles for all the children of the 
+        Return an array of handles for all the children of the
         given person handle.
         """
         children = []
@@ -277,7 +277,7 @@ class KinshipReport(Report):
             for child_ref in family.get_child_ref_list():
                 children.append(child_ref.get_reference_handle())
         return children
-    
+
     def write_people(self, title, people_handles):
         """
         Write information about a group of people - including the title.
@@ -302,15 +302,15 @@ class KinshipReport(Report):
         birth = get_birth_or_fallback(self.database, person)
         if birth:
             birth_date = self._get_date(birth.get_date_object())
-        
+
         death_date = ""
         death = get_death_or_fallback(self.database, person)
         if death:
             death_date = self._get_date(death.get_date_object())
-        dates = self._(" (%(birth_date)s - %(death_date)s)") % { 
+        dates = self._(" (%(birth_date)s - %(death_date)s)") % {
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }
-        
+
         self.doc.start_paragraph('KIN-Normal')
         self.doc.write_text(name, mark)
         self.doc.write_text(dates)
@@ -329,13 +329,13 @@ class KinshipOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the kinship report.
         """
         category_name = _("Report Options")
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
@@ -347,22 +347,22 @@ class KinshipOptions(MenuReportOptions):
         maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
         maxdescend.set_help(_("The maximum number of descendant generations"))
         menu.add_option(category_name, "maxdescend", maxdescend)
-        
+
         maxascend = NumberOption(_("Max Ancestor Generations"), 2, 1, 20)
         maxascend.set_help(_("The maximum number of ancestor generations"))
         menu.add_option(category_name, "maxascend", maxascend)
-        
+
         incspouses = BooleanOption(_("Include spouses"), True)
         incspouses.set_help(_("Whether to include spouses"))
         menu.add_option(category_name, "incspouses", incspouses)
-        
+
         inccousins = BooleanOption(_("Include cousins"), True)
         inccousins.set_help(_("Whether to include cousins"))
         menu.add_option(category_name, "inccousins", inccousins)
-        
+
         incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"), True)
         incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
-        menu.add_option(category_name, "incaunts", incaunts)        
+        menu.add_option(category_name, "incaunts", incaunts)
 
         stdoptions.add_localization_option(menu, category_name)
 
@@ -380,7 +380,7 @@ class KinshipOptions(MenuReportOptions):
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("KIN-Title", p)
-        
+
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
@@ -390,7 +390,7 @@ class KinshipOptions(MenuReportOptions):
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for sub-headings.'))
         default_style.add_paragraph_style("KIN-Subtitle", p)
-        
+
         font = FontStyle()
         font.set_size(10)
         p = ParagraphStyle()

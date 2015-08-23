@@ -54,12 +54,12 @@ class AddressModel(Gtk.ListStore):
         self.db = dbase
         for obj in obj_list:
             self.append(row=[
-                get_date(obj), 
-                obj.street, 
-                obj.locality, 
-                obj.city, 
-                obj.state, 
+                get_date(obj),
+                obj.street,
+                obj.locality,
+                obj.city,
+                obj.state,
                 obj.country,
                 obj.get_privacy(),
-                obj, 
+                obj,
                 ])

@@ -37,7 +37,7 @@ from . import StringOption
 #-------------------------------------------------------------------------
 class FamilyOption(StringOption):
     """
-    This class describes an option that allows a family from the 
+    This class describes an option that allows a family from the
     database to be selected.
     """
     def __init__(self, label):

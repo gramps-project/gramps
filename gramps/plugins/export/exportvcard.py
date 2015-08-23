@@ -156,8 +156,8 @@ class VCardWriter(object):
                 for key in self.db.iter_person_handles():
                     self.write_person(key)
                     self.update()
-        return True   
-                    
+        return True
+
     def write_person(self, person_handle):
         """Create a VCard for the specified person."""
         person = self.db.get_person_from_handle(person_handle)
@@ -179,7 +179,7 @@ class VCardWriter(object):
         """Write the opening lines of a VCard."""
         self.writeln("BEGIN:VCARD")
         self.writeln("VERSION:3.0")
-        self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" % 
+        self.writeln("PRODID:-//Gramps//NONSGML %s %s//EN" %
                      (PROGRAM_NAME, VERSION))
 
     def write_footer(self):
@@ -226,7 +226,7 @@ class VCardWriter(object):
                 if len(name_list) > 1:
                     additional_names = ','.join(self.esc(name_list[1:]))
         # Alternate names are ignored because names just don't add up:
-        # if one name is Jean and an alternate is Paul then you can't 
+        # if one name is Jean and an alternate is Paul then you can't
         # conclude the Jean Paul is also an alternate name of that person.
 
         # Assume all titles/suffixes that apply are present in primary name.
@@ -270,9 +270,9 @@ class VCardWriter(object):
             if birth:
                 b_date = birth.get_date_object()
                 mod = b_date.get_modifier()
-                if (mod != Date.MOD_TEXTONLY and 
-                    not b_date.is_empty() and 
-                    not mod == Date.MOD_SPAN and 
+                if (mod != Date.MOD_TEXTONLY and
+                    not b_date.is_empty() and
+                    not mod == Date.MOD_SPAN and
                     not mod == Date.MOD_RANGE):
                     (day, month, year, slash) = b_date.get_start_date()
                     if day > 0 and month > 0 and year > 0:
@@ -296,7 +296,7 @@ class VCardWriter(object):
             phone = address.get_phone()
             if phone:
                 self.writeln("TEL:%s" % phone)
-                
+
     def write_urls(self, person):
         """Write URL and EMAIL properties of a VCard."""
         url_list = person.get_url_list()

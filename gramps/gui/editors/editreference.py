@@ -192,7 +192,7 @@ class EditReference(ManagedWindow, DbGUIElement):
 
     def check_for_close(self, handles):
         """
-        Callback method for delete signals. 
+        Callback method for delete signals.
         If there is a delete signal of the primary object we are editing, the
         editor (and all child windows spawned) should be closed
         """
@@ -231,7 +231,7 @@ class EditReference(ManagedWindow, DbGUIElement):
 
     def _cleanup_db_connects(self):
         """
-        All connects that happened to signals of the db must be removed on 
+        All connects that happened to signals of the db must be removed on
         closed. This implies two things:
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected
@@ -240,7 +240,7 @@ class EditReference(ManagedWindow, DbGUIElement):
         self._cleanup_callbacks()
         for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
             tab._cleanup_callbacks()
-    
+
     def _cleanup_connects(self):
         """
         Connects to interface elements to things outside the element should be
@@ -285,7 +285,7 @@ class EditReference(ManagedWindow, DbGUIElement):
                     msg1 = _("Cannot save item. ID already exists.")
                 if description:
                     msg2 = _("You have attempted to use the existing Gramps "
-                             "ID with value %(id)s. This value is already " 
+                             "ID with value %(id)s. This value is already "
                              "used by '%(prim_object)s'. Please enter a "
                              "different ID or leave blank to get the next "
                              "available ID value.") % {

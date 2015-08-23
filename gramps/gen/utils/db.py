@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -66,8 +66,8 @@ def get_birth_or_fallback(db, person, format=None):
                 if format:
                     event.date.format = format
                 return event
-    return None    
-    
+    return None
+
 def get_death_or_fallback(db, person, format=None):
     """
     Get a DEATH event from a person, or fallback to an
@@ -88,7 +88,7 @@ def get_death_or_fallback(db, person, format=None):
                 if format:
                     event.date.format = format
                 return event
-    return None    
+    return None
 
 def get_age(db, person, fallback=True, calendar="gregorian"):
     """
@@ -167,7 +167,7 @@ def get_timeperiod(db, person):
                         and not event_date.is_empty()):
                     return event_date.get_year()
     return None
-    
+
 def get_event_ref(db, family, event_type):
     """
     Return a reference to a primary family event of the given event type.
@@ -190,8 +190,8 @@ def get_primary_event_ref_list(db, family):
     retval = []
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
-        if (event and 
-            (event_ref.get_role() == EventRoleType.FAMILY or 
+        if (event and
+            (event_ref.get_role() == EventRoleType.FAMILY or
              event_ref.get_role() == EventRoleType.PRIMARY)):
             retval.append(event_ref)
     return retval
@@ -214,12 +214,12 @@ def get_marriage_or_fallback(db, family, format=None):
             event = db.get_event_from_handle(event_ref.ref)
             if (event
                 and event.type.is_marriage_fallback()
-                and (event_ref.role == EventRoleType.FAMILY or 
+                and (event_ref.role == EventRoleType.FAMILY or
                      event_ref.role == EventRoleType.PRIMARY)):
                 if format:
                     event.date.format = format
                 return event
-    return None    
+    return None
 
 def get_divorce_or_fallback(db, family, format=None):
     """
@@ -239,7 +239,7 @@ def get_divorce_or_fallback(db, family, format=None):
             event = db.get_event_from_handle(event_ref.ref)
             if (event
                 and event.type.is_divorce_fallback()
-                and (event_ref.role == EventRoleType.FAMILY or 
+                and (event_ref.role == EventRoleType.FAMILY or
                      event_ref.role == EventRoleType.PRIMARY)):
                 if format:
                     event.date.format = format
@@ -253,8 +253,8 @@ def get_divorce_or_fallback(db, family, format=None):
 #-------------------------------------------------------------------------
 def get_participant_from_event(db, event_handle, all_=False):
     """
-    Obtain the first primary or family participant to an event we find in the 
-    database. Note that an event can have more than one primary or 
+    Obtain the first primary or family participant to an event we find in the
+    database. Note that an event can have more than one primary or
     family participant, only one is returned, adding ellipses if there are
     more. If the all\_ parameter is true a comma-space separated string with
     the names of all primary participants is returned and no ellipses is used.
@@ -273,7 +273,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     #obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == 'Person'])
     families = set([x[1] for x in result_list if x[0] == 'Family'])
-    for personhandle in people: 
+    for personhandle in people:
         person = db.get_person_from_handle(personhandle)
         if not person:
             continue
@@ -292,7 +292,7 @@ def get_participant_from_event(db, event_handle, all_=False):
             break
     if ellipses:
         return _('%s, ...') % participant
-    
+
     for familyhandle in families:
         family = db.get_family_from_handle(familyhandle)
         for event_ref in family.get_event_ref_list():
@@ -308,7 +308,7 @@ def get_participant_from_event(db, event_handle, all_=False):
                 break
         if ellipses:
             break
-    
+
     if ellipses:
         return _('%s, ...') % participant
     else:
@@ -490,15 +490,15 @@ def for_each_ancestor(db, start, func, data):
 #
 #-------------------------------------------------------------------------
 def preset_name(basepers, name, sibling=False):
-    """Fill up name with all family common names of basepers. 
+    """Fill up name with all family common names of basepers.
     If sibling=True, pa/matronymics are retained.
     """
     surnlist = []
     primname = basepers.get_primary_name()
     prim = False
     for surn in primname.get_surname_list():
-        if (not sibling) and (surn.get_origintype().value in 
-                        [NameOriginType.PATRONYMIC, 
+        if (not sibling) and (surn.get_origintype().value in
+                        [NameOriginType.PATRONYMIC,
                          NameOriginType.MATRONYMIC]):
             continue
         surnlist.append(Surname(source=surn))
@@ -530,7 +530,7 @@ def family_name(family, db, noname=_("unknown")):
         fname = name_displayer.display(father)
         mname = name_displayer.display(mother)
         name = _("%(father)s and %(mother)s") % {
-                    "father" : fname, 
+                    "father" : fname,
                     "mother" : mname}
     elif father:
         name = name_displayer.display(father)
@@ -547,13 +547,13 @@ def family_name(family, db, noname=_("unknown")):
 #-------------------------------------------------------------------------
 def get_referents(handle, db, primary_objects):
     """ Find objects that refer to an object.
-    
+
     This function is the base for other get_<object>_referents functions.
-    
+
     """
     # Use one pass through the reference map to grab all the references
     object_list = list(db.find_backlink_handles(handle))
-    
+
     # Then form the object-specific lists
     the_lists = ()
 
@@ -567,11 +567,11 @@ def get_source_referents(source_handle, db):
 
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given source handle in a given database.
-    
+
     Only Citations can refer to sources, so that is all we need to check
     """
     _primaries = ('Citation',)
-    
+
     return (get_referents(source_handle, db, _primaries))
 
 def get_citation_referents(citation_handle, db):
@@ -579,27 +579,27 @@ def get_citation_referents(citation_handle, db):
 
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given citation handle in a given database.
-    
+
     """
-    _primaries = ('Person', 'Family', 'Event', 'Place', 
+    _primaries = ('Person', 'Family', 'Event', 'Place',
                   'Source', 'MediaObject', 'Repository')
-    
+
     return (get_referents(citation_handle, db, _primaries))
 
 def get_source_and_citation_referents(source_handle, db):
-    """ 
+    """
     Find all citations that refer to the sources, and recursively, all objects
     that refer to the sources.
 
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given source handle in a given database.
-    
+
     | Objects -> Citations -> Source
     | e.g.
     | Media object M1  -> Citation C1 -> Source S1
     | Media object M2  -> Citation C1 -> Source S1
     | Person object P1 -> Citation C2 -> Source S1
-    
+
     The returned structure is rather ugly, but provides all the information in
     a way that is consistent with the other Util functions.
 
@@ -629,33 +629,33 @@ def get_source_and_citation_referents(source_handle, db):
         LOG.debug('citation %s' % citation)
         refs = get_citation_referents(citation, db)
         citation_referents_list += [(citation, refs)]
-    LOG.debug('citation_referents_list %s' % [citation_referents_list])    
-        
+    LOG.debug('citation_referents_list %s' % [citation_referents_list])
+
     (citation_list) = the_lists
     the_lists = (citation_list, citation_referents_list)
 
     LOG.debug('the_lists %s' % [the_lists])
-    return the_lists 
+    return the_lists
 
 def get_media_referents(media_handle, db):
     """ Find objects that refer the media object.
 
     This function finds all primary objects that refer
     to a given media handle in a given database.
-    
+
     """
     _primaries = ('Person', 'Family', 'Event', 'Place', 'Source', 'Citation')
-    
+
     return (get_referents(media_handle, db, _primaries))
 
 def get_note_referents(note_handle, db):
     """ Find objects that refer a note object.
-    
+
     This function finds all primary objects that refer
     to a given note handle in a given database.
-    
+
     """
-    _primaries = ('Person', 'Family', 'Event', 'Place', 
+    _primaries = ('Person', 'Family', 'Event', 'Place',
                   'Source', 'Citation', 'MediaObject', 'Repository')
-    
+
     return (get_referents(note_handle, db, _primaries))

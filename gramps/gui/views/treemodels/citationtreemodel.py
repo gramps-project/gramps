@@ -71,7 +71,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         self.number_items = self.db.get_number_of_sources
         self.map = self.db.get_raw_source_data
         self.gen_cursor = self.db.get_source_cursor
-        # The items here must correspond, in order, with data in 
+        # The items here must correspond, in order, with data in
         # CitationTreeView, and with the items in the secondary fmap, fmap2
         self.fmap = [
             self.source_src_title,   # COL_TITLE_PAGE (both Source & Citation)
@@ -99,7 +99,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_pinfo,
             self.source_src_tag_color
             ]
-        
+
         TreeBaseModel.__init__(self, self.db, scol=scol, order=order,
                                search=search, skip=skip, sort_map=sort_map,
                                nrgroups=1,
@@ -199,7 +199,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             source_sort_key = self.sort_func(self.map(data[5]))
             #            parent child    sortkey          handle
             self.add_node(None, data[5], source_sort_key, data[5])
-            
+
             #            parent    child   sortkey   handle
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
@@ -208,7 +208,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
 
     def column_header(self, node):
         """
-        Return a column heading.  This is called for nodes with no associated      
+        Return a column heading.  This is called for nodes with no associated
         Gramps handle.
         """
         return node.name

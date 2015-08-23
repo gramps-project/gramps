@@ -44,9 +44,9 @@ from .._haseventbase import HasEventBase
 class HasEvent(HasEventBase):
     """Rule that checks for a family event with a particular value"""
 
-    labels      = [ _('Family event:'), 
-                    _('Date:'), 
-                    _('Place:'), 
+    labels      = [ _('Family event:'),
+                    _('Date:'),
+                    _('Place:'),
                     _('Description:'),
                     _('Main Participants') ]
     name        =  _('Families with the <event>')

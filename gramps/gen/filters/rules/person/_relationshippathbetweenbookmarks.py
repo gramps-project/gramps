@@ -43,7 +43,7 @@ from .. import Rule
 #-------------------------------------------------------------------------
 class RelationshipPathBetweenBookmarks(Rule):
     """
-    Rule that matches the ancestors of bookmarked individuals back to 
+    Rule that matches the ancestors of bookmarked individuals back to
     common ancestors, producing the relationship path(s) between the
     bookmarked individuals.
     """
@@ -141,7 +141,7 @@ class RelationshipPathBetweenBookmarks(Rule):
                 rel_path[phandle] = phandle
         #print "  In rel_path_for_two, returning rel_path = ", rel_path
         return rel_path
-    
+
     def init_list(self):
         self.map.update(self.bookmarks)
         if len(self.bookmarks) < 2:

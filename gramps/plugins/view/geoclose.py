@@ -93,8 +93,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
   <toolitem action="HomePerson"/>
   <toolitem action="RefPerson"/>
 </placeholder>
@@ -138,7 +138,7 @@ class GeoClose(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Have they been able to meet?"),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -173,11 +173,11 @@ class GeoClose(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'gramps-relation'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -358,7 +358,7 @@ class GeoClose(GeoGraphyView):
 
     def _createmap(self, person, color, place_list, reference):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -489,7 +489,7 @@ class GeoClose(GeoGraphyView):
                         continue
                     else:
                         events.append(plce[10])
-                      
+
                     if plce[0] != oldplace:
                         message = "%s :" % plce[0]
                         self.add_place_bubble_message(event, lat, lon,
@@ -539,10 +539,10 @@ class GeoClose(GeoGraphyView):
                                None, event.button, event.time)
         return 0
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
@@ -577,7 +577,7 @@ class GeoClose(GeoGraphyView):
                   'The value is in tenth of degree.'),
                 1, line_wrap=False)
         self.config_meeting_slider = configdialog.add_slider(grid,
-                "", 
+                "",
                 2, 'geography.maximum_meeting_zone',
                 (1, 9))
         return _('The selection parameters'), grid

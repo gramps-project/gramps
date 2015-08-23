@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009       Pander Musubi 
+# Copyright (C) 2009       Pander Musubi
 # Copyright (C) 2009       Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
@@ -81,7 +81,7 @@ class GivenNameCloudGramplet(Gramplet):
 
         total_people = cnt
         givensubname_sort = []
-		
+
         total = cnt = 0
         for givensubname in givensubnames:
             givensubname_sort.append( (givensubnames[givensubname], givensubname) )
@@ -128,14 +128,14 @@ class GivenNameCloudGramplet(Gramplet):
                     text = givensubname
                 size = make_tag_size(count, counts)
                 self.link(text, 'Given', text, size,
-                          "%s, %.2f%% (%d)" % 
-                          (text, 
-                           (float(count)/total_people) * 100, 
+                          "%s, %.2f%% (%d)" %
+                          (text,
+                           (float(count)/total_people) * 100,
                            count))
                 self.append_text(" ")
                 showing += 1
 
-        self.append_text(("\n\n" + _("Total unique given names") + ": %d\n") % 
+        self.append_text(("\n\n" + _("Total unique given names") + ": %d\n") %
                          total_givensubnames)
         self.append_text((_("Total given names showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")

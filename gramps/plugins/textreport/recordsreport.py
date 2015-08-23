@@ -34,13 +34,13 @@
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.plugins.lib.librecords import (RECORDS, find_records, 
+from gramps.plugins.lib.librecords import (RECORDS, find_records,
                                            CALLNAME_DONTUSE, CALLNAME_REPLACE,
                                            CALLNAME_UNDERLINE_ADD)
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                                     IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption, 
+from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
                                   FilterOption, NumberOption,
                                   PersonOption, StringOption)
 from gramps.gen.plug.report import Report
@@ -166,7 +166,7 @@ class RecordsReportOptions(MenuReportOptions):
                       _("Determines what people are included in the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-        
+
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)

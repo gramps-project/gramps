@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -65,9 +65,9 @@ class Gramplet(object):
         self.on_load()
         self.build_options()
         self.connect(self.dbstate, "database-changed", self._db_changed)
-        self.connect(self.gui.textview, "button-press-event", 
-                     self.gui.on_button_press) 
-        self.connect(self.gui.textview, "motion-notify-event", 
+        self.connect(self.gui.textview, "button-press-event",
+                     self.gui.on_button_press)
+        self.connect(self.gui.textview, "motion-notify-event",
                      self.gui.on_motion)
         self.connect_signal('Person', self._active_changed)
         self._db_changed(self.dbstate.db)
@@ -79,7 +79,7 @@ class Gramplet(object):
     def connect_signal(self, nav_type, method):
         """
         Connect the given method to the active-changed signal for the
-        navigation type requested. 
+        navigation type requested.
         """
         self.uistate.register(self.dbstate, nav_type, self.nav_group)
         history = self.uistate.get_history(nav_type, self.nav_group)
@@ -160,7 +160,7 @@ class Gramplet(object):
 
     def db_changed(self):
         """
-        Method executed when the database is changed. 
+        Method executed when the database is changed.
         """
         pass
 
@@ -183,7 +183,7 @@ class Gramplet(object):
         Returns the current text of the textview.
         """
         return self.gui.get_text()
-        
+
     def insert_text(self, text):
         """
         Insert the given text in the textview at the cursor.
@@ -201,11 +201,11 @@ class Gramplet(object):
         Clear all of the text from the textview.
         """
         self.gui.clear_text()
-        
+
     def set_text(self, text, scroll_to='start'):
         """
         Clear and set the text to the given text. Additionally, move the
-        cursor to the position given. Positions are: 
+        cursor to the position given. Positions are:
 
             ========  =======================================
             Position  Description
@@ -220,7 +220,7 @@ class Gramplet(object):
     def append_text(self, text, scroll_to="end"):
         """
         Append the text to the textview. Additionally, move the
-        cursor to the position given. Positions are: 
+        cursor to the position given. Positions are:
 
             ========  =======================================
             Position  Description
@@ -290,10 +290,10 @@ class Gramplet(object):
         The main interface for running the :meth:`main` method.
         """
         from gi.repository import GObject, GLib
-        if ((not self.active or 
-             self.gui.gstate in ["closed", "minimized"] or 
-             not self.dbstate.open) and 
-            not self.gui.force_update): 
+        if ((not self.active or
+             self.gui.gstate in ["closed", "minimized"] or
+             not self.dbstate.open) and
+            not self.gui.force_update):
             self.dirty = True
             if self.dbstate.open:
                 #print "  %s is not active" % self.gui.gname
@@ -308,7 +308,7 @@ class Gramplet(object):
             self.interrupt()
         self._generator = self.main()
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater, 
+        self._idle_id = GLib.idle_add(self._updater,
                                          priority=GObject.PRIORITY_LOW - 10)
 
     def _updater(self):
@@ -327,7 +327,7 @@ class Gramplet(object):
             if self._pause:
                 LOG.debug("gramplet updater: %s: return False" % self.gui.title)
                 return False
-            LOG.debug("gramplet updater: %s: return %s" % 
+            LOG.debug("gramplet updater: %s: return %s" %
                       (self.gui.title, retval))
             return retval
         except StopIteration:
@@ -357,7 +357,7 @@ class Gramplet(object):
         """
         from gi.repository import GObject, GLib
         self._pause = False
-        self._idle_id = GLib.idle_add(self._updater, 
+        self._idle_id = GLib.idle_add(self._updater,
                                          priority=GObject.PRIORITY_LOW - 10)
 
     def update_all(self, *args):
@@ -434,7 +434,7 @@ class Gramplet(object):
                 signal_obj.disconnect(id)
         else:
             raise AttributeError("unknown signal: '%s'" % signal)
-        
+
     def hidden_widgets(self):
         """
         A list of widgets to keep hidden. Needed because Gramps uses

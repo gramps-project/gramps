@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -20,8 +20,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" 
-gtk textbuffer with undo functionality 
+"""
+gtk textbuffer with undo functionality
 """
 __all__ = ["UndoableBuffer"]
 
@@ -34,8 +34,8 @@ from gi.repository import Gtk
 
 class Stack(list):
     """
-    Very simple stack implementation that cannot grow beyond an at init 
-    determined size. 
+    Very simple stack implementation that cannot grow beyond an at init
+    determined size.
     Inherits from list.
     Only append checks if this is really the case!
     """
@@ -87,10 +87,10 @@ class UndoableBuffer(Gtk.TextBuffer):
     at least as far as undo is concerned"""
     insertclass = UndoableInsert
     deleteclass = UndoableDelete
-    
+
     #how many undo's are remembered
     undo_stack_size = 700
-    
+
     def __init__(self):
         """
         we'll need empty stacks for undo/redo and some state keeping
@@ -157,7 +157,7 @@ class UndoableBuffer(Gtk.TextBuffer):
         else:
             self.undo_stack.append(prev_insert)
             self.undo_stack.append(undo_action)
-        
+
     def on_delete_range_undoable(self, text_buffer, start_iter, end_iter):
         def can_be_merged(prev, cur):
             """
@@ -213,16 +213,16 @@ class UndoableBuffer(Gtk.TextBuffer):
 
     def begin_not_undoable_action(self):
         """don't record the next actions
-        
+
         toggles self.not_undoable_action"""
-        self.not_undoable_action = True        
+        self.not_undoable_action = True
 
     def end_not_undoable_action(self):
         """record next actions
-        
+
         toggles self.not_undoable_action"""
         self.not_undoable_action = False
-    
+
     def reset(self):
         """
         Resets buffer to initial state.
@@ -306,7 +306,7 @@ class UndoableBuffer(Gtk.TextBuffer):
     def _handle_redo(self, redo_action):
         raise NotImplementedError
 
-## for test, run script as 
+## for test, run script as
 ## PYTHONPATH=$PYTHONPATH:~/gramps/trunk/src/ python gui/widgets/undoablebuffer.py
 if __name__ == '__main__':
     test = Stack(5)
@@ -314,7 +314,7 @@ if __name__ == '__main__':
         print('WRONG: test is empty')
     else:
         print('CORRECT: test is empty')
-    
+
     test.append(0);test.append(1);test.append(2);test.append(3);test.append(4);
     print('5 inserts', test)
     test.append(5);test.append(6);test.append(7);test.append(8);test.append(9);

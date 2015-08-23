@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -39,7 +39,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gui.widgets.grampletpane import GrampletPane
 
-class DashboardView(PageView): 
+class DashboardView(PageView):
     """
     DashboardView interface
     """
@@ -77,11 +77,11 @@ class DashboardView(PageView):
 
     def get_stock(self):
         """
-        Return image associated with the view, which is used for the 
+        Return image associated with the view, which is used for the
         icon for the button.
         """
         return 'gramps-gramplet'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -108,16 +108,16 @@ class DashboardView(PageView):
 
     def can_configure(self):
         """
-        See :class:`~gui.views.pageview.PageView 
+        See :class:`~gui.views.pageview.PageView
         :return: bool
         """
         return self.widget.can_configure()
 
     def _get_configure_page_funcs(self):
         """
-        Return a list of functions that create gtk elements to use in the 
+        Return a list of functions that create gtk elements to use in the
         notebook pages of the Configure dialog
-        
+
         :return: list of functions
         """
         return self.widget._get_configure_page_funcs()

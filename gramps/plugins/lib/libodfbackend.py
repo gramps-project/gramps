@@ -72,7 +72,7 @@ class OdfBackend(DocBackend):
     """
     Implementation for open document format docs
     """
-    
+
     STYLETAG_TO_PROPERTY = {
     }
 
@@ -90,20 +90,20 @@ class OdfBackend(DocBackend):
             ]
 
     STYLETAG_MARKUP = {
-        DocBackend.BOLD        : 
+        DocBackend.BOLD        :
             ("<text:span text:style-name=\"Tbold\">",
              "</text:span>"),
-        DocBackend.ITALIC      : 
+        DocBackend.ITALIC      :
             ("<text:span text:style-name=\"Titalic\">",
              "</text:span>"),
-        DocBackend.UNDERLINE   : 
+        DocBackend.UNDERLINE   :
             ("<text:span text:style-name=\"Tunderline\">",
              "</text:span>"),
-        DocBackend.SUPERSCRIPT : 
+        DocBackend.SUPERSCRIPT :
             ("<text:span text:style-name=\"GSuper\">",
              "</text:span>"),
     }
-    
+
     ESCAPE_FUNC = lambda x: _escape
 
     def __init__(self, filename=None):
@@ -111,7 +111,7 @@ class OdfBackend(DocBackend):
         @param filename: path name of the file the backend works on
         """
         DocBackend.__init__(self, filename)
-        
+
     def _create_xmltag(self, tagtype, value):
         """
         overwrites the method in DocBackend
@@ -125,7 +125,7 @@ class OdfBackend(DocBackend):
         # without the leading hash, this can be replaced when used in the text-
         # property font colour
         if ( tagtype == DocBackend.FONTCOLOR ):
-            return ('<text:span text:style-name=\"FontColor__%s__\">' % 
+            return ('<text:span text:style-name=\"FontColor__%s__\">' %
                                 value.replace("#", ""),
                     '</text:span>')
         elif ( tagtype == DocBackend.FONTFACE ):
@@ -136,7 +136,7 @@ class OdfBackend(DocBackend):
             return ('<text:span text:style-name=\"FontSize__%d__\">' % value,
                     '</text:span>')
         else: #elif ( tagtype == DocBackend.HIGHLIGHT ):
-            return ('<text:span text:style-name=\"FontHighlight__%s__\">' % 
+            return ('<text:span text:style-name=\"FontHighlight__%s__\">' %
                                 value.replace("#", ""),
                     '</text:span>')
 
@@ -147,6 +147,6 @@ class OdfBackend(DocBackend):
         if value.startswith("gramps://"):
             return self.STYLETAG_MARKUP[DocBackend.UNDERLINE]
         else:
-            return ('<text:a xlink:href="%s">' % self.ESCAPE_FUNC()(value), 
+            return ('<text:a xlink:href="%s">' % self.ESCAPE_FUNC()(value),
                     '</text:a>')
 

@@ -71,7 +71,7 @@ class PersonTreeView(BasePersonView):
         Override the default icon.  Set for hierarchical view.
         """
         return 'gramps-tree-group'
-        
+
     def define_actions(self):
         """
         Define actions for the popup menu specific to the tree view.
@@ -79,10 +79,10 @@ class PersonTreeView(BasePersonView):
         BasePersonView.define_actions(self)
 
         self.all_action.add_actions([
-                ('OpenAllNodes', None, _("Expand all Nodes"), None, None, 
-                 self.open_all_nodes),  
-                ('CloseAllNodes', None, _("Collapse all Nodes"), None, None, 
-                 self.close_all_nodes), 
+                ('OpenAllNodes', None, _("Expand all Nodes"), None, None,
+                 self.open_all_nodes),
+                ('CloseAllNodes', None, _("Collapse all Nodes"), None, None,
+                 self.close_all_nodes),
                 ])
 
     def additional_ui(self):
@@ -124,8 +124,8 @@ class PersonTreeView(BasePersonView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
@@ -155,7 +155,7 @@ class PersonTreeView(BasePersonView):
 
     def add(self, obj):
         person = Person()
-        
+
         # attempt to get the current surname
         (model, pathlist) = self.selection.get_selected_rows()
         name = Name()

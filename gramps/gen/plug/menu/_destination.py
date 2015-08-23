@@ -41,9 +41,9 @@ class DestinationOption(StringOption):
     The destination can be a directory or a file. If the destination is a file,
     the extension can be specified.
     """
-    
+
     __signals__ = { 'options-changed' : None }
-    
+
     def __init__(self, label, value):
         """
         :param label: A friendly label to be applied to this option.
@@ -53,7 +53,7 @@ class DestinationOption(StringOption):
             Example: "/home/username/Desktop/"
             Example: "/home/username/Desktop/report.pdf"
         :type value: string
-        :param is_directory: Specifies whether the destination is a directory 
+        :param is_directory: Specifies whether the destination is a directory
                              or a file.
         :type is_directory: bool
         :return: nothing
@@ -61,10 +61,10 @@ class DestinationOption(StringOption):
         StringOption.__init__(self, label, value)
         self.__is_directory = False
         self.__extension = ""
-        
+
     def set_directory_entry(self, is_directory):
         """
-        :param is_directory: Specifies whether the destination is a directory 
+        :param is_directory: Specifies whether the destination is a directory
                              or a file.
         :type is_directory: bool
         :return: nothing
@@ -82,12 +82,12 @@ class DestinationOption(StringOption):
 
     def set_extension(self, extension):
         """
-        :param extension: Specifies the extension for the destination file. 
+        :param extension: Specifies the extension for the destination file.
         :type extension: str
         :return: nothing
         """
         self.__extension = extension
-        
+
     def get_extension(self):
         """
         :return: The extension for the destination file.

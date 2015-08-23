@@ -106,8 +106,8 @@ class CitationBaseModel(object):
                 return INVALID_DATE_FORMAT % retval
             else:
                 return retval
-        return ''    
-    
+        return ''
+
     def citation_id(self, data):
         return str(data[COLUMN_ID])
 
@@ -151,13 +151,13 @@ class CitationBaseModel(object):
 
     def citation_change(self, data):
         return format_time(data[COLUMN_CHANGE])
-    
+
     def citation_sort_change(self, data):
         return "%012x" % data[COLUMN_CHANGE]
 
     def citation_source(self, data):
         return data[COLUMN_SOURCE]
-    
+
     def citation_src_title(self, data):
         source_handle = data[COLUMN_SOURCE]
         cached, value = self.get_cached_value(source_handle, "SRC_TITLE")

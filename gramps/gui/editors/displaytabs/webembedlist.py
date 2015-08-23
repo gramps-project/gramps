@@ -42,7 +42,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class WebEmbedList(EmbeddedList):
@@ -67,10 +67,10 @@ class WebEmbedList(EmbeddedList):
         (_('Description'), 2, 150, TEXT_COL, -1, None),
         (_('Private'),     3,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Internet'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Internet'),
                               WebModel, move_buttons=True, jump_button=True)
 
     def get_icon_name(self):
@@ -86,7 +86,7 @@ class WebEmbedList(EmbeddedList):
         from .. import EditUrl
         url = Url()
         try:
-            EditUrl(self.dbstate, self.uistate, self.track, 
+            EditUrl(self.dbstate, self.uistate, self.track,
                     '', url, self.add_callback)
         except WindowActiveError:
             pass
@@ -102,7 +102,7 @@ class WebEmbedList(EmbeddedList):
         url = self.get_selected()
         if url:
             try:
-                EditUrl(self.dbstate, self.uistate, self.track, 
+                EditUrl(self.dbstate, self.uistate, self.track,
                         '', url, self.edit_callback)
             except WindowActiveError:
                 pass
@@ -111,7 +111,7 @@ class WebEmbedList(EmbeddedList):
         self.rebuild()
 
     def get_popup_menu_items(self):
-        return [ 
+        return [
             (True, _('_Add'), 'list-add', self.add_button_clicked),
             (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
             (True, _('_Remove'), 'list-remove', self.del_button_clicked),

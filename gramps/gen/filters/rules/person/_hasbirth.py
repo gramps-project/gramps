@@ -50,13 +50,13 @@ class HasBirth(Rule):
     description = _("Matches people with birth data of a particular value")
     category    = _('Event filters')
     allow_regex = True
-    
+
     def prepare(self, db):
         if self.list[0]:
             self.date = parser.parse(self.list[0])
         else:
             self.date = None
-        
+
     def apply(self,db,person):
         for event_ref in person.get_event_ref_list():
             if not event_ref:

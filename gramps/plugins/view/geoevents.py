@@ -95,8 +95,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
 </placeholder>
 <placeholder name="CommonEdit">
   <toolitem action="PrintView"/>
@@ -117,7 +117,7 @@ class GeoEvents(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Events places map'),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       EventBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -143,11 +143,11 @@ class GeoEvents(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-events'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -194,7 +194,7 @@ class GeoEvents(GeoGraphyView):
 
     def _createmap_for_one_event(self,event):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -253,7 +253,7 @@ class GeoEvents(GeoGraphyView):
                     self._append_to_places_list(descr1, None,
                                                 None,
                                                 latitude, longitude,
-                                                descr2, 
+                                                descr2,
                                                 eventyear,
                                                 event.get_type(),
                                                 None, # person.gramps_id
@@ -268,7 +268,7 @@ class GeoEvents(GeoGraphyView):
 
     def _createmap(self,obj):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -373,10 +373,10 @@ class GeoEvents(GeoGraphyView):
                    None, event.button, event.time)
         return 1
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)

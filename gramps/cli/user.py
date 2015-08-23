@@ -60,7 +60,7 @@ class User(user.User):
         self.current_step = 0;
         self._input = input
 
-        def yes(*args): 
+        def yes(*args):
             return True
 
         if auto_accept:
@@ -68,11 +68,11 @@ class User(user.User):
         if quiet:
             self.begin_progress = self.end_progress = self.step_progress = \
                     self._default_callback = yes
-    
+
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
-        
+
         :param title: the title of the progress meter
         :type title: str
         :param message: the message associated with the progress meter
@@ -90,7 +90,7 @@ class User(user.User):
             self._fileout.write(_SPINNER[self.current_step])
         else:
             self._fileout.write("00%")
-    
+
     def step_progress(self):
         """
         Advance the progress meter.
@@ -108,11 +108,11 @@ class User(user.User):
         Stop showing the progress indicator to the user.
         """
         self._fileout.write("\r100%\n")
-    
+
     def prompt(self, title, message, accept_label, reject_label, parent=None):
         """
         Prompt the user with a message to select an alternative.
-        
+
         :param title: the title of the question, e.g.: "Undo history warning"
         :type title: str
         :param message: the message, e.g.: "Proceeding with the tool will erase
@@ -140,11 +140,11 @@ class User(user.User):
             return reply == "" or reply == accept_label
         except EOFError:
             return False
-    
+
     def warn(self, title, warning=""):
         """
         Warn the user.
-        
+
         :param title: the title of the warning
         :type title: str
         :param warning: the warning
@@ -152,11 +152,11 @@ class User(user.User):
         :returns: none
         """
         self._fileout.write("%s %s" % (title, warning))
-    
+
     def notify_error(self, title, error=""):
         """
         Notify the user of an error.
-        
+
         :param title: the title of the error
         :type title: str
         :param error: the error message
@@ -171,7 +171,7 @@ class User(user.User):
     def notify_db_error(self, error):
         """
         Notify the user of a DB error.
-        
+
         :param error: the error message
         :type error: str
         :returns: none

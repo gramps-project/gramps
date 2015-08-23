@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -59,14 +59,14 @@ class TipOfDay(ManagedWindow):
     def __init__(self, uistate):
 
         ManagedWindow.__init__(self, uistate, [], self)
-        
+
         xml = Glade()
         window = xml.toplevel
-        self.set_window(window, 
-                        xml.get_object("title"), 
-                        _("Tip of the Day"), 
+        self.set_window(window,
+                        xml.get_object("title"),
+                        _("Tip of the Day"),
                         _("Tip of the Day"))
-        
+
         self.tip = xml.get_object("tip")
         self.use = xml.get_object('usetips')
         self.use.set_active(config.get('behavior.use-tips'))
@@ -77,7 +77,7 @@ class TipOfDay(ManagedWindow):
         next.connect("clicked", self.next_tip_cb)
         close = xml.get_object('close')
         close.connect("clicked", self.close_cb)
-        
+
         try:
             tparser = TipParser()
         except (IOError,ExpatError) as e:
@@ -93,7 +93,7 @@ class TipOfDay(ManagedWindow):
 
         self.index = 0
         self.next_tip_cb()
-        
+
         window.show_all()
 
     def escape(self,text):
@@ -106,7 +106,7 @@ class TipOfDay(ManagedWindow):
         tip_text = _(self.escape(self.tip_list[self.new_index[self.index]]))
         newtext = ''
         for line in tip_text.split('<br/>'):
-            newtext += line + '\n\n' 
+            newtext += line + '\n\n'
         self.tip.set_text(newtext[:-2])
         self.tip.set_use_markup(True)
         self.index = (self.index + 1) % len(self.tip_list)
@@ -114,7 +114,7 @@ class TipOfDay(ManagedWindow):
     def close_cb(self, dummy=None):
         config.set('behavior.use-tips', self.use.get_active())
         self.close()
-        
+
     def build_menu_names(self, obj):
         return (_("Tip of the Day"), None)
 
@@ -152,7 +152,7 @@ class TipParser(object):
         Return the list of tips
         """
         return self.mylist
-    
+
     def setDocumentLocator(self, locator):
         """Set the XML document locator"""
         self.locator = locator

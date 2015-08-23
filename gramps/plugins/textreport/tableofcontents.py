@@ -34,7 +34,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle,
                                     TableCellStyle, FONT_SANS_SERIF,
                                     IndexMark, INDEX_TYPE_TOC)
 
@@ -48,7 +48,7 @@ class TableOfContents(Report):
     def __init__(self, database, options, user):
         """
         Create TableOfContents object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -77,11 +77,11 @@ class TableOfContentsOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-    
+
     def __init__(self, name, dbase):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """ Add the options for this report """
         category_name = _("Report Options")
@@ -96,17 +96,17 @@ class TableOfContentsOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("TOC-Title", para)
-        
+
         table = TableStyle()
         table.set_width(100)
         table.set_columns(2)
         table.set_column_width(0, 80)
         table.set_column_width(1, 20)
         default_style.add_table_style("TOC-Table", table)
-        
+
         cell = TableCellStyle()
         default_style.add_cell_style("TOC-Cell", cell)
-        
+
         para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The style used for first level headings.'))

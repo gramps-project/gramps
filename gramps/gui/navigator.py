@@ -93,18 +93,18 @@ class Navigator(object):
         self.merge_ids = []
 
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        
+
         frame = Gtk.Frame()
         hbox = Gtk.Box()
         hbox.show()
         frame.add(hbox)
         frame.show()
-        
+
         self.select_button = Gtk.ToggleButton()
         self.select_button.set_relief(Gtk.ReliefStyle.NONE)
         select_hbox = Gtk.Box()
         self.title_label = Gtk.Label(label='')
-        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
                                     shadow_type=Gtk.ShadowType.NONE)
         select_hbox.pack_start(self.title_label, False, True, 0)
         select_hbox.pack_end(arrow, False, True, 0)
@@ -121,7 +121,7 @@ class Navigator(object):
         hbox.pack_start(self.select_button, False, True, 0)
         #hbox.pack_end(close_button, False, True, 0)
 
-        self.top.pack_end(frame, False, True, 0)        
+        self.top.pack_end(frame, False, True, 0)
 
         self.menu = Gtk.Menu()
         self.menu.show()
@@ -134,7 +134,7 @@ class Navigator(object):
         self.notebook.connect('switch_page', self.cb_switch_page)
         self.top.show()
         self.top.pack_start(self.notebook, True, True, 0)
-        
+
     def load_plugins(self, dbstate, uistate):
         """
         Load the sidebar plugins.
@@ -167,7 +167,7 @@ class Navigator(object):
                 stock_icon = page[0].stock_icon
                 if stock_icon is None:
                     stock_icon = cat_icon
-                self.view_toggle_actions[cat_num].append((pageid, 
+                self.view_toggle_actions[cat_num].append((pageid,
                             stock_icon,
                             page[0].name, modifier, page[0].name, view_num))
 
@@ -193,7 +193,7 @@ class Navigator(object):
         Return the top container widget for the GUI.
         """
         return self.top
-        
+
     def add(self, title, sidebar, order):
         """
         Add a page to the sidebar for a plugin.
@@ -223,9 +223,9 @@ class Navigator(object):
         # Add buttons to the menu for the different view in the category
         uimanager = self.viewmanager.uimanager
         if self.cat_view_group:
-            if self.cat_view_group in uimanager.get_action_groups(): 
+            if self.cat_view_group in uimanager.get_action_groups():
                 uimanager.remove_action_group(self.cat_view_group)
-                
+
             list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
@@ -266,7 +266,7 @@ class Navigator(object):
     def cb_menu_activate(self, menu, index):
         """
         Called when an item in the popup menu is selected.
-        """        
+        """
         self.notebook.set_current_page(index)
 
     def cb_switch_page(self, notebook, unused, index):
@@ -308,7 +308,7 @@ def cb_menu_position(*args):
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
-    
+
     return (x_pos, y_pos, False)
 
 def cb_menu_deactivate(menu, button):

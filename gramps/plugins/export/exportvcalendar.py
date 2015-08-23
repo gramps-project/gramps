@@ -67,18 +67,18 @@ class CalendarWriter(object):
 
         self.plist = {}
         self.flist = {}
-        
+
         self.count = 0
         self.oldval = 0
-        
+
         self.persons_details_done = []
         self.persons_notes_done = []
         self.person_ids = {}
-        
+
         if option_box:
             self.option_box.parse_options()
             self.db = option_box.get_filtered_database(self.db)
- 
+
     def update_empty(self):
         pass
 
@@ -109,7 +109,7 @@ class CalendarWriter(object):
         self.writeln("PRODID:-//GNU//Gramps//EN")
         self.writeln("VERSION:1.0")
 
-        self.total = (len([x for x in self.db.iter_person_handles()]) + 
+        self.total = (len([x for x in self.db.iter_person_handles()]) +
                       len([x for x in self.db.iter_family_handles()]))
         for key in self.db.iter_person_handles():
             self.write_person(key)
@@ -121,10 +121,10 @@ class CalendarWriter(object):
 
         self.writeln("")
         self.writeln("END:VCALENDAR")
-        
+
         self.g.close()
         return True
-    
+
     def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
@@ -140,7 +140,7 @@ class CalendarWriter(object):
                         self.write_vevent( text, m_date, place_title)
                     else:
                         self.write_vevent( text, m_date)
-                    
+
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
         if person:
@@ -153,15 +153,15 @@ class CalendarWriter(object):
                     if place_handle:
                         # feature requests 2356, 1657: avoid genitive form
                         place_title = _pd.display_event(self.db, birth)
-                        self.write_vevent(_("Birth of %s") % 
-                            person.get_primary_name().get_name(), 
+                        self.write_vevent(_("Birth of %s") %
+                            person.get_primary_name().get_name(),
                             b_date, place_title)
                     else:
                         # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Birth of %s") %
-                            person.get_primary_name().get_name(), 
+                            person.get_primary_name().get_name(),
                             b_date)
-                        
+
             death_ref = person.get_death_ref()
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
@@ -171,24 +171,24 @@ class CalendarWriter(object):
                     if place_handle:
                         # feature requests 2356, 1657: avoid genitive form
                         place_title = _pd.display_event(self.db, death)
-                        self.write_vevent(_("Death of %s") % 
-                            person.get_primary_name().get_name(), 
-                            d_date, 
+                        self.write_vevent(_("Death of %s") %
+                            person.get_primary_name().get_name(),
+                            d_date,
                             place_title)
                     else:
                         # feature requests 2356, 1657: avoid genitive form
-                        self.write_vevent(_("Death of %s") % 
-                            person.get_primary_name().get_name(), 
+                        self.write_vevent(_("Death of %s") %
+                            person.get_primary_name().get_name(),
                             d_date)
 
-    
+
     def format_single_date(self, subdate, thisyear, cal):
         retval = ""
         (day, month, year, sl) = subdate
 
         if thisyear:
             year = localtime().tm_year
-        
+
         if not cal == Date.CAL_GREGORIAN:
             return ""
 
@@ -198,7 +198,7 @@ class CalendarWriter(object):
                     retval = "%s%02d%02d" % (year, month, day)
         return retval
 
-    
+
     def format_date(self, date, thisyear=0):
         retval = ""
         if date.get_modifier() == Date.MOD_TEXTONLY:
@@ -207,18 +207,18 @@ class CalendarWriter(object):
             mod = date.get_modifier()
             cal = cal = date.get_calendar()
             if mod == Date.MOD_SPAN or mod == Date.MOD_RANGE:
-                start = self.format_single_date(date.get_start_date(), 
+                start = self.format_single_date(date.get_start_date(),
                                                 thisyear, cal)
-                end = self.format_single_date(date.get_stop_date(), 
+                end = self.format_single_date(date.get_stop_date(),
                                               thisyear, cal)
                 if start and end:
-                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start, 
+                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start,
                                                                      end)
             elif mod == Date.MOD_NONE:
-                start = self.format_single_date(date.get_start_date(), 
+                start = self.format_single_date(date.get_start_date(),
                                                 thisyear, cal)
                 if start:
-                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start, 
+                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start,
                                                                      start)
         return retval
 

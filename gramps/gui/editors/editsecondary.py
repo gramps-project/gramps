@@ -72,7 +72,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
 
     def build_window_key(self, obj):
         return id(obj)
-        
+
     def _setup_notebook_tabs(self, notebook):
         for child in notebook.get_children():
             label = notebook.get_tab_label(child)
@@ -146,7 +146,7 @@ class EditSecondary(ManagedWindow, DbGUIElement):
 
     def _cleanup_db_connects(self):
         """
-        All connects that happened to signals of the db must be removed on 
+        All connects that happened to signals of the db must be removed on
         closed. This implies two things:
         1. The connects on the main view must be disconnected
         2. Connects done in subelements must be disconnected

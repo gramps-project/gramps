@@ -22,7 +22,7 @@
 GRAMPS registration file
 """
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
@@ -30,7 +30,7 @@ MODULE_VERSION="5.0"
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'chname',
 name  = _("Fix Capitalization of Family Names"),
 description =  _("Searches the entire database and attempts to "
@@ -53,7 +53,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'chtype',
 name  = _("Rename Event Types"),
 description =  _("Allows all the events of a certain name "
@@ -76,7 +76,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'check',
 name  = _("Check and Repair Database"),
 description =  _("Checks the database for integrity problems, fixing the "
@@ -99,7 +99,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'eventcmp',
 name  = _("Compare Individual Events"),
 description =  _("Aids in the analysis of data by allowing the "
@@ -123,7 +123,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'evname',
 name  = _("Extract Event Description"),
 description =  _("Extracts event descriptions from the event data"),
@@ -145,7 +145,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'excity',
 name  = _("Extract Place Data from a Place Title"),
 description =  _("Attempts to extract city and state/province "
@@ -168,7 +168,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'dupfind',
 name  = _("Find Possible Duplicate People"),
 description =  _("Searches the entire database, looking for "
@@ -191,7 +191,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'mediaman',
 name  = _("Media Manager"),
 description =  _("Manages batch operations on media files"),
@@ -213,7 +213,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'not_related',
 name  = _("Not Related"),
 description =  _("Find people who are not in any way related to the "
@@ -236,7 +236,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'editowner',
 name  = _("Edit Database Owner Information"),
 description =  _("Allow editing database owner information."),
@@ -258,7 +258,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'patchnames',
 name  = _("Extract Information from Names"),
 description =  _("Extract titles, prefixes and compound surnames from given name or family name."),
@@ -280,7 +280,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'rebuild',
 name  = _("Rebuild Secondary Indexes"),
 description =  _("Rebuilds secondary indexes"),
@@ -302,7 +302,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'rebuild_refmap',
 name  = _("Rebuild Reference Maps"),
 description =  _("Rebuilds reference maps"),
@@ -346,7 +346,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'relcalc',
 name  = _("Relationship Calculator"),
 description =  _("Calculates the relationship between two people"),
@@ -368,7 +368,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'remove_unused',
 name  = _("Remove Unused Objects"),
 description =  _("Removes unused objects from the database"),
@@ -390,7 +390,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'reorder_ids',
 name  = _("Reorder Gramps IDs"),
 description =  _("Reorders the Gramps IDs "
@@ -413,7 +413,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'sortevents',
 name  = _("Sorts events"),
 description =  _("Sorts events"),
@@ -435,7 +435,7 @@ tool_modes = [TOOL_MODE_GUI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'verify',
 name  = _("Verify the Data"),
 description =  _("Verifies the data against user-defined tests"),
@@ -457,7 +457,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'mergecitations',
 name  = _("Merge Citations"),
 description =  _("Searches the entire database, looking for "

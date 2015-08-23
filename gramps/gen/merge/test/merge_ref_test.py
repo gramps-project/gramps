@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -1503,7 +1503,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                         test_error_str=_("A person with multiple relations "
                         "with the same spouse is about to be merged. This is "
                         "beyond the capabilities of the merge routine. The "
-                        "merge is aborted.")) 
+                        "merge is aborted."))
 
     def test_merge_fam(self):
         """Merge two persons such that also the families in which they are

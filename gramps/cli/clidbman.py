@@ -98,29 +98,29 @@ class CLIDbManager(object):
     IND_TVAL = 4
     IND_USE_ICON_BOOL = 5
     IND_STOCK_ID =6
-    
+
     ICON_NONE     = 0
     ICON_RECOVERY = 1
     ICON_LOCK     = 2
     ICON_OPEN     = 3
-    
+
     ICON_MAP = {
                 ICON_NONE : None,
                 ICON_RECOVERY : None,
                 ICON_LOCK : None,
                 ICON_OPEN : None,
                }
-    
+
     ERROR = _errordialog
     def __init__(self, dbstate):
         self.dbstate = dbstate
         self.msg = None
-        
+
         if dbstate:
             self.active  = dbstate.db.get_save_path()
         else:
             self.active = None
-        
+
         self.current_names = []
         if dbstate:
             self._populate_cli()
@@ -180,7 +180,7 @@ class CLIDbManager(object):
         # make the default directory if it does not exist
         summary_list = []
         for item in self.current_names:
-            (name, dirpath, path_name, last, 
+            (name, dirpath, path_name, last,
              tval, enable, stock_id) = item
             retval = self.get_dbdir_summary(dirpath, name)
             summary_list.append( retval )
@@ -205,7 +205,7 @@ class CLIDbManager(object):
                     file.close()
 
                     (tval, last) = time_val(dirpath)
-                    (enable, stock_id) = self.icon_values(dirpath, self.active, 
+                    (enable, stock_id) = self.icon_values(dirpath, self.active,
                                                      self.dbstate.db.is_open())
 
                     if (stock_id == 'gramps-lock'):
@@ -271,7 +271,7 @@ class CLIDbManager(object):
             newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
-        
+
         self.current_names.append((title, new_path, path_name,
                                    last, tval, False, ""))
         return new_path, title
@@ -285,7 +285,7 @@ class CLIDbManager(object):
     def import_new_db(self, filename, user):
         """
         Attempt to import the provided file into a new database.
-        A new database will only be created if an appropriate importer was 
+        A new database will only be created if an appropriate importer was
         found.
 
         :param filename: a fully-qualified path, filename, and
@@ -293,7 +293,7 @@ class CLIDbManager(object):
 
         :param user: a :class:`.cli.user.User` or :class:`.gui.user.User`
                      instance for managing user interaction.
-        
+
         :returns: A tuple of (new_path, name) for the new database
                   or (None, None) if no import was performed.
         """
@@ -330,21 +330,21 @@ class CLIDbManager(object):
             if format == plugin.get_extension():
 
                 new_path, name = self._create_new_db(name)
-    
+
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
 
                 dbid = config.get('behavior.database-backend')
                 dbase = self.dbstate.make_database(dbid)
                 dbase.load(new_path, user.callback)
-    
+
                 import_function = plugin.get_import_function()
                 import_function(dbase, filename, user)
-    
+
                 # finish up
                 self.__end_cursor()
                 dbase.close()
-                
+
                 return new_path, name
         return None, None
 
@@ -390,7 +390,7 @@ class CLIDbManager(object):
         """
         if os.path.exists(os.path.join(dbpath, "lock")):
             os.unlink(os.path.join(dbpath, "lock"))
-    
+
     def icon_values(self, dirpath, active, is_open):
         """
         If the directory path is the active path, then return values
@@ -448,7 +448,7 @@ def find_next_db_dir():
 def time_val(dirpath):
     """
     Return the last modified time of the database. We do this by looking
-    at the modification time of the meta db file. If this file does not 
+    at the modification time of the meta db file. If this file does not
     exist, we indicate that database as never modified.
     """
     meta = os.path.join(dirpath, META_NAME)

@@ -67,9 +67,9 @@ class Test(unittest.TestCase):
     def test1_setup_works(self):
         self.assertTrue(os.path.exists(ddir), "data dir %r exists" % ddir)
         self.assertTrue(os.path.exists(min1r), "data file %r exists" % min1r)
-        self.assertFalse(os.path.exists(out_ged), 
+        self.assertFalse(os.path.exists(out_ged),
             "NO out file %r yet" % out_ged)
- 
+
     # This tests the fix for bug #1331-1334
     # read trivial gedcom input, write gedcom output
     def test2_exec_CLI(self):
@@ -91,7 +91,7 @@ class Test(unittest.TestCase):
         g = re.search("INDI", content)
         self.assertTrue(g, "found 'INDI' in output file")
 
-    # this verifies that files in the temporary "import dir" 
+    # this verifies that files in the temporary "import dir"
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(self):
@@ -104,7 +104,7 @@ class Test(unittest.TestCase):
         for fn in bogofiles:
             with io.open(fn, "w") as f:
                 f.write("garbage")
-        
+
         # ~same as test 2
         pyexec = sys.executable
         ifile = min1r

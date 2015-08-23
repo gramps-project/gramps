@@ -84,7 +84,7 @@ class OptionList(_options.OptionList):
         self.format_name = None
         self.css_filename = None
         self.output = None
-    
+
     def set_style_name(self, style_name):
         """
         Set the style name for the OptionList.
@@ -434,7 +434,7 @@ class OptionListCollection(_options.OptionListCollection):
     def set_last_format_name(self, format_name):
         """
         Set the last format used for any report in this collection.
-        
+
         :param format_name: name of the format to set.
         """
         self.last_format_name = format_name
@@ -485,7 +485,7 @@ class OptionListCollection(_options.OptionListCollection):
                     f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
                 if option_list.get_margins():
                     margins = option_list.get_margins()
-                    for pos in range(len(margins)): 
+                    for pos in range(len(margins)):
                         f.write('  <margin number="%s" value="%f"/>\n' %
                                     (pos, margins[pos]))
 
@@ -519,7 +519,7 @@ class OptionParser(_options.OptionParser):
     """
     SAX parsing class for the OptionListCollection XML file.
     """
-    
+
     def __init__(self, collection):
         """
         Create a OptionParser class that populates the passed collection.
@@ -600,7 +600,7 @@ class OptionParser(_options.OptionParser):
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _options.OptionParser.endElement(self, tag)
-            
+
 #------------------------------------------------------------------------
 #
 # Empty class to keep the BaseDoc-targeted format happy
@@ -614,16 +614,16 @@ class EmptyDoc(object):
 
     def set_creator(self, creator):
         pass
-    
+
     def open(self, filename):
         pass
-    
+
     def close(self):
         pass
 
 #-------------------------------------------------------------------------
 #
-# Class handling options for plugins 
+# Class handling options for plugins
 #
 #-------------------------------------------------------------------------
 class OptionHandler(_options.OptionHandler):
@@ -680,7 +680,7 @@ class OptionHandler(_options.OptionHandler):
     def save_options(self):
         """
         Saves options to file.
-        
+
         """
 
         # First we save options from options_dict
@@ -722,7 +722,7 @@ class OptionHandler(_options.OptionHandler):
         # Get the first part of name, if it contains a comma:
         # (will just be module_name, if no comma)
         filename = "%s.xml" % self.module_name.split(",")[0]
-        return os.path.join(HOME_DIR, filename) 
+        return os.path.join(HOME_DIR, filename)
 
     def get_default_stylesheet_name(self):
         return self.style_name
@@ -793,7 +793,7 @@ class ReportOptions(_options.Options):
 
     """
     Defines options and provides handling interface.
-    
+
     This is a base Options class for the reports. All reports, options
     classes should derive from it.
     """
@@ -806,22 +806,22 @@ class ReportOptions(_options.Options):
         self.options_dict = {}
         self.options_help = {}
         self.handler = None
-        
+
     def load_previous_values(self):
         self.handler = OptionHandler(self.name, self.options_dict)
 
     def make_default_style(self, default_style):
         """
         Defines default style for this report.
-        
+
         This method MUST be overridden by reports that use the
         user-adjustable paragraph styles.
 
         .. note:: Unique names MUST be used for all style names, otherwise the
                   styles will collide when making a book with duplicate style
                   names. A rule of safety is to prepend style name with the
-                  acronym based on report name. 
-                  
+                  acronym based on report name.
+
         The following acronyms are already taken:
 
         ====    ================================
@@ -854,7 +854,7 @@ class ReportOptions(_options.Options):
     def get_document(self):
         """
         Return document instance.
-        
+
         .. warning:: This method MUST NOT be overridden by subclasses.
         """
         return self.handler.doc
@@ -862,7 +862,7 @@ class ReportOptions(_options.Options):
     def set_document(self, val):
         """
         Set document to a given instance.
-        
+
         .. warning:: This method MUST NOT be overridden by subclasses.
         """
         self.handler.doc = val
@@ -870,7 +870,7 @@ class ReportOptions(_options.Options):
     def get_output(self):
         """
         Return document output destination.
-        
+
         .. warning:: This method MUST NOT be overridden by subclasses.
         """
         return self.handler.output
@@ -878,7 +878,7 @@ class ReportOptions(_options.Options):
     def set_output(self, val):
         """
         Set output destination to a given string.
-        
+
         .. warning:: This method MUST NOT be overridden by subclasses.
         """
         self.handler.output = val
@@ -894,19 +894,19 @@ class MenuReportOptions(MenuOptions, ReportOptions):
     The MenuReportOptions class implements the :class:`ReportOptions`
     functionality in a generic way so that the user does not need to
     be concerned with the actual representation of the options.
-    
-    The user should inherit the MenuReportOptions class and override the 
-    add_menu_options function. The user can add options to the menu and the 
+
+    The user should inherit the MenuReportOptions class and override the
+    add_menu_options function. The user can add options to the menu and the
     MenuReportOptions class will worry about setting up the UI.
 
     """
     def __init__(self, name, dbase):
         ReportOptions.__init__(self, name, dbase)
         MenuOptions.__init__(self)
-        
+
     def load_previous_values(self):
         ReportOptions.load_previous_values(self)
-        # Pass the loaded values to the menu options so they will be displayed 
+        # Pass the loaded values to the menu options so they will be displayed
         # properly.
         for optname in self.options_dict:
             menu_option = self.menu.get_option_by_name(optname)
@@ -935,7 +935,7 @@ class DocOptionHandler(_options.OptionHandler):
         """
         Set options to be used in this plugin according to the passed
         options dictionary.
-        
+
         Dictionary values are all strings, since they were read from XML.
         Here we need to convert them to the needed types. We use default
         values to determine the type.
@@ -946,7 +946,7 @@ class DocOptionHandler(_options.OptionHandler):
         for option_name, option_data in options.items():
             if ( option_name in self.options_dict and
                  isinstance(option_data, list) and
-                 option_data and 
+                 option_data and
                  option_data[0] in docgen_names ):
                 try:
                     converter = get_type_converter(
@@ -972,7 +972,7 @@ class DocOptions(MenuOptions):
         """
         self.name = name
         MenuOptions.__init__(self)
-        
+
     def load_previous_values(self):
         self.handler = DocOptionHandler(self.name, self.options_dict)
 
@@ -1015,7 +1015,7 @@ class DocOptionParser(_options.OptionParser):
     """
     SAX parsing class for the DocOptionListCollection XML file.
     """
-    
+
     def __init__(self, collection):
         """
         Create a DocOptionParser class that populates the passed collection.

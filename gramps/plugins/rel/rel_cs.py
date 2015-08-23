@@ -37,7 +37,7 @@ import gramps.gen.relationship
 
 #-------------------------------------------------------------------------
 #
-# Czech-specific definitions of relationships 
+# Czech-specific definitions of relationships
 #
 #-------------------------------------------------------------------------
 
@@ -149,8 +149,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     def get_relationship(self, secondRel, firstRel, orig_person_gender, other_person_gender):
         """
         Return a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        
+        along with a list of common ancestors (typically father,mother)
+
         Special cases: relation strings "", "undefined" and "spouse".
         """
 
@@ -206,11 +206,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         return self.get_relationship(Ga, Gb, gender_a, gender_b)[0];
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         return self.get_relationship(1, 1, gender_a, gender_b)[0];
 
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_cs.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

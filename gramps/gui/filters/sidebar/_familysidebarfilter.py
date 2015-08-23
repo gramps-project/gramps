@@ -44,9 +44,9 @@ from gramps.gen.lib import Event, EventType, Family, FamilyRelType
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.family import (RegExpIdOf, RegExpFatherName, 
-                                             RegExpMotherName, RegExpChildName, 
-                                             HasEvent, HasRelType, HasTag, 
+from gramps.gen.filters.rules.family import (RegExpIdOf, RegExpFatherName,
+                                             RegExpMotherName, RegExpChildName,
+                                             HasEvent, HasRelType, HasTag,
                                              HasNoteRegexp, MatchesFilter)
 
 GenericFamilyFilter = GenericFilterFactory('Family')
@@ -63,7 +63,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_father = widgets.BasicEntry()
         self.filter_mother = widgets.BasicEntry()
         self.filter_child = widgets.BasicEntry()
-        
+
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
@@ -71,7 +71,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.family_stub = Family()
         self.family_stub.set_relationship((FamilyRelType.CUSTOM, ''))
         self.rtype = Gtk.ComboBox(has_entry=True)
-        
+
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
@@ -81,7 +81,7 @@ class FamilySidebarFilter(SidebarFilter):
             self.rtype,
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
-        
+
         self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
@@ -171,7 +171,7 @@ class FamilySidebarFilter(SidebarFilter):
             if rtype:
                 rule = HasRelType([rtype], use_regex=regex)
                 generic_filter.add_rule(rule)
-                
+
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)

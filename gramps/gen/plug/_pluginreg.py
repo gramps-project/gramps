@@ -20,7 +20,7 @@
 #
 
 """
-This module provides the base class for plugin registration. 
+This module provides the base class for plugin registration.
 It provides an object containing data about the plugin (version, filename, ...)
 and a register for the data of all plugins .
 """
@@ -74,16 +74,16 @@ DATABASE    = 12
 PTYPE       = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
                MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE]
 PTYPE_STR   = {
-        REPORT: _('Report') , 
-        QUICKREPORT: _('Quickreport'), 
-        TOOL: _('Tool'), 
+        REPORT: _('Report') ,
+        QUICKREPORT: _('Quickreport'),
+        TOOL: _('Tool'),
         IMPORT: _('Importer'),
-        EXPORT: _('Exporter'), 
-        DOCGEN: _('Doc creator'), 
-        GENERAL: _('Plugin lib'), 
-        MAPSERVICE: _('Map service'), 
-        VIEW: _('Gramps View'), 
-        RELCALC: _('Relationships'), 
+        EXPORT: _('Exporter'),
+        DOCGEN: _('Doc creator'),
+        GENERAL: _('Plugin lib'),
+        MAPSERVICE: _('Map service'),
+        VIEW: _('Gramps View'),
+        RELCALC: _('Relationships'),
         GRAMPLET: _('Gramplet'),
         SIDEBAR: _('Sidebar'),
         DATABASE: _('Database'),
@@ -127,7 +127,7 @@ REPORT_MODE_GUI = 1    # Standalone report using GUI
 REPORT_MODE_BKI = 2    # Book Item interface using GUI
 REPORT_MODE_CLI = 4    # Command line interface (CLI)
 REPORT_MODES    = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
-    
+
 # Modes for running tools
 TOOL_MODE_GUI = 1    # Standard tool using GUI
 TOOL_MODE_CLI = 2    # Command line interface (CLI)
@@ -170,20 +170,20 @@ def valid_plugin_version(plugin_version_string):
         return plugin_version == VERSION_TUPLE[:2]
     elif dots == 2:
         plugin_version  = tuple(map(int, plugin_version_string.split(".", 2)))
-        return (plugin_version[:2] == VERSION_TUPLE[:2] and 
+        return (plugin_version[:2] == VERSION_TUPLE[:2] and
                 plugin_version <= VERSION_TUPLE)
     return False
-        
+
 class PluginData(object):
     """
     This is the base class for all plugin data objects.
-    The workflow is: 
+    The workflow is:
 
     1. plugin manager reads all register files, and stores plugin data
        objects in a plugin register
-    2. when plugin is needed, the plugin register creates the plugin, and 
+    2. when plugin is needed, the plugin register creates the plugin, and
        the manager stores this, after which it can be executed.
-    
+
     Attributes present for all plugins
 
     .. attribute:: id
@@ -192,7 +192,7 @@ class PluginData(object):
     .. attribute:: name
        A friendly name to call this plugin (normally translated)
     .. attribute:: name_accell
-       A friendly name to call this plugin (normally translated), with an 
+       A friendly name to call this plugin (normally translated), with an
        accellerator present (eg '_Descendant report', with D to be accellerator
        key
     .. attribute:: description
@@ -216,13 +216,13 @@ class PluginData(object):
     .. attribute:: supported
        Bool value indicating if the plugin is still supported, default=True
     .. attribute:: load_on_reg
-       bool value, if True, the plugin is loaded on GRAMPS startup. Some 
+       bool value, if True, the plugin is loaded on GRAMPS startup. Some
        plugins. Only set this value if for testing you want the plugin to be
        loaded immediately on startup. default=False
     .. attribute: icons
-       New stock icons to register. A list of tuples (stock_id, icon_label), 
-       eg: 
-            [('gramps_myplugin', _('My Plugin')), 
+       New stock icons to register. A list of tuples (stock_id, icon_label),
+       eg:
+            [('gramps_myplugin', _('My Plugin')),
             ('gramps_myplugin_open', _('Open Plugin')]
        The icon directory must contain the directories scalable, 48x48, 22x22
        and 16x16 with the icons, eg:
@@ -231,15 +231,15 @@ class PluginData(object):
             22x22/gramps_myplugin.png
     .. attribute: icondir
        The directory to use for the icons. If icondir is not set or None, it
-       reverts to the plugindirectory itself. 
-    
+       reverts to the plugindirectory itself.
+
     Attributes for RELCALC plugins:
 
-    .. attribute:: relcalcclass 
-       The class in the module that is the relationcalc class 
+    .. attribute:: relcalcclass
+       The class in the module that is the relationcalc class
     .. attribute:: lang_list
        List of languages this plugin handles
-    
+
     Attributes for REPORT plugins:
 
     .. attribute:: require_active
@@ -248,28 +248,28 @@ class PluginData(object):
        The class in the module that is the report class
     .. attribute:: report_modes
        The report modes: list of REPORT_MODE_GUI ,REPORT_MODE_BKI,REPORT_MODE_CLI
-    
+
     Attributes for REPORT and TOOL and QUICKREPORT and VIEW plugins
 
     .. attribute:: category
        Or the report category the plugin belongs to, default=CATEGORY_TEXT
        or the tool category a plugin belongs to, default=TOOL_UTILS
        or the quickreport category a plugin belongs to, default=CATEGORY_QR_PERSON
-       or the view category a plugin belongs to, 
+       or the view category a plugin belongs to,
            default=("Miscellaneous", _("Miscellaneous"))
-    
+
     Attributes for REPORT and TOOL and DOCGEN plugins
 
     .. attribute:: optionclass
        The class in the module that is the option class
-    
+
     Attributes for TOOL plugins
 
     .. attribute:: toolclass
        The class in the module that is the tool class
     .. attribute:: tool_modes
        The tool modes: list of TOOL_MODE_GUI, TOOL_MODE_CLI
-    
+
     Attributes for DOCGEN plugins
 
     .. attribute :: docclass
@@ -278,23 +278,23 @@ class PluginData(object):
        bool, Indicates whether the plugin uses paper or not, default=True
     .. attribute :: style
        bool, Indicates whether the plugin uses styles or not, default=True
-    
+
     Attribute for DOCGEN, EXPORT plugins
 
     .. attribute :: extension
        str, The file extension to use for output produced by the docgen/export,
        default=''
-    
+
     Attributes for QUICKREPORT plugins
 
     .. attribute:: runfunc
        The function that executes the quick report
-    
+
     Attributes for MAPSERVICE plugins
 
     .. attribute:: mapservice
        The class in the module that is a mapservice
-    
+
     Attributes for EXPORT plugins
 
     .. attribute:: export_function
@@ -303,18 +303,18 @@ class PluginData(object):
        Class to set options
     .. attribute:: export_options_title
        Title for the option page
-    
+
     Attributes for IMPORT plugins
 
     .. attribute:: import_function
        Function that starts an import
-    
+
     Attributes for GRAMPLET plugins
 
     .. attribute:: gramplet
        The function or class that defines the gramplet.
     .. attribute:: height
-       The height the gramplet should have in a column on GrampletView, 
+       The height the gramplet should have in a column on GrampletView,
        default = 200
     .. attribute:: detached_height
        The height the gramplet should have detached, default 300
@@ -343,11 +343,11 @@ class PluginData(object):
        The class that defines the sidebar.
     .. attribute:: menu_label
        A label to use on the seltion menu.
-       
+
     Attributes for VIEW and SIDEBAR plugins
 
     .. attribute:: order
-       order can be START or END. Default is END. For END, on registering, 
+       order can be START or END. Default is END. For END, on registering,
        the plugin is appended to the list of plugins. If START, then the
        plugin is prepended. Only set START if you want a plugin to be the
        first in the order of plugins
@@ -401,7 +401,7 @@ class PluginData(object):
         self._tool_modes = [TOOL_MODE_GUI]
         #DOCGEN attr
         self._paper = True
-        self._style = True  
+        self._style = True
         self._extension = ''
         #QUICKREPORT attr
         self._runfunc = None
@@ -437,7 +437,7 @@ class PluginData(object):
         #GENERAL attr
         self._data = []
         self._process = None
-    
+
     def _set_id(self, id):
        self._id = id
 
@@ -449,7 +449,7 @@ class PluginData(object):
 
     def _get_name(self):
         return self._name
-    
+
     def _set_name_accell(self, name):
         self._name_accell = name
 
@@ -484,19 +484,19 @@ class PluginData(object):
 
     def _get_status(self):
         return self._status
-    
+
     def _set_fname(self, fname):
         self._fname = fname
 
     def _get_fname(self):
         return self._fname
-    
+
     def _set_fpath(self, fpath):
         self._fpath = fpath
 
     def _get_fpath(self):
         return self._fpath
-    
+
     def _set_ptype(self, ptype):
         if ptype not in PTYPE:
             raise ValueError('Plugin type cannot be %s' % str(ptype))
@@ -532,12 +532,12 @@ class PluginData(object):
 
     def _get_authors_email(self):
         return self._authors_email
-    
+
     def _set_supported(self, supported):
         if not isinstance(supported, bool):
             raise ValueError('Plugin must have supported=True or False')
         self._supported = supported
-    
+
     def _get_supported(self):
         return self._supported
 
@@ -582,10 +582,10 @@ class PluginData(object):
     id = property(_get_id, _set_id)
     name = property(_get_name, _set_name)
     name_accell = property(_get_name_accell, _set_name_accell)
-    description = property(_get_description, _set_description) 
-    version = property(_get_version, _set_version) 
-    gramps_target_version = property(_get_gramps_target_version, 
-                                     _set_gramps_target_version) 
+    description = property(_get_description, _set_description)
+    version = property(_get_version, _set_version)
+    gramps_target_version = property(_get_gramps_target_version,
+                                     _set_gramps_target_version)
     status = property(_get_status, _set_status)
     fname = property(_get_fname, _set_fname)
     fpath = property(_get_fpath, _set_fpath)
@@ -598,12 +598,12 @@ class PluginData(object):
     icondir = property(_get_icondir, _set_icondir)
     depends_on = property(_get_depends_on, _set_depends_on)
     include_in_listing = property(_get_include_in_listing, _set_include_in_listing)
-    
+
     def statustext(self):
         return STATUSTEXT[self.status]
-    
+
     #type specific plugin attributes
-    
+
     #RELCALC attributes
     def _set_relcalcclass(self, relcalcclass):
         if not self._ptype == RELCALC:
@@ -612,7 +612,7 @@ class PluginData(object):
 
     def _get_relcalcclass(self):
         return self._relcalcclass
-    
+
     def _set_lang_list(self, lang_list):
         if not self._ptype == RELCALC:
             raise ValueError('relcalcclass may only be set for RELCALC plugins')
@@ -623,7 +623,7 @@ class PluginData(object):
 
     relcalcclass = property(_get_relcalcclass, _set_relcalcclass)
     lang_list = property(_get_lang_list, _set_lang_list)
-    
+
     #REPORT attributes
     def _set_require_active(self, require_active):
         if not self._ptype == REPORT:
@@ -679,7 +679,7 @@ class PluginData(object):
         if not self._ptype == TOOL:
             raise ValueError('toolclass may only be set for TOOL plugins')
         self._toolclass = toolclass
-    
+
     def _get_toolclass(self):
         return self._toolclass
 
@@ -694,7 +694,7 @@ class PluginData(object):
 
     def _get_tool_modes(self):
         return self._tool_modes
-    
+
     require_active = property(_get_require_active, _set_require_active)
     reportclass = property(_get_reportclass, _set_reportclass)
     report_modes = property(_get_report_modes, _set_report_modes)
@@ -710,54 +710,54 @@ class PluginData(object):
         if not isinstance(paper, bool):
             raise ValueError('Plugin must have paper=True or False')
         self._paper = paper
-    
+
     def _get_paper(self):
         return self._paper
-    
+
     def _set_style(self, style):
         if not self._ptype == DOCGEN:
             raise ValueError('style may only be set for DOCGEN plugins')
         if not isinstance(style, bool):
             raise ValueError('Plugin must have style=True or False')
         self._style = style
-    
+
     def _get_style(self):
         return self._style
-    
+
     def _set_extension(self, extension):
-        if not (self._ptype == DOCGEN or self._ptype == EXPORT 
+        if not (self._ptype == DOCGEN or self._ptype == EXPORT
                 or self._ptype == IMPORT):
             raise ValueError('extension may only be set for DOCGEN/EXPORT/'\
                               'IMPORT plugins')
         self._extension = extension
-    
+
     def _get_extension(self):
         return self._extension
-    
+
     paper = property(_get_paper, _set_paper)
-    style = property(_get_style, _set_style)    
+    style = property(_get_style, _set_style)
     extension = property(_get_extension, _set_extension)
-    
+
     #QUICKREPORT attributes
     def _set_runfunc(self, runfunc):
         if not self._ptype == QUICKREPORT:
             raise ValueError('runfunc may only be set for QUICKREPORT plugins')
         self._runfunc = runfunc
-    
+
     def _get_runfunc(self):
         return self._runfunc
-    
+
     runfunc = property(_get_runfunc, _set_runfunc)
-    
+
     #MAPSERVICE attributes
     def _set_mapservice(self, mapservice):
         if not self._ptype == MAPSERVICE:
             raise ValueError('mapservice may only be set for MAPSERVICE plugins')
         self._mapservice = mapservice
-    
+
     def _get_mapservice(self):
         return self._mapservice
-    
+
     mapservice = property(_get_mapservice, _set_mapservice)
 
     #EXPORT attributes
@@ -765,40 +765,40 @@ class PluginData(object):
         if not self._ptype == EXPORT:
             raise ValueError('export_function may only be set for EXPORT plugins')
         self._export_function = export_function
-    
+
     def _get_export_function(self):
         return self._export_function
-    
+
     def _set_export_options(self, export_options):
         if not self._ptype == EXPORT:
             raise ValueError('export_options may only be set for EXPORT plugins')
         self._export_options = export_options
-    
+
     def _get_export_options(self):
         return self._export_options
-    
+
     def _set_export_options_title(self, export_options_title):
         if not self._ptype == EXPORT:
             raise ValueError('export_options_title may only be set for EXPORT plugins')
         self._export_options_title = export_options_title
-    
+
     def _get_export_options_title(self):
         return self._export_options_title
 
     export_function = property(_get_export_function, _set_export_function)
     export_options = property(_get_export_options, _set_export_options)
-    export_options_title = property(_get_export_options_title, 
+    export_options_title = property(_get_export_options_title,
                                     _set_export_options_title)
-    
+
     #IMPORT attributes
     def _set_import_function(self, import_function):
         if not self._ptype == IMPORT:
             raise ValueError('import_function may only be set for IMPORT plugins')
         self._import_function = import_function
-    
+
     def _get_import_function(self):
         return self._import_function
-    
+
     import_function = property(_get_import_function, _set_import_function)
 
     #GRAMPLET attributes
@@ -806,37 +806,37 @@ class PluginData(object):
         if not self._ptype == GRAMPLET:
             raise ValueError('gramplet may only be set for GRAMPLET plugins')
         self._gramplet = gramplet
-    
+
     def _get_gramplet(self):
         return self._gramplet
-    
+
     def _set_height(self, height):
         if not self._ptype == GRAMPLET:
             raise ValueError('height may only be set for GRAMPLET plugins')
         if not isinstance(height, int):
             raise ValueError('Plugin must have height an integer')
         self._height = height
-    
+
     def _get_height(self):
         return self._height
-    
+
     def _set_detached_height(self, detached_height):
         if not self._ptype == GRAMPLET:
             raise ValueError('detached_height may only be set for GRAMPLET plugins')
         if not isinstance(detached_height, int):
             raise ValueError('Plugin must have detached_height an integer')
         self._detached_height = detached_height
-    
+
     def _get_detached_height(self):
         return self._detached_height
-    
+
     def _set_detached_width(self, detached_width):
         if not self._ptype == GRAMPLET:
             raise ValueError('detached_width may only be set for GRAMPLET plugins')
         if not isinstance(detached_width, int):
             raise ValueError('Plugin must have detached_width an integer')
         self._detached_width = detached_width
-    
+
     def _get_detached_width(self):
         return self._detached_width
 
@@ -846,17 +846,17 @@ class PluginData(object):
         if not isinstance(expand, bool):
             raise ValueError('Plugin must have expand as a bool')
         self._expand = expand
-    
+
     def _get_expand(self):
         return self._expand
-    
+
     def _set_gramplet_title(self, gramplet_title):
         if not self._ptype == GRAMPLET:
             raise ValueError('gramplet_title may only be set for GRAMPLET plugins')
         if not isinstance(gramplet_title, str):
             raise ValueError('gramplet_title is type %s, string or unicode required' % type(gramplet_title))
         self._gramplet_title = gramplet_title
-    
+
     def _get_gramplet_title(self):
         return self._gramplet_title
 
@@ -875,7 +875,7 @@ class PluginData(object):
 
     def _get_navtypes(self):
         return self._navtypes
-    
+
     def _set_orientation(self, orientation):
         if not self._ptype == GRAMPLET:
             raise ValueError('orientation may only be set for GRAMPLET plugins')
@@ -883,7 +883,7 @@ class PluginData(object):
 
     def _get_orientation(self):
         return self._orientation
-    
+
     gramplet = property(_get_gramplet, _set_gramplet)
     height = property(_get_height, _set_height)
     detached_height = property(_get_detached_height, _set_detached_height)
@@ -901,7 +901,7 @@ class PluginData(object):
 
     def _get_viewclass(self):
         return self._viewclass
-  
+
     def _set_stock_icon(self, stock_icon):
         if not self._ptype == VIEW:
             raise ValueError('stock_icon may only be set for VIEW plugins')
@@ -909,7 +909,7 @@ class PluginData(object):
 
     def _get_stock_icon(self):
         return self._stock_icon
-       
+
     viewclass = property(_get_viewclass, _set_viewclass)
     stock_icon = property(_get_stock_icon, _set_stock_icon)
 
@@ -921,7 +921,7 @@ class PluginData(object):
 
     def _get_sidebarclass(self):
         return self._sidebarclass
-        
+
     def _set_menu_label(self, menu_label):
         if not self._ptype == SIDEBAR:
             raise ValueError('menu_label may only be set for SIDEBAR plugins')
@@ -943,7 +943,7 @@ class PluginData(object):
         return self._order
 
     order = property(_get_order, _set_order)
-  
+
     #DATABASE attributes
     def _set_databaseclass(self, databaseclass):
         if not self._ptype == DATABASE:
@@ -986,7 +986,7 @@ class PluginData(object):
 
 def newplugin():
     """
-    Function to create a new plugindata object, add it to list of 
+    Function to create a new plugindata object, add it to list of
     registered plugins
 
     :returns: a newly created PluginData which is already part of the register
@@ -999,12 +999,12 @@ def newplugin():
 def register(ptype, **kwargs):
     """
     Convenience function to register a new plugin using a dictionary as input.
-    The register functions will call newplugin() function, and use the 
-    dictionary kwargs to assign data to the PluginData newplugin() created, 
+    The register functions will call newplugin() function, and use the
+    dictionary kwargs to assign data to the PluginData newplugin() created,
     as in: plugindata.key = data
 
     :param ptype: the plugin type, one of REPORT, TOOL, ...
-    :param kwargs: dictionary with keys attributes of the plugin, and data 
+    :param kwargs: dictionary with keys attributes of the plugin, and data
                    the value
     :returns: a newly created PluginData which is already part of the register
               and which has kwargs assigned as attributes
@@ -1060,10 +1060,10 @@ def make_environment(**kwargs):
         'CATEGORY_QR_REPOSITORY': CATEGORY_QR_REPOSITORY,
         'CATEGORY_QR_NOTE': CATEGORY_QR_NOTE,
         'CATEGORY_QR_DATE': CATEGORY_QR_DATE,
-        'REPORT_MODE_GUI': REPORT_MODE_GUI, 
-        'REPORT_MODE_BKI': REPORT_MODE_BKI, 
+        'REPORT_MODE_GUI': REPORT_MODE_GUI,
+        'REPORT_MODE_BKI': REPORT_MODE_BKI,
         'REPORT_MODE_CLI': REPORT_MODE_CLI,
-        'TOOL_MODE_GUI': TOOL_MODE_GUI, 
+        'TOOL_MODE_GUI': TOOL_MODE_GUI,
         'TOOL_MODE_CLI': TOOL_MODE_CLI,
         'DATABASE': DATABASE,
         'GRAMPSVERSION': GRAMPSVERSION,
@@ -1087,7 +1087,7 @@ class PluginRegister(object):
         Bool, include stable plugins only or not. Default True
     """
     __instance = None
-    
+
     def get_instance():
         """ Use this function to get the instance of the PluginRegister """
         if PluginRegister.__instance is None:
@@ -1095,7 +1095,7 @@ class PluginRegister(object):
             PluginRegister.__instance = PluginRegister()
         return PluginRegister.__instance
     get_instance = staticmethod(get_instance)
-            
+
     def __init__(self):
         """ This function should only be run once by get_instance() """
         if PluginRegister.__instance is not 1:
@@ -1108,22 +1108,22 @@ class PluginRegister(object):
 
     def add_plugindata(self, plugindata):
         self.__plugindata.append(plugindata)
-        
+
     def scan_dir(self, dir):
         """
         The dir name will be scanned for plugin registration code, which will
         be loaded in :class:`PluginData` objects if they satisfy some checks.
-        
+
         :returns: A list with :class:`PluginData` objects
         """
         # if the directory does not exist, do nothing
         if not (os.path.isdir(dir) or os.path.islink(dir)):
             return []
-        
+
         ext = r".gpr.py"
         extlen = -len(ext)
         pymod = re.compile(r"^(.*)\.py$")
-        
+
         for filename in os.listdir(dir):
             name = os.path.split(filename)[1]
             if not name[extlen:] == ext:
@@ -1165,7 +1165,7 @@ class PluginRegister(object):
                             {'filename' : filename})
                 print("".join(traceback.format_exception(*sys.exc_info())))
                 self.__plugindata = self.__plugindata[:lenpd]
-            #check if: 
+            #check if:
             #  1. plugin exists, if not remove, otherwise set module name
             #  2. plugin not stable, if stable_only=True, remove
             #  3. TOOL_DEBUG only if __debug__ True
@@ -1177,7 +1177,7 @@ class PluginRegister(object):
                 if not valid_plugin_version(plugin.gramps_target_version):
                     print(_('ERROR: Plugin file %(filename)s has a version of '
                             '"%(gramps_target_version)s" which is invalid for Gramps '
-                            '"%(gramps_version)s".' % 
+                            '"%(gramps_version)s".' %
                             {'filename': os.path.join(dir, plugin.fname),
                              'gramps_version': GRAMPSVERSION,
                              'gramps_target_version': plugin.gramps_target_version,}
@@ -1231,7 +1231,7 @@ class PluginRegister(object):
         """
         Return a list of :class:`PluginData` that are of type ptype
         """
-        return [self.get_plugin(id) for id in 
+        return [self.get_plugin(id) for id in
                 set([x.id for x in self.__plugindata if x.ptype == ptype])]
 
     def report_plugins(self, gui=True):
@@ -1258,7 +1258,7 @@ class PluginRegister(object):
             return [x for x in self.type_plugins(TOOL) if TOOL_MODE_CLI
                                         in x.tool_modes]
 
-    
+
     def bookitem_plugins(self):
         """
         Return a list of REPORT :class:`PluginData` that are can be used as
@@ -1297,7 +1297,7 @@ class PluginRegister(object):
         """
         plugins = self.type_plugins(GENERAL)
         if category:
-            return [plugin for plugin in plugins 
+            return [plugin for plugin in plugins
                     if plugin.category == category]
         return plugins
 
@@ -1324,7 +1324,7 @@ class PluginRegister(object):
         Return a list of :class:`PluginData` that are of type GRAMPLET
         """
         return self.type_plugins(GRAMPLET)
-        
+
     def sidebar_plugins(self):
         """
         Return a list of :class:`PluginData` that are of type SIDEBAR
@@ -1341,6 +1341,6 @@ class PluginRegister(object):
         """
         Return a list of :class:`PluginData` that have load_on_reg == True
         """
-        return [self.get_plugin(id) for id in 
-                set([x.id for x in self.__plugindata 
+        return [self.get_plugin(id) for id in
+                set([x.id for x in self.__plugindata
                      if x.load_on_reg == True])]

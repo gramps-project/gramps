@@ -61,43 +61,43 @@ class EditLocation(EditSecondary):
             self.obj.set_locality,
             self.obj.get_locality,
             self.db.readonly)
-        
+
         self.city   = MonitoredEntry(
             self.top.get_object("city"),
             self.obj.set_city,
             self.obj.get_city,
             self.db.readonly)
-        
+
         self.state  = MonitoredEntry(
             self.top.get_object("state"),
             self.obj.set_state,
             self.obj.get_state,
             self.db.readonly)
-        
+
         self.postal = MonitoredEntry(
             self.top.get_object("postal"),
             self.obj.set_postal_code,
             self.obj.get_postal_code,
             self.db.readonly)
-        
+
         self.phone = MonitoredEntry(
             self.top.get_object("phone"),
             self.obj.set_phone,
             self.obj.get_phone,
             self.db.readonly)
-        
+
         self.parish = MonitoredEntry(
             self.top.get_object("parish"),
             self.obj.set_parish,
             self.obj.get_parish,
             self.db.readonly)
-        
+
         self.county = MonitoredEntry(
             self.top.get_object("county"),
             self.obj.set_county,
             self.obj.get_county,
             self.db.readonly)
-        
+
         self.country = MonitoredEntry(
             self.top.get_object("country"),
             self.obj.set_country,
@@ -108,7 +108,7 @@ class EditLocation(EditSecondary):
         self.define_cancel_button(self.top.get_object('button119'))
         self.define_ok_button(self.top.get_object('button118'),self.save)
         self.define_help_button(self.top.get_object('button128'))
-        
+
     def save(self,*obj):
         if self.callback:
             self.callback(self.obj)

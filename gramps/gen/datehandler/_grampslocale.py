@@ -1,4 +1,4 @@
-# -*- coding: iso-8859-1 -*- 
+# -*- coding: iso-8859-1 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -99,9 +99,9 @@ try:
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
-    # GRAMPS treats dates with '-' as ISO format, so replace separator on 
+    # GRAMPS treats dates with '-' as ISO format, so replace separator on
     # locale dates that use '-' to prevent confict
-    tformat = tformat.replace('-', '/') 
+    tformat = tformat.replace('-', '/')
 
 except:
     import time
@@ -169,18 +169,18 @@ except:
         time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Saturday
         )
 
-    # depending on the locale, the value returned for 20th Feb 2009 could be 
-    # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009', 
-    # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20', '2009-02-20', 
-    # '09-02-20' hence to reduce the possible values to test, make sure month 
+    # depending on the locale, the value returned for 20th Feb 2009 could be
+    # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009',
+    # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20', '2009-02-20',
+    # '09-02-20' hence to reduce the possible values to test, make sure month
     # is double digit also day should be double digit, preferably greater than
     # 12 for human readablity
 
-    timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1)) 
-    
-    # GRAMPS treats dates with '-' as ISO format, so replace separator on 
+    timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1))
+
+    # GRAMPS treats dates with '-' as ISO format, so replace separator on
     # locale dates that use '-' to prevent confict
-    timestr = timestr.replace('-', '/') 
+    timestr = timestr.replace('-', '/')
     time2fmt_map = {
         '25/10/2005' : '%d/%m/%Y',
         '10/25/2005' : '%m/%d/%Y',
@@ -189,7 +189,7 @@ except:
         '10.25.2005' : '%m.%d.%Y',
         '2005.10.25' : '%Y.%m.%d',
         }
-    
+
     try:
         tformat = time2fmt_map[timestr]
     except KeyError as e:

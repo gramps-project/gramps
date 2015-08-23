@@ -65,7 +65,7 @@ class RelationshipPathBetween(Rule):
     def desc_list(self, handle, map, first):
         if not first:
             map.add(handle)
-        
+
         p = self.db.get_person_from_handle(handle)
         for fam_id in p.get_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
@@ -73,14 +73,14 @@ class RelationshipPathBetween(Rule):
                 for child_ref in fam.get_child_ref_list():
                     if child_ref.ref:
                         self.desc_list(child_ref.ref, map, 0)
-    
+
     def apply_filter(self, rank, handle, plist, pmap):
         person = self.db.get_person_from_handle(handle)
         if person is None:
             return
         plist.add(handle)
         pmap[person.get_handle()] = rank
-        
+
         fam_id = person.get_main_parents_family_handle()
         family = self.db.get_family_from_handle(fam_id)
         if family is not None:
@@ -100,7 +100,7 @@ class RelationshipPathBetween(Rule):
 
         self.apply_filter(0, p1_handle, firstList, firstMap)
         self.apply_filter(0, p2_handle ,secondList, secondMap)
-        
+
         for person_handle in firstList & secondList:
             new_rank = firstMap[person_handle]
             if new_rank < rank:

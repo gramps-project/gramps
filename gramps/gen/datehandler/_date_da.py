@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -48,50 +48,50 @@ from ._datehandler import register_datehandler
 class DateParserDa(DateParser):
     """
     Convert a text string into a Date object, expecting a date
-    notation in the Danish language. If the date cannot be converted, 
+    notation in the Danish language. If the date cannot be converted,
     the text string is assigned.
     """
 
     # modifiers before the date
     modifier_to_int = {
-        'før'    : Date.MOD_BEFORE, 
-        'inden'  : Date.MOD_BEFORE, 
-        'efter'   : Date.MOD_AFTER, 
-        'omkring' : Date.MOD_ABOUT, 
+        'før'    : Date.MOD_BEFORE,
+        'inden'  : Date.MOD_BEFORE,
+        'efter'   : Date.MOD_AFTER,
+        'omkring' : Date.MOD_ABOUT,
         'ca.'     : Date.MOD_ABOUT
         }
 
     bce = ["f Kr"]
 
     calendar_to_int = {
-        'gregoriansk   '      : Date.CAL_GREGORIAN, 
-        'g'                   : Date.CAL_GREGORIAN, 
-        'juliansk'            : Date.CAL_JULIAN, 
-        'j'                   : Date.CAL_JULIAN, 
-        'hebraisk'            : Date.CAL_HEBREW, 
-        'h'                   : Date.CAL_HEBREW, 
-        'islamisk'            : Date.CAL_ISLAMIC, 
-        'muslimsk'            : Date.CAL_ISLAMIC, 
-        'i'                   : Date.CAL_ISLAMIC, 
-        'fransk'              : Date.CAL_FRENCH, 
-        'fransk republikansk' : Date.CAL_FRENCH, 
-        'f'                   : Date.CAL_FRENCH, 
-        'persisk'             : Date.CAL_PERSIAN, 
-        'p'                   : Date.CAL_PERSIAN, 
-        'svensk'              : Date.CAL_SWEDISH, 
-        's'                   : Date.CAL_SWEDISH, 
+        'gregoriansk   '      : Date.CAL_GREGORIAN,
+        'g'                   : Date.CAL_GREGORIAN,
+        'juliansk'            : Date.CAL_JULIAN,
+        'j'                   : Date.CAL_JULIAN,
+        'hebraisk'            : Date.CAL_HEBREW,
+        'h'                   : Date.CAL_HEBREW,
+        'islamisk'            : Date.CAL_ISLAMIC,
+        'muslimsk'            : Date.CAL_ISLAMIC,
+        'i'                   : Date.CAL_ISLAMIC,
+        'fransk'              : Date.CAL_FRENCH,
+        'fransk republikansk' : Date.CAL_FRENCH,
+        'f'                   : Date.CAL_FRENCH,
+        'persisk'             : Date.CAL_PERSIAN,
+        'p'                   : Date.CAL_PERSIAN,
+        'svensk'              : Date.CAL_SWEDISH,
+        's'                   : Date.CAL_SWEDISH,
         }
-    
+
     quality_to_int = {
-        'estimeret' : Date.QUAL_ESTIMATED, 
-        'beregnet'   : Date.QUAL_CALCULATED, 
+        'estimeret' : Date.QUAL_ESTIMATED,
+        'beregnet'   : Date.QUAL_CALCULATED,
         }
-    
+
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile("(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)", 
+        self._span     = re.compile("(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
                                     re.IGNORECASE)
-        self._range    = re.compile("(mellem)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", 
+        self._range    = re.compile("(mellem)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
                                     re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -101,41 +101,41 @@ class DateParserDa(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayDa(DateDisplay):
     """
-    Danish language date display class. 
+    Danish language date display class.
     """
 
-    long_months = ( "", "januar", "februar", "marts", "april", "maj", 
-                    "juni", "juli", "august", "september", "oktober", 
+    long_months = ( "", "januar", "februar", "marts", "april", "maj",
+                    "juni", "juli", "august", "september", "oktober",
                     "november", "december" )
-    
-    short_months = ( "", "jan", "feb", "mar", "apr", "maj", "jun", 
+
+    short_months = ( "", "jan", "feb", "mar", "apr", "maj", "jun",
                      "jul", "aug", "sep", "okt", "nov", "dec" )
 
     formats = (
-        "ÅÅÅÅ-MM-DD (ISO)", 
-        "Numerisk", 
-        "Måned dag, år", 
-        "Md Dag År", 
-        "Dag måned år", 
-        "Dag md År", 
+        "ÅÅÅÅ-MM-DD (ISO)",
+        "Numerisk",
+        "Måned dag, år",
+        "Md Dag År",
+        "Dag måned år",
+        "Dag md År",
         )
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
 
     calendar = (
-        "", 
-        "juliansk", 
-        "hebraisk", 
-        "fransk republikansk", 
-        "persisk", 
-        "islamisk", 
-        "svensk" 
+        "",
+        "juliansk",
+        "hebraisk",
+        "fransk republikansk",
+        "persisk",
+        "islamisk",
+        "svensk"
         )
-    
+
     _mod_str = ("", "før ", "efter ", "ca. ", "", "", "")
 
     _qual_str = ("", "beregnet ", "beregnet ")
-    
+
     _bce_str = "%s f. Kr."
 
     def display(self, date):
@@ -163,12 +163,12 @@ class DateDisplayDa(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%smellem %s og %s%s" % (qual_str, d1, d2, 
+            return "%smellem %s og %s%s" % (qual_str, d1, d2,
                                               scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], 
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod],
                                  text, scal)
 
 #-------------------------------------------------------------------------

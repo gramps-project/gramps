@@ -21,6 +21,6 @@
 Package init for the views package.
 """
 
-# DO NOT IMPORT METHODS/CLASSES FROM src/gui/views HERE ! Only __all__ 
+# DO NOT IMPORT METHODS/CLASSES FROM src/gui/views HERE ! Only __all__
 
 __all__ = [ "treemodels" ]

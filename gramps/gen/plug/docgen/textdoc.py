@@ -86,11 +86,11 @@ class IndexMark(object):
 # TextDoc
 #
 #------------------------------------------------------------------------
-   
+
 class TextDoc(object):
     """
     Abstract Interface for text document generators. Output formats for
-    text reports must implement this interface to be used by the report 
+    text reports must implement this interface to be used by the report
     system.
     """
     def page_break(self):
@@ -178,14 +178,14 @@ class TextDoc(object):
         :param links: make URLs in the text clickable (if supported)
         """
         raise NotImplementedError
-    
+
     def write_markup(self, text, s_tags, mark=None):
         """
         Writes the text in the current paragraph.  Should only be used after a
         start_paragraph and before an end_paragraph. Not all backends support
         s_tags, then the same happens as with write_text. Backends supporting
-        write_markup will overwrite this method 
-        
+        write_markup will overwrite this method
+
         :param text: text to write. The text is assumed to be _not_ escaped
         :param s_tags: assumed to be list of styledtexttags to apply to the
                        text
@@ -195,11 +195,11 @@ class TextDoc(object):
 
     def write_note(self, text, format, style_name):
         """
-        Writes the note's text and take care of paragraphs, 
-        depending on the format. 
+        Writes the note's text and take care of paragraphs,
+        depending on the format.
 
         :param text: text to write.
-        :param format: format to use for writing. True for flowed text, 
+        :param format: format to use for writing. True for flowed text,
                        1 for preformatted text.
         """
         raise NotImplementedError
@@ -207,23 +207,23 @@ class TextDoc(object):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the cairo doc. 
+        Convenience function to write a styledtext to the cairo doc.
 
         :param styledtext: assumed a :class:`.StyledText` object to write
         :param format: 0 = Flowed, 1 = Preformatted
         :param style_name: name of the style to use for default presentation
         :param contains_html:
-            bool, the backend should not check if html is present. 
-            If contains_html=True, then the textdoc is free to handle that in 
+            bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
             some way. Eg, a textdoc could remove all tags, or could make sure
-            a link is clickable. 
+            a link is clickable.
         :param links: bool, make URLs in the text clickable (if supported)
-        
+
         overwrite this method if the backend supports styled notes
         """
         text = str(styledtext)
         self.write_note(text, format, style_name)
-    
+
     def write_text_citation(self, text, mark=None, links=None):
         """
         Method to write text with Gramps <super> citation marks.
@@ -270,7 +270,7 @@ class TextDoc(object):
         :param crop: image cropping parameters
         """
         raise NotImplementedError
-    
+
     def start_link(self, link):
         """
         Start a link section. This defaults to underlining.
@@ -303,14 +303,14 @@ class TextDoc(object):
 
     def insert_toc(self):
         """
-        Insert a Table of Contents at this point in the document. This passes 
+        Insert a Table of Contents at this point in the document. This passes
         without error so that docgen types are not required to have this.
         """
         pass
 
     def insert_index(self):
         """
-        Insert an Alphabetical Index at this point in the document. This passes 
+        Insert an Alphabetical Index at this point in the document. This passes
         without error so that docgen types are not required to have this.
         """
         pass

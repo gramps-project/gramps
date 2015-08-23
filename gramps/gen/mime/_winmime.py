@@ -44,7 +44,7 @@ def get_description(mime_type):
     desc = None
     extension = _get_extension(mime_type)
     progid = _get_prog_id(extension)
-    
+
     if progid:
         try:
             hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
@@ -71,7 +71,7 @@ def mime_type_is_defined(mime_type):
         return True
     else:
         return _pythonmime.mime_type_is_defined(mime_type)
-    
+
 #-------------------------------------------------------------------------
 #
 # private functions
@@ -93,7 +93,7 @@ def _get_extension(mime_type):
         CloseKey(hcr)
     except WindowsError:
         extension = None
-    
+
     if not extension:
         # Work around for Windows mime problems
         extmap = {
@@ -102,9 +102,9 @@ def _get_extension(mime_type):
             }
         if mime_type in extmap:
             extension = extmap[mime_type]
-    
+
     return extension
-        
+
 def _get_prog_id(extension):
     """
     Return the program ID associated with this extension
@@ -112,7 +112,7 @@ def _get_prog_id(extension):
     """
     if not extension:
         return None
-    
+
     try:
         hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
         progid = QueryValue(hcr, extension)
@@ -120,4 +120,4 @@ def _get_prog_id(extension):
         return progid
     except WindowsError:
         return None
-    
+

@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -53,57 +53,57 @@ class DateParserFI(DateParser):
     # NOTE: these need to be in lower case because the "key" comparison
     # is done as lower case.  In the display method correct capitalization
     # can be used.
-    
+
     modifier_to_int = {
         # examples:
 	# - ennen 1.1.2005
 	# - noin 1.1.2005
-        'ennen'   : Date.MOD_BEFORE, 
-        'e.'      : Date.MOD_BEFORE, 
-        'noin'    : Date.MOD_ABOUT, 
-        'n.'      : Date.MOD_ABOUT, 
+        'ennen'   : Date.MOD_BEFORE,
+        'e.'      : Date.MOD_BEFORE,
+        'noin'    : Date.MOD_ABOUT,
+        'n.'      : Date.MOD_ABOUT,
         }
     modifier_after_to_int = {
         # examples:
 	# - 1.1.2005 jälkeen
-        'jälkeen' : Date.MOD_AFTER, 
-        'j.'      : Date.MOD_AFTER, 
+        'jälkeen' : Date.MOD_AFTER,
+        'j.'      : Date.MOD_AFTER,
         }
 
     bce = ["ekr.", "ekr"]
 
     calendar_to_int = {
-        'gregoriaaninen'  : Date.CAL_GREGORIAN, 
-        'greg.'           : Date.CAL_GREGORIAN, 
-        'juliaaninen'     : Date.CAL_JULIAN, 
-        'jul.'            : Date.CAL_JULIAN, 
-        'heprealainen'    : Date.CAL_HEBREW, 
-        'hepr.'           : Date.CAL_HEBREW, 
-        'islamilainen'    : Date.CAL_ISLAMIC, 
-        'isl.'            : Date.CAL_ISLAMIC, 
-        'ranskan vallankumouksen aikainen': Date.CAL_FRENCH, 
-        'ranskan v.'      : Date.CAL_FRENCH, 
-        'persialainen'    : Date.CAL_PERSIAN, 
-        'pers.'           : Date.CAL_PERSIAN, 
-        'svensk'          : Date.CAL_SWEDISH, 
-        's'               : Date.CAL_SWEDISH, 
+        'gregoriaaninen'  : Date.CAL_GREGORIAN,
+        'greg.'           : Date.CAL_GREGORIAN,
+        'juliaaninen'     : Date.CAL_JULIAN,
+        'jul.'            : Date.CAL_JULIAN,
+        'heprealainen'    : Date.CAL_HEBREW,
+        'hepr.'           : Date.CAL_HEBREW,
+        'islamilainen'    : Date.CAL_ISLAMIC,
+        'isl.'            : Date.CAL_ISLAMIC,
+        'ranskan vallankumouksen aikainen': Date.CAL_FRENCH,
+        'ranskan v.'      : Date.CAL_FRENCH,
+        'persialainen'    : Date.CAL_PERSIAN,
+        'pers.'           : Date.CAL_PERSIAN,
+        'svensk'          : Date.CAL_SWEDISH,
+        's'               : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
-        'arviolta'   : Date.QUAL_ESTIMATED, 
-        'arv.'       : Date.QUAL_ESTIMATED, 
-        'laskettuna' : Date.QUAL_CALCULATED, 
-        'lask.'      : Date.QUAL_CALCULATED, 
+        'arviolta'   : Date.QUAL_ESTIMATED,
+        'arv.'       : Date.QUAL_ESTIMATED,
+        'laskettuna' : Date.QUAL_CALCULATED,
+        'lask.'      : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
         self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
                                          % self._mon_str, re.IGNORECASE)
-        self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)", 
+        self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
                            re.IGNORECASE)
         self._range = re.compile(
-            "(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä", 
+            "(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
             re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -113,17 +113,17 @@ class DateParserFI(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayFI(DateDisplay):
     """
-    Finnish language date display class. 
+    Finnish language date display class.
     """
     _bce_str = "%s ekr."
 
     formats = (
-        "VVVV-KK-PP (ISO)", 
+        "VVVV-KK-PP (ISO)",
         "PP.KK.VVVV",
         "Päivä Kuukausi Vuosi" # Day, full month name, year
         )
         # this definition must agree with its "_display_calendar" method
-    
+
     display = DateDisplay.display_formatted
 
     def _display_calendar(self, date_val, long_months, short_months = None,

@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -218,7 +218,7 @@ def resize_to_buffer(source, size, crop=None):
     :type size: list
     :param crop: cropping coordinates
     :type crop: array of integers ([start_x, start_y, end_x, end_y])
-    :rtype: buffer of data 
+    :rtype: buffer of data
     :returns: raw data
     """
     from gi.repository import GdkPixbuf
@@ -229,7 +229,7 @@ def resize_to_buffer(source, size, crop=None):
                 ) = crop_percentage_to_pixel(
                         img.get_width(), img.get_height(), crop)
         img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
-            
+
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
     (size[0], size[1]) = image_actual_size(size[0], size[1], img.get_width(), img.get_height())
@@ -254,7 +254,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     :type size: list
     :param crop: cropping coordinates
     :type crop: array of integers ([start_x, start_y, end_x, end_y])
-    :rtype: buffer of data 
+    :rtype: buffer of data
     :returns: jpeg image as raw data
     """
     from gi.repository import GdkPixbuf

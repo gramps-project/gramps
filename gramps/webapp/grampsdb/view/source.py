@@ -40,7 +40,7 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
     context["tviews"] = _("Sources")
     context["action"] = "view"
     view_template = "view_source_detail.html"
-    
+
     if handle == "add":
         act = "add"
     if "action" in request.POST:
@@ -49,24 +49,24 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
     # Handle: edit, view, add, create, save, delete, share, save-share
     if act == "share":
         item, handle = add_to
-        context["pickform"] = PickForm("Pick source", 
-                                       Source, 
+        context["pickform"] = PickForm("Pick source",
+                                       Source,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick source", 
-                            Source, 
+        item, handle = add_to
+        pickform = PickForm("Pick source",
+                            Source,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             parent_model = dji.get_model(item) # what model?
             parent_obj = parent_model.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Source.objects.get(handle=ref_handle) 
+            ref_obj = Source.objects.get(handle=ref_handle)
             dji.add_source_ref_default(parent_obj, ref_obj)
             parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-sources" % (item, handle, build_search(request)))
@@ -79,11 +79,11 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
         source = Source(gramps_id=dji.get_next_id(Source, "S"))
         sourceform = SourceForm(instance=source)
         sourceform.model = source
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         source = Source.objects.get(handle=handle)
         sourceform = SourceForm(instance=source)
         sourceform.model = source
-    elif act == "save": 
+    elif act == "save":
         source = Source.objects.get(handle=handle)
         sourceform = SourceForm(request.POST, instance=source)
         sourceform.model = source
@@ -94,7 +94,7 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         source = Source(handle=create_id())
         sourceform = SourceForm(request.POST, instance=source)
         sourceform.model = source
@@ -107,7 +107,7 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         source = Source.objects.get(handle=handle)
         source.delete()
         return redirect("/source/")
@@ -118,7 +118,7 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
     context["object"] = source
     context["source"] = source
     context["action"] = act
-    
+
     return render_to_response(view_template, context)
 
 

@@ -56,7 +56,7 @@ class SelectNote(BaseSelector):
 
     def get_window_title(self):
         return _("Select Note")
-        
+
     def get_model_class(self):
         return NoteModel
 
@@ -68,6 +68,6 @@ class SelectNote(BaseSelector):
             (_('Tags'),    100, BaseSelector.TEXT, 4),
             (_('Last Change'), 150, BaseSelector.TEXT, 5),
             ]
-            
+
     def get_from_handle_func(self):
         return self.db.get_note_from_handle

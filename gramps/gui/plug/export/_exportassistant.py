@@ -83,56 +83,56 @@ _ExportAssistant_pages = {
 class ExportAssistant(Gtk.Assistant, ManagedWindow) :
     """
     This class creates a GTK assistant to guide the user through the various
-    Save as/Export options. 
-    
-    The overall goal is to keep things simple by presenting few choice options 
+    Save as/Export options.
+
+    The overall goal is to keep things simple by presenting few choice options
     on each assistant page.
-    
+
     The export formats and options are obtained from the plugins.
-    
+
     """
 
     #override predefined do_xxx signal handlers
     __gsignals__ = {"apply": "override", "cancel": "override",
                     "close": "override", "prepare": "override"}
-                    
+
     def __init__(self,dbstate,uistate):
         """
         Set up the assistant, and build all the possible assistant pages.
-         
+
         Some page elements are left empty, since their contents depends
         on the user choices and on the success of the attempted save.
-         
+
         """
         self.dbstate = dbstate
         self.uistate = uistate
-        
+
         self.writestarted = False
         self.confirm = None
 
         #set up Assistant
         Gtk.Assistant.__init__(self)
-        
+
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
         ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         #set_window is present in both parent classes
         ManagedWindow.set_window(self, self, None,
-            self.top_title, isWindow=True)        
+            self.top_title, isWindow=True)
 
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
-            
+
         person_handle = self.uistate.get_active('Person')
         self.person = self.dbstate.db.get_person_from_handle(person_handle)
         if not self.person:
             self.person = self.dbstate.db.find_initial_person()
-            
+
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
         self.map_exporters = {}
-        
+
         self.__previous_page = -1
 
         #create the assistant pages
@@ -143,25 +143,25 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.create_page_confirm()
         #no progress page, looks ugly, and user needs to hit forward at end!
         self.create_page_summary()
-        
+
         self.option_box_instance = None
         #we need our own forward function as options page must not always be shown
         self.set_forward_page_func(self.forward_func, None)
-        
+
         #ManagedWindow show method
         ManagedWindow.show(self)
 
     def build_menu_names(self, obj):
         """Override ManagedWindow method."""
         return (self.top_title, None)
-        
+
     def create_page_intro(self):
         """Create the introduction page."""
         label = Gtk.Label(label=self.get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
         label.set_max_width_chars(60)
-        
+
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
@@ -177,13 +177,13 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.set_page_title(page, _('Saving your data'))
         self.set_page_complete(page, True)
         self.set_page_type(page, Gtk.AssistantPageType.INTRO)
-    
+
     def create_page_exporttypes(self):
         """Create the export type page.
-        
+
             A Title label.
             A grid of format radio buttons and their descriptions.
-            
+
         """
         self.format_buttons = []
 
@@ -194,10 +194,10 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         grid = Gtk.Grid()
         grid.set_row_spacing(6)
         grid.set_column_spacing(6)
-        
+
         button = None
         recent_type = config.get('behavior.recent-export-type')
-        
+
         exporters = [(x.get_name().replace("_", ""), x) for x in self.__exporters]
         exporters.sort()
         ix = 0
@@ -212,35 +212,35 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             if ix == recent_type:
                 button.set_active(True)
             ix += 1
-        
+
         box.pack_start(grid, False, False, 0)
-        
+
         page = box
-        
+
         page.show_all()
 
         self.append_page(page)
         self.set_page_title(page, _('Choose the output format'))
-    
+
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
-        
-            
+
+
     def create_page_options(self):
         # as we do not know yet what to show, we create an empty page
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         page.set_border_width(12)
         page.set_spacing(12)
-        
+
         page.show_all()
 
         self.append_page(page)
         self.set_page_title(page, _('Export options'))
         self.set_page_complete(page, False)
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
-        
+
     def forward_func(self, pagenumber, data):
         """This function is called on forward press.
-        
+
             Normally, go to next page, however, before options,
             we decide if options to show
         """
@@ -248,17 +248,17 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             #decide if options need to be shown:
             self.option_box_instance = None
             ix = self.get_selected_format_index()
-            if not self.map_exporters[ix].get_config(): 
+            if not self.map_exporters[ix].get_config():
                 # no options needed
                 return pagenumber + 2
         elif pagenumber == _ExportAssistant_pages['options']:
             # need to check to see if we should show file selection
-            if (self.option_box_instance and 
+            if (self.option_box_instance and
                 hasattr(self.option_box_instance, "no_fileselect")):
                 # don't show fileselect, but mark it ok
                 return pagenumber + 2
         return pagenumber + 1
-        
+
     def create_options(self):
         """This method gets the option page, and fills it with the options."""
         option = self.get_selected_format_index()
@@ -272,13 +272,13 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             self.option_box_instance = config_box_class(self.person, self.dbstate, self.uistate)
             box = self.option_box_instance.get_option_box()
             vbox.add(box)
-        else: 
+        else:
             self.option_box_instance = None
         vbox.show_all()
-        
+
         # We silently assume all options lead to accepted behavior
         self.set_page_complete(vbox, True)
-        
+
     def create_page_fileselect(self):
         self.chooser = Gtk.FileChooserWidget(Gtk.FileChooserAction.SAVE)
         self.chooser.set_homogeneous(False) # Fix for bug #8350.
@@ -287,30 +287,30 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         #global files, ask before overwrite
         self.chooser.set_local_only(False)
         self.chooser.set_do_overwrite_confirmation(True)
-        
+
         #created, folder and name not set
         self.folder_is_set = False
-        
+
         #connect changes in filechooser with check to mark page complete
         self.chooser.connect("selection-changed", self.check_fileselect)
         self.chooser.connect("key-release-event", self.check_fileselect)
         #first selection does not give a selection-changed event, grab the button
         self.chooser.connect("button-release-event", self.check_fileselect)
-        #Note, we can induce an exotic error, delete filename, 
+        #Note, we can induce an exotic error, delete filename,
         #  do not release button, click forward. We expect user not to do this
         #  In case he does, recheck on confirmation page!
-        
+
         self.chooser.show_all()
         page = self.chooser
 
         self.append_page(page)
         self.set_page_title(page, _('Select save file'))
         self.set_page_type(page, Gtk.AssistantPageType.CONTENT)
-        
+
     def check_fileselect(self, filechooser, event=None, show=True):
-        """Given a filechooser, determine if it can be marked complete in 
+        """Given a filechooser, determine if it can be marked complete in
         the Assistant.
-        
+
         Used as normal callback and event callback. For callback, we will have
         show=True
         """
@@ -324,19 +324,19 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             else:
                 folder = find_folder(folder)
             #the file must be valid, not a folder, and folder must be valid
-            if (filename and os.path.basename(filename.strip()) and folder): 
+            if (filename and os.path.basename(filename.strip()) and folder):
                 #this page of the assistant is complete
-                self.set_page_complete(filechooser, True)            
+                self.set_page_complete(filechooser, True)
             else :
                 self.set_page_complete(filechooser, False)
-        
+
     def create_page_confirm(self):
         # Construct confirm page
         self.confirm = Gtk.Label()
         self.confirm.set_line_wrap(True)
         self.confirm.set_use_markup(True)
         self.confirm.show()
-        
+
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
@@ -351,7 +351,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.set_page_title(page, _('Final confirmation'))
         self.set_page_type(page, Gtk.AssistantPageType.CONFIRM)
         self.set_page_complete(page, True)
-           
+
     def create_page_summary(self):
         # Construct summary page
         # As this is the last page needs to be of page_type
@@ -368,13 +368,13 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.labelsum.set_line_wrap(True)
         self.labelsum.set_use_markup(True)
         vbox.pack_start(self.labelsum, False, False, 0)
-        
+
         self.progressbar = Gtk.ProgressBar()
         vbox.pack_start(self.progressbar, True, True, 0)
-        
+
         page = vbox
         page.show_all()
-        
+
         self.append_page(page)
         self.set_page_title(page, _('Summary'))
         self.set_page_complete(page, False)
@@ -394,11 +394,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
 
     def do_prepare(self, page):
         """
-        The "prepare" signal is emitted when a new page is set as the 
+        The "prepare" signal is emitted when a new page is set as the
         assistant's current page, but before making the new page visible.
-        
+
         :param page:   the new page to prepare for display.
-        
+
         """
         #determine if we go backward or forward
         page_number = self.get_current_page()
@@ -407,14 +407,14 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             back = True
         else :
             back = False
-        
+
         if back :
-            #when moving backward, show page as it was, 
-            #page we come from is set incomplete so as to disallow user jumping 
+            #when moving backward, show page as it was,
+            #page we come from is set incomplete so as to disallow user jumping
             # to last page after backward move
-            self.set_page_complete(self.get_nth_page(self.__previous_page), 
+            self.set_page_complete(self.get_nth_page(self.__previous_page),
                                     False)
-            
+
         elif page_number == _ExportAssistant_pages['options']:
             self.create_options()
             self.set_page_complete(page, True)
@@ -430,7 +430,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                 self.folder_is_set = True
             # see if page is complete with above
             self.check_fileselect(page, show=True)
-            
+
         elif self.get_page_type(page) ==  Gtk.AssistantPageType.CONFIRM:
             # The confirm page with apply button
             # Present user with what will happen
@@ -438,7 +438,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             format = self.map_exporters[ix].get_name()
             page_complete = False
             # If no file select:
-            if (self.option_box_instance and 
+            if (self.option_box_instance and
                 hasattr(self.option_box_instance, "no_fileselect")):
                 # No file selection
                 filename = ''
@@ -469,18 +469,18 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                         'The selected file and folder to save to '
                         'cannot be created or found.\n\n'
                         'Press Back to return and select a valid filename.'
-                        ) 
+                        )
                     page_complete = False
             # Set the page_complete status
             self.set_page_complete(page, page_complete)
             # If it is ok, then look for alternate confirm_text
             if (page_complete and
-                self.option_box_instance and 
+                self.option_box_instance and
                 hasattr(self.option_box_instance, "confirm_text")):
                 # Override message
                 confirm_text = self.option_box_instance.confirm_text
             self.confirm.set_label(confirm_text)
-                
+
         elif self.get_page_type(page) ==  Gtk.AssistantPageType.SUMMARY :
             # The summary page
             # Lock page, show progress bar
@@ -489,7 +489,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             success = self.save()
             # Unlock page
             self.post_save()
-            
+
             #update the label and title
             if success:
                 conclusion_title =  _('Your data has been saved')
@@ -520,7 +520,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
 
         #remember previous page for next time
         self.__previous_page = page_number
-        
+
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
         Gtk.Assistant.destroy(self)
@@ -538,12 +538,12 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                  'If you change your mind during this process, you '
                  'can safely press the Cancel button at any time and your '
                  'present database will still be intact.')
-             
+
     def get_selected_format_index(self):
         """
-        Query the format radiobuttons and return the index number of the 
+        Query the format radiobuttons and return the index number of the
         selected one.
-         
+
         """
         for ix in range(len(self.format_buttons)):
             button = self.format_buttons[ix]
@@ -551,12 +551,12 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                 return ix
         else:
             return 0
-        
+
     def suggest_filename(self):
         """Prepare suggested filename and set it in the file chooser."""
         ix = self.get_selected_format_index()
         ext = self.map_exporters[ix].get_extension()
-        
+
         # Suggested folder: try last export, then last import, then home.
         default_dir = config.get('paths.recent-export-dir')
         if len(default_dir)<=1:
@@ -571,17 +571,17 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         else:
             new_filename = get_new_filename(ext,default_dir)
         return (default_dir, os.path.split(new_filename)[1])
-    
+
     def save(self):
         """
         Perform the actual Save As/Export operation.
-         
+
         Depending on the success status, set the text for the final page.
-        
+
         """
         success = False
         try:
-            if (self.option_box_instance and 
+            if (self.option_box_instance and
                 hasattr(self.option_box_instance, "no_fileselect")):
                 filename = ""
             else:
@@ -599,14 +599,14 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             success = False
             log.error(_("Error exporting your Family Tree"), exc_info=True)
         return success
-    
+
     def pre_save(self,page):
         #as all is locked, show the page, which assistant normally only does
         # after prepare signal!
         self.writestarted = True
         page.set_child_visible(True)
         self.show_all()
-        
+
         self.uistate.set_busy_cursor(True)
         self.set_busy_cursor(1)
 
@@ -615,13 +615,13 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.set_busy_cursor(0)
         self.progressbar.hide()
         self.writestarted = False
-        
+
     def set_busy_cursor(self,value):
         """Set or unset the busy cursor while saving data.
-        
-            Note : self.get_window() is the Gtk.Assistant Gtk.Window, not 
+
+            Note : self.get_window() is the Gtk.Assistant Gtk.Window, not
                    a part of ManagedWindow
-                   
+
         """
         if value:
             self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
@@ -632,7 +632,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
 
         while Gtk.events_pending():
             Gtk.main_iteration()
-            
+
     def pulse_progressbar(self, value, text=None):
         self.progressbar.set_fraction(min(value/100.0, 1.0))
         if text:

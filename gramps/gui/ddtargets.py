@@ -42,7 +42,7 @@
    drag_dest_set(Gtk.DestDefaults.ALL,
                  DdTargets.all_targets(),
                  Gdk.DragAction.COPY)
-   
+
 """
 
 #-------------------------------------------------------------------------
@@ -58,10 +58,10 @@ from gi.repository import Gtk
 
 class _DdType:
     """Represents the fields needed by a drag and drop target."""
-    
+
     _APP_ID_OFFSET = 40  # Starting value of app_ids
-    
-    def __init__(self, container, drag_type, 
+
+    def __init__(self, container, drag_type,
                  target_flags=0, app_id=None):
         """Create a new DdType:
 
@@ -69,7 +69,7 @@ class _DdType:
         target_flags: int value that will be passed to drop target.
         app_id: integer target id passed to drop target.
         """
-        
+
         self.drag_type = drag_type
         self.atom_drag_type = Gdk.atom_intern(drag_type, False)
         self.target_flags = target_flags
@@ -78,14 +78,14 @@ class _DdType:
 
     def _calculate_id(self):
         """Return the next available app_id."""
-        
+
         idval = _DdType._APP_ID_OFFSET
         _DdType._APP_ID_OFFSET += 1
         return idval
 
     def target(self):
         """
-        Return the full target information in the format required by the 
+        Return the full target information in the format required by the
         Gtk functions.
         """
         return Gtk.TargetEntry.new(self.drag_type, self.target_flags,
@@ -107,23 +107,23 @@ class _DdType:
 
 class _DdTargets(object):
     """A single class that manages all the drag and drop targets."""
-    
+
     _instance = None # Singleton instance
 
     def __new__(cls):
         """Ensure that we never have more than one instance."""
-        
+
         if _DdTargets._instance:
             return _DdTargets._instance
         _DdTargets._instance = object.__new__(cls)
-        return _DdTargets._instance        
+        return _DdTargets._instance
 
     def __init__(self):
         """Set up the drag and drop targets."""
-        
+
         self._type_map = {}
         self._app_id_map = {}
-        
+
         self.ADDRESS            = _DdType(self, 'paddr')
         self.ATTRIBUTE          = _DdType(self, 'pattr')
         self.CHILDREF           = _DdType(self, 'childref')
@@ -159,35 +159,35 @@ class _DdTargets(object):
         # gramps widgets but should not be exported
         # to non gramps widgets.
         self._all_gramps_types = [
-            self.ADDRESS, 
-            self.ATTRIBUTE, 
-            self.CHILDREF, 
-            self.EVENT, 
-            self.EVENTREF, 
-            self.LOCATION, 
-            self.MEDIAOBJ, 
-            self.MEDIAREF, 
-            self.NAME, 
-            self.NOTE_LINK, 
-            self.PLACE_LINK, 
-            self.PLACEREF, 
+            self.ADDRESS,
+            self.ATTRIBUTE,
+            self.CHILDREF,
+            self.EVENT,
+            self.EVENTREF,
+            self.LOCATION,
+            self.MEDIAOBJ,
+            self.MEDIAREF,
+            self.NAME,
+            self.NOTE_LINK,
+            self.PLACE_LINK,
+            self.PLACEREF,
             self.PLACENAME,
-            self.PERSON_LINK, 
-            self.FAMILY_LINK, 
-            self.LINK_LIST, 
-            self.RAW_LIST, 
-            self.HANDLE_LIST, 
-            self.PERSONREF, 
-            self.REPO_LINK, 
-            self.REPOREF, 
-            self.SOURCEREF, 
-            self.SOURCE_LINK, 
-            self.SRCATTRIBUTE, 
-            self.URL, 
+            self.PERSON_LINK,
+            self.FAMILY_LINK,
+            self.LINK_LIST,
+            self.RAW_LIST,
+            self.HANDLE_LIST,
+            self.PERSONREF,
+            self.REPO_LINK,
+            self.REPOREF,
+            self.SOURCEREF,
+            self.SOURCE_LINK,
+            self.SRCATTRIBUTE,
+            self.URL,
             self.SURNAME,
             self.CITATION_LINK
         ]
-        
+
         self.CHILD         = _DdType(self, 'child')
         self.SPOUSE        = _DdType(self, 'spouse')
         self.TEXT_MIME     = _DdType(self, 'text/plain', 0, 0)
@@ -200,10 +200,10 @@ class _DdTargets(object):
 
         # List of all the text types. These are types
         # that can be interpreted as text.
-        self._all_text_types = (self.UTF8_STRING, 
-                                self.TEXT, 
-                                self.TEXT_MIME, 
-                                self.STRING, 
+        self._all_text_types = (self.UTF8_STRING,
+                                self.TEXT,
+                                self.TEXT_MIME,
+                                self.STRING,
                                 self.COMPOUND_TEXT)
 
     def insert(self, dd_type):
@@ -211,7 +211,7 @@ class _DdTargets(object):
         Add a target to the lookup lists. These lists are
         used purely for performance reasons.
         """
-        
+
         self._type_map[dd_type.drag_type] = dd_type
         self._app_id_map[dd_type.app_id] = dd_type
 
@@ -226,15 +226,15 @@ class _DdTargets(object):
 
     def all_text(self):
         return self._all_text_types
-        
+
     def all_text_types(self):
         """
         Return a list of all the type names that could be
         used as the type of a string.
         """
-        
+
         return tuple([t.drag_type for t in self._all_text_types])
-    
+
     def is_gramps_type(self, type_name):
         return type_name in self.all_gramps_types()
 
@@ -245,7 +245,7 @@ class _DdTargets(object):
 
     def all_text_targets(self):
         """Return a list of all the targets that could be used for text."""
-        
+
         return tuple([t.target() for t in self._all_text_types])
 
     def all_gramps_targets(self):

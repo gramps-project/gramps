@@ -57,8 +57,8 @@ from ...ddtargets import DdTargets
 #-------------------------------------------------------------------------
 class CitationEmbedList(EmbeddedList, DbGUIElement):
     """
-    Citation List display tab for edit dialogs. 
-    
+    Citation List display tab for edit dialogs.
+
     Derives from the EmbeddedList class.
     """
 
@@ -88,8 +88,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def __init__(self, dbstate, uistate, track, data, callertitle=None):
         self.data = data
         self.callertitle = callertitle
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("_Source Citations"), CitationRefModel, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _("_Source Citations"), CitationRefModel,
                               share_button=True, move_buttons=True)
         DbGUIElement.__init__(self, dbstate.db)
         self.callman.register_handles({'citation': self.data})
@@ -98,7 +98,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         """
         Implement base class DbGUIElement method
         """
-        #citation: citation-rebuild closes the editors, so no need to connect 
+        #citation: citation-rebuild closes the editors, so no need to connect
         # to it
         self.callman.register_callbacks(
            {'citation-delete': self.citation_delete,
@@ -111,7 +111,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         Return the stock-id icon name associated with the display tab
         """
         return 'gramps-source'
-        
+
     def get_data(self):
         """
         Return the data associated with display tab
@@ -126,11 +126,11 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
 
     def add_button_clicked(self, obj):
         """
-        Create a new Citation instance and call the EditCitation editor with 
-        the new citation. 
-        
-        Called when the Add button is clicked. 
-        If the window already exists (WindowActiveError), we ignore it. 
+        Create a new Citation instance and call the EditCitation editor with
+        the new citation.
+
+        Called when the Add button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
         This prevents the dialog from coming up twice on the same object.
         """
         try:
@@ -163,9 +163,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(object, Source):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track, 
-                                 Citation(), object, 
-                                 callback=self.add_callback, 
+                    EditCitation(self.dbstate, self.uistate, self.track,
+                                 Citation(), object,
+                                 callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
@@ -174,8 +174,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             elif isinstance(object, Citation):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track, 
-                                 object, callback=self.add_callback, 
+                    EditCitation(self.dbstate, self.uistate, self.track,
+                                 object, callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
@@ -183,7 +183,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                   self.__blocked_text())
             else:
                 raise ValueError("selection must be either source or citation")
-    
+
     def __blocked_text(self):
         """
         Return the common text used when citation cannot be edited
@@ -196,11 +196,11 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
 
     def edit_button_clicked(self, obj):
         """
-        Get the selected Citation instance and call the EditCitation editor 
-        with the citation. 
-        
-        Called when the Edit button is clicked. 
-        If the window already exists (WindowActiveError), we ignore it. 
+        Get the selected Citation instance and call the EditCitation editor
+        with the citation.
+
+        Called when the Edit button is clicked.
+        If the window already exists (WindowActiveError), we ignore it.
         This prevents the dialog from coming up twice on the same object.
         """
         handle = self.get_selected()
@@ -212,7 +212,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                              callertitle = self.callertitle)
             except WindowActiveError:
                 pass
-    
+
     def citation_delete(self, del_citation_handle_list):
         """
         Outside of this tab citation objects have been deleted. Check if tab
@@ -227,7 +227,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                 rebuild = True
         if rebuild:
             self.rebuild()
-                
+
     def citation_update(self, upd_citation_handle_list):
         """
         Outside of this tab citation objects have been updated. Check if tab
@@ -247,8 +247,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(object, Citation):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track, 
-                                 object, callback=self.add_callback, 
+                    EditCitation(self.dbstate, self.uistate, self.track,
+                                 object, callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
@@ -266,9 +266,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
             if isinstance(object, Source):
                 try:
                     from .. import EditCitation
-                    EditCitation(self.dbstate, self.uistate, self.track, 
-                                 Citation(), object, 
-                                 callback=self.add_callback, 
+                    EditCitation(self.dbstate, self.uistate, self.track,
+                                 Citation(), object,
+                                 callback=self.add_callback,
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog

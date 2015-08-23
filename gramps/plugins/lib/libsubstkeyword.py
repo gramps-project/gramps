@@ -297,10 +297,10 @@ class DateFormat(GenericFormat):
             return year(date.get_stop_year(), self.__count_chars("z", 4))
 
         def e_month():
-            return month(date.get_stop_month(), self.__count_chars("n", 4)) 
+            return month(date.get_stop_month(), self.__count_chars("n", 4))
 
         def eu_month():
-            return month(date.get_stop_month(), 
+            return month(date.get_stop_month(),
                     self.__count_chars("N", 4)).upper()
 
         def e_day():

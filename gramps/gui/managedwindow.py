@@ -109,7 +109,7 @@ class GrampsWindowManager(object):
         self.action_group = Gtk.ActionGroup(name='WindowManger')
         self.active = DISABLED
         self.ui = _win_top + _win_btm
-        
+
     def disable(self):
         """
         Remove the UI and action groups if the navigation is enabled
@@ -138,7 +138,7 @@ class GrampsWindowManager(object):
         # Find an item given its ID
         # Return None if the ID is not found
         return self.id2item.get(item_id, None)
-    
+
     def close_track(self, track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
@@ -180,7 +180,7 @@ class GrampsWindowManager(object):
         # We need the whole gymnastics below because our item
         # may actually be a list consisting of a single real
         # item and empty lists.
-        
+
         # find the track corresponding to the parent item
         parent_track = track[:-1]
         # find index of our item in parent
@@ -206,7 +206,7 @@ class GrampsWindowManager(object):
         # if the item is identifiable then we need to remember
         # its id so that in the future we recall this window
         # instead of spawning a new one
-        # So people can make as many windows of type item.window_id = None 
+        # So people can make as many windows of type item.window_id = None
         # Use this for add dialogs, where users may add as many values
         # simultaneously as they want.
         # Actually, we should do this away, as requiring at least id(obj)
@@ -272,13 +272,13 @@ class GrampsWindowManager(object):
                 else:
                     idval = self.generate_id(i)
                     data.write('<menuitem action="%s"/>'
-                               % self.generate_id(i))        
-                    action_data.append((idval, None, i.menu_label, 
+                               % self.generate_id(i))
+                    action_data.append((idval, None, i.menu_label,
                                         None, None,
                                         self.call_back_factory(i)))
         if isinstance(mlist, (list, tuple)):
             data.write('</menu>')
-        
+
     def build_windows_menu(self):
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
@@ -305,7 +305,7 @@ class GrampsWindowManager(object):
 class ManagedWindow(object):
     """
     Managed window base class.
-    
+
     This class provides all the goodies necessary for user-friendly window
     management in GRAMPS: registering the menu item under the Windows
     menu, keeping track of child windows, closing them on close/delete
@@ -314,11 +314,11 @@ class ManagedWindow(object):
     def __init__(self, uistate, track, obj):
         """
         Create child windows and add itself to menu, if not there already.
-        
-        
+
+
         The usage from derived classes is envisioned as follows:
-        
-        
+
+
         from .managedwindow import ManagedWindow
         class SomeWindowClass(ManagedWindow):
             def __init__(self,uistate,dbstate,track):
@@ -333,17 +333,17 @@ class ManagedWindow(object):
                                        menu_label)
                 # Proceed with the class.
                 ...
-                
+
         :param uistate:  gramps uistate
-        :param track:    {list of parent windows, [] if the main GRAMPS window 
+        :param track:    {list of parent windows, [] if the main GRAMPS window
                             is the parent}
-        :param obj:      The object that is used to id the managed window, 
+        :param obj:      The object that is used to id the managed window,
                             The inheriting object needs a method build_menu_names(self, obj)
                             which works on this obj and creates menu labels
                             for use in the Gramps Window Menu.
                             If self.submenu_label ='' then leaf, otherwise branch
-         
-                
+
+
         """
         window_key = self.build_window_key(obj)
         menu_label, submenu_label = self.build_menu_names(obj)
@@ -352,7 +352,7 @@ class ManagedWindow(object):
         self.width_key = None
         self.height_key = None
         self.__refs_for_deletion = []
-            
+
         if uistate and uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
             raise WindowActiveError('This window is already active')
@@ -392,18 +392,18 @@ class ManagedWindow(object):
     def set_window(self, window, title, text, msg=None, isWindow=False):
         """
         Set the window that is managed.
-        
+
         :param window:   if isWindow=False window must be a Gtk.Window() object, otherwise None
         :param title:    a label widget in which to write the title, None if not needed
         :param text:     text to use as title of window and in title param
         :param msg:      if not None, use msg as title of window instead of text
-        :param isWindow: {if isWindow than self is the window 
-                            (so self inherits from Gtk.Window and 
+        :param isWindow: {if isWindow than self is the window
+                            (so self inherits from Gtk.Window and
                             from ManagedWindow)
-                         if not isWindow, than window is the Window to manage, 
+                         if not isWindow, than window is the Window to manage,
                             and after this method self.window stores it.
                         }
-        
+
         """
         self.isWindow = isWindow
         self.msg = msg
@@ -415,7 +415,7 @@ class ManagedWindow(object):
             #closing the Gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect('delete-event', self.close)
-    
+
     def get_window(self):
         """
         Return the managed window.
@@ -436,7 +436,7 @@ class ManagedWindow(object):
 
     def build_window_key(self, obj):
         return id(obj)
-        
+
     def define_glade(self, top_module, glade_file=None):
         if glade_file is None:
             raise TypeError("ManagedWindow.define_glade: no glade file")
@@ -463,7 +463,7 @@ class ManagedWindow(object):
             self.set_transient_for(self.parent_window)
             self.opened = True
             self.show_all()
-            
+
         else :
             assert self.window, "ManagedWindow: self.window does not exist!"
             self.window.set_transient_for(self.parent_window)
@@ -471,17 +471,17 @@ class ManagedWindow(object):
             self.window.show_all()
 
     def  modal_call(self, after_ok_func=None):
-        """ 
+        """
             Method to do modal run of the ManagedWindow.
-            Connect the OK button to a method that checks if all is ok, 
+            Connect the OK button to a method that checks if all is ok,
                 Do not call close, close is called here.
                 (if not ok, do self.window.run() to obtain new response )
                 TODO: remove close here and do close in ReportDialog,
                       this can only be done, once all methods use modal_call()
                       instead of their own implementation
-            Connect Cancel to do close, delete event is connected to close 
+            Connect Cancel to do close, delete event is connected to close
                 here in ManagedWindow.
-            Do not generete RESPONSE_OK/CANCEL/DELETE_EVENT on button clicks 
+            Do not generete RESPONSE_OK/CANCEL/DELETE_EVENT on button clicks
             of other buttons
             after_ok_func is called on ok click in this method
         """
@@ -557,7 +557,7 @@ class ManagedWindow(object):
         If the object is a Gramps widget then it should have a clean_up method
         which can be called that removes any other GTK object it contains.
         """
-        while len(self.__refs_for_deletion): 
+        while len(self.__refs_for_deletion):
             attr = self.__refs_for_deletion.pop()
             obj = getattr(self, attr)
             if hasattr(obj, 'clean_up'):

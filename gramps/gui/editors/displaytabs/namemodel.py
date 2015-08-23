@@ -62,9 +62,9 @@ class NameModel(Gtk.TreeStore):
     DEFNAME = _('Preferred name')
     ALTINDEX = 1
     ALTNAME = _('Alternative names')
-    
+
     _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
-    
+
     COL_NAME = (0, str)
     COL_TYPE = (1, str)
     COL_DATA = (2, object)
@@ -73,14 +73,14 @@ class NameModel(Gtk.TreeStore):
     COL_HASSOURCE = (5, str)
     COL_NOTEPREVIEW = (6, str)
     COL_PRIVATE = (7, bool)
-    
+
     COLS = (COL_NAME, COL_TYPE, COL_DATA, COL_FONTWEIGHT, COL_GROUPAS,
             COL_HASSOURCE, COL_NOTEPREVIEW, COL_PRIVATE)
 
     def __init__(self, obj_list, db, groups):
         """
         @param obj_list: A list of lists, every entry is a group, the entries
-            in a group are the data that needs to be shown subordinate to the 
+            in a group are the data that needs to be shown subordinate to the
             group
         @param db: a database objects that can be used to obtain info
         @param groups: a list of (key, name) tuples. key is a key for the group
@@ -101,12 +101,12 @@ class NameModel(Gtk.TreeStore):
 
     def row(self, index, name):
         """
-        Returns the row of the model in group index, and name as a 
+        Returns the row of the model in group index, and name as a
         list
         """
-        return [name_displayer.display_name(name), 
+        return [name_displayer.display_name(name),
                 str(name.get_type()),
-                (index, name), 
+                (index, name),
                 self.colweight(index),
                 name.get_group_as(),
                 self.hassource(name),
@@ -124,14 +124,14 @@ class NameModel(Gtk.TreeStore):
             return self.DEFNAME
         return self._GROUPSTRING % {'groupname': self.ALTNAME,
                                     'groupnumber': length}
-    
+
     def update_defname(self, defname):
         """
         callback if change to the preferred name happens
         """
         #default name is path (0,0)
         self.remove(self.get_iter((self.DEFINDEX, 0)))
-        self.insert(self.get_iter(self.DEFINDEX), 0, 
+        self.insert(self.get_iter(self.DEFINDEX), 0,
                     row=self.row(self.DEFINDEX, defname))
 
     def hassource(self, name):

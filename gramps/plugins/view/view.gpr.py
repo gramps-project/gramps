@@ -22,7 +22,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
@@ -30,7 +30,7 @@ MODULE_VERSION="5.0"
 #
 #------------------------------------------------------------------------
 
-register(VIEW, 
+register(VIEW,
 id    = 'eventview',
 name  = _("Events"),
 description =  _("The view showing all the events"),
@@ -45,7 +45,7 @@ viewclass = 'EventView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'familyview',
 name  = _("Families"),
 description =  _("The view showing all families"),
@@ -60,7 +60,7 @@ viewclass = 'FamilyView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'dashboardview',
 name  = _("Dashboard"),
 description =  _("The view showing Gramplets"),
@@ -75,7 +75,7 @@ viewclass = 'DashboardView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'mediaview',
 name  = _("Media"),
 description =  _("The view showing all the media objects"),
@@ -90,7 +90,7 @@ viewclass = 'MediaView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'noteview',
 name  = _("Notes"),
 description =  _("The view showing all the notes"),
@@ -105,7 +105,7 @@ viewclass = 'NoteView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'relview',
 name  = _("Relationships"),
 description =  _("The view showing all relationships of the selected person"),
@@ -120,7 +120,7 @@ viewclass = 'RelationshipView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'pedigreeview',
 name  = _("Pedigree"),
 description =  _("The view showing an ancestor pedigree of the selected person"),
@@ -136,7 +136,7 @@ order = START,
 stock_icon = 'gramps-pedigree',
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'fanchartview',
 name  = _("Fan Chart"),
 category = ("Ancestry", _("Charts")),
@@ -151,7 +151,7 @@ viewclass = 'FanChartView',
 stock_icon = 'gramps-fanchart',
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'fanchartdescview',
 name  = _("Descendant Fan"),
 category = ("Ancestry", _("Charts")),
@@ -166,7 +166,7 @@ viewclass = 'FanChartDescView',
 stock_icon = 'gramps-fanchartdesc',
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'personview',
 name  = _("Grouped People"),
 description =  _("The view showing all people in the Family Tree grouped per"
@@ -183,7 +183,7 @@ order = START,
 stock_icon = 'gramps-tree-group',
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'personlistview',
 name  = _("People"),
 description =  _("The view showing all people in the Family Tree"
@@ -198,8 +198,8 @@ category = ("People", _("People")),
 viewclass = 'PersonListView',
 stock_icon = 'gramps-tree-list',
   )
-  
-register(VIEW, 
+
+register(VIEW,
 id    = 'placelistview',
 name  = _("Places"),
 description =  _("The view showing all the places of the Family Tree"),
@@ -214,7 +214,7 @@ viewclass = 'PlaceListView',
 stock_icon = 'gramps-tree-list',
   )
 
-register(VIEW, 
+register(VIEW,
 id = 'placetreeview',
 name = _("Place Tree"),
 description =  _("A view displaying places in a tree format."),
@@ -230,7 +230,7 @@ stock_icon = 'gramps-tree-group',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'repoview',
 name  = _("Repositories"),
 description =  _("The view showing all the repositories"),
@@ -245,7 +245,7 @@ viewclass = 'RepositoryView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'sourceview',
 name  = _("Sources"),
 description =  _("The view showing all the sources"),
@@ -261,7 +261,7 @@ order = START,
 stock_icon = 'gramps-tree-list',
   )
 
-register(VIEW, 
+register(VIEW,
 id    = 'citationlistview',
 name  = _("Citations"),
 description =  _("The view showing all the citations"),
@@ -276,7 +276,7 @@ viewclass = 'CitationListView',
 order = START,
   )
 
-register(VIEW, 
+register(VIEW,
 id = 'citationtreeview',
 name = _("Citation Tree"),
 description =  _("A view displaying citations and sources in a tree format."),

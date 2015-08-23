@@ -76,7 +76,7 @@ class SimpleTable(object):
         """
         Add a row of data to sort by.
         """
-        self._sort_vals[col].append(val) 
+        self._sort_vals[col].append(val)
 
     def set_link_col(self, col):
         """
@@ -90,7 +90,7 @@ class SimpleTable(object):
         Add a row of data.
         """
         link = kwargs.get("link", None)
-        retval = [] 
+        retval = []
         row = len(self._rows)
         self._raw_data.append([])
         for col in range(len(data)):
@@ -100,7 +100,7 @@ class SimpleTable(object):
             if item is None:
                 retval.append("")
             elif isinstance(item, str):
-                if item == "checkbox": 
+                if item == "checkbox":
                     retval.append(False)
                     self.set_cell_type(col, "checkbox")
                 else:
@@ -115,15 +115,15 @@ class SimpleTable(object):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Person', item.handle)
-            elif isinstance(item, Family): 
+            elif isinstance(item, Family):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Family', item.handle)
-            elif isinstance(item, Citation): 
+            elif isinstance(item, Citation):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Citation', item.handle)
-            elif isinstance(item, Source): 
+            elif isinstance(item, Source):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Source', item.handle)
@@ -152,7 +152,7 @@ class SimpleTable(object):
                 retval.append(text)
                 if item.get_valid():
                     if item.format:
-                        self.set_cell_markup(col, row, 
+                        self.set_cell_markup(col, row,
                                              item.format % escape(text))
                     self.row_sort_val(col, item.sortval)
                 else:
@@ -202,7 +202,7 @@ class SimpleTable(object):
         doc._tbl.set_columns(columns)
         if self.title:
             doc.start_row()
-            doc.start_cell('TableHead', span=columns) 
+            doc.start_cell('TableHead', span=columns)
             doc.start_paragraph('TableTitle')
             doc.write_text(_(self.title))
             doc.end_paragraph()
@@ -212,7 +212,7 @@ class SimpleTable(object):
             self._sort()
         doc.start_row()
         for col in self._columns:
-            doc.start_cell('TableHeaderCell', span=1) 
+            doc.start_cell('TableHeaderCell', span=1)
             doc.write_text(col, 'TableTitle')
             doc.end_cell()
         doc.end_row()
@@ -220,7 +220,7 @@ class SimpleTable(object):
         for row in self._rows:
             doc.start_row()
             for col in row:
-                doc.start_cell('TableDataCell', span=1) 
+                doc.start_cell('TableDataCell', span=1)
                 obj_type, handle = None, None
                 if hasattr(col, "get_url"):
                     obj_type, handle = "URL", col.get_url()
@@ -236,7 +236,7 @@ class SimpleTable(object):
                         if handle:
                             doc.start_link(handle)
                     else:
-                        doc.start_link("/%s/%s" % 
+                        doc.start_link("/%s/%s" %
                                        (obj_type.lower(), handle))
                 doc.write_text(str(col), 'Normal')
                 if obj_type and handle:
@@ -251,19 +251,19 @@ class SimpleTable(object):
     def get_cell_markup(self, x, y=None, data=None):
         """
         See if a column has formatting (if x and y are supplied) or
-        see if a cell has formatting. If it does, return the formatted 
+        see if a cell has formatting. If it does, return the formatted
         string, otherwise return data that is escaped (if that column
         has formatting), or just the plain data.
         """
         if x in self._cell_markup:
-            if y is None: 
+            if y is None:
                 return True # markup for this column
             elif y in self._cell_markup[x]:
                 return self._cell_markup[x][y]
             else:
                 return escape(data)
         else:
-            if y is None: 
+            if y is None:
                 return False # no markup for this column
             else:
                 return data

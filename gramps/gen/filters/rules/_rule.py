@@ -64,11 +64,11 @@ class Rule(object):
 
     def is_empty(self):
         return False
-    
+
     def requestprepare(self, dbase):
         """
         Request that the prepare method of the rule is executed if needed
-        
+
         Special: Custom Filters have fixed values, so only one instance needs to
         exists during a search. It is stored in a FilterStore, and initialized
         once.
@@ -98,7 +98,7 @@ class Rule(object):
     def requestreset(self):
         """
         Request that the reset method of the rule is executed if possible
-        
+
         Special: Custom Filters have fixed values, so only one instance needs to
         exists during a search. It is stored in a FilterStore, and initialized
         once.
@@ -113,7 +113,7 @@ class Rule(object):
     def reset(self):
         """remove no longer needed memory"""
         pass
- 
+
     def set_list(self, arg):
         """Store the values of this rule."""
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
@@ -126,7 +126,7 @@ class Rule(object):
     def values(self):
         """Return the values used by this rule."""
         return self.list
-    
+
     def check(self):
         """Verify the number of rule values versus the number of rule labels."""
         return len(self.list) == len(self.labels)

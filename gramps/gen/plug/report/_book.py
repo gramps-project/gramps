@@ -21,7 +21,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# Written by Alex Roitman, 
+# Written by Alex Roitman,
 # largely based on the BaseDoc classes by Don Allingham
 
 #-------------------------------------------------------------------------
@@ -85,8 +85,8 @@ class BookItem(object):
     def __init__(self, dbase, name):
         """
         Create a new empty BookItem.
-        
-        name:   the book item is retrieved 
+
+        name:   the book item is retrieved
                 from the book item registry using name for lookup
         """
         self.dbase = dbase
@@ -134,7 +134,7 @@ class BookItem(object):
     def set_style_name(self, style_name):
         """
         Set the style name for the item.
-        
+
         style_name: name of the style to set.
         """
         self.style_name = style_name
@@ -176,11 +176,11 @@ class Book(object):
             self.item_list = obj.item_list
         else:
             self.item_list = []
-        
+
     def set_name(self, name):
         """
         Set the name of the book.
-        
+
         name:   the name to set.
         """
         self.name = name
@@ -214,7 +214,7 @@ class Book(object):
     def append_item(self, item):
         """
         Add an item to the book.
-        
+
         item:   an item to append.
         """
         self.item_list.append(item)
@@ -222,8 +222,8 @@ class Book(object):
     def insert_item(self, index, item):
         """
         Inserts an item into the given position in the book.
-        
-        index:  a position index. 
+
+        index:  a position index.
         item:   an item to append.
         """
         self.item_list.insert(index, item)
@@ -231,24 +231,24 @@ class Book(object):
     def pop_item(self, index):
         """
         Pop an item from given position in the book.
-        
-        index:  a position index. 
+
+        index:  a position index.
         """
         return self.item_list.pop(index)
 
     def get_item(self, index):
         """
         Return an item at a given position in the book.
-        
-        index:  a position index. 
+
+        index:  a position index.
         """
         return self.item_list[index]
 
     def set_item(self, index, item):
         """
         Set an item at a given position in the book.
-        
-        index:  a position index. 
+
+        index:  a position index.
         item:   an item to set.
         """
         self.item_list[index] = item
@@ -400,14 +400,14 @@ class Book(object):
 #------------------------------------------------------------------------
 class BookList(object):
     """
-    Interface into the user-defined list of books.  
+    Interface into the user-defined list of books.
 
     BookList is loaded from a specified XML file if it exists.
     """
 
     def __init__(self, filename, dbase):
         """
-        Create a new BookList from the books that may be defined in the 
+        Create a new BookList from the books that may be defined in the
         specified file.
 
         file:   XML file that contains book items definitions
@@ -416,7 +416,7 @@ class BookList(object):
         self.bookmap = {}
         self.file = os.path.join(HOME_DIR, filename)
         self.parse()
-    
+
     def delete_book(self, name):
         """
         Remove a book from the list. Since each book must have a
@@ -446,7 +446,7 @@ class BookList(object):
 
     def set_book(self, name, book):
         """
-        Add or replaces a Book in the BookList. 
+        Add or replaces a Book in the BookList.
 
         name:   name associated with the Book to add or replace.
         book:   definition of the Book
@@ -465,7 +465,7 @@ class BookList(object):
             dbname = book.get_dbname()
             f.write('<book name="%s" database="%s">\n' % (name, dbname) )
             for item in book.get_item_list():
-                f.write('  <item name="%s" trans_name="%s">\n' % 
+                f.write('  <item name="%s" trans_name="%s">\n' %
                             (item.get_name(),item.get_translated_name() ) )
                 options = item.option_class.handler.options_dict
                 for option_name in sorted(options.keys()): # enable a diff
@@ -500,7 +500,7 @@ class BookList(object):
             if book.get_paper_name():
                 f.write('  <paper name="%s"/>\n' % book.get_paper_name() )
             if book.get_orientation() is not None: # 0 is legal
-                f.write('  <orientation value="%s"/>\n' % 
+                f.write('  <orientation value="%s"/>\n' %
                         book.get_orientation() )
             if book.get_paper_metric() is not None: # 0 is legal
                 f.write('  <metric value="%s"/>\n' % book.get_paper_metric() )
@@ -519,7 +519,7 @@ class BookList(object):
 
         f.write('</booklist>\n')
         f.close()
-        
+
     def parse(self):
         """
         Loads the BookList from the associated file, if it exists.
@@ -544,7 +544,7 @@ class BookParser(handler.ContentHandler):
     """
     SAX parsing class for the Books XML file.
     """
-    
+
     def __init__(self, booklist, dbase):
         """
         Create a BookParser class that populates the passed booklist.
@@ -562,7 +562,7 @@ class BookParser(handler.ContentHandler):
         self.s = None
         self.bname = None
         self.iname = None
-        
+
     def startElement(self, tag, attrs):
         """
         Overridden class that handles the start of a XML element
@@ -667,7 +667,7 @@ def append_styles(selected_style, item):
 
     for this_style_name in style_sheet.get_paragraph_style_names():
         selected_style.add_paragraph_style(
-                this_style_name, 
+                this_style_name,
                 style_sheet.get_paragraph_style(this_style_name))
 
     for this_style_name in style_sheet.get_draw_style_names():

@@ -96,8 +96,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
   <toolitem action="HomePerson"/>
 </placeholder>
 <placeholder name="CommonEdit">
@@ -140,7 +140,7 @@ class GeoMoves(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _("Descendance of the active person."),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       PersonBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -174,11 +174,11 @@ class GeoMoves(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-family'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -261,7 +261,7 @@ class GeoMoves(GeoGraphyView):
 
     def _createmap_for_one_person(self, person, color):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         self.place_list = []
@@ -447,7 +447,7 @@ class GeoMoves(GeoGraphyView):
 
     def _createmap(self, person):
         """
-        Create all markers for each family's person in the database which has 
+        Create all markers for each family's person in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
@@ -491,7 +491,7 @@ class GeoMoves(GeoGraphyView):
                 plxp = self.dbstate.db.get_person_from_gramps_id(plx)
                 birth = "0000"
                 death = "0000"
-                low_date = "9999" 
+                low_date = "9999"
                 high_date = "0000"
                 for event_ref in plxp.get_event_ref_list():
                     if not event_ref:
@@ -614,10 +614,10 @@ class GeoMoves(GeoGraphyView):
                        None, event.button, event.time)
         return 1
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         return
 
     def get_default_gramplets(self):
@@ -640,14 +640,14 @@ class GeoMoves(GeoGraphyView):
                 _('The maximum number of generations.\n'),
                 1, line_wrap=False)
         configdialog.add_slider(grid,
-                "", 
+                "",
                 2, 'geography.maximum_generations',
                 (1, 20))
         configdialog.add_text(grid,
                 _('Time in milliseconds between drawing two generations.\n'),
                 3, line_wrap=False)
         configdialog.add_slider(grid,
-                "", 
+                "",
                 4, 'geography.generation_interval',
                 (500, 3000))
         return _('The parameters for moves'), grid

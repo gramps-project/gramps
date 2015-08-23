@@ -44,7 +44,7 @@ class MatchesPersonFilter(MatchesFilterBase):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
-    
+
     """
 
     labels      = [_('Person filter name:'), _('Include Family events:')]
@@ -52,13 +52,13 @@ class MatchesPersonFilter(MatchesFilterBase):
     description = _("Matches events of persons matched by the specified "
                     "person filter name")
     category    = _('General filters')
-    
+
     # we want to have this filter show person filters
     namespace   = 'Person'
-    
+
     def prepare(self, db):
         MatchesFilterBase.prepare(self, db)
-        
+
         try :
             if int(self.list[1]):
                 self.MPF_famevents = True
@@ -80,11 +80,11 @@ class MatchesPersonFilter(MatchesFilterBase):
                 for (classname, handle) in db.find_backlink_handles(
                                             event.get_handle(), ['Family']):
                     family = db.get_family_from_handle(handle)
-                    if family.father_handle and filt.check(db, 
+                    if family.father_handle and filt.check(db,
                                                     family.father_handle) :
                         return True
-                    if family.mother_handle and filt.check(db, 
+                    if family.mother_handle and filt.check(db,
                                                     family.mother_handle) :
                         return True
-           
+
         return False

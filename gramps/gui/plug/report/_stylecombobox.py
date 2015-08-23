@@ -45,7 +45,7 @@ class StyleComboBox(Gtk.ComboBox):
         cell = Gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
-        
+
     def set(self,style_map,default):
         """
         Set the options for the ComboBox, using the passed style
@@ -68,7 +68,7 @@ class StyleComboBox(Gtk.ComboBox):
                 self.store.append(row=[key])
             if key == default:
                 start_index = index
-            
+
         self.set_active(start_index)
 
     def get_value(self):

@@ -24,7 +24,7 @@ from gramps.webapp.utils import _, boolean, update_last_changed, build_search
 from gramps.webapp.grampsdb.models import Media
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.libdjango import DjangoInterface
-from gramps.gen.config import config 
+from gramps.gen.config import config
 
 ## Django Modules
 from django.shortcuts import get_object_or_404, render_to_response, redirect
@@ -49,7 +49,7 @@ dji = DjangoInterface()
 def pb2image(pb):
     width, height = pb.get_width(), pb.get_height()
     return Image.fromstring("RGB", (width,height), pb.get_pixels())
- 
+
 def process_media(request, context, handle, act, add_to=None): # view, edit, save
     """
     Process act on person. Can return a redirect.
@@ -58,7 +58,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
     context["tviews"] = _("Media")
     context["action"] = "view"
     view_template = "view_media_detail.html"
-    
+
     if handle == "add":
         act = "add"
     if "action" in request.POST:
@@ -67,24 +67,24 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
     # Handle: edit, view, add, create, save, delete, share, save-share
     if act == "share":
         item, handle = add_to
-        context["pickform"] = PickForm("Pick media", 
-                                       Media, 
+        context["pickform"] = PickForm("Pick media",
+                                       Media,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = item
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick media", 
-                            Media, 
+        item, handle = add_to
+        pickform = PickForm("Pick media",
+                            Media,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             parent_model = dji.get_model(item) # what model?
             parent_obj = parent_model.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Media.objects.get(handle=ref_handle) 
+            ref_obj = Media.objects.get(handle=ref_handle)
             dji.add_media_ref_default(parent_obj, ref_obj)
             parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-media" % (item, handle, build_search(request)))
@@ -154,11 +154,11 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
         media = Media(gramps_id=dji.get_next_id(Media, "M"))
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(instance=media)
         mediaform.model = media
-    elif act == "save": 
+    elif act == "save":
         media = Media.objects.get(handle=handle)
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
@@ -168,7 +168,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         media = Media(handle=create_id())
         mediaform = MediaForm(request.POST, instance=media)
         mediaform.model = media
@@ -188,7 +188,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         media = Media.objects.get(handle=handle)
         media.delete()
         return redirect("/media/")
@@ -199,5 +199,5 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
     context["object"] = media
     context["media"] = media
     context["action"] = act
-    
+
     return render_to_response(view_template, context)

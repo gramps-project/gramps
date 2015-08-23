@@ -49,7 +49,7 @@ class MatchesFilterBase(Rule):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
-    
+
     """
     labels      = [_('Filter name:')]
     name        = 'Objects matching the <filter>'
@@ -67,7 +67,7 @@ class MatchesFilterBase(Rule):
                 LOG.warning(_("Can't find filter %s in the defined custom filters")
                                     % self.list[0])
         else:
-            LOG.warning(_("Can't find filter %s in the defined custom filters") 
+            LOG.warning(_("Can't find filter %s in the defined custom filters")
                                     % self.list[0])
 
     def reset(self):
@@ -85,7 +85,7 @@ class MatchesFilterBase(Rule):
                 filt = filters[self.list[0]]
                 return filt.check(db, obj.handle)
         return False
-    
+
     def find_filter(self):
         """
         Return the selected filter or None.

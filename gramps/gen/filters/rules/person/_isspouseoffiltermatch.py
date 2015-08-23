@@ -51,12 +51,12 @@ class IsSpouseOfFilterMatch(Rule):
     def prepare(self,db):
         self.filt = MatchesFilter (self.list)
         self.filt.requestprepare(db)
-        
+
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list ():
             family = db.get_family_from_handle(family_handle)
             if family:
-                for spouse_id in [family.get_father_handle(), 
+                for spouse_id in [family.get_father_handle(),
                                   family.get_mother_handle()]:
                     if not spouse_id:
                         continue

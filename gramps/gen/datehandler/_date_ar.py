@@ -57,13 +57,13 @@ class DateParserAR(DateParser):
         'قبل'    : Date.MOD_BEFORE,
         'قبل.'   : Date.MOD_BEFORE,
         'بعد'  : Date.MOD_AFTER,
-        'بعد'    : Date.MOD_AFTER, 
+        'بعد'    : Date.MOD_AFTER,
         'بعد.'   : Date.MOD_AFTER,
-        'حوالي'  : Date.MOD_ABOUT, 
-        'حوالي.'   : Date.MOD_ABOUT,
-        'حوالي'    : Date.MOD_ABOUT, 
         'حوالي'  : Date.MOD_ABOUT,
-        'حوالي.'     : Date.MOD_ABOUT, 
+        'حوالي.'   : Date.MOD_ABOUT,
+        'حوالي'    : Date.MOD_ABOUT,
+        'حوالي'  : Date.MOD_ABOUT,
+        'حوالي.'     : Date.MOD_ABOUT,
         'حوالي' : Date.MOD_ABOUT,
         }
 
@@ -100,11 +100,11 @@ class DateParserAR(DateParser):
         'فرنسي جمهوري': Date.CAL_FRENCH,
         'فرنسي'                : Date.CAL_FRENCH,
         'فارسي'          : Date.CAL_PERSIAN,
-        'فارسي'                : Date.CAL_PERSIAN, 
+        'فارسي'                : Date.CAL_PERSIAN,
         'سويدي'          : Date.CAL_SWEDISH,
         'سويدي'                : Date.CAL_SWEDISH,
         }
-    
+
     quality_to_int = {
         'متوقع'  : Date.QUAL_ESTIMATED,
         'متوقع.'       : Date.QUAL_ESTIMATED,
@@ -113,7 +113,7 @@ class DateParserAR(DateParser):
         'محسوب'       : Date.QUAL_CALCULATED,
         'محسوب' : Date.QUAL_CALCULATED,
         }
-    
+
     def init_strings(self):
         """
         This method compiles regular expression strings for matching dates.
@@ -137,40 +137,40 @@ class DateParserAR(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayAR(DateDisplay):
     """
-    Arabic language date display class. 
+    Arabic language date display class.
     """
     # this is used to display the 12 gregorian months
-    long_months = ( "", "كانون الثاني", "شباط", "آذار", "نيسان", "أيار", 
-                    "حزيران", "تموز", "آب", "أيلول", "تشرين الأول", 
+    long_months = ( "", "كانون الثاني", "شباط", "آذار", "نيسان", "أيار",
+                    "حزيران", "تموز", "آب", "أيلول", "تشرين الأول",
                     "تشرين الثاني", "كانون الأول" )
-    
+
     short_months = ( "", "كانون2", "شباط", "آذار", "نيسان", "أيار", "حزيران",
                      "تموز", "آب", "أيلول", "تشرين1", "تشرين2", "كانون1" )
 
     islamic = (
-        "", "محرّم", "صفر", "ربيع الأول", "ربيع الثاني", 
-        "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", 
+        "", "محرّم", "صفر", "ربيع الأول", "ربيع الثاني",
+        "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان",
         "رمضان", "شوال", "ذو القعدة", "ذو الحجة"
         )
 
     formats = (
-        "YYYY-MM-DD (قياسي)", "عددي", "شهر يوم, سنة", 
+        "YYYY-MM-DD (قياسي)", "عددي", "شهر يوم, سنة",
         "شهر يوم, سنة", "يوم شهر سنة", "يوم شهر سنة"
         )
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
-    
+
     calendar = (
-        "", "يوليوسي", "عبري", "فرنسي", 
-        "فارسي", "إسلامي", "سويدي" 
+        "", "يوليوسي", "عبري", "فرنسي",
+        "فارسي", "إسلامي", "سويدي"
         )
-    
+
     _mod_str = ("", "قبل ", "بعد ", "حوالي ", "", "", "")
 
     _qual_str = ("", "متوقع ", "محسوب ")
-    
+
     _bce_str = "%s قبل الميلاد."
-    
+
     def display(self, date):
         """
         Return a text string representing the date.
@@ -182,7 +182,7 @@ class DateDisplayAR(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -207,5 +207,5 @@ class DateDisplayAR(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('ar_AR', 'ar', 'Arabic', 'arabic'), 
+register_datehandler(('ar_AR', 'ar', 'Arabic', 'arabic'),
     DateParserAR, DateDisplayAR)

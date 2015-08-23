@@ -43,7 +43,7 @@ from ...selectors import SelectorFactory
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class PlaceRefEmbedList(EmbeddedList):
@@ -51,21 +51,21 @@ class PlaceRefEmbedList(EmbeddedList):
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.PLACEREF
     _DND_EXTRA  = DdTargets.PLACE_LINK
-    
+
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),   0, 75, TEXT_COL, -1, None), 
-        (_('Name'), 1, 250, TEXT_COL, -1, None), 
-        (_('Type'), 2, 100, TEXT_COL, -1, None), 
-        (_('Date'), 3, 150, TEXT_COL, -1, None), 
+        (_('ID'),   0, 75, TEXT_COL, -1, None),
+        (_('Name'), 1, 250, TEXT_COL, -1, None),
+        (_('Type'), 2, 100, TEXT_COL, -1, None),
+        (_('Date'), 3, 150, TEXT_COL, -1, None),
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data, handle, callback):
         self.data = data
         self.handle = handle
         self.callback = callback
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Enclosed By'), PlaceRefModel,
                               share_button=True, move_buttons=True)
 
@@ -92,7 +92,7 @@ class PlaceRefEmbedList(EmbeddedList):
         place = Place()
         try:
             from .. import EditPlaceRef
-            EditPlaceRef(self.dbstate, self.uistate, self.track, 
+            EditPlaceRef(self.dbstate, self.uistate, self.track,
                          place, ref, self.add_callback)
         except WindowActiveError:
             pass
@@ -125,7 +125,7 @@ class PlaceRefEmbedList(EmbeddedList):
             place = self.dbstate.db.get_place_from_handle(ref.ref)
             try:
                 from .. import EditPlaceRef
-                EditPlaceRef(self.dbstate, self.uistate, self.track, 
+                EditPlaceRef(self.dbstate, self.uistate, self.track,
                              place, ref, self.edit_callback)
             except WindowActiveError:
                 pass

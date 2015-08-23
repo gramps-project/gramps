@@ -66,7 +66,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 class SourceView(ListView):
-    """ sources listview class 
+    """ sources listview class
     """
     COL_TITLE = 0
     COL_ID = 1
@@ -76,7 +76,7 @@ class SourceView(ListView):
     COL_PRIV = 5
     COL_TAGS = 6
     COL_CHAN = 7
-    
+
     # column definitions
     COLUMNS = [
         (_('Title'), TEXT, None),
@@ -94,7 +94,7 @@ class SourceView(ListView):
         ('columns.rank', [COL_TITLE, COL_ID, COL_AUTH, COL_ABBR, COL_PINFO,
                           COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [200, 75, 150, 100, 150, 40, 100, 100])
-        )    
+        )
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
@@ -112,7 +112,7 @@ class SourceView(ListView):
             }
 
         ListView.__init__(
-            self, _('Sources'), pdata, dbstate, uistate, 
+            self, _('Sources'), pdata, dbstate, uistate,
             SourceModel, signal_map,
             SourceBookmarks, nav_group,
             multiple=True,
@@ -130,7 +130,7 @@ class SourceView(ListView):
 
     def drag_info(self):
         return DdTargets.SOURCE_LINK
-    
+
     def define_actions(self):
         ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Source Filter Editor'),
@@ -173,8 +173,8 @@ class SourceView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -204,7 +204,7 @@ class SourceView(ListView):
 
     def remove_object_from_handle(self, handle):
         the_lists = get_source_and_citation_referents(handle, self.dbstate.db)
-        LOG.debug('the_lists %s' % [the_lists])    
+        LOG.debug('the_lists %s' % [the_lists])
 
         object = self.dbstate.db.get_source_from_handle(handle)
         query = DeleteSrcQuery(self.dbstate, self.uistate, object, the_lists)
@@ -224,7 +224,7 @@ class SourceView(ListView):
         Merge the selected sources.
         """
         mlist = self.selected_handles()
-        
+
         if len(mlist) != 2:
             msg = _("Cannot merge sources.")
             msg2 = _("Exactly two sources must be selected to perform a merge. "
@@ -260,7 +260,7 @@ class SourceView(ListView):
         source = self.dbstate.db.get_source_from_handle(source_handle)
         source.add_tag(tag_handle)
         self.dbstate.db.commit_source(source, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

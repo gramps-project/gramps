@@ -68,14 +68,14 @@ class Surname(SecondaryObject):
         """
         Convert the object to a serialized tuple of data.
         """
-        return (self.surname, self.prefix, self.primary, 
+        return (self.surname, self.prefix, self.primary,
                 self.origintype.serialize(), self.connector)
 
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -92,10 +92,10 @@ class Surname(SecondaryObject):
         :rtype: dict
         """
         return {"_class": "Surname",
-                "surname": self.surname, 
-                "prefix": self.prefix, 
-                "primary": self.primary, 
-                "origintype": self.origintype.to_struct(), 
+                "surname": self.surname,
+                "prefix": self.prefix,
+                "primary": self.primary,
+                "origintype": self.origintype.to_struct(),
                 "connector": self.connector}
 
     @classmethod
@@ -111,7 +111,7 @@ class Surname(SecondaryObject):
                 struct.get("primary", default.primary),
                 NameOriginType.from_struct(struct.get("origintype", {})),
                 struct.get("connector", default.connector))
-        
+
     def is_empty(self):
         """
         Indicate if the surname is empty.
@@ -172,32 +172,32 @@ class Surname(SecondaryObject):
 
     def get_surname(self):
         """
-        Return the surname. 
-        
+        Return the surname.
+
         The surname is one of the not given names coming from the parents
         """
         return self.surname
 
     def set_surname(self, val):
         """
-        Set the surname. 
-        
+        Set the surname.
+
         The surname is one of the not given names coming from the parents
         """
         self.surname = val
 
     def get_prefix(self):
         """
-        Return the prefix (or article) of the surname. 
-        
+        Return the prefix (or article) of the surname.
+
         The prefix is not used for sorting or grouping.
         """
         return self.prefix
 
     def set_prefix(self, val):
         """
-        Set the prefix (or article) of the surname. 
-        
+        Set the prefix (or article) of the surname.
+
         Examples of articles would be 'de' or 'van'.
         """
         self.prefix = val
@@ -212,14 +212,14 @@ class Surname(SecondaryObject):
 
     def set_connector(self, connector):
         """
-        Set the connector for the Surname instance. This defines how a 
+        Set the connector for the Surname instance. This defines how a
         surname connects to the next surname (eg in Spanish names).
         """
         self.connector = connector
 
     def get_connector(self):
         """
-        Get the connector for the Surname instance. This defines how a 
+        Get the connector for the Surname instance. This defines how a
         surname connects to the next surname (eg in Spanish names).
         """
         return self.connector

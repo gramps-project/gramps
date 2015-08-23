@@ -54,7 +54,7 @@ class PaperComboBox(Gtk.ComboBox):
     def __init__(self,default_name):
         GObject.GObject.__init__(self)
         self.set_wrap_width(4)
-        
+
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
         cell = Gtk.CellRendererText()
@@ -73,7 +73,7 @@ class PaperComboBox(Gtk.ComboBox):
                 key_name = key.trans_pname # display the translated paper name
             self.store.append(row=[key_name])
             index += 1
-            
+
         self.set_active(start_index)
 
     def get_value(self):
@@ -95,7 +95,7 @@ class OrientationComboBox(Gtk.ComboBox):
 
     def __init__(self,default=PAPER_PORTRAIT):
         GObject.GObject.__init__(self)
-        
+
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)
         cell = Gtk.CellRendererText()
@@ -129,7 +129,7 @@ class OrientationComboBox(Gtk.ComboBox):
 #
 # PaperFrame
 #
-#-------------------------------------------------------------------------  
+#-------------------------------------------------------------------------
 class PaperFrame(Gtk.Box):
     """PaperFrame provides all the entry necessary to specify a paper style. """
     def __init__(self,default_metric,default_name,default_orientation,
@@ -139,20 +139,20 @@ class PaperFrame(Gtk.Box):
 
         self.paper_grid = glade_xml.get_object('paper_grid')
 
-        
+
         # get all the widgets
         widgets = ('pwidth', 'pheight', 'lmargin', 'rmargin', 'tmargin',
                    'bmargin', 'lunits1', 'lunits2', 'lunits3', 'lunits4',
                    'lunits5', 'lunits6', 'metric')
-        
+
         for w in widgets:
             setattr(self, w, glade_xml.get_object(w))
-        
+
         # insert custom widgets
         self.papersize_menu = PaperComboBox(default_name)
         self.orientation_menu = OrientationComboBox(default_orientation)
         self.metric.set_active(default_metric)
-        
+
         # connect all widgets
         format_grid = glade_xml.get_object('format_grid')
         format_grid.attach(self.papersize_menu, 1, 0, 1, 1)
@@ -172,7 +172,7 @@ class PaperFrame(Gtk.Box):
         self.rmargin.set_text("%.2f" % margins[1])
         self.tmargin.set_text("%.2f" % margins[2])
         self.bmargin.set_text("%.2f" % margins[3])
-        
+
         self.paper_grid.show_all()
         self.paper_grid.reparent(self)
 
@@ -196,7 +196,7 @@ class PaperFrame(Gtk.Box):
         else:
             raise ValueError('Paper dimension unit "%s" is not allowed' %
                              self.paper_unit)
-            
+
     def units_changed(self, checkbox):
         """Metric checkbox 'toggled' callback."""
         paper_size, paper_name = self.get_paper_size()
@@ -210,21 +210,21 @@ class PaperFrame(Gtk.Box):
             self.paper_unit = 'in.'
             self.paper_unit_multiplier = 2.54
             paper_unit_text = _("inch|in.")
-            
+
         self.lunits1.set_text(paper_unit_text)
         self.lunits2.set_text(paper_unit_text)
         self.lunits3.set_text(paper_unit_text)
         self.lunits4.set_text(paper_unit_text)
         self.lunits5.set_text(paper_unit_text)
         self.lunits6.set_text(paper_unit_text)
-        
+
         if self.paper_unit == 'cm':
             self.pwidth.set_text("%.2f" % paper_size.get_width())
             self.pheight.set_text("%.2f" % paper_size.get_height())
         else:
             self.pwidth.set_text("%.2f" % paper_size.get_width_inches())
             self.pheight.set_text("%.2f" % paper_size.get_height_inches())
-            
+
         self.lmargin.set_text("%.2f" %
                               (paper_margins[0] / self.paper_unit_multiplier))
         self.rmargin.set_text("%.2f" %
@@ -233,7 +233,7 @@ class PaperFrame(Gtk.Box):
                               (paper_margins[2] / self.paper_unit_multiplier))
         self.bmargin.set_text("%.2f" %
                               (paper_margins[3] / self.paper_unit_multiplier))
-        
+
     def get_paper_size(self):
         """Read and validate paper size values.
 
@@ -246,7 +246,7 @@ class PaperFrame(Gtk.Box):
             try:
                 h = float(str(self.pheight.get_text().replace(",", ".")))
                 w = float(str(self.pwidth.get_text().replace(",", ".") ))
-                
+
                 if h <= 1.0 or w <= 1.0:
                     papersize.set_height(29.7)
                     papersize.set_width(21.0)
@@ -256,18 +256,18 @@ class PaperFrame(Gtk.Box):
             except:
                 papersize.set_height(29.7)
                 papersize.set_width(21.0)
-                
+
         return papersize, papername
 
     def get_paper_margins(self):
         """Get and validate margin values from dialog entries.
-        
+
         Values returned in [cm].
-        
+
         """
         paper_margins = [str(margin.get_text()) for margin in
             (self.lmargin, self.rmargin, self.tmargin, self.bmargin)]
-        
+
         for i, margin in enumerate(paper_margins):
             try:
                 paper_margins[i] = float(margin.replace(",", "."))
@@ -275,7 +275,7 @@ class PaperFrame(Gtk.Box):
                 paper_margins[i] = max(paper_margins[i], 0)
             except:
                 paper_margins[i] = 2.54
-                
+
         return paper_margins
 
     def get_custom_paper_size(self):
@@ -299,18 +299,18 @@ class PaperFrame(Gtk.Box):
         paper_size, paper_name = self.get_paper_size()
         paper_orientation = self.orientation_menu.get_value()
         paper_margins = self.get_paper_margins()
-        
+
         pstyle = PaperStyle(paper_size,
                             paper_orientation,
                             *paper_margins)
         return pstyle
-    
+
     def get_paper_metric(self):
         return self.metric.get_active()
 
     def get_paper_name(self):
         paper_size, paper_name = self.get_paper_size()
         return paper_name
-        
+
     def get_orientation(self):
         return self.orientation_menu.get_value()

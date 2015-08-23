@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -42,7 +42,7 @@ from gi.repository import Gtk
 
 #----------------------------------------------------------------
 #
-# GRAMPS 
+# GRAMPS
 #
 #----------------------------------------------------------------
 from .pageview import PageView
@@ -79,7 +79,7 @@ class NavigationView(PageView):
     navigation functionalilty. Views that need bookmarks and forward/backward
     should derive from this class.
     """
-    
+
     def __init__(self, title, pdata, state, uistate, bm_type, nav_group):
         PageView.__init__(self, title, pdata, state, uistate)
         self.bookmarks = bm_type(self.dbstate, self.uistate, self.change_active)
@@ -95,11 +95,11 @@ class NavigationView(PageView):
 
         self.uistate.register(state, self.navigation_type(), self.nav_group)
 
-    
+
     def navigation_type(self):
         """
         Indictates the navigation type. Navigation type can be the string
-        name of any of the primary Objects. A History object will be 
+        name of any of the primary Objects. A History object will be
         created for it, see DisplayState.History
         """
         return None
@@ -111,26 +111,26 @@ class NavigationView(PageView):
         PageView.define_actions(self)
         self.bookmark_actions()
         self.navigation_actions()
-        
+
     def disable_action_group(self):
         """
-        Normally, this would not be overridden from the base class. However, 
+        Normally, this would not be overridden from the base class. However,
         in this case, we have additional action groups that need to be
         handled correctly.
         """
         PageView.disable_action_group(self)
-        
+
         self.fwd_action.set_visible(False)
         self.back_action.set_visible(False)
 
     def enable_action_group(self, obj):
         """
-        Normally, this would not be overridden from the base class. However, 
+        Normally, this would not be overridden from the base class. However,
         in this case, we have additional action groups that need to be
         handled correctly.
         """
         PageView.enable_action_group(self, obj)
-        
+
         self.fwd_action.set_visible(True)
         self.back_action.set_visible(True)
         hobj = self.get_history()
@@ -153,12 +153,12 @@ class NavigationView(PageView):
         """
         PageView.set_active(self)
         self.bookmarks.display()
-        
+
         hobj = self.get_history()
         self.active_signal = hobj.connect('active-changed', self.goto_active)
         self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
         self.update_mru_menu(hobj.mru)
-            
+
         self.goto_active(None)
 
     def set_inactive(self):
@@ -178,7 +178,7 @@ class NavigationView(PageView):
         Return the navigation group.
         """
         return self.nav_group
-        
+
     def get_history(self):
         """
         Return the history object.
@@ -195,7 +195,7 @@ class NavigationView(PageView):
                                                 self.navigation_group())
         if active_handle:
             self.goto_handle(active_handle)
-            
+
         hobj = self.get_history()
         self.fwd_action.set_sensitive(not hobj.at_end())
         self.back_action.set_sensitive(not hobj.at_front())
@@ -207,14 +207,14 @@ class NavigationView(PageView):
         hobj = self.uistate.get_history(self.navigation_type(),
                                         self.navigation_group())
         return hobj.present()
-        
+
     def change_active(self, handle):
         """
         Changes the active object.
         """
         hobj = self.get_history()
         if handle and not hobj.lock and not (handle == hobj.present()):
-            hobj.push(handle)            
+            hobj.push(handle)
 
     def goto_handle(self, handle):
         """
@@ -227,7 +227,7 @@ class NavigationView(PageView):
         """
         Return the active person's handle in a list. Used for
         compatibility with those list views that can return multiply
-        selected items. 
+        selected items.
         """
         active_handle = self.uistate.get_active(self.navigation_type(),
                                                 self.navigation_group())
@@ -247,12 +247,12 @@ class NavigationView(PageView):
         if active_person:
             self.bookmarks.add(active_handle)
             name = name_displayer.display(active_person)
-            self.uistate.push_message(self.dbstate, 
+            self.uistate.push_message(self.dbstate,
                                       _("%s has been bookmarked") % name)
         else:
             from ..dialog import WarningDialog
             WarningDialog(
-                _("Could Not Set a Bookmark"), 
+                _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."))
 
@@ -268,12 +268,12 @@ class NavigationView(PageView):
         """
         self.book_action = ActionGroup(name=self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
-             '<PRIMARY>d', None, self.add_bookmark), 
-            ('EditBook', 'gramps-bookmark-edit', 
-             _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
-             '<shift><PRIMARY>D', None, 
-             self.edit_bookmarks), 
+            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'),
+             '<PRIMARY>d', None, self.add_bookmark),
+            ('EditBook', 'gramps-bookmark-edit',
+             _("%(title)s...") % {'title': _("Organize Bookmarks")},
+             '<shift><PRIMARY>D', None,
+             self.edit_bookmarks),
             ])
 
         self._add_action_group(self.book_action)
@@ -332,11 +332,11 @@ class NavigationView(PageView):
             self.change_active(defperson.get_handle())
         else:
             from ..dialog import WarningDialog
-            WarningDialog(_("No Home Person"), 
+            WarningDialog(_("No Home Person"),
                 _("You need to set a 'default person' to go to. "
                   "Select the People View, select the person you want as "
                   "'Home Person', then confirm your choice "
-                  "via the menu Edit ->Set Home Person."), 
+                  "via the menu Edit ->Set Home Person."),
                 parent=self.uistate.window)
 
     def jump(self):
@@ -345,7 +345,7 @@ class NavigationView(PageView):
         """
         dialog = Gtk.Dialog(_('Jump to by Gramps ID'))
         dialog.set_border_width(12)
-        label = Gtk.Label(label='<span weight="bold" size="larger">%s</span>' % 
+        label = Gtk.Label(label='<span weight="bold" size="larger">%s</span>' %
                           _('Jump to by Gramps ID'))
         label.set_use_markup(True)
         dialog.vbox.add(label)
@@ -361,7 +361,7 @@ class NavigationView(PageView):
                            _('_Jump to'), Gtk.ResponseType.OK)
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
-        
+
         if dialog.run() == Gtk.ResponseType.OK:
             gid = text.get_text()
             handle = self.get_handle_from_gramps_id(gid)
@@ -369,7 +369,7 @@ class NavigationView(PageView):
                 self.change_active(handle)
             else:
                 self.uistate.push_message(
-                    self.dbstate, 
+                    self.dbstate,
                     _("Error: %s is not a valid Gramps ID") % gid)
         dialog.destroy()
 
@@ -405,11 +405,11 @@ class NavigationView(PageView):
         self.back_action.set_sensitive(not hobj.at_front())
         self.fwd_action.set_sensitive(True)
         hobj.lock = False
-        
+
     ####################################################################
     # MRU functions
     ####################################################################
-    
+
     def mru_disable(self):
         """
         Remove the UI and action groups for the MRU list.
@@ -436,11 +436,11 @@ class NavigationView(PageView):
         nav_type = self.navigation_type()
         hobj = self.get_history()
         menu_len = min(len(items) - 1, MRU_SIZE)
-        
+
         entry = '<menuitem action="%s%02d"/>'
         data = [entry % (nav_type, index) for index in range(0, menu_len)]
         self.mru_ui = "".join(MRU_TOP) + "".join(data) + "".join(MRU_BTM)
-        
+
         mitems = items[-MRU_SIZE - 1:-1] # Ignore current handle
         mitems.reverse()
         data = []
@@ -449,7 +449,7 @@ class NavigationView(PageView):
             data.append(('%s%02d'%(nav_type, index), None,  name,
                          "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
- 
+
         self.mru_action = ActionGroup(name=self.title + '/MRU')
         self.mru_action.add_actions(data)
         self.mru_enable()
@@ -463,7 +463,7 @@ class NavigationView(PageView):
         We could implement this here based on navigation_type()
         """
         raise NotImplementedError
-        
+
     def edit(self, obj):
         """
         Template function to allow the editing of the selected object
@@ -501,14 +501,14 @@ class NavigationView(PageView):
         the base class. Returns a gtk container widget.
         """
         raise NotImplementedError
-        
+
     def key_press_handler(self, widget, event):
         """
         Handle the control+c (copy) and control+v (paste), or pass it on.
         """
         if self.active:
             if event.type == Gdk.EventType.KEY_PRESS:
-                if (event.keyval == Gdk.KEY_c and 
+                if (event.keyval == Gdk.KEY_c and
                     (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
                     self.call_copy()
                     return True

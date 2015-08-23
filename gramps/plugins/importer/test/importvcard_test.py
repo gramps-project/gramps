@@ -27,7 +27,7 @@ Unittest of import of VCard
 import unittest
 import time
 import subprocess
-import xml.etree.ElementTree as ET 
+import xml.etree.ElementTree as ET
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
@@ -64,7 +64,7 @@ class VCardCheck(unittest.TestCase):
             if hlink is not None:
                 element.set('hlink', handles.get(hlink))
             if element.get('change') is not None:
-                del element.attrib['change']  
+                del element.attrib['change']
             if element.text is not None and not element.text.strip():
                 element.text = ''
             if element.tail is not None and not element.tail.strip():
@@ -79,9 +79,9 @@ class VCardCheck(unittest.TestCase):
         process = subprocess.Popen('python3 Gramps.py -d .Date -d .ImportVCard '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f vcf -e - -f gramps',
-                                   stdin=subprocess.PIPE, 
-                                   stdout=subprocess.PIPE, 
-                                   stderr=subprocess.PIPE, 
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE,
                                    shell=True)
         result_str, err_str = process.communicate(input_str.encode("utf-8"))
         if debug:
@@ -91,7 +91,7 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(self.canonicalize(result_doc))
             print(self.canonicalize(expect_doc))
-        self.assertEqual(self.canonicalize(result_doc), 
+        self.assertEqual(self.canonicalize(result_doc),
                          self.canonicalize(expect_doc))
 
     def test_base(self):
@@ -248,7 +248,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(self.name, 'suffix').text = 'Jr.'
         ET.SubElement(self.name, 'title').text = 'Mr.'
         self.do_case("\r\n".join(self.vcard), self.gramps)
-        
+
     def test_add_name_multisurname(self):
         self.vcard[2] = "FN:Lastname Lastname2"
         self.vcard[3] = "N:Lastname,Lastname2;;;;"

@@ -97,7 +97,7 @@ class TableStyle(object):
         """
         Return the number of columns
         """
-        return self.columns 
+        return self.columns
 
     def set_column_widths(self, clist):
         """
@@ -158,7 +158,7 @@ class TableCellStyle(object):
             self.bborder = 0
             self.padding = 0
             self.longlist = 0
-    
+
     def set_padding(self, val):
         "Return the cell padding in centimeters"
         self.padding = val

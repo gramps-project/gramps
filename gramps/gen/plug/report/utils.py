@@ -12,7 +12,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -56,7 +56,7 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 #-------------------------------------------------------------------------
 def pt2cm(pt):
     """
-    Convert points to centimeters. Fonts are typically specified in points, 
+    Convert points to centimeters. Fonts are typically specified in points,
     but the :class:`.BaseDoc` classes use centimeters.
 
     :param pt: points
@@ -68,7 +68,7 @@ def pt2cm(pt):
 
 def cm2pt(cm):
     """
-    Convert centimeters to points. Fonts are typically specified in points, 
+    Convert centimeters to points. Fonts are typically specified in points,
     but the :class:`.BaseDoc` classes use centimeters.
 
     :param cm: centimeters
@@ -114,7 +114,7 @@ def roman(num):
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 def place_name(db, place_handle):
@@ -124,7 +124,7 @@ def place_name(db, place_handle):
     else:
         name = ""
     return str(name)
-    
+
 #-------------------------------------------------------------------------
 #
 # Functions commonly used in reports
@@ -152,7 +152,7 @@ def insert_image(database, doc, photo, user,
                                  alt=alt, style_name=style_name,
                                  crop=photo.get_rectangle())
         else:
-            user.warn(_("Could not add photo to page"), 
+            user.warn(_("Could not add photo to page"),
                       "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
@@ -172,7 +172,7 @@ def find_spouse(person, family):
 # find_marriage
 #
 #-------------------------------------------------------------------------
-def find_marriage(database, family):    
+def find_marriage(database, family):
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
         if (event and event.type.is_marriage() and
@@ -188,18 +188,18 @@ def find_marriage(database, family):
 def get_person_mark(db, person):
     """
     Return a IndexMark that can be used to index a person in a report
-    
+
     :param db: the Gramps database instance
     :param person: the key is for
     """
     if not person:
         return None
-    
+
     name = person.get_primary_name().get_name()
     birth = " "
     death = " "
     key = ""
-    
+
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birthEvt = db.get_event_from_handle(birth_ref.ref)
@@ -214,7 +214,7 @@ def get_person_mark(db, person):
         key = name
     else:
         key = "%s (%s - %s)" % (name, birth, death)
-        
+
     return IndexMark( key, INDEX_TYPE_ALP )
 
 #-------------------------------------------------------------------------
@@ -225,19 +225,19 @@ def get_person_mark(db, person):
 def get_address_str(addr):
     """
     Return a string that combines the elements of an address
-    
+
     :param addr: the Gramps address instance
     """
     str = ""
-    elems = [ addr.get_street(), 
-              addr.get_locality(), 
-              addr.get_city(), 
-              addr.get_county(), 
-              addr.get_state(), 
-              addr.get_country(), 
-              addr.get_postal_code(), 
+    elems = [ addr.get_street(),
+              addr.get_locality(),
+              addr.get_city(),
+              addr.get_county(),
+              addr.get_state(),
+              addr.get_country(),
+              addr.get_postal_code(),
               addr.get_phone()   ]
-    
+
     for info in elems:
         if info:
             if str == "":
@@ -246,7 +246,7 @@ def get_address_str(addr):
                 # translators: needed for Arabic, ignore otherwise
                 str = _("%(str1)s, %(str2)s") % {'str1':str, 'str2':info}
     return str
-    
+
 #-------------------------------------------------------------------------
 #
 # People Filters
@@ -277,7 +277,7 @@ def get_person_filters(person, include_single=True, name_format=None):
         # Do this in case of command line options query (show=filter)
         name = _("PERSON")
         gramps_id = ''
-    
+
     if include_single:
         filt_id = GenericFilter()
         filt_id.set_name(name)

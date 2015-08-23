@@ -68,7 +68,7 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        
+
         tool.Tool.__init__(self, dbstate, options_class, name)
 
         if self.db.readonly:
@@ -83,7 +83,7 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         else:
             self.callback = None
             print("Rebuilding gender statistics for name gender guessing...")
-            
+
         UpdateCallback.__init__(self, self.callback)
         self.set_total(self.db.get_number_of_people())
         self.rebuild_genderstats()
@@ -104,20 +104,20 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         Function to rebuild the gender stats
         """
         self.db.genderStats.clear_stats()
-        with self.db.get_person_cursor() as cursor:   
+        with self.db.get_person_cursor() as cursor:
             #loop over database and store the sort field, and the handle, and
             #allow for a third iter
             for key, data in cursor:
                 rawprimname = data[COLUMN_NAME]
                 rawaltnames = data[COLUMN_ALTNAMES]
                 primary_name = Name().unserialize(rawprimname).get_first_name()
-                alternate_names = [Name().unserialize(name).get_first_name() 
+                alternate_names = [Name().unserialize(name).get_first_name()
                                             for name in rawaltnames]
                 self.db.genderStats.count_name(primary_name, data[COLUMN_GENDER])
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class RebuildGenderStatOptions(tool.ToolOptions):

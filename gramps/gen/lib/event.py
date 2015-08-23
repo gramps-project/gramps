@@ -59,10 +59,10 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
     The Event record is used to store information about some type of
     action that occurred at a particular place at a particular time,
     such as a birth, death, or marriage.
-    
+
     A possible definition: Events are things that happen at some point in time
-    (that we may not know precisely, though), at some place, may involve 
-    several people (witnesses, officers, notaries, priests, etc.) and may 
+    (that we may not know precisely, though), at some place, may involve
+    several people (witnesses, officers, notaries, priests, etc.) and may
     of course have sources, notes, media, etc.
     Compare this with attribute: :class:`~.attribute.Attribute`
     """
@@ -82,7 +82,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         AttributeBase.__init__(self)
         DateBase.__init__(self, source)
         PlaceBase.__init__(self, source)
-        
+
         if source:
             self.__description = source.__description
             self.__type = EventType(source.__type)
@@ -93,9 +93,9 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
     def serialize(self, no_text_date = False):
         """
         Convert the data held in the event to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
         These elements may be primitive Python types (string, integers),
@@ -110,7 +110,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         return (self.handle, self.gramps_id, self.__type.serialize(),
                 DateBase.serialize(self, no_text_date),
-                self.__description, self.place, 
+                self.__description, self.place,
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
@@ -121,7 +121,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -138,17 +138,17 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: dict
         """
         return {"_class": "Event",
-                "handle": Handle("Event", self.handle), 
-                "gramps_id": self.gramps_id, 
+                "handle": Handle("Event", self.handle),
+                "gramps_id": self.gramps_id,
                 "type": self.__type.to_struct(),
                 "date": DateBase.to_struct(self),
-                "description": self.__description, 
-                "place": Handle("Place", self.place), 
+                "description": self.__description,
+                "place": Handle("Place", self.place),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),
-                "change": self.change, 
+                "change": self.change,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
@@ -184,7 +184,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :type data: tuple
         """
         (self.handle, self.gramps_id, the_type, date,
-         self.__description, self.place, 
+         self.__description, self.place,
          citation_list, note_list, media_list, attribute_list,
          self.change, tag_list, self.private) = data
 
@@ -200,14 +200,14 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
 
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                   this object type.
         :rtype: bool
         """
@@ -263,7 +263,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -273,7 +273,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -283,7 +283,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -298,7 +298,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -316,7 +316,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         description = self.__description
         the_type = self.__type
         return (the_type == EventType.CUSTOM and date.is_empty()
-                and not place and not description) 
+                and not place and not description)
 
     def are_equal(self, other):
         """
@@ -386,8 +386,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
 
     def set_description(self, description):
         """
-        Set the description of the Event to the passed string. 
-        
+        Set the description of the Event to the passed string.
+
         The string may contain any information.
 
         :param description: Description to assign to the Event

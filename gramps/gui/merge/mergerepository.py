@@ -140,7 +140,7 @@ class MergeRepository(ManagedWindow):
         else:
             phoenix = self.rp2
             titanic = self.rp1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Repository')
 

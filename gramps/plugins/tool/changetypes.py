@@ -63,16 +63,16 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
     def init_gui(self):
         # Draw dialog and make it handle everything
-        
+
         self.glade = Glade()
-            
+
         self.auto1 = self.glade.get_object("original")
         self.auto2 = self.glade.get_object("new")
 
         # Need to display localized event names
         etype = EventType()
         event_names = sorted(etype.get_standard_names(), key=glocale.sort_key)
-        
+
         fill_combo(self.auto1,event_names)
         fill_combo(self.auto2,event_names)
 
@@ -90,7 +90,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
             "on_apply_clicked"  : self.on_apply_clicked,
             "on_delete_event"   : self.close,
             })
-            
+
         self.show()
 
     def build_menu_names(self, obj):
@@ -139,17 +139,17 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         the_type.set(self.auto2.get_child().get_text())
         self.options.handler.options_dict['totype'] = the_type.xml_str()
-        
+
         self.run_tool(self.window)
 
         # Save options
         self.options.handler.save_options()
-        
+
         self.close()
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class ChangeTypesOptions(tool.ToolOptions):

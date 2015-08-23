@@ -46,12 +46,12 @@ from gramps.gen.errors import WindowActiveError
 #
 #-------------------------------------------------------------------------
 class PersonEventEmbedList(EventEmbedList):
-    
+
     _WORKNAME = _("Personal")
     #_FAMNAME = _("With %(namepartner)s (%(famid)s)")
     _FAMNAME = _("Family")
     _UNKNOWNNAME = _("<Unknown>")
-    
+
     _MSG = {
         'add'   : _('Add a new personal event'),
         'del'   : _('Remove the selected personal event'),
@@ -91,7 +91,7 @@ class PersonEventEmbedList(EventEmbedList):
                     self._groups.append((family_handle, self._FAMNAME,
                                          groupname))
             self.changed = False
-        
+
         return self._data
 
     def default_role(self):

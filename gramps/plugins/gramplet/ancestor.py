@@ -63,7 +63,7 @@ class Ancestor(Gramplet):
                   ('', NOSORT, 1),
                   ('', NOSORT, 1), # tooltip
                   ('', NOSORT, 100)] # handle
-        self.model = ListModel(self.view, titles, list_mode="tree", 
+        self.model = ListModel(self.view, titles, list_mode="tree",
                                event_func=self.cb_double_click)
         return self.view
 
@@ -76,11 +76,11 @@ class Ancestor(Gramplet):
             if person:
                 family_handle = person.get_main_parents_family_handle()
                 family = self.dbstate.db.get_family_from_handle(family_handle)
-                if family and (family.get_father_handle() or 
+                if family and (family.get_father_handle() or
                                family.get_mother_handle()):
                     return True
         return False
-        
+
     def cb_double_click(self, treeview):
         """
         Handle double click on treeview.
@@ -108,7 +108,7 @@ class Ancestor(Gramplet):
             self.set_has_data(self.get_has_data(active_handle))
         else:
             self.set_has_data(False)
-    
+
     def main(self):
         active_handle = self.get_active('Person')
         self.model.clear()
@@ -134,7 +134,7 @@ class Ancestor(Gramplet):
             birth_date = get_date(birth)
             birth_sort = '%012d' % birth.get_date_object().get_sort_value()
             birth_text = _('%(abbr)s %(date)s') % \
-                         {'abbr': birth.type.get_abbreviation(), 
+                         {'abbr': birth.type.get_abbreviation(),
                           'date': birth_date}
 
         death_date = death_sort = death_text = ''
@@ -142,13 +142,13 @@ class Ancestor(Gramplet):
             death_date = get_date(death)
             death_sort = '%012d' % death.get_date_object().get_sort_value()
             death_text = _('%(abbr)s %(date)s') % \
-                         {'abbr': death.type.get_abbreviation(), 
+                         {'abbr': death.type.get_abbreviation(),
                           'date': death_date}
 
         tooltip = name + '\n' + birth_text + '\n' + death_text
 
         label = _('%(depth)s. %(name)s') % {'depth': depth, 'name': name}
-        item_id = self.model.add([label, birth_date, birth_sort, 
+        item_id = self.model.add([label, birth_date, birth_sort,
                                   tooltip, person_handle], node=parent_id)
 
         family_handle = person.get_main_parents_family_handle()

@@ -51,7 +51,7 @@ class SelectFamily(BaseSelector):
 
     def get_window_title(self):
         return _("Select Family")
-        
+
     def get_model_class(self):
         return FamilyModel
 

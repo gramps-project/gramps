@@ -45,12 +45,12 @@ PRINT_SETTINGS = None
 #------------------------------------------------------------------------
 class CairoPrintSave():
     """Act as an abstract document that can render onto a cairo context.
-    
+
     It can render the model onto cairo context pages, according to the received
     page style.
-        
+
     """
-    
+
     def __init__(self, widthpx, heightpx, drawfunc, parent):
         """
         This class provides the things needed so as to dump a cairo drawing on
@@ -60,17 +60,17 @@ class CairoPrintSave():
         widthpx += 30
         heightpx += 30
         self.scale = 100.0
-        self.widthpx = widthpx 
+        self.widthpx = widthpx
         self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
-    
+
     def run(self):
         """Create the physical output from the meta document.
-                
+
         """
         global PRINT_SETTINGS
-        
+
         # set up a print operation
         operation = Gtk.PrintOperation()
         operation.connect("draw_page", self.on_draw_page)
@@ -101,10 +101,10 @@ class CairoPrintSave():
         else:
             page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
         operation.set_default_page_setup(page_setup)
-        
+
         if PRINT_SETTINGS is not None:
             operation.set_print_settings(PRINT_SETTINGS)
-        
+
         # run print dialog
         while True:
             self.preview = None
@@ -123,7 +123,7 @@ class CairoPrintSave():
         # store print settings if printing was successful
         if res == Gtk.PrintOperationResult.APPLY:
             PRINT_SETTINGS = operation.get_print_settings()
-    
+
     def on_draw_page(self, operation, context, page_nr):
         """Draw a page on a Cairo context.
         """
@@ -132,9 +132,9 @@ class CairoPrintSave():
 
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
-           We provide a dummy holder here, because on_preview crashes if no 
+           We provide a dummy holder here, because on_preview crashes if no
            default application is set with gir 3.3.2 (typically evince not installed)!
         """
         operation.run(Gtk.PrintOperationAction.PREVIEW, None)
-        return False 
+        return False
 

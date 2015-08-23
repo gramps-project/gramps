@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-__all__ = ["MonitoredCheckbox", "MonitoredEntry", 
+__all__ = ["MonitoredCheckbox", "MonitoredEntry",
            "MonitoredEntryIndicator", "MonitoredSpinButton",
            "MonitoredText", "MonitoredType", "MonitoredDataType",
            "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate",
@@ -94,7 +94,7 @@ class MonitoredCheckbox(object):
 ##        self.set_val = None
 ##        self.get_val = None
 ##        self.obj = None
-        
+
 #-------------------------------------------------------------------------
 #
 # MonitoredEntry class
@@ -102,7 +102,7 @@ class MonitoredCheckbox(object):
 #-------------------------------------------------------------------------
 class MonitoredEntry(object):
 
-    def __init__(self, obj, set_val, get_val, read_only=False, 
+    def __init__(self, obj, set_val, get_val, read_only=False,
                  autolist=None, changed=None):
         self.obj = obj
         self.set_val = set_val
@@ -132,7 +132,7 @@ class MonitoredEntry(object):
 
     def set_text(self, text):
         self.obj.set_text(text)
-        
+
     def connect(self, signal, callback, *data):
         self.obj.connect(signal, callback, *data)
 
@@ -165,10 +165,10 @@ class MonitoredEntry(object):
 #-------------------------------------------------------------------------
 class MonitoredEntryIndicator(MonitoredEntry):
     """
-    Show an Entry box with an indicator in it that disappears when 
+    Show an Entry box with an indicator in it that disappears when
     entry becomes active
     """
-    def __init__(self, obj, set_val, get_val, indicator, read_only=False, 
+    def __init__(self, obj, set_val, get_val, indicator, read_only=False,
                  autolist=None, changed=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
                                 autolist, changed)
@@ -183,9 +183,9 @@ class MonitoredEntryIndicator(MonitoredEntry):
             Gdk.RGBA.parse(rgba, 'grey')
             self.obj.override_color(Gtk.StateType.NORMAL, rgba)
             self.obj.override_font(Pango.FontDescription('sans italic'))
-            self.fockey = self.obj.connect('focus-in-event', 
+            self.fockey = self.obj.connect('focus-in-event',
                                                self._obj_focus)
-    
+
     def _on_change(self, obj):
         if not self.indicatorshown:
             self.set_val(str(obj.get_text()))
@@ -223,7 +223,7 @@ class MonitoredSpinButton(object):
         :param get_val: callback to be called to retrieve value for obj
         :param read_only: If SpinButton is read only.
         """
-        
+
         self.obj = obj
         self.set_val = set_val
         self.get_val = get_val
@@ -252,7 +252,7 @@ class MonitoredSpinButton(object):
         :param set_val: callback to be called when SpinButton is changed
         :param get_val: callback to be called to retrieve value for SpinButton
         """
-        
+
         self.set_val = set_val
         self.get_val = get_val
         self.update()
@@ -263,9 +263,9 @@ class MonitoredSpinButton(object):
 
         :param value: Value to be set.
         """
-        
+
         self.obj.set_value(value)
-        
+
     def connect(self, signal, callback):
         """
         Connect the signal of monitored widget to the specified callback.
@@ -273,7 +273,7 @@ class MonitoredSpinButton(object):
         :param signal: Signal prototype for which a connection should be set up.
         :param callback: Callback function to be called when signal is emitted.
         """
-        
+
         self.obj.connect(signal, callback)
 
     def _on_change(self, obj):
@@ -283,7 +283,7 @@ class MonitoredSpinButton(object):
         :param obj: Widget that has been changed.
         :type obj: Gtk.SpinButton
         """
-        
+
         self.set_val(obj.get_value())
         if self.changed:
             self.changed(obj)
@@ -294,7 +294,7 @@ class MonitoredSpinButton(object):
 
         :param value: Value to be set.
         """
-        
+
         self.obj.set_value(value)
 
     def get_value(self):
@@ -314,7 +314,7 @@ class MonitoredSpinButton(object):
         :param value: If widget should be editable or deactivated.
         :type value: bool
         """
-        
+
         self.obj.set_sensitive(value)
         self.obj.set_editable(value)
 
@@ -322,7 +322,7 @@ class MonitoredSpinButton(object):
         """
         Assign the keyboard focus to the monitored widget.
         """
-        
+
         self.obj.grab_focus()
 
     def update(self):
@@ -330,7 +330,7 @@ class MonitoredSpinButton(object):
         Updates value of monitored SpinButton with the value returned by the
         get_val callback.
         """
-        
+
         if self.get_val():
             self.obj.set_value(self.get_val())
 
@@ -370,7 +370,7 @@ class MonitoredText(object):
 #-------------------------------------------------------------------------
 class MonitoredType(object):
 
-    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False, 
+    def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False,
                  custom_values=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -416,9 +416,9 @@ class MonitoredType(object):
 #
 #-------------------------------------------------------------------------
 class MonitoredDataType(object):
-    
 
-    def __init__(self, obj, set_val, get_val, readonly=False, 
+
+    def __init__(self, obj, set_val, get_val, readonly=False,
                  custom_values=None, ignore_values=None):
         """
         Constructor for the MonitoredDataType class.
@@ -437,7 +437,7 @@ class MonitoredDataType(object):
         :type custom_values: list of str, tuple or GrampsType
         :param ignore_values: list of values not to show in the combobox. If the
                               result of get_val is in these, it is not ignored
-        :type ignore_values: list of int 
+        :type ignore_values: list of int
         """
         self.set_val = set_val
         self.get_val = get_val
@@ -450,7 +450,7 @@ class MonitoredDataType(object):
             default = int(val)
         else:
             default = None
-            
+
         map = get_val().get_map().copy()
         if ignore_values :
             for key in list(map.keys()):
@@ -458,10 +458,10 @@ class MonitoredDataType(object):
                     del map[key]
 
         self.sel = StandardCustomSelector(
-            map, 
-            obj, 
-            get_val().get_custom(), 
-            default, 
+            map,
+            obj,
+            get_val().get_custom(),
+            default,
             additional=custom_values,
             menu=get_val().get_menu())
 
@@ -506,7 +506,7 @@ class MonitoredDataType(object):
 #-------------------------------------------------------------------------
 class MonitoredMenu(object):
 
-    def __init__(self, obj, set_val, get_val, mapping, 
+    def __init__(self, obj, set_val, get_val, mapping,
                  readonly=False, changed=None):
         self.set_val = set_val
         self.get_val = get_val
@@ -558,7 +558,7 @@ class MonitoredStrMenu(object):
 
         self.obj = obj
         self.model = Gtk.ListStore(GObject.TYPE_STRING)
-        
+
         # Make sure that the menu is visible on small screen devices.
         # Some LDS temples were not visible on a 4 or 5 column layout.
         # See bug #7333
@@ -571,14 +571,14 @@ class MonitoredStrMenu(object):
 
         default = get_val()
         active = 0
-        
+
         for t, v in mapping:
             self.model.append(row=[v])
             self.data.append(t)
             index += 1
             if t == default:
                 active = index
-            
+
         self.obj.set_model(self.model)
         self.obj.set_active(active)
         self.obj.connect('changed', self.on_change)
@@ -611,7 +611,7 @@ class MonitoredDate(object):
         Create a connection between the date_obj, text_obj and the pixmap_obj.
         Assigns callbacks to parse and change date when the text
         in text_obj is changed, and to invoke Date Editor when the LED
-        button_obj is pressed. 
+        button_obj is pressed.
         """
         self.uistate = uistate
         self.track = track
@@ -624,24 +624,24 @@ class MonitoredDate(object):
         self.button_obj.set_image(image)
         self.button_obj.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pixmap_obj = self.button_obj.get_child()
-        
+
         self.text_obj.connect('validate', self.validate)
         self.text_obj.connect('content-changed', self.set_date)
         self.button_obj.connect('clicked', self.invoke_date_editor)
-        
+
         self.text_obj.set_text(displayer.display(self.date_obj))
         self.text_obj.validate()
 
         self.text_obj.set_editable(not readonly)
         self.button_obj.set_sensitive(not readonly)
-        
+
     def set_date(self, widget):
         """
         Parse date from text entry to date object
         """
         date = parser.parse(str(self.text_obj.get_text()))
         self.date_obj.copy(date)
-        
+
     def validate(self, widget, data):
         """
         Validate current date in text entry
@@ -684,7 +684,7 @@ class MonitoredComboSelectedEntry(object):
     A MonitoredEntry driven by a Combobox to select what the entry field
     works upon
     """
-    def __init__(self, objcombo, objentry, textlist, set_val_list, 
+    def __init__(self, objcombo, objentry, textlist, set_val_list,
                  get_val_list, default=0, read_only=False):
         """
         Create a MonitoredComboSelectedEntry
@@ -699,14 +699,14 @@ class MonitoredComboSelectedEntry(object):
         self.objentry = objentry
         self.set_val_list = set_val_list
         self.get_val_list = get_val_list
-        
+
         #fill the combobox, set on a specific entry
         self.mapping = dict([[i,x] for (i,x) in zip(list(range(len(textlist))),
                                                     textlist)])
 
         self.active_key = default
         self.active_index = 0
-        
+
         self.__fill()
         self.objcombo.clear()
         self.objcombo.set_model(self.store)
@@ -715,11 +715,11 @@ class MonitoredComboSelectedEntry(object):
         self.objcombo.add_attribute(cell, 'text', 1)
         self.objcombo.set_active(self.active_index)
         self.objcombo.connect('changed', self.on_combochange)
-        
+
         #fill the entrybox with required data
         self.entry_reinit()
         self.objentry.connect('changed', self._on_change_entry)
-        
+
         #set correct editable
         self.enable(not read_only)
 
@@ -760,13 +760,13 @@ class MonitoredComboSelectedEntry(object):
 
     def on_combochange(self, obj):
         """
-        callback for change on the combo, change active iter, update 
+        callback for change on the combo, change active iter, update
         associated entrybox
         """
         self.active_key = self.store.get_value(self.objcombo.get_active_iter(),
                                                0)
         self.entry_reinit()
-    
+
     def reinit(self, set_val_list, get_val_list):
         """
         The interface is attached to another object, so the methods need to be

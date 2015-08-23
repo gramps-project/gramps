@@ -52,7 +52,7 @@ _removed_level = [ " ",
                 " elfde",
                 " twaalfde",
                 " dertiende",
-                " veertiende", 
+                " veertiende",
                 " vijftiende",
                 " zestiende",
                 " zeventiende",
@@ -60,7 +60,7 @@ _removed_level = [ " ",
                 " negentiende",
                 " twintigste",
                 " eenentwintigste",
-                " tweeëntwintigste", 
+                " tweeëntwintigste",
                 " drieëntwingste",
                 " vierentwingste",
                 " vijfentwintigste",
@@ -197,7 +197,7 @@ _ouder_level = [ "",
 _son_level = [ "",
                "%s%szoon",
                "%s%skleinzoon",
-               "%s%sachterkleinzoon", 
+               "%s%sachterkleinzoon",
                "%s%sachterachterkleinzoon",
                "%s%sachterachterachterkleinzoon"]
 
@@ -222,16 +222,16 @@ _nephew_level = [ "",
 
 _niece_level = [ "",
                  "%s%snicht",
-                 "%s%sachternicht", 
+                 "%s%sachternicht",
                  "%s%sachterachternicht"]
-_aunt_level = [ "",  
-                "%s%stante", 
+_aunt_level = [ "",
+                "%s%stante",
                 "%s%sgroottante",
                 "%s%sovergroottante",
                 "%s%sbetovergroottante",
                 "%s%soudtante"]
 
-_uncle_level = [ "",  
+_uncle_level = [ "",
                  "%s%soom",
                  "%s%sgrootoom",
                  "%s%sovergrootoom",
@@ -246,11 +246,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     """
     RelationshipCalculator Class
     """
-    
+
     #sibling strings
     STEP = 'stief'
     HALF = 'half'
-    
+
     INLAW = 'aangetrouwde '
 
     def __init__(self):
@@ -291,7 +291,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """Internal Dutch method to create relation string
         """
         if level > len(_daughter_level)-1:
-            return "verre %s%sachterkleindochter (%d generaties)" % (inlaw, 
+            return "verre %s%sachterkleindochter (%d generaties)" % (inlaw,
                                                                    step, level)
         else:
             return _daughter_level[level]  % (inlaw, step)
@@ -311,7 +311,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """Internal Dutch method to create relation string
         """
         if level > len(_kind_level)-1:
-            return "ver %s%sachterkleinkind (%d generaties)" % (inlaw, step, 
+            return "ver %s%sachterkleinkind (%d generaties)" % (inlaw, step,
                                                                 level)
         else:
             return _kind_level[level]  % (inlaw, step)
@@ -331,8 +331,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                         step, _removed_level[removed], level)
         else:
             return _aunt_level[level] % (inlaw, step) \
-                        + _removed_level[removed] + " graad"    
-        
+                        + _removed_level[removed] + " graad"
+
     def _get_uncle(self, level, removed, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
@@ -341,7 +341,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         elif removed == 1:
             return "verre %s%soom (%d generaties)" % (inlaw, step, level)
         elif level > len(_uncle_level)-1 and removed > len(_removed_level) -1:
-            return "verre %s%soom (%d generaties, %d graden)" % (inlaw, step, 
+            return "verre %s%soom (%d generaties, %d graden)" % (inlaw, step,
                                                             level, removed)
         elif level > len(_uncle_level)-1:
             return "verre %s%soom van de%s graad (%d generaties)" % (inlaw,
@@ -368,7 +368,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             return "verre %s%sneef (%d generaties, %d graden)" % (inlaw, step,
                                                                 level, removed)
         elif level > len(_nephew_level)-1:
-            return "verre %s%sneef van de%s graad (%d generaties)" % (inlaw, step, 
+            return "verre %s%sneef van de%s graad (%d generaties)" % (inlaw, step,
                                                 _removed_level[removed], level)
         else:
             return _nephew_level[level] % (inlaw, step) \
@@ -385,7 +385,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             return "verre %s%snicht (%d generaties, %d graden)" % (inlaw, step,
                                                                 level, removed)
         elif level > len(_niece_level)-1:
-            return "verre %s%snicht van de%s graad (%d generaties)"% (inlaw, 
+            return "verre %s%snicht van de%s graad (%d generaties)"% (inlaw,
                                         step, _removed_level[removed], level)
         else:
             return _niece_level[level] % (inlaw, step) \
@@ -398,7 +398,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
         removed -= 1
         if removed > len(_removed_level)-1:
-            return "verre %s%sneef (kozijn, %d graden)" % (inlaw, step, 
+            return "verre %s%sneef (kozijn, %d graden)" % (inlaw, step,
                                                            removed)
         elif removed == 0:
             return "%s%sbroer" % (inlaw, step)
@@ -413,7 +413,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
         removed -= 1
         if removed > len(_removed_level)-1:
-            return "verre %s%snicht (kozijn, %d graden)" % (inlaw, step, 
+            return "verre %s%snicht (kozijn, %d graden)" % (inlaw, step,
                                                            removed)
         elif removed == 0:
             return "%s%szus"  % (inlaw, step)
@@ -423,7 +423,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
-                                       only_birth=True, 
+                                       only_birth=True,
                                        in_law_a=False, in_law_b=False):
         """
         Return a string representing the relationship between the two people,
@@ -482,14 +482,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 rel_str = self._get_child_unknown(Gb, step, inlaw)
         elif Ga > Gb:
-            #b is higher in the branch, in english uncle/aunt or 
+            #b is higher in the branch, in english uncle/aunt or
             #cousin up, in dutch always 'oom/tante'
             if gender_b == Person.MALE:
                 rel_str = self._get_uncle(Ga - Gb, Gb, step, inlaw)
             else:
                 rel_str = self._get_aunt(Ga - Gb, Gb, step, inlaw)
         elif Ga < Gb:
-            #b is lower in the branch, in english niece/nephew or 
+            #b is lower in the branch, in english niece/nephew or
             #cousin down, in dutch always 'neef/nicht'
             if gender_b == Person.MALE:
                 rel_str = self._get_nephew(Gb - Ga, Ga, step, inlaw)
@@ -501,19 +501,19 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = self._get_male_cousin(Ga, step, inlaw)
             else:
                 rel_str = self._get_female_cousin(Ga, step, inlaw)
-        
+
         return rel_str
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         """
         Determine the string giving the relation between two siblings of
         type sib_type.
         Eg: b is the brother of a
         Here 'brother' is the string we need to determine
-        This method gives more details about siblings than 
+        This method gives more details about siblings than
         get_single_relationship_string can do.
-        
+
         .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
                      LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
                      get_sibling)
@@ -551,8 +551,8 @@ if __name__ == "__main__":
     #        imported modules):
     #    export PYTHONPATH=/path/to/gramps/src
     #    python src/plugins/rel/rel_nl.py
-    
-    """TRANSLATORS, copy this if statement at the bottom of your 
+
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

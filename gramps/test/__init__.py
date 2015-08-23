@@ -27,18 +27,18 @@ It includes a test-running program regrtest.py,
 
 Also includes tests for code in the parent (src) directory
 and other tests that may be considered top-level tests
-  
+
 Note: tests for utility code in this directory would be in a
 subdirectory also named test by convention for gramps testing.
 
-Note: test subdirectories do not normally need to have a 
-package-enabling module __init__.py, but this one (src/test) does 
+Note: test subdirectories do not normally need to have a
+package-enabling module __init__.py, but this one (src/test) does
 because it contains utilities used by other test modules.
 Thus, this package would allow test code like
   from test import test_util
 
 """
 
-# This file does not presently contain any code. 
+# This file does not presently contain any code.
 
-#===eof===  
+#===eof===

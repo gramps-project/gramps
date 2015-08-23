@@ -83,7 +83,7 @@ class Events(Gramplet, DbGUIElement):
                   (_('Role'), 7, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
-        
+
     def add_event_ref(self, event_ref, spouse=None):
         """
         Add an event to the model.
@@ -181,7 +181,7 @@ class PersonEvents(Events):
 
     def main(self): # return false finishes
         active_handle = self.get_active('Person')
-            
+
         self.model.clear()
         self.callman.unregister_all()
         if active_handle:
@@ -246,7 +246,7 @@ class FamilyEvents(Events):
 
     def main(self): # return false finishes
         active_handle = self.get_active('Family')
-            
+
         self.model.clear()
         self.callman.unregister_all()
         if active_handle:

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -74,7 +74,7 @@ class ObjEntry(object):
     _DND_TYPE = None
     _DND_ICON = None
 
-    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share, callback=None):
         """Pass the dbstate and uistate and present track.
             label is a Gtk.Label that shows the persent value
@@ -84,7 +84,7 @@ class ObjEntry(object):
             get_val is function that is called to obtain handle from calling
                 module
             share is the Gtk.Button to call the object selector or del connect
-            add_edt is the Gtk.Button with add or edit value. Pass None if 
+            add_edt is the Gtk.Button with add or edit value. Pass None if
                 this button should not be present.
         """
         self.label = label
@@ -98,7 +98,7 @@ class ObjEntry(object):
         self.uistate = uistate
         self.track = track
         self.callback = callback
-        
+
         #set the object specific code
         self._init_object()
 
@@ -129,7 +129,7 @@ class ObjEntry(object):
         if self.add_edt is not None:
             self.add_edt.connect('clicked', self.add_edt_clicked)
         self.share.connect('clicked', self.share_clicked)
-        
+
         if not self.db.readonly and not name:
             if self.add_edt is None:
                 self.label.set_text(self.EMPTY_TEXT_RED)
@@ -160,7 +160,7 @@ class ObjEntry(object):
         if self._DND_TYPE:
             if self.get_val():
                 if not self.label.drag_source_get_target_list():
-                    self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                    self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                                                [], Gdk.DragAction.COPY)
                     tglist = Gtk.TargetList.new([])
                     tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
@@ -300,10 +300,10 @@ class PlaceEntry(ObjEntry):
     DEL_STR = _('Remove place')
     _DND_TYPE = DdTargets.PLACE_LINK
     _DND_ICON = 'gramps-place'
-    
-    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share, skip=[]):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share)
         self.skip = skip
 
@@ -324,7 +324,7 @@ class PlaceEntry(ObjEntry):
             place = obj
             func = self.after_edit
         try:
-            EditPlace(self.dbstate, self.uistate, self.track, 
+            EditPlace(self.dbstate, self.uistate, self.track,
                       place, func)
         except WindowActiveError:
             pass
@@ -347,10 +347,10 @@ class SourceEntry(ObjEntry):
     DEL_STR = _('Remove source')
     _DND_TYPE = DdTargets.SOURCE_LINK
     _DND_ICON = 'gramps-source'
-    
-    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share, callback):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share, callback)
 
     def get_from_handle(self, handle):
@@ -369,7 +369,7 @@ class SourceEntry(ObjEntry):
             source = obj
             func = self.after_edit
         try:
-            EditSource(self.dbstate, self.uistate, self.track, 
+            EditSource(self.dbstate, self.uistate, self.track,
                        source, func)
         except WindowActiveError:
             pass
@@ -393,10 +393,10 @@ class MediaEntry(ObjEntry):
     DEL_STR = _('Remove media object')
     _DND_TYPE = DdTargets.MEDIAOBJ
     _DND_ICON = 'gramps-media'
-    
-    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share)
 
     def get_from_handle(self, handle):
@@ -415,7 +415,7 @@ class MediaEntry(ObjEntry):
             object = obj
             func = self.after_edit
         try:
-            EditMedia(self.dbstate, self.uistate, self.track, 
+            EditMedia(self.dbstate, self.uistate, self.track,
                       object, func)
         except WindowActiveError:
             pass
@@ -423,7 +423,7 @@ class MediaEntry(ObjEntry):
     def call_selector(self):
         cls = SelectorFactory('MediaObject')
         return cls(self.dbstate, self.uistate, self.track)
-    
+
 # FIXME isn't used anywhere
 class NoteEntry(ObjEntry):
     """
@@ -439,10 +439,10 @@ class NoteEntry(ObjEntry):
     DEL_STR = _('Remove note')
     _DND_TYPE = DdTargets.NOTE_LINK
     _DND_ICON = 'gramps-notes'
-    
-    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val,
                  get_val, add_edt, share)
         self.notetype = None
 
@@ -476,7 +476,7 @@ class NoteEntry(ObjEntry):
             note = obj
             func = self.after_edit
         try:
-            EditNote(self.dbstate, self.uistate, self.track, 
+            EditNote(self.dbstate, self.uistate, self.track,
                          note, func)
         except WindowActiveError:
             pass

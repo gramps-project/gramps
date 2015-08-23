@@ -52,8 +52,8 @@ _CLICKABLE = r'''{\\field{\\*\\fldinst HYPERLINK "\1"}{\\fldrslt \1}}'''
 
 #------------------------------------------------------------------------
 #
-# RTF uses a unit called "twips" for its measurements. According to the 
-# RTF specification, 1 point is 20 twips. This routines converts 
+# RTF uses a unit called "twips" for its measurements. According to the
+# RTF specification, 1 point is 20 twips. This routines converts
 # centimeters to twips
 #
 # 2.54 cm/inch 72pts/inch, 20twips/pt
@@ -74,7 +74,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     # Opens the file, and writes the header. Builds the color and font
     # tables.  Fonts are chosen using the MS TrueType fonts, since it
-    # is assumed that if you are generating RTF, you are probably 
+    # is assumed that if you are generating RTF, you are probably
     # targeting Word.  This generator assumes a Western Europe character
     # set.
     #
@@ -92,7 +92,7 @@ class RTFDoc(BaseDoc,TextDoc):
             raise ReportError(errmsg)
         except:
             raise ReportError(_("Could not create %s") % self.filename)
-        
+
         style_sheet = self.get_style_sheet()
 
         self.f.write(
@@ -153,7 +153,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     #
     # Starts a paragraph. Instead of using a style sheet, generate the
-    # the style for each paragraph on the fly. Not the ideal, but it 
+    # the style for each paragraph on the fly. Not the ideal, but it
     # does work.
     #
     #--------------------------------------------------------------------
@@ -222,12 +222,12 @@ class RTFDoc(BaseDoc,TextDoc):
             self.text = ""
             self.f.write('\\tab}')
             self.opened = 0
-    
+
     #--------------------------------------------------------------------
     #
-    # Ends a paragraph. Care has to be taken to make sure that the 
+    # Ends a paragraph. Care has to be taken to make sure that the
     # braces are closed properly. The self.opened flag is used to indicate
-    # if braces are currently open. If the last write was the end of 
+    # if braces are currently open. If the last write was the end of
     # a bold-faced phrase, braces may already be closed.
     #
     #--------------------------------------------------------------------
@@ -240,7 +240,7 @@ class RTFDoc(BaseDoc,TextDoc):
         # there is no newline between the description and the note.
         if not self.in_table:
             self.f.write(self.text)
-            LOG.debug("end_paragraph: opened: %d write: %s" % 
+            LOG.debug("end_paragraph: opened: %d write: %s" %
                       (self.opened,
                        self.text + '}' if self.opened else "" + "newline"))
             if self.opened:
@@ -267,8 +267,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def start_bold(self):
-        LOG.debug("start_bold: opened: %d saved text: %s" % 
-                  (self.opened, 
+        LOG.debug("start_bold: opened: %d saved text: %s" %
+                  (self.opened,
                    '}' if self.opened else "" + '{%s\\b ' % self.font_type))
         if self.opened:
             self.text += '}'
@@ -281,8 +281,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_bold(self):
-        LOG.debug("end_bold: opened: %d saved text: %s" % 
-                  (self.opened, 
+        LOG.debug("end_bold: opened: %d saved text: %s" %
+                  (self.opened,
                    self.text + '}'))
         if not self.opened == 1:
             print(self.opened)
@@ -300,7 +300,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     # Start a table. Grab the table style, and store it. Keep a flag to
     # indicate that we are in a table. This helps us deal with paragraphs
-    # internal to a table. RTF does not require anything to start a 
+    # internal to a table. RTF does not require anything to start a
     # table, since a table is treated as a bunch of rows.
     #
     #--------------------------------------------------------------------
@@ -349,8 +349,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     # Start a cell. Dump out the cell specifics, such as borders. Cell
     # widths are kind of interesting. RTF doesn't specify how wide a cell
-    # is, but rather where it's right edge is in relationship to the 
-    # left margin. This means that each cell is the cumlative of the 
+    # is, but rather where it's right edge is in relationship to the
+    # left margin. This means that each cell is the cumlative of the
     # previous cells plus its own width.
     #
     #--------------------------------------------------------------------
@@ -385,7 +385,7 @@ class RTFDoc(BaseDoc,TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Add a photo. Embed the photo in the document. Use the Python 
+    # Add a photo. Embed the photo in the document. Use the Python
     # imaging library to load and scale the photo. The image is converted
     # to JPEG, since it is smaller, and supported by RTF. The data is
     # dumped as a string of HEX numbers.
@@ -424,12 +424,12 @@ class RTFDoc(BaseDoc,TextDoc):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the RTF doc. 
+        Convenience function to write a styledtext to the RTF doc.
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        contains_html: bool, the backend should not check if html is present. 
-            If contains_html=True, then the textdoc is free to handle that in 
+        contains_html: bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. RTFDoc prints the html without handling it
         links: bool, make URLs clickable if True
@@ -463,17 +463,17 @@ class RTFDoc(BaseDoc,TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Writes text. If braces are not currently open, open them. Loop 
+    # Writes text. If braces are not currently open, open them. Loop
     # character by character (terribly inefficient, but it works). If a
-    # character is 8 bit (>127), convert it to a hex representation in 
+    # character is 8 bit (>127), convert it to a hex representation in
     # the form of \`XX. Make sure to escape braces.
     #
     #--------------------------------------------------------------------
     def write_text(self, text, mark=None, links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
         text = str(text)
-        LOG.debug("write_text: opened: %d input text: %s" % 
-                  (self.opened, 
+        LOG.debug("write_text: opened: %d input text: %s" %
+                  (self.opened,
                    text))
         if self.opened == 0:
             self.opened = 1
@@ -484,7 +484,7 @@ class RTFDoc(BaseDoc,TextDoc):
                 if ord(i) < 256:
                     self.text += '\\\'%2x' % ord(i)
                 else:
-                    # If (uni)code with more than 8 bits: 
+                    # If (uni)code with more than 8 bits:
                     # RTF req valus in decimal, not hex.
                     self.text += '{\\uc1\\u%d\\uc0}' % ord(i)
             elif i == '\n':
@@ -497,8 +497,8 @@ class RTFDoc(BaseDoc,TextDoc):
         if links ==  True:
             import re
             self.text = re.sub(URL_PATTERN, _CLICKABLE, self.text)
-        LOG.debug("write_text, exit: opened: %d saved text: %s" % 
-                  (self.opened, 
+        LOG.debug("write_text, exit: opened: %d saved text: %s" %
+                  (self.opened,
                    self.text))
 
 def process_spaces(line, format):
@@ -506,12 +506,12 @@ def process_spaces(line, format):
     Function to process spaces in text lines for flowed and pre-formatted notes.
     line : text to process
     format : = 0 : Flowed, = 1 : Preformatted
-    
+
     If the text is flowed (format==0), then leading spaces
     are removed, and multiple spaces are reduced to one.
     If the text is pre-formatted (format==1). then all spaces are preserved
-    
-    Note that xml is just treated like any other text, 
+
+    Note that xml is just treated like any other text,
     because it will be from the original note, and it is just printed, not interpreted.
     Returns the processed text, and the number of significant (i.e. non-white-space) chars.
     """

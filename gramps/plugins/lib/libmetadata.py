@@ -101,7 +101,7 @@ CAMERA = _('Camera')
 GPS = _('GPS')
 ADVANCED = _('Advanced')
 
-TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None), 
+TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
         (DESCRIPTION, 'Exif.Image.Artist', None, None),
         (DESCRIPTION, 'Exif.Image.Copyright', None, None),
         (DESCRIPTION, 'Exif.Photo.DateTimeOriginal', None, format_datetime),
@@ -113,7 +113,7 @@ TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
         (DESCRIPTION, 'Exif.Image.XPKeywords', None, None),
         (DESCRIPTION, 'Exif.Image.Rating', None, None),
         (IMAGE, 'Exif.Image.DocumentName', None, None),
-        (IMAGE, 'Exif.Photo.PixelXDimension', None, None), 
+        (IMAGE, 'Exif.Photo.PixelXDimension', None, None),
         (IMAGE, 'Exif.Photo.PixelYDimension', None, None),
         (IMAGE, 'Exif.Image.XResolution', 'Exif.Image.ResolutionUnit', None),
         (IMAGE, 'Exif.Image.YResolution', 'Exif.Image.ResolutionUnit', None),
@@ -124,15 +124,15 @@ TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
         (IMAGE, 'Exif.Image.Compression', None, None),
         (IMAGE, 'Exif.Photo.CompressedBitsPerPixel', None, None),
         (IMAGE, 'Exif.Image.PhotometricInterpretation', None, None),
-        (CAMERA, 'Exif.Image.Make', None, None), 
-        (CAMERA, 'Exif.Image.Model', None, None), 
-        (CAMERA, 'Exif.Photo.FNumber', None, None), 
-        (CAMERA, 'Exif.Photo.ExposureTime', None, None), 
-        (CAMERA, 'Exif.Photo.ISOSpeedRatings', None, None), 
+        (CAMERA, 'Exif.Image.Make', None, None),
+        (CAMERA, 'Exif.Image.Model', None, None),
+        (CAMERA, 'Exif.Photo.FNumber', None, None),
+        (CAMERA, 'Exif.Photo.ExposureTime', None, None),
+        (CAMERA, 'Exif.Photo.ISOSpeedRatings', None, None),
         (CAMERA, 'Exif.Photo.FocalLength', None, None),
         (CAMERA, 'Exif.Photo.FocalLengthIn35mmFilm', None, None),
-        (CAMERA, 'Exif.Photo.MaxApertureValue', None, None), 
-        (CAMERA, 'Exif.Photo.MeteringMode', None, None), 
+        (CAMERA, 'Exif.Photo.MaxApertureValue', None, None),
+        (CAMERA, 'Exif.Photo.MeteringMode', None, None),
         (CAMERA, 'Exif.Photo.ExposureProgram', None, None),
         (CAMERA, 'Exif.Photo.ExposureBiasValue', None, None),
         (CAMERA, 'Exif.Photo.Flash', None, None),
@@ -146,7 +146,7 @@ TAGS = [(DESCRIPTION, 'Exif.Image.ImageDescription', None, None),
         (CAMERA, 'Exif.Photo.WhiteBalance', None, None),
         (CAMERA, 'Exif.Photo.DigitalZoomRatio', None, None),
         (GPS, 'Exif.GPSInfo.GPSLatitude',
-              'Exif.GPSInfo.GPSLatitudeRef', format_gps), 
+              'Exif.GPSInfo.GPSLatitudeRef', format_gps),
         (GPS, 'Exif.GPSInfo.GPSLongitude',
               'Exif.GPSInfo.GPSLongitudeRef', format_gps),
         (GPS, 'Exif.GPSInfo.GPSAltitude',
@@ -167,7 +167,7 @@ class MetadataView(Gtk.TreeView):
     def __init__(self):
         Gtk.TreeView.__init__(self)
         self.sections = {}
-        titles = [(_('Key'), 1, 235), 
+        titles = [(_('Key'), 1, 235),
                   (_('Value'), 2, 325)]
         self.model = ListModel(self, titles, list_mode="tree")
 

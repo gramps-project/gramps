@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -1725,7 +1725,7 @@ class CitationBaseCheck(unittest.TestCase):
         self.obj_list.add_citation(citation.handle)
         self.phoenix._merge_citation_list(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
-            
+
     def test_merge_different(self):
         citation = Citation()
         citation.set_reference_handle('234567')

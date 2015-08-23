@@ -50,7 +50,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
     _HANDLE_COL = 5
     _DND_TYPE = DdTargets.REPOREF
     _DND_EXTRA = DdTargets.REPO_LINK
-        
+
     _MSG = {
         'add'   : _('Create and add a new repository'),
         'del'   : _('Remove the existing repository'),
@@ -69,16 +69,16 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         (_('Type'),   3, 100, TEXT_COL, -1, None),
         (_('Private'), 4, 30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Repositories'), RepoRefModel, 
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('_Repositories'), RepoRefModel,
                               share_button=True, move_buttons=True)
         DbGUIElement.__init__(self, dbstate.db)
-        self.callman.register_handles({'repository': [rref.ref for rref 
+        self.callman.register_handles({'repository': [rref.ref for rref
                                                           in self.obj]})
- 
+
     def _connect_db_signals(self):
         """
         Implement base class DbGUIElement method
@@ -105,7 +105,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             ref = RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
             EditRepoRef(
-                self.dbstate, self.uistate, self.track, 
+                self.dbstate, self.uistate, self.track,
                 repo, ref, self.add_callback)
         except WindowActiveError:
             pass
@@ -116,7 +116,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
         repo = Repository()
         try:
             EditRepoRef(
-                self.dbstate, self.uistate, self.track, 
+                self.dbstate, self.uistate, self.track,
                 repo, ref, self.add_callback)
         except WindowActiveError:
             pass
@@ -128,7 +128,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             self.dbstate,
             self.uistate,
             self.track)
-        
+
         repo = sel.run()
         if repo:
             try:
@@ -136,11 +136,11 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                 ref = RepoRef()
                 EditRepoRef(self.dbstate,
                               self.uistate,
-                              self.track, 
+                              self.track,
                               repo,
                               ref,
                               self.add_callback)
-                
+
             except WindowActiveError:
                 pass
 
@@ -160,7 +160,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
             try:
                 from .. import EditRepoRef
                 EditRepoRef(
-                    self.dbstate, self.uistate, self.track, repo, 
+                    self.dbstate, self.uistate, self.track, repo,
                     ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
@@ -195,7 +195,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                     pos = ref_handles.index(handle)
                 except ValueError :
                     break
-            
+
                 if pos is not None:
                     #oeps, we need to remove this reference, and rebuild tab
                     del self.obj[pos]

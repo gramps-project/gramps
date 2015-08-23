@@ -73,7 +73,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -93,7 +93,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             "_class": "RepositoryRef",
             "note_list": NoteBase.to_struct(self),
             "ref": Handle("Repository", self.ref),
-            "call_number": self.call_number, 
+            "call_number": self.call_number,
             "media_type": self.media_type.to_struct(),
             "private": PrivacyBase.serialize(self),
             }
@@ -139,7 +139,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """

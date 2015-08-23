@@ -46,25 +46,25 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 class ChildModel(Gtk.ListStore):
 
     def __init__(self, child_ref_list, db):
-        Gtk.ListStore.__init__(self, int, str, str, str, str, str, 
+        Gtk.ListStore.__init__(self, int, str, str, str, str, str,
                                str, str, str, str, str, str, str, bool, object)
         self.db = db
         for index, child_ref in enumerate(child_ref_list):
             child = db.get_person_from_handle(child_ref.ref)
             if child:
                 self.append(row=[
-                    index + 1, 
-                    child.get_gramps_id(), 
-                    name_displayer.display(child), 
-                    gender_map[child.get_gender()], 
-                    str(child_ref.get_father_relation()), 
+                    index + 1,
+                    child.get_gramps_id(),
+                    name_displayer.display(child),
+                    gender_map[child.get_gender()],
+                    str(child_ref.get_father_relation()),
                     str(child_ref.get_mother_relation()),
-                    self.column_birth_day(child), 
-                    self.column_death_day(child), 
-                    self.column_birth_place(child), 
-                    self.column_death_place(child), 
-                    name_displayer.sort_string(child.primary_name), 
-                    self.column_birth_sort(child), 
+                    self.column_birth_day(child),
+                    self.column_death_day(child),
+                    self.column_birth_place(child),
+                    self.column_death_place(child),
+                    name_displayer.sort_string(child.primary_name),
+                    self.column_birth_sort(child),
                     self.column_death_sort(child),
                     child_ref.get_privacy(),
                     child_ref
@@ -81,9 +81,9 @@ class ChildModel(Gtk.ListStore):
             return ""
 
     def column_birth_sort(self, data):
-        """ 
-        Return a sort key to use for the birth column. 
-        As python int can be larger than C int, we cast int 
+        """
+        Return a sort key to use for the birth column.
+        As python int can be larger than C int, we cast int
         to a string of 10 long prepended with 0 as needed.
         This gives correct string sort for years in the millenia around today
         """
@@ -104,9 +104,9 @@ class ChildModel(Gtk.ListStore):
             return ""
 
     def column_death_sort(self, data):
-        """ 
-        Return a sort key to use for the death column. 
-        As python int can be larger than C int, we cast int 
+        """
+        Return a sort key to use for the death column.
+        As python int can be larger than C int, we cast int
         to a string of 10 long prepended with 0 as needed.
         This gives correct string sort for years in the millenia around today
         """
@@ -115,7 +115,7 @@ class ChildModel(Gtk.ListStore):
             return '%012d' % death.get_date_object().get_sort_value()
         else:
             return '%012d' % 0
-        
+
     def column_birth_place(self, data):
         event_ref = data.get_birth_ref()
         if event_ref and event_ref.ref:

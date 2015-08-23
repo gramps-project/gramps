@@ -42,7 +42,7 @@ def fill_combo(combo, data_list):
     for data in data_list:
         if data:
             store.append(row=[data])
-    
+
     combo.set_model(store)
     combo.set_entry_text_column(0)
     completion = Gtk.EntryCompletion()
@@ -67,7 +67,7 @@ def fill_entry(entry, data_list):
     completion.set_minimum_key_length(1)
     completion.set_text_column(0)
     entry.set_completion(completion)
-    
+
 #-------------------------------------------------------------------------
 #
 # StandardCustomSelector class
@@ -101,7 +101,7 @@ class StandardCustomSelector(object):
     upon widget creation. If omitted, the entry will be empty. If present,
     then no selection on the user's part will return the
     (active_key,mapping[active_key]) tuple.
-        
+
     """
     def __init__(self, mapping, cbe=None, custom_key=None, active_key=None,
                  additional=None, menu=None):

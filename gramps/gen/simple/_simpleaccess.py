@@ -23,7 +23,7 @@
 """
 Provide a simplified database access interface to the Gramps database.
 """
-from ..lib import (Person, Family, Event, Source, Place, Citation, 
+from ..lib import (Person, Family, Event, Source, Place, Citation,
                    MediaObject, Repository, Note, Date, Tag)
 from ..lib.handle import Handle
 from ..datehandler import displayer
@@ -46,17 +46,17 @@ class SimpleAccess(object):
     """
     Provide a simplified database access system. This system has been designed
     to ease the development of reports.
-    
-    The user needs to take care when using this interface. Since it returns real 
+
+    The user needs to take care when using this interface. Since it returns real
     objects instead of database references, it can consume a significant amount
     of memory if the user is not careful.
-    
+
     **Example**
-    
+
     A typical system of usage would be::
-    
+
       sa = SimpleAccess(database)
-    
+
       print "Person        : ", sa.name(person)
       print "Gender        : ", sa.gender(person)
       print "Birth date    : ", sa.birth_date(person)
@@ -71,10 +71,10 @@ class SimpleAccess(object):
       print "Marriage Place: ", sa.marriage_place(person)
       for child in sa.children(person):
          print "Child         : ", sa.name(child)
-        
+
       # Print out burial and baptism events
       for event in sa.events( person , [ "Burial", "Baptism" ]):
-         print "Event         : ", sa.event_type(event), sa.event_date(event), 
+         print "Event         : ", sa.event_type(event), sa.event_date(event),
          print sa.event_place(event)
 
     This would produce an output that looks like::
@@ -107,7 +107,7 @@ class SimpleAccess(object):
     def __init__(self, dbase):
         """
         Initialize the SimpleAccess object with the database that will be used.
-        
+
         :param dbase: Gramps database object
         :type dbase: DbBase
         """
@@ -124,7 +124,7 @@ class SimpleAccess(object):
         """
         if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
-        assert(person is None or isinstance(person, Person))     
+        assert(person is None or isinstance(person, Person))
         if person:
             return name_displayer.display(person)
         else:
@@ -139,15 +139,15 @@ class SimpleAccess(object):
         :return: Returns the name of the person based of the program preferences
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
-        assert(person is None or isinstance(person, Person))     
+        assert(person is None or isinstance(person, Person))
         if person:
             surname = person.get_primary_name().get_surname()
             return surname or config.get('preferences.no-surname-text')
         else:
             return ''
-        
+
     def first_name(self, person):
         """
         Return the first name of the person, or and empty string if the person
@@ -159,7 +159,7 @@ class SimpleAccess(object):
                  preferences
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
         if person:
@@ -190,7 +190,7 @@ class SimpleAccess(object):
         :return: Returns a string indentifying the person's gender
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
         if person:
@@ -318,7 +318,7 @@ class SimpleAccess(object):
         :return: The spouse identified as the person's primary spouse
         :rtype: :py:class:`.Person`
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -346,7 +346,7 @@ class SimpleAccess(object):
                  person and his/per primary spouse.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -370,7 +370,7 @@ class SimpleAccess(object):
                  his/her spouse where married.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -382,9 +382,9 @@ class SimpleAccess(object):
                 if family:
                     reflist = family.get_event_ref_list()
                     if reflist:
-                        elist = [ self.dbase.get_event_from_handle(ref.ref) 
+                        elist = [ self.dbase.get_event_from_handle(ref.ref)
                                   for ref in reflist ]
-                        events = [ evnt for evnt in elist 
+                        events = [ evnt for evnt in elist
                                    if event.type == EventType.MARRIAGE ]
                         if events:
                             return place_displayer.display_event(self.dbase, events[0])
@@ -401,7 +401,7 @@ class SimpleAccess(object):
                  his/her spouse where married.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -413,9 +413,9 @@ class SimpleAccess(object):
                 if family:
                     reflist = family.get_event_ref_list()
                     if reflist:
-                        elist = [ self.dbase.get_event_from_handle(ref.ref) 
+                        elist = [ self.dbase.get_event_from_handle(ref.ref)
                                   for ref in reflist ]
-                        events = [ evnt for evnt in elist 
+                        events = [ evnt for evnt in elist
                                    if event.type == EventType.MARRIAGE ]
                         if events:
                             date_obj = events[0].get_date_object()
@@ -440,11 +440,11 @@ class SimpleAccess(object):
             if family_handle_list:
                 family_id = family_handle_list[0]
                 family = self.dbase.get_family_from_handle(family_id)
-                
-                return [ self.dbase.get_person_from_handle(hndl.ref) 
+
+                return [ self.dbase.get_person_from_handle(hndl.ref)
                          for hndl in family.get_child_ref_list() ]
         elif isinstance(obj, Family):
-            return [ self.dbase.get_person_from_handle(hndl.ref) 
+            return [ self.dbase.get_person_from_handle(hndl.ref)
                      for hndl in obj.get_child_ref_list() ]
         return []
 
@@ -483,7 +483,7 @@ class SimpleAccess(object):
             return self.__family_parent(obj, Family.get_mother_handle)
         else:
             return None
-        
+
     def birth_date(self, person):
         """
         Return a string indicating the date when the person's birth.
@@ -493,7 +493,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the date when the person's birth.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, Person.get_birth_ref)
 
@@ -506,7 +506,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's birth.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_birth_ref)
 
@@ -520,7 +520,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's birth or fallback.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         event = get_birth_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -539,7 +539,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the place of the person's birth.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_birth_ref)
 
@@ -565,7 +565,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's death.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_death_ref)
 
@@ -578,7 +578,7 @@ class SimpleAccess(object):
         :return: Returns the date of the person's death or fallback.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         event = get_death_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -597,7 +597,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the place of the person's death.
         :rtype: unicode
         """
-        if isinstance(person, str): 
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_death_ref)
 
@@ -693,11 +693,11 @@ class SimpleAccess(object):
 
         if obj:
             event_handles = [ ref.ref for ref in obj.get_event_ref_list() ]
-            events = [ self.dbase.get_event_from_handle(h) 
+            events = [ self.dbase.get_event_from_handle(h)
                        for h in event_handles ]
             if restrict:
                 restrict = [ r.lower() for r in restrict ]
-                events = [ event for event in events 
+                events = [ event for event in events
                            if str(event.get_type()).lower() in restrict ]
             return events
         else:
@@ -733,10 +733,10 @@ class SimpleAccess(object):
         """
         if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
-        assert(person is None or isinstance(person, Person))     
-        
+        assert(person is None or isinstance(person, Person))
+
         if person:
-            return [ self.dbase.get_family_from_handle(handle) 
+            return [ self.dbase.get_family_from_handle(handle)
                      for handle in person.get_family_handle_list() ]
         return []
 
@@ -753,21 +753,21 @@ class SimpleAccess(object):
         if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
-        
+
         if person:
-            return [ self.dbase.get_family_from_handle(handle) 
+            return [ self.dbase.get_family_from_handle(handle)
                      for handle in person.get_parent_family_handle_list() ]
         return []
 
     def __all_objects(self, gen_cursor, get_object):
         """
-        Return a all the objects of a particular type in the database, one 
-        at a time as an iterator. The user can treat this just like a list. 
+        Return a all the objects of a particular type in the database, one
+        at a time as an iterator. The user can treat this just like a list.
 
         :return: list of objects of a particular type in the database
         :rtype: list
         """
-        
+
         with gen_cursor() as cursor:
             for key, data in cursor:
                 yield get_object(key)
@@ -783,7 +783,7 @@ class SimpleAccess(object):
         :return: list of people in the database
         :rtype: list
         """
-        
+
         with self.dbase.get_person_cursor() as cursor:
             # data[3] is primary_name; data[3][5][0][0] is surname
             slist = sorted((data[3][5][0][0], key) for key, data in cursor)
@@ -803,7 +803,7 @@ class SimpleAccess(object):
         :return: list of families in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_family_cursor, 
+        return self.__all_objects(self.dbase.get_family_cursor,
                                   self.dbase.get_family_from_handle)
 
     def all_events(self):
@@ -817,7 +817,7 @@ class SimpleAccess(object):
         :return: list of events in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_event_cursor, 
+        return self.__all_objects(self.dbase.get_event_cursor,
                                   self.dbase.get_event_from_handle)
 
     def all_sources(self):
@@ -828,7 +828,7 @@ class SimpleAccess(object):
         :return: list of sources in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_source_cursor, 
+        return self.__all_objects(self.dbase.get_source_cursor,
                                   self.dbase.get_source_from_handle)
 
     def all_citations(self):
@@ -839,7 +839,7 @@ class SimpleAccess(object):
         :return: list of citations in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_citation_cursor, 
+        return self.__all_objects(self.dbase.get_citation_cursor,
                                   self.dbase.get_citation_from_handle)
 
     def all_repositories(self):
@@ -850,7 +850,7 @@ class SimpleAccess(object):
         :return: list of repositories in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_repository_cursor, 
+        return self.__all_objects(self.dbase.get_repository_cursor,
                                   self.dbase.get_repository_from_handle)
 
     def all_media(self):
@@ -861,7 +861,7 @@ class SimpleAccess(object):
         :return: list of media in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_media_cursor, 
+        return self.__all_objects(self.dbase.get_media_cursor,
                                   self.dbase.get_object_from_handle)
 
     def all_places(self):
@@ -872,7 +872,7 @@ class SimpleAccess(object):
         :return: list of places in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_place_cursor, 
+        return self.__all_objects(self.dbase.get_place_cursor,
                                   self.dbase.get_place_from_handle)
 
     def all_notes(self):
@@ -883,7 +883,7 @@ class SimpleAccess(object):
         :return: list of notes in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_note_cursor, 
+        return self.__all_objects(self.dbase.get_note_cursor,
                                   self.dbase.get_note_from_handle)
 
     def all_tags(self):
@@ -894,7 +894,7 @@ class SimpleAccess(object):
         :return: list of tags in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_tag_cursor, 
+        return self.__all_objects(self.dbase.get_tag_cursor,
                                   self.dbase.get_tag_from_handle)
 
     def title(self, source):
@@ -954,7 +954,7 @@ class SimpleAccess(object):
     def display(self, object_class, prop, value):
         """
         Given a object_class, prop, and value return a display string
-        describing object.  
+        describing object.
 
         :param object_class: "Person", "Source", etc.
         :param prop: "gramps_id", or "handle"
@@ -965,44 +965,44 @@ class SimpleAccess(object):
                            [prop + "_func"](value)
             if obj:
                 if isinstance(obj, Person):
-                    return "%s: %s [%s]" % (_(object_class), 
-                                            self.name(obj), 
+                    return "%s: %s [%s]" % (_(object_class),
+                                            self.name(obj),
                                             self.gid(obj))
                 elif isinstance(obj, Event):
-                    return "%s: %s [%s]" % (_(object_class), 
+                    return "%s: %s [%s]" % (_(object_class),
                                             self.event_type(obj),
                                             self.gid(obj))
                 elif isinstance(obj, Family):
-                    return "%s: %s/%s [%s]" % (_(object_class), 
-                                            self.name(self.mother(obj)), 
-                                            self.name(self.father(obj)), 
+                    return "%s: %s/%s [%s]" % (_(object_class),
+                                            self.name(self.mother(obj)),
+                                            self.name(self.father(obj)),
                                             self.gid(obj))
                 elif isinstance(obj, MediaObject):
-                    return "%s: %s [%s]" % (_(object_class), 
-                                            obj.desc, 
+                    return "%s: %s [%s]" % (_(object_class),
+                                            obj.desc,
                                             self.gid(obj))
                 elif isinstance(obj, Source):
-                    return "%s: %s [%s]" % (_(object_class), 
-                                            self.title(obj), 
+                    return "%s: %s [%s]" % (_(object_class),
+                                            self.title(obj),
                                             self.gid(obj))
                 elif isinstance(obj, Citation):
-                    return "%s: [%s]" % (_(object_class), 
+                    return "%s: [%s]" % (_(object_class),
                                             self.gid(obj))
                 elif isinstance(obj, Place):
                     place_title = place_displayer.display(self.dbase, obj)
-                    return "%s: %s [%s]" % (_(object_class), 
+                    return "%s: %s [%s]" % (_(object_class),
                                             place_title,
                                             self.gid(obj))
                 elif isinstance(obj, Repository):
-                    return "%s: %s [%s]" % (_(object_class), 
-                                            obj.type, 
+                    return "%s: %s [%s]" % (_(object_class),
+                                            obj.type,
                                             self.gid(obj))
                 elif isinstance(obj, Note):
-                    return "%s: %s [%s]" % (_(object_class), 
-                                            obj.type, 
+                    return "%s: %s [%s]" % (_(object_class),
+                                            obj.type,
                                             self.gid(obj))
                 elif isinstance(obj, Tag):
-                    return "%s: [%s]" % (_(object_class), 
+                    return "%s: [%s]" % (_(object_class),
                                          obj.name)
                 else:
                     return "Error: incorrect object class in display: '%s'" % type(obj)
@@ -1015,26 +1015,26 @@ class SimpleAccess(object):
 
     def describe(self, obj, prop=None, value=None):
         """
-        Given a object, return a string describing the object.  
+        Given a object, return a string describing the object.
         """
         if prop and value:
             if self.dbase.get_table_metadata(obj):
                 obj = self.dbase.get_table_metadata(obj)[prop + "_func"](value)
         if isinstance(obj, Person):
-            return "%s [%s]" % (self.name(obj), 
+            return "%s [%s]" % (self.name(obj),
                                 self.gid(obj))
         elif isinstance(obj, Event):
             return "%s [%s]" % (self.event_type(obj),
                                 self.gid(obj))
         elif isinstance(obj, Family):
-            return "%s/%s [%s]" % (self.name(self.mother(obj)), 
-                                   self.name(self.father(obj)), 
+            return "%s/%s [%s]" % (self.name(self.mother(obj)),
+                                   self.name(self.father(obj)),
                                    self.gid(obj))
         elif isinstance(obj, MediaObject):
-            return "%s [%s]" % (obj.desc, 
+            return "%s [%s]" % (obj.desc,
                                 self.gid(obj))
         elif isinstance(obj, Source):
-            return "%s [%s]" % (self.title(obj), 
+            return "%s [%s]" % (self.title(obj),
                                 self.gid(obj))
         elif isinstance(obj, Citation):
             return "[%s]" % (self.gid(obj))
@@ -1043,10 +1043,10 @@ class SimpleAccess(object):
             return "%s [%s]" % (place_title,
                                 self.gid(obj))
         elif isinstance(obj, Repository):
-            return "%s [%s]" % (obj.type, 
+            return "%s [%s]" % (obj.type,
                                 self.gid(obj))
         elif isinstance(obj, Note):
-            return "%s [%s]" % (obj.type, 
+            return "%s [%s]" % (obj.type,
                                 self.gid(obj))
         elif isinstance(obj, Tag):
             return "[%s]" % (obj.name)

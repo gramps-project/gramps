@@ -67,9 +67,9 @@ age_precision       = config.get('preferences.age-display-precision')
 #-------------------------------------------------------------------------
 class EventRefModel(Gtk.TreeStore):
     #index of the working group
-    _ROOTINDEX = 0 
+    _ROOTINDEX = 0
     _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
-    
+
     COL_DESCR = (0, str)
     COL_TYPE = (1, str)
     COL_GID = (2, str)
@@ -83,15 +83,15 @@ class EventRefModel(Gtk.TreeStore):
     COL_AGE = (10, str)
     COL_SORTAGE = (11, str)
     COL_PRIVATE = (12, bool)
-    
-    COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
+
+    COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE,
             COL_PARTIC, COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE,
             COL_SORTAGE, COL_PRIVATE)
 
     def __init__(self, event_list, db, groups, **kwargs):
         """
         @param event_list: A list of lists, every entry is a group, the entries
-            in a group are the data that needs to be shown subordinate to the 
+            in a group are the data that needs to be shown subordinate to the
             group
         @param db: a database objects that can be used to obtain info
         @param groups: a list of (key, name) tuples. key is a key for the group
@@ -122,10 +122,10 @@ class EventRefModel(Gtk.TreeStore):
     def row(self, index, eventref, event):
         return [event.get_description(),
                 str(event.get_type()),
-                event.get_gramps_id(), 
-                self.column_date(eventref), 
-                self.column_place(eventref), 
-                self.column_role(eventref), 
+                event.get_gramps_id(),
+                self.column_date(eventref),
+                self.column_place(eventref),
+                self.column_role(eventref),
                 self.column_participant(eventref),
                 self.column_sort_date(eventref),
                 (index, eventref),
@@ -134,7 +134,7 @@ class EventRefModel(Gtk.TreeStore):
                 self.column_sort_age(event),
                 eventref.get_privacy(),
                ]
-    
+
     def colweight(self, index):
         return WEIGHT_NORMAL
 

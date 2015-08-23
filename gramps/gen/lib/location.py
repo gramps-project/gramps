@@ -46,7 +46,7 @@ class Location(SecondaryObject, LocationBase):
     Multiple Location objects can represent the same place, since names
     of cities, counties, states, and even countries can change with time.
     """
-    
+
     def __init__(self, source=None):
         """
         Create a Location object, copying from the source object if it exists.
@@ -67,7 +67,7 @@ class Location(SecondaryObject, LocationBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -84,13 +84,13 @@ class Location(SecondaryObject, LocationBase):
         :rtype: dict
         """
         return {"_class": "Location",
-                "street": self.street, 
-                "locality": self.locality, 
-                "city": self.city, 
-                "county": self.county, 
+                "street": self.street,
+                "locality": self.locality,
+                "city": self.city,
+                "county": self.county,
                 "state": self.state,
-                "country": self.country, 
-                "postal": self.postal, 
+                "country": self.country,
+                "postal": self.postal,
                 "phone": self.phone,
                 "parish": self.parish}
 
@@ -109,9 +109,9 @@ class Location(SecondaryObject, LocationBase):
                  struct.get("state", default.state),
                  struct.get("country", default.country),
                  struct.get("postal", default.postal),
-                 struct.get("phone", default.phone)), 
+                 struct.get("phone", default.phone)),
                 struct.get("parish", default.parish))
-        
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
@@ -158,7 +158,7 @@ class Location(SecondaryObject, LocationBase):
         return not self.street and not self.locality and not self.city and \
                not self.county and not self.state and not self.country and \
                not self.postal and not self.phone
-        
+
     def set_parish(self, data):
         """Set the religious parish name."""
         self.parish = data

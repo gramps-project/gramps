@@ -69,14 +69,14 @@ class ShortlistComboEntry(ValidatedComboEntry):
     """A ComboboxEntry class with optional shortlist.
     """
     __gtype_name__ = "ShortlistComboEntry"
-    
+
     def __init__(self, items, shortlist=True, validator=None):
         if not items:
             raise ValueError
-        
+
         data_type = items[0].__class__
         gtype = _GTYPE.get(data_type, GObject.TYPE_PYOBJECT)
-        
+
         # create the model and insert the items
         model = Gtk.ListStore(gtype, GObject.TYPE_BOOLEAN)
         maxlen = -1
@@ -84,7 +84,7 @@ class ShortlistComboEntry(ValidatedComboEntry):
             if len(str(item)) > maxlen:
                 maxlen = len(str(item))
             model.append((item, False))
-        
+
         width = -1 #default width
         if 1 < maxlen < 4:
             width = 4
@@ -95,20 +95,20 @@ class ShortlistComboEntry(ValidatedComboEntry):
         if shortlist:
             self._shortlist = []
             self.connect("changed", self._on_combobox_changed)
-            
+
         self.set_row_separator_func(self._is_row_separator, None)
-            
+
     def _on_combobox_changed(self, combobox):
         if self._internal_change:
             return
-        
+
         if self.get_active_iter():
             model = self.get_model()
 
             # if first item on shortlist insert a separator row
             if not self._shortlist:
                 model.prepend((None, True))
-            
+
             # remove the existing shortlist from the model
             iter = model.get_iter_first()
             for n in range(len(self._shortlist)):
@@ -119,7 +119,7 @@ class ShortlistComboEntry(ValidatedComboEntry):
                 self._shortlist.remove(self._active_data)
             self._shortlist.append(self._active_data)
             self._shortlist = self._shortlist[-5:]
-            
+
             # prepend shortlist to model
             for data in self._shortlist:
                 model.prepend((data, False))

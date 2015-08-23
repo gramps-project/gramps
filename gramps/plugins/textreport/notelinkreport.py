@@ -53,7 +53,7 @@ from gramps.gen.simple import SimpleAccess
 #------------------------------------------------------------------------
 class NoteLinkReport(Report):
     """
-    This report 
+    This report
     """
 
     def write_report(self):
@@ -83,7 +83,7 @@ class NoteLinkReport(Report):
         self.doc.write_text(_("Link Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('NoteLink-TableCell')
         self.doc.start_paragraph('NoteLink-Normal-Bold')
         self.doc.write_text(_("Links To"))
@@ -113,7 +113,7 @@ class NoteLinkReport(Report):
                         tagtype = _("Internet")
                         tagvalue = lvalue
                         tagcheck = ""
-        
+
                     self.doc.start_row()
 
                     self.doc.start_cell('NoteLink-TableCell')
@@ -172,7 +172,7 @@ class NoteLinkOptions(MenuReportOptions):
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("NoteLink-Title", p)
-        
+
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=14, italic=1)
         para = ParagraphStyle()
@@ -182,7 +182,7 @@ class NoteLinkOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the section headers.'))
         default_style.add_paragraph_style("NoteLink-Heading", para)
-        
+
         font = FontStyle()
         font.set_size(12)
         p = ParagraphStyle()
@@ -192,7 +192,7 @@ class NoteLinkOptions(MenuReportOptions):
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("NoteLink-Normal", p)
-        
+
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
@@ -203,7 +203,7 @@ class NoteLinkOptions(MenuReportOptions):
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("NoteLink-Normal-Bold", p)
-        
+
         #Table Styles
         cell = TableCellStyle()
         default_style.add_cell_style('NoteLink-TableCell', cell)

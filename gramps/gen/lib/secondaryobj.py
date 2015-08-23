@@ -37,9 +37,9 @@ from .baseobj import BaseObject
 class SecondaryObject(BaseObject):
     """
     The SecondaryObject is the base class for all secondary objects in the
-    database. 
+    database.
     """
-    
+
     def is_equal(self, source):
         return self.serialize() == source.serialize()
 

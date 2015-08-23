@@ -35,24 +35,24 @@ from .styledtexttagtype import StyledTextTagType
 #-------------------------------------------------------------------------
 class StyledTextTag(object):
     """Hold formatting information for :py:class:`.StyledText`.
-    
+
     :py:class:`StyledTextTag` is a container class, it's attributes are
     directly accessed.
-    
+
     :ivar name: Type (or name) of the tag instance. E.g. 'bold', etc.
     :type name: :py:class:`.StyledTextTagType` instace
     :ivar value: Value of the tag. E.g. color hex string for font color, etc.
     :type value: str or None
     :ivar ranges: Pointer pairs into the string, where the tag applies.
     :type ranges: list of (int(start), int(end)) tuples.
-    
+
     """
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
-        
+
         .. note:: Since :py:class:`.GrampsType` supports the instance
                   initialization with several different base types, please note
-                  that ``name`` parameter can be int, str, unicode, tuple, 
+                  that ``name`` parameter can be int, str, unicode, tuple,
                   or even another :py:class:`.StyledTextTagType` instance.
         """
         self.name = StyledTextTagType(name)
@@ -65,18 +65,18 @@ class StyledTextTag(object):
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.
-       
+
         :return: Serialized format of the instance.
         :rtype: tuple
-        
+
         """
         return (self.name.serialize(), self.value, self.ranges)
-    
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -93,10 +93,10 @@ class StyledTextTag(object):
         :rtype: dict
         """
         return {"_class": "StyledTextTag",
-                "name": self.name.to_struct(), 
-                "value": self.value, 
+                "name": self.name.to_struct(),
+                "value": self.value,
                 "ranges": self.ranges}
-    
+
     @classmethod
     def from_struct(cls, struct):
         """
@@ -111,13 +111,13 @@ class StyledTextTag(object):
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
-       
+
         :param data: Serialized format of instance variables.
         :type data: tuple
-        
+
         """
         (the_name, self.value, self.ranges) = data
-        
+
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)
         return self

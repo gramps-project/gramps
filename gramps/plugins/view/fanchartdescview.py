@@ -52,7 +52,7 @@ PRINT_SETTINGS = None
 
 class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     """
-    The Gramplet code that realizes the FanChartWidget. 
+    The Gramplet code that realizes the FanChartWidget.
     """
     #settings in the config file
     CONFIGSETTINGS = (
@@ -70,15 +70,15 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.uistate = uistate
 
         NavigationView.__init__(self, _('Descendant Fan Chart'),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       PersonBookmarks,
                                       nav_group)
         fanchartdesc.FanChartDescGrampsGUI.__init__(self, self.on_childmenu_changed)
         #set needed values
-        self.maxgen = self._config.get('interface.fanview-maxgen') 
+        self.maxgen = self._config.get('interface.fanview-maxgen')
         self.background = self._config.get('interface.fanview-background')
         self.fonttype = self._config.get('interface.fanview-font')
-        
+
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
         self.form = self._config.get('interface.fanview-form')
@@ -113,7 +113,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         The category stock icon
         """
         return 'gramps-pedigree'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -145,8 +145,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
@@ -170,7 +170,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     def build_tree(self):
         """
         Generic method called by PageView to construct the view.
-        Here the tree builds when active person changes or db changes or on 
+        Here the tree builds when active person changes or db changes or on
         callbacks like person_rebuild, so build will be double sometimes.
         However, change in generic filter also triggers build_tree ! So we
         need to reset.
@@ -196,7 +196,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self._add_db_signal('family-add', self.person_rebuild)
         self._add_db_signal('family-delete', self.person_rebuild)
         self._add_db_signal('family-rebuild', self.person_rebuild)
-    
+
     def change_db(self, db):
         self._change_db(db)
         if self.active:
@@ -205,7 +205,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
     def update(self):
         self.main()
-        
+
     def goto_handle(self, handle):
         self.change_active(handle)
         self.main()
@@ -235,7 +235,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         elif self.form == fanchart.FORM_QUADRANT:
             heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
             widthpx = heightpx
-        
+
         prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
         prt.run()
 
@@ -247,16 +247,16 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
     def can_configure(self):
         """
-        See :class:`~gui.views.pageview.PageView 
+        See :class:`~gui.views.pageview.PageView
         :return: bool
         """
         return True
 
     def _get_configure_page_funcs(self):
         """
-        Return a list of functions that create gtk elements to use in the 
+        Return a list of functions that create gtk elements to use in the
         notebook pages of the Configure dialog
-        
+
         :return: list of functions
         """
         return [self.config_panel]
@@ -272,17 +272,17 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         grid.set_row_spacing(6)
 
         configdialog.add_spinner(grid, _("Max generations"), 0,
-                'interface.fanview-maxgen', (1, 11), 
+                'interface.fanview-maxgen', (1, 11),
                 callback=self.cb_update_maxgen)
-        configdialog.add_combo(grid, 
-                _('Text Font'), 
+        configdialog.add_combo(grid,
+                _('Text Font'),
                 1, 'interface.fanview-font',
                 self.allfonts, callback=self.cb_update_font, valueactive=True)
         backgrvals = (
                 (fanchart.BACKGROUND_GENDER, _('Gender colors')),
                 (fanchart.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
                 (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
-                (fanchart.BACKGROUND_SINGLE_COLOR, 
+                (fanchart.BACKGROUND_SINGLE_COLOR,
                                             _('Single main (filter) color')),
                 (fanchart.BACKGROUND_GRAD_PERIOD, _('Time period based gradient')),
                 (fanchart.BACKGROUND_WHITE, _('White')),
@@ -295,17 +295,17 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
             if curval == nr:
                 break
             nrval += 1
-        configdialog.add_combo(grid, 
-                _('Background'), 
+        configdialog.add_combo(grid,
+                _('Background'),
                 2, 'interface.fanview-background',
                 backgrvals,
                 callback=self.cb_update_background, valueactive=False,
                 setactive=nrval
                 )
         #colors, stored as hex values
-        configdialog.add_color(grid, _('Start gradient/Main color'), 3, 
+        configdialog.add_color(grid, _('Start gradient/Main color'), 3,
                         'interface.color-start-grad', col=1)
-        configdialog.add_color(grid, _('End gradient/2nd color'), 4, 
+        configdialog.add_color(grid, _('End gradient/2nd color'), 4,
                         'interface.color-end-grad',  col=1)
         configdialog.add_color(grid, _('Color for duplicates'), 5,
                         'interface.duplicate-color', col=1)
@@ -313,15 +313,15 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         configdialog.add_combo(grid, _('Fan chart type'), 6,
                         'interface.fanview-form',
                         ((fanchart.FORM_CIRCLE, _('Full Circle')),
-                         (fanchart.FORM_HALFCIRCLE, _('Half Circle')), 
+                         (fanchart.FORM_HALFCIRCLE, _('Half Circle')),
                          (fanchart.FORM_QUADRANT, _('Quadrant'))),
                         callback=self.cb_update_form)
         # algo for the fan angle distribution
         configdialog.add_combo(grid, _('Fan chart distribution'), 7,
                         'interface.angle-algorithm',
-                        ((fanchartdesc.ANGLE_CHEQUI, 
+                        ((fanchartdesc.ANGLE_CHEQUI,
                           _('Homogeneous children distribution')),
-                         (fanchartdesc.ANGLE_WEIGHT, 
+                         (fanchartdesc.ANGLE_WEIGHT,
                           _('Size  proportional to number of descendants')),
                         ),
                         callback=self.cb_update_anglealgo)
@@ -369,7 +369,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
     def cb_update_color(self, client, cnxn_id, entry, data):
         """
-        Called when the configuration menu changes the childrenring setting. 
+        Called when the configuration menu changes the childrenring setting.
         """
         self.grad_start = self._config.get('interface.color-start-grad')
         self.grad_end = self._config.get('interface.color-end-grad')
@@ -396,12 +396,12 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 #------------------------------------------------------------------------
 class CairoPrintSave():
     """Act as an abstract document that can render onto a cairo context.
-    
+
     It can render the model onto cairo context pages, according to the received
     page style.
-        
+
     """
-    
+
     def __init__(self, widthpx, heightpx, drawfunc, parent):
         """
         This class provides the things needed so as to dump a cairo drawing on
@@ -411,13 +411,13 @@ class CairoPrintSave():
         self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
-    
+
     def run(self):
         """Create the physical output from the meta document.
-                
+
         """
         global PRINT_SETTINGS
-        
+
         # set up a print operation
         operation = Gtk.PrintOperation()
         operation.connect("draw_page", self.on_draw_page)
@@ -425,7 +425,7 @@ class CairoPrintSave():
         operation.connect("paginate", self.on_paginate)
         operation.set_n_pages(1)
         #paper_size = Gtk.PaperSize.new(name="iso_a4")
-        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert 
+        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert
         ## Pixels to MM ??
         paper_size = Gtk.PaperSize.new_custom("custom",
                                               "Custom Size",
@@ -437,10 +437,10 @@ class CairoPrintSave():
         #page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
         operation.set_default_page_setup(page_setup)
         #operation.set_use_full_page(True)
-        
+
         if PRINT_SETTINGS is not None:
             operation.set_print_settings(PRINT_SETTINGS)
-        
+
         # run print dialog
         while True:
             self.preview = None
@@ -460,7 +460,7 @@ class CairoPrintSave():
         # store print settings if printing was successful
         if res == Gtk.PrintOperationResult.APPLY:
             PRINT_SETTINGS = operation.get_print_settings()
-    
+
     def on_draw_page(self, operation, context, page_nr):
         """Draw a page on a Cairo context.
         """
@@ -475,7 +475,7 @@ class CairoPrintSave():
     def on_paginate(self, operation, context):
         """Paginate the whole document in chunks.
            We don't need this as there is only one page, however,
-           we provide a dummy holder here, because on_preview crashes if no 
+           we provide a dummy holder here, because on_preview crashes if no
            default application is set with gir 3.3.2 (typically evince not installed)!
            It will provide the start of the preview dialog, which cannot be
            started in on_preview
@@ -483,16 +483,16 @@ class CairoPrintSave():
         finished = True
         # update page number
         operation.set_n_pages(1)
-        
+
         # start preview if needed
         if self.preview:
             self.preview.run()
-            
+
         return finished
 
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
-           We provide a dummy holder here, because on_preview crashes if no 
+           We provide a dummy holder here, because on_preview crashes if no
            default application is set with gir 3.3.2 (typically evince not installed)!
         """
         dlg = Gtk.MessageDialog(parent,
@@ -505,7 +505,7 @@ class CairoPrintSave():
         #dlg.format_secondary_markup(msg2)
         dlg.set_title("Fan Chart Preview - Gramps")
         dlg.connect('response', self.previewdestroy)
-        
+
         # give a dummy cairo context to Gtk.PrintContext,
         try:
             width = int(round(context.get_width()))
@@ -518,8 +518,8 @@ class CairoPrintSave():
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         cr = cairo.Context(surface)
         context.set_cairo_context(cr, 72.0, 72.0)
-        
-        return True 
+
+        return True
 
     def previewdestroy(self, dlg, res):
         self.preview.destroy()

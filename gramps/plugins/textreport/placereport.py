@@ -43,7 +43,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
-                                    FONT_SANS_SERIF, FONT_SERIF, 
+                                    FONT_SANS_SERIF, FONT_SERIF,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_main_location
@@ -58,7 +58,7 @@ class PlaceReport(Report):
     def __init__(self, database, options, user):
         """
         Create the PlaceReport object produces the Place report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -67,7 +67,7 @@ class PlaceReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         places          - List of places to report on.
         center          - Center of report, person or event
         incl_private    - Whether to include private data
@@ -119,7 +119,7 @@ class PlaceReport(Report):
         # identified as a major category if this is included in a Book report.
 
         title = self._("Place Report")
-        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("PLC-ReportTitle")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -131,10 +131,10 @@ class PlaceReport(Report):
         """
         place_nbr = 1
 
-        with self._user.progress(_("Place Report"), 
-                                  _("Generating report"), 
+        with self._user.progress(_("Place Report"),
+                                  _("Generating report"),
                                   len(self.place_handles)) as step:
-            
+
             for handle in self.place_handles:
                 self.__write_place(handle, place_nbr)
                 if self.center == "Event":
@@ -146,7 +146,7 @@ class PlaceReport(Report):
                 place_nbr += 1
                 # increment progress bar
                 step()
-                
+
 
     def __write_place(self, handle, place_nbr):
         """
@@ -166,14 +166,14 @@ class PlaceReport(Report):
             self._("Country: %s ") % location.get(PlaceType.COUNTRY, '')]
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = place_displayer.display(self.database, place)
-        self.doc.write_text(("%(nbr)s. %(place)s") % 
+        self.doc.write_text(("%(nbr)s. %(place)s") %
                                 {'nbr' : place_nbr,
                                  'place' : place_title})
         self.doc.end_paragraph()
 
         for item in place_details:
             self.doc.start_paragraph("PLC-PlaceDetails")
-            self.doc.write_text(item) 
+            self.doc.write_text(item)
             self.doc.end_paragraph()
 
     def __write_referenced_events(self, handle):
@@ -306,7 +306,7 @@ class PlaceReport(Report):
                         else:
                             p_handle = m_handle
                         person = self.database.get_person_from_handle(p_handle)
-                        
+
                         nameEntry = "%s (%s)" % \
                                      (self._nd.display(person),
                                       person.get_gramps_id())
@@ -349,12 +349,12 @@ class PlaceReport(Report):
 
         if event_handles:
             self.doc.end_table()
-        
+
     def __get_place_handles(self, places):
         """
         This procedure converts a string of place GIDs to a list of handles
         """
-        place_handles = [] 
+        place_handles = []
         for place_gid in places.split():
             place = self.database.get_place_from_gramps_id(place_gid)
             if place is not None:
@@ -362,7 +362,7 @@ class PlaceReport(Report):
                 place_handles.append(place.get_handle())
 
         return place_handles
-    
+
 #------------------------------------------------------------------------
 #
 # PlaceOptions
@@ -376,7 +376,7 @@ class PlaceOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the place report.
@@ -438,7 +438,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_alignment(PARA_ALIGN_CENTER)       
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the report.'))
         self.default_style.add_paragraph_style("PLC-ReportTitle", para)
 
@@ -452,7 +452,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_font(font)
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.75)
-        para.set_bottom_margin(0.25)        
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for place title.'))
         self.default_style.add_paragraph_style("PLC-PlaceTitle", para)
 
@@ -490,7 +490,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_font(font)
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.5)
-        para.set_bottom_margin(0.25)        
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for each section.'))
         self.default_style.add_paragraph_style("PLC-Section", para)
 

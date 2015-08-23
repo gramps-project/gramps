@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -45,20 +45,20 @@ from gramps.gen.datehandler import displayer
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilter, rules
-from gramps.gen.filters.rules.person import (RegExpName, RegExpIdOf, IsMale, 
-                                             IsFemale, HasUnknownGender, 
-                                             HasEvent, HasTag, HasBirth, 
-                                             HasDeath, HasNoteRegexp, 
+from gramps.gen.filters.rules.person import (RegExpName, RegExpIdOf, IsMale,
+                                             IsFemale, HasUnknownGender,
+                                             HasEvent, HasTag, HasBirth,
+                                             HasDeath, HasNoteRegexp,
                                              MatchesFilter)
 
 def extract_text(entry_widget):
     """
-    Extract the text from the entry widget, strips off any extra spaces, 
-    and converts the string to unicode. 
-    
-    For some strange reason a gtk bug prevents the extracted string from being 
+    Extract the text from the entry widget, strips off any extra spaces,
+    and converts the string to unicode.
+
+    For some strange reason a gtk bug prevents the extracted string from being
     of type unicode.
-    
+
     """
     return str(entry_widget.get_text().strip())
 
@@ -79,16 +79,16 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
         self.event_menu = widgets.MonitoredDataType(
-            self.etype, 
-            self.filter_event.set_type, 
+            self.etype,
+            self.filter_event.set_type,
             self.filter_event.get_type)
 
         self.filter_note = widgets.BasicEntry()
         self.filter_gender = Gtk.ComboBoxText()
-        list(map(self.filter_gender.append_text, 
+        list(map(self.filter_gender.append_text,
             [ _('any'), _('male'), _('female'), _('unknown') ]))
         self.filter_gender.set_active(0)
-            
+
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 
         self.tag = Gtk.ComboBox()
@@ -114,10 +114,10 @@ class PersonSidebarFilter(SidebarFilter):
 
         exdate1 = Date()
         exdate2 = Date()
-        exdate1.set(Date.QUAL_NONE, Date.MOD_RANGE, 
-                    Date.CAL_GREGORIAN, (0, 0, 1800, False, 
+        exdate1.set(Date.QUAL_NONE, Date.MOD_RANGE,
+                    Date.CAL_GREGORIAN, (0, 0, 1800, False,
                                                 0, 0, 1900, False))
-        exdate2.set(Date.QUAL_NONE, Date.MOD_BEFORE, 
+        exdate2.set(Date.QUAL_NONE, Date.MOD_BEFORE,
                     Date.CAL_GREGORIAN, (0, 0, 1850, False))
 
         msg1 = displayer.display(exdate1)
@@ -126,9 +126,9 @@ class PersonSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_entry(_('Gender'), self.filter_gender)
-        self.add_text_entry(_('Birth date'), self.filter_birth, 
+        self.add_text_entry(_('Birth date'), self.filter_birth,
                             _('example: "%(msg1)s" or "%(msg2)s"') % {'msg1':msg1, 'msg2':msg2})
-        self.add_text_entry(_('Death date'), self.filter_death, 
+        self.add_text_entry(_('Death date'), self.filter_death,
                             _('example: "%(msg1)s" or "%(msg2)s"') % {'msg1':msg1, 'msg2':msg2})
         self.add_entry(_('Event'), self.etype)
         self.add_text_entry(_('Note'), self.filter_note)
@@ -170,14 +170,14 @@ class PersonSidebarFilter(SidebarFilter):
         # check to see if the filter is empty. If it is empty, then
         # we don't build a filter
 
-        empty = not (name or gid or birth or death or etype 
+        empty = not (name or gid or birth or death or etype
                      or note or gender or regex or tag or generic)
         if empty:
             generic_filter = None
         else:
             # build a GenericFilter
             generic_filter = GenericFilter()
-            
+
             # if the name is not empty, choose either the regular expression
             # version or the normal text match
             if name:
@@ -203,10 +203,10 @@ class PersonSidebarFilter(SidebarFilter):
             if etype:
                 rule = HasEvent([etype, '', '', '', '', True], use_regex=regex)
                 generic_filter.add_rule(rule)
-                
+
             # Build birth event filter if needed
             # Arguments for the HasBirth filter are Date, Place, and Description
-            # Since the value we extracted to the "birth" variable is the 
+            # Since the value we extracted to the "birth" variable is the
             # request date, we pass it as the first argument
             if birth:
                 rule = HasBirth([birth, '', ''])
@@ -229,7 +229,7 @@ class PersonSidebarFilter(SidebarFilter):
                 attr = model.get_value(node, 0)
                 rule = HasTag([attr])
                 generic_filter.add_rule(rule)
-                
+
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()

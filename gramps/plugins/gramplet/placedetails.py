@@ -65,7 +65,7 @@ class PlaceDetails(Gramplet):
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
-        
+
     def clear_grid(self):
         """
         Remove all the rows from the grid.
@@ -76,7 +76,7 @@ class PlaceDetails(Gramplet):
         self.dbstate.db.connect('place-update', self.update)
         self.connect_signal('Place', self.update)
 
-    def update_has_data(self): 
+    def update_has_data(self):
         active_handle = self.get_active('Person')
         if active_handle:
             active_person = self.dbstate.db.get_person_from_handle(active_handle)

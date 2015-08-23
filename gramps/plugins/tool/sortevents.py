@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -145,7 +145,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class SortEventOptions(MenuToolOptions):
@@ -167,14 +167,14 @@ class SortEventOptions(MenuToolOptions):
         self.__filter.set_help(_("Select the people to sort"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-        
+
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
-        
+
         sort_by = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):

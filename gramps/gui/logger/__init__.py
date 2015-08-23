@@ -42,11 +42,11 @@ Usage:
 
         rh = RotateHandler(capacity=20)
         rh.setLevel(logging.DEBUG)
-        
+
         gtkh = GtkHandler(rotate_handler=rh)
         gtkh.setLevel(logging.ERROR)
 
-        l = logging.getLogger("GtkHandlerTest")        
+        l = logging.getLogger("GtkHandlerTest")
         l.setLevel(logging.DEBUG)
 
         l.addHandler(rh)

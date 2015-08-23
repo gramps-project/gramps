@@ -58,7 +58,7 @@ def run(database, document, obj):
                 tagtype = _("Internet")
                 tagvalue = lvalue
                 tagcheck = ""
-            stab.row(tagtype, tagvalue, tagcheck) 
+            stab.row(tagtype, tagvalue, tagcheck)
 
     if stab.get_row_count() > 0:
         stab.write(sdoc)

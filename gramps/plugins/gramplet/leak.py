@@ -89,7 +89,7 @@ class Leak(Gramplet):
         self.modeldata = []
         self.model = Gtk.ListStore(int, str)
         self.list.set_model(self.model)
-        
+
         #set the columns
         self.renderer = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
@@ -103,7 +103,7 @@ class Leak(Gramplet):
         self.list.append_column(column)
         self.selection = self.list.get_selection()
         self.top.pack_start(self.scroll, True, True, 6)
-        
+
         bbox = Gtk.ButtonBox()
         apply_button = Gtk.Button(label=_("Refresh"))
         apply_button.connect('clicked', self.apply_clicked)
@@ -136,7 +136,7 @@ class Leak(Gramplet):
                     text += str(referrer) + '\n'
                 except ReferenceError:
                     pass
-            InfoDialog(_('Referrers of %d') % count, text, 
+            InfoDialog(_('Referrers of %d') % count, text,
                         parent=self.uistate.window)
 
     def refers_to(self):
@@ -150,7 +150,7 @@ class Leak(Gramplet):
                     text += str(referent) + '\n'
                 except ReferenceError:
                     pass
-            InfoDialog(_('%d refers to') % count, text, 
+            InfoDialog(_('%d refers to') % count, text,
                         parent=self.uistate.window)
 
     def display(self):

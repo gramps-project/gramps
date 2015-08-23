@@ -41,7 +41,7 @@ from ._hastag import HasTag
 
 editor_rule_list = [
     AllMedia,
-    HasCitation, 
+    HasCitation,
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,

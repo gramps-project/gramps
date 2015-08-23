@@ -55,7 +55,7 @@ class SidebarFilter(DbGUIElement):
         self.grid.set_column_spacing(6)
         self.apply_btn = Gtk.Button.new_with_mnemonic(_('_Find'))
         self.clear_btn = Gtk.Button()
-        
+
         self._init_interface()
         uistate.connect('filters-changed', self.on_filters_changed)
         dbstate.connect('database-changed', self._db_changed)
@@ -63,7 +63,7 @@ class SidebarFilter(DbGUIElement):
         self.dbstate = dbstate
         self.namespace = namespace
         self.__tag_list = []
-        self._tag_rebuild()       
+        self._tag_rebuild()
 
     def _init_interface(self):
         self.create_widget()
@@ -80,7 +80,7 @@ class SidebarFilter(DbGUIElement):
         hbox.pack_start(image, False, False, 0)
         hbox.pack_start(label, False, True, 0)
         hbox.set_spacing(4)
-        
+
         self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
@@ -151,7 +151,7 @@ class SidebarFilter(DbGUIElement):
         Called when filters are changed.
         """
         pass
-        
+
     def _db_changed(self, db):
         """
         Called when the database is changed.
@@ -171,7 +171,7 @@ class SidebarFilter(DbGUIElement):
         Connect database signals defined in the signal map.
         """
         for sig in self.signal_map:
-            self.callman.add_db_signal(sig, self.signal_map[sig])        
+            self.callman.add_db_signal(sig, self.signal_map[sig])
 
     def _tag_add(self, handle_list):
         """
@@ -181,7 +181,7 @@ class SidebarFilter(DbGUIElement):
             tag = self.dbstate.db.get_tag_from_handle(handle)
             insort_left(self.__tag_list, (tag.get_name(), handle))
         self.on_tags_changed([item[0] for item in self.__tag_list])
-        
+
     def _tag_update(self, handle_list):
         """
         Called when tags are updated.
@@ -192,7 +192,7 @@ class SidebarFilter(DbGUIElement):
             tag = self.dbstate.db.get_tag_from_handle(handle)
             insort_left(self.__tag_list, (tag.get_name(), handle))
         self.on_tags_changed([item[0] for item in self.__tag_list])
-        
+
     def _tag_delete(self, handle_list):
         """
         Called when tags are deleted.
@@ -200,7 +200,7 @@ class SidebarFilter(DbGUIElement):
         self.__tag_list = [item for item in self.__tag_list
                            if item[1] not in handle_list]
         self.on_tags_changed([item[0] for item in self.__tag_list])
-        
+
     def _tag_rebuild(self):
         """
         Called when the tag list needs to be rebuilt.
@@ -213,7 +213,7 @@ class SidebarFilter(DbGUIElement):
                 handle = handle.decode('utf-8')
             self.__tag_list.append((tag.get_name(), handle))
         self.on_tags_changed([item[0] for item in self.__tag_list])
-        
+
     def on_tags_changed(self, tag_list):
         """
         Called when tags are changed.

@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -52,7 +52,7 @@ class Callback(object):
     Callback and signal support objects.
 
     **Declaring signals**
-    
+
     Classes that want to emit signals need to inherit from the
     DBCallback class and ensure that its :meth:`__init__` method
     is called. They then need to declare the signals that they
@@ -62,7 +62,7 @@ class Callback(object):
         class TestSignals(Callback):
 
             __signals__ = {
-                      'test-signal' : (int, ), 
+                      'test-signal' : (int, ),
                       'test-noarg'  : None
                      }
 
@@ -90,9 +90,9 @@ class Callback(object):
 
     The parameters are passed as a tuple so a single parameter
     must be passed as a 1 element tuple.
-    
+
     **Connecting callbacks to signals**
-    
+
     Attaching a callback to the signals is similar to the gtk
     connect methods. e.g.::
 
@@ -111,7 +111,7 @@ class Callback(object):
 
         r = R()
         t.connect('test-signal', r.cb_func)
-        
+
 
     **Disconnecting callbacks**
 
@@ -136,7 +136,7 @@ class Callback(object):
 
         t.disconnect(key)
 
-    
+
     **Stopping and starting signals**
 
     Signals can be blocked on a per instance bassis or they can be blocked
@@ -150,7 +150,7 @@ class Callback(object):
            class TestSignals(Callback):
 
             __signals__ = {
-                      'test-signal' : (int, ), 
+                      'test-signal' : (int, ),
                       'test-noarg'  : None
                      }
 
@@ -166,7 +166,7 @@ class Callback(object):
             t.disable_signals()
 
             ...
-            
+
             # unblock
             t.enable_signals()
 
@@ -174,14 +174,14 @@ class Callback(object):
             Callback.disable_all_signals()
 
             ...
-            
+
             # unblock all signals
             Callback.enable_all_signals()
 
 
-    Any signals emitted whilst signals are blocked will be lost. 
-            
-            
+    Any signals emitted whilst signals are blocked will be lost.
+
+
     **Debugging signal callbacks**
 
 
@@ -190,7 +190,7 @@ class Callback(object):
     instance call :meth:`enable_logging`, to switch it off again call
     :meth:`disable_logging`. To switch on logging for all instance
     you can toggle Callback.__LOG_ALL to True.
-    
+
     """
 
     # If this True no signals will be emitted from any instance of
@@ -222,12 +222,12 @@ class Callback(object):
                                    # being emitted by this instance. This is
                                    # used to prevent recursive emittion of the
                                    # same signal.
-        
+
         # To speed up the signal type checking the signals declared by
         # each of the classes in the inheritance tree of this instance
         # are consolidated into a single dictionary.
         # The signals can't change so we only need to do this once.
-        
+
         def trav(cls):
             """A traversal function to walk through all the classes in
             the inheritance tree. The return is a list of all the
@@ -260,7 +260,7 @@ class Callback(object):
         self._log("registered signals: \n   %s\n" %
                   "\n   ".join([ "%s: %s" % (k, v) for (k, v)
                                  in list(self.__signal_map.items()) ]))
-        
+
 
     def connect(self, signal_name, callback):
         """
@@ -272,10 +272,10 @@ class Callback(object):
         """
         # Check that signal exists.
         if signal_name not in self.__signal_map:
-            self._log("Warning: attempt to connect to unknown signal: %s\n" 
+            self._log("Warning: attempt to connect to unknown signal: %s\n"
                 % str(signal_name))
             return
-        
+
         # Add callable to callback_map
         if signal_name not in self.__callback_map:
             self.__callback_map[signal_name] = []
@@ -292,7 +292,7 @@ class Callback(object):
         """
         Disconnect a callback.
         """
-        
+
         # Find the key in the callback map.
         for signal_name in self.__callback_map:
             for cb in self.__callback_map[signal_name]:
@@ -300,7 +300,7 @@ class Callback(object):
                 if skey == key:
                     # delete the callback from the map.
                     self._log("Disconnecting callback from signal"
-                              ": %s with key: %s\n" % (signal_name, 
+                              ": %s with key: %s\n" % (signal_name,
                                                        str(key)))
                     self.__callback_map[signal_name].remove(cb)
 
@@ -322,7 +322,7 @@ class Callback(object):
         if self.__BLOCK_ALL_SIGNALS or \
                self.__block_instance_signals:
             return
-        
+
         # Check signal exists
         if signal_name not in self.__signal_map:
             self._warn("Attempt to emit to unknown signal: %s\n"
@@ -341,7 +341,7 @@ class Callback(object):
                        "              line: %d\n"
                        "              func: %s\n"
                        % ((str(signal_name), ) + inspect.stack()[1][1:4]))
-            return 
+            return
 
         try:
             self._current_signals.append(signal_name)
@@ -392,8 +392,8 @@ class Callback(object):
                                        "               func: %s\n"
                                        "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
                                        % ((str(signal_name), ) + inspect.stack()[1][1:4] +\
-                                          (args[i], repr(type(args[i])), repr(arg_types[i]))))                   
-                            return 
+                                          (args[i], repr(type(args[i])), repr(arg_types[i]))))
+                            return
             if signal_name in self.__callback_map:
                 self._log("emitting signal: %s\n" % (signal_name, ))
                 # Don't bother if there are no callbacks.
@@ -416,7 +416,7 @@ class Callback(object):
     #
     def disable_signals(self):
         self.__block_instance_signals = True
-        
+
     def enable_signals(self):
         self.__block_instance_signals = False
 

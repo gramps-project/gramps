@@ -96,7 +96,7 @@ class EventView(ListView):
         ('columns.rank', [COL_TYPE, COL_PARTIC, COL_DATE, COL_PLACE, COL_DESCR,
                           COL_ID, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [100, 230, 150, 200, 100, 75, 40, 100, 100])
-        )    
+        )
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
@@ -122,7 +122,7 @@ class EventView(ListView):
             EventBookmarks, nav_group,
             multiple=True,
             filter_class=EventSidebarFilter)
-            
+
         self.func_list.update({
             '<PRIMARY>J' : self.jump,
             '<PRIMARY>BackSpace' : self.key_delete,
@@ -183,8 +183,8 @@ class EventView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -210,7 +210,7 @@ class EventView(ListView):
         ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
-        self._add_action('QuickReport', None, 
+        self._add_action('QuickReport', None,
                          _("Quick View"), None, None, None)
 
     def get_handle_from_gramps_id(self, gid):
@@ -234,13 +234,13 @@ class EventView(ListView):
             item[1] for item in
             self.dbstate.db.find_backlink_handles(handle,['Person']) ]
 
-        family_list = [ 
+        family_list = [
             item[1] for item in
             self.dbstate.db.find_backlink_handles(handle,['Family']) ]
-        
+
         object = self.dbstate.db.get_event_from_handle(handle)
 
-        query = DeleteEventQuery(self.dbstate, self.uistate, object, 
+        query = DeleteEventQuery(self.dbstate, self.uistate, object,
                                  person_list, family_list)
         is_used = len(person_list) + len(family_list) > 0
         return (query, is_used, object)
@@ -287,7 +287,7 @@ class EventView(ListView):
         event = self.dbstate.db.get_event_from_handle(event_handle)
         event.add_tag(tag_handle)
         self.dbstate.db.commit_event(event, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

@@ -45,19 +45,19 @@ class MatchesRepositoryFilter(MatchesFilterBase):
     description = _("Matches sources with a repository reference that match a certain\n"
                   "repository filter")
     category    = _('General filters')
-    
+
     # we want to have this filter show repository filters
     namespace = 'Repository'
-    
-    
+
+
     def prepare(self, db):
         MatchesFilterBase.prepare(self, db)
         self.MRF_filt = self.find_filter()
-            
+
     def apply(self, db, object):
         if self.MRF_filt is None :
             return False
-        
+
         repolist = [x.ref for x in object.get_reporef_list()]
         for repohandle in repolist:
             #check if repo in repository filter

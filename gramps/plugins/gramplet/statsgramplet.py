@@ -118,11 +118,11 @@ class StatsGramplet(Gramplet):
                                 incomp_names += 1
                     else:
                         incomp_names += 1
-                    
-            if (not person.get_main_parents_family_handle() and 
+
+            if (not person.get_main_parents_family_handle() and
                 not len(person.get_family_handle_list())):
                 disconnected += 1
-                
+
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
@@ -130,7 +130,7 @@ class StatsGramplet(Gramplet):
                     missing_bday += 1
             else:
                 missing_bday += 1
-                
+
             if person.get_gender() == Person.FEMALE:
                 females += 1
             elif person.get_gender() == Person.MALE:
@@ -175,7 +175,7 @@ class StatsGramplet(Gramplet):
                   'Filter', 'all families')
         self.append_text(" %s" % database.get_number_of_families())
         self.append_text("\n")
-        self.link("%s:" % _("Unique surnames"), 
+        self.link("%s:" % _("Unique surnames"),
                   'Filter', 'unique surnames')
         self.append_text(" %s" % len(namelist))
         self.append_text("\n")

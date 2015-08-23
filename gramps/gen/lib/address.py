@@ -71,7 +71,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -115,7 +115,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         Convert a serialized tuple of data to an object.
         """
         (privacy, citation_list, note_list, date, location) = data
-        
+
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
@@ -155,7 +155,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -165,7 +165,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -196,7 +196,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         Merge the content of acquisition into this address.
 
         Lost: date, street, city, county, state, country, postal and phone of
-        acquisition. 
+        acquisition.
 
         :param acquisition: The address to merge with the present address.
         :type acquisition: Address

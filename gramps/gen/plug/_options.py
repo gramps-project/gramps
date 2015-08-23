@@ -69,7 +69,7 @@ class OptionList(object):
 
     def __init__(self):
         self.options = {}
-    
+
     def set_options(self, options):
         """
         Set the whole bunch of options for the OptionList.
@@ -147,7 +147,7 @@ class OptionListCollection(object):
 
     def init_common(self):
         pass
-    
+
     def get_option_list_map(self):
         """
         Return the map of module names to option lists.
@@ -180,7 +180,7 @@ class OptionListCollection(object):
 
     def set_option_list(self, name, option_list):
         """
-        Add or replaces an option_list in the OptionListCollection. 
+        Add or replaces an option_list in the OptionListCollection.
 
         :param name: name associated with the module to add or replace.
         :type name: str
@@ -253,7 +253,7 @@ class OptionListCollection(object):
 
         f.write('</options>\n')
         f.close()
-    
+
     def parse(self):
         """
         Loads the OptionList from the associated file, if it exists.
@@ -275,7 +275,7 @@ class OptionParser(handler.ContentHandler):
     """
     SAX parsing class for the OptionListCollection XML file.
     """
-    
+
     def __init__(self,collection):
         """
         Create a OptionParser class that populates the passed collection.
@@ -284,7 +284,7 @@ class OptionParser(handler.ContentHandler):
         """
         handler.ContentHandler.__init__(self)
         self.collection = collection
-    
+
         self.mname = None
         self.option_list = None
         self.oname = None
@@ -319,7 +319,7 @@ class OptionParser(handler.ContentHandler):
 
 #-------------------------------------------------------------------------
 #
-# Class handling options for plugins 
+# Class handling options for plugins
 #
 #-------------------------------------------------------------------------
 class OptionHandler(object):
@@ -343,7 +343,7 @@ class OptionHandler(object):
         if self.saved_option_list:
             self.set_options()
         else:
-            # If nothing was found, set up the option list 
+            # If nothing was found, set up the option list
             self.saved_option_list = self.list_class()
             self.option_list_collection.set_option_list(module_name,
                                                         self.saved_option_list)
@@ -360,7 +360,7 @@ class OptionHandler(object):
         """
         Set options to be used in this plugin according to the passed
         options dictionary.
-        
+
         Dictionary values are all strings, since they were read from XML.
         Here we need to convert them to the needed types. We use default
         values to determine the type.
@@ -384,7 +384,7 @@ class OptionHandler(object):
         for option_name in bad_opts:
             option_data = options[option_name]
             if not ( isinstance(option_data, list) and
-                     option_data and 
+                     option_data and
                      option_data[0] in docgen_names ):
                 print(_("Option '%(opt_name)s' is present in %(file)s\n"
                         "  but is not known to the module.  Ignoring...") %
@@ -402,7 +402,7 @@ class OptionHandler(object):
     def save_options(self):
         """
         Saves options to file.
-        
+
         We need to only store non-default options. Therefore, we remove all
         options whose values are the defaults prior to saving.
         """
@@ -438,7 +438,7 @@ class Options(object):
 
     """
     Defines options and provides handling interface.
-    
+
     This is a base Options class for the modules. All modules, options
     classes should derive from it.
     """
@@ -447,9 +447,9 @@ class Options(object):
         """
         Initialize the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
-        
+
         Modules that need custom options need to override this method.
-        Two dictionaries allow the addition of custom options: 
+        Two dictionaries allow the addition of custom options:
 
             self.options_dict
                 This is a dictionary whose keys are option names
@@ -472,7 +472,7 @@ class Options(object):
         self.options_dict = {}
         self.options_help = {}
         self.handler = None
-        
+
     def load_previous_values(self):
         """
         Modifies all options to have the value they were last used as.
@@ -485,7 +485,7 @@ class Options(object):
         Set up UI controls (widgets) for the options specific for this module.
 
         This method MUST be overridden by modules that define new options.
-        
+
         .. note:: To really have any effect besides looking pretty, each widget
                   set up here must be also parsed in the
                   :meth:`parse_user_options` method below.
@@ -497,11 +497,11 @@ class Options(object):
         Parses UI controls (widgets) for the options specific for this module.
 
         This method MUST be overridden by modules that define new options.
-        
+
         After obtaining values from the widgets, they MUST be used to set the
         appropriate options_dict values. Otherwise the values will not have
         any user-visible effect.
-        
+
         .. note:: Any widget parsed here MUST be defined and added to the dialog
                   in the :meth:`add_user_options` method above.
         """
@@ -521,7 +521,7 @@ class MenuOptions(object):
     """
     def __init__(self):
         self.menu = Menu()
-        
+
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
@@ -540,13 +540,13 @@ class MenuOptions(object):
     def add_menu_options(self, menu):
         """
         Add the user defined options to the menu.
-        
+
         :param menu: A menu class for the options to belong to.
         :type menu: Menu
         :return: nothing
         """
         raise NotImplementedError
-    
+
     def add_menu_option(self, category, name, option):
         """
         Add a single option to the menu.
@@ -562,7 +562,7 @@ class MenuOptions(object):
         for category in self.menu.get_categories():
             for name in self.menu.get_option_names(category):
                 option = self.menu.get_option(category, name)
-                
+
                 # override option default with xml-saved value:
                 if name in self.options_dict:
                     option.set_value(self.options_dict[name])

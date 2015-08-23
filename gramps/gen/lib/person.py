@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -61,28 +61,28 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     The Person record is the Gramps in-memory representation of an
     individual person. It contains all the information related to
     an individual.
-    
+
     Person objects are usually created in one of two ways.
 
-    1. Creating a new person object, which is then initialized and added to 
+    1. Creating a new person object, which is then initialized and added to
        the database.
     2. Retrieving an object from the database using the records handle.
 
     Once a Person object has been modified, it must be committed
-    to the database using the database object's commit_person function, 
+    to the database using the database object's commit_person function,
     or the changes will be lost.
 
     """
-    
+
     UNKNOWN = 2
     MALE    = 1
     FEMALE  = 0
-    
+
     def __init__(self, data=None):
         """
-        Create a new Person instance. 
-        
-        After initialization, most data items have empty or null values, 
+        Create a new Person instance.
+
+        After initialization, most data items have empty or null values,
         including the database handle.
         """
         PrimaryObject.__init__(self)
@@ -104,7 +104,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         self.birth_ref_index = -1
         if data:
             self.unserialize(data)
-        
+
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
@@ -114,16 +114,16 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def __ne__(self, other):
         return not self == other
-        
+
     def serialize(self):
         """
         Convert the data held in the Person to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
-        These elements may be primitive Python types (string, integers), 
+        These elements may be primitive Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
         target database cannot handle complex types (such as objects or
         lists), the database is responsible for converting the data into
@@ -161,7 +161,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -183,15 +183,15 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             "gramps_id": self.gramps_id,                         #  1
             "gender": self.gender,                               #  2
             "primary_name": self.primary_name.to_struct(),       #  3
-            "alternate_names": [name.to_struct() 
+            "alternate_names": [name.to_struct()
                                 for name in self.alternate_names], #  4
             "death_ref_index": self.death_ref_index,             #  5
             "birth_ref_index": self.birth_ref_index,             #  6
-            "event_ref_list": [er.to_struct() 
+            "event_ref_list": [er.to_struct()
                                for er in self.event_ref_list],   #  7
-            "family_list": [Handle("Family", f) for f in 
+            "family_list": [Handle("Family", f) for f in
                             self.family_list],                   #  8
-            "parent_family_list": [Handle("Family", f) for f in 
+            "parent_family_list": [Handle("Family", f) for f in
                                    self.parent_family_list],     #  9
             "media_list": MediaBase.to_struct(self),             # 10
             "address_list": AddressBase.to_struct(self),         # 11
@@ -203,7 +203,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             "change": self.change,                               # 17
             "tag_list": TagBase.to_struct(self),                 # 18
             "private": self.private,                             # 19
-            "person_ref_list": [pr.to_struct() 
+            "person_ref_list": [pr.to_struct()
                                 for pr in self.person_ref_list]  # 20
             }
 
@@ -258,7 +258,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             "urls": [Url],
             "lds_ord_list": [LdsOrd],
             "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")], 
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
             "change": int,
             "tag_list": [Handle("Tag", "TAG-HANDLE")],
             "private": bool,
@@ -314,17 +314,17 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         NoteBase.unserialize(self, note_list)
         TagBase.unserialize(self, tag_list)
         return self
-            
+
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                   this object type.
         :rtype: bool
         """
@@ -333,11 +333,11 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         elif classname == 'Person':
             return any(ref.ref == handle for ref in self.person_ref_list)
         elif classname == 'Family':
-            return any(ref == handle 
+            return any(ref == handle
                 for ref in self.family_list + self.parent_family_list +
                 [ordinance.famc for ordinance in self.lds_ord_list])
         elif classname == 'Place':
-            return any(ordinance.place == handle 
+            return any(ordinance.place == handle
                 for ordinance in self.lds_ord_list)
         return False
 
@@ -480,13 +480,13 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                  self.event_ref_list +
                  add_list +
                  self.person_ref_list
-                ) 
+                )
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -504,7 +504,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -522,13 +522,13 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
         return [('Family', handle) for handle in
                 (self.family_list + self.parent_family_list)] + (
-                 self.get_referenced_note_handles() + 
+                 self.get_referenced_note_handles() +
                  self.get_referenced_citation_handles() +
                  self.get_referenced_tag_handles()
                 )
@@ -537,7 +537,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -615,7 +615,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     def set_alternate_names(self, alt_name_list):
         """
         Change the list of alternate names to the passed list.
-         
+
         :param alt_name_list: List of :class:`~.name.Name` instances
         :type alt_name_list: list
         """
@@ -682,7 +682,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         Return the gender of the Person.
 
         :returns: Returns one of the following constants:
-        
+
                   - Person.MALE
                   - Person.FEMALE
                   - Person.UNKNOWN
@@ -692,8 +692,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def set_birth_ref(self, event_ref):
         """
-        Assign the birth event to the Person object. 
-        
+        Assign the birth event to the Person object.
+
         This is accomplished by assigning the :class:`~.eventref.EventRef` of
         the birth event in the current database.
 
@@ -717,8 +717,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def set_death_ref(self, event_ref):
         """
-        Assign the death event to the Person object. 
-        
+        Assign the death event to the Person object.
+
         This is accomplished by assigning the :class:`~.eventref.EventRef` of
         the death event in the current database.
 
@@ -731,7 +731,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         if event_ref is None:
             self.death_ref_index = -1
             return
-            
+
         # check whether we already have this ref in the list
         for self.death_ref_index, ref in enumerate(self.event_ref_list):
             if event_ref.is_equal(ref):
@@ -742,8 +742,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def get_birth_ref(self):
         """
-        Return the :class:`~.eventref.EventRef` for Person's birth event. 
-        
+        Return the :class:`~.eventref.EventRef` for Person's birth event.
+
         This should correspond to an :class:`~.event.Event` in the database's
         :class:`~.event.Event` list.
 
@@ -751,7 +751,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   birth :class:`~.event.Event` has been assigned.
         :rtype: EventRef
         """
-        
+
         if 0 <= self.birth_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.birth_ref_index]
         else:
@@ -759,8 +759,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def get_death_ref(self):
         """
-        Return the :class:`~.eventref.EventRef` for the Person's death event. 
-        
+        Return the :class:`~.eventref.EventRef` for the Person's death event.
+
         This should correspond to an :class:`~.event.Event` in the database's
         :class:`~.event.Event` list.
 
@@ -768,7 +768,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                   death :class:`~.event.Event` has been assigned.
         :rtype: event_ref
         """
-        
+
         if 0 <= self.death_ref_index < len(self.event_ref_list):
             return self.event_ref_list[self.death_ref_index]
         else:
@@ -778,10 +778,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Add the :class:`~.eventref.EventRef` to the Person instance's
         :class:`~.eventref.EventRef` list.
-        
+
         This is accomplished by assigning the :class:`~.eventref.EventRef` of a
         valid :class:`~.event.Event` in the current database.
-        
+
         :param event_ref: the :class:`~.eventref.EventRef` to be added to the
                           Person's :class:`~.eventref.EventRef` list.
         :type event_ref: EventRef
@@ -798,7 +798,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         Return the list of :class:`~.eventref.EventRef` objects associated with
         :class:`~.event.Event` instances.
 
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects 
+        :returns: Returns the list of :class:`~.eventref.EventRef` objects
                   associated with the Person instance.
         :rtype: list
         """
@@ -810,7 +810,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :class:`~.event.Event` instances that have been marked as primary
         events.
 
-        :returns: Returns generator of :class:`~.eventref.EventRef` objects 
+        :returns: Returns generator of :class:`~.eventref.EventRef` objects
                   associated with the Person instance.
         :rtype: generator
         """
@@ -848,7 +848,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                     break
             else:
                 self.event_ref_list.append(addendum)
-                if (self.birth_ref_index == -1 and 
+                if (self.birth_ref_index == -1 and
                     idx == acquisition.birth_ref_index):
                     self.birth_ref_index = len(self.event_ref_list) - 1
                 if (self.death_ref_index == -1 and
@@ -859,7 +859,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Add the :class:`~.family.Family` handle to the Person instance's
         :class:`~.family.Family` list.
-        
+
         This is accomplished by assigning the handle of a valid
         :class:`~.family.Family` in the current database.
 
@@ -868,7 +868,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         developer is responsible to make sure that when a
         :class:`~.family.Family` is added to Person, that the Person is assigned
         to either the father or mother role in the :class:`~.family.Family`.
-        
+
         :param family_handle: handle of the :class:`~.family.Family` to be added
                               to the Person's :class:`~.family.Family` list.
         :type family_handle: str
@@ -880,12 +880,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         """
         Set the family_handle specified to be the preferred
         :class:`~.family.Family`.
-        
+
         The preferred :class:`~.family.Family` is determined by the first
         :class:`~.family.Family` in the :class:`~.family.Family` list, and is
         typically used to indicate the preferred :class:`~.family.Family` for
         navigation or reporting.
-        
+
         The family_handle must already be in the list, or the function
         call has no effect.
 
@@ -909,7 +909,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         is a parent or spouse.
 
         :returns: Returns the list of handles corresponding to the
-                  :class:`~.family.Family` records with which the person 
+                  :class:`~.family.Family` records with which the person
                   is associated.
         :rtype: list
         """
@@ -917,12 +917,12 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def set_family_handle_list(self, family_list) :
         """
-        Assign the passed list to the Person's list of families in which it is 
+        Assign the passed list to the Person's list of families in which it is
         a parent or spouse.
 
         :param family_list: List of :class:`~.family.Family` handles to be
                             associated with the Person
-        :type family_list: list 
+        :type family_list: list
         """
         self.family_list = family_list
 
@@ -935,9 +935,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def remove_family_handle(self, family_handle):
         """
-        Remove the specified :class:`~.family.Family` handle from the list of 
-        marriages/partnerships. 
-        
+        Remove the specified :class:`~.family.Family` handle from the list of
+        marriages/partnerships.
+
         If the handle does not exist in the list, the operation has no effect.
 
         :param family_handle: :class:`~.family.Family` handle to remove from
@@ -981,8 +981,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     def add_parent_family_handle(self, family_handle):
         """
         Add the :class:`~.family.Family` handle to the Person instance's list of
-        families in which it is a child. 
-        
+        families in which it is a child.
+
         This is accomplished by assigning the handle of a valid
         :class:`~.family.Family` in the current database.
 
@@ -991,7 +991,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         developer is responsible to make sure that when a
         :class:`~.family.Family` is added to Person, that the Person is
         added to the :class:`~.family.Family` instance's child list.
-        
+
         :param family_handle: handle of the :class:`~.family.Family` to be added
                               to the Person's :class:`~.family.Family` list.
         :type family_handle: str
@@ -1011,8 +1011,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     def remove_parent_family_handle(self, family_handle):
         """
         Remove the specified :class:`~.family.Family` handle from the list of
-        parent families (families in which the parent is a child). 
-        
+        parent families (families in which the parent is a child).
+
         If the handle does not exist in the list, the operation has no effect.
 
         :param family_handle: :class:`~.family.Family` handle to remove from the
@@ -1033,8 +1033,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def set_main_parent_family_handle(self, family_handle):
         """
-        Set the main :class:`~.family.Family` in which the Person is a child. 
-        
+        Set the main :class:`~.family.Family` in which the Person is a child.
+
         The main :class:`~.family.Family` is the :class:`~.family.Family`
         typically used for reports and navigation. This is accomplished by
         moving the :class:`~.family.Family` to the beginning of the list. The
@@ -1052,13 +1052,13 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             return True
         else:
             return False
-        
+
     def get_main_parents_family_handle(self):
         """
         Return the handle of the :class:`~.family.Family` considered to be the
         main :class:`~.family.Family` in which the Person is a child.
 
-        :returns: Returns the family_handle if a family_handle exists, 
+        :returns: Returns the family_handle if a family_handle exists,
                   If no :class:`~.family.Family` is assigned, None is returned
         :rtype: str
         """
@@ -1069,9 +1069,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     def add_person_ref(self, person_ref):
         """
-        Add the :class:`~.personref.PersonRef` to the Person instance's 
+        Add the :class:`~.personref.PersonRef` to the Person instance's
         :class:`~.personref.PersonRef` list.
-        
+
         :param person_ref: the :class:`~.personref.PersonRef` to be added to the
                            Person's :class:`~.personref.PersonRef` list.
         :type person_ref: PersonRef

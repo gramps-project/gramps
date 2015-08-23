@@ -279,7 +279,7 @@ def string_multiline_width(font, text):
     width = string_width(font, line)
     if width > max:
       max = width
-  return max 
+  return max
 
 def string_trim(font, text, width, ellipses = "..."):
     """

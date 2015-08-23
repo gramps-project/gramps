@@ -65,15 +65,15 @@ from gramps.gen.display.place import displayer as place_displayer
 # Private Functions
 #
 #------------------------------------------------------------------------
-def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
+def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
                end_angle,  short_radius=0):
     from math import pi, cos, sin
-    
+
     while end_angle < start_angle:
         end_angle += 360
 
     p = []
-    
+
     degreestoradians = pi / 180.0
     radiansdelta = degreestoradians / 2
     sangle = start_angle * degreestoradians
@@ -89,7 +89,7 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
         origx = (centerx + cos(angle) * short_radius)
         origy = (centery + sin(angle) * short_radius)
         p.append((origx, origy))
-        
+
     while angle < eangle:
         x = centerx + cos(angle) * radius
         y = centery + sin(angle) * radius
@@ -115,7 +115,7 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
     delta = (eangle - sangle) / 2.0
     rad = short_radius + (radius - short_radius) / 2.0
 
-    return ( (centerx + cos(sangle + delta) * rad), 
+    return ( (centerx + cos(sangle + delta) * rad),
              (centery + sin(sangle + delta) * rad))
 
 
@@ -172,7 +172,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
     @type start_y: float
     @param data: List of tuples containing the data to be used to create the
        legend. In order to be compatible with the graph plots, the first and
-       third values of the tuple used. The format is (graphics_format, value, 
+       third values of the tuple used. The format is (graphics_format, value,
        legend_description).
     @type data: list
     """
@@ -184,7 +184,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         size = ReportUtils.pt2cm(pstyle.get_font().get_size())
         doc.draw_text(label_style, title, start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
-    
+
     for (format, size, legend) in data:
         gstyle = style_sheet.get_draw_style(format)
         pstyle_name = gstyle.get_paragraph_style()
@@ -203,7 +203,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     dates of the person. A tuple containing the estimated upper
     and lower bounds of the person's age is returned. If either
     the birth or death date is missing, a (-1, -1) is returned.
-    
+
     @param db: GRAMPS database to which the Person object belongs
     @type db: DbBase
     @param person: Person object to calculate the age of
@@ -373,7 +373,7 @@ class Extract(object):
             return [title]
         else:
             return [_T_("(Preferred) title missing")]
-    
+
     def get_forename(self, person):
         "return forenames for given person"
         # TODO: return all forenames, not just primary ones...
@@ -382,7 +382,7 @@ class Extract(object):
             return firstnames.split()
         else:
             return [_T_("(Preferred) forename missing")]
-        
+
     def get_surname(self, person):
         "return surnames for given person"
         # TODO: return all surnames, not just primary ones...
@@ -392,7 +392,7 @@ class Extract(object):
             return surnames.split()
         else:
             return [_T_("(Preferred) surname missing")]
-        
+
     def get_gender(self, person):
         "return gender for given person"
         # TODO: why there's no Person.getGenderName?
@@ -411,7 +411,7 @@ class Extract(object):
             if year:
                 return [str(year)]
         return [_T_("Date(s) missing")]
-        
+
     def get_month(self, event):
         "return month for given event"
         date = event.get_date_object()
@@ -444,7 +444,7 @@ class Extract(object):
             else:
                 places.append(_T_("Place missing"))
         return places
-    
+
     def get_person_age(self, person):
         "return age for given person, if alive"
         death_ref = person.get_death_ref()
@@ -500,7 +500,7 @@ class Extract(object):
         return ["%3d" % len(data[1])]
 
     # ------------------- utility methods -------------------------
-    
+
     def get_sorted_child_ages(self, data):
         "return (sorted_ages,errors) for given (person,child_handles)"
         ages = []
@@ -544,14 +544,14 @@ class Extract(object):
         if birth_ref:
             return self.db.get_event_from_handle(birth_ref.ref)
         return None
-    
+
     def get_death(self, person):
         "return death event for given person or None"
         death_ref = person.get_death_ref()
         if death_ref:
             return self.db.get_event_from_handle(death_ref.ref)
         return None
-    
+
     def get_child_handles(self, person):
         "return list of child handles for given person or None"
         children = []
@@ -576,7 +576,7 @@ class Extract(object):
                 for event_ref in family.get_event_ref_list():
                     event = self.db.get_event_from_handle(event_ref.ref)
                     if event.get_type() == EventType.MARRIAGE and \
-                    (event_ref.get_role() == EventRoleType.FAMILY or 
+                    (event_ref.get_role() == EventRoleType.FAMILY or
                     event_ref.get_role() == EventRoleType.PRIMARY ):
                         marriages.append(event_ref.ref)
         if marriages:
@@ -621,7 +621,7 @@ class Extract(object):
                 else:
                     chart[1][key] = 1
 
-    
+
     def collect_data(self, db, filter_func, menu, genders,
                      year_from, year_to, no_years, cb_progress, rlocale):
         """goes through the database and collects the selected personal
@@ -636,7 +636,7 @@ class Extract(object):
         no_years    - use also people without known birth year
         cb_progress - callback to indicate progress
         rlocale     - a GrampsLocale instance
-        
+
         Returns an array of tuple of:
         - Extraction method title
         - Dict of values with their counts
@@ -655,7 +655,7 @@ class Extract(object):
             if option.get_value() == True:
                 # localized data title, value dict, type and data method
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
-        
+
         # go through the people and collect data
         for person_handle in filter_func.apply(db, db.iter_person_handles(), cb_progress):
             cb_progress()
@@ -663,7 +663,7 @@ class Extract(object):
             # check whether person has suitable gender
             if person.gender != genders and genders != Person.UNKNOWN:
                 continue
-        
+
             # check whether birth year is within required range
             birth = self.get_birth(person)
             if birth:
@@ -766,17 +766,17 @@ class StatisticsChart(Report):
                                  "%(year_from)04d-%(year_to)04d") % mapping
 
         # extract requested items from the database and count them
-        self._user.begin_progress(_('Statistics Charts'), 
-                                  _('Collecting data...'), 
+        self._user.begin_progress(_('Statistics Charts'),
+                                  _('Collecting data...'),
                                   database.get_number_of_people())
         tables = _Extract.collect_data(self.database, self.filter, menu,
-                                       gender, year_from, year_to, 
+                                       gender, year_from, year_to,
                                        get_value('no_years'),
                                        self._user.step_progress,
                                        rlocale)
         self._user.end_progress()
 
-        self._user.begin_progress(_('Statistics Charts'), 
+        self._user.begin_progress(_('Statistics Charts'),
                                   _('Sorting data...'), len(tables))
         self.data = []
         sortby = get_value('sortby')
@@ -801,9 +801,9 @@ class StatisticsChart(Report):
         if sort == _options.SORT_VALUE:
             # set for the sorting function
             self.lookup_items = data
-        
+
             # then sort by value
-            index.sort(key=lambda x: self.lookup_items[x], 
+            index.sort(key=lambda x: self.lookup_items[x],
                        reverse=True if reverse else False)
 
         return index
@@ -812,7 +812,7 @@ class StatisticsChart(Report):
         "output the selected statistics..."
 
         mark = IndexMark(self._('Statistics Charts'), INDEX_TYPE_TOC, 1)
-        self._user.begin_progress(_('Statistics Charts'), 
+        self._user.begin_progress(_('Statistics Charts'),
                                   _('Saving charts...'), len(self.data))
         for data in sorted(self.data):
             self.doc.start_page()
@@ -834,7 +834,7 @@ class StatisticsChart(Report):
         middle_w = self.doc.get_usable_width() / 2
         middle_h = self.doc.get_usable_height() / 2
         middle = min(middle_w,middle_h)
-        
+
         # start output
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style('SC-Title')
@@ -842,7 +842,7 @@ class StatisticsChart(Report):
         self.doc.center_text('SC-title', title1, middle_w, 0, mark)
         yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
         self.doc.center_text('SC-title', title2, middle_w, yoffset)
-        
+
         # collect data for output
         color = 0
         chart_data = []
@@ -852,10 +852,10 @@ class StatisticsChart(Report):
             # graphics style, value, and it's label
             chart_data.append((style, data[key], text))
             color = (color+1) % 7    # There are only 7 color styles defined
-        
+
         margin = 1.0
         legendx = 2.0
-    
+
         # output data...
         radius = middle - 2*margin
         yoffset += margin + radius
@@ -864,7 +864,7 @@ class StatisticsChart(Report):
         if middle == middle_h:   # Landscape
             legendx = 1.0
             yoffset = margin
-    
+
         text = self._("%s (persons):") % self._(typename)
         draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
@@ -881,7 +881,7 @@ class StatisticsChart(Report):
         row_h = pt2cm(font.get_size())
         max_y = self.doc.get_usable_height() - row_h
         pad =  row_h * 0.5
-        
+
         # check maximum value
         max_value = max(data[k] for k in lookup) if lookup else 0
         # horizontal area for the gfx bars
@@ -919,7 +919,7 @@ class StatisticsChart(Report):
             # text after bar
             text = "%s (%d)" % (self._(key), data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
-        
+
         return
 
 #------------------------------------------------------------------------
@@ -934,7 +934,7 @@ class StatisticsChartOptions(MenuReportOptions):
         self.__filter = None
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the statistics report.
@@ -944,13 +944,13 @@ class StatisticsChartOptions(MenuReportOptions):
         category_name = _("Report Options")
         add_option = partial(menu.add_option, category_name)
         ################################
-        
+
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                      _("Determines what people are included in the report."))
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-        
+
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter."))
         menu.add_option(category_name, "pid", self.__pid)
@@ -960,7 +960,7 @@ class StatisticsChartOptions(MenuReportOptions):
         self._nf.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
-        
+
         stdoptions.add_private_data_option(menu, category_name)
 
         sortby = EnumeratedListOption(_('Sort chart items by'),
@@ -976,17 +976,17 @@ class StatisticsChartOptions(MenuReportOptions):
         add_option("reverse", reverse)
 
         this_year = time.localtime()[0]
-        year_from = NumberOption(_("People Born After"), 
+        year_from = NumberOption(_("People Born After"),
                                  1700, 1, this_year)
         year_from.set_help(_("Birth year from which to include people."))
         add_option("year_from", year_from)
-        
-        year_to = NumberOption(_("People Born Before"), 
+
+        year_to = NumberOption(_("People Born Before"),
                                  this_year, 1, this_year)
         year_to.set_help(_("Birth year until which to include people"))
         add_option("year_to", year_to)
-        
-        no_years = BooleanOption(_("Include people without known birth years"), 
+
+        no_years = BooleanOption(_("Include people without known birth years"),
                                  False)
         no_years.set_help(_("Whether to include people without "
                             "known birth years."))
@@ -1025,12 +1025,12 @@ class StatisticsChartOptions(MenuReportOptions):
             opt.set_help(_("Include charts with indicated data."))
             menu.add_option(category_name,opt_name,opt)
             idx += 1
-        
+
         # Enable a couple of charts by default
         menu.get_option_by_name("data_gender").set_value(True)
         menu.get_option_by_name("data_ccount").set_value(True)
         menu.get_option_by_name("data_bmonth").set_value(True)
-        
+
     def __update_filters(self):
         """
         Update the filter list based on the selected person
@@ -1042,7 +1042,7 @@ class StatisticsChartOptions(MenuReportOptions):
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
-        
+
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,
@@ -1076,7 +1076,7 @@ class StatisticsChartOptions(MenuReportOptions):
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("SC-Title",p)
-        
+
         """
         Graphic Styles:
             SC-title - Contains the SC-Title paragraph style used for

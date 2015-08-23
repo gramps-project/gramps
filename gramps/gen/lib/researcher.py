@@ -32,12 +32,12 @@ from .locationbase import LocationBase
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class Researcher(LocationBase):
     """Contains the information about the owner of the database."""
-    
+
     def __init__(self, source=None):
         """
         Initialize the Researcher object, copying from the source if provided.
@@ -64,7 +64,7 @@ class Researcher(LocationBase):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -81,16 +81,16 @@ class Researcher(LocationBase):
         :rtype: dict
         """
         return {"_class": "Researcher",
-                "street": self.street, 
-                "locality": self.locality, 
-                "city": self.city, 
-                "county": self.county, 
+                "street": self.street,
+                "locality": self.locality,
+                "city": self.city,
+                "county": self.county,
                 "state": self.state,
-                "country": self.country, 
-                "postal": self.postal, 
+                "country": self.country,
+                "postal": self.postal,
                 "phone": self.phone,
-                "name": self.name, 
-                "address": self.addr, 
+                "name": self.name,
+                "address": self.addr,
                 "email": self.email}
 
     @classmethod
@@ -112,20 +112,20 @@ class Researcher(LocationBase):
                 struct.get("name", default.name),
                 struct.get("address", default.address),
                 struct.get("email", default.email))
-        
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
         (location, self.name, self.addr, self.email) = data
         LocationBase.unserialize(self, location)
-        
+
         return self
 
     def set_name(self, data):
         """Set the database owner's name."""
         self.name = data
-        
+
     def get_name(self):
         """Return the database owner's name."""
         return self.name
@@ -133,7 +133,7 @@ class Researcher(LocationBase):
     def set_address(self, data):
         """Set the database owner's address."""
         self.addr = data
-        
+
     def get_address(self):
         """Return the database owner's address."""
         return self.addr
@@ -141,7 +141,7 @@ class Researcher(LocationBase):
     def set_email(self, data):
         """ Set the database owner's email."""
         self.email = data
-        
+
     def get_email(self):
         """Return the database owner's email."""
         return self.email
@@ -160,10 +160,10 @@ class Researcher(LocationBase):
         self.name = other_researcher.name
         self.addr = other_researcher.addr
         self.email =  other_researcher.email
-        
+
     def get(self):
         return [getattr(self, value) for value in
-            ['name', 'addr', 'locality', 'city', 'state', 
+            ['name', 'addr', 'locality', 'city', 'state',
              'country', 'postal', 'phone', 'email']
             ]
 

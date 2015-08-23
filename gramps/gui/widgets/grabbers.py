@@ -37,7 +37,7 @@ GRABBER_OUTSIDE = 1
 MIN_CORNER_GRABBER = 20
 MIN_SIDE_GRABBER = 20
 MIN_GRABBER_PADDING = 10
-MIN_SIDE_FOR_INSIDE_GRABBERS = (2 * (MIN_CORNER_GRABBER + MIN_GRABBER_PADDING) + 
+MIN_SIDE_FOR_INSIDE_GRABBERS = (2 * (MIN_CORNER_GRABBER + MIN_GRABBER_PADDING) +
                                 MIN_SIDE_GRABBER)
 
 INSIDE = 0
@@ -54,8 +54,8 @@ def upper_left_grabber_inner(x1, y1, x2, y2):
     return (x1, y1, x1 + MIN_CORNER_GRABBER, y1 + MIN_CORNER_GRABBER)
 
 def upper_grabber_inner(x1, y1, x2, y2):
-    return (x1 + MIN_CORNER_GRABBER + MIN_GRABBER_PADDING, 
-            y1, 
+    return (x1 + MIN_CORNER_GRABBER + MIN_GRABBER_PADDING,
+            y1,
             x2 - MIN_CORNER_GRABBER - MIN_GRABBER_PADDING,
             y1 + MIN_CORNER_GRABBER)
 
@@ -72,8 +72,8 @@ def lower_right_grabber_inner(x1, y1, x2, y2):
     return (x2 - MIN_CORNER_GRABBER, y2 - MIN_CORNER_GRABBER, x2, y2)
 
 def lower_grabber_inner(x1, y1, x2, y2):
-    return (x1 + MIN_CORNER_GRABBER + MIN_GRABBER_PADDING, 
-            y2 - MIN_CORNER_GRABBER, 
+    return (x1 + MIN_CORNER_GRABBER + MIN_GRABBER_PADDING,
+            y2 - MIN_CORNER_GRABBER,
             x2 - MIN_CORNER_GRABBER - MIN_GRABBER_PADDING,
             y2)
 
@@ -183,7 +183,7 @@ MOTION_FUNCTIONS = [inside_moved,
                     lower_left_moved,
                     left_moved]
 
-GRABBERS_SWITCH = [ 
+GRABBERS_SWITCH = [
   [INSIDE, INSIDE, INSIDE],
   [GRABBER_UPPER_RIGHT, GRABBER_LOWER_RIGHT, GRABBER_LOWER_LEFT],
   [GRABBER_UPPER, GRABBER_LOWER, GRABBER_LOWER],
@@ -229,7 +229,7 @@ CURSORS = [None,
 
 def grabber_position(rect):
     x1, y1, x2, y2 = rect
-    if (x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS and 
+    if (x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS and
         y2 - y1 >= MIN_SIDE_FOR_INSIDE_GRABBERS):
         return GRABBER_INSIDE
     else:
@@ -263,7 +263,7 @@ def can_grab(rect, x, y):
     Checks if (x,y) lies within one of the grabbers of rect.
     """
     (x1, y1, x2, y2) = rect
-    if (x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS and 
+    if (x2 - x1 >= MIN_SIDE_FOR_INSIDE_GRABBERS and
         y2 - y1 >= MIN_SIDE_FOR_INSIDE_GRABBERS):
         # grabbers are inside
         if x < x1 or x > x2 or y < y1 or y > y2:

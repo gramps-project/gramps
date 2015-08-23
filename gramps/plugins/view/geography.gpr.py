@@ -25,7 +25,7 @@
 #
 #------------------------------------------------------------------------
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 from gi import Repository
 
@@ -63,7 +63,7 @@ if not OSMGPSMAP:
             from gramps.gui.dialog import MessageHideDialog
             from gramps.gen.const import URL_WIKISTRING
             osmgps_dict = { 'gramps_wiki_build_osmgps_url' :
-                                URL_WIKISTRING + 
+                                URL_WIKISTRING +
                                     "GEPS_029:_GTK3-GObject_introspection"
                                     "_Conversion#OsmGpsMap_for_Geography" }
             title = _("OsmGpsMap module not loaded.")
@@ -73,7 +73,7 @@ if not OSMGPSMAP:
             MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
 else:
     # Load the view only if osmgpsmap library is present.
-    register(VIEW, 
+    register(VIEW,
              id    = 'geo1',
              name  = _("All known places for one Person"),
              description =  _("A view showing the places visited by "
@@ -89,8 +89,8 @@ else:
              #order = START,
              stock_icon = 'geo-show-person',
       )
-    
-    register(VIEW, 
+
+    register(VIEW,
              id    = 'geo2',
              name  = _("All known places for one Family"),
              description =  _("A view showing the places visited by "
@@ -106,8 +106,8 @@ else:
              #order = START,
              stock_icon = 'geo-show-family',
       )
-    
-    register(VIEW, 
+
+    register(VIEW,
              id    = 'geo3',
              name  = _("Every residence or move for a person and any descendants"),
              description =  _("A view showing all the places visited by "
@@ -126,7 +126,7 @@ else:
              stock_icon = 'geo-show-family',
       )
 
-    register(VIEW, 
+    register(VIEW,
              id    = 'geo4',
              name  = _("Have these two families been able to meet?"),
              description =  _("A view showing the places visited by "
@@ -143,8 +143,8 @@ else:
              #order = START,
              stock_icon = 'geo-show-family',
       )
-    
-    register(VIEW, 
+
+    register(VIEW,
              id    = 'geo5',
              name  = _("Have they been able to meet?"),
              description =  _("A view showing the places visited by "
@@ -161,8 +161,8 @@ else:
              #order = START,
              stock_icon = 'gramps-relation',
       )
-    
-    register(VIEW, 
+
+    register(VIEW,
              id    = 'geo6',
              name  = _("All known Places"),
              description =  _("A view showing all places of the database."),
@@ -177,8 +177,8 @@ else:
              #order = START,
              stock_icon = 'geo-show-place',
       )
-    
-    register(VIEW, 
+
+    register(VIEW,
              id    = 'geo7',
              name  = _("All places related to Events"),
              description =  _("A view showing all the event "
@@ -194,4 +194,4 @@ else:
              #order = START,
              stock_icon = 'geo-show-event',
       )
-    
+

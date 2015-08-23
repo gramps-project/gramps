@@ -41,7 +41,7 @@ from .embeddedlist import (EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL,
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class SrcAttrEmbedList(EmbeddedList):
@@ -64,7 +64,7 @@ class SrcAttrEmbedList(EmbeddedList):
         (_('Value'), 1, 200, TEXT_EDIT_COL, -1, None),
         (_('Private'), 2, 30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         """
         Initialize the displaytab. The dbstate and uistate is needed
@@ -73,7 +73,7 @@ class SrcAttrEmbedList(EmbeddedList):
             display and edit
         """
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'), 
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'),
                               AttrModel, move_buttons=True)
 
     def get_editor(self):
@@ -85,7 +85,7 @@ class SrcAttrEmbedList(EmbeddedList):
 
     def get_icon_name(self):
         return 'gramps-attribute'
-    
+
     def get_data(self):
         return self.data
 
@@ -96,7 +96,7 @@ class SrcAttrEmbedList(EmbeddedList):
         """
         inherit this and set the variables needed for editable columns
         Variable edit_col_funcs needs to be a dictionary from model col_nr to
-        function to call for 
+        function to call for
         Example:
         self.edit_col_funcs ={1: {'edit_start': self.on_edit_start,
                                   'edited': self.on_edited
@@ -106,7 +106,7 @@ class SrcAttrEmbedList(EmbeddedList):
                                   'edited': self.on_value_edited}}
 
     def on_value_edit_start(self, cellr, celle, path, colnr):
-        """ 
+        """
         Start of editing. Store stuff so we know when editing ends where we
         are
         """
@@ -133,7 +133,7 @@ class SrcAttrEmbedList(EmbeddedList):
         attr = SrcAttribute()
         try:
             self.get_editor()(
-                self.dbstate, self.uistate, self.track, attr, 
+                self.dbstate, self.uistate, self.track, attr,
                 pname, self.get_user_values(), self.add_callback)
         except WindowActiveError:
             pass
@@ -151,7 +151,7 @@ class SrcAttrEmbedList(EmbeddedList):
             pname = ''
             try:
                 self.get_editor()(
-                    self.dbstate, self.uistate, self.track, attr, 
+                    self.dbstate, self.uistate, self.track, attr,
                     pname, self.get_user_values(), self.edit_callback)
             except WindowActiveError:
                 pass

@@ -93,7 +93,7 @@ class DateParserJA(DateParser):
             '共和暦'         : Date.CAL_FRENCH,
             'f'              : Date.CAL_FRENCH,
             'イラン暦' : Date.CAL_PERSIAN,
-            'p'        : Date.CAL_PERSIAN, 
+            'p'        : Date.CAL_PERSIAN,
             'スウェーデン暦' : Date.CAL_SWEDISH,
             's'              : Date.CAL_SWEDISH,
         })

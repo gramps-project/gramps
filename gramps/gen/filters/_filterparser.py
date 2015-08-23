@@ -42,7 +42,7 @@ from . import rules
 #-------------------------------------------------------------------------
 class FilterParser(handler.ContentHandler):
     """Parses the XML file and builds the list of filters"""
-    
+
     def __init__(self, gfilter_list):
         handler.ContentHandler.__init__(self)
         self.gfilter_list = gfilter_list
@@ -52,7 +52,7 @@ class FilterParser(handler.ContentHandler):
         self.cname = None
         self.namespace = 'Person'
         self.use_regex = False
-        
+
     def setDocumentLocator(self, locator):
         self.locator = locator
 
@@ -132,9 +132,9 @@ class FilterParser(handler.ContentHandler):
                     print(_("ERROR: filter %s could not be correctly loaded. "
                             "Edit the filter!") % self.f.get_name())
                     return
-                
+
                 self.f.add_rule(rule)
-            
+
     def characters(self, data):
         pass
 
@@ -152,7 +152,7 @@ class FilterParser(handler.ContentHandler):
                      [''] + [self.a[4]] + ['', ''] + [self.a[5]] + \
                      ['', '0']
         # New regular expression code in v3.4
-        if (self.r in (rules.person.HasNameOf, 
+        if (self.r in (rules.person.HasNameOf,
                        rules.family.FatherHasNameOf,
                        rules.family.MotherHasNameOf,
                        rules.family.ChildHasNameOf)
@@ -195,7 +195,7 @@ old_names_2_class = {
     "Is a child of filter match"    : rules.person.IsChildOfFilterMatch,
     "Is an ancestor of"             : rules.person.IsAncestorOf,
     "Is an ancestor of filter match": rules.person.IsAncestorOfFilterMatch,
-    "Is an ancestor of person not more than N generations away" : 
+    "Is an ancestor of person not more than N generations away" :
         rules.person.IsLessThanNthGenerationAncestorOf,
     "Is an ancestor of person at least N generations away":
         rules.person.IsMoreThanNthGenerationAncestorOf,

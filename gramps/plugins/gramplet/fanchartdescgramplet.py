@@ -51,7 +51,7 @@ from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 
 class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
     """
-    The Gramplet code that realizes the FanChartWidget. 
+    The Gramplet code that realizes the FanChartWidget.
     """
 
     def __init__(self, gui, nav_group=0):

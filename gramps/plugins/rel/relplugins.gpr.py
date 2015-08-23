@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #
 # Relationship calculators
@@ -79,7 +79,7 @@ plg.status = STABLE
 plg.fname = 'rel_de.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8", 
+plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8",
                  "de_DE@euro", "de_DE.UTF8@euro", "de_AT.UTF-8", "de_AT.utf-8",
                  "de_AT.utf8", "german","German", "de_DE.UTF-8", "de_DE.utf-8",
                  "de_DE.utf8", "de_CH.UTF-8", "de_CH.utf-8", "de_CH.utf8"]
@@ -96,7 +96,7 @@ plg.fname = 'rel_es.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["es", "ES", "es_ES", "espanol", "Espanol", "es_ES.UTF8",
-                  "es_ES@euro", "es_ES.UTF8@euro", "spanish", "Spanish", 
+                  "es_ES@euro", "es_ES.UTF8@euro", "spanish", "Spanish",
                   "es_ES.UTF-8", "es_ES.utf-8", "es_ES.utf8"]
 
 # fi
@@ -110,8 +110,8 @@ plg.status = STABLE
 plg.fname = 'rel_fi.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["fi", "FI", "fi_FI", "finnish", "Finnish", "fi_FI.UTF8", 
-                 "fi_FI@euro", "fi_FI.UTF8@euro", "suomi", "Suomi", 
+plg.lang_list = ["fi", "FI", "fi_FI", "finnish", "Finnish", "fi_FI.UTF8",
+                 "fi_FI@euro", "fi_FI.UTF8@euro", "suomi", "Suomi",
                  "fi_FI.UTF-8", "fi_FI.utf-8", "fi_FI.utf8"]
 
 # fr
@@ -126,7 +126,7 @@ plg.fname = 'rel_fr.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["fr", "FR", "fr_FR", "fr_CA", "français",
-                 "Français", "fr_FR.UTF8", "fr_FR@euro", 
+                 "Français", "fr_FR.UTF8", "fr_FR@euro",
                  "fr_FR.UTF8@euro", "french", "French",
                  "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8",
                  "fr_CA.UTF-8", "Français_France"]
@@ -182,9 +182,9 @@ plg.status = STABLE
 plg.fname = 'rel_nl.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands", 
-                 "nl_NL.UTF8", "nl_BE.UTF8","nl_NL@euro", "nl_NL.UTF8@euro", 
-                 "nl_BE@euro", "dutch", "Dutch", "nl_NL.UTF-8", 
+plg.lang_list = ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands",
+                 "nl_NL.UTF8", "nl_BE.UTF8","nl_NL@euro", "nl_NL.UTF8@euro",
+                 "nl_BE@euro", "dutch", "Dutch", "nl_NL.UTF-8",
                  "nl_BE.UTF-8", "nl_NL.utf-8", "nl_BE.utf-8","nl_NL.utf8",
                  "nl_BE.UTF-8", "nl_BE.UTF8@euro"]
 
@@ -199,10 +199,10 @@ plg.status = STABLE
 plg.fname = 'rel_no.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["nb", "nn", "no", "nb_NO", "nn_NO", "no_NO", "nb_NO.UTF8", 
+plg.lang_list = ["nb", "nn", "no", "nb_NO", "nn_NO", "no_NO", "nb_NO.UTF8",
                  "nn_NO.UTF8", "no_NO.UTF8", "nb_NO.UTF-8", "nn_NO.UTF-8",
                  "no_NO.UTF-8", "nb_NO.utf-8", "nn_NO.utf-8", "no_NO.utf-8",
-                 "nb_NO.iso88591", "nn_NO.iso88591", "no_NO.iso88591", 
+                 "nb_NO.iso88591", "nn_NO.iso88591", "no_NO.iso88591",
                  "nynorsk", "Nynorsk"]
 
 # pl
@@ -216,9 +216,9 @@ plg.status = STABLE
 plg.fname = 'rel_pl.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["pl", "PL", "pl_PL", "polski", "Polski", 
-                 "pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8", 
-                 "pl_PL.iso-8859-2", "pl_PL.iso8859-2", 
+plg.lang_list = ["pl", "PL", "pl_PL", "polski", "Polski",
+                 "pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8",
+                 "pl_PL.iso-8859-2", "pl_PL.iso8859-2",
                  "pl_PL.cp1250", "pl_PL.cp-1250"]
 
 # pt
@@ -232,8 +232,8 @@ plg.status = STABLE
 plg.fname = 'rel_pt.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["pt", "PT", "pt_PT", "pt_BR", "portugues", "Portugues", 
-                 "pt_PT.UTF8", "pt_BR.UTF8", "pt_PT@euro", "pt_PT.UTF8@euro", 
+plg.lang_list = ["pt", "PT", "pt_PT", "pt_BR", "portugues", "Portugues",
+                 "pt_PT.UTF8", "pt_BR.UTF8", "pt_PT@euro", "pt_PT.UTF8@euro",
                  "pt_PT.UTF-8", "pt_BR.UTF-8", "pt_PT.utf-8", "pt_BR.utf-8",
                  "pt_PT.utf8","pt_BR.utf8"]
 
@@ -248,7 +248,7 @@ plg.status = STABLE
 plg.fname = 'rel_ru.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["ru", "RU", "ru_RU", "koi8r", "ru_koi8r", "russian", 
+plg.lang_list = ["ru", "RU", "ru_RU", "koi8r", "ru_koi8r", "russian",
                  "Russian", "ru_RU.koi8r", "ru_RU.KOI8-R", "ru_RU.utf8",
                  "ru_RU.UTF8", "ru_RU.utf-8", "ru_RU.UTF-8", "ru_RU.iso88595",
                  "ru_RU.iso8859-5", "ru_RU.iso-8859-5"]
@@ -264,7 +264,7 @@ plg.status = STABLE
 plg.fname = 'rel_sk.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", 
+plg.lang_list = ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak",
                  "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"]
 
 # sl
@@ -278,7 +278,7 @@ plg.status = STABLE
 plg.fname = 'rel_sl.py'
 plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
-plg.lang_list = ["sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian", 
+plg.lang_list = ["sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian",
                  "sl_SI.UTF8", "sl_SI.UTF-8", "sl_SI.utf-8", "sl_SI.utf8"]
 # sv
 plg = newplugin()
@@ -309,4 +309,4 @@ plg.lang_list = ["uk", "UA", "uk_UA", "ukrainian",
                  "Ukrainian", "uk_UA.utf8",
                  "uk_UA.UTF8", "uk_UA.utf-8", "uk_UA.UTF-8", "uk_UA.iso88595",
                  "uk_UA.iso8859-5", "uk_UA.iso-8859-5", "koi8u", "uk_koi8u",
-                 "uk_UA.koi8u","uk_UA.KOI8-U",] 
+                 "uk_UA.koi8u","uk_UA.KOI8-U",]

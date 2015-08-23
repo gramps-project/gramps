@@ -50,7 +50,7 @@ class TemplateNode(template.Node):
         self.func = func
 
     def render(self, context):
-        value = self.func(*[eval_template_exp(item, context) 
+        value = self.func(*[eval_template_exp(item, context)
                             for item in self.args])
         if self.var_name:
             context[self.var_name] = value
@@ -210,7 +210,7 @@ def table_header(context, headers = None):
         context["headers"] = headers
     return context
 
-register.inclusion_tag('table_header.html', 
+register.inclusion_tag('table_header.html',
                        takes_context=True)(table_header)
 
 def paginator(context, adjacent_pages=2):
@@ -226,5 +226,5 @@ def paginator(context, adjacent_pages=2):
     context.update({'results_this_page': results_this_page,})
     return context
 
-register.inclusion_tag('paginator.html', 
+register.inclusion_tag('paginator.html',
                        takes_context=True)(paginator)

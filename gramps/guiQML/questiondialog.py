@@ -58,7 +58,7 @@ class ErrorDialog(QDialog):
 
 def run_dialog_standalone(dlgclass, *args, **keywords):
     app = QApplication(sys.argv)
-    QObject.connect(app, SIGNAL('lastWindowClosed()'), app, SLOT('quit()')) 
-    
+    QObject.connect(app, SIGNAL('lastWindowClosed()'), app, SLOT('quit()'))
+
     win = dlgclass(*args, **keywords)
     app.exec_()

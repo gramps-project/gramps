@@ -47,10 +47,10 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import FamilyRelType, Person, NoteType
-from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption,
                                   EnumeratedListOption)
-from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
-                                    FONT_SANS_SERIF, FONT_SERIF, 
+from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                                    FONT_SANS_SERIF, FONT_SERIF,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.plug.report import Report, Bibliography
 from gramps.gen.plug.report import endnotes
@@ -78,7 +78,7 @@ class DetDescendantReport(Report):
     def __init__(self, database, options, user):
         """
         Create the DetDescendantReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -87,7 +87,7 @@ class DetDescendantReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         gen           - Maximum number of generations to include.
         pagebgg       - Whether to include page breaks between generations.
         pageben       - Whether to include page break before End Notes.
@@ -111,7 +111,7 @@ class DetDescendantReport(Report):
                             section. Only works if Include sources is selected.
         incmates      - Whether to include information about spouses
         incattrs      - Whether to include attributes
-        incpaths      - Whether to include the path of descendancy 
+        incpaths      - Whether to include the path of descendancy
                             from the start-person to each descendant.
         incssign      - Whether to include a sign ('+') before the
                             descendant number in the child-list
@@ -185,7 +185,7 @@ class DetDescendantReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.__narrator = Narrator(self.db, self.verbose,
-                                   use_call, use_fulldate, 
+                                   use_call, use_fulldate,
                                    empty_date, empty_place,
                                    nlocale=self._locale,
                                    get_endnote_numbers=self.endnotes)
@@ -200,7 +200,7 @@ class DetDescendantReport(Report):
 
         if len(self.gen_keys) < cur_gen:
             self.gen_keys.append([index])
-        else: 
+        else:
             self.gen_keys[cur_gen-1].append(index)
 
         person = self.db.get_person_from_handle(person_handle)
@@ -222,7 +222,7 @@ class DetDescendantReport(Report):
 
         if len(self.gen_keys) < cur_gen:
             self.gen_keys.append([index])
-        else: 
+        else:
             self.gen_keys[cur_gen-1].append(index)
 
         person = self.db.get_person_from_handle(person_handle)
@@ -240,10 +240,10 @@ class DetDescendantReport(Report):
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         self.map[index] = person_handle
-                
+
         if len(self.gen_keys) < cur_gen:
             self.gen_keys.append([index])
-        else: 
+        else:
             self.gen_keys[cur_gen-1].append(index)
 
         person = self.db.get_person_from_handle(person_handle)
@@ -386,11 +386,11 @@ class DetDescendantReport(Report):
 
         if self.inc_paths:
             self.write_path(person)
-        
+
         if self.dubperson:
             # Check for duplicate record (result of distant cousins marrying)
             for dkey in sorted(self.map):
-                if dkey >= key: 
+                if dkey >= key:
                     break
                 if self.map[key] == self.map[dkey]:
                     self.doc.write_text(self._(
@@ -403,7 +403,7 @@ class DetDescendantReport(Report):
                     return
 
         self.doc.end_paragraph()
-       
+
         self.write_person_info(person)
 
         if (self.inc_mates or self.listchildren or self.inc_notes or
@@ -436,7 +436,7 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph('DDR-MoreDetails')
         event_name = self._get_type(event.get_type())
         if date and place:
-            text +=  self._('%(date)s, %(place)s') % { 
+            text +=  self._('%(date)s, %(place)s') % {
                        'date' : date, 'place' : place }
         elif date:
             text += self._('%(date)s') % {'date' : date}
@@ -447,18 +447,18 @@ class DetDescendantReport(Report):
             if text:
                 text += ". "
             text += event.get_description()
-            
+
         text += self.endnotes(event)
-        
+
         if text:
             text += ". "
-            
+
         text = self._('%(event_name)s: %(event_text)s') % {
                              'event_name' : self._(event_name),
                              'event_text' : text }
-        
+
         self.doc.write_text_citation(text)
-        
+
         if self.inc_attrs:
             text = ""
             attr_list = event.get_attribute_list()
@@ -484,7 +484,7 @@ class DetDescendantReport(Report):
             notelist.extend(event_ref.get_note_list())
             for notehandle in notelist:
                 note = self.db.get_note_from_handle(notehandle)
-                self.doc.write_styled_note(note.get_styledtext(), 
+                self.doc.write_styled_note(note.get_styledtext(),
                         note.get_format(),"DDR-MoreDetails",
                         contains_html= note.get_type() == NoteType.HTML_CODE)
 
@@ -519,7 +519,7 @@ class DetDescendantReport(Report):
                     self.doc.write_text("", mother_mark)
 
     def write_marriage(self, person):
-        """ 
+        """
         Output marriage sentence.
         """
         is_first = True
@@ -527,18 +527,18 @@ class DetDescendantReport(Report):
             family = self.db.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(person, family)
             spouse = self.db.get_person_from_handle(spouse_handle)
-            
+
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.db, spouse)
-            
+
             text = self.__narrator.get_married_string(family,
                                                       is_first,
                                                       self._name_display)
-            
+
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
                 is_first = False
-                
+
     def __write_mate(self, person, family):
         """
         Write information about the person's spouse/mate.
@@ -547,7 +547,7 @@ class DetDescendantReport(Report):
             mate_handle = family.get_mother_handle()
         else:
             mate_handle = family.get_father_handle()
-            
+
         if mate_handle:
             mate = self.db.get_person_from_handle(mate_handle)
 
@@ -604,7 +604,7 @@ class DetDescendantReport(Report):
         return mother_name, father_name
 
     def __write_children(self, family):
-        """ 
+        """
         List the children for the given family.
         """
         if not family.get_child_ref_list():
@@ -614,7 +614,7 @@ class DetDescendantReport(Report):
 
         self.doc.start_paragraph("DDR-ChildTitle")
         self.doc.write_text(
-            self._("Children of %(mother_name)s and %(father_name)s") % 
+            self._("Children of %(mother_name)s and %(father_name)s") %
                             {'father_name': father_name,
                              'mother_name': mother_name } )
         self.doc.end_paragraph()
@@ -666,7 +666,7 @@ class DetDescendantReport(Report):
             self.doc.end_paragraph()
 
     def __write_family_notes(self, family):
-        """ 
+        """
         Write the notes for the given family.
         """
         notelist = family.get_note_list()
@@ -675,17 +675,17 @@ class DetDescendantReport(Report):
 
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.write_text(
-                self._('Notes for %(mother_name)s and %(father_name)s:') % { 
+                self._('Notes for %(mother_name)s and %(father_name)s:') % {
                             'mother_name' : mother_name,
                             'father_name' : father_name })
             self.doc.end_paragraph()
             for notehandle in notelist:
                 note = self.db.get_note_from_handle(notehandle)
-                self.doc.write_styled_note(note.get_styledtext(), 
+                self.doc.write_styled_note(note.get_styledtext(),
                                            note.get_format(),"DDR-Entry")
 
     def __write_family_events(self, family):
-        """ 
+        """
         List the events for the given family.
         """
         if not family.get_event_ref_list():
@@ -707,7 +707,7 @@ class DetDescendantReport(Report):
         return first
 
     def __write_family_attrs(self, family, first):
-        """ 
+        """
         List the attributes for the given family.
         """
         attrs = family.get_attribute_list()
@@ -738,7 +738,7 @@ class DetDescendantReport(Report):
                 notelist = attr.get_note_list()
                 for notehandle in notelist:
                     note = self.db.get_note_from_handle(notehandle)
-                    self.doc.write_styled_note(note.get_styledtext(), 
+                    self.doc.write_styled_note(note.get_styledtext(),
                                                note.get_format(),
                                                "DDR-MoreDetails")
 
@@ -748,14 +748,14 @@ class DetDescendantReport(Report):
         if not name:
             name = self._("Unknown")
         self.__narrator.set_subject(person)
-        
+
         plist = person.get_media_list()
         if self.addimages and len(plist) > 0:
             photo = plist[0]
             ReportUtils.insert_image(self.db, self.doc, photo, self._user)
-        
+
         self.doc.start_paragraph("DDR-Entry")
-        
+
         if not self.verbose:
             self.__write_parents(person)
 
@@ -766,11 +766,11 @@ class DetDescendantReport(Report):
         text = self.__narrator.get_baptised_string()
         if text:
             self.doc.write_text_citation(text)
-            
+
         text = self.__narrator.get_christened_string()
         if text:
             self.doc.write_text_citation(text)
-    
+
         text = self.__narrator.get_died_string(self.calcageflag)
         if text:
             self.doc.write_text_citation(text)
@@ -792,7 +792,7 @@ class DetDescendantReport(Report):
             self.doc.end_paragraph()
             for notehandle in notelist:
                 note = self.db.get_note_from_handle(notehandle)
-                self.doc.write_styled_note(note.get_styledtext(), 
+                self.doc.write_styled_note(note.get_styledtext(),
                         note.get_format(),"DDR-Entry",
                         contains_html= note.get_type() == NoteType.HTML_CODE)
 
@@ -826,7 +826,7 @@ class DetDescendantReport(Report):
                     first = 0
 
                 self.write_event(event_ref)
-                
+
         if self.inc_addr:
             for addr in person.get_address_list():
                 if first:
@@ -836,7 +836,7 @@ class DetDescendantReport(Report):
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
-                
+
                 text = ReportUtils.get_address_str(addr)
 
                 if self.fulldate:
@@ -851,12 +851,12 @@ class DetDescendantReport(Report):
                 self.doc.write_text( text )
                 self.doc.write_text_citation( self.endnotes(addr) )
                 self.doc.end_paragraph()
-                
+
         if self.inc_attrs:
             attrs = person.get_attribute_list()
             if first and attrs:
                 self.doc.start_paragraph('DDR-MoreHeader')
-                self.doc.write_text(self._('More about %(person_name)s:') % { 
+                self.doc.write_text(self._('More about %(person_name)s:') % {
                     'person_name' : name })
                 self.doc.end_paragraph()
                 first = False
@@ -874,7 +874,7 @@ class DetDescendantReport(Report):
     def endnotes(self, obj):
         if not obj or not self.inc_sources:
             return ""
-        
+
         txt = endnotes.cite_source(self.bibli, self.db, obj, self._locale)
         if txt:
             txt = '<super>' + txt + '</super>'
@@ -893,7 +893,7 @@ class DetDescendantOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the detailed descendant report.
@@ -902,30 +902,30 @@ class DetDescendantOptions(MenuReportOptions):
         # Report Options
         category = _("Report Options")
         add_option = partial(menu.add_option, category)
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         add_option("pid", pid)
-        
+
         stdoptions.add_name_format_option(menu, category)
 
         stdoptions.add_private_data_option(menu, category)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([
-                ("Henry",      _("Henry numbering")), 
-                ("d'Aboville", _("d'Aboville numbering")), 
-                ("Record (Modified Register)", 
+                ("Henry",      _("Henry numbering")),
+                ("d'Aboville", _("d'Aboville numbering")),
+                ("Record (Modified Register)",
                                _("Record (Modified Register) numbering"))])
         numbering.set_help(_("The numbering system to be used"))
         add_option("numbering", numbering)
-        
+
         generations = NumberOption(_("Generations"), 10, 1, 100)
         generations.set_help(
             _("The number of generations to include in the report")
             )
         add_option("gen", generations)
-        
+
         pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
@@ -939,30 +939,30 @@ class DetDescendantOptions(MenuReportOptions):
         stdoptions.add_localization_option(menu, category)
 
         # Content
-        
+
         add_option = partial(menu.add_option, _("Content"))
 
         usecall = BooleanOption(_("Use callname for common name"), False)
         usecall.set_help(_("Whether to use the call name as the first name."))
         add_option("usecall", usecall)
-        
+
         fulldates = BooleanOption(_("Use full dates instead of only the year"),
                                   True)
         fulldates.set_help(_("Whether to use full dates instead of just year."))
         add_option("fulldates", fulldates)
-        
+
         listc = BooleanOption(_("List children"), True)
         listc.set_help(_("Whether to list children."))
         add_option("listc", listc)
-        
+
         computeage = BooleanOption(_("Compute death age"),True)
         computeage.set_help(_("Whether to compute a person's age at death."))
         add_option("computeage", computeage)
-        
+
         omitda = BooleanOption(_("Omit duplicate ancestors"), True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
         add_option("omitda", omitda)
-        
+
         verbose = BooleanOption(_("Use complete sentences"), True)
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
@@ -976,7 +976,7 @@ class DetDescendantOptions(MenuReportOptions):
 
         category_name = _("Include")
         add_option = partial(menu.add_option, _("Include"))
-        
+
         incnotes = BooleanOption(_("Include notes"), True)
         incnotes.set_help(_("Whether to include notes."))
         add_option("incnotes", incnotes)
@@ -984,7 +984,7 @@ class DetDescendantOptions(MenuReportOptions):
         incattrs = BooleanOption(_("Include attributes"), False)
         incattrs.set_help(_("Whether to include attributes."))
         add_option("incattrs", incattrs)
-        
+
         incphotos = BooleanOption(_("Include Photo/Images from Gallery"), False)
         incphotos.set_help(_("Whether to include images."))
         add_option("incphotos", incphotos)
@@ -1004,7 +1004,7 @@ class DetDescendantOptions(MenuReportOptions):
         incsources = BooleanOption(_("Include sources"), False)
         incsources.set_help(_("Whether to include source references."))
         add_option("incsources", incsources)
-        
+
         incsrcnotes = BooleanOption(_("Include sources notes"), False)
         incsrcnotes.set_help(_("Whether to include source notes in the "
             "Endnotes section. Only works if Include sources is selected."))
@@ -1031,8 +1031,8 @@ class DetDescendantOptions(MenuReportOptions):
         add_option("incpaths", incpaths)
 
         # Missing information
-        
-        add_option = partial(menu.add_option, _("Missing information"))      
+
+        add_option = partial(menu.add_option, _("Missing information"))
 
         repplace = BooleanOption(_("Replace missing places with ______"), False)
         repplace.set_help(_("Whether to replace missing Places with blanks."))
@@ -1104,7 +1104,7 @@ class DetDescendantOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.25)
-        para.set_bottom_margin(0.25)        
+        para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the first personal entry.'))
         default_style.add_paragraph_style("DDR-First-Entry", para)
 

@@ -37,7 +37,7 @@ from gramps.gen.lib import LdsOrd
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class FamilyLdsEmbedList(LdsEmbedList):
@@ -55,14 +55,14 @@ class FamilyLdsEmbedList(LdsEmbedList):
         (_('Place'),   3, 100, TEXT_COL, -1, None),
         (_('Private'), 5,  30, ICON_COL, -1, 'gramps-lock')
         ]
-    
+
     def __init__(self, dbstate, uistate, track, data):
         LdsEmbedList.__init__(self, dbstate, uistate, track, data)
 
     def get_editor(self):
         from .. import EditFamilyLdsOrd
         return EditFamilyLdsOrd
-    
+
     def new_data(self):
         lds = LdsOrd()
         lds.set_type(LdsOrd.SEAL_TO_SPOUSE)

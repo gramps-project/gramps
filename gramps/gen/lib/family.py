@@ -63,7 +63,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     The Family record is the Gramps in-memory representation of the
     relationships between people. It contains all the information
     related to the relationship.
-    
+
     Family objects are usually created in one of two ways.
 
     1. Creating a new Family object, which is then initialized and
@@ -78,9 +78,9 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def __init__(self):
         """
-        Create a new Family instance. 
-        
-        After initialization, most data items have empty or null values, 
+        Create a new Family instance.
+
+        After initialization, most data items have empty or null values,
         including the database handle.
         """
         PrimaryObject.__init__(self)
@@ -99,9 +99,9 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     def serialize(self):
         """
         Convert the data held in the event to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
         These elements may be primitive Python types (string, integers),
@@ -130,7 +130,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -147,8 +147,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: dict
         """
         return {"_class": "Family",
-                "handle": Handle("Family", self.handle), 
-                "gramps_id": self.gramps_id, 
+                "handle": Handle("Family", self.handle),
+                "gramps_id": self.gramps_id,
                 "father_handle": Handle("Person", self.father_handle),
                 "mother_handle": Handle("Person", self.mother_handle),
                 "child_ref_list": [cr.to_struct() for cr in self.child_ref_list],
@@ -159,8 +159,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 "lds_ord_list": LdsOrdBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
-                "change": self.change, 
-                "tag_list": TagBase.to_struct(self), 
+                "change": self.change,
+                "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
     @classmethod
@@ -183,8 +183,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 LdsOrdBase.from_struct(struct.get("lds_ord_list", default.lds_ord_list)),
                 CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
                 NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                struct.get("change", default.change), 
-                TagBase.from_struct(struct.get("tag_list", default.tag_list)), 
+                struct.get("change", default.change),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
 
     def unserialize(self, data):
@@ -213,14 +213,14 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                   this object type.
         :rtype: bool
         """
@@ -338,7 +338,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -350,7 +350,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -363,7 +363,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -378,9 +378,9 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_handle_referents(self):
         """
-        Return the list of child objects which may, directly or through their 
+        Return the list of child objects which may, directly or through their
         children, reference primary objects..
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -411,14 +411,14 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     def set_relationship(self, relationship_type):
         """
         Set the relationship type between the people identified as the
-        father and mother in the relationship. 
-        
-        The type is a tuple whose first item is an integer constant and whose 
+        father and mother in the relationship.
+
+        The type is a tuple whose first item is an integer constant and whose
         second item is the string. The valid values are:
 
-        =========================  ============================================ 
+        =========================  ============================================
         Type                       Description
-        =========================  ============================================ 
+        =========================  ============================================
         FamilyRelType.MARRIED      indicates a legally recognized married
                                    relationship between two individuals. This
                                    may be either an opposite or a same sex
@@ -434,7 +434,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         FamilyRelType.CUSTOM       indicates that the type of relationship
                                    between the two individuals does not match
                                    any of the other types.
-        =========================  ============================================ 
+        =========================  ============================================
 
         :param relationship_type: (int,str) tuple of the relationship type
                between the father and mother of the relationship.
@@ -451,10 +451,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_father_handle(self, person_handle):
         """
-        Set the database handle for :class:`~.person.Person` that corresponds 
-        to male of the relationship. 
-        
-        For a same sex relationship, this can represent either of people 
+        Set the database handle for :class:`~.person.Person` that corresponds
+        to male of the relationship.
+
+        For a same sex relationship, this can represent either of people
         involved in the relationship.
 
         :param person_handle: :class:`~.person.Person` database handle
@@ -464,7 +464,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_father_handle(self):
         """
-        Return the database handle of the :class:`~.person.Person` identified 
+        Return the database handle of the :class:`~.person.Person` identified
         as the father of the Family.
 
         :returns: :class:`~.person.Person` database handle
@@ -474,10 +474,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_mother_handle(self, person_handle):
         """
-        Set the database handle for :class:`~.person.Person` that corresponds 
-        to male of the relationship. 
-        
-        For a same sex relationship, this can represent either of people 
+        Set the database handle for :class:`~.person.Person` that corresponds
+        to male of the relationship.
+
+        For a same sex relationship, this can represent either of people
         involved in the relationship.
 
         :param person_handle: :class:`~.person.Person` database handle
@@ -487,7 +487,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_mother_handle(self):
         """
-        Return the database handle of the :class:`~.person.Person` identified 
+        Return the database handle of the :class:`~.person.Person` identified
         as the mother of the Family.
 
         :returns: :class:`~.person.Person` database handle
@@ -506,7 +506,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
         self.child_ref_list.append(child_ref)
-            
+
     def remove_child_ref(self, child_ref):
         """
         Remove the database handle for :class:`~.person.Person` to the Family's
@@ -584,10 +584,10 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Add the :class:`~.eventref.EventRef` to the Family instance's
         :class:`~.eventref.EventRef` list.
-        
+
         This is accomplished by assigning the :class:`~.eventref.EventRef` for
         the valid :class:`~.event.Event` in the current database.
-        
+
         :param event_ref: the :class:`~.eventref.EventRef` to be added to the
                           Person's :class:`~.eventref.EventRef` list.
         :type event_ref: EventRef
@@ -611,7 +611,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of :class:`~.eventref.EventRef` objects associated with
         :class:`~.event.Event` instances.
 
-        :returns: Returns the list of :class:`~.eventref.EventRef` objects 
+        :returns: Returns the list of :class:`~.eventref.EventRef` objects
                   associated with the Family instance.
         :rtype: list
         """

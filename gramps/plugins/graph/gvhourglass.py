@@ -39,7 +39,7 @@ Generate an hourglass graph using the Graphviz generator.
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
-from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
+from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption,
                                   EnumeratedListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
@@ -77,12 +77,12 @@ class HourGlassReport(Report):
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
-        
+
         stdoptions.run_private_data_option(self, menu)
         self.__db = self.database
 
         self.__used_people = []
-        
+
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
         pid = menu.get_option_by_name('pid').get_value()
@@ -127,7 +127,7 @@ class HourGlassReport(Report):
         self.add_person(self.center_person)
         self.traverse_up(self.center_person, 1)
         self.traverse_down(self.center_person, 1)
-        
+
     def traverse_down(self, person, gen):
         """
         Recursively find the descendants of the given person.
@@ -145,10 +145,10 @@ class HourGlassReport(Report):
                     self.__used_people.append(child_handle)
                     child = self.__db.get_person_from_handle(child_handle)
                     self.add_person(child)
-                    self.doc.add_link(family.get_gramps_id(), 
+                    self.doc.add_link(family.get_gramps_id(),
                                       child.get_gramps_id() )
                     self.traverse_down(child, gen+1)
-                
+
     def traverse_up(self, person, gen):
         """
         Recursively find the ancestors of the given person.
@@ -160,14 +160,14 @@ class HourGlassReport(Report):
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.add_family(family)
-            self.doc.add_link( family_id, person.get_gramps_id(), 
+            self.doc.add_link( family_id, person.get_gramps_id(),
                                head='none', tail='normal' )
             father_handle = family.get_father_handle()
             if father_handle and father_handle not in self.__used_people:
                 self.__used_people.append(father_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
-                self.doc.add_link( father.get_gramps_id(), family_id, 
+                self.doc.add_link( father.get_gramps_id(), family_id,
                                    head='none', tail='normal' )
                 self.traverse_up(father, gen+1)
             mother_handle = family.get_mother_handle()
@@ -175,7 +175,7 @@ class HourGlassReport(Report):
                 self.__used_people.append(mother_handle)
                 mother = self.__db.get_person_from_handle( mother_handle )
                 self.add_person( mother )
-                self.doc.add_link( mother.get_gramps_id(), family_id, 
+                self.doc.add_link( mother.get_gramps_id(), family_id,
                                    head='none', tail='normal' )
                 self.traverse_up( mother, gen+1 )
 
@@ -185,13 +185,13 @@ class HourGlassReport(Report):
         """
         p_id = person.get_gramps_id()
         name = self._name_display.display(person)
-        
+
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
             birth = self._get_date(birth_evt.get_date_object())
         else:
             birth = ""
-        
+
         death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
             death = self._get_date(death_evt.get_date_object())
@@ -206,10 +206,10 @@ class HourGlassReport(Report):
             label = "%s \\n(%s - %s)\\n(%s)" % (name, birth, death, p_id)
 
         label = label.replace('"', '\\\"')
-            
+
         (shape, style, color, fill) = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
-        
+
     def add_family(self, family):
         """
         Add a family to the Graph. The node id will be the family's gramps id.
@@ -279,17 +279,17 @@ class HourGlassOptions(MenuReportOptions):
     """
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Create all the menu options for this report.
         """
         category_name = _("Report Options")
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The Center person for the graph"))
         menu.add_option(category_name, "pid", pid)
-        
+
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
@@ -298,7 +298,7 @@ class HourGlassOptions(MenuReportOptions):
         max_gen.set_help(_("The number of generations of descendants to "
                            "include in the graph"))
         menu.add_option(category_name, "maxdescend", max_gen)
-        
+
         max_gen = NumberOption(_('Max Ancestor Generations'), 10, 1, 15)
         max_gen.set_help(_("The number of generations of ancestors to "
                            "include in the graph"))

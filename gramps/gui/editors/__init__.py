@@ -62,7 +62,7 @@ EDITORS = {
 
 def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callback=None):
     """
-    Generic Object Editor. 
+    Generic Object Editor.
     obj_class is Person, Source, Repository, etc.
     prop is 'handle', 'gramps_id', or None (for new object)
     value is string handle, string gramps_id, or None (for new object)
@@ -75,16 +75,16 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
             try:
                 EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
             except Exception as msg:
-                LOG.warn(str(msg)) 
+                LOG.warn(str(msg))
         elif prop in ("gramps_id", "handle"):
             obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
             if obj:
                 try:
                     EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
                 except Exception as msg:
-                    LOG.warn(str(msg)) 
+                    LOG.warn(str(msg))
             else:
-                LOG.warn("gramps://%s/%s/%s not found" % 
+                LOG.warn("gramps://%s/%s/%s not found" %
                          (obj_class, prop, value))
         else:
             LOG.warn("unknown property to edit '%s'; "

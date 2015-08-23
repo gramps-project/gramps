@@ -55,7 +55,7 @@ class MissingParent(Rule):
             if family:
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
-                if not father_handle: 
+                if not father_handle:
                     return True
                 if not mother_handle:
                     return True

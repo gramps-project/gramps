@@ -65,7 +65,7 @@ LEFT, RIGHT, CENTER = 'LEFT', 'RIGHT', 'CENTER'
 def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
     if not para.strip():
         return "\n"
-    
+
     lines = []
     real_left = left+first
     alllines = para.split('\n')
@@ -115,7 +115,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
             return '\n'.join([line.rjust(right) for line in lines])
         else:
             return '\n'.join([line.rjust(right).rstrip() for line in lines])
-    else: # left justify 
+    else: # left justify
         if right_pad:
             return '\n'.join(
                 [' '*(left+first) + line.ljust(right-left-first)
@@ -167,7 +167,7 @@ class AsciiDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Close the file. Call the app if required. 
+    # Close the file. Call the app if required.
     #
     #--------------------------------------------------------------------
     def close(self):
@@ -198,7 +198,7 @@ class AsciiDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Starts a paragraph. 
+    # Starts a paragraph.
     #
     #--------------------------------------------------------------------
     def start_paragraph(self, style_name, leader=None):
@@ -208,7 +208,7 @@ class AsciiDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # End a paragraph. First format it to the desired widths. 
+    # End a paragraph. First format it to the desired widths.
     # If not in table cell, write it immediately. If in the cell,
     # add it to the list for this cell after formatting.
     #
@@ -274,18 +274,18 @@ class AsciiDoc(BaseDoc, TextDoc):
                 # don't add LF if there is this_text is a LF
                 this_text += the_pad + '\n'
         else:
-            this_text += '\n' + the_pad + '\n' 
-        
+            this_text += '\n' + the_pad + '\n'
+
         if self.in_cell:
             self.cellpars[self.cellnum] += this_text
         else:
             self.f.write(this_text)
-            
+
         self.text = ""
 
     #--------------------------------------------------------------------
     #
-    # Start a table. Grab the table style, and store it. 
+    # Start a table. Grab the table style, and store it.
     #
     #--------------------------------------------------------------------
     def start_table(self, name, style_name):
@@ -358,7 +358,7 @@ class AsciiDoc(BaseDoc, TextDoc):
                 )
             self.cell_widths[self.cellnum-span] = 0
             span -= 1
-            
+
 
     #--------------------------------------------------------------------
     #
@@ -383,12 +383,12 @@ class AsciiDoc(BaseDoc, TextDoc):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the ASCII doc. 
+        Convenience function to write a styledtext to the ASCII doc.
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        contains_html: bool, the backend should not check if html is present. 
-            If contains_html=True, then the textdoc is free to handle that in 
+        contains_html: bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. AsciiDoc prints the html without handling it
         links: bool, make the URL in the text clickable (if supported)
@@ -417,7 +417,7 @@ class AsciiDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Writes text. 
+    # Writes text.
     #--------------------------------------------------------------------
     def write_text(self, text, mark=None, links=False):
         self.text = self.text + text
@@ -434,7 +434,7 @@ class AsciiDocOptions(DocOptions):
 
     def __init__(self, name, dbase):
         DocOptions.__init__(self, name)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the document menu for the AsciiDoc docgen.

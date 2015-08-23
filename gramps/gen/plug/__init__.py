@@ -25,11 +25,11 @@ The "plug" package for handling plugins in Gramps.
 """
 
 from ._plugin import Plugin
-from ._pluginreg import (PluginData, PluginRegister, REPORT, TOOL, 
-            CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
+from ._pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
+            CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
             CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
             TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
-            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
+            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON,
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
@@ -46,12 +46,12 @@ from ._options import (Options, OptionListCollection, OptionList,
                       OptionHandler, MenuOptions)
 
 __all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
-            PluginRegister, BasePluginManager, 
+            PluginRegister, BasePluginManager,
             ImportPlugin, ExportPlugin, DocGenPlugin,
-            REPORT, TOOL, CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, 
+            REPORT, TOOL, CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
             CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
             TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
-            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON, 
+            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON,
             CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
             CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
             CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,

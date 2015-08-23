@@ -62,15 +62,15 @@ def run_father(database, document, person):
     make_details(Person.MALE, person, sa, sd, database, stab)
     stab.write(sd)
     sd.paragraph("")
-    
+
     if person.gender == Person.FEMALE :
         return
-    
+
     sd.header2((_("Direct line male descendants")))
     sd.paragraph("")
-    
+
     make_details_child(Person.MALE, person, sa, sd, database)
-    
+
 def run_mother(database, document, person):
     """ Function writing the mother lineage quick report
     """
@@ -88,28 +88,28 @@ def run_mother(database, document, person):
         " People in this lineage all share the same Mitochondrial DNA (mtDNA)."
         ))
     sd.paragraph("")
-    
+
     stab = QuickTable(sa)
     stab.columns(_("Name Mother"), _("Birth"), _("Death Date"), _("Remark"))
     make_details(Person.FEMALE, person, sa, sd, database, stab)
     stab.write(sd)
     sd.paragraph("")
-    
+
     if person.gender == Person.MALE :
         return
-    
+
     sd.header2((_("Direct line female descendants")))
     sd.paragraph("")
-    
+
     make_details_child(Person.FEMALE, person, sa, sd, database)
-    
+
 def make_details(gender, person, sa, sd, database, stab) :
-    """ Function writing one line of ancestry on the document in 
+    """ Function writing one line of ancestry on the document in
         direct lineage
     """
-    # avoid infinite loop: 
+    # avoid infinite loop:
     personsprinted = 0
-    
+
     # loop as long as there are fathers/mothers
     rem_str = ""
     while person:
@@ -125,7 +125,7 @@ def make_details(gender, person, sa, sd, database, stab) :
             sd.paragraph(_("ERROR : Too many levels in the tree "
                         "(perhaps a loop?)."))
             return
-            
+
         # obtain the first father/mother we find in the list
         parent_handle_list = person.get_parent_family_handle_list()
         person = None
@@ -133,9 +133,9 @@ def make_details(gender, person, sa, sd, database, stab) :
             rem_str = ""
             family_id = parent_handle_list[0]
             family = database.get_family_from_handle(family_id)
-            childrel = [(ref.get_mother_relation(), 
-                            ref.get_father_relation()) for ref in 
-                            family.get_child_ref_list() 
+            childrel = [(ref.get_mother_relation(),
+                            ref.get_father_relation()) for ref in
+                            family.get_child_ref_list()
                             if ref.ref == person_handle]
             if gender == Person.MALE :
                 person = database.get_person_from_handle(
@@ -145,7 +145,7 @@ def make_details(gender, person, sa, sd, database, stab) :
                 person = database.get_person_from_handle(
                             family.get_mother_handle())
                 refnr  = 0
-            
+
             #We do not allow for same sex marriages when going up
             # that would complicate the code
             #Also, we assume the birth relation is in the FIRST
@@ -161,7 +161,7 @@ def make_details(gender, person, sa, sd, database, stab) :
                 person = None
 
 def make_details_child(gender, person, sa, sd, database) :
-    """ Function that prints the details of the children in the 
+    """ Function that prints the details of the children in the
         male/female lineage
     """
     def make_child_line(child, prepend, generation) :
@@ -176,8 +176,8 @@ def make_details_child(gender, person, sa, sd, database) :
         rem_str = ""
         if child.gender == Person.UNKNOWN :
             rem_str = add_rem(rem_str, _("Unknown gender"))
-            
-        if rem_str : 
+
+        if rem_str :
             rem_str = _("Remark")+": "+rem_str
         front = ""
         if prepend :
@@ -198,19 +198,19 @@ def make_details_child(gender, person, sa, sd, database) :
             else :
                 #something wrong with this family, continue with next
                 continue
-            childrel = [(ref.ref, ref.get_mother_relation(), 
-                        ref.get_father_relation()) for ref in 
+            childrel = [(ref.ref, ref.get_mother_relation(),
+                        ref.get_father_relation()) for ref in
                             fam.get_child_ref_list()]
-            for childdet in childrel: 
+            for childdet in childrel:
                 #relation with parent must be by birth
                 if not childdet[childrelnr] == ChildRefType.BIRTH :
                     continue
-                            
+
                 newchild = database.get_person_from_handle(childdet[0])
                 # person must have the required gender
                 if newchild and newchild.gender == gender :
                     make_child_line(newchild, prepend + '  |', generation+1)
-                    
+
     # loop over all children of gender and output, start with no prepend
     try :
         make_child_line(person, "", 0)

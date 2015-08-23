@@ -46,7 +46,7 @@ from .citationbase import IndirectCitationBase
 class Repository(NoteBase, AddressBase, UrlBase,
         IndirectCitationBase, PrimaryObject):
     """A location where collections of Sources are found."""
-    
+
     def __init__(self):
         """
         Create a new Repository instance.
@@ -73,7 +73,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -90,14 +90,14 @@ class Repository(NoteBase, AddressBase, UrlBase,
         :rtype: dict
         """
         return {"_class": "Repository",
-                "handle": Handle("Repository", self.handle), 
-                "gramps_id": self.gramps_id, 
+                "handle": Handle("Repository", self.handle),
+                "gramps_id": self.gramps_id,
                 "type": self.type.to_struct(),
                 "name": str(self.name),
                 "note_list": NoteBase.to_struct(self),
                 "address_list": AddressBase.to_struct(self),
                 "urls": UrlBase.to_struct(self),
-                "change": self.change, 
+                "change": self.change,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
@@ -135,7 +135,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         UrlBase.unserialize(self, urls)
         TagBase.unserialize(self, tag_list)
         return self
-        
+
     def get_text_data_list(self):
         """
         Return the list of all textual attributes of the object.
@@ -158,7 +158,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -168,7 +168,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -178,7 +178,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -188,7 +188,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """

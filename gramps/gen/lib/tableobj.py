@@ -56,14 +56,14 @@ class TableObject(BaseObject):
     changed time.  The database handle is used as the unique key for a record
     in the database.  This is not the same as the Gramps ID, which is a user
     visible identifier for a record.
-    
-    It is the base class for the BasicPrimaryObject class and Tag class.    
+
+    It is the base class for the BasicPrimaryObject class and Tag class.
     """
-    
+
     def __init__(self, source=None):
         """
-        Initialize a TableObject. 
-        
+        Initialize a TableObject.
+
         If source is None, the handle is assigned as an empty string.
         If source is not None, then the handle is initialized from the value in
         the source object.
@@ -80,11 +80,11 @@ class TableObject(BaseObject):
 
     def get_change_time(self):
         """
-        Return the time that the data was last changed. 
-        
+        Return the time that the data was last changed.
+
         The value in the format returned by the :meth:`time.time()` command.
-           
-        :returns: Time that the data was last changed. The value in the format 
+
+        :returns: Time that the data was last changed. The value in the format
                   returned by the :meth:`time.time()` command.
         :rtype: int
         """
@@ -92,8 +92,8 @@ class TableObject(BaseObject):
 
     def set_change_time(self, change):
         """
-        Modify the time that the data was last changed. 
-        
+        Modify the time that the data was last changed.
+
         The value must be in the format returned by the :meth:`time.time()`
         command.
 
@@ -108,7 +108,7 @@ class TableObject(BaseObject):
 
         :returns: string representation of the last change time.
         :rtype: str
-        
+
         """
         if self.change:
             return str(time.strftime('%x %X', time.localtime(self.change)),

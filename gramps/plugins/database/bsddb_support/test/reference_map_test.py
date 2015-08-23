@@ -40,7 +40,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
 
         citation = self._add_source()
         person = self._add_person_with_sources([citation])
-        
+
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
         self.assertEqual(len(references), 1)
@@ -51,7 +51,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
 
         repos = self._add_repository()
         citation = self._add_source(repos=repos)
-        
+
         references = list(self._db.find_backlink_handles(repos.get_handle()))
 
         self.assertEqual(len(references), 1)
@@ -77,24 +77,24 @@ class ReferenceMapTest(GrampsDbBaseTest):
         # make sure that we have the correct number of references (one for each object)
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        self.assertEqual(len(references), 5, 
+        self.assertEqual(len(references), 5,
                          "len(references) == %s " % str(len(references)))
 
         # should just return the person reference
         references = [ref for ref in self._db.find_backlink_handles(citation.get_handle(), (Person.__name__,))]
-        self.assertEqual(len(references), 1, 
+        self.assertEqual(len(references), 1,
                          "len(references) == %s " % str(len(references)))
-        self.assertEqual(references[0][0], Person.__name__, 
+        self.assertEqual(references[0][0], Person.__name__,
                          "references = %s" % repr(references))
 
         # should just return the person  and event reference
         references = list(self._db.find_backlink_handles(citation.get_handle(),
                             (Person.__name__, Event.__name__)))
-        self.assertEqual(len(references), 2, 
+        self.assertEqual(len(references), 2,
                          "len(references) == %s " % str(len(references)))
-        self.assertEqual(references[0][0], Person.__name__, 
+        self.assertEqual(references[0][0], Person.__name__,
                          "references = %s" % repr(references))
-        self.assertEqual(references[1][0], Event.__name__, 
+        self.assertEqual(references[1][0], Event.__name__,
                          "references = %s" % repr(references))
 
     def test_delete_primary(self):
@@ -103,17 +103,17 @@ class ReferenceMapTest(GrampsDbBaseTest):
 
         citation = self._add_source()
         person = self._add_person_with_sources([citation])
-        
+
         self.assertIsNotNone(self._db.get_person_from_handle(person.get_handle()))
-        
+
         with DbTxn("Del Person", self._db) as tran:
             self._db.remove_person(person.get_handle(),tran)
 
         self.assertIsNone(self._db.get_person_from_handle(person.get_handle()))
-        
+
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        self.assertEqual(len(references), 0, 
+        self.assertEqual(len(references), 0,
                          "len(references) == %s " % str(len(references)))
 
     def test_reindex_reference_map(self):
@@ -121,7 +121,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
 
         def cb(count):
             pass
-        
+
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
         update_method = self._db.update_reference_map
@@ -134,7 +134,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         # Check that the reference map does not contain the reference.
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        self.assertEqual(len(references), 0, 
+        self.assertEqual(len(references), 0,
                          "len(references) == %s " % str(len(references)))
 
         # Reinstate the reference_map method and reindex the database
@@ -144,7 +144,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         # Check that the reference now appears in the reference_map
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        self.assertEqual(len(references), 1, 
+        self.assertEqual(len(references), 1,
                          "len(references) == %s " % str(len(references)))
 
     def perf_simple_search_speed(self):
@@ -156,7 +156,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         num_places = 10
         num_media_objects = 10
         num_links = 10
-        
+
         self._populate_database(num_sources,
                                 num_persons,
                                 num_families,
@@ -178,7 +178,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         with_reference_map = end - start
 
         remember = self._db.__class__.find_backlink_handles
-        
+
         self._db.__class__.find_backlink_handles = self._db.__class__.__base__.find_backlink_handles
 
         start = time.time()
@@ -186,11 +186,11 @@ class ReferenceMapTest(GrampsDbBaseTest):
         end = time.time()
 
         without_reference_map = end - start
-                
+
         self._db.__class__.find_backlink_handles = remember
 
         logger.info("search test with following data: \n"
-                    "num_sources = %d \n"                    
+                    "num_sources = %d \n"
                     "num_persons = %d \n"
                     "num_families = %d \n"
                     "num_events = %d \n"
@@ -206,7 +206,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         logger.info("with refs %s\n", str(with_reference_map))
         logger.info("without refs %s\n", str(without_reference_map))
 
-        self.assertLess(with_reference_map, without_reference_map / 10, 
+        self.assertLess(with_reference_map, without_reference_map / 10,
                         "Reference_map should an order of magnitude faster.")
 
 def testSuite():

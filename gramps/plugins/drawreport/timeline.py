@@ -50,7 +50,7 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 #
 # private constants
 #
-#------------------------------------------------------------------------ 
+#------------------------------------------------------------------------
 cal = config.get('preferences.calendar-format-report')
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
@@ -78,7 +78,7 @@ class TimeLine(Report):
     def __init__(self, database, options, user):
         """
         Create the Timeline object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -87,7 +87,7 @@ class TimeLine(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         filter    - Filter to be applied to the people of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
@@ -117,16 +117,16 @@ class TimeLine(Report):
 
     def write_report(self):
         # Apply the filter
-        with self._user.progress(_('Timeline'), 
-                                  _('Applying filter...'), 
+        with self._user.progress(_('Timeline'),
+                                  _('Applying filter...'),
                                   self.database.get_number_of_people()) as step:
-            self.plist = self.filter.apply(self.database, 
+            self.plist = self.filter.apply(self.database,
                                            self.database.iter_person_handles(),
                                            step)
 
         # Find the range of dates to include
         (low, high) = self.find_year_range()
-        
+
         # Generate the actual timeline
         self.generate_timeline(low, high)
 
@@ -141,11 +141,11 @@ class TimeLine(Report):
         stop = self.doc.get_usable_width() - 0.5
         size = (stop - start)
         self.header = 2.0
-        
+
         # Sort the people as requested
         with self._user.progress(_('Timeline'), _('Sorting dates...'), 0) as step:
             self.plist.sort(key=self.sort_func)
-        
+
         self.doc.start_page()
         self.build_grid(low, high, start, stop, True)
 
@@ -153,8 +153,8 @@ class TimeLine(Report):
         current = 1;
 
         length = len(self.plist)
-        
-        with self._user.progress(_('Timeline'), 
+
+        with self._user.progress(_('Timeline'),
                 _('Calculating timeline...'), length) as step:
 
             for p_id in self.plist:
@@ -175,12 +175,12 @@ class TimeLine(Report):
                 mark = ReportUtils.get_person_mark(self.database, p)
                 self.doc.draw_text('TLG-text', n, incr+pad,
                                    self.header + (incr+pad)*index, mark)
-                
+
                 y1 = self.header + (pad+incr)*index
                 y2 = self.header + ((pad+incr)*index)+incr
                 y3 = (y1+y2)/2.0
                 w = 0.05
-                
+
                 if b:
                     start_offset = ((float(b-low)/float(high-low)) * (size))
                     x1 = start+start_offset
@@ -245,7 +245,7 @@ class TimeLine(Report):
         for val in range(0,6):
             xpos = start_pos + (val * delta)
             self.doc.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
-            
+
     def draw_title(self, toc):
         """
         Draws the title for the page.
@@ -264,7 +264,7 @@ class TimeLine(Report):
         title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
         title_y = 1.2 - (pt2cm(title_font.get_size()) * 1.2)
         self.doc.center_text('TLG-title', title_two, width / 2.0, title_y)
-        
+
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
         """
         Draws the column headings (years) for the page.
@@ -280,7 +280,7 @@ class TimeLine(Report):
             xpos = start_pos+(val*delta)
             year_str = str(int(year_low + (incr*val)))
             self.doc.center_text('TLG-label', year_str, xpos, label_y)
-            
+
     def draw_no_date_heading(self):
         """
         Draws a single heading that says "No Date Information"
@@ -313,9 +313,9 @@ class TimeLine(Report):
                 else:
                     high = year
             return (low, high)
-        
-        with self._user.progress(_('Timeline'), 
-                                  _('Finding date range...'), 
+
+        with self._user.progress(_('Timeline'),
+                                  _('Finding date range...'),
                                   len(self.plist)) as step:
 
             for p_id in self.plist:
@@ -336,17 +336,17 @@ class TimeLine(Report):
                 low = int((low/10))*10
             else:
                 low = high
-                
+
             if high is not None:
                 high = int(((high+9)/10))*10
             else:
                 high = low
-            
+
             # Make sure the difference is a multiple of 50 so all year ranges land
             # on a decade.
             if low is not None and high is not None:
                 low -= 50 - ((high-low) % 50)
-            
+
         return (low, high)
 
     def name_size(self):
@@ -358,7 +358,7 @@ class TimeLine(Report):
         pname = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pname)
         font = pstyle.get_font()
-        
+
         size = 0
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
@@ -378,7 +378,7 @@ class TimeLineOptions(MenuReportOptions):
         self.__filter = None
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         category_name = _("Report Options")
 
@@ -387,7 +387,7 @@ class TimeLineOptions(MenuReportOptions):
                        _("Determines what people are included in the report"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
-        
+
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
@@ -407,7 +407,7 @@ class TimeLineOptions(MenuReportOptions):
             idx += 1
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
-                
+
         stdoptions.add_localization_option(menu, category_name)
 
     def __update_filters(self):
@@ -421,7 +421,7 @@ class TimeLineOptions(MenuReportOptions):
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
-        
+
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,
@@ -434,7 +434,7 @@ class TimeLineOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
-        
+
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""
         # Paragraph Styles
@@ -463,16 +463,16 @@ class TimeLineOptions(MenuReportOptions):
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("TLG-Title",p)
-        
+
         """
         Graphic Styles
-            TLG-grid  - 0.5pt wide line dashed line. Used for the lines that 
+            TLG-grid  - 0.5pt wide line dashed line. Used for the lines that
                         make up the grid.
-            TLG-line  - 0.5pt wide line. Used for the line connecting two 
+            TLG-line  - 0.5pt wide line. Used for the line connecting two
                         endpoints and for the birth marker.
             TLG-solid - 0.5pt line with a black fill color. Used for the date of
                         death marker.
-            TLG-text  - Contains the TLG-Name paragraph style used for the 
+            TLG-text  - Contains the TLG-Name paragraph style used for the
                         individual's name.
             TLG-title - Contains the TLG-Title paragraph style used for the
                         title of the document.

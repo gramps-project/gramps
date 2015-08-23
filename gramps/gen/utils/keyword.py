@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -21,7 +21,7 @@
 #
 
 """
-Keyword translation interface 
+Keyword translation interface
 """
 
 # keyword, code, translated standard, translated upper
@@ -37,7 +37,7 @@ Keyword translation interface
 #        '1m': primary[sur]= surname primary surname (main)
 #        '2m': primary[con]= connector primary surname (main)
 #        'y' : patronymic = pa/matronymic surname (father/mother) - assumed unique
-#        '0y': patronymic[pre] = prefix      "  
+#        '0y': patronymic[pre] = prefix      "
 #        '1y': patronymic[sur] = surname     "
 #        '2y': patronymic[con] = connector   "
 #        'o' : notpatronymic = surnames without pa/matronymic and primary

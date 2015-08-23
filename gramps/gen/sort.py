@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -20,7 +20,7 @@
 
 """
 Provide sorting routines for use in Gramps. Since these functions are
-intended to provide fast sorting, they tend to bypass access methods, 
+intended to provide fast sorting, they tend to bypass access methods,
 and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.
 """
@@ -49,16 +49,16 @@ from .const import GRAMPS_LOCALE as glocale
 #-------------------------------------------------------------------------
 
 class Sort(object):
-    
+
     def __init__(self, database):
         self.database = database
 
 ##    def by_last_name(self, first_id, second_id):
-##        """Sort routine for comparing two last names. If last names are equal, 
+##        """Sort routine for comparing two last names. If last names are equal,
 ##        uses the given name and suffix"""
 ##        first = self.database.get_person_from_handle(first_id)
 ##        second = self.database.get_person_from_handle(second_id)
-##        
+##
 ##        name1 = first.get_primary_name()
 ##        name2 = second.get_primary_name()
 ##
@@ -77,11 +77,11 @@ class Sort(object):
 
     def by_last_name_key(self, first_id):
         """
-        Sort routine for comparing two last names. If last names are equal, 
+        Sort routine for comparing two last names. If last names are equal,
         uses the given name and suffix
         """
         first = self.database.get_person_from_handle(first_id)
-        
+
         name1 = first.get_primary_name()
 
         fsn = name1.get_surname()
@@ -256,7 +256,7 @@ class Sort(object):
             return 0
         evt_a = self.database.get_event_from_handle(a_id)
         return glocale.sort_key(str(evt_a.get_type()))
-    
+
 ##    def by_media_title(self,a_id,b_id):
 ##        """Sort routine for comparing two media objects by their title. """
 ##        if not (a_id and b_id):
@@ -264,7 +264,7 @@ class Sort(object):
 ##        a = self.database.get_object_from_handle(a_id)
 ##        b = self.database.get_object_from_handle(b_id)
 ##        return glocale.strcoll(a.desc, b.desc)
-    
+
     def by_media_title_key(self, a_id):
         """Sort routine for comparing two media objects by their title. """
         if not a_id:

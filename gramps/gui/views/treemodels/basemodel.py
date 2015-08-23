@@ -46,7 +46,7 @@ class BaseModel(object):
 
     def clear_cache(self, handle=None):
         """
-        Clear the LRU cache. Always clear lru_path, because paths may have 
+        Clear the LRU cache. Always clear lru_path, because paths may have
         changed.
         """
         if handle:
@@ -77,7 +77,7 @@ class BaseModel(object):
                 if handle not in self.lru_data:
                     self.lru_data[handle] = {}
                 self.lru_data[handle][col] = data
-    
+
     ## Cached Path's for TreeView:
     def get_cached_path(self, handle):
         """

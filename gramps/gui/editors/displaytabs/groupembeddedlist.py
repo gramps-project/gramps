@@ -52,13 +52,13 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 class GroupEmbeddedList(EmbeddedList):
     """
     This class provides the base class for all the list tabs that show
-    grouped data. 
-    
+    grouped data.
+
     It maintains a Gtk.TreeView, including the selection and button sensitivity.
     """
-    
+
     _WORKGROUP = 0
-    
+
     def __init__(self, dbstate, uistate, track, name, build_model,
                  share_button=False, move_buttons=False, jump_button=False, **kwargs):
         """
@@ -72,14 +72,14 @@ class GroupEmbeddedList(EmbeddedList):
         for col in self.columns[1:]:
             col.connect('clicked', self.col_click)
         self.dbsort = True
-    
+
     def construct_model(self):
         """
         Method that creates the model using the passed build_model parameter
         Overwrites the EmbeddedList calling sequence by adding the different
         groups
         """
-        return self.build_model(self.get_data(), self.dbstate.db, 
+        return self.build_model(self.get_data(), self.dbstate.db,
                                 self.groups(), **self.kwargs)
 
     def groups(self):
@@ -95,7 +95,7 @@ class GroupEmbeddedList(EmbeddedList):
         self.columns[0].set_sort_order(Gtk.SortType.ASCENDING)
         self.rebuild()
         self.dbsort = True
-    
+
     def col_click(self, obj):
         self.dbsort = False
 
@@ -146,7 +146,7 @@ class GroupEmbeddedList(EmbeddedList):
             return
 
         # pickle the data, and build the tuple to be passed
-        value = (self._DND_TYPE.drag_type, id(self), obj[1], 
+        value = (self._DND_TYPE.drag_type, id(self), obj[1],
                  self.find_index(obj))
         data = pickle.dumps(value)
 
@@ -171,13 +171,13 @@ class GroupEmbeddedList(EmbeddedList):
 
             # make sure this is the correct DND type for this object
             if mytype == self._DND_TYPE.drag_type:
-                
+
                 # determine the destination row
                 row = self._find_row(x, y)
 
                 # if this is same object, we have a move, otherwise,
                 # it is a standard drag-n-drop
-                
+
                 if id(self) == selfid and self.get_selected() is not None:
                     self._move(row_from, row, obj)
                 else:
@@ -188,7 +188,7 @@ class GroupEmbeddedList(EmbeddedList):
 
     def tree_drag_motion(self, *args):
         """
-        On drag motion one wants the list to show as the database 
+        On drag motion one wants the list to show as the database
         representation so it is clear how save will change the data
         """
         if not self.dbsort:
@@ -203,7 +203,7 @@ class GroupEmbeddedList(EmbeddedList):
         groupindex = None
         index = None
         for groupindex, group in enumerate(data):
-            try: 
+            try:
                 index = group.index(obj[1])
                 break
             except ValueError:
@@ -212,7 +212,7 @@ class GroupEmbeddedList(EmbeddedList):
 
     def _find_row(self, x, y):
         """
-        Return a path as [groupindex, index] of the row on x,y. 
+        Return a path as [groupindex, index] of the row on x,y.
         If no row, then a new line in the working group is returned
         """
         dest = self.tree.get_dest_row_at_pos(x, y)
@@ -292,7 +292,7 @@ class GroupEmbeddedList(EmbeddedList):
         pass
 
     def _move_up(self, row_from, obj, selmethod=None):
-        """ 
+        """
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
@@ -317,15 +317,15 @@ class GroupEmbeddedList(EmbeddedList):
         move up outside of workgroup
         """
         pass
-    
+
     def _move_up_group(self, groupindex):
         """
         move up pressed on the group
         """
         pass
-        
+
     def _move_down(self, row_from, obj, selmethod=None):
-        """ 
+        """
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
@@ -376,7 +376,7 @@ class GroupEmbeddedList(EmbeddedList):
                 self.rebuild()
             else:
                 self.del_notwork(ref)
-    
+
     def del_notwork(self, ref):
         """
         delete of ref asked that is not part of workgroup
@@ -391,7 +391,7 @@ class GroupEmbeddedList(EmbeddedList):
                 self._move_up(pos, ref[1])
         elif ref and ref[1] is None:
             self._move_up_group(ref[0])
-                
+
     def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref and ref[1] is not None:

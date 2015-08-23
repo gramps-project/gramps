@@ -36,7 +36,7 @@ class GT0(GrampsType):
     _DATAMAP = MAP
 
 # NOTE: this type of code might be used in a migration utility
-#   to allow conversions or other handling of retired type-values 
+#   to allow conversions or other handling of retired type-values
 # A migration utility might instantiate several of these with
 #   varying blacklist-specs
 class GT1(GT0):
@@ -55,22 +55,22 @@ class Test1(unittest.TestCase):
         g = len(self.gt._E2IMAP)
         self.assertEqual(g, e)
 
-    # init sets values for int, str, tuple 
+    # init sets values for int, str, tuple
     # (we ignore instance here -- maybe SB tested, too?)
     # this test depends on having _DEFAULT=1, _CUSTOM=3
     # NB: tuple tests w/ lengths < 2 fail before release 10403
     def test_init_value(self):
-        for i, v, u in ( 
+        for i, v, u in (
                 (None,       1, 'abab'), # all DEFAULT
-                (0,          0, 'zzzz'), 
-                (1,          1, 'abab'), 
+                (0,          0, 'zzzz'),
+                (1,          1, 'abab'),
                 ('efef',     3, 'efef'), # matches CUSTOM
                 ('zzzz',     0, 'zzzz'),
-                ('x',        3, 'x'),    # nomatch gives CUSTOM   
-                ('',         3, ''),     # nomatch gives CUSTOM   
+                ('x',        3, 'x'),    # nomatch gives CUSTOM
+                ('',         3, ''),     # nomatch gives CUSTOM
                 ((0,'zero'), 0, 'zzzz'), # normal behavior
-                ((2,),       2, 'cdcd'), # DEFAULT-string, just like int 
-                ((),         1, 'abab'), # DEFAULT-pair      
+                ((2,),       2, 'cdcd'), # DEFAULT-string, just like int
+                ((),         1, 'abab'), # DEFAULT-pair
                 ):
             self.gt = GT0(i)
             g = self.gt.value
@@ -82,14 +82,14 @@ class Test1(unittest.TestCase):
 class Test2(unittest.TestCase):
     def test_blacklist(self):
         self.gt = GT1()
-        # check that MAPs have lengths reduced by blacklist 
-        e = len(keys) - len(BLIST) 
+        # check that MAPs have lengths reduced by blacklist
+        e = len(keys) - len(BLIST)
         g = len(self.gt._E2IMAP)
         self.assertEqual(g, e)
 
         self.ub=GT2()
         # check that these MAPS are now un-blacklisted
-        e = len(keys) 
+        e = len(keys)
         g = len(self.ub._E2IMAP)
         self.assertEqual(g, e)
 

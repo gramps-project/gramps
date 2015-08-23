@@ -44,10 +44,10 @@ class Backlinks(Gramplet):
         titles = [(_('Type'), 1, 100),
                   (_('Name'), 2, 100),
                   ('', 3, 1), #hidden column for the handle
-                  ('', 4, 1)] #hidden column for non-localized object type 
+                  ('', 4, 1)] #hidden column for non-localized object type
         self.model = ListModel(top, titles, event_func=self.cb_double_click)
         return top
-        
+
     def display_backlinks(self, active_handle):
         """
         Display the back references for an object.
@@ -67,7 +67,7 @@ class Backlinks(Gramplet):
         for handle in self.dbstate.db.find_backlink_handles(active_handle):
             return True
         return False
-        
+
     def cb_double_click(self, treeview):
         """
         Handle double click on treeview.
@@ -76,7 +76,7 @@ class Backlinks(Gramplet):
         if not iter_:
             return
 
-        (objclass, handle) = (model.get_value(iter_, 3), 
+        (objclass, handle) = (model.get_value(iter_, 3),
                               model.get_value(iter_, 2))
 
         edit_object(self.dbstate, self.uistate, objclass, handle)
@@ -94,7 +94,7 @@ class PersonBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Person')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Person')
         self.model.clear()
@@ -114,7 +114,7 @@ class EventBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Event')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Event')
         self.model.clear()
@@ -134,7 +134,7 @@ class FamilyBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Family')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Family')
         self.model.clear()
@@ -154,7 +154,7 @@ class PlaceBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Place')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Place')
         self.model.clear()
@@ -174,7 +174,7 @@ class SourceBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Source')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Source')
         self.model.clear()
@@ -194,7 +194,7 @@ class CitationBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Citation')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Citation')
         self.model.clear()
@@ -214,7 +214,7 @@ class RepositoryBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Repository')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Repository')
         self.model.clear()
@@ -234,7 +234,7 @@ class MediaBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Media')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Media')
         self.model.clear()
@@ -254,7 +254,7 @@ class NoteBacklinks(Backlinks):
     def update_has_data(self):
         active_handle = self.get_active('Note')
         self.set_has_data(self.get_has_data(active_handle))
-    
+
     def main(self):
         active_handle = self.get_active('Note')
         self.model.clear()

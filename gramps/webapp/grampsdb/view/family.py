@@ -49,27 +49,27 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
     if act == "share":
         # Adds a person to an existing family
         item, handle = add_to
-        context["pickform"] = PickForm("Pick family", 
-                                       Family, 
+        context["pickform"] = PickForm("Pick family",
+                                       Family,
                                        (),
-                                       request.POST)     
+                                       request.POST)
         context["object_handle"] = handle
         context["object_type"] = "person"
         return render_to_response("pick.html", context)
     elif act == "save-share":
-        item, handle = add_to 
-        pickform = PickForm("Pick family", 
-                            Family, 
+        item, handle = add_to
+        pickform = PickForm("Pick family",
+                            Family,
                             (),
                             request.POST)
         if pickform.data["picklist"]:
             person = Person.objects.get(handle=handle) # to add
             ref_handle = pickform.data["picklist"]
-            ref_obj = Family.objects.get(handle=ref_handle) 
+            ref_obj = Family.objects.get(handle=ref_handle)
             if item == "child":
                 dji.add_child_ref_default(ref_obj, person) # add person to family
                 #person.parent_families.add(ref_obj) # add family to child
-                pfo = MyParentFamilies(person=person, family=ref_obj, 
+                pfo = MyParentFamilies(person=person, family=ref_obj,
                                        order=len(person.parent_families.all())+1)
                 pfo.save()
             elif item == "spouse":
@@ -80,7 +80,7 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 else:
                     ref_obj.father = person # FIXME: Unknown gender, add to open
                 #person.families.add(ref_obj) # add family to person
-                pfo = MyFamilies(person=person, family=ref_obj, 
+                pfo = MyFamilies(person=person, family=ref_obj,
                                  order=len(person.families.all())+1)
                 pfo.save()
             ref_obj.save()
@@ -108,13 +108,13 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 else: # You have to pick one!
                     family.father = person
             elif what == "child":
-                pass # FIXME: can't show child in table? 
+                pass # FIXME: can't show child in table?
                      # Table from children_table
             else: # unknown what!
                 raise Exception("can't add_to: '%s'" % what)
         familyform = FamilyForm(instance=family)
         familyform.model = family
-    elif act in ["view", "edit"]: 
+    elif act in ["view", "edit"]:
         family = Family.objects.get(handle=handle)
         familyform = FamilyForm(instance=family)
         familyform.model = family
@@ -136,20 +136,20 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             if familyform.cleaned_data["mother"]:
                 if family not in familyform.cleaned_data["mother"].families.all():
                     #family.mother.families.add(family)
-                    pfo = MyFamilies(person=familyform.cleaned_data["mother"], family=family, 
+                    pfo = MyFamilies(person=familyform.cleaned_data["mother"], family=family,
                                      order=len(familyform.cleaned_data["mother"].families.all())+1)
                     pfo.save()
             if familyform.cleaned_data["father"]:
                 if family not in familyform.cleaned_data["father"].families.all():
                     #family.father.families.add(family)
-                    pfo = MyFamilies(person=family.father, family=family, 
+                    pfo = MyFamilies(person=family.father, family=family,
                                      order=len(familyform.cleaned_data["father"].families.all())+1)
                     pfo.save()
             familyform.save()
             act = "view"
         else:
             act = "edit"
-    elif act == "create": 
+    elif act == "create":
         family = Family(family_rel_type=FamilyRelType.objects.get(
                 val=FamilyRelType._DEFAULT[0]),
                         handle=create_id())
@@ -160,7 +160,7 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             family = familyform.save()
             if family.mother:
                 #family.mother.families.add(family)
-                pfo = MyFamilies(person=family.mother, family=family, 
+                pfo = MyFamilies(person=family.mother, family=family,
                                  order=len(family.mother.families.all())+1)
                 pfo.save()
             if family.father:
@@ -185,7 +185,7 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
             act = "view"
         else:
             act = "add"
-    elif act == "delete": 
+    elif act == "delete":
         family = Family.objects.get(handle=handle)
         family.delete()
         return redirect("/family/")
@@ -197,5 +197,5 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
     context["family"] = family
     context["action"] = act
     view_template = "view_family_detail.html"
-    
+
     return render_to_response(view_template, context)

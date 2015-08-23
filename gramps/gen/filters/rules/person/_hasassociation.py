@@ -49,7 +49,7 @@ class HasAssociation(Rule):
     name        = _('People with <count> associations')
     description = _("Matches people with a certain number of associations")
     category    = _('General filters')
-    
+
     def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[1] == 'less than':
@@ -60,7 +60,7 @@ class HasAssociation(Rule):
             self.count_type = 1 # "equal to"
 
         self.selected_count = int(self.list[0])
-        
+
     def apply(self, db, person):
         count =  len(person.get_person_ref_list())
         if self.count_type == 0:     # "less than"

@@ -42,13 +42,13 @@ class AgeStatsGramplet(Gramplet):
 
     def build_options(self):
         from gramps.gen.plug.menu import NumberOption
-        self.add_option(NumberOption(_("Max age"), 
+        self.add_option(NumberOption(_("Max age"),
                                      self.max_age, 1, 150))
-        self.add_option(NumberOption(_("Max age of Mother at birth"), 
+        self.add_option(NumberOption(_("Max age of Mother at birth"),
                                      self.max_mother_diff, 1, 150))
-        self.add_option(NumberOption(_("Max age of Father at birth"), 
+        self.add_option(NumberOption(_("Max age of Father at birth"),
                                      self.max_father_diff, 1, 150))
-        self.add_option(NumberOption(_("Chart width"), 
+        self.add_option(NumberOption(_("Chart width"),
                                      self.chart_width, 1, 150))
 
     def save_options(self):
@@ -72,9 +72,9 @@ class AgeStatsGramplet(Gramplet):
         self.max_mother_diff = int(self.get_option(_("Max age of Mother at birth")).get_value())
         self.max_father_diff = int(self.get_option(_("Max age of Father at birth")).get_value())
         self.chart_width = int(self.get_option(_("Chart width")).get_value())
-        self.gui.data = [self.max_age, 
-                         self.max_mother_diff, 
-                         self.max_father_diff, 
+        self.gui.data = [self.max_age,
+                         self.max_mother_diff,
+                         self.max_father_diff,
                          self.chart_width]
         self.update()
 
@@ -117,11 +117,11 @@ class AgeStatsGramplet(Gramplet):
             # for each parent m/f:
             family_list = p.get_parent_family_handle_list()
             for family_handle in family_list:
-                family = self.dbstate.db.get_family_from_handle(family_handle) 
+                family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family:
-                    childrel = [(ref.get_mother_relation(), 
-                                 ref.get_father_relation()) for ref in 
-                                family.get_child_ref_list() 
+                    childrel = [(ref.get_mother_relation(),
+                                 ref.get_father_relation()) for ref in
+                                family.get_child_ref_list()
                                 if ref.ref == p.handle] # get first, if more than one
                     if childrel[0][0] == ChildRefType.BIRTH:
                         m_handle = family.get_mother_handle()
@@ -161,11 +161,11 @@ class AgeStatsGramplet(Gramplet):
                                 #else:
                                 #    print "Mother diff out of range: %d for %s" % (diff,
                                 #                                                   p.get_primary_name().get_first_name()
-                                #                                                   + " " + p.get_primary_name().get_surname())            
+                                #                                                   + " " + p.get_primary_name().get_surname())
             count += 1
         width = self.chart_width
         graph_width = width - 8
-        self.create_bargraph(age_dict, age_handles, _("Lifespan Age Distribution"), _("Age"), graph_width, 5, self.max_age) 
+        self.create_bargraph(age_dict, age_handles, _("Lifespan Age Distribution"), _("Age"), graph_width, 5, self.max_age)
         self.create_bargraph(father_dict, father_handles, _("Father - Child Age Diff Distribution"), _("Diff"), graph_width, 5, self.max_father_diff)
         self.create_bargraph(mother_dict, mother_handles, _("Mother - Child Age Diff Distribution"), _("Diff"), graph_width, 5, self.max_mother_diff)
         start, end = self.gui.buffer.get_bounds()
@@ -191,7 +191,7 @@ class AgeStatsGramplet(Gramplet):
         retval += " " * rest
         retval += "%3d" % int(stop)
         return retval
-    
+
     def format(self, text, width, align = "left", borders = "||", fill = " "):
         """ Returns a formatted string for nice, fixed-font display """
         if align == "center":
@@ -205,7 +205,7 @@ class AgeStatsGramplet(Gramplet):
         if borders[1] is not None:
             text = text + borders[1]
         return text
-    
+
     def compute_stats(self, hash):
         """ Returns the statistics of a dictionary of data """
         #print "compute_stats", hash
@@ -231,7 +231,7 @@ class AgeStatsGramplet(Gramplet):
         retval += "  " + _("Median") + ": %d\n" % median
         retval += "  " + _("Maximum") + ": %d\n" % maxval
         return retval
-    
+
     def make_handles_set(self, min, max, handles):
         retval = []
         for i in range(min, max):
@@ -256,34 +256,34 @@ class AgeStatsGramplet(Gramplet):
         max_bin = float(max(bin))
         if max_bin != 0:
             i = 0
-            self.append_text("--------" + 
+            self.append_text("--------" +
                 self.format("", graph_width-4, fill = "-", borders="++") +
                 "-----\n")
-            self.append_text(column.center(8) + 
-                self.format(title, graph_width-4, align="center") + 
+            self.append_text(column.center(8) +
+                self.format(title, graph_width-4, align="center") +
                 "  %  " + "\n")
-            self.append_text("--------" + 
-                self.format("", graph_width-4, fill = "-", borders="++") + 
+            self.append_text("--------" +
+                self.format("", graph_width-4, fill = "-", borders="++") +
                 "-----\n")
             for bin in bin:
                 self.append_text((" %3d-%3d" % (i * 5, (i+1)* 5,)))
                 selected = self.make_handles_set(i * 5, (i+1) *5, handles)
-                self.link(self.format("X" * int(bin/max_bin * (graph_width-4)), 
+                self.link(self.format("X" * int(bin/max_bin * (graph_width-4)),
                             graph_width-4),
-                          'PersonList', 
+                          'PersonList',
                           selected,
-                          tooltip=_("Double-click to see %d people") % 
+                          tooltip=_("Double-click to see %d people") %
                             len(selected))
-                procent = (float(len(selected)) / 
+                procent = (float(len(selected)) /
                                 (float(sum(hash.values())))*100)
                 self.append_text(glocale.format("%#5.2f", procent))
                 self.append_text("\n")
                 i += 1
-            self.append_text("--------" + 
-                self.format("", graph_width-4, fill = "-", borders="++") + 
+            self.append_text("--------" +
+                self.format("", graph_width-4, fill = "-", borders="++") +
                 "-----\n")
-            self.append_text("    %   " + 
-                self.ticks(graph_width-4, start = 0, 
+            self.append_text("    %   " +
+                self.ticks(graph_width-4, start = 0,
                     stop = int(max_bin/(float(sum(hash.values())))*100)) +
                 "\n\n")
             self.append_text(self.compute_stats(hash))

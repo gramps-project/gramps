@@ -69,7 +69,7 @@ class FontStyle(object):
     guarentees that the document format generator will be able implement
     all or any of the characteristics.
     """
-    
+
     def __init__(self, style=None):
         """
         Create a new FontStyle object, accepting the default values.
@@ -91,7 +91,7 @@ class FontStyle(object):
             self.bold   = 0
             self.color  = (0, 0, 0)
             self.under  = 0
-            
+
     def set(self, face=None, size=None, italic=None, bold=None,
             underline=None, color=None):
         """

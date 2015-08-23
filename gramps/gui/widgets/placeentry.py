@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -48,7 +48,7 @@ from ..selectors import SelectorFactory
 #
 #-------------------------------------------------------------------------
 class PlaceEntry(Gtk.Box):
-    
+
     def __init__(self, dbstate, uistate, track):
         Gtk.Box.__init__(self)
         self.dbstate = dbstate
@@ -59,7 +59,7 @@ class PlaceEntry(Gtk.Box):
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
         image.set_from_icon_name('gtk-index', Gtk.IconSize.BUTTON)
-        button = Gtk.Button() 
+        button = Gtk.Button()
         button.set_image(image)
         button.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pack_start(button, False, True, 0)

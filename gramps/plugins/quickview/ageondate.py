@@ -46,10 +46,10 @@ def run(database, document, date):
         return
     # display the title
     if date.get_day_valid():
-        sdoc.title(_("People and their ages the %s") % 
+        sdoc.title(_("People and their ages the %s") %
                displayer.display(date))
     else:
-        sdoc.title(_("People and their ages on %s") % 
+        sdoc.title(_("People and their ages on %s") %
                displayer.display(date))
     stab.columns(_("Person"), _("Age"), _("Status")) # Actual Date makes column unicode
     alive_matches = 0
@@ -79,7 +79,7 @@ def run(database, document, date):
 
     document.has_data = (alive_matches + dead_matches) > 0
     sdoc.paragraph(_("\nLiving matches: %(alive)d, "
-                     "Deceased matches: %(dead)d\n") % 
+                     "Deceased matches: %(dead)d\n") %
                          {'alive' : alive_matches, 'dead' : dead_matches})
     stab.write(sdoc)
     sdoc.paragraph("")

@@ -53,7 +53,7 @@ class DateParserSR(DateParser):
     Converts a text string into a Date object
     """
     month_to_int = DateParser.month_to_int
-    
+
     month_to_int["januar"]  = 1
     month_to_int["januara"] = 1
     month_to_int["jan"]     = 1
@@ -61,7 +61,7 @@ class DateParserSR(DateParser):
     month_to_int["јануара"] = 1
     month_to_int["јануар"]  = 1
     month_to_int["i"]       = 1
-    
+
     month_to_int["februar"]  = 2
     month_to_int["februara"] = 2
     month_to_int["feb"]      = 2
@@ -69,7 +69,7 @@ class DateParserSR(DateParser):
     month_to_int["фебруар"]  = 2
     month_to_int["фебруара"] = 2
     month_to_int["ii"]       = 2
-    
+
     month_to_int["mart"]  = 3
     month_to_int["marta"] = 3
     month_to_int["mar"]   = 3
@@ -77,7 +77,7 @@ class DateParserSR(DateParser):
     month_to_int["март"]  = 3
     month_to_int["марта"] = 3
     month_to_int["iii"]   = 3
-    
+
     month_to_int["april"]  = 4
     month_to_int["aprila"] = 4
     month_to_int["apr"]    = 4
@@ -91,7 +91,7 @@ class DateParserSR(DateParser):
     month_to_int["мај"]  = 5
     month_to_int["маја"] = 5
     month_to_int["v"]    = 5
-    
+
     month_to_int["jun"]  = 6
     month_to_int["juna"] = 6
     month_to_int["јун"]  = 6
@@ -103,7 +103,7 @@ class DateParserSR(DateParser):
     month_to_int["јул"]  = 7
     month_to_int["јула"] = 7
     month_to_int["vii"]  = 7
-    
+
     month_to_int["avgust"]  = 8
     month_to_int["avgusta"] = 8
     month_to_int["avg"]     = 8
@@ -111,7 +111,7 @@ class DateParserSR(DateParser):
     month_to_int["август"]  = 8
     month_to_int["августа"] = 8
     month_to_int["viii"]    = 8
-    
+
     month_to_int["septembar"] = 9
     month_to_int["septembra"] = 9
     month_to_int["sep"]       = 9
@@ -119,7 +119,7 @@ class DateParserSR(DateParser):
     month_to_int["септембар"] = 9
     month_to_int["септембра"] = 9
     month_to_int["ix"]        = 9
-    
+
     month_to_int["oktobar"]  = 10
     month_to_int["oktobra"]  = 10
     month_to_int["okt"]      = 10
@@ -127,7 +127,7 @@ class DateParserSR(DateParser):
     month_to_int["октобар"]  = 10
     month_to_int["октобра"]  = 10
     month_to_int["x"]        = 10
-    
+
     month_to_int["novembar"]  = 11
     month_to_int["novembra"]  = 11
     month_to_int["nov"]       = 11
@@ -135,7 +135,7 @@ class DateParserSR(DateParser):
     month_to_int["новембар"]  = 11
     month_to_int["новембра"]  = 11
     month_to_int["xi"]        = 11
-    
+
     month_to_int["decembar"]  = 12
     month_to_int["decembra"]  = 12
     month_to_int["dec"]       = 12
@@ -143,14 +143,14 @@ class DateParserSR(DateParser):
     month_to_int["децембар"]  = 12
     month_to_int["децембра"]  = 12
     month_to_int["xii"]       = 12
-    
+
     modifier_to_int = {
-        'pre'    : Date.MOD_BEFORE, 
+        'pre'    : Date.MOD_BEFORE,
         'posle'  : Date.MOD_AFTER,
         'oko'    : Date.MOD_ABOUT,
         'cca'    : Date.MOD_ABOUT,
 
-        'пре'    : Date.MOD_BEFORE, 
+        'пре'    : Date.MOD_BEFORE,
         'после'  : Date.MOD_AFTER,
         'око'    : Date.MOD_ABOUT,
         }
@@ -168,8 +168,8 @@ class DateParserSR(DateParser):
         'franc.'         : Date.CAL_FRENCH,
         'persijski'      : Date.CAL_PERSIAN,
         'pers. '         : Date.CAL_PERSIAN,
-        'švedski'        : Date.CAL_SWEDISH, 
-        'šv.'            : Date.CAL_SWEDISH, 
+        'švedski'        : Date.CAL_SWEDISH,
+        'šv.'            : Date.CAL_SWEDISH,
 
         'грегоријански'  : Date.CAL_GREGORIAN,
         'грег.'          : Date.CAL_GREGORIAN,
@@ -183,8 +183,8 @@ class DateParserSR(DateParser):
         'франц.'         : Date.CAL_FRENCH,
         'персијски'      : Date.CAL_PERSIAN,
         'перс. '         : Date.CAL_PERSIAN,
-        'шведски'        : Date.CAL_SWEDISH, 
-        'шв'             : Date.CAL_SWEDISH, 
+        'шведски'        : Date.CAL_SWEDISH,
+        'шв'             : Date.CAL_SWEDISH,
         }
 
     quality_to_int = {
@@ -269,7 +269,7 @@ class DateDisplaySR_Base(DateDisplay):
                 else:
                     value = "%s %s." % (self.short_months[date_val[1]], year)
             else:
-                value = "%d. %s %s." % (date_val[0], 
+                value = "%d. %s %s." % (date_val[0],
                                         self.short_months[date_val[1]], year)
         elif self.format == 3:
             # day. month_name year.
@@ -279,7 +279,7 @@ class DateDisplaySR_Base(DateDisplay):
                 else:
                     value = "%s %s." % (self.long_months[date_val[1]], year)
             else:
-                value = "%d. %s %s." % (date_val[0], 
+                value = "%d. %s %s." % (date_val[0],
                                         self.long_months[date_val[1]], year)
         else:
             # day. Roman_number_month year.
@@ -311,7 +311,7 @@ class DateDisplaySR_Base(DateDisplay):
         span2 = self._span2
         range1 = self._range1
         range2 = self._range2
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -331,7 +331,7 @@ class DateDisplaySR_Base(DateDisplay):
         else:
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text,
                                                 scal)
 
 class DateDisplaySR_Latin(DateDisplaySR_Base):
@@ -348,23 +348,23 @@ class DateDisplaySR_Latin(DateDisplaySR_Base):
     short_months = ("",
         "jan", "feb", "mar", "apr", "maj", "jun",
         "jul", "avg", "sep", "okt", "nov", "dec"
-        ) 
+        )
 
     calendar = (
-        "", "julijanski", "hebrejski", 
+        "", "julijanski", "hebrejski",
         "francuski republikanski", "persijski", "islamski",
-        "švedski" 
+        "švedski"
         )
 
     _mod_str = ("", "pre ", "posle ", "oko ", "", "", "")
 
     _qual_str = ("", "procenjeno ", "izračunato ")
-    
+
     _bce_str = "%s p.n.e."
 
     formats = (
-        "GGGG-MM-DD (ISO-8601)", 
-        "Numerički (DD.MM.GGGG.)", 
+        "GGGG-MM-DD (ISO-8601)",
+        "Numerički (DD.MM.GGGG.)",
         "D. MMM GGGG.",
         "D. Mesec GGGG.",
         "D. Rb GGGG."
@@ -390,23 +390,23 @@ class DateDisplaySR_Cyrillic(DateDisplaySR_Base):
     short_months = ("",
         "Јан", "Феб", "Мар", "Апр", "Мај", "Јун",
         "Јул", "Авг", "Сеп", "Окт", "Нов", "Дец"
-        ) 
+        )
 
     calendar = (
-        "", "Јулиан", "хебрејски", 
+        "", "Јулиан", "хебрејски",
         "француски републиканац", "Персиан", "исламски",
-        "шведски" 
+        "шведски"
         )
 
     _mod_str = ("", "пре ", "после ", "око ", "", "", "")
 
     _qual_str = ("", "процењено ", "израчунато ")
-    
+
     _bce_str = "%s п.н.е."
 
     formats = (
-        "ГГГГ-ММ-ДД (ISO-8601)", 
-        "Нумеричка (ДД.ММ.ГГГГ.)", 
+        "ГГГГ-ММ-ДД (ISO-8601)",
+        "Нумеричка (ДД.ММ.ГГГГ.)",
         "Д. МММ ГГГГ.",
         "Д. Месец ГГГГ.",
         "Д. Rb ГГГГ."

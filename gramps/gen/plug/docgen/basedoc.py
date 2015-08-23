@@ -81,17 +81,17 @@ class BaseDoc(object):
     def set_creator(self, name):
         "Set the owner name"
         self._creator = name
-        
+
     def get_creator(self):
         "Return the owner name"
         return self._creator
-        
+
     def get_style_sheet(self):
         """
         Return the :class:`.StyleSheet` of the document.
         """
         return StyleSheet(self._style_sheet)
-    
+
     def set_style_sheet(self, style_sheet):
         """
         Set the :class:`.StyleSheet` of the document.

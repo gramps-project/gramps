@@ -159,7 +159,7 @@ class MergeNote(ManagedWindow):
         else:
             phoenix = self.no2
             titanic = self.no1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Note')
 

@@ -22,6 +22,6 @@
 Package init for different views in guiQML.
 """
 
-# DO NOT IMPORT METHODS/CLASSES FROM src/guiQML HERE ! Only __all__ 
+# DO NOT IMPORT METHODS/CLASSES FROM src/guiQML HERE ! Only __all__
 
 __all__ = [ ]

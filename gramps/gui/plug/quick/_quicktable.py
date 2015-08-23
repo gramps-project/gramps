@@ -53,8 +53,8 @@ from gramps.gui.utils import model_to_text, text_to_clipboard
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets
 from ..quick import run_quick_report_by_name
-from ...editors import (EditPerson, EditEvent, EditFamily, EditCitation, 
-                         EditSource, EditPlace, EditRepository, EditNote, 
+from ...editors import (EditPerson, EditEvent, EditFamily, EditCitation,
+                         EditSource, EditPlace, EditRepository, EditNote,
                          EditMedia)
 
 #-------------------------------------------------------------------------
@@ -89,11 +89,11 @@ class QuickTable(SimpleTable):
             node = store.get_iter(tpath) if tpath else None
             if node:
                 treeview.grab_focus()
-                index = store.get_value(node, 0) 
+                index = store.get_value(node, 0)
                 # FIXME: make popup come where cursor is
                 #rectangle = treeview.get_visible_rect()
                 #column = treeview.get_column(0)
-                #rectangle = treeview.get_cell_area("0:0", 
+                #rectangle = treeview.get_cell_area("0:0",
                 #x, y = rectangle.x, rectangle.y
                 #func = lambda menu: (x, y, True)
         elif event.button == 3:
@@ -128,42 +128,42 @@ class QuickTable(SimpleTable):
             # See details (edit, etc):
                 objclass, handle = self._link[index]
                 menu_item = Gtk.MenuItem(label=_("the object|See %s details") % glocale.trans_objclass(objclass))
-                menu_item.connect("activate", 
+                menu_item.connect("activate",
                   lambda widget: self.on_table_doubleclick(treeview))
                 popup.append(menu_item)
                 menu_item.show()
             # Add other items to menu:
-            if (self._callback_leftclick or 
+            if (self._callback_leftclick or
                 (index is not None and self._link[index])):
                 objclass, handle = self._link[index]
                 if objclass == 'Person':
                     menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % glocale.trans_objclass('Person'))
-                    menu_item.connect("activate", 
+                    menu_item.connect("activate",
                       lambda widget: self.on_table_click(treeview))
                     popup.append(menu_item)
                     menu_item.show()
-            if (self.simpledoc.doc.dbstate.db != 
+            if (self.simpledoc.doc.dbstate.db !=
                 self.simpledoc.doc.dbstate.db.basedb and
                 (index is not None and self._link[index])):
                 objclass, handle = self._link[index]
-                if (objclass == 'Filter' and 
+                if (objclass == 'Filter' and
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
                                   'Repository', 'Note', 'MediaObject',
                                   'Citation', 'Source']):
                     menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
-                    menu_item.connect("activate", 
+                    menu_item.connect("activate",
                       lambda widget: self.show_not_in_filter(handle[0]))
                     popup.append(menu_item)
                     menu_item.show()
             # Show the popup menu:
             popup.popup(None, None, func, None, button_code, event_time)
-            return True        
+            return True
         return False
 
     def show_not_in_filter(self, obj_class):
         run_quick_report_by_name(self.simpledoc.doc.dbstate,
-                                 self.simpledoc.doc.uistate, 
-                                 'filterbyname', 
+                                 self.simpledoc.doc.uistate,
+                                 'filterbyname',
                                  'Inverse %s' % obj_class)
 
     def on_table_doubleclick(self, obj):
@@ -188,7 +188,7 @@ class QuickTable(SimpleTable):
                 person = self.access.dbase.get_person_from_handle(handle)
                 if person:
                     try:
-                        EditPerson(self.simpledoc.doc.dbstate, 
+                        EditPerson(self.simpledoc.doc.dbstate,
                                    self.simpledoc.doc.uistate, [], person)
                         return True # handled event
                     except WindowActiveError:
@@ -197,7 +197,7 @@ class QuickTable(SimpleTable):
                 event = self.access.dbase.get_event_from_handle(handle)
                 if event:
                     try:
-                        EditEvent(self.simpledoc.doc.dbstate, 
+                        EditEvent(self.simpledoc.doc.dbstate,
                                   self.simpledoc.doc.uistate, [], event)
                         return True # handled event
                     except WindowActiveError:
@@ -206,7 +206,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_family_from_handle(handle)
                 if ref:
                     try:
-                        EditFamily(self.simpledoc.doc.dbstate, 
+                        EditFamily(self.simpledoc.doc.dbstate,
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -215,7 +215,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_citation_from_handle(handle)
                 if ref:
                     try:
-                        EditCitation(self.simpledoc.doc.dbstate, 
+                        EditCitation(self.simpledoc.doc.dbstate,
                                      self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -224,7 +224,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_source_from_handle(handle)
                 if ref:
                     try:
-                        EditSource(self.simpledoc.doc.dbstate, 
+                        EditSource(self.simpledoc.doc.dbstate,
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -233,7 +233,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_place_from_handle(handle)
                 if ref:
                     try:
-                        EditPlace(self.simpledoc.doc.dbstate, 
+                        EditPlace(self.simpledoc.doc.dbstate,
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -242,7 +242,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_repository_from_handle(handle)
                 if ref:
                     try:
-                        EditRepository(self.simpledoc.doc.dbstate, 
+                        EditRepository(self.simpledoc.doc.dbstate,
                                    self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -251,7 +251,7 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_note_from_handle(handle)
                 if ref:
                     try:
-                        EditNote(self.simpledoc.doc.dbstate, 
+                        EditNote(self.simpledoc.doc.dbstate,
                                  self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
@@ -260,23 +260,23 @@ class QuickTable(SimpleTable):
                 ref = self.access.dbase.get_object_from_handle(handle)
                 if ref:
                     try:
-                        EditMedia(self.simpledoc.doc.dbstate, 
+                        EditMedia(self.simpledoc.doc.dbstate,
                                   self.simpledoc.doc.uistate, [], ref)
                         return True # handled event
                     except WindowActiveError:
                         pass
             elif objclass == 'PersonList':
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
-                                         self.simpledoc.doc.uistate, 
-                                         'filterbyname', 
+                                         self.simpledoc.doc.uistate,
+                                         'filterbyname',
                                          'list of people',
                                          handles=handle)
             elif objclass == 'Filter':
                 if isinstance(handle, list):
                     handle = handle[0]
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
-                                         self.simpledoc.doc.uistate, 
-                                         'filterbyname', 
+                                         self.simpledoc.doc.uistate,
+                                         'filterbyname',
                                          handle)
         return False # didn't handle event
 
@@ -300,7 +300,7 @@ class QuickTable(SimpleTable):
                 handle = handle[0]
             if objclass == 'Person':
                 from gi.repository import GLib
-                # If you emmit the signal here and it causes this table to be deleted, 
+                # If you emmit the signal here and it causes this table to be deleted,
                 # then you'll crash Python:
                 #self.simpledoc.doc.uistate.set_active(handle, 'Person')
                 # So, let's return from this, then change the active person:
@@ -347,7 +347,7 @@ class QuickTable(SimpleTable):
                    0)
         treeview.drag_source_set_target_list(tglist)
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
-        #                                Gdk.DragAction.DEFAULT)            
+        #                                Gdk.DragAction.DEFAULT)
         treeview.connect('drag_data_get', self.object_drag_data_get)
         treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
         #treeview.connect('row-activated', on_table_doubleclick, self)
@@ -376,7 +376,7 @@ class QuickTable(SimpleTable):
             column.set_resizable(True)
             if self._sort_vals[cnt] != []:
                 sort_data.append(self._sort_vals[cnt])
-                column.set_sort_column_id(len(self._columns) + 
+                column.set_sort_column_id(len(self._columns) +
                                           len(sort_data))
                 sort_data_types.append(int)
             else:
@@ -384,7 +384,7 @@ class QuickTable(SimpleTable):
             treeview.append_column(column)
             self.model_index_of_column[col] = model_index
             #if model_index == sort_index:
-            # FIXME: what to set here?    
+            # FIXME: what to set here?
             model_index += 1
             cnt += 1
         if self.title:

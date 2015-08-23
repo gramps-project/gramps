@@ -69,7 +69,7 @@ class PluginDialog(ManagedWindow):
     plugin that is desired.
     """
     def __init__(self, state, uistate, track, categories, msg,
-                 label=None, button_label=None, tool_tip=None, 
+                 label=None, button_label=None, tool_tip=None,
                  content=_REPORTS):
         """
         Display the dialog box, and build up the list of available
@@ -86,7 +86,7 @@ class PluginDialog(ManagedWindow):
 
         self.state = state
         self.uistate = uistate
-        
+
         self.dialog = Gtk.Builder()
         self.dialog.add_from_file(PLUGINS_GLADE)
         self.dialog.connect_signals({
@@ -107,15 +107,15 @@ class PluginDialog(ManagedWindow):
         col = Gtk.TreeViewColumn('', Gtk.CellRendererText(), text=0)
         self.tree.append_column(col)
         self.tree.set_model(self.store)
-        
+
         self.description = self.dialog.get_object("description")
         if label:
             self.description.set_text(label)
         self.status = self.dialog.get_object("report_status")
-        
+
         self.author_name = self.dialog.get_object("author_name")
         self.author_email = self.dialog.get_object("author_email")
-        
+
         self.apply_button = self.dialog.get_object("apply")
         if button_label:
             self.apply_button.set_label(button_label)
@@ -126,7 +126,7 @@ class PluginDialog(ManagedWindow):
             self.apply_button.set_tooltip_text(tool_tip)
 
         self.item = None
-        
+
         if content == _REPORTS:
             reg_list = self._pmgr.get_reg_reports()
         elif content == _TOOLS:
@@ -148,7 +148,7 @@ class PluginDialog(ManagedWindow):
         if not self.item:
             return
         self.run_plugin(self.item)
-        
+
     def on_node_selected(self, obj):
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""
@@ -157,7 +157,7 @@ class PluginDialog(ManagedWindow):
         if node:
             path = store.get_path(node).to_string()
         if not node or path not in self.imap:
-            return 
+            return
         pdata = self.imap[path]
 
         #(report_class, options_class, title, category, name,
@@ -177,7 +177,7 @@ class PluginDialog(ManagedWindow):
         """Populates a GtkTree with each menu item associated with a entry
         in the lists. The list consists of PluginData objects for reports or
         tools.
-        
+
         old data was (item_class, options_class,title,category, name,
          doc,status,author,email)
 
@@ -200,7 +200,7 @@ class PluginDialog(ManagedWindow):
         # GtkTreeItems that are associated with it.
         key_list = [item for item in item_hash if item != _UNSUPPORTED]
         key_list.sort(reverse=True)
-        
+
         prev = None
         if _UNSUPPORTED in item_hash:
             key = _UNSUPPORTED
@@ -236,25 +236,25 @@ class PluginDialog(ManagedWindow):
         mod = self._pmgr.load_plugin(pdata)
         if not mod:
             #import of plugin failed
-            return 
+            return
 
         if pdata.ptype == REPORT:
             active_handle = self.uistate.get_active('Person')
             report(self.state, self.uistate,
                    self.state.db.get_person_from_handle(active_handle),
-                   eval('mod.' + pdata.reportclass), 
-                   eval('mod.' + pdata.optionclass), 
-                   pdata.name, pdata.id, 
+                   eval('mod.' + pdata.reportclass),
+                   eval('mod.' + pdata.optionclass),
+                   pdata.name, pdata.id,
                    pdata.category, pdata.require_active)
         else:
             from ..user import User
             tool.gui_tool(
-                    dbstate = self.state, 
+                    dbstate = self.state,
                     user = User(uistate=self.uistate),
-                    tool_class = eval('mod.' + pdata.toolclass), 
+                    tool_class = eval('mod.' + pdata.toolclass),
                     options_class = eval('mod.' + pdata.optionclass),
-                    translated_name = pdata.name, 
-                    name = pdata.id, 
+                    translated_name = pdata.name,
+                    name = pdata.id,
                     category = pdata.category,
                     callback = self.state.db.request_rebuild)
 
@@ -284,7 +284,7 @@ class ReportPluginDialog(PluginDialog):
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
             _REPORTS)
-        
+
         self._pmgr.connect('plugins-reloaded', self.rebuild)
 
     def rebuild(self):

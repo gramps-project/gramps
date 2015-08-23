@@ -65,7 +65,7 @@ class SelectPerson(BaseSelector):
 
     def get_window_title(self):
         return _("Select Person")
-        
+
     def get_model_class(self):
         return PersonTreeModel
 
@@ -84,7 +84,7 @@ class SelectPerson(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_person_from_handle
-        
+
     def exact_search(self):
         """
         Returns a tuple indicating columns requiring an exact search

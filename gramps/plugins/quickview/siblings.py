@@ -56,14 +56,14 @@ def run(database, document, person):
             # only display if this child is not the active person
             if sdb.gid(child) != gid:
                 rel_str = rel_class.get_sibling_relationship_string(
-                    rel_class.get_sibling_type(database, person, child), 
+                    rel_class.get_sibling_type(database, person, child),
                     person.get_gender(), child.get_gender())
             else:
                 rel_str = _('self')
             # pass row the child object to make link:
-            stab.row(child, 
-                     sdb.gender(child), 
-                     sdb.birth_or_fallback(child), 
+            stab.row(child,
+                     sdb.gender(child),
+                     sdb.birth_or_fallback(child),
                      rel_str)
             document.has_data = True
     stab.write(sdoc)

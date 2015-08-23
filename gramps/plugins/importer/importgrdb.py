@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -39,7 +39,7 @@ from gramps.gen.const import URL_WIKISTRING
 
 #-------------------------------------------------------------------------
 #
-# Constants 
+# Constants
 #
 #-------------------------------------------------------------------------
 _MINVERSION = 9
@@ -50,15 +50,15 @@ _DBVERSION = 14
 #
 # Importing data into the currently open database.
 # Ability to import .grdb files removed in accordance with
-# http://gramps.1791082.n4.nabble.com/Status-of-GEPS-023-tp4329141p4329746.html 
+# http://gramps.1791082.n4.nabble.com/Status-of-GEPS-023-tp4329141p4329746.html
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, user):
     migrate_dict = { 'gramps_wiki_migrate_two_to_three_url' :
-                         URL_WIKISTRING + 
+                         URL_WIKISTRING +
                              "Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#"
                              "Moving_a_Gramps_2.2_databases_to_Gramps_3.x" }
-    user.notify_error(_("%s could not be opened") % filename, 
+    user.notify_error(_("%s could not be opened") % filename,
                       _("The Database version is not supported "
                         "by this version of Gramps."
                         "You should use an old copy of Gramps at "

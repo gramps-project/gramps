@@ -27,7 +27,7 @@ The following filters are provided in gen.filters.rules.
 
 Match given values:
 _HasCitationBase             Citation with a particular value (HasCitation)
-                             also used for Person, Family and Event having a 
+                             also used for Person, Family and Event having a
                              particular Citation
 _HasEventBase                Event with a particular value (HasEvent)
                              also used for Family and Person having a particular

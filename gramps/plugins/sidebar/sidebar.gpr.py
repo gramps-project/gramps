@@ -19,7 +19,7 @@
 #
 # $Id: sidebar.gpr.py 20634 2012-11-07 17:53:14Z bmcage $
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
@@ -27,7 +27,7 @@ MODULE_VERSION="5.0"
 #
 #------------------------------------------------------------------------
 
-register(SIDEBAR, 
+register(SIDEBAR,
 id    = 'categorysidebar',
 name  = _("Category Sidebar"),
 description =  _("A sidebar to allow the selection of view categories"),
@@ -42,7 +42,7 @@ menu_label = _('Category'),
 order = START
 )
 
-register(SIDEBAR, 
+register(SIDEBAR,
 id    = 'dropdownsidebar',
 name  = _("Drop-down Sidebar"),
 description =  _("Selection of categories and views from drop-down lists"),
@@ -57,7 +57,7 @@ menu_label = _('Drop-Down'),
 order = END
 )
 
-register(SIDEBAR, 
+register(SIDEBAR,
 id    = 'expandersidebar',
 name  = _("Expander Sidebar"),
 description =  _("Selection of views from lists with expanders"),

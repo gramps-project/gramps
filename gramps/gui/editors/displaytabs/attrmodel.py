@@ -44,8 +44,8 @@ class AttrModel(Gtk.ListStore):
         self.db = db
         for attr in attr_list:
             self.append(row=[
-                str(attr.get_type()), 
-                attr.get_value(), 
+                str(attr.get_type()),
+                attr.get_value(),
                 attr.get_privacy(),
                 attr,
                 ])

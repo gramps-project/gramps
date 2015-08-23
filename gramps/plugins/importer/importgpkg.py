@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License,  or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# Written by Alex Roitman, largely based on ReadNative.py by Don Allingham 
+# Written by Alex Roitman, largely based on ReadNative.py by Don Allingham
 
 "Import from Gramps package"
 
@@ -69,13 +69,13 @@ def impData(database, name, user):
         try:
             os.mkdir(tmpdir_path, 0o700)
         except:
-            user.notify_error( _("Could not create media directory %s") % 
+            user.notify_error( _("Could not create media directory %s") %
                          tmpdir_path )
             return
     elif not os.access(tmpdir_path, os.W_OK):
         user.notify_error(_("Media directory %s is not writable") % tmpdir_path)
         return
-    else:    
+    else:
         # mediadir exists and writable -- User could have valuable stuff in
         # it, have him remove it!
         user.notify_error(_("Media directory %s exists. Delete it first, then"
@@ -90,7 +90,7 @@ def impData(database, name, user):
         user.notify_error(_("Error extracting into %s") % tmpdir_path)
         return
 
-    imp_db_name = os.path.join(tmpdir_path, XMLFILE)  
+    imp_db_name = os.path.join(tmpdir_path, XMLFILE)
 
     importer = importData
     info = importer(database, imp_db_name, user)
@@ -126,8 +126,8 @@ def impData(database, name, user):
                     " correct paths in your media objects."
                     ) % {'orig_path': oldmediapath, 'path': tmpdir_path}
                     )
-    
+
     # Remove xml file extracted to media dir we imported from
     os.remove(imp_db_name)
-    
+
     return info

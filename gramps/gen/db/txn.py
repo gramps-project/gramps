@@ -71,38 +71,38 @@ class DbTxn(defaultdict):
         else:
             self.db.transaction_abort(self)
         return False
-    
+
     def __init__(self, msg, grampsdb, batch=False, **kwargs):
         """
-        Create a new transaction. 
-        
-        The grampsdb should have transaction_begin/commit/abort methods, and 
+        Create a new transaction.
+
+        The grampsdb should have transaction_begin/commit/abort methods, and
         a get_undodb method to store undo actions.
-        
+
         A Transaction instance can be created directly, but it is advised to
-        use a context to do this. Like this the user must not worry about 
+        use a context to do this. Like this the user must not worry about
         calling the transaction_xx methods on the database.
-         
+
         The grampsdb parameter is a reference to the DbWrite object to which
         this transaction will be applied.
-        grampsdb.get_undodb() should return a list-like interface that 
+        grampsdb.get_undodb() should return a list-like interface that
         stores the commit data. This could be a simple list, or a RECNO-style
-        database object. 
+        database object.
 
         The data structure used to handle the transactions (see the add method)
         is a Python dictionary where:
-        
+
         key = (object type, transaction type) where:
             object type = the numeric type of an object. These are
                           defined as PERSON_KEY = 0, FAMILY_KEY = 1, etc.
                           as imported from dbconst.
             transaction type = a numeric representation of the type of
                           transaction: TXNADD = 0, TXNUPD = 1, TXNDEL = 2
-        
+
         data = Python list where:
             list element = (handle, data) where:
                 handle = handle (database key) of the object in the transaction
-                data   = pickled representation of the object        
+                data   = pickled representation of the object
         """
 
         defaultdict.__init__(self, list, {})
@@ -119,24 +119,24 @@ class DbTxn(defaultdict):
 
     def get_description(self):
         """
-        Return the text string that describes the logical operation performed 
+        Return the text string that describes the logical operation performed
         by the Transaction.
         """
         return self.msg
 
     def set_description(self, msg):
         """
-        Set the text string that describes the logical operation performed by 
+        Set the text string that describes the logical operation performed by
         the Transaction.
         """
         self.msg = msg
 
     def add(self, obj_type, trans_type, handle, old_data, new_data):
         """
-        Add a commit operation to the Transaction. 
-        
-        The obj_type is a constant that indicates what type of PrimaryObject 
-        is being added. The handle is the object's database handle, and the 
+        Add a commit operation to the Transaction.
+
+        The obj_type is a constant that indicates what type of PrimaryObject
+        is being added. The handle is the object's database handle, and the
         data is the tuple returned by the object's serialize method.
         """
         self.last = self.commitdb.append(
@@ -152,7 +152,7 @@ class DbTxn(defaultdict):
     def get_recnos(self, reverse=False):
         """
         Return a list of record numbers associated with the transaction.
-        
+
         While the list is an arbitrary index of integers, it can be used
         to indicate record numbers for a database.
         """
@@ -185,7 +185,7 @@ class DbTxn(defaultdict):
 def testtxn():
     """
     Test suite
-    """    
+    """
     class FakeMap(dict):
         """Fake database map with just two methods"""
         def put(self, key, data):

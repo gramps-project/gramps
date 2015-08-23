@@ -49,7 +49,7 @@ from ._hastitle import HasTitle
 
 editor_rule_list = [
     AllPlaces,
-    HasCitation, 
+    HasCitation,
     HasGallery,
     HasIdOf,
     RegExpIdOf,

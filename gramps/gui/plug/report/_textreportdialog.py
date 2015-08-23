@@ -48,9 +48,9 @@ class _TextFormatComboBox(Gtk.ComboBox):
     from all textdoc plugins.
     """
     def __init__(self, active):
-        
+
         GObject.GObject.__init__(self)
-        
+
         pmgr = GuiPluginManager.get_instance()
         self.__textdoc_plugins = []
         for plugin in pmgr.get_docgen_plugins():
@@ -72,7 +72,7 @@ class _TextFormatComboBox(Gtk.ComboBox):
                 active_index = index
             index += 1
         self.set_active(active_index)
-        
+
     def get_active_plugin(self):
         """
         Get the plugin represented by the currently active selection.
@@ -96,7 +96,7 @@ class TextReportDialog(DocReportDialog):
         """
         self.format_menu = None
         self.category = CATEGORY_TEXT
-        DocReportDialog.__init__(self, dbstate, uistate, options, 
+        DocReportDialog.__init__(self, dbstate, uistate, options,
                                  name, translated_name)
 
     def make_doc_menu(self, active=None):

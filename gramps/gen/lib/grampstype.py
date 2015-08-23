@@ -41,33 +41,33 @@ _UNKNOWN = _('Unknown')
 class GrampsTypeMeta(type):
     """
     Metaclass for :class:`~.grampstype.GrampsType`.
-    
+
     Create the class-specific integer/string maps.
     """
     def __init__(cls, name, bases, namespace):
 
-        # Helper function to create the maps        
+        # Helper function to create the maps
         def init_map(data, key_col, data_col, blacklist=None):
             """
             Initialize the map, building a new map from the specified
             columns.
             """
             if blacklist:
-                return dict([(item[key_col], item[data_col]) 
+                return dict([(item[key_col], item[data_col])
                                 for item in data if not item[0] in blacklist])
             else:
                 return dict([(item[key_col], item[data_col]) for item in data])
-                
-        # Call superclass initialization        
+
+        # Call superclass initialization
         type.__init__(cls, name, bases, namespace)
-        
+
         # Build the integer/string maps
         if hasattr(cls, '_DATAMAP'):
             cls._I2SMAP = init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
             cls._S2IMAP = init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
             cls._I2EMAP = init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
-            cls._E2IMAP = init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)        
-      
+            cls._E2IMAP = init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
+
 
 # Python 2 and 3 metaclass children classes
 GrampsTypeC = GrampsTypeMeta(str('GrampsTypeC'), (object, ), {})
@@ -80,29 +80,29 @@ GrampsTypeC = GrampsTypeMeta(str('GrampsTypeC'), (object, ), {})
 ## python 3: class GrampsType(object, metaclass=GrampsTypeMeta):
 class GrampsType(GrampsTypeC):
     """Base class for all Gramps object types.
-        
-    :cvar _DATAMAP: 
+
+    :cvar _DATAMAP:
       (list) 3-tuple like (index, localized_string, english_string).
-    :cvar _BLACKLIST: 
+    :cvar _BLACKLIST:
       List of indices to ignore (obsolete/retired entries).
       (gramps policy is never to delete type values, or reuse the name (TOKEN)
       of any specific type value)
-    :cvar POS_<x>: (int) 
+    :cvar POS_<x>: (int)
       Position of <x> attribute in the serialized format of
       an instance.
 
     .. warning:: The POS_<x> class variables reflect the serialized object,
                  they have to be updated in case the data structure or the
                  :meth:`serialize` method changes!
-    
+
     :cvar _CUSTOM:  (int) a custom type object
     :cvar _DEFAULT: (int) the default type, used on creation
-    
+
     :attribute value: (int) Returns or sets integer value
     :attribute string: (str) Returns or sets string value
     """
     (POS_VALUE, POS_STRING) = list(range(2))
-    
+
     _CUSTOM = 0
     _DEFAULT = 0
 
@@ -120,10 +120,10 @@ class GrampsType(GrampsTypeC):
             self.__string = dict_['__string']
         else:
             self.__string = ''
-    
+
     def __init__(self, value=None):
         """
-        Create a new type, initialize the value from one of several possible 
+        Create a new type, initialize the value from one of several possible
         states.
         """
         self.set(value)
@@ -175,7 +175,7 @@ class GrampsType(GrampsTypeC):
 
     def set_from_xml_str(self, value):
         """
-        This method sets the type instance based on the untranslated string 
+        This method sets the type instance based on the untranslated string
         (obtained e.g. from XML).
         """
         if value in self._E2IMAP:
@@ -191,7 +191,7 @@ class GrampsType(GrampsTypeC):
 
     def xml_str(self):
         """
-        Return the untranslated string (e.g. suitable for XML) corresponding 
+        Return the untranslated string (e.g. suitable for XML) corresponding
         to the type.
         """
         if self.__value == self._CUSTOM:
@@ -209,7 +209,7 @@ class GrampsType(GrampsTypeC):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -226,7 +226,7 @@ class GrampsType(GrampsTypeC):
         :rtype: dict
         """
         return {"_class": self.__class__.__name__,
-                "value": self.__value, 
+                "value": self.__value,
                 "string": str(self)}
 
     @classmethod
@@ -279,7 +279,7 @@ class GrampsType(GrampsTypeC):
 
     def get_custom(self):
         return self._CUSTOM
-    
+
     def get_menu(self):
         """Return the list of localized names for the menu."""
         if self._MENU:
@@ -311,7 +311,7 @@ class GrampsType(GrampsTypeC):
 
     def __ne__(self, value):
         return not self.__eq__(value)
-    
+
 ##    Python 3 does not have __cmp__
 ##    def __cmp__(self, value):
 ##        print ('cmp', type(value), str)

@@ -43,15 +43,15 @@ class LdsOrdBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize a LdsOrdBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a LdsOrdBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
         :type source: LdsOrdBase
         """
-        
+
         if source:
             self.lds_ord_list = [LdsOrd(lds_ord)
                                     for lds_ord in source.lds_ord_list]
@@ -68,7 +68,7 @@ class LdsOrdBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -116,7 +116,7 @@ class LdsOrdBase(object):
         """
         Remove the specified :class:`~.ldsord.LdsOrd` instance from the lds_ord
         list.
-        
+
         If the instance does not exist in the list, the operation has no effect.
 
         :param lds_ord: :class:`~.ldsord.LdsOrd` instance to remove from the
@@ -147,7 +147,7 @@ class LdsOrdBase(object):
         """
         Assign the passed list to the object's list of :class:`~.ldsord.LdsOrd`
         instances.
-        
+
         :param lds_ord_list: List of :class:`~.ldsord.LdsOrd` instances to be
                              associated with the object
         :type lds_ord_list: list

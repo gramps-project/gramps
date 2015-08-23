@@ -81,7 +81,7 @@ def get_default_type_value(the_type):
     return [x for x in the_type._DATAMAP if x[0] == the_type._DEFAULT][0]
 
 def get_datamap(grampsclass):
-    return sorted([(x[0],x[2]) for x in grampsclass._DATAMAP], 
+    return sorted([(x[0],x[2]) for x in grampsclass._DATAMAP],
                   key=lambda item: item[1])
 
 #---------------------------------------------------------------------------
@@ -92,19 +92,19 @@ def get_datamap(grampsclass):
 
 class mGrampsType(models.Model):
     """
-    The abstract base class for all types. 
-    Types are enumerated integers. One integer corresponds with custom, then 
+    The abstract base class for all types.
+    Types are enumerated integers. One integer corresponds with custom, then
     custom_type holds the type name
     """
     class Meta: abstract = True
-    
+
     _CUSTOM = 0
     _DEFAULT = 0
     _DATAMAP = []
 
     name = models.CharField(max_length=40)
-    
-    def __str__(self): 
+
+    def __str__(self):
         return str(self.name)
 
     def get_default_type(self):
@@ -157,7 +157,7 @@ class ChildRefType(mGrampsType):
     _DATAMAP = get_datamap(ChildRefType)
     _CUSTOM = ChildRefType._CUSTOM
     _DEFAULT = get_default_type_value(ChildRefType)
-    val = models.IntegerField('child reference type', choices=_DATAMAP, 
+    val = models.IntegerField('child reference type', choices=_DATAMAP,
                               blank=False)
 
 class RepositoryType(mGrampsType):
@@ -195,7 +195,7 @@ class FamilyRelType(mGrampsType):
     _DATAMAP = get_datamap(FamilyRelType)
     _CUSTOM = FamilyRelType._CUSTOM
     _DEFAULT = get_default_type_value(FamilyRelType)
-    val = models.IntegerField('family relation type', choices=_DATAMAP, 
+    val = models.IntegerField('family relation type', choices=_DATAMAP,
                               blank=False)
 
 class SourceMediaType(mGrampsType):
@@ -203,7 +203,7 @@ class SourceMediaType(mGrampsType):
     _DATAMAP = get_datamap(SourceMediaType)
     _CUSTOM = SourceMediaType._CUSTOM
     _DEFAULT = get_default_type_value(SourceMediaType)
-    val = models.IntegerField('source medium type', choices=_DATAMAP, 
+    val = models.IntegerField('source medium type', choices=_DATAMAP,
                               blank=False)
 
 class EventRoleType(mGrampsType):
@@ -243,7 +243,7 @@ class LdsType(mGrampsType):
 
 class LdsStatus(mGrampsType):
     _DATAMAP = [(0, "None"),
-                (1, "BIC"), 
+                (1, "BIC"),
                 (2, "Canceled"),
                 (3, "Child"),
                 (4, "Cleared"),
@@ -282,7 +282,7 @@ class CalendarType(mGrampsType):
                 (CAL_FRENCH, "French Republican"),
                 (CAL_PERSIAN, "Persian"),
                 (CAL_ISLAMIC, "Islamic"),
-                (CAL_SWEDISH, "Swedish")] 
+                (CAL_SWEDISH, "Swedish")]
 
     _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('Calendar', choices=_DATAMAP, blank=False)
@@ -381,13 +381,13 @@ class DateObject(models.Model):
         """
         Sets Date fields from a Gramps date object.
         """
-        (self.calendar, self.modifier, self.quality, dateval, self.text, 
+        (self.calendar, self.modifier, self.quality, dateval, self.text,
          self.sortval, self.newyear) = gdate.serialize()
         if dateval is None:
             (self.day1, self.month1, self.year1, self.slash1) = 0, 0, 0, False
             (self.day2, self.month2, self.year2, self.slash2) = 0, 0, 0, False
         elif len(dateval) == 8:
-            (self.day1, self.month1, self.year1, self.slash1, 
+            (self.day1, self.month1, self.year1, self.slash1,
              self.day2, self.month2, self.year2, self.slash2) = dateval
         elif len(dateval) == 4:
             (self.day1, self.month1, self.year1, self.slash1) = dateval
@@ -414,7 +414,7 @@ class Config(models.Model):
 class Tag(models.Model):
     handle = models.CharField(max_length=19, unique=True)
     gramps_id = models.TextField(blank=True, null=True)
-    last_saved = models.DateTimeField('last changed', auto_now=True) 
+    last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
     last_changed_by = models.TextField(blank=True, null=True)
@@ -445,7 +445,7 @@ class Tag(models.Model):
         return pickle.loads(base64.decodebytes(bytes(self.cache, "utf-8")))
 
     def save_cache(self):
-        cache = self.make_cache()               
+        cache = self.make_cache()
         if cache != self.cache:
             self.cache = cache
             models.Model.save(self)
@@ -476,7 +476,7 @@ class PrimaryObject(models.Model):
     id = models.AutoField(primary_key=True)
     handle = models.CharField(max_length=19, unique=True)
     gramps_id =  models.CharField('ID', max_length=25, blank=True)
-    last_saved = models.DateTimeField('last changed', auto_now=True) 
+    last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
     last_changed_by = models.TextField(blank=True, null=True)
@@ -489,7 +489,7 @@ class PrimaryObject(models.Model):
     dji = None
     save_cache_q = False
 
-    def __str__(self): 
+    def __str__(self):
         return "%s: %s" % (self.__class__.__name__,
                            self.gramps_id)
 
@@ -533,7 +533,7 @@ class PrimaryObject(models.Model):
         return pickle.loads(base64.decodebytes(bytes(self.cache, "utf-8")))
 
     def save_cache(self):
-        cache = self.make_cache()               
+        cache = self.make_cache()
         if cache != self.cache:
             self.cache = cache
             models.Model.save(self)
@@ -562,9 +562,9 @@ class Person(PrimaryObject):
     gender_type = models.ForeignKey('GenderType', verbose_name="Gender")
     probably_alive = models.BooleanField("Probably alive", default=True)
     families = models.ManyToManyField('Family', blank=True, null=True, through="MyFamilies")
-    parent_families = models.ManyToManyField('Family', 
+    parent_families = models.ManyToManyField('Family',
                                              related_name="parent_families",
-                                             blank=True, null=True, 
+                                             blank=True, null=True,
                                              through='MyParentFamilies')
     #addresses = models.ManyToManyField('Address', null=True, blank=True)
     references = generic.GenericRelation('PersonRef', #related_name="refs",
@@ -577,7 +577,7 @@ class Person(PrimaryObject):
     death_ref_index = models.IntegerField("Death Reference Index", default=-1)
 
     # Others keys here:
-    #   .name_set 
+    #   .name_set
     #   .address_set
     #   .lds_set
     #   .url_set
@@ -609,9 +609,9 @@ class Person(PrimaryObject):
                 PrimaryObject.save(self, *args, **kwargs)
 
 class Family(PrimaryObject):
-    father = models.ForeignKey('Person', related_name="father_ref", 
+    father = models.ForeignKey('Person', related_name="father_ref",
                                null=True, blank=True)
-    mother = models.ForeignKey('Person', related_name="mother_ref", 
+    mother = models.ForeignKey('Person', related_name="mother_ref",
                                null=True, blank=True)
     family_rel_type = models.ForeignKey('FamilyRelType', verbose_name="Type")
 
@@ -643,7 +643,7 @@ class Citation(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __str__(self):
-        return "[%s] (%s, %s) to %s" % (self.gramps_id, 
+        return "[%s] (%s, %s) to %s" % (self.gramps_id,
                                         self.confidence,
                                         self.page,
                                         self.source)
@@ -673,8 +673,8 @@ class Event(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __str__(self):
-        return "[%s] (%s) %s" % (self.gramps_id, 
-                                 self.event_type, 
+        return "[%s] (%s) %s" % (self.gramps_id,
+                                 self.event_type,
                                  self.description)
 
 class Repository(PrimaryObject):
@@ -746,7 +746,7 @@ class Note(PrimaryObject):
 
 class SecondaryObject(models.Model):
     """
-    We use interlinked objects, secondary object is the table for primary 
+    We use interlinked objects, secondary object is the table for primary
     objects to refer to when linking to non primary objects
     """
     class Meta: abstract = True
@@ -762,7 +762,7 @@ class Surname(models.Model):
     """
     Surname table, which links to name.
     """
-    name_origin_type = models.ForeignKey('NameOriginType', 
+    name_origin_type = models.ForeignKey('NameOriginType',
                                          verbose_name="Origin",
                                          related_name="name_origin_code",
                                          default=2)
@@ -778,8 +778,8 @@ class Surname(models.Model):
 
     def get_url(self):
         # /person/handle/name/1/surname/2
-        return "/person/%s/name/%s/surname/%s" % (self.name.person.handle, 
-                                                  self.name.order, 
+        return "/person/%s/name/%s/surname/%s" % (self.name.person.handle,
+                                                  self.name.order,
                                                   self.order)
 
 class Name(DateObject, SecondaryObject):
@@ -794,10 +794,10 @@ class Name(DateObject, SecondaryObject):
     nick = models.TextField(blank=True)
     famnick = models.TextField(blank=True)
     group_as = models.TextField(blank=True)
-    sort_as =  models.ForeignKey('NameFormatType', 
+    sort_as =  models.ForeignKey('NameFormatType',
                                  related_name="sort_as",
                                  default=1)
-    display_as = models.ForeignKey('NameFormatType', 
+    display_as = models.ForeignKey('NameFormatType',
                                    related_name="display_as",
                                    default=1)
     ## Key:
@@ -834,7 +834,7 @@ class Name(DateObject, SecondaryObject):
                 self.title = ""
 
     def make_surname_list(self):
-        return [(x.surname, x.prefix, x.primary, 
+        return [(x.surname, x.prefix, x.primary,
                  tuple(x.name_origin_type), x.connector) for x in
                 self.surname_set.all()]
 
@@ -849,7 +849,7 @@ class Lds(DateObject, SecondaryObject):
     SEAL_TO_PARENTS = 2
     SEAL_TO_SPOUSE  = 3
     CONFIRMATION    = 4
-    
+
     DEFAULT_TYPE = BAPTISM
 
 
@@ -874,7 +874,7 @@ class Lds(DateObject, SecondaryObject):
     place = models.ForeignKey('Place', null=True)
     famc = models.ForeignKey('Family', related_name="famc", null=True)
     temple = models.TextField(blank=True)
-    status = models.ForeignKey('LdsStatus') 
+    status = models.ForeignKey('LdsStatus')
 
     person = models.ForeignKey("Person", null=True, blank=True)
     family = models.ForeignKey("Family", null=True, blank=True)
@@ -928,7 +928,7 @@ class Url(models.Model):
     private = models.BooleanField('private url?', default=True)
     path = models.TextField(blank=True, null=True)
     desc = models.TextField(blank=True, null=True)
-    url_type = models.ForeignKey('UrlType') 
+    url_type = models.ForeignKey('UrlType')
     order = models.PositiveIntegerField()
 
     person = models.ForeignKey("Person", null=True, blank=True)
@@ -937,7 +937,7 @@ class Url(models.Model):
 
 class Attribute(models.Model):
     private = models.BooleanField('private attribute?', default=True)
-    attribute_type = models.ForeignKey('AttributeType') 
+    attribute_type = models.ForeignKey('AttributeType')
     value = models.TextField(blank=True, null=True)
 
     object_type = models.ForeignKey(ContentType)
@@ -972,9 +972,9 @@ class BaseRef(models.Model):
         # /person/3536453463/reference/event/2
         ref_by = self.object_type.model_class().objects.get(id=self.object_id)
         ref_to = self.get_reference_to()
-        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
-                                           ref_by.handle, 
-                                           ref_to.__class__.__name__.lower(), 
+        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(),
+                                           ref_by.handle,
+                                           ref_to.__class__.__name__.lower(),
                                            self.order)
 class Log(BaseRef):
     log_type = models.CharField(max_length=10) # edit, delete, add
@@ -982,13 +982,13 @@ class Log(BaseRef):
     cache = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return "%s: %s on %s by %s" % (self.log_type, 
-                                       self.referenced_by, 
+        return "%s: %s on %s by %s" % (self.log_type,
+                                       self.referenced_by,
                                        self.last_changed,
                                        self.last_changed_by)
 
 class NoteRef(BaseRef):
-    ref_object = models.ForeignKey('Note') 
+    ref_object = models.ForeignKey('Note')
 
     def get_reference_to(self):
         return self.ref_object
@@ -1010,9 +1010,9 @@ class EventRef(BaseRef):
         # /person/3536453463/reference/event/2
         ref_by = self.object_type.model_class().objects.get(id=self.object_id)
         ref_to = self.ref_object
-        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
-                                           ref_by.handle, 
-                                           ref_to.__class__.__name__.lower(), 
+        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(),
+                                           ref_by.handle,
+                                           ref_to.__class__.__name__.lower(),
                                            self.order)
 
 class RepositoryRef(BaseRef):
@@ -1046,18 +1046,18 @@ class PersonRef(BaseRef):
         return "PersonRef to " + str(self.ref_object)
 
 class CitationRef(BaseRef):
-    citation = models.ForeignKey('Citation') 
+    citation = models.ForeignKey('Citation')
 
     def __str__(self):
         return "CitationRef to " + str(self.citation)
-  
+
     def get_reference_to(self):
         return self.citation
 
 class ChildRef(BaseRef):
-    father_rel_type = models.ForeignKey('ChildRefType', 
+    father_rel_type = models.ForeignKey('ChildRefType',
                                         related_name="child_father_rel")
-    mother_rel_type = models.ForeignKey('ChildRefType', 
+    mother_rel_type = models.ForeignKey('ChildRefType',
                                         related_name="child_mother_rel")
     ref_object = models.ForeignKey('Person')
 
@@ -1206,8 +1206,8 @@ def clear_tables(*categories):
         flush_tables.append(model._meta.db_table)
     # tables = connection.introspection.table_names()
     # flush_tables = [table for table in tables if not table.endswith("type")]
-    statements = connection.ops.sql_flush(no_style(), 
-                                          flush_tables, 
+    statements = connection.ops.sql_flush(no_style(),
+                                          flush_tables,
                                           connection.introspection.sequence_list())
     for statement in statements:
         cursor.execute(statement)
@@ -1224,6 +1224,6 @@ def table_stats(*categories):
             pair[1].objects.all().count())
 
 def get_tables(*categories):
-    return [pair for pair in TABLES if (pair[0] in categories) or 
+    return [pair for pair in TABLES if (pair[0] in categories) or
             ("all" in categories) and pair[0] != "abstract"]
 

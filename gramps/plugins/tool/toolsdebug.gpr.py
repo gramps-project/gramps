@@ -22,7 +22,7 @@
 GRAMPS registration file
 """
 
-MODULE_VERSION="5.0" 
+MODULE_VERSION="5.0"
 
 #------------------------------------------------------------------------
 #
@@ -30,7 +30,7 @@ MODULE_VERSION="5.0"
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'test_for_date_parser_and_displayer',
 name  = "Check Localized Date Displayer and Parser",
 description =  ("This test tool will create many people showing all"
@@ -56,7 +56,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'dgenstats',
 name  = "Dump Gender Statistics",
 description =  ("Will dump the statistics for the gender guessing "
@@ -79,7 +79,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'testcasegenerator',
 name  = "Generate Testcases for Persons and Families",
 description =  ("The testcase generator will generate some persons "
@@ -103,7 +103,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 #
 #------------------------------------------------------------------------
 
-register(TOOL, 
+register(TOOL,
 id    = 'populatesources',
 name  = "Populate Sources and Citations",
 description =  ("This tool generates sources and citations for each source in "

@@ -46,7 +46,7 @@ class TestCallback(unittest.TestCase):
         t.connect('test-signal',fn)
         t.emit('test-signal',(1,))
 
-        
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
@@ -76,16 +76,16 @@ class TestCallback(unittest.TestCase):
         def null(s):
             pass
 
-        
+
         global log
         _log = log
         log = null
-        
+
         t.connect('test-signal',borked)
         t.connect('test-signal',fn)
         t.emit('test-signal',(1,))
         log = _log
-        
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
@@ -105,14 +105,14 @@ class TestCallback(unittest.TestCase):
         key = t.connect('test-signal',fn)
         t.emit('test-signal',(1,))
 
-        
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
         t.disconnect(key)
 
         t.emit('test-signal',(1,))
-            
+
         self.assertEqual(len(rl), 1, "Callback not disconnected")
         self.assertEqual(rl[0], 1, "Callback not disconnected")
 
@@ -132,7 +132,7 @@ class TestCallback(unittest.TestCase):
         t.connect('test-noargs',fn)
         t.emit('test-noargs')
 
-        
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
@@ -153,7 +153,7 @@ class TestCallback(unittest.TestCase):
             __signals__ = {
                         'test-signal' : (int,)
                         }
-            
+
         class TestSignalsSubclass(TestSignals):
             __signals__ = {
                         'test-sub-signal' : (int,),
@@ -166,13 +166,13 @@ class TestCallback(unittest.TestCase):
         t = TestSignalsSubclass()
         t.connect('test-signal',fn)
         t.emit('test-signal',(1,))
-            
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
         t.connect('test-sub-signal',fn)
         t.emit('test-sub-signal',(1,))
-            
+
         self.assertEqual(len(rl), 2, "No subclass signal emitted")
         self.assertEqual(rl[1], 1, "Wrong argument recieved in subclass")
 
@@ -190,25 +190,25 @@ class TestCallback(unittest.TestCase):
 
         t = TestSignals()
         t.connect('test-signal',fn)
-        t.emit('test-signal',(1,))    
-        
+        t.emit('test-signal',(1,))
+
         self.assertEqual(len(rl), 1, "No signal emitted")
         self.assertEqual(rl[0], 1, "Wrong argument recieved")
 
         Callback.disable_all_signals()
-        t.emit('test-signal',(1,))    
+        t.emit('test-signal',(1,))
         self.assertEqual(len(rl), 1, "Signal emitted while class blocked")
 
         Callback.enable_all_signals()
-        t.emit('test-signal',(1,))    
+        t.emit('test-signal',(1,))
         self.assertEqual(len(rl), 2, "Signals not class unblocked")
 
         t.disable_signals()
-        t.emit('test-signal',(1,))    
+        t.emit('test-signal',(1,))
         self.assertEqual(len(rl), 2, "Signal emitted while instance blocked")
 
         t.enable_signals()
-        t.emit('test-signal',(1,))    
+        t.emit('test-signal',(1,))
         self.assertEqual(len(rl), 3, "Signals not instance unblocked")
 
     def test_type_checking(self):
@@ -318,7 +318,7 @@ class TestCallback(unittest.TestCase):
         except RuntimeError:
             self.fail("multisignal recursion not blocked1.")
 
-        self.assertEqual(res[0][0:6], "Signal", 
+        self.assertEqual(res[0][0:6], "Signal",
                          "multisignal recursion not blocked")
 
 if __name__ == "__main__":

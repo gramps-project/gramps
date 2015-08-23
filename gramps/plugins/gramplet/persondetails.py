@@ -70,20 +70,20 @@ class PersonDetails(Gramplet):
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
-        
+
     def clear_grid(self):
         """
         Remove all the rows from the grid.
         """
         list(map(self.grid.remove, self.grid.get_children()))
-        
+
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
 
-    def update_has_data(self): 
+    def update_has_data(self):
         """
         Determine if a person has_data by checking:
 
@@ -251,7 +251,7 @@ class PersonDetails(Gramplet):
         else:
             retval = _('%(date)s.') % dict(date = date)
         return retval
-        
+
     def load_person_image(self, person):
         """
         Load the primary image if it exists.

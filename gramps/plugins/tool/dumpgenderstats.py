@@ -21,7 +21,7 @@
 #
 
 """ Dump Gender Statistics.
-    
+
     Tools/Debug/Dump Gender Statistics
 """
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -40,7 +40,7 @@ _GENDER = [ _('female'), _('male'), _('unknown') ]
 #
 #-------------------------------------------------------------------------
 class DumpGenderStats(tool.Tool, ManagedWindow):
-    
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = _("Gender Statistics tool")
@@ -65,12 +65,12 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
                 (_('Unknown'),3,70,INTEGER),
                 (_('Guess'),4,70)
                 ]
-        
+
             treeview = Gtk.TreeView()
             model = ListModel(treeview, titles)
             for entry in stats_list:
                 model.add(entry, entry[0])
-                
+
             window = Gtk.Window()
             window.set_default_size(400, 300)
             s = Gtk.ScrolledWindow()
@@ -79,7 +79,7 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
             window.show_all()
             self.set_window(window, None, self.label)
             self.show()
-            
+
         else:
             print('\t%s'*5 % ('Name','Male','Female','Unknown','Guess'))
             print()
@@ -88,10 +88,10 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
 
     def build_menu_names(self, obj):
         return (self.label,None)
-            
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class DumpGenderStatsOptions(tool.ToolOptions):

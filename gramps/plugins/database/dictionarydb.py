@@ -215,7 +215,7 @@ class DictionaryDb(DbGeneric):
                 self.genderStats.uncount_person(old_person)
                 self.genderStats.count_person(person)
             # Update surname list if necessary
-            if (self._order_by_person_key(person) != 
+            if (self._order_by_person_key(person) !=
                 self._order_by_person_key(old_person)):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, trans.batch)
@@ -234,12 +234,12 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(person)
             if old_person:
-                trans.add(PERSON_KEY, TXNUPD, person.handle, 
-                          old_person.serialize(), 
+                trans.add(PERSON_KEY, TXNUPD, person.handle,
+                          old_person.serialize(),
                           person.serialize())
             else:
-                trans.add(PERSON_KEY, TXNADD, person.handle, 
-                          None, 
+                trans.add(PERSON_KEY, TXNADD, person.handle,
+                          None,
                           person.serialize())
         # Other misc update tasks:
         self.individual_attributes.update(
@@ -255,7 +255,7 @@ class DictionaryDb(DbGeneric):
                                              + person.alternate_names)
                                 if name.type.is_custom()])
         all_surn = []  # new list we will use for storage
-        all_surn += person.primary_name.get_surname_list() 
+        all_surn += person.primary_name.get_surname_list()
         for asurname in person.alternate_names:
             all_surn += asurname.get_surname_list()
         self.origin_types.update([str(surn.origintype) for surn in all_surn
@@ -288,8 +288,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(family)
             op = TXNUPD if old_family else TXNADD
-            trans.add(FAMILY_KEY, op, family.handle, 
-                      old_family, 
+            trans.add(FAMILY_KEY, op, family.handle,
+                      old_family,
                       family.serialize())
 
         # Misc updates:
@@ -337,8 +337,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(citation)
             op = TXNUPD if old_citation else TXNADD
-            trans.add(CITATION_KEY, op, citation.handle, 
-                      old_citation, 
+            trans.add(CITATION_KEY, op, citation.handle,
+                      old_citation,
                       citation.serialize())
         # Misc updates:
         attr_list = []
@@ -371,13 +371,13 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(source)
             op = TXNUPD if old_source else TXNADD
-            trans.add(SOURCE_KEY, op, source.handle, 
-                      old_source, 
+            trans.add(SOURCE_KEY, op, source.handle,
+                      old_source,
                       source.serialize())
         # Misc updates:
         self.source_media_types.update(
             [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])       
+             if ref.media_type.is_custom()])
 
         attr_list = []
         for mref in source.media_list:
@@ -407,8 +407,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(repository)
             op = TXNUPD if old_repository else TXNADD
-            trans.add(REPOSITORY_KEY, op, repository.handle, 
-                      old_repository, 
+            trans.add(REPOSITORY_KEY, op, repository.handle,
+                      old_repository,
                       repository.serialize())
         # Misc updates:
         if repository.type.is_custom():
@@ -436,12 +436,12 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(note)
             op = TXNUPD if old_note else TXNADD
-            trans.add(NOTE_KEY, op, note.handle, 
-                      old_note, 
+            trans.add(NOTE_KEY, op, note.handle,
+                      old_note,
                       note.serialize())
         # Misc updates:
         if note.type.is_custom():
-            self.note_types.add(str(note.type))        
+            self.note_types.add(str(note.type))
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
@@ -462,8 +462,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(place)
             op = TXNUPD if old_place else TXNADD
-            trans.add(PLACE_KEY, op, place.handle, 
-                      old_place, 
+            trans.add(PLACE_KEY, op, place.handle,
+                      old_place,
                       place.serialize())
         # Misc updates:
         if place.get_type().is_custom():
@@ -497,8 +497,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(event)
             op = TXNUPD if old_event else TXNADD
-            trans.add(EVENT_KEY, op, event.handle, 
-                      old_event, 
+            trans.add(EVENT_KEY, op, event.handle,
+                      old_event,
                       event.serialize())
         # Misc updates:
         self.event_attributes.update(
@@ -547,8 +547,8 @@ class DictionaryDb(DbGeneric):
         if not trans.batch:
             self.update_backlinks(media)
             op = TXNUPD if old_media else TXNADD
-            trans.add(MEDIA_KEY, op, media.handle, 
-                      old_media, 
+            trans.add(MEDIA_KEY, op, media.handle,
+                      old_media,
                       media.serialize())
         # Misc updates:
         self.media_attributes.update(
@@ -560,9 +560,9 @@ class DictionaryDb(DbGeneric):
 
     def update_backlinks(self, obj):
         # First, delete the current references:
-        # self._reference_list = [[obj.handle, 
+        # self._reference_list = [[obj.handle,
         #                          obj.__class__.__name__,
-        #                          ref_handle, 
+        #                          ref_handle,
         #                          ref_class_name], ...]
         for item in list(self._reference_list):
             if item[0] == obj.handle:
@@ -570,16 +570,16 @@ class DictionaryDb(DbGeneric):
         # Now, add the current ones:
         references = set(obj.get_referenced_handles_recursively())
         for (ref_class_name, ref_handle) in references:
-            self._reference_list.append([obj.handle, 
+            self._reference_list.append([obj.handle,
                                          obj.__class__.__name__,
-                                         ref_handle, 
+                                         ref_handle,
                                          ref_class_name])
         # This function is followed by a commit.
 
     def remove_person(self, handle, transaction):
         """
-        Remove the Person specified by the database handle from the database, 
-        preserving the change in the passed transaction. 
+        Remove the Person specified by the database handle from the database,
+        preserving the change in the passed transaction.
         """
 
         if self.readonly or not handle:
@@ -590,20 +590,20 @@ class DictionaryDb(DbGeneric):
             del self._person_id_dict[person.gramps_id]
             self.emit("person-delete", ([handle],))
             if not transaction.batch:
-                transaction.add(PERSON_KEY, TXNDEL, person.handle, 
+                transaction.add(PERSON_KEY, TXNDEL, person.handle,
                                 person.serialize(), None)
 
     def _do_remove(self, handle, transaction, data_map, data_id_map, key):
         key2table = {
-            PERSON_KEY:     "person", 
-            FAMILY_KEY:     "family", 
-            SOURCE_KEY:     "source", 
-            CITATION_KEY:   "citation", 
-            EVENT_KEY:      "event", 
-            MEDIA_KEY:      "media", 
-            PLACE_KEY:      "place", 
-            REPOSITORY_KEY: "repository", 
-            NOTE_KEY:       "note", 
+            PERSON_KEY:     "person",
+            FAMILY_KEY:     "family",
+            SOURCE_KEY:     "source",
+            CITATION_KEY:   "citation",
+            EVENT_KEY:      "event",
+            MEDIA_KEY:      "media",
+            PLACE_KEY:      "place",
+            REPOSITORY_KEY: "repository",
+            NOTE_KEY:       "note",
             TAG_KEY:        "tag",
             }
         if self.readonly or not handle:
@@ -622,7 +622,7 @@ class DictionaryDb(DbGeneric):
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        
+
         Returns an interator over a list of (class_name, handle) tuples.
 
         :param handle: handle of the object to search for.
@@ -636,9 +636,9 @@ class DictionaryDb(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
-        #self._reference_list = [[obj.handle, 
+        #self._reference_list = [[obj.handle,
         #                         obj.__class__.__name__,
-        #                         ref_handle, 
+        #                         ref_handle,
         #                         ref_class_name], ...]
         rows = (x for x in self._reference_list if x[2] == handle)
         for row in rows:
@@ -711,15 +711,15 @@ class DictionaryDb(DbGeneric):
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for (ref_class_name, ref_handle) in references:
-                        self._reference_list.append([obj.handle, 
+                        self._reference_list.append([obj.handle,
                                                      obj.__class__.__name__,
-                                                     ref_handle, 
+                                                     ref_handle,
                                                      ref_class_name])
         callback(5)
 
     def rebuild_secondary(self, update):
         gstats = self.get_gender_stats()
-        self.genderStats = GenderStats(gstats) 
+        self.genderStats = GenderStats(gstats)
         self.surname_list = self.build_surname_list()
 
     def has_handle_for_person(self, key):
@@ -884,18 +884,18 @@ class DictionaryDb(DbGeneric):
 
     def rebuild_gender_stats(self):
         """
-        Builds and returns a dictionary of 
-        {given_name: (male_count, female_count, unknown_count)} 
+        Builds and returns a dictionary of
+        {given_name: (male_count, female_count, unknown_count)}
         Called locally: this is a database-efficient version
         """
-        # In dictionarydb, there is no separate persistent storage of 
+        # In dictionarydb, there is no separate persistent storage of
         # gender stats, so we just get from the source:
         return self.get_gender_stats()
 
     def get_gender_stats(self):
         """
-        Returns a dictionary of 
-        {given_name: (male_count, female_count, unknown_count)} 
+        Returns a dictionary of
+        {given_name: (male_count, female_count, unknown_count)}
         UNKNOWN = 2
         MALE    = 1
         FEMALE  = 0
@@ -907,15 +907,15 @@ class DictionaryDb(DbGeneric):
                 if first_name not in gstats:
                     gstats[first_name] = (0, 0, 0)
                 if person.gender == Person.MALE:
-                    gstats[first_name] = (gstats[first_name][0] + 1, 
+                    gstats[first_name] = (gstats[first_name][0] + 1,
                                           gstats[first_name][1],
                                           gstats[first_name][2])
                 elif person.gender == Person.FEMALE:
-                    gstats[first_name] = (gstats[first_name][0], 
+                    gstats[first_name] = (gstats[first_name][0],
                                           gstats[first_name][1] + 1,
                                           gstats[first_name][2])
                 else:
-                    gstats[first_name] = (gstats[first_name][0], 
+                    gstats[first_name] = (gstats[first_name][0],
                                           gstats[first_name][1],
                                           gstats[first_name][2] + 1)
         return gstats
@@ -976,21 +976,21 @@ class DictionaryDb(DbGeneric):
         self._metadata_dict = {}
         self._gender_stats_dict = {}
 
-    def load(self, directory, callback=None, mode=None, 
-             force_schema_upgrade=False, 
-             force_bsddb_upgrade=False, 
-             force_bsddb_downgrade=False, 
+    def load(self, directory, callback=None, mode=None,
+             force_schema_upgrade=False,
+             force_bsddb_upgrade=False,
+             force_bsddb_downgrade=False,
              force_python_upgrade=False):
-        super().load(directory, 
-                     callback, 
-                     mode, 
-                     force_schema_upgrade, 
-                     force_bsddb_upgrade, 
-                     force_bsddb_downgrade, 
+        super().load(directory,
+                     callback,
+                     mode,
+                     force_schema_upgrade,
+                     force_bsddb_upgrade,
+                     force_bsddb_downgrade,
                      force_python_upgrade)
         # Dictionary-specific load:
         from gramps.plugins.importer.importxml import importData
-        from gramps.cli.user import User 
+        from gramps.cli.user import User
         if self._directory:
             filename = os.path.join(self._directory, "data.gramps")
             if os.path.isfile(filename):

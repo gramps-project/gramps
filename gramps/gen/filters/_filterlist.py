@@ -49,7 +49,7 @@ class FilterList(object):
     Container class for managing the generic filters.
     It stores, saves, and loads the filters.
     """
-    
+
     def __init__(self, file):
         self.filter_namespaces = {}
         self.file = os.path.expanduser(file)
@@ -57,17 +57,17 @@ class FilterList(object):
 
     def get_filters_dict(self, namespace='generic'):
         """
-        This runs every for every item to be matched! 
+        This runs every for every item to be matched!
         """
         if self._cached.get(namespace, None) is None:
             filters = self.get_filters(namespace)
-            self._cached[namespace] = dict([(filt.name, filt) for filt 
+            self._cached[namespace] = dict([(filt.name, filt) for filt
                                             in filters])
         return self._cached[namespace]
 
     def get_filters(self, namespace='generic'):
         """
-        This runs every for every item to be matched! 
+        This runs every for every item to be matched!
         """
         if namespace in self.filter_namespaces:
             filters = self.filter_namespaces[namespace]
@@ -94,7 +94,7 @@ class FilterList(object):
 
     def add(self, namespace, filt):
         assert(isinstance(namespace, str))
-        
+
         if namespace not in self.filter_namespaces:
             self.filter_namespaces[namespace] = []
         self.filter_namespaces[namespace].append(filt)

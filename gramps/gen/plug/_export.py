@@ -28,7 +28,7 @@ class ExportPlugin(Plugin):
     """
     This class represents a plugin for exporting data from Gramps
     """
-    def __init__(self, name, description, export_function, 
+    def __init__(self, name, description, export_function,
                  extension, config=None):
         """
         :param name: A friendly name to call this plugin.
@@ -56,19 +56,19 @@ class ExportPlugin(Plugin):
         self.__export_func = export_function
         self.__extension = extension
         self.__config = config
-    
+
     def get_export_function(self):
         """
         Get the export function for this plugin.
-        
+
         :return: the callable export_function passed into :meth:`__init__`
         """
         return self.__export_func
-    
+
     def get_extension(self):
         """
         Get the file extension for the export file.
-        
+
         :return: str
         """
         return self.__extension
@@ -76,7 +76,7 @@ class ExportPlugin(Plugin):
     def get_config(self):
         """
         Get the config.
-        
+
         :return: (??,??)
         """
         return self.__config

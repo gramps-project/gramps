@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -24,7 +24,7 @@ Provide the basic functionality for a list view
 
 #-------------------------------------------------------------------------
 #
-# GTK 
+# GTK
 #
 #-------------------------------------------------------------------------
 from gi.repository import Pango, Gdk, Gtk, GdkPixbuf
@@ -42,7 +42,7 @@ IMAGE   = 3
 INTEGER = 4
 COLOR   = 5
 
-NOSORT = -1    
+NOSORT = -1
 
 #-------------------------------------------------------------------------
 #
@@ -78,8 +78,8 @@ class ListModel(object):
     right_click:    Function called when the user right-clicks on a row.
     """
 
-    def __init__(self, tree, dlist, select_func=None, event_func=None, 
-                 mode=Gtk.SelectionMode.SINGLE, list_mode="list", 
+    def __init__(self, tree, dlist, select_func=None, event_func=None,
+                 mode=Gtk.SelectionMode.SINGLE, list_mode="list",
                  right_click=None):
 
         self.tree = tree
@@ -124,7 +124,7 @@ class ListModel(object):
 
         self.__build_columns(dlist)
         self.connect_model()
-        
+
         if select_func:
             self.selection.connect('changed', select_func)
         if event_func or right_click:
@@ -157,7 +157,7 @@ class ListModel(object):
                     name = item
             elif isinstance(item, dict):
                 # valid fields: name, sort_id, width, type, editable, callback, visible_col
-                name = [item.get("name", " "), item.get("sort_id", NOSORT), item.get("width", 10), 
+                name = [item.get("name", " "), item.get("sort_id", NOSORT), item.get("width", 10),
                         item.get("type", TEXT), item.get("editable", False), item.get("callback", None)]
                 visible_col = item.get("visible_col", None)
             if len(name) == 3:
@@ -186,7 +186,7 @@ class ListModel(object):
             elif name[0] and name[3] == COLOR:
                 renderer = Gtk.CellRendererText()
                 if visible_col is not None:
-                    column = Gtk.TreeViewColumn(name[0], renderer, background=cnum, 
+                    column = Gtk.TreeViewColumn(name[0], renderer, background=cnum,
                                                 visible=visible_col)
                 else:
                     column = Gtk.TreeViewColumn(name[0], renderer, background=cnum)
@@ -254,10 +254,10 @@ class ListModel(object):
         Enables or disables reordering of data
         """
         self.tree.set_reorderable(order)
-        
+
     def new_model(self):
         """
-        Create a new model instance 
+        Create a new model instance
         """
         if self.model:
             self.cid = self.model.get_sort_column_id()
@@ -271,7 +271,7 @@ class ListModel(object):
         self.selection = self.tree.get_selection()
         self.selection.set_mode(self.mode)
         self.sel_iter = None
-        
+
     def connect_model(self):
         """
         Connects the model to the associated tree
@@ -282,7 +282,7 @@ class ListModel(object):
 
         # if the sort column has not been defined (val[0] == -2), set
         # the sort column to the first column
-        
+
         val = self.model.get_sort_column_id()
         if val[0] == -2 and self.cid:
             self.model.set_sort_column_id(self.cid[0], self.cid[1])
@@ -301,7 +301,7 @@ class ListModel(object):
         else:
             self.model.set_sort_column_id(self.cids[0], val[1])
         self.model.sort_column_changed()
-        
+
     def get_selected(self):
         """
         Return the selected items
@@ -378,7 +378,7 @@ class ListModel(object):
         """
         self.model.remove(node)
         self.count -= 1
-        
+
     def get_row(self, node):
         """
         Return the row associated with the selected node
@@ -397,14 +397,14 @@ class ListModel(object):
         Selects the item based on iter
         """
         self.selection.select_iter(node)
-    
+
     def get_object(self, node):
         """
         Return the object associated with the node. This is controlled
         by extracting the data from the associated data index
         """
         return self.model.get_value(node, self.data_index)
-        
+
     def insert(self, position, data, info=None, select=0):
         """
         Inserts the item at the specified position in the model.
@@ -421,13 +421,13 @@ class ListModel(object):
         if select:
             self.selection.select_iter(node)
         return node
-    
+
     def get_data(self, node, cols):
         """
         Return a list of data from the model associated with the node
         """
         return [ self.model.get_value(node, c) for c in cols ]
-    
+
     def add(self, data, info=None, select=0, node=None):
         """
         Add the data to the model at the end of the model

@@ -45,15 +45,15 @@ class HasFamilyEvent(Rule):
     """Rule that checks for a person who has a relationship event
     with a particular value"""
 
-    labels      = [ _('Family event:'), 
-                    _('Date:'), 
-                    _('Place:'), 
+    labels      = [ _('Family event:'),
+                    _('Date:'),
+                    _('Place:'),
                     _('Description:') ]
     name        =  _('People with the family <event>')
     description = _("Matches people with a family event of a particular value")
     category    = _('Event filters')
     allow_regex = True
-    
+
     def prepare(self,db):
         self.date = None
         try:
@@ -93,7 +93,7 @@ class HasFamilyEvent(Rule):
                             val = 0
                     else:
                         val = 0
-                            
+
                 if val == 1:
                     return True
         return False

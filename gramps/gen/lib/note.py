@@ -43,20 +43,20 @@ from .handle import Handle
 #-------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
     """Define a text note.
-    
+
     Starting from Gramps 3.1 Note object stores the text in
     :class:`~.styledtext.StyledText` instance, thus it can have text formatting
     information.
 
     To get and set only the clear text of the note use the :meth:`get` and
     :meth:`set` methods.
-    
+
     To get and set the formatted version of the Note's text use the
     :meth:`get_styledtext` and :meth:`set_styledtext` methods.
-    
+
     The note may be 'preformatted' or 'flowed', which indicates that the
     text string is considered to be in paragraphs, separated by newlines.
-    
+
     :cvar FLOWED: indicates flowed format
     :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
     :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
@@ -67,7 +67,7 @@ class Note(BasicPrimaryObject):
                  :meth:`serialize` method changes!
     """
     (FLOWED, FORMATTED) = list(range(2))
-    
+
     (POS_HANDLE,
      POS_ID,
      POS_TEXT,
@@ -86,10 +86,10 @@ class Note(BasicPrimaryObject):
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.
-        
+
         :returns: The serialized format of the instance.
         :rtype: tuple
-        
+
         """
         return (self.handle, self.gramps_id, self.text.serialize(), self.format,
                 self.type.serialize(), self.change, TagBase.serialize(self),
@@ -99,7 +99,7 @@ class Note(BasicPrimaryObject):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -116,12 +116,12 @@ class Note(BasicPrimaryObject):
         :rtype: dict
         """
         return {"_class": "Note",
-                "handle": Handle("Note", self.handle), 
-                "gramps_id": self.gramps_id, 
-                "text": self.text.to_struct(), 
+                "handle": Handle("Note", self.handle),
+                "gramps_id": self.gramps_id,
+                "text": self.text.to_struct(),
                 "format": self.format,
-                "type": self.type.to_struct(), 
-                "change": self.change, 
+                "type": self.type.to_struct(),
+                "change": self.change,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
@@ -137,14 +137,14 @@ class Note(BasicPrimaryObject):
                 struct.get("gramps_id", default.gramps_id),
                 StyledText.from_struct(struct.get("text", {})),
                 struct.get("format", default.format),
-                NoteType.from_struct(struct.get("type", {})), 
+                NoteType.from_struct(struct.get("type", {})),
                 struct.get("change", default.change),
                 TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
-        
+
         :param data: The serialized format of a Note.
         :type: data: tuple
         """
@@ -170,12 +170,12 @@ class Note(BasicPrimaryObject):
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
         return self.get_referenced_tag_handles()
-        
+
     def merge(self, acquisition):
         """
         Merge the content of acquisition into this note.
@@ -211,7 +211,7 @@ class Note(BasicPrimaryObject):
         :type text: :class:`~.styledtext.StyledText`
         """
         self.text = text
-        
+
     def get_styledtext(self):
         """Return the text string associated with the note.
 
@@ -219,7 +219,7 @@ class Note(BasicPrimaryObject):
         :rtype: :class:`~.styledtext.StyledText`
         """
         return self.text
-    
+
     def append(self, text):
         """Append the specified text to the text associated with the note.
 
@@ -229,16 +229,16 @@ class Note(BasicPrimaryObject):
         self.text = self.text + text
 
     def set_format(self, format):
-        """Set the format of the note to the passed value. 
-        
+        """Set the format of the note to the passed value.
+
         :param format: The value can either indicate Flowed or Preformatted.
         :type format: int
         """
         self.format = format
 
     def get_format(self):
-        """Return the format of the note. 
-        
+        """Return the format of the note.
+
         The value can either indicate Flowed or Preformatted.
 
         :returns: 0 indicates Flowed, 1 indicates Preformated
@@ -248,7 +248,7 @@ class Note(BasicPrimaryObject):
 
     def set_type(self, the_type):
         """Set descriptive type of the Note.
-        
+
         :param the_type: descriptive type of the Note
         :type the_type: str
         """
@@ -256,7 +256,7 @@ class Note(BasicPrimaryObject):
 
     def get_type(self):
         """Get descriptive type of the Note.
-        
+
         :returns: the descriptive type of the Note
         :rtype: str
         """

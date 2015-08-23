@@ -93,7 +93,7 @@ class DrawDoc(object):
 
     def draw_path(self, style, path):
         raise NotImplementedError
-    
+
     def draw_box(self, style, text, x, y, w, h, mark=None):
         """
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
@@ -117,6 +117,6 @@ class DrawDoc(object):
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
         """
         raise NotImplementedError
-    
+
     def draw_line(self, style, x1, y1, x2, y2):
         raise NotImplementedError

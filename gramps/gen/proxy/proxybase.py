@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -53,7 +53,7 @@ class ProxyCursor(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         pass
-        
+
     def __iter__(self):
         for handle in self.get_handles():
             yield bytes(handle, "utf-8"), self.get_raw(handle)
@@ -76,9 +76,9 @@ class ProxyMap(object):
 
 class ProxyDbBase(DbReadBase):
     """
-    ProxyDbBase is a base class for building a proxy to a Gramps database. 
-    This class attempts to implement functions that are likely to be common 
-    among proxy classes. Functions that are not likely to be common raise a 
+    ProxyDbBase is a base class for building a proxy to a Gramps database.
+    This class attempts to implement functions that are likely to be common
+    among proxy classes. Functions that are not likely to be common raise a
     NotImplementedError to remind the developer to implement those functions.
 
     Real database proxy classes can inherit from this class to make sure the
@@ -87,7 +87,7 @@ class ProxyDbBase(DbReadBase):
 
     def __init__(self, db):
         """
-        Create a new ProxyDb instance. 
+        Create a new ProxyDb instance.
         """
         self.db = self.basedb = db
         while isinstance(self.basedb, ProxyDbBase):
@@ -103,21 +103,21 @@ class ProxyDbBase(DbReadBase):
         self.media_bookmarks = db.media_bookmarks
         self.note_bookmarks = db.note_bookmarks
 
-        self.person_map = ProxyMap(self, self.get_raw_person_data, 
+        self.person_map = ProxyMap(self, self.get_raw_person_data,
                                  self.get_person_handles)
-        self.family_map = ProxyMap(self, self.get_raw_family_data, 
+        self.family_map = ProxyMap(self, self.get_raw_family_data,
                                  self.get_family_handles)
-        self.event_map = ProxyMap(self, self.get_raw_event_data, 
+        self.event_map = ProxyMap(self, self.get_raw_event_data,
                                  self.get_event_handles)
-        self.place_map = ProxyMap(self, self.get_raw_place_data, 
+        self.place_map = ProxyMap(self, self.get_raw_place_data,
                                  self.get_place_handles)
-        self.source_map = ProxyMap(self, self.get_raw_source_data, 
+        self.source_map = ProxyMap(self, self.get_raw_source_data,
                                  self.get_source_handles)
-        self.repository_map = ProxyMap(self, self.get_raw_repository_data, 
+        self.repository_map = ProxyMap(self, self.get_raw_repository_data,
                                  self.get_repository_handles)
-        self.media_map = ProxyMap(self, self.get_raw_object_data, 
+        self.media_map = ProxyMap(self, self.get_raw_object_data,
                                  self.get_media_object_handles)
-        self.note_map = ProxyMap(self, self.get_raw_note_data, 
+        self.note_map = ProxyMap(self, self.get_raw_note_data,
                                  self.get_note_handles)
 
     def is_open(self):
@@ -125,12 +125,12 @@ class ProxyDbBase(DbReadBase):
         Return 1 if the database has been opened.
         """
         return self.db.is_open
-        
+
     def get_researcher(self):
         """returns the Researcher instance, providing information about
         the owner of the database"""
-        return self.db.get_researcher()        
-        
+        return self.db.get_researcher()
+
     def include_something(self, handle, obj=None):
         """
         Model predicate. Returns True if object referred to by handle is to be
@@ -141,9 +141,9 @@ class ProxyDbBase(DbReadBase):
 
         # Call function to determine if object should be included or not
         return obj.include()
-        
+
     # Define default predicates for each object type
-    
+
     include_person = \
     include_family = \
     include_event = \
@@ -155,9 +155,9 @@ class ProxyDbBase(DbReadBase):
     include_note = \
     include_tag = \
         None
-        
+
     def get_person_cursor(self):
-        return ProxyCursor(self.get_raw_person_data, 
+        return ProxyCursor(self.get_raw_person_data,
                            self.get_person_handles)
 
     def get_family_cursor(self):
@@ -199,27 +199,27 @@ class ProxyDbBase(DbReadBase):
     def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_person_handles())
         else:
             return []
-        
+
     def get_family_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Family in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_family_handles())
         else:
             return []
-        
+
     def get_event_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Event in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_event_handles())
@@ -229,37 +229,37 @@ class ProxyDbBase(DbReadBase):
     def get_source_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Source in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_source_handles())
         else:
             return []
-        
+
     def get_citation_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Citation in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_citation_handles())
         else:
             return []
-        
+
     def get_place_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Place in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_place_handles())
         else:
             return []
-        
+
     def get_media_object_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each MediaObject in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_media_object_handles())
@@ -269,17 +269,17 @@ class ProxyDbBase(DbReadBase):
     def get_repository_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Repository in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_repository_handles())
         else:
             return []
-        
+
     def get_note_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Note in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_note_handles())
@@ -289,7 +289,7 @@ class ProxyDbBase(DbReadBase):
     def get_tag_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Tag in
-        the database. 
+        the database.
         """
         if self.db.is_open:
             return list(self.iter_tag_handles())
@@ -302,15 +302,15 @@ class ProxyDbBase(DbReadBase):
 
     def get_default_handle(self):
         """returns the default Person of the database"""
-        return self.db.get_default_handle()            
-            
+        return self.db.get_default_handle()
+
     def iter_person_handles(self):
         """
         Return an iterator over database handles, one handle for each Person in
         the database.
         """
         return filter(self.include_person, self.db.iter_person_handles())
-        
+
     def iter_family_handles(self):
         """
         Return an iterator over database handles, one handle for each Family in
@@ -330,14 +330,14 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over database handles, one handle for each Source in
         the database.
         """
-        return filter(self.include_source, self.db.iter_source_handles())       
+        return filter(self.include_source, self.db.iter_source_handles())
 
     def iter_citation_handles(self):
         """
-        Return an iterator over database handles, one handle for each Citation 
+        Return an iterator over database handles, one handle for each Citation
         in the database.
         """
-        return filter(self.include_citation, self.db.iter_citation_handles())       
+        return filter(self.include_citation, self.db.iter_citation_handles())
 
     def iter_place_handles(self):
         """
@@ -345,7 +345,7 @@ class ProxyDbBase(DbReadBase):
         the database.
         """
         return filter(self.include_place, self.db.iter_place_handles())
-     
+
     def iter_media_object_handles(self):
         """
         Return an iterator over database handles, one handle for each Media
@@ -355,7 +355,7 @@ class ProxyDbBase(DbReadBase):
 
     def iter_repository_handles(self):
         """
-        Return an iterator over database handles, one handle for each 
+        Return an iterator over database handles, one handle for each
         Repository in the database.
         """
         return filter(self.include_repository, self.db.iter_repository_handles())
@@ -385,63 +385,63 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over Person objects in the database
         """
         return self.__iter_object(self.include_person, self.db.iter_people)
-        
+
     def iter_families(self):
         """
         Return an iterator over Family objects in the database
         """
-        return self.__iter_object(self.include_family, self.db.iter_families)    
-        
+        return self.__iter_object(self.include_family, self.db.iter_families)
+
     def iter_events(self):
         """
         Return an iterator over Event objects in the database
         """
         return self.__iter_object(self.include_event, self.db.iter_events)
-        
+
     def iter_places(self):
         """
         Return an iterator over Place objects in the database
         """
-        return self.__iter_object(self.include_place, self.db.iter_places)   
-        
+        return self.__iter_object(self.include_place, self.db.iter_places)
+
     def iter_sources(self):
         """
         Return an iterator over Source objects in the database
         """
-        return self.__iter_object(self.include_source, self.db.iter_sources)       
-        
+        return self.__iter_object(self.include_source, self.db.iter_sources)
+
     def iter_citations(self):
         """
         Return an iterator over Citation objects in the database
         """
-        return self.__iter_object(self.include_citation, self.db.iter_citations)       
-        
+        return self.__iter_object(self.include_citation, self.db.iter_citations)
+
     def iter_media_objects(self):
         """
         Return an iterator over Media objects in the database
         """
         return self.__iter_object(self.include_media_object,
-                                  self.db.iter_media_objects)      
-        
+                                  self.db.iter_media_objects)
+
     def iter_repositories(self):
         """
         Return an iterator over Repositories objects in the database
         """
         return self.__iter_object(self.include_repository,
                                   self.db.iter_repositories)
-        
+
     def iter_notes(self):
         """
         Return an iterator over Note objects in the database
         """
-        return self.__iter_object(self.include_note, self.db.iter_notes)       
-        
+        return self.__iter_object(self.include_note, self.db.iter_notes)
+
     def iter_tags(self):
         """
         Return an iterator over Tag objects in the database
         """
-        return self.__iter_object(self.include_tag, self.db.iter_tags)       
-        
+        return self.__iter_object(self.include_tag, self.db.iter_tags)
+
     @staticmethod
     def gfilter(predicate, obj):
         """
@@ -469,7 +469,7 @@ class ProxyDbBase(DbReadBase):
 
         # if a write-method:
         if (name in DbWriteBase.__dict__ and
-            not name.startswith("__") and 
+            not name.startswith("__") and
             type(DbWriteBase.__dict__[name]) is types.FunctionType):
             raise AttributeError
         # Default behaviour: lookup attribute in parent object
@@ -489,7 +489,7 @@ class ProxyDbBase(DbReadBase):
         If no such Family exists, None is returned.
         """
         return self.gfilter(self.include_family,
-                            self.db.get_family_from_handle(handle)) 
+                            self.db.get_family_from_handle(handle))
 
     def get_event_from_handle(self, handle):
         """
@@ -497,7 +497,7 @@ class ProxyDbBase(DbReadBase):
         If no such Event exists, None is returned.
         """
         return self.gfilter(self.include_event,
-                            self.db.get_event_from_handle(handle))                           
+                            self.db.get_event_from_handle(handle))
 
     def get_source_from_handle(self, handle):
         """
@@ -546,7 +546,7 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_note,
                             self.db.get_note_from_handle(handle))
-        
+
     def get_tag_from_handle(self, handle):
         """
         Finds a Tag in the database from the passed gramps handle.
@@ -554,7 +554,7 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_tag,
                             self.db.get_tag_from_handle(handle))
-        
+
     def get_person_from_gramps_id(self, val):
         """
         Finds a Person in the database from the passed GRAMPS ID.
@@ -891,14 +891,14 @@ class ProxyDbBase(DbReadBase):
         """
         return self.gfilter(self.include_note,
                 self.db.get_note_from_handle(handle)) is not None
-        
+
     def has_tag_handle(self, handle):
         """
         returns True if the handle exists in the current Tag database.
         """
         return self.gfilter(self.include_tag,
                 self.db.get_tag_from_handle(handle)) is not None
-        
+
     def get_mediapath(self):
         """returns the default media path of the database"""
         return self.db.get_mediapath()

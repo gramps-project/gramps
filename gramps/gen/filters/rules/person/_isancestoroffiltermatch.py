@@ -59,7 +59,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
                 first = 1
         except IndexError:
             first = 1
-            
+
         filt = MatchesFilter(self.list[0:1])
         filt.requestprepare(db)
         for person in db.iter_people():

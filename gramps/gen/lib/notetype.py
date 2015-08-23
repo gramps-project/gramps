@@ -72,7 +72,7 @@ class NoteType(GrampsType):
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
-    
+
 
     _DATAMAPREAL = [
         (UNKNOWN,     _("Unknown"),     "Unknown"),
@@ -86,7 +86,7 @@ class NoteType(GrampsType):
         (HTML_CODE,   _("Html code"),   "Html code"),
         (TODO,        _("notetype|To Do"),       "To Do"),
         ]
-        
+
     _DATAMAPIGNORE = [
         (PERSON,     _("Person Note"),"Person Note"),
         (PERSONNAME, _("Name Note"),  "Name Note"),
@@ -101,36 +101,36 @@ class NoteType(GrampsType):
         (SOURCEREF,  _("Source Reference Note"), "Source Reference Note"),
         (PLACE,      _("Place Note"),  "Place Note"),
         (REPO,       _("Repository Note"),  "Repository Note"),
-        (REPOREF,    _("Repository Reference Note"),  
+        (REPOREF,    _("Repository Reference Note"),
                             "Repository Reference Note"),
         (MEDIA,      _("Media Note"),  "Media Note"),
         (MEDIAREF,   _("Media Reference Note"),  "Media Reference Note"),
         (CHILDREF,   _("Child Reference Note"),  "Child Reference Note"),
         ]
-        
+
     _DATAMAP = _DATAMAPREAL + _DATAMAPIGNORE
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-        
+
     def get_ignore_list(self, exception):
         """
         Return a list of the types to ignore and not include in default lists.
-        
+
         Exception is a sublist of types that may not be ignored
-        
+
         :param exception: list of integer values corresponding with types that
                           have to be excluded from the ignore list
         :type exception: list
-        :returns: list of integers corresponding with the types to ignore when 
+        :returns: list of integers corresponding with the types to ignore when
                   showing a list of different types
         :rtype: list
-        
+
         """
         ignlist = [x[0] for x in self._DATAMAPIGNORE]
         if exception:
             for type_ in exception:
-                try: 
+                try:
                     del ignlist[ignlist.index(type_)]
                 except ValueError:
                     pass

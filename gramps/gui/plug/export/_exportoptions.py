@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008 Donald N. Allingham
-# Copyright (C) 2008      Gary Burton 
+# Copyright (C) 2008      Gary Burton
 # Copyright (C) 2008      Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -40,11 +40,11 @@ from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
 from ...utils import ProgressMeter
-from gramps.gen.proxy import (PrivateProxyDb, 
-                              LivingProxyDb, 
-                              FilterProxyDb, 
+from gramps.gen.proxy import (PrivateProxyDb,
+                              LivingProxyDb,
+                              FilterProxyDb,
                               ReferencedBySelectionProxyDb)
-        
+
 class Progress(object):
     """
     Mirros the same interface that the ExportAssistant uses in the
@@ -91,7 +91,7 @@ class WriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
-     
+
     """
     def __init__(self, person, dbstate, uistate):
         self.person = person
@@ -115,7 +115,7 @@ class WriterOptionBox(object):
         self.initialized_show_options = False
         self.set_config(config)
         # The following are special properties. Create them to force the
-        # export wizard to not ask for a file, and to override the 
+        # export wizard to not ask for a file, and to override the
         # confirmation message:
         #self.no_fileselect = True
         #self.confirm_text = "You made it, kid!"
@@ -142,7 +142,7 @@ class WriterOptionBox(object):
         from gi.repository import Gtk
         from gi.repository import Pango
         widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        
+
         full_database_row = Gtk.Box()
         label = Gtk.Label(label=_("Unfiltered Family Tree:"))
         full_database_row.pack_start(label, True, True, 0)
@@ -161,7 +161,7 @@ class WriterOptionBox(object):
         full_database_row.pack_end(button, False, True, 0)
 
         widget.pack_start(full_database_row, False, True, 0)
-        
+
         self.private_check = Gtk.CheckButton.new_with_mnemonic(
             _('_Do not include records marked private'))
         self.private_check.connect("clicked", self.mark_dirty)
@@ -232,8 +232,8 @@ class WriterOptionBox(object):
             dbstate.db = self.proxy_dbase[widget.proxy_name]
             dbstate.open = True
         run_quick_report_by_name(dbstate,
-                                 self.uistate, 
-                                 'filterbyname', 
+                                 self.uistate,
+                                 'filterbyname',
                                  'all')
 
     def preview(self, widget):
@@ -381,13 +381,13 @@ class WriterOptionBox(object):
                     self.vbox_n[n].pack_end(self.down_n[n], False, True, 0)
                 # some spacer buttons:
                 up = Gtk.Button()
-                up.set_sensitive(0) 
+                up.set_sensitive(0)
                 image = Gtk.Image()
                 image.set_from_icon_name('go-up', Gtk.IconSize.MENU)
                 up.set_image(image)
                 self.spacer.pack_start(up, False, True, 0)
                 down = Gtk.Button()
-                down.set_sensitive(0) 
+                down.set_sensitive(0)
                 image = Gtk.Image()
                 image.set_from_icon_name('go-down', Gtk.IconSize.MENU)
                 down.set_image(image)
@@ -399,12 +399,12 @@ class WriterOptionBox(object):
             for n in range(5):
                 self.up_n[n].show()
                 self.down_n[n].show()
-            
+
         self.proxy_options_showing = not self.proxy_options_showing
 
     def swap(self, widget):
         """
-        Swap the order of two proxies. 
+        Swap the order of two proxies.
         """
         row1 = widget.row
         row2 = widget.row + 1
@@ -429,17 +429,17 @@ class WriterOptionBox(object):
         # feature request 2356: avoid genitive form
         des.set_name(_("Descendants of %s") % name)
         des.add_rule(rules.person.IsDescendantOf([gramps_id, 1]))
-        
+
         df = GenericFilter()
         # feature request 2356: avoid genitive form
         df.set_name(_("Descendant Families of %s") % name)
         df.add_rule(rules.person.IsDescendantFamilyOf([gramps_id, 1]))
-        
+
         ans = GenericFilter()
         # feature request 2356: avoid genitive form
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(rules.person.IsAncestorOf([gramps_id, 1]))
-        
+
         com = GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
         com.add_rule(rules.person.HasCommonAncestorWith([gramps_id]))
@@ -447,11 +447,11 @@ class WriterOptionBox(object):
         return [des, df, ans, com]
 
     def get_proxy_value(self, proxy_name):
-        return [value for (name, value) in 
+        return [value for (name, value) in
                 self.config.get('export.proxy-order') if name == proxy_name][0]
 
     def set_proxy_value(self, proxy_name, proxy_value):
-        [name_value for name_value in 
+        [name_value for name_value in
          self.config.get('export.proxy-order') if name_value[0] == proxy_name][0][1] = int(proxy_value)
 
     def get_proxy_names(self):
@@ -463,8 +463,8 @@ class WriterOptionBox(object):
 
     def parse_options(self):
         """
-        Extract the common values from the GTK widgets. 
-        
+        Extract the common values from the GTK widgets.
+
         After this function is called, the following variables are defined:
 
            private  = privacy requested
@@ -491,7 +491,7 @@ class WriterOptionBox(object):
             if node:
                 self.restrict_num = model[node][1]
             self.set_proxy_value("living", self.restrict_option.get_active())
-        
+
         if self.filter_note:
             model = self.filter_note.get_model()
             node = self.filter_note.get_active_iter()
@@ -557,7 +557,7 @@ class WriterOptionBox(object):
     def apply_proxy(self, proxy_name, dbase, progress=None):
         """
         Apply the named proxy to the dbase, and return.
-        proxy_name is one of 
+        proxy_name is one of
            ["person", "note", "privacy", "living", "reference"]
         """
         # If the private flag is set, apply the PrivateProxyDb
@@ -581,10 +581,10 @@ class WriterOptionBox(object):
                         LivingProxyDb.MODE_EXCLUDE_ALL,
                         ][self.restrict_num]
                 dbase = LivingProxyDb(
-                            dbase, 
-                            mode) # 
+                            dbase,
+                            mode) #
 
-        # If the filter returned by cfilter is not empty, apply the 
+        # If the filter returned by cfilter is not empty, apply the
         # FilterProxyDb (Person Filter)
         elif proxy_name == "person":
             if self.cfilter != None and not self.cfilter.is_empty():
@@ -649,7 +649,7 @@ class WriterOptionBox(object):
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
             from ...dialog import ErrorDialog
-            ErrorDialog(_("Cannot edit a system filter"), 
+            ErrorDialog(_("Cannot edit a system filter"),
                         _("Please select a different filter to edit"))
 
     def edit_filter_save(self, filterdb, namespace):

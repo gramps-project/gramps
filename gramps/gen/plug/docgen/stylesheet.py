@@ -89,7 +89,7 @@ class StyleSheetList(object):
     has a predefined default style specified by the report. Additional
     styles are loaded from a specified XML file if it exists.
     """
-    
+
     def __init__(self, filename, defstyle):
         """
         Create a new StyleSheetList from the specified default style and
@@ -149,7 +149,7 @@ class StyleSheetList(object):
         xml_file = open(self.__file, "w")
         xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
         xml_file.write('<stylelist>\n')
-        
+
         for name in sorted(self.map.keys()): # enable diff of archived copies
             if name == "default":
                 continue
@@ -214,7 +214,7 @@ class StyleSheetList(object):
                     '/>\n' +
             '</style>\n'
         )
-            
+
     def write_table_style(self, xml_file, sheet, t_name):
 
         t_style = sheet.get_table_style(t_name)
@@ -280,7 +280,7 @@ class StyleSheetList(object):
                 the_file.close()
         except (IOError, OSError, SAXParseException):
             pass
-        
+
 #------------------------------------------------------------------------
 #
 # StyleSheet
@@ -290,7 +290,7 @@ class StyleSheet(object):
     """
     A collection of named paragraph styles.
     """
-    
+
     def __init__(self, obj=None):
         """
         Create a new empty StyleSheet.
@@ -316,7 +316,7 @@ class StyleSheet(object):
     def set_name(self, name):
         """
         Set the name of the StyleSheet
-        
+
         :param name: The name to be given to the StyleSheet
         """
         self.name = name
@@ -333,7 +333,7 @@ class StyleSheet(object):
         self.draw_styles = {}
         self.table_styles = {}
         self.cell_styles = {}
-        
+
     def is_empty(self):
         "Checks if any styles are defined"
         style_count = len(self.para_styles)  + \
@@ -343,7 +343,7 @@ class StyleSheet(object):
         if style_count > 0:
             return False
         else:
-            return True      
+            return True
 
     def add_paragraph_style(self, name, style):
         """
@@ -353,7 +353,7 @@ class StyleSheet(object):
         :param style: :class:`.ParagraphStyle` instance to be added.
         """
         self.para_styles[name] = ParagraphStyle(style)
-        
+
     def get_paragraph_style(self, name):
         """
         Return the :class:`.ParagraphStyle` associated with the name
@@ -374,7 +374,7 @@ class StyleSheet(object):
         :param style: :class:`.GraphicsStyle` instance to be added.
         """
         self.draw_styles[name] = GraphicsStyle(style)
-        
+
     def get_draw_style(self, name):
         """
         Return the :class:`.GraphicsStyle` associated with the name
@@ -386,7 +386,7 @@ class StyleSheet(object):
     def get_draw_style_names(self):
         "Return the list of draw style names in the StyleSheet"
         return list(self.draw_styles.keys())
-    
+
     def add_table_style(self, name, style):
         """
         Add a table style to the style sheet.
@@ -395,7 +395,7 @@ class StyleSheet(object):
         :param style: :class:`.TableStyle` instance to be added.
         """
         self.table_styles[name] = TableStyle(style)
-        
+
     def get_table_style(self, name):
         """
         Return the :class:`.TableStyle` associated with the name
@@ -407,7 +407,7 @@ class StyleSheet(object):
     def get_table_style_names(self):
         "Return the list of table style names in the StyleSheet"
         return list(self.table_styles.keys())
-    
+
     def add_cell_style(self, name, style):
         """
         Add a cell style to the style sheet.
@@ -416,7 +416,7 @@ class StyleSheet(object):
         :param style: :class:`.TableCellStyle` instance to be added.
         """
         self.cell_styles[name] = TableCellStyle(style)
-        
+
     def get_cell_style(self, name):
         """
         Return the :class:`.TableCellStyle` associated with the name
@@ -438,7 +438,7 @@ class SheetParser(handler.ContentHandler):
     """
     SAX parsing class for the StyleSheetList XML file.
     """
-    
+
     def __init__(self, sheetlist):
         """
         Create a SheetParser class that populates the passed StyleSheetList
@@ -455,7 +455,7 @@ class SheetParser(handler.ContentHandler):
         self.columns_widths = []
         self.sheet_name = None
         self.style_name = None
-        
+
     def startElement(self, tag, attrs):
         """
         Overridden class that handles the start of a XML element

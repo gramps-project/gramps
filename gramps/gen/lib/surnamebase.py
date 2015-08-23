@@ -45,9 +45,9 @@ class SurnameBase(object):
 
     def __init__(self, source=None):
         """
-        Initialize a SurnameBase. 
-        
-        If the source is not None, then object is initialized from values of 
+        Initialize a SurnameBase.
+
+        If the source is not None, then object is initialized from values of
         the source object.
 
         :param source: Object used to initialize the new object
@@ -65,7 +65,7 @@ class SurnameBase(object):
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -100,7 +100,7 @@ class SurnameBase(object):
 
     def add_surname(self, surname):
         """
-        Add the :class:`~.surname.Surname` instance to the object's 
+        Add the :class:`~.surname.Surname` instance to the object's
         list of surnames.
 
         :param surname: :class:`~.surname.Surname` instance to add to the
@@ -113,11 +113,11 @@ class SurnameBase(object):
         """
         Remove the specified :class:`~.surname.Surname` instance from the
         surname list.
-        
+
         If the instance does not exist in the list, the operation has
         no effect.
 
-        :param surname: :class:`~.surname.Surname` instance to remove 
+        :param surname: :class:`~.surname.Surname` instance to remove
                         from the list
         :type surname: :class:`~.surname.Surname`
 
@@ -143,9 +143,9 @@ class SurnameBase(object):
 
     def set_surname_list(self, surname_list):
         """
-        Assign the passed list to the object's list of 
+        Assign the passed list to the object's list of
         :class:`~.surname.Surname` instances.
-        
+
         :param surname_list: List of :class:`~.surname.Surname` instances to be
                              associated with the object
         :type surname_list: list
@@ -155,7 +155,7 @@ class SurnameBase(object):
     def get_primary_surname(self):
         """
         Return the surname that is the primary surname
-        
+
         :returns: Returns the surname instance that is the primary surname. If
                   primary not set, and there is a surname, the first surname is
                   given, if no surnames, None is returned
@@ -187,7 +187,7 @@ class SurnameBase(object):
         """
         Merge the list of surname from acquisition with our own.
         This method is normally only called when surnames are equal, if they
-        are different, the merge code should fall back to storing an 
+        are different, the merge code should fall back to storing an
         alternate name. For completeness, the code is present nevertheless.
 
         :param acquisition: the surname list of this object will be merged with
@@ -226,14 +226,14 @@ class SurnameBase(object):
                                                      'second': surn.get_connector()}
             fsurn = fsurn.strip()
             totalsurn = _('%(first)s %(second)s') % {'first': totalsurn,
-                                                     'second': fsurn} 
+                                                     'second': fsurn}
         return totalsurn.strip()
 
-    
+
     def get_upper_surname(self):
         """Return a fully formatted surname capitalized"""
         return self.get_surname().upper()
-    
+
     def get_surnames(self):
         """
         Return a list of surnames (no prefix or connectors)
@@ -255,7 +255,7 @@ class SurnameBase(object):
             if prefix:
                 prefixl.append(prefix)
         return prefixl
-               
+
     def get_connectors(self):
         """
         Return a list of surnames (no prefix or connectors)

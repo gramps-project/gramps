@@ -42,9 +42,9 @@ from .grampstype import GrampsType
 #-------------------------------------------------------------------------
 class StyledTextTagType(GrampsType):
     """Text formatting tag type definition.
-    
+
     Here we only define new class variables. For details see :class:`~gen.lib.grampstype.GrampsType`.
-    
+
     """
     NONE_TYPE = -1
     BOLD = 0
@@ -56,10 +56,10 @@ class StyledTextTagType(GrampsType):
     HIGHLIGHT = 6
     SUPERSCRIPT = 7
     LINK = 8
-    
+
     _CUSTOM = NONE_TYPE
     _DEFAULT = NONE_TYPE
-    
+
     _DATAMAP = [
         (BOLD, _("Bold"), "bold"),
         (ITALIC, _("Italic"), "italic"),
@@ -83,7 +83,7 @@ class StyledTextTagType(GrampsType):
         SUPERSCRIPT: bool,
         LINK: str,
     }
-    
+
     STYLE_DEFAULT = {
         BOLD: False,
         ITALIC: False,

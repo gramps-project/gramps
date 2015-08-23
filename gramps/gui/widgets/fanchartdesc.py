@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -69,7 +69,7 @@ from .fanchart import *
 pi = math.pi
 
 PIXELS_PER_GENPERSON = 30 # size of radius for generation of children
-PIXELS_PER_GENFAMILY = 20 # size of radius for family 
+PIXELS_PER_GENFAMILY = 20 # size of radius for family
 PIXELS_PER_RECLAIM = 4 # size of the radius of pixels taken from family to reclaim space
 PARENTRING_WIDTH = 12      # width of the parent ring inside the person
 
@@ -85,7 +85,7 @@ ANGLE_WEIGHT = 1   #Algorithm for angle computation based on nr of descendants
 
 class FanChartDescWidget(FanChartBaseWidget):
     """
-    Interactive Fan Chart Widget. 
+    Interactive Fan Chart Widget.
     """
     CENTER = 60    # we require a larger center
 
@@ -144,7 +144,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         """
         self.handle2desc = {}
         self.famhandle2desc = {}
-        self.handle2fam = {} 
+        self.handle2fam = {}
         self.gen2people = {}
         self.gen2fam = {}
         self.parentsroot = []
@@ -168,12 +168,12 @@ class FanChartDescWidget(FanChartBaseWidget):
     def _fill_data_structures(self):
         self.set_generations()
         person = self.dbstate.db.get_person_from_handle(self.rootpersonh)
-        if not person: 
+        if not person:
             #nothing to do, just return
             return
         else:
             name = name_displayer.display(person)
-        
+
         # person, duplicate or not, start angle, slice size,
         #                   text, parent pos in fam, nrfam, userdata, status
         self.gen2people[0] = [[person, False, 0, 2*pi, name, 0, 0, [], NORMAL]]
@@ -229,7 +229,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 famdup = True
             else:
                 famdup = False
-            # family, duplicate or not, start angle, slice size, 
+            # family, duplicate or not, start angle, slice size,
             #   text, spouse pos in gen, nrchildren, userdata, parnter, status
             self.gen2fam[gen].append([family, famdup, 0, 0, spname, pos, 0, [],
                                       spouse, NORMAL])
@@ -248,7 +248,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                         self.handle2desc[child_ref.ref] = 0
                     # person, duplicate or not, start angle, slice size,
                     #         text, parent pos in fam, nrfam, userdata, status
-                    self.gen2people[gen+1].append([child, dup, 0, 0, chname, 
+                    self.gen2people[gen+1].append([child, dup, 0, 0, chname,
                             posfam, 0, [], NORMAL])
                     totdescfam += 1 #add this person as descendant
                     pospers = len(self.gen2people[gen+1]) - 1
@@ -310,13 +310,13 @@ class FanChartDescWidget(FanChartBaseWidget):
                     slice = 0
                 elif data[9] == EXPANDED:
                     slice = partslice
-                    
+
                 data[2] = partstart + offset
                 data[3] = slice
                 offset += slice
-                    
+
 ##                if nrdescpartner == 0:
-##                    #no offspring, draw as large as fraction of 
+##                    #no offspring, draw as large as fraction of
 ##                    #nr families
 ##                    nrfam = partnerdata[6]
 ##                    slice = partslice/nrfam
@@ -324,9 +324,9 @@ class FanChartDescWidget(FanChartBaseWidget):
 ##                    data[3] = slice
 ##                    offset += slice
 ##                elif nrdescfam == 0:
-##                    #no offspring this family, but there is another 
+##                    #no offspring this family, but there is another
 ##                    #family. We draw this as a weight of 1
-##                    nrfam = partnerdata[6]                        
+##                    nrfam = partnerdata[6]
 ##                    slice = partslice/(nrdescpartner + nrfam - 1)*(nrdescfam+1)
 ##                    data[2] = partstart + offset
 ##                    data[3] = slice
@@ -339,7 +339,7 @@ class FanChartDescWidget(FanChartBaseWidget):
 ##                    data[2] = partstart + offset
 ##                    data[3] = slice
 ##                    offset += slice
-            
+
             prevfamdatahandle = None
             offset = 0
             for data in self.gen2people[gen]:
@@ -415,7 +415,7 @@ class FanChartDescWidget(FanChartBaseWidget):
     def on_draw(self, widget, cr, scale=1.):
         """
         The main method to do the drawing.
-        If widget is given, we assume we draw in GTK3 and use the allocation. 
+        If widget is given, we assume we draw in GTK3 and use the allocation.
         To draw raw on the cairo context cr, set widget=None.
         """
         # first do size request of what we will need
@@ -424,12 +424,12 @@ class FanChartDescWidget(FanChartBaseWidget):
             if self.form == FORM_CIRCLE:
                 self.set_size_request(2 * halfdist, 2 * halfdist)
             elif self.form == FORM_HALFCIRCLE:
-                self.set_size_request(2 * halfdist, halfdist + self.CENTER 
+                self.set_size_request(2 * halfdist, halfdist + self.CENTER
                                       + PAD_PX)
             elif self.form == FORM_QUADRANT:
                 self.set_size_request(halfdist + self.CENTER + PAD_PX,
                                       halfdist + self.CENTER + PAD_PX)
-            
+
             #obtain the allocation
             alloc = self.get_allocation()
             x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
@@ -472,9 +472,9 @@ class FanChartDescWidget(FanChartBaseWidget):
             cr.fill()
             cr.save()
             name = name_displayer.display(person)
-            self.draw_text(cr, name, self.CENTER - PIXELS_PER_GENFAMILY 
-                        - (self.CENTER - PIXELS_PER_GENFAMILY 
-                           - (CHILDRING_WIDTH + TRANSLATE_PX))/2, 
+            self.draw_text(cr, name, self.CENTER - PIXELS_PER_GENFAMILY
+                        - (self.CENTER - PIXELS_PER_GENFAMILY
+                           - (CHILDRING_WIDTH + TRANSLATE_PX))/2,
                         95, 455, 10, False,
                         self.fontcolor(r, g, b, a), self.fontbold(a))
             cr.restore()
@@ -494,13 +494,13 @@ class FanChartDescWidget(FanChartBaseWidget):
         for gen in range(self.generations-1):
             radstart += PIXELS_PER_GENPERSON
             for famdata in self.gen2fam[gen]:
-                # family, duplicate or not, start angle, slice size, 
+                # family, duplicate or not, start angle, slice size,
                 #       text, spouse pos in gen, nrchildren, userdata, status
                 fam, dup, start, slice, text, posfam, nrchild, userdata,\
                     partner, status = famdata
                 if status != COLLAPSED:
-                    self.draw_person(cr, text, start, slice, radstart, 
-                                     radstart + PIXELS_PER_GENFAMILY, gen, dup, 
+                    self.draw_person(cr, text, start, slice, radstart,
+                                     radstart + PIXELS_PER_GENFAMILY, gen, dup,
                                      partner, userdata, family=True, thick=status != NORMAL)
             radstart += PIXELS_PER_GENFAMILY
             for pdata in self.gen2people[gen+1]:
@@ -509,19 +509,19 @@ class FanChartDescWidget(FanChartBaseWidget):
                 pers, dup, start, slice, text, pospar, nrfam, userdata, status = \
                     pdata
                 if status != COLLAPSED:
-                    self.draw_person(cr, text, start, slice, radstart, 
-                                     radstart + PIXELS_PER_GENPERSON, gen+1, dup, 
+                    self.draw_person(cr, text, start, slice, radstart,
+                                     radstart + PIXELS_PER_GENPERSON, gen+1, dup,
                                      pers, userdata, thick=status != NORMAL)
         cr.restore()
-        
+
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
             self.draw_gradient(cr, widget, halfdist)
 
-    def draw_person(self, cr, name, start_rad, slice, radius, radiusend, 
+    def draw_person(self, cr, name, start_rad, slice, radius, radiusend,
                 generation, dup, person, userdata, family=False, thick=False):
         """
         Display the piece of pie for a given person. start_rad and slice
-        are in radial. 
+        are in radial.
         """
         if slice == 0:
             return
@@ -531,7 +531,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             full = True
         stop_rad = start_rad + slice
         if not person:
-            #an family with partner not set. Don't have a color for this, 
+            #an family with partner not set. Don't have a color for this,
             # let's make it transparent
             r, g, b, a = (255, 255, 255, 0)
         elif not dup:
@@ -541,7 +541,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             a = 1
             r, g, b = self.dupcolor #(136, 138, 133)
         # If max generation, and they have children:
-        if (not family and generation == self.generations - 1 
+        if (not family and generation == self.generations - 1
                 and self._have_children(person)):
             # draw an indicator
             radmax = radiusend + BORDER_EDGE_WIDTH
@@ -576,7 +576,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 radial = True
                 radstart = radius
             self.draw_text(cr, name, radstart, start_rad/ math.pi*180,
-                           stop_rad/ math.pi*180, width, radial, 
+                           stop_rad/ math.pi*180, width, radial,
                            self.fontcolor(r, g, b, a), self.fontbold(a))
         cr.restore()
 
@@ -659,7 +659,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             #                   text, parent pos in fam, nrfam, userdata, status
             person = self.gen2people[generation][pos][0]
         elif btype == TYPE_BOX_FAMILY:
-            # family, duplicate or not, start angle, slice size, 
+            # family, duplicate or not, start angle, slice size,
             #       text, spouse pos in gen, nrchildren, userdata, person, status
             person = self.gen2fam[generation][pos][8]
         return person
@@ -674,7 +674,7 @@ class FanChartDescWidget(FanChartBaseWidget):
 
     def do_mouse_click(self):
         # no drag occured, expand or collapse the section
-        self.change_slice(self._mouse_click_gen, self._mouse_click_sel, 
+        self.change_slice(self._mouse_click_gen, self._mouse_click_sel,
                           self._mouse_click_btype)
         self._mouse_click = False
         self.queue_draw()
@@ -712,7 +712,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                 for entry in self.gen2fam[generation]:
                     if entry[5] == parpos:
                         entry[9] = NORMAL
-                    
+
         self.__compute_angles()
 
 class FanChartDescGrampsGUI(FanChartGrampsGUI):
@@ -721,7 +721,7 @@ class FanChartDescGrampsGUI(FanChartGrampsGUI):
 
     def main(self):
         """
-        Fill the data structures with the active data. This initializes all 
+        Fill the data structures with the active data. This initializes all
         data.
         """
         root_person_handle = self.get_active('Person')

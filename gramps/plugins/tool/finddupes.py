@@ -85,10 +85,10 @@ def is_initial(name):
 #
 #-------------------------------------------------------------------------
 class Merge(tool.Tool,ManagedWindow):
-    
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
-        
+
         tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate, [],
                                              self.__class__)
@@ -116,7 +116,7 @@ class Merge(tool.Tool,ManagedWindow):
         self.soundex_obj = top.get_object("soundex")
         self.soundex_obj.set_active(use_soundex)
         self.soundex_obj.show()
-        
+
         self.menu = top.get_object("menu")
         self.menu.set_model(my_menu)
         self.menu.set_active(0)
@@ -143,7 +143,7 @@ class Merge(tool.Tool,ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        
+
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def ancestors_of(self, p1_id, id_list):
@@ -182,7 +182,7 @@ class Merge(tool.Tool,ManagedWindow):
                             self.list,self.map,self.update)
             except WindowActiveError:
                 pass
-    
+
     def find_potentials(self, thresh):
         self.progress = ProgressMeter(_('Find Duplicates'),
                                       _('Looking for duplicate people'),
@@ -196,7 +196,7 @@ class Merge(tool.Tool,ManagedWindow):
 
         self.progress.set_pass(_('Pass 1: Building preliminary lists'),
                                length)
-        
+
         for p1_id in self.db.iter_person_handles():
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1_id)
@@ -211,7 +211,7 @@ class Merge(tool.Tool,ManagedWindow):
                     females[key].append(p1_id)
                 else:
                     females[key] = [p1_id]
-                
+
         self.progress.set_pass(_('Pass 2: Calculating potential matches'),
                                length)
 
@@ -235,7 +235,7 @@ class Merge(tool.Tool,ManagedWindow):
                     (v,c) = self.map[p2key]
                     if v == p1key:
                         continue
-                    
+
                 chance = self.compare_people(p1,p2)
                 if chance >= thresh:
                     if p1key in self.map:
@@ -298,19 +298,19 @@ class Merge(tool.Tool,ManagedWindow):
         chance += value
 
         value = self.date_match(death1.get_date_object(),
-                                death2.get_date_object()) 
+                                death2.get_date_object())
         if value == -1 :
             return -1
         chance += value
 
         value = self.place_match(birth1.get_place_handle(),
-                                 birth2.get_place_handle()) 
+                                 birth2.get_place_handle())
         if value == -1 :
             return -1
         chance += value
 
         value = self.place_match(death1.get_place_handle(),
-                                 death2.get_place_handle()) 
+                                 death2.get_place_handle())
         if value == -1 :
             return -1
         chance += value
@@ -324,7 +324,7 @@ class Merge(tool.Tool,ManagedWindow):
         self.ancestors_of(p2.get_handle(),ancestors)
         if p1.get_handle() in ancestors:
             return -1
-        
+
         f1_id = p1.get_main_parents_family_handle()
         f2_id = p2.get_main_parents_family_handle()
 
@@ -341,14 +341,14 @@ class Merge(tool.Tool,ManagedWindow):
                 dad2 = get_name_obj(self.db.get_person_from_handle(dad2_id))
             else:
                 dad2 = None
-            
+
             value = self.name_match(dad1,dad2)
-            
+
             if value == -1:
                 return -1
 
             chance += value
-            
+
             mom1_id = f1.get_mother_handle()
             if mom1_id:
                 mom1 = get_name_obj(self.db.get_person_from_handle(mom1_id))
@@ -363,7 +363,7 @@ class Merge(tool.Tool,ManagedWindow):
             value = self.name_match(mom1,mom2)
             if value == -1:
                 return -1
-            
+
             chance += value
 
         for f1_id in p1.get_family_handle_list():
@@ -456,7 +456,7 @@ class Merge(tool.Tool,ManagedWindow):
 
         if not name1 or not name:
             return 0
-    
+
         srn1 = get_surnames(name)
         sfx1 = name.get_suffix()
         srn2 = get_surnames(name1)
@@ -478,11 +478,11 @@ class Merge(tool.Tool,ManagedWindow):
                 return self.list_reduce(list1,list2)
             else:
                 return self.list_reduce(list2,list1)
-            
+
     def place_match(self, p1_id, p2_id):
         if p1_id == p2_id:
             return 1
-        
+
         if not p1_id:
             name1 = ""
         else:
@@ -494,7 +494,7 @@ class Merge(tool.Tool,ManagedWindow):
         else:
             p2 = self.db.get_place_from_handle(p2_id)
             name2 = p2.get_title()
-        
+
         if not (name1 and name2):
             return 0
         if name1 == name2:
@@ -511,7 +511,7 @@ class Merge(tool.Tool,ManagedWindow):
                 elif name[0] == name2[0] and self.name_compare(name, name2):
                     value += 0.25
         return min(value,1) if value else -1
-        
+
     def list_reduce(self, list1, list2):
         value = 0
         for name in list1:
@@ -531,7 +531,7 @@ class Merge(tool.Tool,ManagedWindow):
         both toplevel windows and all signals must be handled.
         """
         pass
-        
+
 
 class ShowMatches(ManagedWindow):
 
@@ -546,12 +546,12 @@ class ShowMatches(ManagedWindow):
         self.db = dbstate.db
         self.dbstate = dbstate
         self.uistate = uistate
-        
+
         top = Glade(toplevel="mergelist")
         window = top.toplevel
         self.set_window(window, top.get_object('title'),
                         _('Potential Merges'))
-        
+
         self.mlist = top.get_object("mlist")
         top.connect_signals({
             "destroy_passed_object" : self.close,
@@ -572,7 +572,7 @@ class ShowMatches(ManagedWindow):
                 ]
         self.list = ListModel(self.mlist,mtitles,
                               event_func=self.on_do_merge_clicked)
-        
+
         self.redraw()
         self.show()
 
@@ -581,8 +581,8 @@ class ShowMatches(ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
+
+        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
     def redraw(self):
         list = []
         for p1key, p1data in self.map.items():
@@ -628,7 +628,7 @@ class ShowMatches(ManagedWindow):
                 self.dellist[key] = phoenix
         self.update()
         self.redraw()
-        
+
     def update_and_destroy(self, obj):
         self.update(1)
         self.close()
@@ -638,7 +638,7 @@ class ShowMatches(ManagedWindow):
         both toplevel windows and all signals must be handled.
         """
         pass
-        
+
 
 #-------------------------------------------------------------------------
 #
@@ -662,7 +662,7 @@ def get_surnames(name):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class MergeOptions(tool.ToolOptions):

@@ -54,11 +54,11 @@ class LdsModel(Gtk.ListStore):
 
         for lds_ord in lds_list:
             self.append(row=[
-                lds_ord.type2str(), 
-                get_date(lds_ord), 
-                lds_ord.status2str(), 
+                lds_ord.type2str(),
+                get_date(lds_ord),
+                lds_ord.status2str(),
                 TEMPLES.name(lds_ord.get_temple()),
                 place_displayer.display_event(db, lds_ord),
                 lds_ord.get_privacy(),
-                lds_ord, 
+                lds_ord,
                 ])

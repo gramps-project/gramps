@@ -62,7 +62,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 class RepositoryView(ListView):
-    """ repository listview class 
+    """ repository listview class
     """
     COL_NAME = 0
     COL_ID = 1
@@ -104,11 +104,11 @@ class RepositoryView(ListView):
                              ]),
         ('columns.rank', [COL_NAME, COL_ID, COL_TYPE, COL_URL, COL_STREET,
                           COL_LOCALITY, COL_CITY, COL_STATE, COL_COUNTRY,
-                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_TAGS, 
+                          COL_ZIP, COL_EMAIL, COL_SURL, COL_PRIV, COL_TAGS,
                           COL_CHAN]),
         ('columns.size', [200, 75, 100, 250, 100, 100, 100, 100, 100,
                              100, 100, 100, 40, 100, 100])
-        )    
+        )
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
@@ -124,7 +124,7 @@ class RepositoryView(ListView):
             'repository-delete'  : self.row_delete,
             'repository-rebuild' : self.object_build,
             }
-        
+
         ListView.__init__(
             self, _('Repositories'), pdata, dbstate, uistate,
             RepositoryModel, signal_map,
@@ -149,7 +149,7 @@ class RepositoryView(ListView):
         ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Repository Filter Editor'),
                          callback=self.filter_editor,)
-        self._add_action('QuickReport', None, 
+        self._add_action('QuickReport', None,
                          _("Quick View"), None, None, None)
 
     def get_stock(self):
@@ -188,8 +188,8 @@ class RepositoryView(ListView):
           </menubar>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>  
-              <toolitem action="Forward"/>  
+              <toolitem action="Back"/>
+              <toolitem action="Forward"/>
             </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="Add"/>
@@ -277,7 +277,7 @@ class RepositoryView(ListView):
         repo = self.dbstate.db.get_repository_from_handle(repo_handle)
         repo.add_tag(tag_handle)
         self.dbstate.db.commit_repository(repo, transaction)
-        
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

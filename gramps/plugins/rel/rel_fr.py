@@ -529,10 +529,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "les neveux et nièces" + can + civ
             elif Ga < len(_LEVEL_NAME):
                 rel_str = "les neveux et nièces" + bygen % Gb
-            
+
         if in_law_b == True:
             rel_str = "les conjoints pour %s" % rel_str
-            
+
         return rel_str
 
 # quick report (missing on RelCalc tool - Status Bar)
@@ -850,7 +850,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_fr.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

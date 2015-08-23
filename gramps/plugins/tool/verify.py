@@ -110,7 +110,7 @@ def find_family(db, handle):
 def clear_cache():
     _person_cache.clear()
     _family_cache.clear()
-    _event_cache.clear()   
+    _event_cache.clear()
 
 #-------------------------------------------------------------------------
 #
@@ -148,7 +148,7 @@ def get_date_from_event_type(db, person, event_type, estimate=False):
     return 0
 
 def get_bapt_date(db, person, estimate=False):
-    return get_date_from_event_type(db, person, 
+    return get_date_from_event_type(db, person,
                                     EventType.BAPTISM, estimate)
 
 def get_bury_date(db, person, estimate=False):
@@ -157,7 +157,7 @@ def get_bury_date(db, person, estimate=False):
         event = find_event(db, event_ref.ref)
         if event and event.get_type() == EventType.BURIAL and \
         event_ref.get_role() == EventRoleType.PRIMARY:
-            return get_date_from_event_type(db, person, 
+            return get_date_from_event_type(db, person,
                                             EventType.BURIAL, estimate)
 
 def get_birth_date(db, person, estimate=False):
@@ -230,7 +230,7 @@ def get_marriage_date(db, family):
     for event_ref in family.get_event_ref_list():
         event = find_event(db,event_ref.ref)
         if event.get_type() == EventType.MARRIAGE and \
-        (event_ref.get_role() == EventRoleType.FAMILY or 
+        (event_ref.get_role() == EventRoleType.FAMILY or
         event_ref.get_role() == EventRoleType.PRIMARY ):
             date_obj = event.get_date_object()
             return date_obj.get_sort_value()
@@ -280,7 +280,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
     def init_gui(self):
         # Draw dialog and make it handle everything
-        self.vr = None 
+        self.vr = None
         self.top = Glade()
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
@@ -350,14 +350,14 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         run_button.set_sensitive(True)
         close_button.set_sensitive(True)
         self.reset()
-        
+
         # Save options
         self.options.handler.save_options()
 
     def run_tool(self,cli=False):
 
         person_handles = self.db.iter_person_handles()
-        
+
         for option, value in \
           self.options.handler.options_dict.items():
             exec('%s = %s' % (option, value), globals())
@@ -424,7 +424,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             for rule in rule_list:
                 if rule.broken():
                     self.add_results(rule.report_itself())
-                
+
             clear_cache()
             if not cli:
                 self.update()
@@ -455,7 +455,7 @@ class VerifyResults(ManagedWindow):
         self.top = Glade(toplevel="verify_result")
         window = self.top.toplevel
         self.set_window(window,self.top.get_object('title2'),self.title)
-    
+
         self.top.connect_signals({
             "destroy_passed_object"  : self.close,
             "on_verify_ok_clicked"   : self.__dummy,
@@ -466,7 +466,7 @@ class VerifyResults(ManagedWindow):
         self.warn_tree.connect('button_press_event', self.double_click)
 
         self.selection = self.warn_tree.get_selection()
-        
+
         self.hide_button = self.top.get_object('hide_button')
         self.hide_button.connect('toggled',self.hide_toggled)
 
@@ -479,14 +479,14 @@ class VerifyResults(ManagedWindow):
         self.invert_button = self.top.get_object('invert_all')
         self.invert_button.connect('clicked',self.invert_clicked)
 
-        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN, 
-                                        GObject.TYPE_STRING, 
-                                        GObject.TYPE_STRING, 
-                                        GObject.TYPE_STRING, 
-                                        GObject.TYPE_STRING, object, 
-                                        GObject.TYPE_STRING, 
+        self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
                                         GObject.TYPE_STRING,
-                                        GObject.TYPE_BOOLEAN, 
+                                        GObject.TYPE_STRING,
+                                        GObject.TYPE_STRING,
+                                        GObject.TYPE_STRING, object,
+                                        GObject.TYPE_STRING,
+                                        GObject.TYPE_STRING,
+                                        GObject.TYPE_BOOLEAN,
                                         GObject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
@@ -503,11 +503,11 @@ class VerifyResults(ManagedWindow):
                                            active=VerifyResults.IGNORE_COL)
         ignore_column.set_sort_column_id(VerifyResults.IGNORE_COL)
         self.warn_tree.append_column(ignore_column)
-        
+
         # Add image column
         img_column = Gtk.TreeViewColumn(None, self.img_renderer )
         img_column.set_cell_data_func(self.img_renderer,self.get_image)
-        self.warn_tree.append_column(img_column)        
+        self.warn_tree.append_column(img_column)
 
         # Add column with the warning text
         warn_column = Gtk.TreeViewColumn(_('Warning'), self.renderer,
@@ -529,7 +529,7 @@ class VerifyResults(ManagedWindow):
                                          foreground=VerifyResults.FG_COLOR_COL)
         name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
-       
+
         self.show()
         self.window_shown = False
 
@@ -543,7 +543,7 @@ class VerifyResults(ManagedWindow):
         if isinstance(db_filename, str):
             db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
-        ## a new Gramps major version means recreating the .vfm file. 
+        ## a new Gramps major version means recreating the .vfm file.
         ## User can copy over old one, with name of new one, but no guarantee
         ## that will work.
         self.ignores_filename = os.path.join(
@@ -616,7 +616,7 @@ class VerifyResults(ManagedWindow):
             self.sort_model = self.filt_model.sort_new_with_model()
             self.warn_tree.set_model(self.sort_model)
             button.set_label(_("_Hide marked"))
-        
+
     def selection_toggled(self, cell, path_string):
         sort_path = tuple(map(int, path_string.split(':')))
         filt_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
@@ -694,7 +694,7 @@ class VerifyResults(ManagedWindow):
         self.real_model.append(row=[ignore,msg,gramps_id, name,
                                     the_type,rule_id, handle,fg,
                                     True, not ignore])
-        
+
         if not self.window_shown:
             self.window.show()
             self.window_shown = True
@@ -704,7 +704,7 @@ class VerifyResults(ManagedWindow):
 
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class VerifyOptions(tool.ToolOptions):
@@ -770,7 +770,7 @@ class VerifyOptions(tool.ToolOptions):
                               ["Do not estimate","Estimate dates"],
                               True),
             'invdate'      : ("=0/1","Whether to check for invalid dates"
-                              "Do not identify invalid dates", 
+                              "Do not identify invalid dates",
                               "Identify invalid dates", True),
         }
 
@@ -787,7 +787,7 @@ class Rule(object):
     """
     ID = 0
     TYPE = ''
-    
+
     ERROR   = 1
     WARNING = 2
 
@@ -1078,7 +1078,7 @@ class SameSurnameFamily(FamilyRule):
         mother = get_mother(self.db, self.obj)
         father = get_father(self.db, self.obj)
         _broken = False
-        
+
         # Make sure both mother and father exist.
         if mother and father:
             mname = mother.get_primary_name()
@@ -1427,9 +1427,9 @@ class DeadParent(FamilyRule):
             if not child_birth_date_ok:
                 continue
 
-            hasBirthRelToMother = child_ref.mrel == ChildRefType.BIRTH    
+            hasBirthRelToMother = child_ref.mrel == ChildRefType.BIRTH
             hasBirthRelToFather = child_ref.frel == ChildRefType.BIRTH
-            
+
             father_broken = (hasBirthRelToFather
                              and father_death_date_ok
                              and ((father_death_date + 294) < child_birth_date))
@@ -1464,7 +1464,7 @@ class LargeChildrenSpan(FamilyRule):
     def broken(self):
         child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates.sort()
-        
+
         return (child_birh_dates and ((child_birh_dates[-1]
                                        - child_birh_dates[0])/365
                                       > self.cb_span))
@@ -1487,7 +1487,7 @@ class LargeChildrenAgeDiff(FamilyRule):
         child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
         child_birh_dates_diff = [child_birh_dates[i+1] - child_birh_dates[i]
                                  for i in range(len(child_birh_dates)-1) ]
-        
+
         return (child_birh_dates_diff and
                 max(child_birh_dates_diff)/365 > self.c_space)
 
@@ -1547,14 +1547,14 @@ class InvalidDeathDate(PersonRule):
 
     def get_message(self):
         return _("Invalid death date")
-        
+
 class MarriedRelation(FamilyRule):
     ID = 31
     SEVERITY = Rule.WARNING
     def __init__(self,db, obj):
         FamilyRule.__init__(self,db, obj)
 
-    def broken(self):          
+    def broken(self):
         marr_date = get_marriage_date(self.db,self.obj)
         marr_date_ok = marr_date > 0
         married = self.obj.get_relationship() == FamilyRelType.MARRIED

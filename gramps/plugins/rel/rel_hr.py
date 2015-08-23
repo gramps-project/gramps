@@ -37,7 +37,7 @@ _PARENTS = ['', 'otac i majka', 'djedovi i bake', 'pradjedovi i prabake',
 _CHILDS = ['', 'djeca', 'unučad', 'praunučad', '%s praunučad']
 _CHILDS_SP = ['', 'snahe i zetovi', 'prasnahe i prazetovi',
     'supružnici praunučadi', 'supružnici %s praunučadi']
-    
+
 #-------------------------------------------------------------------------
 #
 # Class HrDeclination
@@ -61,7 +61,7 @@ class HrDeclination(object):
         (1, 1, 7): 'im', (2, 1, 7): 'im', (1, 2, 3): 'im', (1, 2, 6): 'im',
         (1, 2, 7): 'im', (0, 2, 3): 'im', (0, 2,6): 'im', (0, 2, 7): 'im',
         (0, 1, 1): 'a', (0, 1, 5): 'a', (2, 2, 1): 'a', (2, 2, 5): 'a',
-        (0, 1, 2): 'e', (0, 1, 4): 'e', (1, 2, 4): 'e', 
+        (0, 1, 2): 'e', (0, 1, 4): 'e', (1, 2, 4): 'e',
         (0, 2, 1): 'e', (0, 2, 4): 'e', (0, 2, 5): 'e',
         (2 , 1, 1): 'o', (2, 1, 4): 'o', (2, 1, 5): 'o',
         (0, 1, 3): 'oj', (0, 1, 6): 'oj', (2, 2, 3): 'oj', (2, 2, 6): 'oj',
@@ -69,7 +69,7 @@ class HrDeclination(object):
         (2, 2, 4): 'u' }
 
     def get_ordnum(self, num, gender, number, case):
-        """ 
+        """
         Declination of ordinal numbers
         gender:   0 = feminine, 1 = masculine, 2 = neuter
         case:       1 = nominative, 2 = genitive, 3 = dative, 4 = accusative
@@ -89,7 +89,7 @@ class HrDeclination(object):
             if num % 10 == 3:
                 if gender != 0 and sufix != 'oj':
                     sufix = sufix.replace('o','e')
-            lres[-1] += sufix 
+            lres[-1] += sufix
             res = ' '.join(lres)
         else:
             res = str(num) + '. '
@@ -117,27 +117,27 @@ def _get_parents(level):
     if level < 4:
         return _PARENTS[level]
     else:
-        return '%s' % _PARENTS[4] % (HRDN(level-2, 1, 1, 1), 
+        return '%s' % _PARENTS[4] % (HRDN(level-2, 1, 1, 1),
                     HRDN(level-2, 0, 2, 1))
-                    
+
 def _get_uncles(gen, inlaw):
     """ in general: uncles, ants---
     """
     if gen == 2:
         if not inlaw:
             return 'stričevi, ujaci i tetke'
-        else: 
-            return 'strine, ujne i tetci' 
+        else:
+            return 'strine, ujne i tetci'
     elif gen == 3:
         if not inlaw:
             return 'prastričevi, praujaci i pratetke'
-        else: 
+        else:
             return 'prastrine, praujne i pratetci'
     else:
         if not inlaw:
             return '%s prastričevi, %s praujaci i %s pratetke' % (HRDN(gen-2,
                         1, 2, 1), HRDN(gen-2, 1, 2, 1), HRDN(gen-2, 0, 2, 1))
-        else: 
+        else:
             return 'prastrine, praujne i pratetci'
 
 #-------------------------------------------------------------------------
@@ -183,7 +183,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             # These are aunts/uncles
             rel_str += _get_uncles(gena, in_law_b)
         return rel_str
-    
+
 if __name__ == "__main__":
 
     # Test function. Call it as follows from the command line (so as to find

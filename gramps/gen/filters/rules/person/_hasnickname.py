@@ -47,6 +47,6 @@ class HasNickname(Rule):
     category    = _('General filters')
 
     def apply(self, db, person):
-        if person.get_nick_name(): 
+        if person.get_nick_name():
             return True
         return False

@@ -59,12 +59,12 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     Container for information about an image file, including location,
     description and privacy.
     """
-    
+
     def __init__(self, source=None):
         """
-        Initialize a MediaObject. 
-        
-        If source is not None, then object is initialized from values of the 
+        Initialize a MediaObject.
+
+        If source is not None, then object is initialized from values of the
         source object.
 
         :param source: Object used to initialize the new object
@@ -92,9 +92,9 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     def serialize(self, no_text_date = False):
         """
         Convert the data held in the event to a Python tuple that
-        represents all the data elements. 
-        
-        This method is used to convert the object into a form that can easily 
+        represents all the data elements.
+
+        This method is used to convert the object into a form that can easily
         be saved to a database.
 
         These elements may be primitive Python types (string, integers),
@@ -121,7 +121,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -138,10 +138,10 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :rtype: dict
         """
         return {"_class": "MediaObject",
-                "handle": Handle("Media", self.handle), 
-                "gramps_id": self.gramps_id, 
-                "path": self.path, 
-                "mime": self.mime, 
+                "handle": Handle("Media", self.handle),
+                "gramps_id": self.gramps_id,
+                "path": self.path,
+                "mime": self.mime,
                 "desc": self.desc,
                 "checksum": self.checksum,
                 "attribute_list": AttributeBase.to_struct(self),
@@ -215,7 +215,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer to citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer to citations.
         :rtype: list
         """
@@ -225,7 +225,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -235,7 +235,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -247,7 +247,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -285,7 +285,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :rtype: str
         """
         return self.mime
-    
+
     def set_path(self, path):
         """Set the file path to the passed path."""
         res = urlparse(path)

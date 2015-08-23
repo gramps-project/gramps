@@ -32,14 +32,14 @@ from .person import Person
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
 class GenderStats(object):
     """
-    Class for keeping track of statistics related to Given Name vs. Gender. 
-    
-    This allows the tracking of the liklihood of a person's given name 
+    Class for keeping track of statistics related to Given Name vs. Gender.
+
+    This allows the tracking of the liklihood of a person's given name
     indicating the gender of the person.
     """
     def __init__ (self, stats={}):
@@ -77,7 +77,7 @@ class GenderStats(object):
             return
 
         self._set_stats(keyname, gender)
-        
+
     def count_person (self, person, undo = 0):
         if not person:
             return

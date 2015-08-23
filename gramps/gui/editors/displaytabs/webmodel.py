@@ -43,5 +43,5 @@ class WebModel(Gtk.ListStore):
         Gtk.ListStore.__init__(self, str, str, str, bool, object)
         self.db = dbase
         for obj in obj_list:
-            self.append(row=[str(obj.type), obj.path, obj.desc, 
+            self.append(row=[str(obj.type), obj.path, obj.desc,
                     obj.get_privacy(), obj])

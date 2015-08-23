@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2009-2010  Gary Burton 
+# Copyright (C) 2009-2010  Gary Burton
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011-2014  Paul Franklin
@@ -109,7 +109,7 @@ class FamilyLinesOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name, default=False)
-        
+
         followpar = BooleanOption(_('Follow parents to determine '
                                     '"family lines"'), True)
         followpar.set_help(_('Parents and their ancestors will be '
@@ -155,7 +155,7 @@ class FamilyLinesOptions(MenuReportOptions):
                                'point when determining "family lines".'))
         add_option('gidlist', person_list)
 
-        self.limit_parents = BooleanOption(_('Limit the number of ancestors'), 
+        self.limit_parents = BooleanOption(_('Limit the number of ancestors'),
                                            False)
         self.limit_parents.set_help(_('Whether to '
                                       'limit the number of ancestors.'))
@@ -168,7 +168,7 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option('maxparents', self.max_parents)
 
         self.limit_children = BooleanOption(_('Limit the number '
-                                              'of descendants'), 
+                                              'of descendants'),
                                             False)
         self.limit_children.set_help(_('Whether to '
                                        'limit the number of descendants.'))
@@ -293,7 +293,7 @@ class FamilyLinesReport(Report):
     def __init__(self, database, options, user):
         """
         Create FamilyLinesReport object that eventually produces the report.
-        
+
         The arguments are:
 
         database     - the GRAMPS database instance
@@ -308,7 +308,7 @@ class FamilyLinesReport(Report):
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
-        
+
         stdoptions.run_private_data_option(self, menu)
         self._db = self.database
 
@@ -318,7 +318,7 @@ class FamilyLinesReport(Report):
         self._deleted_people = 0
         self._deleted_families = 0
         self._user = user
-        
+
         self._followpar = get_value('followpar')
         self._followchild = get_value('followchild')
         self._removeextra = get_value('removeextra')
@@ -377,7 +377,7 @@ class FamilyLinesReport(Report):
     def begin_report(self):
         """
         Inherited method; called by report() in _ReportDialog.py
-        
+
         This is where we'll do all of the work of figuring out who
         from the database is going to be output into the report
         """
@@ -402,22 +402,22 @@ class FamilyLinesReport(Report):
         """
         Inherited method; called by report() in _ReportDialog.py
         """
-        
+
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
 
-        self.doc.add_comment('# Number of people in database:    %d' 
+        self.doc.add_comment('# Number of people in database:    %d'
                              % self._db.get_number_of_people())
-        self.doc.add_comment('# Number of people of interest:    %d' 
+        self.doc.add_comment('# Number of people of interest:    %d'
                              % len(self._people))
-        self.doc.add_comment('# Number of families in database:  %d' 
+        self.doc.add_comment('# Number of families in database:  %d'
                              % self._db.get_number_of_families())
-        self.doc.add_comment('# Number of families of interest:  %d' 
+        self.doc.add_comment('# Number of families of interest:  %d'
                              % len(self._families))
         if self._removeextra:
-            self.doc.add_comment('# Additional people removed:       %d' 
+            self.doc.add_comment('# Additional people removed:       %d'
                                  % self._deleted_people)
-            self.doc.add_comment('# Additional families removed:     %d' 
+            self.doc.add_comment('# Additional families removed:     %d'
                                  % self._deleted_families)
         self.doc.add_comment('# Initial list of people of interest:')
         for handle in self._interest_set:
@@ -440,15 +440,15 @@ class FamilyLinesReport(Report):
             handle = ancestorsNotYetProcessed.pop()
 
             # One of 2 things can happen here:
-            #   1) we already know about this person and he/she is already 
+            #   1) we already know about this person and he/she is already
             #      in our list
             #   2) this is someone new, and we need to remember him/her
             #
-            # In the first case, there isn't anything else to do, so we simply 
+            # In the first case, there isn't anything else to do, so we simply
             # go back to the top and pop the next person off the list.
             #
-            # In the second case, we need to add this person to our list, and 
-            # then go through all of the parents this person has to find more 
+            # In the second case, we need to add this person to our list, and
+            # then go through all of the parents this person has to find more
             # people of interest.
 
             if handle not in self._people:
@@ -475,10 +475,10 @@ class FamilyLinesReport(Report):
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more ancestors
-                if self._limitparents and (self._maxparents < 
+                if self._limitparents and (self._maxparents <
                         len(ancestorsNotYetProcessed) + len(self._people)):
                     # get back to the top of the while loop so we can finish
-                    # processing the people queued up in the "not yet 
+                    # processing the people queued up in the "not yet
                     # processed" list
                     continue
 
@@ -705,7 +705,7 @@ class FamilyLinesReport(Report):
 
         self.doc.add_comment('')
 
-        # If we're going to attempt to include images, then use the HTML style 
+        # If we're going to attempt to include images, then use the HTML style
         # of .gv file.
         bUseHtmlOutput = False
         if self._incimages:
@@ -794,7 +794,7 @@ class FamilyLinesReport(Report):
                     mediaMimeType = media.get_mime_type()
                     if mediaMimeType[0:5] == "image":
                         imagePath = get_thumbnail_path(
-                                        media_path_full(self._db, 
+                                        media_path_full(self._db,
                                                         media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())
 
@@ -891,7 +891,7 @@ class FamilyLinesReport(Report):
                 for event_ref in family.get_event_ref_list():
                     event = self._db.get_event_from_handle(event_ref.ref)
                     if event.get_type() == EventType.MARRIAGE and \
-                    (event_ref.get_role() == EventRoleType.FAMILY or 
+                    (event_ref.get_role() == EventRoleType.FAMILY or
                     event_ref.get_role() == EventRoleType.PRIMARY ):
                         # get the wedding date
                         if self._incdates:

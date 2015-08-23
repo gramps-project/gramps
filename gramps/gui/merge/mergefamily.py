@@ -161,7 +161,7 @@ class MergeFamily(ManagedWindow):
         """Preferred family changes"""
         if obj.get_active():
             father1_text = self.get_widget("father1").get_text()
-            if (father1_text != " []" or 
+            if (father1_text != " []" or
                 self.get_widget("father2").get_text() == " []"):
                     self.get_widget("father_btn1").set_active(True)
             mother1_text = self.get_widget("mother1").get_text()
@@ -198,7 +198,7 @@ class MergeFamily(ManagedWindow):
         else:
             phoenix = self.fy2
             titanic = self.fy1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Family')
 

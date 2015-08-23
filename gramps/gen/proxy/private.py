@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -39,8 +39,8 @@ LOG = logging.getLogger(".citation")
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from ..lib import (MediaRef, Attribute, Address, EventRef, 
-                   Person, Name, Source, RepoRef, MediaObject, Place, Event, 
+from ..lib import (MediaRef, Attribute, Address, EventRef,
+                   Person, Name, Source, RepoRef, MediaObject, Place, Event,
                    Family, ChildRef, Repository, LdsOrd, Surname, Citation,
                    SrcAttribute, Note, Tag)
 from .proxybase import ProxyDbBase
@@ -53,7 +53,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def __init__(self, db):
         """
-        Create a new PrivateProxyDb instance. 
+        Create a new PrivateProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
 
@@ -238,67 +238,67 @@ class PrivateProxyDb(ProxyDbBase):
         return None
 
     # Define predicate functions for use by default iterator methods
-    
+
     def include_person(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_person(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_family(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_family(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_event(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_event(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_source(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_source(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_citation(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_citation(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_place(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_place(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_media_object(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """
         obj = self.get_unfiltered_object(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_repository(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_repository(handle)
         return obj and not obj.get_privacy()
-    
+
     def include_note(self, handle):
         """
         Predicate returning True if object is to be included, else False
-        """        
+        """
         obj = self.get_unfiltered_note(handle)
         return obj and not obj.get_privacy()
 
@@ -316,7 +316,7 @@ class PrivateProxyDb(ProxyDbBase):
         if person and not person.get_privacy():
             return handle
         return None
-    
+
     def has_person_handle(self, handle):
         """
         returns True if the handle exists in the current Person database.
@@ -362,7 +362,7 @@ class PrivateProxyDb(ProxyDbBase):
             return True
         return False
 
-    def has_family_handle(self, handle):            
+    def has_family_handle(self, handle):
         """
         Return True if the handle exists in the current Family database.
         """
@@ -408,7 +408,7 @@ class PrivateProxyDb(ProxyDbBase):
         :param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
         :type include_classes: list of class names
-        
+
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
         override this method to provide much faster implementations that
@@ -419,9 +419,9 @@ class PrivateProxyDb(ProxyDbBase):
 
         >    result_list = list(find_backlink_handles(handle))
         """
-        
+
         # This isn't done yet because it doesn't check if references are
-        # private (like a MediaRef). It only checks if the 
+        # private (like a MediaRef). It only checks if the
         # referenced object is private.
 
         objects = {
@@ -443,12 +443,12 @@ class PrivateProxyDb(ProxyDbBase):
                 if obj and not obj.get_privacy():
                     yield (class_name, handle)
             else:
-                raise NotImplementedError                
+                raise NotImplementedError
         return
 
 def copy_media_ref_list(db, original_obj, clean_obj):
     """
-    Copies media references from one object to another - excluding private 
+    Copies media references from one object to another - excluding private
     references and references to private objects.
 
     :param db: Gramps database to which the references belongs
@@ -487,7 +487,7 @@ def copy_citation_ref_list(db, original_obj, clean_obj):
             source = db.get_source_from_handle(handle)
             if source and not source.get_privacy():
                 clean_obj.add_citation(citation_handle)
-                
+
 def copy_notes(db, original_obj, clean_obj):
     """
     Copies notes from one object to another - excluding references to private
@@ -500,7 +500,7 @@ def copy_notes(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private references
     :type original_obj: NoteBase
     :returns: Nothing
-    """     
+    """
     for note_handle in original_obj.get_note_list():
         note = db.get_note_from_handle(note_handle)
         if note and not note.get_privacy():
@@ -529,7 +529,7 @@ def copy_associations(db, original_obj, clean_obj):
 
 def copy_attributes(db, original_obj, clean_obj):
     """
-    Copies attributes from one object to another - excluding references to 
+    Copies attributes from one object to another - excluding references to
     private attributes.
 
     :param db: Gramps database to which the references belongs
@@ -539,7 +539,7 @@ def copy_attributes(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private references
     :type original_obj: AttributeBase
     :returns: Nothing
-    """   
+    """
     for attribute in original_obj.get_attribute_list():
         if attribute and not attribute.get_privacy():
             new_attribute = Attribute()
@@ -551,7 +551,7 @@ def copy_attributes(db, original_obj, clean_obj):
 
 def copy_srcattributes(db, original_obj, clean_obj):
     """
-    Copies srcattributes from one object to another - excluding references to 
+    Copies srcattributes from one object to another - excluding references to
     private srcattributes.
 
     :param db: Gramps database to which the references belongs
@@ -561,7 +561,7 @@ def copy_srcattributes(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private references
     :type original_obj: SrcAttributeBase
     :returns: Nothing
-    """   
+    """
     for attribute in original_obj.get_attribute_list():
         if attribute and not attribute.get_privacy():
             new_attribute = SrcAttribute()
@@ -571,7 +571,7 @@ def copy_srcattributes(db, original_obj, clean_obj):
 
 def copy_urls(db, original_obj, clean_obj):
     """
-    Copies urls from one object to another - excluding references to 
+    Copies urls from one object to another - excluding references to
     private urls.
 
     :param db: Gramps database to which the references belongs
@@ -581,14 +581,14 @@ def copy_urls(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private urls
     :type original_obj: UrlBase
     :returns: Nothing
-    """         
+    """
     for url in original_obj.get_url_list():
         if url and not url.get_privacy():
             clean_obj.add_url(url)
-            
+
 def copy_lds_ords(db, original_obj, clean_obj):
     """
-    Copies LDS ORDs from one object to another - excluding references to 
+    Copies LDS ORDs from one object to another - excluding references to
     private LDS ORDs.
 
     :param db: Gramps database to which the references belongs
@@ -598,14 +598,14 @@ def copy_lds_ords(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private LDS ORDs
     :type original_obj: LdsOrdBase
     :returns: Nothing
-    """         
+    """
     for lds_ord in original_obj.get_lds_ord_list():
         if lds_ord and not lds_ord.get_privacy():
             clean_obj.add_lds_ord(sanitize_lds_ord(db, lds_ord))
-           
+
 def copy_addresses(db, original_obj, clean_obj):
     """
-    Copies addresses from one object to another - excluding references to 
+    Copies addresses from one object to another - excluding references to
     private addresses.
 
     :param db: Gramps database to which the references belongs
@@ -615,7 +615,7 @@ def copy_addresses(db, original_obj, clean_obj):
     :param clean_obj: Object that will have only non-private addresses
     :type original_obj: AddressBase
     :returns: Nothing
-    """         
+    """
     for address in original_obj.get_address_list():
         if address and not address.get_privacy():
             clean_obj.add_address(sanitize_address(db, address))
@@ -625,7 +625,7 @@ def sanitize_lds_ord(db, lds_ord):
     Create a new LdsOrd instance based off the passed LdsOrd
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the LdsOrd object belongs
     :type db: DbBase
     :param name: source LdsOrd object that will be copied with
@@ -643,9 +643,9 @@ def sanitize_lds_ord(db, lds_ord):
     fam = db.get_family_from_handle(fam_handle)
     if fam and not fam.get_privacy():
         new_lds_ord.set_family_handle(fam_handle)
-    
+
     new_lds_ord.set_date_object(lds_ord.get_date_object())
-    
+
     place_handle = lds_ord.get_place_handle()
     place = db.get_place_from_handle(place_handle)
     if place and not place.get_privacy():
@@ -653,15 +653,15 @@ def sanitize_lds_ord(db, lds_ord):
 
     copy_citation_ref_list(db, lds_ord, new_lds_ord)
     copy_notes(db, lds_ord, new_lds_ord)
-    
+
     return new_lds_ord
-    
+
 def sanitize_address(db, address):
     """
     Create a new Address instance based off the passed Address
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param name: source Address object that will be copied with
@@ -671,7 +671,7 @@ def sanitize_address(db, address):
     :rtype: Address
     """
     new_address = Address()
-    
+
     new_address.set_street(address.get_street())
     new_address.set_locality(address.get_locality())
     new_address.set_city(address.get_city())
@@ -680,19 +680,19 @@ def sanitize_address(db, address):
     new_address.set_country(address.get_country())
     new_address.set_postal_code(address.get_postal_code())
     new_address.set_phone(address.get_phone())
-    
+
     new_address.set_date_object(address.get_date_object())
     copy_citation_ref_list(db, address, new_address)
     copy_notes(db, address, new_address)
-    
+
     return new_address
-    
+
 def sanitize_name(db, name):
     """
     Create a new Name instance based off the passed Name
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param name: source Name object that will be copied with
@@ -714,10 +714,10 @@ def sanitize_name(db, name):
     new_name.set_title(name.get_title())
     new_name.set_date_object(name.get_date_object())
     new_name.set_surname_list(name.get_surname_list())
-    
+
     copy_citation_ref_list(db, name, new_name)
     copy_notes(db, name, new_name)
-    
+
     return new_name
 
 def sanitize_media_ref(db, media_ref):
@@ -725,7 +725,7 @@ def sanitize_media_ref(db, media_ref):
     Create a new MediaRef instance based off the passed MediaRef
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the MediaRef object belongs
     :type db: DbBase
     :param source_ref: source MediaRef object that will be copied with
@@ -736,12 +736,12 @@ def sanitize_media_ref(db, media_ref):
     """
     new_ref = MediaRef()
     new_ref.set_rectangle(media_ref.get_rectangle())
-    
+
     new_ref.set_reference_handle(media_ref.get_reference_handle())
     copy_notes(db, media_ref, new_ref)
     copy_attributes(db, media_ref, new_ref)
     copy_citation_ref_list(db, media_ref, new_ref)
-    
+
     return new_ref
 
 def sanitize_citation(db, citation):
@@ -749,7 +749,7 @@ def sanitize_citation(db, citation):
     Create a new Citation instance based off the passed Citation
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param citation: source Citation object that will be copied with
@@ -769,15 +769,15 @@ def sanitize_citation(db, citation):
     copy_srcattributes(db, citation, new_citation)
     copy_notes(db, citation, new_citation)
     copy_media_ref_list(db, citation, new_citation)
-    
+
     return new_citation
-    
+
 def sanitize_event_ref(db, event_ref):
     """
     Create a new EventRef instance based off the passed EventRef
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param event_ref: source EventRef object that will be copied with
@@ -787,12 +787,12 @@ def sanitize_event_ref(db, event_ref):
     :rtype: EventRef
     """
     new_ref = EventRef()
-    
+
     new_ref.set_reference_handle(event_ref.get_reference_handle())
     new_ref.set_role(event_ref.get_role())
     copy_notes(db, event_ref, new_ref)
     copy_attributes(db, event_ref, new_ref)
-    
+
     return new_ref
 
 def sanitize_person(db, person):
@@ -800,7 +800,7 @@ def sanitize_person(db, person):
     Create a new Person instance based off the passed Person
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param person: source Person object that will be copied with
@@ -817,7 +817,7 @@ def sanitize_person(db, person):
     new_person.set_handle(person.get_handle())
     new_person.set_change_time(person.get_change_time())
     new_person.set_tag_list(person.get_tag_list())
-    
+
     # copy names if not private
     name = person.get_primary_name()
     if (name and name.get_privacy()) or (person and person.get_privacy()):
@@ -885,7 +885,7 @@ def sanitize_person(db, person):
     copy_lds_ords(db, person, new_person)
     copy_notes(db, person, new_person)
     copy_associations(db, person, new_person)
-    
+
     return new_person
 
 def sanitize_source(db, source):
@@ -893,7 +893,7 @@ def sanitize_source(db, source):
     Create a new Source instance based off the passed Source
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param source: source Source object that will be copied with
@@ -903,7 +903,7 @@ def sanitize_source(db, source):
     :rtype: Source
     """
     new_source = Source()
-    
+
     new_source.set_author(source.get_author())
     new_source.set_title(source.get_title())
     new_source.set_publication_info(source.get_publication_info())
@@ -911,7 +911,7 @@ def sanitize_source(db, source):
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())
     new_source.set_change_time(source.get_change_time())
-    
+
     for repo_ref in source.get_reporef_list():
         if repo_ref and not repo_ref.get_privacy():
             handle = repo_ref.get_reference_handle()
@@ -922,7 +922,7 @@ def sanitize_source(db, source):
     copy_srcattributes(db, source, new_source)
     copy_media_ref_list(db, source, new_source)
     copy_notes(db, source, new_source)
-    
+
     return new_source
 
 def sanitize_media(db, media):
@@ -930,7 +930,7 @@ def sanitize_media(db, media):
     Create a new MediaObject instance based off the passed Media
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param media: source Media object that will be copied with
@@ -940,7 +940,7 @@ def sanitize_media(db, media):
     :rtype: MediaObject
     """
     new_media = MediaObject()
-    
+
     new_media.set_mime_type(media.get_mime_type())
     new_media.set_path(media.get_path())
     new_media.set_description(media.get_description())
@@ -961,7 +961,7 @@ def sanitize_place(db, place):
     Create a new Place instance based off the passed Place
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param place: source Place object that will be copied with
@@ -971,7 +971,7 @@ def sanitize_place(db, place):
     :rtype: Place
     """
     new_place = Place()
-    
+
     new_place.set_title(place.get_title())
     new_place.set_gramps_id(place.get_gramps_id())
     new_place.set_handle(place.get_handle())
@@ -988,7 +988,7 @@ def sanitize_place(db, place):
     copy_notes(db, place, new_place)
     copy_media_ref_list(db, place, new_place)
     copy_urls(db, place, new_place)
-    
+
     return new_place
 
 def sanitize_event(db, event):
@@ -996,7 +996,7 @@ def sanitize_event(db, event):
     Create a new Event instance based off the passed Event
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param event: source Event object that will be copied with
@@ -1006,7 +1006,7 @@ def sanitize_event(db, event):
     :rtype: Event
     """
     new_event = Event()
-    
+
     new_event.set_type(event.get_type())
     new_event.set_description(event.get_description())
     new_event.set_gramps_id(event.get_gramps_id())
@@ -1018,20 +1018,20 @@ def sanitize_event(db, event):
     copy_notes(db, event, new_event)
     copy_media_ref_list(db, event, new_event)
     copy_attributes(db, event, new_event)
-    
+
     place_handle = event.get_place_handle()
     place = db.get_place_from_handle(place_handle)
     if place and not place.get_privacy():
         new_event.set_place_handle(place_handle)
-    
+
     return new_event
-            
+
 def sanitize_family(db, family):
     """
     Create a new Family instance based off the passed Family
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param family: source Family object that will be copied with
@@ -1041,13 +1041,13 @@ def sanitize_family(db, family):
     :rtype: Family
     """
     new_family = Family()
-    
+
     new_family.set_gramps_id(family.get_gramps_id())
     new_family.set_handle(family.get_handle())
     new_family.set_relationship(family.get_relationship())
     new_family.set_change_time(family.get_change_time())
     new_family.set_tag_list(family.get_tag_list())
-    
+
     # Copy the father handle.
     father_handle = family.get_father_handle()
     if father_handle:
@@ -1061,7 +1061,7 @@ def sanitize_family(db, family):
         mother = db.get_person_from_handle(mother_handle)
         if mother and not mother.get_privacy():
             new_family.set_mother_handle(mother_handle)
-        
+
     # Copy child references.
     for child_ref in family.get_child_ref_list():
         if child_ref and child_ref.get_privacy():
@@ -1078,7 +1078,7 @@ def sanitize_family(db, family):
         copy_notes(db, child_ref, new_ref)
         copy_citation_ref_list(db, child_ref, new_ref)
         new_family.add_child_ref(new_ref)
-        
+
     # Copy event ref list.
     for event_ref in family.get_event_ref_list():
         if event_ref and not event_ref.get_privacy():
@@ -1091,7 +1091,7 @@ def sanitize_family(db, family):
     copy_media_ref_list(db, family, new_family)
     copy_attributes(db, family, new_family)
     copy_lds_ords(db, family, new_family)
-    
+
     return new_family
 
 def sanitize_repository(db, repository):
@@ -1099,7 +1099,7 @@ def sanitize_repository(db, repository):
     Create a new Repository instance based off the passed Repository
     instance. The returned instance has all private records
     removed from it.
-    
+
     :param db: Gramps database to which the Person object belongs
     :type db: DbBase
     :param repository: source Repository object that will be copied with
@@ -1109,7 +1109,7 @@ def sanitize_repository(db, repository):
     :rtype: Repository
     """
     new_repository = Repository()
-    
+
     new_repository.set_type(repository.get_type())
     new_repository.set_name(repository.get_name())
     new_repository.set_gramps_id(repository.get_gramps_id())
@@ -1119,5 +1119,5 @@ def sanitize_repository(db, repository):
     copy_notes(db, repository, new_repository)
     copy_addresses(db, repository, new_repository)
     copy_urls(db, repository, new_repository)
-    
+
     return new_repository

@@ -81,8 +81,8 @@ class PrintSimple():
             self.num[level-1] = self.num[level-1] + 1
 
         return to_return
-    
-    
+
+
 #------------------------------------------------------------------------
 #
 # PrintVlliers
@@ -93,18 +93,18 @@ class PrintVilliers():
     def __init__(self):
         self.pama = 'abcdefghijklmnopqrstuvwxyz'
         self.num = {0:1}
-    
+
     def number(self, level):
         to_return = self.pama[level-1]
         if level > 1:
             to_return += str(self.num[level-1])
         to_return += "."
-        
+
         self.num[level] = 1
         self.num[level-1] = self.num[level-1] + 1
 
         return to_return
-    
+
 
 #------------------------------------------------------------------------
 #
@@ -115,7 +115,7 @@ class PrintVilliers():
 class PrintMeurgey():
     def __init__(self):
         self.childnum = [""]
-    
+
     def number(self, level):
         if level == 1:
             dash = ""
@@ -123,15 +123,15 @@ class PrintMeurgey():
             dash = "-"
             if len(self.childnum) < level:
                 self.childnum.append(1)
-        
+
         to_return = (ReportUtils.roman(level) + dash +
                      str(self.childnum[level-1]) + ".")
 
         if level > 1:
             self.childnum[level-1] += 1
-        
+
         return to_return
-    
+
 
 #------------------------------------------------------------------------
 #
@@ -184,7 +184,7 @@ class Printinfo():
         if string and tmp:
             string += ", "
         string += tmp
-        
+
         if string:
             string = " (" + string + ")"
 
@@ -210,7 +210,7 @@ class Printinfo():
         self.dump_string(person)
         self.doc.end_paragraph()
         return display_num
-    
+
     def print_spouse(self, level, spouse_handle, family_handle):
         #Currently print_spouses is the same for all numbering systems.
         if spouse_handle:
@@ -249,9 +249,9 @@ class Printinfo():
 class RecurseDown():
     """
     A simple object to recurse from a person down through their descendants
-    
+
     The arguments are:
-    
+
     max_generations: The max number of generations
     database:  The database object
     objPrint:  A Printinfo derived class that prints person
@@ -314,7 +314,7 @@ class DescendantReport(Report):
     def __init__(self, database, options, user):
         """
         Create the DescendantReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -323,7 +323,7 @@ class DescendantReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         gen           - Maximum number of generations to include.
         name_format   - Preferred format to display names
         dups          - Whether to include duplicate descendant trees
@@ -341,13 +341,13 @@ class DescendantReport(Report):
         self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-        
+
         sort = Sort(self.database)
-    
+
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
-        #Initialize the Printinfo class    
+        #Initialize the Printinfo class
         self._showdups = menu.get_option_by_name('dups').get_value()
         numbering = menu.get_option_by_name('numbering').get_value()
         if numbering == "Simple":
@@ -366,7 +366,7 @@ class DescendantReport(Report):
 
         self.objPrint = Printinfo(self.doc, self.database, obj, marrs, divs,
                                   self._name_display, self._locale)
-    
+
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
         name = self._name_display.display(self.center_person)
@@ -375,7 +375,7 @@ class DescendantReport(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
-        
+
         recurse = RecurseDown(self.max_generations, self.database,
                               self.objPrint, self._showdups, self._locale)
         recurse.recurse(1, self.center_person, None)
@@ -393,26 +393,26 @@ class DescendantOptions(MenuReportOptions):
 
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         category_name = _("Report Options")
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
-        
+
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
-                ("Simple",      _("Simple numbering")), 
-                ("de Villiers/Pama", _("de Villiers/Pama numbering")), 
+                ("Simple",      _("Simple numbering")),
+                ("de Villiers/Pama", _("de Villiers/Pama numbering")),
                 ("Meurgey de Tupigny", _("Meurgey de Tupigny numbering"))])
         numbering.set_help(_("The numbering system to be used"))
         menu.add_option(category_name, "numbering", numbering)
-        
+
         gen = NumberOption(_("Generations"), 10, 1, 15)
         gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "gen", gen)

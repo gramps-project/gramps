@@ -40,7 +40,7 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from gramps.gui.utils import ProgressMeter
-from gramps.gen.lib import (Event, Family, MediaObject, Note, 
+from gramps.gen.lib import (Event, Family, MediaObject, Note,
         Person, Place, Repository, Source, Citation)
 from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
@@ -168,10 +168,10 @@ class ReorderIds(tool.BatchTool):
                 self.progress.close()
             else:
                 print(_("Done."))
-    
+
         db.enable_signals()
         db.request_rebuild()
-        
+
     def reorder(self, class_type, find_from_id, find_from_handle,
                 find_next_id, table, commit, prefix):
         dups = []
@@ -227,7 +227,7 @@ class ReorderIds(tool.BatchTool):
 
         # go through the duplicates, looking for the first available
         # handle that matches the new scheme.
-    
+
         if self.uistate:
             self.progress.set_pass(_('Finding and assigning unused IDs'),
                                    len(dups))
@@ -237,10 +237,10 @@ class ReorderIds(tool.BatchTool):
             obj = find_from_handle(handle)
             obj.set_gramps_id(find_next_id())
             commit(obj, self.trans)
-    
+
 #------------------------------------------------------------------------
 #
-# 
+#
 #
 #------------------------------------------------------------------------
 class ReorderIdsOptions(tool.ToolOptions):

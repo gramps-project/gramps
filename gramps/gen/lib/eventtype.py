@@ -41,7 +41,7 @@ from .grampstype import GrampsType
 class EventType(GrampsType):
     """
     Event types.
-    
+
     .. attribute UNKNOWN:    Unknown
     .. attribute CUSTOM:    Custom
     .. attribute ADOPT:     Adopted
@@ -264,7 +264,7 @@ class EventType(GrampsType):
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-        
+
     def is_birth(self):
         """
         Returns True if EventType is BIRTH, False
@@ -278,14 +278,14 @@ class EventType(GrampsType):
         otherwise.
         """
         return self.value == self.BAPTISM
-    
+
     def is_death(self):
         """
         Returns True if EventType is DEATH, False
         otherwise.
         """
         return self.value == self.DEATH
-    
+
     def is_burial(self):
         """
         Returns True if EventType is BURIAL, False
@@ -298,16 +298,16 @@ class EventType(GrampsType):
         Returns True if EventType is a birth fallback, False
         otherwise.
         """
-        return self.value in [self.CHRISTEN, 
+        return self.value in [self.CHRISTEN,
                               self.BAPTISM]
-    
+
     def is_death_fallback(self):
         """
         Returns True if EventType is a death fallback, False
         otherwise.
         """
-        return self.value in [self.BURIAL, 
-                              self.CREMATION, 
+        return self.value in [self.BURIAL,
+                              self.CREMATION,
                               self.CAUSE_DEATH]
     def is_marriage(self):
         """
@@ -320,7 +320,7 @@ class EventType(GrampsType):
         Returns True if EventType is a marriage fallback, False
         otherwise.
         """
-        return self.value in [self.ENGAGEMENT, 
+        return self.value in [self.ENGAGEMENT,
                               self.MARR_ALT]
 
     def is_divorce(self):
@@ -334,7 +334,7 @@ class EventType(GrampsType):
         Returns True if EventType is a divorce fallback, False
         otherwise.
         """
-        return self.value in [self.ANNULMENT, 
+        return self.value in [self.ANNULMENT,
                               self.DIV_FILING]
 
     def is_relationship_event(self):

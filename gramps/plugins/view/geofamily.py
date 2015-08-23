@@ -95,8 +95,8 @@ _UI_DEF = '''\
 </menubar>
 <toolbar name="ToolBar">
 <placeholder name="CommonNavigation">
-  <toolitem action="Back"/>  
-  <toolitem action="Forward"/>  
+  <toolitem action="Back"/>
+  <toolitem action="Forward"/>
 </placeholder>
 <placeholder name="CommonEdit">
   <toolitem action="PrintView"/>
@@ -117,7 +117,7 @@ class GeoFamily(GeoGraphyView):
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         GeoGraphyView.__init__(self, _('Family places map'),
-                                      pdata, dbstate, uistate, 
+                                      pdata, dbstate, uistate,
                                       FamilyBookmarks,
                                       nav_group)
         self.dbstate = dbstate
@@ -142,11 +142,11 @@ class GeoFamily(GeoGraphyView):
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
-        This assumes that this icon has already been registered 
+        This assumes that this icon has already been registered
         as a stock icon.
         """
         return 'geo-show-family'
-    
+
     def get_viewtype_stock(self):
         """Type of view in category
         """
@@ -298,7 +298,7 @@ class GeoFamily(GeoGraphyView):
                 'gramps_id' : family.gramps_id,
                 }
         return label
- 
+
     def _createmap_for_one_family(self, family):
         """
         Create all markers for one family : all event's places with a lat/lon.
@@ -357,7 +357,7 @@ class GeoFamily(GeoGraphyView):
 
     def _createmap(self, family_x):
         """
-        Create all markers for each people's event in the database which has 
+        Create all markers for each people's event in the database which has
         a lat/lon.
         """
         self.place_list = []
@@ -450,10 +450,10 @@ class GeoFamily(GeoGraphyView):
                    None, event.button, event.time)
         return 1
 
-    def add_specific_menu(self, menu, event, lat, lon): 
-        """ 
+    def add_specific_menu(self, menu, event, lat, lon):
+        """
         Add specific entry to the navigation menu.
-        """ 
+        """
         return
 
     def get_default_gramplets(self):

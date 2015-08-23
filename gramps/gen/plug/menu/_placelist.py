@@ -37,7 +37,7 @@ from . import Option
 #-------------------------------------------------------------------------
 class PlaceListOption(Option):
     """
-    This class describes a widget that allows multiple places from the 
+    This class describes a widget that allows multiple places from the
     database to be selected.
     """
     def __init__(self, label):

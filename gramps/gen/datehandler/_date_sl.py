@@ -51,9 +51,9 @@ class DateParserSL(DateParser):
     """
     Converts a text string into a Date object
     """
-    
+
     modifier_to_int = {
-        'pred'   : Date.MOD_BEFORE, 
+        'pred'   : Date.MOD_BEFORE,
         'pr.'    : Date.MOD_BEFORE,
         'po'     : Date.MOD_AFTER,
         'okoli'  : Date.MOD_ABOUT,
@@ -61,11 +61,11 @@ class DateParserSL(DateParser):
         'okr.'   : Date.MOD_ABOUT,
         'ok.'    : Date.MOD_ABOUT,
         'cca.'   : Date.MOD_ABOUT,
-        'cca'    : Date.MOD_ABOUT,                      
-        'circa'  : Date.MOD_ABOUT, 
+        'cca'    : Date.MOD_ABOUT,
+        'circa'  : Date.MOD_ABOUT,
         'ca.'    : Date.MOD_ABOUT,
         'približno' : Date.MOD_ABOUT,
-        'pribl.' : Date.MOD_ABOUT, 
+        'pribl.' : Date.MOD_ABOUT,
         }
 
     quality_to_int = {
@@ -91,11 +91,11 @@ class DateParserSL(DateParser):
                                 % self._mon_str, re.IGNORECASE)
         # match Day.Month.Year.
         self._numeric  = re.compile("((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
-       
-        self._span  = re.compile("od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)", 
+
+        self._span  = re.compile("od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)",
                                 re.IGNORECASE)
         self._range = re.compile(
-                            "med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", 
+                            "med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)",
                             re.IGNORECASE)
         self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'\
                                 % self._jmon_str, re.IGNORECASE)
@@ -107,10 +107,10 @@ class DateParserSL(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplaySL(DateDisplay):
     """
-    Slovenian language date display class. 
+    Slovenian language date display class.
     """
     # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
-    # not refactoring _bce_str into base class because it'll be gone under #7064  
+    # not refactoring _bce_str into base class because it'll be gone under #7064
     _bce_str = "%s pr.Kr."
 
     display = DateDisplay.display_formatted
@@ -120,6 +120,6 @@ class DateDisplaySL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(("sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian", 
+register_datehandler(("sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian",
                  "sl_SI.UTF8", "sl_SI.UTF-8", "sl_SI.utf-8", "sl_SI.utf8"),
                                     DateParserSL, DateDisplaySL)

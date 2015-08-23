@@ -46,7 +46,7 @@ class BaseSelector(ManagedWindow):
     """Base class for the selectors, showing a dialog from which to select
         one of the primary objects
     """
-    
+
     NONE   = -1
     TEXT   =  0
     MARKUP =  1
@@ -56,8 +56,8 @@ class BaseSelector(ManagedWindow):
                  show_search_bar = True, default=None):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
-            set of handles to skip in the view, and search_bar to show the 
-            SearchBar at the top or not. 
+            set of handles to skip in the view, and search_bar to show the
+            SearchBar at the top or not.
         """
         self.filter = (2, filter, False)
 
@@ -74,9 +74,9 @@ class BaseSelector(ManagedWindow):
         self.db = dbstate.db
         self.tree = None
         self.model = None
-        
+
         self.glade = Glade()
-                
+
         window = self.glade.toplevel
         self.showall =  self.glade.get_object('showall')
         title_label = self.glade.get_object('title')
@@ -99,7 +99,7 @@ class BaseSelector(ManagedWindow):
         vbox.reorder_child(filter_box, 1)
 
         self.set_window(window,title_label,self.title)
-        
+
         #set up sorting
         self.sort_col = 0
         self.setupcols = True
@@ -110,7 +110,7 @@ class BaseSelector(ManagedWindow):
         self.build_tree()
         self.selection = self.tree.get_selection()
         self.track_ref_for_deletion("selection")
-        
+
         self._local_init()
         self._set_size()
 
@@ -175,8 +175,8 @@ class BaseSelector(ManagedWindow):
             column.set_clickable(True)
             ##column.set_sort_column_id(ix) # model has its own sort implemented
             self.columns.append(column)
-            tree.append_column(column)           
-        
+            tree.append_column(column)
+
     def build_menu_names(self, obj):
         return (self.title, None)
 
@@ -222,24 +222,24 @@ class BaseSelector(ManagedWindow):
 
     def get_model_class(self):
         assert False, "Must be defined in the subclass"
-        
+
     def get_column_titles(self):
         """
         Defines the columns to show in the selector. Must be defined in the
         subclasses.
         :returns: a list of tuples with four entries. The four entries should
-                be 0: column header string, 1: column width, 
-                2: TEXT, MARKUP or IMAGE, 3: column in the model that must be 
+                be 0: column header string, 1: column width,
+                2: TEXT, MARKUP or IMAGE, 3: column in the model that must be
                 used.
         """
         raise NotImplementedError
 
     def get_from_handle_func(self):
         assert False, "Must be defined in the subclass"
-        
+
     def get_from_handle_func2(self):
         return None
-        
+
     def set_show_search_bar(self, value):
         """make the search bar at the top shown
         """
@@ -250,7 +250,7 @@ class BaseSelector(ManagedWindow):
             self.search_bar.show()
         else :
             self.search_bar.hide()
-            
+
     def column_order(self):
         """
         returns a tuple indicating the column order of the model
@@ -272,7 +272,7 @@ class BaseSelector(ManagedWindow):
                         if pair[0]
                 ]
         self.search_bar.setup_filter(cols)
-        
+
     def build_tree(self):
         """
         Builds the selection people see in the Selector
@@ -280,7 +280,7 @@ class BaseSelector(ManagedWindow):
         if self.filter[1]:
             filter_info = self.filter
         else:
-            #search info for the 
+            #search info for the
             if self.search_bar.get_value()[0] in self.exact_search():
                 filter_info = (0, self.search_bar.get_value(), True)
             else:
@@ -297,7 +297,7 @@ class BaseSelector(ManagedWindow):
                                             sort_map=self.column_order(),
                                             skip=self.skip_list,
                                             search=filter_info)
-        
+
         self.tree.set_model(self.model)
 
         #sorting arrow in column header (not on start, only on click)
@@ -310,9 +310,9 @@ class BaseSelector(ManagedWindow):
         # set the search column to be the sorted column
         search_col = self.column_order()[self.sort_col][1]
         self.tree.set_search_column(search_col)
-        
+
         self.setupcols = False
-        
+
     def column_clicked(self, obj, data):
         if self.sort_col != data:
             self.sortorder = Gtk.SortType.ASCENDING
@@ -331,7 +331,7 @@ class BaseSelector(ManagedWindow):
             path = self.model.on_get_path(handle)
             self.selection.select_path(path)
             self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
-            
+
         return True
 
     def show_toggle(self, obj):

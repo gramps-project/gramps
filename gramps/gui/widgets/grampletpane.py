@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -73,7 +73,7 @@ WIKI_HELP_PAGE = URL_MANUAL_PAGE + '_-_Gramplets'
 #
 #-------------------------------------------------------------------------
 PLUGMAN = GuiPluginManager.get_instance()
-NL = "\n" 
+NL = "\n"
 
 def AVAILABLE_GRAMPLETS():
     return [gplug.id for gplug in PLUGMAN.get_reg_gramplets()]
@@ -86,14 +86,14 @@ def GET_AVAILABLE_GRAMPLETS(name):
                 "tname":   gplug.name,
                 "version": gplug.version,
                 "height":  gplug.height,
-                "expand":  gplug.expand, 
+                "expand":  gplug.expand,
                 "title":   gplug.gramplet_title, # translated
                 "content": gplug.gramplet,
                 "detached_width": gplug.detached_width,
                 "detached_height": gplug.detached_height,
                 "state":   "maximized",
                 "gramps":  "0.0.0",
-                "column":  -1, 
+                "column":  -1,
                 "row":     -1,
                 "page":     0,
                 "data":    [],
@@ -203,7 +203,7 @@ class LinkTag(Gtk.TextTag):
                                 linkcolor[1].blue))
     else:
         linkcolor = 'blue'
-    
+
     def __init__(self, buffer):
         LinkTag.lid += 1
         GObject.GObject.__init__(self, name=str(LinkTag.lid))
@@ -230,7 +230,7 @@ class GrampletWindow(ManagedWindow):
         # Keep track of what state it was in:
         self.docked_state = gramplet.gstate
         # Now detach it
-        self.gramplet.set_state("detached") 
+        self.gramplet.set_state("detached")
         ManagedWindow.__init__(self, gramplet.uistate, [],
                                              self.title)
         self.set_window(Gtk.Dialog("", gramplet.uistate.window,
@@ -270,9 +270,9 @@ class GrampletWindow(ManagedWindow):
                 else:
                     display_help(self.gramplet.help_url)
             else:
-                display_help(WIKI_HELP_PAGE, 
+                display_help(WIKI_HELP_PAGE,
                                    self.gramplet.tname.replace(" ", "_"))
-        
+
     def build_menu_names(self, obj):
         """
         Part of the GRAMPS window interface.
@@ -384,7 +384,7 @@ class GuiGramplet(object):
     def set_tooltip(self, tip):
         self.tooltips_text = tip
         self.scrolledwindow.set_tooltip_text(tip)
-        
+
     def undo(self):
         self.buffer.undo()
         self.text_length = len(self.get_text())
@@ -395,12 +395,12 @@ class GuiGramplet(object):
 
     def on_key_press_event(self, widget, event):
         """Signal handler.
-        
+
         Handle formatting shortcuts.
-        
+
         """
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and 
+            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
             (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
@@ -479,7 +479,7 @@ class GuiGramplet(object):
                 retval += text[i]
                 r += 1
                 i += 1
-        offset = self.text_length 
+        offset = self.text_length
         self.append_text(retval)
         for items in markup_pos["TT"]:
             if len(items) == 3:
@@ -548,7 +548,7 @@ class GuiGramplet(object):
 
     def make_gui_options(self):
         if not self.pui: return
-        # BEGIN WORKAROUND: 
+        # BEGIN WORKAROUND:
         # This is necessary because gtk doesn't redisplay these widgets
         # correctly so we replace them with new ones
         self.pui.save_options()
@@ -593,8 +593,8 @@ class GuiGramplet(object):
         buffer.apply_tag(link_data[0], start, end)
 
     def on_motion(self, view, event):
-        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
-                                                       int(event.x), 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
+                                                       int(event.x),
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         cursor = self.standard_cursor
@@ -615,8 +615,8 @@ class GuiGramplet(object):
 
     def on_button_press(self, view, event):
         # pylint: disable-msg=W0212
-        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, 
-                                                       int(event.x), 
+        buffer_location = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT,
+                                                       int(event.x),
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         for (tag, link_type, handle, tooltip) in self._tags:
@@ -627,8 +627,8 @@ class GuiGramplet(object):
                         if event.button == 1: # left mouse
                             if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                                 try:
-                                    EditPerson(self.dbstate, 
-                                               self.uistate, 
+                                    EditPerson(self.dbstate,
+                                               self.uistate,
                                                [], person)
                                     return True # handled event
                                 except WindowActiveError:
@@ -639,8 +639,8 @@ class GuiGramplet(object):
                         elif is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
-                                EditPerson(self.dbstate, 
-                                           self.uistate, 
+                                EditPerson(self.dbstate,
+                                           self.uistate,
                                            [], person)
                                 return True # handled event
                             except WindowActiveError:
@@ -648,25 +648,25 @@ class GuiGramplet(object):
                 elif link_type == 'Surname':
                     if event.button == 1: # left mouse
                         if event.type == Gdk.EventType._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.dbstate, 
-                                                     self.uistate, 
-                                                     'samesurnames', 
+                            run_quick_report_by_name(self.dbstate,
+                                                     self.uistate,
+                                                     'samesurnames',
                                                      handle)
                     return True
                 elif link_type == 'Given':
                     if event.button == 1: # left mouse
                         if event.type == Gdk.EventType._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.dbstate, 
-                                                     self.uistate, 
-                                                     'samegivens_misc', 
+                            run_quick_report_by_name(self.dbstate,
+                                                     self.uistate,
+                                                     'samegivens_misc',
                                                      handle)
                     return True
                 elif link_type == 'Filter':
                     if event.button == 1: # left mouse
                         if event.type == Gdk.EventType._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.dbstate, 
-                                                     self.uistate, 
-                                                     'filterbyname', 
+                            run_quick_report_by_name(self.dbstate,
+                                                     self.uistate,
+                                                     'filterbyname',
                                                      handle)
                     return True
                 elif link_type == 'URL':
@@ -688,8 +688,8 @@ class GuiGramplet(object):
                         if event.button == 1: # left mouse
                             if event.type == Gdk.EventType._2BUTTON_PRESS: # double
                                 try:
-                                    EditFamily(self.dbstate, 
-                                               self.uistate, 
+                                    EditFamily(self.dbstate,
+                                               self.uistate,
                                                [], family)
                                     return True # handled event
                                 except WindowActiveError:
@@ -700,8 +700,8 @@ class GuiGramplet(object):
                         elif is_right_click(event):
                             #FIXME: add a popup menu with options
                             try:
-                                EditFamily(self.dbstate, 
-                                           self.uistate, 
+                                EditFamily(self.dbstate,
+                                           self.uistate,
                                            [], family)
                                 return True # handled event
                             except WindowActiveError:
@@ -709,18 +709,18 @@ class GuiGramplet(object):
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse
                         if event.type == Gdk.EventType._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.dbstate, 
-                                                     self.uistate, 
-                                                     'filterbyname', 
+                            run_quick_report_by_name(self.dbstate,
+                                                     self.uistate,
+                                                     'filterbyname',
                                                      'list of people',
                                                      handles=handle)
                     return True
                 elif link_type == 'Attribute':
                     if event.button == 1: # left mouse
                         if event.type == Gdk.EventType._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.dbstate, 
-                                                     self.uistate, 
-                                                     'attribute_match', 
+                            run_quick_report_by_name(self.dbstate,
+                                                     self.uistate,
+                                                     'attribute_match',
                                                      handle)
                     return True
                 else: # overzealous l10n while setting the link?
@@ -838,7 +838,7 @@ class GridGramplet(GuiGramplet):
 
     def close(self, *obj):
         """
-        Remove (delete) the gramplet from view. 
+        Remove (delete) the gramplet from view.
         """
         if self.gstate == "detached":
             return
@@ -851,7 +851,7 @@ class GridGramplet(GuiGramplet):
         Detach the gramplet from the GrampletView, and open in own window.
         """
         # hide buttons:
-        #self.set_state("detached") 
+        #self.set_state("detached")
         self.pane.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
@@ -894,7 +894,7 @@ class GridGramplet(GuiGramplet):
                 self.set_state("minimized")
             else:
                 self.set_state("maximized")
-                
+
     def set_properties(self, obj):
         """
         Set the properties of a gramplet.
@@ -957,17 +957,17 @@ class GridGramplet(GuiGramplet):
         if new_title in self.pane.gramplet_map: return False
         if set_override:
             self.title_override = True
-        del self.pane.gramplet_map[self.title] 
+        del self.pane.gramplet_map[self.title]
         self.title = new_title
         if self.detached_window:
-            self.detached_window.window.set_title("%s %s - Gramps" % 
+            self.detached_window.window.set_title("%s %s - Gramps" %
                                                   (new_title, _("Gramplet")))
         self.pane.gramplet_map[self.title] = self
         self.titlelabel.get_children()[0].set_text("<b><i>%s</i></b>" %
                                                                      self.title)
         self.titlelabel.get_children()[0].set_use_markup(True)
         return True
-        
+
 class GrampletPane(Gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         self._config = Configuration(self)
@@ -975,12 +975,12 @@ class GrampletPane(Gtk.ScrolledWindow):
         GObject.GObject.__init__(self)
         self.configfile = os.path.join(VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
-        self.column_count = kwargs.get("column_count", 2) 
+        self.column_count = kwargs.get("column_count", 2)
         # width of window, if sidebar; may be overridden in config:
-        self.pane_position = kwargs.get("pane_position", -1) 
-        self.pane_orientation = kwargs.get("pane_orientation", "horizontal") 
-        self.splitview = kwargs.get("splitview", None) 
-        self.default_gramplets = kwargs.get("default_gramplets", 
+        self.pane_position = kwargs.get("pane_position", -1)
+        self.pane_orientation = kwargs.get("pane_orientation", "horizontal")
+        self.splitview = kwargs.get("splitview", None)
+        self.default_gramplets = kwargs.get("default_gramplets",
                 ["Top Surnames", "Welcome"])
         self.dbstate = dbstate
         self.uistate = uistate
@@ -1060,7 +1060,7 @@ class GrampletPane(Gtk.ScrolledWindow):
 
     def show_all(self):
         """
-        This seems to be necessary to hide the hidden 
+        This seems to be necessary to hide the hidden
         parts of a collapsed gramplet on main view.
         """
         super(GrampletPane, self).show_all()
@@ -1087,7 +1087,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Detach all of the mainframe gramplets from the columns.
         """
-        gramplets = (g for g in self.gramplet_map.values() 
+        gramplets = (g for g in self.gramplet_map.values()
                         if g is not None)
         for gramplet in gramplets:
             if (gramplet.gstate == "detached" or gramplet.gstate == "closed"):
@@ -1100,7 +1100,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Place the gramplet mainframes in the columns.
         """
-        gramplets = [g for g in self.gramplet_map.values() 
+        gramplets = [g for g in self.gramplet_map.values()
                         if g is not None]
         # put the gramplets where they go:
         # sort by row
@@ -1132,9 +1132,9 @@ class GrampletPane(Gtk.ScrolledWindow):
             #    gramplet.set_state("minimized") # minimize it
             # set minimized is called in page subclass hack (above)
             if gramplet.gstate == "detached":
-                gramplet.detach() 
+                gramplet.detach()
             elif gramplet.gstate == "closed":
-                gramplet.close() 
+                gramplet.close()
 
     def load_gramplets(self):
         retval = []
@@ -1156,7 +1156,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     if "pane_orientation" in cp.options(sec):
                         self.pane_orientation = cp.get(sec, "pane_orientation")
                 else:
-                    data = {} 
+                    data = {}
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
                             temp = data.get("data", {})
@@ -1211,7 +1211,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                     fp.write("[%s]\n" % gramplet.gname)
                     for key in base_opts:
                         if key == "content": continue
-                        elif key == "title": 
+                        elif key == "title":
                             if gramplet.title_override:
                                 fp.write("title=%s\n" % base_opts[key])
                         elif key == "tname": continue
@@ -1285,7 +1285,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         # first, find column:
         col = 0
         for i in range(len(self.columns)):
-            if x < (sx/len(self.columns) * (i + 1)): 
+            if x < (sx/len(self.columns) * (i + 1)):
                 col = i
                 break
         if button:
@@ -1346,7 +1346,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                 #gramplet.gstate = "maximized"
                 self.closed_gramplets.remove(gramplet)
                 if self._popup_xy is not None:
-                    self.drop_widget(self, gramplet, 
+                    self.drop_widget(self, gramplet,
                                      self._popup_xy[0], self._popup_xy[1], 0)
                 else:
                     self.drop_widget(self, gramplet, 0, 0, 0)
@@ -1376,7 +1376,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy is not None:
-                self.drop_widget(self, gramplet, 
+                self.drop_widget(self, gramplet,
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
                 self.drop_widget(self, gramplet, 0, 0, 0)
@@ -1399,7 +1399,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             cnt += 1
         all_opts["title"] = unique
         if all_opts["title"] not in self.gramplet_map:
-            g = make_requested_gramplet(GridGramplet, self, all_opts, 
+            g = make_requested_gramplet(GridGramplet, self, all_opts,
                                         self.dbstate, self.uistate)
         if g:
             self.gramplet_map[all_opts["title"]] = g
@@ -1415,7 +1415,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy is not None:
-                self.drop_widget(self, gramplet, 
+                self.drop_widget(self, gramplet,
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
                 self.drop_widget(self, gramplet, 0, 0, 0)
@@ -1477,7 +1477,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                         self.gramplet_map[title].pui.update()
 
     def on_delete(self):
-        gramplets = (g for g in self.gramplet_map.values() 
+        gramplets = (g for g in self.gramplet_map.values()
                         if g is not None)
         for gramplet in gramplets:
             # this is the only place where the gui runs user code directly
@@ -1495,18 +1495,18 @@ class GrampletPane(Gtk.ScrolledWindow):
 
     def _get_configure_page_funcs(self):
         """
-        Return a list of functions that create gtk elements to use in the 
+        Return a list of functions that create gtk elements to use in the
         notebook pages of the Configure dialog
-        
+
         :return: list of functions
         """
         def generate_pages():
             return [self.config_panel] + \
-                [self.build_panel(gramplet) for gramplet in 
-                 sorted(list(self.gramplet_map.values()), key=lambda g: g.title) 
+                [self.build_panel(gramplet) for gramplet in
+                 sorted(list(self.gramplet_map.values()), key=lambda g: g.title)
                  if gramplet.gstate != "closed"]
         return generate_pages
- 
+
     def get_columns(self):
         return self.column_count
 
@@ -1524,26 +1524,26 @@ class GrampletPane(Gtk.ScrolledWindow):
                               self.get_columns, # pane
                               self.set_columns) # pane
 
-        configdialog.add_pos_int_entry(grid, 
-                 _('Number of Columns'), 
-                 0, 
+        configdialog.add_pos_int_entry(grid,
+                 _('Number of Columns'),
+                 0,
                 'Gramplet View Options.column_count',
                 self._config.set,
                 config=self._config)
         return _('Gramplet Layout'), grid
- 
+
     def build_panel(self, gramplet):
-        self._config.register("%s.title" % gramplet.title, 
+        self._config.register("%s.title" % gramplet.title,
                               str, gramplet.get_title, gramplet.set_title)
-        self._config.register("%s.height" % gramplet.title, 
+        self._config.register("%s.height" % gramplet.title,
                               int, gramplet.get_height, gramplet.set_height)
-        self._config.register("%s.detached_height" % gramplet.title, 
+        self._config.register("%s.detached_height" % gramplet.title,
                               int, gramplet.get_detached_height,
                               gramplet.set_detached_height)
-        self._config.register("%s.detached_width" % gramplet.title, 
+        self._config.register("%s.detached_width" % gramplet.title,
                               int, gramplet.get_detached_width,
                               gramplet.set_detached_width)
-        self._config.register("%s.expand" % gramplet.title, 
+        self._config.register("%s.expand" % gramplet.title,
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
             configdialog.window.set_size_request(600, -1)
@@ -1552,36 +1552,36 @@ class GrampletPane(Gtk.ScrolledWindow):
             grid.set_column_spacing(6)
             grid.set_row_spacing(6)
             # Title:
-            configdialog.add_entry(grid, 
-                _('Title'), 
-                0, 
+            configdialog.add_entry(grid,
+                _('Title'),
+                0,
                 "%s.title" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Expand to max height
-            configdialog.add_checkbox(grid, 
-                _("Use maximum height available"), 
-                1, 
-                "%s.expand" % gramplet.title, 
+            configdialog.add_checkbox(grid,
+                _("Use maximum height available"),
+                1,
+                "%s.expand" % gramplet.title,
                 config=self._config)
             # Height
-            configdialog.add_pos_int_entry(grid, 
-                _('Height if not maximized'), 
-                2, 
+            configdialog.add_pos_int_entry(grid,
+                _('Height if not maximized'),
+                2,
                 "%s.height" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Detached height
-            configdialog.add_pos_int_entry(grid, 
-                _('Detached width'), 
-                3, 
+            configdialog.add_pos_int_entry(grid,
+                _('Detached width'),
+                3,
                 "%s.detached_width" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Detached width
-            configdialog.add_pos_int_entry(grid, 
-                _('Detached height'), 
-                4, 
+            configdialog.add_pos_int_entry(grid,
+                _('Detached height'),
+                4,
                 "%s.detached_height" % gramplet.title,
                 self._config.set,
                 config=self._config)

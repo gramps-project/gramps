@@ -201,7 +201,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
         if degree == 0 and removed < 0:
             # for descendants the "in-law" logic is reversed
-            (in_law_a, in_law_b) = (in_law_b, in_law_a) 
+            (in_law_a, in_law_b) = (in_law_b, in_law_a)
 
         rel_str = ''
         pre = ''
@@ -267,7 +267,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                              reltocommon_a, reltocommon_b,
                                              only_birth, in_law_a, in_law_b)
 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         if sib_type in [self.NORM_SIB, self.UNKNOWN_SIB]:
             # the NORM_SIB translation is generic and suitable for UNKNOWN_SIB
@@ -291,11 +291,11 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src 
-    # python src/plugins/rel/rel_de.py 
+    #    export PYTHONPATH=/path/to/gramps/src
+    # python src/plugins/rel/rel_de.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

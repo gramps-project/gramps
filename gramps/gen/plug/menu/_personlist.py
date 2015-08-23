@@ -37,7 +37,7 @@ from . import Option
 #-------------------------------------------------------------------------
 class PersonListOption(Option):
     """
-    This class describes a widget that allows multiple people from the 
+    This class describes a widget that allows multiple people from the
     database to be selected.
     """
     def __init__(self, label):

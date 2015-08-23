@@ -50,7 +50,7 @@ class PersonResidence(Gramplet):
                   (_('Place'), 2, 200)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
-        
+
     def db_changed(self):
         self.dbstate.db.connect('person-update', self.update)
 

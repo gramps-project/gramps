@@ -61,13 +61,13 @@ class NumberOfAncestorsReport(Report):
     def __init__(self, database, options, user):
         """
         Create the NumberOfAncestorsReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
-        
+
         Menu options:
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
@@ -97,7 +97,7 @@ class NumberOfAncestorsReport(Report):
         total_theoretical = 0
         thisgen[self.__person.get_handle()]=1
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
-        
+
         self.doc.start_paragraph("NOA-Title")
         name = self._name_display.display(self.__person)
         # feature request 2356: avoid genitive form
@@ -115,9 +115,9 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent = '(%s%%)' % self._locale.format('%3.2f', 
+                percent = '(%s%%)' % self._locale.format('%3.2f',
                     ((sum(thisgen.values()) / theoretical ) * 100))
-                
+
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
                 # translators: leave all/any {...} untranslated
@@ -127,11 +127,11 @@ class NumberOfAncestorsReport(Report):
                     thisgensize).format(number=gen,
                                         count=thisgensize,
                                         percent=percent)
-                            
+
                 self.doc.start_paragraph('NOA-Normal')
                 self.doc.write_text(text)
                 self.doc.end_paragraph()
-                
+
             temp = thisgen
             thisgen = {}
             for person_handle, person_data in temp.items():
@@ -157,13 +157,13 @@ class NumberOfAncestorsReport(Report):
                             )
 
         if( total_theoretical != 1 ):
-            percent = '(%3.2f%%)' % (( sum(all_people.values()) 
+            percent = '(%3.2f%%)' % (( sum(all_people.values())
                                         / (total_theoretical-1) ) * 100)
         else:
             percent = 0
 
         # TC # English return something like:
-        # Total ancestors in generations 2 to 3 is 4. (66.67%) 
+        # Total ancestors in generations 2 to 3 is 4. (66.67%)
         text = self._("Total ancestors in generations %(second_generation)d to "
                  "%(last_generation)d is %(count)d. %(percent)s") % {
                  'second_generation': 2,
@@ -171,7 +171,7 @@ class NumberOfAncestorsReport(Report):
                  'count'            : len(all_people),
                  'percent'          : percent
                  }
-                
+
         self.doc.start_paragraph('NOA-Normal')
         self.doc.write_text(text)
         self.doc.end_paragraph()
@@ -187,16 +187,16 @@ class NumberOfAncestorsOptions(MenuReportOptions):
     """
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the Number of Ancestors report.
         """
         category_name = _("Report Options")
-        
+
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)    
+        menu.add_option(category_name, "pid", pid)
 
         stdoptions.add_name_format_option(menu, category_name)
 
@@ -218,7 +218,7 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("NOA-Title", para)
-        
+
         font = FontStyle()
         font.set_size(12)
         para = ParagraphStyle()

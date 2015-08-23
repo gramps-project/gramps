@@ -21,4 +21,4 @@
 Package init for the cli package.
 """
 
-# DO NOT IMPORT METHODS/CLASSES FROM src/gui HERE ! Only __all__ 
+# DO NOT IMPORT METHODS/CLASSES FROM src/gui HERE ! Only __all__

@@ -42,7 +42,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.plug._options import (Options, OptionHandler, OptionList,
                          OptionListCollection)
-from gramps.gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, 
+from gramps.gen.plug import (TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX,
                         TOOL_REVCTL, TOOL_UTILS)
 
 #-------------------------------------------------------------------------
@@ -79,10 +79,10 @@ class Tool(object):
                 # FIXME: pass in person_id
                 self.options = options_class(name, None, dbstate)
             else:   # must be some kind of class or we get a TypeError
-                self.options = options_class(name)            
+                self.options = options_class(name)
         except TypeError:
             self.options = options_class
-        
+
         self.options.load_previous_values()
         if hasattr(options_class, 'options_dict'):
             old_opts = options_class.saved_options_dict
@@ -128,11 +128,11 @@ class ActivePersonTool(Tool):
     """
 
     def __init__(self, dbstate, uistate, options_class, name):
-        
+
         if not uistate.get_active('Person'):
             # TODO: should we replace this with a callback?
             from ..dialog import ErrorDialog
-            
+
             ErrorDialog(_('Active person has not been set'),
                         _('You must select an active person for this '
                           'tool to work properly.'))
@@ -247,8 +247,8 @@ def gui_tool(dbstate, user, tool_class, options_class, translated_name,
     """
 
     try:
-        tool_class(dbstate = dbstate, user = user, 
-                options_class = options_class, name = name, 
+        tool_class(dbstate = dbstate, user = user,
+                options_class = options_class, name = name,
                 callback = callback)
     except WindowActiveError:
         pass
@@ -278,7 +278,7 @@ def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dic
 
 #-------------------------------------------------------------------------
 #
-# Class handling options for plugins 
+# Class handling options for plugins
 #
 #-------------------------------------------------------------------------
 class ToolOptionHandler(OptionHandler):
@@ -302,7 +302,7 @@ class ToolOptions(Options):
 
     """
     Defines options and provides handling interface.
-    
+
     This is a base Options class for the tools. All tools, options
     classes should derive from it.
     """
@@ -317,6 +317,6 @@ class ToolOptions(Options):
         self.options_dict = {}
         self.options_help = {}
         self.handler = None
-        
+
     def load_previous_values(self):
         self.handler = ToolOptionHandler(self.name, self.options_dict, self.person_id)

@@ -21,7 +21,7 @@
 import time
 from .editors import EditFilter
 from gramps.gen.const import CUSTOM_FILTERS
-from gramps.gen.filters import (rules, FilterList, GenericFilterFactory, 
+from gramps.gen.filters import (rules, FilterList, GenericFilterFactory,
                                 reload_custom_filters)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -43,7 +43,7 @@ def make_filter(dbstate, uistate, objclass, gramps_ids, title=None):
         title = title()
     filter.set_name(title)
     struct_time = time.localtime()
-    filter.set_comment( _("Created on %(year)4d/%(month)02d/%(day)02d") % { 
+    filter.set_comment( _("Created on %(year)4d/%(month)02d/%(day)02d") % {
         'year': struct_time.tm_year,
         'month': struct_time.tm_mon,
         'day': struct_time.tm_mday})

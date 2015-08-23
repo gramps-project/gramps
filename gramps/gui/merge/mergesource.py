@@ -114,7 +114,7 @@ class MergeSource(ManagedWindow):
             for widget_name in ('gramps1', 'gramps2', 'gramps_btn1',
                     'gramps_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
-        
+
         # Main window widgets that determine which handle survives
         rbutton1 = self.get_widget("handle_btn1")
         rbutton_label1 = self.get_widget("label_handle_btn1")
@@ -159,7 +159,7 @@ class MergeSource(ManagedWindow):
         else:
             phoenix = self.src2
             titanic = self.src1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Source')
 

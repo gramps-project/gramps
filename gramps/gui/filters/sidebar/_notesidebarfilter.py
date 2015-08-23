@@ -126,7 +126,7 @@ class NoteSidebarFilter(SidebarFilter):
 
             rule = HasNote([text, ntype], use_regex=regex)
             generic_filter.add_rule(rule)
-                
+
             # check the Tag
             if tag:
                 model = self.tag.get_model()
@@ -143,7 +143,7 @@ class NoteSidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
         return generic_filter
-        
+
     def on_filters_changed(self, name_space):
         if name_space == 'Note':
             all_filter = GenericNoteFilter()

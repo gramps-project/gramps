@@ -35,14 +35,14 @@ from gi.repository import Pango, PangoCairo
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
-                        FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
+                        FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER,
                         PARA_ALIGN_LEFT)
 from ...managedwindow import ManagedWindow
 
 RESOLUTION = PangoCairo.font_map_get_default().get_resolution()
 
 def pixels(cm):
-    return int (RESOLUTION/2.54 * cm) 
+    return int (RESOLUTION/2.54 * cm)
 
 #------------------------------------------------------------------------
 #
@@ -55,7 +55,7 @@ _WIDTH_IN_CHARS = 72
 class DisplayBuf(ManagedWindow):
     def __init__(self, title, document):
         self.title = title
-        ManagedWindow.__init__(self, document.uistate, [], 
+        ManagedWindow.__init__(self, document.uistate, [],
                                              document)
         self.set_window(Gtk.Dialog("",document.uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -70,7 +70,7 @@ class DisplayBuf(ManagedWindow):
         scrolled_window.add(document.text_view)
         self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
-        
+
     def build_menu_names(self, obj):
         return ('View', _('Quick View'))
 
@@ -159,7 +159,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Close the file. Call the app if required. 
+    # Close the file. Call the app if required.
     #
     #--------------------------------------------------------------------
     def close(self):
@@ -194,7 +194,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Starts a paragraph. 
+    # Starts a paragraph.
     #
     #--------------------------------------------------------------------
     def start_paragraph(self, style_name, leader=None):
@@ -206,7 +206,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # End a paragraph. First format it to the desired widths. 
+    # End a paragraph. First format it to the desired widths.
     # If not in table cell, write it immediately. If in the cell,
     # add it to the list for this cell after formatting.
     #
@@ -219,7 +219,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Start a table. Grab the table style, and store it. 
+    # Start a table. Grab the table style, and store it.
     #
     #--------------------------------------------------------------------
     def start_table(self, name,style_name):
@@ -295,7 +295,7 @@ class TextBufDoc(BaseDoc, TextDoc):
         while span:
             self.cell_widths[self.cellnum-span] = 0
             span -= 1
-            
+
     #--------------------------------------------------------------------
     #
     # End a cell. Find out the number of lines in this cell, correct
@@ -337,7 +337,7 @@ class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Writes text. 
+    # Writes text.
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None):
         self.text = self.text + text

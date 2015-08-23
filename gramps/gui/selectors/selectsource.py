@@ -51,7 +51,7 @@ class SelectSource(BaseSelector):
 
     def get_window_title(self):
         return _("Select Source")
-        
+
     def get_model_class(self):
         return SourceModel
 

@@ -36,7 +36,7 @@ from gramps.gui.plug.quick import run_quick_report_by_name, get_quick_report_lis
 from gramps.gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, CATEGORY_QR_MEDIA,
-                         CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION, 
+                         CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION,
                          CATEGORY_QR_SOURCE_OR_CITATION)
 
 #------------------------------------------------------------------------
@@ -82,8 +82,8 @@ class QuickViewGramplet(Gramplet):
         except:
             active_handle = None
         if active_handle:
-            docman = run_quick_report_by_name(self.gui.dbstate, 
-                                              self.gui.uistate, 
+            docman = run_quick_report_by_name(self.gui.dbstate,
+                                              self.gui.uistate,
                                               quick_view,
                                               active_handle,
                                               container=self.gui.textview)
@@ -103,22 +103,22 @@ class QuickViewGramplet(Gramplet):
         from gramps.gen.plug.menu import EnumeratedListOption
         # Add types:
         type_list = EnumeratedListOption(_("View Type"), self.gui.data[0])
-        for item in [("Person", _("Person")), 
-                     ("Event", _("Event")), 
-                     ("Family", _("Family")), 
-                     ("Media", _("Media")), 
-                     ("Note", _("Note")), 
-                     ("Place", _("Place")), 
+        for item in [("Person", _("Person")),
+                     ("Event", _("Event")),
+                     ("Family", _("Family")),
+                     ("Media", _("Media")),
+                     ("Note", _("Note")),
+                     ("Place", _("Place")),
                      ("Repository", _("Repository")),
-                     ("Source", _("Source")), 
-                     ("Citation", _("Citation")), 
+                     ("Source", _("Source")),
+                     ("Citation", _("Citation")),
                      ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
         if self.gui.data[1] is None:
             self.gui.data[1] = qv_list[0].id
-        list_option = EnumeratedListOption(_("Quick Views"), 
+        list_option = EnumeratedListOption(_("Quick Views"),
                                            self.gui.data[1])
         for pdata in qv_list:
             list_option.add_item(pdata.id, pdata.name)
@@ -129,13 +129,13 @@ class QuickViewGramplet(Gramplet):
         self.rebuild_option_list() # call for initial setting
 
     def rebuild_option_list(self):
-        code_map = {"Person": CATEGORY_QR_PERSON, 
+        code_map = {"Person": CATEGORY_QR_PERSON,
                     "Family": CATEGORY_QR_FAMILY,
-                    "Event": CATEGORY_QR_EVENT, 
-                    "Source": CATEGORY_QR_SOURCE, 
-                    "Citation": CATEGORY_QR_CITATION, 
+                    "Event": CATEGORY_QR_EVENT,
+                    "Source": CATEGORY_QR_SOURCE,
+                    "Citation": CATEGORY_QR_CITATION,
                     "Source or Citation": CATEGORY_QR_SOURCE_OR_CITATION,
-                    "Place": CATEGORY_QR_PLACE, 
+                    "Place": CATEGORY_QR_PLACE,
                     "Media": CATEGORY_QR_MEDIA,
                     "Note": CATEGORY_QR_NOTE,
                     "Repository": CATEGORY_QR_REPOSITORY}

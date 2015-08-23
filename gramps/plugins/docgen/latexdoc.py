@@ -59,7 +59,7 @@ except:
                    "in LaTeX documents will not be available. "
                    "Use your package manager to install python-imaging "
                    "or python-pillow or python3-pillow"))
-        
+
 _CLICKABLE = '\\url{\\1}'
 
 #------------------------------------------------------------------------
@@ -1230,7 +1230,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.emit(''.join(('%\n *** Error: cannot convert ', infile,
                                     '\n ***                    to ', outfile,
                                     'PIL not installed %\n')))
-            
+
         if self.in_table:
             self.pict_in_table = True
 

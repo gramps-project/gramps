@@ -137,7 +137,7 @@ class GraphicsStyle(object):
             return line_style_names[val]
         else:
             return line_style_names[0]
-    
+
     def set_paragraph_style(self, val):
         self.para_name = val
 

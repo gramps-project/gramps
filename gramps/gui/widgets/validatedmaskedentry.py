@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -69,14 +69,14 @@ class FadeOut(GObject.GObject):
     Call my methods :meth:`start` and :meth:`stop` to control the fading.
     """
     __gsignals__ = {
-        'done': (GObject.SignalFlags.RUN_FIRST, 
-                 None, 
-                 ()), 
-        'color-changed': (GObject.SignalFlags.RUN_FIRST, 
-                          None, 
-                          (Gdk.Color, )), 
+        'done': (GObject.SignalFlags.RUN_FIRST,
+                 None,
+                 ()),
+        'color-changed': (GObject.SignalFlags.RUN_FIRST,
+                          None,
+                          (Gdk.Color, )),
     }
-    
+
     # How long time it'll take before we start (in ms)
     COMPLAIN_DELAY = 500
 
@@ -107,8 +107,8 @@ class FadeOut(GObject.GObject):
             rs += rinc
             gs += ginc
             bs += binc
-            col = Gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8, 
-                                                         int(gs) >> 8, 
+            col = Gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8,
+                                                         int(gs) >> 8,
                                                          int(bs) >> 8))
             self.emit('color-changed', col)
             yield True
@@ -125,7 +125,7 @@ class FadeOut(GObject.GObject):
             return
 
         ##_LOG.debug('_start_merging: Starting')
-        generator = self._merge_colors(self._start_color, 
+        generator = self._merge_colors(self._start_color,
                                   Gdk.color_parse(self.ERROR_COLOR))
         self._background_timeout_id = (
             GLib.timeout_add(FadeOut.MERGE_COLORS_DELAY, generator.__next__))
@@ -134,7 +134,7 @@ class FadeOut(GObject.GObject):
     def start(self, color):
         """
         Schedules a start of the countdown.
-        
+
         :param color: initial background color
         :returns: True if we could start, False if was already in progress
         """
@@ -170,17 +170,17 @@ class FadeOut(GObject.GObject):
 
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
 
-(INPUT_ASCII_LETTER, 
- INPUT_ALPHA, 
- INPUT_ALPHANUMERIC, 
+(INPUT_ASCII_LETTER,
+ INPUT_ALPHA,
+ INPUT_ALPHANUMERIC,
  INPUT_DIGIT) = list(range(4))
 
 INPUT_FORMATS = {
-    '0': INPUT_DIGIT, 
-    'L': INPUT_ASCII_LETTER, 
-    'A': INPUT_ALPHANUMERIC, 
-    'a': INPUT_ALPHANUMERIC, 
-    '&': INPUT_ALPHA, 
+    '0': INPUT_DIGIT,
+    'L': INPUT_ASCII_LETTER,
+    'A': INPUT_ALPHANUMERIC,
+    'a': INPUT_ALPHANUMERIC,
+    '&': INPUT_ALPHA,
     }
 
 # Todo list: Other useful Masks
@@ -189,13 +189,13 @@ INPUT_FORMATS = {
 #  C - Alpha, optional
 
 INPUT_CHAR_MAP = {
-    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
-    INPUT_ALPHA:            str.isalpha, 
-    INPUT_ALPHANUMERIC:     str.isalnum, 
-    INPUT_DIGIT:            str.isdigit, 
+    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters,
+    INPUT_ALPHA:            str.isalpha,
+    INPUT_ALPHANUMERIC:     str.isalnum,
+    INPUT_DIGIT:            str.isdigit,
     }
 
-(COL_TEXT, 
+(COL_TEXT,
  COL_OBJECT) = list(range(2))
 
 class MaskedEntry(UndoableEntry):
@@ -207,7 +207,7 @@ class MaskedEntry(UndoableEntry):
       - Mask, force the input to meet certain requirements
       - IconEntry, allows you to have an icon inside the entry
       - convenience functions for completion
-    
+
     .. note:: Gramps does not use the mask feature at the moment, so that code
               path is not tested
     """
@@ -228,7 +228,7 @@ class MaskedEntry(UndoableEntry):
         self.connect('focus-out-event', self._on_focus_out_event)
         self.connect('move-cursor', self._on_move_cursor)
         self.connect('button-press-event', self._on_button_press_event)
-        self.connect('notify::cursor-position', 
+        self.connect('notify::cursor-position',
                      self._on_notify_cursor_position)
 
         self._completion = None
@@ -279,7 +279,7 @@ class MaskedEntry(UndoableEntry):
     def set_mask(self, mask):
         """
         Set the mask of the Entry.
-        
+
         Supported format characters are:
 
           - '0' digit
@@ -288,7 +288,7 @@ class MaskedEntry(UndoableEntry):
           - 'a' alphanumeric, honors the locale
           - 'A' alphanumeric, honors the locale
 
-        This is similar to MaskedTextBox: 
+        This is similar to MaskedTextBox:
         http://msdn2.microsoft.com/en-us/library/system.windows.forms.maskedtextbox.mask(VS.80).aspx
 
         Example mask for a ISO-8601 date
@@ -438,7 +438,7 @@ class MaskedEntry(UndoableEntry):
             start, end = self._mask_fields[field]
             return end - start
 
-    def _shift_text(self, start, end, direction=DIRECTION_LEFT, 
+    def _shift_text(self, start, end, direction=DIRECTION_LEFT,
                     positions=1):
         """
         Shift the text, to the right or left, n positions. Note that this
@@ -467,11 +467,11 @@ class MaskedEntry(UndoableEntry):
                 # Non-static char shoud be here. Get the next one (depending
                 # on the direction, and the number of positions to skip.)
                 #
-                # When shifting left, the next char will be on the right, 
+                # When shifting left, the next char will be on the right,
                 # so, it will be appended, to the new text.
                 # Otherwise, when shifting right, the char will be
                 # prepended.
-                next_pos = self._get_next_non_static_char_pos(i, direction, 
+                next_pos = self._get_next_non_static_char_pos(i, direction,
                                                               positions-1)
 
                 # If its outside the bounds of the region, ignore it.
@@ -499,7 +499,7 @@ class MaskedEntry(UndoableEntry):
 
         return new_text
 
-    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT, 
+    def _get_next_non_static_char_pos(self, pos, direction=DIRECTION_LEFT,
                                       skip=0):
         """
         Get next non-static char position, skiping some chars, if necessary.
@@ -590,7 +590,7 @@ class MaskedEntry(UndoableEntry):
 
     def _get_completion(self):
         # Check so we have completion enabled, not this does not
-        # depend on the property, the user can manually override it, 
+        # depend on the property, the user can manually override it,
         # as long as there is a completion object set
         completion = self.get_completion()
         if completion:
@@ -609,7 +609,7 @@ class MaskedEntry(UndoableEntry):
         #completion.set_model(Gtk.ListStore(str, object))
         completion.set_model(Gtk.ListStore(GObject.TYPE_STRING))
         completion.set_text_column(0)
-        #completion.connect("match-selected", 
+        #completion.connect("match-selected",
                            #self._on_completion__match_selected)
 
         self._completion = Gtk.Entry.get_completion(self)
@@ -619,7 +619,7 @@ class MaskedEntry(UndoableEntry):
     def set_completion_mode(self, popup=None, inline=None):
         """
         Set the way how completion is presented.
-        
+
         :param popup: enable completion in popup window
         :type popup: boolean
         :param inline: enable inline completion
@@ -630,7 +630,7 @@ class MaskedEntry(UndoableEntry):
             completion.set_popup_completion(popup)
         if inline is not None:
             completion.set_inline_completion(inline)
-            
+
     def _completion_exact_match_func(self, completion, key, iter):
         model = completion.get_model()
         if not len(model):
@@ -682,7 +682,7 @@ class MaskedEntry(UndoableEntry):
 
         :param new: The char that wants to be inserted.
         :param pos: The position where it wants to be inserted.
-        :returns: Returns None if it can be inserted. If it cannot be, 
+        :returns: Returns None if it can be inserted. If it cannot be,
                   return the next position where it can be successfuly
                   inserted.
         """
@@ -716,7 +716,7 @@ class MaskedEntry(UndoableEntry):
 
         return None
 
-#   When inserting new text, supose, the entry, at some time is like this, 
+#   When inserting new text, supose, the entry, at some time is like this,
 #   ahd the user presses '0', for instance:
 #   --------------------------------
 #   | ( 1 2 )   3 4 5   - 6 7 8 9  |
@@ -878,7 +878,7 @@ class MaskedEntry(UndoableEntry):
 
         # Shift Left
         new_text = (text[:start] +
-                    self._shift_text(start, _end, DIRECTION_LEFT, 
+                    self._shift_text(start, _end, DIRECTION_LEFT,
                                      end-start) +
                     text[_end:])
 
@@ -1022,7 +1022,7 @@ class MaskedEntry(UndoableEntry):
             rgba = Gdk.RGBA()
             Gdk.RGBA.parse(rgba, 'rgb(%f,%f,%f)'%(red, green, blue))
             self.override_background_color(Gtk.StateFlags.NORMAL |
-                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED | 
+                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED |
                 Gtk.StateFlags.FOCUSED, rgba)
             #GTK 3: workaround, background not changing in themes, use symbolic
             self.override_symbolic_color('bg_color', rgba)
@@ -1039,7 +1039,7 @@ class MaskedEntry(UndoableEntry):
             self.override_font(font_description)
         else:
             self.override_background_color(Gtk.StateFlags.NORMAL |
-                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED | 
+                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED |
                 Gtk.StateFlags.FOCUSED, None)
             # Setting the following to None causes an error (bug #6353).
             #self.override_symbolic_color('bg_color', None)
@@ -1060,7 +1060,7 @@ class MaskedEntry(UndoableEntry):
         return bcol
 
     # Gtk.EntryCompletion convenience function
-    
+
     def prefill(self, itemdata, sort=False):
         if not isinstance(itemdata, (list, tuple)):
             raise TypeError("'data' parameter must be a list or tuple of item "
@@ -1104,32 +1104,32 @@ class ValidatableMaskedEntry(MaskedEntry):
     __gtype_name__ = 'ValidatableMaskedEntry'
 
     __gsignals__ = {
-        'content-changed': (GObject.SignalFlags.RUN_FIRST, 
-                            None, 
-                            ()), 
-        'validation-changed': (GObject.SignalFlags.RUN_FIRST, 
-                               None, 
-                               (GObject.TYPE_BOOLEAN, )), 
-        'validate': (GObject.SignalFlags.RUN_LAST, 
-                     GObject.TYPE_PYOBJECT, 
-                     (GObject.TYPE_PYOBJECT, )), 
-        'changed': 'override', 
+        'content-changed': (GObject.SignalFlags.RUN_FIRST,
+                            None,
+                            ()),
+        'validation-changed': (GObject.SignalFlags.RUN_FIRST,
+                               None,
+                               (GObject.TYPE_BOOLEAN, )),
+        'validate': (GObject.SignalFlags.RUN_LAST,
+                     GObject.TYPE_PYOBJECT,
+                     (GObject.TYPE_PYOBJECT, )),
+        'changed': 'override',
     }
 
     __gproperties__ = {
-        'data-type': (GObject.TYPE_PYOBJECT, 
-                       'Data Type of the widget', 
-                       'Type object', 
-                       GObject.PARAM_READWRITE), 
-        'mandatory': (GObject.TYPE_BOOLEAN, 
-                      'Mandatory', 
-                      'Mandatory', 
-                      False, 
-                      GObject.PARAM_READWRITE), 
+        'data-type': (GObject.TYPE_PYOBJECT,
+                       'Data Type of the widget',
+                       'Type object',
+                       GObject.PARAM_READWRITE),
+        'mandatory': (GObject.TYPE_BOOLEAN,
+                      'Mandatory',
+                      'Mandatory',
+                      False,
+                      GObject.PARAM_READWRITE),
     }
-                            
+
     # FIXME put the data type support back
-    #allowed_data_types = (basestring, datetime.date, datetime.time, 
+    #allowed_data_types = (basestring, datetime.date, datetime.time,
                           #datetime.datetime, object) + number
 
     def __init__(self, data_type=None, err_color = "#ffd5d5", error_icon=ERROR_ICON):
@@ -1139,12 +1139,12 @@ class ValidatableMaskedEntry(MaskedEntry):
         self._block_changed = False
 
         MaskedEntry.__init__(self)
-        
+
         self._valid = True
         self._def_error_msg = None
         self._fade = FadeOut(self, err_color)
         self._fade.connect('color-changed', self._on_fadeout__color_changed)
-        
+
         # FIXME put data type support back
         #self.set_property('data-type', data_type)
 
@@ -1159,7 +1159,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
     def do_get_property(self, prop):
         """Return the gproperty's value."""
-        
+
         if prop.name == 'data-type':
             return self.data_type
         elif prop.name == 'mandatory':
@@ -1169,18 +1169,18 @@ class ValidatableMaskedEntry(MaskedEntry):
 
     def do_set_property(self, prop, value):
         """Set the property of writable properties."""
-        
+
         if prop.name == 'data-type':
             if value is None:
                 self.data_type = value
                 return
-        
+
             # FIXME put the data type support back
             #if not issubclass(value, self.allowed_data_types):
                 #raise TypeError(
                     #"%s only accept %s types, not %r"
-                    #% (self, 
-                       #' or '.join([t.__name__ for t in self.allowed_data_types]), 
+                    #% (self,
+                       #' or '.join([t.__name__ for t in self.allowed_data_types]),
                        #value))
             self.data_type = value
         elif prop.name == 'mandatory':
@@ -1193,19 +1193,19 @@ class ValidatableMaskedEntry(MaskedEntry):
     def set_default_error_msg(self, text):
         """
         Set default message for validation error.
-        
+
         Default error message for an instance is useful when completion is
         used, because this case custom validation is not called.
-                
+
         :param text: can contain one and only one '%s', where the actual value
                      of the Entry will be inserted.
         :type text: str
         """
         if not isinstance(text, str):
             raise TypeError("text must be a string")
-            
+
         self._def_error_msg = text
-        
+
     def is_valid(self):
         """
         :returns: True if the widget is in validated state
@@ -1283,14 +1283,14 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         generic_text = _("'%s' is not a valid value "
                          "for this field") % self.get_text()
-        
+
         # If there is no error text, let's try with the default or
         # fall back to a generic one
         if not text:
             text = self._def_error_msg
         if not text:
             text = generic_text
-            
+
         try:
             text.index('%s')
             text = text % self.get_text()
@@ -1385,13 +1385,13 @@ class ValidatableMaskedEntry(MaskedEntry):
 
 def main(args):
     from gramps.gen.datehandler import parser
-    
+
     def on_validate(widget, text):
         myDate = parser.parse(text)
         if not myDate.is_regular():
             # used on AgeOnDateGramplet
             return ValidationError(_("'%s' is not a valid date value"))
-        
+
     win = Gtk.Window()
     win.set_title('ValidatableMaskedEntry test window')
     win.set_position(Gtk.WindowPosition.CENTER)
@@ -1401,10 +1401,10 @@ def main(args):
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
-    
+
     label = Gtk.Label(label='Pre-filled entry validated against the given list:')
     vbox.pack_start(label, True, True, 0)
-    
+
     widget1 = ValidatableMaskedEntry(str)
     widget1.set_completion_mode(inline=True, popup=False)
     widget1.set_default_error_msg("'%s' is not a default Event")
@@ -1412,17 +1412,17 @@ def main(args):
     widget1.prefill(('Birth', 'Death', 'Conseption'))
     #widget1.set_exact_completion(True)
     vbox.pack_start(widget1, True, False, 0)
-    
+
     label = Gtk.Label(label='Mandatory masked entry validated against user function:')
     vbox.pack_start(label, True, True, 0)
-    
+
     #widget2 = ValidatableMaskedEntry(str, "#e0e0e0", error_icon=None)
     widget2 = ValidatableMaskedEntry()
     widget2.set_mask('00/00/0000')
     widget2.connect('validate', on_validate)
     widget2.mandatory = True
     vbox.pack_start(widget2, True, False, 0)
-    
+
     win.show_all()
     Gtk.main()
 

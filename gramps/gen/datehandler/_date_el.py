@@ -67,11 +67,11 @@ class DateParserEL(DateParser):
         'μετά από την' : Date.MOD_AFTER,
         'μετά από το'  : Date.MOD_AFTER,
         'μετά από τον' : Date.MOD_AFTER,
-        'μετά'         : Date.MOD_AFTER, 
+        'μετά'         : Date.MOD_AFTER,
         'μετ.'         : Date.MOD_AFTER,
         'γύρω στο'     : Date.MOD_ABOUT,
         'γύρω στον'    : Date.MOD_ABOUT,
-        'γύρω στις'    : Date.MOD_ABOUT, 
+        'γύρω στις'    : Date.MOD_ABOUT,
         'περίπου το'   : Date.MOD_ABOUT,
         'περ.'         : Date.MOD_ABOUT,
         'γυρ.'         : Date.MOD_ABOUT,
@@ -93,11 +93,11 @@ class DateParserEL(DateParser):
         'γαλλικής δημοκρατίας': Date.CAL_FRENCH,
         'γ'                   : Date.CAL_FRENCH,
         'περσικό'             : Date.CAL_PERSIAN,
-        'π'                   : Date.CAL_PERSIAN, 
+        'π'                   : Date.CAL_PERSIAN,
         'σουηδικό'            : Date.CAL_SWEDISH,
         'σ'                   : Date.CAL_SWEDISH,
         }
-    
+
     quality_to_int = {
         'κατʼ εκτίμηση' : Date.QUAL_ESTIMATED,
         'εκτιμώμενη'    : Date.QUAL_ESTIMATED,
@@ -108,7 +108,7 @@ class DateParserEL(DateParser):
         'υπολογισμένη'  : Date.QUAL_CALCULATED,
         'με υπολογισμό' : Date.QUAL_CALCULATED,
         }
-    
+
     def init_strings(self):
         """
         This method compiles regular expression strings for matching dates.
@@ -122,7 +122,7 @@ class DateParserEL(DateParser):
                                  ('|'.join(_span_1), '|'.join(_span_2)),
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)), 
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -132,14 +132,14 @@ class DateParserEL(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayEL(DateDisplay):
     """
-    Greek language date display class. 
+    Greek language date display class.
     """
     # this is used to display the 12 gregorian months
     long_months = ( "", "Ιανουάριος", "Φεβρουάριος", "Μάρτιος",
                     "Απρίλιος", "Μάιος", "Ιούνιος",
                     "Ιούλιος", "Αύγουστος", "Σεπτέμβριος",
                     "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος" )
-    
+
     short_months = ( "", "Ιαν", "Φεβ", "Μαρ", "Απρ", "Μάι", "Ιουν",
                      "Ιουλ", "Αύγ", "Σεπ", "Οκτ", "Νοε", "Δεκ" )
 
@@ -189,7 +189,7 @@ class DateDisplayEL(DateDisplay):
                 else:
                     value = "%s %s" % (self.long_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
+                value = "%d %s %s" % (date_val[0],
                                       self.long_months[date_val[1]], year)
         else:
             # day month_abbreviation year
@@ -199,13 +199,13 @@ class DateDisplayEL(DateDisplay):
                 else:
                     value = "%s %s" % (self.short_months[date_val[1]], year)
             else:
-                value = "%d %s %s" % (date_val[0], 
+                value = "%d %s %s" % (date_val[0],
                                       self.short_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
             return value
-            
+
     def display(self, date):
         """
         Return a text string representing the date.
@@ -217,7 +217,7 @@ class DateDisplayEL(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
-        
+
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
         elif start == Date.EMPTY:
@@ -242,5 +242,5 @@ class DateDisplayEL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('el_GR', 'el_CY', 'el', 'Greek', 'greek'), 
+register_datehandler(('el_GR', 'el_CY', 'el', 'Greek', 'greek'),
     DateParserEL, DateDisplayEL)

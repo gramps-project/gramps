@@ -72,7 +72,7 @@ class RepositoryModel(FlatBaseModel):
             self.column_change,
             self.column_tag_color
             ]
-        
+
         self.smap = [
             self.column_name,
             self.column_id,
@@ -88,10 +88,10 @@ class RepositoryModel(FlatBaseModel):
             self.column_search_url,
             self.column_private,
             self.column_tags,
-            self.sort_change,           
+            self.sort_change,
             self.column_tag_color
             ]
-        
+
         FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
                                sort_map=sort_map)
 
@@ -144,7 +144,7 @@ class RepositoryModel(FlatBaseModel):
         except:
             pass
         return ''
-        
+
     def column_locality(self,data):
         try:
             if data[5]:
@@ -154,7 +154,7 @@ class RepositoryModel(FlatBaseModel):
         except:
             pass
         return ''
-    
+
     def column_state(self,data):
         try:
             if data[5]:
@@ -212,7 +212,7 @@ class RepositoryModel(FlatBaseModel):
                 if url.get_type() == UrlType.WEB_SEARCH:
                     return str(url.path)
         return ''
-    
+
     def column_home_url(self,data):
         if data[6]:
             for i in data[6]:
@@ -245,7 +245,7 @@ class RepositoryModel(FlatBaseModel):
             value = self.db.get_tag_from_handle(tag_handle).get_name()
             self.set_cached_value(tag_handle, "TAG_NAME", value)
         return value
-        
+
     def column_tag_color(self, data):
         """
         Return the tag color.

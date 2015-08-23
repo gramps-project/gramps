@@ -50,9 +50,9 @@ from gramps.gen.display.name import displayer as name_displayer
 from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from .displaytabs import GrampsTab, CitationEmbedList, NoteTab, SurnameTab
-from ..widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
+from ..widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate,
                      MonitoredDataType, PrivacyButton)
-from ..glade import Glade                     
+from ..glade import Glade
 from gramps.gen.errors import ValidationError
 
 #-------------------------------------------------------------------------
@@ -115,22 +115,22 @@ class EditName(EditSecondary):
     def _local_init(self):
         self.width_key = 'interface.name-width'
         self.height_key = 'interface.name-height'
-        
+
         self.top = Glade()
-        
+
         self.set_window(self.top.toplevel, None, _("Name Editor"))
 
         tblgnam =  self.top.get_object('table23')
         notebook = self.top.get_object('notebook')
         hbox_surn = self.top.get_object('hboxmultsurnames')
-        hbox_surn.set_size_request(-1, 
+        hbox_surn.set_size_request(-1,
                             int(config.get('interface.surname-box-height')))
-        hbox_surn.pack_start(SurnameTab(self.dbstate, self.uistate, self.track, 
+        hbox_surn.pack_start(SurnameTab(self.dbstate, self.uistate, self.track,
                                         self.obj, top_label=None),
                              True, True, 0)
         #recreate start page as GrampsTab
         notebook.remove_page(0)
-        self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 
+        self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track,
                               _('_General'), tblgnam)
 
         self.original_group_as = self.obj.get_group_as()
@@ -141,7 +141,7 @@ class EditName(EditSecondary):
         self.group_over = self.top.get_object('group_over')
         self.group_over.connect('toggled',self.on_group_over_toggled)
         self.group_over.set_sensitive(not self.db.readonly)
-        
+
         self.toggle_dirty = False
 
     def _post_init(self):
@@ -163,7 +163,7 @@ class EditName(EditSecondary):
         self.define_ok_button(self.top.get_object('button118'), self.save)
 
     def _validate_call(self, widget, text):
-        """ a callname must be a part of the given name, see if this is the 
+        """ a callname must be a part of the given name, see if this is the
             case """
         validcall = self.given_field.obj.get_text().split()
         dummy = copy(validcall)
@@ -186,10 +186,10 @@ class EditName(EditSecondary):
                 self.group_as.force_value(self.global_group_as)
             else :
                 self.group_as.force_value(self.obj.get_primary_surname().get_surname())
-            
+
         format_list = [(name, number) for (number, name,fmt_str,act)
                        in name_displayer.get_name_format(also_default=True)]
-            
+
         self.sort_as = MonitoredMenu(
             self.top.get_object('sort_as'),
             self.obj.set_sort_as,
@@ -232,15 +232,15 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         self.nick = MonitoredEntry(
-            self.top.get_object("nickname"), 
-            self.obj.set_nick_name, 
-            self.obj.get_nick_name, 
+            self.top.get_object("nickname"),
+            self.obj.set_nick_name,
+            self.obj.get_nick_name,
             self.db.readonly)
 
         self.famnick = MonitoredEntry(
-            self.top.get_object("familynickname"), 
-            self.obj.set_family_nick_name, 
-            self.obj.get_family_nick_name, 
+            self.top.get_object("familynickname"),
+            self.obj.set_family_nick_name,
+            self.obj.get_family_nick_name,
             self.db.readonly)
 
         #self.surname_field = MonitoredEntry(
@@ -253,7 +253,7 @@ class EditName(EditSecondary):
 
         self.date = MonitoredDate(
             self.top.get_object("date_entry"),
-            self.top.get_object("date_stat"), 
+            self.top.get_object("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
             self.track,
@@ -266,11 +266,11 @@ class EditName(EditSecondary):
             self.db.readonly,
             self.db.get_name_types(),
             )
-        
+
         self.privacy = PrivacyButton(
             self.top.get_object("priv"), self.obj,
             self.db.readonly)
-        
+
     def _create_tabbed_pages(self):
 
         notebook = self.top.get_object("notebook")
@@ -278,12 +278,12 @@ class EditName(EditSecondary):
         self._add_tab(notebook, self.gennam)
         self.track_ref_for_deletion("gennam")
 
-        self.srcref_list = CitationEmbedList(self.dbstate, self.uistate, 
-                                             self.track, 
+        self.srcref_list = CitationEmbedList(self.dbstate, self.uistate,
+                                             self.track,
                                              self.obj.get_citation_list())
         self._add_tab(notebook, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
-        
+
         self.note_tab = NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
                     notetype=NoteType.PERSONNAME)
@@ -291,9 +291,9 @@ class EditName(EditSecondary):
         self.track_ref_for_deletion("note_tab")
 
         self._setup_notebook_tabs( notebook)
-        
+
     def _get_global_grouping(self, srn):
-        """ we need info on the global grouping of the surname on init, 
+        """ we need info on the global grouping of the surname on init,
             and on change of surname
             """
         self.global_group_as = self.db.get_name_group_mapping(srn)
@@ -302,7 +302,7 @@ class EditName(EditSecondary):
             self.global_group_set = False
         else:
             self.global_group_set = True
-            
+
 
     def build_menu_names(self, name):
         if name:
@@ -328,7 +328,7 @@ class EditName(EditSecondary):
             self.toggle_dirty = True
             self.group_as.force_value(self.global_group_as)
         elif self.group_over.get_active() and self.toggle_dirty:
-            #changing surname caused active group_over in past, change 
+            #changing surname caused active group_over in past, change
             # group_over as we type
             if self.global_group_set :
                 self.group_as.force_value(self.global_group_as)
@@ -337,7 +337,7 @@ class EditName(EditSecondary):
                 self.group_as.force_value(name)
                 self.group_over.set_active(False)
                 self.group_as.enable(False)
-        
+
     def on_group_over_toggled(self, obj):
         """ group over changes, if activated, enable edit,
             if unactivated, go back to surname/global_group_as.
@@ -345,7 +345,7 @@ class EditName(EditSecondary):
         self.toggle_dirty = False
         #enable group as box
         self.group_as.enable(obj.get_active())
-        
+
         if not obj.get_active():
             if self.global_group_set:
                 self.group_as.set_text(self.global_group_as)
@@ -354,11 +354,11 @@ class EditName(EditSecondary):
                 self.group_as.set_text(surname)
 
     def save(self, *obj):
-        """Save the name setting. All is ok, except grouping. We need to 
-           consider: 
+        """Save the name setting. All is ok, except grouping. We need to
+           consider:
             1/     global set, not local set --> unset (ask if global unset)
             2/     global set,     local set --> unset (only local unset!)
-            3/ not global set,     local set 
+            3/ not global set,     local set
             or not global set, not local set --> unset
             4/ not local set, not global set
             or not local set,     global set --> set val (ask global or local)
@@ -369,7 +369,7 @@ class EditName(EditSecondary):
         surname = self.obj.get_primary_surname().get_surname()
         group_as= self.obj.get_group_as()
         grouping_active = self.group_over.get_active()
-        
+
         if not grouping_active :
             #user wants to group with surname
             if self.global_group_set and not self.original_group_set :
@@ -392,7 +392,7 @@ class EditName(EditSecondary):
                     closeit = False
             elif self.global_group_set and self.original_group_set:
                 #we change it only back to surname locally, so store group_as
-                # Note: if all surnames are locally changed to surname, we 
+                # Note: if all surnames are locally changed to surname, we
                 #       should actually unsed the global group here ....
                 pass
             else :
@@ -405,7 +405,7 @@ class EditName(EditSecondary):
                 #this might be creation of group link, or change of group link
                 if self.global_group_as != group_as:
                     from ..dialog import QuestionDialog2
-                        
+
                     q = QuestionDialog2(
                     _("Group all people with the same name?"),
                     _("You have the choice of grouping all people with the "
@@ -434,14 +434,14 @@ class EditName(EditSecondary):
                     #keep original value, no original group
                     self.obj.set_group_as("")
             elif not self.global_group_set :
-                #don't ask user, group was set locally before, 
+                #don't ask user, group was set locally before,
                 #change it locally only
                 if group_as == surname :
                     #remove grouping
                     self.obj.set_group_as("")
                 else:
                     pass
-            
+
             else:
                 #locally set group and global group set
                 if group_as == self.global_group_as :

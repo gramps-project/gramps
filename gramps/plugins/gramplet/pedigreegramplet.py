@@ -54,7 +54,7 @@ class PedigreeGramplet(Gramplet):
 
     def build_options(self):
         from gramps.gen.plug.menu import NumberOption, BooleanOption, EnumeratedListOption
-        self.add_option(NumberOption(_("Max generations"), 
+        self.add_option(NumberOption(_("Max generations"),
                                      self.max_generations, 1, 100))
         self.add_option(BooleanOption(_("Show dates"), bool(self.show_dates)))
         elist = EnumeratedListOption(_("Line type"), self.box_mode)
@@ -158,7 +158,7 @@ class PedigreeGramplet(Gramplet):
                     boxes = boxes.replace("+", "\\")
             self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
-                      'Person', person.handle, 
+                      'Person', person.handle,
                       tooltip=_("Click to make active\n") + \
                           _("Right-click to edit"))
             if self.show_dates:
@@ -218,7 +218,7 @@ class PedigreeGramplet(Gramplet):
 
         if bdate and ddate:
             value = _("(b. %(birthdate)s, d. %(deathdate)s)") % {
-                'birthdate' : bdate, 
+                'birthdate' : bdate,
                 'deathdate' : ddate
                 }
         elif bdate:
@@ -257,7 +257,7 @@ class PedigreeGramplet(Gramplet):
             handles = self._generations[g]
             self.append_text("     ")
             if g == 0:
-                self.link(_("Generation 1"), 'PersonList', handles, 
+                self.link(_("Generation 1"), 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation"))
                 percent = glocale.format( '%.2f', 100) + percent_sign
                 self.append_text(_(" has 1 of 1 individual (%(percent)s complete)\n") %  {'percent': percent})

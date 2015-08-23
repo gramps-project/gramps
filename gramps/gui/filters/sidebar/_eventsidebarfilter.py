@@ -43,7 +43,7 @@ from gramps.gen.lib import Event, EventType
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.event import (RegExpIdOf, HasNoteRegexp, 
+from gramps.gen.filters.rules.event import (RegExpIdOf, HasNoteRegexp,
                                             MatchesFilter, HasEvent, HasTag)
 
 GenericEventFilter = GenericFilterFactory('Event')
@@ -62,18 +62,18 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
         self.custom_types = dbstate.db.get_event_types()
-       
+
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
             self.filter_event.get_type,
             custom_values=self.custom_types)
-        
+
         self.filter_mainparts = widgets.BasicEntry()
         self.filter_date = widgets.DateEntry(uistate, [])
         self.filter_place = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
-        
+
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 
         self.tag = Gtk.ComboBox()
@@ -144,7 +144,7 @@ class EventSidebarFilter(SidebarFilter):
             rule = HasEvent([etype, date, place, desc, mainparts],
                             use_regex=regex)
             generic_filter.add_rule(rule)
-                
+
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)

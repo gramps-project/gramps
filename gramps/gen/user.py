@@ -42,7 +42,7 @@ class User():
         Start showing a progress indicator to the user.
 
         Don't use this method directly, use progress instead.
-        
+
         :param title: the title of the progress meter
         :type title: str
         :param message: the message associated with the progress meter
@@ -54,7 +54,7 @@ class User():
         :returns: none
         """
         pass
-    
+
     def step_progress(self):
         """
         Advance the progress meter.
@@ -62,7 +62,7 @@ class User():
         Don't use this method directly, use progress instead.
         """
         pass
-    
+
     def callback(self, percentage, text=None):
         """
         Display the precentage.
@@ -96,7 +96,7 @@ class User():
         Preferred form of progress reporting.
 
         Parameters: same as for begin_progress.
-        
+
         Usage example (see gramps/cli/test/user_test.py)::
 
             with self.user.progress("Foo", "Bar", 0) as step:
@@ -112,11 +112,11 @@ class User():
             raise
         finally:
             self.end_progress()
-    
+
     def prompt(self, title, message, accept_label, reject_label):
         """
         Prompt the user with a message to select an alternative.
-        
+
         :param title: the title of the question, e.g.: "Undo history warning"
         :type title: str
         :param message: the message, e.g.: "Proceeding with the tool will
@@ -131,11 +131,11 @@ class User():
         :rtype: bool
         """
         return False
-    
+
     def warn(self, title, warning=""):
         """
         Warn the user.
-        
+
         :param title: the title of the warning
         :type title: str
         :param warning: the warning
@@ -143,11 +143,11 @@ class User():
         :returns: none
         """
         pass
-    
+
     def notify_error(self, title, error=""):
         """
         Notify the user of an error.
-        
+
         :param title: the title of the error
         :type title: str
         :param error: the error message
@@ -159,7 +159,7 @@ class User():
     def notify_db_error(self, error):
         """
         Notify the user of a DB error.
-        
+
         :param error: the error message
         :type error: str
         :returns: none

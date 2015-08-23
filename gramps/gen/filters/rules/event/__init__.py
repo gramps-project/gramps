@@ -55,7 +55,7 @@ editor_rule_list = [
     HasIdOf,
     HasGallery,
     RegExpIdOf,
-    HasCitation, 
+    HasCitation,
     HasNote,
     HasNoteRegexp,
     HasReferenceCountOf,

@@ -51,13 +51,13 @@ from .handle import Handle
 # Citation class
 #
 #-------------------------------------------------------------------------
-class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, 
+class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                DateBase, PrimaryObject):
     """
     A record of a citation of a source of information.
-    
+
     In GEDCOM this is called a SOURCE_CITATION.
-    The data provided in the <<SOURCE_CITATION>> structure is source-related 
+    The data provided in the <<SOURCE_CITATION>> structure is source-related
     information specific to the data being cited.
     """
 
@@ -77,7 +77,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         self.page = ""                                 #  3
         self.confidence = Citation.CONF_NORMAL         #  4
         SrcAttributeBase.__init__(self)                #  8
-        
+
     def serialize(self, no_text_date = False):
         """
         Convert the object to a serialized tuple of data.
@@ -99,7 +99,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Convert the data held in this object to a structure (eg,
         struct) that represents all the data elements.
-        
+
         This method is used to recursively convert the object into a
         self-documenting form that can easily be used for various
         purposes, including diffs and queries.
@@ -175,17 +175,17 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         TagBase.unserialize(self, tag_list)
         SrcAttributeBase.unserialize(self, srcattr_list)
         return self
-        
+
     def _has_handle_reference(self, classname, handle):
         """
-        Return True if the object has reference to a given handle of given 
+        Return True if the object has reference to a given handle of given
         primary object type.
-        
+
         :param classname: The name of the primary object class.
         :type classname: str
         :param handle: The handle to be checked.
         :type handle: str
-        :returns: Returns whether the object has reference to this handle of 
+        :returns: Returns whether the object has reference to this handle of
                   this object type.
         :rtype: bool
         """
@@ -229,7 +229,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer citations.
         :rtype: list
         """
@@ -243,7 +243,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :rtype: list
         """
         return [self.page, self.gramps_id]
-    
+
     def get_text_data_child_list(self):
         """
         Return the list of child objects that may carry textual data.
@@ -257,7 +257,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may
                   refer notes.
         :rtype: list
         """
@@ -267,7 +267,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
-        
+
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
@@ -277,7 +277,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
-        
+
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
         """
@@ -304,7 +304,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                   level_priority.index(acquisition.confidence))
         self.confidence = level_priority[idx]
         self._merge_attribute_list(acquisition)
-        # N.B. a Citation can refer to only one 'Source', so the 
+        # N.B. a Citation can refer to only one 'Source', so the
         # 'Source' from acquisition cannot be merged in
 
     def set_confidence_level(self, val):
@@ -314,7 +314,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     def get_confidence_level(self):
         """Return the confidence level."""
         return self.confidence
-        
+
     def set_page(self, page):
         """Set the page indicator of the Citation."""
         self.page = page

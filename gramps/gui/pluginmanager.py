@@ -53,14 +53,14 @@ from gramps.gen.const import ICON
 #
 #-------------------------------------------------------------------------
 class GuiPluginManager(Callback):
-    """ PluginManager is a Singleton which manages plugins. 
-    It is the gui implementation using a unique BasePluginmanager. 
-    This class adds the possibility to hide plugins in the GUI via a config 
+    """ PluginManager is a Singleton which manages plugins.
+    It is the gui implementation using a unique BasePluginmanager.
+    This class adds the possibility to hide plugins in the GUI via a config
     setting
     """
     __instance = None
     __signals__ = { 'plugins-reloaded' : None }
-    
+
     def get_instance():
         """ Use this function to get the instance of the PluginManager """
         if GuiPluginManager.__instance is None:
@@ -68,13 +68,13 @@ class GuiPluginManager(Callback):
             GuiPluginManager.__instance = GuiPluginManager()
         return GuiPluginManager.__instance
     get_instance = staticmethod(get_instance)
-            
+
     def __init__(self):
         """ This function should only be run once by get_instance() """
         if GuiPluginManager.__instance is not 1:
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
-        
+
         Callback.__init__(self)
         self.basemgr = BasePluginManager.get_instance()
         self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
@@ -97,7 +97,7 @@ class GuiPluginManager(Callback):
     def reload_plugins(self):
         self.basemgr.reload_plugins()
         self.emit('plugins-reloaded')
-    
+
     def __getattr__(self, name):
         return getattr(self.basemgr, name)
 
@@ -105,7 +105,7 @@ class GuiPluginManager(Callback):
         #if hidden changed, stored data must be emptied as it could contain
         #something that now must be hidden
         self.empty_managed_plugins()
-        #objects that need to know if the plugins available changed, are 
+        #objects that need to know if the plugins available changed, are
         #listening to this signal to update themselves. If a plugin becomes
         #(un)hidden, this should happen, so we emit.
         self.emit('plugins-reloaded')
@@ -120,12 +120,12 @@ class GuiPluginManager(Callback):
         """ Hide plugin with given id. This will hide the plugin so queries do
         not return it anymore, and write this change to the config.
         Note that config will then emit a signal
-        """ 
+        """
         self.__hidden_plugins.add(id)
         config.set('plugin.hiddenplugins', list(self.__hidden_plugins))
         config.save()
         self.__hidden_changed()
-    
+
     def unhide_plugin(self, id):
         """ Unhide plugin with given id. This will unhide the plugin so queries
         return it again, and write this change to the config
@@ -142,7 +142,7 @@ class GuiPluginManager(Callback):
         """
         return [plg for plg in self.basemgr.get_reg_reports(gui)
                                 if plg.id not in self.__hidden_plugins]
-    
+
     def get_reg_tools(self, gui=True):
         """ Return list of non hidden  registered tools
         :Param gui: bool indicating if GUI reports or CLI reports must be
@@ -156,13 +156,13 @@ class GuiPluginManager(Callback):
         """
         return [plg for plg in self.basemgr.get_reg_views()
                                 if plg.id not in self.__hidden_plugins]
-    
+
     def get_reg_quick_reports(self):
         """ Return list of non hidden  registered quick reports
         """
         return [plg for plg in self.basemgr.get_reg_quick_reports()
                                 if plg.id not in self.__hidden_plugins]
-    
+
     def get_reg_mapservices(self):
         """ Return list of non hidden  registered mapservices
         """
@@ -178,7 +178,7 @@ class GuiPluginManager(Callback):
     def get_reg_gramplets(self):
         """ Return list of non hidden  reports registered as bookitem
         """
-        return [plg for plg in self.basemgr.get_reg_gramplets() 
+        return [plg for plg in self.basemgr.get_reg_gramplets()
                                 if plg.id not in self.__hidden_plugins]
 
     def get_reg_sidebars(self):
@@ -192,13 +192,13 @@ class GuiPluginManager(Callback):
         """
         return [plg for plg in self.basemgr.get_reg_importers()
                                 if plg.id not in self.__hidden_plugins]
-    
+
     def get_reg_exporters(self):
         """ Return list of registered exporters
         """
         return [plg for plg in self.basemgr.get_reg_exporters()
                                 if plg.id not in self.__hidden_plugins]
-    
+
     def get_reg_docgens(self):
         """ Return list of registered docgen
         """

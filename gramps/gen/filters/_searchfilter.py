@@ -42,4 +42,4 @@ class ExactSearchFilter(SearchFilter):
 
     def match(self, handle, db):
         return self.invert ^ (self.func(handle).upper() == self.text.strip())
-    
+

@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# Written by Alex Roitman, 
+# Written by Alex Roitman,
 # largely based on the MediaView and SelectPerson by Don Allingham
 
 #-------------------------------------------------------------------------
@@ -58,13 +58,13 @@ class SelectObject(BaseSelector):
 
     def get_window_title(self):
         return _("Select Media Object")
-        
+
     def get_model_class(self):
         return MediaModel
 
     def get_from_handle_func(self):
         return self.db.get_object_from_handle
-        
+
     def get_column_titles(self):
         return [
             (_('Title'), 350, BaseSelector.TEXT, 0),

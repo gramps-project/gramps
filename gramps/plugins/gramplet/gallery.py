@@ -39,7 +39,7 @@ class Gallery(Gramplet):
         self.image_list = []
         self.top = Gtk.Box(spacing=3)
         return self.top
-        
+
     def clear_images(self):
         """
         Remove all images from the Gramplet.
@@ -73,7 +73,7 @@ class Gallery(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if obj is None: 
+        if obj is None:
             return False
         media_list = obj.get_media_list()
         for media_ref in media_list:

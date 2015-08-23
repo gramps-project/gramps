@@ -82,20 +82,20 @@ class QMLPerson(QtCore.QObject):
 
     def _name(self):
         return name_displayer.display(self.__db.get_person_from_handle(self.__handle))
-    
+
     #dummy signal for things that change must not be tracked
     dummychanged = QtCore.Signal()
 
-    #make Model.Column.property available in QML 
+    #make Model.Column.property available in QML
     name = QtCore.Property(str, _name, notify=dummychanged)
-    
+
 class QMLPersonListModel(QtCore.QAbstractListModel):
     """
     A simple ListModel for the People in the database
     """
     ROLE_NAME_COL = 0
     COLUMNS = ((ROLE_NAME_COL, 'name'), )
- 
+
     def __init__(self, db):
         QtCore.QAbstractListModel.__init__(self)
         self.__db = db
@@ -107,12 +107,12 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
         allkeys = self.sort_keys()
         ident = True
         dlist = allkeys
-        self.node_map.set_path_map(dlist, allkeys, identical=ident, 
+        self.node_map.set_path_map(dlist, allkeys, identical=ident,
                                    reverse=self._reverse)
-                                    
+
         #every column has a role from 0 to nrcol-1, and name as in COLUMNS
         self.setRoleNames(dict(QMLPersonListModel.COLUMNS))
-        #we create an array with all the QMLPerson that we need so 
+        #we create an array with all the QMLPerson that we need so
         #that we can match a rowindex with correct QMLPerson
         self._qmlpersons = []
         for _, handle in self.node_map.full_srtkey_hndl_map():
@@ -120,15 +120,15 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
 
     def sort_keys(self):
         """
-        Return the (sort_key, handle) list of all data that can maximally 
-        be shown. 
-        This list is sorted ascending, via localized string sort. 
-        conv_unicode_tosrtkey which uses strxfrm, which is apparently 
-        broken in Win ?? --> they should fix base lib, we need strxfrm, fix it 
+        Return the (sort_key, handle) list of all data that can maximally
+        be shown.
+        This list is sorted ascending, via localized string sort.
+        conv_unicode_tosrtkey which uses strxfrm, which is apparently
+        broken in Win ?? --> they should fix base lib, we need strxfrm, fix it
         in the Utils module.
         """
         # use cursor as a context manager
-        with self.gen_cursor() as cursor:   
+        with self.gen_cursor() as cursor:
             #loop over database and store the sort field, and the handle
             return sorted((list(map(conv_unicode_tosrtkey,
                            self.sort_func(data))), key) for key, data in cursor)
@@ -140,7 +140,7 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
 
     def rowCount(self, parent=QtCore.QModelIndex()):
         return self.__db.get_number_of_people()
- 
+
     def data(self, index, role):
         """
         Obtain QMLPerson to show. Role is a number that corresponds to a column,
@@ -157,7 +157,7 @@ class QMLPersonListModel(QtCore.QAbstractListModel):
 #-------------------------------------------------------------------------
 
 class QMLPersonList(QtCore.QObject):
-    """ 
+    """
     Manages family tree list widget
     """
     def __init__(self, dbstate, engine):
@@ -182,7 +182,7 @@ class QMLPersonList(QtCore.QObject):
         self.qmlpersonlistcontext = QtDeclarative.QDeclarativeContext(parentcontext)
         #Create ListModel to use
         personlistmodel = QMLPersonListModel(self.dbstate.db)
-        
+
         #register them in the context
         self.qmlpersonlistcontext.setContextProperty('Const', self.const)
         self.qmlpersonlistcontext.setContextProperty('QMLPersonList', self)
@@ -205,7 +205,7 @@ class QMLPersonList(QtCore.QObject):
         mainwindow.setCentralWidget(graphicsview)
         mainwindow.show()
 
-    @QtCore.Slot(QtCore.QObject) 
+    @QtCore.Slot(QtCore.QObject)
     def detailsSelected(self, qmlperson):
         """
         We load the selected family tree

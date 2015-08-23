@@ -60,9 +60,9 @@ def set_format(value):
 def set_date(date_base, text) :
     """
     Set the date of the :class:`.DateBase` instance.
-    
+
     The date is parsed into a :class:`.Date` instance.
-    
+
     :param date_base: The :class:`.DateBase` instance to set the date to.
     :type date_base: :class:`.DateBase`
     :param text: The text to use for the text string in date
@@ -74,7 +74,7 @@ def get_date(date_base) :
     """
     Return a string representation of the date of the :class:`.DateBase`
     instance.
-    
+
     This representation is based off the default date display format
     determined by the locale's :class:`.DateDisplay` instance.
 

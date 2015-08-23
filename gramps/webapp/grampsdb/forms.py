@@ -20,7 +20,7 @@
 
 # webapp/grampsdb/forms.py
 
-# forms.py forms for Django web project 
+# forms.py forms for Django web project
 
 # Django Modules:
 from django import forms
@@ -38,8 +38,8 @@ import datetime
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        exclude = ["death", "birth", "handle", "birth_ref_index", 
-                   "death_ref_index", "families", "parent_families", 
+        exclude = ["death", "birth", "handle", "birth_ref_index",
+                   "death_ref_index", "families", "parent_families",
                    "cache"]
     def save(self, *args, **kwargs):
         self.instance.save_cache_q = kwargs.pop("save_cache", True)
@@ -49,41 +49,41 @@ class NameForm(forms.ModelForm):
     class Meta:
         model = Name
         # Exclude these, so they don't get checked:
-        exclude = ["order", "calendar", "modifier", 
-                   "quality", 
-                   #"quality_estimated", "quality_calculated", 
-                   #"quality_interpreted", 
+        exclude = ["order", "calendar", "modifier",
+                   "quality",
+                   #"quality_estimated", "quality_calculated",
+                   #"quality_interpreted",
                    "year1", "day1", "month1",
                    "sortval", "newyear", "person"]
     # Add these because they are TextFields, which render as
     # Textareas:
-    first_name = forms.CharField(label="Given", 
-                                 required=False, 
+    first_name = forms.CharField(label="Given",
+                                 required=False,
                                  widget=TextInput(attrs={'size':'60'}))
-    title = forms.CharField(required=False, 
+    title = forms.CharField(required=False,
                             widget=TextInput(attrs={'size':'15'}))
-    call = forms.CharField(label="Call", 
-                           required=False, 
+    call = forms.CharField(label="Call",
+                           required=False,
                            widget=TextInput(attrs={'size':'15'}))
-    nick = forms.CharField(label="Nick", 
-                           required=False, 
+    nick = forms.CharField(label="Nick",
+                           required=False,
                            widget=TextInput(attrs={'size':'15'}))
-    group_as = forms.CharField(label="Group as", 
-                               required=False, 
+    group_as = forms.CharField(label="Group as",
+                               required=False,
                                widget=TextInput(attrs={'size':'30'}))
-    suffix = forms.CharField(required=False, 
+    suffix = forms.CharField(required=False,
                              initial=' suffix ',
                              widget=TextInput(attrs={'size':'15',
                                                      'style': 'font-style: italic; color: gray; ',
                                                      'onFocus': """if (this.value == ' suffix ') {
-                                                                      this.value = ''; 
+                                                                      this.value = '';
                                                                    }
-                                                                   this.style.color = "black"; 
+                                                                   this.style.color = "black";
                                                                    this.style.fontStyle = 'normal';
                                                                 """,
                                                      'onBlur': """if (this.value == '') {
-                                                                     this.value = ' suffix '; 
-                                                                     this.style.color = "gray"; 
+                                                                     this.value = ' suffix ';
+                                                                     this.style.color = "gray";
                                                                      this.style.fontStyle = 'italic';
                                                                   }
                                                                """}))
@@ -93,10 +93,10 @@ class NameFormFromPerson(NameForm):
         model = Name
         # Exclude these, so they don't get checked:
         # Excludes sort_as and display_as
-        exclude = ["order", "calendar", "modifier", 
+        exclude = ["order", "calendar", "modifier",
                    "quality",
-                   #"quality_estimated", "quality_calculated", 
-                   #"quality_interpreted", 
+                   #"quality_estimated", "quality_calculated",
+                   #"quality_interpreted",
                    "year1", "day1", "month1",
                    "sortval", "newyear", "person",
                    "group_as", "sort_as", "display_as"]
@@ -106,35 +106,35 @@ class SurnameForm(forms.ModelForm):
         model = Surname
         exclude = ['name', 'order']
 
-    surname = forms.CharField(label="Surname", 
-                              required=False, 
+    surname = forms.CharField(label="Surname",
+                              required=False,
                               widget=TextInput(attrs={'size':'30'}))
 
-    connector = forms.CharField(label="Connector", 
-                              required=False, 
+    connector = forms.CharField(label="Connector",
+                              required=False,
                               widget=TextInput(attrs={'size':'30'}))
 
     prefix = forms.CharField(label="Prefix",
-                             required=False, 
+                             required=False,
                              initial=' prefix ',
                              widget=TextInput(attrs={'size':'15',
                                                      'style': 'font-style: italic; color: gray; ',
                                                      'onFocus': """if (this.value == ' prefix ') {
-                                                                      this.value = ''; 
+                                                                      this.value = '';
                                                                    }
-                                                                   this.style.color = "black"; 
+                                                                   this.style.color = "black";
                                                                    this.style.fontStyle = 'normal';
                                                                 """,
                                                      'onBlur': """if (this.value == '') {
-                                                                     this.value = ' prefix '; 
-                                                                     this.style.color = "gray"; 
+                                                                     this.value = ' prefix ';
+                                                                     this.style.color = "gray";
                                                                      this.style.fontStyle = 'italic';
                                                                    }
                                                                 """}))
 class FamilyForm(forms.ModelForm):
     class Meta:
         model = Family
-        exclude = ["handle", "cache", "mother", "father"] 
+        exclude = ["handle", "cache", "mother", "father"]
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -152,7 +152,7 @@ class EventForm(forms.ModelForm):
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data
- 
+
     def save(self, commit=True):
         from gramps.webapp.utils import dp
         from gramps.webapp.libdjango import DjangoInterface
@@ -164,8 +164,8 @@ class EventForm(forms.ModelForm):
             model.save()
         return model
 
-    text = forms.CharField(label="Date", 
-                           required=False, 
+    text = forms.CharField(label="Date",
+                           required=False,
                            widget=TextInput(attrs={'size':'45'}))
 
 class NoteForm(forms.ModelForm):
@@ -191,7 +191,7 @@ class MediaForm(forms.ModelForm):
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data
- 
+
     def save(self, commit=True):
         from gramps.webapp.utils import dp
         from gramps.webapp.libdjango import DjangoInterface
@@ -204,14 +204,14 @@ class MediaForm(forms.ModelForm):
             model.save()
         return model
 
-    text = forms.CharField(label="Date", 
-                           required=False, 
+    text = forms.CharField(label="Date",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
-    desc = forms.CharField(label="Title", 
-                           required=False, 
+    desc = forms.CharField(label="Title",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
-    path = forms.CharField(label="Path", 
-                           required=False, 
+    path = forms.CharField(label="Path",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
 
 class CitationForm(forms.ModelForm):
@@ -229,7 +229,7 @@ class CitationForm(forms.ModelForm):
             self._errors["date"] = self.error_class([msg])
             del data["text"]
         return data
- 
+
     def save(self, commit=True):
         from gramps.webapp.utils import dp
         from gramps.webapp.libdjango import DjangoInterface
@@ -241,8 +241,8 @@ class CitationForm(forms.ModelForm):
             model.save()
         return model
 
-    text = forms.CharField(label="Date", 
-                           required=False, 
+    text = forms.CharField(label="Date",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
 
 class SourceForm(forms.ModelForm):
@@ -255,14 +255,14 @@ class PlaceForm(forms.ModelForm):
         model = Place
         exclude = ["handle", "cache"]
 
-    title = forms.CharField(label="Title", 
-                           required=False, 
+    title = forms.CharField(label="Title",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
-    long = forms.CharField(label="Longitude", 
-                           required=False, 
+    long = forms.CharField(label="Longitude",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
-    lat = forms.CharField(label="Latitude", 
-                           required=False, 
+    lat = forms.CharField(label="Latitude",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
 
 class RepositoryForm(forms.ModelForm):
@@ -270,8 +270,8 @@ class RepositoryForm(forms.ModelForm):
         model = Repository
         exclude = ["handle", "cache"]
 
-    name = forms.CharField(label="Name", 
-                           required=False, 
+    name = forms.CharField(label="Name",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
 
 class TagForm(forms.ModelForm):
@@ -279,8 +279,8 @@ class TagForm(forms.ModelForm):
         model = Tag
         exclude = ["handle"]
 
-    name = forms.CharField(label="Name", 
-                           required=False, 
+    name = forms.CharField(label="Name",
+                           required=False,
                            widget=TextInput(attrs={'size':'70'}))
 
 class EventRefForm(forms.ModelForm):
@@ -295,7 +295,7 @@ class LogForm(forms.ModelForm):
         fields = ["reason"]
 
     reason = forms.CharField(label="Reason for change",
-                             widget=forms.widgets.Textarea(attrs={'rows':'2', 
+                             widget=forms.widgets.Textarea(attrs={'rows':'2',
                                                                   'cols': '65'}))
 class PickForm(forms.Form):
     picklist = forms.ChoiceField()

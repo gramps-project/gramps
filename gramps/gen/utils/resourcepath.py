@@ -33,7 +33,7 @@ class ResourcePath(object):
     ResourcePath is a singleton, meaning that only one of them is ever
     created.  At startup it finds the paths to Gramps's resource files and
     caches them for future use.
-    
+
     It should be called only by const.py; other code should retrieve the
     paths from there.
     """

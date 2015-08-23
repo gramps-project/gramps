@@ -38,7 +38,7 @@ from gramps.gen.config import config
 from gramps.gui.utils import open_file_with_default_application as run_file
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
-#completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and 
+#completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and
 #nl for Dutch (nl_BE, nl_NL language code)
 MANUALS = {
     'nl' : '/nl',

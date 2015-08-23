@@ -41,7 +41,7 @@ class ToDo(Gramplet):
         Build the GUI interface.
         """
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        
+
         hbox = Gtk.Box()
         self.left = SimpleButton('go-previous', self.left_clicked)
         self.left.set_tooltip_text(_('Previous To Do note'))
@@ -60,9 +60,9 @@ class ToDo(Gramplet):
         hbox.pack_start(self.new, False, False, 0)
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
-        
+
         scrolledwindow = Gtk.ScrolledWindow()
-        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, 
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                   Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
@@ -121,7 +121,7 @@ class ToDo(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
-        self.page.set_text(_('%(current)d of %(total)d') % 
+        self.page.set_text(_('%(current)d of %(total)d') %
                                     {'current': self.current + 1,
                                      'total': len(self.note_list)})
 
@@ -151,7 +151,7 @@ class ToDo(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if obj is None: 
+        if obj is None:
             return False
         if self.get_note_list(obj):
             return True

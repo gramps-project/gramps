@@ -40,13 +40,13 @@ class StyleOption(EnumeratedListOption):
     """
     This class describes an option that allows the use to select a style sheet.
     """
-    
+
     def __init__(self, label, default_style, module_name):
         """
         :param label: A friendly label to be applied to this option.
             Example: "Style"
         :type label: string
-        :param default_style: A docgen StyleSheet instance which provides the 
+        :param default_style: A docgen StyleSheet instance which provides the
         default styles.
         :type default_style: docgen StyleSheet
         :param module_name: The name of the module the style sheets belong to.
@@ -55,25 +55,25 @@ class StyleOption(EnumeratedListOption):
         :return: nothing
         """
         EnumeratedListOption.__init__(self, label, "default")
-        
+
         self.__default_style = default_style
         self.__default_style.set_name("default")
         self.__style_file = "%s_style.xml" % module_name
-        style_list = StyleSheetList(self.__style_file, 
+        style_list = StyleSheetList(self.__style_file,
                                             self.__default_style)
         for style_name in style_list.get_style_names():
             self.add_item(style_name, style_name)
-            
+
     def get_default_style(self):
         """ Get the default style """
         return self.__default_style
-    
+
     def get_style_file(self):
         """ Get the name of the style file """
         return self.__style_file
-        
+
     def get_style(self):
         """ Get the selected style """
-        style_list = StyleSheetList(self.__style_file, 
+        style_list = StyleSheetList(self.__style_file,
                                             self.__default_style)
         return style_list.get_style_sheet(self.get_value())

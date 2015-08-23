@@ -68,7 +68,7 @@ class GeneWebWriter(object):
         self.persons_details_done = []
         self.persons_notes_done = []
         self.person_ids = {}
-        
+
         if option_box:
             self.option_box.parse_options()
             self.db = option_box.get_filtered_database(self.db)
@@ -103,17 +103,17 @@ class GeneWebWriter(object):
         if len(self.flist) < 1:
             self.user.notify_error(_("No families matched by selected filter"))
             return False
-        
+
         self.count = 0
         self.oldval = 0
         self.total = len(self.flist)
         for key in self.flist:
             self.write_family(key)
             self.writeln("")
-        
+
         self.g.close()
         return True
-    
+
     def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
@@ -125,9 +125,9 @@ class GeneWebWriter(object):
                 if mother_handle:
                     mother = self.db.get_person_from_handle(mother_handle)
                     self.writeln("fam %s %s+%s %s %s" %
-                            (self.get_ref_name(father), 
-                            self.get_full_person_info_fam(father), 
-                            self.get_wedding_data(family), 
+                            (self.get_ref_name(father),
+                            self.get_full_person_info_fam(father),
+                            self.get_wedding_data(family),
                             self.get_ref_name(mother),
                             self.get_full_person_info_fam(mother)
                             )
@@ -148,11 +148,11 @@ class GeneWebWriter(object):
                             note = note.replace('\n',' ')
                             note = note.replace('\r',' ')
                             self.writeln("comm %s" % note)
-                    
+
     def write_witness(self, family):
         # FIXME: witnesses are not in events anymore
         return
-    
+
         if self.restrict:
             return
         event_ref_list = family.get_event_ref_list()
@@ -171,9 +171,9 @@ class GeneWebWriter(object):
                                     gender = "h"
                                 elif person.get_gender() == Person.FEMALE:
                                     gender = "f"
-                                self.writeln("wit %s %s %s" % 
-                                        (gender, 
-                                        self.get_ref_name(person), 
+                                self.writeln("wit %s %s %s" %
+                                        (gender,
+                                        self.get_ref_name(person),
                                         self.get_full_person_info_fam(person)
                                         )
                                     )
@@ -182,14 +182,14 @@ class GeneWebWriter(object):
         # FIXME
         #if self.restrict and self.exclnotes:
         #    return
-            
+
         if reflist:
             for handle in reflist:
                 citation = self.db.get_citation_from_handle(handle)
                 src_handle = citation.get_reference_handle()
                 source = self.db.get_source_from_handle(src_handle)
                 if source:
-                    self.writeln( "src %s" % 
+                    self.writeln( "src %s" %
                         (self.rem_spaces(source.get_title()))
                         )
 
@@ -206,9 +206,9 @@ class GeneWebWriter(object):
                         gender = "h"
                     elif child.get_gender() == Person.FEMALE:
                         gender = "f"
-                    self.writeln("- %s %s %s" % 
-                            (gender, 
-                            self.get_child_ref_name(child, father_lastname), 
+                    self.writeln("- %s %s %s" %
+                            (gender,
+                            self.get_child_ref_name(child, father_lastname),
                             self.get_full_person_info_child(child)
                             )
                          )
@@ -218,7 +218,7 @@ class GeneWebWriter(object):
         # FIXME:
         #if self.restrict and self.exclnotes:
         #    return
-            
+
         self.write_note_of_person(father)
         self.write_note_of_person(mother)
         child_ref_list = family.get_child_ref_list()
@@ -243,7 +243,7 @@ class GeneWebWriter(object):
     def write_note_of_person(self,person):
         if self.persons_notes_done.count(person.get_handle()) == 0:
             self.persons_notes_done.append(person.get_handle())
-            
+
             notelist = person.get_note_list()
             note = ""
             for notehandle in notelist:
@@ -257,12 +257,12 @@ class GeneWebWriter(object):
                 self.writeln("beg")
                 self.writeln(note)
                 self.writeln("end notes")
-    
+
     def get_full_person_info(self, person):
         # FIXME:
         #if self.restrict:
         #    return "0 "
-            
+
         retval = ""
 
         b_date = "0"
@@ -275,7 +275,7 @@ class GeneWebWriter(object):
                 place_handle = birth.get_place_handle()
                 if place_handle:
                     b_place = _pd.display_event(self.db, birth)
-        
+
         if probably_alive(person,self.db):
             d_date = ""
         else:
@@ -289,7 +289,7 @@ class GeneWebWriter(object):
                 place_handle = death.get_place_handle()
                 if place_handle:
                     d_place = _pd.display_event(self.db, death)
-            
+
         retval = retval + "%s " % b_date
         if b_place != "":
             retval = retval + "#bp %s " % self.rem_spaces(b_place)
@@ -300,9 +300,9 @@ class GeneWebWriter(object):
 
     def get_full_person_info_fam(self, person):
         """Output full person data of a family member.
-        
+
         This is only done if the person is not listed as a child.
-         
+
         """
         retval = ""
         if self.persons_details_done.count(person.get_handle()) == 0:
@@ -316,7 +316,7 @@ class GeneWebWriter(object):
                 self.persons_details_done.append(person.get_handle())
                 retval = self.get_full_person_info(person)
         return retval
-                    
+
 
     def get_full_person_info_child(self, person):
         """Output full person data for a child, if not printed somewhere else."""
@@ -328,17 +328,17 @@ class GeneWebWriter(object):
 
     def rem_spaces(self,str):
         return str.replace(' ','_')
-    
+
     def get_ref_name(self,person):
         #missing_surname = config.get("preferences.no-surname-text")
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        #firstname = config.get('preferences.private-given-text') 
+        #firstname = config.get('preferences.private-given-text')
         #if not (probably_alive(person,self.db) and \
         #  self.restrict and self.living):
         firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        return "%s %s.%d" % (surname, firstname, 
+        return "%s %s.%d" % (surname, firstname,
                              self.person_ids[person.get_handle()])
 
     def get_child_ref_name(self,person,father_lastname):
@@ -430,11 +430,11 @@ class GeneWebWriter(object):
                         ret = ret + ", "
                         ret = ret + source.get_title()
         return ret
-    
+
     def format_single_date(self, subdate, cal, mode):
         retval = ""
         (day, month, year, sl) = subdate
-        
+
         cal_type = ""
         if cal == Date.CAL_HEBREW:
             cal_type = "H"
@@ -442,7 +442,7 @@ class GeneWebWriter(object):
             cal_type = "F"
         elif cal == Date.CAL_JULIAN:
             cal_type = "J"
-        
+
         mode_prefix = ""
         if mode == Date.MOD_ABOUT:
             mode_prefix = "~"
@@ -450,7 +450,7 @@ class GeneWebWriter(object):
             mode_prefix = "<"
         elif mode == Date.MOD_AFTER:
             mode_prefix = ">"
-            
+
         if year > 0:
             if month > 0:
                 if day > 0:
@@ -461,7 +461,7 @@ class GeneWebWriter(object):
                 retval = "%s%s%s" % (mode_prefix,year,cal_type)
         return retval
 
-    
+
     def format_date(self,date):
         retval = ""
         if date.get_modifier() == Date.MOD_TEXTONLY:

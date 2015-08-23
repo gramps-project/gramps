@@ -44,12 +44,12 @@ DATABASES = {
         'NAME': os.path.join(WEB_DIR, 'sqlite.db'),
     }
 }
-DATABASE_ENGINE = 'sqlite3'           
+DATABASE_ENGINE = 'sqlite3'
 DATABASE_NAME = os.path.join(WEB_DIR, 'sqlite.db')
-DATABASE_USER = ''             
-DATABASE_PASSWORD = ''         
-DATABASE_HOST = ''             
-DATABASE_PORT = ''             
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 TIME_ZONE = 'America/New_York'
 LANGUAGE_CODE = 'en-us'
 SITE_ID = 1

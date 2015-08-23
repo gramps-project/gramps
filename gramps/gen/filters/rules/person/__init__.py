@@ -134,7 +134,7 @@ editor_rule_list = [
     HasRelationship,
     HasDeath,
     HasBirth,
-    HasCitation, 
+    HasCitation,
     HasEvent,
     HasFamilyEvent,
     HasAttribute,

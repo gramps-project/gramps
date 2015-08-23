@@ -119,11 +119,11 @@ class RecentFiles(object):
         self.gramps_recent_files = gramps_parser.get()
 
     def add(self,item2add):
-        # First we need to walk the existing items to see 
+        # First we need to walk the existing items to see
         # if our item is already there
         for item in self.gramps_recent_files:
             if item.get_path() == item2add.get_path():
-                # Found it -- modify timestamp and add all groups 
+                # Found it -- modify timestamp and add all groups
                 # to the item's groups
                 item.set_time(item2add.get_time())
                 return
@@ -134,7 +134,7 @@ class RecentFiles(object):
 
 
     def rename_filename(self,filename, new_filename):
-        # First we need to walk the existing items to see 
+        # First we need to walk the existing items to see
         # if our item is already there
         found = False
         for index in range(len(self.gramps_recent_files)):
@@ -146,7 +146,7 @@ class RecentFiles(object):
             self.gramps_recent_files[index].set_name(new_filename)
 
     def remove_filename(self,filename):
-        # First we need to walk the existing items to see 
+        # First we need to walk the existing items to see
         # if our item is already there
         found = False
         for index in range(len(self.gramps_recent_files)):
@@ -159,7 +159,7 @@ class RecentFiles(object):
 
 
     def check_if_recent(self,filename):
-        # First we need to walk the existing items to see 
+        # First we need to walk the existing items to see
         # if our item is already there
         found = False
         for index in range(len(self.gramps_recent_files)):
@@ -212,7 +212,7 @@ class RecentParser(object):
     """
     Parsing class for the RecentFiles collection.
     """
-    
+
     def __init__(self):
         self.recent_files = []
 
@@ -300,4 +300,4 @@ def rename_filename(filename, new_filename):
 def check_if_recent(filename):
     gramps_rf = RecentFiles()
     return gramps_rf.check_if_recent(filename)
-    
+

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -31,7 +31,7 @@ try:
 except:
     MOCKING = False
 
-from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation, 
+from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                              Repository, MediaObject, Note, Tag)
 from gramps.gen.merge.diff import DictionaryDb
 from gramps.cli.user import User
@@ -52,7 +52,7 @@ class MockEditReference(EditReference):
 
 example = os.path.abspath(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                 "../../../..", 
+                 "../../../..",
                  "example/gramps/example.gramps"))
 
 class TestEditReference(unittest.TestCase):
@@ -69,10 +69,10 @@ class TestEditReference(unittest.TestCase):
         db.write_version(path)
         db.load(path)
         dbstate.change_database(db)
-        source = Place() 
+        source = Place()
         source.gramps_id = "P0001"
         dbstate.db.place_map[source.handle] = source.serialize()
-        editor = MockEditReference(dbstate, uistate=None, track=[], 
+        editor = MockEditReference(dbstate, uistate=None, track=[],
                                    source=source, source_ref=None, update=None)
         with patch('gramps.gui.editors.editreference.ErrorDialog') as MockED:
             editor.check_for_duplicate_id("Place")

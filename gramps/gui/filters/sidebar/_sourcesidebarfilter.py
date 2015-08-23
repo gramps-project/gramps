@@ -114,7 +114,7 @@ class SourceSidebarFilter(SidebarFilter):
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or author or abbr or pub or note or regex 
+        empty = not (gid or title or author or abbr or pub or note or regex
                      or tag or gen)
         if empty:
             generic_filter = None
@@ -126,7 +126,7 @@ class SourceSidebarFilter(SidebarFilter):
 
             rule = HasSource([title, author, abbr, pub], use_regex=regex)
             generic_filter.add_rule(rule)
-                
+
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)

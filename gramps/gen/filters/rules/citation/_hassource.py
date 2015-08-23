@@ -45,15 +45,15 @@ from .._hassourcebase import HasSourceBase
 class HasSource(HasSourceBase):
     """Rule that checks for an citation with a particular value"""
 
-    labels      = [ _('Title:'), 
-                    _('Author:'), 
+    labels      = [ _('Title:'),
+                    _('Author:'),
                     _('Abbreviation:'),
                     _('Publication:') ]
     name        = _('Sources matching parameters')
     description = _("Matches citations with a source of a particular "
                     "value")
     category    = _('Source filters')
-    
+
     def apply(self, dbase, citation):
         source = dbase.get_source_from_handle(
                                     citation.get_reference_handle())

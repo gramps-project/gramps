@@ -14,7 +14,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -54,11 +54,11 @@ ODFDoc : used to generate Open Office Document
 # pylint: disable-msg=W0613
 # errors :
 # disable-msg=E1101 # has no member
-# pylint: disable-msg=E1101 
+# pylint: disable-msg=E1101
 
 #-------------------------------------------------------------------------
 #
-# Standard Python Modules 
+# Standard Python Modules
 #
 #-------------------------------------------------------------------------
 import os
@@ -76,7 +76,7 @@ from xml.sax.saxutils import escape
 #-------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     FONT_SANS_SERIF, SOLID, PAPER_PORTRAIT,
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT, URL_PATTERN,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
 from gramps.gen.plug.docgen.fontscale import string_width
@@ -99,9 +99,9 @@ _ = glocale.translation.gettext
 _apptype = 'application/vnd.oasis.opendocument.text'
 
 _esc_map = {
-    '\x1a'           : '', 
-    '\x0c'           : '', 
-    '\n'             : '<text:line-break/>', 
+    '\x1a'           : '',
+    '\x0c'           : '',
+    '\n'             : '<text:line-break/>',
     '\t'             : '<text:tab />',
     }
 
@@ -161,11 +161,11 @@ _FONTS = '''\
 
 _META_XML = '''\
 <?xml version="1.0" encoding="UTF-8"?>
-<office:document-meta 
-    xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    xmlns:dc="http://purl.org/dc/elements/1.1/" 
-    xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" 
+<office:document-meta
+    xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0"
     office:version="1.0">
 <office:meta>
 <meta:generator>
@@ -207,35 +207,35 @@ _META_XML = '''\
 '''
 
 _STYLES = '''\
-<style:default-style 
+<style:default-style
     style:family="graphic">
-    <style:graphic-properties 
+    <style:graphic-properties
         draw:shadow-offset-x="0.3cm"
-        draw:shadow-offset-y="0.3cm" 
-        draw:start-line-spacing-horizontal="0.283cm" 
-        draw:start-line-spacing-vertical="0.283cm" 
-        draw:end-line-spacing-horizontal="0.283cm" 
-        draw:end-line-spacing-vertical="0.283cm" 
+        draw:shadow-offset-y="0.3cm"
+        draw:start-line-spacing-horizontal="0.283cm"
+        draw:start-line-spacing-vertical="0.283cm"
+        draw:end-line-spacing-horizontal="0.283cm"
+        draw:end-line-spacing-vertical="0.283cm"
         style:flow-with-text="true"/>
-    <style:paragraph-properties 
-        style:text-autospace="ideograph-alpha" 
-        style:line-break="strict" 
-        style:writing-mode="lr-tb" 
+    <style:paragraph-properties
+        style:text-autospace="ideograph-alpha"
+        style:line-break="strict"
+        style:writing-mode="lr-tb"
         style:font-independent-line-spacing="false">
         <style:tab-stops/>
     </style:paragraph-properties>
-    <style:text-properties 
-        style:use-window-font-color="true" 
-        fo:font-size="12pt" 
-        style:font-size-asian="12pt" 
-        style:language-asian="none" 
-        style:country-asian="none" 
-        style:font-size-complex="12pt" 
-        style:language-complex="none" 
+    <style:text-properties
+        style:use-window-font-color="true"
+        fo:font-size="12pt"
+        style:font-size-asian="12pt"
+        style:language-asian="none"
+        style:country-asian="none"
+        style:font-size-complex="12pt"
+        style:language-complex="none"
         style:country-complex="none"/>
 </style:default-style>
 
-<style:default-style 
+<style:default-style
      style:family="paragraph">
      <style:paragraph-properties
          style:text-autospace="ideograph-alpha"
@@ -243,39 +243,39 @@ _STYLES = '''\
          style:line-break="strict"
          style:tab-stop-distance="2.205cm"
          style:writing-mode="page"/>
-    <style:text-properties 
-        style:font-name="Times New Roman" 
-        fo:font-size="12pt" 
-        style:font-name-asian="Times New Roman" 
-        style:font-size-asian="12pt" 
-        style:font-name-complex="Times New Roman" 
-        style:font-size-complex="12pt" 
+    <style:text-properties
+        style:font-name="Times New Roman"
+        fo:font-size="12pt"
+        style:font-name-asian="Times New Roman"
+        style:font-size-asian="12pt"
+        style:font-name-complex="Times New Roman"
+        style:font-size-complex="12pt"
         style:tab-stop-distance="2.205cm"/>
 </style:default-style>
 
-<style:default-style 
-     style:family="table"> 
-     <style:table-properties 
-        table:border-model="separating"/> 
+<style:default-style
+     style:family="table">
+     <style:table-properties
+        table:border-model="separating"/>
 </style:default-style>
 
-<style:default-style 
-    style:family="table-row"> 
-    <style:table-row-properties 
-        fo:keep-together="auto"/> 
+<style:default-style
+    style:family="table-row">
+    <style:table-row-properties
+        fo:keep-together="auto"/>
 </style:default-style>
 
-<style:style style:name="Standard" 
+<style:style style:name="Standard"
     style:family="paragraph" style:class="text"/>
 
-<style:style style:name="photo" 
+<style:style style:name="photo"
     style:family="graphic">
-    <style:graphic-properties 
-        text:anchor-type="paragraph" 
-        svg:x="0cm" svg:y="0cm" style:wrap="none" 
-        style:vertical-pos="top" 
-        style:vertical-rel="paragraph-content" 
-        style:horizontal-pos="center" 
+    <style:graphic-properties
+        text:anchor-type="paragraph"
+        svg:x="0cm" svg:y="0cm" style:wrap="none"
+        style:vertical-pos="top"
+        style:vertical-rel="paragraph-content"
+        style:horizontal-pos="center"
         style:horizontal-rel="paragraph-content"/>
 </style:style>
 '''
@@ -317,7 +317,7 @@ _CLEAR_STYLE = '''\
 </style:style>\n
 '''
 _OTHER_STYLES = '''\
-<style:style style:name="Tbold" 
+<style:style style:name="Tbold"
     style:family="text">\n
     <style:text-properties fo:font-weight="bold"/>\n
 </style:style>\n
@@ -486,7 +486,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.init_called = True
         wrt = self.cntnt.write
         wrt1, wrt2 = self.cntnt1.write, self.cntnt2.write
-        
+
         self.lang = glocale.lang
         self.lang = self.lang.replace('_', '-') if self.lang else "en-US"
 
@@ -516,12 +516,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     'style:family="graphic">\n'
                     '<style:graphic-properties '
                 )
-                
+
             if style.get_line_width():
                 wrt(
                     'svg:stroke-width="%.2f" '
                         % (style.get_line_width()*10) +
-                    'draw:marker-start="" ' 
+                    'draw:marker-start="" '
                     'draw:marker-start-width="0.0" '
                     'draw:marker-end-width="0.0" '
                     'draw:textarea-horizontal-align="center" '
@@ -594,7 +594,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '<style:paragraph-properties ' +
                         'fo:break-before="page"/>\n' +
                 '</style:style>\n' +
-    
+
                 '<style:style style:name="X%s" ' % style_name +
                     'style:family="paragraph"' +
                     '>\n' +
@@ -613,7 +613,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 wrt('fo:text-align="end" ')
             elif align == PARA_ALIGN_CENTER:
                 wrt(
-                    'fo:text-align="center" ' 
+                    'fo:text-align="center" '
                     'style:justify-single-word="false" '
                     )
             else:
@@ -711,11 +711,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '<style:style style:name="%s.%s" '
                             % (style_name, chr(ord('A')+col)) +
                         'style:family="table-column">' +
-                        '<style:table-column-properties ' + 
+                        '<style:table-column-properties ' +
                             'style:column-width="%scm"/>' % width_str +
                     '</style:style>\n'
                     )
-                
+
         for cell in styles.get_cell_style_names():
             cell_style = styles.get_cell_style(cell)
             wrt(
@@ -728,7 +728,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 ("0.002cm solid #000000"
                     if cell_style.get_top_border() else
                 "none")
-               ) 
+               )
 
             wrt(' fo:border-bottom="%s"' %
                 ("0.002cm solid #000000"
@@ -740,19 +740,19 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 ("0.002cm solid #000000"
                     if cell_style.get_left_border() else
                 "none")
-               ) 
+               )
 
             wrt(' fo:border-right="%s"' %
                 ("0.002cm solid #000000"
                     if cell_style.get_right_border() else
                 "none")
-               )  
+               )
 
             wrt(
-                '/>\n' 
+                '/>\n'
                 '</style:style>\n'
                 )
-            
+
         wrt(
             _OTHER_STYLES
             )
@@ -776,7 +776,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         result = []
         for item in list_:
             marker = funct(item[0])
-            if marker in seen: 
+            if marker in seen:
                 continue
             seen.add(marker)
             result.append(item)
@@ -805,8 +805,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         Close the document and create the odt file
         """
         self.cntnt.write(
-            '</office:text>\n' 
-            '</office:body>\n' 
+            '</office:text>\n'
+            '</office:body>\n'
             '</office:document-content>\n'
             )
         self.finish_cntnt_creation()
@@ -830,7 +830,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 wrt1(
                     '<style:font-face ' +
                     '    style:name="%s"\n' %  style[2].replace("-", " ") +
-                    '    svg:font-family="&apos;%s&apos;"\n' % 
+                    '    svg:font-family="&apos;%s&apos;"\n' %
                                     style[2].replace("-", " ") +
                     '    style:font-pitch="fixed"/>\n\n'
                     )
@@ -884,7 +884,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                         'style:name="FontFace__%s__"\n' % style[2] +
                     '    style:family="text">\n' +
                     '    <style:text-properties\n' +
-                    '        style:font-name="%s"\n' % 
+                    '        style:font-name="%s"\n' %
                                     style[2].replace("-", " ")  +
                     '        style:font-pitch="variable"/>\n' +
                     '</style:style>\n\n'
@@ -1008,7 +1008,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         (x, y) = image_size(file_name)
         if (x, y) == (0, 0):
             return
-        
+
         not_extension, extension = os.path.splitext(file_name)
         file_name_hash = file_name
         file_name_hash = file_name_hash.encode('utf-8')
@@ -1020,7 +1020,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         base = escape(os.path.basename(file_name))
         tag = base.replace('.', '_')
-        
+
         if self.new_cell:
             self.cntnt.write('<text:p>')
 
@@ -1029,13 +1029,13 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         if crop:
             (start_x, start_y, end_x, end_y
                     ) = crop_percentage_to_subpixel(x, y, crop)
-    
+
             # Need to keep the ratio intact, otherwise scaled images look stretched
             # if the dimensions aren't close in size
             (act_width, act_height) = image_actual_size(
                 x_cm, y_cm, int(end_x-start_x), int(end_y-start_y)
-            )  
-            
+            )
+
             dpi = image_dpi(file_name)
 
             # ODF wants crop measurements in inch and as margins from each side
@@ -1137,7 +1137,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )
         if span > 1:
             self.cntnt.write(' table:number-columns-spanned="%s">\n' % span)
-        else:             
+        else:
             self.cntnt.write('>\n')
         self.new_cell = 1
 
@@ -1161,7 +1161,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         close bold
         """
         self.cntnt.write('</text:span>')
-        
+
     def start_superscript(self):
         """
         open superscript
@@ -1195,7 +1195,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             raise ReportError(errmsg)
         except:
             raise ReportError(_("Could not create %s") % self.filename)
-            
+
         t = time.localtime(time.time())[:6]
 
         self._add_zip(zfile, "META-INF/manifest.xml", self.mfile.getvalue(), t)
@@ -1211,7 +1211,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.stfile.close()
         self.sfile.close()
         self.mimetype.close()
-        
+
         for image in self.media_list:
             try:
                 ifile = open(image[0], mode='rb')
@@ -1229,7 +1229,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         self.sfile = StringIO()
         wrtf = self.sfile.write
-                                     
+
         wrtf('<?xml version="1.0" encoding="UTF-8"?>\n')
         wrtf('<office:document-styles ' +
             _XMLNS +
@@ -1244,9 +1244,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         wrtf('<office:styles>\n' +
             _STYLES
             )
-        
+
         styles = self.get_style_sheet()
-        
+
         for style_name in styles.get_paragraph_style_names():
             style = styles.get_paragraph_style(style_name)
             wrtf(
@@ -1360,7 +1360,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         #wrtf('<text:outline-level-style ')
         #wrtf('text:level="10" style:num-format=""/>\n')
         #wrtf('</text:outline-style>\n')
-            
+
         wrtf(
             '<text:notes-configuration  '
                 'text:note-class="footnote"  '
@@ -1423,7 +1423,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 'style:color="#000000"/>\n' +
             '</style:page-layout-properties>\n'
             )
-        
+
         # header
         wrtf(
             '<style:header-style>\n'
@@ -1446,7 +1446,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             '</office:automatic-styles>\n'
             )
 
-        # Master Styles        
+        # Master Styles
         wrtf(
             '<office:master-styles>\n'
                 '<style:master-page style:name="Standard" '
@@ -1471,7 +1471,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '</style:master-page>'
             '</office:master-styles>\n'
             )
-        # End of document styles      
+        # End of document styles
         wrtf('</office:document-styles>\n')
 
     def page_break(self):
@@ -1491,7 +1491,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         close the page
         """
         self.cntnt.write('</text:p>\n')
-        
+
     def start_paragraph(self, style_name, leader=None):
         """
         open a new paragraph
@@ -1527,12 +1527,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
         """
-        Convenience function to write a styledtext to the ODF doc. 
+        Convenience function to write a styledtext to the ODF doc.
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        contains_html: bool, the backend should not check if html is present. 
-            If contains_html=True, then the textdoc is free to handle that in 
+        contains_html: bool, the backend should not check if html is present.
+            If contains_html=True, then the textdoc is free to handle that in
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. ODFDoc prints the html without handling it
         links: bool, make URLs clickable if True
@@ -1629,7 +1629,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                          'text:outline-level="3" ' +
                          'text:use-outline-level="false">')
 
-        self.cntnt.write('<text:index-title-template ' + 
+        self.cntnt.write('<text:index-title-template ' +
                          'text:style-name="TOC-Title">' + title)
         self.cntnt.write('</text:index-title-template>')
 
@@ -1650,7 +1650,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         self.cntnt.write('<text:index-body>')
         self.cntnt.write('<text:index-title>')
-        self.cntnt.write('<text:p text:style-name="NLTOC-Title">%s</text:p>' % 
+        self.cntnt.write('<text:p text:style-name="NLTOC-Title">%s</text:p>' %
                         title)
         self.cntnt.write('</text:index-title>')
         self.cntnt.write('</text:index-body>')
@@ -1668,10 +1668,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                          'text:combine-entries="false"  ' +
                          'text:combineentries-with-pp="false">')
 
-        self.cntnt.write('<text:index-title-template ' + 
+        self.cntnt.write('<text:index-title-template ' +
                          'text:style-name="IDX-Title">' + title)
         self.cntnt.write('</text:index-title-template>')
-        
+
         self.cntnt.write('<text:alphabetical-index-entry-template ' +
                          'text:outline-level="1" ' +
                          'text:style-name="IDX-Entry">')
@@ -1686,7 +1686,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         self.cntnt.write('<text:index-body>')
         self.cntnt.write('<text:index-title>')
-        self.cntnt.write('<text:p text:style-name="NLIDX-Title">%s</text:p>' % 
+        self.cntnt.write('<text:p text:style-name="NLIDX-Title">%s</text:p>' %
                         title)
         self.cntnt.write('</text:index-title>')
         self.cntnt.write('</text:index-body>')
@@ -1750,7 +1750,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
           'xmlns:ooo="http://openoffice.org/2004/office"\n' +
           'xmlns:xlink="http://www.w3.org/1999/xlink" />'
             )
-    
+
     def _write_mimetype_file(self):
         """
         create the mimetype.xml file
@@ -1813,7 +1813,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 escape('\n'.join(text), _esc_map) +
             '</text:span></text:p>\n</draw:text-box>\n' +
             '</draw:frame>\n')
-        
+
     def draw_path(self, style, path):
         """
         Draw a path
@@ -1840,7 +1840,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             'svg:width="%.4fcm" ' % (maxx - minx) +
             'svg:height="%.4fcm" ' % (maxy - miny)
             )
-        
+
         point = path[0]
         x1 = int((point[0] - minx) * 1000)
         y1 = int((point[1] - miny) * 1000)
@@ -1989,12 +1989,12 @@ def process_spaces(line, format):
     Function to process spaces in text lines for flowed and pre-formatted notes.
     line : text to process
     format : = 0 : Flowed, = 1 : Preformatted
-    
+
     If the text is flowed (format==0), then leading spaces (after ignoring XML)
     are removed. Embedded multiple spaces are reduced to one by ODF
     If the text is pre-formatted (format==1). then all spaces  (after ignoring XML)
     are replaced by "<text:s/>"
-    
+
     Returns the processed text, and the number of significant (i.e. non-white-space) chars.
     """
     txt = ""
@@ -2003,7 +2003,7 @@ def process_spaces(line, format):
     # we loop through every character, which is very inefficient, but an attempt to use
     # a regex replace didn't always work. This was the code that was replaced.
     # Problem, we may not replace ' ' in xml tags, so we use a regex
-    # self.cntnt.write(re.sub(' (?=([^(<|>)]*<[^>]*>)*[^>]*$)', 
+    # self.cntnt.write(re.sub(' (?=([^(<|>)]*<[^>]*>)*[^>]*$)',
     #                        "<text:s/>", line))
     for char in line:
         if char == '<' and xml == False:
@@ -2027,4 +2027,4 @@ def process_spaces(line, format):
             sigcount += 1
             txt += char
     return [txt, sigcount]
-    
+

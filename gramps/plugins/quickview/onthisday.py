@@ -53,7 +53,7 @@ def get_ref(db, objclass, handle):
 def run(database, document, main_event):
     """
     Displays events on a specific date of an event (or date)
-    
+
     Takes an Event or Date object
     """
     if isinstance(main_event, Date):
@@ -74,39 +74,39 @@ def run(database, document, main_event):
     histab.set_link_col(3)
 
     # display the title
-    sdoc.title(_("Events of %(date)s") % 
+    sdoc.title(_("Events of %(date)s") %
                {"date": sdb.date_string(main_date)})
     sdoc.paragraph("")
     stab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     histab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
-    
+
     for event in database.iter_events():
         date = event.get_date_object()
         date.convert_calendar(cal)
         if date.get_year() == 0:
             continue
-        if (date.get_year() == main_date.get_year() and 
+        if (date.get_year() == main_date.get_year() and
             date.get_month() == main_date.get_month() and
             date.get_day() == main_date.get_day()):
             for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                stab.row(date, 
-                         sdb.event_type(event), 
+                stab.row(date,
+                         sdb.event_type(event),
                          sdb.event_place(event), ref)
         elif (date.get_month() == main_date.get_month() and
               date.get_day() == main_date.get_day() and
               date.get_month() != 0):
             for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                histab.row(date, 
-                           sdb.event_type(event), 
+                histab.row(date,
+                           sdb.event_type(event),
                            sdb.event_place(event), ref)
         elif (date.get_year() == main_date.get_year()):
             for (objclass, handle) in database.find_backlink_handles(event.handle):
                 ref = get_ref(database, objclass, handle)
-                yeartab.row(date, 
-                            sdb.event_type(event), 
+                yeartab.row(date,
+                            sdb.event_type(event),
                             sdb.event_place(event), ref)
 
     document.has_data = False
@@ -130,11 +130,11 @@ def run(database, document, main_event):
 
     if yeartab.get_row_count() > 0:
         document.has_data = True
-        sdoc.paragraph(_("Other events in %(year)d") % 
+        sdoc.paragraph(_("Other events in %(year)d") %
                        {"year":main_date.get_year()})
         yeartab.write(sdoc)
     else:
-        sdoc.paragraph(_("No other events in %(year)d") % 
+        sdoc.paragraph(_("No other events in %(year)d") %
                        {"year":main_date.get_year()})
         sdoc.paragraph("")
     sdoc.paragraph("")

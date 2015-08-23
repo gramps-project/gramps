@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
-#               2009 Gary Burton 
+#               2009 Gary Burton
 # Copyright (C) 2011       Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -56,7 +56,7 @@ class SelectCitation(BaseSelector):
 
     def get_window_title(self):
         return _("Select Source or Citation")
-        
+
     def get_model_class(self):
         return CitationTreeModel
 
@@ -69,6 +69,6 @@ class SelectCitation(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_source_from_handle
-        
+
     def get_from_handle_func2(self):
         return self.db.get_citation_from_handle

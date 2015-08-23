@@ -92,7 +92,7 @@ class HasTextMatchingSubstringOf(Rule):
 
         # Look for matching families
         if any(self.search_family(family_handle)
-            for family_handle in person.get_family_handle_list()): 
+            for family_handle in person.get_family_handle_list()):
                 return True
 
         # Look for matching media objects
@@ -100,7 +100,7 @@ class HasTextMatchingSubstringOf(Rule):
             for media_ref in person.get_media_list()):
                 return True
         return False
-    
+
     def search_family(self,family_handle):
         if not family_handle:
             return False
@@ -169,7 +169,7 @@ class HasTextMatchingSubstringOf(Rule):
                 if repo and self.match_object(repo)
 
             )
-    
+
     def cache_sources(self):
         # search all sources and match all referents of a matching source
         for source in self.db.iter_sources():
@@ -185,18 +185,18 @@ class HasTextMatchingSubstringOf(Rule):
                               (match, self.list[0], source.gramps_id))
             (citation_list, citation_referents_list) = \
                     get_source_and_citation_referents(source.handle, self.db)
-            LOG.debug("the_lists %s %s" % 
+            LOG.debug("the_lists %s %s" %
                       (citation_list, citation_referents_list))
             for (citation_handle, refs) in citation_referents_list:
                 citation = self.db.get_citation_from_handle(citation_handle)
                 LOG.debug("cache_sources match %s matchcitation %s string %s"
                           " source %s citation %s" %
-                          (match, self.match_object(citation), 
-                           self.list[0], source.gramps_id, 
+                          (match, self.match_object(citation),
+                           self.list[0], source.gramps_id,
                            citation.gramps_id))
                 if match or self.match_object(citation):
                     # Update the maps to reflect the reference
-                    (person_list, family_list, event_list, place_list, 
+                    (person_list, family_list, event_list, place_list,
                      source_list, media_list, repo_list) = refs
                     self.person_map.update(person_list)
                     self.family_map.update(family_list)

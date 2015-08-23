@@ -20,14 +20,14 @@
 #
 
 """
-Date editing module for Gramps. 
+Date editing module for Gramps.
 
-The EditDate provides visual feedback to the user to indicate if 
-the associated GtkEntry box contains a valid date. 
+The EditDate provides visual feedback to the user to indicate if
+the associated GtkEntry box contains a valid date.
 Red means that the date is not valid, and will be viewed as a text string
 instead of a date.
 
-The DateEditor provides a dialog in which the date can be 
+The DateEditor provides a dialog in which the date can be
 unambiguously built using UI controls such as menus and spin buttons.
 """
 
@@ -72,7 +72,7 @@ from ..glade import Glade
 # Constants
 #
 #-------------------------------------------------------------------------
-MOD_TEXT = ( 
+MOD_TEXT = (
     (Date.MOD_NONE       , _('Regular')),
     (Date.MOD_BEFORE     , _('Before')),
     (Date.MOD_AFTER      , _('After')),
@@ -82,8 +82,8 @@ MOD_TEXT = (
     (Date.MOD_TEXTONLY   , _('Text only')) )
 
 QUAL_TEXT = (
-    (Date.QUAL_NONE,       _('Regular')), 
-    (Date.QUAL_ESTIMATED,  _('Estimated')), 
+    (Date.QUAL_NONE,       _('Regular')),
+    (Date.QUAL_ESTIMATED,  _('Estimated')),
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
 CAL_TO_MONTHS_NAMES = {
@@ -105,7 +105,7 @@ WIKI_HELP_SEC = _('manual|Editing_Dates')
 #-------------------------------------------------------------------------
 class EditDate(ManagedWindow):
     """
-    Dialog allowing to build the date precisely, to correct possible 
+    Dialog allowing to build the date precisely, to correct possible
     limitations of parsing and/or underlying structure of :class:`.Date`.
     """
 
@@ -114,17 +114,17 @@ class EditDate(ManagedWindow):
         Initiate and display the dialog.
         """
         ManagedWindow.__init__(self, uistate, track, self)
-        
+
         # Create self.date as a copy of the given Date object.
         self.date = Date(date)
-        
+
         self.top = Glade()
 
         self.set_window(
             self.top.toplevel,
             self.top.get_object('title'),
-            _('Date selection'))            
-            
+            _('Date selection'))
+
         self.statusbar = self.top.get_object('statusbar')
         self.ok_button = self.top.get_object('ok_button')
         self.calendar_box = self.top.get_object('calendar_box')
@@ -160,7 +160,7 @@ class EditDate(ManagedWindow):
             self.stop_month_box.append_text(name)
         self.start_month_box.set_active(self.date.get_month())
         self.stop_month_box.set_active(self.date.get_stop_month())
-        
+
         self.start_day = self.top.get_object('start_day')
         self.start_day.set_value(self.date.get_day())
         self.start_year = self.top.get_object('start_year')
@@ -170,7 +170,7 @@ class EditDate(ManagedWindow):
         self.stop_day.set_value(self.date.get_stop_day())
         self.stop_year = self.top.get_object('stop_year')
         self.stop_year.set_value(self.date.get_stop_year())
-        
+
         self.dual_dated = self.top.get_object('dualdated')
 
         # Disable second date controls if not compound date
@@ -201,7 +201,7 @@ class EditDate(ManagedWindow):
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
         # loose track of which is which. Much like opening files.
-        
+
         self.validated_date = self.return_date = None
 
         for o in self.top.get_objects():
@@ -240,7 +240,7 @@ class EditDate(ManagedWindow):
         If anything changed, revalidate the date and
         enable/disable the "OK" button based on the result.
         """
-        (the_quality, the_modifier, the_calendar, the_value, 
+        (the_quality, the_modifier, the_calendar, the_value,
          the_text, the_newyear) = self.build_date_from_ui()
         LOG.debug("revalidate: {0} changed, value: {1}".format(
             obj, the_value))
@@ -261,10 +261,10 @@ class EditDate(ManagedWindow):
             self.ok_button.set_sensitive(1)
             self.calendar_box.set_sensitive(1)
             return True
-        except DateError as e: 
+        except DateError as e:
             self.ok_button.set_sensitive(0)
             self.calendar_box.set_sensitive(0)
-            self.statusbar.push(1, 
+            self.statusbar.push(1,
                     _("Correct the date or switch from `{cur_mode}' to `{text_mode}'"
                         ).format(
                             cur_mode = MOD_TEXT[self.type_box.get_active()][1],
@@ -279,12 +279,12 @@ class EditDate(ManagedWindow):
 
     def build_date_from_ui(self):
         """
-        Collect information from the UI controls and return 
-        5-tuple of (quality,modifier,calendar,value,text) 
+        Collect information from the UI controls and return
+        5-tuple of (quality,modifier,calendar,value,text)
         """
-        # It is important to not set date based on these controls. 
+        # It is important to not set date based on these controls.
         # For example, changing the caledar makes the date inconsistent
-        # until the callback of the calendar menu is finished. 
+        # until the callback of the calendar menu is finished.
         # We need to be able to use this function from that callback,
         # so here we just report on the state of all widgets, without
         # actually modifying the date yet.
@@ -319,12 +319,12 @@ class EditDate(ManagedWindow):
 
     def switch_type(self, obj):
         """
-        Disable/enable various date controls depending on the date 
+        Disable/enable various date controls depending on the date
         type selected via the menu.
         """
 
         the_modifier = MOD_TEXT[self.type_box.get_active()][0]
-        
+
         # Disable/enable second date controls based on whether
         # the type allows compound dates
         if the_modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
@@ -368,10 +368,10 @@ class EditDate(ManagedWindow):
 
     def switch_calendar(self, obj):
         """
-        Change month names and convert the date based on the calendar 
+        Change month names and convert the date based on the calendar
         selected via the menu.
         """
-        
+
         old_cal = self.date.get_calendar()
         new_cal = self.calendar_box.get_active()
         LOG.debug(">>>switch_calendar: {0} changed, {1} -> {2}".format(
@@ -379,7 +379,7 @@ class EditDate(ManagedWindow):
 
         self.align_newyear_ui_with_calendar(new_cal)
 
-        (the_quality, the_modifier, the_calendar, 
+        (the_quality, the_modifier, the_calendar,
          the_value, the_text, the_newyear) = self.build_date_from_ui()
         try:
             self.date.set(
@@ -394,7 +394,7 @@ class EditDate(ManagedWindow):
         else:
             if not self.date.is_empty():
                 self.date.convert_calendar(new_cal)
-        
+
         self.start_month_box.get_model().clear()
         self.stop_month_box.get_model().clear()
         month_names = CAL_TO_MONTHS_NAMES[new_cal]

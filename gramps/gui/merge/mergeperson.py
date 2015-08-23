@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -176,24 +176,24 @@ class MergePerson(ManagedWindow):
         title.set_property('weight', Pango.Weight.BOLD)
         title.set_property('scale', 1.2)
         self.add(tobj, title, name_displayer.display(person))
-        self.add(tobj, normal, "%s:\t%s" % (_('ID'), 
+        self.add(tobj, normal, "%s:\t%s" % (_('ID'),
                  person.get_gramps_id()))
-        self.add(tobj, normal, "%s:\t%s" % (_('Gender'), 
+        self.add(tobj, normal, "%s:\t%s" % (_('Gender'),
                  sex[person.get_gender()]))
         bref = person.get_birth_ref()
         if bref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Birth'), 
+            self.add(tobj, normal, "%s:\t%s" % (_('Birth'),
                      self.get_event_info(bref.ref)))
         dref = person.get_death_ref()
         if dref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Death'), 
+            self.add(tobj, normal, "%s:\t%s" % (_('Death'),
                      self.get_event_info(dref.ref)))
 
         nlist = person.get_alternate_names()
         if len(nlist) > 0:
             self.add(tobj, title, _("Alternate Names"))
             for name in nlist:
-                self.add(tobj, normal, 
+                self.add(tobj, normal,
                          name_displayer.display_name(name))
 
         elist = person.get_event_ref_list()
@@ -205,10 +205,10 @@ class MergePerson(ManagedWindow):
                 name = str(
                     self.database.get_event_from_handle(event_handle).get_type())
                 if role.is_primary():
-                    self.add(tobj, normal, "%s:\t%s" % 
+                    self.add(tobj, normal, "%s:\t%s" %
                                 (name, self.get_event_info(event_handle)))
                 else:
-                    self.add(tobj, normal, "%s (%s):\t%s" % 
+                    self.add(tobj, normal, "%s (%s):\t%s" %
                                 (name, role, self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
 
@@ -223,7 +223,7 @@ class MergePerson(ManagedWindow):
                     self.add(tobj, indent, "%s:\t%s" % (_('Mother'), mname))
         else:
             self.add(tobj, normal, _("No parents found"))
-            
+
         self.add(tobj, title, _("Spouses"))
         slist = person.get_family_handle_list()
         if len(slist) > 0:
@@ -234,18 +234,18 @@ class MergePerson(ManagedWindow):
                 spouse_id = ReportUtils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Spouse'), 
+                    self.add(tobj, indent, "%s:\t%s" % (_('Spouse'),
                              name_of(spouse)))
                 relstr = str(family.get_relationship())
                 self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
                 event = ReportUtils.find_marriage(self.database, family)
                 if event:
                     self.add(tobj, indent, "%s:\t%s" % (
-                            _('Marriage'), 
+                            _('Marriage'),
                             self.get_event_info(event.get_handle())))
                 for child_ref in family.get_child_ref_list():
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Child'), 
+                    self.add(tobj, indent, "%s:\t%s" % (_('Child'),
                              name_of(child)))
         else:
             self.add(tobj, normal, _("No spouses or children found"))
@@ -254,7 +254,7 @@ class MergePerson(ManagedWindow):
         if len(alist) > 0:
             self.add(tobj, title, _("Addresses"))
             for addr in alist:
-                location = ", ".join([addr.get_street(), addr.get_city(), 
+                location = ", ".join([addr.get_street(), addr.get_city(),
                                      addr.get_state(), addr.get_country(),
                                      addr.get_postal_code(), addr.get_phone()])
                 self.add(tobj, normal, location.strip())
@@ -307,7 +307,7 @@ class MergePerson(ManagedWindow):
         else:
             phoenix = self.pr2
             titanic = self.pr1
-            # Add second handle to history so that when merge is complete, 
+            # Add second handle to history so that when merge is complete,
             # phoenix is the selected row.
             self.uistate.set_active(phoenix.get_handle(), 'Person')
 

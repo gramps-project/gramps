@@ -44,7 +44,7 @@ class MatchesEventFilterBase(MatchesFilterBase):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
-    
+
     """
 
     labels      = ['Event filter name:']
@@ -58,12 +58,12 @@ class MatchesEventFilterBase(MatchesFilterBase):
 
     def prepare(self, db):
         MatchesFilterBase.prepare(self, db)
-        self.MEF_filt = self.find_filter()    
+        self.MEF_filt = self.find_filter()
 
     def apply(self, db, object):
         if self.MEF_filt is None :
             return False
-        
+
         eventlist = [x.ref for x in object.get_event_ref_list()]
         for eventhandle in eventlist:
             #check if event in event filter
