@@ -49,7 +49,6 @@ class MatchesRegexpOf(Rule):
 
     def apply(self, db, note):
         """ Apply the filter """
-        text = note.get()
-        if self.match_substring(0, text) is not None:
+        if self.match_substring(0, note.get()):
             return True
         return False
