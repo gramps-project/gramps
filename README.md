@@ -91,9 +91,24 @@ The following packages are optional:
 
  More font support in the reports
 
-* **goocanvas2** 
+Optional packages required by Third-party Addons
+------------------------------------------------
 
- Required for the (user-downloadable) GraphView plugin
+**Third-party Addons are written by users and developers and unless stated are not officially part of Gramps.**
+For more information about Addons see:  https://gramps-project.org/wiki/index.php?title=Third-party_Plugins
+
+Prerequistes required for the following Addons to work:
+
+* **Django Exporter/Importer** - Requires:Django 1.7 or 1.8+ ( https://gramps-project.org/wiki/index.php?title=GEPS_013:_Gramps_Webapp#Getting_Started_with_Gramps_in_Django )
+
+* **Family Sheet** - Requires: PIL (Python Imaging Library) or PILLOW.
+( https://gramps-project.org/wiki/index.php?title=Family_Sheet )
+
+* **Graph View** - Requires: PyGoocanvas and Goocanvas.
+( https://gramps-project.org/wiki/index.php?title=Graph_View )
+
+* **PedigreeChart** - Can optionally use - numpy if installed
+( https://gramps-project.org/wiki/index.php?title=PedigreeChart )
 
 No longer needed:
 -----------------
