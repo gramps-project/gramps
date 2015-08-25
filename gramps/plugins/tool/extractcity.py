@@ -51,7 +51,7 @@ from gramps.gui.display import display_help
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.lib import PlaceType
+from gramps.gen.lib import PlaceType, PlaceName
 
 from gramps.gui.plug import tool
 from gramps.gui.utils import ProgressMeter
@@ -616,7 +616,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                 location = ('', '', '', row[2], '', row[3], row[5])
                 self.place_import.store_location(location, place.handle)
                 if row[2]:
-                    place.set_name(row[2])
+                    place.set_name(PlaceName(value=row[2]))
                 place.set_type(PlaceType.CITY)
                 if row[4]:
                     place.set_code(row[4])
