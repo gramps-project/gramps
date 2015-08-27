@@ -10,18 +10,25 @@ Requirements
 ============
 The following packages **MUST** be installed in order for Gramps to work:
 
-* Python 3.2 or greater
-* GTK 3.10 or greater
-* pygobject 3.12 or greater
-* cairo, pango, pangocairo with introspection bindings (the gi packages)
-* librsvg2 (svg icon view)
-* xdg-utils
-* bsddb3
+* **Python** 3.2 or greater - The programming language used by Gramps. https://www.python.org/
+* **GTK** 3.10 or greater - A cross-platform widget toolkit for creating graphical user interfaces. http://www.gtk.org/
+* **pygobject** 3.12 or greater - Python Bindings for GLib/GObject/GIO/GTK+ https://wiki.gnome.org/Projects/PyGObject
+
+The following three packages with GObject Introspection bindings (the gi packages)
+
+1* **cairo** - a 2D graphics library with support for multiple output devices. http://cairographics.org/
+2* **pango** - a library for laying out and rendering of text, with an emphasis on internationalization. http://www.pango.org/
+3* **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
+
+* **librsvg2** - (SVG icon view) a library to render SVG files using cairo. http://live.gnome.org/LibRsvg
+* **xdg-utils** - Desktop integration utilities from freedesktop.org
+* **bsddb3** - Python bindings for Oracle Berkeley DB https://pypi.python.org/pypi/bsddb3/
+
 
 The following package is needed for full translation of the interface
 to your language:
 
-*   language-pack-gnome-xx
+*   **language-pack-gnome-xx**
 
  Translation of GTK elements to your language, with
  xx your language code; e.g. for Dutch you need
