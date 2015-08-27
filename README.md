@@ -16,9 +16,9 @@ The following packages **MUST** be installed in order for Gramps to work:
 
 The following three packages with GObject Introspection bindings (the gi packages)
 
-1* **cairo** - a 2D graphics library with support for multiple output devices. http://cairographics.org/
-2* **pango** - a library for laying out and rendering of text, with an emphasis on internationalization. http://www.pango.org/
-3* **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
+* **cairo** - a 2D graphics library with support for multiple output devices. http://cairographics.org/
+* **pango** - a library for laying out and rendering of text, with an emphasis on internationalization. http://www.pango.org/
+* **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
 
 * **librsvg2** - (SVG icon view) a library to render SVG files using cairo. http://live.gnome.org/LibRsvg
 * **xdg-utils** - Desktop integration utilities from freedesktop.org
