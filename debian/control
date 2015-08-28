@@ -36,8 +36,8 @@ Recommends:
  python3-pyicu
 Suggests:
  fonts-freefont-ttf,
- gir1.2-gexiv2-0.4,
- gir1.2-gtk-gtkspell3-3.0,
+ gir1.2-gexiv2-0.10,
+ gir1.2-gtkspell3-3.0,
  python3-pil,
  rcs
 Description: Genealogical research program
