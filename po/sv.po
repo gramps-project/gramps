@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 16:03+0200\n"
-"PO-Revision-Date: 2015-08-26 17:15+0200\n"
+"PO-Revision-Date: 2015-08-28 15:58+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -1004,9 +1004,9 @@ msgstr "Släktträd \"%s\":"
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/cli/arghandler.py:418
-#, fuzzy, python-format
+#, python-format
 msgid "   %(item)s: %(summary)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr "   %(item)s: %(summary)s"
 
 #. translators: ignore unless your quotation marks differ
 #: ../gramps/cli/arghandler.py:438 ../gramps/cli/arghandler.py:442
@@ -10429,7 +10429,7 @@ msgid "Repair Family Tree?"
 msgstr "Reparera släktträd?"
 
 #: ../gramps/gui/dbman.py:675
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
 "recover your Family Tree from the last good backup. There are several ways "
@@ -10454,16 +10454,16 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"Om du klickar på <b>Fortsätt</b>, Kommer Gramps att försöka  återskapa ditt "
-"släktträd från senaste godkända backup. Det finns flera möjligheter, att "
-"detta kan skapa oönskade effekter, så <b>säkerhetskopiera</b> släktträdet "
-"först.\n"
-"Det släktträd du har valt är sparat i %s.\n"
-"\n"
+"Om du klickar på %(bold_start)sFortsättt%(bold_end)s, Kommer Gramps att "
+"försöka  återskapa ditt släktträd från senaste godkända backup. "
+"Det finns flera möjligheter, att detta kan skapa oönskade effekter, "
+"så %(bold_start)ssäkerhetskopiera%(bold_end)s släktträdet först.\n"
+"Det släktträd du har valt är sparat i %(dirname)s.\n"
 "Innan reparationen utförs, kontrollera att släktträdet verkligen inte kan "
 "öppnas längre, då databashanteraren kan återställa vissa fel automatiskt.\n"
 "\n"
-"<b>Detaljer:</b> Vid reparation av ett släktträd utnyttjas den senaste "
+"%(bold_start)sDetaljer:%(bold_end)s Vid reparation av ett släktträd utnyttjas "
+"den senaste "
 "säkerhetskopieringen  av släktträdet, vilken Gramps sparade vid senaste "
 "användningen. Om du arbetat flera timmar/dagar utan att stänga Gramps, "
 "kommer all denna information  att förloras! Om reparationen misslyckas, är "
@@ -10471,12 +10471,11 @@ msgstr ""
 "säkerhetskopiering nödvändig. Om reparationen misslyckas eller alltför "
 "mycket data förlorats, kan du ordna till det ursprungliga släktträdet "
 "manuellt. För detaljer hänvisas till hemsidan\n"
-"http://gramps-project.org/wiki/index.php?"
-"title=Recover_corrupted_family_tree\n"
+"%(gramps_wiki_recover_url)s\n"
 "Innan en reparation görs, så försök att öppna släktträdet på vanligt sätt. "
 "Åtskilliga fel, som triggar reparationsknappen, kan lösas automatiskt. Om så "
 "är fallet, kan du inaktivera  reparationsknappen genom att ta bort filen "
-"<i>need_recover</i> i släktträdsmappen."
+"%(recover_file)s i släktträdsmappen."
 
 #: ../gramps/gui/dbman.py:706
 msgid "Proceed, I have taken a backup"
@@ -15084,7 +15083,6 @@ msgid "Selected Rule"
 msgstr "Vald regel"
 
 #: ../gramps/gui/glade/styleeditor.glade:158
-#, fuzzy
 msgid "Style sheet n_ame:"
 msgstr "Mall_namn:"
 
@@ -20129,6 +20127,8 @@ msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
 msgstr ""
+"  1. %(gramps_FAQ_html_start)s%(faq_section)sHur ändrar jag ordningen på "
+"makar%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
@@ -20136,6 +20136,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sHur lägger jag till en extra "
+"make/maka%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -20143,6 +20145,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sHur tar jag bort en make/maka?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -20154,15 +20158,18 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sHur hör jag säkerhetskopior "
+"säkert?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Är det nödvändigt att "
-"uppdatera Gramps varje gång en uppdatering släpps?</a>\n"
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sÄr det nödvändigt att uppdatera "
+"Gramps varje gång en uppdatering är släppt?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
@@ -20174,29 +20181,31 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
+"  6. %(gramps_manual_html_start)s%(section)sHur skall information om "
+"giftermål matas in?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
 msgstr ""
-"  7. <a wiki='%s_-"
-"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Vad är "
-"skillnaden mellan en bostad och en adress?</a>\n"
+"  7. %(gramps_FAQ_html_start)s%(faq_section)sVad är skillnaden mellan ? "
+"boende och adress%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
 msgstr "Mediafiler"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Hur lägger du "
-"till fotografier på en person/källa/händelse?</a>\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sHur lägger jag till ett "
+"fotografi "
+"på person/källa/händelse%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -20204,6 +20213,8 @@ msgid ""
 "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media "
 "objects?%(html_end)s\n"
 msgstr ""
+"  9. %(gramps_FAQ_html_start)s%(faq_section)sHur hittar du oanvända "
+"mediaobjekt?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
@@ -20232,13 +20243,13 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. <a wiki='Category:Tutorials'>Finns det introduktioner tillgängliga?</"
-"a>\n"
+" 14. %(gramps_wiki_html_start)s%(section)sFinns det starthjälp?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
@@ -20523,15 +20534,13 @@ msgid "GExiv2 module not loaded."
 msgstr "GExiv2-modul ej laddad"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:420
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
 "Bildmetadatafunktionalitet kommer ej att vara tillgängligt.\n"
-"För att åstadkomma det för  Gramps se http://www.gramps-project.org/wiki/"
-"index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#GExiv2_for_Image_metadata"
+"För att åstadkomma det för  Gramps se %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:427
 msgid "Person Residence"
@@ -22516,106 +22525,89 @@ msgid "Error reading GEDCOM file"
 msgstr "Fel vid läsning av GEDCOM-fil"
 
 #: ../gramps/plugins/importer/importgeneweb.py:80
-#, fuzzy
 msgid "Accomplishment"
-msgstr "Justering"
+msgstr "Resultat"
 
 #: ../gramps/plugins/importer/importgeneweb.py:81
-#, fuzzy
 msgid "Acquisition"
-msgstr "Åtgärd"
+msgstr "Förvärvande"
 
 #: ../gramps/plugins/importer/importgeneweb.py:82
-#, fuzzy
 msgid "Adhesion"
-msgstr "Version"
+msgstr "Fastsittande"
 
 #: ../gramps/plugins/importer/importgeneweb.py:83
 #: ../gramps/plugins/importer/importgeneweb.py:95
-#, fuzzy
 msgid "Award"
-msgstr "_Framåt"
+msgstr "Belöning"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#, fuzzy
 msgid "Change Name"
-msgstr "_Ändra filnamn"
+msgstr "Ändra namn"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
 msgid "Circumcision"
-msgstr ""
+msgstr "Omskärelse"
 
 #: ../gramps/plugins/importer/importgeneweb.py:94
 msgid "Military Demobilisation"
-msgstr ""
+msgstr "Militär avmobilisering"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#, fuzzy
 msgid "Dotation"
-msgstr "Citat"
+msgstr "Donation"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
-#, fuzzy
 msgid "Excommunication"
-msgstr "Utbildning"
+msgstr "Bannlysa"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#, fuzzy
 msgid "LDS Family Link"
-msgstr "Familjerelänkar"
+msgstr "LDS släktlänkar"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
-#, fuzzy
 msgid "Funeral"
-msgstr "Allmänt"
+msgstr "Begravning"
 
 #: ../gramps/plugins/importer/importgeneweb.py:106
-#, fuzzy
 msgid "Hospitalisation"
-msgstr "Nytt medborgarskap"
+msgstr "Hospitalisering"
 
 #: ../gramps/plugins/importer/importgeneweb.py:107
 msgid "Illness"
-msgstr ""
+msgstr "Sjukdom"
 
 #: ../gramps/plugins/importer/importgeneweb.py:109
-#, fuzzy
 msgid "List Passenger"
-msgstr "Anpassa till sida"
+msgstr "Lista passagerare"
 
 #: ../gramps/plugins/importer/importgeneweb.py:110
-#, fuzzy
 msgid "Military Distinction"
 msgstr "Militärtjänst"
 
 #: ../gramps/plugins/importer/importgeneweb.py:111
 msgid "Militaty Mobilisation"
-msgstr ""
+msgstr "Militär mobilisering"
 
 #: ../gramps/plugins/importer/importgeneweb.py:112
-#, fuzzy
 msgid "Military Promotion"
-msgstr "Militärtjänst"
+msgstr "Militärbefordran"
 
 #: ../gramps/plugins/importer/importgeneweb.py:120
-#, fuzzy
 msgid "LDS Seal to child"
-msgstr "Välj barn"
+msgstr "LDS Seal to child"
 
 #: ../gramps/plugins/importer/importgeneweb.py:123
-#, fuzzy
 msgid "Sold property"
-msgstr "Egendom"
+msgstr "Såld egendom"
 
 #: ../gramps/plugins/importer/importgeneweb.py:130
-#, fuzzy
 msgid "No mention"
-msgstr "Beskrivning saknas"
+msgstr "Inget omnämnande"
 
 #: ../gramps/plugins/importer/importgeneweb.py:133
-#, fuzzy
 msgid "Separated"
-msgstr "Departement"
+msgstr "Skilda"
 
 #: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
@@ -22699,7 +22691,7 @@ msgid "%s could not be opened"
 msgstr "%s kunde inte öppnas"
 
 #: ../gramps/plugins/importer/importgrdb.py:62
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Database version is not supported by this version of Gramps.You should "
 "use an old copy of Gramps at version 3.0.x and import your database into "
@@ -22713,9 +22705,7 @@ msgstr ""
 "versionen. Du bör sedan exportera en kopia av av dina data till Gramps XML "
 "(släktträd). Sedan bör du uppgradera till Gramps av senaste version (till "
 "exempel denna), skapa en ny tom databas och importera Gramps XML in till "
-"denna version. Se: http://www.gramps-project.org/wiki/index.php?"
-"title=Gramps_3.4_Wiki_Manual_-"
-"_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
+"denna version. Se: :%(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.py:80
 msgid "Pro-Gen data error"
@@ -23030,7 +23020,7 @@ msgstr ""
 "Uppgradera till senaste version av Gramps och försök igen."
 
 #: ../gramps/plugins/importer/importxml.py:1047
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -23047,7 +23037,7 @@ msgstr ""
 "Filen kommer inte att importeras. Använd i stället en äldre version av "
 "Gramps, som stöder version %(xmlversion)s av xml.\n"
 "Se\n"
-"  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 " för mer info."
 
 #: ../gramps/plugins/importer/importxml.py:1058
@@ -23055,7 +23045,7 @@ msgid "The file will not be imported"
 msgstr "Filen kommer inte att importeras"
 
 #: ../gramps/plugins/importer/importxml.py:1060
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -23074,7 +23064,7 @@ msgstr ""
 "så gör en felanmälan och använd under tiden en äldre version av Gramps till "
 "att importera denna fil, som är xml version %(xmlversion)s.\n"
 "Se\n"
-"  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 " för mer info."
 
 #: ../gramps/plugins/importer/importxml.py:1073
@@ -23201,9 +23191,8 @@ msgid "Japan"
 msgstr "Japan"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
-#, fuzzy
 msgid "Slovakia"
-msgstr "Slovakiska"
+msgstr "Slovakien"
 
 #. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
@@ -23342,14 +23331,12 @@ msgid "Ukraine"
 msgstr "Ukrainska"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:46
-#, fuzzy
 msgid "Serbia"
-msgstr "Serbiska"
+msgstr "Serbien"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:47
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Serbiska"
+msgstr "Serbien (Latin)"
 
 #: ../gramps/plugins/lib/libcairodoc.py:1399
 #, python-format
@@ -23361,15 +23348,14 @@ msgstr ""
 " Skriver till %(filename)s i format %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:766
-#, fuzzy
 msgid "Line ignored "
-msgstr "BLOB ignorerad"
+msgstr "Rad ignorerad"
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1563
 #, python-format
 msgid "Illegal character%s"
-msgstr ""
+msgstr "Ogiltigt tecken%s"
 
 #: ../gramps/plugins/lib/libgedcom.py:1824
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -23469,9 +23455,8 @@ msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
 #: ../gramps/plugins/lib/libgedcom.py:3368
-#, fuzzy
 msgid "(Submitter):"
-msgstr "Skickad"
+msgstr "(Inskickare):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3399
 #: ../gramps/plugins/lib/libgedcom.py:6996
@@ -23530,13 +23515,13 @@ msgstr "Tom notis ignorerades"
 #. We have previously found a PLAC
 #: ../gramps/plugins/lib/libgedcom.py:5372
 msgid "A second PLAC ignored"
-msgstr ""
+msgstr "Ett andra PLAC ignorerad"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
 #: ../gramps/plugins/lib/libgedcom.py:5540
 msgid "Location already populated; ADDR ignored"
-msgstr ""
+msgstr "Plats redan ifylld; ADDR ignorerad"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
@@ -23676,10 +23661,9 @@ msgstr "GEDCOM-version"
 #. Allow Lineage-Linked etc. though it should be in uppercase
 #: ../gramps/plugins/lib/libgedcom.py:7202
 msgid "GEDCOM FORM should be in uppercase"
-msgstr ""
+msgstr "GEDCOM FORM bör vara med versaler"
 
 #: ../gramps/plugins/lib/libgedcom.py:7204
-#, fuzzy
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM-form ej stödd"
 
@@ -27198,7 +27182,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:414
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "Att slå ihop dessa platser skulle skapa en en slinga i platsstrukturen"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -27388,9 +27372,8 @@ msgid "Link place"
 msgstr "Länka Plats"
 
 #: ../gramps/plugins/lib/maps/geography.py:346
-#, fuzzy
 msgid "Add place from kml"
-msgstr "Lägg till plats"
+msgstr "Lägg till plats från kml"
 
 #: ../gramps/plugins/lib/maps/geography.py:351
 msgid "Center here"
@@ -27422,16 +27405,15 @@ msgid "Center on this place"
 msgstr "Centrera på denna plats"
 
 #: ../gramps/plugins/lib/maps/geography.py:937
-#, fuzzy
 msgid "Select a kml file used to add places"
-msgstr "Välj en existerande plats"
+msgstr "Välj en kml-fil för att lägga till platser"
 
 #: ../gramps/plugins/lib/maps/geography.py:999
 msgid "You have at least two places with the same title."
 msgstr "Du har minst två platser med samma titel."
 
 #: ../gramps/plugins/lib/maps/geography.py:1000
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The title of the places is:\n"
 "%(title)s\n"
@@ -27441,11 +27423,11 @@ msgid ""
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
 "Platsernas titel är :\n"
-"<b>%(title)s</b>\n"
+"%(title)s\n"
 "Följande platser är liknande : %(gid)s\n"
 "Antingen döper du om platserna eller slår ihop dem.\n"
 "\n"
-"<b>I kan ej fullfölja din begäran</b>.\n"
+"%(bold_start)sI kan ej fullfölja din begäran%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1124
 msgid "Nothing for this view."
@@ -27489,9 +27471,8 @@ msgid "The map"
 msgstr "Kartan"
 
 #: ../gramps/plugins/lib/maps/geography.py:1175
-#, fuzzy
 msgid "Select tile cache directory for offline mode"
-msgstr "Var spara delrutor i ej ansluten mod."
+msgstr "Välj buffertmapp för att arbeta utan internet."
 
 #: ../gramps/plugins/lib/maps/osmgps.py:111
 #, python-format
@@ -28827,11 +28808,11 @@ msgstr "Släktskap med: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:753
 msgid "Sosa-Stradonitz number"
-msgstr ""
+msgstr "Sosa-Stradonitz nummer"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:755
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr ""
+msgstr "Sosa-Stradonitz- numret på centralpersonen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:771
 #: ../gramps/plugins/textreport/detdescendantreport.py:934
@@ -29369,9 +29350,8 @@ msgid "Female"
 msgstr "Kvinna"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:839
-#, fuzzy
 msgid "(image)"
-msgstr "Bild"
+msgstr "(Bild)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:928
 msgid "Select the filter to be applied to the report."
@@ -29421,14 +29401,12 @@ msgid "The style used for the spouse's name."
 msgstr "Mall som används för makans/makens namn."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1077
-#, fuzzy
 msgid "A style used for image facts."
-msgstr "Mall som används för sidfoten."
+msgstr "Mall som används för bildfakta."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1087
-#, fuzzy
 msgid "A style used for image captions."
-msgstr "Den mall, som används för varje sektion."
+msgstr "Den mall, som används för bildbeskrivning."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:116
@@ -29474,29 +29452,24 @@ msgid "The basic style used for sub-headings."
 msgstr "Grundläggande mall som används för underrubriker."
 
 #: ../gramps/plugins/textreport/notelinkreport.py:67
-#, fuzzy
 msgid "Note Link Check Report"
-msgstr "Rapport för oavslutade släktband"
+msgstr ""
 
 #: ../gramps/plugins/textreport/notelinkreport.py:77
-#, fuzzy
 msgid "Note ID"
-msgstr "Notis 1"
+msgstr "Notis-ID"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:83
-#, fuzzy
 msgid "Link Type"
-msgstr "_Länktyp:"
+msgstr "Länktyp"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:89
-#, fuzzy
 msgid "Links To"
-msgstr "Länkar"
+msgstr "Länk till"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:111
-#, fuzzy
 msgid "Failed"
-msgstr "Fel"
+msgstr "Misslyckades"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:204
 #: ../gramps/plugins/textreport/tagreport.py:932
@@ -29536,9 +29509,8 @@ msgid "Place Report"
 msgstr "Rapport över platser"
 
 #: ../gramps/plugins/textreport/placereport.py:108
-#, fuzzy
 msgid "Please select at least one place before running this."
-msgstr "Du måste skapa en flagga innan du kör denna rapport."
+msgstr ""
 
 #: ../gramps/plugins/textreport/placereport.py:135
 msgid "Generating report"
@@ -29839,9 +29811,8 @@ msgid "Total size of media objects: %s MB"
 msgstr "Sammanlagd storlek på mediaobjekt: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
 msgid "Whether to count private data"
-msgstr "Huruvida ta med privata objekt"
+msgstr "Huruvida räkna privata data"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:63
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
@@ -30017,9 +29988,8 @@ msgid "Records Report"
 msgstr "Rekordrapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:432
-#, fuzzy
 msgid "Note Link Report"
-msgstr "Rapport för oavslutade släktband"
+msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:433
 msgid "Shows status of links in notes"
@@ -30190,7 +30160,7 @@ msgid "Media object could not be found"
 msgstr "Mediaobjekt kunde inte återfinnas"
 
 #: ../gramps/plugins/tool/check.py:727
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The file:\n"
 "%(file_name)s\n"
@@ -30521,27 +30491,29 @@ msgstr "Kontrollera och reparera"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:67
 msgid "Start date test?"
-msgstr ""
+msgstr "Påbörja datumtest?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:68
 msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
+"Denna test kommer att skapa många personer och händelser i den aktuella "
+"databasen. "
+"Vill du verkligen starta denna test?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
-msgstr ""
+msgstr "Kör test"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:80
 msgid "Running Date Test"
-msgstr ""
+msgstr "Kör datumtest"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:82
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:183
-#, fuzzy
 msgid "Generating dates"
-msgstr "Generation %d"
+msgstr "Skapar datum"
 
 #. test invalid dates
 #. dateval = (4,7,1789,False,5,8,1876,False)
@@ -30590,15 +30562,13 @@ msgstr "Generation %d"
 #. (4,7,1789,False,5,88,1876,False),"Text comment")
 #. dates.append( d)
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
-#, fuzzy
 msgid "Date Test Plugin"
-msgstr "Laddade insticksmoduler"
+msgstr "Datumtestinsticksmodul"
 
 #. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
-#, fuzzy
 msgid "Pass"
-msgstr "Passover"
+msgstr "Pass"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 msgid "Gender Statistics tool"
@@ -30838,7 +30808,7 @@ msgid "Selection"
 msgstr "Utvalt"
 
 #: ../gramps/plugins/tool/mediamanager.py:221
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An "
 "important distinction must be made between a Gramps media object and its "
@@ -30862,7 +30832,7 @@ msgstr ""
 "\n"
 "Ett mediaobjekt är en samling information om ett mediaobjekts datafil: namn, "
 "sökväg, beskrivning, ID, notiser, källreferenser etc. Dessa data "
-"<b>innehåller inte datafilen själv</b>.\n"
+"%(bold_start)sinnehåller inte datafilen självf%(bold_end)s..\n"
 "\n"
 "De datafiler som innehåller bilder, ljud, video etc, lagras separat på "
 "hårddisken. Dessa filer ligger utanför Gramps kontroll och tas inte med i "
@@ -31469,69 +31439,64 @@ msgstr "Sortera familjehändelser för personen"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:195
 #: ../gramps/plugins/tool/testcasegenerator.py:200
-#, fuzzy
 msgid "Generate testcases"
-msgstr "Allmänna filter"
+msgstr "Skapa testfall"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:204
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Skapa lågnivådatabasfel\n"
+"För korrigering måste databasen laddas om"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:209
-#, fuzzy
 msgid "Generate database errors"
-msgstr "Pro-Gen datafel"
+msgstr "Skapa datafel"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:213
-#, fuzzy
 msgid "Generate dummy data"
-msgstr "Skapad av"
+msgstr "Skapad konstgjorda data"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:218
-#, fuzzy
 msgid "Generate long names"
-msgstr "Generationer"
+msgstr "Skapa långa namn"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:222
 msgid "Add special characters"
-msgstr ""
+msgstr "Lägg till specialtecken"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:226
-#, fuzzy
 msgid "Add serial number"
-msgstr "Referensnummer"
+msgstr "Lägg till serienummer"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:230
-#, fuzzy
 msgid "Add line break"
-msgstr "Lägg till radbrytning efter varje namn"
+msgstr "Lägg till radbrytning"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:234
 msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
+"Antal personer att skapa\n"
+"(Antal är ungefärligt, ty familjer skapas)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:284
-#, fuzzy
 msgid "Generating testcases"
-msgstr "Skapar rapport"
+msgstr "Skapar testfall"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:289
 msgid "Generating low level database errors"
-msgstr ""
+msgstr "Skapar lågnivådatabasfel"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:301
-#, fuzzy
 msgid "Generating families"
-msgstr "Skapa släktlinjer"
+msgstr "Skapa familjer"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:332
-#, fuzzy
 msgid "Generating database errors"
-msgstr "Skapar rapport"
+msgstr "Skapar databasfel"
 
 #. Creates a media object with character encoding errors. This tests
 #. Check.fix_encoding() and also cleanup_missing_photos
@@ -31602,7 +31567,7 @@ msgstr "Skapar rapport"
 #: ../gramps/plugins/tool/testcasegenerator.py:1449
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Testfallsgenerator steg %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -32252,14 +32217,13 @@ msgid "Make Mother Active Person"
 msgstr "Gör mor till aktiv person"
 
 #: ../gramps/plugins/view/familyview.py:245
-#, fuzzy
 msgid "_Delete Family"
-msgstr "Välj familj"
+msgstr "_Ta bort familj"
 
 #: ../gramps/plugins/view/familyview.py:279
-#, fuzzy, python-format
+#, python-format
 msgid "Family [%s]"
-msgstr "Familj %s"
+msgstr "Familj [%s]"
 
 #: ../gramps/plugins/view/familyview.py:297
 msgid "Cannot merge families."
@@ -32621,15 +32585,13 @@ msgid "OsmGpsMap module not loaded."
 msgstr "OsmGpsMap-modul ej laddad"
 
 #: ../gramps/plugins/view/geography.gpr.py:70
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
 msgstr ""
 "Geografi-funktionalitet kommer aj att vara tillgängligt.\n"
-"För att åstadkomma det för Gramps se http://www.gramps-project.org/wiki/"
-"index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#OsmGpsMap_for_Geography"
+"För att åstadkomma det för Gramps se %(gramps_wiki_build_osmgps_url)s"
 
 #: ../gramps/plugins/view/geography.gpr.py:78
 msgid "All known places for one Person"
@@ -32918,14 +32880,12 @@ msgid "A person was found to be his/her own ancestor."
 msgstr "En person har befunnits vara sin egen förfader."
 
 #: ../gramps/plugins/view/pedigreeview.py:1540
-#, fuzzy
 msgid "Pre_vious"
-msgstr "Föregående"
+msgstr "_Föregående"
 
 #: ../gramps/plugins/view/pedigreeview.py:1541
-#, fuzzy
 msgid "_Next"
-msgstr "Nästa"
+msgstr "_Nästa"
 
 #. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1568
@@ -33357,16 +33317,18 @@ msgid "<absent>"
 msgstr "<frånvarande>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1598
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s on "
 "%(date)s"
-msgstr "Skapad av <a href = \"%(homepage)s\">Gramps</a> %(version)s %(date)s"
+msgstr ""
+"Skapad av %(gramps_home_html_start)sGramps%(html_end)s %(version)s på "
+"%(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1616
-#, fuzzy, python-format
+#, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
-msgstr "Skapad åt %(author)s"
+msgstr "%(http_break)sSkapad för %(subject_url)s"
 
 #. Begin Navigation Menu--
 #. is the style sheet either Basic-Blue or Visually Impaired,
@@ -33641,13 +33603,13 @@ msgid "Previous"
 msgstr "Föregående"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4541
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"<strong id = \"GalleryCurrent\">%(page_number)d</strong> av <strong id = "
-"\"GalleryTotal\">%(total_pages)d</strong>"
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4552
 msgid "Next"
@@ -34469,9 +34431,9 @@ msgstr "%(spouse)s och %(person)s"
 
 #. Display date as user set in preferences
 #: ../gramps/plugins/webreport/webcal.py:1199
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
-msgstr "Skapad av <a href = \"%(homepage)s\">Gramps</a> %(version)s %(date)s"
+msgstr "Skapad av %(gramps_home_html_start)sGramps%(html_end)s på %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1329
 msgid "Calendar Title"
@@ -34680,7 +34642,7 @@ msgstr "%(couple)s, <em>bröllop</em>"
 #: ../gramps/plugins/webreport/webcal.py:1722
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "{couple}, {years} års jubileum"
+msgstr[0] "{couple}, {years}-års jubileum"
 msgstr[1] "{couple}, {years} års jubileum"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:31
