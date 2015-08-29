@@ -41,10 +41,10 @@ Suggests:
  python3-pil,
  rcs
 Description: Genealogical research program
- GRAMPS is an Open Source genealogy program written in Python, using
+ Gramps is an Open Source genealogy program written in Python, using
  the GTK/GNOME interface. It is an extremely flexible program fitting
  the needs for both the amateur genealogist and serious genealogical
  researcher.
- GRAMPS has the ability to import GEDCOM files exported from many
+ Gramps has the ability to import GEDCOM files exported from many
  proprietary genealogy programs and can produce a large number of
  reports in many popular formats.
