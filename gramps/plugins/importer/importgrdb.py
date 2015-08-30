@@ -56,7 +56,7 @@ _DBVERSION = 14
 def importData(database, filename, user):
     migrate_dict = { 'gramps_wiki_migrate_two_to_three_url' :
                          URL_WIKISTRING + 
-                             "Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#"
+                             "Gramps_4.2_Wiki_Manual_-_Manage_Family_Trees#"
                              "Moving_a_Gramps_2.2_databases_to_Gramps_3.x" }
     user.notify_error(_("%s could not be opened") % filename, 
                       _("The Database version is not supported "
