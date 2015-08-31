@@ -148,8 +148,9 @@ class MergeFamily(ManagedWindow):
         rbutton1 = self.get_widget("handle_btn1")
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")
-        rbutton_label1.set_label("%s and %s [%s]" %(father1, mother1, gramps1))
-        rbutton_label2.set_label("%s and %s [%s]" %(father2, mother2, gramps2))
+        add = _("and")
+        rbutton_label1.set_label("%s %s %s [%s]" %(father1, add, mother1, gramps1))
+        rbutton_label2.set_label("%s %s %s [%s]" %(father2, add, mother2, gramps2))
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
         self.connect_button("family_help", self.cb_help)
