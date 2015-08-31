@@ -78,7 +78,7 @@ if win():
         # user directory fails here, there is no way to report the failure,
         # because stdout/stderr are not available, and neither is the logfile.
         if os.path.islink(HOME_DIR):
-            pass # ok
+            pass  # ok
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
         sys.stdout = sys.stderr = open(logfile, "w")
@@ -100,7 +100,7 @@ def exc_hook(type, value, tb):
     if type == IOError:
         # strange Windows logging error on close
         return
-    #Use this to show variables in each frame:
+    # Use this to show variables in each frame:
     #from gramps.gen.utils.debug import format_exception
     import traceback
     LOG.error("Unhandled exception\n" +
@@ -126,7 +126,7 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 
 MIN_PYTHON_VERSION = (3, 2, 0, '', 0)
-if not sys.version_info >= MIN_PYTHON_VERSION :
+if not sys.version_info >= MIN_PYTHON_VERSION:
     logging.warning(_("Your Python version does not meet the "
              "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
              " start Gramps.\n\n"
@@ -152,7 +152,7 @@ def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
     for path in USER_DIRLIST:
         if os.path.islink(path):
-            pass # ok
+            pass  # ok
         elif not os.path.isdir(path):
             os.makedirs(path)
 
@@ -166,20 +166,20 @@ def show_settings():
         try:
             gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(),
                         Gtk.get_minor_version(), Gtk.get_micro_version())
-        except : # any failure to 'get' the version
+        except:  # any failure to 'get' the version
             gtkver_str = 'unknown version'
     except ImportError:
         gtkver_str = 'not found'
     # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
     except RuntimeError:
         gtkver_str = 'DISPLAY not set'
-    #exept TypeError: To handle back formatting on version split
+    # exept TypeError: To handle back formatting on version split
 
     try:
         from gi.repository import GObject
         try:
             pygobjectver_str = '%d.%d.%d' % GObject.pygobject_version
-        except :# any failure to 'get' the version
+        except:  # any failure to 'get' the version
             pygobjectver_str = 'unknown version'
 
     except ImportError:
@@ -189,7 +189,7 @@ def show_settings():
         from gi.repository import Pango
         try:
             pangover_str = Pango.version_string()
-        except :# any failure to 'get' the version
+        except:  # any failure to 'get' the version
             pangover_str = 'unknown version'
 
     except ImportError:
@@ -200,7 +200,7 @@ def show_settings():
         try:
             pycairover_str = '%d.%d.%d' % cairo.version_info
             cairover_str = cairo.cairo_version_string()
-        except :# any failure to 'get' the version
+        except:  # any failure to 'get' the version
             pycairover_str = 'unknown version'
             cairover_str = 'unknown version'
 
@@ -215,7 +215,7 @@ def show_settings():
             from gi.repository import OsmGpsMap as osmgpsmap
             try:
                 osmgpsmap_str = osmgpsmap._version
-            except :# any failure to 'get' the version
+            except:  # any failure to 'get' the version
                 osmgpsmap_str = 'unknown version'
         else:
             osmgpsmap_str = 'not found'
@@ -230,7 +230,7 @@ def show_settings():
             from gi.repository import GExiv2
             try:
                 gexiv2_str = GExiv2._version
-            except: # any failure to 'get' the version
+            except:  # any failure to 'get' the version
                 gexiv2_str = 'unknown version'
         else:
             gexiv2_str = 'not found'
@@ -243,7 +243,7 @@ def show_settings():
         try:
             pyicu_str = PyICU.VERSION
             icu_str = PyICU.ICU_VERSION
-        except: # any failure to 'get' the version
+        except:  # any failure to 'get' the version
             pyicu_str = 'unknown version'
             icu_str = 'unknown version'
 
@@ -271,18 +271,18 @@ def show_settings():
     else:
         kernel = None
 
-    lang_str = get_env_var('LANG','not set')
-    language_str = get_env_var('LANGUAGE','not set')
-    grampsi18n_str = get_env_var('GRAMPSI18N','not set')
-    grampshome_str = get_env_var('GRAMPSHOME','not set')
-    grampsdir_str = get_env_var('GRAMPSDIR','not set')
+    lang_str = get_env_var('LANG', 'not set')
+    language_str = get_env_var('LANGUAGE', 'not set')
+    grampsi18n_str = get_env_var('GRAMPSI18N', 'not set')
+    grampshome_str = get_env_var('GRAMPSHOME', 'not set')
+    grampsdir_str = get_env_var('GRAMPSDIR', 'not set')
 
     try:
         dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
         if isinstance(dotversion_str, bytes) and sys.stdin.encoding:
             dotversion_str = dotversion_str.decode(sys.stdin.encoding)
         if dotversion_str:
-            dotversion_str = dotversion_str.replace('\n','')[23:27]
+            dotversion_str = dotversion_str.replace('\n', '')[23:27]
     except:
         dotversion_str = 'Graphviz not in system PATH'
 
@@ -298,49 +298,49 @@ def show_settings():
     except:
         gsversion_str = 'Ghostscript not in system PATH'
 
-    os_path = get_env_var('PATH','not set')
+    os_path = get_env_var('PATH', 'not set')
     os_path = os_path.split(os.pathsep)
 
-    print ("Gramps Settings:")
-    print ("----------------")
-    print (' python    : %s' % py_str)
-    print (' gramps    : %s' % gramps_str)
-    print (' gtk++     : %s' % gtkver_str)
-    print (' pygobject : %s' % pygobjectver_str)
-    print (' pango     : %s' % pangover_str)
-    print (' bsddb     : %s' % bsddb_str)
-    print (' bsddb.db  : %s' % bsddb_db_str)
-    print (' cairo     : %s' % cairover_str)
-    print (' pycairo   : %s' % pycairover_str)
-    print (' osmgpsmap : %s' % osmgpsmap_str)
-    print (' GExiv2    : %s' % gexiv2_str)
-    print (' ICU       : %s' % icu_str)
-    print (' PyICU     : %s' % pyicu_str)
-    print (' o.s.      : %s' % sys.platform)
+    print("Gramps Settings:")
+    print("----------------")
+    print(' python    : %s' % py_str)
+    print(' gramps    : %s' % gramps_str)
+    print(' gtk++     : %s' % gtkver_str)
+    print(' pygobject : %s' % pygobjectver_str)
+    print(' pango     : %s' % pangover_str)
+    print(' bsddb     : %s' % bsddb_str)
+    print(' bsddb.db  : %s' % bsddb_db_str)
+    print(' cairo     : %s' % cairover_str)
+    print(' pycairo   : %s' % pycairover_str)
+    print(' osmgpsmap : %s' % osmgpsmap_str)
+    print(' GExiv2    : %s' % gexiv2_str)
+    print(' ICU       : %s' % icu_str)
+    print(' PyICU     : %s' % pyicu_str)
+    print(' o.s.      : %s' % sys.platform)
     if kernel:
-        print (' kernel    : %s' % kernel)
-    print ('')
-    print ("Environment settings:")
-    print ("---------------------")
-    print (' LANG      : %s' % lang_str)
-    print (' LANGUAGE  : %s' % language_str)
-    print (' GRAMPSI18N: %s' % grampsi18n_str)
-    print (' GRAMPSHOME: %s' % grampshome_str)
-    print (' GRAMPSDIR : %s' % grampsdir_str)
-    print (' PYTHONPATH:')
+        print(' kernel    : %s' % kernel)
+    print('')
+    print("Environment settings:")
+    print("---------------------")
+    print(' LANG      : %s' % lang_str)
+    print(' LANGUAGE  : %s' % language_str)
+    print(' GRAMPSI18N: %s' % grampsi18n_str)
+    print(' GRAMPSHOME: %s' % grampshome_str)
+    print(' GRAMPSDIR : %s' % grampsdir_str)
+    print(' PYTHONPATH:')
     for folder in sys.path:
-        print ("   ", folder)
-    print ('')
-    print ("Non-python dependencies:")
-    print ("------------------------")
-    print (' Graphviz  : %s' % dotversion_str)
-    print (' Ghostscr. : %s' % gsversion_str)
-    print ('')
-    print ("System PATH env variable:")
-    print ("-------------------------")
+        print("   ", folder)
+    print('')
+    print("Non-python dependencies:")
+    print("------------------------")
+    print(' Graphviz  : %s' % dotversion_str)
+    print(' Ghostscr. : %s' % gsversion_str)
+    print('')
+    print("System PATH env variable:")
+    print("-------------------------")
     for folder in os_path:
-        print ("    ", folder)
-    print ('')
+        print("    ", folder)
+    print('')
 
 def run():
     error = []
@@ -362,7 +362,7 @@ def run():
                       "of Gramps are properly installed.")
                     % APP_GRAMPS)]
 
-    #we start with parsing the arguments to determine if we have a cli or a
+    # we start with parsing the arguments to determine if we have a cli or a
     # gui session
 
     if "-v" in sys.argv or "--version" in sys.argv:
@@ -407,11 +407,11 @@ def run():
                 return error
             startgtkloop(error, argpars)
     else:
-        #CLI use of Gramps
+        # CLI use of Gramps
 
-        #Ensure that output is encoded correctly to stdout and
-        #stderr. This is much less cumbersome and error-prone than
-        #encoding individual outputs:
+        # Ensure that output is encoded correctly to stdout and
+        # stderr. This is much less cumbersome and error-prone than
+        # encoding individual outputs:
         try:
             _encoding = sys.stdout.encoding or sys.getdefaultencoding()
         except:
