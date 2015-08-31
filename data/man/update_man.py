@@ -43,7 +43,7 @@ except:
     DOCUTILS = False
 
 LANGUAGES = ['sv', 'nl', 'pl', 'cs', 'pt_BR', 'fr']
-VERSION = '4.2.0'
+VERSION = '5.0.0'
 DATE = ''
 
 # You can set these variables from the command line.
@@ -72,7 +72,7 @@ def tests():
         print ('Please, install python')
         
     try:
-        print("\n=================='Shpinx-build'=============================\n")
+        print("\n=================='Sphinx-build'=============================\n")
         os.system('''%(program)s''' % {'program': sphinxCmd})
     except:
         print ('Please, install sphinx')
@@ -88,7 +88,7 @@ def main():
     
     parser = ArgumentParser( 
                          description='This program aims to handle documentation' 
-                                      ' and realted translated versions.', 
+                                      ' and related translated versions.', 
                          )
                          
     parser.add_argument("-t", "--test",
