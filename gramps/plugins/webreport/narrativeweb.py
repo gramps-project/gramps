@@ -587,6 +587,7 @@ class BasePage(object):
         self.create_thumbs_only = report.options['create_thumbs_only']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
+        self.usecms = report.options['usecms']
 
     # Functions used when no Web Page plugin is provided
     def add_instance(self, *param):
@@ -1651,7 +1652,7 @@ class BasePage(object):
         page, head, body = Html.page('%s - %s' %
                                     (html_escape(self.title_str.strip()),
                                      html_escape(title)),
-                                    self.report.encoding, xmllang)
+                                    self.report.encoding, xmllang, cms=self.usecms)
 
         # temporary fix for .php parsing error
         if self.ext in [".php", ".php3", ".cgi"]:
@@ -3008,7 +3009,10 @@ class SurnamePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamepage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(surnamepage, of, sio)
 
 #################################################
 #
@@ -3205,7 +3209,10 @@ class FamilyPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familiesListPage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(familiesListPage, of, sio)
 
     def FamilyPage(self, report, title, family_handle):
         self.dbase_ = report.database
@@ -3288,7 +3295,10 @@ class FamilyPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familydetailpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(familydetailpage, of, sio)
 
 ######################################################
 #                                                    #
@@ -3445,7 +3455,10 @@ class PlacePages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placelistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(placelistpage, of, sio)
 
     def PlacePage(self, report, title, place_handle):
         self.bibli = Bibliography()
@@ -3566,7 +3579,10 @@ class PlacePages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placepage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(placepage, of, sio)
 
 #################################################
 #
@@ -3766,7 +3782,10 @@ class EventPages(BasePage):
 
         # send page ut for processing
         # and close the file
-        self.XHTMLWriter(eventslistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(eventslistpage, of, sio)
 
     def _getEventDate(self, event_handle):
         event_date = Date.EMPTY
@@ -3892,7 +3911,10 @@ class EventPages(BasePage):
 
         # send page out for processing
         # and close the page
-        self.XHTMLWriter(eventpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(eventpage, of, sio)
 
 #################################################
 #
@@ -4026,7 +4048,10 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamelistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(surnamelistpage, of, sio)
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
@@ -4068,7 +4093,10 @@ class IntroductionPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(intropage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(intropage, of, sio)
 
 class HomePage(BasePage):
     def __init__(self, report, title):
@@ -4101,7 +4129,10 @@ class HomePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(homepage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(homepage, of, sio)
 
 #################################################
 #
@@ -4236,7 +4267,10 @@ class SourcePages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcelistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(sourcelistpage, of, sio)
 
     def SourcePage(self, report, title, source_handle):
         """
@@ -4332,7 +4366,10 @@ class SourcePages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcepage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(sourcepage, of, sio)
 
 #################################################
 #
@@ -4464,7 +4501,10 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(medialistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(medialistpage, of, sio)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -4735,7 +4775,10 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(mediapage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(mediapage, of, sio)
 
     def media_nav_link(self, handle, name, up = False):
         """
@@ -4930,7 +4973,11 @@ class ThumbnailPreviewPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(thumbnailpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(thumbnailpage, of, sio)
+
 
     def thumbnail_link(self, name, index):
         """
@@ -5080,7 +5127,11 @@ class DownloadPage(BasePage):
 
             # send page out for processing
             # and close the file
-            self.XHTMLWriter(downloadpage, of, sio)
+            if self.usecms:
+                self.XHTMLWriter(body, of, sio)
+            else:
+                self.XHTMLWriter(downloadpage, of, sio)
+
 
 class ContactPage(BasePage):
     def __init__(self, report, title):
@@ -5146,7 +5197,10 @@ class ContactPage(BasePage):
 
         # send page out for porcessing
         # and close the file
-        self.XHTMLWriter(contactpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(contactpage, of, sio)
 
 #################################################
 #
@@ -5393,7 +5447,10 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indlistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(indlistpage, of, sio)
 
 #################################################
 #
@@ -5560,7 +5617,10 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indivdetpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(indivdetpage, of, sio)
 
     def __create_family_map(self, person, place_lat_long):
         """
@@ -5824,7 +5884,10 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familymappage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(familymappage, of, sio)
 
     def __display_family_map(self, person, place_lat_long):
         """
@@ -6651,7 +6714,10 @@ class RepositoryPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repolistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(repolistpage, of, sio)
 
     def RepositoryPage(self, report, title, repo, handle):
         gid = repo.get_gramps_id()
@@ -6716,7 +6782,10 @@ class RepositoryPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repositorypage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(repositorypage, of, sio)
 
 class AddressBookListPage(BasePage):
     def __init__(self, report, title, has_url_addr_res):
@@ -6808,7 +6877,10 @@ class AddressBookListPage(BasePage):
 
         # send the page out for processing
         # and close the file
-        self.XHTMLWriter(addressbooklistpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(addressbooklistpage, of, sio)
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
@@ -6852,7 +6924,10 @@ class AddressBookPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(addressbookpage, of, sio)
+        if self.usecms:
+            self.XHTMLWriter(body, of, sio)
+        else:
+            self.XHTMLWriter(addressbookpage, of, sio)
 
 class NavWebReport(Report):
 
@@ -6937,6 +7012,9 @@ class NavWebReport(Report):
                         self.options['homeimg']
         self.use_contact = self.options['contactnote'] or \
                            self.options['contactimg']
+
+        # Do we need to include this in a cms ?
+        self.usecms = self.options['usecms']
 
         # either include the gender graphics or not?
         self.ancestortree = self.options['ancestortree']
@@ -7972,6 +8050,7 @@ class NavWebOptions(MenuReportOptions):
         self.__graphgens = None
         self.__living = None
         self.__yearsafterdeath = None
+        self.__usecms = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -7984,6 +8063,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_download_options(menu)
         self.__add_advanced_options(menu)
         self.__add_place_map_options(menu)
+        self.__add_cms_options(menu)
 
 
     def __add_report_options(self, menu):
@@ -8368,6 +8448,17 @@ class NavWebOptions(MenuReportOptions):
         addopt("googleopts", self.__googleopts)
 
         self.__placemap_options()
+
+    def __add_cms_options(self, menu):
+        """
+        Options for the cms tab ...
+        """
+
+        category_name = _("CMS inclusion")
+        addopt = partial(menu.add_option, category_name)
+
+        self.__usecms = BooleanOption(_("Do we include these pages in a cms web ?"), False)
+        addopt("usecms", self.__usecms)
 
     def __archive_changed(self):
         """
