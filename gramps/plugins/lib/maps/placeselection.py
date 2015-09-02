@@ -194,7 +194,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                self.oldvalue)
                              )
         for place in self.places:
-            p = (place[0].value, place[1].value, place[2].value, place[3])
+            p = (place[0].value, place[1], place[2], place[3])
             self.plist.append(p)
         # here, we could add value from geography names services ...
 
@@ -225,23 +225,24 @@ class PlaceSelection(ManagedWindow, OsmGps):
         parent_place = None
         country = state = county = ''
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
+        place_name = place.name.get_value()
         parent_list = place.get_placeref_list()
         while len(parent_list) > 0:
             place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
             parent_list = place.get_placeref_list()
             if int(place.get_type()) == PlaceType.COUNTY:
-                county = place.name
+                county = place.name.get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
             elif int(place.get_type()) == PlaceType.STATE:
-                state = place.name
+                state = place.name.get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
             elif int(place.get_type()) == PlaceType.COUNTRY:
                 country = place.name
                 if parent_place is None:
                     parent_place = place.get_handle()
-        return(country, state, county, parent_place)
+        return(country, state, county, place_name)
 
     def selection(self, obj, index, column, function):
         """
