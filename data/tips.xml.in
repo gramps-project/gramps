@@ -27,7 +27,7 @@
 
 <_tip number="14"><b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported.</_tip>
 
-<_tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;.</_tip>
+<_tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx Gramplet takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To view the SoundEx codes for surnames in your database, add the SoundEx Gramplet.</_tip>
 
 <_tip number="16"><b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;</_tip>
 
