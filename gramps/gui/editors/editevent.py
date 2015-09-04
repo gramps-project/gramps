@@ -59,8 +59,8 @@ from gramps.gen.utils.db import get_participant_from_event
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Editing_Information_About_Events')
+WIKI_HELP_PAGE = '%s_-_Entering_and_editing_data:_detailed_-_part_2' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Editing_information_about_events')
 
 #-------------------------------------------------------------------------
 #

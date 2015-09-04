@@ -95,8 +95,8 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_ISLAMIC    : displayer.islamic,
     Date.CAL_SWEDISH    : displayer.swedish }
 
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Editing_Dates')
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Editing_dates')
 
 #-------------------------------------------------------------------------
 #
