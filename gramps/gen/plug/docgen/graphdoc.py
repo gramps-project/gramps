@@ -248,7 +248,9 @@ class GVOptions():
         category = _("Note")
         ################################
         
-        note = TextOption(_("Note to add to the graph"), 
+        # workaround for bug 8833
+        lines = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        note = TextOption(_("Note to add to the graph") + lines,
                            [""] )
         note.set_help(_("This text will be added to the graph."))
         menu.add_option(category, "note", note)

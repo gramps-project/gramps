@@ -927,8 +927,10 @@ class AncestorTreeOptions(MenuReportOptions):
         ##################
         category_name = _("Replace")
 
+        # workaround for bug 8833
+        lines = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
         repldisp = TextOption(
-            _("Replace Display Format:\n'Replace this'/' with this'"),
+            _("Replace Display Format:\n'Replace this'/' with this'") + lines,
             [])
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replace_list", repldisp)
