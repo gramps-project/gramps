@@ -44,9 +44,8 @@ from ..listmodel import ListModel, TOGGLE
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-                                                        URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Tags')
+WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Tagging')
 
 #-------------------------------------------------------------------------
 #
