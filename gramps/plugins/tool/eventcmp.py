@@ -67,7 +67,7 @@ from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Compare_Individual_Events...')
+WIKI_HELP_SEC = _('manual|Compare_Individual_Events')
 
 #------------------------------------------------------------------------
 #

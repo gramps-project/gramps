@@ -53,7 +53,7 @@ from gramps.gui.utils import is_right_click
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information...')
+WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information')
 
 #-------------------------------------------------------------------------
 #

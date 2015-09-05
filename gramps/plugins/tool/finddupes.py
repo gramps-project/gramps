@@ -63,7 +63,7 @@ _val2label = {
     }
 
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
+WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People')
 
 #-------------------------------------------------------------------------
 #

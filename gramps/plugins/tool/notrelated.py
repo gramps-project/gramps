@@ -56,7 +56,7 @@ from gramps.gen.db import DbTxn
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Not_Related...')
+WIKI_HELP_SEC = _('manual|Not_Related')
 
 #------------------------------------------------------------------------
 #

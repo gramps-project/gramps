@@ -71,7 +71,7 @@ from gramps.gui.glade import Glade
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Verify_the_Data...')
+WIKI_HELP_SEC = _('manual|Verify_the_Data')
 
 #-------------------------------------------------------------------------
 #
