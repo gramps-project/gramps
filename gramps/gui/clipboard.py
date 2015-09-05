@@ -1188,7 +1188,7 @@ class ClipboardListView(object):
                 o = model.get_value(node,1)
                 targets += [target.target_data_atom() for target in o.__class__.DROP_TARGETS]
 
-        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        #TODO GTK3: workaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
                             [],
                             Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
@@ -1384,9 +1384,13 @@ class ClipboardWindow(ManagedWindow):
         self.width_key = 'interface.clipboard-width'
         self.height_key = 'interface.clipboard-height'
 
+        self.vertical_position_key = 'interface.clipboard-vertical-position'
+        self.horizontal_position_key = 'interface.clipboard-horizontal-position'
+
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
         self._set_size()
+        self._set_position()
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
