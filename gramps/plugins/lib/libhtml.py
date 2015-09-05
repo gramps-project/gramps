@@ -107,7 +107,7 @@ class Html(list):
     """
     HTML class: Manages a rooted tree of HTML objects
     """
-    __slots__ = ['items', 'indent', 'inline', 'close']
+    __slots__ = ['items', 'indent', 'inline', 'close', 'cms']
 #
     @staticmethod
     def xmldecl(version=1.0, encoding="UTF-8", standalone="no"):
@@ -199,7 +199,7 @@ class Html(list):
         return head
 #
     @staticmethod
-    def page(title=None, encoding='utf-8', lang='en', html5=True, *args, **keywargs):
+    def page(title=None, encoding='utf-8', lang='en', html5=True, cms=False, *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
 
@@ -230,11 +230,14 @@ class Html(list):
                *args, **keywargs
                )
 #
-        body = Html('body', indent=False, *args, **keywargs)
+        if cms:
+            body = Html('div', class_ = "body", indent=False, *args, **keywargs)
+        else:
+            body = Html('body', indent=False, *args, **keywargs)
         page += (head, body)
         return page, head, body
 #
-    def __init__(self, tag='html', *args, **keywargs):
+    def __init__(self, tag='html', cms=False, *args, **keywargs):
         """
         Class Constructor: Returns a new instance of the Html class
 
@@ -270,6 +273,7 @@ class Html(list):
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
+        self.cms = cms
         # Replace super(Html, self) with list
         # Issue with Python 2.6 and reload of plugin
         list.__init__(self, [])                  # instantiate object

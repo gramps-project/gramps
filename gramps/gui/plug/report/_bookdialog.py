@@ -368,7 +368,7 @@ class BookSelector(ManagedWindow):
         self.db = dbstate.db
         self.dbstate = dbstate
         self.uistate = uistate
-        self.title = _('Book')
+        self.title = _('Manage Books')
         self.file = "books.xml"
 
         ManagedWindow.__init__(self, uistate, [], self.__class__)
@@ -915,8 +915,9 @@ class BookDialog(DocReportDialog):
         self.is_from_saved_book = False
         self.page_html_added = False
         self.book = book
+        self.title = _('Generate Book')
         DocReportDialog.__init__(self, dbstate, uistate, options,
-                                  'book', _("Book"))
+                                  'book', self.title)
         self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
 
@@ -948,7 +949,7 @@ class BookDialog(DocReportDialog):
     def parse_style_frame(self): pass
 
     def get_title(self):
-        return _("Book")
+        return self.title
 
     def get_header(self, name):
         return _("Gramps Book")

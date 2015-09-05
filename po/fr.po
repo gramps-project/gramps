@@ -6779,7 +6779,7 @@ msgstr "Immeuble"
 #: ../gramps/plugins/webreport/narrativeweb.py:2728
 #: ../gramps/plugins/webreport/narrativeweb.py:4209
 msgid "Number"
-msgstr "Nombre"
+msgstr "Nombre/Numéro"
 
 #: ../gramps/gen/lib/repotype.py:60
 msgid "Library"
@@ -11157,7 +11157,7 @@ msgstr "Noms alternatifs"
 # trunk
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
 msgid "Enclosed By"
-msgstr "Fait partie de"
+msgstr "Partie de"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:141
 msgid "Place cycle detected"

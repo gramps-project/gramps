@@ -420,19 +420,15 @@ class CitationTreeView(ListView):
             citation = self.dbstate.db.get_citation_from_handle(handle)
             if (not source and not citation) or (source and citation):
                 raise ValueError("selection must be either source or citation")
-            if source:
-                try:
-                    EditCitation(self.dbstate, self.uistate, [],
-                                 Citation(), source)
-                except WindowActiveError:
-                    from gramps.gui.dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
-                                  self.__blocked_text())
-            else:
-                msg = _("Cannot add citation.")
-                msg2 = _("In order to add a citation to an existing source, "
-                         " you must select a source.")
-                ErrorDialog(msg, msg2)
+            if not source:
+                source = self.dbstate.db.get_source_from_handle(citation.get_reference_handle())
+            try:
+                EditCitation(self.dbstate, self.uistate, [],
+                             Citation(), source)
+            except WindowActiveError:
+                from gramps.gui.dialog import WarningDialog
+                WarningDialog(_("Cannot share this reference"),
+                              self.__blocked_text())
 #
     def remove(self, obj):
         self.remove_selected_objects()

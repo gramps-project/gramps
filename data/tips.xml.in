@@ -27,7 +27,7 @@
 
 <_tip number="14"><b>Calculating Relationships</b><br/>To check if two people in the database are related (by blood, not marriage) try the tool under &quot;Tools &gt; Utilities &gt; Relationship Calculator...&quot;. The exact relationship as well as all common ancestors are reported.</_tip>
 
-<_tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;.</_tip>
+<_tip number="15"><b>SoundEx can help with family research</b><br/>SoundEx solves a long standing problem in genealogy, how to handle spelling variations. The SoundEx Gramplet takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To view the SoundEx codes for surnames in your database, add the SoundEx Gramplet.</_tip>
 
 <_tip number="16"><b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets you modify a number of settings, such as the path to your media files, and allows you to adjust many aspects of the Gramps presentation to your needs. Each separate view can also be configured under &quot;View &gt; Configure View...&quot;</_tip>
 
@@ -67,7 +67,7 @@
 
 <_tip number="36"><b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects.</_tip>
 
-<_tip number="37"><b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a reddish background. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;.</_tip>
+<_tip number="37"><b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid format. Incorrect date formats will show up in Gramps with a either a reddish background or a red dot on the right edge of the field. You can fix the date using the Date Selection dialog which can be opened by clicking on the date button. The format of the date is set under &quot;Edit &gt; Preferences &gt; Display&quot;.</_tip>
 
 <_tip number="38"><b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated.</_tip>
 
@@ -111,7 +111,7 @@
 
 <_tip number="62"><b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about dates and names. It is about people. Be descriptive. Include why things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive.</_tip>
 
-<_tip number="63"><b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 20 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps.</_tip>
+<_tip number="63"><b>Don't speak English?</b><br/>Volunteers have translated Gramps into more than 40 languages. If Gramps supports your language and it is not being displayed, set the default language in your operating system and restart Gramps.</_tip>
 
 <_tip number="64"><b>Gramps Translators</b><br/>Gramps has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net</_tip>
 

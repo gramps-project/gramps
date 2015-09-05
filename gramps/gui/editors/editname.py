@@ -63,6 +63,7 @@ from gramps.gen.errors import ValidationError
 
 WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_3') % URL_MANUAL_PAGE
 
+
 class GeneralNameTab(GrampsTab):
     """
     This class provides the tabpage of the general name tab
@@ -159,7 +160,7 @@ class EditName(EditSecondary):
         self.define_cancel_button(self.top.get_object('button119'))
         self.define_help_button(self.top.get_object('button131'),
                 WIKI_HELP_PAGE,
-                _('manpage section id|Name_Editor'))
+                _('Name_Editor'))
         self.define_ok_button(self.top.get_object('button118'), self.save)
 
     def _validate_call(self, widget, text):

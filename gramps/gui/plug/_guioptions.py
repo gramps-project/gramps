@@ -371,6 +371,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
         GObject.GObject.__init__(self)
         self.set_shadow_type(Gtk.ShadowType.IN)
         self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.set_vexpand(True)
 
         # Add a TextView
         value = self.__option.get_value()
