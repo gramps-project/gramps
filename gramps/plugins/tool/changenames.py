@@ -61,7 +61,7 @@ prefix_list = [
     ]
 
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
+WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names')
 
 #-------------------------------------------------------------------------
 #
