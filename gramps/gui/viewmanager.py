@@ -355,16 +355,16 @@ class ViewManager(CLIManager):
         width = config.get('interface.main-window-width')
         height = config.get('interface.main-window-height')
 
-        vertical = config.get('interface.main-window-vertical-position')
-        horizontal = config.get('interface.main-window-horizontal-position')
-
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
         self.window.set_has_resize_grip(True)
         self.window.set_default_size(width, height)
-        # TODO moves to default position
-        # need to get screensize and position in center only 1st time?
-        self.window.move(vertical, horizontal)
+        if config.is_set('interface.main-window-vertical-position'):
+            vertical = config.get('interface.main-window-vertical-position')
+            horizontal = config.get('interface.main-window-horizontal-position')
+            self.window.move(vertical, horizontal)
+        else:
+            self.window.set_position(Gtk.WindowPosition.CENTER)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
@@ -756,9 +756,14 @@ class ViewManager(CLIManager):
         config.set('interface.main-window-width', width)
         config.set('interface.main-window-height', height)
         # save the current window position
-        (vertical, horizontal) = self.window.get_position()
-        config.set('interface.main-window-vertical-position', vertical)
-        config.set('interface.main-window-horizontal-position', horizontal)
+        if config.is_set('interface.main-window-vertical-position'):
+            (vertical, horizontal) = self.window.get_position()
+            config.set('interface.main-window-vertical-position', vertical)
+            config.set('interface.main-window-horizontal-position', horizontal)
+        else:
+            (vertical, horizontal) = self.window.get_position()
+            config.register('interface.main-window-vertical-position', vertical)
+            config.register('interface.main-window-horizontal-position', horizontal)
         config.save()
         Gtk.main_quit()
 
