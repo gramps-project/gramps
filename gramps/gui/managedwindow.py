@@ -351,6 +351,8 @@ class ManagedWindow(object):
         self.isWindow = None
         self.width_key = None
         self.height_key = None
+        self.vertical_position_key = None
+        self.horizontal_position_key = None
         self.__refs_for_deletion = []
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
@@ -507,6 +509,7 @@ class ManagedWindow(object):
         Takes care of closing children and removing itself from menu.
         """
         self._save_size()
+        self._save_position()
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
@@ -540,6 +543,27 @@ class ManagedWindow(object):
             (width, height) = self.window.get_size()
             config.set(self.width_key, width)
             config.set(self.height_key, height)
+            config.save()
+
+    def _set_position(self):
+        """
+        Set the position coordinates of the window
+        """
+        if self.vertical_position_key is not None:
+            vertical = config.get(self.vertical_position_key)
+            horizontal = config.get(self.horizontal_position_key)
+            self.window.move(vertical, horizontal)
+
+    def _save_position(self):
+        """
+        Save the position coordinates of the window to the config file
+        """
+        if self.vertical_position_key is not None:
+            (vertical, horizontal) = self.window.get_position()
+            # TODO Read config keys for the vertical & horizontal position and if they equal zero
+            # Then find position of main window only the 1st time called then just use config keys
+            config.set(self.vertical_position_key, vertical)
+            config.set(self.horizontal_position_key, horizontal)
             config.save()
 
     def track_ref_for_deletion(self, ref):
