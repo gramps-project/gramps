@@ -38,7 +38,6 @@ _LOG = logging.getLogger(".widgets.labels")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -78,7 +77,7 @@ class LinkLabel(Gtk.EventBox):
         self.theme = theme
         self.emph = emph
 
-        GObject.GObject.__init__(self)
+        Gtk.EventBox.__init__(self)
 
         st_cont = self.get_style_context()
         col = st_cont.lookup_color('link_color')
@@ -204,7 +203,7 @@ class EditLabel(Gtk.Box):
 class BasicLabel(Gtk.Label):
 
     def __init__(self, text, ellipsize=Pango.EllipsizeMode.NONE):
-        GObject.GObject.__init__(self, label=text)
+        Gtk.Label.__init__(self, label=text)
         self.set_halign(Gtk.Align.START)
         self.set_ellipsize(ellipsize)
         self.show()
@@ -217,7 +216,7 @@ class BasicLabel(Gtk.Label):
 class GenderLabel(Gtk.Label):
 
     def __init__(self, text):
-        GObject.GObject.__init__(self, label=text)
+        Gtk.Label.__init__(self, label=text)
         self.set_halign(Gtk.Align.START)
         if win():
             pangoFont = Pango.FontDescription('Arial')
@@ -232,7 +231,7 @@ class GenderLabel(Gtk.Label):
 class MarkupLabel(Gtk.Label):
 
     def __init__(self, text, halign=Gtk.Align.START):
-        GObject.GObject.__init__(self, label=text)
+        Gtk.Label.__init__(self, label=text)
         self.set_halign(halign)
         self.set_use_markup(True)
         self.show_all()

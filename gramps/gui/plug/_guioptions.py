@@ -170,7 +170,7 @@ class GuiStringOption(Gtk.Entry):
         @type option: gen.plug.menu.StringOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Entry.__init__(self)
         self.__option = option
         self.set_text( self.__option.get_value() )
 
@@ -309,7 +309,7 @@ class GuiNumberOption(Gtk.SpinButton):
             import math
             decimals = int(math.log10(step) * -1)
 
-        GObject.GObject.__init__(self, adjustment=adj, climb_rate=1, digits=decimals)
+        Gtk.SpinButton.__init__(self, adjustment=adj, climb_rate=1, digits=decimals)
         Gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())
@@ -368,7 +368,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
     """
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
-        GObject.GObject.__init__(self)
+        Gtk.ScrolledWindow.__init__(self)
         self.set_shadow_type(Gtk.ShadowType.IN)
         self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.set_vexpand(True)
@@ -453,7 +453,7 @@ class GuiBooleanOption(Gtk.CheckButton):
     """
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
-        GObject.GObject.__init__(self)
+        Gtk.CheckButton.__init__(self)
         self.set_label(self.__option.get_label())
         self.set_active(self.__option.get_value())
 

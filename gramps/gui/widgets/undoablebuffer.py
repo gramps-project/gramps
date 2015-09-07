@@ -29,7 +29,6 @@ __all__ = ["UndoableBuffer"]
 # http://bitbucket.org/tiax/gtk-textbuffer-with-undo/
 # Please send bugfixes and comments upstream to Florian
 
-from gi.repository import GObject
 from gi.repository import Gtk
 
 class Stack(list):
@@ -95,7 +94,7 @@ class UndoableBuffer(Gtk.TextBuffer):
         """
         we'll need empty stacks for undo/redo and some state keeping
         """
-        GObject.GObject.__init__(self)
+        Gtk.TextBuffer.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False

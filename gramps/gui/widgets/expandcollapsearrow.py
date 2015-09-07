@@ -36,7 +36,6 @@ _LOG = logging.getLogger(".widgets.expandcollapsearrow")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gramps.gen.constfunc import has_display
@@ -79,7 +78,7 @@ class ExpandCollapseArrow(Gtk.EventBox):
         :type onbuttonpress: callback
         :param pair: user param for onbuttonpress function
         """
-        GObject.GObject.__init__(self)
+        Gtk.EventBox.__init__(self)
         if collapsed :
             self.arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.RIGHT,
                                               shadow_type=Gtk.ShadowType.OUT)

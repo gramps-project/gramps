@@ -39,7 +39,6 @@ _LOG = logging.getLogger(".widgets.undoableentry")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -100,7 +99,7 @@ class UndoableEntry(Gtk.Entry):
     undo_stack_size = 50
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.Entry.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False

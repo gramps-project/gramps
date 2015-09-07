@@ -82,8 +82,8 @@ class ValueAction(Gtk.Action):
                      at creation. see: :meth:`do_create_tool_item`
         :type args: list
         """
-        GObject.GObject.__init__(self, name=name, label='', tooltip=tooltip,
-                                 stock_id=None)
+        Gtk.Action.__init__(self, name=name, label='', tooltip=tooltip,
+                            stock_id=None)
 
         self._value = default
         self._data_type = type(default)

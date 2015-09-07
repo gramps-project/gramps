@@ -38,7 +38,6 @@ log = logging.getLogger("gen.progressdialog")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
@@ -494,8 +493,7 @@ class GtkProgressDialog(Gtk.Dialog):
         :param title: The title to display on the top of the window.
         :type title: string
         """
-        #GObject.GObject.__init__(self, *window_params)
-        GObject.GObject.__init__(self)
+        Gtk.Dialog.__init__(self)
         if len(window_params) >= 2:
             self.set_transient_for(window_params[1])
         if len(window_params) >= 3:

@@ -52,7 +52,7 @@ from ...glade import Glade
 class PaperComboBox(Gtk.ComboBox):
 
     def __init__(self,default_name):
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
         self.set_wrap_width(4)
 
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
@@ -94,7 +94,7 @@ class PaperComboBox(Gtk.ComboBox):
 class OrientationComboBox(Gtk.ComboBox):
 
     def __init__(self,default=PAPER_PORTRAIT):
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
 
         self.store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(self.store)

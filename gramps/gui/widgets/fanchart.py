@@ -35,7 +35,6 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Pango
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import PangoCairo
@@ -119,7 +118,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     CENTER = 50                # pixel radius of center, changes per fanchart
 
     def __init__(self, dbstate, uistate, callback_popup=None):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
         self.radialtext = True
         st_cont = self.get_style_context()
         col = st_cont.lookup_color('text_color')

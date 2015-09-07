@@ -60,7 +60,7 @@ class ValueToolItem(Gtk.ToolItem):
     }
 
     def __init__(self, data_type, args):
-        GObject.GObject.__init__(self)
+        Gtk.ToolItem.__init__(self)
 
         self._data_type = data_type
 

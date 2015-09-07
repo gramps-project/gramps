@@ -117,7 +117,7 @@ _name2typeclass = {
 class MyBoolean(Gtk.CheckButton):
 
     def __init__(self, label=None):
-        GObject.GObject.__init__(self)
+        Gtk.CheckButton.__init__(self)
         self.set_label(label)
         self.show()
 
@@ -148,7 +148,7 @@ class MyBoolean(Gtk.CheckButton):
 class MyInteger(Gtk.SpinButton):
 
     def __init__(self, min, max):
-        GObject.GObject.__init__(self)
+        Gtk.SpinButton.__init__(self)
         self.set_adjustment(Gtk.Adjustment(value=min, lower=min, upper=max,
                                            step_increment=1))
         self.show()
@@ -176,7 +176,7 @@ class MyFilters(Gtk.ComboBox):
         If filter_name is given, it will be excluded from the dropdown box.
 
         """
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
         store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
         cell = Gtk.CellRendererText()
@@ -210,7 +210,7 @@ class MyFilters(Gtk.ComboBox):
 class MyList(Gtk.ComboBox):
 
     def __init__(self, clist, clist_trans, default=0):
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
         store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
         cell = Gtk.CellRendererText()
@@ -238,7 +238,7 @@ class MyList(Gtk.ComboBox):
 class MyLesserEqualGreater(Gtk.ComboBox):
 
     def __init__(self, default=0):
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
         store = Gtk.ListStore(GObject.TYPE_STRING)
         self.set_model(store)
         cell = Gtk.CellRendererText()
@@ -272,7 +272,7 @@ class MyLesserEqualGreater(Gtk.ComboBox):
 class MyPlaces(Gtk.Entry):
 
     def __init__(self, places):
-        GObject.GObject.__init__(self)
+        Gtk.Entry.__init__(self)
 
         fill_entry(self, places)
         self.show()
@@ -299,7 +299,7 @@ class MyID(Gtk.Box):
         }
 
     def __init__(self, dbstate, uistate, track, namespace='Person'):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
         self.set_homogeneous(False)
         self.set_spacing(6)
@@ -424,7 +424,7 @@ class MySelect(Gtk.ComboBox):
 class MyEntry(Gtk.Entry):
 
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.Entry.__init__(self)
         self.show()
 
 #-------------------------------------------------------------------------

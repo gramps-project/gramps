@@ -60,7 +60,7 @@ class ErrorReportAssistant(Gtk.Assistant):
     reporting system.
     """
     def __init__(self, error_detail, rotate_handler, ownthread=False):
-        GObject.GObject.__init__(self)
+        Gtk.Assistant.__init__(self)
 
         try:
             # did we get a handler wrapping the error detail?

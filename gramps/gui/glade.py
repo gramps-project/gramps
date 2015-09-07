@@ -38,7 +38,6 @@ This module exports the Glade class.
 #------------------------------------------------------------------------
 import sys
 import os
-from gi.repository import GObject
 from gi.repository import Gtk
 
 #------------------------------------------------------------------------
@@ -77,7 +76,7 @@ class Glade(Gtk.Builder):
         :rtype:   object reference
         :returns:  reference to the newly-created Glade instance
         """
-        GObject.GObject.__init__(self)
+        Gtk.Builder.__init__(self)
         self.set_translation_domain(glocale.get_localedomain())
 
         filename_given = filename is not None

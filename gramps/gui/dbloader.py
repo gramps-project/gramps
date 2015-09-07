@@ -458,7 +458,7 @@ def add_all_files_filter(chooser):
 class GrampsFormatWidget(Gtk.ComboBox):
 
     def __init__(self):
-        GObject.GObject.__init__(self, model=None)
+        Gtk.ComboBox.__init__(self, model=None)
 
     def set(self, format_list):
         self.store = Gtk.ListStore(GObject.TYPE_STRING)

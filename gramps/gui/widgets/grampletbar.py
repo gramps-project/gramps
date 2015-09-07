@@ -49,7 +49,6 @@ import io
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
@@ -91,7 +90,7 @@ class GrampletBar(Gtk.Notebook):
     A class which defines the graphical representation of the GrampletBar.
     """
     def __init__(self, dbstate, uistate, pageview, configfile, defaults):
-        GObject.GObject.__init__(self)
+        Gtk.Notebook.__init__(self)
 
         self.dbstate = dbstate
         self.uistate = uistate
@@ -566,7 +565,7 @@ class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
         """
         Internal constructor for GUI portion of a gramplet.
         """
-        GObject.GObject.__init__(self)
+        Gtk.ScrolledWindow.__init__(self)
         GuiGramplet.__init__(self, pane, dbstate, uistate, title, **kwargs)
 
         self.scrolledwindow = self

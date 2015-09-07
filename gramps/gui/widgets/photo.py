@@ -22,7 +22,6 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -47,7 +46,7 @@ class Photo(Gtk.EventBox):
     Displays an image and allows it to be viewed in an external image viewer.
     """
     def __init__(self, use_small_size=False):
-        GObject.GObject.__init__(self)
+        Gtk.EventBox.__init__(self)
         self.full_path = None
         self.uistate = None
         self.handle = None

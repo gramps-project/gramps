@@ -35,7 +35,6 @@ _LOG = logging.getLogger(".widgets.validatedcomboentry")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 
@@ -66,7 +65,6 @@ class ValidatedComboEntry(Gtk.ComboBox):
     __gtype_name__ = "ValidatedComboEntry"
 
     def __init__(self, datatype, model=None, column=-1, validator=None, width=-1):
-        #GObject.GObject.__init__(self, model)
         Gtk.ComboBox.__init__(self, model=model)
 
         self._entry = Gtk.Entry()

@@ -37,7 +37,6 @@ import pickle
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
@@ -92,7 +91,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
     """
 
     def __init__(self, view, format_helper, person):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
         self.view = view
         self.format_helper = format_helper
         self.person = person
@@ -336,7 +335,7 @@ class LineWidget(Gtk.DrawingArea):
     Draw lines linking Person boxes - Types A and C.
     """
     def __init__(self, child, father, frel, mother, mrel, direction):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
 
         self.child_box = child
         self.father_box = father
@@ -428,7 +427,7 @@ class LineWidget2(Gtk.DrawingArea):
     Draw lines linking Person boxes - Type B.
     """
     def __init__(self, male, rela, direction):
-        GObject.GObject.__init__(self)
+        Gtk.DrawingArea.__init__(self)
 
         self.male = male
         self.rela = rela

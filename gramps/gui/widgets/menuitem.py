@@ -51,7 +51,7 @@ class MenuItemWithData(Gtk.MenuItem):
     data = GObject.Property(type=object)
 
     def __init__(self, label=''):
-        GObject.GObject.__init__(self, label=label)
+        Gtk.MenuItem.__init__(self, label=label)
 
     def set_data(self, data):
         self.data = data

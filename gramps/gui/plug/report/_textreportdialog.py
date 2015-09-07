@@ -49,7 +49,7 @@ class _TextFormatComboBox(Gtk.ComboBox):
     """
     def __init__(self, active):
 
-        GObject.GObject.__init__(self)
+        Gtk.ComboBox.__init__(self)
 
         pmgr = GuiPluginManager.get_instance()
         self.__textdoc_plugins = []

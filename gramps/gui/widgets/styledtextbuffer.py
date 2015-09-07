@@ -100,7 +100,7 @@ class LinkTag(Gtk.TextTag):
     def __init__(self, buffer, data, **properties):
         LinkTag.lid += 1
         self.data = data
-        GObject.GObject.__init__(self, name="link-%d" % LinkTag.lid)
+        Gtk.TextTag.__init__(self, name="link-%d" % LinkTag.lid)
         tag_table = buffer.get_tag_table()
         for property in properties:
             self.set_property(property, properties[property])

@@ -28,7 +28,6 @@ GrampletView interface.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -206,7 +205,7 @@ class LinkTag(Gtk.TextTag):
 
     def __init__(self, buffer):
         LinkTag.lid += 1
-        GObject.GObject.__init__(self, name=str(LinkTag.lid))
+        Gtk.TextTag.__init__(self, name=str(LinkTag.lid))
         tag_table = buffer.get_tag_table()
         self.set_property('foreground', self.linkcolor)
         #self.set_property('underline', Pango.Underline.SINGLE)
@@ -972,7 +971,7 @@ class GrampletPane(Gtk.ScrolledWindow):
     def __init__(self, configfile, pageview, dbstate, uistate, **kwargs):
         self._config = Configuration(self)
         self.track = []
-        GObject.GObject.__init__(self)
+        Gtk.ScrolledWindow.__init__(self)
         self.configfile = os.path.join(VERSION_DIR, "%s.ini" % configfile)
         # default for new user; may be overridden in config:
         self.column_count = kwargs.get("column_count", 2)
