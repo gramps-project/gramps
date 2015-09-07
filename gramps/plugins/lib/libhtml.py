@@ -237,7 +237,7 @@ class Html(list):
         page += (head, body)
         return page, head, body
 #
-    def __init__(self, tag='html', cms=False, *args, **keywargs):
+    def __init__(self, tag='html', *args, **keywargs):
         """
         Class Constructor: Returns a new instance of the Html class
 
@@ -273,7 +273,6 @@ class Html(list):
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
-        self.cms = cms
         # Replace super(Html, self) with list
         # Issue with Python 2.6 and reload of plugin
         list.__init__(self, [])                  # instantiate object
