@@ -71,7 +71,7 @@ elif repository.enumerate_versions("Gtkspell"):
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config

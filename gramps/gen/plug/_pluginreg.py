@@ -37,7 +37,7 @@ import io
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.version import VERSION as GRAMPSVERSION, VERSION_TUPLE

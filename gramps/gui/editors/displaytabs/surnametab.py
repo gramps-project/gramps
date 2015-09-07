@@ -41,7 +41,7 @@ _ENTER = Gdk.keyval_from_name("Enter")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from .surnamemodel import SurnameModel

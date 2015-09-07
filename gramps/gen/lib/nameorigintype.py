@@ -32,7 +32,7 @@ _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType

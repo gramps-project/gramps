@@ -41,7 +41,7 @@ from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click

@@ -49,7 +49,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.db import get_source_referents

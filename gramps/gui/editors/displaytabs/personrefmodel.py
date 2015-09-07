@@ -27,7 +27,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer

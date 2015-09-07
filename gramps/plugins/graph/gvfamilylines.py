@@ -44,7 +44,7 @@ log = logging.getLogger(".FamilyLines")
 
 #------------------------------------------------------------------------
 #
-# GRAMPS module
+# Gramps module
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

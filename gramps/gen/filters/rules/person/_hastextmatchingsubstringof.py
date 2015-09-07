@@ -31,7 +31,7 @@ LOG = logging.getLogger(".citationfilter")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ....utils.db import get_source_and_citation_referents

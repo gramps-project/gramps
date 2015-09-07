@@ -23,7 +23,7 @@
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.grampslocale import GrampsLocale

@@ -29,7 +29,7 @@ from gi.repository import GObject, GLib
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import LdsOrd

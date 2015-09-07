@@ -39,7 +39,7 @@ def escxml(string):
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .paragraphstyle import ParagraphStyle

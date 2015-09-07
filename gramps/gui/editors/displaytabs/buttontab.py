@@ -37,7 +37,7 @@ from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from ...widgets import SimpleButton

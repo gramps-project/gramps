@@ -25,7 +25,7 @@ MediaBase class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .mediaref import MediaRef

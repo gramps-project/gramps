@@ -33,7 +33,7 @@ from urllib.parse import urlparse
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject

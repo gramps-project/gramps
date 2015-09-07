@@ -30,7 +30,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .._hassourcecountbase import HasSourceCountBase

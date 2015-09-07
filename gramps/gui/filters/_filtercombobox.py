@@ -32,7 +32,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import CustomFilters

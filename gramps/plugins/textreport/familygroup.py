@@ -33,7 +33,7 @@ from functools import partial
 
 #------------------------------------------------------------------------
 #
-# GRAMPS
+# Gramps
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

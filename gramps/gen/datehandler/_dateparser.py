@@ -42,7 +42,7 @@ log = logging.getLogger(".DateParser")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date, DateError, Today

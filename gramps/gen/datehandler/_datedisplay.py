@@ -36,7 +36,7 @@ log = logging.getLogger(".DateDisplay")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date

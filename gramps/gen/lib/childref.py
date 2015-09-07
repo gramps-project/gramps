@@ -26,7 +26,7 @@ Child Reference class for Gramps.
 """
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject

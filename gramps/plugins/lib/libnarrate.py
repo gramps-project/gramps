@@ -30,7 +30,7 @@ Narrator class for use by plugins.
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.lib.date import Date

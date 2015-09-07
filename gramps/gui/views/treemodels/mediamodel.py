@@ -38,7 +38,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time

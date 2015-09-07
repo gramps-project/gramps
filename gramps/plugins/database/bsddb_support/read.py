@@ -50,7 +50,7 @@ import logging
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib.mediaobj import MediaObject

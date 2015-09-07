@@ -1132,7 +1132,7 @@ class GrampsParser(UpdateCallback):
         self.info.add('new-object', PLACE_KEY, self.placeobj)
         self.place_names = 0
 
-        # GRAMPS LEGACY: title in the placeobj tag
+        # Gramps LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title', '')
         self.locations = 0
         self.update(self.p.CurrentLineNumber)
@@ -1230,7 +1230,7 @@ class GrampsParser(UpdateCallback):
         id, privacy and changetime.
         """
         if self.person or self.family:
-            # GRAMPS LEGACY: old events that were written inside
+            # Gramps LEGACY: old events that were written inside
             # person or family objects.
             self.event = Event()
             self.event.handle = create_id()
@@ -1593,7 +1593,7 @@ class GrampsParser(UpdateCallback):
         self.family.private = bool(attrs.get("priv"))
         self.family.change = int(attrs.get('change', self.change))
         self.info.add('new-object', FAMILY_KEY, self.family)
-        # GRAMPS LEGACY: the type now belongs to <rel> tag
+        # Gramps LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
         if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
@@ -1885,7 +1885,7 @@ class GrampsParser(UpdateCallback):
             self.note_text = None
             self.note_tags = []
         else:
-            # GRAMPS LEGACY: old notes that were written inside other objects
+            # Gramps LEGACY: old notes that were written inside other objects
             # We need to create a top-level note, it's type depends on
             #   the caller object, and inherits privacy from caller object
             # On stop_note the reference to this note will be added
@@ -2086,7 +2086,7 @@ class GrampsParser(UpdateCallback):
         if self.citation:
             self.citation.set_reference_handle(handle)
         else:
-            # GRAMPS LEGACY: Prior to v1.5.0 there were no citation objects.
+            # Gramps LEGACY: Prior to v1.5.0 there were no citation objects.
             # We need to copy the contents of the old SourceRef into a new
             # Citation object.
             self.in_old_sourceref = True
@@ -2204,7 +2204,7 @@ class GrampsParser(UpdateCallback):
         self.object.change = int(attrs.get('change', self.change))
         self.info.add('new-object', MEDIA_KEY, self.object)
 
-        # GRAMPS LEGACY: src, mime, and description attributes
+        # Gramps LEGACY: src, mime, and description attributes
         # now belong to the <file> tag. Here we are supporting
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime', '')

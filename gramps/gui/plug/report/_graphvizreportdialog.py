@@ -42,7 +42,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------------
 from gramps.gen.config import config

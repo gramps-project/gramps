@@ -32,7 +32,7 @@ from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType

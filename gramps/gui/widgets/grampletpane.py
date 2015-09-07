@@ -42,7 +42,7 @@ LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError

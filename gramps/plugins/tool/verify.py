@@ -48,7 +48,7 @@ from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR

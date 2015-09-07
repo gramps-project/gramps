@@ -33,7 +33,7 @@ to make sure these remain in sync with the rest of the design.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS Modules
+# Gramps Modules
 #
 #-------------------------------------------------------------------------
 from .lib import Date

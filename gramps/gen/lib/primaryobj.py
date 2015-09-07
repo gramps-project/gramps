@@ -25,7 +25,7 @@ Basic Primary Object class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .tableobj import TableObject

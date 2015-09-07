@@ -42,7 +42,7 @@ _ = glocale.translation.gettext
 
 #----------------------------------------------------------------
 #
-# GRAMPS
+# Gramps
 #
 #----------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError

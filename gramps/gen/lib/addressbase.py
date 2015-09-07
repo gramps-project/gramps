@@ -25,7 +25,7 @@ AddressBase class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .address import Address

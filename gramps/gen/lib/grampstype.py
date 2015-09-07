@@ -25,7 +25,7 @@ Base type for all gramps types.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale

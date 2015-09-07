@@ -46,7 +46,7 @@ log = logging.getLogger(".Rebuild")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug import tool

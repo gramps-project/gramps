@@ -34,7 +34,7 @@ log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import TOOL_OPTIONS

@@ -48,7 +48,7 @@ from PySide import QtOpenGL
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR

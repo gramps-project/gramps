@@ -31,7 +31,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config

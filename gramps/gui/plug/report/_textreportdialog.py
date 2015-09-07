@@ -30,7 +30,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ...pluginmanager import GuiPluginManager

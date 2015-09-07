@@ -40,7 +40,7 @@ import time
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -144,7 +144,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.build_style_declaration()
 
 
-        # GRAMPS favicon en css
+        # Gramps favicon en css
         fname1 = '/'.join([self._backend.datadir(), 'favicon.ico'])
         fname2 = '/'.join([self._backend.datadir(), _TEXTDOCSCREEN])
         fname3 = '/'.join([self._backend.datadir(), _HTMLSCREEN])

@@ -43,7 +43,7 @@ log = logging.getLogger(".ReadPkg")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import XMLFILE

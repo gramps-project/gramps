@@ -31,7 +31,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date

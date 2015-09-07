@@ -38,7 +38,7 @@ from gi.repository import GObject
 from gi.repository import GLib
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click

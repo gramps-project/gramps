@@ -24,7 +24,7 @@ Note types.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
@@ -32,7 +32,7 @@ _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType

@@ -94,7 +94,7 @@ import logging
 log = logging.getLogger(".NarrativeWeb")
 
 #------------------------------------------------
-# GRAMPS module
+# Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -2048,7 +2048,7 @@ class BasePage(object):
                 if mediaref.ref == handle and mediaref.rect is not None:
 
                     (x1, y1, x2, y2) = mediaref.rect
-                    # GRAMPS gives us absolute coordinates,
+                    # Gramps gives us absolute coordinates,
                     # but we need relative width + height
                     w = x2 - x1
                     h = y2 - y1
@@ -3756,7 +3756,7 @@ class EventPages(BasePage):
                                 else:
                                     tcell += "&nbsp;"
 
-                                # GRAMPS ID
+                                # Gramps ID
                                 trow += Html("td", class_ = "ColumnGRAMPSID") + (
                                     self.event_grampsid_link(event_handle, gid, None)
                                     )
@@ -4720,7 +4720,7 @@ class MediaPages(BasePage):
                 with Html("table", class_ = "infolist gallery") as table:
                     summaryarea += table
 
-                    # GRAMPS ID
+                    # Gramps ID
                     media_gid = media.gramps_id
                     if not self.noid and media_gid:
                         trow = Html("tr") + (
@@ -6285,7 +6285,7 @@ class PersonPages(BasePage):
                             )
                         table += trow
 
-                # GRAMPS ID
+                # Gramps ID
                 person_gid = self.person.get_gramps_id()
                 if not self.noid and person_gid:
                     trow = Html("tr") + (

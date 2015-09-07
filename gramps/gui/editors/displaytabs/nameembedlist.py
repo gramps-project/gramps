@@ -38,7 +38,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Name, Surname

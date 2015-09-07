@@ -38,7 +38,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 import gramps.gui.widgets.fanchart as fanchart

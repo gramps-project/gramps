@@ -39,7 +39,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Date, Event, EventRef, EventType, Name, Person, Surname, Tag

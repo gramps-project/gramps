@@ -38,7 +38,7 @@ from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import PLUGINS_GLADE

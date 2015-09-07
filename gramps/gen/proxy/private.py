@@ -36,7 +36,7 @@ LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 from ..lib import (MediaRef, Attribute, Address, EventRef,

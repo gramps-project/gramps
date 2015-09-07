@@ -584,7 +584,7 @@ class RelationshipView(NavigationView):
         subgrid.set_row_spacing(0)
         eventbox.add(subgrid)
         self._set_draggable_person(eventbox, person.get_handle())
-        # GRAMPS ID
+        # Gramps ID
 
         subgrid.attach(widgets.BasicLabel("%s:" % _('ID')), 1, 0, 1, 1)
         label = widgets.BasicLabel(person.gramps_id)

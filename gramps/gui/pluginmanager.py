@@ -38,7 +38,7 @@ from gi.repository import Gtk, GdkPixbuf, Gdk
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.callback import Callback

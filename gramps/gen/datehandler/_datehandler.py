@@ -39,7 +39,7 @@ log = logging.getLogger(".gen.datehandler")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ._dateparser import DateParser

@@ -99,7 +99,7 @@ try:
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
-    # GRAMPS treats dates with '-' as ISO format, so replace separator on
+    # Gramps treats dates with '-' as ISO format, so replace separator on
     # locale dates that use '-' to prevent confict
     tformat = tformat.replace('-', '/')
 
@@ -178,7 +178,7 @@ except:
 
     timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1))
 
-    # GRAMPS treats dates with '-' as ISO format, so replace separator on
+    # Gramps treats dates with '-' as ISO format, so replace separator on
     # locale dates that use '-' to prevent confict
     timestr = timestr.replace('-', '/')
     time2fmt_map = {

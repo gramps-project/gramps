@@ -35,7 +35,7 @@ interfaces should be derived from the core classes.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .stylesheet import StyleSheet

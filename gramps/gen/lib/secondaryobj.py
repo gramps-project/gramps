@@ -24,7 +24,7 @@ Secondary Object class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .baseobj import BaseObject

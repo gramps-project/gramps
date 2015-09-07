@@ -30,7 +30,7 @@ Base class for map services. Example: open place in openstreetmap.org
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.place import conv_lat_lon

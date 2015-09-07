@@ -30,7 +30,7 @@ import datetime, time
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -351,7 +351,7 @@ class BirthdayReport(Report):
                                 spouse_name = self.get_name(spouse)
                                 short_name = self.get_name(person)
                                 # TEMP: this will handle ordered events
-                                # GRAMPS 3.0 will have a new mechanism for start/stop events
+                                # Gramps 3.0 will have a new mechanism for start/stop events
                                 are_married = None
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)

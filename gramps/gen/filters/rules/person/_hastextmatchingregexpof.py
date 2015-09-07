@@ -26,7 +26,7 @@
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf

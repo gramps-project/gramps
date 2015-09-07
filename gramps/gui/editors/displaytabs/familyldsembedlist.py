@@ -28,7 +28,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from .embeddedlist import TEXT_COL, MARKUP_COL, ICON_COL

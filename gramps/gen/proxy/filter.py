@@ -27,7 +27,7 @@ Proxy class for the Gramps databases. Apply filter
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase

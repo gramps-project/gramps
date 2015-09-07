@@ -30,7 +30,7 @@ LOG = logging.getLogger(".Gramplets")
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale

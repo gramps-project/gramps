@@ -49,7 +49,7 @@ from PySide import QtOpenGL
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import ROOT_DIR

@@ -32,7 +32,7 @@ import types
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 from ..db.base import DbReadBase, DbWriteBase

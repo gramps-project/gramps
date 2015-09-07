@@ -30,7 +30,7 @@ from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place, PlaceRef

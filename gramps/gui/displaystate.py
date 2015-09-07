@@ -51,7 +51,7 @@ from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.callback import Callback

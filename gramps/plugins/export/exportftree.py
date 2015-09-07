@@ -42,7 +42,7 @@ log = logging.getLogger(".WriteFtree")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.alive import probably_alive

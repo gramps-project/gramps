@@ -32,7 +32,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS Modules
+# Gramps Modules
 #
 #-------------------------------------------------------------------------
 from ..views.treemodels import NoteModel

@@ -36,7 +36,7 @@ LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .primaryobj import PrimaryObject

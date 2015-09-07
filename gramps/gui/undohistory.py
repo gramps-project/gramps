@@ -40,7 +40,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .dialog import QuestionDialog

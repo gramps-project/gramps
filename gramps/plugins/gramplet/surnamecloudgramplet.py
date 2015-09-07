@@ -20,7 +20,7 @@ from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet

@@ -36,7 +36,7 @@ from warnings import warn
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject

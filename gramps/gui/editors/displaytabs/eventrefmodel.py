@@ -42,7 +42,7 @@ from html import escape
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from ...widgets.undoablebuffer import UndoableBuffer

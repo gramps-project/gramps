@@ -26,7 +26,7 @@ Croatian-specific classes for calculating relationships and kinship names.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 

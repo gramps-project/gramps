@@ -41,7 +41,7 @@ import logging
 LOG = logging.getLogger(".grampscli")
 #-------------------------------------------------------------------------
 #
-# GRAMPS  modules
+# Gramps  modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer

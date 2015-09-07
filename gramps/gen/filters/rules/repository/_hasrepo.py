@@ -28,7 +28,7 @@ _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ....lib.repotype import RepositoryType

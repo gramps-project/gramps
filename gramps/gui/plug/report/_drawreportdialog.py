@@ -29,7 +29,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.plug.report._constants import CATEGORY_DRAW

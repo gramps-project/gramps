@@ -28,7 +28,7 @@ Group common stuff Gramps GUI elements must be able to do when tracking a DB:
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.callman import CallbackManager

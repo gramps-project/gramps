@@ -25,7 +25,7 @@ Researcher information for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .locationbase import LocationBase

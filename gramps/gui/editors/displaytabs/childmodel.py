@@ -28,7 +28,7 @@ from html import escape
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date

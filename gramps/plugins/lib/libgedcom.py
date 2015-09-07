@@ -107,7 +107,7 @@ LOG = logging.getLogger(".libgedcom")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -7883,7 +7883,7 @@ def make_gedcom_date(subdate, calendar, mode, quality):
         retval = retval + " (swedish)"
         # Skip prefix @#DUNKNOWN@ as it seems
         # not used in all other genealogy applications.
-        # GRAMPS can handle it on import, but not with (swedish) appended
+        # Gramps can handle it on import, but not with (swedish) appended
         # to explain what calendar, the unknown refer to
         prefix = ""
     if prefix:

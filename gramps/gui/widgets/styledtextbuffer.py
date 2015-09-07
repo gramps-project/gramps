@@ -50,7 +50,7 @@ UNDERLINE_SINGLE = Pango.Underline.SINGLE
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)

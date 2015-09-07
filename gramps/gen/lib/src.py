@@ -27,7 +27,7 @@ Source object for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .primaryobj import PrimaryObject

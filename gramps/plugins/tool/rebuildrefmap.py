@@ -48,7 +48,7 @@ log = logging.getLogger(".RebuildRefMap")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug import tool

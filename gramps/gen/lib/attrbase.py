@@ -25,7 +25,7 @@ AttributeRootBase class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .attribute import Attribute

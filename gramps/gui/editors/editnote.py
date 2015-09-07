@@ -43,7 +43,7 @@ from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config

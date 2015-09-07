@@ -25,7 +25,7 @@ Gender statistics kept in Gramps database.
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .person import Person

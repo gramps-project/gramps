@@ -28,7 +28,7 @@ LOG = logging.getLogger(".filter")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 # we need global variableCustomFilters, so we need to query gramps.gen.filters

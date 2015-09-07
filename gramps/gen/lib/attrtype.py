@@ -31,7 +31,7 @@ from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType

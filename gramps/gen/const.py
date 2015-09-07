@@ -174,7 +174,7 @@ LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS environment variables dictionary
+# Gramps environment variables dictionary
 #
 #-------------------------------------------------------------------------
 ENV = {

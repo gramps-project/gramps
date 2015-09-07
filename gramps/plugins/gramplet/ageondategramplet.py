@@ -29,7 +29,7 @@ on a particular date.
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet

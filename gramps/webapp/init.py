@@ -197,7 +197,7 @@ for type in type_models:
     count = 1
     # Add each code:
     for tuple in type._DATAMAP:
-        if len(tuple) == 3: # GRAMPS BSDDB style
+        if len(tuple) == 3: # Gramps BSDDB style
             val, name = get_datamap(tuple)
         else: # NEW SQL based
             val, name = tuple

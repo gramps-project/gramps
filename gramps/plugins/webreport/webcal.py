@@ -43,7 +43,7 @@ import logging
 log = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
-# GRAMPS module
+# Gramps module
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -418,7 +418,7 @@ class WebCalReport(Report):
         if body_id is not None:
             body.attr = "id = '%(idtag)s'" % { 'idtag' : body_id }
 
-        # GRAMPS favicon
+        # Gramps favicon
         fname1 = "/".join(subdirs + ["images", "favicon2.ico"])
 
         # _CALENDARSCREEN stylesheet

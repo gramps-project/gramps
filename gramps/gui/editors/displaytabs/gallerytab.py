@@ -43,7 +43,7 @@ from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from ...utils import is_right_click, open_file_with_default_application

@@ -30,7 +30,7 @@ _ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.librecords import find_records, CALLNAME_DONTUSE

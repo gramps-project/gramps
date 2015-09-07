@@ -36,7 +36,7 @@ _ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gui.utils import ProgressMeter

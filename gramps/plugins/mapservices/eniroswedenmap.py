@@ -34,7 +34,7 @@ _ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService

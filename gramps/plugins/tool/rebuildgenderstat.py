@@ -46,7 +46,7 @@ log = logging.getLogger(".RebuildGenderStat")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gui.plug import tool

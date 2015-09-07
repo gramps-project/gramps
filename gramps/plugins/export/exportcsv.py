@@ -48,7 +48,7 @@ LOG = logging.getLogger(".ExportCSV")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, Person

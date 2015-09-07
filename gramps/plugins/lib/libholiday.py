@@ -30,7 +30,7 @@ import os
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -45,7 +45,7 @@ from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 #------------------------------------------------------------------------
 def g2iso(dow):
     """ Converst GRAMPS day of week to ISO day of week """
-    # GRAMPS: SUN = 1
+    # Gramps: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
 

@@ -43,7 +43,7 @@ if '-v' in sys.argv or '--verbose' in sys.argv:
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ...lib import Date, DateError

@@ -31,7 +31,7 @@ except NameError:
     from sets import Set as set
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .. import Rule
