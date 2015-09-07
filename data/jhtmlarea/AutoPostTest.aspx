@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <script type="text/javascript" src="scripts/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
     <script type="text/javascript" src="scripts/jHtmlArea-0.7.0.js"></script>
     <link rel="Stylesheet" type="text/css" href="style/jHtmlArea.css" />
