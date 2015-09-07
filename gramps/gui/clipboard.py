@@ -1009,7 +1009,7 @@ class ClipboardListView(object):
             tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
         self._widget.enable_model_drag_dest([],
                                     Gdk.DragAction.COPY)
-        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        #TODO GTK3: workaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.drag_dest_set_target_list(tglist)
         #self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
         #                            Gdk.DragAction.COPY)
@@ -1188,7 +1188,7 @@ class ClipboardListView(object):
                 o = model.get_value(node,1)
                 targets += [target.target_data_atom() for target in o.__class__.DROP_TARGETS]
 
-        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        #TODO GTK3: workaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
                             [],
                             Gdk.DragAction.COPY | Gdk.DragAction.MOVE)

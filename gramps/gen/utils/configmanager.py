@@ -367,7 +367,7 @@ class ConfigManager(object):
     def get(self, key):
         """
         Get the setting's value. raise an error if an invalid section.setting.
-        Key is a sting in the "section.setting" format.
+        Key is a string in the "section.setting" format.
         """
         if "." in key:
             section, setting = key.split(".", 1)
@@ -384,7 +384,7 @@ class ConfigManager(object):
     def is_set(self, key):
         """
         Does the setting exist? Returns True if does, False otherwise.
-        Key is a sting in the "section.setting" format.
+        Key is a string in the "section.setting" format.
         """
         if "." in key:
             section, setting = key.split(".", 1)
@@ -399,7 +399,7 @@ class ConfigManager(object):
     def has_default(self, key):
         """
         Does the setting have a default value? Returns True if it does,
-        False otherwise. Key is a sting in the "section.setting" format.
+        False otherwise. Key is a string in the "section.setting" format.
         """
         if "." in key:
             section, setting = key.split(".", 1)
@@ -414,7 +414,7 @@ class ConfigManager(object):
     def get_default(self, key):
         """
         Get the setting's default value. Raises an error if invalid key is
-        give. Key is a sting in the "section.setting" format.
+        give. Key is a string in the "section.setting" format.
         """
         if "." in key:
             section, setting = key.split(".", 1)
