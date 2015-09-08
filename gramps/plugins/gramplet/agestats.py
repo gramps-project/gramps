@@ -19,10 +19,23 @@
 #
 
 """
+Age Stats Gramplet
+
 This Gramplet shows textual distributions of age breakdowns of various types.
 """
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 
 from collections import defaultdict
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
 
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
