@@ -49,7 +49,7 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef
+from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef, PlaceName
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gui.views.navigationview import NavigationView
@@ -951,8 +951,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                     (name, coords) = place
                     latlong = coords.pop()
                     (lat, lon) = latlong
+                    place_name = PlaceName()
+                    place_name.set_value(name)
                     new_place = Place()
-                    new_place.set_name(name)
+                    new_place.set_name(place_name)
                     new_place.set_title(name)
                     new_place.set_latitude(str(lat))
                     new_place.set_longitude(str(lon))
