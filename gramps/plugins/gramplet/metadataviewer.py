@@ -20,6 +20,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Image Metadata Gramplet
+"""
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.plugins.lib.libmetadata import MetadataView
 from gramps.gen.plug import Gramplet
 from gramps.gen.utils.file import media_path_full
