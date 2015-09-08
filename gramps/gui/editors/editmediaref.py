@@ -432,6 +432,7 @@ class EditMediaRef(EditReference):
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button84'))
         self.define_ok_button(self.top.get_object('button82'),self.save)
+        self.define_help_button(self.top.get_object('button104'))
 
     def _connect_db_signals(self):
         """
