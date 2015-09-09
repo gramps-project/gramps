@@ -278,6 +278,7 @@ register('paths.recent-file', '')
 register('paths.recent-import-dir', '')
 register('paths.report-directory', USER_HOME)
 register('paths.website-directory', USER_HOME)
+register('paths.website-cms-uri', '')
 register('paths.quick-backup-directory', USER_HOME)
 register('paths.quick-backup-filename',
          "%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s")

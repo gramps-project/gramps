@@ -588,6 +588,7 @@ class BasePage(object):
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
+        self.target_uri = report.options['cmsuri']
 
     # Functions used when no Web Page plugin is provided
     def add_instance(self, *param):
@@ -3009,10 +3010,7 @@ class SurnamePage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(surnamepage, of, sio)
+        self.XHTMLWriter(surnamepage, of, sio)
 
 #################################################
 #
@@ -3209,10 +3207,7 @@ class FamilyPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(familiesListPage, of, sio)
+        self.XHTMLWriter(familiesListPage, of, sio)
 
     def FamilyPage(self, report, title, family_handle):
         self.dbase_ = report.database
@@ -3295,10 +3290,7 @@ class FamilyPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(familydetailpage, of, sio)
+        self.XHTMLWriter(familydetailpage, of, sio)
 
 ######################################################
 #                                                    #
@@ -3455,10 +3447,7 @@ class PlacePages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(placelistpage, of, sio)
+        self.XHTMLWriter(placelistpage, of, sio)
 
     def PlacePage(self, report, title, place_handle):
         self.bibli = Bibliography()
@@ -3579,10 +3568,7 @@ class PlacePages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(placepage, of, sio)
+        self.XHTMLWriter(placepage, of, sio)
 
 #################################################
 #
@@ -3782,10 +3768,7 @@ class EventPages(BasePage):
 
         # send page ut for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(eventslistpage, of, sio)
+        self.XHTMLWriter(eventslistpage, of, sio)
 
     def _getEventDate(self, event_handle):
         event_date = Date.EMPTY
@@ -3911,10 +3894,7 @@ class EventPages(BasePage):
 
         # send page out for processing
         # and close the page
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(eventpage, of, sio)
+        self.XHTMLWriter(eventpage, of, sio)
 
 #################################################
 #
@@ -4048,10 +4028,7 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(surnamelistpage, of, sio)
+        self.XHTMLWriter(surnamelistpage, of, sio)
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
@@ -4093,10 +4070,7 @@ class IntroductionPage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(intropage, of, sio)
+        self.XHTMLWriter(intropage, of, sio)
 
 class HomePage(BasePage):
     def __init__(self, report, title):
@@ -4129,10 +4103,7 @@ class HomePage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(homepage, of, sio)
+        self.XHTMLWriter(homepage, of, sio)
 
 #################################################
 #
@@ -4267,10 +4238,7 @@ class SourcePages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(sourcelistpage, of, sio)
+        self.XHTMLWriter(sourcelistpage, of, sio)
 
     def SourcePage(self, report, title, source_handle):
         """
@@ -4366,10 +4334,7 @@ class SourcePages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(sourcepage, of, sio)
+        self.XHTMLWriter(sourcepage, of, sio)
 
 #################################################
 #
@@ -4501,10 +4466,7 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(medialistpage, of, sio)
+        self.XHTMLWriter(medialistpage, of, sio)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -4775,10 +4737,7 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(mediapage, of, sio)
+        self.XHTMLWriter(mediapage, of, sio)
 
     def media_nav_link(self, handle, name, up = False):
         """
@@ -4973,10 +4932,7 @@ class ThumbnailPreviewPage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(thumbnailpage, of, sio)
+        self.XHTMLWriter(thumbnailpage, of, sio)
 
 
     def thumbnail_link(self, name, index):
@@ -5127,10 +5083,7 @@ class DownloadPage(BasePage):
 
             # send page out for processing
             # and close the file
-            if self.usecms:
-                self.XHTMLWriter(body, of, sio)
-            else:
-                self.XHTMLWriter(downloadpage, of, sio)
+            self.XHTMLWriter(downloadpage, of, sio)
 
 
 class ContactPage(BasePage):
@@ -5197,10 +5150,7 @@ class ContactPage(BasePage):
 
         # send page out for porcessing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(contactpage, of, sio)
+        self.XHTMLWriter(contactpage, of, sio)
 
 #################################################
 #
@@ -5447,10 +5397,7 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(indlistpage, of, sio)
+        self.XHTMLWriter(indlistpage, of, sio)
 
 #################################################
 #
@@ -5492,7 +5439,10 @@ class PersonPages(BasePage):
 
         # attach the ancestortree style sheet if ancestor graph is being created?
         if self.report.options["ancestortree"]:
-            fname = "/".join(["css", "ancestortree.css"])
+            if self.usecms:
+                fname = join([self.target_uri, "css", "ancestortree.css"])
+            else:
+                fname = "/".join(["css", "ancestortree.css"])
             url = self.report.build_url_fname(fname, None, self.up)
             head += Html("link", href = url, type = "text/css", media = "screen", rel = "stylesheet")
 
@@ -5617,10 +5567,7 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(indivdetpage, of, sio)
+        self.XHTMLWriter(indivdetpage, of, sio)
 
     def __create_family_map(self, person, place_lat_long):
         """
@@ -5690,7 +5637,10 @@ class PersonPages(BasePage):
         # call_(report, up, head)
 
         # add narrative-maps style sheet
-        fname = "/".join(["css", "narrative-maps.css"])
+        if self.usecms:
+            fname = join([self.target_uri, "css", "narrative-maps.css"])
+        else:
+            fname = "/".join(["css", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.up)
         head += Html("link", href =url, type ="text/css", media ="screen", rel ="stylesheet")
 
@@ -5884,10 +5834,7 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(familymappage, of, sio)
+        self.XHTMLWriter(familymappage, of, sio)
 
     def __display_family_map(self, person, place_lat_long):
         """
@@ -6714,10 +6661,7 @@ class RepositoryPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(repolistpage, of, sio)
+        self.XHTMLWriter(repolistpage, of, sio)
 
     def RepositoryPage(self, report, title, repo, handle):
         gid = repo.get_gramps_id()
@@ -6782,10 +6726,7 @@ class RepositoryPages(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(repositorypage, of, sio)
+        self.XHTMLWriter(repositorypage, of, sio)
 
 class AddressBookListPage(BasePage):
     def __init__(self, report, title, has_url_addr_res):
@@ -6877,10 +6818,7 @@ class AddressBookListPage(BasePage):
 
         # send the page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(addressbooklistpage, of, sio)
+        self.XHTMLWriter(addressbooklistpage, of, sio)
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
@@ -6924,10 +6862,7 @@ class AddressBookPage(BasePage):
 
         # send page out for processing
         # and close the file
-        if self.usecms:
-            self.XHTMLWriter(body, of, sio)
-        else:
-            self.XHTMLWriter(addressbookpage, of, sio)
+        self.XHTMLWriter(addressbookpage, of, sio)
 
 class NavWebReport(Report):
 
@@ -7015,6 +6950,7 @@ class NavWebReport(Report):
 
         # Do we need to include this in a cms ?
         self.usecms = self.options['usecms']
+        self.target_uri = self.options['cmsuri']
 
         # either include the gender graphics or not?
         self.ancestortree = self.options['ancestortree']
@@ -7113,6 +7049,8 @@ class NavWebReport(Report):
                 return
         config.set('paths.website-directory',
                    os.path.dirname(self.target_path) + os.sep)
+        if self.usecms:
+            config.set('paths.website-cms-uri', os.path.dirname(self.target_uri))
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -7831,12 +7769,16 @@ class NavWebReport(Report):
             subdirs.append(fname[-1].lower())
             subdirs.append(fname[-2].lower())
 
-        if up == True:
-            subdirs = ['..']*3 + subdirs
+        if self.usecms:
+            if self.target_uri not in subdirs:
+                subdirs = [self.target_uri] + subdirs
+        else:
+            if up == True:
+                subdirs = ['..']*3 + subdirs
 
-        # added for use in EventListPage
-        elif up is None:
-            subdirs = ['.'] + subdirs
+            # added for use in EventListPage
+            elif up is None:
+                subdirs = ['.'] + subdirs
         return subdirs
 
     def build_path(self, subdir, fname, up = False):
@@ -7855,8 +7797,12 @@ class NavWebReport(Report):
         subdirs = []
         if subdir:
             subdirs.append(subdir)
-        if up:
-            subdirs = ['..']*3 + subdirs
+        if self.usecms:
+            if self.target_uri not in subdirs:
+                subdirs = [self.target_uri] + subdirs
+        else:
+            if up:
+                subdirs = ['..']*3 + subdirs
         nname = "/".join(subdirs + [fname])
         if win():
             nname = nname.replace('\\',"/")
@@ -7927,7 +7873,11 @@ class NavWebReport(Report):
 
         if win():
             fname = fname.replace('\\',"/")
-        subdirs = self.build_subdirs(subdir, fname, up)
+        fname = fname.replace(self.target_uri + "/", "")
+        if self.usecms:
+            subdirs = self.build_subdirs(subdir, fname, False)
+        else:
+            subdirs = self.build_subdirs(subdir, fname, up)
         return "/".join(subdirs + [fname])
 
     def create_file(self, fname, subdir = None, ext = None):
@@ -7941,11 +7891,14 @@ class NavWebReport(Report):
 
         if ext is None:
             ext = self.ext
-        if subdir:
-            subdir = self.build_path(subdir, fname)
-            self.cur_fname = os.path.join(subdir, fname) + ext
+        if self.usecms and subdir is None:
+            self.cur_fname = os.path.join(self.target_uri, fname) + ext
         else:
-            self.cur_fname = fname + ext
+            if subdir:
+                subdir = self.build_path(subdir, fname)
+                self.cur_fname = os.path.join(subdir, fname) + ext
+            else:
+                self.cur_fname = fname + ext
         if self.archive:
             string_io = BytesIO()
             of = TextIOWrapper(string_io, encoding=self.encoding,
@@ -8002,6 +7955,8 @@ class NavWebReport(Report):
         'to_dir' is the relative path name in the destination root. It will
         be prepended before 'to_fname'.
         """
+        if self.usecms:
+            to_dir = "/" + self.target_uri + "/" + to_dir
         # log.debug("copying '%s' to '%s/%s'" % (from_fname, to_dir, to_fname))
         if self.archive:
             dest = os.path.join(to_dir, to_fname)
@@ -8044,6 +7999,7 @@ class NavWebOptions(MenuReportOptions):
         self.__db = dbase
         self.__archive = None
         self.__target = None
+        self.__target_uri = None
         self.__pid = None
         self.__filter = None
         self.__graph = None
@@ -8051,6 +8007,7 @@ class NavWebOptions(MenuReportOptions):
         self.__living = None
         self.__yearsafterdeath = None
         self.__usecms = None
+        self.__cms_uri = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -8459,6 +8416,23 @@ class NavWebOptions(MenuReportOptions):
 
         self.__usecms = BooleanOption(_("Do we include these pages in a cms web ?"), False)
         addopt("usecms", self.__usecms)
+
+        default_dir = "/NAVWEB"
+        self.__cms_uri = DestinationOption(_("URI"),
+                            os.path.join(config.get('paths.website-cms-uri'),
+                                         default_dir))
+        self.__cms_uri.set_help( _("Where do you place your web site ?"
+                                   " default = /NAVWEB" ) )
+        self.__cms_uri.connect('value-changed', self.__cms_uri_changed)
+        addopt( "cmsuri", self.__cms_uri )
+
+        self.__cms_uri_changed()
+
+    def __cms_uri_changed(self):
+        """
+        Update the change of storage: archive or directory
+        """
+        self.__target_uri = self.__cms_uri.get_value()
 
     def __archive_changed(self):
         """
