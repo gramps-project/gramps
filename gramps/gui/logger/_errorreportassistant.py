@@ -250,7 +250,7 @@ class ErrorReportAssistant(Gtk.Assistant):
               "developers that will be as detailed as possible.\n\n"
               "The assistant will ask you a few questions and will "
               "gather some information about the error that has "
-              "occured and the operating environment. "
+              "occurred and the operating environment. "
               "At the end of the assistant you will be asked to "
               "file a bug report on the Gramps bug tracking system. "
               "The assistant will place the bug report on the clip board so "
@@ -421,7 +421,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         label = Gtk.Label(label=_("Please provide as much information as you "
                              "can about what you were doing when the error "
-                             "occured."))
+                             "occurred."))
         label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
@@ -464,7 +464,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         user_information_frame.add(user_information_box)
 
         side_label = Gtk.Label(label=_("This is your opportunity to describe "
-                                 "what you were doing when the error occured."))
+                                 "what you were doing when the error occurred."))
 
         side_label.set_line_wrap(True)
 
