@@ -41,8 +41,8 @@ from ..display import display_help
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_FAQ' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|General')
+WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Error_Report')
 
 class ErrorView(object):
     """
@@ -75,7 +75,7 @@ class ErrorView(object):
                 self.top.destroy()
 
     def help_clicked(self):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
 
         display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
