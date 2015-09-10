@@ -41,8 +41,8 @@ from ..display import display_help
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_FAQ' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|General')
+WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Error_Report')
 
 class ErrorView(object):
     """
