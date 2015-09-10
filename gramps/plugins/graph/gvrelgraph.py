@@ -115,6 +115,7 @@ class RelGraphReport(Report):
         name_format    - Preferred format to display names
         incl_private   - Whether to include private data
         event_choice   - Whether to include dates and/or places
+        occupation     - Whether to include occupation
         """
         Report.__init__(self, database, options, user)
 
@@ -133,6 +134,7 @@ class RelGraphReport(Report):
         self.show_families = get_value('showfamily')
         self.use_subgraphs = get_value('usesubgraphs')
         self.event_choice = get_value('event_choice')
+        self.occupation  = get_value('occupation')
 
         self.colorize = get_value('color')
         color_males = get_value('colormales')
@@ -477,6 +479,23 @@ class RelGraphReport(Report):
                     label += '%s' % d_place
                 label += ')'
 
+        # add occupation
+        if self.occupation:
+           if self.includeid == 1: # same line
+               label += " (%s)" % p_id
+           elif self.includeid == 2: # own line
+               label += "%s(%s)" % (lineDelimiter, p_id)
+           event_refs = person.get_primary_event_ref_list()
+           events = [event for event in
+                       [self.database.get_event_from_handle(ref.ref) for ref in event_refs]
+                       if event.get_type() == EventType(EventType.OCCUPATION)]
+           if len(events) > 0:
+               events.sort(key=lambda x: x.get_date_object())
+               occupation = events[-1].get_description()
+               if occupation:
+                   label += "%s%s" % (lineDelimiter,occupation)
+           # /// occupation
+
         if self.increlname and self.center_person != person:
             # display relationship info
             if self.advrelinfo:
@@ -615,6 +634,10 @@ class RelGraphOptions(MenuReportOptions):
                                          'places, but no dates'))
         self.event_choice.set_help(_("Whether to include dates and/or places"))
         add_option("event_choice", self.event_choice)
+
+        occupation = BooleanOption(_("Include occupation"), False)
+        occupation.set_help(_("Include last occupation of the person"))
+        add_option("occupation",occupation)
 
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
