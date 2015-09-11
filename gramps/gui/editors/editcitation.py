@@ -57,6 +57,16 @@ from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                        MonitoredDate, MonitoredTagList)
 from ..dialog import ErrorDialog
 from ..glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('New_Citation_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -150,7 +160,8 @@ class EditCitation(EditPrimary):
         """
         self.define_ok_button(self.glade.get_object('ok'), self.save)
         self.define_cancel_button(self.glade.get_object('cancel'))
-        self.define_help_button(self.glade.get_object('help'))
+        self.define_help_button(self.glade.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """

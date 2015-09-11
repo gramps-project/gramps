@@ -59,8 +59,9 @@ from gramps.gen.utils.db import get_participant_from_event
 # Constants
 #
 #-------------------------------------------------------------------------
+
 WIKI_HELP_PAGE = '%s_-_Entering_and_editing_data:_detailed_-_part_2' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Editing_information_about_events')
+WIKI_HELP_SEC = _('manual|New_Event_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -231,6 +232,7 @@ class EditEvent(EditPrimary):
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
