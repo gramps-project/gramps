@@ -50,6 +50,16 @@ from gramps.gen.lib import NoteType
 from ..glade import Glade
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_3') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Attribute_Editor_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -87,8 +97,9 @@ class EditAttributeRoot(EditSecondary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('help'))
         self.define_ok_button(self.top.get_object('ok'),self.save)
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _setup_fields(self):
         self.value_field = MonitoredEntry(

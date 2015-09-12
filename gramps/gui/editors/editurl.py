@@ -35,6 +35,16 @@ _ = glocale.translation.gettext
 from .editsecondary import EditSecondary
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from ..glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Internet_Address_Editor')
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +73,9 @@ class EditUrl(EditSecondary):
         self.jump.connect('clicked', self.jump_to)
         self.define_cancel_button(self.top.get_object('button125'))
         self.define_ok_button(self.top.get_object('button124'), self.save)
-        self.define_help_button(self.top.get_object('button130'))
+        # TODO help button (rename glade button name)
+        self.define_help_button(self.top.get_object('button130'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def jump_to(self, obj):
         if self.obj.get_path():

@@ -51,6 +51,16 @@ from gramps.gen.lib import NoteType
 from ..glade import Glade
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_3') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Address_Editor_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -122,9 +132,10 @@ class EditAddress(EditSecondary):
                                   self.obj, self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_object('help'))
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_ok_button(self.top.get_object('ok'),self.save)
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _create_tabbed_pages(self):
         """
