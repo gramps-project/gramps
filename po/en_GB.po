@@ -15,10 +15,13 @@
 # colored -> coloured
 # coloring -> colouring
 # dialog (for computer terminology don't use dialogue)
+# initialization -> initialisation
 # maximized -> maximised
+# naturalization -> naturalisation
 # neighborhood -> neighbourhood
 # organize -> organise
 # organized -> organised
+# recognized -> recognised
 # unrecognized -> unrecognised
 # indexes (use indexes rather than indices)
 #
@@ -5775,7 +5778,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:193
 msgid "Naturalization"
-msgstr ""
+msgstr "Naturalisation"
 
 #: ../gramps/gen/lib/eventtype.py:194
 msgid "Nobility Title"
@@ -15683,7 +15686,7 @@ msgstr ""
 #: ../gramps/gui/spell.py:147
 #, python-format
 msgid "Spelling checker initialization failed: %s"
-msgstr ""
+msgstr "Spelling checker initialisation failed: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
 #: ../gramps/gui/tipofday.py:119 ../gramps/gui/viewmanager.py:501
@@ -21969,7 +21972,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:3043
 msgid "Tag recognized but not supported"
-msgstr ""
+msgstr "Tag recognised but not supported"
 
 #: ../gramps/plugins/lib/libgedcom.py:3054
 msgid "Line ignored as not understood"
