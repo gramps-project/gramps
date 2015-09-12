@@ -499,9 +499,26 @@ class IndivCompleteReport(Report):
     def write_images(self):
 
         media_list = self.person.get_media_list()
-        if (not self.use_images) or (len(media_list) < 2): # only show if > one
+        if (not self.use_images) or (not media_list):
             return
-        
+
+        i_total = 0
+        for media_ref in media_list:
+            media_handle = media_ref.get_reference_handle()
+            if media_handle:
+                media = self._db.get_object_from_handle(media_handle)
+                if media and media.get_mime_type():
+                    if media.get_mime_type().startswith("image"):
+                        i_total += 1
+        if i_total == 0:
+            return
+        # if there is only one image, and it is the first Gallery item, it
+        # will be shown up at the top, so there's no reason to show it here;
+        # but if there's only one image and it is not the first Gallery
+        # item (maybe the first is a PDF, say), then we need to show it
+        if ((i_total == 1) and self.mime0 and self.mime0.startswith("image")):
+            return
+
         self.doc.start_table("images","IDS-GalleryTable")
         cells = 3 # the GalleryTable has 3 cells
         self.doc.start_row()
@@ -509,9 +526,10 @@ class IndivCompleteReport(Report):
         self.write_paragraph(self._('Images'), style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
-        count = 0
-        while ( count < len(media_list) ):
-            media_ref = media_list[count]
+        media_count = 0
+        image_count = 0
+        while ( media_count < len(media_list) ):
+            media_ref = media_list[media_count]
             media_handle = media_ref.get_reference_handle()
             media = self._db.get_object_from_handle(media_handle)
             if media is None:
@@ -520,20 +538,21 @@ class IndivCompleteReport(Report):
                 return
             mime_type = media.get_mime_type()
             if not mime_type or not mime_type.startswith("image"):
-                count += 1
+                media_count += 1
                 continue
             description = media.get_description()
-            if count % cells == 0:
+            if image_count % cells == 0:
                 self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell')
             self.write_paragraph(description, style='IDS-ImageCaptionCenter')
             ReportUtils.insert_image(self._db, self.doc, media_ref, self._user,
                                      align='center', w_cm=5.0, h_cm=5.0)
             self.doc.end_cell()
-            if count % cells == cells - 1:
+            if image_count % cells == cells - 1:
                 self.doc.end_row()
-            count += 1
-        if count % cells != 0:
+            media_count += 1
+            image_count += 1
+        if image_count % cells != 0:
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -789,12 +808,13 @@ class IndivCompleteReport(Report):
 
         media_list = self.person.get_media_list()
         p_style = 'IDS-PersonTable2'
+        self.mime0 = None
         if self.use_images and len(media_list) > 0:
             media0 = media_list[0]
             media_handle = media0.get_reference_handle()
             media = self._db.get_object_from_handle(media_handle)
-            mime_type = media.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
+            self.mime0 = media.get_mime_type()
+            if self.mime0 and self.mime0.startswith("image"):
                 image_filename = media_path_full(self._db, media.get_path())
                 if os.path.exists(image_filename):
                     p_style = 'IDS-PersonTable' # this is tested for, also
