@@ -80,6 +80,16 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
 from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Family_Editor_dialog')
 
 SelectPerson = SelectorFactory('Person')
 
@@ -620,7 +630,9 @@ class EditFamily(EditPrimary):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'), self.save)
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('button119'))
+        # TODO help button (rename glade button name)
+        self.define_help_button(self.top.get_object('button119'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _can_be_replaced(self):
         pass

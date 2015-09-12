@@ -55,6 +55,16 @@ from .displaytabs import CitationEmbedList,NoteTab
 from ..widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 from ..selectors import SelectorFactory
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('LDS_Ordinance_Editor')
 
 _DATA_MAP = {
     LdsOrd.BAPTISM : [
@@ -154,8 +164,9 @@ class EditLdsOrd(EditSecondary):
     def _connect_signals(self):
         self.parents_select.connect('clicked',self.select_parents_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('help'))
         self.define_ok_button(self.top.get_object('ok'),self.save)
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _get_types(self):
         return (LdsOrd.BAPTISM,
