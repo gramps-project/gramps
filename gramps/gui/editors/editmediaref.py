@@ -60,6 +60,16 @@ from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                        MonitoredDate, MonitoredTagList, SelectionWidget, Region)
 from .editreference import RefTab, EditReference
 from .addmedia import AddMediaObject
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Media_Reference_Editor_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -432,7 +442,9 @@ class EditMediaRef(EditReference):
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button84'))
         self.define_ok_button(self.top.get_object('button82'),self.save)
-        self.define_help_button(self.top.get_object('button104'))
+        # TODO help button (rename glade button name)
+        self.define_help_button(self.glade.get_object('button104'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """

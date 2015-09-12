@@ -45,6 +45,17 @@ from .editreference import RefTab, EditReference
 
 from .objectentries import PlaceEntry
 
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Event_Reference_Editor_dialog')
+
 #-------------------------------------------------------------------------
 #
 # EditEventRef class
@@ -99,7 +110,8 @@ class EditEventRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        self.define_help_button(self.top.get_object('help'))
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """

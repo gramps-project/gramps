@@ -57,6 +57,16 @@ from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
 from .addmedia import AddMediaObject
 from ..dialog import ErrorDialog
 from ..glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('New_Media_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -104,7 +114,9 @@ class EditMedia(EditPrimary):
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_object('button91'))
         self.define_ok_button(self.glade.get_object('ok'), self.save)
-        self.define_help_button(self.glade.get_object('button102'))
+        # TODO help button (rename glade button name)
+        self.define_help_button(self.glade.get_object('button102'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """
