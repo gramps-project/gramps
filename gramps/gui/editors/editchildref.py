@@ -56,12 +56,16 @@ from gi.repository import Gdk
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.const import URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Child_Reference_Editor')
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -139,12 +143,13 @@ class EditChildRef(EditSecondary):
             self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_object('help'))
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_ok_button(self.ok_button, self.save)
         self.edit_button.connect('button-press-event', self.edit_child)
         self.edit_button.connect('key-press-event', self.edit_child)
-    
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+
     def _connect_db_signals(self):
         """
         Connect any signals that need to be connected. 

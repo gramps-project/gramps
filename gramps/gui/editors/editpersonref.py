@@ -56,6 +56,16 @@ from .displaytabs import CitationEmbedList, NoteTab
 from ..glade import Glade
 from ..ddtargets import DdTargets
 from gi.repository import Gdk
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('xxx_someone_forgot_to_add_a_link_xxx')
 
 #-------------------------------------------------------------------------
 #
@@ -134,10 +144,11 @@ class EditPersonRef(EditSecondary):
             self.db.readonly)
 
     def _connect_signals(self):
-        #self.define_help_button(self.top.get_object('help'))
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_ok_button(self.top.get_object('ok'),self.save)
         self.top.get_object('select').connect('clicked',self._select_person)
+        self.define_help_button(self.top.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
         """
