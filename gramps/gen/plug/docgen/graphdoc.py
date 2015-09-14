@@ -521,7 +521,7 @@ class GVDocBase(BaseDoc, GVDoc):
             text += ' URL="%s"'         % url
 
         text += " ]"
-        self.write('  %s %s;\n' % (node_id, text))
+        self.write('  "%s" %s;\n' % (node_id, text))
 
     def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
@@ -529,7 +529,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
         Implements GVDocBase.add_link().
         """
-        self.write('  %s -> %s' % (id1, id2))
+        self.write('  "%s" -> "%s"' % (id1, id2))
 
         if style or head or tail:
             self.write(' [')
