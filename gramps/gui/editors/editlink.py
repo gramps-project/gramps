@@ -37,6 +37,16 @@ from ..managedwindow import ManagedWindow
 from ..display import display_help
 from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Link_Editor')
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = list(range(9))
 OBJECT_MAP = {
@@ -212,7 +222,9 @@ class EditLink(ManagedWindow):
         self.define_cancel_button(self.top.get_object('button125'))
         self.ok_button = self.top.get_object('button124')
         self.define_ok_button(self.ok_button, self.save)
-        self.define_help_button(self.top.get_object('button130'))
+        # TODO help button (rename glade button name)
+        self.define_help_button(self.top.get_object('button130'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
         self.update_ui(self.url_link)
         
     def build_menu_names(self, obj):
