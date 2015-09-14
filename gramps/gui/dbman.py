@@ -82,16 +82,20 @@ from .glade import Glade
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.config import config
 from gramps.gui.listmodel import ListModel
-
-_RETURN = Gdk.keyval_from_name("Return")
-_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
-
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Manage_Family_Trees') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Family_Trees_manager_window')
+
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 ARCHIVE       = "rev.gramps"
 ARCHIVE_V     = "rev.gramps,v"
@@ -200,8 +204,15 @@ class DbManager(CLIDbManager):
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
 
+        self.define_help_button(self.glade.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+
         if _RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
+
+    def define_help_button(self, button, webpage='', section=''):
+        button.connect('clicked', lambda x: display_help(webpage,
+                                                               section))
 
     def __button_press(self, obj, event):
         """
