@@ -272,7 +272,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         grid.set_row_spacing(6)
 
         configdialog.add_spinner(grid, _("Max generations"), 0,
-                'interface.fanview-maxgen', (1, 11), 
+                'interface.fanview-maxgen', (2, 11),
                 callback=self.cb_update_maxgen)
         configdialog.add_combo(grid, 
                 _('Text Font'), 
