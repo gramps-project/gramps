@@ -223,6 +223,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.event_box.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
         self.event_box.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
+        self.event_box.add_events(Gdk.EventMask.SCROLL_MASK)
 
         self.event_box.add(self.image)
 
