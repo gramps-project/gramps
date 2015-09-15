@@ -13,6 +13,7 @@
 #    Copyright (C) 2010       Jakim Friant
 #    Copyright (C) 2013       Fedir Zinchuk <fedikw@gmail.com>
 #    Copyright (C) 2013-2015  Paul Franklin
+#    Copyright (C) 2015       Fabrice <fobrice@laposte.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -115,6 +116,7 @@ class RelGraphReport(Report):
         name_format    - Preferred format to display names
         incl_private   - Whether to include private data
         event_choice   - Whether to include dates and/or places
+        occupation     - Whether to include occupations
         """
         Report.__init__(self, database, options, user)
 
@@ -133,6 +135,7 @@ class RelGraphReport(Report):
         self.show_families = get_value('showfamily')
         self.use_subgraphs = get_value('usesubgraphs')
         self.event_choice = get_value('event_choice')
+        self.occupation = get_value('occupation')
 
         self.colorize = get_value('color')
         color_males = get_value('colormales')
@@ -493,6 +496,19 @@ class RelGraphReport(Report):
                 if relationship:
                     label += "%s(%s)" % (lineDelimiter, relationship)
 
+        if self.occupation:
+           event_refs = person.get_primary_event_ref_list()
+           events = [event for event in
+                        [self.database.get_event_from_handle(ref.ref)
+                            for ref in event_refs]
+                        if event.get_type() ==
+                            EventType(EventType.OCCUPATION)]
+           if len(events) > 0:
+               events.sort(key=lambda x: x.get_date_object())
+               occupation = events[-1].get_description()
+               if occupation:
+                   label += "%s(%s)" % (lineDelimiter, occupation)
+
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
             label += '</TD></TR></TABLE>'
@@ -653,6 +669,10 @@ class RelGraphOptions(MenuReportOptions):
                               _("Where the thumbnail image should appear "
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
+
+        occupation = BooleanOption(_("Include occupation"), False)
+        occupation.set_help(_("Whether to include the last occupation"))
+        add_option("occupation", occupation)
 
         if __debug__:
             self.__show_GaGb = BooleanOption(_("Include relationship "
