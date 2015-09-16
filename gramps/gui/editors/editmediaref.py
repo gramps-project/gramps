@@ -443,7 +443,7 @@ class EditMediaRef(EditReference):
         self.define_cancel_button(self.top.get_object('button84'))
         self.define_ok_button(self.top.get_object('button82'),self.save)
         # TODO help button (rename glade button name)
-        self.define_help_button(self.glade.get_object('button104'),
+        self.define_help_button(self.top.get_object('button104'),
                 WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def _connect_db_signals(self):
