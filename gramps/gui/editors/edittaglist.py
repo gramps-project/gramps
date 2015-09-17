@@ -45,7 +45,7 @@ from ..listmodel import ListModel, TOGGLE
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Tagging')
+WIKI_HELP_SEC = _('manual|Tag_selection_dialog')
 
 #-------------------------------------------------------------------------
 #

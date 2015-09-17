@@ -83,7 +83,8 @@ TAG_3 = '''
 
 WIKI_HELP_PAGE = '%s_-_Filters' % \
                                 URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Tagging')
+WIKI_HELP_SEC = _('manual|Organize_Tags_Window')
+WIKI_HELP_SEC2 = _('manual|New_Tag_dialog')
 
 #-------------------------------------------------------------------------
 #
@@ -554,7 +555,14 @@ class EditTag(object):
         """
         Run the dialog and return the result.
         """
-        response = self.top.run()
+        while True:
+            response = self.top.run()
+            if response == Gtk.ResponseType.HELP:
+                display_help(webpage=WIKI_HELP_PAGE,
+                                   section=WIKI_HELP_SEC2)
+            else:
+                break
+
         if response == Gtk.ResponseType.OK:
             self._save()
         self.top.destroy()
@@ -618,7 +626,8 @@ class EditTag(object):
         hbox.pack_start(label, False, False, 5)
         hbox.pack_start(self.entry, True, True, 5)
         hbox.pack_start(self.color, False, False, 5)
-        
+
+        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         top.add_button(_('_OK'), Gtk.ResponseType.OK)
         top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         top.show_all()
