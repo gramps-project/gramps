@@ -79,7 +79,10 @@ from gramps.gen.datehandler import displayer
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE = '%s_-_Filters' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Add_Rule_dialog')
+WIKI_HELP_SEC2 = _('manual|Define_Filter_dialog')
+WIKI_HELP_SEC3 = _('manual|Custom_Filters')
 
 # dictionary mapping FILTER_TYPE of views to Filter window name
 _TITLES = {
@@ -715,7 +718,8 @@ class EditRule(ManagedWindow):
         """
         Display the relevant portion of Gramps manual.
         """
-        display_help()
+        display_help(webpage=WIKI_HELP_PAGE,
+                                   section=WIKI_HELP_SEC)
 
     def close_window(self, obj):
         self.close()
@@ -828,7 +832,8 @@ class EditFilter(ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help(webpage=WIKI_HELP_PAGE)
+        display_help(webpage=WIKI_HELP_PAGE,
+                                   section=WIKI_HELP_SEC2)
 
     def close_window(self, obj):
         self.close()
@@ -1086,7 +1091,8 @@ class FilterEditor(ManagedWindow):
         
     def help_clicked(self, obj):
         """Display the relevant portion of Gramps manual"""
-        display_help()
+        display_help(webpage=WIKI_HELP_PAGE,
+                                   section=WIKI_HELP_SEC3)
 
     def filter_select_row(self, obj):
         store, node = self.clist.get_selected()
