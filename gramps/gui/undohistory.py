@@ -45,6 +45,16 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from .dialog import QuestionDialog
 from .managedwindow import ManagedWindow
+from .display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Keybindings' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('11')
 
 #-------------------------------------------------------------------------
 #
@@ -69,6 +79,8 @@ class UndoHistory(ManagedWindow):
         window = Gtk.Dialog("", uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
 
+        self.help_button = window.add_button(_('_Help'),
+                                             Gtk.ResponseType.HELP)
         self.undo_button = window.add_button(_('_Undo'),
                                              Gtk.ResponseType.REJECT)
         self.redo_button = window.add_button(_('_Redo'),
@@ -173,6 +185,10 @@ class UndoHistory(ManagedWindow):
             self._clear_clicked()
         elif response_id == Gtk.ResponseType.DELETE_EVENT:
             self.close(obj)
+
+        elif response_id == Gtk.ResponseType.HELP:
+            display_help(webpage=WIKI_HELP_PAGE,
+                                section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (self.title, None)
