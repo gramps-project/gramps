@@ -60,6 +60,15 @@ from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..dialog import ErrorDialog, WarningDialog
 from ..glade import Glade
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Entering_and_editing_data:_detailed_-_part_2' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Select_a_media_object_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -126,7 +135,9 @@ class AddMediaObject(ManagedWindow):
         self.cancel_button = self.glade.get_object('button81')
         self.ok_button.connect('clicked', self.save)
         self.ok_button.set_sensitive(not self.dbase.readonly)
-        self.help_button.connect('clicked', lambda x: display_help())
+        self.help_button.connect('clicked', lambda x: display_help(
+                                     webpage=WIKI_HELP_PAGE,
+                                             section=WIKI_HELP_SEC))
         self.cancel_button.connect('clicked', self.close)
         self.show()
         self.modal_call()
