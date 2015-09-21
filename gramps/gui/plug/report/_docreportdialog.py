@@ -185,10 +185,13 @@ class DocReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            default_name = self.dbname + "_" + self.raw_name
             if self.options.get_output():
                 base = os.path.basename(self.options.get_output())
             else:
+                if self.dbname is None:
+                    default_name = self.raw_name
+                else:
+                    default_name = self.dbname + "_" + self.raw_name
                 base = "%s.%s" % (default_name, ext)
             spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
