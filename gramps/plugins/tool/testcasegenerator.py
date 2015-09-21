@@ -75,6 +75,16 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.db.dbconst import *
 from gramps.gen.const import ICON, LOGO, SPLASH
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Generate_Testcases_for_Persons_and_Families')
 
 #-------------------------------------------------------------------------
 #
@@ -266,10 +276,14 @@ class TestcaseGenerator(tool.BatchTool):
             self.entry_count.get_text())
         self.top.destroy()
 
-        if response == Gtk.ResponseType.OK:
-            self.run_tool( cli=False)
-            # Save options
-            self.options.handler.save_options()
+        if response == Gtk.ResponseType.HELP:
+            display_help(webpage=WIKI_HELP_PAGE,
+                               section=WIKI_HELP_SEC)
+        else:
+            if response == Gtk.ResponseType.OK:
+                self.run_tool( cli=False)
+                # Save options
+                self.options.handler.save_options()
 
     def on_dummy_data_clicked(self, obj):
         self.label.set_sensitive(obj.get_active())
