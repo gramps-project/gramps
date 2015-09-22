@@ -1968,7 +1968,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         filepath = os.path.join(self.path, "name.txt")
         try:
-            name_file = open(filepath, "r")
+            name_file = open(filepath, "r", encoding='utf-8')
             name = name_file.readline().strip()
             name_file.close()
         except (OSError, IOError) as msg:
