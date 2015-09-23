@@ -70,7 +70,8 @@ from gi.repository import Pango
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.plug import BasePluginManager
 _ = glocale.translation.gettext
-from gramps.gen.const import URL_WIKISTRING
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
 from .pluginmanager import GuiPluginManager
@@ -92,6 +93,8 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 # constants
 #
 #-------------------------------------------------------------------------
+WIKI_HELP_PAGE = _('%s_-_Manage_Family_Trees') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Family_Trees_manager_window')
 
 ARCHIVE       = "rev.gramps"
 ARCHIVE_V     = "rev.gramps,v"
@@ -199,9 +202,15 @@ class DbManager(CLIDbManager):
         self.top.connect('drag_data_received', self.__drag_data_received)
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
+        self.define_help_button(self.glade.get_object('help'),
+                WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
         if _RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
+
+    def define_help_button(self, button, webpage='', section=''):
+        button.connect('clicked', lambda x: display_help(webpage,
+                                                               section))
 
     def __button_press(self, obj, event):
         """
