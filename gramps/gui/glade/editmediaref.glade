@@ -360,7 +360,6 @@ You can use the mouse on the picture to select a region, or use these spinbutton
               <object class="GtkExpander" id="expander1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="expanded">True</property>
                 <child>
                   <object class="GtkNotebook" id="notebook_shared">
                     <property name="visible">True</property>
