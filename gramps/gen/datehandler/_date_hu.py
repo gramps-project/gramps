@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -65,13 +65,13 @@ class DateParserHU(DateParser):
     month_to_int["feb."] = 2
     month_to_int["II"] = 2
 #    month_to_int["ii"]  = 2
-    
+
     month_to_int["március"] = 3
     month_to_int["márc"] = 3
     month_to_int["márc."] = 3
     month_to_int["III"] = 3
 #    month_to_int["iii"]  = 3
-    
+
     month_to_int["április"] = 4
     month_to_int["ápr"] = 4
     month_to_int["ápr."] = 4
@@ -83,7 +83,7 @@ class DateParserHU(DateParser):
     month_to_int["máj."] = 5
     month_to_int["V"]  = 5
 #    month_to_int["v"]  = 5
-    
+
     month_to_int["június"] = 6
     month_to_int["jún"] = 6
     month_to_int["jún."] = 6
@@ -95,44 +95,44 @@ class DateParserHU(DateParser):
     month_to_int["júl."]  = 7
     month_to_int["VII"]  = 7
 #    month_to_int["vii"]  = 7
-    
+
     month_to_int["augusztus"]  = 8
     month_to_int["aug"]  = 8
     month_to_int["aug."]  = 8
     month_to_int["VIII"]  = 8
 #    month_to_int["viii"]  = 8
-    
+
     month_to_int["szeptember"]  = 9
     month_to_int["szept"]  = 9
     month_to_int["szept."] = 9
     month_to_int["IX"]  = 9
 #    month_to_int["ix"]  = 9
-    
+
     month_to_int["október"]  = 10
     month_to_int["okt"]  = 10
     month_to_int["okt."]  = 10
     month_to_int["X"]  = 10
 #    month_to_int["x"]  = 10
-    
+
     month_to_int["november"]  = 11
     month_to_int["nov"]  = 11
     month_to_int["nov."] = 11
     month_to_int["XI"]  = 11
 #    month_to_int["xi"]  = 11
-    
+
     month_to_int["december"]  = 12
     month_to_int["dec"]  = 12
     month_to_int["dec."]  = 12
     month_to_int["XII"]  = 12
 #    month_to_int["xii"]  = 12
-    
+
 
 #-----------------------------------------------------------------------
 #
 #  Alternative and latin names - not verified
 #
 #-----------------------------------------------------------------------
-    # Other common latin names 
+    # Other common latin names
 
 #    month_to_int["januaris"] = 01
 #    month_to_int["januarii"] = 01
@@ -199,27 +199,27 @@ class DateParserHU(DateParser):
         }
 
     quality_to_int = {
-        'becsült'       : Date.QUAL_ESTIMATED, 
-        'hozzávetőleg'  : Date.QUAL_ESTIMATED, 
-        'becs.'         : Date.QUAL_ESTIMATED, 
+        'becsült'       : Date.QUAL_ESTIMATED,
+        'hozzávetőleg'  : Date.QUAL_ESTIMATED,
+        'becs.'         : Date.QUAL_ESTIMATED,
         'számított'     : Date.QUAL_CALCULATED,
-        'körülbelül'    : Date.QUAL_ESTIMATED,  
-        'számolt'       : Date.QUAL_CALCULATED, 
-        'szám.'         : Date.QUAL_CALCULATED, 
+        'körülbelül'    : Date.QUAL_ESTIMATED,
+        'számolt'       : Date.QUAL_CALCULATED,
+        'szám.'         : Date.QUAL_CALCULATED,
         }
 
     bce = ["időszámításunk előtt", "időszámítás előtt", "i. e.",
            "Krisztus előtt", "Krisztus előtti", "Kr. e."] + DateParser.bce
-    
+
 
     calendar_to_int = {
-        'Gergely'              : Date.CAL_GREGORIAN, 
-        'Julián'               : Date.CAL_JULIAN, 
-        'héber'                : Date.CAL_HEBREW, 
-        'iszlám'               : Date.CAL_ISLAMIC, 
-        'francia köztársasági' : Date.CAL_FRENCH, 
-        'perzsa'               : Date.CAL_PERSIAN, 
-        'svéd'                 : Date.CAL_SWEDISH, 
+        'Gergely'              : Date.CAL_GREGORIAN,
+        'Julián'               : Date.CAL_JULIAN,
+        'héber'                : Date.CAL_HEBREW,
+        'iszlám'               : Date.CAL_ISLAMIC,
+        'francia köztársasági' : Date.CAL_FRENCH,
+        'perzsa'               : Date.CAL_PERSIAN,
+        'svéd'                 : Date.CAL_SWEDISH,
         }
 
 
@@ -252,7 +252,7 @@ class DateParserHU(DateParser):
             return 0
         else:
             return int(val.replace('.', ''))
- 
+
 #-------------------------------------------------------------------------
 #
 # Hungarian display
@@ -260,7 +260,7 @@ class DateParserHU(DateParser):
 #-------------------------------------------------------------------------
 class DateDisplayHU(DateDisplay):
     """
-    Hungarian language date display class. 
+    Hungarian language date display class.
     """
 
     _bce_str = "i. e. %s"
@@ -278,7 +278,7 @@ class DateDisplayHU(DateDisplay):
         "Év római h.sz. nap"   #year, Roman number, day  # 4
         )
         # this definition must agree with its "_display_calendar" method
-    
+
     display = DateDisplay.display_formatted
 
     def _display_calendar(self, date_val, long_months, short_months = None,
@@ -309,7 +309,7 @@ class DateDisplayHU(DateDisplay):
 
         elif self.format == 2:
             # year, full month name, day
- 
+
             if date_val[0]==0:
                 if date_val[1]==0:
                     value="%s" % year
@@ -319,12 +319,12 @@ class DateDisplayHU(DateDisplay):
                  if date_val[1]==0:
                      value="%s. %s %02d." % (year, '-', date_val[0])   #To indicate somehow if the month is missing
                  else:
-                      value="%s. %s %02d." % (year, self.long_months[date_val[1]], date_val[0])                    
+                      value="%s. %s %02d." % (year, self.long_months[date_val[1]], date_val[0])
 
 
         elif self.format == 3:
 	    #year, short month name, day
- 
+
             if date_val[0]==0:
                 if date_val[1]==0:
                     value="%s" % year
@@ -334,12 +334,12 @@ class DateDisplayHU(DateDisplay):
                  if date_val[1]==0:
                      value="%s. %s %02d." % (year, '-.', date_val[0])   #To indicate somehow if the month is missing
                  else:
-                     value="%s. %s %02d." % (year, self.short_months[date_val[1]], date_val[0])                    
+                     value="%s. %s %02d." % (year, self.short_months[date_val[1]], date_val[0])
 
 
         elif self.format == 4:
 	    #year, Roman number, day
- 
+
             if date_val[0]==0:
                 if date_val[1]==0:
                     value="%s" % year
@@ -347,7 +347,7 @@ class DateDisplayHU(DateDisplay):
                      value="%s. %s" % (year, self.roman_months[date_val[1]]) #If no day -> year, month
             else:
                 value="%s. %s %02d." % (year, self.roman_months[date_val[1]], date_val[0])
-                     
+
 
         else:
             # day month_name year
