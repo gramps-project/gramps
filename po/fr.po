@@ -7372,7 +7372,7 @@ msgstr ""
 "  Remplir va augmenter l'espacement des nœuds pour correspondre à l'aire d'impression que se soit en largeur et en hauteur.\n"
 "  Étendre va augmenter l'espacement des nœuds uniformément pour préserver le rendu.\n"
 "Si le graphique est plus grand que l'aire d'impression :\n"
-"  Compresser va essayer de conserver une certaine symétrie.\n"
+"  Compresser va réduire le graphique au détriment de la symétrie.\n"
 "  Remplir va correspondre à l'aire d'impression après une augmentation de l'espacement des nœuds.\n"
 "  Étendre va correspondre à l'aire d'impression."
 
