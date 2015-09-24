@@ -412,7 +412,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
         index = 1
         for i in buf:
-            self.f.write('%02x' % ord(i))
+            self.f.write('%02x' % i)
             if index%32==0:
                 self.f.write('\n')
             index = index+1
