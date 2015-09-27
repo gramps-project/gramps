@@ -6,6 +6,7 @@
 # Contribution 2009 by    Bob Ham <rah@bash.sh>
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2015      Detlef Wolz <detlef.wolz@t-online.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -82,6 +83,8 @@ class HourGlassReport(Report):
         self.__db = self.database
 
         self.__used_people = []
+        self.__family_father = [] # links allocated from family to father
+        self.__family_mother = [] # links allocated from family to mother
         
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
@@ -162,22 +165,34 @@ class HourGlassReport(Report):
             self.add_family(family)
             self.doc.add_link( family_id, person.get_gramps_id(), 
                                head='none', tail='normal' )
+
+            # create link from family to father
             father_handle = family.get_father_handle()
-            if father_handle and father_handle not in self.__used_people:
-                self.__used_people.append(father_handle)
+            if father_handle and family_handle not in self.__family_father:
+                # allocate only one father per family
+                self.__family_father.append(family_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
                 self.doc.add_link( father.get_gramps_id(), family_id, 
                                    head='none', tail='normal' )
-                self.traverse_up(father, gen+1)
+                # no need to go up if he is a father in another family
+                if father_handle not in self.__used_people:
+                    self.__used_people.append(father_handle)
+                    self.traverse_up(father, gen+1)
+
+            # create link from family to mother
             mother_handle = family.get_mother_handle()
-            if mother_handle and mother_handle not in self.__used_people:
-                self.__used_people.append(mother_handle)
+            if mother_handle and family_handle not in self.__family_mother:
+                # allocate only one mother per family
+                self.__family_mother.append(family_handle)
                 mother = self.__db.get_person_from_handle( mother_handle )
                 self.add_person( mother )
                 self.doc.add_link( mother.get_gramps_id(), family_id, 
                                    head='none', tail='normal' )
-                self.traverse_up( mother, gen+1 )
+                # no need to go up if she is a mother in another family
+                if mother_handle not in self.__used_people:
+                    self.__used_people.append(mother_handle)
+                    self.traverse_up(mother, gen+1)
 
     def add_person(self, person):
         """
