@@ -149,7 +149,7 @@ def mac_setup_localization(glocale):
         locale = None
         calendar = None
         currency = None
-        div = locale_string.strip().split(b"@")
+        div = locale_string.strip().split("@")
         LOG.debug("Checking Locale %s", ' '.join(div))
         locale = glocale.check_available_translations(div[0])
         if len(div) > 1:
@@ -298,6 +298,3 @@ def mac_setup_localization(glocale):
         glocale.currency = locale.getlocale(locale.LC_MONETARY)[0] or glocale.lang
 
     glocale.numeric = locale.getlocale(locale.LC_NUMERIC)[0] or glocale.lang
-
-
-
