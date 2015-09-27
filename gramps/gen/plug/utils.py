@@ -53,7 +53,7 @@ from ..utils.configmanager import safe_eval
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import conv_to_unicode
+from ..constfunc import conv_to_unicode, mac
 
 #-------------------------------------------------------------------------
 #
@@ -176,6 +176,12 @@ class Zipfile(object):
 def available_updates():
     whattypes = config.get('behavior.check-for-update-types')
     from urllib.request import urlopen
+    if mac():
+        from ssl import create_default_context, CERT_NONE
+        context = create_default_context()
+        context.check_hostname = False
+        context.verify_mode = CERT_NONE
+
     LOG.debug("Checking for updated addons...")
     langs = glocale.get_language_list()
     langs.append("en")
@@ -186,12 +192,12 @@ def available_updates():
                (config.get("behavior.addons-url"), lang))
         LOG.debug("   trying: %s" % URL)
         try:
-            fp = urlopen(URL, timeout=10) # seconds
+            fp = urlopen(URL, timeout=10, context=context) # seconds
         except:
             try:
                 URL = ("%s/listings/addons-%s.txt" %
                        (config.get("behavior.addons-url"), lang[:2]))
-                fp = urlopen(URL, timeout=10)
+                fp = urlopen(URL, timeout=10, context=context)
             except Exception as err: # some error
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
 						format(lang=lang, url=URL, err=err))
