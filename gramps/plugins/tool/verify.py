@@ -170,6 +170,7 @@ def get_birth_date(db, person, estimate=False):
         ret = get_date_from_event_handle(db,birth_ref.ref,estimate)
     if estimate and (ret == 0):
         ret = get_bapt_date(db,person,estimate)
+        ret = 0 if ret is None else ret
     return ret
 
 def get_death_date(db, person, estimate=False):
@@ -182,6 +183,7 @@ def get_death_date(db, person, estimate=False):
         ret = get_date_from_event_handle(db,death_ref.ref,estimate)
     if estimate and (ret == 0):
         ret = get_bury_date(db,person,estimate)
+        ret = 0 if ret is None else ret
     return ret
 
 def get_age_at_death(db, person, estimate):
