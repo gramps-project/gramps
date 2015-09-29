@@ -35,6 +35,16 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from ..views.treemodels.placemodel import PlaceTreeModel
 from .baseselector import BaseSelector
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Select_Place_selector')
 
 #-------------------------------------------------------------------------
 #

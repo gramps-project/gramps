@@ -36,6 +36,28 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from .baseselector import BaseSelector
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+# This dialog changes depending on the string pass for the title.
+
+# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Child_selector
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('Select_Child_selector')
+
+# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Father_selector
+WIKI_HELP_PAGE2 = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC2 = _('Select_Father_selector')
+
+# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Mother_selector
+WIKI_HELP_PAGE3 = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_SEC3 = _('Select_Mother_selector')
 
 #-------------------------------------------------------------------------
 #

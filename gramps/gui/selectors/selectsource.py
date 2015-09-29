@@ -34,6 +34,16 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from ..views.treemodels import SourceModel
 from .baseselector import BaseSelector
+from gramps.gui.display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = _('%s_-_xxx') % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('xxxx')
 
 #-------------------------------------------------------------------------
 #
