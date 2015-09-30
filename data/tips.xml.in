@@ -45,7 +45,7 @@
 
 <_tip number="23"><b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu.</_tip>
 
-<_tip number="24"><b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events and . You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons.</_tip>
+<_tip number="24"><b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events etc... You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons.</_tip>
 
 <_tip number="25"><b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu.</_tip>
 
@@ -71,7 +71,7 @@
 
 <_tip number="38"><b>Listing Events</b><br/>Events are added using the editor opened with &quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of preset event types. You can add your own event types by typing in the text field, they will be added to the available events, but not translated.</_tip>
 
-<_tip number="39"><b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the prefered name by dragging it to the Prefered Name section.</_tip>
+<_tip number="39"><b>Managing Names</b><br/>It is easy to manage people with several names in Gramps. In the Person Editor select the Names tab. You can add names of different types and set the preferred name by dragging it to the Preferred Name section.</_tip>
 
 <_tip number="40"><b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to access other family members and settings. Play with the settings to see the different options.</_tip>
 
