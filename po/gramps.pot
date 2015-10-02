@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-24 10:49+0200\n"
+"POT-Creation-Date: 2015-10-02 11:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,9 +277,9 @@ msgstr ""
 #: ../data/tips.xml.in.h:23
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active objects such as People, Events and . You can move forward and "
-"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
-"&gt; Back&quot; or the arrow buttons."
+"active objects such as People and Events. You can move forward and backward "
+"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
+"Back&quot; or the arrow buttons."
 msgstr ""
 
 #: ../data/tips.xml.in.h:24
@@ -392,7 +392,7 @@ msgstr ""
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
-"different types and set the prefered name by dragging it to the Prefered "
+"different types and set the preferred name by dragging it to the Preferred "
 "Name section."
 msgstr ""
 
@@ -3457,7 +3457,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:51
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:83
-#: ../gramps/gui/selectors/selectevent.py:61
+#: ../gramps/gui/selectors/selectevent.py:71
 #: ../gramps/plugins/gramplet/events.py:82
 #: ../gramps/plugins/view/eventview.py:90
 msgid "Main Participants"
@@ -5308,7 +5308,7 @@ msgstr ""
 #: ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:131 ../gramps/gui/plug/_windows.py:240
 #: ../gramps/gui/plug/_windows.py:607 ../gramps/gui/plug/_windows.py:1084
-#: ../gramps/gui/selectors/selectevent.py:64
+#: ../gramps/gui/selectors/selectevent.py:74
 #: ../gramps/plugins/gramplet/events.py:76
 #: ../gramps/plugins/lib/libmetadata.py:98
 #: ../gramps/plugins/textreport/placereport.py:194
@@ -8347,7 +8347,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1320
-#: ../gramps/gui/selectors/selectevent.py:63
+#: ../gramps/gui/selectors/selectevent.py:73
 #: ../gramps/gui/views/treemodels/placemodel.py:282
 #: ../gramps/plugins/export/exportcsv.py:499
 #: ../gramps/plugins/export/exportcsv.py:563
@@ -8431,8 +8431,8 @@ msgstr ""
 #: ../gramps/gui/plug/_guioptions.py:1143 ../gramps/gui/plug/_windows.py:127
 #: ../gramps/gui/plug/_windows.py:1083
 #: ../gramps/gui/plug/report/_bookdialog.py:420
-#: ../gramps/gui/selectors/selectperson.py:74
-#: ../gramps/gui/selectors/selectplace.py:61
+#: ../gramps/gui/selectors/selectperson.py:96
+#: ../gramps/gui/selectors/selectplace.py:71
 #: ../gramps/gui/views/bookmarks.py:218 ../gramps/gui/views/tags.py:397
 #: ../gramps/gui/views/treemodels/peoplemodel.py:615
 #: ../gramps/plugins/export/exportcsv.py:563
@@ -8452,7 +8452,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dumpgenderstats.py:62
 #: ../gramps/plugins/tool/notrelated.py:124
 #: ../gramps/plugins/tool/removeunused.py:202
-#: ../gramps/plugins/tool/verify.py:527 ../gramps/plugins/view/repoview.py:85
+#: ../gramps/plugins/tool/verify.py:529 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/narrativeweb.py:6445
 msgid "Name"
 msgstr ""
@@ -8597,10 +8597,10 @@ msgstr ""
 #: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1082
 #: ../gramps/gui/plug/report/_bookdialog.py:421
 #: ../gramps/gui/plug/report/_bookdialog.py:425
-#: ../gramps/gui/selectors/selectevent.py:60
-#: ../gramps/gui/selectors/selectnote.py:67
-#: ../gramps/gui/selectors/selectobject.py:72
-#: ../gramps/gui/selectors/selectplace.py:63
+#: ../gramps/gui/selectors/selectevent.py:70
+#: ../gramps/gui/selectors/selectnote.py:77
+#: ../gramps/gui/selectors/selectobject.py:82
+#: ../gramps/gui/selectors/selectplace.py:73
 #: ../gramps/plugins/export/exportcsv.py:564
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:75
@@ -8643,10 +8643,10 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:88
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:87
-#: ../gramps/gui/selectors/selectobject.py:70
-#: ../gramps/gui/selectors/selectplace.py:64
-#: ../gramps/gui/selectors/selectrepository.py:60
-#: ../gramps/gui/selectors/selectsource.py:60
+#: ../gramps/gui/selectors/selectobject.py:80
+#: ../gramps/gui/selectors/selectplace.py:74
+#: ../gramps/gui/selectors/selectrepository.py:70
+#: ../gramps/gui/selectors/selectsource.py:70
 #: ../gramps/gui/widgets/grampletpane.py:1556
 #: ../gramps/plugins/export/exportcsv.py:563
 #: ../gramps/plugins/gramplet/persondetails.py:125
@@ -9868,7 +9868,7 @@ msgstr ""
 #: ../gramps/gui/glade/editname.glade:582
 #: ../gramps/gui/glade/editplacename.glade:132
 #: ../gramps/gui/glade/editplacename.glade:142
-#: ../gramps/gui/selectors/selectevent.py:62
+#: ../gramps/gui/selectors/selectevent.py:72
 #: ../gramps/plugins/export/exportcsv.py:499
 #: ../gramps/plugins/export/exportcsv.py:565
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
@@ -9959,15 +9959,15 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:179
 #: ../gramps/gui/plug/_guioptions.py:1144
 #: ../gramps/gui/plug/_guioptions.py:1321
-#: ../gramps/gui/selectors/selectcitation.py:66
-#: ../gramps/gui/selectors/selectevent.py:65
-#: ../gramps/gui/selectors/selectfamily.py:60
-#: ../gramps/gui/selectors/selectnote.py:66
-#: ../gramps/gui/selectors/selectobject.py:71
-#: ../gramps/gui/selectors/selectperson.py:75
-#: ../gramps/gui/selectors/selectplace.py:62
-#: ../gramps/gui/selectors/selectrepository.py:61
-#: ../gramps/gui/selectors/selectsource.py:62
+#: ../gramps/gui/selectors/selectcitation.py:76
+#: ../gramps/gui/selectors/selectevent.py:75
+#: ../gramps/gui/selectors/selectfamily.py:70
+#: ../gramps/gui/selectors/selectnote.py:76
+#: ../gramps/gui/selectors/selectobject.py:81
+#: ../gramps/gui/selectors/selectperson.py:97
+#: ../gramps/gui/selectors/selectplace.py:72
+#: ../gramps/gui/selectors/selectrepository.py:71
+#: ../gramps/gui/selectors/selectsource.py:72
 #: ../gramps/gui/views/bookmarks.py:218
 #: ../gramps/gui/views/navigationview.py:356
 #: ../gramps/plugins/lib/libpersonview.py:99
@@ -9977,7 +9977,7 @@ msgstr ""
 #: ../gramps/plugins/tool/patchnames.py:398
 #: ../gramps/plugins/tool/removeunused.py:196
 #: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:520
+#: ../gramps/plugins/tool/verify.py:522
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
@@ -10078,7 +10078,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
-#: ../gramps/gui/selectors/selectsource.py:61
+#: ../gramps/gui/selectors/selectsource.py:71
 #: ../gramps/plugins/gramplet/citations.py:67
 #: ../gramps/plugins/textreport/tagreport.py:720
 #: ../gramps/plugins/view/sourceview.py:84
@@ -10123,7 +10123,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:112
 #: ../gramps/gui/glade/editfamily.glade:192
 #: ../gramps/gui/merge/mergeperson.py:221
-#: ../gramps/gui/selectors/selectfamily.py:61
+#: ../gramps/gui/selectors/selectfamily.py:71
 #: ../gramps/gui/widgets/reorderfam.py:83
 #: ../gramps/plugins/gramplet/persondetails.py:184
 #: ../gramps/plugins/importer/importcsv.py:216
@@ -10145,7 +10145,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:113
 #: ../gramps/gui/glade/editfamily.glade:470
 #: ../gramps/gui/merge/mergeperson.py:223
-#: ../gramps/gui/selectors/selectfamily.py:62
+#: ../gramps/gui/selectors/selectfamily.py:72
 #: ../gramps/gui/widgets/reorderfam.py:84
 #: ../gramps/plugins/gramplet/persondetails.py:185
 #: ../gramps/plugins/importer/importcsv.py:213
@@ -10396,7 +10396,7 @@ msgstr ""
 #: ../gramps/gui/glade/editmedia.glade:188
 #: ../gramps/gui/glade/editmediaref.glade:190
 #: ../gramps/gui/glade/editmediaref.glade:503
-#: ../gramps/gui/selectors/selectnote.py:65
+#: ../gramps/gui/selectors/selectnote.py:75
 #: ../gramps/plugins/view/noteview.py:79
 msgid "Preview"
 msgstr ""
@@ -10674,12 +10674,27 @@ msgstr ""
 #. Constants
 #.
 #. -------------------------------------------------------------------------
+#. -------------------------------------------------------------------------
+#.
+#. Constants
+#.
+#. -------------------------------------------------------------------------
+#. This dialog changes depending on the string pass for the title.
+#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Child_selector
+#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Father_selector
+#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Mother_selector
 #: ../gramps/gui/editors/editchildref.py:67
 #: ../gramps/gui/editors/editdate.py:98 ../gramps/gui/editors/editfamily.py:91
 #: ../gramps/gui/editors/editldsord.py:66
 #: ../gramps/gui/editors/editperson.py:87
 #: ../gramps/gui/editors/editpersonref.py:67
 #: ../gramps/gui/editors/editurl.py:46
+#: ../gramps/gui/selectors/selectevent.py:45
+#: ../gramps/gui/selectors/selectnote.py:48
+#: ../gramps/gui/selectors/selectobject.py:59
+#: ../gramps/gui/selectors/selectperson.py:51
+#: ../gramps/gui/selectors/selectperson.py:55
+#: ../gramps/gui/selectors/selectperson.py:59
 #, python-format
 msgid "%s_-_Entering_and_editing_data:_detailed_-_part_1"
 msgstr ""
@@ -10708,6 +10723,9 @@ msgstr ""
 #: ../gramps/gui/editors/editmediaref.py:71
 #: ../gramps/gui/editors/editnote.py:66
 #: ../gramps/gui/editors/editplacename.py:48
+#: ../gramps/gui/selectors/selectcitation.py:50
+#: ../gramps/gui/selectors/selectplace.py:46
+#: ../gramps/gui/selectors/selectrepository.py:45
 #, python-format
 msgid "%s_-_Entering_and_editing_data:_detailed_-_part_2"
 msgstr ""
@@ -10942,7 +10960,7 @@ msgstr ""
 #: ../gramps/gui/editors/editfamily.py:125
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:128
 #: ../gramps/gui/merge/mergeperson.py:181
-#: ../gramps/gui/selectors/selectperson.py:76
+#: ../gramps/gui/selectors/selectperson.py:98
 #: ../gramps/plugins/drawreport/statisticschart.py:331
 #: ../gramps/plugins/export/exportcsv.py:381
 #: ../gramps/plugins/importer/importcsv.py:159
@@ -10962,7 +10980,7 @@ msgid "Maternal"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:128
-#: ../gramps/gui/selectors/selectperson.py:77
+#: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/plugins/gramplet/children.py:82
 #: ../gramps/plugins/gramplet/children.py:182
 #: ../gramps/plugins/lib/libpersonview.py:101
@@ -10982,7 +11000,7 @@ msgid "Birth Date"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:129
-#: ../gramps/gui/selectors/selectperson.py:79
+#: ../gramps/gui/selectors/selectperson.py:101
 #: ../gramps/plugins/gramplet/children.py:84
 #: ../gramps/plugins/gramplet/children.py:184
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -10992,13 +11010,13 @@ msgid "Death Date"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:130
-#: ../gramps/gui/selectors/selectperson.py:78
+#: ../gramps/gui/selectors/selectperson.py:100
 #: ../gramps/plugins/lib/libpersonview.py:102
 msgid "Birth Place"
 msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:131
-#: ../gramps/gui/selectors/selectperson.py:80
+#: ../gramps/gui/selectors/selectperson.py:102
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Death Place"
 msgstr ""
@@ -13004,7 +13022,7 @@ msgstr ""
 #: ../gramps/gui/glade/editmediaref.glade:726
 #: ../gramps/gui/glade/editnote.glade:286
 #: ../gramps/gui/glade/editperson.glade:684
-#: ../gramps/gui/selectors/selectnote.py:68
+#: ../gramps/gui/selectors/selectnote.py:78
 #: ../gramps/plugins/lib/libpersonview.py:111
 #: ../gramps/plugins/lib/libplaceview.py:92
 #: ../gramps/plugins/textreport/indivcomplete.py:485
@@ -14740,7 +14758,7 @@ msgid "Spouses"
 msgstr ""
 
 #: ../gramps/gui/merge/mergeperson.py:237
-#: ../gramps/gui/selectors/selectperson.py:81
+#: ../gramps/gui/selectors/selectperson.py:103
 #: ../gramps/gui/widgets/reorderfam.py:89
 #: ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -14862,7 +14880,7 @@ msgid "Also include %s?"
 msgstr ""
 
 #: ../gramps/gui/plug/_guioptions.py:1222
-#: ../gramps/gui/selectors/selectperson.py:67
+#: ../gramps/gui/selectors/selectperson.py:89
 msgid "Select Person"
 msgstr ""
 
@@ -15560,7 +15578,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/statisticschart.py:944
 #: ../gramps/plugins/drawreport/timeline.py:383
 #: ../gramps/plugins/graph/gvfamilylines.py:105
-#: ../gramps/plugins/graph/gvhourglass.py:287
+#: ../gramps/plugins/graph/gvhourglass.py:302
 #: ../gramps/plugins/graph/gvrelgraph.py:574
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:264
@@ -15734,52 +15752,126 @@ msgstr ""
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 
-#: ../gramps/gui/selectors/selectcitation.py:58
+#: ../gramps/gui/selectors/selectcitation.py:51
+msgid "Select_Source_or_Citation_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectcitation.py:68
 msgid "Select Source or Citation"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectcitation.py:65
+#: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/plugins/view/citationtreeview.py:93
 msgid "Source: Title or Citation: Volume/Page"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectcitation.py:67
-#: ../gramps/gui/selectors/selectevent.py:66
-#: ../gramps/gui/selectors/selectfamily.py:63
-#: ../gramps/gui/selectors/selectnote.py:69
-#: ../gramps/gui/selectors/selectobject.py:73
-#: ../gramps/gui/selectors/selectperson.py:82
-#: ../gramps/gui/selectors/selectplace.py:65
-#: ../gramps/gui/selectors/selectrepository.py:62
-#: ../gramps/gui/selectors/selectsource.py:63
+#: ../gramps/gui/selectors/selectcitation.py:77
+#: ../gramps/gui/selectors/selectevent.py:76
+#: ../gramps/gui/selectors/selectfamily.py:73
+#: ../gramps/gui/selectors/selectnote.py:79
+#: ../gramps/gui/selectors/selectobject.py:83
+#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectplace.py:75
+#: ../gramps/gui/selectors/selectrepository.py:72
+#: ../gramps/gui/selectors/selectsource.py:73
 msgid "Last Change"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectevent.py:53
+#: ../gramps/gui/selectors/selectevent.py:46
+msgid "Select_Event_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectevent.py:63
 msgid "Select Event"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectfamily.py:53
+#. -------------------------------------------------------------------------
+#.
+#. Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gui/selectors/selectfamily.py:45
+#, python-format
+msgid "%s_-_Categories"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectfamily.py:46
+msgid "Select_Family_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectfamily.py:63
 msgid "Select Family"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectnote.py:58
+#: ../gramps/gui/selectors/selectnote.py:49
+msgid "Select_Note_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectnote.py:68
 msgid "Select Note"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectobject.py:60
+msgid "Select_Media_Object_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectobject.py:70
 msgid "Select Media Object"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectplace.py:54
+#: ../gramps/gui/selectors/selectperson.py:52
+msgid "Select_Child_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectperson.py:56
+msgid "Select_Father_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectperson.py:60
+msgid "Select_Mother_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectplace.py:47
+msgid "Select_Place_selector"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectplace.py:64
 msgid "Select Place"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectrepository.py:53
+#: ../gramps/gui/selectors/selectrepository.py:46
+#: ../gramps/plugins/quickview/filterbyname.py:105
+#: ../gramps/plugins/textreport/tagreport.py:613
+#: ../gramps/plugins/view/repoview.py:129
+#: ../gramps/plugins/view/view.gpr.py:236
+#: ../gramps/plugins/view/view.gpr.py:244
+#: ../gramps/plugins/webreport/narrativeweb.py:1762
+#: ../gramps/plugins/webreport/narrativeweb.py:1873
+#: ../gramps/plugins/webreport/narrativeweb.py:2719
+#: ../gramps/plugins/webreport/narrativeweb.py:6596
+#: ../gramps/plugins/webreport/narrativeweb.py:6663
+msgid "Repositories"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectrepository.py:63
 msgid "Select Repository"
 msgstr ""
 
-#: ../gramps/gui/selectors/selectsource.py:53
+#. -------------------------------------------------------------------------
+#.
+#. Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gui/selectors/selectsource.py:45
+#, python-format
+msgid "%s_-_xxx"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectsource.py:46
+msgid "xxxx"
+msgstr ""
+
+#: ../gramps/gui/selectors/selectsource.py:63
 msgid "Select Source"
 msgstr ""
 
@@ -17057,7 +17149,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:770
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:652
-#: ../gramps/plugins/graph/gvhourglass.py:289
+#: ../gramps/plugins/graph/gvhourglass.py:304
 #: ../gramps/plugins/graph/gvrelgraph.py:584
 #: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:422
@@ -17415,7 +17507,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:113
 #: ../gramps/plugins/drawreport/descendtree.py:679
 #: ../gramps/plugins/drawreport/fanchart.py:187
-#: ../gramps/plugins/graph/gvhourglass.py:91
+#: ../gramps/plugins/graph/gvhourglass.py:94
 #: ../gramps/plugins/textreport/ancestorreport.py:104
 #: ../gramps/plugins/textreport/birthdayreport.py:112
 #: ../gramps/plugins/textreport/descendreport.py:343
@@ -20485,19 +20577,19 @@ msgstr ""
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:70
-#: ../gramps/plugins/graph/gvhourglass.py:56
+#: ../gramps/plugins/graph/gvhourglass.py:57
 #: ../gramps/plugins/graph/gvrelgraph.py:69
 msgid "B&W outline"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:71
-#: ../gramps/plugins/graph/gvhourglass.py:57
+#: ../gramps/plugins/graph/gvhourglass.py:58
 #: ../gramps/plugins/graph/gvrelgraph.py:70
 msgid "Colored outline"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:72
-#: ../gramps/plugins/graph/gvhourglass.py:58
+#: ../gramps/plugins/graph/gvhourglass.py:59
 #: ../gramps/plugins/graph/gvrelgraph.py:71
 msgid "Color fill"
 msgstr ""
@@ -20532,20 +20624,20 @@ msgstr ""
 
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:133
-#: ../gramps/plugins/graph/gvhourglass.py:329
+#: ../gramps/plugins/graph/gvhourglass.py:344
 #: ../gramps/plugins/graph/gvrelgraph.py:702
 msgid "Use rounded corners"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:134
-#: ../gramps/plugins/graph/gvhourglass.py:331
+#: ../gramps/plugins/graph/gvhourglass.py:346
 #: ../gramps/plugins/graph/gvrelgraph.py:704
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 
 #. ###############################
 #: ../gramps/plugins/graph/gvfamilylines.py:138
-#: ../gramps/plugins/graph/gvhourglass.py:320
+#: ../gramps/plugins/graph/gvhourglass.py:335
 #: ../gramps/plugins/graph/gvrelgraph.py:669
 msgid "Graph coloring"
 msgstr ""
@@ -20599,32 +20691,32 @@ msgstr ""
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:187
-#: ../gramps/plugins/graph/gvhourglass.py:307
+#: ../gramps/plugins/graph/gvhourglass.py:322
 #: ../gramps/plugins/graph/gvrelgraph.py:627
 #: ../gramps/plugins/textreport/indivcomplete.py:992
 msgid "Include Gramps ID"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:188
-#: ../gramps/plugins/graph/gvhourglass.py:308
+#: ../gramps/plugins/graph/gvhourglass.py:323
 #: ../gramps/plugins/graph/gvrelgraph.py:628
 msgid "Do not include"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:189
-#: ../gramps/plugins/graph/gvhourglass.py:309
+#: ../gramps/plugins/graph/gvhourglass.py:324
 #: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "Share an existing line"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:190
-#: ../gramps/plugins/graph/gvhourglass.py:310
+#: ../gramps/plugins/graph/gvhourglass.py:325
 #: ../gramps/plugins/graph/gvrelgraph.py:630
 msgid "On a line of its own"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:191
-#: ../gramps/plugins/graph/gvhourglass.py:311
+#: ../gramps/plugins/graph/gvhourglass.py:326
 #: ../gramps/plugins/graph/gvrelgraph.py:631
 msgid "Whether (and where) to include Gramps IDs"
 msgstr ""
@@ -20755,35 +20847,35 @@ msgid_plural "{number_of} children"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:290
+#: ../gramps/plugins/graph/gvhourglass.py:305
 msgid "The Center person for the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:297
+#: ../gramps/plugins/graph/gvhourglass.py:312
 #: ../gramps/plugins/textreport/kinshipreport.py:347
 msgid "Max Descendant Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:298
+#: ../gramps/plugins/graph/gvhourglass.py:313
 msgid "The number of generations of descendants to include in the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:302
+#: ../gramps/plugins/graph/gvhourglass.py:317
 #: ../gramps/plugins/textreport/kinshipreport.py:351
 msgid "Max Ancestor Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:303
+#: ../gramps/plugins/graph/gvhourglass.py:318
 msgid "The number of generations of ancestors to include in the graph"
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/graph/gvhourglass.py:317
+#: ../gramps/plugins/graph/gvhourglass.py:332
 #: ../gramps/plugins/graph/gvrelgraph.py:666
 msgid "Graph Style"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:323
+#: ../gramps/plugins/graph/gvhourglass.py:338
 #: ../gramps/plugins/graph/gvrelgraph.py:672
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
@@ -26335,19 +26427,6 @@ msgstr ""
 msgid "Sources"
 msgstr ""
 
-#: ../gramps/plugins/quickview/filterbyname.py:105
-#: ../gramps/plugins/textreport/tagreport.py:613
-#: ../gramps/plugins/view/repoview.py:129
-#: ../gramps/plugins/view/view.gpr.py:236
-#: ../gramps/plugins/view/view.gpr.py:244
-#: ../gramps/plugins/webreport/narrativeweb.py:1762
-#: ../gramps/plugins/webreport/narrativeweb.py:1873
-#: ../gramps/plugins/webreport/narrativeweb.py:2719
-#: ../gramps/plugins/webreport/narrativeweb.py:6596
-#: ../gramps/plugins/webreport/narrativeweb.py:6663
-msgid "Repositories"
-msgstr ""
-
 #: ../gramps/plugins/quickview/filterbyname.py:120
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #, python-format
@@ -26465,7 +26544,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/lineage.py:158
 #: ../gramps/plugins/quickview/lineage.py:178
-#: ../gramps/plugins/tool/verify.py:964
+#: ../gramps/plugins/tool/verify.py:966
 msgid "Unknown gender"
 msgstr ""
 
@@ -29147,7 +29226,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:142
 #: ../gramps/plugins/tool/mergecitations.py:161
-#: ../gramps/plugins/tool/verify.py:307
+#: ../gramps/plugins/tool/verify.py:309
 msgid "Tool settings"
 msgstr ""
 
@@ -29692,7 +29771,7 @@ msgstr ""
 #. Add mark column
 #. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:185
-#: ../gramps/plugins/tool/verify.py:502
+#: ../gramps/plugins/tool/verify.py:504
 msgid "Mark"
 msgstr ""
 
@@ -30146,7 +30225,7 @@ msgid "Maximum _span of years for all children"
 msgstr ""
 
 #: ../gramps/plugins/tool/verify.glade:987
-#: ../gramps/plugins/tool/verify.py:618
+#: ../gramps/plugins/tool/verify.py:620
 msgid "_Hide marked"
 msgstr ""
 
@@ -30154,167 +30233,167 @@ msgstr ""
 msgid "manual|Verify_the_Data"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:248
+#: ../gramps/plugins/tool/verify.py:250
 msgid "Data Verify tool"
 msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/plugins/tool/verify.py:267 ../gramps/plugins/tool/verify.py:272
-#: ../gramps/plugins/tool/verify.py:277
+#: ../gramps/plugins/tool/verify.py:269 ../gramps/plugins/tool/verify.py:274
+#: ../gramps/plugins/tool/verify.py:279
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:450
+#: ../gramps/plugins/tool/verify.py:452
 msgid "Data Verification Results"
 msgstr ""
 
 #. Add column with the warning text
-#: ../gramps/plugins/tool/verify.py:513
+#: ../gramps/plugins/tool/verify.py:515
 msgid "Warning"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:608
+#: ../gramps/plugins/tool/verify.py:610
 msgid "_Show all"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:870
+#: ../gramps/plugins/tool/verify.py:872
 msgid "Baptism before birth"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:883
+#: ../gramps/plugins/tool/verify.py:885
 msgid "Death before baptism"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:896
+#: ../gramps/plugins/tool/verify.py:898
 msgid "Burial before birth"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:909
+#: ../gramps/plugins/tool/verify.py:911
 msgid "Burial before death"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:922
+#: ../gramps/plugins/tool/verify.py:924
 msgid "Death before birth"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:935
+#: ../gramps/plugins/tool/verify.py:937
 msgid "Burial before baptism"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:953
+#: ../gramps/plugins/tool/verify.py:955
 msgid "Old age at death"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:974
+#: ../gramps/plugins/tool/verify.py:976
 msgid "Multiple parents"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:991
+#: ../gramps/plugins/tool/verify.py:993
 msgid "Married often"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1010
+#: ../gramps/plugins/tool/verify.py:1012
 msgid "Old and unmarried"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1037
+#: ../gramps/plugins/tool/verify.py:1039
 msgid "Too many children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1052
+#: ../gramps/plugins/tool/verify.py:1054
 msgid "Same sex marriage"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1062
+#: ../gramps/plugins/tool/verify.py:1064
 msgid "Female husband"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1072
+#: ../gramps/plugins/tool/verify.py:1074
 msgid "Male wife"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1099
+#: ../gramps/plugins/tool/verify.py:1101
 msgid "Husband and wife with the same surname"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1124
+#: ../gramps/plugins/tool/verify.py:1126
 msgid "Large age difference between spouses"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1155
+#: ../gramps/plugins/tool/verify.py:1157
 msgid "Marriage before birth"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1186
+#: ../gramps/plugins/tool/verify.py:1188
 msgid "Marriage after death"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1220
+#: ../gramps/plugins/tool/verify.py:1222
 msgid "Early marriage"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1252
+#: ../gramps/plugins/tool/verify.py:1254
 msgid "Late marriage"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1313
+#: ../gramps/plugins/tool/verify.py:1315
 msgid "Old father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1316
+#: ../gramps/plugins/tool/verify.py:1318
 msgid "Old mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1358
+#: ../gramps/plugins/tool/verify.py:1360
 msgid "Young father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1361
+#: ../gramps/plugins/tool/verify.py:1363
 msgid "Young mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1400
+#: ../gramps/plugins/tool/verify.py:1402
 msgid "Unborn father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1403
+#: ../gramps/plugins/tool/verify.py:1405
 msgid "Unborn mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1448
+#: ../gramps/plugins/tool/verify.py:1450
 msgid "Dead father"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1451
+#: ../gramps/plugins/tool/verify.py:1453
 msgid "Dead mother"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1473
+#: ../gramps/plugins/tool/verify.py:1475
 msgid "Large year span for all children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1495
+#: ../gramps/plugins/tool/verify.py:1497
 msgid "Large age differences between children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1505
+#: ../gramps/plugins/tool/verify.py:1507
 msgid "Disconnected individual"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1527
+#: ../gramps/plugins/tool/verify.py:1529
 msgid "Invalid birth date"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1549
+#: ../gramps/plugins/tool/verify.py:1551
 msgid "Invalid death date"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1565
+#: ../gramps/plugins/tool/verify.py:1567
 msgid "Marriage date but not married"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.py:1587
+#: ../gramps/plugins/tool/verify.py:1589
 msgid "Old age but no death"
 msgstr ""
 
