@@ -45,7 +45,7 @@
 
 <_tip number="23"><b>Organising the Views</b><br/>Many of the views can present your data as either a hierarchical tree or as a simple list. Each view can also be configured to the way you like it. Have a look to the right of the top toolbar or under the &quot;View&quot; menu.</_tip>
 
-<_tip number="24"><b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People, Events etc... You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons.</_tip>
+<_tip number="24"><b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous active objects such as People and Events. You can move forward and backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; Back&quot; or the arrow buttons.</_tip>
 
 <_tip number="25"><b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu.</_tip>
 
