@@ -91,9 +91,13 @@ def intltool_version():
         except:
             return (0,0,0)
     else:
-        cmd = 'intltool-update --version 2> /dev/null | head -1 | cut -d" " -f3'
+        cmd = 'intltool-update --version 2> /dev/null' # pathological case
         retcode, version_str = subprocess.getstatusoutput(cmd)
         if retcode != 0:
+            return None
+        cmd = 'intltool-update --version 2> /dev/null | head -1 | cut -d" " -f3'
+        retcode, version_str = subprocess.getstatusoutput(cmd)
+        if retcode != 0: # unlikely but just barely imaginable, so leave it
             return None
     return tuple([int(num) for num in version_str.split('.')])
 
@@ -186,7 +190,8 @@ def build_intl(build_cmd):
     '''
     Merge translation files into desktop and mime files
     '''
-    if intltool_version() < (0, 25, 0):
+    i_v = intltool_version()
+    if i_v is None or i_v < (0, 25, 0):
         return
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
