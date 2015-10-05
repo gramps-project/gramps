@@ -305,7 +305,7 @@ class _Xml2Obj:
     def start_element(self, name, attributes):
         'SAX start element even handler'
         # Instantiate an Element object
-        element = _Element(name.encode(), attributes)
+        element = _Element(name, attributes)
         # Push element onto the stack and make it a child of parent
         if len(self.nodeStack) > 0:
             parent = self.nodeStack[-1]
