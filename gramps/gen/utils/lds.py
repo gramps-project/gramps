@@ -47,16 +47,15 @@ class LdsTemples(object):
         self.__current_temple = ""
         self.__tlist = []
 
-        lds_filename = os.path.join(DATA_DIR, "lds.xml")
+        lds_filename = os.path.expanduser(os.path.join(DATA_DIR, "lds.xml"))
 
         try:
-            xml_file = open(os.path.expanduser(lds_filename), 'rb')
             parser = ParserCreate()
             parser.StartElementHandler = self.__start_element
             parser.EndElementHandler = self.__end_element
             parser.CharacterDataHandler = self.__characters
-            parser.ParseFile(xml_file)
-            xml_file.close()
+            with open(lds_filename, 'rb') as xml_file:
+                parser.ParseFile(xml_file)
         except Exception as msg:
             LOG.error(str(msg))
 

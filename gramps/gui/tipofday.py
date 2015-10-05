@@ -138,14 +138,13 @@ class TipParser(object):
 
         self.mylist = []
         self.skip = False
-        xml_file = open(TIP_DATA, 'rb')
         self.tlist = []
         parser = ParserCreate()
         parser.StartElementHandler = self.startElement
         parser.EndElementHandler = self.endElement
         parser.CharacterDataHandler = self.characters
-        parser.ParseFile(xml_file)
-        xml_file.close()
+        with open(TIP_DATA, 'rb') as xml_file:
+            parser.ParseFile(xml_file)
 
     def get(self):
         """
