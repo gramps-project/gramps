@@ -34,7 +34,6 @@
 #-------------------------------------------------------------------------
 import os
 import time
-import io
 
 #-------------------------------------------------------------------------
 #
@@ -239,7 +238,7 @@ class GedcomWriter(UpdateCallback):
         """
 
         self.dirname = os.path.dirname (filename)
-        self.gedcom_file = io.open(filename, "w", encoding='utf-8')
+        self.gedcom_file = open(filename, "w", encoding='utf-8')
         self._header(filename)
         self._submitter()
         self._individuals()

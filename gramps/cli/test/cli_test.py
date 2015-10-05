@@ -24,7 +24,6 @@ import sys
 import os
 import unittest
 import re
-import io
 import subprocess
 
 from gramps.gen.const import TEMP_DIR
@@ -55,7 +54,7 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         if not os.path.exists(min1r):
-            with io.open(min1r, "w") as f:
+            with open(min1r, "w") as f:
                 f.write(test_ged)
 
     @classmethod
@@ -86,7 +85,7 @@ class Test(unittest.TestCase):
                          "executed CLI command %r" % gcmd)
         # simple validation o output
         self.assertTrue(os.path.isfile(ofile), "output file created")
-        with io.open(ofile) as f:
+        with open(ofile) as f:
             content = f.read()
         g = re.search("INDI", content)
         self.assertTrue(g, "found 'INDI' in output file")
@@ -102,7 +101,7 @@ class Test(unittest.TestCase):
             pass
         bogofiles = [os.path.join(ddir, fn) for fn in ("family.db", "lock")]
         for fn in bogofiles:
-            with io.open(fn, "w") as f:
+            with open(fn, "w") as f:
                 f.write("garbage")
 
         # ~same as test 2

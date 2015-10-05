@@ -33,7 +33,6 @@ creating, and deleting of databases.
 import os
 import sys
 import time
-import io
 from urllib.parse import urlparse
 from urllib.request import urlopen, url2pathname
 import tempfile
@@ -200,7 +199,7 @@ class CLIDbManager(object):
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
                 if os.path.isfile(path_name):
-                    file = io.open(path_name, 'r', encoding='utf8')
+                    file = open(path_name, 'r', encoding='utf8')
                     name = file.readline().strip()
                     file.close()
 
@@ -259,7 +258,7 @@ class CLIDbManager(object):
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
 
-        name_file = io.open(path_name, "w", encoding='utf8')
+        name_file = open(path_name, "w", encoding='utf8')
         name_file.write(title)
         name_file.close()
 
@@ -372,10 +371,10 @@ class CLIDbManager(object):
         try:
             filepath = conv_to_unicode(filepath, 'utf8')
             new_text = conv_to_unicode(new_text, 'utf8')
-            name_file = io.open(filepath, "r", encoding='utf8')
+            name_file = open(filepath, "r", encoding='utf8')
             old_text=name_file.read()
             name_file.close()
-            name_file = io.open(filepath, "w", encoding='utf8')
+            name_file = open(filepath, "w", encoding='utf8')
             name_file.write(new_text)
             name_file.close()
         except (OSError, IOError) as msg:
@@ -477,7 +476,7 @@ def find_locker_name(dirpath):
     """
     try:
         fname = os.path.join(dirpath, "lock")
-        ifile = io.open(fname, 'r', encoding='utf8')
+        ifile = open(fname, 'r', encoding='utf8')
         username = ifile.read().strip()
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username

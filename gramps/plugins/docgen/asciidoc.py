@@ -28,7 +28,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import io
 import sys
 
 #------------------------------------------------------------------------
@@ -156,8 +155,7 @@ class AsciiDoc(BaseDoc, TextDoc):
             self.filename = filename
 
         try:
-            self.f = io.open(self.filename,"w",
-                             errors = 'backslashreplace')
+            self.f = open(self.filename, "w", errors = 'backslashreplace')
         except Exception as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)

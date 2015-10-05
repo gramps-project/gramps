@@ -468,10 +468,8 @@ class PG30_Def:
             raise ProgenError(_("Cannot find DEF file: %(deffname)s") % locals())
 
         # This can throw a IOError
-        import io
         lines = None
-        with io.open(fname, buffering=1,
-                     encoding='cp437', errors='strict') as f:
+        with open(fname, buffering=1, encoding='cp437', errors='strict') as f:
             lines = f.readlines()
         lines = [l.strip() for l in lines]
         content = '\n'.join(lines).encode('utf-8')

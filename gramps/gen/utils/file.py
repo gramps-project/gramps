@@ -32,7 +32,6 @@ File and folder related utility functions
 import os
 import sys
 import shutil
-import io
 import hashlib
 import logging
 LOG = logging.getLogger(".gen.utils.file")
@@ -228,7 +227,7 @@ def create_checksum(full_path):
     """
     full_path = os.path.normpath(full_path)
     try:
-        with io.open(full_path, 'rb') as media_file:
+        with open(full_path, 'rb') as media_file:
             md5sum = hashlib.md5(media_file.read()).hexdigest()
     except IOError:
             md5sum = ''

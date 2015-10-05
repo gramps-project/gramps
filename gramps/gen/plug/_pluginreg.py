@@ -33,7 +33,6 @@ import os
 import sys
 import re
 import traceback
-import io
 
 #-------------------------------------------------------------------------
 #
@@ -1131,7 +1130,7 @@ class PluginRegister(object):
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
             try:
-                fd = io.open(full_filename, "r", encoding='utf-8')
+                fd = open(full_filename, "r", encoding='utf-8')
             except Exception as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename})

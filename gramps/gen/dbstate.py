@@ -24,7 +24,6 @@ Provide the database state class
 """
 import sys
 import os
-import io
 
 from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
@@ -190,7 +189,7 @@ class DbState(Callback):
             dirpath = os.path.join(dbdir, dpath)
             path_name = os.path.join(dirpath, "name.txt")
             if os.path.isfile(path_name):
-                file = io.open(path_name, 'r', encoding='utf8')
+                file = open(path_name, 'r', encoding='utf8')
                 name = file.readline().strip()
                 file.close()
                 if dbname == name:
@@ -199,14 +198,14 @@ class DbState(Callback):
                     backend = None
                     fname = os.path.join(dirpath, "database.txt")
                     if os.path.isfile(fname):
-                        ifile = io.open(fname, 'r', encoding='utf8')
+                        ifile = open(fname, 'r', encoding='utf8')
                         backend = ifile.read().strip()
                         ifile.close()
                     else:
                         backend = "bsddb"
                     try:
                         fname = os.path.join(dirpath, "lock")
-                        ifile = io.open(fname, 'r', encoding='utf8')
+                        ifile = open(fname, 'r', encoding='utf8')
                         locked_by = ifile.read().strip()
                         locked = True
                         ifile.close()

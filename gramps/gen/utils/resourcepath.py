@@ -18,7 +18,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 import sys
-import io
 import os
 import logging
 LOG = logging.getLogger("ResourcePath")
@@ -61,7 +60,7 @@ class ResourcePath(object):
             resource_path = tmp_path
         elif installed:
             try:
-                with io.open(resource_file, encoding='utf-8',
+                with open(resource_file, encoding='utf-8',
                                 errors='strict') as fp:
                     resource_path = conv_to_unicode(fp.readline())
             except UnicodeError as err:

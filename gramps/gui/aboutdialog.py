@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-import io
 
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
@@ -215,7 +214,7 @@ def _get_authors():
         parser = make_parser()
         parser.setContentHandler(AuthorParser(authors, contributors))
 
-        authors_file = io.open(AUTHORS_FILE, encoding='utf-8')
+        authors_file = open(AUTHORS_FILE, encoding='utf-8')
         parser.parse(authors_file)
         authors_file.close()
 

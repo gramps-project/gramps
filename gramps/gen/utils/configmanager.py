@@ -36,7 +36,6 @@ import configparser
 import errno
 import copy
 import logging
-import io
 
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -334,7 +333,7 @@ class ConfigManager(object):
                 if exp.errno != errno.EEXIST:
                     raise
             try:
-                key_file = io.open(filename, "w", encoding="utf-8")
+                key_file = open(filename, "w", encoding="utf-8")
             except IOError as err:
                 logging.warn("Failed to open %s because %s",
                              filename, str(err))

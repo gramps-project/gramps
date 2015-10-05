@@ -33,7 +33,6 @@ from gi.repository import Gtk
 from gi.repository import Pango
 import time
 import os
-import io
 import configparser
 
 import logging
@@ -1184,7 +1183,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             return # something is the matter
         filename = self.configfile
         try:
-            fp = io.open(filename, "w", encoding='utf-8')
+            fp = open(filename, "w", encoding='utf-8')
         except IOError as err:
             LOG.warn("Failed to open %s because $s; gramplets not saved",
                      filename, str(err))

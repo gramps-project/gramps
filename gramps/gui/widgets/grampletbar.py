@@ -42,7 +42,6 @@ _ = glocale.translation.gettext
 import time
 import os
 import configparser
-import io
 
 #-------------------------------------------------------------------------
 #
@@ -198,7 +197,7 @@ class GrampletBar(Gtk.Notebook):
         """
         filename = self.configfile
         try:
-            fp = io.open(filename, "w", encoding='utf-8')
+            fp = open(filename, "w", encoding='utf-8')
         except IOError:
             LOG.warning("Failed writing '%s'; gramplets not saved" % filename)
             return
