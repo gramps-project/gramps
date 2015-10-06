@@ -138,6 +138,12 @@ def dow(y, m, d):
     """ Return the ISO day of week for the given year, month and day. """
     return datetime.date(y, m, d).isoweekday()
 
+def cmp(a, b):
+    """
+    Replacement for older Python's cmp.
+    """
+    return (a > b) - (a < b)
+
 #------------------------------------------------------------------------
 #
 # HolidayTable
