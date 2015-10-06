@@ -404,7 +404,7 @@
     <date name="Ash Wednesday" value="> easter(y)" type="religious" offset="-46" />
     <date name="Mardi Gras" value="> easter(y)" type="religious" offset="-47" />
     <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
-    <date name="Income Taxes due" value="*/4/15" type="national" if="date.weekday().__cmp__(4)-1" />
+    <date name="Income Taxes due" value="*/4/15" type="national" if="cmp(date.weekday(),4)-1"/>
     <date name="Income Taxes due" value="*/4/16" type="national" if="date.weekday() == 0" />
     <date name="Income Taxes due" value="*/4/17" type="national" if="date.weekday() == 0" />
     <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
