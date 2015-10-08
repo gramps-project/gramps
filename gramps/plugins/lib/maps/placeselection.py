@@ -194,6 +194,9 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                self.oldvalue)
                              )
         for place in self.places:
+            if place[0] == '':
+                _LOG.info('No hierarchy yet: %s' % place)
+                continue
             p = (place[0].value, place[1], place[2], place[3])
             self.plist.append(p)
         # here, we could add value from geography names services ...
