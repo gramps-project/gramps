@@ -147,11 +147,13 @@ class EditPlace(EditPrimary):
         self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
 
+        custom_place_types = sorted(self.db.get_place_types(),
+                                    key=lambda s: s.lower())
         self.place_type = MonitoredDataType(self.top.get_object("place_type"),
                                             self.obj.set_type,
                                             self.obj.get_type,
                                             self.db.readonly,
-                                            self.db.get_place_types())
+                                            custom_place_types)
 
         self.code = MonitoredEntry(
             self.top.get_object("code_entry"),

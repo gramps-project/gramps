@@ -555,7 +555,8 @@ class EditRule(ManagedWindow):
                     elif v == _('Surname origin type:'):
                         additional = self.db.get_origin_types()
                     elif v == _('Place type:'):
-                        additional = self.db.get_place_types()
+                        additional = sorted(self.db.get_place_types(),
+                                            key=lambda s: s.lower())
                     t = MySelect(_name2typeclass[v], additional)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
