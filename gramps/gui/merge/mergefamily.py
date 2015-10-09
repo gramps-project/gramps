@@ -30,7 +30,7 @@ Provide merge capabilities for families.
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from gramps.gen.errors import MergeError
 from ..dialog import ErrorDialog
@@ -42,8 +42,7 @@ from gramps.gen.merge import MergePersonQuery, MergeFamilyQuery
 # Gramps constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-    URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _('manual|Merge_Families')
 _GLADE_FILE = 'mergefamily.glade'
 

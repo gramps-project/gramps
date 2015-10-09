@@ -37,16 +37,16 @@ from ..widgets import MonitoredDate, MonitoredEntry
 from ..dialog import ErrorDialog
 from gramps.gen.errors import ValidationError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gramps.gen.const import URL_MANUAL_PAGE
+_ = glocale.translation.sgettext
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Place_Name_Editor_dialog')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|Place_Name_Editor_dialog')
 
 ISO_CODES = (
 'aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az',

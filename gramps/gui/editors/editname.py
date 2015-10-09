@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from copy import copy
 
 #-------------------------------------------------------------------------
@@ -44,7 +42,9 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.gen.const import URL_MANUAL_SECT3
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from .editsecondary import EditSecondary
@@ -61,7 +61,7 @@ from gramps.gen.errors import ValidationError
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_3') % URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT3
 
 
 class GeneralNameTab(GrampsTab):
@@ -160,7 +160,7 @@ class EditName(EditSecondary):
         self.define_cancel_button(self.top.get_object('button119'))
         self.define_help_button(self.top.get_object('button131'),
                 WIKI_HELP_PAGE,
-                _('Name_Editor'))
+                _('manual|Name_Editor'))
         self.define_ok_button(self.top.get_object('button118'), self.save)
 
     def _validate_call(self, widget, text):

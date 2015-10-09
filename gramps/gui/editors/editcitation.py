@@ -30,8 +30,6 @@ EditCitation class for Gramps.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -47,6 +45,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.lib import Citation, NoteType, Source
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
@@ -57,7 +57,7 @@ from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredMenu,
                        MonitoredDate, MonitoredTagList)
 from ..dialog import ErrorDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
@@ -65,8 +65,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('New_Citation_dialog')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|New_Citation_dialog')
 
 #-------------------------------------------------------------------------
 #

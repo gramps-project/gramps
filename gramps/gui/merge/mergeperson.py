@@ -41,7 +41,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gen.errors import MergeError
@@ -54,8 +54,7 @@ from gramps.gen.merge import MergePersonQuery
 # Gramps constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = "%s_-_Entering_and_Editing_Data:_Detailed_-_part_3" % \
-        URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _("manual|Merge_People")
 _GLADE_FILE = "mergeperson.glade"
 

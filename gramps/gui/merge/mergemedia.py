@@ -29,7 +29,7 @@ Provide merge capabilities for media objects.
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.datehandler import get_date
@@ -40,8 +40,7 @@ from gramps.gen.merge import MergeMediaQuery
 # Gramps constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-        URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _('manual|Merge_Media_Objects')
 _GLADE_FILE = 'mergemedia.glade'
 

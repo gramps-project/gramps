@@ -30,8 +30,6 @@ mechanism for the user to edit address information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import pickle
 
 #-------------------------------------------------------------------------
@@ -47,6 +45,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from gramps.gen.errors import WindowActiveError
@@ -56,7 +56,7 @@ from gi.repository import Gdk
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
@@ -64,8 +64,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Child_Reference_Editor')
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
+WIKI_HELP_SEC = _('manual|Child_Reference_Editor')
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
