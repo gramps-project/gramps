@@ -27,8 +27,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 _LOG = logging.getLogger(".gui.editors.EditNote")
 
@@ -46,6 +44,8 @@ from gi.repository import Pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.config import config
 from .editprimary import EditPrimary
 from .displaytabs import GrampsTab, NoteBackRefList
@@ -55,7 +55,7 @@ from gramps.gen.lib import Note
 from gramps.gen.db import DbTxn
 from ..dialog import ErrorDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
@@ -63,8 +63,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Editing_information_about_notes')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|Editing_information_about_notes')
 
 #-------------------------------------------------------------------------
 #

@@ -27,26 +27,26 @@
 # Python Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from ..views.treemodels import NoteModel
 from .baseselector import BaseSelector
 from gramps.gui.display import display_help
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Select_Note_selector')
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
+WIKI_HELP_SEC = _('manual|Select_Note_selector')
 
 #-------------------------------------------------------------------------
 #

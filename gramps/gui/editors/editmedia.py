@@ -41,7 +41,7 @@ from gi.repository import Gdk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 from gramps.gen.constfunc import conv_to_unicode
 from ..utils import open_file_with_default_application
 from gramps.gen.lib import MediaObject, NoteType
@@ -57,7 +57,7 @@ from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
 from .addmedia import AddMediaObject
 from ..dialog import ErrorDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
@@ -65,8 +65,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('New_Media_dialog')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|New_Media_dialog')
 
 #-------------------------------------------------------------------------
 #

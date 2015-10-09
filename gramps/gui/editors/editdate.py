@@ -62,7 +62,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear
 from gramps.gen.datehandler import displayer
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
@@ -95,7 +95,7 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_ISLAMIC    : displayer.islamic,
     Date.CAL_SWEDISH    : displayer.swedish }
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
 WIKI_HELP_SEC = _('manual|Editing_dates')
 
 #-------------------------------------------------------------------------

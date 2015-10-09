@@ -31,7 +31,7 @@ Provide merge capabilities for sources.
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergeSourceQuery
@@ -41,8 +41,7 @@ from gramps.gen.merge import MergeSourceQuery
 # Gramps constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
-        URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _('manual|Merge_Sources')
 _GLADE_FILE = 'mergesource.glade'
 

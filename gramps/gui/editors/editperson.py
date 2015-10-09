@@ -32,8 +32,6 @@ to edit information about a particular Person.
 #
 #-------------------------------------------------------------------------
 from copy import copy
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import pickle
 
 #-------------------------------------------------------------------------
@@ -50,6 +48,8 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
 from ..utils import is_right_click, open_file_with_default_application
@@ -75,7 +75,7 @@ from .displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
 from gramps.gen.plug import CATEGORY_QR_PERSON
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 from gramps.gen.utils.id import create_id
 
 #-------------------------------------------------------------------------
@@ -84,7 +84,7 @@ from gramps.gen.utils.id import create_id
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
 
 _select_gender = ((True, False, False),
                   (False, True, False),
@@ -243,7 +243,7 @@ class EditPerson(EditPrimary):
         self.define_ok_button(self.top.get_object("ok"), self.save)
         self.define_help_button(self.top.get_object("button134"),
                 WIKI_HELP_PAGE,
-                _('manpage section id|Editing_information_about_people'))
+                _('manual|Editing_information_about_people'))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",

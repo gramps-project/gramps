@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import gc
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -43,21 +41,23 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
 from ..views.treemodels import MediaModel
 from .baseselector import BaseSelector
 from gramps.gui.display import display_help
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Select_Media_Object_selector')
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
+WIKI_HELP_SEC = _('manual|Select_Media_Object_selector')
 
 #-------------------------------------------------------------------------
 #

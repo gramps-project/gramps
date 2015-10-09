@@ -59,6 +59,10 @@ URL_BUGHOME     = "http://bugs.gramps-project.org"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
+URL_MANUAL_DATA = '%s_-_Entering_and_editing_data:_detailed' % URL_MANUAL_PAGE
+URL_MANUAL_SECT1 = '%s_-_part_1' % URL_MANUAL_DATA
+URL_MANUAL_SECT2 = '%s_-_part_2' % URL_MANUAL_DATA
+URL_MANUAL_SECT3 = '%s_-_part_3' % URL_MANUAL_DATA
 WIKI_FAQ = "FAQ"
 WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
 WIKI_EXTRAPLUGINS= "%s_Addons" % major_version

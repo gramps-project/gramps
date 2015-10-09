@@ -30,8 +30,6 @@ mechanism for the user to edit personal LDS information.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +43,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.lib import LdsOrd, NoteType
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.lds import TEMPLES
@@ -55,7 +55,7 @@ from .displaytabs import CitationEmbedList,NoteTab
 from ..widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 from ..selectors import SelectorFactory
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
@@ -63,8 +63,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('LDS_Ordinance_Editor')
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
+WIKI_HELP_SEC = _('manual|LDS_Ordinance_Editor')
 
 _DATA_MAP = {
     LdsOrd.BAPTISM : [

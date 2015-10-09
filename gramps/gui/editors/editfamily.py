@@ -42,8 +42,6 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from ..ddtargets import DdTargets
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -56,6 +54,8 @@ from gi.repository import GLib
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
@@ -80,7 +80,7 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
 from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
 #
@@ -88,8 +88,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Family_Editor_dialog')
+WIKI_HELP_PAGE = URL_MANUAL_SECT1
+WIKI_HELP_SEC = _('manual|Family_Editor_dialog')
 
 SelectPerson = SelectorFactory('Person')
 

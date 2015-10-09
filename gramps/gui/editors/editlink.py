@@ -32,12 +32,12 @@ import re
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from ..glade import Glade
 from gramps.gen.simple import SimpleAccess
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
@@ -45,8 +45,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_2') % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Link_Editor')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|Link_Editor')
 
 WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = list(range(9))
 OBJECT_MAP = {

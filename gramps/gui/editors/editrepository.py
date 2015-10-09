@@ -24,8 +24,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +37,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.lib import NoteType, Repository
 from gramps.gen.db import DbTxn
 
@@ -48,7 +48,7 @@ from .displaytabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from .editprimary import EditPrimary
 from ..dialog import ErrorDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
@@ -56,8 +56,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 
-WIKI_HELP_PAGE = '%s_-_Entering_and_editing_data:_detailed_-_part_2' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('New_Repositories_dialog')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|New_Repositories_dialog')
 
 class EditRepository(EditPrimary):
 

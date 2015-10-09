@@ -34,9 +34,6 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gramps.gen.constfunc import conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +47,9 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.const import ICON, THUMBSCALE, USER_HOME
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
@@ -60,15 +60,15 @@ from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..dialog import ErrorDialog, WarningDialog
 from ..glade import Glade
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Entering_and_editing_data:_detailed_-_part_2' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('Select_a_media_object_selector')
+WIKI_HELP_PAGE = URL_MANUAL_SECT2
+WIKI_HELP_SEC = _('manual|Select_a_media_object_selector')
 
 #-------------------------------------------------------------------------
 #
