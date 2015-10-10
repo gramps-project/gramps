@@ -128,7 +128,8 @@ class StyleSheetList(object):
 
     def get_style_names(self):
         "Return a list of all the style names in the StyleSheetList"
-        return list(self.map.keys())
+        # Sort in order to enable diff of archived copies
+        return sorted(list(self.map.keys()))
 
     def set_style_sheet(self, name, style):
         """
@@ -364,7 +365,8 @@ class StyleSheet(object):
 
     def get_paragraph_style_names(self):
         "Return the list of paragraph names in the StyleSheet"
-        return list(self.para_styles.keys())
+        # Sort in order to enable diff of archived copies
+        return sorted(list(self.para_styles.keys()))
 
     def add_draw_style(self, name, style):
         """
@@ -385,7 +387,8 @@ class StyleSheet(object):
 
     def get_draw_style_names(self):
         "Return the list of draw style names in the StyleSheet"
-        return list(self.draw_styles.keys())
+        # Sort in order to enable diff of archived copies
+        return sorted(list(self.draw_styles.keys()))
 
     def add_table_style(self, name, style):
         """
@@ -406,7 +409,8 @@ class StyleSheet(object):
 
     def get_table_style_names(self):
         "Return the list of table style names in the StyleSheet"
-        return list(self.table_styles.keys())
+        # Sort in order to enable diff of archived copies
+        return sorted(list(self.table_styles.keys()))
 
     def add_cell_style(self, name, style):
         """
@@ -427,7 +431,8 @@ class StyleSheet(object):
 
     def get_cell_style_names(self):
         "Return the list of cell style names in the StyleSheet"
-        return list(self.cell_styles.keys())
+        # Sort in order to enable diff of archived copies
+        return sorted(list(self.cell_styles.keys()))
 
 #-------------------------------------------------------------------------
 #
