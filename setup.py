@@ -448,7 +448,7 @@ ICON_SC = glob.glob(os.path.join(THEME, 'scalable', 'actions', '*.svg'))
 data_files_gui.append(('share/gramps/images', IMAGE_FILES))
 data_files_gui.append(('share/gramps/images/hicolor/16x16/actions', ICON_16))
 data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
-data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_24))
+data_files_gui.append(('share/gramps/images/hicolor/24x24/actions', ICON_24))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
 
