@@ -80,7 +80,7 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
-         id = "Descendants",
+         id = "Descendant",
          name=_("Descendants"),
          description = _("Gramplet showing active person's descendants"),
          status = STABLE,
@@ -393,7 +393,7 @@ except ImportError:
 
 if available:
     register(GRAMPLET,
-            id = "Image Metadata Viewer",
+            id = "Metadata Viewer",
             name = _("Image Metadata"),
             description = _("Gramplet showing metadata for a media object"),
             version = "1.0.0",
