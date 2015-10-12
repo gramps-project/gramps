@@ -1051,10 +1051,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         place.set_latitude(str(plat))
         place.set_longitude(str(plon))
-        if parent:
-            placeref = PlaceRef()
-            placeref.ref = parent
-            place.add_placeref(placeref)
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
         except WindowActiveError:
