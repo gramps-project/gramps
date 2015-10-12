@@ -1,3 +1,53 @@
+2015-10-12
+Version 4.2.1,
+* Support for Retina and HiDPI Display, added 24px icons
+* Fix verification tool with "Estimate missing or inexact dates"
+* Fix missing link in hourglass graph report
+* Sort custom place types in editors
+* Allow Easter calculation with python3
+* Fix crash on Descendants-detailed report
+* FanChartDescendants View should at least have 2 generations
+* Allow hyphenated gramps-id in Graphviz reports
+* Complete Individual Report fails to run
+* Fix broken wiki help links
+* Set TextOption widget to expand vertically
+* Unused Object Dialog box too small
+* Short cut keys does not work in 'Change Event Types' dialog
+* Update some Tips of the day
+* Error when extracting place names
+* Custom filters for note text repaired
+* Fix Pedigreeview crash when selecting Compact view
+* Set "visable_window" in GtkEventBox to fix transparency
+* Faster scrolling
+** cache database access for column values
+** cache do_get_path lookups
+** speed up load access on treeviews with no filters
+** new LRU size of 1k (was 250)
+** use cache in do_get_path from siblings
+* Avoid using person-centric date matching for places
+* Use place title as default name in GEDCOM import
+* Ensure place names are not empty after upgrade
+* Fix proxy to include all referenced place objects
+* Fix bug that prevented any addons being loaded onto the Mac version
+* Remove copy button from family tree manager
+* Consistency for name fields on Person Editor
+* [Geography] Place.set_name(name) requires a PlaceName()
+* [Geography] Fix and improvements on place selection
+* Limit problems with existing selection in media reference editor
+* Stability fixes on Mac port
+* Mac port localization crash with non-standard locale (e.g. en_IT).
+* Fix color on history
+* Fix countries selector for holidays
+* Fix missing markups into textual reports
+* All sidebars with Types now show custom types in combo list
+* [New] Added Places to CSV import/export
+* Some fixes on installer (setup.py)
+* Various improvements on gen.plug.utils
+* Fix graph reports [in Greek locale]
+* New date handler for Hungarian locale
+* Updated translations : cs, de, el, en_GB, fi, fr, hu, is, sv
+
+2015-08-02
 Version 4.2.0,
 * New date and language fields on place name
 * Review on GtkBuilder, fix some Gtk3 warnings and move from deprecated methods
