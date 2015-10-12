@@ -28,6 +28,8 @@
 from gramps.gen.lib import EventType
 import os
 from gramps.gen.const import HOME_DIR
+import gi
+gi.require_version('OsmGpsMap', '1.0')
 from gi.repository import OsmGpsMap as osmgpsmap
 
 #-------------------------------------------------------------------------
