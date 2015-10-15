@@ -729,7 +729,7 @@ class GuiGramplet(object):
 
     def set_has_data(self, value):
         if isinstance(self.pane, Gtk.Notebook):
-            if self.pane.get_tab_label(self):
+            if self.pane.page_num(self) != -1:
                 label = self.pane.get_tab_label(self)
                 label.set_has_data(value)
 
