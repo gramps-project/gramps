@@ -835,6 +835,8 @@ class GrampsLocale(object):
             return _("the source")
         elif objclass == "filter":
             return _("the filter")
+        elif objclass == "citation":
+            return _("the citation")
         else:
             return _("See details")
 
