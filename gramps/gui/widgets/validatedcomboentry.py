@@ -74,7 +74,8 @@ class ValidatedComboEntry(Gtk.ComboBox):
         # <hack description="set the GTK_ENTRY(self._entry)->is_cell_renderer
         # flag to TRUE in order to tell the entry to fill its allocation.">
         if Gtk.get_minor_version() < 13:
-             dummy_event = Gdk.Event(Gdk.EventType.NOTHING)
+             dummy_event = Gdk.Event()
+             dummy_event.type = Gdk.EventType.NOTHING
         else:
              dummy_event = Gdk.Event()
         self._entry.start_editing(dummy_event)
