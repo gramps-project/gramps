@@ -192,7 +192,8 @@ class InteractiveSearchBox():
         self._search_entry.grab_focus()
         self._search_entry.set_position(-1)
         # send focus-in event
-        event = Gdk.Event(Gdk.EventType.FOCUS_CHANGE)
+        event = Gdk.Event()
+        event.type = Gdk.EventType.FOCUS_CHANGE
         event.focus_change.in_ = True
         event.focus_change.window = self._search_window.get_window()
         self._search_entry.emit('focus-in-event', event)
@@ -203,7 +204,8 @@ class InteractiveSearchBox():
         return True
 
     def cb_entry_flush_timeout(self):
-        event = Gdk.Event(Gdk.EventType.FOCUS_CHANGE)
+        event = Gdk.Event()
+        event.type = Gdk.EventType.FOCUS_CHANGE
         event.focus_change.in_ = True
         event.focus_change.window = self._treeview.get_window()
         self._dialog_hide(event)
@@ -301,7 +303,8 @@ class InteractiveSearchBox():
         if not obj:
             return
         # keyb_device = event.device
-        event = Gdk.Event(Gdk.EventType.FOCUS_CHANGE)
+        event = Gdk.Event()
+        event.type = Gdk.EventType.FOCUS_CHANGE
         event.focus_change.in_ = True
         event.focus_change.window = self._treeview.get_window()
         self._dialog_hide(event)
