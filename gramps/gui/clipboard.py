@@ -1477,6 +1477,7 @@ class MultiTreeView(Gtk.TreeView):
         Gtk.TreeView.__init__(self)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
+        self.connect('grab_broken_event', self.on_grab_broken)
         self.connect('key_press_event', self.key_press_event)
         self.defer_select = False
 
@@ -1576,6 +1577,11 @@ class MultiTreeView(Gtk.TreeView):
             and not (event.x==0 and event.y==0)): # certain drag and drop
             self.set_cursor(target[0], target[1], False)
             
+        self.defer_select=False
+
+    def on_grab_broken(self, widget, event):
+        # re-enable selection
+        self.get_selection().set_select_function(lambda *ignore: True, None)
         self.defer_select=False
 
     def edit_obj(self, objclass, handle):
