@@ -42,8 +42,8 @@ from gramps.gen.const import URL_MANUAL_PAGE
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_xxx' % URL_MANUAL_PAGE # FIXME
-WIKI_HELP_SEC = _('manual|xxxx') # FIXME
+# WIKI_HELP_PAGE = '%s_-_xxx' % URL_MANUAL_PAGE # FIXME -- currently unused
+# WIKI_HELP_SEC = _('manual|xxxx') # FIXME -- currently unused
 
 #-------------------------------------------------------------------------
 #
