@@ -294,7 +294,10 @@ class Msgid:
                  ( self.nr, self.lineno, self.is_fuzzy and " (fuzzy)" or "" ))
         sys.stdout.write( ''.join( self._msgid ) )
         sys.stdout.write( ''.join( self._msgidp ) )
-        sys.stdout.write( ''.join( self._msgstr ) )
+        if sys.version_info[0] < 3:
+            sys.stdout.write(''.join(self._msgstr).encode('utf-8'))
+        else:
+            sys.stdout.write( ''.join( self._msgstr ) )
 
     def add_msgid( self, line, lineno ):
         self._msgid.append( line )
