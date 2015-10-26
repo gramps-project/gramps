@@ -175,6 +175,7 @@ class Zipfile(object):
 
 def available_updates():
     whattypes = config.get('behavior.check-for-update-types')
+    context = None
     from urllib.request import urlopen
     if mac():
         from ssl import create_default_context, CERT_NONE
@@ -430,4 +431,3 @@ class OpenFileOrStdin:
         if self.filename != '-':
             self.filehandle.close()
         return False
-
