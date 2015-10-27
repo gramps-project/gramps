@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-10 15:17+0200\n"
+"POT-Creation-Date: 2015-10-27 09:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1413,7 +1413,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:168
-#, python-format
+#, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr ""
 
@@ -1423,7 +1423,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:176
-#, python-format
+#, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr ""
 
@@ -1433,7 +1433,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:184
-#, python-format
+#, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr ""
 
@@ -1443,7 +1443,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:192
-#, python-format
+#, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr ""
 
@@ -1452,7 +1452,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
-#, python-format
+#, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr ""
 
@@ -1461,7 +1461,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:206
-#, python-format
+#, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr ""
 
@@ -1470,7 +1470,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, python-format
+#, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr ""
 
@@ -1479,7 +1479,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, python-format
+#, python-brace-format
 msgid "estimated|{long_month} {year}"
 msgstr ""
 
@@ -1488,7 +1488,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, python-format
+#, python-brace-format
 msgid "calculated|{long_month} {year}"
 msgstr ""
 
@@ -7374,70 +7374,70 @@ msgstr ""
 msgid "People with common ancestor with %s"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:230
+#: ../gramps/gen/plug/utils.py:237
 msgid "Updated"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:242
+#: ../gramps/gen/plug/utils.py:249
 msgid "updates|New"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:272 ../gramps/gen/plug/utils.py:279
+#: ../gramps/gen/plug/utils.py:279 ../gramps/gen/plug/utils.py:286
 #, python-format
 msgid "Unable to open '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:286
+#: ../gramps/gen/plug/utils.py:293
 #, python-format
 msgid "Error in reading '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:297
+#: ../gramps/gen/plug/utils.py:304
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:301
+#: ../gramps/gen/plug/utils.py:308
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:307
+#: ../gramps/gen/plug/utils.py:314
 #, python-format
 msgid "Examining '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:320
+#: ../gramps/gen/plug/utils.py:327
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:334
+#: ../gramps/gen/plug/utils.py:341
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:338
+#: ../gramps/gen/plug/utils.py:345
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:339
+#: ../gramps/gen/plug/utils.py:346
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:349
+#: ../gramps/gen/plug/utils.py:356
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:361
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Installing '%s'..."
 msgstr ""
 
-#: ../gramps/gen/plug/utils.py:367
+#: ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Registered '%s'"
 msgstr ""
@@ -7946,6 +7946,10 @@ msgid "the filter"
 msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:839
+msgid "the citation"
+msgstr ""
+
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "See details"
 msgstr ""
 
@@ -8678,18 +8682,18 @@ msgstr ""
 msgid "Clipboard"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:130
+#: ../gramps/gui/clipboard.py:1520 ../gramps/gui/plug/quick/_quicktable.py:130
 #, python-format
 msgid "the object|See %s details"
 msgstr ""
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:140
+#: ../gramps/gui/clipboard.py:1526 ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1542
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr ""
@@ -15770,16 +15774,6 @@ msgstr ""
 
 #: ../gramps/gui/selectors/selectrepository.py:63
 msgid "Select Repository"
-msgstr ""
-
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. FIXME
-#: ../gramps/gui/selectors/selectsource.py:46
-msgid "manual|xxxx"
 msgstr ""
 
 #: ../gramps/gui/selectors/selectsource.py:63
