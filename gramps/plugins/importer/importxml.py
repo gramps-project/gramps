@@ -692,6 +692,7 @@ class GrampsParser(UpdateCallback):
             "placeref": (self.start_placeref, self.stop_placeref), 
             "ptitle": (None, self.stop_ptitle),
             "pname": (self.start_place_name, self.stop_place_name),
+            "locality": (None, self.stop_locality),
             "location": (self.start_location, None), 
             "lds_ord": (self.start_lds_ord, self.stop_lds_ord), 
             "temple": (self.start_temple, None), 
