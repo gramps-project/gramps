@@ -130,30 +130,26 @@ class BaseSelector(ManagedWindow):
         """
         Goto the correct row.
         """
-        try: # tree:
-            path = None
-            node = self.model.get_node(handle)
-            if node:
-                parent_node = self.model.on_iter_parent(node)
-                if parent_node:
-                    parent_path = self.model.on_get_path(parent_node)
+        iter_ = self.model.get_iter_from_handle(handle)
+        if iter_:
+            if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
+                # Expand tree
+                parent_iter = self.model.iter_parent(iter_)
+                if parent_iter:
+                    parent_path = self.model.get_path(parent_iter)
                     if parent_path:
-                        for i in range(len(parent_path)):
-                            expand_path = tuple([x for x in parent_path[:i+1]])
+                        parent_path_list = parent_path.get_indices()
+                        for i in range(len(parent_path_list)):
+                            expand_path = Gtk.TreePath(
+                                    tuple([x for x in parent_path_list[:i+1]]))
                             self.tree.expand_row(expand_path, False)
-                path = self.model.on_get_path(node)
-        except: # flat:
-            try:
-                path = self.model.on_get_path(handle)
-            except:
-                path = None
 
-        if path is not None:
+            # Select active object
+            path = self.model.get_path(iter_)
             self.selection.unselect_all()
             self.selection.select_path(path)
             self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
         else:
-            # not in list
             self.selection.unselect_all()
 
     def add_columns(self,tree):
