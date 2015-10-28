@@ -5,10 +5,10 @@
 # Matti Niemelä <matti.u.niemela@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps421_fi_maintenance_POT_2015-10-10\n"
+"Project-Id-Version: Gramps422_fi_maintenance_POT_2015-10-27\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-10 15:17+0200\n"
-"PO-Revision-Date: 2015-10-18 08:40+0200\n"
+"POT-Creation-Date: 2015-10-27 09:33+0100\n"
+"PO-Revision-Date: 2015-10-27 22:04+0200\n"
 "Last-Translator: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language-Team: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language: fi\n"
@@ -4622,7 +4622,7 @@ msgstr "Poimii kaikki henkilöt tietokannasta"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:42
 msgid "Families with incomplete events"
-msgstr "Henkilöt joilla epätäydellisiä tapahtumia"
+msgstr "Henkilöllä epätäydellisiä perhetapahtumia"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event of the family"
@@ -8105,70 +8105,70 @@ msgstr "henkilön %s esivanhemmat"
 msgid "People with common ancestor with %s"
 msgstr "henkilön %s kanssa on yhteinen esivanhempi"
 
-#: ../gramps/gen/plug/utils.py:230
+#: ../gramps/gen/plug/utils.py:237
 msgid "Updated"
 msgstr "Päivitetty"
 
-#: ../gramps/gen/plug/utils.py:242
+#: ../gramps/gen/plug/utils.py:249
 msgid "updates|New"
 msgstr "Uusi"
 
-#: ../gramps/gen/plug/utils.py:272 ../gramps/gen/plug/utils.py:279
+#: ../gramps/gen/plug/utils.py:279 ../gramps/gen/plug/utils.py:286
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Tiedoston %s avaus epäonnistui"
 
-#: ../gramps/gen/plug/utils.py:286
+#: ../gramps/gen/plug/utils.py:293
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Luku epäonnistui: %s"
 
-#: ../gramps/gen/plug/utils.py:297
+#: ../gramps/gen/plug/utils.py:304
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Virhe:Tiedoston %s avaus epäonnistui"
 
-#: ../gramps/gen/plug/utils.py:301
+#: ../gramps/gen/plug/utils.py:308
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Virhe: tuntematon tiedostotyyppi: '%s'"
 
-#: ../gramps/gen/plug/utils.py:307
+#: ../gramps/gen/plug/utils.py:314
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Tarkastetaan '%s'..."
 
-#: ../gramps/gen/plug/utils.py:320
+#: ../gramps/gen/plug/utils.py:327
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Virhe '%s' tiedostossa: lataus ei onnistu."
 
-#: ../gramps/gen/plug/utils.py:334
+#: ../gramps/gen/plug/utils.py:341
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' on tarkoitettu käytettäväksi tässä Grampsin versiossa."
 
-#: ../gramps/gen/plug/utils.py:338
+#: ../gramps/gen/plug/utils.py:345
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' EI ole tarkoitettu käytettäväksi tässä Grampsin versiossa."
 
-#: ../gramps/gen/plug/utils.py:339
+#: ../gramps/gen/plug/utils.py:346
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "Se on tarkoitettu versioon %(v1)d.%(v2)d"
 
-#: ../gramps/gen/plug/utils.py:349
+#: ../gramps/gen/plug/utils.py:356
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Virhe: puuttuva Gramps_kohde_versio '%s'..."
 
-#: ../gramps/gen/plug/utils.py:361
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Asennetaan '%s'..."
 
-#: ../gramps/gen/plug/utils.py:367
+#: ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Registered '%s'"
 msgstr "Rekisteröity '%s'"
@@ -8686,7 +8686,12 @@ msgstr "lähde"
 msgid "the filter"
 msgstr "suodin"
 
+# Uusi 20151027
 #: ../gramps/gen/utils/grampslocale.py:839
+msgid "the citation"
+msgstr "lainaus"
+
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "See details"
 msgstr "Katso lisätiedot"
 
@@ -9446,18 +9451,18 @@ msgstr "Arvo"
 msgid "Clipboard"
 msgstr "Leikepöytä"
 
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:130
+#: ../gramps/gui/clipboard.py:1520 ../gramps/gui/plug/quick/_quicktable.py:130
 #, python-format
 msgid "the object|See %s details"
 msgstr "Katso %s lisätiedot"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:140
+#: ../gramps/gui/clipboard.py:1526 ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Aktivoi %s "
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1542
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Luo suodin valitusta %s ..."
@@ -17125,18 +17130,6 @@ msgstr "Repositories"
 #: ../gramps/gui/selectors/selectrepository.py:63
 msgid "Select Repository"
 msgstr "Valitse arkisto"
-
-# WIKI_HELP_SEC
-# älä käännä
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. FIXME
-#: ../gramps/gui/selectors/selectsource.py:46
-msgid "manual|xxxx"
-msgstr "xxxx"
 
 #: ../gramps/gui/selectors/selectsource.py:63
 msgid "Select Source"
@@ -35216,9 +35209,3 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
-
-#~ msgid "%s_-_Entering_and_editing_data:_detailed_-_part_3"
-#~ msgstr "%s_-_Entering_and_editing_data:_detailed_-_part_3"
-
-#~ msgid "%s_-_Entering_and_editing_data:_detailed_-_part_1"
-#~ msgstr "%s_-_Entering_and_Editing_Data:_Detailed_-_part_1"
