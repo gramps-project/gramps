@@ -5,10 +5,10 @@
 # Matti Niemelä <matti.u.niemela@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps42_fi_maintenance_POT_2015-10-02\n"
+"Project-Id-Version: Gramps421_fi_maintenance_POT_2015-10-10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 11:13+0200\n"
-"PO-Revision-Date: 2015-10-06 18:43+0200\n"
+"POT-Creation-Date: 2015-10-10 15:17+0200\n"
+"PO-Revision-Date: 2015-10-18 08:40+0200\n"
 "Last-Translator: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language-Team: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language: fi\n"
@@ -1748,7 +1748,7 @@ msgstr "Elossa"
 msgid "Private Record"
 msgstr "Yksityinen tietue"
 
-#: ../gramps/gen/const.py:190
+#: ../gramps/gen/const.py:194
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
@@ -1758,7 +1758,7 @@ msgstr ""
 " (Genealogical Management Programming System) on henkilökohtainen ohjelma \n"
 " sukututkimuksen ja analysoinnin hallintaan."
 
-#: ../gramps/gen/const.py:220 ../gramps/gen/const.py:221
+#: ../gramps/gen/const.py:224 ../gramps/gen/const.py:225
 #: ../gramps/gen/lib/date.py:1839 ../gramps/gen/lib/date.py:1853
 msgid "none"
 msgstr "tyhjä"
@@ -3212,7 +3212,7 @@ msgstr "Osa/sivu:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:49
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
 #: ../gramps/gen/filters/rules/place/_hascitation.py:49
-#: ../gramps/gui/editors/filtereditor.py:578
+#: ../gramps/gui/editors/filtereditor.py:579
 #: ../gramps/gui/glade/mergecitation.glade:246
 #: ../gramps/gui/glade/mergecitation.glade:262
 #: ../gramps/gui/glade/mergeevent.glade:246
@@ -3449,7 +3449,7 @@ msgstr "Poimii lainaukset, jotka on merkitty yksityisiksi"
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:43
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:43
-#: ../gramps/gui/editors/filtereditor.py:575
+#: ../gramps/gui/editors/filtereditor.py:576
 msgid "Confidence level:"
 msgstr "Luotettavuustaso:"
 
@@ -3590,7 +3590,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hastag.py:48
 #: ../gramps/gen/filters/rules/repository/_hastag.py:48
 #: ../gramps/gen/filters/rules/source/_hastag.py:48
-#: ../gramps/gui/editors/filtereditor.py:571
+#: ../gramps/gui/editors/filtereditor.py:572
 msgid "Tag:"
 msgstr "Tagi:"
 
@@ -3768,7 +3768,7 @@ msgid "Matches events with data of a particular value"
 msgstr "Poimii tapahtumat, joihin liitetyllä tiedolla on tietty arvo"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:44
-#: ../gramps/gui/editors/filtereditor.py:580
+#: ../gramps/gui/editors/filtereditor.py:581
 msgid "Day of Week:"
 msgstr "Viikonpäivä:"
 
@@ -3863,7 +3863,7 @@ msgid "Matches events matched by the specified filter name"
 msgstr "Poimii tapahtumat, jotka saadaan annetun nimisellä suotimella"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:50
-#: ../gramps/gui/editors/filtereditor.py:566
+#: ../gramps/gui/editors/filtereditor.py:567
 msgid "Include Family events:"
 msgstr "Lisää perhetapahtumat:"
 
@@ -4736,7 +4736,7 @@ msgid "Main Participants:"
 msgstr "Pääosalliset:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:53
-#: ../gramps/gui/editors/filtereditor.py:569
+#: ../gramps/gui/editors/filtereditor.py:570
 msgid "Primary Role:"
 msgstr "Ensisijainen rooli:"
 
@@ -4960,7 +4960,7 @@ msgid "Matches people with the particular tag"
 msgstr "Poimii henkilöt, joilla on tietty tagi"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:47
-#: ../gramps/gui/editors/filtereditor.py:562
+#: ../gramps/gui/editors/filtereditor.py:563
 msgid "Case sensitive:"
 msgstr "Kirjainkoon huomioiva:"
 
@@ -5007,7 +5007,7 @@ msgstr "Poimii henkilöt, joiden etunimi tai sukunimi puuttuu"
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:44
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:49
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:45
-#: ../gramps/gui/editors/filtereditor.py:560
+#: ../gramps/gui/editors/filtereditor.py:561
 msgid "Inclusive:"
 msgstr "Sisältäen:"
 
@@ -5756,7 +5756,7 @@ msgstr "Poimii arkistot, joilla on tietty määrä viitteitä"
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:46
 #: ../gramps/gui/glade/mergerepository.glade:213
 #: ../gramps/gui/glade/mergerepository.glade:229
-#: ../gramps/gui/merge/mergerepository.py:47
+#: ../gramps/gui/merge/mergerepository.py:46
 msgid "repo|Name:"
 msgstr "Nimi:"
 
@@ -6068,7 +6068,7 @@ msgid "None"
 msgstr "Tyhjä"
 
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventtype.py:171
-#: ../gramps/gui/merge/mergeperson.py:185
+#: ../gramps/gui/merge/mergeperson.py:184
 #: ../gramps/plugins/gramplet/ancestor.py:62
 #: ../gramps/plugins/gramplet/descendant.py:68
 #: ../gramps/plugins/quickview/all_relations.py:270
@@ -6111,7 +6111,7 @@ msgstr "Kasvattilapsi"
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:522
 #: ../gramps/gui/editors/editperson.py:352
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
-#: ../gramps/gui/merge/mergeperson.py:62
+#: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:592
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
@@ -6149,7 +6149,7 @@ msgid "between"
 msgstr "välillä"
 
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:335
-#: ../gramps/gen/lib/date.py:350 ../gramps/gui/merge/mergefamily.py:151
+#: ../gramps/gen/lib/date.py:350 ../gramps/gui/merge/mergefamily.py:150
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:975
 #: ../gramps/plugins/webreport/narrativeweb.py:1146
@@ -6338,7 +6338,7 @@ msgstr "Asuinpaikka"
 msgid "Other"
 msgstr "Muu"
 
-#: ../gramps/gen/lib/eventtype.py:172 ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/gen/lib/eventtype.py:172 ../gramps/gui/merge/mergeperson.py:188
 #: ../gramps/plugins/textreport/familygroup.py:319
 #: ../gramps/plugins/textreport/familygroup.py:517
 #: ../gramps/plugins/textreport/familygroup.py:519
@@ -6473,7 +6473,7 @@ msgstr "Eläkkeelle jääminen"
 msgid "Will"
 msgstr "Testamentti"
 
-#: ../gramps/gen/lib/eventtype.py:204 ../gramps/gui/merge/mergeperson.py:244
+#: ../gramps/gen/lib/eventtype.py:204 ../gramps/gui/merge/mergeperson.py:243
 #: ../gramps/plugins/export/exportcsv.py:498
 #: ../gramps/plugins/importer/importcsv.py:219
 #: ../gramps/plugins/textreport/familygroup.py:397
@@ -6756,7 +6756,7 @@ msgstr "Peruttu"
 #: ../gramps/gen/lib/ldsord.py:105
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
 #: ../gramps/gui/glade/editchildref.glade:250
-#: ../gramps/gui/merge/mergeperson.py:248
+#: ../gramps/gui/merge/mergeperson.py:247
 #: ../gramps/plugins/export/exportcsv.py:541
 #: ../gramps/plugins/gramplet/children.py:81
 #: ../gramps/plugins/gramplet/children.py:181
@@ -7327,12 +7327,12 @@ msgid "Merge Family"
 msgstr "Sulauta perhe"
 
 #: ../gramps/gen/merge/mergemediaquery.py:59
-#: ../gramps/gui/merge/mergemedia.py:67
+#: ../gramps/gui/merge/mergemedia.py:66
 msgid "Merge Media Objects"
 msgstr "Sulauta mediatiedostot"
 
 #: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:67
+#: ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Sulauta lisätiedot"
 
@@ -7364,12 +7364,12 @@ msgstr ""
 "keskeytetään."
 
 #: ../gramps/gen/merge/mergeplacequery.py:60
-#: ../gramps/gui/merge/mergeplace.py:78
+#: ../gramps/gui/merge/mergeplace.py:77
 msgid "Merge Places"
 msgstr "Sulauta paikat"
 
 #: ../gramps/gen/merge/mergerepositoryquery.py:59
-#: ../gramps/gui/merge/mergerepository.py:68
+#: ../gramps/gui/merge/mergerepository.py:67
 msgid "Merge Repositories"
 msgstr "Sulauta arkistot"
 
@@ -8901,7 +8901,7 @@ msgstr "%(west_longitude)s L"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:351
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
-#: ../gramps/gui/merge/mergeperson.py:62
+#: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
 #: ../gramps/plugins/webreport/narrativeweb.py:5404
@@ -8910,7 +8910,7 @@ msgstr "mies"
 
 #: ../gramps/gen/utils/string.py:47 ../gramps/gui/editors/editperson.py:350
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
-#: ../gramps/gui/merge/mergeperson.py:62
+#: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
 #: ../gramps/plugins/webreport/narrativeweb.py:5405
@@ -9191,15 +9191,15 @@ msgstr "Paikkaviite"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:59
 #: ../gramps/gui/editors/editfamily.py:124
 #: ../gramps/gui/editors/editname.py:311
-#: ../gramps/gui/editors/filtereditor.py:797
-#: ../gramps/gui/editors/filtereditor.py:951
+#: ../gramps/gui/editors/filtereditor.py:798
+#: ../gramps/gui/editors/filtereditor.py:952
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:126
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:100
 #: ../gramps/gui/plug/_guioptions.py:1143 ../gramps/gui/plug/_windows.py:127
 #: ../gramps/gui/plug/_windows.py:1083
 #: ../gramps/gui/plug/report/_bookdialog.py:420
-#: ../gramps/gui/selectors/selectperson.py:96
+#: ../gramps/gui/selectors/selectperson.py:94
 #: ../gramps/gui/selectors/selectplace.py:71
 #: ../gramps/gui/views/bookmarks.py:218 ../gramps/gui/views/tags.py:397
 #: ../gramps/gui/views/treemodels/peoplemodel.py:615
@@ -9361,7 +9361,7 @@ msgstr "Arkisto"
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:98
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:102
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:101
-#: ../gramps/gui/merge/mergeperson.py:240 ../gramps/gui/plug/_windows.py:120
+#: ../gramps/gui/merge/mergeperson.py:239 ../gramps/gui/plug/_windows.py:120
 #: ../gramps/gui/plug/_windows.py:236 ../gramps/gui/plug/_windows.py:1082
 #: ../gramps/gui/plug/report/_bookdialog.py:421
 #: ../gramps/gui/plug/report/_bookdialog.py:425
@@ -10667,7 +10667,7 @@ msgstr "Aktiivista lisätietoa ei ole asetettu"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/addmedia.py:71
-msgid "Select_a_media_object_selector"
+msgid "manual|Select_a_media_object_selector"
 msgstr "Select_a_media_object_selector"
 
 #: ../gramps/gui/editors/addmedia.py:105
@@ -10836,7 +10836,7 @@ msgstr "_Ominaisuudet"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:123
-#: ../gramps/gui/editors/filtereditor.py:954
+#: ../gramps/gui/editors/filtereditor.py:955
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:100
@@ -10847,7 +10847,7 @@ msgstr "_Ominaisuudet"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:100
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:86
-#: ../gramps/gui/merge/mergeperson.py:179
+#: ../gramps/gui/merge/mergeperson.py:178
 #: ../gramps/gui/plug/_guioptions.py:1144
 #: ../gramps/gui/plug/_guioptions.py:1321
 #: ../gramps/gui/selectors/selectcitation.py:76
@@ -10855,7 +10855,7 @@ msgstr "_Ominaisuudet"
 #: ../gramps/gui/selectors/selectfamily.py:70
 #: ../gramps/gui/selectors/selectnote.py:76
 #: ../gramps/gui/selectors/selectobject.py:81
-#: ../gramps/gui/selectors/selectperson.py:97
+#: ../gramps/gui/selectors/selectperson.py:95
 #: ../gramps/gui/selectors/selectplace.py:72
 #: ../gramps/gui/selectors/selectrepository.py:71
 #: ../gramps/gui/selectors/selectsource.py:72
@@ -11017,7 +11017,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:112
 #: ../gramps/gui/glade/editfamily.glade:192
-#: ../gramps/gui/merge/mergeperson.py:221
+#: ../gramps/gui/merge/mergeperson.py:220
 #: ../gramps/gui/selectors/selectfamily.py:71
 #: ../gramps/gui/widgets/reorderfam.py:83
 #: ../gramps/plugins/gramplet/persondetails.py:184
@@ -11039,7 +11039,7 @@ msgstr "Isä"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:113
 #: ../gramps/gui/glade/editfamily.glade:470
-#: ../gramps/gui/merge/mergeperson.py:223
+#: ../gramps/gui/merge/mergeperson.py:222
 #: ../gramps/gui/selectors/selectfamily.py:72
 #: ../gramps/gui/widgets/reorderfam.py:84
 #: ../gramps/plugins/gramplet/persondetails.py:185
@@ -11528,27 +11528,10 @@ msgstr "_Internet"
 msgid "_Jump to"
 msgstr "_Siirry"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. -------------------------------------------------------------------------
-#.
-#. Classes
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/gui/editors/editaddress.py:62
-#: ../gramps/gui/editors/editattribute.py:61
-#: ../gramps/gui/editors/editname.py:64
-#, python-format
-msgid "%s_-_Entering_and_editing_data:_detailed_-_part_3"
-msgstr "%s_-_Entering_and_editing_data:_detailed_-_part_3"
-
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editaddress.py:63
-msgid "Address_Editor_dialog"
+msgid "manual|Address_Editor_dialog"
 msgstr "Address_Editor_dialog"
 
 #: ../gramps/gui/editors/editaddress.py:92
@@ -11559,7 +11542,7 @@ msgstr "Osoitemuokkain"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editattribute.py:62
-msgid "Attribute_Editor_dialog"
+msgid "manual|Attribute_Editor_dialog"
 msgstr "Attribute_Editor_dialog"
 
 #: ../gramps/gui/editors/editattribute.py:96
@@ -11580,40 +11563,10 @@ msgstr "Ei voi tallentaa ominaisuutta"
 msgid "The attribute type cannot be empty"
 msgstr "Ominaisuustyyppi ei voi olla tyhjä"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. This dialog changes depending on the string pass for the title.
-#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Child_selector
-#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Father_selector
-#. https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Mother_selector
-#: ../gramps/gui/editors/editchildref.py:67
-#: ../gramps/gui/editors/editdate.py:98 ../gramps/gui/editors/editfamily.py:91
-#: ../gramps/gui/editors/editldsord.py:66
-#: ../gramps/gui/editors/editperson.py:87
-#: ../gramps/gui/editors/editpersonref.py:67
-#: ../gramps/gui/editors/editurl.py:46
-#: ../gramps/gui/selectors/selectevent.py:45
-#: ../gramps/gui/selectors/selectnote.py:48
-#: ../gramps/gui/selectors/selectobject.py:59
-#: ../gramps/gui/selectors/selectperson.py:51
-#: ../gramps/gui/selectors/selectperson.py:55
-#: ../gramps/gui/selectors/selectperson.py:59
-#, python-format
-msgid "%s_-_Entering_and_editing_data:_detailed_-_part_1"
-msgstr "%s_-_Entering_and_Editing_Data:_Detailed_-_part_1"
-
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editchildref.py:68
-msgid "Child_Reference_Editor"
+msgid "manual|Child_Reference_Editor"
 msgstr "Child_Reference_Editor"
 
 #: ../gramps/gui/editors/editchildref.py:103
@@ -11627,28 +11580,8 @@ msgstr "Lapsiviite"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/gui/editors/editcitation.py:68
-#: ../gramps/gui/editors/editeventref.py:56
-#: ../gramps/gui/editors/editlink.py:48 ../gramps/gui/editors/editmedia.py:68
-#: ../gramps/gui/editors/editmediaref.py:71
-#: ../gramps/gui/editors/editnote.py:66
-#: ../gramps/gui/editors/editplacename.py:48
-#: ../gramps/gui/selectors/selectcitation.py:50
-#: ../gramps/gui/selectors/selectplace.py:46
-#: ../gramps/gui/selectors/selectrepository.py:45
-#, python-format
-msgid "%s_-_Entering_and_editing_data:_detailed_-_part_2"
-msgstr "%s_-_Entering_and_editing_data:_detailed_-_part_2"
-
-# uusi/muutettu20150924
-# WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editcitation.py:69
-msgid "New_Citation_dialog"
+msgid "manual|New_Citation_dialog"
 msgstr "New_Citation_dialog"
 
 #: ../gramps/gui/editors/editcitation.py:128
@@ -11685,7 +11618,7 @@ msgstr "Lainauksen tallentaminen ei onnistu. ID on jo käytössä."
 #: ../gramps/gui/editors/editevent.py:251
 #: ../gramps/gui/editors/editmedia.py:300
 #: ../gramps/gui/editors/editperson.py:849
-#: ../gramps/gui/editors/editplace.py:295
+#: ../gramps/gui/editors/editplace.py:297
 #: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:191
 #: ../gramps/gui/editors/editsource.py:211
@@ -11831,7 +11764,7 @@ msgstr "Poista tapahtuma (%s)"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editeventref.py:57
-msgid "Event_Reference_Editor_dialog"
+msgid "manual|Event_Reference_Editor_dialog"
 msgstr "Event_Reference_Editor_dialog"
 
 #: ../gramps/gui/editors/editeventref.py:78
@@ -11858,7 +11791,7 @@ msgstr "Lisää tapahtuma"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editfamily.py:92
-msgid "Family_Editor_dialog"
+msgid "manual|Family_Editor_dialog"
 msgstr "Family_Editor_dialog"
 
 #: ../gramps/gui/editors/editfamily.py:112
@@ -11891,8 +11824,8 @@ msgstr "#"
 
 #: ../gramps/gui/editors/editfamily.py:125
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:128
-#: ../gramps/gui/merge/mergeperson.py:181
-#: ../gramps/gui/selectors/selectperson.py:98
+#: ../gramps/gui/merge/mergeperson.py:180
+#: ../gramps/gui/selectors/selectperson.py:96
 #: ../gramps/plugins/drawreport/statisticschart.py:331
 #: ../gramps/plugins/export/exportcsv.py:381
 #: ../gramps/plugins/importer/importcsv.py:159
@@ -11912,7 +11845,7 @@ msgid "Maternal"
 msgstr "Äidinpuoleinen"
 
 #: ../gramps/gui/editors/editfamily.py:128
-#: ../gramps/gui/selectors/selectperson.py:99
+#: ../gramps/gui/selectors/selectperson.py:97
 #: ../gramps/plugins/gramplet/children.py:82
 #: ../gramps/plugins/gramplet/children.py:182
 #: ../gramps/plugins/lib/libpersonview.py:101
@@ -11932,7 +11865,7 @@ msgid "Birth Date"
 msgstr "Syntymäaika"
 
 #: ../gramps/gui/editors/editfamily.py:129
-#: ../gramps/gui/selectors/selectperson.py:101
+#: ../gramps/gui/selectors/selectperson.py:99
 #: ../gramps/plugins/gramplet/children.py:84
 #: ../gramps/plugins/gramplet/children.py:184
 #: ../gramps/plugins/lib/libpersonview.py:103
@@ -11942,13 +11875,13 @@ msgid "Death Date"
 msgstr "Kuolinaika"
 
 #: ../gramps/gui/editors/editfamily.py:130
-#: ../gramps/gui/selectors/selectperson.py:100
+#: ../gramps/gui/selectors/selectperson.py:98
 #: ../gramps/plugins/lib/libpersonview.py:102
 msgid "Birth Place"
 msgstr "Syntymäpaikka"
 
 #: ../gramps/gui/editors/editfamily.py:131
-#: ../gramps/gui/selectors/selectperson.py:102
+#: ../gramps/gui/selectors/selectperson.py:100
 #: ../gramps/plugins/lib/libpersonview.py:104
 msgid "Death Place"
 msgstr "Kuolinpaikka"
@@ -12132,7 +12065,7 @@ msgstr "Lisää perhe"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editldsord.py:67
-msgid "LDS_Ordinance_Editor"
+msgid "manual|LDS_Ordinance_Editor"
 msgstr "LDS_Ordinance_Editor"
 
 #: ../gramps/gui/editors/editldsord.py:160
@@ -12168,7 +12101,7 @@ msgstr "Mormonisakramentti"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editlink.py:49
-msgid "Link_Editor"
+msgid "manual|Link_Editor"
 msgstr "Link_Editor"
 
 #: ../gramps/gui/editors/editlink.py:86 ../gramps/gui/editors/editlink.py:231
@@ -12186,7 +12119,7 @@ msgstr "Sijaintimuokkain"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editmedia.py:69
-msgid "New_Media_dialog"
+msgid "manual|New_Media_dialog"
 msgstr "New_Media_dialog"
 
 #: ../gramps/gui/editors/editmedia.py:100
@@ -12250,7 +12183,7 @@ msgstr "Poista mediatiedosto"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editmediaref.py:72
-msgid "Media_Reference_Editor_dialog"
+msgid "manual|Media_Reference_Editor_dialog"
 msgstr "Media_Reference_Editor_dialog"
 
 #: ../gramps/gui/editors/editmediaref.py:96
@@ -12272,7 +12205,7 @@ msgstr "Nimi muokkain"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editname.py:163
-msgid "Name_Editor"
+msgid "manual|Name_Editor"
 msgstr "Name_Editor"
 
 #: ../gramps/gui/editors/editname.py:175
@@ -12329,7 +12262,7 @@ msgstr "Liitä vain tämä nimi"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editnote.py:67
-msgid "Editing_information_about_notes"
+msgid "manual|Editing_information_about_notes"
 msgstr "Editing_information_about_notes"
 
 #: ../gramps/gui/editors/editnote.py:150
@@ -12398,7 +12331,7 @@ msgstr "Uusi henkilö"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editperson.py:246
-msgid "manpage section id|Editing_information_about_people"
+msgid "manual|Editing_information_about_people"
 msgstr "Editing_information_about_people"
 
 #: ../gramps/gui/editors/editperson.py:607
@@ -12478,7 +12411,7 @@ msgstr "_Tuntematon"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editpersonref.py:68
-msgid "Person_Reference_Editor"
+msgid "manual|Person_Reference_Editor"
 msgstr "Person_Reference_Editor"
 
 #: ../gramps/gui/editors/editpersonref.py:97
@@ -12501,12 +12434,12 @@ msgstr "Valitse henkilö tai peru muokkaus"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editplace.py:69
-msgid "Place_Editor_dialog"
+msgid "manual|Place_Editor_dialog"
 msgstr "Place_Editor_dialog"
 
 #: ../gramps/gui/editors/editplace.py:93
 #: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/merge/mergeplace.py:56
+#: ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Paikan nimi:"
 
@@ -12521,58 +12454,58 @@ msgstr "Paikka: %s"
 msgid "New Place"
 msgstr "Uusi paikka"
 
-#: ../gramps/gui/editors/editplace.py:179
-#: ../gramps/gui/editors/editplaceref.py:169
+#: ../gramps/gui/editors/editplace.py:181
+#: ../gramps/gui/editors/editplaceref.py:171
 msgid "Invalid latitude (syntax: 18\\u00b09'"
 msgstr "Kelvoton leveysaste (syntaksi: 18°9')"
 
-#: ../gramps/gui/editors/editplace.py:180
-#: ../gramps/gui/editors/editplaceref.py:170
+#: ../gramps/gui/editors/editplace.py:182
+#: ../gramps/gui/editors/editplaceref.py:172
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"S, -18.2412 tai -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:182
-#: ../gramps/gui/editors/editplaceref.py:172
+#: ../gramps/gui/editors/editplace.py:184
+#: ../gramps/gui/editors/editplaceref.py:174
 msgid "Invalid longitude (syntax: 18\\u00b09'"
 msgstr "Virheellinen pituusaste (syntaksi: 18°9')"
 
-#: ../gramps/gui/editors/editplace.py:183
-#: ../gramps/gui/editors/editplaceref.py:173
+#: ../gramps/gui/editors/editplace.py:185
+#: ../gramps/gui/editors/editplaceref.py:175
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 tai -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:193
+#: ../gramps/gui/editors/editplace.py:195
 #: ../gramps/plugins/lib/maps/geography.py:853
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
 msgstr "Muokkaa paikkaa"
 
-#: ../gramps/gui/editors/editplace.py:284
-#: ../gramps/gui/editors/editplaceref.py:275
+#: ../gramps/gui/editors/editplace.py:286
+#: ../gramps/gui/editors/editplaceref.py:277
 msgid "Cannot save place. Name not entered."
 msgstr "Paikkaa ei voi tallentaa. Nimeä ei ole annettu."
 
-#: ../gramps/gui/editors/editplace.py:285
-#: ../gramps/gui/editors/editplaceref.py:276
+#: ../gramps/gui/editors/editplace.py:287
+#: ../gramps/gui/editors/editplaceref.py:278
 msgid "You must enter a name before saving."
 msgstr "Anna nimi ennen tallentamista."
 
-#: ../gramps/gui/editors/editplace.py:294
+#: ../gramps/gui/editors/editplace.py:296
 msgid "Cannot save place. ID already exists."
 msgstr "Paikan tallentaminen ei onnistu. ID on jo käytössä."
 
-#: ../gramps/gui/editors/editplace.py:308
+#: ../gramps/gui/editors/editplace.py:310
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Lisää paikka (%s)"
 
-#: ../gramps/gui/editors/editplace.py:313
+#: ../gramps/gui/editors/editplace.py:315
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Muokkaa paikkaa (%s)"
 
-#: ../gramps/gui/editors/editplace.py:338
+#: ../gramps/gui/editors/editplace.py:340
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Poista paikka (%s)"
@@ -12580,7 +12513,7 @@ msgstr "Poista paikka (%s)"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editplacename.py:49
-msgid "Place_Name_Editor_dialog"
+msgid "manual|Place_Name_Editor_dialog"
 msgstr "Place_Name_Editor_dialog"
 
 #: ../gramps/gui/editors/editplacename.py:101
@@ -12605,11 +12538,11 @@ msgstr "Paikannimi ei voi olla tyhjä"
 msgid "Place Reference Editor"
 msgstr "Paikkaviite muokkain"
 
-#: ../gramps/gui/editors/editplaceref.py:282
+#: ../gramps/gui/editors/editplaceref.py:284
 msgid "Modify Place"
 msgstr "Muokkaa paikkaa"
 
-#: ../gramps/gui/editors/editplaceref.py:287
+#: ../gramps/gui/editors/editplaceref.py:289
 msgid "Add Place"
 msgstr "Lisää paikka"
 
@@ -12659,7 +12592,7 @@ msgstr "Lisää arkisto"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editrepository.py:60
-msgid "New_Repositories_dialog"
+msgid "manual|New_Repositories_dialog"
 msgstr "New_Repositories_dialog"
 
 #: ../gramps/gui/editors/editrepository.py:94
@@ -12693,7 +12626,7 @@ msgstr "Poista arkisto (%s)"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editsource.py:64
-msgid "New_Source_dialog"
+msgid "manual|New_Source_dialog"
 msgstr "New_Source_dialog"
 
 #: ../gramps/gui/editors/editsource.py:88
@@ -12877,7 +12810,7 @@ msgstr "_Hyväksy"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/editors/editurl.py:47
-msgid "Internet_Address_Editor"
+msgid "manual|Internet_Address_Editor"
 msgstr "Internet_Address_Editor"
 
 #: ../gramps/gui/editors/editurl.py:70 ../gramps/gui/editors/editurl.py:101
@@ -12965,31 +12898,31 @@ msgstr ""
 "Anna tai valitse lähteen ID, jätä tyhjäksi löytääksesi ilman lähdettä olevat "
 "kohteet."
 
-#: ../gramps/gui/editors/filtereditor.py:561
+#: ../gramps/gui/editors/filtereditor.py:562
 msgid "Include original person"
 msgstr "Lisää alkuperäinen henkilö"
 
-#: ../gramps/gui/editors/filtereditor.py:563
+#: ../gramps/gui/editors/filtereditor.py:564
 msgid "Use exact case of letters"
 msgstr "Käytä samaa kirjainkokoa"
 
-#: ../gramps/gui/editors/filtereditor.py:564
+#: ../gramps/gui/editors/filtereditor.py:565
 msgid "Regular-Expression matching:"
 msgstr "Säännöllinen lauseke poiminta:"
 
-#: ../gramps/gui/editors/filtereditor.py:565
+#: ../gramps/gui/editors/filtereditor.py:566
 msgid "Use regular expression"
 msgstr "Käytä säännöllistä lauseketta"
 
-#: ../gramps/gui/editors/filtereditor.py:567
+#: ../gramps/gui/editors/filtereditor.py:568
 msgid "Also family events where person is wife/husband"
 msgstr "Myös perhetapahtumat, joissa henkilö on vaimo/aviomies"
 
-#: ../gramps/gui/editors/filtereditor.py:570
+#: ../gramps/gui/editors/filtereditor.py:571
 msgid "Only include primary participants"
 msgstr "Ota mukaan vain ensisijaiset osallistujat"
 
-#: ../gramps/gui/editors/filtereditor.py:594
+#: ../gramps/gui/editors/filtereditor.py:595
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:76
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:77
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:87
@@ -13002,7 +12935,7 @@ msgstr "Ota mukaan vain ensisijaiset osallistujat"
 msgid "Use regular expressions"
 msgstr "Käytä säännöllisiä lausekkeita"
 
-#: ../gramps/gui/editors/filtereditor.py:595
+#: ../gramps/gui/editors/filtereditor.py:596
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -13020,44 +12953,44 @@ msgstr ""
 "pystypalkkia. Sirkumfleksin (^) vastaa rivin alkua. Dollarin merkki ($) "
 "vastaa rivin loppua."
 
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:623
 msgid "Rule Name"
 msgstr "Säännön nimi"
 
-#: ../gramps/gui/editors/filtereditor.py:746
-#: ../gramps/gui/editors/filtereditor.py:750
+#: ../gramps/gui/editors/filtereditor.py:747
+#: ../gramps/gui/editors/filtereditor.py:751
 #: ../gramps/gui/glade/rule.glade:885
 msgid "No rule selected"
 msgstr "Ei valittua sääntöä"
 
-#: ../gramps/gui/editors/filtereditor.py:793
+#: ../gramps/gui/editors/filtereditor.py:794
 msgid "Define filter"
 msgstr "Määrittele suodin"
 
-#: ../gramps/gui/editors/filtereditor.py:797
+#: ../gramps/gui/editors/filtereditor.py:798
 #: ../gramps/gui/glade/rule.glade:938
 msgid "Values"
 msgstr "Arvot"
 
-#: ../gramps/gui/editors/filtereditor.py:896
+#: ../gramps/gui/editors/filtereditor.py:897
 msgid "Add Rule"
 msgstr "Lisää sääntö"
 
-#: ../gramps/gui/editors/filtereditor.py:908
+#: ../gramps/gui/editors/filtereditor.py:909
 msgid "Edit Rule"
 msgstr "Muokkaa sääntöä"
 
-#: ../gramps/gui/editors/filtereditor.py:943
+#: ../gramps/gui/editors/filtereditor.py:944
 msgid "Filter Test"
 msgstr "Suodintesti"
 
-#: ../gramps/gui/editors/filtereditor.py:1082
+#: ../gramps/gui/editors/filtereditor.py:1083
 msgid "Comment"
 msgstr "Kommentti"
 
 #. #########################
 #. ###############################
-#: ../gramps/gui/editors/filtereditor.py:1082
+#: ../gramps/gui/editors/filtereditor.py:1083
 #: ../gramps/plugins/drawreport/calendarreport.py:468
 #: ../gramps/plugins/drawreport/statisticschart.py:948
 #: ../gramps/plugins/drawreport/timeline.py:385
@@ -13081,15 +13014,15 @@ msgstr "Kommentti"
 msgid "Filter"
 msgstr "Suodin"
 
-#: ../gramps/gui/editors/filtereditor.py:1090
+#: ../gramps/gui/editors/filtereditor.py:1091
 msgid "Custom Filter Editor"
 msgstr "Käyttäjän suodin muokkain"
 
-#: ../gramps/gui/editors/filtereditor.py:1157
+#: ../gramps/gui/editors/filtereditor.py:1158
 msgid "Delete Filter?"
 msgstr "Poista suodin?"
 
-#: ../gramps/gui/editors/filtereditor.py:1158
+#: ../gramps/gui/editors/filtereditor.py:1159
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -13098,7 +13031,7 @@ msgstr ""
 "Tätä suodinta käytetään muissa suotimissa. Sen poistaminen tulee poistamaan "
 "myös kaikki sitä käyttävät suotimet."
 
-#: ../gramps/gui/editors/filtereditor.py:1162
+#: ../gramps/gui/editors/filtereditor.py:1163
 msgid "Delete Filter"
 msgstr "Poista suodin"
 
@@ -15909,77 +15842,77 @@ msgstr "Luontipäivä %(year)4d/%(month)02d/%(day)02d"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergecitation.py:47
+#: ../gramps/gui/merge/mergecitation.py:46
 msgid "manual|Merge_Citations"
 msgstr "Merge_Citations"
 
-#: ../gramps/gui/merge/mergecitation.py:69
+#: ../gramps/gui/merge/mergecitation.py:68
 #: ../gramps/plugins/tool/tools.gpr.py:462
 msgid "Merge Citations"
 msgstr "Sulauta lainaukset"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergeevent.py:46
+#: ../gramps/gui/merge/mergeevent.py:45
 msgid "manual|Merge_Events"
 msgstr "Merge_Events"
 
-#: ../gramps/gui/merge/mergeevent.py:68
+#: ../gramps/gui/merge/mergeevent.py:67
 msgid "Merge Events"
 msgstr "Sulauta tapahtumat"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergefamily.py:47
+#: ../gramps/gui/merge/mergefamily.py:46
 msgid "manual|Merge_Families"
 msgstr "Merge_Families"
 
-#: ../gramps/gui/merge/mergefamily.py:69
+#: ../gramps/gui/merge/mergefamily.py:68
 msgid "Merge Families"
 msgstr "Sulauta perheet"
 
-#: ../gramps/gui/merge/mergefamily.py:223
-#: ../gramps/gui/merge/mergeperson.py:329
+#: ../gramps/gui/merge/mergefamily.py:222
+#: ../gramps/gui/merge/mergeperson.py:328
 #: ../gramps/plugins/lib/libpersonview.py:419
 msgid "Cannot merge people"
 msgstr "Henkilöiden sulauttaminen ei onnistu"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergemedia.py:45
+#: ../gramps/gui/merge/mergemedia.py:44
 msgid "manual|Merge_Media_Objects"
 msgstr "Merge_Media_Objects"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergenote.py:45
+#: ../gramps/gui/merge/mergenote.py:44
 msgid "manual|Merge_Notes"
 msgstr "Merge_Notes"
 
-#: ../gramps/gui/merge/mergenote.py:94
+#: ../gramps/gui/merge/mergenote.py:93
 msgid "flowed"
 msgstr "siirretty"
 
-#: ../gramps/gui/merge/mergenote.py:94
+#: ../gramps/gui/merge/mergenote.py:93
 msgid "preformatted"
 msgstr "_Muotoiltu"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergeperson.py:59
+#: ../gramps/gui/merge/mergeperson.py:58
 msgid "manual|Merge_People"
 msgstr "Merge_People"
 
-#: ../gramps/gui/merge/mergeperson.py:90
+#: ../gramps/gui/merge/mergeperson.py:89
 msgid "Merge People"
 msgstr "Sulauta henkilöt"
 
-#: ../gramps/gui/merge/mergeperson.py:194
+#: ../gramps/gui/merge/mergeperson.py:193
 #: ../gramps/plugins/textreport/indivcomplete.py:334
 msgid "Alternate Names"
 msgstr "Vaihtoehtoiset nimet"
 
-#: ../gramps/gui/merge/mergeperson.py:201
+#: ../gramps/gui/merge/mergeperson.py:200
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:449
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
 #: ../gramps/plugins/quickview/filterbyname.py:96
@@ -15997,7 +15930,7 @@ msgstr "Tapahtumat"
 
 #. Go over parents and build their menu
 #. don't show rest
-#: ../gramps/gui/merge/mergeperson.py:216
+#: ../gramps/gui/merge/mergeperson.py:215
 #: ../gramps/gui/widgets/fanchart.py:1768
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:126
@@ -16011,25 +15944,25 @@ msgstr "Tapahtumat"
 msgid "Parents"
 msgstr "Vanhemmat"
 
-#: ../gramps/gui/merge/mergeperson.py:219
-#: ../gramps/gui/merge/mergeperson.py:233
+#: ../gramps/gui/merge/mergeperson.py:218
+#: ../gramps/gui/merge/mergeperson.py:232
 msgid "Family ID"
 msgstr "Perheen ID"
 
-#: ../gramps/gui/merge/mergeperson.py:225
+#: ../gramps/gui/merge/mergeperson.py:224
 msgid "No parents found"
 msgstr "Vanhempia ei löytynyt"
 
 #. Go over spouses and build their menu
-#: ../gramps/gui/merge/mergeperson.py:227
+#: ../gramps/gui/merge/mergeperson.py:226
 #: ../gramps/gui/widgets/fanchart.py:1654
 #: ../gramps/plugins/textreport/kinshipreport.py:124
 #: ../gramps/plugins/view/pedigreeview.py:1661
 msgid "Spouses"
 msgstr "Puolisot"
 
-#: ../gramps/gui/merge/mergeperson.py:237
-#: ../gramps/gui/selectors/selectperson.py:103
+#: ../gramps/gui/merge/mergeperson.py:236
+#: ../gramps/gui/selectors/selectperson.py:101
 #: ../gramps/gui/widgets/reorderfam.py:89
 #: ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:105
@@ -16038,11 +15971,11 @@ msgstr "Puolisot"
 msgid "Spouse"
 msgstr "Puoliso"
 
-#: ../gramps/gui/merge/mergeperson.py:251
+#: ../gramps/gui/merge/mergeperson.py:250
 msgid "No spouses or children found"
 msgstr "Puolisoita tai lapsia ei löytynyt"
 
-#: ../gramps/gui/merge/mergeperson.py:255
+#: ../gramps/gui/merge/mergeperson.py:254
 #: ../gramps/plugins/textreport/indivcomplete.py:361
 #: ../gramps/plugins/webreport/narrativeweb.py:1362
 msgid "Addresses"
@@ -16050,23 +15983,23 @@ msgstr "Osoitteet"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergeplace.py:54
+#: ../gramps/gui/merge/mergeplace.py:53
 msgid "manual|Merge_Places"
 msgstr "Merge_Places"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergerepository.py:45
+#: ../gramps/gui/merge/mergerepository.py:44
 msgid "manual|Merge_Repositories"
 msgstr "Merge_Repositories"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/merge/mergesource.py:46
+#: ../gramps/gui/merge/mergesource.py:45
 msgid "manual|Merge_Sources"
 msgstr "Merge_Sources"
 
-#: ../gramps/gui/merge/mergesource.py:68
+#: ../gramps/gui/merge/mergesource.py:67
 msgid "Merge Sources"
 msgstr "Sulauta lähteet"
 
@@ -16157,7 +16090,7 @@ msgid "Also include %s?"
 msgstr "Ota mukaan myös %s?"
 
 #: ../gramps/gui/plug/_guioptions.py:1222
-#: ../gramps/gui/selectors/selectperson.py:89
+#: ../gramps/gui/selectors/selectperson.py:87
 msgid "Select Person"
 msgstr "Valitse henkilö"
 
@@ -17091,7 +17024,7 @@ msgstr "Sinun pitää valita aktiivinen henkilö käyttääksesi tätä työkalu
 # uusi/muutettu
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectcitation.py:51
-msgid "Select_Source_or_Citation_selector"
+msgid "manual|Select_Source_or_Citation_selector"
 msgstr "Select_Source_or_Citation_selector"
 
 #: ../gramps/gui/selectors/selectcitation.py:68
@@ -17108,7 +17041,7 @@ msgstr "Lähde: Nimike tai Lainaus:Osa/Sivu"
 #: ../gramps/gui/selectors/selectfamily.py:73
 #: ../gramps/gui/selectors/selectnote.py:79
 #: ../gramps/gui/selectors/selectobject.py:83
-#: ../gramps/gui/selectors/selectperson.py:104
+#: ../gramps/gui/selectors/selectperson.py:102
 #: ../gramps/gui/selectors/selectplace.py:75
 #: ../gramps/gui/selectors/selectrepository.py:72
 #: ../gramps/gui/selectors/selectsource.py:73
@@ -17118,29 +17051,17 @@ msgstr "Viimeisin muutos"
 # uusi/muutettu
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectevent.py:46
-msgid "Select_Event_selector"
+msgid "manual|Select_Event_selector"
 msgstr "Select_Event_selector"
 
 #: ../gramps/gui/selectors/selectevent.py:63
 msgid "Select Event"
 msgstr "Valitse tapahtuma"
 
-# uusi/muutettu
-# WIKI_HELP_SEC älä muuta
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#: ../gramps/gui/selectors/selectfamily.py:45
-#, python-format
-msgid "%s_-_Categories"
-msgstr "%s_-_Categories"
-
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectfamily.py:46
-msgid "Select_Family_selector"
+msgid "manual|Select_Family_selector"
 msgstr "Select_Family_selector"
 
 #: ../gramps/gui/selectors/selectfamily.py:63
@@ -17150,7 +17071,7 @@ msgstr "Valitse perhe"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectnote.py:49
-msgid "Select_Note_selector"
+msgid "manual|Select_Note_selector"
 msgstr "Select_Note_selector"
 
 #: ../gramps/gui/selectors/selectnote.py:68
@@ -17160,7 +17081,7 @@ msgstr "Valitse lisätieto"
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectobject.py:60
-msgid "Select_Media_Object_selector"
+msgid "manual|Select_Media_Object_selector"
 msgstr "Select_Media_Object_selector"
 
 #: ../gramps/gui/selectors/selectobject.py:70
@@ -17169,64 +17090,52 @@ msgstr "Valitse mediatiedosto"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/selectors/selectperson.py:52
-msgid "Select_Child_selector"
+#: ../gramps/gui/selectors/selectperson.py:54
+msgid "manual|Select_Child_selector"
 msgstr "Select_Child_selector"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectperson.py:56
-msgid "Select_Father_selector"
+msgid "manual|Select_Father_selector"
 msgstr "Select_Father_selector"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
-#: ../gramps/gui/selectors/selectperson.py:60
-msgid "Select_Mother_selector"
+#: ../gramps/gui/selectors/selectperson.py:58
+msgid "manual|Select_Mother_selector"
 msgstr "Select_Mother_selector"
 
 # uusi/muutettu20150924
 # WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectplace.py:47
-msgid "Select_Place_selector"
+msgid "manual|Select_Place_selector"
 msgstr "Select_Place_selector"
 
 #: ../gramps/gui/selectors/selectplace.py:64
 msgid "Select Place"
 msgstr "Valitse paikka"
 
+# uusi/muutettu20150924
+# WIKI_HELP_SEC älä muuta
 #: ../gramps/gui/selectors/selectrepository.py:46
-#: ../gramps/plugins/quickview/filterbyname.py:105
-#: ../gramps/plugins/textreport/tagreport.py:613
-#: ../gramps/plugins/view/repoview.py:129
-#: ../gramps/plugins/view/view.gpr.py:236
-#: ../gramps/plugins/view/view.gpr.py:244
-#: ../gramps/plugins/webreport/narrativeweb.py:1762
-#: ../gramps/plugins/webreport/narrativeweb.py:1873
-#: ../gramps/plugins/webreport/narrativeweb.py:2719
-#: ../gramps/plugins/webreport/narrativeweb.py:6596
-#: ../gramps/plugins/webreport/narrativeweb.py:6663
-msgid "Repositories"
-msgstr "Arkistot"
+msgid "manual|Repositories"
+msgstr "Repositories"
 
 #: ../gramps/gui/selectors/selectrepository.py:63
 msgid "Select Repository"
 msgstr "Valitse arkisto"
 
-# uusi/muutettu
+# WIKI_HELP_SEC
+# älä käännä
 #. -------------------------------------------------------------------------
 #.
 #. Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gui/selectors/selectsource.py:45
-#, python-format
-msgid "%s_-_xxx"
-msgstr "%s_-_xxx"
-
-# uusi/muutettu
+#. FIXME
 #: ../gramps/gui/selectors/selectsource.py:46
-msgid "xxxx"
+msgid "manual|xxxx"
 msgstr "xxxx"
 
 #: ../gramps/gui/selectors/selectsource.py:63
@@ -28055,7 +27964,7 @@ msgstr "Vihreät arvot rivissä vastaavat nykyisen paikan arvoja."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
-#: ../gramps/plugins/lib/maps/placeselection.py:202
+#: ../gramps/plugins/lib/maps/placeselection.py:205
 msgid "New place with empty fields"
 msgstr "Uusi paikka ja tyhjät kentät"
 
@@ -28442,6 +28351,19 @@ msgstr "Henkilöt"
 #: ../gramps/plugins/webreport/narrativeweb.py:4262
 msgid "Sources"
 msgstr "Lähteet"
+
+#: ../gramps/plugins/quickview/filterbyname.py:105
+#: ../gramps/plugins/textreport/tagreport.py:613
+#: ../gramps/plugins/view/repoview.py:129
+#: ../gramps/plugins/view/view.gpr.py:236
+#: ../gramps/plugins/view/view.gpr.py:244
+#: ../gramps/plugins/webreport/narrativeweb.py:1762
+#: ../gramps/plugins/webreport/narrativeweb.py:1873
+#: ../gramps/plugins/webreport/narrativeweb.py:2719
+#: ../gramps/plugins/webreport/narrativeweb.py:6596
+#: ../gramps/plugins/webreport/narrativeweb.py:6663
+msgid "Repositories"
+msgstr "Arkistot"
 
 #: ../gramps/plugins/quickview/filterbyname.py:120
 #: ../gramps/plugins/quickview/filterbyname.py:122
@@ -35295,75 +35217,8 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
 
-#~ msgid "Person Backlinks"
-#~ msgstr "Henkilöön tulevat linkit"
+#~ msgid "%s_-_Entering_and_editing_data:_detailed_-_part_3"
+#~ msgstr "%s_-_Entering_and_editing_data:_detailed_-_part_3"
 
-#~ msgid "Event Backlinks"
-#~ msgstr "Tapahtumaan tulevat linkit"
-
-#~ msgid "Family Backlinks"
-#~ msgstr "Perheeseen tulevat linkit"
-
-#~ msgid "Place Backlinks"
-#~ msgstr "Paikkaan tulevat linkit"
-
-#~ msgid "Source Backlinks"
-#~ msgstr "Gramplet näyttää lähteeseen tulevat linkit"
-
-#~ msgid "Citation Backlinks"
-#~ msgstr "Lainaukseen tulevat linkit"
-
-#~ msgid "Repository Backlinks"
-#~ msgstr "Arkistoon tulevat linkit"
-
-#~ msgid "Media Backlinks"
-#~ msgstr "Mediaan tulevat linkit"
-
-#~ msgid "Note Backlinks"
-#~ msgstr "Lisätietoihin tulevat linkit"
-
-#~ msgid "manual|Tags"
-#~ msgstr "Tagit"
-
-#~ msgid "Descendant"
-#~ msgstr "Jälkeläinen"
-
-#~ msgid "Ancestor"
-#~ msgstr "Esivanhempi"
-
-#~ msgid "Metadata Viewer"
-#~ msgstr "Metadatan selain"
-
-#~ msgid "Records Gramplet"
-#~ msgstr "Ennätykset Gramplet"
-
-#~ msgid "SoundEx Generator"
-#~ msgstr "SoundEx äännekoodien luoja"
-
-#~ msgid "manual|Merge_citations..."
-#~ msgstr "Sulauta_lainaukset"
-
-#~ msgid "%(new_DB_name)s (copied %(date_string)s)"
-#~ msgstr "%(new_DB_name)s (kopioitu %(date_string)s)"
-
-#~ msgid "manpage section id|Name_Editor"
-#~ msgstr "Nimimuokkain"
-
-#~ msgid "Obtaining all rows"
-#~ msgstr "Noudetaan kaikki rivit"
-
-#~ msgid "Applying filter"
-#~ msgstr "Käytetään suodinta"
-
-#~ msgid "Constructing column data"
-#~ msgstr "Kootaan sarakkeen tietoja"
-
-#~ msgid ""
-#~ "I have made a backup,\n"
-#~ "please upgrade my tree"
-#~ msgstr ""
-#~ "Olen ottanut varmuuskopion, \n"
-#~ "päivitä nyt sukupuuni"
-
-#~ msgid "Marriage:"
-#~ msgstr "Avioliitto:"
+#~ msgid "%s_-_Entering_and_editing_data:_detailed_-_part_1"
+#~ msgstr "%s_-_Entering_and_Editing_Data:_Detailed_-_part_1"
