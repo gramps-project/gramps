@@ -13,15 +13,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-10 01:09+0200\n"
-"PO-Revision-Date: 2015-10-10 01:33+0200\n"
+"POT-Creation-Date: 2015-10-31 10:19+0100\n"
+"PO-Revision-Date: 2015-10-31 10:31+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -8235,70 +8235,70 @@ msgstr "Vorfahren von %s"
 msgid "People with common ancestor with %s"
 msgstr "Personen mit gemeinsamen Vorfahren wie %s"
 
-#: ../gramps/gen/plug/utils.py:230
+#: ../gramps/gen/plug/utils.py:237
 msgid "Updated"
 msgstr "Aktualisiert"
 
-#: ../gramps/gen/plug/utils.py:242
+#: ../gramps/gen/plug/utils.py:249
 msgid "updates|New"
 msgstr "Neu"
 
-#: ../gramps/gen/plug/utils.py:272 ../gramps/gen/plug/utils.py:279
+#: ../gramps/gen/plug/utils.py:279 ../gramps/gen/plug/utils.py:286
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kann '%s' nicht öffnen"
 
-#: ../gramps/gen/plug/utils.py:286
+#: ../gramps/gen/plug/utils.py:293
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Fehler beim Lesen von \"%s\""
 
-#: ../gramps/gen/plug/utils.py:297
+#: ../gramps/gen/plug/utils.py:304
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "FEHLER: Kann '%s' nicht öffnen."
 
-#: ../gramps/gen/plug/utils.py:301
+#: ../gramps/gen/plug/utils.py:308
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "FEHLER: unbekannter Dateityp: '%s'."
 
-#: ../gramps/gen/plug/utils.py:307
+#: ../gramps/gen/plug/utils.py:314
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Untersuche '%s'..."
 
-#: ../gramps/gen/plug/utils.py:320
+#: ../gramps/gen/plug/utils.py:327
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Fehler in '%s' Datei: kann nicht geladen werden."
 
-#: ../gramps/gen/plug/utils.py:334
+#: ../gramps/gen/plug/utils.py:341
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' ist für diese Gramps Version."
 
-#: ../gramps/gen/plug/utils.py:338
+#: ../gramps/gen/plug/utils.py:345
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ist NICHT für diese Gramps Version."
 
-#: ../gramps/gen/plug/utils.py:339
+#: ../gramps/gen/plug/utils.py:346
 #, python-format
 msgid "It is for version %(v1)d.%(v2)d"
 msgstr "Es ist für Version %(v1)d.%(v2)d"
 
-#: ../gramps/gen/plug/utils.py:349
+#: ../gramps/gen/plug/utils.py:356
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "FEHLER: fehlende gramps_ziel_version in '%s'...."
 
-#: ../gramps/gen/plug/utils.py:361
+#: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installiere '%s'..."
 
-#: ../gramps/gen/plug/utils.py:367
+#: ../gramps/gen/plug/utils.py:374
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registriert '%s'"
@@ -8816,6 +8816,10 @@ msgid "the filter"
 msgstr "der Filter"
 
 #: ../gramps/gen/utils/grampslocale.py:839
+msgid "the citation"
+msgstr "die Fundstelle"
+
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -9576,18 +9580,18 @@ msgstr "Wert"
 msgid "Clipboard"
 msgstr "Zwischenablage"
 
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:130
+#: ../gramps/gui/clipboard.py:1520 ../gramps/gui/plug/quick/_quicktable.py:130
 #, python-format
 msgid "the object|See %s details"
 msgstr "Siehe %s Details"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:140
+#: ../gramps/gui/clipboard.py:1526 ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Aktiviere %s"
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1542
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Erstelle Filter aus Auswahl %s..."
@@ -17304,16 +17308,6 @@ msgstr "Aufbewahrungsorte"
 msgid "Select Repository"
 msgstr "Aufbewahrungsort wählen"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. FIXME
-#: ../gramps/gui/selectors/selectsource.py:46
-msgid "manual|xxxx"
-msgstr "xxxx"
-
 #: ../gramps/gui/selectors/selectsource.py:63
 msgid "Select Source"
 msgstr "Quelle wählen"
@@ -23544,26 +23538,26 @@ msgstr ""
 "Objekte, die Kandidaten für das Zusammenfassen sind:\n"
 
 #. there is no old style XML
-#: ../gramps/plugins/importer/importxml.py:834
-#: ../gramps/plugins/importer/importxml.py:1305
-#: ../gramps/plugins/importer/importxml.py:1578
-#: ../gramps/plugins/importer/importxml.py:1997
+#: ../gramps/plugins/importer/importxml.py:835
+#: ../gramps/plugins/importer/importxml.py:1306
+#: ../gramps/plugins/importer/importxml.py:1579
+#: ../gramps/plugins/importer/importxml.py:1998
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Die Gramps XML, die du versuchst zu importieren, ist missgebildet."
 
-#: ../gramps/plugins/importer/importxml.py:835
+#: ../gramps/plugins/importer/importxml.py:836
 msgid "Attributes that link the data together are missing."
 msgstr "Attribute, die die Daten verbinden, fehlen."
 
-#: ../gramps/plugins/importer/importxml.py:939
+#: ../gramps/plugins/importer/importxml.py:940
 msgid "Gramps XML import"
 msgstr "Gramps-XML importieren"
 
-#: ../gramps/plugins/importer/importxml.py:975
+#: ../gramps/plugins/importer/importxml.py:976
 msgid "Could not change media path"
 msgstr "Konnte Medienpfad nicht ändern"
 
-#: ../gramps/plugins/importer/importxml.py:976
+#: ../gramps/plugins/importer/importxml.py:977
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -23576,7 +23570,7 @@ msgstr ""
 "wurde beibehalten. Kopiere die Dateien in das korrekte Verzeichnis oder "
 "ändere den Medienpfad der Datenbank in den Einstellungen."
 
-#: ../gramps/plugins/importer/importxml.py:1035
+#: ../gramps/plugins/importer/importxml.py:1036
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -23588,11 +23582,11 @@ msgstr ""
 "\n"
 "Die Datei wird nicht importiert."
 
-#: ../gramps/plugins/importer/importxml.py:1038
+#: ../gramps/plugins/importer/importxml.py:1039
 msgid "Import file misses Gramps version"
 msgstr "Der Importdatei fehlt die Grampsversion."
 
-#: ../gramps/plugins/importer/importxml.py:1040
+#: ../gramps/plugins/importer/importxml.py:1041
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -23604,7 +23598,7 @@ msgstr ""
 "nicht importiert. Bitte wechsele auf die neuste Version von Gramps und "
 "versuche es erneut."
 
-#: ../gramps/plugins/importer/importxml.py:1048
+#: ../gramps/plugins/importer/importxml.py:1049
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -23625,11 +23619,11 @@ msgstr ""
 "  %(gramps_wiki_xml_url)s\n"
 "für mehr Informationen."
 
-#: ../gramps/plugins/importer/importxml.py:1059
+#: ../gramps/plugins/importer/importxml.py:1060
 msgid "The file will not be imported"
 msgstr "Die Datei wird nicht importiert"
 
-#: ../gramps/plugins/importer/importxml.py:1061
+#: ../gramps/plugins/importer/importxml.py:1062
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -23653,25 +23647,25 @@ msgstr ""
 "  %(gramps_wiki_xml_url)s\n"
 "für mehr Informationen."
 
-#: ../gramps/plugins/importer/importxml.py:1074
+#: ../gramps/plugins/importer/importxml.py:1075
 msgid "Old xml file"
 msgstr "Alte XML Datei"
 
-#: ../gramps/plugins/importer/importxml.py:1226
-#: ../gramps/plugins/importer/importxml.py:2708
+#: ../gramps/plugins/importer/importxml.py:1227
+#: ../gramps/plugins/importer/importxml.py:2709
 #, python-format
 msgid "Witness name: %s"
 msgstr "Namen des Zeugen: %s"
 
-#: ../gramps/plugins/importer/importxml.py:1306
+#: ../gramps/plugins/importer/importxml.py:1307
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alle Ereignisreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../gramps/plugins/importer/importxml.py:1579
+#: ../gramps/plugins/importer/importxml.py:1580
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alle Personenreferenzen müssen ein 'hlink' Attribut besitzen."
 
-#: ../gramps/plugins/importer/importxml.py:1767
+#: ../gramps/plugins/importer/importxml.py:1768
 #, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -23680,31 +23674,31 @@ msgstr ""
 "Dein Stammbaum gruppiert Name \"%(key)s\" zusammen mit \"%(parent)s\", diese "
 "Gruppierung wurde nicht nach \"%(value)s\" geändert."
 
-#: ../gramps/plugins/importer/importxml.py:1770
+#: ../gramps/plugins/importer/importxml.py:1771
 msgid "Gramps ignored a name grouping"
 msgstr "Gramps hat die Namensgruppierung ignoriert."
 
-#: ../gramps/plugins/importer/importxml.py:1829
+#: ../gramps/plugins/importer/importxml.py:1830
 msgid "Unknown when imported"
 msgstr "Beim Import unbekannt"
 
-#: ../gramps/plugins/importer/importxml.py:1998
+#: ../gramps/plugins/importer/importxml.py:1999
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
-#: ../gramps/plugins/importer/importxml.py:2528
+#: ../gramps/plugins/importer/importxml.py:2529
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Ungültiges Datum {date} in XML {xml}, Datum wird als Text gespeichert"
 
-#: ../gramps/plugins/importer/importxml.py:2578
+#: ../gramps/plugins/importer/importxml.py:2579
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Kommentar für Zeugen: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3228
+#: ../gramps/plugins/importer/importxml.py:3229
 #, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -23713,7 +23707,7 @@ msgstr ""
 "FEHLER: Familie '%(family)s' Vater '%(father)s' verweist nicht zurück auf "
 "die Familie. Eine Referenz wurde hinzugefügt."
 
-#: ../gramps/plugins/importer/importxml.py:3244
+#: ../gramps/plugins/importer/importxml.py:3245
 #, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
@@ -23722,7 +23716,7 @@ msgstr ""
 "FEHLER: Familie '%(family)s' Mutter '%(mother)s' verweist nicht zurück auf "
 "die Familie. Eine Referenz wurde hinzugefügt."
 
-#: ../gramps/plugins/importer/importxml.py:3266
+#: ../gramps/plugins/importer/importxml.py:3267
 #, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -35470,6 +35464,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
+
+#~ msgid "manual|xxxx"
+#~ msgstr "xxxx"
 
 #~ msgid "%s_-_Entering_and_editing_data:_detailed_-_part_3"
 #~ msgstr "%s_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-_Teil_3"
