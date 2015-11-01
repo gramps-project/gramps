@@ -42,9 +42,10 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 #
 #-------------------------------------------------------------------------
 class SearchBar(object):
-    def __init__( self, dbstate, uistate, on_apply, apply_done = None):
+    def __init__( self, dbstate, uistate, on_apply, apply_done = None, apply_clear = None):
         self.on_apply_callback = on_apply
         self.apply_done_callback = apply_done
+        self.apply_clear_callback = apply_clear
         self.dbstate = dbstate
         self.uistate = uistate
         self.apply_text = ''
@@ -151,6 +152,8 @@ class SearchBar(object):
     def apply_clear(self, obj):
         self.filter_text.set_text('')
         self.apply_filter()
+        if self.apply_clear_callback is not None:
+            self.apply_clear_callback()
 
     def get_value(self):
         text = str(self.filter_text.get_text()).strip()

@@ -92,7 +92,7 @@ class BaseSelector(ManagedWindow):
         self.tree.connect('key-press-event', self.searchbox.treeview_keypress)
 
         #add the search bar
-        self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
+        self.search_bar = SearchBar(dbstate, uistate, self.build_tree, apply_clear=self.apply_clear)
         filter_box = self.search_bar.build()
         self.setup_filter()
         vbox.pack_start(filter_box, False, False, 0)
@@ -347,6 +347,9 @@ class BaseSelector(ManagedWindow):
             if hasattr(self.model, 'destroy'):
                 self.model.destroy()
             self.model = None
+
+    def apply_clear(self):
+        self.showall.set_active(False)
 
     def _cleanup_on_exit(self):
         """Unset all things that can block garbage collection.
