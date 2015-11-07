@@ -34,7 +34,10 @@ _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
 class SidebarFilter(DbGUIElement):
-    _FILTER_WIDTH = 20
+    if Gtk.get_minor_version() > 17:
+        _FILTER_WIDTH = -1
+    else:
+        _FILTER_WIDTH = 20
     _FILTER_ELLIPSIZE = Pango.EllipsizeMode.END
 
     def __init__(self, dbstate, uistate, namespace):
