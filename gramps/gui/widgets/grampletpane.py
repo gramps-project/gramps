@@ -1142,7 +1142,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         if filename and os.path.exists(filename):
             cp = configparser.ConfigParser()
             try:
-                cp.read(filename)
+                cp.read(filename, encoding='utf-8')
             except Exception as err:
                 LOG.warning("Failed to load gramplets from %s because %s",
                             filename, str(err))
