@@ -733,7 +733,7 @@ class BasePage(object):
                 if note:
                     trow = Html("tr") + (
                     Html("td", "&nbsp;", class_ = "ColumnType", inline = True),
-                    Html("td", "Narrative", class_ = "ColumnAttribute", inline = True),
+                    Html("td", _("Narrative"), class_ = "ColumnAttribute", inline = True),
                     Html("td", self.get_note_format(note, True), class_ = "ColumnValue")
                     )
                     table = table + trow if table is not None else trow
