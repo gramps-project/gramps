@@ -199,6 +199,10 @@ def available_updates():
                 URL = ("%s/listings/addons-%s.txt" %
                        (config.get("behavior.addons-url"), lang[:2]))
                 fp = urlopen(URL, timeout=10, context=context)
+            except TypeError:
+                URL = ("%s/listings/addons-%s.txt" %
+                       (config.get("behavior.addons-url"), lang[:2]))
+                fp = urlopen(URL, timeout=10)
             except Exception as err: # some error
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
 						format(lang=lang, url=URL, err=err))
