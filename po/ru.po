@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-11-19 19:37+0900\n"
+"PO-Revision-Date: 2015-11-22 16:14+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1885,7 +1885,7 @@ msgstr "{long_month.f[Р]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
 msgid "estimated|{long_month} {year}"
-msgstr "{long_month.f[Р]} {year}"
+msgstr "{long_month.f[И]} {year}"
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
@@ -1894,7 +1894,7 @@ msgstr "{long_month.f[Р]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
 msgid "calculated|{long_month} {year}"
-msgstr "{long_month.f[Р]} {year}"
+msgstr "{long_month.f[И]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:232
 #, python-brace-format
@@ -1975,7 +1975,7 @@ msgstr "{short_month.f[Р]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
 msgid "estimated|{short_month} {year}"
-msgstr "{short_month.f[Р]} {year}"
+msgstr "{short_month.f[И]} {year}"
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1984,7 +1984,7 @@ msgstr "{short_month.f[Р]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
 msgid "calculated|{short_month} {year}"
-msgstr "{short_month.f[Р]} {year}"
+msgstr "{short_month.f[И]} {year}"
 
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2519,7 +2519,7 @@ msgstr "около "
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgid "date quality|estimated "
-msgstr "оцен "
+msgstr "прибл "
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgid "date quality|calculated "
@@ -6189,7 +6189,7 @@ msgstr "вычислено"
 
 #: ../gramps/gen/lib/date.py:1839
 msgid "estimated"
-msgstr "оценка"
+msgstr "приблизительно"
 
 #: ../gramps/gen/lib/date.py:1853 ../gramps/plugins/lib/libsubstkeyword.py:315
 msgid "about"
@@ -11648,7 +11648,7 @@ msgstr "Только текст"
 
 #: ../gramps/gui/editors/editdate.py:86
 msgid "Estimated"
-msgstr "Оценка"
+msgstr "Приблизетельно"
 
 # LDS
 #: ../gramps/gui/editors/editdate.py:87
