@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010       Serge Noiraud
+# Copyright (C) 2010,2015  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 #
@@ -530,6 +530,10 @@ def format_date(date):
         return val
     return ""
 
+def set_tar_file_time(tarinfo, date):
+    tarinfo.mtime = date
+    return tarinfo
+
 def copy_thumbnail(report, handle, photo, region=None):
     """
     Given a handle (and optional region) make (if needed) an
@@ -543,11 +547,12 @@ def copy_thumbnail(report, handle, photo, region=None):
         )
 
     if photo.get_mime_type():
-        from_path = get_thumbnail_path(media_path_full(
-                                                  report.database,
-                                                  photo.get_path()),
-                                                  photo.get_mime_type(),
-                                                  region)
+        full_path = media_path_full(report.database, photo.get_path())
+        from_path = get_thumbnail_path(full_path,
+                                       photo.get_mime_type(),
+                                       region)
+        mtime = os.stat(full_path).st_mtime
+        os.utime(from_path, (mtime, mtime))
         if not os.path.isfile(from_path):
             from_path = CSS["Document"]["filename"]
     else:
@@ -1575,7 +1580,7 @@ class BasePage(object):
             self.dump_attribute(attr) for attr in attrlist
         )
 
-    def write_footer(self):
+    def write_footer(self, date):
         """
         Will create and display the footer section of each page...
 
@@ -1604,6 +1609,10 @@ class BasePage(object):
                         'html_end' : '</a>' ,
                         'version' : VERSION ,
                         'date' : _dd.display(Today()) }
+            if date is not None:
+                msg += "<br />"
+                last_modif = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d %H:%M:%S')
+                msg += _('Last change was the %(date)s') % { 'date' : last_modif }
 
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
@@ -2833,7 +2842,7 @@ class BasePage(object):
     # ---------------------------------------------------------------------------------------
     #              # Web Page Fortmatter and writer
     # ---------------------------------------------------------------------------------------
-    def XHTMLWriter(self, htmlinstance, of, sio):
+    def XHTMLWriter(self, htmlinstance, of, sio, date):
         """
         Will format, write, and close the file
 
@@ -2845,7 +2854,7 @@ class BasePage(object):
         htmlinstance.write(partial(print, file=of))
 
         # closes the file
-        self.report.close_file(of, sio)
+        self.report.close_file(of, sio, date)
 
 #################################################
 #
@@ -2873,6 +2882,7 @@ class SurnamePage(BasePage):
         of, sio = self.report.create_file(name_to_md5(surname), "srn")
         self.up = True
         surnamepage, head, body = self.write_header("%s - %s" % (_("Surname"), surname))
+        ldatec = 0
 
         # begin SurnameDetail division
         with Html("div", class_ = "content", id = "SurnameDetail") as surnamedetail:
@@ -2920,6 +2930,7 @@ class SurnamePage(BasePage):
                 for person_handle in ppl_handle_list:
 
                     person = self.dbase_.get_person_from_handle(person_handle)
+                    if person.get_change_time() > ldatec: ldatec = person.get_change_time()
                     trow = Html("tr")
                     tbody += trow
 
@@ -3005,12 +3016,12 @@ class SurnamePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamepage, of, sio)
+        self.XHTMLWriter(surnamepage, of, sio, ldatec)
 
 #################################################
 #
@@ -3059,6 +3070,7 @@ class FamilyPages(BasePage):
 
         of, sio = self.report.create_file("families")
         familiesListPage, head, body = self.write_header(_("Families"))
+        ldatec = 0
 
         # begin Family Division
         with Html("div", class_ ="content", id ="Relationships") as relationlist:
@@ -3081,6 +3093,7 @@ class FamilyPages(BasePage):
             for family_handle in fam_list:
                 family = self.dbase_.get_family_from_handle(family_handle)
                 if family:
+                    if family.get_change_time() > ldatec: ldatec = family.get_change_time()
                     husband_handle = family.get_father_handle()
                     spouse_handle = family.get_mother_handle()
                     if husband_handle:
@@ -3202,12 +3215,13 @@ class FamilyPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        if ldatec == 0: date = None
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familiesListPage, of, sio)
+        self.XHTMLWriter(familiesListPage, of, sio, ldatec)
 
     def FamilyPage(self, report, title, family_handle):
         self.dbase_ = report.database
@@ -3215,6 +3229,7 @@ class FamilyPages(BasePage):
         if not family:
             return
         BasePage.__init__(self, report, title, family.get_gramps_id())
+        ldatec = family.get_change_time()
 
         self.bibli = Bibliography()
         self.up = True
@@ -3285,12 +3300,12 @@ class FamilyPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familydetailpage, of, sio)
+        self.XHTMLWriter(familydetailpage, of, sio, ldatec)
 
 ######################################################
 #                                                    #
@@ -3340,6 +3355,7 @@ class PlacePages(BasePage):
 
         of, sio = self.report.create_file("places")
         placelistpage, head, body = self.write_header(_("Places"))
+        ldatec = 0
 
         # begin places division
         with Html("div", class_ = "content", id = "Places") as placelist:
@@ -3391,6 +3407,7 @@ class PlacePages(BasePage):
                 for place_handle in handle_list:
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place:
+                        if place.get_change_time() > ldatec: ldatec = place.get_change_time()
                         place_title = _pd.display(self.dbase_, place)
                         ml = get_main_location(self.dbase_, place)
 
@@ -3442,12 +3459,12 @@ class PlacePages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placelistpage, of, sio)
+        self.XHTMLWriter(placelistpage, of, sio, ldatec)
 
     def PlacePage(self, report, title, place_handle):
         self.bibli = Bibliography()
@@ -3455,6 +3472,7 @@ class PlacePages(BasePage):
         place = self.dbase_.get_place_from_handle(place_handle)
         if not place:
             return None
+        ldatec = place.get_change_time()
         BasePage.__init__(self, report, title, place.get_gramps_id())
 
         of, sio = self.report.create_file(place_handle, "plc")
@@ -3563,12 +3581,12 @@ class PlacePages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(placepage, of, sio)
+        self.XHTMLWriter(placepage, of, sio, ldatec)
 
 #################################################
 #
@@ -3626,6 +3644,7 @@ class EventPages(BasePage):
         """
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
+        ldatec = 0
 
         of, sio = self.report.create_file("events")
         eventslistpage, head, body = self.write_header(_("Events"))
@@ -3683,6 +3702,7 @@ class EventPages(BasePage):
                         event = self.dbase_.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
+                        if event.get_change_time() > ldatec: ldatec = event.get_change_time()
 
                         # check to see if we have listed this gramps_id yet?
                         if gid not in _EVENT_DISPLAYED:
@@ -3763,12 +3783,13 @@ class EventPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        if ldatec == 0: ldatec = None
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page ut for processing
         # and close the file
-        self.XHTMLWriter(eventslistpage, of, sio)
+        self.XHTMLWriter(eventslistpage, of, sio, ldatec)
 
     def _getEventDate(self, event_handle):
         event_date = Date.EMPTY
@@ -3806,6 +3827,7 @@ class EventPages(BasePage):
         if not event:
             return None
 
+        ldatec = event.get_change_time()
         event_media_list = event.get_media_list()
         BasePage.__init__(self, report, title, event.get_gramps_id())
 
@@ -3889,12 +3911,12 @@ class EventPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the page
-        self.XHTMLWriter(eventpage, of, sio)
+        self.XHTMLWriter(eventpage, of, sio, ldatec)
 
 #################################################
 #
@@ -4023,12 +4045,12 @@ class SurnameListPage(BasePage):
 
         # create footer section
         # add clearline for proper styling
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamelistpage, of, sio)
+        self.XHTMLWriter(surnamelistpage, of, sio, None) # None => current date modification
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
@@ -4043,6 +4065,7 @@ class IntroductionPage(BasePage):
     def __init__(self, report, title):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
+        ldatec = None
 
         of, sio = self.report.create_file(report.intro_fname)
         intropage, head, body = self.write_header(_('Introduction'))
@@ -4063,19 +4086,23 @@ class IntroductionPage(BasePage):
                 # attach note
                 section += note_text
 
+                # last modification of this note
+                ldatec = note.get_change_time()
+
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(intropage, of, sio)
+        self.XHTMLWriter(intropage, of, sio, ldatec)
 
 class HomePage(BasePage):
     def __init__(self, report, title):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
+        ldatec = None
 
         of, sio = self.report.create_file("index")
         homepage, head, body = self.write_header(_('Home'))
@@ -4096,14 +4123,17 @@ class HomePage(BasePage):
                 # attach note
                 section += note_text
 
+                # last modification of this note
+                ldatec = note.get_change_time()
+
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(homepage, of, sio)
+        self.XHTMLWriter(homepage, of, sio, ldatec)
 
 #################################################
 #
@@ -4233,12 +4263,12 @@ class SourcePages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcelistpage, of, sio)
+        self.XHTMLWriter(sourcelistpage, of, sio, None)
 
     def SourcePage(self, report, title, source_handle):
         """
@@ -4264,6 +4294,7 @@ class SourcePages(BasePage):
         sourcepage, head, body = self.write_header("%s - %s" % (_('Sources'),
                                                    self.page_title))
 
+        ldatec = None
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as sourcedetail:
             body += sourcedetail
@@ -4287,6 +4318,9 @@ class SourcePages(BasePage):
                 source_gid = False
                 if not self.noid and self.gid:
                     source_gid = source.get_gramps_id()
+
+                    # last modification of this source
+                    ldatec = source.get_change_time()
 
                 for (label, value) in [
                     (_("Gramps ID"),               source_gid),
@@ -4329,12 +4363,12 @@ class SourcePages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcepage, of, sio)
+        self.XHTMLWriter(sourcepage, of, sio, ldatec)
 
 #################################################
 #
@@ -4400,6 +4434,7 @@ class MediaPages(BasePage):
         of, sio = self.report.create_file("media")
         medialistpage, head, body = self.write_header(_('Media'))
 
+        ldatec = 0
         # begin gallery division
         with Html("div", class_ = "content", id = "Gallery") as medialist:
             body += medialist
@@ -4442,6 +4477,7 @@ class MediaPages(BasePage):
                 for media_handle in sorted_media_handles:
                     media = self.dbase_.get_object_from_handle(media_handle)
                     if media:
+                        if media.get_change_time() > ldatec: ldatec = media.get_change_time()
                         title = media.get_description() or "[untitled]"
 
                         trow = Html("tr")
@@ -4461,12 +4497,13 @@ class MediaPages(BasePage):
 
         # add footer section
         # add clearline for proper styling
-        footer = self.write_footer()
+        if ldatec == 0: ldatec = None
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(medialistpage, of, sio)
+        self.XHTMLWriter(medialistpage, of, sio, ldatec)
 
     def media_ref_link(self, handle, name, up = False):
 
@@ -4499,6 +4536,7 @@ class MediaPages(BasePage):
 
         media = self.dbase_.get_object_from_handle(media_handle)
         BasePage.__init__(self, report, title, media.gramps_id)
+        ldatec = media.get_change_time()
 
         # get media rectangles
         _region_items = self.media_ref_rect_regions(media_handle)
@@ -4573,6 +4611,7 @@ class MediaPages(BasePage):
                             # have to await a large download unnecessarily. Either way, set
                             # the display image size as requested.
                             orig_image_path = media_path_full(self.dbase_, media.get_path())
+                            mtime = os.stat(orig_image_path).st_mtime
                             (width, height) = image_size(orig_image_path)
                             max_width = self.report.options['maxinitialimagewidth']
                             max_height = self.report.options['maxinitialimageheight']
@@ -4598,12 +4637,15 @@ class MediaPages(BasePage):
                                     filed, dest = tempfile.mkstemp()
                                     os.write(filed, initial_image_data)
                                     os.close(filed)
+                                    os.utime(dest, (mtime, mtime))
                                     self.report.archive.add(dest, initial_image_path)
                                     os.unlink(dest)
                                 else:
-                                    filed = open(os.path.join(self.html_dir, initial_image_path), 'wb')
+                                    file_path_init = os.path.join(self.html_dir, initial_image_path)
+                                    filed = open(file_path_init, 'wb')
                                     filed.write(initial_image_data)
                                     filed.close()
+                                    os.utime(file_path_init, (mtime, mtime))
                             else:
                                 # not worth actually making a smaller image
                                 initial_image_path = newpath
@@ -4732,12 +4774,12 @@ class MediaPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(mediapage, of, sio)
+        self.XHTMLWriter(mediapage, of, sio, ldatec)
 
     def media_nav_link(self, handle, name, up = False):
         """
@@ -4767,14 +4809,16 @@ class MediaPages(BasePage):
             _WRONGMEDIAPATH.append([ photo.get_gramps_id(), fullpath])
             return None
         try:
+            mtime = os.stat(fullpath).st_mtime
             if self.report.archive:
                 self.report.archive.add(fullpath, str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir, to_dir)
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
-                shutil.copyfile(fullpath,
-                                os.path.join(self.html_dir, newpath))
+                new_file = os.path.join(self.html_dir, newpath)
+                shutil.copyfile(fullpath, new_file)
+                os.utime(new_file, (mtime, mtime))
             return newpath
         except (IOError, OSError) as msg:
             error = _("Missing media object:") +                               \
@@ -4927,12 +4971,12 @@ class ThumbnailPreviewPage(BasePage):
 
         # add footer section
         # add clearline for proper styling
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(thumbnailpage, of, sio)
+        self.XHTMLWriter(thumbnailpage, of, sio, None)
 
 
     def thumbnail_link(self, name, index):
@@ -5078,12 +5122,12 @@ class DownloadPage(BasePage):
 
             # clear line for proper styling
             # create footer section
-            footer = self.write_footer()
+            footer = self.write_footer(None)
             body += (fullclear, footer)
 
             # send page out for processing
             # and close the file
-            self.XHTMLWriter(downloadpage, of, sio)
+            self.XHTMLWriter(downloadpage, of, sio, None)
 
 
 class ContactPage(BasePage):
@@ -5145,12 +5189,12 @@ class ContactPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for porcessing
         # and close the file
-        self.XHTMLWriter(contactpage, of, sio)
+        self.XHTMLWriter(contactpage, of, sio, None)
 
 #################################################
 #
@@ -5209,6 +5253,7 @@ class PersonPages(BasePage):
 
         of, sio = self.report.create_file("individuals")
         indlistpage, head, body = self.write_header(_("Individuals"))
+        date = 0
 
         # begin Individuals division
         with Html("div", class_ = "content", id = "Individuals") as individuallist:
@@ -5269,6 +5314,7 @@ class PersonPages(BasePage):
                 first_surname = True
                 for person_handle in handle_list:
                     person = self.dbase_.get_person_from_handle(person_handle)
+                    if person.get_change_time() > date: date = person.get_change_time()
 
                     # surname column
                     trow = Html("tr")
@@ -5392,12 +5438,13 @@ class PersonPages(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        if date == 0: date = None
+        footer = self.write_footer(date)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indlistpage, of, sio)
+        self.XHTMLWriter(indlistpage, of, sio, date)
 
 #################################################
 #
@@ -5419,6 +5466,8 @@ class PersonPages(BasePage):
         self.bibli = Bibliography()
         self.sort_name = self.get_name(person)
         self.name = self.get_name(person)
+
+        date = self.person.get_change_time()
 
         # to be used in the Family Map Pages...
         self.familymappages = self.report.options['familymappages']
@@ -5562,12 +5611,12 @@ class PersonPages(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(date)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(indivdetpage, of, sio)
+        self.XHTMLWriter(indivdetpage, of, sio, date)
 
     def __create_family_map(self, person, place_lat_long):
         """
@@ -5829,12 +5878,12 @@ class PersonPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familymappage, of, sio)
+        self.XHTMLWriter(familymappage, of, sio, None)
 
     def __display_family_map(self, person, place_lat_long):
         """
@@ -6605,6 +6654,7 @@ class RepositoryPages(BasePage):
         of, sio = self.report.create_file("repositories")
         repolistpage, head, body = self.write_header(_("Repositories"))
 
+        ldatec = 0
         # begin RepositoryList division
         with Html("div", class_ = "content", id = "RepositoryList") as repositorylist:
             body += repositorylist
@@ -6651,22 +6701,25 @@ class RepositoryPages(BasePage):
                     if repo.get_name():
                         trow += Html("td", self.repository_link(handle, repo.get_name(),
                                                                 repo.get_gramps_id(), self.up), class_ = "ColumnName")
+                        ldatec = repo.get_change_time()
                     else:
                         trow += Html("td", "[ untitled ]", class_ = "ColumnName")
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        if ldatec == 0: ldatec = None
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repolistpage, of, sio)
+        self.XHTMLWriter(repolistpage, of, sio, ldatec)
 
     def RepositoryPage(self, report, title, repo, handle):
         gid = repo.get_gramps_id()
         BasePage.__init__(self, report, title, gid)
         self.dbase_ = report.database
+        ldatec = repo.get_change_time()
 
         of, sio = self.report.create_file(handle, 'repo')
         self.up = True
@@ -6721,12 +6774,12 @@ class RepositoryPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(repositorypage, of, sio)
+        self.XHTMLWriter(repositorypage, of, sio, ldatec)
 
 class AddressBookListPage(BasePage):
     def __init__(self, report, title, has_url_addr_res):
@@ -6813,12 +6866,12 @@ class AddressBookListPage(BasePage):
                     index += 1
 
         # Add footer and clearline
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send the page out for processing
         # and close the file
-        self.XHTMLWriter(addressbooklistpage, of, sio)
+        self.XHTMLWriter(addressbooklistpage, of, sio, None)
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
@@ -6857,12 +6910,12 @@ class AddressBookPage(BasePage):
 
         # add fullclear for proper styling
         # and footer section to page
-        footer = self.write_footer()
+        footer = self.write_footer(None)
         body += (fullclear, footer)
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(addressbookpage, of, sio)
+        self.XHTMLWriter(addressbookpage, of, sio, None)
 
 class NavWebReport(Report):
 
@@ -7637,7 +7690,7 @@ class NavWebReport(Report):
                         self.write_gendex(gendex_io, person)
                     else:
                         self.write_gendex(fp_gendex, person)
-                self.close_file(fp_gendex, gendex_io)
+                self.close_file(fp_gendex, gendex_io, date)
 
     def write_gendex(self, fp, person):
         """
@@ -7914,7 +7967,7 @@ class NavWebReport(Report):
                       errors='xmlcharrefreplace')
         return (of, string_io)
 
-    def close_file(self, of, string_io):
+    def close_file(self, of, string_io, date):
         """
         will close any file passed to it
         """
@@ -7923,7 +7976,7 @@ class NavWebReport(Report):
             of.flush()
             tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(string_io.getvalue())
-            tarinfo.mtime = time.time()
+            tarinfo.mtime = date if date is not None else time.time()
             if not win():
                 tarinfo.uid = os.getuid()
                 tarinfo.gid = os.getgid()
@@ -7932,6 +7985,8 @@ class NavWebReport(Report):
             of.close()
         else:
             of.close()
+            if date is not None:
+                os.utime(of.name, (date, date))
 
     def prepare_copy_media(self, photo):
         """
@@ -7958,8 +8013,10 @@ class NavWebReport(Report):
         if self.usecms:
             to_dir = "/" + self.target_uri + "/" + to_dir
         # log.debug("copying '%s' to '%s/%s'" % (from_fname, to_dir, to_fname))
+        mtime = os.stat(from_fname).st_mtime
         if self.archive:
             dest = os.path.join(to_dir, to_fname)
+            os.utime(from_fname, (mtime, mtime))
             self.archive.add(from_fname, dest)
         else:
             dest = os.path.join(self.html_dir, to_dir, to_fname)
@@ -7971,6 +8028,7 @@ class NavWebReport(Report):
             if from_fname != dest:
                 try:
                     shutil.copyfile(from_fname, dest)
+                    os.utime(dest, (mtime, mtime))
                 except:
                     print("Copying error: %s" % sys.exc_info()[1])
                     print("Continuing...")
