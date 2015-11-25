@@ -168,7 +168,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         
         text = []
 
-        for sname in styles.get_cell_style_names():
+        for sname in sorted(styles.get_cell_style_names()):
             style = styles.get_cell_style(sname)
             pad = "%.3fcm"  % style.get_padding()
             top = bottom = left = right = 'none'
@@ -188,7 +188,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                        left, right))
 
 
-        for style_name in styles.get_paragraph_style_names():
+        for style_name in sorted(styles.get_paragraph_style_names()):
             style = styles.get_paragraph_style(style_name)
             font = style.get_font()
             font_size = font.get_size()
