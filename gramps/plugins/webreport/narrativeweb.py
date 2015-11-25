@@ -530,10 +530,6 @@ def format_date(date):
         return val
     return ""
 
-def set_tar_file_time(tarinfo, date):
-    tarinfo.mtime = date
-    return tarinfo
-
 def copy_thumbnail(report, handle, photo, region=None):
     """
     Given a handle (and optional region) make (if needed) an
