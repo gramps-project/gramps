@@ -507,7 +507,7 @@ class InteractiveSearchBox():
             # TODO: explicitely announce the data->sortkey func in models
             # sort_key = model.sort_func(text)
             sort_key = glocale.sort_key(text.lower())
-            srtkey_hndl = (sort_key, None)
+            srtkey_hndl = (sort_key, "")
             lo_bound = 0  # model.get_path(cur_iter)
             found_index = bisect.bisect_left(index2hndl, srtkey_hndl, lo=lo_bound)
             # if insert position is at tail, no match
