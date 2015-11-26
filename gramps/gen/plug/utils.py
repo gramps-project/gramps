@@ -173,8 +173,11 @@ class Zipfile(object):
         """
         return os.path.split(name)[1]
 
-def available_updates():
-    whattypes = config.get('behavior.check-for-update-types')
+def urlopen_maybe_no_check_cert(URL):
+    """
+    Similar to urllib.request.urlopen, but disables certificate
+    verification on Mac.
+    """
     context = None
     from urllib.request import urlopen
     if mac():
@@ -182,6 +185,16 @@ def available_updates():
         context = create_default_context()
         context.check_hostname = False
         context.verify_mode = CERT_NONE
+    timeout = 10 # seconds
+    fp = None
+    try:
+        fp = urlopen(URL, timeout=timeout, context=context)
+    except TypeError:
+        fp = urlopen(URL, timeout=timeout)
+    return fp
+
+def available_updates():
+    whattypes = config.get('behavior.check-for-update-types')
 
     LOG.debug("Checking for updated addons...")
     langs = glocale.get_language_list()
@@ -193,16 +206,12 @@ def available_updates():
                (config.get("behavior.addons-url"), lang))
         LOG.debug("   trying: %s" % URL)
         try:
-            fp = urlopen(URL, timeout=10, context=context) # seconds
+            fp = urlopen_maybe_no_check_cert(URL)
         except:
             try:
                 URL = ("%s/listings/addons-%s.txt" %
                        (config.get("behavior.addons-url"), lang[:2]))
-                fp = urlopen(URL, timeout=10, context=context)
-            except TypeError:
-                URL = ("%s/listings/addons-%s.txt" %
-                       (config.get("behavior.addons-url"), lang[:2]))
-                fp = urlopen(URL, timeout=10)
+                fp = urlopen_maybe_no_check_cert(URL)
             except Exception as err: # some error
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
 						format(lang=lang, url=URL, err=err))
@@ -277,7 +286,7 @@ def load_addon_file(path, callback=None):
         path.startswith("https://") or
         path.startswith("ftp://")):
         try:
-            fp = urlopen(path)
+            fp = urlopen_maybe_no_check_cert(path)
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)
