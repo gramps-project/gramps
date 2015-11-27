@@ -2387,7 +2387,9 @@ class BasePage(object):
                                 if mime_type:
                                     if mime_type.startswith("image/"):
                                         real_path, newpath = self.report.prepare_copy_media(media)
-                                        newpath = self.report.build_url_fname(newpath, up = self.up)
+                                        newpath = self.report.build_url_fname(newpath)
+                                        self.report.copy_file(media_path_full(
+                                            self.report.database, media.get_path()), newpath)
 
                                         tmp += Html("li",
                                                 self.media_link(media_handle, newpath, media.get_description(),
@@ -7369,9 +7371,14 @@ class NavWebReport(Report):
                     self._add_citation(citation_handle, Person, person_handle)
 
             ############### Attribute section ##############
-            for attr in person.get_lds_ord_list():
+            for attr in person.get_attribute_list():
                 for citation_handle in attr.get_citation_list():
                     self._add_citation(citation_handle, Person, person_handle)
+
+            ############### Address section ##############
+            for addr in person.get_address_list():
+                for addr_handle in addr.get_citation_list():
+                    self._add_citation(addr_handle, Person, person_handle)
 
             ############### Media section ##############
             # Now tell the Media tab which media objects to display
