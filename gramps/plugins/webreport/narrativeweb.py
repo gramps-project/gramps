@@ -4622,32 +4622,9 @@ class MediaPages(BasePage):
                             scale = min(scale_w, scale_h, 1.0)
                             new_width = int(width*scale)
                             new_height = int(height*scale)
-                            if scale < 0.8:
-                                # scale factor is significant enough to warrant making a smaller image
-                                initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
-                                size = [new_width, new_height]
-                                initial_image_data = resize_to_jpeg_buffer(orig_image_path, size)
-                                new_width = size[0] # In case it changed because of keeping the ratio
-                                new_height = size[1]
-                                if self.report.archive:
-                                    filed, dest = tempfile.mkstemp()
-                                    os.write(filed, initial_image_data)
-                                    os.close(filed)
-                                    os.utime(dest, (mtime, mtime))
-                                    self.report.archive.add(dest, initial_image_path)
-                                    os.unlink(dest)
-                                else:
-                                    file_path_init = os.path.join(self.html_dir, initial_image_path)
-                                    filed = open(file_path_init, 'wb')
-                                    filed.write(initial_image_data)
-                                    filed.close()
-                                    os.utime(file_path_init, (mtime, mtime))
-                            else:
-                                # not worth actually making a smaller image
-                                initial_image_path = newpath
 
                             # TODO. Convert disk path to URL.
-                            url = self.report.build_url_fname(initial_image_path, None, self.up)
+                            url = self.report.build_url_fname(orig_image_path, None, self.up)
                             with Html("div", id="GalleryDisplay", style = 'width: %dpx; height: %dpx' % (new_width, 
                                 new_height)) as mediadisplay:
                                 summaryarea += mediadisplay
@@ -4666,7 +4643,7 @@ class MediaPages(BasePage):
                                         )       
 
                                 # display the image
-                                if initial_image_path != newpath:
+                                if orig_image_path != newpath:
                                     url = self.report.build_url_fname(newpath, 
                                                 None, self.up)
                                 mediadisplay += Html("a", href = url) + (
