@@ -3211,7 +3211,6 @@ class FamilyPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        if ldatec == 0: date = None
         footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
@@ -3779,7 +3778,6 @@ class EventPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        if ldatec == 0: ldatec = None
         footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
@@ -4046,7 +4044,7 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(surnamelistpage, of, sio, None) # None => current date modification
+        self.XHTMLWriter(surnamelistpage, of, sio, 0) # 0 => current date modification
 
     def surname_link(self, fname, name, opt_val = None, up = False):
         url = self.report.build_url_fname_html(fname, "srn", up)
@@ -4061,7 +4059,7 @@ class IntroductionPage(BasePage):
     def __init__(self, report, title):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
-        ldatec = None
+        ldatec = 0
 
         of, sio = self.report.create_file(report.intro_fname)
         intropage, head, body = self.write_header(_('Introduction'))
@@ -4098,7 +4096,7 @@ class HomePage(BasePage):
     def __init__(self, report, title):
         self.dbase_ = report.database
         BasePage.__init__(self, report, title)
-        ldatec = None
+        ldatec = 0
 
         of, sio = self.report.create_file("index")
         homepage, head, body = self.write_header(_('Home'))
@@ -4264,7 +4262,7 @@ class SourcePages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(sourcelistpage, of, sio, None)
+        self.XHTMLWriter(sourcelistpage, of, sio, 0)
 
     def SourcePage(self, report, title, source_handle):
         """
@@ -4290,7 +4288,7 @@ class SourcePages(BasePage):
         sourcepage, head, body = self.write_header("%s - %s" % (_('Sources'), 
                                                    self.page_title))
 
-        ldatec = None
+        ldatec = 0
         # begin source detail division
         with Html("div", class_ = "content", id = "SourceDetail") as sourcedetail:
             body += sourcedetail
@@ -4493,7 +4491,6 @@ class MediaPages(BasePage):
 
         # add footer section
         # add clearline for proper styling
-        if ldatec == 0: ldatec = None
         footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
@@ -4949,7 +4946,7 @@ class ThumbnailPreviewPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(thumbnailpage, of, sio, None)
+        self.XHTMLWriter(thumbnailpage, of, sio, 0)
 
     def thumbnail_link(self, name, index):
         """
@@ -5099,7 +5096,7 @@ class DownloadPage(BasePage):
 
             # send page out for processing
             # and close the file
-            self.XHTMLWriter(downloadpage, of, sio, None)
+            self.XHTMLWriter(downloadpage, of, sio, 0)
 
 class ContactPage(BasePage):
     def __init__(self, report, title):
@@ -5165,7 +5162,7 @@ class ContactPage(BasePage):
 
         # send page out for porcessing
         # and close the file
-        self.XHTMLWriter(contactpage, of, sio, None)
+        self.XHTMLWriter(contactpage, of, sio, 0)
 
 #################################################
 #
@@ -5409,7 +5406,6 @@ class PersonPages(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        if date == 0: date = None
         footer = self.write_footer(date)
         body += (fullclear, footer)
 
@@ -5848,7 +5844,7 @@ class PersonPages(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(familymappage, of, sio, None)
+        self.XHTMLWriter(familymappage, of, sio, 0)
 
     def __display_family_map(self, person, place_lat_long):
         """
@@ -6672,7 +6668,6 @@ class RepositoryPages(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        if ldatec == 0: ldatec = None
         footer = self.write_footer(ldatec)
         body += (fullclear, footer)
 
@@ -6836,7 +6831,7 @@ class AddressBookListPage(BasePage):
 
         # send the page out for processing
         # and close the file
-        self.XHTMLWriter(addressbooklistpage, of, sio, None)
+        self.XHTMLWriter(addressbooklistpage, of, sio, 0)
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
@@ -6880,7 +6875,7 @@ class AddressBookPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.XHTMLWriter(addressbookpage, of, sio, None)
+        self.XHTMLWriter(addressbookpage, of, sio, 0)
 
 class NavWebReport(Report):
     
@@ -7934,7 +7929,7 @@ class NavWebReport(Report):
             of.close()
         else:
             of.close()
-            if date is not None:
+            if date > 0:
                 os.utime(of.name, (date, date))
 
     def prepare_copy_media(self, photo):

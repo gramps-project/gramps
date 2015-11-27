@@ -281,7 +281,7 @@ class Html(list):
 #       Keywords we don't recognize are saved for later 
 #       addition to the opening tag as attributes.
 #
-        for keyw, arg in keywargs.items():
+        for keyw, arg in sorted(keywargs.items()):
             if (keyw in ['indent', 'close', 'inline'] and
                arg in [True, False, None]):
                 setattr(self, keyw, arg)
