@@ -4805,8 +4805,6 @@ class ThumbnailPreviewPage(BasePage):
 
         self.photo_keys = sorted(self.report.obj_dict[MediaObject],
                                  key=lambda x: SORT_KEY(self.dbase_.get_object_from_handle(x).desc))
-        if not self.photo_keys:
-            return
 
         media_list = []
         for person_handle in self.photo_keys:
@@ -4818,8 +4816,6 @@ class ThumbnailPreviewPage(BasePage):
                     if self.create_thumbs_only:
                         copy_thumbnail(self.report, person_handle, photo)
 
-        if not media_list:
-            return
         media_list.sort(key=lambda x: SORT_KEY(x[0]))
 
         # Create thumbnail preview page...
