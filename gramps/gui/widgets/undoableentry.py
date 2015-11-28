@@ -68,7 +68,7 @@ class UndoableInsertEntry(object):
 class UndoableDeleteEntry(object):
     """something that has been deleted from our textbuffer"""
     def __init__(self, editable, start, end):
-        self.text = editable.get_chars(start, end).encode('utf-8')
+        self.text = editable.get_chars(start, end)
         self.start = start
         self.end = end
         # need to find out if backspace or delete key has been used
