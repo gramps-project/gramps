@@ -132,7 +132,6 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import conv_to_unicode, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as place_displayer
 

@@ -59,7 +59,6 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.location import located_in
 from gramps.gen.lib.eventroletype import EventRoleType
-from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.libformatting import ImportInfo

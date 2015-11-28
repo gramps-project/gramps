@@ -49,7 +49,6 @@ from gi.repository import GLib
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from gramps.gen.constfunc import win, conv_to_unicode
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,

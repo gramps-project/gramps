@@ -51,7 +51,7 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.constfunc import conv_to_unicode, handle2internal, win
+from gramps.gen.constfunc import handle2internal
 from gramps.gen.db.dbconst import *
 from . import BSDDBTxn
 from gramps.gen.errors import DbError

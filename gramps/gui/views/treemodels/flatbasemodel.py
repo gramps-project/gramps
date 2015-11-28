@@ -71,7 +71,6 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
-from gramps.gen.constfunc import conv_to_unicode, handle2internal
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .basemodel import BaseModel
 

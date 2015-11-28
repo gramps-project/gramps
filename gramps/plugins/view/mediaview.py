@@ -51,7 +51,6 @@ from gi.repository import Gtk
 from gramps.gui.utils import open_file_with_default_application
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import MediaModel
-from gramps.gen.constfunc import win, conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
                                    create_checksum)

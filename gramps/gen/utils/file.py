@@ -41,7 +41,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import win, mac, conv_to_unicode, get_env_var
+from ..constfunc import win, mac, get_env_var
 from ..const import TEMP_DIR, USER_HOME, ENV, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
