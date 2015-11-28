@@ -677,7 +677,7 @@ class CheckIntegrity(object):
                 logging.warning('        FAIL: references to missing file kept')
 
             def fs_ok_clicked(obj):
-                name = conv_to_unicode(fs_top.get_filename())
+                name = fs_top.get_filename()
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)

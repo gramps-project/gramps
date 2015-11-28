@@ -59,7 +59,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
-from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
+from gramps.gen.constfunc import get_curr_dir
 
 #-------------------------------------------------------------------------
 #
@@ -403,7 +403,7 @@ class DisplayChart(ManagedWindow):
         f.hide()
 
         if status == Gtk.ResponseType.OK:
-            name = conv_to_unicode(f.get_filename())
+            name = f.get_filename()
             doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
 

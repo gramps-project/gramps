@@ -60,7 +60,6 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
-from gramps.gen.constfunc import conv_to_unicode
 
 import gi
 gi.require_version('OsmGpsMap', '1.0')
@@ -945,7 +944,7 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         status = kml.run()
         if status == Gtk.ResponseType.OK:
-            val = conv_to_unicode(kml.get_filename())
+            val = kml.get_filename()
             if val:
                 kmlfile = Kml(val)
                 points = kmlfile.add_points()
@@ -1184,7 +1183,7 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         status = f.run()
         if status == Gtk.ResponseType.OK:
-            val = conv_to_unicode(f.get_filename())
+            val = f.get_filename()
             if val:
                 self.path_entry.set_text(val)
         f.destroy()

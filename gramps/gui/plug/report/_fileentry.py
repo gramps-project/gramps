@@ -77,7 +77,7 @@ class FileEntry(Gtk.Box):
         dialog.present()
         status = dialog.run()
         if status == Gtk.ResponseType.OK:
-            self.set_filename(conv_to_unicode(dialog.get_filename()))
+            self.set_filename(dialog.get_filename())
         dialog.destroy()
 
     def set_filename(self, path):

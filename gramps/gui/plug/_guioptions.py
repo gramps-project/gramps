@@ -59,7 +59,7 @@ from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
-from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
+from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -1714,7 +1714,7 @@ class GuiDestinationOption(Gtk.Box):
 
         status = fcd.run()
         if status == Gtk.ResponseType.OK:
-            path = conv_to_unicode(fcd.get_filename())
+            path = fcd.get_filename()
             if path:
                 if not self.__option.get_directory_entry() and \
                    not path.endswith(self.__option.get_extension()):

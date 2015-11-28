@@ -1466,7 +1466,7 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == Gtk.ResponseType.OK:
-            val = conv_to_unicode(f.get_filename())
+            val = f.get_filename()
             if val:
                 self.path_entry.set_text(val)
         f.destroy()

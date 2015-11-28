@@ -64,7 +64,6 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
                                       PythonDowngradeError)
-from gramps.gen.constfunc import conv_to_unicode
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2,
                             WarningDialog)
@@ -171,7 +170,7 @@ class DbLoader(CLIDbLoader):
             if response == Gtk.ResponseType.CANCEL:
                 break
             elif response == Gtk.ResponseType.OK:
-                filename = conv_to_unicode(import_dialog.get_filename())
+                filename = import_dialog.get_filename()
                 if self.check_errors(filename):
                     # displays errors if any
                     continue

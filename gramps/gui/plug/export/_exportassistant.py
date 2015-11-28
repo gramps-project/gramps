@@ -57,7 +57,6 @@ from gi.repository import GdkPixbuf
 
 from gramps.gen.const import USER_HOME, ICON, SPLASH, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
 from ...pluginmanager import GuiPluginManager
 from gramps.gen.utils.file import (find_folder, get_new_filename)
@@ -314,11 +313,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         Used as normal callback and event callback. For callback, we will have
         show=True
         """
-        filename = conv_to_unicode(filechooser.get_filename())
+        filename = filechooser.get_filename()
         if not filename:
             self.set_page_complete(filechooser, False)
         else:
-            folder = conv_to_unicode(filechooser.get_current_folder())
+            folder = filechooser.get_current_folder()
             if not folder:
                 folder = find_folder(filename)
             else:
@@ -452,7 +451,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                 #Allow for exotic error: file is still not correct
                 self.check_fileselect(self.chooser, show=False)
                 if self.get_page_complete(self.chooser) :
-                    filename = conv_to_unicode(self.chooser.get_filename())
+                    filename = self.chooser.get_filename()
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]
                     confirm_text = _(
@@ -585,7 +584,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                 hasattr(self.option_box_instance, "no_fileselect")):
                 filename = ""
             else:
-                filename = conv_to_unicode(self.chooser.get_filename())
+                filename = self.chooser.get_filename()
                 config.set('paths.recent-export-dir', os.path.split(filename)[0])
             ix = self.get_selected_format_index()
             config.set('behavior.recent-export-type', ix)
