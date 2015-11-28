@@ -48,17 +48,14 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.constfunc import conv_to_unicode
 from .undoablebuffer import Stack
 
 class UndoableInsertEntry(object):
     """something that has been inserted into our Gtk.editable"""
     def __init__(self, text, length, position, editable):
         self.offset = position
-        self.text = str(text)
+        self.text = text
         #unicode char can have length > 1 as it points in the buffer
-        if not isinstance(text, str):
-            text = conv_to_unicode(text, 'utf-8')
         charlength = len(text)
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
@@ -284,8 +281,6 @@ class UndoableEntry(Gtk.Entry):
         self.set_position(undo_action.offset)
 
     def _undo_delete(self, undo_action):
-        if not isinstance(undo_action.text, str):
-            undo_action.text = conv_to_unicode(undo_action.text, 'utf-8')
         with warnings.catch_warnings():
             warnings.simplefilter('ignore')
             self.insert_text(undo_action.text, undo_action.start)
