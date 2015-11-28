@@ -40,7 +40,7 @@ import uuid
 #
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
-from .constfunc import get_env_var, conv_to_unicode
+from .constfunc import get_env_var
 #-------------------------------------------------------------------------
 #
 # Gramps Version
@@ -126,8 +126,7 @@ USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
 # above this one, and that the plugins directory is below the root directory.
 #
 #-------------------------------------------------------------------------
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-    conv_to_unicode(__file__)), os.pardir))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 sys.path.insert(0, ROOT_DIR)
 git_revision = get_git_revision(ROOT_DIR)
