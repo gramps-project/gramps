@@ -1,7 +1,7 @@
 # French translation for Gramps
 # $Id$
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2001-2014 Free Software Foundation, Inc.
+# Copyright (C) 2001-2015 Free Software Foundation, Inc.
 #
 # Quelques variables pour la cohérence:
 #  ancestor : ascendant
@@ -20,11 +20,11 @@
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
 # Frederic Chateaux, 2007-2008.
-# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2014.
+# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2015.
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.1.0\n"
+"Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-01 16:03+0200\n"
 "PO-Revision-Date: 2015-06-01 16:25+0100\n"
@@ -471,7 +471,7 @@ msgstr "Arbre familial « %s » :"
 #: ../gramps/cli/arghandler.py:418
 #, python-format
 msgid "   %(item)s: %(summary)s"
-msgstr "   %(item)s: %(summary)s"
+msgstr "   %(item)s : %(summary)s"
 
 # master
 #. translators: ignore unless your quotation marks differ
@@ -480,7 +480,7 @@ msgstr "   %(item)s: %(summary)s"
 #: ../gramps/gen/plug/report/endnotes.py:199
 #, python-format
 msgid "\"%s\""
-msgstr ""
+msgstr "« %s »"
 
 #: ../gramps/cli/arghandler.py:450
 #, python-format
@@ -34153,6 +34153,15 @@ msgstr "Au moins une règle doit correspondre"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Une seule règle doit correspondre"
+
+#. 9041 fake entries for matching some _DATAMAP strings on reports
+#: ../gramps/gen/utils/grampslocale.py:898
+msgid "Father Age"
+msgstr "Âge du mari / compagnon"
+
+#: ../gramps/gen/utils/grampslocale.py:898
+msgid "Mother Age"
+msgstr "Âge de la femme / compagne"
 
 #~ msgid "Automatic"
 #~ msgstr "Automatique"
