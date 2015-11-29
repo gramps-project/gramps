@@ -307,6 +307,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_media_ref_list(family)
         self.process_attributes(family)
         self.process_lds_ords(family)
+        self.process_tags(family)
 
     def process_event(self, event):
         """
@@ -326,6 +327,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             place = self.db.get_place_from_handle(place_handle)
             if place:
                 self.process_place(place)
+
+        self.process_tags(event)
     
     def process_place(self, place):
         """
@@ -345,6 +348,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             if place:
                 self.process_place(place)
 
+        self.process_tags(place)
+
     def process_source(self, source):
         """
         Follow the source object and find all of the primary objects
@@ -362,6 +367,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                     self.process_repository(repo)
         self.process_media_ref_list(source)
         self.process_notes(source)
+        self.process_tags(source)
 
     def process_citation(self, citation):
         """
@@ -378,6 +384,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 self.process_source(source)
         self.process_media_ref_list(citation)
         self.process_notes(citation)
+        self.process_tags(citation)
 
     def process_repository(self, repository):
         """
@@ -390,6 +397,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_notes(repository)
         self.process_addresses(repository)
         self.process_urls(repository)
+        self.process_tags(repository)
 
     def process_media(self, media):
         """
@@ -402,6 +410,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         self.process_citation_ref_list(media)
         self.process_attributes(media)
         self.process_notes(media)
+        self.process_tags(media)
 
     def process_note(self, note):
         """
@@ -419,6 +428,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                         obj_class = "MediaObject"
                     if prop == "handle":
                         self.queue_object(obj_class, value)
+        self.process_tags(note)
 
     def process_notes(self, original_obj):
         """ Find all of the primary objects referred to """
