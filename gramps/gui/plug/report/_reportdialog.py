@@ -61,7 +61,6 @@ from ...managedwindow import ManagedWindow
 from ._stylecombobox import StyleComboBox
 from ._styleeditor import StyleListDisplay
 from ._fileentry import FileEntry
-from gramps.gen.constfunc import conv_to_unicode
 #-------------------------------------------------------------------------
 #
 # Private Constants
@@ -483,7 +482,7 @@ class ReportDialog(ManagedWindow):
         to tell the calling routine to give up.  This function also
         saves the current directory so that any future reports will
         default to the most recently used directory."""
-        self.target_path = conv_to_unicode(self.target_fileentry.get_full_path(0))
+        self.target_path = self.target_fileentry.get_full_path(0)
         if not self.target_path:
             return None
 

@@ -58,7 +58,6 @@ from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
-from gramps.gen.constfunc import conv_to_unicode
 from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -236,7 +235,7 @@ class ConfigureDialog(ManagedWindow):
                         obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
 
-        self.__config.set(constant, unicode(obj.get_text()))
+        self.__config.set(constant, obj.get_text())
 
     def update_entry(self, obj, constant):
         """
@@ -244,7 +243,7 @@ class ConfigureDialog(ManagedWindow):
         :param constant: the config setting to which the text value must be
             saved
         """
-        self.__config.set(constant, conv_to_unicode(obj.get_text()))
+        self.__config.set(constant, obj.get_text())
 
     def update_color(self, obj, constant, color_hex_label):
         rgba = obj.get_rgba()
@@ -1472,7 +1471,7 @@ class GrampsPreferences(ConfigureDialog):
         f.destroy()
 
     def set_dbpath(self, *obj):
-        path = conv_to_unicode(self.dbpath_entry.get_text().strip())
+        path = self.dbpath_entry.get_text().strip()
         config.set('behavior.database-path', path)
 
     def select_dbpath(self, *obj):
@@ -1491,13 +1490,13 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == Gtk.ResponseType.OK:
-            val =  conv_to_unicode(f.get_filename())
+            val = f.get_filename()
             if val:
                 self.dbpath_entry.set_text(val)
         f.destroy()
 
     def update_idformat_entry(self, obj, constant):
-        config.set(constant, conv_to_unicode(obj.get_text()))
+        config.set(constant, obj.get_text())
         self.dbstate.db.set_prefixes(
             config.get('preferences.iprefix'),
             config.get('preferences.oprefix'),

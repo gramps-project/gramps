@@ -44,7 +44,7 @@ from urllib.parse import urlparse
 import logging
 LOG = logging.getLogger(".DbManager")
 
-from gramps.gen.constfunc import win, conv_to_unicode
+from gramps.gen.constfunc import win
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -282,7 +282,7 @@ class DbManager(CLIDbManager):
                 self.rcs.set_sensitive(False)
 
         if store.get_value(node, ICON_COL) == 'dialog-error':
-            path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
+            path = store.get_value(node, PATH_COL)
             backup = os.path.join(path, "person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
         else:
@@ -399,7 +399,7 @@ class DbManager(CLIDbManager):
                     self.top.destroy()
                     del self.selection
                     del self.name_renderer
-                    path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
+                    path = store.get_value(node, PATH_COL)
                     return (path, store.get_value(node, NAME_COL))
             else:
                 self.top.destroy()
@@ -434,7 +434,7 @@ class DbManager(CLIDbManager):
         try:
             self.break_lock(self.lock_file)
             store, node = self.selection.get_selected()
-            dbpath = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
+            dbpath = store.get_value(node, PATH_COL)
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
             store.set_value(node, ICON_COL, "")
@@ -472,7 +472,6 @@ class DbManager(CLIDbManager):
         #path is a string, convert to TreePath first
         path = Gtk.TreePath(path=path)
         if len(new_text) > 0:
-            new_text = conv_to_unicode(new_text, 'utf8')
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
             if not old_text.strip() == new_text.strip():
@@ -622,13 +621,13 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         path = store.get_path(node)
         node = self.model.get_iter(path)
-        filename = conv_to_unicode(self.model.get_value(node, FILE_COL), 'utf8')
+        filename = self.model.get_value(node, FILE_COL)
         try:
             name_file = open(filename, "r")
             file_name_to_delete=name_file.read()
             name_file.close()
             remove_filename(file_name_to_delete)
-            directory = conv_to_unicode(self.data_to_delete[1], 'utf8')
+            directory = self.data_to_delete[1]
             for (top, dirs, files) in os.walk(directory):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))
@@ -804,8 +803,7 @@ class DbManager(CLIDbManager):
         """
         Create a new database, append to model
         """
-        new_path, title = self.create_new_db_cli(conv_to_unicode(title, 'utf8'),
-                                                 create_db, dbid)
+        new_path, title = self.create_new_db_cli(title, create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name,

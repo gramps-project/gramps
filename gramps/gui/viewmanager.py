@@ -77,7 +77,7 @@ from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE,
                               URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING,
                               WIKI_EXTRAPLUGINS, URL_BUGHOME)
-from gramps.gen.constfunc import is_quartz, conv_to_unicode
+from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
@@ -1095,7 +1095,6 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
-            filename = conv_to_unicode(filename)
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1295,10 +1294,9 @@ class ViewManager(CLIManager):
         window.hide()
         if d == Gtk.ResponseType.APPLY:
             # if file exists, ask if overwrite; else abort
-            basefile = conv_to_unicode(file_entry.get_text())
+            basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
-            filename = os.path.join(conv_to_unicode(path_entry.get_text()),
-                                    basefile)
+            filename = os.path.join(path_entry.get_text(), basefile)
             if os.path.exists(filename):
                 question = QuestionDialog2(
                         _("Backup file already exists! Overwrite?"),

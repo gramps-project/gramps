@@ -48,7 +48,6 @@ from .surnamemodel import SurnameModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
-from gramps.gen.constfunc import conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -176,10 +175,10 @@ class SurnameTab(EmbeddedList):
         for idx in range(len(self.model)):
             node = self.model.get_iter(idx)
             surn = self.model.get_value(node, 5)
-            surn.set_prefix(conv_to_unicode(self.model.get_value(node, 0), 'UTF-8'))
-            surn.set_surname(conv_to_unicode(self.model.get_value(node, 1), 'UTF-8'))
-            surn.set_connector(conv_to_unicode(self.model.get_value(node, 2), 'UTF-8'))
-            surn.get_origintype().set(conv_to_unicode(self.model.get_value(node, 3), 'UTF-8'))
+            surn.set_prefix(self.model.get_value(node, 0))
+            surn.set_surname(self.model.get_value(node, 1))
+            surn.set_connector(self.model.get_value(node, 2))
+            surn.get_origintype().set(self.model.get_value(node, 3))
             surn.set_primary(self.model.get_value(node, 4))
             new_list += [surn]
         return new_list

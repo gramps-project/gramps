@@ -23,7 +23,7 @@
 import os
 from gi.repository import Gtk
 from gi.repository import GObject
-from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
+from gramps.gen.constfunc import get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -65,7 +65,7 @@ class FileEntry(Gtk.Box):
                                                 _('_Open'),
                                                 Gtk.ResponseType.OK))
 
-        name = os.path.basename(conv_to_unicode(self.entry.get_text()))
+        name = os.path.basename(self.entry.get_text())
         if self.dir:
             if os.path.isdir(name):
                 dialog.set_current_name(name)
