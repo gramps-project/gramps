@@ -24,7 +24,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.2.0\n"
+"Project-Id-Version: 4.2.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-29 10:24+0100\n"
 "PO-Revision-Date: 2015-11-29 10:36+0100\n"
@@ -1044,7 +1044,7 @@ msgstr "   %(item)s : %(summary)s"
 #: ../gramps/gen/plug/report/endnotes.py:199
 #, python-format
 msgid "\"%s\""
-msgstr "«%s»"
+msgstr "« %s »"
 
 #: ../gramps/cli/arghandler.py:450
 #, python-format
