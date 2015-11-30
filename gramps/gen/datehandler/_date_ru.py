@@ -130,10 +130,31 @@ class DateDisplayRU(DateDisplay):
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
             return "{day:d} {long_month.f[Р]} {year}".format(
                      day = date_val[0],
                      long_month = long_months[date_val[1]],
+                     year = year)
+
+    def dd_dformat05(self, date_val, inflect, short_months):
+        """
+        day month_abbreviation year -- for Russian locale
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_short_month_year(date_val[1], year,
+                                                    inflect, short_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
+        else:
+            return "{day:d} {short_month.f[Р]} {year}".format(
+                     day = date_val[0],
+                     short_month = short_months[date_val[1]],
                      year = year)
 
 #-------------------------------------------------------------------------

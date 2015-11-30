@@ -66,14 +66,28 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
         self.assertIn(month_lexeme.f[inflection], 
                 self.dd.display(date))
 
-    def test_month_only_date_nominative(self):
-        for qual in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
-            d1945may = Date(1945, 5, 0)
-            d1945may.set_quality(qual)
-            self.assertInflectionInDate('И', d1945may)
+    def test_month_only_date_nominative_quality_none(self):
+        d1945may = Date(1945, 5, 0)
+        d1945may.set_quality(Date.QUAL_NONE)
+        self.assertInflectionInDate('И', d1945may)
+
+    def test_month_only_date_nominative_quality_estimated(self):
+        d1945may = Date(1945, 5, 0)
+        d1945may.set_quality(Date.QUAL_ESTIMATED)
+        self.assertInflectionInDate('Т', d1945may)
+
+    def test_month_only_date_nominative_quality_calculated(self):
+        d1945may = Date(1945, 5, 0)
+        d1945may.set_quality(Date.QUAL_CALCULATED)
+        self.assertInflectionInDate('И', d1945may)
 
     def test_day_month_date_genitive(self):
         d1945may9 = Date(1945, 5, 9)
+        self.assertInflectionInDate('Р', d1945may9)
+
+    def test_day_month_date_genitiive_quality_estimated(self):
+        d1945may9 = Date(1945, 5, 9)
+        d1945may9.set_quality(Date.QUAL_ESTIMATED)
         self.assertInflectionInDate('Р', d1945may9)
 
     def test_before_month_only_date_genitive(self):
@@ -86,6 +100,26 @@ class DateDisplayInflectionsTestRU(DateDisplayTest):
 # will be the same!
             self.assertIn("до мая", self.dd.display(d1945may))
             
+    def test_after_month_only_date_genitive(self):
+        d1945may = Date(1945, 5, 0)
+        d1945may.set_modifier(Date.MOD_AFTER)
+        # TODO hardwired magic numbers! Bad API smell.
+        for inflecting_format in (3,4):
+            self.dd.set_format(inflecting_format)
+# this depends on the fact that in Russian the short and long forms for May
+# will be the same!
+            self.assertIn("после мая", self.dd.display(d1945may))
+
+    def test_about_month_only_date_genitive(self):
+        d1945may = Date(1945, 5, 0)
+        d1945may.set_modifier(Date.MOD_ABOUT)
+        # TODO hardwired magic numbers! Bad API smell.
+        for inflecting_format in (3,4):
+            self.dd.set_format(inflecting_format)
+# this depends on the fact that in Russian the short and long forms for May
+# will be the same!
+            self.assertIn("около мая", self.dd.display(d1945may))
+
     def test_between_month_only_dates_ablative(self):
         b1945may_1946may = Date()
         b1945may_1946may.set(
