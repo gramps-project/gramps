@@ -190,26 +190,8 @@ class IndivCompleteReport(Report):
             self.doc.end_superscript()
         self.doc.end_paragraph()
         
-        attr_list = event.get_attribute_list()
-        if len(attr_list):
-            for attr in attr_list:
-                attr_type = self._get_type(attr.get_type())
-                # translators: needed for French, ignore otherwise
-                text = self._("%(type)s: %(value)s") % {
-                                    'type'  : self._(attr_type),
-                                    'value' : attr.get_value() }
-                endnotes = self._cite_endnote(attr)
-                self.write_paragraph(text, endnotes)
-
-        attr_list = event_ref.get_attribute_list()
-        if len(attr_list):
-            for attr in attr_list:
-                # translators: needed for French, ignore otherwise
-                text = self._("%(type)s: %(value)s") % {
-                                    'type'  : self._(str(attr.get_type())),
-                                    'value' : attr.get_value() }
-                endnotes = self._cite_endnote(attr)
-                self.write_paragraph(text, endnotes)
+        self.do_attributes(event.get_attribute_list() +
+                           event_ref.get_attribute_list() )
 
         for notehandle in event.get_note_list():
             note = self._db.get_note_from_handle(notehandle)
@@ -413,7 +395,7 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
         
         for attr in attr_list:
-            attr_type = self._get_type(attr.get_type())
+            attr_type = attr.get_type().type2base()
             self.doc.start_row()
             self.write_cell(self._(attr_type))
             text = attr.get_value()
@@ -547,6 +529,8 @@ class IndivCompleteReport(Report):
             self.write_paragraph(description, style='IDS-ImageCaptionCenter')
             ReportUtils.insert_image(self._db, self.doc, media_ref, self._user,
                                      align='center', w_cm=5.0, h_cm=5.0)
+            self.do_attributes(media.get_attribute_list() +
+                               media_ref.get_attribute_list() )
             self.doc.end_cell()
             if image_count % cells == cells - 1:
                 self.doc.end_row()
@@ -620,14 +604,7 @@ class IndivCompleteReport(Report):
                 self.doc.start_row()
                 self.write_cell(self._("Attributes"))
                 self.doc.start_cell("IDS-ListCell")
-                for attr in attr_list:
-                    attr_type = self._get_type(attr.get_type())
-                    # translators: needed for French, ignore otherwise
-                    text = self._("%(type)s: %(value)s") % {
-                                        'type'  : self._(attr_type),
-                                        'value' : attr.get_value() }
-                    endnotes = self._cite_endnote(attr)
-                    self.write_paragraph(text, endnotes)
+                self.do_attributes(attr_list)
                 self.doc.end_cell()
                 self.doc.end_row()
 
@@ -859,7 +836,7 @@ class IndivCompleteReport(Report):
                 text = _('(image)')
             else:
                 for attr in attr_list:
-                    attr_type = self._get_type(attr.get_type())
+                    attr_type = attr.get_type().type2base()
                     # translators: needed for French, ignore otherwise
                     text = self._("%(str1)s: %(str2)s") % {
                                         'str1' : self._(attr_type),
@@ -922,6 +899,16 @@ class IndivCompleteReport(Report):
             # translators: needed for Arabic, ignore otherwise
             txt = self._('%(str1)s, %(str2)s') % {'str1':prior, 'str2':txt}
         return txt
+
+    def do_attributes(self, attr_list):
+        for attr in attr_list:
+            attr_type = attr.get_type().type2base()
+            # translators: needed for French, ignore otherwise
+            text = self._("%(type)s: %(value)s") % {
+                                'type'  : self._(attr_type),
+                                'value' : attr.get_value() }
+            endnotes = self._cite_endnote(attr)
+            self.write_paragraph(text, endnotes)
 
 #------------------------------------------------------------------------
 #

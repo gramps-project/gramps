@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2015       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,24 +59,31 @@ class AttributeType(GrampsType):
     _CUSTOM = CUSTOM
     _DEFAULT = ID
 
-    _DATAMAP = [
-        (UNKNOWN     , _("Unknown"), "Unknown"),
-        (CUSTOM      , _("Custom"), "Custom"),
-        (CASTE       , _("Caste"), "Caste"),
-        (DESCRIPTION , _("Description"), "Description"),
-        (ID          , _("Identification Number"), "Identification Number"),
-        (NATIONAL    , _("National Origin"), "National Origin"),
-        (NUM_CHILD   , _("Number of Children"), "Number of Children"),
-        (SSN         , _("Social Security Number"), "Social Security Number"),
-        (NICKNAME    , _("Nickname"), "Nickname"),
-        (CAUSE       , _("Cause"), "Cause"),
-        (AGENCY      , _("Agency"), "Agency"),
-        (AGE         , _("Age"), "Age"),
-        (FATHER_AGE  , _("Father's Age"), "Father Age"),
-        (MOTHER_AGE  , _("Mother's Age"), "Mother Age"),
-        (WITNESS     , _("Witness"), "Witness"),
-        (TIME        , _("Time"), "Time"),
+    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+    def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+        return value
+
+    _BASEMAP = [ # allow deferred translation of attribute UI strings
+        (UNKNOWN     , _T_("Unknown"), "Unknown"),
+        (CUSTOM      , _T_("Custom"), "Custom"),
+        (CASTE       , _T_("Caste"), "Caste"),
+        (DESCRIPTION , _T_("Description"), "Description"),
+        (ID          , _T_("Identification Number"), "Identification Number"),
+        (NATIONAL    , _T_("National Origin"), "National Origin"),
+        (NUM_CHILD   , _T_("Number of Children"), "Number of Children"),
+        (SSN         , _T_("Social Security Number"),
+                           "Social Security Number"),
+        (NICKNAME    , _T_("Nickname"), "Nickname"),
+        (CAUSE       , _T_("Cause"), "Cause"),
+        (AGENCY      , _T_("Agency"), "Agency"),
+        (AGE         , _T_("Age"), "Age"),
+        (FATHER_AGE  , _T_("Father's Age"), "Father Age"),
+        (MOTHER_AGE  , _T_("Mother's Age"), "Mother Age"),
+        (WITNESS     , _T_("Witness"), "Witness"),
+        (TIME        , _T_("Time"), "Time"),
         ]
+
+    _DATAMAP = [(base[0], _(base[1]), base[2]) for base in _BASEMAP]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
@@ -95,3 +103,14 @@ class AttributeType(GrampsType):
         
         """
         return []
+
+    def type2base(self):
+        """
+        Return the untranslated string suitable for UI (once translated).
+        """
+        if self.value == self.CUSTOM:
+            return str(self)
+        elif self._BASEMAP[self.value+1]: # UNKNOWN is before CUSTOM, sigh
+            return self._BASEMAP[self.value+1][1]
+        else:
+            return self.UNKNOWN
