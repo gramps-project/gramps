@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 10:24+0100\n"
+"POT-Creation-Date: 2015-11-30 23:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7952,15 +7952,6 @@ msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:841
 msgid "See details"
-msgstr ""
-
-#. 9041 fake entries for matching some _DATAMAP strings on reports
-#: ../gramps/gen/utils/grampslocale.py:898
-msgid "Father Age"
-msgstr ""
-
-#: ../gramps/gen/utils/grampslocale.py:898
-msgid "Mother Age"
 msgstr ""
 
 #: ../gramps/gen/utils/image.py:122
