@@ -894,9 +894,6 @@ class GrampsLocale(object):
         from gramps.gen.lib.grampstype import GrampsType
         return GrampsType.xml_str(name)
 
-        #9041 fake entries for matching some _DATAMAP strings on reports
-        temp = [_("Father Age"), _("Mother Age")]
-
     def format(self, format, val, grouping=False, monetary=False):
         """
         Format a number in the current numeric locale. See python's
