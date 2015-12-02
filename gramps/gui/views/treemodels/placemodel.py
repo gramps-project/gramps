@@ -126,7 +126,7 @@ class PlaceBaseModel(object):
         return value
 
     def column_name(self, data):
-        return str(data[6][0])
+        return data[6][0]
 
     def column_longitude(self, data):
         if not data[3]:
@@ -161,13 +161,13 @@ class PlaceBaseModel(object):
         return value
 
     def column_id(self, data):
-        return str(data[1])
+        return data[1]
 
     def column_type(self, data):
         return str(PlaceType(data[8]))
 
     def column_code(self, data):
-        return str(data[9])
+        return data[9]
 
     def column_private(self, data):
         if data[17]:

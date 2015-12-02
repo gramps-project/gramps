@@ -109,13 +109,13 @@ class CitationBaseModel(object):
         return ''
 
     def citation_id(self, data):
-        return str(data[COLUMN_ID])
+        return data[COLUMN_ID]
 
     def citation_page(self, data):
-        return str(data[COLUMN_PAGE])
+        return data[COLUMN_PAGE]
 
     def citation_confidence(self, data):
-        return str(_(conf_strings[data[COLUMN_CONFIDENCE]]))
+        return _(conf_strings[data[COLUMN_CONFIDENCE]])
 
     def citation_private(self, data):
         if data[COLUMN_PRIV]:
@@ -164,7 +164,7 @@ class CitationBaseModel(object):
         if not cached:
             try:
                 source = self.db.get_source_from_handle(source_handle)
-                value = str(source.get_title())
+                value = source.get_title()
             except:
                 value = ''
             self.set_cached_value(source_handle, "SRC_TITLE", value)
@@ -176,7 +176,7 @@ class CitationBaseModel(object):
         if not cached:
             try:
                 source = self.db.get_source_from_handle(source_handle)
-                value = str(source.gramps_id)
+                value = source.gramps_id
             except:
                 value = ''
             self.set_cached_value(source_handle, "SRC_ID", value)
@@ -188,7 +188,7 @@ class CitationBaseModel(object):
         if not cached:
             try:
                 source = self.db.get_source_from_handle(source_handle)
-                value = str(source.get_author())
+                value = source.get_author()
             except:
                 value = ''
             self.set_cached_value(source_handle, "SRC_AUTH", value)
@@ -200,7 +200,7 @@ class CitationBaseModel(object):
         if not cached:
             try:
                 source = self.db.get_source_from_handle(source_handle)
-                value = str(source.get_abbreviation())
+                value = source.get_abbreviation()
             except:
                 value = ''
             self.set_cached_value(source_handle, "SRC_ABBR", value)
@@ -212,7 +212,7 @@ class CitationBaseModel(object):
         if not cached:
             try:
                 source = self.db.get_source_from_handle(source_handle)
-                value = str(source.get_publication_info())
+                value = source.get_publication_info()
             except:
                 value = ''
             self.set_cached_value(source_handle, "SRC_PINFO", value)
@@ -262,19 +262,19 @@ class CitationBaseModel(object):
 # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
-        return str(data[COLUMN2_TITLE])
+        return data[COLUMN2_TITLE]
 
     def source_src_id(self, data):
-        return str(data[COLUMN2_ID])
+        return data[COLUMN2_ID]
 
     def source_src_auth(self, data):
-        return str(data[COLUMN2_AUTHOR])
+        return data[COLUMN2_AUTHOR]
 
     def source_src_abbr(self, data):
-        return str(data[COLUMN2_ABBREV])
+        return data[COLUMN2_ABBREV]
 
     def source_src_pinfo(self, data):
-        return str(data[COLUMN2_PUBINFO])
+        return data[COLUMN2_PUBINFO]
 
     def source_src_private(self, data):
         if data[COLUMN2_PRIV]:

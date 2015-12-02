@@ -188,7 +188,7 @@ class FamilyModel(FlatBaseModel):
         return value
 
     def column_id(self, data):
-        return str(data[1])
+        return data[1]
 
     def column_private(self, data):
         if data[14]:

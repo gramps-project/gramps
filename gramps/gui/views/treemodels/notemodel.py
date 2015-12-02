@@ -101,7 +101,7 @@ class NoteModel(FlatBaseModel):
 
     def column_id(self, data):
         """Return the id of the Note."""
-        return str(data[Note.POS_ID])
+        return data[Note.POS_ID]
 
     def column_type(self, data):
         """Return the type of the Note in readable format."""
@@ -111,9 +111,7 @@ class NoteModel(FlatBaseModel):
 
     def column_preview(self, data):
         """Return a shortend version of the Note's text."""
-        #data is the encoding in the database, make it a unicode object
-        #for universal work
-        note = str(data[Note.POS_TEXT][StyledText.POS_TEXT])
+        note = data[Note.POS_TEXT][StyledText.POS_TEXT]
         note = " ".join(note.split())
         if len(note) > 80:
             return note[:80] + "..."

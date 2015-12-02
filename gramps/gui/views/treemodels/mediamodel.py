@@ -43,7 +43,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
@@ -106,40 +105,26 @@ class MediaModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_description(self, data):
-        descr = data[4]
-        if isinstance(descr, str):
-            return descr
-        try:
-            return str(descr)
-        except:
-            return conv_to_unicode(descr, 'latin1')
+        return data[4]
 
     def column_path(self, data):
-        path = data[2]
-        if isinstance(path, str):
-            return path
-        try:
-            return str(path)
-        except:
-            return str(path.encode('iso-8859-1'))
+        return data[2]
 
     def column_mime(self, data):
         mime = data[3]
-        if mime and isinstance(mime, str):
-            return mime
         if mime:
-            return str(mime)
+            return mime
         else:
             return _('Note')
 
     def column_id(self,data):
-        return str(data[1])
+        return data[1]
 
     def column_date(self,data):
         if data[10]:
             date = Date()
             date.unserialize(data[10])
-            return str(displayer.display(date))
+            return displayer.display(date)
         return ''
 
     def sort_date(self,data):

@@ -150,7 +150,7 @@ class EventModel(FlatBaseModel):
         return str(EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
-        return str(data[COLUMN_ID])
+        return data[COLUMN_ID]
 
     def column_date(self,data):
         if data[COLUMN_DATE]:

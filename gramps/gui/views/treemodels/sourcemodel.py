@@ -99,19 +99,19 @@ class SourceModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_title(self,data):
-        return str(data[2])
+        return data[2]
 
     def column_author(self,data):
-        return str(data[3])
+        return data[3]
 
     def column_abbrev(self,data):
-        return str(data[7])
+        return data[7]
 
     def column_id(self,data):
-        return str(data[1])
+        return data[1]
 
     def column_pubinfo(self,data):
-        return str(data[4])
+        return data[4]
 
     def column_private(self, data):
         if data[12]:

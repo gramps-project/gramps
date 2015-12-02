@@ -117,13 +117,13 @@ class RepositoryModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_id(self,data):
-        return str(data[1])
+        return data[1]
 
     def column_type(self,data):
         return str(RepositoryType(data[2]))
 
     def column_name(self,data):
-        return str(data[3])
+        return data[3]
 
     def column_city(self,data):
         try:
@@ -201,7 +201,7 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
-                    return str(url.path)
+                    return url.path
         return ''
 
     def column_search_url(self,data):
@@ -210,7 +210,7 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
-                    return str(url.path)
+                    return url.path
         return ''
 
     def column_home_url(self,data):
@@ -219,7 +219,7 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_HOME:
-                    return str(url.path)
+                    return url.path
         return ""
 
     def column_private(self, data):
