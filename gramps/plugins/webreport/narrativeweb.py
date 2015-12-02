@@ -550,12 +550,12 @@ def copy_thumbnail(report, handle, photo, region=None):
                                        photo.get_mime_type(),
                                        region)
         mtime = os.stat(full_path).st_mtime
-        os.utime(from_path, (mtime, mtime))
         if not os.path.isfile(from_path):
             from_path = CSS["Document"]["filename"]
     else:
         from_path = CSS["Document"]["filename"]
     report.copy_file(from_path, to_path)
+    os.utime(to_path, (mtime, mtime))
     return to_path
 
 '''
