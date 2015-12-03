@@ -2629,9 +2629,9 @@ class BasePage(object):
         @param: place -- place object from the database
         @param: table -- table from Placedetail
         """
-        if place in self.visited:
+        if place in self.report.visited:
             return
-        self.visited.append(place)
+        self.report.visited.append(place)
         # add table body
         tbody = Html("tbody")
         table += tbody
@@ -3341,7 +3341,6 @@ class PlacePages(BasePage):
         self.report = report
         self.db = report.database
         self.place_dict = defaultdict(set)
-        self.visited = []
 
     def display_pages(self, title):
         """
@@ -3413,22 +3412,18 @@ class PlacePages(BasePage):
                 )
 
                 handle_list = sorted(place_handles,
-                                     key=lambda x: SORT_KEY(ReportUtils.place_name(self.dbase_,
-                                                                                   x[:x.index(':')])))
+                                     key=lambda x: SORT_KEY(ReportUtils.place_name(self.dbase_, x)))
                 first = True
 
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-                for place_handle_key in handle_list:
-                    event_date = self.report.obj_dict[Place][place_handle_key][4]
-                    place_handle = self.report.obj_dict[Place][place_handle_key][0]
-                    place_name = self.report.obj_dict[Place][place_handle_key][2]
+                for place_handle in handle_list:
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec: ldatec = place.get_change_time()
-                        place_title = _pd.display(self.dbase_, place, event_date)
+                        place_title = place.get_name().get_value()
                         ml = get_main_location(self.dbase_, place)
 
                         if place_title and not place_title.isspace():
@@ -3486,14 +3481,13 @@ class PlacePages(BasePage):
         # and close the file
         self.XHTMLWriter(placelistpage, of, sio, ldatec)
 
-    def PlacePage(self, report, title, key):
+    def PlacePage(self, report, title, place_handle):
         self.bibli = Bibliography()
         self.dbase_ = report.database
-        place_handle = self.report.obj_dict[Place][key][0]
-        place_fname = self.report.obj_dict[Place][key][1]
-        place_name = self.report.obj_dict[Place][key][2]
-        place_id = self.report.obj_dict[Place][key][3]
-        event_date = self.report.obj_dict[Place][key][4]
+        place_fname = self.report.obj_dict[Place][place_handle][0]
+        place_name = self.report.obj_dict[Place][place_handle][1]
+        place_id = self.report.obj_dict[Place][place_handle][2]
+        event = self.report.obj_dict[Place][place_handle][3]
         place = self.dbase_.get_place_from_handle(place_handle)
         if not place:
             return None
@@ -3502,7 +3496,7 @@ class PlacePages(BasePage):
 
         of, sio = self.report.create_file(place_handle, "plc")
         self.up = True
-        self.page_title = _pd.display(self.dbase_, place, event_date)
+        self.page_title = _pd.display(self.dbase_, place)
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
@@ -7162,6 +7156,7 @@ class NavWebReport(Report):
         #################################################
 
         self.base_pages()
+        self.visited = []
 
         # build classes IndividualListPage and IndividualPage
         self.tab["Person"].display_pages(self.title)
@@ -7302,7 +7297,7 @@ class NavWebReport(Report):
                         self._add_event(evt_ref.ref, Person, person_handle)
                         place_handle = event.get_place_handle()
                         if place_handle:
-                            self._add_place(place_handle, Person, person_handle, event.get_date_object())
+                            self._add_place(place_handle, Person, person_handle, event)
                         # If event pages are not being output, then tell the
                         # media tab to display the perosn's event media. If
                         # events are being displayed, then the media are linked
@@ -7334,7 +7329,7 @@ class NavWebReport(Report):
                                     self._add_event(evt_ref.ref, Person, person_handle)
                                     place_handle = event.get_place_handle()
                                     if place_handle:
-                                        self._add_place(place_handle, Person, person_handle, event.get_date_object())
+                                        self._add_place(place_handle, Person, person_handle, event)
                                     for citation_handle in event.get_citation_list():
                                         self._add_citation(
                                                         citation_handle, Person, person_handle)
@@ -7418,7 +7413,7 @@ class NavWebReport(Report):
             event = self.database.get_event_from_handle(evt_ref.ref)
             place_handle = event.get_place_handle()
             if place_handle:
-                self._add_place(place_handle, Family, family_handle, event.get_date_object())
+                self._add_place(place_handle, Family, family_handle, event)
 
             if self.inc_events:
                 # detail for family events are displayed on the events pages as
@@ -7513,15 +7508,14 @@ class NavWebReport(Report):
                 media_handle = media_ref.get_reference_handle()
                 self._add_media(media_handle, Event, event_handle)
 
-    def _add_place(self, place_handle, bkref_class, bkref_handle, date):
+    def _add_place(self, place_handle, bkref_class, bkref_handle, event):
         place = self.database.get_place_from_handle(place_handle)
         if place is None:
             return
-        place_name = _pd.display(self.database, place, date)
+        place_name = _pd.display_event(self.database, event)
         place_fname = self.build_url_fname(place_handle, "plc",
                                                    False) + self.ext
-        self.obj_dict[Place][place_handle+":"+place_name] = (place_handle, place_fname, place_name,
-                                              place.gramps_id, date)
+        self.obj_dict[Place][place_handle] = (place_fname, place_name, place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle))
 
         ############### Media section ##############
@@ -8870,8 +8864,7 @@ def get_first_letters(dbase, handle_list, key):
             keyname = __get_person_keyname(dbase, handle)
 
         elif key == _KEYPLACE:
-            real_handle = handle[:handle.index(':')]
-            keyname = __get_place_keyname(dbase, real_handle)
+            keyname = __get_place_keyname(dbase, handle)
 
         else:
             keyname = handle
