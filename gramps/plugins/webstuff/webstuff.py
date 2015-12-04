@@ -48,7 +48,6 @@ def load_on_reg(dbstate, uistate, plugin):
     from functools import partial
     path_css = partial(os.path.join, DATA_DIR, "css")
     path_img = partial(os.path.join, IMAGE_DIR, "webstuff")
-    path_js = partial(os.path.join, DATA_DIR, "javascript")
     CSS_FILES = [
 
         # id, user selectable?, translated_name, option name, fullpath,
@@ -129,7 +128,7 @@ def load_on_reg(dbstate, uistate, plugin):
         # WebKit/ Html5/ CSS3 Animated Drop Down Style Sheet
         ["Animated DropDown", 0, "Animated DropDown",
          path_css("Web_Citations-Animated.css"), None, [],
-         path_js("jquery-1.7.1.min.js")                                  ],
+         "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"                                  ],
 
         # Source Page Citations Referents Outline Style sheet...
         ["Outline", 0, "Outline Citations",
