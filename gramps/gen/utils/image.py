@@ -43,7 +43,6 @@ import tempfile
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import conv_to_unicode
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -274,7 +273,6 @@ def resize_to_jpeg_buffer(source, size, crop=None):
 
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
-    dest = conv_to_unicode(dest, None)
     scaled.savev(dest, "jpeg", "", "")
     ofile = open(dest, mode='rb')
     data = ofile.read()

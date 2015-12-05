@@ -68,7 +68,6 @@ LOG = logging.getLogger(".gramps.gen")
 #-------------------------------------------------------------------------
 from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import conv_to_unicode
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
 
@@ -1005,7 +1004,6 @@ class NameDisplay(object):
             d_keys.sort(key=_make_cmp_key, reverse=True) # reverse on length and by ikeyword
             for (code, ikeyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
-                #ikeyword = unicode(ikeyword, "utf8")
                 format_str = format_str.replace(ikeyword, "%"+ code)
                 format_str = format_str.replace(ikeyword.title(), "%"+ code)
                 format_str = format_str.replace(ikeyword.upper(), "%"+ code.upper())
@@ -1022,8 +1020,6 @@ class NameDisplay(object):
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
-                if not isinstance(keyword, str):
-                    keyword = conv_to_unicode(keyword, "utf-8")
                 format_str = format_str.replace(keyword, "%"+ code)
                 format_str = format_str.replace(keyword.title(), "%"+ code)
                 format_str = format_str.replace(keyword.upper(), "%"+ code.upper())

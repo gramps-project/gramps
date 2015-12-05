@@ -61,7 +61,7 @@ from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
-from gramps.gen.constfunc import win, conv_to_unicode
+from gramps.gen.constfunc import win
 from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
@@ -438,11 +438,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write(' priority="%d"' % tag.get_priority())
         self.g.write('/>\n')
 
-    def fix(self,line):
-        try:
-            l = str(line)
-        except:
-            l = conv_to_unicode(str(line), errors='replace')
+    def fix(self, line):
         l = l.strip().translate(strip_dict)
         return escxml(l)
 

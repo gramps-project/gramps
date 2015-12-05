@@ -46,7 +46,6 @@ from django.db import transaction
 import gramps.webapp.grampsdb.models as models
 from gramps.gen.lib import Name
 from gramps.gen.utils.id import create_id
-from gramps.gen.constfunc import conv_to_unicode
 
 # To get a django person from a django database:
 #    djperson = dji.Person.get(handle='djhgsdh324hjg234hj24')
@@ -454,7 +453,7 @@ class DjangoInterface(object):
         date = self.get_date(media)
         return (str(media.handle),
                 media.gramps_id,
-                conv_to_unicode(media.path, None),
+                media.path,
                 str(media.mime),
                 str(media.desc),
                 media.checksum,

@@ -76,8 +76,7 @@ from gramps.gen.utils.cast import conv_dbstr_to_unicode
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.errors import DbError
-from gramps.gen.constfunc import (win, conv_to_unicode, handle2internal,
-                         get_env_var)
+from gramps.gen.constfunc import win, handle2internal, get_env_var
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -1809,8 +1808,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if batch_transaction:
             return
-        name = conv_to_unicode(find_surname_name(person.handle,
-                            person.get_primary_name().serialize()), 'utf-8')
+        name = find_surname_name(person.handle,
+                                 person.get_primary_name().serialize())
         i = bisect.bisect(self.surname_list, name)
         if 0 < i <= len(self.surname_list):
             if self.surname_list[i-1] != name:

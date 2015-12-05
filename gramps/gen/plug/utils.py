@@ -53,7 +53,7 @@ from ..utils.configmanager import safe_eval
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import conv_to_unicode, mac
+from ..constfunc import mac
 
 #-------------------------------------------------------------------------
 #
@@ -382,9 +382,8 @@ def load_addon_file(path, callback=None):
         gpr_files = set([os.path.split(os.path.join(USER_PLUGINS, name))[0]
                          for name in good_gpr])
         for gpr_file in gpr_files:
-            u_gpr_file = conv_to_unicode(gpr_file)
             if callback:
-                callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
+                callback("   " + (_("Registered '%s'") % gpr_file) + "\n")
             registered_count += 1
     file_obj.close()
     if registered_count:
