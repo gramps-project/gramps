@@ -3206,7 +3206,8 @@ class FamilyPages(BasePage):
                                 trow += (tcell1, tcell2)
 
                                 if fam_evt_ref_list:
-                                    for evt_ref in fam_evt_ref_list:
+                                    fam_evt_srt_ref_list = sorted(fam_evt_ref_list)
+                                    for evt_ref in fam_evt_srt_ref_list:
                                         event = self.dbase_.get_event_from_handle(evt_ref.ref)
                                         if event:
                                             evt_type = event.get_type()
@@ -3792,7 +3793,8 @@ class EventPages(BasePage):
                                 first_person = True
 
                                 # get person(s) for ColumnPerson
-                                self.complete_people(tcell, first_person, handle_list,
+                                sorted_list = sorted(handle_list)
+                                self.complete_people(tcell, first_person, sorted_list,
                                                      up =False)
 
                         _EVENT_DISPLAYED.append(gid)
