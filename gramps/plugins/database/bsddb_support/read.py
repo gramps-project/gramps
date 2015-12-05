@@ -68,7 +68,6 @@ from gramps.gen.lib.researcher import Researcher
 from gramps.gen.lib.nameorigintype import NameOriginType
 
 from gramps.gen.utils.callback import Callback
-from gramps.gen.utils.cast import conv_dbstr_to_unicode
 from . import BsddbBaseCursor
 from gramps.gen.db.base import DbReadBase
 from gramps.gen.utils.id import create_id
@@ -916,14 +915,16 @@ class DbBsddbRead(DbReadBase, Callback):
         Return type is a unicode object
         """
         if isinstance(surname, str):
-            surname = surname.encode('utf-8')
-        return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
+            key = surname.encode('utf-8')
+        else:
+            key = surname
+        return self.name_group.get(key, surname)
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        return list(map(conv_dbstr_to_unicode, list(self.name_group.keys())))
+        return [ng.decode('utf-8') for ng in self.name_group.keys()]
 
     def has_name_group_key(self, name):
         """

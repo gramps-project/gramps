@@ -72,7 +72,6 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
 from gramps.gen.db import exceptions
 from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
-from gramps.gen.utils.cast import conv_dbstr_to_unicode
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.errors import DbError
@@ -1797,9 +1796,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         This is a list of unicode objects, which are decoded from the utf-8 in
         bsddb
         """
-        #TODO GTK3: Why double conversion? Convert to a list of str objects!
         self.surname_list = sorted(
-                        map(conv_dbstr_to_unicode, set(self.surnames.keys())),
+                        [s.decode('utf-8') for s in self.surnames.keys()],
                         key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
