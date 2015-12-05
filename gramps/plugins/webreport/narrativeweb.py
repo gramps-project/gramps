@@ -2357,8 +2357,13 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = self.dbase_.get_source_from_handle(citation.get_source_handle())
                 if source is not None:
-                    list = Html("li", self.source_link(source.get_handle(), source.get_title(),
-                        source.get_gramps_id(), cindex, uplink = self.up))
+                    if source.get_author():
+                        authorstring = source.get_author() + ": "
+                    else:
+                        authorstring = ""
+                    list = Html("li", self.source_link(source.get_handle(),
+                                authorstring + source.get_title(),
+                                source.get_gramps_id(), cindex, uplink = self.up))
                 else:
                     list = Html("li", "None")
 
@@ -4235,7 +4240,7 @@ class SourcePages(BasePage):
             for handle in source_handles:
                 source = self.db.get_source_from_handle(handle)
                 if source is not None:
-                    key = source.get_title() + str(source.get_gramps_id())
+                    key = source.get_title() + source.get_author() + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
 
             keys = sorted(source_dict, key=SORT_KEY)
@@ -4257,6 +4262,7 @@ class SourcePages(BasePage):
 
                 header_row = [
                     (_("Number"),           "ColumnRowLabel"),
+                    (_("Author"),           "ColumnAuthor"),
                     (_("Source Name|Name"), "ColumnName") ]
 
                 trow.extend(
@@ -4274,6 +4280,9 @@ class SourcePages(BasePage):
                         Html("td", index + 1, class_ ="ColumnRowLabel", inline = True)
                     )
                     tbody += trow
+                    trow.extend(
+                        Html("td", source.get_author(), class_ ="ColumnAuthor", inline = True)
+                    )
                     trow.extend(
                         Html("td", self.source_link(source_handle, source.get_title(),
                             source.get_gramps_id()), class_ ="ColumnName")
