@@ -467,7 +467,8 @@ class DetDescendantReport(Report):
                 if text:
                     # translators: needed for Arabic, ignore otherwise
                     text += self._("; ")
-                attrName = self._get_type(attr.get_type())
+                attrName = attr.get_type().type2base()
+                # translators: needed for French, ignore otherwise
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
                                     'type'     : self._(attrName),
                                     'value'    : attr.get_value(),
@@ -863,7 +864,8 @@ class DetDescendantReport(Report):
 
             for attr in attrs:
                 self.doc.start_paragraph('DDR-MoreDetails')
-                attrName = self._get_type(attr.get_type())
+                attrName = attr.get_type().type2base()
+                # translators: needed for French, ignore otherwise
                 text = self._("%(type)s: %(value)s%(endnotes)s") % {
                                     'type'     : self._(attrName),
                                     'value'    : attr.get_value(),
