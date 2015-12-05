@@ -48,7 +48,6 @@ from gramps.gen.config import config
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import conv_to_unicode
 
 _HELP = _("""
 Usage: gramps.py [OPTION...]
@@ -220,14 +219,6 @@ class ArgParser(object):
         Any errors are added to self.errors
         """
         try:
-            # Convert arguments to unicode, otherwise getopt will not work
-            # if a non latin character is used as an option (by mistake).
-            # getopt will try to treat the first char in an utf-8 sequence. Example:
-            # -Ärik is '-\xc3\x84rik' and getopt will respond :
-            # option -\xc3 not recognized
-            for arg in range(len(self.args) - 1):
-                self.args[arg+1] = conv_to_unicode(self.args[arg + 1],
-                                                   sys.stdin.encoding)
             options, leftargs = getopt.getopt(self.args[1:],
                                              SHORTOPTS, LONGOPTS)
         except getopt.GetoptError as msg:
@@ -377,8 +368,7 @@ class ArgParser(object):
             # but not for non-latin characters in list elements
             cliargs = "[ "
             for arg in range(len(self.args) - 1):
-                cliargs += conv_to_unicode(self.args[arg + 1],
-                                           sys.stdin.encoding) + ' '
+                cliargs += self.args[arg + 1] + ' '
             cliargs += "]"
             self.errors += [(_('Error parsing the arguments'),
                              _("Error parsing the arguments: %s \n"

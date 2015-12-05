@@ -51,7 +51,6 @@ from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
@@ -213,7 +212,6 @@ class ArgHandler(object):
         """
         if value is None:
             return None
-        value = conv_to_unicode(value, sys.stdin.encoding)
         db_path = self.__deduce_db_path(value)
 
         if db_path:
@@ -242,9 +240,7 @@ class ArgHandler(object):
         Handle the "-i" or "--import" option.
         Only Files supported by a plugin can be imported, so not Family Trees.
         """
-        # Need to convert path/filename to unicode before opening
-        # For non latin characters in Windows path/file/user names
-        fname = conv_to_unicode(value, sys.stdin.encoding)
+        fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if fname != '-' and not os.path.exists(fullpath):
             self.__error(_('Error: Import file %s not found.') % fname)
@@ -279,9 +275,7 @@ class ArgHandler(object):
         """
         if self.gui:
             return
-        # Need to convert path/filename to unicode before opening
-        # For non latin characters in Windows path/file/user names
-        fname = conv_to_unicode(value, sys.stdin.encoding)
+        fname = value
         if fname == '-':
             fullpath = '-'
         else:

@@ -55,7 +55,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
-from gramps.gen.constfunc import win, conv_to_unicode
+from gramps.gen.constfunc import win
 #-------------------------------------------------------------------------
 #
 # constants
@@ -369,8 +369,6 @@ class CLIDbManager(object):
         Returns old_name, new_name if success, None, None if no success
         """
         try:
-            filepath = conv_to_unicode(filepath, 'utf8')
-            new_text = conv_to_unicode(new_text, 'utf8')
             name_file = open(filepath, "r", encoding='utf8')
             old_text=name_file.read()
             name_file.close()
@@ -427,7 +425,7 @@ def find_next_db_name(name_list):
     while True:
         title = "%s %d" % (DEFAULT_TITLE, i)
         if title not in name_list:
-            return conv_to_unicode(title)
+            return title
         i += 1
 
 def find_next_db_dir():
