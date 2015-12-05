@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-12-05 13:21+0900\n"
+"PO-Revision-Date: 2015-12-05 17:49+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -13179,7 +13179,7 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:78
 msgid "Reset"
-msgstr "Сброс"
+msgstr "Сбросить"
 
 #: ../gramps/gui/glade/addmedia.glade:129
 #: ../gramps/gui/glade/editperson.glade:293
@@ -14346,13 +14346,13 @@ msgstr ""
 
 #: ../gramps/gui/glade/editperson.glade:537
 msgid "O_rigin:"
-msgstr ""
+msgstr "Происхождение:"
 
 #: ../gramps/gui/glade/editperson.glade:552
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr ""
+msgstr "Происхождение фамилии, например 'принятая' или 'унаследованая'."
 
 #: ../gramps/gui/glade/editperson.glade:586
 msgid "G_ender:"
@@ -16182,7 +16182,7 @@ msgstr[2] "{number_of} дополнений было установлено."
 
 #: ../gramps/gui/plug/_windows.py:1200
 msgid "You need to restart Gramps to see new views."
-msgstr "Вам нужно перезапустить Gramps чтобы увидеть новые виды."
+msgstr "Необходимо перезапустить Gramps, чтобы увидеть новые виды."
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "No addons were installed."
@@ -17912,7 +17912,7 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Выберите значок со стрелочкой вниз в правом углу, чтобы добавить, удалить, "
+"Нажмите значок со стрелочкой в правом нижнем углу, чтобы добавить, удалить, "
 "или восстановить грамплеты."
 
 #: ../gramps/gui/widgets/grampletbar.py:468
@@ -17937,6 +17937,8 @@ msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
 msgstr ""
+"Панель грамплетов будет восстановлена к состоянию по умолчанию. Это действие "
+"невозможно отменить."
 
 #. default tooltip
 #: ../gramps/gui/widgets/grampletpane.py:796
@@ -21708,7 +21710,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
-msgstr "Шлите вопросы на список рассылки «gramps-users»"
+msgstr "Задавайте вопросы в списке рассылки «gramps-users»"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:120
 msgid "Who makes Gramps?"
@@ -28780,7 +28782,7 @@ msgstr "Категория"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:47
 msgid "Drop-down Sidebar"
-msgstr "Выпадающая панель"
+msgstr "Выпадающая боковая панель"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Selection of categories and views from drop-down lists"
@@ -28788,11 +28790,11 @@ msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:56
 msgid "Drop-Down"
-msgstr ""
+msgstr "Выпадающая"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:62
 msgid "Expander Sidebar"
-msgstr ""
+msgstr "Расширяющаяся боковая панель"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Selection of views from lists with expanders"
@@ -28800,7 +28802,7 @@ msgstr ""
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:71
 msgid "Expander"
-msgstr ""
+msgstr "Расширяющаяся"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:64
 #: ../gramps/plugins/textreport/textplugins.gpr.py:388
@@ -31892,32 +31894,28 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:219
-#, fuzzy
 msgid "Generate database errors"
-msgstr "Ошибка данных Pro-Gen"
+msgstr "Генерация ошибок базы данных"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:223
-#, fuzzy
 msgid "Generate dummy data"
-msgstr "Создано"
+msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:228
-#, fuzzy
 msgid "Generate long names"
-msgstr "Поколения"
+msgstr "Генерация длинных имён"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:232
 msgid "Add special characters"
-msgstr ""
+msgstr "Добавление специальных символов"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:236
 msgid "Add serial number"
 msgstr "Добавить серийный номер"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:240
-#, fuzzy
 msgid "Add line break"
-msgstr "Перевод строки после каждого имени"
+msgstr "Добавление перевода строки"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:244
 msgid ""
@@ -31935,14 +31933,12 @@ msgid "Generating low level database errors"
 msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:315
-#, fuzzy
 msgid "Generating families"
-msgstr "Создание семейных линий"
+msgstr "Генерация фамилий"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:346
-#, fuzzy
 msgid "Generating database errors"
-msgstr "Создаю отчёт"
+msgstr "Генерация ошибок базы данных"
 
 #. Creates a media object with character encoding errors. This tests
 #. Check.fix_encoding() and also cleanup_missing_photos
@@ -32245,9 +32241,8 @@ msgid "_Hide marked"
 msgstr "Спр_ятать отмеченное"
 
 #: ../gramps/plugins/tool/verify.py:74
-#, fuzzy
 msgid "manual|Verify_the_Data"
-msgstr "Проверить базу данных"
+msgstr "Проверить данные"
 
 #: ../gramps/plugins/tool/verify.py:250
 msgid "Data Verify tool"
@@ -32777,7 +32772,7 @@ msgstr "полукруг"
 #: ../gramps/plugins/view/fanchartdescview.py:317
 #: ../gramps/plugins/view/fanchartview.py:311
 msgid "Quadrant"
-msgstr ""
+msgstr "Квадрант"
 
 #. algo for the fan angle distribution
 #: ../gramps/plugins/view/fanchartdescview.py:320
@@ -32837,7 +32832,7 @@ msgstr "Второе лицо не указано"
 
 #: ../gramps/plugins/view/geoclose.py:237
 msgid "You must choose one reference person."
-msgstr ""
+msgstr "Необходимо выбрать одно исходное лицо."
 
 #: ../gramps/plugins/view/geoclose.py:238
 msgid ""
@@ -32847,7 +32842,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoclose.py:287
 msgid "reference _Person"
-msgstr "исходное лицо"
+msgstr "Исходное лицо"
 
 #: ../gramps/plugins/view/geoclose.py:288
 msgid "Select the person which is the reference for life ways"
@@ -32942,7 +32937,7 @@ msgstr "Вторая семья : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:260
 msgid "You must choose one reference family."
-msgstr ""
+msgstr "Необходимо выбрать одну исходную семью."
 
 #: ../gramps/plugins/view/geofamclose.py:261
 msgid ""
@@ -33128,11 +33123,11 @@ msgstr "Максимальное число поколений.\n"
 
 #: ../gramps/plugins/view/geomoves.py:647
 msgid "Time in milliseconds between drawing two generations.\n"
-msgstr ""
+msgstr "Время в миллисекундах между отображением двух поколений.\n"
 
 #: ../gramps/plugins/view/geomoves.py:653
 msgid "The parameters for moves"
-msgstr ""
+msgstr "Параметры для перемещений"
 
 #: ../gramps/plugins/view/geoperson.py:150
 msgid "Person places map"
@@ -34245,7 +34240,7 @@ msgstr "Применяю фильтр..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7193
 msgid "Constructing list of other objects..."
-msgstr ""
+msgstr "Составляю список других объектов..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7400
 #, python-format
@@ -34270,7 +34265,7 @@ msgstr "Создаю страницы фамилий"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7675
 msgid "Creating thumbnail preview page..."
-msgstr ""
+msgstr "Создаю страницу предпросмотра изображений..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7716
 msgid "Creating address book pages ..."
@@ -34488,7 +34483,7 @@ msgstr "Включать ли галерею изображений и доку�
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8162
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Создать и использовать только изображения уменьшенного размера"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8164
 msgid ""
@@ -34765,7 +34760,7 @@ msgstr "Отметки"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8363
 msgid "Google/ FamilyMap Option"
-msgstr ""
+msgstr "Настройки Google/ FamilyMap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8366
 msgid ""
