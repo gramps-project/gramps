@@ -41,7 +41,6 @@ from bsddb3 import db
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import handle2internal
 from gramps.gen.lib.markertype import MarkerType
 from gramps.gen.lib.nameorigintype import NameOriginType
 from gramps.gen.lib.eventtype import EventType
@@ -197,7 +196,7 @@ def gramps_upgrade_17(self):
             n -= 1
 
         if parent_handle is not None:
-            placeref_list = [(handle2internal(parent_handle), None)]
+            placeref_list = [(parent_handle.decode('utf-8'), None)]
         else:
             placeref_list = []
 
@@ -334,7 +333,7 @@ def add_place(self, name, level, parent, title):
     gid = self.place_prefix % self.max_id
     placetype = (7-level, '')
     if parent is not None:
-        placeref_list = [(handle2internal(parent), None)]
+        placeref_list = [(parent.decode('utf-8'), None)]
     else:
         placeref_list = []
     place = (handle, gid, title, '', '', placeref_list, name, [], placetype,

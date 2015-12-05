@@ -71,7 +71,6 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
-from gramps.gen.constfunc import handle2internal
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -329,7 +328,7 @@ class CheckIntegrity(object):
         previous_errors = len(self.duplicate_links)
 
         for bhandle in self.db.person_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             value = self.db.person_map[bhandle]
             p = Person(value)
             splist = p.get_family_handle_list()
@@ -352,7 +351,7 @@ class CheckIntegrity(object):
         logging.info('Looking for character encoding errors')
         error_count = 0
         for bhandle in self.db.media_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             data = self.db.media_map[bhandle]
             if not isinstance(data[2], str) or not isinstance(data[4], str):
                 obj = self.db.get_object_from_handle(handle)
@@ -393,7 +392,7 @@ class CheckIntegrity(object):
         logging.info('Looking for ctrl characters in notes')
         error_count = 0
         for bhandle in self.db.note_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             note = self.db.get_note_from_handle(handle)
             stext = note.get_styledtext()
             old_text = str(stext)
@@ -421,7 +420,7 @@ class CheckIntegrity(object):
         previous_errors = len(self.broken_parent_links + self.broken_links)
 
         for bfamily_handle in fhandle_list:
-            family_handle = handle2internal(bfamily_handle)
+            family_handle = bfamily_handle.decode('utf-8')
             family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -546,7 +545,7 @@ class CheckIntegrity(object):
 
         # Check persons membership in referenced families
         for bperson_handle in self.db.get_person_handles():
-            person_handle = handle2internal(bperson_handle)
+            person_handle = bperson_handle.decode('utf-8')
             person = self.db.get_person_from_handle(person_handle)
 
             phandle_list = person.get_parent_family_handle_list()
@@ -705,7 +704,7 @@ class CheckIntegrity(object):
         #-------------------------------------------------------------------------
 
         for bObjectId in self.db.get_media_object_handles():
-            ObjectId = handle2internal(bObjectId)
+            ObjectId = bObjectId.decode('utf-8')
             obj = self.db.get_object_from_handle(ObjectId)
             photo_name = media_path_full(self.db, obj.get_path())
             photo_desc = obj.get_description()
@@ -921,7 +920,7 @@ class CheckIntegrity(object):
         logging.info('Looking for empty families')
         previous_errors = len(self.empty_family)
         for bfamily_handle in fhandle_list:
-            family_handle = handle2internal(bfamily_handle)
+            family_handle = bfamily_handle.decode('utf-8')
             self.progress.step()
 
             family = self.db.get_family_from_handle(family_handle)
@@ -958,7 +957,7 @@ class CheckIntegrity(object):
         previous_errors = len(self.fam_rel)
 
         for bfamily_handle in fhandle_list:
-            family_handle = handle2internal(bfamily_handle)
+            family_handle = bfamily_handle.decode('utf-8')
             self.progress.step()
             family = self.db.get_family_from_handle(family_handle)
 
@@ -996,7 +995,7 @@ class CheckIntegrity(object):
         logging.info('Looking for event problems')
 
         for bkey in self.db.get_person_handles(sort_handles=False):
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
 
             person = self.db.get_person_from_handle(key)
@@ -1114,7 +1113,7 @@ class CheckIntegrity(object):
                 self.invalid_events.add(key)
 
         for bkey in self.db.get_family_handles():
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             if family.get_event_ref_list():
@@ -1161,7 +1160,7 @@ class CheckIntegrity(object):
         logging.info('Looking for person reference problems')
 
         for bkey in plist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1192,7 +1191,7 @@ class CheckIntegrity(object):
         logging.info('Looking for family reference problems')
 
         for bkey in plist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             person = self.db.get_person_from_handle(key)
             for ordinance in person.get_lds_ord_list():
@@ -1217,7 +1216,7 @@ class CheckIntegrity(object):
         logging.info('Looking for repository reference problems')
 
         for bkey in slist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1250,7 +1249,7 @@ class CheckIntegrity(object):
         logging.info('Looking for place reference problems')
 
         for bkey in llist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1278,7 +1277,7 @@ class CheckIntegrity(object):
 
         # check persons -> the LdsOrd references a place
         for bkey in plist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             person = self.db.get_person_from_handle(key)
             for ordinance in person.lds_ord_list:
@@ -1300,7 +1299,7 @@ class CheckIntegrity(object):
                         self.invalid_place_references.add(key)
         # check families -> the LdsOrd references a place
         for bkey in flist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             for ordinance in family.lds_ord_list:
@@ -1320,7 +1319,7 @@ class CheckIntegrity(object):
                         self.invalid_place_references.add(key)
         # check events
         for bkey in elist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             event = self.db.get_event_from_handle(key)
             place_handle = event.get_place_handle()
@@ -1342,7 +1341,7 @@ class CheckIntegrity(object):
             logging.info('    OK: no place reference problems found')
 
     def check_citation_references(self):
-        known_handles = [handle2internal(key) for key in
+        known_handles = [key.decode('utf-8') for key in
                                 self.db.get_citation_handles()]
 
         total = (
@@ -1361,7 +1360,7 @@ class CheckIntegrity(object):
         logging.info('Looking for citation reference problems')
 
         for bhandle in self.db.person_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.person_map[bhandle]
             person = Person()
@@ -1378,7 +1377,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.family_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.family_map[bhandle]
             family = Family()
@@ -1395,7 +1394,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.place_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.place_map[bhandle]
             place = Place()
@@ -1412,7 +1411,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.citation_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.citation_map[bhandle]
             citation = Citation()
@@ -1429,7 +1428,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.repository_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.repository_map[bhandle]
             repository = Repository()
@@ -1446,7 +1445,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.media_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
             obj = MediaObject()
@@ -1463,7 +1462,7 @@ class CheckIntegrity(object):
                         self.invalid_citation_references.add(item[1])
 
         for bhandle in self.db.event_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.event_map[bhandle]
             event = Event()
@@ -1497,7 +1496,7 @@ class CheckIntegrity(object):
         logging.info('Looking for source reference problems')
 
         for bkey in clist:
-            key = handle2internal(bkey)
+            key = bkey.decode('utf-8')
             self.progress.step()
             citation = self.db.get_citation_from_handle(key)
             source_handle = citation.get_reference_handle()
@@ -1521,7 +1520,7 @@ class CheckIntegrity(object):
             logging.info('   OK: no source reference problems found')
 
     def check_media_references(self):
-        known_handles = [handle2internal(key) for key in
+        known_handles = [key.decode('utf-8') for key in
                             self.db.get_media_object_handles(False)]
 
         total = (
@@ -1538,7 +1537,7 @@ class CheckIntegrity(object):
         logging.info('Looking for media object reference problems')
 
         for bhandle in self.db.person_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.person_map[bhandle]
             person = Person()
@@ -1555,7 +1554,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bhandle in self.db.family_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.family_map[bhandle]
             family = Family()
@@ -1572,7 +1571,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bhandle in self.db.place_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.place_map[bhandle]
             place = Place()
@@ -1589,7 +1588,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bhandle in self.db.event_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.event_map[bhandle]
             event = Event()
@@ -1606,7 +1605,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bhandle in self.db.citation_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.citation_map[bhandle]
             citation = Citation()
@@ -1623,7 +1622,7 @@ class CheckIntegrity(object):
                         self.invalid_media_references.add(item[1])
 
         for bhandle in self.db.source_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.source_map[bhandle]
             source = Source()
@@ -1661,7 +1660,7 @@ class CheckIntegrity(object):
         if missing_references:
             self.db.add_note(self.explanation, self.trans, set_gid=True)
 
-        known_handles = [handle2internal(key) for key in
+        known_handles = [key.decode('utf-8') for key in
                                     self.db.get_note_handles()]
         bad_handles = []
 
@@ -1681,7 +1680,7 @@ class CheckIntegrity(object):
         logging.info('Looking for note reference problems')
 
         for bhandle in self.db.person_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.person_map[bhandle]
             person = Person()
@@ -1698,7 +1697,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.family_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.family_map[bhandle]
             family = Family()
@@ -1715,7 +1714,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.place_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.place_map[bhandle]
             place = Place()
@@ -1732,7 +1731,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.citation_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.citation_map[bhandle]
             citation = Citation()
@@ -1749,7 +1748,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.source_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.source_map[bhandle]
             source = Source()
@@ -1766,7 +1765,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.media_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
             obj = MediaObject()
@@ -1783,7 +1782,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.event_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.event_map[bhandle]
             event = Event()
@@ -1800,7 +1799,7 @@ class CheckIntegrity(object):
                         self.invalid_note_references.add(item[1])
 
         for bhandle in self.db.repository_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.repository_map[bhandle]
             repo = Repository()
@@ -1831,7 +1830,7 @@ class CheckIntegrity(object):
                                len(self.db.get_media_object_handles()))
         for bObjectId in self.db.get_media_object_handles():
             self.progress.step()
-            ObjectId = handle2internal(bObjectId)
+            ObjectId = bObjectId.decode('utf-8')
             obj = self.db.get_object_from_handle(ObjectId)
             full_path = media_path_full(self.db, obj.get_path())
             new_checksum = create_checksum(full_path)
@@ -1841,7 +1840,7 @@ class CheckIntegrity(object):
                 self.db.commit_media_object(obj, self.trans)
 
     def check_tag_references(self):
-        known_handles = [handle2internal(key) for key in
+        known_handles = [key.decode('utf-8') for key in
                                     self.db.get_tag_handles()]
 
         total = (
@@ -1856,7 +1855,7 @@ class CheckIntegrity(object):
         logging.info('Looking for tag reference problems')
 
         for bhandle in self.db.person_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.person_map[bhandle]
             person = Person()
@@ -1873,7 +1872,7 @@ class CheckIntegrity(object):
                         self.invalid_tag_references.add(item[1])
 
         for bhandle in self.db.family_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.family_map[bhandle]
             family = Family()
@@ -1890,7 +1889,7 @@ class CheckIntegrity(object):
                         self.invalid_tag_references.add(item[1])
 
         for bhandle in self.db.media_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
             obj = MediaObject()
@@ -1907,7 +1906,7 @@ class CheckIntegrity(object):
                         self.invalid_tag_references.add(item[1])
 
         for bhandle in self.db.note_map.keys():
-            handle = handle2internal(bhandle)
+            handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.note_map[bhandle]
             note = Note()

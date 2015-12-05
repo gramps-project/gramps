@@ -51,7 +51,6 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.constfunc import handle2internal
 from gramps.gen.db.dbconst import *
 from . import BSDDBTxn
 from gramps.gen.errors import DbError
@@ -315,7 +314,7 @@ class DbUndo(object):
         """
         try:
             if data is None:
-                emit(signal_root + '-delete', ([handle2internal(handle)],))
+                emit(signal_root + '-delete', ([handle.decode('utf-8')],))
                 db_map.delete(handle, txn=self.txn)
             else:
                 ex_data = db_map.get(handle, txn=self.txn)
@@ -324,7 +323,7 @@ class DbUndo(object):
                 else:
                     signal = signal_root + '-add'
                 db_map.put(handle, data, txn=self.txn)
-                emit(signal, ([handle2internal(handle)],))
+                emit(signal, ([handle.decode('utf-8')],))
 
         except DBERRS as msg:
             self.db._log_error()

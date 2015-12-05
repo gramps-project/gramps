@@ -75,7 +75,7 @@ from gramps.gen.utils.callback import Callback
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.errors import DbError
-from gramps.gen.constfunc import win, handle2internal, get_env_var
+from gramps.gen.constfunc import win, get_env_var
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -2209,10 +2209,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if (obj_type, trans_type) in transaction:
             if trans_type == TXNDEL:
-                handles = [handle2internal(handle) for handle, data in
+                handles = [handle.decode('utf-8') for handle, data in
                             transaction[(obj_type, trans_type)]]
             else:
-                handles = [handle2internal(handle) for handle, data in
+                handles = [handle.decode('utf-8') for handle, data in
                             transaction[(obj_type, trans_type)]
                             if (handle, None) not in transaction[(obj_type,
                                                                   TXNDEL)]]
