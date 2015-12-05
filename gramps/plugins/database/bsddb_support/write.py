@@ -74,7 +74,7 @@ from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.errors import DbError
+from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import win, get_env_var
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -2105,19 +2105,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def get_from_handle(self, handle, class_type, data_map):
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
-        try:
-            data = data_map.get(handle, txn=self.txn)
-        except:
-            data = None
-            # under certain circumstances during a database reload,
-            # data_map can be none. If so, then don't report an error
-            if data_map:
-                _LOG.error("Failed to get from handle", exc_info=True)
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
+        data = data_map.get(handle, txn=self.txn)
         if data:
             newobj = class_type()
             newobj.unserialize(data)
             return newobj
-        return None
+        raise HandleError('Handle %s not found' % handle.decode('utf-8'))
 
     @catch_db_error
     def transaction_begin(self, transaction):

@@ -78,7 +78,10 @@ class SelectCitation(BaseSelector):
             ]
 
     def get_from_handle_func(self):
-        return self.db.get_source_from_handle
+        return self.get_source_or_citation
 
-    def get_from_handle_func2(self):
-        return self.db.get_citation_from_handle
+    def get_source_or_citation(self, handle):
+        if self.db.has_source_handle(handle):
+            return self.db.get_source_from_handle(handle)
+        else:
+            return self.db.get_citation_from_handle(handle)

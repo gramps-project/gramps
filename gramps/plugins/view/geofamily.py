@@ -355,20 +355,24 @@ class GeoFamily(GeoGraphyView):
                                 }
                 self._createpersonmarkers(dbstate, person, comment, family_id)
 
-    def _createmap(self, family_x):
+    def _createmap(self, handle):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
+        if not handle:
+            return
         self.place_list = []
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         self.minyear = 9999
         self.maxyear = 0
         self.message_layer.clear_messages()
-        family = self.dbstate.db.get_family_from_handle(family_x)
-        if family is None:
-            person = self.dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+        if self.dbstate.db.has_family_handle(handle):
+            family = self.dbstate.db.get_family_from_handle(handle)
+            self._createmap_for_one_family(family)
+        else:
+            person = self.dbstate.db.get_person_from_handle(handle)
             if not person:
                 return
             family_list = person.get_family_handle_list()
@@ -376,8 +380,6 @@ class GeoFamily(GeoGraphyView):
                 family = self.dbstate.db.get_family_from_handle(family_hdl)
                 if family is not None:
                     self._createmap_for_one_family(family)
-        else:
-            self._createmap_for_one_family(family)
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(3, 4, 6)
                           )

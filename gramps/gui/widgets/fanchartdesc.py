@@ -167,6 +167,8 @@ class FanChartDescWidget(FanChartBaseWidget):
 
     def _fill_data_structures(self):
         self.set_generations()
+        if not self.rootpersonh:
+            return
         person = self.dbstate.db.get_person_from_handle(self.rootpersonh)
         if not person:
             #nothing to do, just return

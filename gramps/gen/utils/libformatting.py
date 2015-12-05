@@ -120,14 +120,15 @@ class FormattingHelper(object):
         """ Obtain a place name
         """
         text = ""
-        place = self.dbstate.db.get_place_from_handle(place_handle)
-        if place:
-            place_title = place_displayer.display(self.dbstate.db, place)
-            if place_title != "":
-                if len(place_title) > 25:
-                    text = place_title[:24]+"..."
-                else:
-                    text = place_title
+        if place_handle:
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place:
+                place_title = place_displayer.display(self.dbstate.db, place)
+                if place_title != "":
+                    if len(place_title) > 25:
+                        text = place_title[:24]+"..."
+                    else:
+                        text = place_title
         return text
 
     def format_person( self, person, line_count, use_markup=False):

@@ -574,7 +574,10 @@ class DisplayState(Callback):
 
         self.status.pop(self.status_id)
 
-        name, obj = navigation_label(dbstate.db, nav_type, active_handle)
+        if active_handle:
+            name, obj = navigation_label(dbstate.db, nav_type, active_handle)
+        else:
+            name = _('No active object')
 
         # Append relationship to default person if funtionality is enabled.
         if nav_type == 'Person' and active_handle \

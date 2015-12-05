@@ -170,9 +170,11 @@ class RelCalc(tool.Tool, ManagedWindow):
         if not iter_:
             return
 
+        other_person = None
         handle = model.get_handle_from_iter(iter_)
-        other_person = self.db.get_person_from_handle(handle)
-        if other_person is None :
+        if handle:
+            other_person = self.db.get_person_from_handle(handle)
+        if other_person is None:
             self.textbuffer.set_text("")
             return
 

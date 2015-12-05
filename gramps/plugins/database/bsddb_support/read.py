@@ -71,7 +71,7 @@ from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
 from gramps.gen.db.base import DbReadBase
 from gramps.gen.utils.id import create_id
-from gramps.gen.errors import DbError
+from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -683,7 +683,7 @@ class DbBsddbRead(DbReadBase, Callback):
             newobj = class_type()
             newobj.unserialize(data)
             return newobj
-        return None
+        raise HandleError('Handle %s not found' % handle.decode('utf-8'))
 
     def get_from_name_and_handle(self, table_name, handle):
         """

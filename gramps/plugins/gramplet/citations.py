@@ -105,9 +105,10 @@ class Citations(Gramplet, DbGUIElement):
         self.add_attribute_citations(event)
         self.add_mediaref_citations(event)
         place_handle = event.get_place_handle()
-        place = self.dbstate.db.get_place_from_handle(place_handle)
-        if place:
-            self.add_place_citations(place)
+        if place_handle:
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place:
+                self.add_place_citations(place)
 
     def add_place_citations(self, place):
         self.add_citations(place)
@@ -202,9 +203,10 @@ class Citations(Gramplet, DbGUIElement):
         if self.check_mediaref_citations(event):
             return True
         place_handle = event.get_place_handle()
-        place = self.dbstate.db.get_place_from_handle(place_handle)
-        if place and self.check_place_citations(place):
-            return True
+        if place_handle:
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place and self.check_place_citations(place):
+                return True
         return False
 
     def check_place_citations(self, place):

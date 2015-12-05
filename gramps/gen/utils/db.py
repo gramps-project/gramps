@@ -522,10 +522,14 @@ def preset_name(basepers, name, sibling=False):
 def family_name(family, db, noname=_("unknown")):
     """Builds a name for the family from the parents names"""
 
+    father = None
+    mother = None
     father_handle = family.get_father_handle()
     mother_handle = family.get_mother_handle()
-    father = db.get_person_from_handle(father_handle)
-    mother = db.get_person_from_handle(mother_handle)
+    if father_handle:
+        father = db.get_person_from_handle(father_handle)
+    if mother_handle:
+        mother = db.get_person_from_handle(mother_handle)
     if father and mother:
         fname = name_displayer.display(father)
         mname = name_displayer.display(mother)

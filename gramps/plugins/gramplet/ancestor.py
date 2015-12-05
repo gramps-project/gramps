@@ -152,11 +152,14 @@ class Ancestor(Gramplet):
                                   tooltip, person_handle], node=parent_id)
 
         family_handle = person.get_main_parents_family_handle()
-        family = self.dbstate.db.get_family_from_handle(family_handle)
-        if family:
-            if family.get_father_handle():
-                self.add_to_tree(depth + 1, item_id, family.get_father_handle())
-            if family.get_mother_handle():
-                self.add_to_tree(depth + 1, item_id, family.get_mother_handle())
+        if family_handle:
+            family = self.dbstate.db.get_family_from_handle(family_handle)
+            if family:
+                father_handle = family.get_father_handle()
+                if father_handle:
+                    self.add_to_tree(depth + 1, item_id, father_handle)
+                mother_handle = family.get_mother_handle()
+                if mother_handle:
+                    self.add_to_tree(depth + 1, item_id, mother_handle)
 
         return item_id

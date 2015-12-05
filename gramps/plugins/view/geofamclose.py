@@ -300,8 +300,14 @@ class GeoFamClose(GeoGraphyView):
         information.
         """
         active = self.get_active()
-        family = self.dbstate.db.get_family_from_handle(active)
-        self.goto_handle(handle=family)
+        if active:
+            family = self.dbstate.db.get_family_from_handle(active)
+            if family is None:
+                self.goto_handle(None)
+            else:
+                self.goto_handle(handle=family)
+        else:
+            self.goto_handle(None)
 
     def draw(self, menu, marks, color, reference):
         """

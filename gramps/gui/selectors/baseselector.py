@@ -199,8 +199,6 @@ class BaseSelector(ManagedWindow):
             id_list = self.get_selected_ids()
             if id_list and id_list[0]:
                 result = self.get_from_handle_func()(id_list[0])
-                if result is None and self.get_from_handle_func2:
-                    result = self.get_from_handle_func2()(id_list[0])
             self.close()
         elif val != Gtk.ResponseType.DELETE_EVENT:
             self.close()
@@ -232,9 +230,6 @@ class BaseSelector(ManagedWindow):
 
     def get_from_handle_func(self):
         assert False, "Must be defined in the subclass"
-
-    def get_from_handle_func2(self):
-        return None
 
     def set_show_search_bar(self, value):
         """make the search bar at the top shown
