@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-11-29 20:00+0000\n"
+"PO-Revision-Date: 2015-12-05 13:21+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -6109,9 +6109,9 @@ msgstr "больше чем около"
 #: ../gramps/gen/lib/date.py:406
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] "{number_of} лет"
-msgstr[1] "{number_of} год"
-msgstr[2] "{number_of} года"
+msgstr[0] "{number_of} год"
+msgstr[1] "{number_of} года"
+msgstr[2] "{number_of} лет"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
@@ -6135,17 +6135,17 @@ msgstr ", "
 #: ../gramps/gen/lib/date.py:417
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] "{number_of} месяцев"
-msgstr[1] "{number_of} месяц"
-msgstr[2] "{number_of} месяца"
+msgstr[0] "{number_of} месяц"
+msgstr[1] "{number_of} месяца"
+msgstr[2] "{number_of} месяцев"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:428
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] "{number_of} дней"
-msgstr[1] "{number_of} день"
-msgstr[2] "{number_of} дня"
+msgstr[0] "{number_of} день"
+msgstr[1] "{number_of} дня"
+msgstr[2] "{number_of} дней"
 
 #: ../gramps/gen/lib/date.py:435
 msgid "0 days"
@@ -16176,9 +16176,9 @@ msgstr "Скачивание и установка дополнений заве
 #: ../gramps/gui/plug/_windows.py:1197
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{number_of} дополнений было установлено."
-msgstr[1] "{number_of} дополнение было установлено."
-msgstr[2] "{number_of} дополнения было установлено."
+msgstr[0] "{number_of} дополнение было установлено."
+msgstr[1] "{number_of} дополнения было установлено."
+msgstr[2] "{number_of} дополнений было установлено."
 
 #: ../gramps/gui/plug/_windows.py:1200
 msgid "You need to restart Gramps to see new views."
@@ -16360,8 +16360,8 @@ msgstr "Неотфильтрованное семейное древо:"
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
 msgstr[0] "{number_of} человек"
-msgstr[1] "{number_of} человек"
-msgstr[2] "{number_of} человека"
+msgstr[1] "{number_of} человека"
+msgstr[2] "{number_of} человек"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:154
 msgid "Click to see preview of unfiltered data"
@@ -21420,12 +21420,12 @@ msgstr "Двойной щелчок, чтобы увидеть все покол
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:282
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
-msgstr[0] " насчитывает %d человека\n"
-msgstr[1] " насчитывает %d человек\n"
-msgstr[2] " насчитывает %d человек\n"
+msgstr[0] " насчитывает {number_of} лицо\n"
+msgstr[1] " насчитывает {number_of} лица\n"
+msgstr[2] " насчитывает {number_of} лиц\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:225
 #, python-format
@@ -22231,9 +22231,9 @@ msgstr "Вы никого не указали"
 #: ../gramps/plugins/graph/gvfamilylines.py:923
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
-msgstr[0] "{number_of} детей"
-msgstr[1] "{number_of} ребёнок"
-msgstr[2] "{number_of} ребёнка"
+msgstr[0] "{number_of} ребёнок"
+msgstr[1] "{number_of} ребёнка"
+msgstr[2] "{number_of} детей"
 
 #: ../gramps/plugins/graph/gvhourglass.py:305
 msgid "The Center person for the graph"
@@ -22720,9 +22720,9 @@ msgstr "Импорт CSV"
 #: ../gramps/plugins/importer/importvcard.py:233
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
-msgstr[0] "Импорт завершён: {number_of} секунд"
-msgstr[1] "Импорт завершён: {number_of} секунда"
-msgstr[2] "Импорт завершён: {number_of} секунды"
+msgstr[0] "Импорт завершён: {number_of} секунда"
+msgstr[1] "Импорт завершён: {number_of} секунды"
+msgstr[2] "Импорт завершён: {number_of} секунд"
 
 #: ../gramps/plugins/importer/importgedcom.glade:14 gtklist.h:2
 msgid "ANSEL"
@@ -28324,9 +28324,9 @@ msgstr "Размер в байтах"
 #: ../gramps/plugins/quickview/filterbyname.py:394
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "С фильтром совпала {number_of} записей."
-msgstr[1] "С фильтром совпало {number_of} запись."
-msgstr[2] "С фильтром совпало {number_of} записи."
+msgstr[0] "С фильтром совпала {number_of} запись."
+msgstr[1] "С фильтром совпало {number_of} записи."
+msgstr[2] "С фильтром совпало {number_of} записей."
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -30459,12 +30459,12 @@ msgstr "Ни одна запись о событиях не изменена."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:126
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "Ни одна запись о событиях не изменена."
-msgstr[1] "Ни одна запись о событиях не изменена."
-msgstr[2] "Ни одна запись о событиях не изменена."
+msgstr[0] "{number_of} запись о событии изменена."
+msgstr[1] "{number_of} записи о событиях изменены."
+msgstr[2] "{number_of} записей о событиях изменены."
 
 #: ../gramps/plugins/tool/check.py:107 ../gramps/plugins/tool/check.py:250
 msgid "Checking Database"
@@ -30706,15 +30706,14 @@ msgstr "Удалена 1 семья без родителей и детей.\n"
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "Удалено %(quantity)d сем. без родителей и детей.\n"
 
-# !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2206
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] "Исправлено %d нарушенное семейное отношение\n"
-msgstr[1] "Исправлено %d нарушенных семейных отношения\n"
-msgstr[2] "Исправлено %d нарушенных семейных отношений\n"
+msgstr[0] "Исправлено {quantity} нарушенное семейное отношение\n"
+msgstr[1] "Исправлено {quantity} нарушенных семейных отношения\n"
+msgstr[2] "Исправлено {quantity} нарушенных семейных отношений\n"
 
 # !!!FIXME!!!
 #: ../gramps/plugins/tool/check.py:2215
@@ -33474,9 +33473,9 @@ msgstr "Удалить лицо как родителя из этой семьи
 #: ../gramps/plugins/view/relview.py:860 ../gramps/plugins/view/relview.py:916
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] " ({number_of} брат/сестра)"
+msgstr[1] " ({number_of} брата/сестры)"
+msgstr[2] " ({number_of} братьев/сестёр)"
 
 #: ../gramps/plugins/view/relview.py:867 ../gramps/plugins/view/relview.py:923
 msgid " (1 brother)"
@@ -33546,9 +33545,9 @@ msgstr "Пожалуйста, запустите инструмент «Пров
 #: ../gramps/plugins/view/relview.py:1423
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] " ({number_of} детей)"
-msgstr[1] " ({number_of} ребёнок)"
-msgstr[2] " ({number_of} ребёнка)"
+msgstr[0] " ({number_of} ребёнок)"
+msgstr[1] " ({number_of} ребёнка)"
+msgstr[2] " ({number_of} детей)"
 
 #: ../gramps/plugins/view/relview.py:1380
 #: ../gramps/plugins/view/relview.py:1427
