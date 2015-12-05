@@ -168,7 +168,7 @@ class DbLoader(CLIDbLoader):
         import_dialog.set_current_folder(default_dir)
         while True:
             response = import_dialog.run()
-            if response == Gtk.ResponseType.CANCEL:
+            if response in (Gtk.ResponseType.CANCEL, Gtk.ResponseType.DELETE_EVENT):
                 break
             elif response == Gtk.ResponseType.OK:
                 filename = conv_to_unicode(import_dialog.get_filename())
