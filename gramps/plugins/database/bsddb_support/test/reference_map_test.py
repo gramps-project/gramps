@@ -24,6 +24,7 @@ import time
 
 from .. import DbTxn
 from gramps.gen.lib import Person, Event, Source, Citation
+from gramps.gen.errors import HandleError
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
@@ -109,7 +110,8 @@ class ReferenceMapTest(GrampsDbBaseTest):
         with DbTxn("Del Person", self._db) as tran:
             self._db.remove_person(person.get_handle(),tran)
 
-        self.assertIsNone(self._db.get_person_from_handle(person.get_handle()))
+        self.assertRaises(HandleError, self._db.get_person_from_handle,
+                          person.get_handle())
 
         references = list(self._db.find_backlink_handles(citation.get_handle()))
 
