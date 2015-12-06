@@ -3209,7 +3209,12 @@ class FamilyPages(BasePage):
                                 trow += (tcell1, tcell2)
 
                                 if fam_evt_ref_list:
-                                    fam_evt_srt_ref_list = sorted(fam_evt_ref_list)
+                                    def sort_on_grampsid(obj):
+                                        event = self.dbase_.get_event_from_handle(obj.ref)
+                                        return event.get_gramps_id()
+
+                                    fam_evt_srt_ref_list = sorted(fam_evt_ref_list,
+                                                                  key=lambda x: sort_on_grampsid(x))
                                     for evt_ref in fam_evt_srt_ref_list:
                                         event = self.dbase_.get_event_from_handle(evt_ref.ref)
                                         if event:
