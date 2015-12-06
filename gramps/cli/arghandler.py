@@ -433,7 +433,7 @@ class ArgHandler(object):
                 line_list = [(_('"%s"') % summary[_("Family Tree")])]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
-                        # translators: ignore unless your quotation marks differ
+                        # translators: used in French+Russian, ignore otherwise
                         line_list += [(_('"%s"') % summary[item])]
                 print("\t".join(line_list))
             sys.exit(0)

@@ -265,17 +265,17 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         # print data for the user, no GUI
         (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
         if severity == Rule.WARNING:
-            # translators: needed for Arabic, ignore otherwise
+            # translators: needed for French+Arabic, ignore otherwise
             print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
                        {'severity':'W', 'msg':msg, 'type':the_type,
                         'gid':gramps_id, 'name':name})
         elif severity == Rule.ERROR:
-            # translators: needed for Arabic, ignore otherwise
+            # translators: needed for French+Arabic, ignore otherwise
             print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
                        {'severity':'E', 'msg':msg, 'type':the_type,
                         'gid':gramps_id, 'name':name})
         else:
-            # translators: needed for Arabic, ignore otherwise
+            # translators: needed for French+Arabic, ignore otherwise
             print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
                        {'severity':'S', 'msg':msg, 'type':the_type,
                         'gid':gramps_id, 'name':name})

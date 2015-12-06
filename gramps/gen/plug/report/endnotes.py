@@ -195,7 +195,7 @@ def _format_source_text(source, elocale):
         if src_txt:
             # translators: needed for Arabic, ignore otherwise
             src_txt += trans_text(', ')
-        # translators: ignore unless your quotation marks differ
+        # translators: used in French+Russian, ignore otherwise
         src_txt += trans_text('"%s"') % source.get_title()
 
     if source.get_publication_info():
