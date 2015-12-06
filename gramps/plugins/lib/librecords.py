@@ -144,6 +144,7 @@ def find_records(db, filter, top_size, callname,
             continue
 
         name = _get_styled_primary_name(person, callname,
+                                        trans_text=trans_text,
                                         name_format=name_format)
 
         if death_date is None:
@@ -246,8 +247,10 @@ def find_records(db, filter, top_size, callname,
 
         name = StyledText(trans_text("%(father)s and %(mother)s")) % {
                 'father': _get_styled_primary_name(father, callname,
+                                                   trans_text=trans_text,
                                                    name_format=name_format),
                 'mother': _get_styled_primary_name(mother, callname,
+                                                   trans_text=trans_text,
                                                    name_format=name_format)}
 
         _record(None, family_mostchildren,
@@ -380,7 +383,8 @@ CALLNAME_DONTUSE = 0
 CALLNAME_REPLACE = 1
 CALLNAME_UNDERLINE_ADD = 2
 
-def _get_styled(name, callname, placeholder=False, name_format=None):
+def _get_styled(name, callname, placeholder=False,
+                trans_text=glocale.translation.sgettext, name_format=None):
     """
     Return a StyledText object with the name formatted according to the
     parameters:
@@ -390,6 +394,11 @@ def _get_styled(name, callname, placeholder=False, name_format=None):
         (CALLNAME_UNDERLINE_ADD) or not used at all (CALLNAME_DONTUSE).
     @param placeholder: whether a series of underscores should be inserted as a
         placeholder if first name or surname are missing.
+    @param trans_text: allow deferred translation of strings
+    @type trans_text: a GrampsLocale sgettext instance
+    trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+    :param name_format: optional format to control display of person's name
+    :type name_format: None or int
     """
 
     # Make a copy of the name object so we don't mess around with the real
@@ -410,9 +419,10 @@ def _get_styled(name, callname, placeholder=False, name_format=None):
         elif callname == CALLNAME_UNDERLINE_ADD:
             if n.call not in n.first_name:
                 # Add call name to first name.
-                n.first_name = "\"%(call)s\" (%(first)s)" % {
-                        'call':  n.call,
-                        'first': n.first_name}
+                # translators: used in French+Russian, ignore otherwise
+                n.first_name = trans_text('"%(callname)s" (%(firstname)s)') % {
+                                             'callname':  n.call,
+                                             'firstname': n.first_name }
 
     real_format = name_displayer.get_default_format()
     if name_format is not None:
@@ -433,8 +443,8 @@ def _get_styled(name, callname, placeholder=False, name_format=None):
 
     return StyledText(text, tags)
 
-def _get_styled_primary_name(person, callname,
-                             placeholder=False, name_format=None):
+def _get_styled_primary_name(person, callname, placeholder=False,
+                 trans_text=glocale.translation.sgettext, name_format=None):
     """
     Return a StyledText object with the person's name formatted according to
     the parameters:
@@ -444,7 +454,13 @@ def _get_styled_primary_name(person, callname,
         (CALLNAME_UNDERLINE_ADD) or not used at all (CALLNAME_DONTUSE).
     @param placeholder: whether a series of underscores should be inserted as a
         placeholder if first name or surname are missing.
+    @param trans_text: allow deferred translation of strings
+    @type trans_text: a GrampsLocale sgettext instance
+    trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+    :param name_format: optional format to control display of person's name
+    :type name_format: None or int
     """
 
     return _get_styled(person.get_primary_name(), callname,
-                       placeholder, name_format)
+                       trans_text=trans_text,
+                       placeholder=placeholder, name_format=name_format)
