@@ -588,7 +588,7 @@ class WebCalReport(Report):
             navigation += container
         return navigation
 
-    def calendar_build(self, cal, year, month):
+    def calendar_build(self, cal, year, month, clickable=False):
         """
         This does the work of building the calendar
 
@@ -663,8 +663,14 @@ class WebCalReport(Report):
             thead = Html("thead")
             table += thead 
 
+            if clickable:
+                name = th_txt + self.ext
+                url = name.lower()
+                linkable = Html("a", th_txt, href = url, name = url, title = th_txt)
+            else:
+                linkable = th_txt
             trow = Html("tr") + (
-                Html("th", th_txt, class_ ='monthName', colspan=7, inline = True)
+                Html("th", linkable, class_ ='monthName', colspan=7, inline = True)
                 )
             thead += trow    
 
@@ -930,7 +936,7 @@ class WebCalReport(Report):
             for month in range(1, 13):
 
                 # build the calendar
-                monthly_calendar = self.calendar_build("yg", year, month)
+                monthly_calendar = self.calendar_build("yg", year, month, clickable=True)
                 content += monthly_calendar  
 
                 # increase progress bar
