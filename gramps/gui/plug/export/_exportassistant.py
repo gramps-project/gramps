@@ -119,6 +119,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         #set_window is present in both parent classes
         ManagedWindow.set_window(self, self, None,
             self.top_title, isWindow=True)
+        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
 
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
