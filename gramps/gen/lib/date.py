@@ -1841,7 +1841,8 @@ class Date(object):
         Lookup date quality keyword, even if translated.
         """
         qualities = ["none", "estimated", "calculated"]
-        ui_qualities = [_("none"), _("estimated"), _("calculated")]
+        ui_qualities = [_("date-quality|none"),
+                        _("estimated"), _("calculated")]
         if quality.lower() in qualities:
             return qualities.index(quality.lower())
         elif quality.lower() in ui_qualities:
@@ -1855,7 +1856,8 @@ class Date(object):
         """
         mods = ["none", "before", "after", "about",
                 "range", "span", "textonly"]
-        ui_mods = [_("none"), _("before"), _("after"), _("about"),
+        ui_mods = [_("date-modifier|none"),
+                   _("before"), _("after"), _("about"),
                    _("range"), _("span"), _("textonly")]
         if modifier.lower() in mods:
             return mods.index(modifier.lower())

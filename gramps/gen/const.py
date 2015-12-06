@@ -247,8 +247,8 @@ DOCUMENTERS    = [
 THUMBSCALE       = 96.0
 THUMBSCALE_LARGE = 180.0
 XMLFILE          = "data.gramps"
-NO_SURNAME       = "(%s)" % _("none")
-NO_GIVEN         = "(%s)" % _("none")
+NO_SURNAME       = "(%s)" % _("surname|none")
+NO_GIVEN         = "(%s)" % _("given-name|none")
 ARABIC_COMMA     = "،"
 ARABIC_SEMICOLON = "؛"
 
