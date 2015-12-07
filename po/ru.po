@@ -29663,7 +29663,7 @@ msgstr "Стиль имён родителей"
 #: ../gramps/plugins/textreport/indivcomplete.py:157
 #, python-format
 msgid "%(str1)s in %(str2)s. "
-msgstr "%(str1)s in %(str2)s. "
+msgstr "%(str1)s в %(str2)s. "
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/indivcomplete.py:198
