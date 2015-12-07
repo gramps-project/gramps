@@ -23864,7 +23864,7 @@ msgstr "Создано с помощью"
 
 #: ../gramps/plugins/lib/libgedcom.py:6963
 msgid "Name of software product"
-msgstr "Название продукта "
+msgstr "Название продукта"
 
 #: ../gramps/plugins/lib/libgedcom.py:6977
 msgid "Version number of software product"
@@ -29663,7 +29663,7 @@ msgstr "Стиль имён родителей"
 #: ../gramps/plugins/textreport/indivcomplete.py:157
 #, python-format
 msgid "%(str1)s in %(str2)s. "
-msgstr "%(part1)s в %(part2)s"
+msgstr "%(str1)s in %(str2)s. "
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/indivcomplete.py:198
