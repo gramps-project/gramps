@@ -142,7 +142,7 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.plug import BasePluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.utils.location import get_main_location, get_location_list
+from gramps.gen.utils.location import get_main_location
 
 COLLATE_LANG = glocale.collation
 SORT_KEY = glocale.sort_key
