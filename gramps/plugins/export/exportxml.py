@@ -439,6 +439,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write('/>\n')
 
     def fix(self, line):
+        l = str(line)
         l = l.strip().translate(strip_dict)
         return escxml(l)
 
