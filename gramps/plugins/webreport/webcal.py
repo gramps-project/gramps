@@ -8,6 +8,7 @@
 # Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
 # Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2015      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -259,7 +260,7 @@ class WebCalReport(Report):
         config.set('paths.website-directory',
                    os.path.dirname(self.html_dir) + os.sep)
 
-    def add_day_item(self, text, year, month, day, event):
+    def add_day_item(self, text, year, month, day, event, age_at_death, dead_event_date):
         """
         adds birthdays, anniversaries, and holidays to their perspective lists
 
@@ -267,6 +268,8 @@ class WebCalReport(Report):
         year, month, day -- date to add the text to
 
         event -- one of 'BirthDay', 'Anniversary', or 'Holiday'
+        age_at_death -- The age in text. ie : 68 years, 6 months
+        dead_event_date -- The date of the event used to calculate the age_at_death
         """
 
         # This may happen for certain "about" dates.
@@ -289,7 +292,7 @@ class WebCalReport(Report):
         else:
             event_date = Date.EMPTY            # Incomplete date....
 
-        day_list.append((text, event, event_date))
+        day_list.append((text, event, event_date, age_at_death, dead_event_date))
         month_dict[day] = day_list
 
         # determine which dictionary to add it to???
@@ -313,7 +316,7 @@ class WebCalReport(Report):
                 for day in range(1, 32):
                     holiday_names = holiday_table.get_holidays(month, day)
                     for holiday_name in holiday_names:
-                        self.add_day_item(holiday_name, year, month, day, 'Holiday')
+                        self.add_day_item(holiday_name, year, month, day, 'Holiday', None, None)
                     step()
 
     def copy_calendar_files(self):
@@ -784,7 +787,7 @@ class WebCalReport(Report):
                                     unordered = Html("ul")
                                     tcell += unordered
 
-                                    for nyears, date, text, event in day_list:
+                                    for nyears, date, text, event, notused, notused in day_list:
                                         unordered += Html("li", text, inline = False
                                             if event == 'Anniversary' else True)
 
@@ -995,7 +998,7 @@ class WebCalReport(Report):
         # list the events
         ordered = Html("ol")
         content += ordered
-        for nyears, date, text, event in day_list:
+        for nyears, date, text, event, age_at_death, dead_event_date in day_list:
             ordered += Html("li", text, inline = False if event == 'Anniversary' else True)
 
         # create blank line for stylesheets
@@ -1094,16 +1097,26 @@ class WebCalReport(Report):
 
                 family_list = person.get_family_handle_list()
                 birth_ref = person.get_birth_ref()
-                birth_date = Date.EMPTY
+                birth_date = Date()
                 if birth_ref:
                     birth_event = db.get_event_from_handle(birth_ref.ref)
                     birth_date = birth_event.get_date_object()
 
+                death_ref = person.get_death_ref()
+                person_death = Date()
+                age_at_death = None
+                if death_ref and birth_date:
+                    death_event = db.get_event_from_handle(death_ref.ref)
+                    death_date = death_event.get_date_object()
+                    person_death = death_date
+                    if birth_date != Date() and birth_date.is_valid() and death_date:
+                        age_at_death = death_date - birth_date
+
                 # determine birthday information???
-                if (self.birthday and birth_date is not Date.EMPTY and birth_date.is_valid()):
+                if (self.birthday and birth_date is not Date() and birth_date.is_valid()):
                     birth_date = gregorian(birth_date)
 
-                    year = birth_date.get_year() or this_year
+                    year = birth_date.get_year()
                     month = birth_date.get_month()
                     day = birth_date.get_day()
 
@@ -1142,7 +1155,10 @@ class WebCalReport(Report):
                                                                        prefix = self.narweb_prefix)))
                         else:
                             text = short_name
-                        self.add_day_item(text, year, month, day, 'Birthday')
+                        if age_at_death == None:
+                            self.add_day_item(text, year, month, day, 'Birthday', age_at_death, birth_date)
+                        else:
+                            self.add_day_item(text, year, month, day, 'Birthday', age_at_death, person_death)
 
                 # add anniversary if requested
                 if self.anniv:
@@ -1159,12 +1175,26 @@ class WebCalReport(Report):
                             if spouse:
                                 spouse_name = self.get_name(spouse)
                                 short_name = self.get_name(person)
+                                death_ref = spouse.get_death_ref()
+                                spouse_death = Date()
+                                if death_ref:
+                                    death_event = db.get_event_from_handle(death_ref.ref)
+                                    death_date = death_event.get_date_object()
+                                    if death_date != Date() and death_date.is_valid():
+                                        spouse_death = death_date
+                            first_died = Date()
+                            if person_death == Date():
+                                first_died = spouse_death
+                            elif spouse_death != Date():
+                                first_died = person_death if spouse_death > person_death else spouse_death
+                            else:
+                                first_died = person_death
 
                             # will return a marriage event or False if not married any longer
                             marriage_event = get_marriage_event(db, fam)
                             if marriage_event:
                                 event_date = marriage_event.get_date_object()
-                                if event_date is not Date.EMPTY and event_date.is_valid():
+                                if event_date is not Date() and event_date.is_valid():
                                     event_date = gregorian(event_date)
                                     year = event_date.get_year()
                                     month = event_date.get_month()
@@ -1172,6 +1202,9 @@ class WebCalReport(Report):
 
                                     # date to figure if someone is still alive
                                     prob_alive_date = Date(this_year, month, day)
+                                    wedding_age = None
+                                    if first_died != Date():
+                                        wedding_age = first_died - event_date
 
                                     if self.link_to_narweb:
                                         spouse_name = str(Html("a", spouse_name,
@@ -1183,13 +1216,16 @@ class WebCalReport(Report):
 
                                     alive1 = probably_alive(person, db, prob_alive_date)
                                     alive2 = probably_alive(spouse, db, prob_alive_date)
+                                    if first_died == Date():
+                                        first_died = Date(0, 0, 0)
                                     if ((self.alive and alive1 and alive2) or not self.alive):
 
                                         text = _('%(spouse)s and %(person)s') % {
                                             'spouse' : spouse_name,
                                             'person' : short_name}
 
-                                        self.add_day_item(text, year, month, day, 'Anniversary')
+                                        self.add_day_item(text, year, month, day, 'Anniversary',
+                                                          wedding_age, first_died)
 
     def write_footer(self, nr_up):
         """
@@ -1682,22 +1718,22 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     ##################################################################
     # birthday/ anniversary on this day
     # Date.EMPTY signifies an incomplete date for an event. See add_day_item()
-    bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
+    bday_anniv_list = [(t, e, d, n, x) for t, e, d, n, x in bday_anniv_list
                        if d != Date.EMPTY]
 
     # number of years have to be at least zero
-    bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
+    bday_anniv_list = [(t, e, d, n, x) for t, e, d, n, x in bday_anniv_list
                        if (event_date.get_year() - d.get_year()) >= 0]
 
     # a holiday
     # zero will force holidays to be first in list
     nyears = 0
 
-    for text, event, date in holiday_list:
-        day_list.append((nyears, date, text, event))
+    for text, event, date, notused, notused  in holiday_list:
+        day_list.append((nyears, date, text, event, notused, notused))
 
     # birthday and anniversary list
-    for text, event, date in bday_anniv_list:
+    for text, event, date, age_at_death, dead_event_date in bday_anniv_list:
 
         # number of years married, ex: 10
         nyears = (event_date.get_year() - date.get_year())
@@ -1709,12 +1745,18 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         # a birthday
         if event == 'Birthday':
 
-            txt_str = (text + ', <em>'
-               # TRANSLATORS: expands to smth like "12 years old",
-               # where "12 years" is already localized to your language
-            + (_('%s old') % str(age_str)
-                if nyears else _('birth'))
-            + '</em>')
+            if age_at_death is not None:
+                death_symbol = "&#10014;" # latin cross for html code
+                mess = _("Died %(death_date)s.") % { 'death_date' : dead_event_date }
+                age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (death_symbol, mess, age_at_death)
+            else:
+                # TRANSLATORS: expands to smth like "12 years old",
+                # where "12 years" is already localized to your language
+                age = ', <em>'
+                date_y = date.get_year()
+                age += _('%s old') % str(age_str) if date_y != 0 else \
+                                          _("Born %(birth_date)s.") % {'birth_date' : dead_event_date }
+            txt_str = (text + age + '</em>')
 
         # an anniversary
         elif event == "Anniversary":
@@ -1723,14 +1765,25 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
                             'couple' : text}
             else:
-                years_str = '<em>%s</em>' % nyears
-                # translators: leave all/any {...} untranslated
-                txt_str = ngettext("{couple}, {years} year anniversary",
-                                   "{couple}, {years} year anniversary",
-                                   nyears).format(couple=text, years=years_str)
+                if age_at_death is not None:
+                    age = '%s %s' % ( _("Married"), age_at_death)
+                    txt_str = "%s, <em>%s" % (text, age)
+                    if isinstance(dead_event_date, Date) and dead_event_date.get_year() > 0:
+                        txt_str += " ("
+                        txt_str += str(dead_event_date)
+                        txt_str += ")</em>"
+                    else:
+                        txt_str += "</em>"
+                else:
+                    age = '<em>%s' % nyears
+                    # translators: leave all/any {...} untranslated
+                    txt_str = ngettext("{couple}, {years} year anniversary",
+                                       "{couple}, {years} year anniversary",
+                                       nyears).format(couple=text, years=age)
+                    txt_str += "</em>"
             txt_str = Html('span', txt_str, class_ = "yearsmarried")
 
-        day_list.append((nyears, date, txt_str, event))
+        day_list.append((nyears, date, txt_str, event, age_at_death, dead_event_date))
 
     # sort them based on number of years
     # holidays will always be on top of event list
