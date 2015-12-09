@@ -2188,16 +2188,17 @@ class CheckIntegrity(object):
                         % {'person': cn, 'family': pn}
                     )
 
-        if efam == 1:
+        if efam:
             self.text.write(
-                _("1 family with no parents or children found, removed.\n")
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} family "
+                             "with no parents or children found, removed.\n", 
+                         "{quantity} families "
+                             "with no parents or children found, removed.\n", 
+                         efam).format(quantity=efam)
                 )
-            self.text.write("\t%s\n" % self.empty_family[0])
-        elif efam > 1:
-            self.text.write(
-                _("%(quantity)d families with no parents or children, "
-                    "removed.\n") % {'quantity': efam}
-                )
+            if efam == 1:
+                self.text.write("\t%s\n" % self.empty_family[0])
 
         if rel:
             self.text.write(
