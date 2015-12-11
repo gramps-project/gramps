@@ -647,9 +647,10 @@ def sanitize_lds_ord(db, lds_ord):
     new_lds_ord.set_date_object(lds_ord.get_date_object())
 
     place_handle = lds_ord.get_place_handle()
-    place = db.get_place_from_handle(place_handle)
-    if place and not place.get_privacy():
-        new_lds_ord.set_place_handle(place_handle)
+    if place_handle:
+        place = db.get_place_from_handle(place_handle)
+        if place and not place.get_privacy():
+            new_lds_ord.set_place_handle(place_handle)
 
     copy_citation_ref_list(db, lds_ord, new_lds_ord)
     copy_notes(db, lds_ord, new_lds_ord)
@@ -1020,9 +1021,10 @@ def sanitize_event(db, event):
     copy_attributes(db, event, new_event)
 
     place_handle = event.get_place_handle()
-    place = db.get_place_from_handle(place_handle)
-    if place and not place.get_privacy():
-        new_event.set_place_handle(place_handle)
+    if place_handle:
+        place = db.get_place_from_handle(place_handle)
+        if place and not place.get_privacy():
+            new_event.set_place_handle(place_handle)
 
     return new_event
 
