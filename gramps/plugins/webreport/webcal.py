@@ -94,6 +94,15 @@ _CALENDARPRINT = 'calendar-print.css'
 PLUGMAN = GuiPluginManager.get_instance()
 CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
 
+def _escape(string):
+    """ replace character in text that html shows correctly
+    special characters: & < and >
+    """
+    string = string.replace('&', '&amp;') # must be the first
+    string = string.replace('<', '&lt;')
+    string = string.replace('>', '&gt;')
+    return string
+
 #------------------------------------------------------------------------
 #
 # WebCalReport
@@ -902,6 +911,28 @@ class WebCalReport(Report):
         year -- year being created
         """
 
+        self.event_list = []
+        prv = None
+        nxt = None
+        evdte = None
+        for month in sorted(self.calendar):
+            vals = sorted(self.calendar.get(month, {}))
+            if month == 0: # why ?
+                continue
+            for day in vals:
+                event_date = "%04d%02d%02d" % (year, month, day)
+                if evdte == None:
+                    evdte = event_date
+                elif nxt == None:
+                    nxt = event_date
+                    self.event_list.append((evdte, prv, nxt))
+                else:
+                    prv = evdte
+                    evdte = nxt
+                    nxt = event_date
+                    self.event_list.append((evdte, prv, nxt))
+        self.event_list.append((nxt, evdte, None))
+
         nr_up = 1                       # Number of directory levels up to get to root
 
         # generate progress pass for "Year At A Glance"
@@ -993,7 +1024,28 @@ class WebCalReport(Report):
         # set date display as in user prevferences
         content = Html("div", class_="content", id = "OneDay")
         body += content
-        content += Html("h3", date_displayer.display(event_date), inline = True)
+        evt = fname_date[:8]
+        found = (evt, None, None)
+        for event in self.event_list:
+            if event[0] == evt:
+                found = event
+                break
+        my_title = Html()
+        url = "#"
+        if found[1] is not None:
+            url = event[1] + ".html"
+            my_title = Html("a", _escape("<"), href = url, title = _("Previous"))
+        else:
+            my_title = Html('<em>&nbsp;&nbsp;</em>')
+        my_title += Html("</a>")
+        my_title += Html("span", " ")
+        my_title += date_displayer.display(event_date)
+        my_title += Html("span", " ")
+        if found[2] is not None:
+            url = event[2] + ".html"
+            my_title += Html("a", _escape(">"), href = url, title = _("Next"))
+        my_title += Html("<a>")
+        content += Html("h3", my_title, inline = True)
 
         # list the events
         ordered = Html("ol")
