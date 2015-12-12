@@ -146,13 +146,15 @@ class LivingProxyDb(ProxyDbBase):
     def get_default_person(self):
         """returns the default Person of the database"""
         person_handle = self.db.get_default_handle()
-        return self.get_person_from_handle(person_handle)
+        if person_handle:
+            return self.get_person_from_handle(person_handle)
+        return None
 
     def get_default_handle(self):
         """returns the default Person of the database"""
         person_handle = self.db.get_default_handle()
-        if self.get_person_from_handle(person_handle):
-            return person_handle
+        if person_handle and self.get_person_from_handle(person_handle):
+                return person_handle
         return None
 
     def has_person_handle(self, handle):

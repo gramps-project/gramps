@@ -312,9 +312,10 @@ class PrivateProxyDb(ProxyDbBase):
     def get_default_handle(self):
         """returns the default Person of the database"""
         handle = self.db.get_default_handle()
-        person = self.db.get_person_from_handle(handle)
-        if person and not person.get_privacy():
-            return handle
+        if handle:
+            person = self.db.get_person_from_handle(handle)
+            if person and not person.get_privacy():
+                return handle
         return None
 
     def has_person_handle(self, handle):
@@ -640,9 +641,10 @@ def sanitize_lds_ord(db, lds_ord):
     new_lds_ord.set_temple(lds_ord.get_temple())
 
     fam_handle = lds_ord.get_family_handle()
-    fam = db.get_family_from_handle(fam_handle)
-    if fam and not fam.get_privacy():
-        new_lds_ord.set_family_handle(fam_handle)
+    if fam_handle:
+        fam = db.get_family_from_handle(fam_handle)
+        if fam and not fam.get_privacy():
+            new_lds_ord.set_family_handle(fam_handle)
 
     new_lds_ord.set_date_object(lds_ord.get_date_object())
 
