@@ -769,9 +769,8 @@ class EditPerson(EditPrimary):
             f.set_child_ref_list(new_order)
 
         error = False
-        original = self.db.get_person_from_handle(self.obj.handle)
-
-        if original:
+        if not self.added:
+            original = self.db.get_person_from_handle(self.obj.handle)
             (female, male, unknown) = _select_gender[self.obj.get_gender()]
             if male and original.get_gender() != Person.MALE:
                 for tmp_handle in self.obj.get_family_handle_list():

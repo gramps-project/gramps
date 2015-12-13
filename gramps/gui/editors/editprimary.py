@@ -347,14 +347,12 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         Return True if a duplicate GRAMPS ID has been detected.
 
         """
-        original = None
-        if self.obj.get_handle():
-            original = self.get_from_handle(self.obj.get_handle())
-        if original and original.get_gramps_id() == self.obj.get_gramps_id():
-            return (False, 0)
-        else:
-            idval = self.obj.get_gramps_id()
-            if self.get_from_gramps_id(idval):
+        idval = self.obj.get_gramps_id()
+        existing = self.get_from_gramps_id(idval)
+        if existing:
+            if existing.get_handle() == self.obj.get_handle():
+                return (False, 0)
+            else:
                 return (True, idval)
+        else:
             return (False, 0)
-
