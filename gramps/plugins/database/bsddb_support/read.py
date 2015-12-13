@@ -1488,12 +1488,16 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_default_person(self):
         """Return the default Person of the database."""
-        person = self.get_person_from_handle(self.get_default_handle())
-        if person:
-            return person
-        elif (self.metadata is not None) and (not self.readonly):
-            self.metadata[b'default'] = None
-        return None
+        person_handle = self.get_default_handle()
+        if person_handle:
+            person = self.get_person_from_handle(person_handle)
+            if person:
+                return person
+            elif (self.metadata is not None) and (not self.readonly):
+                self.metadata[b'default'] = None
+                return None
+        else:
+            return None
 
     def get_default_handle(self):
         """Return the default Person of the database."""
