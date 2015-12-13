@@ -1987,23 +1987,23 @@ class Narrator(object):
         :rtype: unicode
         """
 
-        spouse_handle = ReportUtils.find_spouse(self.__person, family)
-        spouse = self.__db.get_person_from_handle(spouse_handle)
-        event = ReportUtils.find_marriage(self.__db, family)
 
         date = self.__empty_date
         place = self.__empty_place
-        if spouse:
-            if not name_display:
-                spouse_name = _nd.display(spouse)
-            else:
-                spouse_name = name_display.display(spouse)
-            if not spouse_name:
-                spouse_name = self.__translate_text("Unknown")
-        else:
-            # not all families have a spouse.
+
+        spouse_name = None
+        spouse_handle = ReportUtils.find_spouse(self.__person, family)
+        if spouse_handle:
+            spouse = self.__db.get_person_from_handle(spouse_handle)
+            if spouse:
+                if not name_display:
+                    spouse_name = _nd.display(spouse)
+                else:
+                    spouse_name = name_display.display(spouse)
+        if not spouse_name:
             spouse_name = self.__translate_text("Unknown") # not: _("Unknown")
 
+        event = ReportUtils.find_marriage(self.__db, family)
         if event:
             if self.__use_fulldate :
                 mdate = self.__get_date(event.get_date_object())

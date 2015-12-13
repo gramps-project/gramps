@@ -528,8 +528,9 @@ class RecurseDown:
                                            father if s_level else myself)
 
                 spouse_handle = ReportUtils.find_spouse(person, family)
-                if self.max_spouses > s_level and \
-                   spouse_handle not in self.families_seen:
+                if (self.max_spouses > s_level and
+                        spouse_handle and
+                        spouse_handle not in self.families_seen):
                     def _spouse_box(who):
                         return self.add_person_box((x_level, s_level+1),
                                             spouse_handle, family_handle, who)
