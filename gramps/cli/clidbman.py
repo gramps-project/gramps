@@ -172,6 +172,23 @@ class CLIDbManager(object):
                    })
         return retval
 
+    def print_family_tree_summaries(self):
+        """
+        Prints a detailed list of the known family trees.
+        """
+        print(_('Gramps Family Trees:'))
+        for item in self.current_names:
+            (name, dirpath, path_name, last,
+             tval, enable, stock_id) = item
+            summary = self.get_dbdir_summary(dirpath, name)
+            print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
+            for item in sorted(summary):
+                if item != "Family Tree":
+                    # translators: needed for French, ignore otherwise
+                    print(_("   %(item)s: %(summary)s") % {
+                        'item' : item,
+                        'summary' : summary[item] } )
+
     def family_tree_summary(self):
         """
         Return a list of dictionaries of the known family trees.

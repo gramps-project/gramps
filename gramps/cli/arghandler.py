@@ -402,17 +402,7 @@ class ArgHandler(object):
 
         # Handle the "-L" List Family Trees in detail option.
         if self.list_more:
-            print(_('Gramps Family Trees:'))
-            summary_list = self.dbman.family_tree_summary()
-            for summary in sorted(summary_list,
-                                  key=lambda sum: sum[_("Family Tree")].lower()):
-                print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
-                for item in sorted(summary):
-                    if item != "Family Tree":
-                        # translators: needed for French, ignore otherwise
-                        print(_("   %(item)s: %(summary)s") % {
-                                        'item' : item,
-                                        'summary' : summary[item] } )
+            self.dbman.print_family_tree_summaries()
             sys.exit(0)
 
         # Handle the "-t" List Family Trees, tab delimited option.
