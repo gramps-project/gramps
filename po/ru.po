@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-12-07 17:49+0900\n"
+"PO-Revision-Date: 2015-12-13 17:23+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1761,11 +1761,13 @@ msgstr "нет"
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
+"Обработчик дат для '%s' недоступен, используется обработчик по умолчанию"
 
 #: ../gramps/gen/datehandler/__init__.py:91
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
+"Отображение дат для '%s' недоступно, используется отображение по умолчанию"
 
 #. format 0 - must always be ISO
 #: ../gramps/gen/datehandler/_datedisplay.py:63
@@ -2571,7 +2573,7 @@ msgstr ""
 "между различными версиями базы данных."
 
 #: ../gramps/gen/db/exceptions.py:113
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
 "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -2583,17 +2585,14 @@ msgid ""
 "can then import this backup into this version of Gramps."
 msgstr ""
 "Древо, которое вы пытаетесь открыть, записано в формате версии Bsddb "
-"%(env_version)s. Текущая версия Gramps использует %(bdb_version)s.\n"
+"%(env_version)s. Текущая версия Gramps использует %(bdb_version)s. Это "
+"значит, что это древо было создано в более новой версии Gramps и это привело "
+"к ошибке.\n"
 "\n"
-"Скорее всего это значит, что это древо было создано в более новой версии "
-"Gramps. Открытие его в настоящей, более старой, версии Gramps невозможно.\n"
-"\n"
-"Запустите <b>новую</b> версию Gramps, и <a href=\"http://www.gramps-project."
-"org/wiki/index.php?title=How_to_make_a_backup\">создайте резервную копию</"
-"a>  из неё.\n"
-"\n"
-"После этого вы можете попытаться импортировать эту резервную копию в "
-"текущую, более старую, версию."
+"Запустите %(bold_start)sновую%(bold_end)s версию Gramps, и "
+"%(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего древа. "
+"После этого вы можете импортировать эту резервную копию в текущую, более "
+"старую, версию Gramps."
 
 #: ../gramps/gen/db/exceptions.py:143
 #, fuzzy, python-format
@@ -11355,7 +11354,7 @@ msgstr "Альтернативные имена"
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:104
 msgid "Enclosed By"
-msgstr ""
+msgstr "Входит в"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:141
 msgid "Place cycle detected"
@@ -14070,6 +14069,10 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner."
 msgstr ""
+"Вы можете выбрать часть изображения на которое хотите сослаться.\n"
+"Для выделения области можно использовать мышь или установить значения "
+"верхнего левого и нижнего правого угла. Точка (0,0) - верхний левый угол "
+"изображения, и (100,100) - нижний правый угол."
 
 #: ../gramps/gui/glade/editmediaref.glade:178
 msgid ""
@@ -14096,6 +14099,10 @@ msgid ""
 "region. Point (0,0) is the top left corner of the picture, and (100,100) the "
 "bottom right corner.\n"
 msgstr ""
+"Вы можете выбрать часть изображения на которое хотите сослаться.\n"
+"Для выделения области можно использовать мышь или установить значения "
+"верхнего левого и нижнего правого угла. Точка (0,0) - верхний левый угол "
+"изображения, и (100,100) - нижний правый угол.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:459
 msgid ""
@@ -15335,11 +15342,11 @@ msgstr "Добавить стиль"
 
 #: ../gramps/gui/glade/styleeditor.glade:1853
 msgid "Edit the selected style"
-msgstr "Редактировать выделенный стиль"
+msgstr "Редактировать выбранный стиль"
 
 #: ../gramps/gui/glade/styleeditor.glade:1885
 msgid "Delete the selected style"
-msgstr "Удалить выделенный стиль"
+msgstr "Удалить выбранный стиль"
 
 #: ../gramps/gui/glade/tipofday.glade:25
 msgid "_Display on startup"
@@ -16070,16 +16077,16 @@ msgstr "Перезагрузить"
 
 #: ../gramps/gui/plug/_windows.py:309
 msgid "Refreshing Addon List"
-msgstr "Обновление списка модулей"
+msgstr "Обновляется список модулей"
 
 #: ../gramps/gui/plug/_windows.py:310 ../gramps/gui/plug/_windows.py:315
 #: ../gramps/gui/plug/_windows.py:406
 msgid "Reading gramps-project.org..."
-msgstr "Читаю gramps-project.org..."
+msgstr "Чтение gramps-project.org..."
 
 #: ../gramps/gui/plug/_windows.py:333
 msgid "Checking addon..."
-msgstr "Проверяю модуль..."
+msgstr "Проверяется модуль..."
 
 #: ../gramps/gui/plug/_windows.py:341
 msgid "Unknown Help URL"
@@ -16096,11 +16103,11 @@ msgstr "Установить все модули"
 # LDS
 #: ../gramps/gui/plug/_windows.py:387
 msgid "Installing..."
-msgstr "Устанавливаем..."
+msgstr "Установка..."
 
 #: ../gramps/gui/plug/_windows.py:405
 msgid "Installing Addon"
-msgstr "Устанавливаем модуль"
+msgstr "Установка модуля"
 
 #: ../gramps/gui/plug/_windows.py:426
 msgid "Load Addon"
@@ -16230,12 +16237,12 @@ msgid ""
 "\n"
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
-"Данные будут сохранены так:\n"
+"Данные будут сохранены следующим образом:\n"
 "\n"
 "Формат:\t%s\n"
 "\n"
-"Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для "
-"пересмотра возможностей"
+"Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для изменения "
+"параметров"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:459
 #, python-format
@@ -16248,14 +16255,14 @@ msgid ""
 "\n"
 "Press Apply to proceed, Go Back to revisit your options, or Cancel to abort"
 msgstr ""
-"Данные будут сохранены так:\n"
+"Данные будут сохранены следующим образом:\n"
 "\n"
 "Формат:\t%(format)s\n"
 "Имя:\t%(name)s\n"
 "Каталог:\t%(folder)s\n"
 "\n"
-"Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для "
-"пересмотра возможностей"
+"Нажмите «OK» для продолжения, «Отмена» для отказа, или «Назад» для изменения "
+"параметров"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:469
 msgid ""
@@ -16507,11 +16514,11 @@ msgstr "Быстрый просмотр"
 #: ../gramps/gui/plug/quick/_quicktable.py:122
 #: ../gramps/plugins/gramplet/descendant.py:117
 msgid "Copy all"
-msgstr "Скопировать все"
+msgstr "Копировать всё"
 
 #: ../gramps/gui/plug/quick/_quicktable.py:153
 msgid "See data not in Filter"
-msgstr "Смотреть данные, не попавшие в фильтр"
+msgstr "Смотреть данные, неподходящие под фильтр"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:184
 #, python-format
@@ -16520,7 +16527,7 @@ msgstr "%(father)s и %(mother)s (%(id)s)"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:220
 msgid "Available Books"
-msgstr "Существующие книги"
+msgstr "Доступные книги"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:290
 msgid "Discard Unsaved Changes"
@@ -17042,7 +17049,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Не могу прочитать советы из внешнего файла.\n"
+"Не удалось прочитать советы из внешнего файла.\n"
 "\n"
 "%s"
 
@@ -17356,7 +17363,7 @@ msgstr ""
 # statistics over import results
 #: ../gramps/gui/viewmanager.py:1090
 msgid "Import Statistics"
-msgstr "Статистика"
+msgstr "Статистика импорта"
 
 #: ../gramps/gui/viewmanager.py:1139
 msgid "Read Only"
@@ -17444,7 +17451,7 @@ msgid "Failed Loading Plugin"
 msgstr "Ошибка загрузки модуля"
 
 #: ../gramps/gui/viewmanager.py:1603
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
 "\n"
@@ -17457,23 +17464,23 @@ msgid ""
 "If you do not want Gramps to try and load this plugin again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Дополнительный модуль %(name)s дал сбой при загрузке.\n"
+"Модуль %(name)s дал сбой при загрузке.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
 "Если вы не можете устранить причину сами, то можно либо сообщить об ошибке "
-"по адресу http://bugs.gramps-project.org , либо связаться напрямую с автором "
-"модуля (%(firstauthoremail)s).\n"
+"по адресу %(gramps_bugtracker_url)s, либо связаться с автором модуля "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Если вы не хотите, чтобы Gramps пыталась загрузить этот модуль в следующий "
-"раз, спрячьте его,используя меню «Справка / Управление модулями»."
+"раз, спрячьте его,с помощью «Справка / Управление модулями»."
 
 #: ../gramps/gui/viewmanager.py:1659
 msgid "Failed Loading View"
 msgstr "Не удалось загрузить вид"
 
 #: ../gramps/gui/viewmanager.py:1660
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
 "\n"
@@ -17491,11 +17498,11 @@ msgstr ""
 "%(error_msg)s\n"
 "\n"
 "Если вы не можете устранить причину сами, то можно либо сообщить об ошибке "
-"по адресу http://bugs.gramps-project.org , либо связаться напрямую с автором "
-"вида (%(firstauthoremail)s).\n"
+"по адресу %(gramps_bugtracker_url)s ,либо связаться с автором вида "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Если вы не хотите, чтобы Gramps пыталась загрузить этот вид в следующий раз, "
-"спрячьте его,используя меню «Справка / Управление модулями»."
+"спрячьте его,с помощью «Справка / Управление модулями»."
 
 #: ../gramps/gui/views/bookmarks.py:64
 msgid "manual|Bookmarks"
@@ -17709,14 +17716,12 @@ msgid "View %(name)s: %(msg)s"
 msgstr "Вид %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:86
-#, fuzzy
 msgid "manual|Organize_Tags_Window"
-msgstr "Организовать метки"
+msgstr "Окно организации меток"
 
 #: ../gramps/gui/views/tags.py:87
-#, fuzzy
 msgid "manual|New_Tag_dialog"
-msgstr "Метки"
+msgstr "Диалог новых меток"
 
 #: ../gramps/gui/views/tags.py:222
 msgid "New Tag..."
@@ -18359,14 +18364,14 @@ msgid "The center person for the tree"
 msgstr "Главное лицо для построения древа"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:774
-#, fuzzy
 msgid "Include siblings of the center person"
-msgstr "Включать родство по отношению к центральному лицу"
+msgstr "Включать братьев/сестёр центрального лица"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:775
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
+"Отображать ли только центральное лицо или всех его(её) братьев/сестёр тоже"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:779
 #: ../gramps/plugins/drawreport/descendtree.py:1518
@@ -18808,7 +18813,7 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:433
 #: ../gramps/plugins/textreport/birthdayreport.py:383
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "{spouse} and\n"
 " {person}, {nyears}"
@@ -18816,14 +18821,14 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"%(spouse)s и\n"
-" %(person)s, %(nyears)d год"
+"{spouse} и\n"
+" {person}, {nyears}"
 msgstr[1] ""
-"%(spouse)s и\n"
-" %(person)s, %(nyears)d года"
+"{spouse} и\n"
+" {person}, {nyears}"
 msgstr[2] ""
-"%(spouse)s и\n"
-" %(person)s, %(nyears)d лет"
+"{spouse} и\n"
+" {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:470
 #: ../gramps/plugins/webreport/webcal.py:1335
@@ -20240,9 +20245,8 @@ msgid "<No Citation>"
 msgstr "<Нет цитаты>"
 
 #: ../gramps/plugins/gramplet/descendant.py:113
-#, fuzzy
 msgid "Descendent Menu"
-msgstr "Веерная карта потомков"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/eval.py:72
 msgid "Evaluation"
@@ -20277,13 +20281,14 @@ msgstr ""
 "Щелкните и перетащите в пустую область для поворота"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFrequently Asked "
 "Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"<b><a wiki='%s_-_FAQ'>Часто задаваемые вопросы</a></b>\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sЧасто задаваемые "
+"вопросы%(html_end)s%(bold_end)s\n"
 "(необходимо соединение с интернетом)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
@@ -20310,6 +20315,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sКак удалить супруга?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -20321,15 +20328,17 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sКак безопасно создать резервную "
+"копию?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Необходимо ли обновлять "
-"Gramps каждый раз, когда выходит обновление?</a>\n"
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sНеобходимо ли обновлять Gramps "
+"каждый раз, когда выходит обновление?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
@@ -20341,16 +20350,17 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
+"  6. %(gramps_manual_html_start)s%(section)sКак вводить информацию о браке?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
 msgstr ""
-"  7. <a wiki='%s_-"
-"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Чем "
-"отличается место жительства от адреса?</a>\n"
+"  7. %(gramps_FAQ_html_start)s%(faq_section)sЧем отличается место жительства "
+"от адреса?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
@@ -20358,13 +20368,13 @@ msgstr "Документы и изображения"
 
 # Link does not exist
 #: ../gramps/plugins/gramplet/faqgramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Как добавить "
-"фотографию человека/документа/события?</a>\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sКак добавить фотографию "
+"человека/документа/события?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -20372,6 +20382,8 @@ msgid ""
 "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media "
 "objects?%(html_end)s\n"
 msgstr ""
+"  9. %(gramps_FAQ_html_start)s%(faq_section)sКак найти неиспользуемые "
+"документы?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
@@ -20391,6 +20403,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sЧто делать, если найдена ошибка "
+"в программе?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -20398,20 +20412,22 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
+" 13. %(gramps_wiki_html_start)s%(section)sГде найти руководство по Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
-#, fuzzy, python-format
+#, python-format
 msgid ""
 " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?"
 "%(html_end)s\n"
 msgstr ""
-" 14. <a wiki='Category:Tutorials'>Существует ли пошаговое руководство к "
-"программе?</a>\n"
+" 14. %(gramps_wiki_html_start)s%(section)sСуществует ли пошаговое "
+"руководство к программе?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
-msgstr ""
+msgstr " 15. %(gramps_wiki_html_start)s%(section)sКак мне ...?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
@@ -20419,6 +20435,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
+" 16. %(gramps_wiki_html_start)s%(section)sКак помочь проекту Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:42
 msgid "Double-click given name for details"
@@ -20997,9 +21015,8 @@ msgid "Gramplet showing the children of a family"
 msgstr "Отображает детей для выбранной семьи"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:847
-#, fuzzy
 msgid "Person References"
-msgstr "Ссылка на лицо"
+msgstr "Ссылки на лицо"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:848
 #, fuzzy
@@ -21023,9 +21040,8 @@ msgid "References"
 msgstr "Ссылки"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:861
-#, fuzzy
 msgid "Event References"
-msgstr "Заметка о ссылке на событие"
+msgstr "Ссылки на событие"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:862
 #, fuzzy
@@ -21033,9 +21049,8 @@ msgid "Gramplet showing the backlink references for an event"
 msgstr "Отображает все записи, ссылающиеся на выбранное событие"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:875
-#, fuzzy
 msgid "Family References"
-msgstr "Ссылка на семью : %s"
+msgstr "Ссылки на семью"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
 #, fuzzy
@@ -21043,9 +21058,8 @@ msgid "Gramplet showing the backlink references for a family"
 msgstr "Отображает все записи, ссылающиеся на выбранную семью"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:889
-#, fuzzy
 msgid "Place References"
-msgstr "Редактор ссылки на местоположение"
+msgstr "Ссылки на местоположение"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
 #, fuzzy
@@ -21063,9 +21077,8 @@ msgid "Gramplet showing the backlink references for a source"
 msgstr "Отображает все записи, ссылающиеся на выбранный источник"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
-#, fuzzy
 msgid "Citation References"
-msgstr "Ссылки"
+msgstr "Ссылки на цитату"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
 #, fuzzy
@@ -21083,9 +21096,8 @@ msgid "Gramplet showing the backlink references for a repository"
 msgstr "Отображает все записи, ссылающиеся на выбранное хранилище"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:945
-#, fuzzy
 msgid "Media References"
-msgstr "Заметка о ссылке на документ"
+msgstr "Ссылки на документ"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
 #, fuzzy
@@ -21093,9 +21105,8 @@ msgid "Gramplet showing the backlink references for a media object"
 msgstr "Отображает все записи, ссылающиеся на выбранный документ"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:959
-#, fuzzy
 msgid "Note References"
-msgstr "Ссылки на источники"
+msgstr "Ссылки на заметку"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:960
 #, fuzzy
@@ -21395,20 +21406,19 @@ msgstr "Двойной щелчок для просмотра лиц в поко
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:271
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgstr[0] ""
-" насчитывает %(count_person)d лицо из %(max_count_person)d (%(percent)s "
+" насчитывает {count_person} лицо из {max_count_person} ({percent} "
 "выполнено)\n"
 msgstr[1] ""
-" насчитывает %(count_person)d лица из %(max_count_person)d (%(percent)s "
+" насчитывает {count_person} лица из {max_count_person} ({percent} "
 "выполнено)\n"
 msgstr[2] ""
-" насчитывает %(count_person)d лиц из %(max_count_person)d (%(percent)s "
-"выполнено)\n"
+" насчитывает {count_person} лиц из {max_count_person} ({percent} выполнено)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:278
 msgid "All generations"
@@ -22490,14 +22500,12 @@ msgid "call"
 msgstr "имя в быту"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|Title"
-msgstr "Титул"
+msgstr "Название"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|title"
-msgstr "титул"
+msgstr "название"
 
 #: ../gramps/plugins/importer/importcsv.py:159
 msgid "gender"
@@ -22640,7 +22648,7 @@ msgstr "мать"
 
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "parent2"
-msgstr "родитель1"
+msgstr "родитель2"
 
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "Parent1"
@@ -27811,6 +27819,8 @@ msgid ""
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
+"Если у Вас закончилось место на диске, можете удалить кеш карт.\n"
+"Осторожно! При отсутствии соединения с интернетом карта будет недоступна."
 
 #: ../gramps/plugins/lib/maps/geography.py:1153
 msgid "Zoom used when centering"
@@ -28632,11 +28642,14 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] ""
-"Найден {number_of} человек с совпадающим основным или альтернативным именем.\n"
+"Найден {number_of} человек с совпадающим основным или альтернативным "
+"именем.\n"
 msgstr[1] ""
-"Найден {number_of} человека с совпадающим основным или альтернативным именем.\n"
+"Найден {number_of} человека с совпадающим основным или альтернативным "
+"именем.\n"
 msgstr[2] ""
-"Найдено {number_of} человек с совпадающим основным или альтернативным именем.\n"
+"Найдено {number_of} человек с совпадающим основным или альтернативным "
+"именем.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -28767,7 +28780,7 @@ msgstr "Боковая панель категорий"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:33
 msgid "A sidebar to allow the selection of view categories"
-msgstr ""
+msgstr "Боковая панель позволяет выбирать категории видов"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:41
 msgid "Category"
@@ -28779,7 +28792,7 @@ msgstr "Выпадающая боковая панель"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Selection of categories and views from drop-down lists"
-msgstr ""
+msgstr "Выбор категорий и видов из выпадающего списка"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:56
 msgid "Drop-Down"
@@ -28791,7 +28804,7 @@ msgstr "Расширяющаяся боковая панель"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Выбор видов с помощью расширения списка"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:71
 msgid "Expander"
@@ -30531,8 +30544,8 @@ msgstr ""
 "Файл:\n"
 "%(file_name)s\n"
 "упомянут в базе данных, но не существует.\n"
-"Возможно, файл был удалён или перемещён в другое место."
-"Вы можете удалить ссылку из базы данных,\n"
+"Возможно, файл был удалён или перемещён в другое место.Вы можете удалить "
+"ссылку из базы данных,\n"
 "оставить ссылку на отсутствующий файл или выбрать новый файл."
 
 #: ../gramps/plugins/tool/check.py:809
@@ -33043,7 +33056,8 @@ msgid ""
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Вид, отображающий места, которые все лица посетили на протяжении своей жизни.\n"
+"Вид, отображающий места, которые все лица посетили на протяжении своей "
+"жизни.\n"
 "Применяется к лицу и любому потомку\n"
 "Вы можете увидеть даты соответствующего периода."
 
