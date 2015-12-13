@@ -476,14 +476,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def get_default_person(self):
         """Return the default Person of the database."""
-        person = self.get_person_from_handle(self.get_default_handle())
-        if person:
-            return person
-        elif (self.metadata) and (not self.readonly):
-            # Start transaction
-            with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(b'default', None)
-        return None
+        person_handle = self.get_default_handle()
+        if person_handle:
+            person = self.get_person_from_handle(person_handle)
+            if person:
+                return person
+            elif (self.metadata) and (not self.readonly):
+                # Start transaction
+                with BSDDBTxn(self.env, self.metadata) as txn:
+                    txn.put(b'default', None)
+                return None
+        else:
+            return None
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
