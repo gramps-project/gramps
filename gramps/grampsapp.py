@@ -417,18 +417,6 @@ def run():
     else:
         #CLI use of Gramps
 
-        #Ensure that output is encoded correctly to stdout and
-        #stderr. This is much less cumbersome and error-prone than
-        #encoding individual outputs:
-        try:
-            _encoding = sys.stdout.encoding or sys.getdefaultencoding()
-        except:
-            _encoding = "UTF-8"
-        import codecs
-        sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
-                                                 'backslashreplace')
-        sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
-                                                 'backslashreplace')
         argpars.print_help()
         argpars.print_usage()
         from .cli.grampscli import startcli
