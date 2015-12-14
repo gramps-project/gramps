@@ -681,6 +681,48 @@ class WebCalReport(Report):
                 linkable = Html("a", th_txt, href = url, name = url, title = th_txt)
             else:
                 linkable = th_txt
+                if not self.multiyear:
+                    self.end_year = self.start_year
+                if month > 1:
+                    full_month_name = date_displayer.long_months[month-1]
+                    url = full_month_name + self.ext
+                    prevm = Date(int(year), int(month-1), 0)
+                    my_title = Html("a", _escape("<"), href = url, title = date_displayer.display(prevm))
+                elif self.multiyear and year > self.start_year:
+                    full_month_name = date_displayer.long_months[12]
+                    url = full_month_name + self.ext
+                    dest = os.path.join("../", str(year-1), url)
+                    prevm = Date(int(year-1), 12, 0)
+                    my_title = Html("a", _escape("<"), href = dest, title = date_displayer.display(prevm))
+                else:
+                    full_month_name = date_displayer.long_months[12]
+                    url = full_month_name + self.ext
+                    dest = os.path.join("../", str(self.end_year), url)
+                    prevy = Date(self.end_year, 12, 0)
+                    my_title = Html("a", _escape("<"), href = dest, title = date_displayer.display(prevy))
+                my_title += Html("</a>&nbsp;")
+                if month < 12:
+                    full_month_name = date_displayer.long_months[month+1]
+                    url = full_month_name + self.ext
+                    nextd = Date(int(year), int(month+1), 0)
+                    my_title += Html("a", _escape(">"), href = url, title = date_displayer.display(nextd))
+                elif self.multiyear and year < self.end_year:
+                    full_month_name = date_displayer.long_months[1]
+                    url = full_month_name + self.ext
+                    dest = os.path.join("../", str(year+1), url)
+                    nextd = Date(int(year+1), 1, 0)
+                    my_title += Html("a", _escape(">"), href = dest, title = date_displayer.display(nextd))
+                else:
+                    full_month_name = date_displayer.long_months[1]
+                    url = full_month_name + self.ext
+                    dest = os.path.join("../", str(self.start_year), url)
+                    nexty = Date(self.start_year, 1, 0)
+                    my_title += Html("a", _escape(">"), href = dest, title = date_displayer.display(nexty))
+                my_title += Html("</a>")
+                trow = Html("tr") + (
+                    Html("th", my_title, class_ ='monthName', colspan=7, inline = True)
+                    )
+                thead += trow
             trow = Html("tr") + (
                 Html("th", linkable, class_ ='monthName', colspan=7, inline = True)
                 )
@@ -1033,18 +1075,23 @@ class WebCalReport(Report):
         my_title = Html()
         url = "#"
         if found[1] is not None:
-            url = event[1] + ".html"
-            my_title = Html("a", _escape("<"), href = url, title = _("Previous"))
+            url = event[1] + self.ext
+            prevd = Date(int(event[1][:4]), int(event[1][4:6]), int(event[1][6:]))
+            my_title = Html("a", _escape("<"), href = url, title = date_displayer.display(prevd))
         else:
             my_title = Html('<em>&nbsp;&nbsp;</em>')
+        my_title += Html("</a>&nbsp;")
+        if found[2] is not None:
+            url = event[2] + self.ext
+            nextd = Date(int(event[2][:4]), int(event[2][4:6]), int(event[2][6:]))
+            my_title += Html("a", _escape(">"), href = url, title = date_displayer.display(nextd))
+        else:
+            my_title += Html('<b>&nbsp;&nbsp;</b>')
         my_title += Html("</a>")
-        my_title += Html("span", " ")
+        content += Html("h3", my_title, inline = True)
+        my_title = Html("span", " ")
         my_title += date_displayer.display(event_date)
         my_title += Html("span", " ")
-        if found[2] is not None:
-            url = event[2] + ".html"
-            my_title += Html("a", _escape(">"), href = url, title = _("Next"))
-        my_title += Html("<a>")
         content += Html("h3", my_title, inline = True)
 
         # list the events
@@ -1821,7 +1868,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                     age = '%s %s' % ( _("Married"), age_at_death)
                     txt_str = "%s, <em>%s" % (text, age)
                     if isinstance(dead_event_date, Date) and dead_event_date.get_year() > 0:
-                        txt_str += " ("
+                        txt_str += " (" + _("Till") + " "
                         txt_str += str(dead_event_date)
                         txt_str += ")</em>"
                     else:
