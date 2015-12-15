@@ -1868,7 +1868,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                     age = '%s %s' % ( _("Married"), age_at_death)
                     txt_str = "%s, <em>%s" % (text, age)
                     if isinstance(dead_event_date, Date) and dead_event_date.get_year() > 0:
-                        txt_str += " (" + _("Till") + " "
+                        txt_str += " (" + _("Until") + " "
                         txt_str += str(dead_event_date)
                         txt_str += ")</em>"
                     else:
