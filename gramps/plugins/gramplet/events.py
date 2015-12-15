@@ -21,6 +21,7 @@ from gramps.gui.editors import EditEvent
 from gramps.gen.lib import EventRoleType
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
+from gramps.gen.plug.report.utils import find_spouse
 from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -199,15 +200,21 @@ class PersonEvents(Events):
                 self.add_event_ref(event_ref)
             for family_handle in active_person.get_family_handle_list():
                 family = self.dbstate.db.get_family_from_handle(family_handle)
-                father_handle = family.get_father_handle()
-                mother_handle = family.get_mother_handle()
-                if father_handle == active_handle:
-                    spouse = self.dbstate.db.get_person_from_handle(mother_handle)
-                else:
-                    spouse = self.dbstate.db.get_person_from_handle(father_handle)
-                for event_ref in family.get_event_ref_list():
-                    self.add_event_ref(event_ref, spouse)
+                self.display_family(family, active_person)
         self.set_has_data(self.model.count > 0)
+
+    def display_family(self, family, active_person):
+        """
+        Display the events for the given family.
+        """
+        spouse_handle = find_spouse(active_person, family)
+        if spouse_handle:
+            spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
+        else:
+            spouse = None
+
+        for event_ref in family.get_event_ref_list():
+            self.add_event_ref(event_ref, spouse)
 
     def get_start_date(self):
         """

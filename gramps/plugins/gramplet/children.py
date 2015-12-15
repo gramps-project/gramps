@@ -20,6 +20,7 @@
 from gramps.gui.editors import EditPerson
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
+from gramps.gen.plug.report.utils import find_spouse
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as name_displayer
@@ -128,19 +129,18 @@ class PersonChildren(Children):
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         for family_handle in active_person.get_family_handle_list():
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            self.display_family(family, active_handle)
+            self.display_family(family, active_person)
         self.set_has_data(self.model.count > 0)
 
-    def display_family(self, family, active_handle):
+    def display_family(self, family, active_person):
         """
         Display the children of given family.
         """
-        father_handle = family.get_father_handle()
-        mother_handle = family.get_mother_handle()
-        if father_handle == active_handle:
-            spouse = self.dbstate.db.get_person_from_handle(mother_handle)
+        spouse_handle = find_spouse(active_person, family)
+        if spouse_handle:
+            spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
         else:
-            spouse = self.dbstate.db.get_person_from_handle(father_handle)
+            spouse = None
 
         for child_ref in family.get_child_ref_list():
             child = self.dbstate.db.get_person_from_handle(child_ref.ref)

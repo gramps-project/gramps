@@ -73,8 +73,8 @@ class Ancestor(Gramplet):
         """
         if active_handle:
             person = self.dbstate.db.get_person_from_handle(active_handle)
-            if person:
-                family_handle = person.get_main_parents_family_handle()
+            family_handle = person.get_main_parents_family_handle()
+            if family_handle:
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family and (family.get_father_handle() or
                                family.get_mother_handle()):
