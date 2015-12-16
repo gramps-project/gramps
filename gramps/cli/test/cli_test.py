@@ -27,6 +27,11 @@ import re
 import subprocess
 
 from gramps.gen.const import TEMP_DIR
+from gramps.gen.dbstate import DbState
+from ..grampscli import CLIManager
+from ..user import User
+from ..arghandler import ArgHandler
+from ..argparser import ArgParser
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -42,6 +47,9 @@ test_ged = """0 HEAD
 ddir = os.path.dirname(__file__)
 min1r = os.path.join(ddir, "min1r.ged")
 out_ged = os.path.join(ddir, "test_out.ged")
+example_copy = os.path.join(ddir, "copy.gramps")
+example = os.path.join(ddir, "..", "..", "..",
+                       "example", "gramps", "data.gramps")
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -155,6 +163,35 @@ class UnicodeTest(unittest.TestCase):
         self.assertEqual(self.newtitle, title, "Compare titles %s and %s" %
                           (repr(self.newtitle), repr(title)))
 
+class CLITest(unittest.TestCase):
+    def tearDown(self):
+        if os.path.exists(example_copy):
+            os.remove(example_copy)
+
+    def setUp(self):
+        self.tearDown()
+        self.dbstate = DbState()
+        #we need a manager for the CLI session
+        self.user = User(auto_accept=True, quiet=False)
+        self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
+        #load the plugins
+        self.climanager.do_reg_plugins(self.dbstate, uistate=None)
+
+    def test1_cli(self):
+        # handle the arguments
+        argparser = ArgParser([None, "-C", "Test", "--import", example])
+        argparser.need_gui() # initializes some variables
+        handler = ArgHandler(self.dbstate, argparser, self.climanager)
+        # create a manager to manage the database
+        handler.handle_args_cli(should_exit=False)
+
+    def test2_cli(self):
+        # handle the arguments
+        argparser = ArgParser([None, "-O", "Test", "--export", example_copy])
+        argparser.need_gui() # initializes some variables
+        handler = ArgHandler(self.dbstate, argparser, self.climanager)
+        # create a manager to manage the database
+        handler.handle_args_cli(should_exit=False)
 
 if __name__ == "__main__":
     unittest.main()
