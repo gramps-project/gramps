@@ -380,6 +380,32 @@ class CLIDbManager(object):
             return True
         return False
 
+    def remove_database(self, dbname):
+        """
+        Deletes a database folder given its proper name.
+        """
+        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        match_list = []
+        for dpath in os.listdir(dbdir):
+            dirpath = os.path.join(dbdir, dpath)
+            path_name = os.path.join(dirpath, NAME_FILE)
+            if os.path.isfile(path_name):
+                file = open(path_name, 'r', encoding='utf8')
+                name = file.readline().strip()
+                file.close()
+                if name == dbname: # currently exact match; could add re.match
+                    match_list.append(dirpath)
+        # now delete them:
+        for directory in match_list:
+            try:
+                for (top, dirs, files) in os.walk(directory):
+                    for filename in files:
+                        os.unlink(os.path.join(top, filename))
+                os.rmdir(directory)
+            except (IOError, OSError) as msg:
+                CLIDbManager.ERROR(_("Could not delete Family Tree"),
+                                   str(msg))
+
     def rename_database(self, filepath, new_text):
         """
         Renames the database by writing the new value to the name.txt file

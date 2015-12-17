@@ -169,29 +169,32 @@ class CLITest(unittest.TestCase):
             os.remove(example_copy)
 
     def setUp(self):
+        from gramps.cli.clidbman import CLIDbManager
         self.tearDown()
         self.dbstate = DbState()
         #we need a manager for the CLI session
         self.user = User(auto_accept=True, quiet=False)
         self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
+        self.clidbmanager = CLIDbManager(self.dbstate)
         #load the plugins
         self.climanager.do_reg_plugins(self.dbstate, uistate=None)
 
-    def test1_cli(self):
+    def test1a_cli(self):
         # handle the arguments
-        argparser = ArgParser([None, "-C", "Test", "--import", example])
+        argparser = ArgParser([None, "-C", "Test: test1_cli", "--import", example])
         argparser.need_gui() # initializes some variables
         handler = ArgHandler(self.dbstate, argparser, self.climanager)
         # create a manager to manage the database
         handler.handle_args_cli(should_exit=False)
 
-    def test2_cli(self):
+    def test1b_cli(self):
         # handle the arguments
-        argparser = ArgParser([None, "-O", "Test", "--export", example_copy])
+        argparser = ArgParser([None, "-O", "Test: test1_cli", "--export", example_copy])
         argparser.need_gui() # initializes some variables
         handler = ArgHandler(self.dbstate, argparser, self.climanager)
         # create a manager to manage the database
         handler.handle_args_cli(should_exit=False)
+        self.clidbmanager.remove_database("Test: test1_cli")
 
 if __name__ == "__main__":
     unittest.main()
