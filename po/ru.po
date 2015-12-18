@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-12-18 09:26+0300\n"
+"PO-Revision-Date: 2015-12-18 11:19+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -9435,7 +9435,7 @@ msgstr "Tree View: первый столбец «%s» не может быть �
 
 #: ../gramps/gui/columnorder.py:95
 msgid "Drag and drop the columns to change the order"
-msgstr "Перетаскивайте столбцы мышью для изменения порядка"
+msgstr "Перетаскивайте столбцы с помощью мыши, чтобы изменить порядок"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1428
 #: ../gramps/gui/configure.py:1453 ../gramps/gui/plug/_dialogs.py:123
@@ -14351,7 +14351,7 @@ msgstr "Обозначить лицо как личные данные"
 
 #: ../gramps/gui/glade/editperson.glade:451
 msgid "_Surname:"
-msgstr "Фамилия или отчество:"
+msgstr "Фамилия:"
 
 #: ../gramps/gui/glade/editperson.glade:467
 msgid ""
@@ -17747,7 +17747,7 @@ msgstr "Организовать метки..."
 
 #: ../gramps/gui/views/tags.py:227
 msgid "Tag selected rows"
-msgstr "Добавить метки к выделенным рядам"
+msgstr "Добавить метки к выделенным строкам"
 
 #: ../gramps/gui/views/tags.py:269
 msgid "Adding Tags"
@@ -27752,11 +27752,11 @@ msgstr "Меню карты"
 
 #: ../gramps/plugins/lib/maps/geography.py:318
 msgid "Remove cross hair"
-msgstr ""
+msgstr "Скрыть перекрестие"
 
 #: ../gramps/plugins/lib/maps/geography.py:320
 msgid "Add cross hair"
-msgstr ""
+msgstr "Показать перекрестие"
 
 #: ../gramps/plugins/lib/maps/geography.py:327
 msgid "Unlock zoom and position"
@@ -27842,7 +27842,7 @@ msgstr "Определённые параметры"
 
 #: ../gramps/plugins/lib/maps/geography.py:1144
 msgid "Where to save the tiles for offline mode."
-msgstr "Место сохранения карт для оффлайн режима."
+msgstr "Каталог в который сохранять части карты для оффлайн режима."
 
 #: ../gramps/plugins/lib/maps/geography.py:1148
 msgid ""
@@ -27867,6 +27867,9 @@ msgid ""
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
+"Использовать дополнительную клавиатуру для масштабирования:\n"
+"Если выбрано, то работают + и - на дополнительной клавиатуре,\n"
+"если нет, то эти же символы, но на основной клавиатуре."
 
 #: ../gramps/plugins/lib/maps/geography.py:1166
 msgid "The map"
