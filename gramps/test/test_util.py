@@ -28,7 +28,14 @@ import traceback
 import tempfile
 import shutil
 import logging
+import contextlib
+from io import TextIOWrapper, BytesIO, StringIO
 
+from gramps.gen.dbstate import DbState
+from gramps.cli.user import User
+from gramps.cli.grampscli import CLIManager
+from gramps.cli.argparser import ArgParser
+from gramps.cli.arghandler import ArgHandler
 
 # _caller_context is primarily here to support and document the process
 # of determining the test-module's directory.
@@ -207,5 +214,57 @@ class TestLogger():
         if self.lfname and os.path.isfile(self.lfname):
             txt = open(self.lfname).readlines()
         return txt
+
+### Support for testing CLI
+
+def new_exit(edit_code):
+    raise SystemExit()
+
+@contextlib.contextmanager
+def capture(stdin):
+    oldout, olderr = sys.stdout, sys.stderr
+    oldexit = sys.exit
+    if stdin:
+        oldin = sys.stdin
+        sys.stdin = stdin
+    try:
+        output = [StringIO(), StringIO()]
+        sys.stdout, sys.stderr = output
+        sys.exit = new_exit
+        yield output
+    except SystemExit:
+        pass
+    finally:
+        sys.stdout, sys.stderr = oldout, olderr
+        sys.exit = oldexit
+        if stdin:
+            sys.stdin = oldin
+        output[0] = output[0].getvalue() 
+        output[1] = output[1].getvalue() 
+
+class Gramps(object):
+    def __init__(self, user=None, dbstate=None):
+        ## Setup:
+        from gramps.cli.clidbman import CLIDbManager
+        self.dbstate = dbstate or DbState()
+        #we need a manager for the CLI session
+        self.user = user or User(auto_accept=True, quiet=False)
+        self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
+        self.clidbmanager = CLIDbManager(self.dbstate)
+
+    def run(self, *args, stdin=None):
+        with capture(stdin) as output:
+            #load the plugins
+            self.climanager.do_reg_plugins(self.dbstate, uistate=None)
+            # handle the arguments
+            args = [sys.executable] + list(args)
+            argparser = ArgParser(args)
+            argparser.need_gui() # initializes some variables
+            argparser.print_help()
+            argparser.print_usage()
+            handler = ArgHandler(self.dbstate, argparser, self.climanager)
+            # create a manager to manage the database
+            handler.handle_args_cli(should_exit=False)
+        return output
 
 #===eof===
