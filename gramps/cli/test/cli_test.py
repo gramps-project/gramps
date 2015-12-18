@@ -28,10 +28,7 @@ import subprocess
 
 from gramps.gen.const import TEMP_DIR
 from gramps.gen.dbstate import DbState
-from ..grampscli import CLIManager
-from ..user import User
-from ..arghandler import ArgHandler
-from ..argparser import ArgParser
+from gramps.test.test_util import Gramps
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -167,34 +164,20 @@ class CLITest(unittest.TestCase):
     def tearDown(self):
         if os.path.exists(example_copy):
             os.remove(example_copy)
+        self.call("--remove", "Test: test1_cli")
 
     def setUp(self):
-        from gramps.cli.clidbman import CLIDbManager
+        self.gramps = Gramps()
         self.tearDown()
-        self.dbstate = DbState()
-        #we need a manager for the CLI session
-        self.user = User(auto_accept=True, quiet=False)
-        self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
-        self.clidbmanager = CLIDbManager(self.dbstate)
-        #load the plugins
-        self.climanager.do_reg_plugins(self.dbstate, uistate=None)
+
+    def call(self, *args, stdin=None):
+        self.gramps.run(*args, stdin=stdin)
 
     def test1a_cli(self):
-        # handle the arguments
-        argparser = ArgParser([None, "-C", "Test: test1_cli", "--import", example])
-        argparser.need_gui() # initializes some variables
-        handler = ArgHandler(self.dbstate, argparser, self.climanager)
-        # create a manager to manage the database
-        handler.handle_args_cli(should_exit=False)
+        self.call("-C", "Test: test1_cli", "--import", example)
 
     def test1b_cli(self):
-        # handle the arguments
-        argparser = ArgParser([None, "-O", "Test: test1_cli", "--export", example_copy])
-        argparser.need_gui() # initializes some variables
-        handler = ArgHandler(self.dbstate, argparser, self.climanager)
-        # create a manager to manage the database
-        handler.handle_args_cli(should_exit=False)
-        self.clidbmanager.remove_database("Test: test1_cli")
+        self.call("-O", "Test: test1_cli", "--export", example_copy)
 
 if __name__ == "__main__":
     unittest.main()

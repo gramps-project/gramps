@@ -217,7 +217,7 @@ class TestLogger():
 
 ### Support for testing CLI
 
-def new_exit(edit_code):
+def new_exit(edit_code=None):
     raise SystemExit()
 
 @contextlib.contextmanager
