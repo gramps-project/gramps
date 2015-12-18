@@ -313,6 +313,7 @@ LONGOPTS = [
     "sm-config-prefix=",
     "sm-disable",
     "sync",
+    "remove=",
     "usage",
     "version",
     "qml",
@@ -320,7 +321,7 @@ LONGOPTS = [
     "quiet",
 ]
 
-SHORTOPTS = "O:C:i:e:f:a:p:d:c:lLthuv?syq"
+SHORTOPTS = "O:C:i:e:f:a:p:d:c:r:lLthuv?syq"
 
 GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 

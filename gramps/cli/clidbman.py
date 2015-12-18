@@ -395,6 +395,9 @@ class CLIDbManager(object):
                 file.close()
                 if name == dbname: # currently exact match; could add re.match
                     match_list.append(dirpath)
+        if len(match_list) == 0:
+            CLIDbManager.ERROR("Family tree not found", 
+                               "No matching family tree found: '%s'" % dbname)
         # now delete them:
         for directory in match_list:
             try:

@@ -62,6 +62,7 @@ Application options
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
+  -r, --remove=FAMILY_TREE               Remove a Family Tree
   -f, --format=FORMAT                    Specify Family Tree format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
@@ -137,6 +138,7 @@ class ArgParser(object):
     -C, --create=FAMILY_TREE        Create on open if new Family Tree
     -i, --import=FILENAME           Import file
     -e, --export=FILENAME           Export file
+    -r, --remove=FAMILY_TREE        Remove a Family Tree
     -f, --format=FORMAT             Specify Family Tree format
     -a, --action=ACTION             Specify action
     -p, --options=OPTIONS_STRING    Specify options
@@ -194,6 +196,7 @@ class ArgParser(object):
         self.exports = []
         self.actions = []
         self.imports = []
+        self.removes = []
         self.imp_db_path = None
         self.list = False
         self.list_more = False
@@ -267,6 +270,8 @@ class ArgParser(object):
                    and options[opt_ix + 1][0] in ( '-f', '--format'):
                     family_tree_format = options[opt_ix + 1][1]
                 self.imports.append((value, family_tree_format))
+            elif option in ['-r', '--remove']:
+                self.removes.append(value)
             elif option in ['-e', '--export']:
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
@@ -359,9 +364,10 @@ class ArgParser(object):
         for ind in cleandbg:
             del options[ind]
 
-        if len(options) > 0 and self.open is None and self.imports == [] \
-                and not (self.list or self.list_more or self.list_table or
-                         self.help or self.runqml):
+        if (len(options) > 0 and self.open is None and self.imports == [] 
+            and self.removes == [] 
+            and not (self.list or self.list_more or self.list_table or
+                     self.help or self.runqml)):
             # Extract and convert to unicode the arguments in the list.
             # The % operator replaces the list elements with repr() of
             # the list elements, which is OK for latin characters
@@ -386,6 +392,9 @@ class ArgParser(object):
         """
         if self.errors:
             #errors in argument parsing ==> give cli error, no gui needed
+            return False
+
+        if len(self.removes) > 0:
             return False
 
         if self.list or self.list_more or self.list_table or self.help:
