@@ -150,6 +150,9 @@ class ReferenceMapTest(GrampsDbBaseTest):
                          "len(references) == %s " % str(len(references)))
 
     def perf_simple_search_speed(self):
+        """
+        This doesn't work any more due to multiply inheritance changes.
+        """
 
         num_sources = 100
         num_persons = 1000
