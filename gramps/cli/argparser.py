@@ -62,7 +62,7 @@ Application options
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
-  -r, --remove=FAMILY_TREE               Remove a Family Tree
+  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s)
   -f, --format=FORMAT                    Specify Family Tree format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
@@ -138,7 +138,7 @@ class ArgParser(object):
     -C, --create=FAMILY_TREE        Create on open if new Family Tree
     -i, --import=FILENAME           Import file
     -e, --export=FILENAME           Export file
-    -r, --remove=FAMILY_TREE        Remove a Family Tree
+    -r, --remove=PATTERN            Remove matching Family Tree(s)
     -f, --format=FORMAT             Specify Family Tree format
     -a, --action=ACTION             Specify action
     -p, --options=OPTIONS_STRING    Specify options

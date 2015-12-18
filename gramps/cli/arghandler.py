@@ -407,7 +407,7 @@ class ArgHandler(object):
         # Handle the "--remove" Family Tree
         if self.removes:
             for name in self.removes:
-                self.dbman.remove_database(name)
+                self.dbman.remove_database(name, self.user)
             if should_exit:
                 sys.exit(0)
             else:

@@ -30,6 +30,7 @@ creating, and deleting of databases.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import re
 import os
 import sys
 import time
@@ -380,9 +381,10 @@ class CLIDbManager(object):
             return True
         return False
 
-    def remove_database(self, dbname):
+    def remove_database(self, dbname, user=None):
         """
-        Deletes a database folder given its proper name.
+        Deletes a database folder given a pattenr that matches 
+        its proper name.
         """
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
         match_list = []
@@ -393,21 +395,25 @@ class CLIDbManager(object):
                 file = open(path_name, 'r', encoding='utf8')
                 name = file.readline().strip()
                 file.close()
-                if name == dbname: # currently exact match; could add re.match
-                    match_list.append(dirpath)
+                if re.match("^" + dbname + "$", name): 
+                    match_list.append((name, dirpath))
         if len(match_list) == 0:
             CLIDbManager.ERROR("Family tree not found", 
                                "No matching family tree found: '%s'" % dbname)
         # now delete them:
-        for directory in match_list:
-            try:
-                for (top, dirs, files) in os.walk(directory):
-                    for filename in files:
-                        os.unlink(os.path.join(top, filename))
-                os.rmdir(directory)
-            except (IOError, OSError) as msg:
-                CLIDbManager.ERROR(_("Could not delete Family Tree"),
-                                   str(msg))
+        for (name, directory) in match_list:
+            if user is None or user.prompt(
+                    _('Remove family tree warning'),
+                    _('Are you sure you want to remove the family tree named\n"%s"?' % name),
+                    _('Yes'), _('No'), None):
+                try:
+                    for (top, dirs, files) in os.walk(directory):
+                        for filename in files:
+                            os.unlink(os.path.join(top, filename))
+                    os.rmdir(directory)
+                except (IOError, OSError) as msg:
+                    CLIDbManager.ERROR(_("Could not delete Family Tree"),
+                                       str(msg))
 
     def rename_database(self, filepath, new_text):
         """
