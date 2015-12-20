@@ -147,7 +147,7 @@ for table, entries in [("grampsdb.config",
                          (("name", '"Gramps package (portable XML) Import"'),
                           ('gramps_id', '"R0019"'),
                           ("handle", '"im_gpkg"'),
-                          ("options", '"iff=gramps\\ni=http://sourceforge.net/p/gramps/source/ci/master/tree/example/gramps/example.gramps?format=raw"'),
+                          ("options", '"iff=gramps\\ni=https://raw.githubusercontent.com/gramps-project/gramps/master/example/gramps/example.gramps"'),
                           ("report_type", '"import"')),
                          ])]:
     entry_count = 0
