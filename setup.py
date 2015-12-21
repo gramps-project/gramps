@@ -56,6 +56,11 @@ ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
                'zh_CN', 'zh_HK', 'zh_TW')
 INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
+svem_flag = '--single-version-externally-managed'
+if svem_flag in sys.argv:
+    # Die, setuptools, die.
+    sys.argv.remove(svem_flag)
+
 server = False
 if '--server' in sys.argv:
     sys.argv.remove('--server')
