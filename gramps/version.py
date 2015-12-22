@@ -18,6 +18,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+import datetime
+
 VERSION_TUPLE = (5, 0, 0)
 VERSION        = '.'.join(map(str,VERSION_TUPLE))
+## ---------------------------------
+## Versioning while under development, for packaging, installs:
+##   alphaDATE, alpha20160101
+##   betaDATE, beta20160701
+##   rc1, rc2
+## Comment out the next line for released version:
+VERSION += "alpha" + str(datetime.date.today()).replace("-", "")
+## ---------------------------------
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
