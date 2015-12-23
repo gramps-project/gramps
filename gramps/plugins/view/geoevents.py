@@ -133,6 +133,7 @@ class GeoEvents(GeoGraphyView):
         self.generic_filter = None
         self.additional_uis.append(self.additional_ui())
         self.no_show_places_in_status_bar = False
+        self.show_all = False
 
     def get_title(self):
         """
@@ -178,6 +179,7 @@ class GeoEvents(GeoGraphyView):
         """
         Ask to show all events.
         """
+        self.show_all = True
         self._createmap(None)
 
     def build_tree(self):
@@ -283,20 +285,20 @@ class GeoEvents(GeoGraphyView):
         self.cal = config.get('preferences.calendar-format-report')
         self.no_show_places_in_status_bar = False
 
-        if self.generic_filter:
+        if self.show_all:
+            self.show_all = False
+            events_handle = dbstate.db.get_event_handles()
+            for event_hdl in events_handle:
+                event = dbstate.db.get_event_from_handle(event_hdl)
+                self._createmap_for_one_event(event)
+        elif self.generic_filter:
             events_list = self.generic_filter.apply(dbstate.db)
             for event_handle in events_list:
                 event = dbstate.db.get_event_from_handle(event_handle)
                 self._createmap_for_one_event(event)
-        else:
-            if obj is None:
-                events_handle = dbstate.db.get_event_handles()
-                for event_hdl in events_handle:
-                    event = dbstate.db.get_event_from_handle(event_hdl)
-                    self._createmap_for_one_event(event)
-            else:
-                event = dbstate.db.get_event_from_handle(obj)
-                self._createmap_for_one_event(event)
+        elif obj:
+            event = dbstate.db.get_event_from_handle(obj)
+            self._createmap_for_one_event(event)
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(3, 4, 6)
                           )
