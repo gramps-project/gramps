@@ -208,6 +208,34 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             }
 
     @classmethod
+    def get_labels(cls):
+        return {
+            "_class": _("Person"),
+            "handle":  _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "gender": _("Gender"),
+            "primary_name": _("Primary name"),
+            "alternate_names": _("Alternate names"),
+            "death_ref_index": _("Death reference index"),
+            "birth_ref_index": _("Birth reference index"),
+            "event_ref_list": _("Event references"),
+            "family_list": _("Families"),
+            "parent_family_list": _("Parent families"),
+            "media_list": _("Media"),
+            "address_list": _("Addresses"),
+            "attribute_list": _("Attributes"),
+            "urls": _("Urls"),
+            "lds_ord_list": _("LDS ordinances"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+            "person_ref_list": _("Person references"),
+            "probably_alive": _("Probably alive"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.
@@ -241,6 +269,10 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     @classmethod
     def get_schema(cls):
+        from .mediaref import MediaRef
+        from .address import Address
+        from .url import Url
+        from .ldsord import LdsOrd
         return {
             "handle":  Handle("Person", "PERSON-HANDLE"),
             "gramps_id": str,

@@ -37,7 +37,9 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .surnamebase import SurnameBase
 from .nametype import NameType
+from .handle import Handle
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .date import Date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -187,6 +189,47 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 struct.get("call", default.call),
                 struct.get("nick", default.nick),
                 struct.get("famnick", default.famnick))
+
+    @classmethod
+    def get_labels(cls):
+        return {
+            "_class": _("Name"),
+            "private": _("Private"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "date": _("Date"),
+            "first_name": _("Given name"),
+            "surname_list": _("Surnames"),
+            "suffix": _("Suffix"),
+            "title": _("Title"),
+            "type": _("Type"),
+            "group_as": _("Group as"),
+            "sort_as": _("Sort as"),
+            "display_as": _("Display as"),
+            "call": _("Call name"),
+            "nick": _("Nick name"),
+            "famnick": _("Family nick name"),
+        }
+
+    @classmethod
+    def get_schema(cls):
+        return {
+            "private": bool,
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "date": Date,
+            "first_name": str,
+                          "surname_list": [Handle("Surname", "SURNAME-HANDLE")],
+            "suffix": str,
+            "title": str,
+            "type": NameType,
+            "group_as": str,
+            "sort_as": str,
+            "display_as": str,
+            "call": str,
+            "nick": str,
+            "famnick": str,
+        }
 
     def is_empty(self):
         """

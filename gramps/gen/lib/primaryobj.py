@@ -71,6 +71,37 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         else:
             self.gramps_id = None
 
+    def get_label(self, field):
+        """
+        Get the associated label given a field name of this object.
+        """
+        chain = field.split(".")
+        path = self
+        for part in chain[:-1]:
+            if hasattr(path, part):
+                path = getattr(path, part)
+            else:
+                path = path[int(part)]
+        labels = path.get_labels()
+        if chain[-1] in labels:
+            return labels[chain[-1]]
+        else:
+            raise Exception("%s has no such label: '%s'" % (self, field))
+
+    def get_field(self, field):
+        """
+        Get the value of a field.
+        """
+        chain = field.split(".")
+        path = self
+        for part in chain:
+            class_ = None
+            if hasattr(path, part):
+                path = getattr(path, part)
+            else:
+                path = path[int(part)]
+        return path
+
     def set_gramps_id(self, gramps_id):
         """
         Set the Gramps ID for the primary object.
