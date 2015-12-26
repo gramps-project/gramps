@@ -207,8 +207,6 @@ class GeoMoves(GeoGraphyView):
         self.place_list_active = []
         self.place_list_ref = []
         self.sort = []
-        self.places_found = []
-        self.place_without_coordinates = []
         self.remove_all_gps()
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
@@ -459,6 +457,9 @@ class GeoMoves(GeoGraphyView):
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         latitude = ""
         longitude = ""
+        self.places_found = []
+        self.nbplaces = 0
+        self.nbmarkers = 0
         self.message_layer.clear_messages()
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0

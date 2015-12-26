@@ -206,6 +206,8 @@ class GeoClose(GeoGraphyView):
         self.all_place_list = []
         self.sort = []
         self.places_found = []
+        self.nbmarkers = 0
+        self.nbplaces = 0
         self.place_without_coordinates = []
         self.remove_all_gps()
         self.remove_all_markers()

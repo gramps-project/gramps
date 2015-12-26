@@ -235,6 +235,8 @@ class GeoFamClose(GeoGraphyView):
         self.sort = []
         self.places_found = []
         self.place_without_coordinates = []
+        self.nbmarkers = 0
+        self.nbplaces = 0
         self.remove_all_gps()
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
