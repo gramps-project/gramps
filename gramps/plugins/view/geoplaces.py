@@ -64,6 +64,7 @@ from gramps.gui.filters.sidebar import PlaceSidebarFilter
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PlaceBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
+from gramps.gui.utils import ProgressMeter
 
 #-------------------------------------------------------------------------
 #
@@ -116,7 +117,8 @@ class GeoPlaces(GeoGraphyView):
     """
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        GeoGraphyView.__init__(self, _('Places map'),
+        self.window_name = _('Places map')
+        GeoGraphyView.__init__(self, self.window_name,
                                       pdata, dbstate, uistate,
                                       PlaceBookmarks,
                                       nav_group)
@@ -264,14 +266,24 @@ class GeoPlaces(GeoGraphyView):
                 places_handle = dbstate.db.get_place_handles()
             except:
                 return
+            progress = ProgressMeter(self.window_name, can_cancel=False)
+            length = len(places_handle)
+            progress.set_pass(_('Selecting all places markers'), length)
             for place_hdl in places_handle:
                 place = dbstate.db.get_place_from_handle(place_hdl)
                 self._create_one_place(place)
+                progress.step()
+            progress.close()
         elif self.generic_filter:
             place_list = self.generic_filter.apply(dbstate.db)
+            progress = ProgressMeter(self.window_name, can_cancel=False)
+            length = len(place_list)
+            progress.set_pass(_('Selecting all places markers'), length)
             for place_handle in place_list:
                 place = dbstate.db.get_place_from_handle(place_handle)
                 self._create_one_place(place)
+                progress.step()
+            progress.close()
         elif place_x:
                 place = dbstate.db.get_place_from_handle(place_x)
                 self._create_one_place(place)

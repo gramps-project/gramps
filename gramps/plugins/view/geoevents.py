@@ -64,6 +64,7 @@ from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import EventBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
+from gramps.gui.utils import ProgressMeter
 
 #-------------------------------------------------------------------------
 #
@@ -116,7 +117,8 @@ class GeoEvents(GeoGraphyView):
     """
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        GeoGraphyView.__init__(self, _('Events places map'),
+        self.window_name = _('Events places map')
+        GeoGraphyView.__init__(self, self.window_name,
                                       pdata, dbstate, uistate,
                                       EventBookmarks,
                                       nav_group)
@@ -289,14 +291,24 @@ class GeoEvents(GeoGraphyView):
         if self.show_all:
             self.show_all = False
             events_handle = dbstate.db.get_event_handles()
+            progress = ProgressMeter(self.window_name, can_cancel=False)
+            length = len(events_handle)
+            progress.set_pass(_('Selecting all events markers'), length)
             for event_hdl in events_handle:
                 event = dbstate.db.get_event_from_handle(event_hdl)
                 self._createmap_for_one_event(event)
+                progress.step()
+            progress.close()
         elif self.generic_filter:
             events_list = self.generic_filter.apply(dbstate.db)
+            progress = ProgressMeter(self.window_name, can_cancel=False)
+            length = len(events_list)
+            progress.set_pass(_('Selecting all events markers'), length)
             for event_handle in events_list:
                 event = dbstate.db.get_event_from_handle(event_handle)
                 self._createmap_for_one_event(event)
+                progress.step()
+            progress.close()
         elif obj:
             event = dbstate.db.get_event_from_handle(obj)
             self._createmap_for_one_event(event)
