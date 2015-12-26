@@ -242,10 +242,13 @@ class GeoEvents(GeoGraphyView):
                                       ]
                         if family_list:
                             for family in family_list:
+                                father = mother = None
                                 hdle = family.get_father_handle()
-                                father = dbstate.db.get_person_from_handle(hdle)
+                                if hdle:
+                                    father = dbstate.db.get_person_from_handle(hdle)
                                 hdle = family.get_mother_handle()
-                                mother = dbstate.db.get_person_from_handle(hdle)
+                                if hdle:
+                                    mother = dbstate.db.get_person_from_handle(hdle)
                                 descr2 = ("%(father)s - %(mother)s") % {
                                                'father': _nd.display(father) if father is not None else "?",
                                                'mother': _nd.display(mother) if mother is not None else "?"
