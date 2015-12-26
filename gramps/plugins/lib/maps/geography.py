@@ -1033,9 +1033,19 @@ class GeoGraphyView(OsmGps, NavigationView):
         new_place.set_latitude(str(plat))
         new_place.set_longitude(str(plon))
         if parent:
-            placeref = PlaceRef()
-            placeref.ref = parent
-            new_place.add_placeref(placeref)
+            if isinstance(parent, Place):
+                placeref = PlaceRef()
+                placeref.ref = parent
+                new_place.add_placeref(placeref)
+            else:
+                found = None
+                for place in self.dbstate.db.iter_places():
+                    found = place
+                    if place.name.get_value() == parent:
+                        break
+                placeref = PlaceRef()
+                placeref.ref = found.get_handle()
+                new_place.add_placeref(placeref)
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
             self.add_marker(None, None, plat, plon, None, True, 0)

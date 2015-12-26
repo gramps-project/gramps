@@ -56,6 +56,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from .osmgps import OsmGps
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
+from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -77,9 +78,18 @@ def match(self, lat, lon, radius):
         if (math.hypot(lat-float(entry[3]),
                        lon-float(entry[4])) <= rds) == True:
             # Do we already have this place ? avoid duplicates
-            country, state, county, place = self.get_location(entry[9])
-            if not [country, state, county, place] in self.places:
-                self.places.append([country, state, county, place])
+            country, state, county, place, other = self.get_location(entry[9])
+            if not [country, state, county, place, other] in self.places:
+                self.places.append([country, state, county, place, other])
+    for place in self.dbstate.db.iter_places():
+        latn = place.get_latitude()
+        lonn = place.get_longitude()
+        if latn and lonn:
+            if (math.hypot(lat-float(latn),
+                           lon-float(lonn)) <= rds) == True:
+                country, state, county, place, other = self.get_location(place.get_gramps_id())
+                if not [country, state, county, place, other] in self.places:
+                    self.places.append([country, state, county, place, other])
     return self.places
 
 #-------------------------------------------------------------------------
@@ -137,19 +147,22 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.scroll = Gtk.ScrolledWindow(self.vadjust)
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_shadow_type(Gtk.ShadowType.IN)
-        self.plist = Gtk.ListStore(str, str, str, str)
+        self.plist = Gtk.ListStore(str, str, str, str, str)
         self.choices = Gtk.TreeView(self.plist)
         self.scroll.add(self.choices)
         self.renderer = Gtk.CellRendererText()
         self.tvcol1 = Gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)
         self.tvcol2 = Gtk.TreeViewColumn(_('State'), self.renderer, markup=1)
         self.tvcol3 = Gtk.TreeViewColumn(_('County'), self.renderer, markup=2)
+        self.tvcol4 = Gtk.TreeViewColumn(_('Other'), self.renderer, markup=3)
         self.tvcol1.set_sort_column_id(0)
         self.tvcol2.set_sort_column_id(1)
         self.tvcol3.set_sort_column_id(2)
+        self.tvcol4.set_sort_column_id(3)
         self.choices.append_column(self.tvcol1)
         self.choices.append_column(self.tvcol2)
         self.choices.append_column(self.tvcol3)
+        self.choices.append_column(self.tvcol4)
         self.window.vbox.pack_start(self.scroll, True, True, 0)
         self.label2 = Gtk.Label()
         self.label2.set_markup('<span background="green" foreground="black"'
@@ -191,18 +204,19 @@ class PlaceSelection(ManagedWindow, OsmGps):
             self.plist.append((PLACE_STRING % loc.get(PlaceType.COUNTRY, ''),
                                PLACE_STRING % loc.get(PlaceType.STATE, ''),
                                PLACE_STRING % loc.get(PlaceType.COUNTY, ''),
+                               PLACE_STRING % _('Other'),
                                self.oldvalue)
                              )
         for place in self.places:
             if not place[0]:
                 _LOG.info('No hierarchy yet: %s' % place)
                 continue
-            p = (place[0].value, place[1], place[2], place[3])
+            p = (place[0], place[1], place[2], place[3], place[4])
             self.plist.append(p)
         # here, we could add value from geography names services ...
 
         # if we found no place, we must create a default place.
-        self.plist.append((_("New place with empty fields"), "", "...", None))
+        self.plist.append((_("New place with empty fields"), "", "...", "", None))
 
     def hide_the_region(self):
         """
@@ -226,7 +240,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         get location values
         """
         parent_place = None
-        country = state = county = ''
+        country = state = county = other = ''
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
         place_name = place.name.get_value()
         parent_list = place.get_placeref_list()
@@ -242,10 +256,14 @@ class PlaceSelection(ManagedWindow, OsmGps):
                 if parent_place is None:
                     parent_place = place.get_handle()
             elif int(place.get_type()) == PlaceType.COUNTRY:
-                country = place.name
+                country = place.name.get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-        return(country, state, county, place_name)
+            else:
+                other = place.name.get_value()
+                if parent_place is None:
+                    parent_place = place.get_handle()
+        return(country, state, county, place_name, other)
 
     def selection(self, obj, index, column, function):
         """
