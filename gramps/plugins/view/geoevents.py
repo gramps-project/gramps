@@ -263,10 +263,6 @@ class GeoEvents(GeoGraphyView):
                                                 event.gramps_id,
                                                 None
                                                 )
-                else:
-                    descr = _pd.display(dbstate.db, place)
-                    self._append_to_places_without_coord(
-                         place.gramps_id, descr)
 
     def _createmap(self,obj):
         """
@@ -275,16 +271,18 @@ class GeoEvents(GeoGraphyView):
         """
         dbstate = self.dbstate
         self.place_list = []
+        self.places_found = []
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         self.minyear = 9999
         self.maxyear = 0
+        self.nbmarkers = 0
+        self.nbplaces = 0
         latitude = ""
         longitude = ""
         self.without = 0
         self.cal = config.get('preferences.calendar-format-report')
         self.no_show_places_in_status_bar = False
-
         if self.show_all:
             self.show_all = False
             events_handle = dbstate.db.get_event_handles()

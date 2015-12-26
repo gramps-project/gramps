@@ -180,6 +180,7 @@ class GeoPlaces(GeoGraphyView):
         Ask to show all places.
         """
         self.show_all = True
+        self.nbmarkers = 0
         self._createmap(None)
 
     def build_tree(self):
@@ -219,8 +220,6 @@ class GeoPlaces(GeoGraphyView):
                                         None, # event.gramps_id
                                         None # family.gramps_id
                                        )
-        else:
-            self._append_to_places_without_coord(place.gramps_id, descr)
 
     def _createmap(self,place_x):
         """
@@ -230,6 +229,7 @@ class GeoPlaces(GeoGraphyView):
         dbstate = self.dbstate
         self.cal = config.get('preferences.calendar-format-report')
         self.place_list = []
+        self.places_found = []
         self.place_without_coordinates = []
         self.minlat = 0.0
         self.maxlat = 0.0
