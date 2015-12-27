@@ -21,9 +21,11 @@
 
 import subprocess
 
-def get_git_revision(path=""):
+def get_git_revision(path="", history=100, 
+                     delim="alpha",
+                     format="--date=short --format=%cd"):
     stdout = ""
-    command = "git log -1 --format=%h"
+    command = "git log -%s %s" % (history, format)
     try:
         p = subprocess.Popen(
                 "{} \"{}\"".format(command, path),
@@ -38,6 +40,18 @@ def get_git_revision(path=""):
             stdout = stdout.decode("utf-8", errors = 'replace')
         except UnicodeDecodeError:
             pass
-        return "-" + stdout if stdout else ""
+        if stdout:
+            count = 0
+            date = None
+            for line in str.splitlines(stdout):
+                if count == 0:
+                    date = line
+                elif line != date:
+                    break
+                count += 1
+            return delim + date.replace("-", "") + ("%03d" % count)
+        else:
+            return ""
     else: # no output from git log
         return ""
+
