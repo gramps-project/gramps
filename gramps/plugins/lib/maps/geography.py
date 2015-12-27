@@ -781,10 +781,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         fnam = mnam = _("Unknown")
         if family_list:
             for family in family_list:
+                father = mother = None
                 handle = family.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 handle = family.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 fnam = _nd.display(father) if father else _("Unknown")
                 mnam = _nd.display(mother) if mother else _("Unknown")
         return ( fnam, mnam )

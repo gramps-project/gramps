@@ -315,12 +315,15 @@ class GeoMoves(GeoGraphyView):
                 if family is not None:
                     fhandle = family_list[0] # first is primary
                     fam = dbstate.db.get_family_from_handle(fhandle)
+                    mother = father = None
                     handle = fam.get_father_handle()
-                    father = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        father = dbstate.db.get_person_from_handle(handle)
                     if father:
                         descr1 = "%s - " % _nd.display(father)
                     handle = fam.get_mother_handle()
-                    mother = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        mother = dbstate.db.get_person_from_handle(handle)
                     if mother:
                         descr1 = "%s%s" % ( descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():
@@ -383,27 +386,35 @@ class GeoMoves(GeoGraphyView):
         Create all markers for one family : all event's places with a lat/lon.
         """
         dbstate = self.dbstate
+        person = None
         try:
             person = dbstate.db.get_person_from_handle(family.get_father_handle())
         except:
             return
         family_id = family.gramps_id
         if person is None: # family without father ?
-            person = dbstate.db.get_person_from_handle(family.get_mother_handle())
+            handle = family.get_mother_handle()
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is None:
-            person = dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is not None:
             self._add_person_to_list(person.gramps_id, curlevel-1)
             family_list = person.get_family_handle_list()
             for fhandle in family_list:
                 fam = dbstate.db.get_family_from_handle(fhandle)
+                father = mother = None
                 handle = fam.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     self._createmap_for_next_level(father, level-1, level)
                     self._add_person_to_list(father.gramps_id, curlevel-1)
                 handle = fam.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     self._createmap_for_next_level(father, level-1, level)
                     self._add_person_to_list(mother.gramps_id, curlevel-1)
@@ -464,7 +475,9 @@ class GeoMoves(GeoGraphyView):
         self.place_without_coordinates = []
         self.minlat = self.maxlat = self.minlon = self.maxlon = 0.0
         if person is None:
-            person = self.dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            if handle:
+                person = self.dbstate.db.get_person_from_handle(handle)
             if not person:
                 return
         self.message_layer.add_message(_("All descendance for %s") % _nd.display(person))

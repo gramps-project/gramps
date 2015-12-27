@@ -202,11 +202,12 @@ class GeoPerson(GeoGraphyView):
         Rebuild the tree with the given person handle as the root.
         """
         active = self.get_active()
-        if handle:
-            self._createmap(handle)
-        elif active:
-            p1 = self.dbstate.db.get_person_from_handle(active)
-            self._createmap(p1)
+        #if handle:
+        #    self._createmap(handle)
+        #elif active:
+        #    p1 = self.dbstate.db.get_person_from_handle(active)
+        #    self._createmap(p1)
+        self._createmap()
         self.uistate.modify_statusbar(self.dbstate)
 
     def build_tree(self):
@@ -216,7 +217,9 @@ class GeoPerson(GeoGraphyView):
         information.
         """
         active = self.get_active()
-        self._createmap(active)
+        #self._createmap(active)
+        self._createmap()
+        self.uistate.modify_statusbar(self.dbstate)
 
     def animate(self, menu, marks, index, stepyear):
         """
@@ -286,7 +289,8 @@ class GeoPerson(GeoGraphyView):
                          menu, marks, i, stepyear)
         return False
 
-    def _createmap(self,obj):
+    #def _createmap(self,obj):
+    def _createmap(self):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
@@ -306,7 +310,9 @@ class GeoPerson(GeoGraphyView):
         self.message_layer.clear_messages()
         self.kml_layer.clear()
         person_handle = self.uistate.get_active('Person')
-        person = dbstate.db.get_person_from_handle(person_handle) if person_handle else None
+        person = None
+        if person_handle:
+            person = dbstate.db.get_person_from_handle(person_handle)
         if person is not None:
             # For each event, if we have a place, set a marker.
             self.load_kml_files(person)
@@ -357,13 +363,16 @@ class GeoPerson(GeoGraphyView):
                 if family is not None:
                     fhandle = family_list[0] # first is primary
                     fam = dbstate.db.get_family_from_handle(fhandle)
+                    father = mother = None
                     handle = fam.get_father_handle()
-                    father = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        father = dbstate.db.get_person_from_handle(handle)
                     descr1 = " - "
                     if father:
                         descr1 = "%s - " % _nd.display(father)
                     handle = fam.get_mother_handle()
-                    mother = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        mother = dbstate.db.get_person_from_handle(handle)
                     if mother:
                         descr1 = "%s%s" % ( descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():

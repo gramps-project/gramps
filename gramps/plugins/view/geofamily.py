@@ -271,10 +271,13 @@ class GeoFamily(GeoGraphyView):
     def family_label(self,family):
         if family is None:
             return "Unknown"
-        f = self.dbstate.db.get_person_from_handle(
-            family.get_father_handle())
-        m = self.dbstate.db.get_person_from_handle(
-            family.get_mother_handle())
+        f = m = None
+        hdl = family.get_father_handle()
+        if hdl:
+            f = self.dbstate.db.get_person_from_handle(hdl)
+        hdl = family.get_mother_handle()
+        if hdl:
+            m = self.dbstate.db.get_person_from_handle(hdl)
         if f and m:
             label = _("%(gramps_id)s : %(father)s and %(mother)s") % {
                 'father' : _nd.display(f),
@@ -304,29 +307,37 @@ class GeoFamily(GeoGraphyView):
         """
         dbstate = self.dbstate
         self.message_layer.add_message(_("Family places for %s") % self.family_label(family))
-        try:
+        person = None
+        if family:
             person = dbstate.db.get_person_from_handle(family.get_father_handle())
-        except:
+        else:
             return
         family_id = family.gramps_id
         if person is None: # family without father ?
-            person = dbstate.db.get_person_from_handle(family.get_mother_handle())
+            handle = family.get_mother_handle()
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is None:
-            person = dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
                 fhandle = family_list[0] # first is primary
                 fam = dbstate.db.get_family_from_handle(fhandle)
+                father = mother = None
                 handle = fam.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     comment = _("Father : %(id)s : %(name)s") % {'id': father.gramps_id,
                                                         'name': _nd.display(father) }
                     self._createpersonmarkers(dbstate, father,
                                               comment, family_id)
                 handle = fam.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     comment = _("Mother : %(id)s : %(name)s") % {'id': mother.gramps_id,
                                                         'name': _nd.display(mother) }

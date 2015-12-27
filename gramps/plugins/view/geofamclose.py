@@ -198,10 +198,13 @@ class GeoFamClose(GeoGraphyView):
     def family_label(self,family):
         if family is None:
             return "Unknown"
-        f = self.dbstate.db.get_person_from_handle(
-            family.get_father_handle())
-        m = self.dbstate.db.get_person_from_handle(
-            family.get_mother_handle())
+        f = m = None
+        hdl = family.get_father_handle()
+        if hdl:
+            f = self.dbstate.db.get_person_from_handle(hdl)
+        hdl = family.get_mother_handle()
+        if hdl:
+            m = self.dbstate.db.get_person_from_handle(hdl)
         if f and m:
             label = _("%(gramps_id)s : %(father)s and %(mother)s") % {
                 'father' : _nd.display(f),
@@ -377,12 +380,15 @@ class GeoFamClose(GeoGraphyView):
             if len(family_list) > 0:
                 fhandle = family_list[0] # first is primary
                 fam = dbstate.db.get_family_from_handle(fhandle)
+                father = mother = None
                 handle = fam.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     self.possible_meeting(father, ref_person)
                 handle = fam.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     self.possible_meeting(mother, ref_person)
                 child_ref_list = fam.get_child_ref_list()
@@ -400,25 +406,33 @@ class GeoFamClose(GeoGraphyView):
         try to expose each person of the reference family to the second family
         """
         dbstate = self.dbstate
+        person = None
         try:
             person = dbstate.db.get_person_from_handle(reference.get_father_handle())
         except:
             return
         if person is None: # family without father ?
-            person = dbstate.db.get_person_from_handle(reference.get_mother_handle())
+            handle = reference.get_mother_handle()
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is None:
-            person = dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
                 fhandle = family_list[0] # first is primary
                 fam = dbstate.db.get_family_from_handle(fhandle)
+                father = mother = None
                 handle = fam.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     self._expose_persone_to_family(father, family)
                 handle = fam.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     self._expose_persone_to_family(mother, family)
                 child_ref_list = fam.get_child_ref_list()
@@ -488,13 +502,16 @@ class GeoFamClose(GeoGraphyView):
                 family = self.dbstate.db.get_family_from_handle(family_hdl)
                 if family is not None:
                     fhandle = family_list[0] # first is primary
+                    father = mother = None
                     fam = dbstate.db.get_family_from_handle(fhandle)
                     handle = fam.get_father_handle()
-                    father = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        father = dbstate.db.get_person_from_handle(handle)
                     if father:
                         descr1 = "%s - " % _nd.display(father)
                     handle = fam.get_mother_handle()
-                    mother = dbstate.db.get_person_from_handle(handle)
+                    if handle:
+                        mother = dbstate.db.get_person_from_handle(handle)
                     if mother:
                         descr1 = "%s%s" % ( descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():
@@ -544,28 +561,36 @@ class GeoFamClose(GeoGraphyView):
         Create all markers for one family : all event's places with a lat/lon.
         """
         dbstate = self.dbstate
+        person = None
         try:
             person = dbstate.db.get_person_from_handle(family.get_father_handle())
         except:
             return
         family_id = family.gramps_id
         if person is None: # family without father ?
-            person = dbstate.db.get_person_from_handle(family.get_mother_handle())
+            handle = family.get_mother_handle()
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is None:
-            person = dbstate.db.get_person_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            if handle:
+                person = dbstate.db.get_person_from_handle(handle)
         if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
                 fhandle = family_list[0] # first is primary
                 fam = dbstate.db.get_family_from_handle(fhandle)
+                father = mother = None
                 handle = fam.get_father_handle()
-                father = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    father = dbstate.db.get_person_from_handle(handle)
                 if father:
                     comment = _("Father : %(id)s : %(name)s") % {'id': father.gramps_id,
                                                         'name': _nd.display(father)}
                     self._createmap_for_one_person(father, color, place_list, reference)
                 handle = fam.get_mother_handle()
-                mother = dbstate.db.get_person_from_handle(handle)
+                if handle:
+                    mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
                     comment = _("Mother : %(id)s : %(name)s") % {'id': mother.gramps_id,
                                                         'name': _nd.display(mother)}
@@ -611,7 +636,10 @@ class GeoFamClose(GeoGraphyView):
         #family = self.dbstate.db.get_family_from_handle(family_x)
         family = family_x
         if family is None:
-            person = self.dbstate.db.get_family_from_handle(self.uistate.get_active('Person'))
+            handle = self.uistate.get_active('Person')
+            person = None
+            if handle:
+                person = self.dbstate.db.get_family_from_handle(handle)
             if not person:
                 return
             family_list = person.get_family_handle_list()
