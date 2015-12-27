@@ -291,9 +291,10 @@ class GeoEvents(GeoGraphyView):
         if self.show_all:
             self.show_all = False
             events_handle = dbstate.db.get_event_handles()
-            progress = ProgressMeter(self.window_name, can_cancel=False)
+            progress = ProgressMeter(self.window_name, can_cancel=False,
+                                     parent=self.uistate.window)
             length = len(events_handle)
-            progress.set_pass(_('Selecting all events markers'), length)
+            progress.set_pass(_('Selecting all events'), length)
             for event_hdl in events_handle:
                 event = dbstate.db.get_event_from_handle(event_hdl)
                 self._createmap_for_one_event(event)
@@ -301,9 +302,10 @@ class GeoEvents(GeoGraphyView):
             progress.close()
         elif self.generic_filter:
             events_list = self.generic_filter.apply(dbstate.db)
-            progress = ProgressMeter(self.window_name, can_cancel=False)
+            progress = ProgressMeter(self.window_name, can_cancel=False,
+                                     parent=self.uistate.window)
             length = len(events_list)
-            progress.set_pass(_('Selecting all events markers'), length)
+            progress.set_pass(_('Selecting all events'), length)
             for event_handle in events_list:
                 event = dbstate.db.get_event_from_handle(event_handle)
                 self._createmap_for_one_event(event)
