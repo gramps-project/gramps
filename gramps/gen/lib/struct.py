@@ -308,12 +308,13 @@ class Struct(object):
                     add_func = self.db._tables[name]["add_func"]
                     add_func(new_obj, trans)
 
-    def from_struct(struct):
+    def from_struct(self):
         """
         Given a struct with metadata, create a Gramps object.
         """
         from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
-                                     Repository, MediaObject, Note, Tag)
+                                     Repository, MediaObject, Note, Tag, Date)
+        struct = self.struct
         if isinstance(struct, dict):
             if "_class" in struct.keys():
                 if struct["_class"] == "Person":
@@ -336,6 +337,8 @@ class Struct(object):
                     return Note.create(Note.from_struct(struct))
                 elif struct["_class"] == "Tag":
                     return Tag.create(Tag.from_struct(struct))
+                elif struct["_class"] == "Date":
+                    return Date().unserialize(Date.from_struct(struct, full=True))
         raise AttributeError("invalid struct: %s" % struct)
 
     def __str__(self):

@@ -191,7 +191,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 struct.get("famnick", default.famnick))
 
     @classmethod
-    def get_labels(cls):
+    def get_labels(cls, _):
         return {
             "_class": _("Name"),
             "private": _("Private"),

@@ -50,3 +50,21 @@ class SecondaryObject(BaseObject):
         Should be overwritten by objects that inherit from this class.
         """
         pass
+
+    def get_label(self, field, _):
+        """
+        Get the associated label given a field name of this object.
+        """
+        chain = field.split(".")
+        path = self
+        for part in chain[:-1]:
+            if hasattr(path, part):
+                path = getattr(path, part)
+            else:
+                path = path[int(part)]
+        labels = path.get_labels(_)
+        if chain[-1] in labels:
+            return labels[chain[-1]]
+        else:
+            raise Exception("%s has no such label: '%s'" % (self, field))
+

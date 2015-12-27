@@ -71,7 +71,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         else:
             self.gramps_id = None
 
-    def get_label(self, field):
+    def get_label(self, field, _):
         """
         Get the associated label given a field name of this object.
         """
@@ -82,7 +82,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                 path = getattr(path, part)
             else:
                 path = path[int(part)]
-        labels = path.get_labels()
+        labels = path.get_labels(_)
         if chain[-1] in labels:
             return labels[chain[-1]]
         else:

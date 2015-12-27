@@ -208,7 +208,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             }
 
     @classmethod
-    def get_labels(cls):
+    def get_labels(cls, _):
         return {
             "_class": _("Person"),
             "handle":  _("Handle"),

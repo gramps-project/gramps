@@ -109,6 +109,16 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
             }
 
     @classmethod
+    def get_labels(cls, _):
+        return {
+            "private": _("Private"),
+            "note_list": _("Notes"),
+            "attribute_list": _("Attributes"),
+            "ref": _("Event"),
+            "role": _("Role"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.

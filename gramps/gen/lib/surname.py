@@ -28,9 +28,6 @@ Surname class for Gramps.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
 from .secondaryobj import SecondaryObject
 from .nameorigintype import NameOriginType
 from .const import IDENTICAL, EQUAL, DIFFERENT
@@ -102,7 +99,7 @@ class Surname(SecondaryObject):
                 "connector": self.connector}
 
     @classmethod
-    def get_labels(cls):
+    def get_labels(cls, _):
         return {
             "_class": _("Surname"),
             "surname": _("Surname"),

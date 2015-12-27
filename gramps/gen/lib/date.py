@@ -681,7 +681,7 @@ class Date(object):
                 "newyear": self.newyear}
 
     @classmethod
-    def from_struct(cls, struct):
+    def from_struct(cls, struct, full=False):
         """
         Given a struct data representation, return a serialized object.
 
@@ -695,7 +695,7 @@ class Date(object):
                   struct.get("text", default.text),
                   struct.get("sortval", default.sortval),
                   struct.get("newyear", default.newyear))
-        if retval == (0, 0, 0, (0, 0, 0, False), '', 0, 0):
+        if not full and retval == (0, 0, 0, (0, 0, 0, False), '', 0, 0):
             return None
         else:
             return retval

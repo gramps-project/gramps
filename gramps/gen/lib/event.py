@@ -153,6 +153,25 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                 "private": self.private}
 
     @classmethod
+    def get_labels(cls, _):
+        return {
+            "_class": _("Event"),
+            "handle":  _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "type": _("Type"),
+            "date": _("Date"),
+            "description": _("Description"),
+            "place":  _("Place"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "media_list": _("Media"),
+            "attribute_list": _("Attributes"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.
