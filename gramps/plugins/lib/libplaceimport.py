@@ -96,7 +96,7 @@ class PlaceImport(object):
             if parent:
                 place = self.db.get_place_from_handle(handle)
                 placeref = PlaceRef()
-                placeref.ref = parent.decode('utf-8')
+                placeref.ref = parent
                 place.set_placeref_list([placeref])
                 self.db.commit_place(place, trans, place.get_change_time())
 
@@ -112,7 +112,7 @@ class PlaceImport(object):
         place.place_type = PlaceType(7-type_num)
         if parent is not None:
             placeref = PlaceRef()
-            placeref.ref = parent.decode('utf-8')
+            placeref.ref = parent
             place.set_placeref_list([placeref])
         handle = self.db.add_place(place, trans)
         self.db.commit_place(place, trans)
