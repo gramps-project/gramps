@@ -497,7 +497,9 @@ class RelationshipView(NavigationView):
         for old_child in self.header.get_children():
             self.header.remove(old_child)
 
-        person = self.dbstate.db.get_person_from_handle(obj)
+        person = None
+        if obj:
+            person = self.dbstate.db.get_person_from_handle(obj)
         if not person:
             self.family_action.set_sensitive(False)
             self.order_action.set_sensitive(False)
