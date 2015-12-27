@@ -306,7 +306,7 @@ class GeoPerson(GeoGraphyView):
         self.message_layer.clear_messages()
         self.kml_layer.clear()
         person_handle = self.uistate.get_active('Person')
-        person = dbstate.db.get_person_from_handle(person_handle)
+        person = dbstate.db.get_person_from_handle(person_handle) if person_handle else None
         if person is not None:
             # For each event, if we have a place, set a marker.
             self.load_kml_files(person)
