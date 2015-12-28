@@ -11,9 +11,11 @@
 #  descendant      potomek
 #  call name       domácké jméno
 #  child           potomek
-#  county          okres
+#  city            město
+#  county          kraj
 #  country         stát/země
 #  descendant      potomek
+#  district        okres
 #  event           událost
 #  location        umístění
 #  media object    objekt média(í)
@@ -25,7 +27,8 @@
 #  residence       bydliště
 #  select          zvolit nebo vybrat (dle kontextu)
 #  source          pramen
-#  state           kraj
+#  state           stát
+#  town            městečko
 #  view            pohled (v kontextu např. Family Tree View - Pohled na rodokemn)
 #
 #  Family Tree     rodokmen
@@ -630,8 +633,8 @@ msgid ""
 "City, County or State."
 msgstr ""
 "<b>Spravujeme místa</b><br/>Pohled na místa zobrazuje seznam všech míst v "
-"databázi. Seznam může být seřazen podle různých kritérií, např. Město, Okres "
-"nebo Kraj."
+"databázi. Seznam může být seřazen podle různých kritérií, např. Město, Kraj "
+"nebo Stát."
 
 #: ../data/tips.xml.in.h:40
 msgid ""
@@ -5363,11 +5366,11 @@ msgstr "Město:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr "Okres:"
+msgstr "Kraj:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr "Kraj:"
+msgstr "Stát:"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
@@ -6850,7 +6853,7 @@ msgstr "Země"
 #: ../gramps/plugins/tool/extractcity.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:3375
 msgid "State"
-msgstr "Kraj"
+msgstr "Stát"
 
 #: ../gramps/gen/lib/placetype.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
@@ -6858,7 +6861,7 @@ msgstr "Kraj"
 #: ../gramps/plugins/lib/maps/placeselection.py:145
 #: ../gramps/plugins/webreport/narrativeweb.py:368
 msgid "County"
-msgstr "Okres"
+msgstr "Kraj"
 
 #: ../gramps/gen/lib/placetype.py:73 ../gramps/gui/configure.py:508
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
@@ -6920,7 +6923,7 @@ msgstr "Městský úřad"
 
 #: ../gramps/gen/lib/placetype.py:84
 msgid "Town"
-msgstr "Město"
+msgstr "Městečko"
 
 #: ../gramps/gen/lib/placetype.py:85
 msgid "Village"
@@ -9399,7 +9402,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Stát/Okres"
+msgstr "Stát/Kraj"
 
 #: ../gramps/gui/configure.py:511 ../gramps/plugins/tool/extractcity.py:391
 #: ../gramps/plugins/view/repoview.py:94
@@ -13237,7 +13240,7 @@ msgstr "Město z adresy:"
 #: ../gramps/gui/glade/editaddress.glade:151
 #: ../gramps/plugins/tool/ownereditor.glade:192
 msgid "_State/County:"
-msgstr "Kraj/Okre_s:"
+msgstr "_Stát/Kraj:"
 
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/gui/glade/editlocation.glade:249
@@ -13265,7 +13268,7 @@ msgstr "Telefonní číslo spojené s adresou."
 #: ../gramps/gui/glade/editaddress.glade:236
 msgid ""
 "The state or county of the address in case a mail address must contain this."
-msgstr "Stát nebo okres v případě je jej poštovní adresa vyžaduje."
+msgstr "Stát nebo kraj v případě je jej poštovní adresa vyžaduje."
 
 #: ../gramps/gui/glade/editaddress.glade:250
 msgid "Country of the address"
@@ -13770,7 +13773,7 @@ msgstr "Třetí úroveň dělení míst. Např. okres v ČR."
 
 #: ../gramps/gui/glade/editlocation.glade:193
 msgid "_State:"
-msgstr "_Kraj:"
+msgstr "_Stát:"
 
 #: ../gramps/gui/glade/editlocation.glade:207
 msgid ""
@@ -29512,12 +29515,12 @@ msgstr "Město: %s "
 #: ../gramps/plugins/textreport/placereport.py:164
 #, python-format
 msgid "County: %s "
-msgstr "Okres: %s "
+msgstr "Kraj: %s "
 
 #: ../gramps/plugins/textreport/placereport.py:165
 #, python-format
 msgid "State: %s"
-msgstr "Kraj: %s"
+msgstr "Stát: %s"
 
 #: ../gramps/plugins/textreport/placereport.py:166
 #, python-format
@@ -33306,7 +33309,7 @@ msgstr "PSČ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:388
 msgid "State/ Province"
-msgstr "Kraj"
+msgstr "Stát/ Provincie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:393
 msgid "Alternate Locations"
