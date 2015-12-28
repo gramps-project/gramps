@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-28 14:16+0300\n"
-"PO-Revision-Date: 2015-12-28 14:29+0300\n"
+"PO-Revision-Date: 2015-12-28 15:39+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -8707,6 +8707,11 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
+"Произошла ошибка обработки списка недавно используемых БД из файла {fname}: "
+"{error}.\n"
+"Причиной может быть повреждение Ваших файлов.\n"
+"Если Вы уверены, что нет проблем с другими файлами, просто удалите его и "
+"перезапустите Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1495
@@ -9506,7 +9511,7 @@ msgstr "Домашняя страница Gramps"
 
 #: ../gramps/gui/aboutdialog.py:112
 msgid "Contributions by"
-msgstr ""
+msgstr "Участники"
 
 #. TRANSLATORS: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:115
@@ -9771,7 +9776,6 @@ msgid "_Close"
 msgstr "_Закрыть"
 
 #: ../gramps/gui/configure.py:107
-#, fuzzy
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -9802,8 +9806,8 @@ msgid ""
 "     <i>Dr.</i>: Title, <i>Sr</i>: Suffix, <i>Ed</i>: Nickname, "
 "<i>Underhills</i>: Familynick, <i>Jose</i>: Call.\n"
 msgstr ""
-"Нижеследующие ключевые слова будут заменены соответствующими частями имени:\n"
-"<tt>  \n"
+"Нижеследующие ключевые слова будут заменены соответствующими частями имени:"
+"<tt>\n"
 "  <b>Имя</b>         - личное имя                   <b>Фамилия</b>     - "
 "фамилии (с префиксом и связками)\n"
 "  <b>Титул</b>       - звание: «Др.», «Св.», ...    <b>Суффикс</b>     - "
@@ -28226,7 +28230,7 @@ msgstr "Не удалось создать каталог с кэшем карт
 #: ../gramps/plugins/lib/maps/placeselection.py:129
 #: ../gramps/plugins/lib/maps/placeselection.py:131
 msgid "Place Selection in a region"
-msgstr ""
+msgstr "Выбор места в области"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:132
 msgid ""
@@ -33199,16 +33203,16 @@ msgstr ""
 #: ../gramps/plugins/view/geoclose.py:223
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Исходное лицо : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:228
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Другое лицо : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:233
 msgid "The other person is unknown"
-msgstr "Второе лицо не указано"
+msgstr "Другое лицо не указано"
 
 #: ../gramps/plugins/view/geoclose.py:239
 msgid "You must choose one reference person."
@@ -35110,7 +35114,7 @@ msgstr "Картографический сервис"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8438
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "Выберите картографический сервис для создания страниц мест на карте."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8443
 msgid "Include Place map on Place Pages"
@@ -35126,7 +35130,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8449
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr ""
+msgstr "Включать страницы карт семьи со всеми местами отмеченными на карте"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8452
 msgid ""
@@ -35160,13 +35164,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8477
-#, fuzzy
 msgid "CMS inclusion"
-msgstr "Обрезание"
+msgstr "Включение CMS"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8480
 msgid "Do we include these pages in a cms web ?"
-msgstr ""
+msgstr "Включать эти страницы в cms веб?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8484
 msgid "URI"
@@ -35180,7 +35183,7 @@ msgstr "Где размещён веб сайт? по умолчанию = /NAVW
 #: ../gramps/plugins/webreport/narrativeweb.py:8954
 #, python-format
 msgid "Alphabet Menu: %s"
-msgstr ""
+msgstr "Алфавитное меню: %s"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
