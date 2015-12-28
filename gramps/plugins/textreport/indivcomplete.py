@@ -472,7 +472,7 @@ class IndivCompleteReport(Report):
             tags.append(tag.get_name())
         for text in sorted(tags):
             self.doc.start_row()
-            self.write_cell(text)
+            self.write_cell(text, span=2)
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -708,8 +708,9 @@ class IndivCompleteReport(Report):
             if group in event_dict:
                 self.write_section(event_dict[group], group)
 
-    def write_cell(self, text, endnotes=None, mark=None, style='IDS-Normal'):
-        self.doc.start_cell('IDS-NormalCell')
+    def write_cell(self, text,
+                   endnotes=None, mark=None, style='IDS-Normal', span=1):
+        self.doc.start_cell('IDS-NormalCell', span)
         self.write_paragraph(text, endnotes=endnotes, mark=mark, style=style)
         self.doc.end_cell()
 
