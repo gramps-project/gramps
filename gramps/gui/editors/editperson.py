@@ -870,7 +870,7 @@ class EditPerson(EditPrimary):
                         self.name_displayer.display(self.obj)
             trans.set_description(msg)
 
-        self.close()
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
         self.callback = None
