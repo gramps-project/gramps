@@ -239,7 +239,7 @@ class DbReadBase(object):
         """
         Find a Event in the database from the passed Gramps ID.
 
-        If no such Event exists, None is returned.
+        If no such Event exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -308,7 +308,7 @@ class DbReadBase(object):
         """
         Find a Family in the database from the passed Gramps ID.
 
-        If no such Family exists, None is returned.
+        If no such Family exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -423,7 +423,7 @@ class DbReadBase(object):
         """
         Find a Note in the database from the passed Gramps ID.
 
-        If no such Note exists, None is returned.
+        If no such Note exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -508,7 +508,7 @@ class DbReadBase(object):
         """
         Find an Object in the database from the passed Gramps ID.
 
-        If no such Object exists, None is returned.
+        If no such Object exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -544,7 +544,7 @@ class DbReadBase(object):
         """
         Find a Person in the database from the passed Gramps ID.
 
-        If no such Person exists, None is returned.
+        If no such Person exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -589,7 +589,7 @@ class DbReadBase(object):
         """
         Find a Place in the database from the passed Gramps ID.
 
-        If no such Place exists, None is returned.
+        If no such Place exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -705,7 +705,7 @@ class DbReadBase(object):
         """
         Find a Repository in the database from the passed Gramps ID.
 
-        If no such Repository exists, None is returned.
+        If no such Repository exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -761,7 +761,7 @@ class DbReadBase(object):
         """
         Find a Source in the database from the passed Gramps ID.
 
-        If no such Source exists, None is returned.
+        If no such Source exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -806,7 +806,7 @@ class DbReadBase(object):
         """
         Find a Citation in the database from the passed Gramps ID.
 
-        If no such Citation exists, None is returned.
+        If no such Citation exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -835,7 +835,7 @@ class DbReadBase(object):
         """
         Find a Tag in the database from the passed handle.
 
-        If no such Tag exists, None is returned.
+        If no such Tag exists, a HandleError is raised.
         """
         raise NotImplementedError
 

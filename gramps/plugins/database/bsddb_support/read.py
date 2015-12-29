@@ -718,7 +718,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Person in the database from the passed handle.
 
-        If no such Person exists, None is returned.
+        If no such Person exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Person, self.person_map)
 
@@ -726,7 +726,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Source in the database from the passed handle.
 
-        If no such Source exists, None is returned.
+        If no such Source exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Source, self.source_map)
 
@@ -734,7 +734,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Citation in the database from the passed handle.
 
-        If no such Citation exists, None is returned.
+        If no such Citation exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Citation, self.citation_map)
 
@@ -742,7 +742,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find an Object in the database from the passed handle.
 
-        If no such Object exists, None is returned.
+        If no such Object exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, MediaObject, self.media_map)
 
@@ -750,7 +750,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Place in the database from the passed handle.
 
-        If no such Place exists, None is returned.
+        If no such Place exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Place, self.place_map)
 
@@ -758,7 +758,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Event in the database from the passed handle.
 
-        If no such Event exists, None is returned.
+        If no such Event exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Event, self.event_map)
 
@@ -766,7 +766,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Family in the database from the passed handle.
 
-        If no such Family exists, None is returned.
+        If no such Family exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Family, self.family_map)
 
@@ -774,7 +774,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Repository in the database from the passed handle.
 
-        If no such Repository exists, None is returned.
+        If no such Repository exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Repository, self.repository_map)
 
@@ -782,7 +782,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Note in the database from the passed handle.
 
-        If no such Note exists, None is returned.
+        If no such Note exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Note, self.note_map)
 
@@ -790,7 +790,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Find a Tag in the database from the passed handle.
 
-        If no such Tag exists, None is returned.
+        If no such Tag exists, a HandleError is raised.
         """
         return self.get_from_handle(handle, Tag, self.tag_map)
 
