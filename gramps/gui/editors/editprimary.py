@@ -78,6 +78,10 @@ class EditPrimary(ManagedWindow, DbGUIElement):
         ManagedWindow.__init__(self, uistate, track, obj)
         DbGUIElement.__init__(self, self.db)
 
+        self.original = None
+        if self.obj.handle:
+            self.original = self.get_from_handle(self.obj.handle)
+
         self._local_init()
         self._set_size()
         self._create_tabbed_pages()
@@ -251,16 +255,11 @@ class EditPrimary(ManagedWindow, DbGUIElement):
     def data_has_changed(self):
         if self.db.readonly:
             return False
-        elif self.obj.handle:
-            orig = self.get_from_handle(self.obj.handle)
-            if orig:
-                cmp_obj = orig
-            else:
-                cmp_obj = self.empty_object()
-            return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
+        if self.original:
+            cmp_obj = self.original
         else:
             cmp_obj = self.empty_object()
-            return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
+        return cmp_obj.serialize()[1:] != self.obj.serialize()[1:]
 
     def save(self, *obj):
         """ Save changes and close. Inheriting classes must implement this

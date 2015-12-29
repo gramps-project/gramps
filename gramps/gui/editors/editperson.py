@@ -769,10 +769,9 @@ class EditPerson(EditPrimary):
             f.set_child_ref_list(new_order)
 
         error = False
-        if not self.added:
-            original = self.db.get_person_from_handle(self.obj.handle)
+        if self.original:
             (female, male, unknown) = _select_gender[self.obj.get_gender()]
-            if male and original.get_gender() != Person.MALE:
+            if male and self.original.get_gender() != Person.MALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_mother_handle():
@@ -781,7 +780,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_mother_handle(None)
                             temp_family.set_father_handle(self.obj)
-            elif female and original != Person.FEMALE:
+            elif female and self.original != Person.FEMALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
@@ -790,7 +789,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_father_handle(None)
                             temp_family.set_mother_handle(self.obj)
-            elif unknown and original.get_gender() != Person.UNKNOWN:
+            elif unknown and self.original.get_gender() != Person.UNKNOWN:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
