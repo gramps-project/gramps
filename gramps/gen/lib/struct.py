@@ -308,13 +308,17 @@ class Struct(object):
                     add_func = self.db._tables[name]["add_func"]
                     add_func(new_obj, trans)
 
-    def from_struct(self):
+    @classmethod
+    def from_struct(self, struct=None):
         """
         Given a struct with metadata, create a Gramps object.
+
+        self is class when called as a classmethod.
         """
         from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                                      Repository, MediaObject, Note, Tag, Date)
-        struct = self.struct
+        if struct is None:
+            struct = self.struct
         if isinstance(struct, dict):
             if "_class" in struct.keys():
                 if struct["_class"] == "Person":
