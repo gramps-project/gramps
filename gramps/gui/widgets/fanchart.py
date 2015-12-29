@@ -1632,6 +1632,8 @@ class FanChartGrampsGUI(object):
                 sp_id = family.get_mother_handle()
             else:
                 sp_id = family.get_father_handle()
+            if not sp_id:
+                continue
             spouse = self.dbstate.db.get_person_from_handle(sp_id)
             if not spouse:
                 continue
@@ -1743,6 +1745,8 @@ class FanChartGrampsGUI(object):
         no_parents = 1
         par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
+            if not par_id:
+                continue
             par = self.dbstate.db.get_person_from_handle(par_id)
             if not par:
                 continue
