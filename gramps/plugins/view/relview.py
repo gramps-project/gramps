@@ -1056,7 +1056,7 @@ class RelationshipView(NavigationView):
             link_label.show()
             vbox.pack_start(link_label, True, True, 0)
 
-        if self.show_details:
+        if self.show_details and handle:
             value = self.info_string(handle)
             if value:
                 vbox.pack_start(widgets.MarkupLabel(value), True, True, 0)
