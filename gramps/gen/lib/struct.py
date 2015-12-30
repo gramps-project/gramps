@@ -20,6 +20,9 @@
 
 from gramps.gen.lib.handle import HandleClass
 
+def from_struct(struct):
+    return Struct.instance_from_struct(struct)
+
 class Struct(object):
     """
     Class for getting and setting parts of a struct by dotted path.
@@ -288,7 +291,7 @@ class Struct(object):
         if self.db:
             if trans is None:
                 with self.transaction("Struct Update", self.db, batch=True) as trans:
-                    new_obj = self.from_struct(struct)
+                    new_obj = Struct.instance_from_struct(struct)
                     name, handle = struct["_class"], struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
                     if old_obj:
@@ -298,7 +301,7 @@ class Struct(object):
                         add_func = self.db._tables[name]["add_func"]
                         add_func(new_obj, trans)
             else:
-                new_obj = self.from_struct(struct)
+                new_obj = Struct.instance_from_struct(struct)
                 name, handle = struct["_class"], struct["handle"]
                 old_obj = self.db.get_from_name_and_handle(name, handle)
                 if old_obj:
@@ -308,8 +311,11 @@ class Struct(object):
                     add_func = self.db._tables[name]["add_func"]
                     add_func(new_obj, trans)
 
+    def from_struct(self):
+        return Struct.instance_from_struct(self.struct)
+
     @classmethod
-    def from_struct(self, struct=None):
+    def instance_from_struct(cls, struct):
         """
         Given a struct with metadata, create a Gramps object.
 
@@ -317,8 +323,6 @@ class Struct(object):
         """
         from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                                      Repository, MediaObject, Note, Tag, Date)
-        if struct is None:
-            struct = self.struct
         if isinstance(struct, dict):
             if "_class" in struct.keys():
                 if struct["_class"] == "Person":
