@@ -175,9 +175,11 @@ class Struct(object):
             # get first item in list that matches:
             sublist = [getattr(Struct(item, self.db), attr) for item in self.struct]
             return Struct(sublist, self.db)
-        else:
+        elif hasattr(self.struct, attr):
             # better be a property of the list/tuple/dict/value:
             return getattr(self.struct, attr)
+        else:
+            return Struct({}, self.db) # dummy, extending a previous dummy
 
     def __getitem__(self, item):
         """
@@ -221,7 +223,7 @@ class Struct(object):
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
-                raise AttributeError("missing object: %s" % item)
+                return Struct({}, self.db) # dummy, a db error
         elif isinstance(item, (list, tuple)):
             return Struct(item, self.db)
         elif isinstance(item, dict) and "_class" in item.keys():
