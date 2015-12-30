@@ -96,10 +96,26 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         path = self
         for part in chain:
             class_ = None
-            if hasattr(path, part):
+            if hasattr(path, part): # attribute
                 path = getattr(path, part)
-            else:
+            elif part.isdigit(): # index into list
                 path = path[int(part)]
+            elif part.endswith(")"): # callable
+                # parse
+                function, sargs = part.split("(", 1)
+                sargs = sargs[:-1] # remove right-parent
+                # eval arguments
+                args = []
+                for sarg in sargs.split(","):
+                    if sarg:
+                        args.append(eval(sarg.strip()))
+                # call
+                path = getattr(path, function)(*args)
+            else:
+                # If any error, just returns None
+                # To check for errors:
+                # raise Exception("%s is not a valid field of %s; use %s" % (part, path, dir(path)))
+                return None
         return path
 
     def set_gramps_id(self, gramps_id):
