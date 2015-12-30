@@ -30,18 +30,25 @@ from this class.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+import re
 
 #-------------------------------------------------------------------------
 #
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
 from .exceptions import DbTransactionCancel
+
+#-------------------------------------------------------------------------
+#
+# Gramps libraries
+#
+#-------------------------------------------------------------------------
 
 class DbReadBase(object):
     """
@@ -1868,3 +1875,100 @@ class DbWriteBase(DbReadBase):
             self.remove_family(instance.handle, transaction)
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
+
+    def select(self, table, fields=None, sort=False, start=0, limit=50,
+               filter=None):
+        """
+        Default implementation of a select for those databases
+        that don't support SQL. Yields data row by row.
+
+        table - Person, Family, etc.
+        fields - used by object.get_field()
+        sort - use sort order (argument to DB.get_X_handles)
+        start - position to start
+        limit - count to get; -1 for all
+        filter - {field: (SQL string_operator, value), }
+                 handles all SQL except for NOT expression, eg NOT x = y
+        """
+        def hash_name(name):
+            """
+            Used in filter to eval expressions involving selected
+            data.
+            """
+            return (name
+                    .replace(".", "_D_")
+                    .replace("(", "_P_")
+                    .replace(")", "_P_"))
+        # Fields is None or list, maybe containing "*":
+        if fields is None:
+            fields = ["*"]
+        elif not isinstance(fields, (list, tuple)):
+            raise Exception("fields must be a list/tuple of field names")
+        if "*" in fields:
+            fields.remove("*")
+            fields.extend(self._tables[table]["class_func"].get_schema().keys())
+        # Get iterator of handles, possibly sorted by name, etc.:
+        if sort:
+            data = self._tables[table]["handles_func"](sort_handles=True)
+        else:
+            data = self._tables[table]["handles_func"]()
+        position = 0
+        selected = 0
+        for handle in data:
+            if position < start:
+                pass # skip it
+            else:
+                item = self._tables[table]["handle_func"](handle)
+                row = []
+                env = {}
+                for field in fields: 
+                    value = item.get_field(field)
+                    row.append(value)
+                    if filter:
+                        env[hash_name(field)] = value
+                if filter:
+                    matched = True
+                    for name, (op, value) in filter.items():
+                        v = eval(hash_name(name), env)
+                        if op == "=":
+                            matched = v == value
+                        elif op == ">":
+                            matched = v > value
+                        elif op == ">=":
+                            matched = v >= value
+                        elif op == "<":
+                            matched = v < value
+                        elif op == "<=":
+                            matched = v <= value
+                        elif op == "IN":
+                            matched = v in value
+                        elif op == "IS":
+                            matched = v is value
+                        elif op == "IS NOT":
+                            matched = v is not value
+                        elif op == "IS NULL":
+                            matched = v is None
+                        elif op == "IS NOT NULL":
+                            matched = v is not None
+                        elif op == "BETWEEN":
+                            matched = value[0] <= v <= value[1]
+                        elif op in ["<>", "!="]:
+                            matched = v != value
+                        elif op == "LIKE":
+                            value = value.replace("%", "(.*)").replace("_", ".")
+                            matched = re.match(value, v)
+                        else:
+                            raise Exception("invalid select operator: '%s'" % op)
+                        if not matched:
+                            break
+                    if matched:
+                        selected += 1
+                        yield row
+                    else:
+                        continue
+                else:
+                    selected += 1
+                    yield row
+            position += 1
+            if selected == limit:
+                break
