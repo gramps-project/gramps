@@ -334,7 +334,7 @@ class EditMedia(EditPrimary):
 
         if self.callback:
             self.callback(self.obj)
-        self.close()
+        self._do_close()
 
     def data_has_changed(self):
         """

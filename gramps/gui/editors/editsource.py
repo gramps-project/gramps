@@ -227,7 +227,7 @@ class EditSource(EditPrimary):
                 msg = _("Edit Source (%s)") % self.obj.get_title()
             trans.set_description(msg)
 
-        self.close()
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
 

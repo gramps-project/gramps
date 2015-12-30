@@ -315,7 +315,7 @@ class EditPlace(EditPrimary):
                 msg = _("Edit Place (%s)") % place_title
             trans.set_description(msg)
 
-        self.close()
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
 

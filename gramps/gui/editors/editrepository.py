@@ -207,7 +207,7 @@ class EditRepository(EditPrimary):
                 msg = _("Edit Repository (%s)") % self.obj.get_name()
             trans.set_description(msg)
 
-        self.close()
+        self._do_close()
 
 class DeleteRepositoryQuery(object):
     def __init__(self, dbstate, uistate, repository, sources):

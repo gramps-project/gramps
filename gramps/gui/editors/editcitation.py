@@ -323,7 +323,7 @@ class EditCitation(EditPrimary):
 
         if self.callback:
             self.callback(self.obj.get_handle())
-        self.close()
+        self._do_close()
 
     def data_has_changed(self):
         """
