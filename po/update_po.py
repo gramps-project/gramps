@@ -735,4 +735,4 @@ def fuzzy(arg):
     os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 if __name__ == "__main__":
-	main()
+    main()

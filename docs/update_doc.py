@@ -106,4 +106,4 @@ def build():
     os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
        
 if __name__ == "__main__":
-	main()
+    main()

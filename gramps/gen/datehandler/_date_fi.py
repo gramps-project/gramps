@@ -56,8 +56,8 @@ class DateParserFI(DateParser):
 
     modifier_to_int = {
         # examples:
-	# - ennen 1.1.2005
-	# - noin 1.1.2005
+        # - ennen 1.1.2005
+        # - noin 1.1.2005
         'ennen'   : Date.MOD_BEFORE,
         'e.'      : Date.MOD_BEFORE,
         'noin'    : Date.MOD_ABOUT,
@@ -65,7 +65,7 @@ class DateParserFI(DateParser):
         }
     modifier_after_to_int = {
         # examples:
-	# - 1.1.2005 jälkeen
+        # - 1.1.2005 jälkeen
         'jälkeen' : Date.MOD_AFTER,
         'j.'      : Date.MOD_AFTER,
         }

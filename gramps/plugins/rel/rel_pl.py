@@ -274,14 +274,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level >= 0 and level < len(_son_level):
             return t_inlaw +_son_level[level]
 
-        elif level >= len(_son_level) \
-				and (level - 1) < len(_level_name):
+        elif level >= len(_son_level) and (level - 1) < len(_level_name):
             return t_inlaw + \
-					"potomek męski %s pokolenia" % _level_name[level - 1]
+                "potomek męski %s pokolenia" % _level_name[level - 1]
 
         else:
             return t_inlaw + \
-					"potomek męski w %d pokoleniu" % level
+                "potomek męski w %d pokoleniu" % level
 
 
 
@@ -304,13 +303,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         if level >= 0 and level < len(_daughter_level):
             return t_inlaw + _daughter_level[level]
 
-        elif level >= len(_daughter_level) \
-				and (level - 1) < len(_level_name):
+        elif level >= len(_daughter_level) and (level - 1) < len(_level_name):
             return t_inlawM + \
-						"potomek żeński %s pokolenia" % _level_name[level - 1]
+                    "potomek żeński %s pokolenia" % _level_name[level - 1]
         else:
             return t_inlawM + \
-						"potomek żeński w %d pokoleniu" % level
+                    "potomek żeński w %d pokoleniu" % level
 
 
     def get_child_unknown(self, level, inlaw=''):
@@ -434,16 +432,15 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return t_inlaw + _father_level[level]
 
-        elif level >= len(_father_level) \
-				and (level - 1) < len(_level_name):
+        elif level >= len(_father_level) and (level - 1) < len(_level_name):
             # jeśli istnieje liczebnik dla danej liczby
             return t_inlaw + \
-					"przodek męski %s pokolenia" % (_level_name[level - 1])
+                    "przodek męski %s pokolenia" % (_level_name[level - 1])
 
         else:
             # dla pozostałych przypadków wypisz relację liczbowo
             return t_inlaw + \
-					"przodek męski w %d pokoleniu" % level
+                    "przodek męski w %d pokoleniu" % level
 
 
     def get_mother(self, level, reltocommon, inlaw=''):
@@ -472,11 +469,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             else:
                 return t_inlaw + _mother_level[level]
 
-        elif level >= len(_mother_level) \
-				and (level - 1) < len(_level_name):
+        elif level >= len(_mother_level) and (level - 1) < len(_level_name):
             # jeśli istnieje liczebnik dla danej liczby
             return t_inlaw + \
-					"przodek żeński %s pokolenia" % (_level_name[level - 1])
+                    "przodek żeński %s pokolenia" % (_level_name[level - 1])
 
         else:
             # dla pozostałych przypadków wypisz relację liczbowo

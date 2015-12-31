@@ -250,7 +250,7 @@ _SIBLINGS_LEVEL = ["", "Els germans i les germanes",
                    "Els oncles i les ties",
                    "Els besoncles i les besties",
                    "Els rebesoncles i les rebesties",
-		   "Els quadrioncles i les quadrities"]
+                   "Els quadrioncles i les quadrities"]
 
 _NEPHEWS_NIECES_LEVEL = ["", "Els nebots i les nebodes",
                          "Els besnebots i les besnebodes",
@@ -285,7 +285,7 @@ def _get_cosina(level, inlaw="", step=""):
     """
     cousins = same level, gender = female
     """
-    if (inlaw != ""):		# polític -> política
+    if (inlaw != ""):       # polític -> política
         inlaw += "a"
     if step == "":
         nom = "cosina"
@@ -303,7 +303,7 @@ def _get_cosi_unknown(level, inlaw="", step=""):
     """
     cousins = same level, gender = unknown
     """
-    if (inlaw != ""):		# polític -> polítics
+    if (inlaw != ""):       # polític -> polítics
         inlaw += "s"
     if step == "":
         nom = "cosins"
@@ -423,7 +423,7 @@ def _get_sons(level, inlaw=""):
     """
     descendants for kinship report
     """
-    if (inlaw != ""):		# polític -> polítics
+    if (inlaw != ""):       # polític -> polítics
         inlaw += "s"
 
     if inlaw != "" and level == 1 :
@@ -975,7 +975,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     rel_str = "el cunyat"
                 elif gender_b == Person.FEMALE:
                     rel_str = "la cunyada"
-                else:			# gender_b == Person.UNKNOWN:
+                else:       # gender_b == Person.UNKNOWN:
                     rel_str = "un cunyat"
 
             elif gender_b == Person.MALE :
@@ -996,7 +996,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif gender_b == Person.UNKNOWN:
                 rel_str = _get_nephew_unk(Gb - 1, inlaw, step)
             else:
-		# This should never get executed
+                # This should never get executed
                 rel_str = "un nebot%s llunyà (%dena generació)" % (inlaw, Gb)
         elif Ga == Gb:
 
@@ -1081,7 +1081,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     rel_str = "el cunyat o la cunyada"
         elif sib_type == self.HALF_SIB_MOTHER \
           or sib_type == self.HALF_SIB_FATHER \
-	  or sib_type == self.STEP_SIB:
+          or sib_type == self.STEP_SIB:
 
             if not inlaw:
 

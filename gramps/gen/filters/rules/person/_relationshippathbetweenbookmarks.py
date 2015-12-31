@@ -116,27 +116,27 @@ class RelationshipPathBetweenBookmarks(Rule):
     # in the relationship path between the two.
     def rel_path_for_two(self, handle1, handle2):
         #print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
-        rel_path = {}				# Result map
-        gmap1 = { handle1 : [ handle1 ] }	# Key is ancestor, value is the path
+        rel_path = {}                       # Result map
+        gmap1 = { handle1 : [ handle1 ] }   # Key is ancestor, value is the path
         gmap2 = { handle2 : [ handle2 ] }
         map1 = {}
         map2 = {}
         overlap = set( {} )
-        for rank in range(1, 50):		# Limit depth of search
+        for rank in range(1, 50):       # Limit depth of search
             try:
-                gmap1 = self.parents(gmap1)		# Get previous generation into map
-                gmap2 = self.parents(gmap2)		# Get previous generation into map
-                map1.update(gmap1)			# Merge previous generation into map
-                map2.update(gmap2)			# Merge previous generation into map
-                overlap = set(map1).intersection(set(map2))	# Any common ancestors?
-                if len(overlap) > 0: break		# If so, stop walking through generations
+                gmap1 = self.parents(gmap1)     # Get previous generation into map
+                gmap2 = self.parents(gmap2)     # Get previous generation into map
+                map1.update(gmap1)              # Merge previous generation into map
+                map2.update(gmap2)              # Merge previous generation into map
+                overlap = set(map1).intersection(set(map2)) # Any common ancestors?
+                if len(overlap) > 0: break      # If so, stop walking through generations
             except: pass
-        if len(overlap) < 1:			# No common ancestor found
-            rel_path[handle1] = handle1		# Results for degenerate case
+        if len(overlap) < 1:                # No common ancestor found
+            rel_path[handle1] = handle1     # Results for degenerate case
             rel_path[handle2] = handle2
             #print "  In rel_path_for_two, returning rel_path = ", rel_path
             return rel_path
-        for handle in overlap:			# Handle of common ancestor(s)
+        for handle in overlap:          # Handle of common ancestor(s)
             for phandle in map1[handle] + map2[handle]:
                 rel_path[phandle] = phandle
         #print "  In rel_path_for_two, returning rel_path = ", rel_path

@@ -272,9 +272,9 @@ class DateDisplayHU(DateDisplay):
 
     formats = (
         "ÉÉÉÉ-HH-NN (ISO)",                              # 0
-	"Alapértelmezett éééé. hh. nn.",                 # 1
+        "Alapértelmezett éééé. hh. nn.",                 # 1
         "Év hónap nap", # year, full month name, day     # 2
-	"Év hó nap",    #year, short month name, day     # 3
+        "Év hó nap",    #year, short month name, day     # 3
         "Év római h.sz. nap"   #year, Roman number, day  # 4
         )
         # this definition must agree with its "_display_calendar" method
@@ -299,11 +299,11 @@ class DateDisplayHU(DateDisplay):
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
-                if date_val[0]==0:		#No day
-                    if date_val[1]==0:		#No month -> year
+                if date_val[0]==0:          #No day
+                    if date_val[1]==0:      #No month -> year
                         value="%s" % year
                     else:
-                         value="%s. %02d." % (year, date_val[1])	#If no day -> year, month
+                         value="%s. %02d." % (year, date_val[1])    #If no day -> year, month
                 else:
                     value="%s. %02d. %02d." % (year, date_val[1], date_val[0])
 
@@ -323,7 +323,7 @@ class DateDisplayHU(DateDisplay):
 
 
         elif self.format == 3:
-	    #year, short month name, day
+            #year, short month name, day
 
             if date_val[0]==0:
                 if date_val[1]==0:
@@ -338,7 +338,7 @@ class DateDisplayHU(DateDisplay):
 
 
         elif self.format == 4:
-	    #year, Roman number, day
+            #year, Roman number, day
 
             if date_val[0]==0:
                 if date_val[1]==0:

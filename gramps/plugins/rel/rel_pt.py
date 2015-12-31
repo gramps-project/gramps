@@ -99,43 +99,43 @@ _daughter_level = [ "", "filha", "neta", "bisneta",
                     "trineta", "tetraneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
 
 _sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó",
-		  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
+                  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
 
 _brother_level = [ "", "irmão", "tio", "tio avô", "tio bisavô", "tio trisavô",
-                  "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
+                   "tio tetravô", "tio pentavô", "tio hexavô", "tio heptavô", "tio octavô"]
 
 _nephew_level = [ "", "sobrinho", "sobrinho neto", "sobrinho bisneto", "sobrinho trineto",
-		"sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto",
-		"sobrinho heptaneto", "sobrinho octaneto"]
+                  "sobrinho tetraneto", "sobrinho pentaneto", "sobrinho hexaneto",
+                  "sobrinho heptaneto", "sobrinho octaneto"]
 
 _niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", "sobrinha trineta",
-		"sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta",
-		"sobrinha heptaneta", "sobrinha octaneta"]
+                 "sobrinha tetraneta", "sobrinha pentaneta", "sobrinha hexaneta",
+                 "sobrinha heptaneta", "sobrinha octaneta"]
 
 # Relatório de Parentesco
 
 _PARENTS_LEVEL = ["", "pais", "avós", "bisavós", "tetravós",
-		  "pentavós", "hexavós", "heptavós", "octavós"]
+                  "pentavós", "hexavós", "heptavós", "octavós"]
 
 _CHILDREN_LEVEL = ["", "filhos", "netos", "bisnetos", "trinetos",
-		   "tetranetos", "pentanetos", "hexanetos", "heptanetos"
-		  "octanetos"]
+                   "tetranetos", "pentanetos", "hexanetos", "heptanetos"
+                   "octanetos"]
 
 _SIBLINGS_LEVEL = ["", "irmãos e irmãs", "tios e tias","tios avôs e tias avós",
                    "tios bisavôs e tias bisavós", "tios trisavôs e tias trisavós",
-		   "tios tetravôs e tias tetravós", "tios pentavôs e tias pentavós",
-		   "tios hexavôs e tias hexavós", "tios heptavôs e tias heptavós"
-		   "tios octavôs e tias octavós"]
+                   "tios tetravôs e tias tetravós", "tios pentavôs e tias pentavós",
+                   "tios hexavôs e tias hexavós", "tios heptavôs e tias heptavós"
+                   "tios octavôs e tias octavós"]
 
 _NEPHEWS_NIECES_LEVEL = ["", "sobrinhos e sobrinhas",
                          "sobrinhos netos e sobrinhas netas",
                          "sobrinhos bisnetos e sobrinhas bisnetas",
-			 "sobrinhos trinetos e sobrinhas trinetas"
-			 "sobrinhos tetranetos e sobrinhas tetranetas"
-			 "sobrinhos pentanetos e sobrinhas pentanetas"
-			 "sobrinhos hexanetos e sobrinhas hexanetas"
-			 "sobrinhos heptanetos e sobrinhas heptanetas"
-			 "sobrinhos octanetos e sobrinhas octanetas"
+                         "sobrinhos trinetos e sobrinhas trinetas"
+                         "sobrinhos tetranetos e sobrinhas tetranetas"
+                         "sobrinhos pentanetos e sobrinhas pentanetas"
+                         "sobrinhos hexanetos e sobrinhas hexanetas"
+                         "sobrinhos heptanetos e sobrinhas heptanetas"
+                         "sobrinhos octanetos e sobrinhas octanetas"
 ]
 
 #-------------------------------------------------------------------------
