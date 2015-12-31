@@ -84,6 +84,7 @@ class ErrorView(object):
         self.top = Gtk.Dialog(title)
         try:
             self.top.set_transient_for(self.top.list_toplevels()[-2])
+            self.top.set_keep_above(True)
         except IndexError:
             self.top.set_position(Gtk.WindowPosition.CENTER)
             self.top.set_urgency_hint(True)
