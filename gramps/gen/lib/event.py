@@ -30,7 +30,6 @@ Event object for Gramps.
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -47,6 +46,8 @@ from .placebase import PlaceBase
 from .tagbase import TagBase
 from .eventtype import EventType
 from .handle import Handle
+
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -84,13 +85,13 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         PlaceBase.__init__(self, source)
 
         if source:
-            self.__description = source.__description
-            self.__type = EventType(source.__type)
+            self.__description = source.description
+            self.__type = EventType(source.type)
         else:
             self.__description = ""
             self.__type = EventType()
 
-    def serialize(self, no_text_date = False):
+    def serialize(self, no_text_date=False):
         """
         Convert the data held in the event to a Python tuple that
         represents all the data elements.
@@ -347,11 +348,11 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: bool
         """
         if other is None:
-            other = Event (None)
+            other = Event(None)
 
-        if self.__type != other.__type or \
+        if self.__type != other.type or \
            ((self.place or other.place) and (self.place != other.place)) or \
-           self.__description != other.__description \
+           self.__description != other.description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
            len(self.get_citation_list()) != \
@@ -360,9 +361,9 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
 
         index = 0
         olist = other.get_citation_list()
-        for a in self.get_citation_list():
+        for handle in self.get_citation_list():
             # see comment in srefs_are_equal in gen/plug/report/_bibliography.py
-            if a != olist[index]:
+            if handle != olist[index]:
                 return False
             index += 1
 
@@ -401,7 +402,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: tuple
         """
         return self.__type
-    type = property(get_type, set_type, None, 'Returns or sets type of the event')
+    type = property(get_type, set_type, None,
+                    'Returns or sets type of the event')
 
     def set_description(self, description):
         """
@@ -414,7 +416,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         """
         self.__description = description
 
-    def get_description(self) :
+    def get_description(self):
         """
         Return the description of the Event.
 
@@ -422,5 +424,6 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :rtype: str
         """
         return self.__description
-    description = property(get_description, set_description, None, 'Returns or sets description of the event')
+    description = property(get_description, set_description, None,
+                           'Returns or sets description of the event')
 

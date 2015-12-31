@@ -53,9 +53,9 @@ class Tag(TableObject):
         TableObject.__init__(self, source)
 
         if source:
-            self.__name = source.__name
-            self.__color = source.__color
-            self.__priority = source.__priority
+            self.__name = source.name
+            self.__color = source.color
+            self.__priority = source.priority
         else:
             self.__name = ""
             self.__color = "#000000000000" # Black
@@ -131,9 +131,9 @@ class Tag(TableObject):
         if other is None:
             other = Tag()
 
-        if self.__name != other.__name or \
-           self.__color != other.__color or \
-           self.__priority != other.__priority:
+        if (self.__name != other.name or
+                self.__color != other.color or
+                self.__priority != other.priority):
             return False
         return True
 
@@ -168,7 +168,7 @@ class Tag(TableObject):
         """
         self.__color = color
 
-    def get_color(self) :
+    def get_color(self):
         """
         Return the color of the Tag.
 
@@ -190,7 +190,7 @@ class Tag(TableObject):
         """
         self.__priority = priority
 
-    def get_priority(self) :
+    def get_priority(self):
         """
         Return the priority of the Tag.
 
@@ -241,4 +241,4 @@ class Tag(TableObject):
                 struct.get("change", default.change))
 
     priority = property(get_priority, set_priority, None,
-                     'Returns or sets priority of the tag')
+                        'Returns or sets priority of the tag')

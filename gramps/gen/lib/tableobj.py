@@ -112,7 +112,7 @@ class TableObject(BaseObject):
         """
         if self.change:
             return str(time.strftime('%x %X', time.localtime(self.change)),
-                           CODESET)
+                       CODESET)
         else:
             return ''
 

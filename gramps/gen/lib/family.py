@@ -32,7 +32,6 @@ Family object for Gramps.
 #-------------------------------------------------------------------------
 from warnings import warn
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +50,8 @@ from .childref import ChildRef
 from .familyreltype import FamilyRelType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .handle import Handle
+
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -173,16 +174,27 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         default = Family()
         return (Handle.from_struct(struct.get("handle", default.handle)),
                 struct.get("gramps_id", default.gramps_id),
-                Handle.from_struct(struct.get("father_handle", default.father_handle)),
-                Handle.from_struct(struct.get("mother_handle", default.mother_handle)),
-                [ChildRef.from_struct(cr) for cr in struct.get("child_ref_list", default.child_ref_list)],
+                Handle.from_struct(struct.get("father_handle",
+                                              default.father_handle)),
+                Handle.from_struct(struct.get("mother_handle",
+                                              default.mother_handle)),
+                [ChildRef.from_struct(cr)
+                 for cr in struct.get("child_ref_list",
+                                      default.child_ref_list)],
                 FamilyRelType.from_struct(struct.get("type", {})),
-                [EventRef.from_struct(er) for er in struct.get("event_ref_list", default.event_ref_list)],
-                MediaBase.from_struct(struct.get("media_list", default.media_list)),
-                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
-                LdsOrdBase.from_struct(struct.get("lds_ord_list", default.lds_ord_list)),
-                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                [EventRef.from_struct(er)
+                 for er in struct.get("event_ref_list",
+                                      default.event_ref_list)],
+                MediaBase.from_struct(struct.get("media_list",
+                                                 default.media_list)),
+                AttributeBase.from_struct(struct.get("attribute_list",
+                                                     default.attribute_list)),
+                LdsOrdBase.from_struct(struct.get("lds_ord_list",
+                                                  default.lds_ord_list)),
+                CitationBase.from_struct(struct.get("citation_list",
+                                                    default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list",
+                                                default.note_list)),
                 struct.get("change", default.change),
                 TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
@@ -230,7 +242,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             return handle in ([ref.ref for ref in self.child_ref_list]
                               + [self.father_handle, self.mother_handle])
         elif classname == 'Place':
-            return handle in [ x.place for x in self.lds_ord_list ]
+            return handle in [x.place for x in self.lds_ord_list]
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -244,20 +256,20 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         if classname == 'Event':
             new_list = [ref for ref in self.event_ref_list
-                            if ref.ref not in handle_list]
+                        if ref.ref not in handle_list]
             self.event_ref_list = new_list
         elif classname == 'Person':
             new_list = [ref for ref in self.child_ref_list
-                            if ref.ref not in handle_list]
+                        if ref.ref not in handle_list]
             self.child_ref_list = new_list
             if self.father_handle in handle_list:
                 self.father_handle = None
             if self.mother_handle in handle_list:
                 self.mother_handle = None
         elif classname == 'Place':
-            for x in self.lds_ord_list:
-                if x.place in handle_list:
-                    x.place = None
+            for lds_ord in self.lds_ord_list:
+                if lds_ord.place in handle_list:
+                    lds_ord.place = None
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
@@ -271,7 +283,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :type new_handle: str
         """
         if classname == 'Event':
-            refs_list = [ ref.ref for ref in self.event_ref_list ]
+            refs_list = [ref.ref for ref in self.event_ref_list]
             new_ref = None
             if new_handle in refs_list:
                 new_ref = self.event_ref_list[refs_list.index(new_handle)]
@@ -289,7 +301,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                         self.event_ref_list.pop(idx)
                         refs_list.pop(idx)
         elif classname == 'Person':
-            refs_list = [ ref.ref for ref in self.child_ref_list ]
+            refs_list = [ref.ref for ref in self.child_ref_list]
             new_ref = None
             if new_handle in refs_list:
                 new_ref = self.child_ref_list[refs_list.index(new_handle)]
@@ -311,9 +323,9 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             if self.mother_handle == old_handle:
                 self.mother_handle = new_handle
         elif classname == 'Place':
-            for x in self.lds_ord_list:
-                if x.place == old_handle:
-                    x.place = new_handle
+            for lds_ord in self.lds_ord_list:
+                if lds_ord.place == old_handle:
+                    lds_ord.place = new_handle
 
     def get_text_data_list(self):
         """
@@ -521,7 +533,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
         new_list = [ref for ref in self.child_ref_list
-                    if ref.ref != child_ref.ref ]
+                    if ref.ref != child_ref.ref]
         self.child_ref_list = new_list
 
     def remove_child_handle(self, child_handle):
@@ -536,7 +548,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :rtype: bool
         """
         new_list = [ref for ref in self.child_ref_list
-                    if ref.ref != child_handle ]
+                    if ref.ref != child_handle]
         self.child_ref_list = new_list
 
     def get_child_ref_list(self):
@@ -596,17 +608,17 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             raise ValueError("Expecting EventRef instance")
         self.event_ref_list.append(event_ref)
 
-    def get_event_list(self) :
-        warn( "Use get_event_ref_list instead of get_event_list",
-              DeprecationWarning, 2)
+    def get_event_list(self):
+        warn("Use get_event_ref_list instead of get_event_list",
+             DeprecationWarning, 2)
         # Wrapper for old API
         # remove when transitition done.
         event_handle_list = []
         for event_ref in self.get_event_ref_list():
-            event_handle_list.append( event_ref.get_reference_handle())
+            event_handle_list.append(event_ref.get_reference_handle())
         return event_handle_list
 
-    def get_event_ref_list(self) :
+    def get_event_ref_list(self):
         """
         Return the list of :class:`~.eventref.EventRef` objects associated with
         :class:`~.event.Event` instances.
@@ -617,7 +629,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         return self.event_ref_list
 
-    def set_event_ref_list(self, event_ref_list) :
+    def set_event_ref_list(self, event_ref_list):
         """
         Set the Family instance's :class:`~.eventref.EventRef` list to the
         passed list.

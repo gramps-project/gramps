@@ -30,7 +30,6 @@ Citation object for Gramps.
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +44,8 @@ from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
 from .handle import Handle
+
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -62,10 +63,10 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     """
 
     CONF_VERY_HIGH = 4
-    CONF_HIGH      = 3
-    CONF_NORMAL    = 2
-    CONF_LOW       = 1
-    CONF_VERY_LOW  = 0
+    CONF_HIGH = 3
+    CONF_NORMAL = 2
+    CONF_LOW = 1
+    CONF_VERY_LOW = 0
 
     def __init__(self):
         """Create a new Citation instance."""
@@ -78,7 +79,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         self.confidence = Citation.CONF_NORMAL         #  4
         SrcAttributeBase.__init__(self)                #  8
 
-    def serialize(self, no_text_date = False):
+    def serialize(self, no_text_date=False):
         """
         Convert the object to a serialized tuple of data.
         """
@@ -167,7 +168,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
          self.change,                                  #  9
          tag_list,                                     # 10
          self.private                                  # 11
-         ) = data
+        ) = data
 
         DateBase.unserialize(self, date)
         NoteBase.unserialize(self, note_list)

@@ -43,8 +43,8 @@ from .citationbase import IndirectCitationBase
 # Repository class
 #
 #-------------------------------------------------------------------------
-class Repository(NoteBase, AddressBase, UrlBase,
-        IndirectCitationBase, PrimaryObject):
+class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
+                 PrimaryObject):
     """A location where collections of Sources are found."""
 
     def __init__(self):

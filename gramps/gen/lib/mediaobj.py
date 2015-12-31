@@ -33,7 +33,6 @@ Media object for Gramps.
 import os
 from urllib.parse import urlparse
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -47,6 +46,8 @@ from .datebase import DateBase
 from .attrbase import AttributeBase
 from .tagbase import TagBase
 from .handle import Handle
+
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +90,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
             self.checksum = ""
             self.thumb = None
 
-    def serialize(self, no_text_date = False):
+    def serialize(self, no_text_date=False):
         """
         Convert the data held in the event to a Python tuple that
         represents all the data elements.

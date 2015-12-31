@@ -46,7 +46,7 @@ from .citationbase import IndirectCitationBase
 #
 #-------------------------------------------------------------------------
 class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
-        PrimaryObject):
+             PrimaryObject):
     """A record of a source of information."""
 
     def __init__(self):
@@ -128,12 +128,15 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 struct.get("title", default.title),
                 struct.get("author", default.author),
                 struct.get("pubinfo", default.pubinfo),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                MediaBase.from_struct(struct.get("media_list", default.media_list)),
+                NoteBase.from_struct(struct.get("note_list",
+                                                default.note_list)),
+                MediaBase.from_struct(struct.get("media_list",
+                                                 default.media_list)),
                 struct.get("abbrev", default.abbrev),
                 struct.get("change", default.change),
                 SrcAttributeBase.from_struct(struct.get("srcattr_list", {})),
-                [RepoRef.from_struct(rr) for rr in struct.get("reporef_list", default.reporef_list)],
+                [RepoRef.from_struct(rr)
+                 for rr in struct.get("reporef_list", default.reporef_list)],
                 TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
 
@@ -192,7 +195,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         if classname == 'Repository':
             new_list = [ref for ref in self.reporef_list
-                            if ref.ref not in handle_list]
+                        if ref.ref not in handle_list]
             self.reporef_list = new_list
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -402,7 +405,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :type repo_handle_list: list
         """
         new_reporef_list = [repo_ref for repo_ref in self.reporef_list
-                                if repo_ref.ref not in repo_handle_list]
+                            if repo_ref.ref not in repo_handle_list]
         self.reporef_list = new_reporef_list
 
     def replace_repo_references(self, old_handle, new_handle):
@@ -415,7 +418,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param new_handle: The Repository handle to replace the old one with.
         :type new_handle: str
         """
-        refs_list = [ repo_ref.ref for repo_ref in self.reporef_list ]
+        refs_list = [repo_ref.ref for repo_ref in self.reporef_list]
         new_ref = None
         if new_handle in refs_list:
             new_ref = self.reporef_list[refs_list.index(new_handle)]
