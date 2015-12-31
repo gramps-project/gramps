@@ -71,22 +71,27 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         else:
             self.gramps_id = None
 
-    def get_label(self, field, _):
+    @classmethod
+    def get_label(cls, field, _):
         """
         Get the associated label given a field name of this object.
+        No index positions allowed on lists.
         """
         chain = field.split(".")
-        path = self
+        path = cls
         for part in chain[:-1]:
-            if hasattr(path, part):
-                path = getattr(path, part)
+            schema = path.get_schema()
+            if part in schema.keys():
+                path = schema[part]
             else:
-                path = path[int(part)]
+                raise Exception("No such %s in %s" % (part, schema))
+            if isinstance(path, (list, tuple)):
+                path = path[0]
         labels = path.get_labels(_)
         if chain[-1] in labels:
             return labels[chain[-1]]
         else:
-            raise Exception("%s has no such label: '%s'" % (self, field))
+            raise Exception("%s has no such label on %s: '%s'" % (cls, path, field))
 
     def get_field(self, field):
         """

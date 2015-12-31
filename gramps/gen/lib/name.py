@@ -213,13 +213,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     @classmethod
     def get_schema(cls):
+        from .surname import Surname
         return {
             "private": bool,
             "citation_list": [Handle("Citation", "CITATION-HANDLE")],
             "note_list": [Handle("Note", "NOTE-HANDLE")],
             "date": Date,
             "first_name": str,
-                          "surname_list": [Handle("Surname", "SURNAME-HANDLE")],
+            "surname_list": [Surname],
             "suffix": str,
             "title": str,
             "type": NameType,
