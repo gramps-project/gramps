@@ -2185,7 +2185,7 @@ msgstr "Lut"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr "mars"
+msgstr "Mar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections - short month form||Apr"
