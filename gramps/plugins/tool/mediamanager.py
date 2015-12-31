@@ -275,8 +275,8 @@ class SelectionPage(Gtk.Box):
             button = self.batch_op_buttons[index]
             if button.get_active():
                 return index
-        else:
-            return 0
+
+        return 0
 
 class SettingsPage(Gtk.Box):
     """

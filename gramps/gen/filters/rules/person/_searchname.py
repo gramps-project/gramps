@@ -57,5 +57,4 @@ class SearchName(Rule):
                           name.title, name.nick, name.famnick, name.call]:
                 if src and field.upper().find(src) != -1:
                     return True
-        else:
-            return False
+        return False

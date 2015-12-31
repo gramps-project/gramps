@@ -55,5 +55,4 @@ class RegExpName(Rule):
                           name.title, name.nick, name.famnick, name.call]:
                 if self.match_substring(0, field):
                     return True
-        else:
-            return False
+        return False
