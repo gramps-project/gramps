@@ -214,7 +214,7 @@ def available_updates():
                 fp = urlopen_maybe_no_check_cert(URL)
             except Exception as err: # some error
                 LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
-						format(lang=lang, url=URL, err=err))
+                        format(lang=lang, url=URL, err=err))
                 fp = None
         if fp and fp.getcode() == 200: # ok
             break
