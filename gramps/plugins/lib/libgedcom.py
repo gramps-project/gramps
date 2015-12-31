@@ -1238,7 +1238,7 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        raise NotImplemented
+        raise NotImplementedError()
 
     def report_error(self, problem, line):
         line = line.rstrip('\n\r')

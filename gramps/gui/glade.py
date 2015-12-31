@@ -214,5 +214,5 @@ class Glade(Gtk.Builder):
                 return obj
             if hasattr(obj, 'get_children'):
                 queue += obj.get_children()
-        else:
-            return None
+
+        return None

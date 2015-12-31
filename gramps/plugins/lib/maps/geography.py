@@ -404,7 +404,6 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         path = "%s%c%s" % ( config.get('geography.path'), os.sep, the_map )
         shutil.rmtree(path)
-        pass
 
     def add_specific_menu(self, menu, event, lat, lon):
         """
@@ -1110,7 +1109,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         else:
             config.set("geography.lock", True)
         self.lock = config.get("geography.lock")
-        pass
 
     def config_crosshair(self, client, cnxn_id, entry, data):
         """
@@ -1121,7 +1119,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         else:
             config.set("geography.show_cross", True)
         self.set_crosshair(config.get("geography.show_cross"))
-        pass
 
     def specific_options(self, configdialog):
         """

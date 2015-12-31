@@ -581,7 +581,7 @@ class EmbeddedList(ButtonTab):
 
         self.tree.set_model(self.model)
         #reset previous select
-        if not selectedpath is None:
+        if selectedpath is not None:
             self.selection.select_path(selectedpath)
         #self.selection.select_path(node)
         self._set_label()

@@ -425,7 +425,6 @@ class ODSTab(TabbedDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
             raise ReportError(errmsg)
         except:
-            pass
             raise ReportError(_("Could not create %s") % self.styles_xml)
 
         self.f = open(self.styles_xml,"w")
@@ -460,7 +459,6 @@ class ODSTab(TabbedDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
             raise ReportError(errmsg)
         except:
-            pass
             raise ReportError(_("Could not create %s") % self.manifest_xml)
 
         self.f = open(self.manifest_xml,"w")
@@ -476,7 +474,6 @@ class ODSTab(TabbedDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
             raise ReportError(errmsg)
         except:
-            pass
             raise ReportError(_("Could not create %s") % self.meta_xml)
 
         self.f = open(self.meta_xml,"w")
@@ -499,7 +496,6 @@ class ODSTab(TabbedDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.mimetype, msg)
             raise ReportError(errmsg)
         except:
-            pass
             raise ReportError(_("Could not create %s") % self.mimetype)
 
         self.f = open(self.mimetype,"w")

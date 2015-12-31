@@ -549,8 +549,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             button = self.format_buttons[ix]
             if button.get_active():
                 return ix
-        else:
-            return 0
+        return 0
 
     def suggest_filename(self):
         """Prepare suggested filename and set it in the file chooser."""

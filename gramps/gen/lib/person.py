@@ -692,8 +692,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         for attr in self.attribute_list:
             if int(attr.type) == AttributeType.NICKNAME:
                 return attr.get_value()
-        else:
-            return ''
+        return ''
 
     def set_gender(self, gender) :
         """
@@ -743,9 +742,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         for self.birth_ref_index, ref in enumerate(self.event_ref_list):
             if event_ref.is_equal(ref):
                 return    # Note: self.birth_ref_index already set
-        else:
-            self.event_ref_list.append(event_ref)
-            self.birth_ref_index = len(self.event_ref_list)-1
+
+        self.event_ref_list.append(event_ref)
+        self.birth_ref_index = len(self.event_ref_list)-1
 
     def set_death_ref(self, event_ref):
         """
@@ -768,9 +767,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         for self.death_ref_index, ref in enumerate(self.event_ref_list):
             if event_ref.is_equal(ref):
                 return    # Note: self.death_ref_index already set
-        else:
-            self.event_ref_list.append(event_ref)
-            self.death_ref_index = len(self.event_ref_list)-1
+
+        self.event_ref_list.append(event_ref)
+        self.death_ref_index = len(self.event_ref_list)-1
 
     def get_birth_ref(self):
         """

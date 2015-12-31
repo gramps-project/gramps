@@ -295,7 +295,7 @@ class CallbackManager(object):
         unconnect a signal from the database if it is already connected
         """
         oldcall, oldconnectkey = self.__callbacks[signal]
-        if not oldconnectkey is None:
+        if oldconnectkey is not None:
             self.database.disconnect(oldconnectkey)
 
     def add_db_signal(self, name, callback):

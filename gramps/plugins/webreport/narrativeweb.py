@@ -3371,7 +3371,6 @@ class PlacePages(BasePage):
             for place_handle in self.report.obj_dict[Place]:
                 step()
                 self.PlacePage(self.report, title, place_handle)
-        pass
 
     def PlaceListPage(self, report, title, place_handles):
         self.dbase_ = report.database
@@ -6613,7 +6612,6 @@ class RepositoryPages(BasePage):
     def __init__(self, report):
         self.repos_dict = defaultdict(set)
         self.report = report
-        pass
 
     def display_pages(self, title):
         """
