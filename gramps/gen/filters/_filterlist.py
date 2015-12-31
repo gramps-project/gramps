@@ -108,7 +108,6 @@ class FilterList(object):
                 the_file.close()
         except (IOError, OSError):
             print("IO/OSError in _filterlist.py")
-            pass
         except SAXParseException:
             print("Parser error")
 

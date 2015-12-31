@@ -296,8 +296,8 @@ class RecentDocsMenu(object):
                 mitem.show()
                 new_menu.append(mitem)
             except RuntimeError:
+                # ignore no longer existing files
                 _LOG.info("Ignoring the RecentItem %s (%s)" % (title, filename))
-                pass    # ignore no longer existing files
 
             count += 1
         buf.write(_RCT_BTM)
