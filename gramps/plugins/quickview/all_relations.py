@@ -234,7 +234,7 @@ class AllRelReport():
                                     relation[4], relation[2],
                                     only_birth = birth,
                                     in_law_a = inlawa, in_law_b = inlawb)
-            if not skip_list_text is None:
+            if skip_list_text is not None:
                 if rel_str in skip_list_text:
                     skip_list.append(count)
                 else:

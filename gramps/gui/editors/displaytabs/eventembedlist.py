@@ -413,5 +413,5 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         @type prebuildpath: tree path
         """
         self.tree.expand_all()
-        if not prebuildpath is None:
+        if prebuildpath is not None:
             self.selection.select_path(prebuildpath)
