@@ -225,7 +225,7 @@ class Printinfo():
         else:
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             self.doc.write_text(
-                    self._("sp. %(spouse)s") % {'spouse':_('Unknown')})
+                    self._("sp. %(spouse)s") % {'spouse':self._('Unknown')})
             self.doc.end_paragraph()
 
     def print_reference(self, level, person, display_num):
