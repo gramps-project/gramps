@@ -1076,13 +1076,15 @@ class SubstKeywords(object):
         """get the person and find the family/spouse to use for this display"""
 
         self.database = database
-        self.person = database.get_person_from_handle(person_handle)
         self.family = None
         self.spouse = None
         self.line = None   # Consumable_string - set below
         self._locale = locale
         self._nd = name_displayer
 
+        self.person = None
+        if person_handle is not None:
+            self.person = database.get_person_from_handle(person_handle)
         if self.person is None:
             return
 
