@@ -113,7 +113,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         return isinstance(other, Person) and self.handle == other.handle
 
     def __ne__(self, other):
-        return self != other
+        return not self == other
 
     def serialize(self):
         """
