@@ -382,7 +382,7 @@ class ArgHandler(object):
         self.__import_action()
         return None
 
-    def handle_args_cli(self, cleanup=True, should_exit=True):
+    def handle_args_cli(self, cleanup=True):
         """
         Depending on the given arguments, import or open data, launch
         session, write files, and/or perform actions.
@@ -399,37 +399,25 @@ class ArgHandler(object):
 
                 print(_("%(full_DB_path)s with name \"%(f_t_name)s\"")
                               % {'full_DB_path' : dirname, 'f_t_name' : name})
-            if should_exit:
-                sys.exit(0)
-            else:
-                return
+            return
 
         # Handle the "--remove" Family Tree
         if self.removes:
             for name in self.removes:
                 self.dbman.remove_database(name, self.user)
-            if should_exit:
-                sys.exit(0)
-            else:
-                return
+            return
 
         # Handle the "-L" List Family Trees in detail option.
         if self.list_more:
             self.dbman.print_family_tree_summaries()
-            if should_exit:
-                sys.exit(0)
-            else:
-                return
+            return
 
         # Handle the "-t" List Family Trees, tab delimited option.
         if self.list_table:
             print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
             if not summary_list:
-                if should_exit:
-                    sys.exit(0)
-                else:
-                    return
+                return
             # We have to construct the line elements together, to avoid
             # insertion of blank spaces when print on the same line is used
             line_list = [_("Family Tree")]
@@ -445,10 +433,7 @@ class ArgHandler(object):
                         # translators: used in French+Russian, ignore otherwise
                         line_list += [(_('"%s"') % summary[item])]
                 print("\t".join(line_list))
-            if should_exit:
-                sys.exit(0)
-            else:
-                return
+            return
 
         self.__open_action()
         self.__import_action()
@@ -468,9 +453,6 @@ class ArgHandler(object):
 
         if cleanup:
             self.cleanup()
-            print(_("Exiting."), file=sys.stderr)
-            if should_exit:
-                sys.exit(0)
 
     def cleanup(self):
         print(_("Cleaning up."), file=sys.stderr)
