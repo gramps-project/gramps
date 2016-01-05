@@ -616,7 +616,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_feature("skip-check-xref", True)
         self.set_feature("skip-import-additions", True)
         self.readonly = False
-        self.db_is_open = True
+        self.db_is_open = False
         self.name_formats = []
         # Bookmarks:
         self.bookmarks = Bookmarks()
@@ -787,6 +787,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = self.get_metadata('omap_index', 0)
         self.rmap_index = self.get_metadata('rmap_index', 0)
         self.nmap_index = self.get_metadata('nmap_index', 0)
+
+        self.db_is_open = True
 
     def version_supported(self):
         """Return True when the file has a supported version."""
@@ -1647,6 +1649,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_metadata('nmap_index', self.nmap_index)
 
             self.close_backend()
+        self.db_is_open = False
 
     def get_bookmarks(self):
         return self.bookmarks
@@ -1811,7 +1814,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.source_bookmarks
 
     def is_open(self):
-        return self._directory is not None
+        return self.db_is_open
 
     def iter_citations(self):
         return (Citation.create(data[1]) for data in self.get_citation_cursor())
