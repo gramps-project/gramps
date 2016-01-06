@@ -1839,7 +1839,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:168
-#, python-brace-format
+#, python-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
@@ -1849,7 +1849,7 @@ msgstr "{long_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:176
-#, python-brace-format
+#, python-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[И]} {year}"
 
@@ -1859,7 +1859,7 @@ msgstr "{long_month.f[И]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:184
-#, python-brace-format
+#, python-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[Т]} {year}"
 
@@ -1869,7 +1869,7 @@ msgstr "{long_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:192
-#, python-brace-format
+#, python-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[Т]} {year}"
 
@@ -1878,7 +1878,7 @@ msgstr "{long_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
-#, python-brace-format
+#, python-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
@@ -1887,7 +1887,7 @@ msgstr "{long_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:206
-#, python-brace-format
+#, python-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
@@ -1896,7 +1896,7 @@ msgstr "{long_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, python-brace-format
+#, python-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
@@ -1905,7 +1905,7 @@ msgstr "{long_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, python-brace-format
+#, python-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[Т]} {year}"
 
@@ -1914,7 +1914,7 @@ msgstr "{long_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, python-brace-format
+#, python-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[И]} {year}"
 
@@ -1929,7 +1929,7 @@ msgstr "{short_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:240
-#, python-brace-format
+#, python-format
 msgid "from|{short_month} {year}"
 msgstr "{short_month.f[Р]} {year}"
 
@@ -1939,7 +1939,7 @@ msgstr "{short_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, python-brace-format
+#, python-format
 msgid "to|{short_month} {year}"
 msgstr "{short_month.f[И]} {year}"
 
@@ -1949,7 +1949,7 @@ msgstr "{short_month.f[И]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:256
-#, python-brace-format
+#, python-format
 msgid "between|{short_month} {year}"
 msgstr "{short_month.f[Т]} {year}"
 
@@ -1959,7 +1959,7 @@ msgstr "{short_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:264
-#, python-brace-format
+#, python-format
 msgid "and|{short_month} {year}"
 msgstr "{short_month.f[Т]} {year}"
 
@@ -1968,7 +1968,7 @@ msgstr "{short_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:271
-#, python-brace-format
+#, python-format
 msgid "before|{short_month} {year}"
 msgstr "{short_month.f[Р]} {year}"
 
@@ -1977,7 +1977,7 @@ msgstr "{short_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:278
-#, python-brace-format
+#, python-format
 msgid "after|{short_month} {year}"
 msgstr "{short_month.f[Р]} {year}"
 
@@ -1986,7 +1986,7 @@ msgstr "{short_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
-#, python-brace-format
+#, python-format
 msgid "about|{short_month} {year}"
 msgstr "{short_month.f[Р]} {year}"
 
@@ -1995,7 +1995,7 @@ msgstr "{short_month.f[Р]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:292
-#, python-brace-format
+#, python-format
 msgid "estimated|{short_month} {year}"
 msgstr "{short_month.f[Т]} {year}"
 
@@ -2004,7 +2004,7 @@ msgstr "{short_month.f[Т]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:299
-#, python-brace-format
+#, python-format
 msgid "calculated|{short_month} {year}"
 msgstr "{short_month.f[И]} {year}"
 
