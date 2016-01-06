@@ -1,3 +1,50 @@
+2016-01-06
+Version 4.2.2
+* "Show all" checkbox of "Select Family" window not unchecked when the filter is cleared
+* Name of user defined filter is not shown
+* ErrorDialog and GtkDialog mapped without a transient parent
+* 'Find' is broken when used in the Family selector
+* Fix default selection in selectors
+* Comment currently-unused bogus wiki URL pointers
+* Fix counter for filtered entries and indentation on TreeBaseModel
+* Faulty headline in start up screen
+* Check that gramplet is in notebook before setting tab label
+* Fix creation of focus change events
+* Interactivesearch gives "TypeError: unorderable types: str() < NoneType()"
+* Put tag selection list in alphabetical order
+* Remove redundant code
+* Fix delete error in undoable entry widget
+* Fix deprecation warning
+* Re-enable selection in MultiTreeView on a grab_broken event
+* Add validation to gender field
+* Unhandled AttributeError when db.get_tag_from_handle returns None
+* ReferencedBySelectionProxy can forget some referenced tags
+* Remove encoding on stdout and stderr
+* Handle citation objects in glocale.trans_objclass
+* Locality data in address was not imported
+* Don't check SSL certs when fetching addons
+* Catch urlopen TypeError when context arg isn't supported
+* Fix undefined variable error
+* Can not download new or updated add-ons
+* ValueError: underlying buffer has been detached
+* LaTeX backend crashes
+* Geography: performance issue due to bad initialization and performance issue when selecting the events or places views.
+* Narrated Web Site Report: html elements emitted in different order
+* Unused *_init.jpg are created in the narrated website
+* Some media files are not exported to the NAVWEB report
+* Narrative web report: add author to citations
+* TypeError: unorderable types: EventRef() < EventRef(), events list and family list are differents between two reports
+* Permission denied: change mtime to origin instead of destination
+* Thumbnails html file missing in the narrative web
+* Narrativeweb: Place title based on current date not that of the event
+* Webcal: make the month name clickable in the year overview page
+* 'Narrative' word not translatable
+* 'Unknown' spouse uses an harcoded string name on Simple Descendants textual report
+* Father/mother's age attributes are not translated on reports
+* Improve Russian date handler and unittests
+* Mars month instead of Marzec on Polish locale (Date Editor)
+* Translations update: cs, de, fr, fi, nl, pl, ru, sv
+
 2015-10-12
 Version 4.2.1,
 * Support for Retina and HiDPI Display, added 24px icons
