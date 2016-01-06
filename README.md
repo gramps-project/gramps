@@ -106,8 +106,6 @@ For more information about Addons see:  https://gramps-project.org/wiki/index.ph
 
 Prerequistes required for the following Addons to work:
 
-* **Django Exporter/Importer** - Requires:Django 1.7 or 1.8+ ( https://gramps-project.org/wiki/index.php?title=GEPS_013:_Gramps_Webapp#Getting_Started_with_Gramps_in_Django )
-
 * **Family Sheet** - Requires: PIL (Python Imaging Library) or PILLOW.
 ( https://gramps-project.org/wiki/index.php?title=Family_Sheet )
 
