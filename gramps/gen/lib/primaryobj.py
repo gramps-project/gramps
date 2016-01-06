@@ -78,26 +78,53 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         No index positions allowed on lists.
         """
         chain = field.split(".")
-        path = cls
-        for part in chain[:-1]:
-            schema = path.get_schema()
-            if part in schema.keys():
-                path = schema[part]
-            else:
-                raise Exception("No such %s in %s" % (part, schema))
-            if isinstance(path, (list, tuple)):
-                path = path[0]
+        path = cls._follow_schema_path(chain[:-1])
         labels = path.get_labels(_)
         if chain[-1] in labels:
             return labels[chain[-1]]
         else:
             raise Exception("%s has no such label on %s: '%s'" % (cls, path, field))
 
+    @classmethod
+    def get_field_type(cls, field):
+        """
+        Get the associated label given a field name of this object.
+        No index positions allowed on lists.
+        """
+        chain = field.split(".")
+        ftype = cls._follow_schema_path(chain)
+        return ftype
+
+    @classmethod
+    def _follow_schema_path(cls, chain):
+        """
+        Follow a list of schema items. Return endpoint.
+        """
+        path = cls
+        for part in chain:
+            schema = path.get_schema()
+            if part.isdigit():
+                pass # skip over
+            elif part in schema.keys():
+                path = schema[part]
+            else:
+                raise Exception("No such %s in %s" % (part, schema))
+            if isinstance(path, (list, tuple)):
+                path = path[0]
+        return path
+
     def get_field(self, field):
         """
         Get the value of a field.
         """
         chain = field.split(".")
+        path = self._follow_field_path(chain)
+        return path
+
+    def _follow_field_path(self, chain, ignore_errors=False):
+        """
+        Follow a list of items. Return endpoint.
+        """
         path = self
         for part in chain:
             class_ = None
@@ -116,12 +143,23 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                         args.append(eval(sarg.strip()))
                 # call
                 path = getattr(path, function)(*args)
+            elif ignore_errors:
+                return
             else:
-                # If any error, just returns None
-                # To check for errors:
-                # raise Exception("%s is not a valid field of %s; use %s" % (part, path, dir(path)))
-                return None
+                raise Exception("%s is not a valid field of %s; use %s" % (part, path, dir(path)))
         return path
+
+    def set_field(self, field, value, ignore_errors=False):
+        """
+        Set the value of a basic field (str, int, float, or bool).
+        value can be a string or actual value.
+        """
+        chain = field.split(".")
+        path = self._follow_field_path(chain[:-1], ignore_errors)
+        ftype = self.get_field_type(field)
+        # ftype is str, bool, float, or int
+        value = (value in ['True', True]) if ftype is bool else value
+        setattr(path, chain[-1], ftype(value))
 
     def set_gramps_id(self, gramps_id):
         """
