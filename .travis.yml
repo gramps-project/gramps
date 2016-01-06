@@ -21,9 +21,6 @@ install:
     # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
     # for example: /home/travis/build/gramps-project/gramps
     - python3 setup.py build
-    - cd gramps/webapp
-    - make create
-    - cd ../..
 
 #before_script:
 #    - sudo Xvfb :99 -ac &
@@ -31,4 +28,4 @@ install:
 
 script:
     -  mkdir -p ~/.gramps/grampsdb/
-    -  DJANGO_SETTINGS_MODULE=gramps.webapp.default_settings nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps
+    -  nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps

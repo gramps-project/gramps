@@ -29,4 +29,3 @@ global-exclude *.pyo
 
 # Remove directories which should not be included in the distribution
 prune gramps/guiQML
-#prune gramps/webapp

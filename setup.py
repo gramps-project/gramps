@@ -61,11 +61,6 @@ if svem_flag in sys.argv:
     # Die, setuptools, die.
     sys.argv.remove(svem_flag)
 
-server = False
-if '--server' in sys.argv:
-    sys.argv.remove('--server')
-    server = True
-
 # check if the resourcepath option is used and store the path
 # this is for packagers that build out of the source tree
 # other options to setup.py are passed through
@@ -368,15 +363,8 @@ package_gui = ['gramps.gui',
                'gramps.gui.views.treemodels',
                'gramps.gui.widgets',
                ]
-package_webapp = ['gramps.webapp',
-                  'gramps.webapp.grampsdb',
-                  'gramps.webapp.grampsdb.templatetags',
-                  'gramps.webapp.grampsdb.view',
-                  ]
-if server:
-    packages = package_core + package_webapp
-else:
-    packages = package_core + package_gui
+
+packages = package_core + package_gui
 
 #-------------------------------------------------------------------------
 #
@@ -399,16 +387,11 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.glade')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
+
 package_data_core.append('gen/utils/resource-path')
 
 package_data_gui = ['gui/glade/*.glade']
-
-package_data_webapp = ['webapp/*.sql', 'webapp/grampsdb/sql/*.sql']
-
-if server:
-    package_data = package_data_core + package_data_webapp
-else:
-    package_data = package_data_core + package_data_gui
+package_data = package_data_core + package_data_gui
 
 #-------------------------------------------------------------------------
 #
@@ -461,18 +444,11 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
 
-data_files_webapp = []
 TEMPLATE_FILES = glob.glob(os.path.join('data/templates', '*.html'))
-data_files_webapp.append(('share/gramps/templates', TEMPLATE_FILES))
 ADMIN_FILES = glob.glob(os.path.join('data/templates/admin', '*.html'))
-data_files_webapp.append(('share/gramps/templates/admin', ADMIN_FILES))
 REG_FILES = glob.glob(os.path.join('data/templates/registration', '*.html'))
-data_files_webapp.append(('share/gramps/templates/registration', REG_FILES))
 
-if server:
-    data_files = data_files_core + data_files_webapp
-else:
-    data_files = data_files_core + data_files_gui
+data_files = data_files_core + data_files_gui
 
 #-------------------------------------------------------------------------
 #
