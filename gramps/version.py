@@ -18,6 +18,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-VERSION_TUPLE = (4, 2, 2)
+VERSION_TUPLE = (4, 2, 3)
 VERSION        = '.'.join(map(str,VERSION_TUPLE))
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
