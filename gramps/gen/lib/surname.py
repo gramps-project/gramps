@@ -99,6 +99,16 @@ class Surname(SecondaryObject):
                 "connector": self.connector}
 
     @classmethod
+    def get_schema(cls):
+        return {
+            "surname": str,
+            "prefix": str,
+            "primary": str,
+            "origintype": NameOriginType,
+            "connector": str
+        }
+
+    @classmethod
     def get_labels(cls, _):
         return {
             "_class": _("Surname"),
