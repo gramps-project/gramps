@@ -1919,11 +1919,11 @@ class DbWriteBase(DbReadBase):
                 pass # skip it
             else:
                 item = self._tables[table]["handle_func"](handle)
-                row = []
+                row = {}
                 env = {}
                 for field in fields: 
                     value = item.get_field(field)
-                    row.append(value)
+                    row[field] = value
                     if filter:
                         env[hash_name(field)] = value
                 if filter:
