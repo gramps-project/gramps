@@ -10,14 +10,14 @@
 # Andrey Baznikin (http://d.scn.ru/), 2009-2011.
 # Vassilii Khachaturov <vassilii@tarunz.org>, 2011-2013, 2014.
 # Egor Reentov <egor.gramps@gmail.com>, 2011, 2012, 2013.
-# Ivan Komaritsyn <vantu5z@mail.ru>, 2015.
+# Ivan Komaritsyn <vantu5z@mail.ru>, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-30 08:39+0300\n"
-"PO-Revision-Date: 2015-12-30 09:30+0300\n"
+"POT-Creation-Date: 2016-01-06 12:04+0300\n"
+"PO-Revision-Date: 2016-01-05 14:04+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1403,7 +1403,7 @@ msgstr "Последний доступ"
 #: ../gramps/cli/clidbman.py:270
 #, python-format
 msgid "Starting Import, %s"
-msgstr "Импорт %s"
+msgstr "Начинается импорт %s"
 
 #: ../gramps/cli/clidbman.py:276
 msgid "Import finished..."
@@ -1412,7 +1412,7 @@ msgstr "Импорт завершён..."
 #. Create a new database
 #: ../gramps/cli/clidbman.py:362 ../gramps/plugins/importer/importcsv.py:338
 msgid "Importing data..."
-msgstr "Собираю данные..."
+msgstr "Импортируются данные..."
 
 #: ../gramps/cli/clidbman.py:408
 msgid "Could not rename Family Tree"
@@ -2617,8 +2617,8 @@ msgstr ""
 "Версия базы данных %(tree_vers)s не поддерживается этой версией Gramps,\n"
 "которая распознаёт форматы версии от%(min_vers)s до %(max_vers)s.\n"
 "\n"
-"Пожалуйста, обновите GRAMPS или используйте XML формат для переноски данных\n"
-"между различными версиями базы данных."
+"Пожалуйста, обновите GRAMPS или используйте XML формат для переноса данных\n"
+"между различными версиями баз данных."
 
 #: ../gramps/gen/db/exceptions.py:113
 #, python-format
@@ -6946,7 +6946,7 @@ msgid "Citation"
 msgstr "Цитата"
 
 #: ../gramps/gen/lib/notetype.py:85 ../gramps/gen/plug/_pluginreg.py:76
-#: ../gramps/gui/logger/_errorview.py:139
+#: ../gramps/gui/logger/_errorview.py:140
 msgid "Report"
 msgstr "Отчёт"
 
@@ -7676,7 +7676,7 @@ msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
-"Выбрать семейство шрифтов. Если нелатинские символы не видны, используйте "
+"Выберите семейство шрифта. Если нелатинские символы не видны, используйте "
 "шрифт FreeSans. Загрузить FreeSans можно здесь: http://www.nongnu.org/"
 "freefont/"
 
@@ -9901,15 +9901,15 @@ msgstr "Полное название места"
 
 #: ../gramps/gui/configure.py:1127
 msgid "-> Hamlet/VillageTown/City"
-msgstr ""
+msgstr "-> Деревня/Посёлок/Город"
 
 #: ../gramps/gui/configure.py:1128
 msgid "Hamlet/VillageTown/City ->"
-msgstr ""
+msgstr "Деревня/Посёлок/Город ->"
 
 #: ../gramps/gui/configure.py:1133
 msgid "Restrict"
-msgstr ""
+msgstr "Ограничить"
 
 #: ../gramps/gui/configure.py:1138
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
@@ -10207,7 +10207,7 @@ msgstr "Выбрать каталог документов"
 #: ../gramps/gui/glade/reorder.glade:24 ../gramps/gui/glade/rule.glade:319
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1720
-#: ../gramps/gui/logger/_errorview.py:138 ../gramps/gui/plug/_guioptions.py:79
+#: ../gramps/gui/logger/_errorview.py:139 ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/_guioptions.py:1698 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
 #: ../gramps/gui/plug/report/_reportdialog.py:160 ../gramps/gui/utils.py:170
@@ -11238,7 +11238,7 @@ msgstr "Переместить выделенное имя ниже"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:77
 #: ../gramps/gui/views/treemodels/peoplemodel.py:615
 msgid "Group As"
-msgstr "Группировать как:"
+msgstr "Группировать как"
 
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:79
 msgid "Notes Preview"
@@ -11320,7 +11320,7 @@ msgstr "Заметки"
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
 #: ../gramps/plugins/webreport/narrativeweb.py:1913
 msgid "Personal"
-msgstr "Биографические данные"
+msgstr "Персональные данные"
 
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:53
 msgid "<Unknown>"
@@ -12248,9 +12248,8 @@ msgid "Group this name only"
 msgstr "Группировать только это имя"
 
 #: ../gramps/gui/editors/editnote.py:67
-#, fuzzy
 msgid "manual|Editing_information_about_notes"
-msgstr "Редактирование информации о событиях"
+msgstr ""
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -12318,11 +12317,8 @@ msgid "New Person"
 msgstr "Новое лицо"
 
 #: ../gramps/gui/editors/editperson.py:246
-#, fuzzy
 msgid "manual|Editing_information_about_people"
 msgstr ""
-".D0.98.D0.B7.D0.BC.D0.B5.D0.BD.D0.B5.D0.BD.D0.B8.D0.B5_.D0.B8.D0.BD.D1.84.D0."
-"BE.D1.80.D0.BC.D0.B0.D1.86.D0.B8.D0.B8_.D0.BE_.D0.BB.D1.8E.D0.B4.D1.8F.D1.85"
 
 #: ../gramps/gui/editors/editperson.py:607
 #: ../gramps/plugins/view/geofamily.py:397
@@ -12401,9 +12397,8 @@ msgid "_Unknown"
 msgstr "Неизвестно"
 
 #: ../gramps/gui/editors/editpersonref.py:68
-#, fuzzy
 msgid "manual|Person_Reference_Editor"
-msgstr "Редактор ссылки на лицо"
+msgstr ""
 
 #: ../gramps/gui/editors/editpersonref.py:97
 #: ../gramps/gui/editors/editpersonref.py:224
@@ -12429,7 +12424,7 @@ msgstr ""
 #: ../gramps/gui/editors/editplace.py:93
 #: ../gramps/gui/glade/editplace.glade:288 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
-msgstr "Название (сокр.):"
+msgstr "Название:"
 
 #: ../gramps/gui/editors/editplace.py:98
 #: ../gramps/gui/editors/editplaceref.py:95
@@ -12509,7 +12504,7 @@ msgstr "Редактор местоположений"
 
 #: ../gramps/gui/editors/editplacename.py:125
 msgid "Invalid ISO code"
-msgstr "Неверная код ISO"
+msgstr "Неверный код ISO"
 
 #: ../gramps/gui/editors/editplacename.py:138
 msgid "Cannot save place name"
@@ -12522,7 +12517,7 @@ msgstr "Название места не может быть пустым"
 #: ../gramps/gui/editors/editplaceref.py:59
 #: ../gramps/gui/editors/editplaceref.py:98
 msgid "Place Reference Editor"
-msgstr "Редактор ссылки на местоположение"
+msgstr "Редактор ссылки на место"
 
 #: ../gramps/gui/editors/editplaceref.py:284
 msgid "Modify Place"
@@ -12723,7 +12718,7 @@ msgstr "Метка"
 #: ../gramps/gui/glade/mergerepository.glade:54
 #: ../gramps/gui/glade/mergesource.glade:54 ../gramps/gui/glade/rule.glade:43
 #: ../gramps/gui/glade/rule.glade:354 ../gramps/gui/glade/rule.glade:784
-#: ../gramps/gui/logger/_errorview.py:140
+#: ../gramps/gui/logger/_errorview.py:141
 #: ../gramps/gui/plug/report/_reportdialog.py:157
 #: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:484
 #: ../gramps/gui/views/bookmarks.py:237 ../gramps/gui/views/tags.py:420
@@ -12800,7 +12795,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
 msgid "manual|Custom_Filters"
-msgstr "Специальные фильтры"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:89
 msgid "Person Filters"
@@ -15775,11 +15770,11 @@ msgstr "Сообщение об ошибке"
 msgid "Error Report"
 msgstr "Сообщение об ошибке"
 
-#: ../gramps/gui/logger/_errorview.py:100
+#: ../gramps/gui/logger/_errorview.py:101
 msgid "Gramps has experienced an unexpected error"
 msgstr "Обнаружена неожиданная ошибка Gramps"
 
-#: ../gramps/gui/logger/_errorview.py:109
+#: ../gramps/gui/logger/_errorview.py:110
 msgid ""
 "Your data will be safe but it would be advisable to restart Gramps "
 "immediately. If you would like to report the problem to the Gramps team "
@@ -15791,8 +15786,8 @@ msgstr ""
 "пожалуйста, выберите «Отчёт» и помощник сообщений об ошибках поможет вам "
 "составить сообщение."
 
-#: ../gramps/gui/logger/_errorview.py:118
-#: ../gramps/gui/logger/_errorview.py:132
+#: ../gramps/gui/logger/_errorview.py:119
+#: ../gramps/gui/logger/_errorview.py:133
 msgid "Error Detail"
 msgstr "Подробности ошибки"
 
@@ -24133,7 +24128,7 @@ msgstr "Неверный формат"
 #: ../gramps/plugins/lib/libmetadata.py:64
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
-msgstr ""
+msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
 #: ../gramps/plugins/lib/libmetadata.py:67
 #, python-format
@@ -30385,7 +30380,7 @@ msgstr "Отчёт о завершении родовой линии"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:165
 msgid "Produces a textual end of line report"
-msgstr ""
+msgstr "Создаёт текстовый отчёт об окончании линии"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:187
 msgid ""
@@ -32010,9 +32005,8 @@ msgstr ""
 "(Число приблизительное, потому что семью уже сгенерированы)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:298
-#, fuzzy
 msgid "Generating testcases"
-msgstr "Создаю отчёт"
+msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:303
 msgid "Generating low level database errors"
@@ -32340,7 +32334,7 @@ msgstr "Инструмент проверки данных"
 #: ../gramps/plugins/tool/verify.py:279
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
-msgstr ""
+msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
 #: ../gramps/plugins/tool/verify.py:452
 msgid "Data Verification Results"
