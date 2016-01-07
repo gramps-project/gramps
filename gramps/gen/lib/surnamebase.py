@@ -22,9 +22,6 @@
 SurnameBase class for Gramps.
 """
 
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -32,6 +29,8 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from .surname import Surname
 from .const import IDENTICAL, EQUAL
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

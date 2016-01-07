@@ -146,7 +146,7 @@ class MediaBase(object):
             else:
                 self.media_list.append(addendum)
 
-    def has_media_reference(self, obj_handle) :
+    def has_media_reference(self, obj_handle):
         """
         Return True if the object or any of it's child objects has reference
         to this media object handle.
@@ -167,7 +167,7 @@ class MediaBase(object):
         :type obj_handle_list: list
         """
         new_media_list = [media_ref for media_ref in self.media_list
-                            if media_ref.ref not in obj_handle_list]
+                          if media_ref.ref not in obj_handle_list]
         self.media_list = new_media_list
 
     def replace_media_references(self, old_handle, new_handle):
@@ -180,7 +180,7 @@ class MediaBase(object):
         :param new_handle: The media handle to replace the old one with.
         :type new_handle: str
         """
-        refs_list = [ media_ref.ref for media_ref in self.media_list ]
+        refs_list = [media_ref.ref for media_ref in self.media_list]
         new_ref = None
         if new_handle in refs_list:
             new_ref = self.media_list[refs_list.index(new_handle)]

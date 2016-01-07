@@ -30,7 +30,6 @@ CitationBase class for Gramps.
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -38,6 +37,8 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from .handle import Handle
+
+LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
@@ -138,7 +139,7 @@ class CitationBase(object):
         :type handle: list
         """
         LOG.debug('enter remove_citation handle: %s self: %s citation_list: %s'
-                   % (citation_handle_list, self, self.citation_list))
+                  % (citation_handle_list, self, self.citation_list))
         for handle in citation_handle_list:
             if handle in self.citation_list:
                 LOG.debug('remove handle %s from citation_list %s' %

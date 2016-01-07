@@ -93,7 +93,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),
                 "location": LocationBase.to_struct(self)
-        }
+               }
 
     @classmethod
     def from_struct(cls, struct):
@@ -108,7 +108,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
                 NoteBase.from_struct(struct.get("note_list", default.note_list)),
                 DateBase.from_struct(struct.get("date", {})),
                 LocationBase.from_struct(struct.get("location", {}))
-            )
+               )
 
     def unserialize(self, data):
         """

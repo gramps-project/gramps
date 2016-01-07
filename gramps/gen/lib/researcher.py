@@ -110,7 +110,7 @@ class Researcher(LocationBase):
                 struct.get("postal", default.postal),
                 struct.get("phone", default.phone),
                 struct.get("name", default.name),
-                struct.get("address", default.address),
+                struct.get("address", default.addr),
                 struct.get("email", default.email))
 
     def unserialize(self, data):
@@ -159,17 +159,17 @@ class Researcher(LocationBase):
 
         self.name = other_researcher.name
         self.addr = other_researcher.addr
-        self.email =  other_researcher.email
+        self.email = other_researcher.email
 
     def get(self):
         return [getattr(self, value) for value in
-            ['name', 'addr', 'locality', 'city', 'state',
-             'country', 'postal', 'phone', 'email']
-            ]
+                ['name', 'addr', 'locality', 'city', 'state',
+                 'country', 'postal', 'phone', 'email']
+               ]
 
     def is_empty(self):
         for attr in ['name', 'addr', 'locality', 'city', 'state',
-             'country', 'postal', 'phone', 'email']:
+                     'country', 'postal', 'phone', 'email']:
             if getattr(self, attr) != "":
                 return False
         return True

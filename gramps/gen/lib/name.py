@@ -57,11 +57,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
     object stores one of them
     """
 
-    DEF  = 0  # Default format (determined by gramps-wide prefs)
-    LNFN = 1  # last name first name
-    FNLN = 2  # first name last name
-    FN   = 4  # first name
-    LNFNP= 5  # primary name primconnector rest, given pa/ma suffix, primprefix
+    DEF = 0    # Default format (determined by gramps-wide prefs)
+    LNFN = 1   # last name first name
+    FNLN = 2   # first name last name
+    FN = 4     # first name
+    LNFNP = 5  # primary name primconnector rest, given pa/ma suffix, primprefix
 
     NAMEFORMATS = (DEF, LNFN, FNLN, FN, LNFNP)
     #deprecated :
@@ -175,11 +175,14 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         default = Name()
         return (PrivacyBase.from_struct(struct.get("private", default.private)),
-                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                CitationBase.from_struct(struct.get("citation_list",
+                                                    default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list",
+                                                default.note_list)),
                 DateBase.from_struct(struct.get("date", {})),
                 struct.get("first_name", default.first_name),
-                SurnameBase.from_struct(struct.get("surname_list", default.surname_list)),
+                SurnameBase.from_struct(struct.get("surname_list",
+                                                   default.surname_list)),
                 struct.get("suffix", default.suffix),
                 struct.get("title", default.title),
                 NameType.from_struct(struct.get("type", {})),
@@ -237,10 +240,12 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         Indicate if the name is empty.
         """
         namefieldsempty = (self.first_name == "" and
-                self.suffix == "" and self.title == "" and self.nick == ""
-                and self.famnick == "")
-        surnamefieldsempty = not (False in
-                            [surn.is_empty() for surn in self.surname_list])
+                           self.suffix == "" and
+                           self.title == "" and
+                           self.nick == "" and
+                           self.famnick == "")
+        surnamefieldsempty = False not in [surn.is_empty()
+                                           for surn in self.surname_list]
         return namefieldsempty and surnamefieldsempty
 
     def unserialize(self, data):
@@ -536,7 +541,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         """
         first = self.first_name
         surname = self.get_surname()
-        if (self.suffix == ""):
+        if self.suffix == "":
             return "%s %s" % (first, surname)
         else:
             # translators: needed for Arabic, ignore otherwise
@@ -569,7 +574,6 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         firstname = self.first_name.strip()
         surname = self.get_surname().replace('/', '?')
         suffix = self.suffix
-        title = self.title
         if suffix == "":
             return '%s /%s/' % (firstname, surname)
         else:

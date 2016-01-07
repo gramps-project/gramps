@@ -46,7 +46,7 @@ from .handle import Handle
 #
 #-------------------------------------------------------------------------
 class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
-        IndirectCitationBase, SecondaryObject):
+               IndirectCitationBase, SecondaryObject):
     """
     Event reference class.
 
@@ -63,7 +63,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
-            self.__role = EventRoleType(source.__role)
+            self.__role = EventRoleType(source.role)
         else:
             self.__role = EventRoleType()
 

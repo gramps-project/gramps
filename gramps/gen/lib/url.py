@@ -182,7 +182,7 @@ class Url(SecondaryObject, PrivacyBase):
     def are_equal(self, other):
         """Deprecated - use :meth:`~.SecondaryObject.is_equal` instead."""
 
-        warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
+        warn("Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
 
     def parse_path(self):

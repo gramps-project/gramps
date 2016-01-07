@@ -96,7 +96,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 "note_list": NoteBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),
                 "ref": Handle("Media", self.ref),
-                "rect": self.rect if self.rect != (0,0,0,0) else None}
+                "rect": self.rect if self.rect != (0, 0, 0, 0) else None}
 
     @classmethod
     def from_struct(cls, struct):
@@ -107,9 +107,12 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         """
         default = MediaRef()
         return (PrivacyBase.from_struct(struct.get("private", default.private)),
-                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+                CitationBase.from_struct(struct.get("citation_list",
+                                                    default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list",
+                                                default.note_list)),
+                AttributeBase.from_struct(struct.get("attribute_list",
+                                                     default.attribute_list)),
                 RefBase.from_struct(struct.get("ref", default.ref)),
                 struct.get("rect", default.rect))
 
@@ -117,7 +120,8 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         """
         Convert a serialized tuple of data to an object.
         """
-        (privacy, citation_list, note_list,attribute_list,ref,self.rect) = data
+        (privacy, citation_list, note_list, attribute_list, ref,
+         self.rect) = data
         PrivacyBase.unserialize(self, privacy)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)

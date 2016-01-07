@@ -27,13 +27,8 @@ Source Attribute class for GRAMPS.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .secondaryobj import SecondaryObject
-from .privacybase import PrivacyBase
-from .citationbase import CitationBase
-from .notebase import NoteBase
 from .attribute import AttributeRoot
 from .srcattrtype import SrcAttributeType
-from .const import IDENTICAL, EQUAL, DIFFERENT
 
 #-------------------------------------------------------------------------
 #

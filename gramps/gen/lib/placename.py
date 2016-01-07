@@ -31,7 +31,6 @@ Place name class for Gramps
 from .secondaryobj import SecondaryObject
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -191,8 +190,8 @@ class PlaceName(SecondaryObject, DateBase):
         :rtype: int
         """
         if (self.value != other.value or
-            self.date != other.date or
-            self.lang != other.lang):
+                self.date != other.date or
+                self.lang != other.lang):
             return DIFFERENT
         else:
             if self.is_equal(other):

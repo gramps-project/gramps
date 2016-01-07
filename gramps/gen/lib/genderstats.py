@@ -42,7 +42,7 @@ class GenderStats(object):
     This allows the tracking of the liklihood of a person's given name
     indicating the gender of the person.
     """
-    def __init__ (self, stats={}):
+    def __init__(self, stats=None):
         if stats is None:
             self.stats = {}
         else:
@@ -56,42 +56,35 @@ class GenderStats(object):
         self.stats = {}
         return self.stats
 
-    def _get_key (self, person):
-        name = person.get_primary_name().get_first_name()
-        return self._get_key_from_name (name)
-
-    def _get_key_from_name (self, name):
-        return name.split (' ')[0].replace ('?', '')
-
-    def name_stats (self, name):
+    def name_stats(self, name):
         if name in self.stats:
             return self.stats[name]
         return (0, 0, 0)
 
-    def count_name (self, name, gender):
+    def count_name(self, name, gender):
         """
         Count a given name under gender in the gender stats.
         """
-        keyname = self._get_key_from_name(name)
+        keyname = _get_key_from_name(name)
         if not keyname:
             return
 
         self._set_stats(keyname, gender)
 
-    def count_person (self, person, undo = 0):
+    def count_person(self, person, undo=0):
         if not person:
             return
         # Let the Person do their own counting later
 
-        keyname = self._get_key (person)
+        keyname = _get_key(person)
         if not keyname:
             return
 
         gender = person.get_gender()
         self._set_stats(keyname, gender, undo)
 
-    def _set_stats (self, keyname, gender, undo=0):
-        (male, female, unknown) = self.name_stats (keyname)
+    def _set_stats(self, keyname, gender, undo=0):
+        (male, female, unknown) = self.name_stats(keyname)
         if not undo:
             increment = 1
         else:
@@ -112,11 +105,11 @@ class GenderStats(object):
 
         self.stats[keyname] = (male, female, unknown)
 
-    def uncount_person (self, person):
-        return self.count_person (person, undo = 1)
+    def uncount_person(self, person):
+        return self.count_person(person, undo=1)
 
-    def guess_gender (self, name):
-        name = self._get_key_from_name (name)
+    def guess_gender(self, name):
+        name = _get_key_from_name(name)
         if not name or name not in self.stats:
             return Person.UNKNOWN
 
@@ -134,3 +127,10 @@ class GenderStats(object):
             return Person.FEMALE
 
         return Person.UNKNOWN
+
+def _get_key(person):
+    name = person.get_primary_name().get_first_name()
+    return _get_key_from_name(name)
+
+def _get_key_from_name(name):
+    return name.split(' ')[0].replace('?', '')

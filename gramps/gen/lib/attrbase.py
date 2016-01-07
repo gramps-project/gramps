@@ -55,7 +55,7 @@ class AttributeRootBase(object):
         """
         if source:
             self.attribute_list = [self._CLASS(attribute)
-                                    for attribute in source.attribute_list]
+                                   for attribute in source.attribute_list]
         else:
             self.attribute_list = []
 

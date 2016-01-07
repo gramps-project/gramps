@@ -54,7 +54,7 @@ class LdsOrdBase(object):
 
         if source:
             self.lds_ord_list = [LdsOrd(lds_ord)
-                                    for lds_ord in source.lds_ord_list]
+                                 for lds_ord in source.lds_ord_list]
         else:
             self.lds_ord_list = []
 
