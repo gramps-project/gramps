@@ -147,7 +147,6 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 
 
 PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
-WEB_DIR            = os.path.join(ROOT_DIR, 'webapp')
 
 USE_TIPS = False
 
@@ -195,7 +194,6 @@ ENV = {
     "ROOT_DIR": ROOT_DIR,
     "GLADE_DIR": GLADE_DIR,
     "PLUGINS_DIR": PLUGINS_DIR,
-    "WEB_DIR": WEB_DIR,
     "DATA_DIR": DATA_DIR,
     "IMAGE_DIR": IMAGE_DIR,
 }
