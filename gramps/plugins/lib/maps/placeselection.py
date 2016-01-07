@@ -66,32 +66,6 @@ from gramps.gen.display.place import displayer as place_displayer
 PLACE_REGEXP = re.compile('<span background="green">(.*)</span>')
 PLACE_STRING = '<span background="green">%s</span>'
 
-def match(self, lat, lon, radius):
-    """
-    coordinates matching.
-    """
-    rds = float(radius)
-    self.places = []
-
-    # place
-    for entry in self.place_list:
-        if (math.hypot(lat-float(entry[3]),
-                       lon-float(entry[4])) <= rds) == True:
-            # Do we already have this place ? avoid duplicates
-            country, state, county, place, other = self.get_location(entry[9])
-            if not [country, state, county, place, other] in self.places:
-                self.places.append([country, state, county, place, other])
-    for place in self.dbstate.db.iter_places():
-        latn = place.get_latitude()
-        lonn = place.get_longitude()
-        if latn and lonn:
-            if (math.hypot(lat-float(latn),
-                           lon-float(lonn)) <= rds) == True:
-                country, state, county, place, other = self.get_location(place.get_gramps_id())
-                if not [country, state, county, place, other] in self.places:
-                    self.places.append([country, state, county, place, other])
-    return self.places
-
 #-------------------------------------------------------------------------
 #
 # PlaceSelection
@@ -192,7 +166,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         """
         self.radius = obj.get_value() if obj else 1.0
         self.show_the_region(self.radius)
-        match(self, lat, lon, self.radius)
+        self.match(lat, lon)
         self.plist.clear()
         if self.oldvalue != None:
             # The old values are always in the first row.
@@ -264,6 +238,31 @@ class PlaceSelection(ManagedWindow, OsmGps):
                 if parent_place is None:
                     parent_place = place.get_handle()
         return(country, state, county, place_name, other)
+
+    def match(self, lat, lon):
+        """
+        coordinates matching.
+        """
+        rds = float(self.radius)
+        self.places = []
+
+        # place
+        for entry in self.place_list:
+            if (math.hypot(lat-float(entry[3]),
+                           lon-float(entry[4])) <= rds) == True:
+                # Do we already have this place ? avoid duplicates
+                country, state, county, place, other = self.get_location(entry[9])
+                if not [country, state, county, place, other] in self.places:
+                    self.places.append([country, state, county, place, other])
+        for place in self.dbstate.db.iter_places():
+            latn = place.get_latitude()
+            lonn = place.get_longitude()
+            if latn and lonn:
+                if (math.hypot(lat-float(latn),
+                               lon-float(lonn)) <= rds) == True:
+                    country, state, county, place, other = self.get_location(place.get_gramps_id())
+                    if not [country, state, county, place, other] in self.places:
+                        self.places.append([country, state, county, place, other])
 
     def selection(self, obj, index, column, function):
         """
