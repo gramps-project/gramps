@@ -1880,7 +1880,7 @@ class DbWriteBase(DbReadBase):
                filter=None):
         """
         Default implementation of a select for those databases
-        that don't support SQL. Yields data row by row.
+        that don't support SQL. Returns a list of dicts, and total.
 
         table - Person, Family, etc.
         fields - used by object.get_field()
@@ -1890,6 +1890,11 @@ class DbWriteBase(DbReadBase):
         filter - {field: (SQL string_operator, value), }
                  handles all SQL except for NOT expression, eg NOT x = y
         """
+        class Result(list):
+            """
+            A list rows of just matching for this page, with total = all. 
+            """
+            total = 0
         def hash_name(name):
             """
             Used in filter to eval expressions involving selected
@@ -1914,61 +1919,73 @@ class DbWriteBase(DbReadBase):
             data = self._tables[table]["handles_func"]()
         position = 0
         selected = 0
-        for handle in data:
-            if position < start:
-                pass # skip it
-            else:
+        result = Result()
+        if filter:
+            for handle in data:
+                # have to evaluate all, because there is a filter
                 item = self._tables[table]["handle_func"](handle)
                 row = {}
                 env = {}
-                for field in fields: 
+                for field in filter.keys(): 
+                    # just the ones we need for filter
                     value = item.get_field(field)
-                    row[field] = value
-                    if filter:
-                        env[hash_name(field)] = value
-                if filter:
-                    matched = True
-                    for name, (op, value) in filter.items():
-                        v = eval(hash_name(name), env)
-                        if op == "=":
-                            matched = v == value
-                        elif op == ">":
-                            matched = v > value
-                        elif op == ">=":
-                            matched = v >= value
-                        elif op == "<":
-                            matched = v < value
-                        elif op == "<=":
-                            matched = v <= value
-                        elif op == "IN":
-                            matched = v in value
-                        elif op == "IS":
-                            matched = v is value
-                        elif op == "IS NOT":
-                            matched = v is not value
-                        elif op == "IS NULL":
-                            matched = v is None
-                        elif op == "IS NOT NULL":
-                            matched = v is not None
-                        elif op == "BETWEEN":
-                            matched = value[0] <= v <= value[1]
-                        elif op in ["<>", "!="]:
-                            matched = v != value
-                        elif op == "LIKE":
-                            value = value.replace("%", "(.*)").replace("_", ".")
-                            matched = re.match(value, v)
-                        else:
-                            raise Exception("invalid select operator: '%s'" % op)
-                        if not matched:
-                            break
-                    if matched:
-                        selected += 1
-                        yield row
+                    env[hash_name(field)] = value
+                matched = True
+                for name, (op, value) in filter.items():
+                    v = eval(hash_name(name), env)
+                    if op == "=":
+                        matched = v == value
+                    elif op == ">":
+                        matched = v > value
+                    elif op == ">=":
+                        matched = v >= value
+                    elif op == "<":
+                        matched = v < value
+                    elif op == "<=":
+                        matched = v <= value
+                    elif op == "IN":
+                        matched = v in value
+                    elif op == "IS":
+                        matched = v is value
+                    elif op == "IS NOT":
+                        matched = v is not value
+                    elif op == "IS NULL":
+                        matched = v is None
+                    elif op == "IS NOT NULL":
+                        matched = v is not None
+                    elif op == "BETWEEN":
+                        matched = value[0] <= v <= value[1]
+                    elif op in ["<>", "!="]:
+                        matched = v != value
+                    elif op == "LIKE":
+                        value = value.replace("%", "(.*)").replace("_", ".")
+                        matched = re.match(value, v)
                     else:
-                        continue
-                else:
+                        raise Exception("invalid select operator: '%s'" % op)
+                    if not matched:
+                        break
+                if matched:
+                    if selected < limit and start <= position:
+                        # now, we get all of the fields
+                        for field in fields: 
+                            value = item.get_field(field)
+                            row[field] = value
+                        selected += 1
+                        result.append(row)
+                    position += 1
+            result.total = position
+        else: # no filter
+            for handle in data:
+                if position >= start:
+                    if selected >= limit:
+                        break
+                    item = self._tables[table]["handle_func"](handle)
+                    row = {}
+                    for field in fields: 
+                        value = item.get_field(field)
+                        row[field] = value
+                    result.append(row)
                     selected += 1
-                    yield row
-            position += 1
-            if selected == limit:
-                break
+                position += 1
+            result.total = self._tables[table]["count_func"]()
+        return result
