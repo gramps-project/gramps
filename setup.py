@@ -444,10 +444,6 @@ data_files_gui.append(('share/gramps/images/hicolor/22x22/actions', ICON_22))
 data_files_gui.append(('share/gramps/images/hicolor/48x48/actions', ICON_48))
 data_files_gui.append(('share/gramps/images/hicolor/scalable/actions', ICON_SC))
 
-TEMPLATE_FILES = glob.glob(os.path.join('data/templates', '*.html'))
-ADMIN_FILES = glob.glob(os.path.join('data/templates/admin', '*.html'))
-REG_FILES = glob.glob(os.path.join('data/templates/registration', '*.html'))
-
 data_files = data_files_core + data_files_gui
 
 #-------------------------------------------------------------------------
