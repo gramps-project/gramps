@@ -207,6 +207,14 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         """Convert the object to a serialized tuple of data. """
         return (self.__value, self.__string)
 
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "_class": _("Family Relationship"),
+            "value": _("Family Relationship"),
+            "string": _("Family Relationship"),
+        }
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,

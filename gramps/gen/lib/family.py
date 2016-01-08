@@ -199,6 +199,51 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 TagBase.from_struct(struct.get("tag_list", default.tag_list)),
                 struct.get("private", default.private))
 
+    @classmethod
+    def get_schema(cls):
+        from .mediaref import MediaRef
+        from .ldsord import LdsOrd
+        from .childref import ChildRef
+        from .attribute import Attribute
+        return {
+            "handle": Handle("Family", "FAMILY-HANDLE"),
+            "gramps_id": str,
+            "father_handle": Handle("Person", "PERSON-HANDLE"),
+            "mother_handle": Handle("Person", "PERSON-HANDLE"),
+            "child_ref_list": [ChildRef],
+            "type": FamilyRelType,
+            "event_ref_list": [EventRef],
+            "media_list": [MediaRef],
+            "attribute_list": [Attribute],
+            "lds_ord_list": [LdsOrd],
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool
+        }
+
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "_class": _("Family"),
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "father_handle": _("Father"),
+            "mother_handle": _("Mother"),
+            "child_ref_list": _("Children"),
+            "type": _("Relationship"),
+            "event_ref_list": _("Events"),
+            "media_list": _("Media"),
+            "attribute_list": _("Attributes"),
+            "lds_ord_list": _("LDS ordinances"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
