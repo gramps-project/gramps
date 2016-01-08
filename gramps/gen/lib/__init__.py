@@ -39,7 +39,6 @@ from .placeref import PlaceRef
 from .reporef import RepoRef
 from .surname import Surname
 from .url import Url
-from .witness import Witness
 from .childref import ChildRef
 
 # Primary objects

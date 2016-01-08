@@ -148,7 +148,6 @@ gramps/gen/lib/place.py
 gramps/gen/lib/placebase.py
 gramps/gen/lib/primaryobj.py
 gramps/gen/lib/privacybase.py
-gramps/gen/lib/privsrcnote.py
 gramps/gen/lib/refbase.py
 gramps/gen/lib/repo.py
 gramps/gen/lib/reporef.py
@@ -156,7 +155,6 @@ gramps/gen/lib/researcher.py
 gramps/gen/lib/secondaryobj.py
 gramps/gen/lib/src.py
 gramps/gen/lib/srcbase.py
-gramps/gen/lib/srcnote.py
 gramps/gen/lib/srcref.py
 gramps/gen/lib/styledtext.py
 gramps/gen/lib/styledtexttag.py
@@ -169,7 +167,6 @@ gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/merge_test.py
 gramps/gen/lib/url.py
 gramps/gen/lib/urlbase.py
-gramps/gen/lib/witness.py
 #
 # gen.merge package
 #
