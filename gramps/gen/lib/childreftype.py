@@ -21,13 +21,6 @@
 """
 Provide the different child reference types.
 """
-#-------------------------------------------------------------------------
-#
-# standard python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -35,6 +28,8 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class ChildRefType(GrampsType):
     """
@@ -56,31 +51,28 @@ class ChildRefType(GrampsType):
     .. attribute CUSTOM : Custom - a relationship given by the user
     """
 
-    NONE      = 0
-    BIRTH     = 1
-    ADOPTED   = 2
+    NONE = 0
+    BIRTH = 1
+    ADOPTED = 2
     STEPCHILD = 3
     SPONSORED = 4
-    FOSTER    = 5
-    UNKNOWN   = 6
-    CUSTOM    = 7
+    FOSTER = 5
+    UNKNOWN = 6
+    CUSTOM = 7
 
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
 
     _DATAMAP = [
-        (NONE,      _("None"),      "None"),
-        (BIRTH,     _("Birth"),     "Birth"),
-        (ADOPTED,   _("Adopted"),   "Adopted"),
+        (NONE, _("None"), "None"),
+        (BIRTH, _("Birth"), "Birth"),
+        (ADOPTED, _("Adopted"), "Adopted"),
         (STEPCHILD, _("Stepchild"), "Stepchild"),
         (SPONSORED, _("Sponsored"), "Sponsored"),
-        (FOSTER,    _("Foster"),    "Foster"),
-        (UNKNOWN,   _("Unknown"),   "Unknown"),
-        (CUSTOM,    _("Custom"),    "Custom"),
+        (FOSTER, _("Foster"), "Foster"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-
-
-

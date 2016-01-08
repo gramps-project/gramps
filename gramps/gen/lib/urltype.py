@@ -24,42 +24,33 @@ URL types
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class UrlType(GrampsType):
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    EMAIL      = 1
-    WEB_HOME   = 2
+    UNKNOWN = -1
+    CUSTOM = 0
+    EMAIL = 1
+    WEB_HOME = 2
     WEB_SEARCH = 3
-    WEB_FTP    = 4
+    WEB_FTP = 4
 
     _CUSTOM = CUSTOM
     _DEFAULT = UNKNOWN
 
     _DATAMAP = [
-        (UNKNOWN,    _("Unknown"),    "Unknown"),
-        (CUSTOM,     _("Custom"),     "Custom"),
-        (EMAIL,      _("E-mail"),     "E-mail"),
-        (WEB_HOME,   _("Web Home"),   "Web Home"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (EMAIL, _("E-mail"), "E-mail"),
+        (WEB_HOME, _("Web Home"), "Web Home"),
         (WEB_SEARCH, _("Web Search"), "Web Search"),
-        (WEB_FTP,    _("FTP"),        "FTP"),
+        (WEB_FTP, _("FTP"), "FTP"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-
-
-

@@ -22,49 +22,43 @@
 Provide the different event roles.
 """
 
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 class EventRoleType(GrampsType):
 
-    UNKNOWN   = -1
-    CUSTOM    = 0
-    PRIMARY   = 1
-    CLERGY    = 2
+    UNKNOWN = -1
+    CUSTOM = 0
+    PRIMARY = 1
+    CLERGY = 2
     CELEBRANT = 3
-    AIDE      = 4
-    BRIDE     = 5
-    GROOM     = 6
-    WITNESS   = 7
-    FAMILY    = 8
+    AIDE = 4
+    BRIDE = 5
+    GROOM = 6
+    WITNESS = 7
+    FAMILY = 8
     INFORMANT = 9
 
     _CUSTOM = CUSTOM
     _DEFAULT = PRIMARY
 
     _DATAMAP = [
-        (UNKNOWN,   _("Unknown"),   "Unknown"),
-        (CUSTOM,    _("Custom"),    "Custom"),
-        (PRIMARY,   _("Role|Primary"),   "Primary"),
-        (CLERGY,    _("Clergy"),    "Clergy"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (PRIMARY, _("Role|Primary"), "Primary"),
+        (CLERGY, _("Clergy"), "Clergy"),
         (CELEBRANT, _("Celebrant"), "Celebrant"),
-        (AIDE,      _("Aide"),      "Aide"),
-        (BRIDE,     _("Bride"),     "Bride"),
-        (GROOM,     _("Groom"),     "Groom"),
-        (WITNESS,   _("Witness"),   "Witness"),
-        (FAMILY,    _("Role|Family"),    "Family"),
+        (AIDE, _("Aide"), "Aide"),
+        (BRIDE, _("Bride"), "Bride"),
+        (GROOM, _("Groom"), "Groom"),
+        (WITNESS, _("Witness"), "Witness"),
+        (FAMILY, _("Role|Family"), "Family"),
         (INFORMANT, _("Informant"), "Informant"),
         ]
 
@@ -82,4 +76,3 @@ class EventRoleType(GrampsType):
         Returns True if EventRoleType is FAMILY, False otherwise.
         """
         return self.value == self.FAMILY
-

@@ -18,15 +18,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-"Define text formatting tag types."
-
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+"""
+Define text formatting tag types.
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -34,6 +28,8 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -41,10 +37,11 @@ from .grampstype import GrampsType
 #
 #-------------------------------------------------------------------------
 class StyledTextTagType(GrampsType):
-    """Text formatting tag type definition.
+    """
+    Text formatting tag type definition.
 
-    Here we only define new class variables. For details see :class:`~gen.lib.grampstype.GrampsType`.
-
+    Here we only define new class variables. For details see
+    :class:`~gen.lib.grampstype.GrampsType`.
     """
     NONE_TYPE = -1
     BOLD = 0

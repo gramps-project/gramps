@@ -24,18 +24,12 @@ Name types.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 class NameOriginType(GrampsType):
     """
@@ -57,41 +51,40 @@ class NameOriginType(GrampsType):
     .. attribute LOCATION:   name follows from the location of the person
     """
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    NONE       = 1
-    INHERITED  = 2
-    GIVEN      = 3
-    TAKEN      = 4
+    UNKNOWN = -1
+    CUSTOM = 0
+    NONE = 1
+    INHERITED = 2
+    GIVEN = 3
+    TAKEN = 4
     PATRONYMIC = 5
     MATRONYMIC = 6
-    FEUDAL     = 7
-    PSEUDONYM  = 8
-    PATRILINEAL= 9
-    MATRILINEAL= 10
+    FEUDAL = 7
+    PSEUDONYM = 8
+    PATRILINEAL = 9
+    MATRILINEAL = 10
     OCCUPATION = 11
-    LOCATION   = 12
+    LOCATION = 12
 
     _CUSTOM = CUSTOM
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (UNKNOWN    , _("Unknown"),           "Unknown"),
-        (CUSTOM     , _("Custom"),            "Custom"),
-        (NONE       , "",                     ""),
-        (INHERITED  , _("Surname|Inherited"), "Inherited"),
-        (GIVEN      , _("Surname|Given"),     "Given"),
-        (TAKEN      , _("Surname|Taken"),     "Taken"),
-        (PATRONYMIC , _("Patronymic"),        "Patronymic"),
-        (MATRONYMIC , _("Matronymic"),        "Matronymic"),
-        (FEUDAL     , _("Surname|Feudal"),    "Feudal"),
-        (PSEUDONYM  , _("Pseudonym"),         "Pseudonym"),
-        (PATRILINEAL, _("Patrilineal"),       "Patrilineal"),
-        (MATRILINEAL, _("Matrilineal"),       "Matrilineal"),
-        (OCCUPATION , _("Occupation"),        "Occupation"),
-        (LOCATION   , _("Location"),          "Location"),
+        (UNKNOWN, _("Unknown"), "Unknown "),
+        (CUSTOM, _("Custom"), "Custom"),
+        (NONE, "", ""),
+        (INHERITED, _("Surname|Inherited"), "Inherited"),
+        (GIVEN, _("Surname|Given"), "Given"),
+        (TAKEN, _("Surname|Taken"), "Taken"),
+        (PATRONYMIC, _("Patronymic"), "Patronymic"),
+        (MATRONYMIC, _("Matronymic"), "Matronymic"),
+        (FEUDAL, _("Surname|Feudal"), "Feudal"),
+        (PSEUDONYM, _("Pseudonym"), "Pseudonym"),
+        (PATRILINEAL, _("Patrilineal"), "Patrilineal"),
+        (MATRILINEAL, _("Matrilineal"), "Matrilineal"),
+        (OCCUPATION, _("Occupation"), "Occupation"),
+        (LOCATION, _("Location"), "Location"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-

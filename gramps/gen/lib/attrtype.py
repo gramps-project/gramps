@@ -25,36 +25,31 @@ Provide the different Attribute Types for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class AttributeType(GrampsType):
 
-    UNKNOWN     = -1
-    CUSTOM      = 0
-    CASTE       = 1
+    UNKNOWN = -1
+    CUSTOM = 0
+    CASTE = 1
     DESCRIPTION = 2
-    ID          = 3
-    NATIONAL    = 4
-    NUM_CHILD   = 5
-    SSN         = 6
-    NICKNAME    = 7
-    CAUSE       = 8
-    AGENCY      = 9
-    AGE         = 10
-    FATHER_AGE  = 11
-    MOTHER_AGE  = 12
-    WITNESS     = 13
-    TIME        = 14
+    ID = 3
+    NATIONAL = 4
+    NUM_CHILD = 5
+    SSN = 6
+    NICKNAME = 7
+    CAUSE = 8
+    AGENCY = 9
+    AGE = 10
+    FATHER_AGE = 11
+    MOTHER_AGE = 12
+    WITNESS = 13
+    TIME = 14
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -64,23 +59,22 @@ class AttributeType(GrampsType):
         return value
 
     _BASEMAP = [ # allow deferred translation of attribute UI strings
-        (UNKNOWN     , _T_("Unknown"), "Unknown"),
-        (CUSTOM      , _T_("Custom"), "Custom"),
-        (CASTE       , _T_("Caste"), "Caste"),
-        (DESCRIPTION , _T_("Description"), "Description"),
-        (ID          , _T_("Identification Number"), "Identification Number"),
-        (NATIONAL    , _T_("National Origin"), "National Origin"),
-        (NUM_CHILD   , _T_("Number of Children"), "Number of Children"),
-        (SSN         , _T_("Social Security Number"),
-                           "Social Security Number"),
-        (NICKNAME    , _T_("Nickname"), "Nickname"),
-        (CAUSE       , _T_("Cause"), "Cause"),
-        (AGENCY      , _T_("Agency"), "Agency"),
-        (AGE         , _T_("Age"), "Age"),
-        (FATHER_AGE  , _T_("Father's Age"), "Father Age"),
-        (MOTHER_AGE  , _T_("Mother's Age"), "Mother Age"),
-        (WITNESS     , _T_("Witness"), "Witness"),
-        (TIME        , _T_("Time"), "Time"),
+        (UNKNOWN, _T_("Unknown"), "Unknown"),
+        (CUSTOM, _T_("Custom"), "Custom"),
+        (CASTE, _T_("Caste"), "Caste"),
+        (DESCRIPTION, _T_("Description"), "Description"),
+        (ID, _T_("Identification Number"), "Identification Number"),
+        (NATIONAL, _T_("National Origin"), "National Origin"),
+        (NUM_CHILD, _T_("Number of Children"), "Number of Children"),
+        (SSN, _T_("Social Security Number"), "Social Security Number"),
+        (NICKNAME, _T_("Nickname"), "Nickname"),
+        (CAUSE, _T_("Cause"), "Cause"),
+        (AGENCY, _T_("Agency"), "Agency"),
+        (AGE, _T_("Age"), "Age"),
+        (FATHER_AGE, _T_("Father's Age"), "Father Age"),
+        (MOTHER_AGE, _T_("Mother's Age"), "Mother Age"),
+        (WITNESS, _T_("Witness"), "Witness"),
+        (TIME, _T_("Time"), "Time"),
         ]
 
     _DATAMAP = [(base[0], _(base[1]), base[2]) for base in _BASEMAP]

@@ -23,20 +23,14 @@
 Provide the different event types
 """
 
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 class EventType(GrampsType):
     """
@@ -89,52 +83,52 @@ class EventType(GrampsType):
     .. attribute ANNULMENT:      Annulment
     .. attribute MARR_ALT:        Alternate Marriage
     """
-    UNKNOWN        = -1
-    CUSTOM         = 0
-    MARRIAGE       = 1
-    MARR_SETTL     = 2
-    MARR_LIC       = 3
-    MARR_CONTR     = 4
-    MARR_BANNS     = 5
-    ENGAGEMENT     = 6
-    DIVORCE        = 7
-    DIV_FILING     = 8
-    ANNULMENT      = 9
-    MARR_ALT       = 10
-    ADOPT          = 11
-    BIRTH          = 12
-    DEATH          = 13
+    UNKNOWN = -1
+    CUSTOM = 0
+    MARRIAGE = 1
+    MARR_SETTL = 2
+    MARR_LIC = 3
+    MARR_CONTR = 4
+    MARR_BANNS = 5
+    ENGAGEMENT = 6
+    DIVORCE = 7
+    DIV_FILING = 8
+    ANNULMENT = 9
+    MARR_ALT = 10
+    ADOPT = 11
+    BIRTH = 12
+    DEATH = 13
     ADULT_CHRISTEN = 14
-    BAPTISM        = 15
-    BAR_MITZVAH    = 16
-    BAS_MITZVAH    = 17
-    BLESS          = 18
-    BURIAL         = 19
-    CAUSE_DEATH    = 20
-    CENSUS         = 21
-    CHRISTEN       = 22
-    CONFIRMATION   = 23
-    CREMATION      = 24
-    DEGREE         = 25
-    EDUCATION      = 26
-    ELECTED        = 27
-    EMIGRATION     = 28
-    FIRST_COMMUN   = 29
-    IMMIGRATION    = 30
-    GRADUATION     = 31
-    MED_INFO       = 32
-    MILITARY_SERV  = 33
+    BAPTISM = 15
+    BAR_MITZVAH = 16
+    BAS_MITZVAH = 17
+    BLESS = 18
+    BURIAL = 19
+    CAUSE_DEATH = 20
+    CENSUS = 21
+    CHRISTEN = 22
+    CONFIRMATION = 23
+    CREMATION = 24
+    DEGREE = 25
+    EDUCATION = 26
+    ELECTED = 27
+    EMIGRATION = 28
+    FIRST_COMMUN = 29
+    IMMIGRATION = 30
+    GRADUATION = 31
+    MED_INFO = 32
+    MILITARY_SERV = 33
     NATURALIZATION = 34
-    NOB_TITLE      = 35
-    NUM_MARRIAGES  = 36
-    OCCUPATION     = 37
-    ORDINATION     = 38
-    PROBATE        = 39
-    PROPERTY       = 40
-    RELIGION       = 41
-    RESIDENCE      = 42
-    RETIREMENT     = 43
-    WILL           = 44
+    NOB_TITLE = 35
+    NUM_MARRIAGES = 36
+    OCCUPATION = 37
+    ORDINATION = 38
+    PROBATE = 39
+    PROPERTY = 40
+    RELIGION = 41
+    RESIDENCE = 42
+    RETIREMENT = 43
+    WILL = 44
 
     # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
     def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
@@ -142,75 +136,75 @@ class EventType(GrampsType):
 
     _MENU = [[_T_('Life Events'),
               [BIRTH, BAPTISM, DEATH, BURIAL, CREMATION, ADOPT]],
-            [_T_('Family'),
+             [_T_('Family'),
               [ENGAGEMENT, MARRIAGE, DIVORCE, ANNULMENT, MARR_SETTL, MARR_LIC,
                MARR_CONTR, MARR_BANNS, DIV_FILING, MARR_ALT]],
-            [_T_('Religious'),
+             [_T_('Religious'),
               [CHRISTEN, ADULT_CHRISTEN, CONFIRMATION, FIRST_COMMUN, BLESS,
                BAR_MITZVAH, BAS_MITZVAH, RELIGION]],
-            [_T_('Vocational'),
+             [_T_('Vocational'),
               [OCCUPATION, RETIREMENT, ELECTED, MILITARY_SERV, ORDINATION]],
-            [_T_('Academic'),
+             [_T_('Academic'),
               [EDUCATION, DEGREE, GRADUATION]],
-            [_T_('Travel'),
+             [_T_('Travel'),
               [EMIGRATION, IMMIGRATION, NATURALIZATION]],
-            [_T_('Legal'),
+             [_T_('Legal'),
               [PROBATE, WILL]],
-            [_T_('Residence'),
+             [_T_('Residence'),
               [RESIDENCE, CENSUS, PROPERTY]],
-            [_T_('Other'),
+             [_T_('Other'),
               [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]]]
 
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
 
     _DATAMAP = [
-        (UNKNOWN         , _("Unknown"),              "Unknown"),
-        (CUSTOM          , _("Custom"),               "Custom"),
-        (ADOPT           , _("Adopted"),              "Adopted"),
-        (BIRTH           , _("Birth"),                "Birth"),
-        (DEATH           , _("Death"),                "Death"),
-        (ADULT_CHRISTEN  , _("Adult Christening"),    "Adult Christening"),
-        (BAPTISM         , _("Baptism"),              "Baptism"),
-        (BAR_MITZVAH     , _("Bar Mitzvah"),          "Bar Mitzvah"),
-        (BAS_MITZVAH     , _("Bat Mitzvah"),          "Bas Mitzvah"),
-        (BLESS           , _("Blessing"),             "Blessing"),
-        (BURIAL          , _("Burial"),               "Burial"),
-        (CAUSE_DEATH     , _("Cause Of Death"),       "Cause Of Death"),
-        (CENSUS          , _("Census"),               "Census"),
-        (CHRISTEN        , _("Christening"),          "Christening"),
-        (CONFIRMATION    , _("Confirmation"),         "Confirmation"),
-        (CREMATION       , _("Cremation"),            "Cremation"),
-        (DEGREE          , _("Degree"),               "Degree"),
-        (EDUCATION       , _("Education"),            "Education"),
-        (ELECTED         , _("Elected"),              "Elected"),
-        (EMIGRATION      , _("Emigration"),           "Emigration"),
-        (FIRST_COMMUN    , _("First Communion"),      "First Communion"),
-        (IMMIGRATION     , _("Immigration"),          "Immigration"),
-        (GRADUATION      , _("Graduation"),           "Graduation"),
-        (MED_INFO        , _("Medical Information"),  "Medical Information"),
-        (MILITARY_SERV   , _("Military Service"),     "Military Service"),
-        (NATURALIZATION  , _("Naturalization"),       "Naturalization"),
-        (NOB_TITLE       , _("Nobility Title"),       "Nobility Title"),
-        (NUM_MARRIAGES   , _("Number of Marriages"),  "Number of Marriages"),
-        (OCCUPATION      , _("Occupation"),           "Occupation"),
-        (ORDINATION      , _("Ordination"),           "Ordination"),
-        (PROBATE         , _("Probate"),              "Probate"),
-        (PROPERTY        , _("Property"),             "Property"),
-        (RELIGION        , _("Religion"),             "Religion"),
-        (RESIDENCE       , _("Residence"),            "Residence"),
-        (RETIREMENT      , _("Retirement"),           "Retirement"),
-        (WILL            , _("Will"),                 "Will"),
-        (MARRIAGE        , _("Marriage"),             "Marriage"),
-        (MARR_SETTL      , _("Marriage Settlement"),  "Marriage Settlement"),
-        (MARR_LIC        , _("Marriage License"),     "Marriage License"),
-        (MARR_CONTR      , _("Marriage Contract"),    "Marriage Contract"),
-        (MARR_BANNS      , _("Marriage Banns"),       "Marriage Banns"),
-        (ENGAGEMENT      , _("Engagement"),           "Engagement"),
-        (DIVORCE         , _("Divorce"),              "Divorce"),
-        (DIV_FILING      , _("Divorce Filing"),       "Divorce Filing"),
-        (ANNULMENT       , _("Annulment"),            "Annulment"),
-        (MARR_ALT        , _("Alternate Marriage"),   "Alternate Marriage"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (ADOPT, _("Adopted"), "Adopted"),
+        (BIRTH, _("Birth"), "Birth"),
+        (DEATH, _("Death"), "Death"),
+        (ADULT_CHRISTEN, _("Adult Christening"), "Adult Christening"),
+        (BAPTISM, _("Baptism"), "Baptism"),
+        (BAR_MITZVAH, _("Bar Mitzvah"), "Bar Mitzvah"),
+        (BAS_MITZVAH, _("Bat Mitzvah"), "Bas Mitzvah"),
+        (BLESS, _("Blessing"), "Blessing"),
+        (BURIAL, _("Burial"), "Burial"),
+        (CAUSE_DEATH, _("Cause Of Death"), "Cause Of Death"),
+        (CENSUS, _("Census"), "Census"),
+        (CHRISTEN, _("Christening"), "Christening"),
+        (CONFIRMATION, _("Confirmation"), "Confirmation"),
+        (CREMATION, _("Cremation"), "Cremation"),
+        (DEGREE, _("Degree"), "Degree"),
+        (EDUCATION, _("Education"), "Education"),
+        (ELECTED, _("Elected"), "Elected"),
+        (EMIGRATION, _("Emigration"), "Emigration"),
+        (FIRST_COMMUN, _("First Communion"), "First Communion"),
+        (IMMIGRATION, _("Immigration"), "Immigration"),
+        (GRADUATION, _("Graduation"), "Graduation"),
+        (MED_INFO, _("Medical Information"), "Medical Information"),
+        (MILITARY_SERV, _("Military Service"), "Military Service"),
+        (NATURALIZATION, _("Naturalization"), "Naturalization"),
+        (NOB_TITLE, _("Nobility Title"), "Nobility Title"),
+        (NUM_MARRIAGES, _("Number of Marriages"), "Number of Marriages"),
+        (OCCUPATION, _("Occupation"), "Occupation"),
+        (ORDINATION, _("Ordination"), "Ordination"),
+        (PROBATE, _("Probate"), "Probate"),
+        (PROPERTY, _("Property"), "Property"),
+        (RELIGION, _("Religion"), "Religion"),
+        (RESIDENCE, _("Residence"), "Residence"),
+        (RETIREMENT, _("Retirement"), "Retirement"),
+        (WILL, _("Will"), "Will"),
+        (MARRIAGE, _("Marriage"), "Marriage"),
+        (MARR_SETTL, _("Marriage Settlement"), "Marriage Settlement"),
+        (MARR_LIC, _("Marriage License"), "Marriage License"),
+        (MARR_CONTR, _("Marriage Contract"), "Marriage Contract"),
+        (MARR_BANNS, _("Marriage Banns"), "Marriage Banns"),
+        (ENGAGEMENT, _("Engagement"), "Engagement"),
+        (DIVORCE, _("Divorce"), "Divorce"),
+        (DIV_FILING, _("Divorce Filing"), "Divorce Filing"),
+        (ANNULMENT, _("Annulment"), "Annulment"),
+        (MARR_ALT, _("Alternate Marriage"), "Alternate Marriage"),
         ]
 
     _ABBREVIATIONS = {
@@ -367,6 +361,7 @@ class EventType(GrampsType):
         else:
             abbrev = str(self)
             if " " in abbrev:
-                return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
+                return ".".join([letter[0].lower()
+                                 for letter in abbrev.split()]) + "."
             else:
                 return abbrev[:3].lower() + "."

@@ -24,50 +24,43 @@ Repository types.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class RepositoryType(GrampsType):
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    LIBRARY    = 1
-    CEMETERY   = 2
-    CHURCH     = 3
-    ARCHIVE    = 4
-    ALBUM      = 5
-    WEBSITE    = 6
-    BOOKSTORE  = 7
+    UNKNOWN = -1
+    CUSTOM = 0
+    LIBRARY = 1
+    CEMETERY = 2
+    CHURCH = 3
+    ARCHIVE = 4
+    ALBUM = 5
+    WEBSITE = 6
+    BOOKSTORE = 7
     COLLECTION = 8
-    SAFE       = 9
+    SAFE = 9
 
     _CUSTOM = CUSTOM
     _DEFAULT = LIBRARY
 
     _DATAMAP = [
-        (UNKNOWN,    _("Unknown"),    "Unknown"),
-        (CUSTOM,     _("Custom"),     "Custom"),
-        (LIBRARY,    _("Library"),    "Library"),
-        (CEMETERY,   _("Cemetery"),   "Cemetery"),
-        (CHURCH,     _("Church"),     "Church"),
-        (ARCHIVE,    _("Archive"),    "Archive"),
-        (ALBUM,      _("Album"),      "Album"),
-        (WEBSITE,    _("Web site"),   "Web site"),
-        (BOOKSTORE,  _("Bookstore"),  "Bookstore"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (LIBRARY, _("Library"), "Library"),
+        (CEMETERY, _("Cemetery"), "Cemetery"),
+        (CHURCH, _("Church"), "Church"),
+        (ARCHIVE, _("Archive"), "Archive"),
+        (ALBUM, _("Album"), "Album"),
+        (WEBSITE, _("Web site"), "Web site"),
+        (BOOKSTORE, _("Bookstore"), "Bookstore"),
         (COLLECTION, _("Collection"), "Collection"),
-        (SAFE,       _("Safe"),       "Safe"),
+        (SAFE, _("Safe"), "Safe"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-

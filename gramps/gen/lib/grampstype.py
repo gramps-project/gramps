@@ -20,7 +20,6 @@
 
 """
 Base type for all gramps types.
-
 """
 
 #-------------------------------------------------------------------------
@@ -54,7 +53,7 @@ class GrampsTypeMeta(type):
             """
             if blacklist:
                 return dict([(item[key_col], item[data_col])
-                                for item in data if not item[0] in blacklist])
+                             for item in data if item[0] not in blacklist])
             else:
                 return dict([(item[key_col], item[data_col]) for item in data])
 
@@ -69,16 +68,12 @@ class GrampsTypeMeta(type):
             cls._E2IMAP = init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
 
 
-# Python 2 and 3 metaclass children classes
-GrampsTypeC = GrampsTypeMeta(str('GrampsTypeC'), (object, ), {})
-
 #-------------------------------------------------------------------------
 #
 # GrampsType class
 #
 #-------------------------------------------------------------------------
-## python 3: class GrampsType(object, metaclass=GrampsTypeMeta):
-class GrampsType(GrampsTypeC):
+class GrampsType(object, metaclass=GrampsTypeMeta):
     """Base class for all Gramps object types.
 
     :cvar _DATAMAP:
@@ -108,7 +103,11 @@ class GrampsType(GrampsTypeC):
 
     _DATAMAP = []
     _BLACKLIST = None
-    _MENU = None
+    _I2SMAP = {}
+    _S2IMAP = {}
+    _I2EMAP = {}
+    _E2IMAP = {}
+    _MENU = []
     __slots__ = ('__value', '__string')
 
     def __getstate__(self):
@@ -126,7 +125,10 @@ class GrampsType(GrampsTypeC):
         Create a new type, initialize the value from one of several possible
         states.
         """
-        self.set(value)
+        self.__value = self._DEFAULT
+        self.__string = ''
+        if value is not None:
+            self.set(value)
 
     def __set_tuple(self, value):
         "Set the value/string properties from a tuple."
@@ -238,7 +240,8 @@ class GrampsType(GrampsTypeC):
         """
         default = cls()
         if struct.get("value", cls._CUSTOM) == cls._CUSTOM:
-            return (struct.get("value", default.value), struct.get("string", ""))
+            return (struct.get("value", default.value),
+                    struct.get("string", ""))
         else:
             return (struct.get("value", default.value), '')
 
@@ -283,7 +286,7 @@ class GrampsType(GrampsTypeC):
     def get_menu(self):
         """Return the list of localized names for the menu."""
         if self._MENU:
-            return [[_(i),s] for (i, s) in self._MENU]
+            return [[_(i), s] for (i, s) in self._MENU]
         return self._MENU
 
     def get_menu_standard_xml(self):
@@ -311,29 +314,6 @@ class GrampsType(GrampsTypeC):
 
     def __ne__(self, value):
         return not self.__eq__(value)
-
-##    Python 3 does not have __cmp__
-##    def __cmp__(self, value):
-##        print ('cmp', type(value), str)
-##        if isinstance(value, int):
-##            return cmp(self.__value, value)
-##        elif isinstance(value, str):
-##            print('ok!')
-##            if self.__value == self._CUSTOM:
-##                return cmp(self.__string, value)
-##            else:
-##                print (self._I2SMAP.get(self.__value), value, cmp(self._I2SMAP.get(self.__value), value))
-##                return cmp(self._I2SMAP.get(self.__value), value)
-##        elif isinstance(value, tuple):
-##            if self.__value == self._CUSTOM:
-##                return cmp((self.__value, self.__string), value)
-##            else:
-##                return cmp(self.__value, value[0])
-##        else:
-##            if value.value == self._CUSTOM:
-##                return cmp(self.__string, value.string)
-##            else:
-##                return cmp(self.__value, value.value)
 
     value = property(__int__, __set_int, None, "Returns or sets integer value")
     string = property(__str__, __set_str, None, "Returns or sets string value")

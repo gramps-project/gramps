@@ -24,38 +24,31 @@ Name types.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class NameType(GrampsType):
 
     UNKNOWN = -1
-    CUSTOM  = 0
-    AKA     = 1
-    BIRTH   = 2
+    CUSTOM = 0
+    AKA = 1
+    BIRTH = 2
     MARRIED = 3
 
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
 
     _DATAMAP = [
-        (UNKNOWN, _("Unknown"),       "Unknown"),
-        (CUSTOM,  _("Custom"),        "Custom"),
-        (AKA,     _("Also Known As"), "Also Known As"),
-        (BIRTH,   _("Birth Name"),    "Birth Name"),
-        (MARRIED, _("Married Name"),  "Married Name"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (AKA, _("Also Known As"), "Also Known As"),
+        (BIRTH, _("Birth Name"), "Birth Name"),
+        (MARRIED, _("Married Name"), "Married Name"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-

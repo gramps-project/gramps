@@ -27,85 +27,77 @@ Note types.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-#-------------------------------------------------------------------------
-#
-# Gramps modules
-#
-#-------------------------------------------------------------------------
-from .grampstype import GrampsType
-
 class NoteType(GrampsType):
 
-    UNKNOWN    = -1
-    CUSTOM     = 0
-    GENERAL    = 1
-    RESEARCH   = 2
+    UNKNOWN = -1
+    CUSTOM = 0
+    GENERAL = 1
+    RESEARCH = 2
     TRANSCRIPT = 3
     #per object with notes a Type to distinguish the notes
-    PERSON     = 4
-    ATTRIBUTE  = 5
-    ADDRESS    = 6
+    PERSON = 4
+    ATTRIBUTE = 5
+    ADDRESS = 6
     ASSOCIATION = 7
-    LDS        = 8
-    FAMILY     = 9
-    EVENT      = 10
-    EVENTREF   = 11
-    SOURCE     = 12
-    SOURCEREF  = 13
-    PLACE      = 14
-    REPO       = 15
-    REPOREF    = 16
-    MEDIA      = 17
-    MEDIAREF   = 18
-    CHILDREF   = 19
+    LDS = 8
+    FAMILY = 9
+    EVENT = 10
+    EVENTREF = 11
+    SOURCE = 12
+    SOURCEREF = 13
+    PLACE = 14
+    REPO = 15
+    REPOREF = 16
+    MEDIA = 17
+    MEDIAREF = 18
+    CHILDREF = 19
     PERSONNAME = 20
     # other common types
     SOURCE_TEXT = 21    # this is used for verbatim source text in SourceRef
-    CITATION   = 22
+    CITATION = 22
     REPORT_TEXT = 23    # this is used for notes used for reports
     # indicate a note is html code
-    HTML_CODE  = 24
+    HTML_CODE = 24
     TODO = 25
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
 
-
     _DATAMAPREAL = [
-        (UNKNOWN,     _("Unknown"),     "Unknown"),
-        (CUSTOM,      _("Custom"),      "Custom"),
-        (GENERAL,     _("General"),     "General"),
-        (RESEARCH,    _("Research"),    "Research"),
-        (TRANSCRIPT,  _("Transcript"),  "Transcript"),
+        (UNKNOWN, _("Unknown"), "Unknown"),
+        (CUSTOM, _("Custom"), "Custom"),
+        (GENERAL, _("General"), "General"),
+        (RESEARCH, _("Research"), "Research"),
+        (TRANSCRIPT, _("Transcript"), "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
-        (CITATION,    _('Citation'),    "Citation"),
-        (REPORT_TEXT, _("Report"),      "Report"),
-        (HTML_CODE,   _("Html code"),   "Html code"),
-        (TODO,        _("notetype|To Do"),       "To Do"),
+        (CITATION, _('Citation'), "Citation"),
+        (REPORT_TEXT, _("Report"), "Report"),
+        (HTML_CODE, _("Html code"), "Html code"),
+        (TODO, _("notetype|To Do"), "To Do"),
         ]
 
     _DATAMAPIGNORE = [
-        (PERSON,     _("Person Note"),"Person Note"),
-        (PERSONNAME, _("Name Note"),  "Name Note"),
-        (ATTRIBUTE,  _("Attribute Note"),   "Attribute Note"),
-        (ADDRESS,    _("Address Note"),     "Address Note"),
-        (ASSOCIATION,_("Association Note"), "Association Note"),
-        (LDS,        _("LDS Note"),   "LDS Note"),
-        (FAMILY,     _("Family Note"),"Family Note"),
-        (EVENT,      _("Event Note"), "Event Note"),
-        (EVENTREF,   _("Event Reference Note"),  "Event Reference Note"),
-        (SOURCE,     _("Source Note"), "Source Note"),
-        (SOURCEREF,  _("Source Reference Note"), "Source Reference Note"),
-        (PLACE,      _("Place Note"),  "Place Note"),
-        (REPO,       _("Repository Note"),  "Repository Note"),
-        (REPOREF,    _("Repository Reference Note"),
-                            "Repository Reference Note"),
-        (MEDIA,      _("Media Note"),  "Media Note"),
-        (MEDIAREF,   _("Media Reference Note"),  "Media Reference Note"),
-        (CHILDREF,   _("Child Reference Note"),  "Child Reference Note"),
+        (PERSON, _("Person Note"), "Person Note"),
+        (PERSONNAME, _("Name Note"), "Name Note"),
+        (ATTRIBUTE, _("Attribute Note"), "Attribute Note"),
+        (ADDRESS, _("Address Note"), "Address Note"),
+        (ASSOCIATION, _("Association Note"), "Association Note"),
+        (LDS, _("LDS Note"), "LDS Note"),
+        (FAMILY, _("Family Note"), "Family Note"),
+        (EVENT, _("Event Note"), "Event Note"),
+        (EVENTREF, _("Event Reference Note"), "Event Reference Note"),
+        (SOURCE, _("Source Note"), "Source Note"),
+        (SOURCEREF, _("Source Reference Note"), "Source Reference Note"),
+        (PLACE, _("Place Note"), "Place Note"),
+        (REPO, _("Repository Note"), "Repository Note"),
+        (REPOREF, _("Repository Reference Note"), "Repository Reference Note"),
+        (MEDIA, _("Media Note"), "Media Note"),
+        (MEDIAREF, _("Media Reference Note"), "Media Reference Note"),
+        (CHILDREF, _("Child Reference Note"), "Child Reference Note"),
         ]
 
     _DATAMAP = _DATAMAPREAL + _DATAMAPIGNORE

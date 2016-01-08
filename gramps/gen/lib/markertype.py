@@ -27,39 +27,32 @@ when loading old database files.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class MarkerType(GrampsType):
     """
     Class for handling data markers.
     """
 
-    NONE      = -1
-    CUSTOM    = 0
-    COMPLETE  = 1
+    NONE = -1
+    CUSTOM = 0
+    COMPLETE = 1
     TODO_TYPE = 2
 
     _CUSTOM = CUSTOM
     _DEFAULT = NONE
 
     _DATAMAP = [
-        (NONE,      "",   ""),
-        (CUSTOM,    _("Custom"),   "Custom"),
-        (COMPLETE,  _("Complete"), "Complete"),
-        (TODO_TYPE, _("ToDo"),     "ToDo"),
+        (NONE, "", ""),
+        (CUSTOM, _("Custom"), "Custom"),
+        (COMPLETE, _("Complete"), "Complete"),
+        (TODO_TYPE, _("ToDo"), "ToDo"),
         ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-
