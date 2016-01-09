@@ -8018,9 +8018,20 @@ class NavWebReport(Report):
         # log.debug("copying '%s' to '%s/%s'" % (from_fname, to_dir, to_fname))
         mtime = os.stat(from_fname).st_mtime
         if self.archive:
+            def set_mtime(tarinfo):
+                """
+                For each file, we set the last modification time.
+
+                We could also set uid, gid, uname, gname and mode
+                #tarinfo.uid = os.getuid()
+                #tarinfo.mode = 0660
+                #tarinfo.uname = tarinfo.gname = "www-data"
+                """
+                tarinfo.mtime = mtime 
+                return tarinfo
+
             dest = os.path.join(to_dir, to_fname)
-            os.utime(from_fname, (mtime, mtime))
-            self.archive.add(from_fname, dest)
+            self.archive.add(from_fname, dest, filter=set_mtime)
         else:
             dest = os.path.join(self.html_dir, to_dir, to_fname)
 
