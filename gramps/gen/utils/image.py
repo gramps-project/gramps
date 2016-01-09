@@ -90,7 +90,9 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
         (start_x, start_y, end_x, end_y
                 ) = crop_percentage_to_pixel(
                         img.get_width(), img.get_height(), crop)
-        img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        if end_x-start_x > 0 and end_y-start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y,
+                                    end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
@@ -228,7 +230,9 @@ def resize_to_buffer(source, size, crop=None):
         (start_x, start_y, end_x, end_y
                 ) = crop_percentage_to_pixel(
                         img.get_width(), img.get_height(), crop)
-        img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        if end_x-start_x > 0 and end_y-start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y,
+                                    end_x-start_x, end_y-start_y)
             
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
@@ -265,8 +269,9 @@ def resize_to_jpeg_buffer(source, size, crop=None):
         (start_x, start_y, end_x, end_y
                 ) = crop_percentage_to_pixel(
                         img.get_width(), img.get_height(), crop)
-
-        img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
+        if end_x-start_x > 0 and end_y-start_y > 0:
+            img = img.new_subpixbuf(start_x, start_y,
+                                    end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
     # if the dimensions aren't close in size
