@@ -71,10 +71,22 @@ class RefBase(object):
                   objects.
         :rtype: list
         """
-        assert False, "Must be overridden in the derived class"
+        raise NotImplementedError
 
-    def set_reference_handle(self, val):
-        self.ref = val
+    def set_reference_handle(self, handle):
+        """
+        Set the reference handle.
+
+        :param handle: The reference handle.
+        :type handle: str
+        """
+        self.ref = handle
 
     def get_reference_handle(self):
+        """
+        Return the reference handle.
+
+        :returns: The reference handle.
+        :rtype: str
+        """
         return self.ref

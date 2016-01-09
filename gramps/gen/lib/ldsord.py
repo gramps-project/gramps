@@ -30,8 +30,6 @@ LDS Ordinance class for Gramps.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from warnings import warn
 
 #-------------------------------------------------------------------------
@@ -46,6 +44,8 @@ from .datebase import DateBase
 from .placebase import PlaceBase
 from .privacybase import PrivacyBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -63,26 +63,26 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
     source of genealogical information in the United States.
     """
 
-    BAPTISM         = 0
-    ENDOWMENT       = 1
+    BAPTISM = 0
+    ENDOWMENT = 1
     SEAL_TO_PARENTS = 2
-    SEAL_TO_SPOUSE  = 3
-    CONFIRMATION    = 4
+    SEAL_TO_SPOUSE = 3
+    CONFIRMATION = 4
 
     DEFAULT_TYPE = BAPTISM
 
 
-    STATUS_NONE      = 0
-    STATUS_BIC       = 1
-    STATUS_CANCELED  = 2
-    STATUS_CHILD     = 3
-    STATUS_CLEARED   = 4
+    STATUS_NONE = 0
+    STATUS_BIC = 1
+    STATUS_CANCELED = 2
+    STATUS_CHILD = 3
+    STATUS_CLEARED = 4
     STATUS_COMPLETED = 5
-    STATUS_DNS       = 6
-    STATUS_INFANT    = 7
-    STATUS_PRE_1970  = 8
+    STATUS_DNS = 6
+    STATUS_INFANT = 7
+    STATUS_PRE_1970 = 8
     STATUS_QUALIFIED = 9
-    STATUS_DNS_CAN   = 10
+    STATUS_DNS_CAN = 10
     STATUS_STILLBORN = 11
     STATUS_SUBMITTED = 12
     STATUS_UNCLEARED = 13
@@ -91,28 +91,28 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
 
     _TYPE_MAP = [
-        (BAPTISM,         _('Baptism'),           'baptism'),
-        (ENDOWMENT,       _('Endowment'),         'endowment'),
-        (CONFIRMATION,    _('Confirmation'),      'confirmation'),
+        (BAPTISM, _('Baptism'), 'baptism'),
+        (ENDOWMENT, _('Endowment'), 'endowment'),
+        (CONFIRMATION, _('Confirmation'), 'confirmation'),
         (SEAL_TO_PARENTS, _('Sealed to Parents'), 'sealed_to_parents'),
-        (SEAL_TO_SPOUSE,  _('Sealed to Spouse'),  'sealed_to_spouse' ),
+        (SEAL_TO_SPOUSE, _('Sealed to Spouse'), 'sealed_to_spouse'),
     ]
 
     _STATUS_MAP = [
-        (STATUS_NONE,      _("<No Status>"), ""),
-        (STATUS_BIC,       _("BIC"),         "BIC"),
-        (STATUS_CANCELED,  _("Canceled"),    "Canceled"),
-        (STATUS_CHILD,     _("Child"),       "Child"),
-        (STATUS_CLEARED,   _("Cleared"),     "Cleared"),
-        (STATUS_COMPLETED, _("Completed"),   "Completed"),
-        (STATUS_DNS,       _("DNS"),         "DNS"),
-        (STATUS_INFANT,    _("Infant"),      "Infant"),
-        (STATUS_PRE_1970,  _("Pre-1970"),    "Pre-1970"),
-        (STATUS_QUALIFIED, _("Qualified"),   "Qualified"),
-        (STATUS_DNS_CAN,   _("DNS/CAN"),     "DNS/CAN"),
-        (STATUS_STILLBORN, _("Stillborn"),   "Stillborn"),
-        (STATUS_SUBMITTED, _("Submitted"),   "Submitted"),
-        (STATUS_UNCLEARED, _("Uncleared"),   "Uncleared"),
+        (STATUS_NONE, _("<No Status>"), ""),
+        (STATUS_BIC, _("BIC"), "BIC"),
+        (STATUS_CANCELED, _("Canceled"), "Canceled"),
+        (STATUS_CHILD, _("Child"), "Child"),
+        (STATUS_CLEARED, _("Cleared"), "Cleared"),
+        (STATUS_COMPLETED, _("Completed"), "Completed"),
+        (STATUS_DNS, _("DNS"), "DNS"),
+        (STATUS_INFANT, _("Infant"), "Infant"),
+        (STATUS_PRE_1970, _("Pre-1970"), "Pre-1970"),
+        (STATUS_QUALIFIED, _("Qualified"), "Qualified"),
+        (STATUS_DNS_CAN, _("DNS/CAN"), "DNS/CAN"),
+        (STATUS_STILLBORN, _("Stillborn"), "Stillborn"),
+        (STATUS_SUBMITTED, _("Submitted"), "Submitted"),
+        (STATUS_UNCLEARED, _("Uncleared"), "Uncleared"),
         ]
 
     def __init__(self, source=None):
@@ -183,8 +183,10 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :returns: Returns a serialized object
         """
         default = LdsOrd()
-        return (CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+        return (CitationBase.from_struct(struct.get("citation_list",
+                                                    default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list",
+                                                default.note_list)),
                 DateBase.from_struct(struct.get("date", {})),
                 struct.get("type", {}),
                 struct.get("place", default.place),
@@ -353,7 +355,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
     def are_equal(self, other):
         """Return 1 if the specified ordinance is the same as the instance."""
-        warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
+        warn("Use is_equal instead are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
 
     def type2xml(self):

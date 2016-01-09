@@ -47,14 +47,13 @@ class BaseObject(object):
         """
         Convert the object to a serialized tuple of data.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        assert False, "Needs to be overridden in the derived class"
-        return self
+        raise NotImplementedError
 
     def to_struct(self):
         """
@@ -75,7 +74,7 @@ class BaseObject(object):
 
         :returns: Returns a struct containing the data of the object.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def from_struct(self, struct):
         """
@@ -91,7 +90,7 @@ class BaseObject(object):
 
         :returns: Returns an object of this type.
         """
-        assert False, "Needs to be overridden in the derived class"
+        raise NotImplementedError
 
     def matches_string(self, pattern, case_sensitive=False):
         """
@@ -109,9 +108,6 @@ class BaseObject(object):
         # Run through its own items
         patern_upper = pattern.upper()
         for item in self.get_text_data_list():
-        # Some items are strings, which will fail in item.upper(), and some items are unicode.
-        # Convert all items to unicode and the item.upper().find(patern_upper) will work OK.
-            item = str(item)
             if not item:
                 continue
             if case_sensitive:
@@ -228,5 +224,8 @@ class BaseObject(object):
 
     @classmethod
     def create(cls, data):
+        """
+        Create a new instance from serialized data.
+        """
         if data:
             return cls().unserialize(data)

@@ -138,15 +138,14 @@ class CitationBase(object):
         :param citation_handle_list: The list of citation handles to be removed
         :type handle: list
         """
-        LOG.debug('enter remove_citation handle: %s self: %s citation_list: %s'
-                  % (citation_handle_list, self, self.citation_list))
+        LOG.debug('enter remove_citation handle: %s self: %s citation_list: %s',
+                  citation_handle_list, self, self.citation_list)
         for handle in citation_handle_list:
             if handle in self.citation_list:
-                LOG.debug('remove handle %s from citation_list %s' %
-                          (handle, self.citation_list))
+                LOG.debug('remove handle %s from citation_list %s',
+                          handle, self.citation_list)
                 self.citation_list.remove(handle)
-        LOG.debug('get_citation_child_list %s' %
-                  self.get_citation_child_list())
+        LOG.debug('get_citation_child_list %s', self.get_citation_child_list())
         for item in self.get_citation_child_list():
             item.remove_citation_references(citation_handle_list)
 
@@ -182,13 +181,13 @@ class CitationBase(object):
         :returns: The list of :class:`~.citation.Citation` handles
         :rtype: list
         """
-        list = self.citation_list
+        all_citations = self.citation_list
 
         for item in self.get_citation_child_list():
-            list += item.get_citation_list()
+            all_citations += item.get_citation_list()
             for subitem in item.get_citation_child_list():
-                list += subitem.get_citation_list()
-        return list
+                all_citations += subitem.get_citation_list()
+        return all_citations
 
     def has_citation_reference(self, citation_handle):
         """
@@ -205,7 +204,7 @@ class CitationBase(object):
             if citation_ref == citation_handle:
                 return True
 
-        LOG.debug("citation child list %s" % self.get_citation_child_list())
+        LOG.debug("citation child list %s", self.get_citation_child_list())
         for item in self.get_citation_child_list():
             if item.has_citation_reference(citation_handle):
                 return True
@@ -337,3 +336,16 @@ class IndirectCitationBase(object):
         """
         return []
 
+    def get_citation_child_list(self):
+        """
+        Return the list of child secondary objects that may refer citations.
+
+        All methods which inherit from CitationBase and have other child objects
+        with citations, should return here a list of child objects which are
+        CitationBase
+
+        :returns: Returns the list of child secondary child objects that may
+                  refer citations.
+        :rtype: list
+        """
+        return []

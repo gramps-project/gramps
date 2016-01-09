@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011      Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +71,69 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         else:
             self.gramps_id = None
 
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        raise NotImplementedError
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        raise NotImplementedError
+
+    def to_struct(self):
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        """
+        raise NotImplementedError
+
+    def from_struct(self, struct):
+        """
+        Given a struct data representation, return an object of this type.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns an object of this type.
+        """
+        raise NotImplementedError
+
+    @classmethod
+    def get_labels(cls, _):
+        """
+        Return labels.
+        """
+        raise NotImplementedError
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Return schema.
+        """
+        raise NotImplementedError
+
     @classmethod
     def get_label(cls, field, _):
         """
@@ -83,7 +146,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         if chain[-1] in labels:
             return labels[chain[-1]]
         else:
-            raise Exception("%s has no such label on %s: '%s'" % (cls, path, field))
+            raise Exception("%s has no such label on %s: '%s'" %
+                            (cls, path, field))
 
     @classmethod
     def get_field_type(cls, field):
@@ -146,7 +210,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
             elif ignore_errors:
                 return
             else:
-                raise Exception("%s is not a valid field of %s; use %s" % (part, path, dir(path)))
+                raise Exception("%s is not a valid field of %s; use %s" %
+                                (part, path, dir(path)))
         return path
 
     def set_field(self, field, value, ignore_errors=False):
@@ -221,6 +286,15 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         """
         pass
 
+    def has_citation_reference(self, handle):
+        """
+        Indicate if the object has a citation references.
+
+        In the base class, no such references exist. Derived classes should
+        override this if they provide citation references.
+        """
+        return False
+
     def has_media_reference(self, handle):
         """
         Indicate if the object has a media references.
@@ -232,10 +306,10 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
     def remove_citation_references(self, handle_list):
         """
-        Remove the specified source references from the object.
+        Remove the specified citation references from the object.
 
         In the base class no such references exist. Derived classes should
-        override this if they provide source references.
+        override this if they provide citation references.
         """
         pass
 
@@ -249,9 +323,17 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         pass
 
     def replace_citation_references(self, old_handle, new_handle):
+        """
+        Replace all references to the old citation handle with those to the new
+        citation handle.
+        """
         pass
 
     def replace_media_references(self, old_handle, new_handle):
+        """
+        Replace all references to the old media handle with those to the new
+        media handle.
+        """
         pass
 
 #-------------------------------------------------------------------------
@@ -282,6 +364,55 @@ class PrimaryObject(BasicPrimaryObject):
         :type source: PrimaryObject
         """
         BasicPrimaryObject.__init__(self, source)
+
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        raise NotImplementedError
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        raise NotImplementedError
+
+    def to_struct(self):
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        """
+        raise NotImplementedError
+
+    def from_struct(self, struct):
+        """
+        Given a struct data representation, return an object of this type.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns an object of this type.
+        """
+        raise NotImplementedError
 
     def has_handle_reference(self, classname, handle):
         """
