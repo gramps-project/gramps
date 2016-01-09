@@ -78,6 +78,55 @@ class TableObject(BaseObject):
             self.handle = None
             self.change = 0
 
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        raise NotImplementedError
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        raise NotImplementedError
+
+    def to_struct(self):
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        """
+        raise NotImplementedError
+
+    def from_struct(self, struct):
+        """
+        Given a struct data representation, return an object of this type.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns an object of this type.
+        """
+        raise NotImplementedError
+
     def get_change_time(self):
         """
         Return the time that the data was last changed.

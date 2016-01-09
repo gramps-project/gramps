@@ -105,7 +105,7 @@ class SecondaryObject(BaseObject):
         """
         Return labels.
         """
-        raise NotImplementedError
+        return {}
 
     def get_label(self, field, _):
         """

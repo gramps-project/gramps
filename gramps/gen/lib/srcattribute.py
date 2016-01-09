@@ -53,19 +53,3 @@ class SrcAttribute(AttributeRoot):
         else:
             self.type = SrcAttributeType()
             self.value = ""
-
-
-    def get_text_data_list(self):
-        """
-        Return the list of all textual attributes of the object.
-
-        :returns: Returns the list of all textual attributes of the object.
-        :rtype: list
-        """
-        sat = SrcAttributeType()
-        if self.type == sat.SRCTYPE:
-            #we convert to the native language if possible
-            if self.value and self.value in sat.E2I_SRCTYPEMAP:
-                return [sat.I2S_SRCTYPEMAP[sat.E2I_SRCTYPEMAP[self.value]]]
-        return [self.value]
-

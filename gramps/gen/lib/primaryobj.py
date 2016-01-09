@@ -125,14 +125,14 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         """
         Return labels.
         """
-        raise NotImplementedError
+        return {}
 
     @classmethod
     def get_schema(cls):
         """
         Return schema.
         """
-        raise NotImplementedError
+        return {}
 
     @classmethod
     def get_label(cls, field, _):

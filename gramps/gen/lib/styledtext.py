@@ -88,8 +88,11 @@ class StyledText(object):
 
     # special methods
 
-    def __str__(self): return self._string.__str__()
-    def __repr__(self): return self._string.__repr__()
+    def __str__(self):
+        return self._string.__str__()
+
+    def __repr__(self):
+        return self._string.__repr__()
 
     def __add__(self, other):
         """Implement '+' operation on the class.
@@ -104,12 +107,12 @@ class StyledText(object):
 
         if isinstance(other, StyledText):
             # need to join strings and merge tags
-            for tag in other._tags:
+            for tag in other.tags:
                 tag.ranges = [(start + offset, end + offset)
                               for (start, end) in tag.ranges]
 
-            return self.__class__("".join([self._string, other._string]),
-                                  self._tags + other._tags)
+            return self.__class__("".join([self._string, other.string]),
+                                  self._tags + other.tags)
         elif isinstance(other, str):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
@@ -118,13 +121,13 @@ class StyledText(object):
                                   self._tags)
 
     def __eq__(self, other):
-        return self._string == other._string and self._tags == other._tags
+        return self._string == other.string and self._tags == other.tags
 
     def __ne__(self, other):
-        return self._string != other._string or self._tags != other._tags
+        return self._string != other.string or self._tags != other.tags
 
     def __lt__(self, other):
-        return self._string < other._string
+        return self._string < other.string
 
     def __le__(self, other):
         return self.__lt__(other) or self.__eq__(other)
@@ -138,24 +141,25 @@ class StyledText(object):
     def __mod__(self, other):
         """Implement '%' operation on the class."""
 
-        # test whether the formatting operation is valid at all
+        # This will raise an exception if the formatting operation is invalid
         self._string % other
 
         result = self.__class__(self._string, self._tags)
 
-        i0 = 0
+        start = 0
         while True:
-            i1 = result._string.find('%', i0)
-            if i1 < 0:
+            idx1 = result.string.find('%', start)
+            if idx1 < 0:
                 break
-            if result._string[i1+1] == '(':
-                i2 = result._string.find(')', i1+3)
-                param_name = result._string[i1+2:i2]
+            if result.string[idx1+1] == '(':
+                idx2 = result.string.find(')', idx1+3)
+                param_name = result.string[idx1+2:idx2]
             else:
-                i2 = i1
+                idx2 = idx1
                 param_name = None
-            for i3 in range(i2+1, len(result._string)):
-                if result._string[i3] in 'diouxXeEfFgGcrs%':
+            end = idx2 + 1
+            for end in range(idx2+1, len(result.string)):
+                if result.string[end] in 'diouxXeEfFgGcrs%':
                     break
             if param_name is not None:
                 param = other[param_name]
@@ -165,10 +169,12 @@ class StyledText(object):
             else:
                 param = other
             if not isinstance(param, StyledText):
-                param = StyledText('%' + result._string[i2+1:i3+1] % param)
-            (before, after) = result.split(result._string[i1:i3+1], 1)
-            result = before + param + after
-            i0 = i3 + 1
+                param_type = '%' + result.string[idx2+1:end+1]
+                param = StyledText(param_type % param)
+            parts = result.split(result.string[idx1:end+1], 1)
+            if len(parts) == 2:
+                result = parts[0] + param + parts[1]
+            start = end + 1
 
         return result
 
@@ -194,7 +200,7 @@ class StyledText(object):
 
         for text in seq:
             if isinstance(text, StyledText):
-                for tag in text._tags:
+                for tag in text.tags:
                     tag.ranges = [(start + offset, end + offset)
                                   for (start, end) in tag.ranges]
                     new_tags += [tag]
@@ -320,8 +326,8 @@ class StyledText(object):
         """
         default = StyledText()
         return (struct.get("string", default.string),
-                    [StyledTextTag.from_struct(t)
-                    for t in struct.get("tags", default.tags)])
+                [StyledTextTag.from_struct(t)
+                 for t in struct.get("tags", default.tags)])
 
     def unserialize(self, data):
         """
