@@ -32,6 +32,10 @@ from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
 class AttributeType(GrampsType):
 
     UNKNOWN = -1
@@ -53,10 +57,6 @@ class AttributeType(GrampsType):
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
-
-    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-    def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-        return value
 
     _BASEMAP = [ # allow deferred translation of attribute UI strings
         (UNKNOWN, _T_("Unknown"), "Unknown"),
@@ -81,22 +81,6 @@ class AttributeType(GrampsType):
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-
-    def get_ignore_list(self, exception=None):
-        """
-        Return a list of the types to ignore and not include in default lists.
-
-        Exception is a sublist of types that may not be ignored
-
-        :param exception: list of integer values corresponding with types that
-                          have to be excluded from the ignore list
-        :type exception: list
-        :returns: list of integers corresponding with the types to ignore when
-                  showing a list of different types
-        :rtype: list
-
-        """
-        return []
 
     def type2base(self):
         """
