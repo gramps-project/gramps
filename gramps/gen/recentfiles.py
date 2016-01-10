@@ -28,15 +28,14 @@
 #-------------------------------------------------------------------------
 import os
 import time
-import io
 import logging
-from xml.parsers.expat import ParserCreate
+from xml.parsers.expat import ParserCreate, ExpatError
 
 try:
     import fcntl
-    use_lock = True
-except:
-    use_lock = False
+    USE_LOCK = True
+except ImportError:
+    USE_LOCK = False
 
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -46,7 +45,7 @@ _ = glocale.translation.gettext
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_FILENAME = os.path.join(HOME_DIR,"recent-files-gramps.xml")
+GRAMPS_FILENAME = os.path.join(HOME_DIR, "recent-files-gramps.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------
@@ -59,27 +58,45 @@ class RecentItem(object):
     Interface to a single Gramps recent-items item
     """
 
-    def __init__(self,p="", n="",t=0):
+    def __init__(self, p="", n="", t=0):
         self.path = p
         self.name = n
         self.time = t
 
-    def set_path(self,val):
+    def set_path(self, val):
+        """
+        Set the file path.
+        """
         self.path = val
 
     def get_path(self):
+        """
+        Get the file path.
+        """
         return self.path
 
-    def set_name(self,val):
+    def set_name(self, val):
+        """
+        Set the file name.
+        """
         self.name = val
 
     def get_name(self):
+        """
+        Get the file name.
+        """
         return self.name
 
-    def set_time(self,val):
+    def set_time(self, val):
+        """
+        Set the file timestamp.
+        """
         self.time = int(val)
 
     def get_time(self):
+        """
+        Get the file timestamp.
+        """
         return self.time
 
     def __eq__(self, other_item):
@@ -100,10 +117,6 @@ class RecentItem(object):
     def __ge__(self, other_item):
         return self.time >= other_item.time
 
-##    Python 3, no __cmp__
-##    def __cmp__(self, other_item):
-##        return cmp(self.time, other_item.time)
-
 #-------------------------------------------------------------------------
 #
 # RecentFiles
@@ -118,7 +131,10 @@ class RecentFiles(object):
         gramps_parser = RecentParser()
         self.gramps_recent_files = gramps_parser.get()
 
-    def add(self,item2add):
+    def add(self, item2add):
+        """
+        Add a file to the recent files list.
+        """
         # First we need to walk the existing items to see
         # if our item is already there
         for item in self.gramps_recent_files:
@@ -129,11 +145,12 @@ class RecentFiles(object):
                 return
         # At this point we walked the items and not found one,
         # so simply inserting a new item in the beginning
-        self.gramps_recent_files.insert(0,item2add)
+        self.gramps_recent_files.insert(0, item2add)
 
-
-
-    def rename_filename(self,filename, new_filename):
+    def rename_filename(self, filename, new_filename):
+        """
+        Rename a file in the recent files list.
+        """
         # First we need to walk the existing items to see
         # if our item is already there
         found = False
@@ -145,7 +162,10 @@ class RecentFiles(object):
         if found:
             self.gramps_recent_files[index].set_name(new_filename)
 
-    def remove_filename(self,filename):
+    def remove_filename(self, filename):
+        """
+        Remove a file from the recent files list.
+        """
         # First we need to walk the existing items to see
         # if our item is already there
         found = False
@@ -157,8 +177,10 @@ class RecentFiles(object):
         if found:
             self.gramps_recent_files.pop(index)
 
-
-    def check_if_recent(self,filename):
+    def check_if_recent(self, filename):
+        """
+        Check if a file is present in the recent files list.
+        """
         # First we need to walk the existing items to see
         # if our item is already there
         found = False
@@ -174,19 +196,21 @@ class RecentFiles(object):
         Attempt saving into XML.
         The trick is not to fail under any circumstances.
         """
+        fname = os.path.expanduser(GRAMPS_FILENAME)
         try:
-            self.do_save()
-        except:
-            pass
+            self.do_save(fname)
+        except IOError as err:
+            logging.warning(
+                _("Unable to save list of recent DBs file {fname}: {error}"
+                 ).format(fname=fname, error=err))
 
-    def do_save(self):
+    def do_save(self, fname):
         """
         Saves the current Gramps RecentFiles collection to the associated file.
         """
-        with open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8') \
-            as xml_file:
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_EX)
+        with open(fname, 'w', encoding='utf8') as xml_file:
+            if USE_LOCK:
+                fcntl.lockf(xml_file, fcntl.LOCK_EX)
             xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
             xml_file.write('<RecentFiles>\n')
             index = 0
@@ -195,9 +219,12 @@ class RecentFiles(object):
                 if index > MAX_GRAMPS_ITEMS:
                     break
                 xml_file.write('  <RecentItem>\n')
-                xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
-                xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
-                xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
+                xml_file.write('    <Path><![CDATA[%s]]></Path>\n' %
+                               item.get_path())
+                xml_file.write('    <Name><![CDATA[%s]]></Name>\n' %
+                               item.get_name())
+                xml_file.write('    <Timestamp>%d</Timestamp>\n' %
+                               item.get_time())
                 xml_file.write('  </RecentItem>\n')
             xml_file.write('</RecentFiles>\n')
 
@@ -215,6 +242,8 @@ class RecentParser(object):
 
     def __init__(self):
         self.recent_files = []
+        self.tlist = []
+        self.item = None
 
         fname = os.path.expanduser(GRAMPS_FILENAME)
         if not os.path.exists(fname):
@@ -222,37 +251,45 @@ class RecentParser(object):
 
         try:
             with open(fname, "rb") as xml_file:
-                if use_lock:
-                    fcntl.lockf(xml_file,fcntl.LOCK_SH)
+                if USE_LOCK:
+                    fcntl.lockf(xml_file, fcntl.LOCK_SH)
 
-                p = ParserCreate()
-                p.StartElementHandler = self.startElement
-                p.EndElementHandler = self.endElement
-                p.CharacterDataHandler = self.characters
-                p.ParseFile(xml_file)
+                parser = ParserCreate()
+                parser.StartElementHandler = self.start_element
+                parser.EndElementHandler = self.end_element
+                parser.CharacterDataHandler = self.characters
+                parser.ParseFile(xml_file)
             # all advisory locks on a file are released on close
         except IOError as err:
             logging.warning(
-                    _("Unable to open list of recent DBs file {fname}: {error}"
-                        ).format(fname=fname, error=err))
-        except Exception as err:
+                _("Unable to open list of recent DBs file {fname}: {error}"
+                 ).format(fname=fname, error=err))
+        except ExpatError as err:
             logging.error(
-                    _("Error parsing list of recent DBs from file {fname}: {error}.\n"
-                        "This might indicate a damage to your files.\n"
-                        "If you're sure there is no problem with other files, "
-                        "delete it, and restart Gramps."
-                        ).format(fname=fname, error=err))
+                _("Error parsing list of recent DBs from file {fname}: "
+                  "{error}.\nThis might indicate a damage to your files.\n"
+                  "If you're sure there is no problem with other files, "
+                  "delete it, and restart Gramps."
+                 ).format(fname=fname, error=err))
 
     def get(self):
+        """
+        Return a list of recent files.
+        """
         return self.recent_files
 
-    def startElement(self,tag,attrs):
+    def start_element(self, tag, attrs):
+        """
+        Handler for XML start element.
+        """
         self.tlist = []
         if tag == "RecentItem":
             self.item = RecentItem()
 
-    def endElement(self,tag):
-
+    def end_element(self, tag):
+        """
+        Handler for XML end element.
+        """
         text = ''.join(self.tlist)
 
         if tag == "RecentItem":
@@ -266,6 +303,9 @@ class RecentParser(object):
             self.item.set_time(int(text))
 
     def characters(self, data):
+        """
+        Handler for XML character data.
+        """
         self.tlist.append(data)
 
 #-------------------------------------------------------------------------
@@ -275,9 +315,8 @@ class RecentParser(object):
 #-------------------------------------------------------------------------
 def recent_files(filename, name):
     """
-    Add an entry to both GNOME and Gramps recent-items storages.
+    Add an entry to the Gramps recent items list.
     """
-
     the_time = int(time.time())
     gramps_rf = RecentFiles()
     gramps_item = RecentItem(
@@ -288,16 +327,24 @@ def recent_files(filename, name):
     gramps_rf.save()
 
 def remove_filename(filename):
+    """
+    Remove an entry from the Gramps recent items list.
+    """
     gramps_rf = RecentFiles()
     gramps_rf.remove_filename(filename)
     gramps_rf.save()
 
 def rename_filename(filename, new_filename):
+    """
+    Rename an entry in the Gramps recent items list.
+    """
     gramps_rf = RecentFiles()
     gramps_rf.rename_filename(filename, new_filename)
     gramps_rf.save()
 
 def check_if_recent(filename):
+    """
+    Check if an entry is present in Gramps recent items list.
+    """
     gramps_rf = RecentFiles()
     return gramps_rf.check_if_recent(filename)
-

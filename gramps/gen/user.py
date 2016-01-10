@@ -18,12 +18,13 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import sys
-from contextlib import contextmanager
-
 """
 The User class provides basic interaction with the user.
 """
+
+import sys
+from contextlib import contextmanager
+
 class User():
     """
     This class provides a means to interact with the user in an abstract way.
@@ -53,7 +54,7 @@ class User():
         :type steps: int
         :returns: none
         """
-        pass
+        raise NotImplementedError
 
     def step_progress(self):
         """
@@ -61,7 +62,7 @@ class User():
 
         Don't use this method directly, use progress instead.
         """
-        pass
+        raise NotImplementedError
 
     def callback(self, percentage, text=None):
         """
@@ -87,7 +88,7 @@ class User():
 
         Don't use this method directly, use progress instead.
         """
-        pass
+        raise NotImplementedError
 
     # Context-manager wrapper of the begin/step/end_progress above
     @contextmanager
@@ -130,7 +131,7 @@ class User():
         :returns: the user's answer to the question
         :rtype: bool
         """
-        return False
+        raise NotImplementedError
 
     def warn(self, title, warning=""):
         """
@@ -142,7 +143,7 @@ class User():
         :type warning: str
         :returns: none
         """
-        pass
+        raise NotImplementedError
 
     def notify_error(self, title, error=""):
         """
@@ -154,7 +155,7 @@ class User():
         :type error: str
         :returns: none
         """
-        pass
+        raise NotImplementedError
 
     def notify_db_error(self, error):
         """
@@ -164,10 +165,10 @@ class User():
         :type error: str
         :returns: none
         """
-        pass
+        raise NotImplementedError
 
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """
         Displays information to the user
         """
-        pass
+        raise NotImplementedError

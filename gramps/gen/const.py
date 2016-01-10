@@ -41,23 +41,27 @@ import uuid
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
 from .constfunc import get_env_var
-#-------------------------------------------------------------------------
-#
-# Gramps Version
-#
-#-------------------------------------------------------------------------
-PROGRAM_NAME   = "Gramps"
 from gramps.version import VERSION, VERSION_TUPLE, major_version
+from gramps.gen.utils.resourcepath import ResourcePath
+from gramps.gen.utils.grampslocale import GrampsLocale
+
 #-------------------------------------------------------------------------
 #
-# Standard GRAMPS Websites
+# Gramps program name
 #
 #-------------------------------------------------------------------------
-URL_HOMEPAGE    = "http://gramps-project.org/"
+PROGRAM_NAME = "Gramps"
+
+#-------------------------------------------------------------------------
+#
+# Standard Gramps Websites
+#
+#-------------------------------------------------------------------------
+URL_HOMEPAGE = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGHOME     = "http://bugs.gramps-project.org"
-URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_page.php"
-URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
+URL_BUGHOME = "http://bugs.gramps-project.org"
+URL_BUGTRACKER = "http://bugs.gramps-project.org/bug_report_page.php"
+URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 URL_MANUAL_DATA = '%s_-_Entering_and_editing_data:_detailed' % URL_MANUAL_PAGE
 URL_MANUAL_SECT1 = '%s_-_part_1' % URL_MANUAL_DATA
@@ -65,7 +69,7 @@ URL_MANUAL_SECT2 = '%s_-_part_2' % URL_MANUAL_DATA
 URL_MANUAL_SECT3 = '%s_-_part_3' % URL_MANUAL_DATA
 WIKI_FAQ = "FAQ"
 WIKI_KEYBINDINGS = "Gramps_%s_Wiki_Manual_-_Keybindings" % major_version
-WIKI_EXTRAPLUGINS= "%s_Addons" % major_version
+WIKI_EXTRAPLUGINS = "%s_Addons" % major_version
 WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 
 #-------------------------------------------------------------------------
@@ -73,13 +77,13 @@ WIKI_EXTRAPLUGINS_RAWDATA = "Plugins%s&action=raw" % major_version
 # Mime Types
 #
 #-------------------------------------------------------------------------
-APP_FAMTREE     = 'x-directory/normal'
-APP_GRAMPS      = "application/x-gramps"
-APP_GRAMPS_XML  = "application/x-gramps-xml"
-APP_GEDCOM      = "application/x-gedcom"
-APP_GRAMPS_PKG  = "application/x-gramps-package"
-APP_GENEWEB     = "application/x-geneweb"
-APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
+APP_FAMTREE = 'x-directory/normal'
+APP_GRAMPS = "application/x-gramps"
+APP_GRAMPS_XML = "application/x-gramps-xml"
+APP_GEDCOM = "application/x-gedcom"
+APP_GRAMPS_PKG = "application/x-gramps-package"
+APP_GENEWEB = "application/x-geneweb"
+APP_VCARD = ["text/x-vcard", "text/x-vcalendar"]
 
 #-------------------------------------------------------------------------
 #
@@ -102,19 +106,19 @@ else:
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
 
 
-VERSION_DIR    = os.path.join(
+VERSION_DIR = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
 
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
-TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
+TOOL_OPTIONS = os.path.join(HOME_DIR, "tool_options.xml")
 
-ENV_DIR        = os.path.join(HOME_DIR, "env")
-TEMP_DIR       = os.path.join(HOME_DIR, "temp")
-THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
-THUMB_NORMAL   = os.path.join(THUMB_DIR, "normal")
-THUMB_LARGE    = os.path.join(THUMB_DIR, "large")
-USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
+ENV_DIR = os.path.join(HOME_DIR, "env")
+TEMP_DIR = os.path.join(HOME_DIR, "temp")
+THUMB_DIR = os.path.join(HOME_DIR, "thumb")
+THUMB_NORMAL = os.path.join(THUMB_DIR, "normal")
+THUMB_LARGE = os.path.join(THUMB_DIR, "large")
+USER_PLUGINS = os.path.join(VERSION_DIR, "plugins")
 # dirs checked/made for each Gramps session
 USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
@@ -138,15 +142,15 @@ VERSION += git_revision
 #
 # Glade files
 #
-GLADE_DIR      = os.path.join(ROOT_DIR, "gui", "glade")
-GLADE_FILE     = os.path.join(GLADE_DIR, "gramps.glade")
-PERSON_GLADE   = os.path.join(GLADE_DIR, "edit_person.glade")
-PLUGINS_GLADE  = os.path.join(GLADE_DIR, "plugins.glade")
-MERGE_GLADE    = os.path.join(GLADE_DIR, "mergedata.glade")
-RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
+GLADE_DIR = os.path.join(ROOT_DIR, "gui", "glade")
+GLADE_FILE = os.path.join(GLADE_DIR, "gramps.glade")
+PERSON_GLADE = os.path.join(GLADE_DIR, "edit_person.glade")
+PLUGINS_GLADE = os.path.join(GLADE_DIR, "plugins.glade")
+MERGE_GLADE = os.path.join(GLADE_DIR, "mergedata.glade")
+RULE_GLADE = os.path.join(GLADE_DIR, "rule.glade")
 
 
-PLUGINS_DIR        = os.path.join(ROOT_DIR, "plugins")
+PLUGINS_DIR = os.path.join(ROOT_DIR, "plugins")
 
 USE_TIPS = False
 
@@ -160,7 +164,6 @@ else:
 # Paths to data files.
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.resourcepath import ResourcePath
 _resources = ResourcePath()
 DATA_DIR = _resources.data_dir
 IMAGE_DIR = _resources.image_dir
@@ -203,7 +206,6 @@ ENV = {
 # Init Localization
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.grampslocale import GrampsLocale
 GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
 _ = GRAMPS_LOCALE.translation.sgettext
 GTK_GETTEXT_DOMAIN = 'gtk30'
@@ -213,12 +215,12 @@ GTK_GETTEXT_DOMAIN = 'gtk30'
 # About box information
 #
 #-------------------------------------------------------------------------
-COPYRIGHT_MSG  = "© 2001-2006 Donald N. Allingham\n" \
-                 "© 2007-2016 The Gramps Developers"
-COMMENTS       = _("Gramps\n (Genealogical Research and Analysis "
-                   "Management Programming System)\n"
-                   "is a personal genealogy program.")
-AUTHORS        = [
+COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" \
+                "© 2007-2016 The Gramps Developers"
+COMMENTS = _("Gramps\n (Genealogical Research and Analysis "
+             "Management Programming System)\n"
+             "is a personal genealogy program.")
+AUTHORS = [
     "Alexander Roitman",
     "Benny Malengier",
     "Brian Matherly",
@@ -233,7 +235,7 @@ AUTHORS        = [
 
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
 
-DOCUMENTERS    = [
+DOCUMENTERS = [
     'Alexander Roitman',
     ]
 
@@ -242,12 +244,12 @@ DOCUMENTERS    = [
 # Constants
 #
 #-------------------------------------------------------------------------
-THUMBSCALE       = 96.0
+THUMBSCALE = 96.0
 THUMBSCALE_LARGE = 180.0
-XMLFILE          = "data.gramps"
-NO_SURNAME       = "(%s)" % _("surname|none")
-NO_GIVEN         = "(%s)" % _("given-name|none")
-ARABIC_COMMA     = "،"
+XMLFILE = "data.gramps"
+NO_SURNAME = "(%s)" % _("surname|none")
+NO_GIVEN = "(%s)" % _("given-name|none")
+ARABIC_COMMA = "،"
 ARABIC_SEMICOLON = "؛"
 
 #-------------------------------------------------------------------------
@@ -259,18 +261,18 @@ ARABIC_SEMICOLON = "؛"
 # Note: Make sure to edit argparser.py _help string too!
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 POPT_TABLE = [
-    ("config",  'c',  str, None, 0, "Set config setting(s) and start Gramps",  ""),
-    ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"),
-    ("create",  'C', str, None, 0, "Create or Open family tree",  "FAMILY_TREE"),
-    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
-    ("export",  'e', str, None, 0, "Export file",       "FILENAME"),
-    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
-    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
-    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
-    ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
-    ("",        'l', None, None, 0, 'List Family Trees', ""),
-    ("",        'L', None, None, 0, 'List Family Tree Details', ""),
-    ("show",    's', None, None, 0, "Show config settings",  ""),
+    ("config", 'c', str, None, 0, "Set config setting(s) and start Gramps", ""),
+    ("open", 'O', str, None, 0, "Open family tree", "FAMILY_TREE"),
+    ("create", 'C', str, None, 0, "Create or Open family tree", "FAMILY_TREE"),
+    ("import", 'i', str, None, 0, "Import file", "FILENAME"),
+    ("export", 'e', str, None, 0, "Export file", "FILENAME"),
+    ("format", 'f', str, None, 0, 'Specify format', "FORMAT"),
+    ("action", 'a', str, None, 0, 'Specify action', "ACTION"),
+    ("options", 'p', str, None, 0, 'Specify options', "OPTIONS_STRING"),
+    ("debug", 'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
+    ("", 'l', None, None, 0, 'List Family Trees', ""),
+    ("", 'L', None, None, 0, 'List Family Tree Details', ""),
+    ("show", 's', None, None, 0, "Show config settings", ""),
     ("force-unlock", 'u', None, None, 0, 'Force unlock of family tree', ""),
     ("version", 'v', None, None, 0, 'Show versions', ""),
 ]
@@ -321,7 +323,7 @@ LONGOPTS = [
 
 SHORTOPTS = "O:C:i:e:f:a:p:d:c:r:lLthuv?syq"
 
-GRAMPS_UUID =  uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
+GRAMPS_UUID = uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 
 #-------------------------------------------------------------------------
 #
@@ -345,24 +347,24 @@ BACKGROUND_GRAD_AGE = 5
 BACKGROUND_SINGLE_COLOR = 6
 BACKGROUND_GRAD_PERIOD = 7
 GENCOLOR = {
-    BACKGROUND_SCHEME1: ((255, 63,  0),
-                         (255,175, 15),
-                         (255,223, 87),
-                         (255,255,111),
-                         (159,255,159),
-                         (111,215,255),
-                         ( 79,151,255),
-                         (231, 23,255),
-                         (231, 23,121),
-                         (210,170,124),
-                         (189,153,112)),
-    BACKGROUND_SCHEME2: ((229,191,252),
-                         (191,191,252),
-                         (191,222,252),
-                         (183,219,197),
-                         (206,246,209)),
-    BACKGROUND_WHITE: ((255,255,255),
-                       (255,255,255),),
+    BACKGROUND_SCHEME1: ((255, 63, 0),
+                         (255, 175, 15),
+                         (255, 223, 87),
+                         (255, 255, 111),
+                         (159, 255, 159),
+                         (111, 215, 255),
+                         (79, 151, 255),
+                         (231, 23, 255),
+                         (231, 23, 121),
+                         (210, 170, 124),
+                         (189, 153, 112)),
+    BACKGROUND_SCHEME2: ((229, 191, 252),
+                         (191, 191, 252),
+                         (191, 222, 252),
+                         (183, 219, 197),
+                         (206, 246, 209)),
+    BACKGROUND_WHITE: ((255, 255, 255),
+                       (255, 255, 255),),
     }
 
 MAX_AGE = 100

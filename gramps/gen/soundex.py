@@ -35,8 +35,8 @@ import unicodedata
 #
 #-------------------------------------------------------------------------
 IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
-TABLE  = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
-                         b'012301202245501262301202')
+TABLE = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
+                        b'012301202245501262301202')
 
 #-------------------------------------------------------------------------
 #
@@ -46,8 +46,8 @@ TABLE  = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
 def soundex(strval):
     "Return the soundex value to a string argument."
 
-    strval = unicodedata.normalize('NFKD',
-        str(strval.upper().strip())).encode('ASCII', 'ignore')
+    strval = unicodedata.normalize(
+        'NFKD', str(strval.upper().strip())).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"
     strval = strval.decode('ASCII', 'ignore')

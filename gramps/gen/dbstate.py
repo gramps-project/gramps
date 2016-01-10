@@ -22,9 +22,21 @@
 """
 Provide the database state class
 """
+
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 import sys
 import os
+import logging
 
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
 from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
@@ -35,7 +47,6 @@ from .config import config
 # set up logging
 #
 #-------------------------------------------------------------------------
-import logging
 LOG = logging.getLogger(".dbstate")
 
 class DbState(Callback):
@@ -54,8 +65,8 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db      = self.make_database("bsddb")
-        self.open    = False
+        self.db = self.make_database("bsddb")
+        self.open = False
         self.stack = []
 
     def change_database(self, database):
@@ -82,7 +93,7 @@ class DbState(Callback):
             config.get('preferences.pprefix'),
             config.get('preferences.eprefix'),
             config.get('preferences.rprefix'),
-            config.get('preferences.nprefix') )
+            config.get('preferences.nprefix'))
         self.open = True
 
     def signal_change(self):
@@ -116,12 +127,15 @@ class DbState(Callback):
         >>> dbstate.apply_proxy(gramps.gen.proxy.LivingProxyDb, 0)
         >>> dbstate.apply_proxy(gramps.gen.proxy.PrivateProxyDb)
 
-        >>> from gramps.gen.filters.rules.person import IsDescendantOf, IsAncestorOf
+        >>> from gramps.gen.filters.rules.person import (IsDescendantOf,
+                                                         IsAncestorOf)
         >>> from gramps.gen.filters import GenericFilter
         >>> filter = GenericFilter()
         >>> filter.set_logical_op("or")
-        >>> filter.add_rule(IsDescendantOf([db.get_default_person().gramps_id, True]))
-        >>> filter.add_rule(IsAncestorOf([db.get_default_person().gramps_id, True]))
+        >>> filter.add_rule(IsDescendantOf([db.get_default_person().gramps_id,
+                                            True]))
+        >>> filter.add_rule(IsAncestorOf([db.get_default_person().gramps_id,
+                                          True]))
         >>> dbstate.apply_proxy(gramps.gen.proxy.FilterProxyDb, filter)
         """
         self.stack.append(self.db)
@@ -140,7 +154,7 @@ class DbState(Callback):
         self.db = self.stack.pop()
         self.emit('database-changed', (self.db, ))
 
-    def make_database(self, id):
+    def make_database(self, plugin_id):
         """
         Make a database, given a plugin id.
         """
@@ -148,14 +162,14 @@ class DbState(Callback):
         from .const import PLUGINS_DIR, USER_PLUGINS
 
         pmgr = BasePluginManager.get_instance()
-        pdata = pmgr.get_plugin(id)
+        pdata = pmgr.get_plugin(plugin_id)
 
         if not pdata:
             # This might happen if using gramps from outside, and
             # we haven't loaded plugins yet
             pmgr.reg_plugins(PLUGINS_DIR, self, None)
             pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
-            pdata = pmgr.get_plugin(id)
+            pdata = pmgr.get_plugin(plugin_id)
 
         if pdata:
             if pdata.reset_system:
@@ -225,7 +239,7 @@ class DbState(Callback):
         if user is None:
             user = User()
         (name, ext) = os.path.splitext(os.path.basename(filename))
-        format = ext[1:].lower()
+        extension = ext[1:].lower()
         import_list = pmgr.get_reg_importers()
         if import_list == []:
             # This might happen if using gramps from outside, and
@@ -234,12 +248,11 @@ class DbState(Callback):
             pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
             import_list = pmgr.get_reg_importers()
         for pdata in import_list:
-            if format == pdata.extension:
+            if extension == pdata.extension:
                 mod = pmgr.load_plugin(pdata)
                 if not mod:
                     for item in pmgr.get_fail_list():
                         name, error_tuple, pdata = item
-                        # (filename, (exception-type, exception, traceback), pdata)
                         etype, exception, traceback = error_tuple
                         print("ERROR:", name, exception)
                     return False
@@ -261,7 +274,7 @@ class DbState(Callback):
         LOG.info("reset_modules!")
         # First, clear out old modules:
         for key in list(sys.modules.keys()):
-            del(sys.modules[key])
+            del sys.modules[key]
         # Next, restore previous:
         for key in self._modules:
             sys.modules[key] = self._modules[key]

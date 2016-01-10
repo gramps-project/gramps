@@ -19,23 +19,30 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Find the latest git revision.
+"""
+
 import subprocess
 
 def get_git_revision(path=""):
+    """
+    Return the short commit hash of the latest commit.
+    """
     stdout = ""
     command = "git log -1 --format=%h"
     try:
-        p = subprocess.Popen(
-                "{} \"{}\"".format(command, path),
-                shell=True,
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        (stdout, stderr) = p.communicate()
-    except:
+        proc = subprocess.Popen(
+            "{} \"{}\"".format(command, path),
+            shell=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        (stdout, stderr) = proc.communicate()
+    except OSError:
         return "" # subprocess failed
     # subprocess worked
     if stdout and len(stdout) > 0: # has output
         try:
-            stdout = stdout.decode("utf-8", errors = 'replace')
+            stdout = stdout.decode("utf-8", errors='replace')
         except UnicodeDecodeError:
             pass
         return "-" + stdout if stdout else ""

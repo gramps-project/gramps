@@ -35,6 +35,7 @@ import time
 import collections
 import logging
 _LOG = logging.getLogger(".gen")
+
 #-------------------------------------------------------------------------
 #
 # Callback updater
@@ -53,38 +54,54 @@ class UpdateCallback(object):
         :param interval: number of seconds at most between the updates
         :type interval: int
         """
-        if isinstance(callback, collections.Callable): # callback is really callable
+        if isinstance(callback, collections.Callable):
+            # callback is really callable
             self.update = self.update_real
             self.callback = callback
             self.interval = interval
-            self.reset()
         else:
             self.update = self.update_empty
+        self.count = 0
+        self.oldval = 0
+        self.oldtime = 0
         self.text = ""
+        self.total = 1
 
     def reset(self, text=""):
+        """
+        Reset the count to zero.
+        """
         self.count = 0
         self.oldval = 0
         self.oldtime = 0
         self.text = text
 
     def set_total(self, total):
+        """
+        Set the total.
+        """
         self.total = total
         if self.total == 0:
             _LOG.warning('UpdateCallback with total == 0 created')
             self.total = 1
 
     def update_empty(self, count=None):
+        """
+        Dummy update used when no callback is specified.
+        """
         pass
 
     def update_real(self, count=None):
+        """
+        Called when the count is updated.
+        """
         self.count += 1
         if not count:
             count = self.count
         newval = int(100 * count/self.total)
         newtime = time.time()
-        time_has_come = self.interval and (newtime-self.oldtime>self.interval)
-        value_changed = newval!=self.oldval
+        time_has_come = self.interval and (newtime-self.oldtime > self.interval)
+        value_changed = newval != self.oldval
         if value_changed or time_has_come:
             if self.text:
                 self.callback(newval, text=self.text)

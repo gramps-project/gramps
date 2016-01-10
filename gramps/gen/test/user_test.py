@@ -34,9 +34,12 @@ class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.user = user.User()
 
-    def test_returns_False(self):
-        assert not self.user.prompt(
-                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT)
+    def test_not_implemented(self):
+        self.assertRaises(NotImplementedError, self.user.prompt,
+                          TestUser.TITLE,
+                          TestUser.MSG,
+                          TestUser.ACCEPT,
+                          TestUser.REJECT)
 
 if __name__ == "__main__":
     unittest.main()

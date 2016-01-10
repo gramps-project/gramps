@@ -20,56 +20,58 @@
 """
 Classes for relationships.
 """
+
 #-------------------------------------------------------------------------
 #
-# python modules
+# Python modules
 #
 #-------------------------------------------------------------------------
-import os
 import logging
-LOG = logging.getLogger("gen.relationship")
-LOG.addHandler(logging.StreamHandler())
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-
 from .lib import Person, ChildRefType, EventType, FamilyRelType
+from .plug import PluginRegister, BasePluginManager
+from .const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+
 MALE = Person.MALE
 FEMALE = Person.FEMALE
 UNKNOWN = Person.UNKNOWN
-from .const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-from .plug import PluginRegister, BasePluginManager
+
+LOG = logging.getLogger("gen.relationship")
+LOG.addHandler(logging.StreamHandler())
+
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 
-_level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
-                "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
-                "thirteenth", "fourteenth", "fifteenth", "sixteenth",
-                "seventeenth", "eighteenth", "nineteenth", "twentieth" ]
+_LEVEL_NAME = ["", "first", "second", "third", "fourth", "fifth", "sixth",
+               "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
+               "thirteenth", "fourteenth", "fifteenth", "sixteenth",
+               "seventeenth", "eighteenth", "nineteenth", "twentieth"]
 
-_removed_level = [ "", " once removed", " twice removed",
-                   " three times removed",
-                   " four times removed", " five times removed",
-                    " six times removed",
-                   " seven times removed", " eight times removed",
-                   " nine times removed",
-                   " ten times removed", " eleven times removed",
-                   " twelve times removed",
-                   " thirteen times removed", " fourteen times removed",
-                   " fifteen times removed",
-                   " sixteen times removed", " seventeen times removed",
-                   " eighteen times removed",
-                   " nineteen times removed", " twenty times removed" ]
+_REMOVED_LEVEL = ["", " once removed", " twice removed",
+                  " three times removed",
+                  " four times removed", " five times removed",
+                  " six times removed",
+                  " seven times removed", " eight times removed",
+                  " nine times removed",
+                  " ten times removed", " eleven times removed",
+                  " twelve times removed",
+                  " thirteen times removed", " fourteen times removed",
+                  " fifteen times removed",
+                  " sixteen times removed", " seventeen times removed",
+                  " eighteen times removed",
+                  " nineteen times removed", " twenty times removed"]
 
-_parents_level = [ "", "parents", "grandparents", "great grandparents",
-                   "second great grandparents",
+_PARENTS_LEVEL = ["", "parents", "grandparents", "great grandparents",
+                  "second great grandparents",
                   "third great grandparents",
                   "fourth great grandparents",
                   "fifth great grandparents",
@@ -87,263 +89,286 @@ _parents_level = [ "", "parents", "grandparents", "great grandparents",
                   "seventeenth great grandparents",
                   "eighteenth great grandparents",
                   "nineteenth great grandparents",
-                  "twentieth great grandparents", ]
+                  "twentieth great grandparents"]
 
-_father_level = [ "", "%(step)sfather%(inlaw)s", "%(step)sgrandfather%(inlaw)s",
+_FATHER_LEVEL = ["", "%(step)sfather%(inlaw)s", "%(step)sgrandfather%(inlaw)s",
                  "great %(step)sgrandfather%(inlaw)s",
-                  "second great %(step)sgrandfather%(inlaw)s",
-                  "third great %(step)sgrandfather%(inlaw)s",
-                  "fourth great %(step)sgrandfather%(inlaw)s",
-                  "fifth great %(step)sgrandfather%(inlaw)s",
-                  "sixth great %(step)sgrandfather%(inlaw)s",
-                  "seventh great %(step)sgrandfather%(inlaw)s",
-                  "eighth great %(step)sgrandfather%(inlaw)s",
-                  "ninth great %(step)sgrandfather%(inlaw)s",
-                  "tenth great %(step)sgrandfather%(inlaw)s",
-                  "eleventh great %(step)sgrandfather%(inlaw)s",
-                  "twelfth great %(step)sgrandfather%(inlaw)s",
-                  "thirteenth great %(step)sgrandfather%(inlaw)s",
-                  "fourteenth great %(step)sgrandfather%(inlaw)s",
-                  "fifteenth great %(step)sgrandfather%(inlaw)s",
-                  "sixteenth great %(step)sgrandfather%(inlaw)s",
-                  "seventeenth great %(step)sgrandfather%(inlaw)s",
-                  "eighteenth great %(step)sgrandfather%(inlaw)s",
-                  "nineteenth great %(step)sgrandfather%(inlaw)s",
-                  "twentieth great %(step)sgrandfather%(inlaw)s", ]
+                 "second great %(step)sgrandfather%(inlaw)s",
+                 "third great %(step)sgrandfather%(inlaw)s",
+                 "fourth great %(step)sgrandfather%(inlaw)s",
+                 "fifth great %(step)sgrandfather%(inlaw)s",
+                 "sixth great %(step)sgrandfather%(inlaw)s",
+                 "seventh great %(step)sgrandfather%(inlaw)s",
+                 "eighth great %(step)sgrandfather%(inlaw)s",
+                 "ninth great %(step)sgrandfather%(inlaw)s",
+                 "tenth great %(step)sgrandfather%(inlaw)s",
+                 "eleventh great %(step)sgrandfather%(inlaw)s",
+                 "twelfth great %(step)sgrandfather%(inlaw)s",
+                 "thirteenth great %(step)sgrandfather%(inlaw)s",
+                 "fourteenth great %(step)sgrandfather%(inlaw)s",
+                 "fifteenth great %(step)sgrandfather%(inlaw)s",
+                 "sixteenth great %(step)sgrandfather%(inlaw)s",
+                 "seventeenth great %(step)sgrandfather%(inlaw)s",
+                 "eighteenth great %(step)sgrandfather%(inlaw)s",
+                 "nineteenth great %(step)sgrandfather%(inlaw)s",
+                 "twentieth great %(step)sgrandfather%(inlaw)s"]
 
-_mother_level = [ "", "%(step)smother%(inlaw)s",
-                  "%(step)sgrandmother%(inlaw)s",
-                  "great %(step)sgrandmother%(inlaw)s",
-                  "second great %(step)sgrandmother%(inlaw)s",
-                  "third great %(step)sgrandmother%(inlaw)s",
-                  "fourth great %(step)sgrandmother%(inlaw)s",
-                  "fifth great %(step)sgrandmother%(inlaw)s",
-                  "sixth great %(step)sgrandmother%(inlaw)s",
-                  "seventh great %(step)sgrandmother%(inlaw)s",
-                  "eighth great %(step)sgrandmother%(inlaw)s",
-                  "ninth great %(step)sgrandmother%(inlaw)s",
-                  "tenth great %(step)sgrandmother%(inlaw)s",
-                  "eleventh great %(step)sgrandmother%(inlaw)s",
-                  "twelfth great %(step)sgrandmother%(inlaw)s",
-                  "thirteenth great %(step)sgrandmother%(inlaw)s",
-                  "fourteenth great %(step)sgrandmother%(inlaw)s",
-                  "fifteenth great %(step)sgrandmother%(inlaw)s",
-                  "sixteenth great %(step)sgrandmother%(inlaw)s",
-                  "seventeenth great %(step)sgrandmother%(inlaw)s",
-                  "eighteenth great %(step)sgrandmother%(inlaw)s",
-                  "nineteenth great %(step)sgrandmother%(inlaw)s",
-                  "twentieth great %(step)sgrandmother%(inlaw)s", ]
+_MOTHER_LEVEL = ["", "%(step)smother%(inlaw)s",
+                 "%(step)sgrandmother%(inlaw)s",
+                 "great %(step)sgrandmother%(inlaw)s",
+                 "second great %(step)sgrandmother%(inlaw)s",
+                 "third great %(step)sgrandmother%(inlaw)s",
+                 "fourth great %(step)sgrandmother%(inlaw)s",
+                 "fifth great %(step)sgrandmother%(inlaw)s",
+                 "sixth great %(step)sgrandmother%(inlaw)s",
+                 "seventh great %(step)sgrandmother%(inlaw)s",
+                 "eighth great %(step)sgrandmother%(inlaw)s",
+                 "ninth great %(step)sgrandmother%(inlaw)s",
+                 "tenth great %(step)sgrandmother%(inlaw)s",
+                 "eleventh great %(step)sgrandmother%(inlaw)s",
+                 "twelfth great %(step)sgrandmother%(inlaw)s",
+                 "thirteenth great %(step)sgrandmother%(inlaw)s",
+                 "fourteenth great %(step)sgrandmother%(inlaw)s",
+                 "fifteenth great %(step)sgrandmother%(inlaw)s",
+                 "sixteenth great %(step)sgrandmother%(inlaw)s",
+                 "seventeenth great %(step)sgrandmother%(inlaw)s",
+                 "eighteenth great %(step)sgrandmother%(inlaw)s",
+                 "nineteenth great %(step)sgrandmother%(inlaw)s",
+                 "twentieth great %(step)sgrandmother%(inlaw)s"]
 
-_son_level = [ "", "%(step)sson%(inlaw)s", "%(step)sgrandson%(inlaw)s",
-                "great %(step)sgrandson%(inlaw)s",
-                "second great %(step)sgrandson%(inlaw)s",
-                "third great %(step)sgrandson%(inlaw)s",
-                "fourth great %(step)sgrandson%(inlaw)s",
-                "fifth great %(step)sgrandson%(inlaw)s",
-                "sixth great %(step)sgrandson%(inlaw)s",
-                "seventh great %(step)sgrandson%(inlaw)s",
-                "eighth great %(step)sgrandson%(inlaw)s",
-                "ninth great %(step)sgrandson%(inlaw)s",
-                "tenth great %(step)sgrandson%(inlaw)s",
-                "eleventh great %(step)sgrandson%(inlaw)s",
-                "twelfth great %(step)sgrandson%(inlaw)s",
-                "thirteenth great %(step)sgrandson%(inlaw)s",
-                "fourteenth great %(step)sgrandson%(inlaw)s",
-                "fifteenth great %(step)sgrandson%(inlaw)s",
-                "sixteenth great %(step)sgrandson%(inlaw)s",
-                "seventeenth great %(step)sgrandson%(inlaw)s",
-                "eighteenth great %(step)sgrandson%(inlaw)s",
-                "nineteenth great %(step)sgrandson%(inlaw)s",
-                "twentieth great %(step)sgrandson%(inlaw)s", ]
+_SON_LEVEL = ["", "%(step)sson%(inlaw)s", "%(step)sgrandson%(inlaw)s",
+              "great %(step)sgrandson%(inlaw)s",
+              "second great %(step)sgrandson%(inlaw)s",
+              "third great %(step)sgrandson%(inlaw)s",
+              "fourth great %(step)sgrandson%(inlaw)s",
+              "fifth great %(step)sgrandson%(inlaw)s",
+              "sixth great %(step)sgrandson%(inlaw)s",
+              "seventh great %(step)sgrandson%(inlaw)s",
+              "eighth great %(step)sgrandson%(inlaw)s",
+              "ninth great %(step)sgrandson%(inlaw)s",
+              "tenth great %(step)sgrandson%(inlaw)s",
+              "eleventh great %(step)sgrandson%(inlaw)s",
+              "twelfth great %(step)sgrandson%(inlaw)s",
+              "thirteenth great %(step)sgrandson%(inlaw)s",
+              "fourteenth great %(step)sgrandson%(inlaw)s",
+              "fifteenth great %(step)sgrandson%(inlaw)s",
+              "sixteenth great %(step)sgrandson%(inlaw)s",
+              "seventeenth great %(step)sgrandson%(inlaw)s",
+              "eighteenth great %(step)sgrandson%(inlaw)s",
+              "nineteenth great %(step)sgrandson%(inlaw)s",
+              "twentieth great %(step)sgrandson%(inlaw)s"]
 
-_daughter_level = [ "", "%(step)sdaughter%(inlaw)s", "%(step)sgranddaughter%(inlaw)s",
-                    "great %(step)sgranddaughter%(inlaw)s",
-                    "second great %(step)sgranddaughter%(inlaw)s",
-                    "third great %(step)sgranddaughter%(inlaw)s",
-                    "fourth great %(step)sgranddaughter%(inlaw)s",
-                    "fifth great %(step)sgranddaughter%(inlaw)s",
-                    "sixth great %(step)sgranddaughter%(inlaw)s",
-                    "seventh great %(step)sgranddaughter%(inlaw)s",
-                    "eighth great %(step)sgranddaughter%(inlaw)s",
-                    "ninth great %(step)sgranddaughter%(inlaw)s",
-                    "tenth great %(step)sgranddaughter%(inlaw)s",
-                    "eleventh great %(step)sgranddaughter%(inlaw)s",
-                    "twelfth great %(step)sgranddaughter%(inlaw)s",
-                    "thirteenth great %(step)sgranddaughter%(inlaw)s",
-                    "fourteenth great %(step)sgranddaughter%(inlaw)s",
-                    "fifteenth great %(step)sgranddaughter%(inlaw)s",
-                    "sixteenth great %(step)sgranddaughter%(inlaw)s",
-                    "seventeenth great %(step)sgranddaughter%(inlaw)s",
-                    "eighteenth great %(step)sgranddaughter%(inlaw)s",
-                    "nineteenth great %(step)sgranddaughter%(inlaw)s",
-                    "twentieth great %(step)sgranddaughter%(inlaw)s", ]
+_DAUGHTER_LEVEL = ["", "%(step)sdaughter%(inlaw)s",
+                   "%(step)sgranddaughter%(inlaw)s",
+                   "great %(step)sgranddaughter%(inlaw)s",
+                   "second great %(step)sgranddaughter%(inlaw)s",
+                   "third great %(step)sgranddaughter%(inlaw)s",
+                   "fourth great %(step)sgranddaughter%(inlaw)s",
+                   "fifth great %(step)sgranddaughter%(inlaw)s",
+                   "sixth great %(step)sgranddaughter%(inlaw)s",
+                   "seventh great %(step)sgranddaughter%(inlaw)s",
+                   "eighth great %(step)sgranddaughter%(inlaw)s",
+                   "ninth great %(step)sgranddaughter%(inlaw)s",
+                   "tenth great %(step)sgranddaughter%(inlaw)s",
+                   "eleventh great %(step)sgranddaughter%(inlaw)s",
+                   "twelfth great %(step)sgranddaughter%(inlaw)s",
+                   "thirteenth great %(step)sgranddaughter%(inlaw)s",
+                   "fourteenth great %(step)sgranddaughter%(inlaw)s",
+                   "fifteenth great %(step)sgranddaughter%(inlaw)s",
+                   "sixteenth great %(step)sgranddaughter%(inlaw)s",
+                   "seventeenth great %(step)sgranddaughter%(inlaw)s",
+                   "eighteenth great %(step)sgranddaughter%(inlaw)s",
+                   "nineteenth great %(step)sgranddaughter%(inlaw)s",
+                   "twentieth great %(step)sgranddaughter%(inlaw)s"]
 
-_sister_level = [ "", "%(step)ssister%(inlaw)s", "%(step)saunt%(inlaw)s",
-                  "%(step)sgrandaunt%(inlaw)s",
-                  "great %(step)sgrandaunt%(inlaw)s",
-                  "second great %(step)sgrandaunt%(inlaw)s",
-                  "third great %(step)sgrandaunt%(inlaw)s",
-                  "fourth great %(step)sgrandaunt%(inlaw)s",
-                  "fifth great %(step)sgrandaunt%(inlaw)s",
-                  "sixth great %(step)sgrandaunt%(inlaw)s",
-                  "seventh great %(step)sgrandaunt%(inlaw)s",
-                  "eighth great %(step)sgrandaunt%(inlaw)s",
-                  "ninth great %(step)sgrandaunt%(inlaw)s",
-                  "tenth great %(step)sgrandaunt%(inlaw)s",
-                  "eleventh great %(step)sgrandaunt%(inlaw)s",
-                  "twelfth great %(step)sgrandaunt%(inlaw)s",
-                  "thirteenth great %(step)sgrandaunt%(inlaw)s",
-                  "fourteenth great %(step)sgrandaunt%(inlaw)s",
-                  "fifteenth great %(step)sgrandaunt%(inlaw)s",
-                  "sixteenth great %(step)sgrandaunt%(inlaw)s",
-                  "seventeenth great %(step)sgrandaunt%(inlaw)s",
-                  "eighteenth great %(step)sgrandaunt%(inlaw)s",
-                  "nineteenth great %(step)sgrandaunt%(inlaw)s",
-                  "twentieth great %(step)sgrandaunt%(inlaw)s", ]
+_SISTER_LEVEL = ["", "%(step)ssister%(inlaw)s", "%(step)saunt%(inlaw)s",
+                 "%(step)sgrandaunt%(inlaw)s",
+                 "great %(step)sgrandaunt%(inlaw)s",
+                 "second great %(step)sgrandaunt%(inlaw)s",
+                 "third great %(step)sgrandaunt%(inlaw)s",
+                 "fourth great %(step)sgrandaunt%(inlaw)s",
+                 "fifth great %(step)sgrandaunt%(inlaw)s",
+                 "sixth great %(step)sgrandaunt%(inlaw)s",
+                 "seventh great %(step)sgrandaunt%(inlaw)s",
+                 "eighth great %(step)sgrandaunt%(inlaw)s",
+                 "ninth great %(step)sgrandaunt%(inlaw)s",
+                 "tenth great %(step)sgrandaunt%(inlaw)s",
+                 "eleventh great %(step)sgrandaunt%(inlaw)s",
+                 "twelfth great %(step)sgrandaunt%(inlaw)s",
+                 "thirteenth great %(step)sgrandaunt%(inlaw)s",
+                 "fourteenth great %(step)sgrandaunt%(inlaw)s",
+                 "fifteenth great %(step)sgrandaunt%(inlaw)s",
+                 "sixteenth great %(step)sgrandaunt%(inlaw)s",
+                 "seventeenth great %(step)sgrandaunt%(inlaw)s",
+                 "eighteenth great %(step)sgrandaunt%(inlaw)s",
+                 "nineteenth great %(step)sgrandaunt%(inlaw)s",
+                 "twentieth great %(step)sgrandaunt%(inlaw)s"]
 
-_brother_level = [ "", "%(step)sbrother%(inlaw)s", "%(step)suncle%(inlaw)s",
-                   "%(step)sgranduncle%(inlaw)s",
-                   "great %(step)sgranduncle%(inlaw)s",
-                   "second great %(step)sgranduncle%(inlaw)s",
-                   "third great %(step)sgranduncle%(inlaw)s",
-                   "fourth great %(step)sgranduncle%(inlaw)s",
-                   "fifth great %(step)sgranduncle%(inlaw)s",
-                   "sixth great %(step)sgranduncle%(inlaw)s",
-                   "seventh great %(step)sgranduncle%(inlaw)s",
-                   "eighth great %(step)sgranduncle%(inlaw)s",
-                   "ninth great %(step)sgranduncle%(inlaw)s",
-                   "tenth great %(step)sgranduncle%(inlaw)s",
-                   "eleventh great %(step)sgranduncle%(inlaw)s",
-                   "twelfth great %(step)sgranduncle%(inlaw)s",
-                   "thirteenth great %(step)sgranduncle%(inlaw)s",
-                   "fourteenth great %(step)sgranduncle%(inlaw)s",
-                   "fifteenth great %(step)sgranduncle%(inlaw)s",
-                   "sixteenth great %(step)sgranduncle%(inlaw)s",
-                   "seventeenth great %(step)sgranduncle%(inlaw)s",
-                   "eighteenth great %(step)sgranduncle%(inlaw)s",
-                   "nineteenth great %(step)sgranduncle%(inlaw)s",
-                   "twentieth great %(step)sgranduncle%(inlaw)s", ]
+_BROTHER_LEVEL = ["", "%(step)sbrother%(inlaw)s", "%(step)suncle%(inlaw)s",
+                  "%(step)sgranduncle%(inlaw)s",
+                  "great %(step)sgranduncle%(inlaw)s",
+                  "second great %(step)sgranduncle%(inlaw)s",
+                  "third great %(step)sgranduncle%(inlaw)s",
+                  "fourth great %(step)sgranduncle%(inlaw)s",
+                  "fifth great %(step)sgranduncle%(inlaw)s",
+                  "sixth great %(step)sgranduncle%(inlaw)s",
+                  "seventh great %(step)sgranduncle%(inlaw)s",
+                  "eighth great %(step)sgranduncle%(inlaw)s",
+                  "ninth great %(step)sgranduncle%(inlaw)s",
+                  "tenth great %(step)sgranduncle%(inlaw)s",
+                  "eleventh great %(step)sgranduncle%(inlaw)s",
+                  "twelfth great %(step)sgranduncle%(inlaw)s",
+                  "thirteenth great %(step)sgranduncle%(inlaw)s",
+                  "fourteenth great %(step)sgranduncle%(inlaw)s",
+                  "fifteenth great %(step)sgranduncle%(inlaw)s",
+                  "sixteenth great %(step)sgranduncle%(inlaw)s",
+                  "seventeenth great %(step)sgranduncle%(inlaw)s",
+                  "eighteenth great %(step)sgranduncle%(inlaw)s",
+                  "nineteenth great %(step)sgranduncle%(inlaw)s",
+                  "twentieth great %(step)sgranduncle%(inlaw)s"]
 
-_nephew_level = [ "", "%(step)snephew%(inlaw)s", "%(step)sgrandnephew%(inlaw)s",
-                  "great %(step)sgrandnephew%(inlaw)s",
-                  "second great %(step)sgrandnephew%(inlaw)s",
-                  "third great %(step)sgrandnephew%(inlaw)s",
-                  "fourth great %(step)sgrandnephew%(inlaw)s",
-                  "fifth great %(step)sgrandnephew%(inlaw)s",
-                  "sixth great %(step)sgrandnephew%(inlaw)s",
-                  "seventh great %(step)sgrandnephew%(inlaw)s",
-                  "eighth great %(step)sgrandnephew%(inlaw)s",
-                  "ninth great %(step)sgrandnephew%(inlaw)s",
-                  "tenth great %(step)sgrandnephew%(inlaw)s",
-                  "eleventh great %(step)sgrandnephew%(inlaw)s",
-                  "twelfth great %(step)sgrandnephew%(inlaw)s",
-                  "thirteenth great %(step)sgrandnephew%(inlaw)s",
-                  "fourteenth great %(step)sgrandnephew%(inlaw)s",
-                  "fifteenth great %(step)sgrandnephew%(inlaw)s",
-                  "sixteenth great %(step)sgrandnephew%(inlaw)s",
-                  "seventeenth great %(step)sgrandnephew%(inlaw)s",
-                  "eighteenth great %(step)sgrandnephew%(inlaw)s",
-                  "nineteenth great %(step)sgrandnephew%(inlaw)s",
-                  "twentieth great %(step)sgrandnephew%(inlaw)s", ]
+_NEPHEW_LEVEL = ["", "%(step)snephew%(inlaw)s", "%(step)sgrandnephew%(inlaw)s",
+                 "great %(step)sgrandnephew%(inlaw)s",
+                 "second great %(step)sgrandnephew%(inlaw)s",
+                 "third great %(step)sgrandnephew%(inlaw)s",
+                 "fourth great %(step)sgrandnephew%(inlaw)s",
+                 "fifth great %(step)sgrandnephew%(inlaw)s",
+                 "sixth great %(step)sgrandnephew%(inlaw)s",
+                 "seventh great %(step)sgrandnephew%(inlaw)s",
+                 "eighth great %(step)sgrandnephew%(inlaw)s",
+                 "ninth great %(step)sgrandnephew%(inlaw)s",
+                 "tenth great %(step)sgrandnephew%(inlaw)s",
+                 "eleventh great %(step)sgrandnephew%(inlaw)s",
+                 "twelfth great %(step)sgrandnephew%(inlaw)s",
+                 "thirteenth great %(step)sgrandnephew%(inlaw)s",
+                 "fourteenth great %(step)sgrandnephew%(inlaw)s",
+                 "fifteenth great %(step)sgrandnephew%(inlaw)s",
+                 "sixteenth great %(step)sgrandnephew%(inlaw)s",
+                 "seventeenth great %(step)sgrandnephew%(inlaw)s",
+                 "eighteenth great %(step)sgrandnephew%(inlaw)s",
+                 "nineteenth great %(step)sgrandnephew%(inlaw)s",
+                 "twentieth great %(step)sgrandnephew%(inlaw)s"]
 
-_niece_level = [ "", "%(step)sniece%(inlaw)s", "%(step)sgrandniece%(inlaw)s",
-                 "great %(step)sgrandniece%(inlaw)s",
-                 "second great %(step)sgrandniece%(inlaw)s",
-                 "third great %(step)sgrandniece%(inlaw)s",
-                 "fourth great %(step)sgrandniece%(inlaw)s",
-                 "fifth great %(step)sgrandniece%(inlaw)s",
-                 "sixth great %(step)sgrandniece%(inlaw)s",
-                 "seventh great %(step)sgrandniece%(inlaw)s",
-                 "eighth great %(step)sgrandniece%(inlaw)s",
-                 "ninth great %(step)sgrandniece%(inlaw)s",
-                 "tenth great %(step)sgrandniece%(inlaw)s",
-                 "eleventh great %(step)sgrandniece%(inlaw)s",
-                 "twelfth great %(step)sgrandniece%(inlaw)s",
-                 "thirteenth great %(step)sgrandniece%(inlaw)s",
-                 "fourteenth great %(step)sgrandniece%(inlaw)s",
-                 "fifteenth great %(step)sgrandniece%(inlaw)s",
-                 "sixteenth great %(step)sgrandniece%(inlaw)s",
-                 "seventeenth great %(step)sgrandniece%(inlaw)s",
-                 "eighteenth great %(step)sgrandniece%(inlaw)s",
-                 "nineteenth great %(step)sgrandniece%(inlaw)s",
-                 "twentieth great %(step)sgrandniece%(inlaw)s", ]
+_NIECE_LEVEL = ["", "%(step)sniece%(inlaw)s", "%(step)sgrandniece%(inlaw)s",
+                "great %(step)sgrandniece%(inlaw)s",
+                "second great %(step)sgrandniece%(inlaw)s",
+                "third great %(step)sgrandniece%(inlaw)s",
+                "fourth great %(step)sgrandniece%(inlaw)s",
+                "fifth great %(step)sgrandniece%(inlaw)s",
+                "sixth great %(step)sgrandniece%(inlaw)s",
+                "seventh great %(step)sgrandniece%(inlaw)s",
+                "eighth great %(step)sgrandniece%(inlaw)s",
+                "ninth great %(step)sgrandniece%(inlaw)s",
+                "tenth great %(step)sgrandniece%(inlaw)s",
+                "eleventh great %(step)sgrandniece%(inlaw)s",
+                "twelfth great %(step)sgrandniece%(inlaw)s",
+                "thirteenth great %(step)sgrandniece%(inlaw)s",
+                "fourteenth great %(step)sgrandniece%(inlaw)s",
+                "fifteenth great %(step)sgrandniece%(inlaw)s",
+                "sixteenth great %(step)sgrandniece%(inlaw)s",
+                "seventeenth great %(step)sgrandniece%(inlaw)s",
+                "eighteenth great %(step)sgrandniece%(inlaw)s",
+                "nineteenth great %(step)sgrandniece%(inlaw)s",
+                "twentieth great %(step)sgrandniece%(inlaw)s"]
 
-_children_level = [ "",
-    "children",                        "grandchildren",
-    "great grandchildren",             "second great grandchildren",
-    "third great grandchildren",       "fourth great grandchildren",
-    "fifth great grandchildren",       "sixth great grandchildren",
-    "seventh great grandchildren",     "eighth great grandchildren",
-    "ninth great grandchildren",       "tenth great grandchildren",
-    "eleventh great grandchildren",    "twelfth great grandchildren",
-    "thirteenth great grandchildren",  "fourteenth great grandchildren",
-    "fifteenth great grandchildren",   "sixteenth great grandchildren",
-    "seventeenth great grandchildren", "eighteenth great grandchildren",
-     "nineteenth great grandchildren", "twentieth great grandchildren", ]
+_CHILDREN_LEVEL = ["",
+                   "children",
+                   "grandchildren",
+                   "great grandchildren",
+                   "second great grandchildren",
+                   "third great grandchildren",
+                   "fourth great grandchildren",
+                   "fifth great grandchildren",
+                   "sixth great grandchildren",
+                   "seventh great grandchildren",
+                   "eighth great grandchildren",
+                   "ninth great grandchildren",
+                   "tenth great grandchildren",
+                   "eleventh great grandchildren",
+                   "twelfth great grandchildren",
+                   "thirteenth great grandchildren",
+                   "fourteenth great grandchildren",
+                   "fifteenth great grandchildren",
+                   "sixteenth great grandchildren",
+                   "seventeenth great grandchildren",
+                   "eighteenth great grandchildren",
+                   "nineteenth great grandchildren",
+                   "twentieth great grandchildren"]
 
-_siblings_level = [ "",
-    "siblings",                           "uncles/aunts",
-    "granduncles/aunts",                  "great granduncles/aunts",
-    "second great granduncles/aunts",     "third great granduncles/aunts",
-    "fourth great granduncles/aunts",     "fifth great granduncles/aunts",
-    "sixth great granduncles/aunts",      "seventh great granduncles/aunts",
-    "eighth great granduncles/aunts",     "ninth great granduncles/aunts",
-    "tenth great granduncles/aunts",      "eleventh great granduncles/aunts",
-    "twelfth great granduncles/aunts",    "thirteenth great granduncles/aunts",
-    "fourteenth great granduncles/aunts", "fifteenth great granduncles/aunts",
-    "sixteenth great granduncles/aunts",  "seventeenth great granduncles/aunts",
-    "eighteenth great granduncles/aunts", "nineteenth great granduncles/aunts",
-    "twentieth great granduncles/aunts", ]
+_SIBLINGS_LEVEL = ["",
+                   "siblings",
+                   "uncles/aunts",
+                   "granduncles/aunts",
+                   "great granduncles/aunts",
+                   "second great granduncles/aunts",
+                   "third great granduncles/aunts",
+                   "fourth great granduncles/aunts",
+                   "fifth great granduncles/aunts",
+                   "sixth great granduncles/aunts",
+                   "seventh great granduncles/aunts",
+                   "eighth great granduncles/aunts",
+                   "ninth great granduncles/aunts",
+                   "tenth great granduncles/aunts",
+                   "eleventh great granduncles/aunts",
+                   "twelfth great granduncles/aunts",
+                   "thirteenth great granduncles/aunts",
+                   "fourteenth great granduncles/aunts",
+                   "fifteenth great granduncles/aunts",
+                   "sixteenth great granduncles/aunts",
+                   "seventeenth great granduncles/aunts",
+                   "eighteenth great granduncles/aunts",
+                   "nineteenth great granduncles/aunts",
+                   "twentieth great granduncles/aunts"]
 
-_sibling_level = [ "",
-    "%(step)ssibling%(inlaw)s",
-    "%(step)suncle/aunt%(inlaw)s",
-    "%(step)sgranduncle/aunt%(inlaw)s",
-    "great %(step)sgranduncle/aunt%(inlaw)s",
-    "second great %(step)sgranduncle/aunt%(inlaw)s",
-    "third great %(step)sgranduncle/aunt%(inlaw)s",
-    "fourth great %(step)sgranduncle/aunt%(inlaw)s",
-    "fifth great %(step)sgranduncle/aunt%(inlaw)s",
-    "sixth great %(step)sgranduncle/aunt%(inlaw)s",
-    "seventh great %(step)sgranduncle/aunt%(inlaw)s",
-    "eighth great %(step)sgranduncle/aunt%(inlaw)s",
-    "ninth great %(step)sgranduncle/aunt%(inlaw)s",
-    "tenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "eleventh great %(step)sgranduncle/aunt%(inlaw)s",
-    "twelfth great %(step)sgranduncle/aunt%(inlaw)s",
-    "thirteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "fourteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "fifteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "sixteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "seventeenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "eighteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "nineteenth great %(step)sgranduncle/aunt%(inlaw)s",
-    "twentieth great %(step)sgranduncle/aunt%(inlaw)s", ]
+_SIBLING_LEVEL = ["",
+                  "%(step)ssibling%(inlaw)s",
+                  "%(step)suncle/aunt%(inlaw)s",
+                  "%(step)sgranduncle/aunt%(inlaw)s",
+                  "great %(step)sgranduncle/aunt%(inlaw)s",
+                  "second great %(step)sgranduncle/aunt%(inlaw)s",
+                  "third great %(step)sgranduncle/aunt%(inlaw)s",
+                  "fourth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "fifth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "sixth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "seventh great %(step)sgranduncle/aunt%(inlaw)s",
+                  "eighth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "ninth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "tenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "eleventh great %(step)sgranduncle/aunt%(inlaw)s",
+                  "twelfth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "thirteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "fourteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "fifteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "sixteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "seventeenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "eighteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "nineteenth great %(step)sgranduncle/aunt%(inlaw)s",
+                  "twentieth great %(step)sgranduncle/aunt%(inlaw)s"]
 
-_nephews_nieces_level = [   "",
-                            "siblings",
-                            "nephews/nieces",
-                            "grandnephews/nieces",
-                            "great grandnephews/nieces",
-                            "second great grandnephews/nieces",
-                            "third great grandnephews/nieces",
-                            "fourth great grandnephews/nieces",
-                            "fifth great grandnephews/nieces",
-                            "sixth great grandnephews/nieces",
-                            "seventh great grandnephews/nieces",
-                            "eighth great grandnephews/nieces",
-                            "ninth great grandnephews/nieces",
-                            "tenth great grandnephews/nieces",
-                            "eleventh great grandnephews/nieces",
-                            "twelfth great grandnephews/nieces",
-                            "thirteenth great grandnephews/nieces",
-                            "fourteenth great grandnephews/nieces",
-                            "fifteenth great grandnephews/nieces",
-                            "sixteenth great grandnephews/nieces",
-                            "seventeenth great grandnephews/nieces",
-                            "eighteenth great grandnephews/nieces",
-                            "nineteenth great grandnephews/nieces",
-                            "twentieth great grandnephews/nieces",    ]
+_NEPHEWS_NIECES_LEVEL = ["",
+                         "siblings",
+                         "nephews/nieces",
+                         "grandnephews/nieces",
+                         "great grandnephews/nieces",
+                         "second great grandnephews/nieces",
+                         "third great grandnephews/nieces",
+                         "fourth great grandnephews/nieces",
+                         "fifth great grandnephews/nieces",
+                         "sixth great grandnephews/nieces",
+                         "seventh great grandnephews/nieces",
+                         "eighth great grandnephews/nieces",
+                         "ninth great grandnephews/nieces",
+                         "tenth great grandnephews/nieces",
+                         "eleventh great grandnephews/nieces",
+                         "twelfth great grandnephews/nieces",
+                         "thirteenth great grandnephews/nieces",
+                         "fourteenth great grandnephews/nieces",
+                         "fifteenth great grandnephews/nieces",
+                         "sixteenth great grandnephews/nieces",
+                         "seventeenth great grandnephews/nieces",
+                         "eighteenth great grandnephews/nieces",
+                         "nineteenth great grandnephews/nieces",
+                         "twentieth great grandnephews/nieces"]
 
 
 #-------------------------------------------------------------------------
@@ -356,24 +381,24 @@ class RelationshipCalculator(object):
     The relationship calculator helps to determine the relationship between
     two people.
     """
-    REL_MOTHER           = 'm'      # going up to mother
-    REL_FATHER           = 'f'      # going up to father
-    REL_MOTHER_NOTBIRTH  = 'M'      # going up to mother, not birth relation
-    REL_FATHER_NOTBIRTH  = 'F'      # going up to father, not birth relation
-    REL_SIBLING          = 's'      # going sideways to sibling (no parents)
-    REL_FAM_BIRTH        = 'a'      # going up to family (mother and father)
-    REL_FAM_NONBIRTH     = 'A'      # going up to family, not birth relation
-    REL_FAM_BIRTH_MOTH_ONLY = 'b'   # going up to fam, only birth rel to mother
-    REL_FAM_BIRTH_FATH_ONLY = 'c'   # going up to fam, only birth rel to father
+    REL_MOTHER = 'm'               # going up to mother
+    REL_FATHER = 'f'               # going up to father
+    REL_MOTHER_NOTBIRTH = 'M'      # going up to mother, not birth relation
+    REL_FATHER_NOTBIRTH = 'F'      # going up to father, not birth relation
+    REL_SIBLING = 's'              # going sideways to sibling (no parents)
+    REL_FAM_BIRTH = 'a'            # going up to family (mother and father)
+    REL_FAM_NONBIRTH = 'A'         # going up to family, not birth relation
+    REL_FAM_BIRTH_MOTH_ONLY = 'b'  # going up to fam, only birth rel to mother
+    REL_FAM_BIRTH_FATH_ONLY = 'c'  # going up to fam, only birth rel to father
 
-    REL_FAM_INLAW_PREFIX = 'L'      # going to the partner.
+    REL_FAM_INLAW_PREFIX = 'L'     # going to the partner.
 
     #sibling types
-    NORM_SIB = 0                    # same birth parents
-    HALF_SIB_MOTHER = 1             # same mother, father known to be different
-    HALF_SIB_FATHER = 2             # same father, mother known to be different
-    STEP_SIB = 3                    # birth parents known to be different
-    UNKNOWN_SIB  = 4                # insufficient data to draw conclusion
+    NORM_SIB = 0                   # same birth parents
+    HALF_SIB_MOTHER = 1            # same mother, father known to be different
+    HALF_SIB_FATHER = 2            # same father, mother known to be different
+    STEP_SIB = 3                   # birth parents known to be different
+    UNKNOWN_SIB = 4                # insufficient data to draw conclusion
 
     #sibling strings
     STEP = 'step'
@@ -382,12 +407,12 @@ class RelationshipCalculator(object):
     INLAW = '-in-law'
 
     #partner types
-    PARTNER_MARRIED        = 1
-    PARTNER_UNMARRIED      = 2
-    PARTNER_CIVIL_UNION    = 3
-    PARTNER_UNKNOWN_REL    = 4
-    PARTNER_EX_MARRIED     = 5
-    PARTNER_EX_UNMARRIED   = 6
+    PARTNER_MARRIED = 1
+    PARTNER_UNMARRIED = 2
+    PARTNER_CIVIL_UNION = 3
+    PARTNER_UNKNOWN_REL = 4
+    PARTNER_EX_MARRIED = 5
+    PARTNER_EX_UNMARRIED = 6
     PARTNER_EX_CIVIL_UNION = 7
     PARTNER_EX_UNKNOWN_REL = 8
 
@@ -407,12 +432,22 @@ class RelationshipCalculator(object):
         except ImportError:
             pass
 
+        #data storage to communicate with recursive functions
+        self.__max_depth_reached = False
+        self.__loop_detected = False
+        self.__max_depth = 0
+        self.__all_families = False
+        self.__all_dist = False
+        self.__only_birth = False
+        self.__crosslinks = False
+        self.__msg = []
+
     def set_depth(self, depth):
         """
         Set how deep relationships must be searched. Input must be an
         integer > 0
         """
-        if not depth == self.depth:
+        if depth != self.depth:
             self.depth = depth
             self.dirtymap = True
 
@@ -428,11 +463,11 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_father_level) - 1:
+        if level > len(_FATHER_LEVEL) - 1:
             return self.DIST_FATHER % {'step': step, 'inlaw': inlaw,
                                        'level': level}
         else:
-            return _father_level[level] % {'step': step, 'inlaw': inlaw}
+            return _FATHER_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_SON = "distant %(step)sdescendant%(inlaw)s (%(level)d generations)"
 
@@ -440,11 +475,11 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_son_level) - 1:
+        if level > len(_SON_LEVEL) - 1:
             return self.DIST_SON % {'step': step, 'inlaw': inlaw,
                                     'level': level}
         else:
-            return _son_level[level] % {'step': step, 'inlaw': inlaw}
+            return _SON_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_MOTHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
 
@@ -452,11 +487,11 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_mother_level) - 1:
+        if level > len(_MOTHER_LEVEL) - 1:
             return self.DIST_MOTHER % {'step': step, 'inlaw': inlaw,
                                        'level': level}
         else:
-            return _mother_level[level] % {'step': step, 'inlaw': inlaw}
+            return _MOTHER_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_DAUGHTER = "distant %(step)sdescendant%(inlaw)s (%(level)d generations)"
 
@@ -464,18 +499,18 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_daughter_level) - 1:
+        if level > len(_DAUGHTER_LEVEL) - 1:
             return self.DIST_DAUGHTER % {'step': step, 'inlaw': inlaw,
                                          'level': level}
         else:
-            return _daughter_level[level] % {'step': step, 'inlaw': inlaw}
+            return _DAUGHTER_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     def _get_parent_unknown(self, level, step='', inlaw=''):
         """
         Internal english method to create relation string
         """
-        if level < len(_level_name):
-            return _level_name[level] + ' ' + '%sancestor%s' % (step, inlaw)
+        if level < len(_LEVEL_NAME):
+            return _LEVEL_NAME[level] + ' ' + '%sancestor%s' % (step, inlaw)
         else:
             return "distant %sancestor%s (%d generations)" % (step, inlaw,
                                                               level)
@@ -486,9 +521,9 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level < len(_level_name):
-            return _level_name[level] + ' ' + '%(step)sdescendant%(inlaw)s' % {
-                                                'step': step, 'inlaw': inlaw}
+        if level < len(_LEVEL_NAME):
+            return _LEVEL_NAME[level] + ' ' + '%(step)sdescendant%(inlaw)s' % {
+                'step': step, 'inlaw': inlaw}
         else:
             return self.DIST_CHILD % {'step': step, 'level': level}
 
@@ -498,10 +533,10 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_sister_level) - 1:
+        if level > len(_SISTER_LEVEL) - 1:
             return self.DIST_AUNT % {'step': step, 'inlaw': inlaw}
         else:
-            return _sister_level[level] % {'step': step, 'inlaw': inlaw}
+            return _SISTER_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_UNCLE = "distant %(step)suncle%(inlaw)s"
 
@@ -509,10 +544,10 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_brother_level) - 1:
+        if level > len(_BROTHER_LEVEL) - 1:
             return self.DIST_UNCLE % {'step': step, 'inlaw': inlaw}
         else:
-            return _brother_level[level] % {'step': step, 'inlaw': inlaw}
+            return _BROTHER_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_NEPHEW = "distant %(step)snephew%(inlaw)s"
 
@@ -520,10 +555,10 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_nephew_level) - 1:
+        if level > len(_NEPHEW_LEVEL) - 1:
             return self.DIST_NEPHEW % {'step': step, 'inlaw': inlaw}
         else:
-            return _nephew_level[level] % {'step': step, 'inlaw': inlaw}
+            return _NEPHEW_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     DIST_NIECE = "distant %(step)sniece%(inlaw)s"
 
@@ -531,24 +566,23 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level > len(_niece_level) - 1:
+        if level > len(_NIECE_LEVEL) - 1:
             return self.DIST_NIECE % {'step': step, 'inlaw': inlaw}
         else:
-            return _niece_level[level] % {'step': step, 'inlaw': inlaw}
+            return _NIECE_LEVEL[level] % {'step': step, 'inlaw': inlaw}
 
     def _get_cousin(self, level, removed, dir='', step='', inlaw=''):
         """
         Internal english method to create relation string
         """
-        if removed == 0 and level < len(_level_name):
-            return "%s %scousin%s" % (_level_name[level],
-                                        step, inlaw)
-        elif removed > len(_removed_level)-1 or level>len(_level_name)-1:
+        if removed == 0 and level < len(_LEVEL_NAME):
+            return "%s %scousin%s" % (_LEVEL_NAME[level], step, inlaw)
+        elif removed > len(_REMOVED_LEVEL)-1 or level > len(_LEVEL_NAME)-1:
             return "distant %srelative%s" % (step, inlaw)
         else:
-            return "%s %scousin%s%s%s" % (_level_name[level],
-                                        step, inlaw,
-                                        _removed_level[removed], dir)
+            return "%s %scousin%s%s%s" % (_LEVEL_NAME[level],
+                                          step, inlaw,
+                                          _REMOVED_LEVEL[removed], dir)
 
     DIST_SIB = "distant %(step)suncle/aunt%(inlaw)s"
 
@@ -556,8 +590,8 @@ class RelationshipCalculator(object):
         """
         Internal english method to create relation string
         """
-        if level < len(_sibling_level):
-            return _sibling_level[level] % {'step': step, 'inlaw': inlaw}
+        if level < len(_SIBLING_LEVEL):
+            return _SIBLING_LEVEL[level] % {'step': step, 'inlaw': inlaw}
         else:
             return self.DIST_SIB % {'step': step, 'inlaw': inlaw}
 
@@ -578,7 +612,7 @@ class RelationshipCalculator(object):
                 return self.HALF_SIB_FATHER
             elif motherother == motherorig:
                 return self.HALF_SIB_MOTHER
-            else :
+            else:
                 return self.STEP_SIB
         else:
             # some birth parents are not known, hence we or cannot know if
@@ -625,10 +659,9 @@ class RelationshipCalculator(object):
             family = db.get_family_from_handle(fam)
             if not family:
                 continue
-            childrel = [(ref.get_mother_relation(),
-                             ref.get_father_relation()) for ref in
-                                family.get_child_ref_list()
-                                if ref.ref == person.handle]
+            childrel = [(ref.get_mother_relation(), ref.get_father_relation())
+                        for ref in family.get_child_ref_list()
+                        if ref.ref == person.handle]
             if not birthmother and childrel[0][0] == ChildRefType.BIRTH:
                 birthmother = family.get_mother_handle()
             if not birthfather and childrel[0][1] == ChildRefType.BIRTH:
@@ -649,20 +682,19 @@ class RelationshipCalculator(object):
             family = db.get_family_from_handle(fam)
             if not family:
                 continue
-            childrel = [(ref.get_mother_relation(),
-                             ref.get_father_relation()) for ref in
-                                family.get_child_ref_list()
-                                if ref.ref == person.handle]
-            if not childrel[0][0] == ChildRefType.BIRTH \
-                    and not childrel[0][0] == ChildRefType.UNKNOWN :
+            childrel = [(ref.get_mother_relation(), ref.get_father_relation())
+                        for ref in family.get_child_ref_list()
+                        if ref.ref == person.handle]
+            if childrel[0][0] != ChildRefType.BIRTH \
+                    and childrel[0][0] != ChildRefType.UNKNOWN:
                 nb_parents.append(family.get_mother_handle())
-            if not childrel[0][1] == ChildRefType.BIRTH \
-                    and not childrel[0][1] == ChildRefType.UNKNOWN :
+            if childrel[0][1] != ChildRefType.BIRTH \
+                    and childrel[0][1] != ChildRefType.UNKNOWN:
                 nb_parents.append(family.get_father_handle())
         #make every person appear only once:
         return list(set(nb_parents))
 
-    def _get_spouse_type(self, db, orig, other, all_rel = False):
+    def _get_spouse_type(self, db, orig, other, all_rel=False):
         """
         Translation free determination if orig and other are partners.
         The procedure returns partner types, these can be passed to
@@ -682,7 +714,7 @@ class RelationshipCalculator(object):
                 for eventref in family.get_event_ref_list():
                     event = db.get_event_from_handle(eventref.ref)
                     if event and (event.get_type() == EventType.DIVORCE
-                        or event.get_type() == EventType.ANNULMENT):
+                                  or event.get_type() == EventType.ANNULMENT):
                         ex = True
                         break
                 if family_rel == FamilyRelType.MARRIED:
@@ -706,7 +738,7 @@ class RelationshipCalculator(object):
                     else:
                         val.append(self.PARTNER_UNKNOWN_REL)
 
-        if all_rel :
+        if all_rel:
             return val
         else:
             #last relation is normally the defenitive relation
@@ -722,7 +754,8 @@ class RelationshipCalculator(object):
         spouse_type = self._get_spouse_type(db, orig, other, all_rel)
         if spouse_type:
             return self.get_partner_relationship_string(spouse_type,
-                        orig.get_gender(), other.get_gender())
+                                                        orig.get_gender(),
+                                                        other.get_gender())
         else:
             return None
 
@@ -786,125 +819,128 @@ class RelationshipCalculator(object):
         :type only_birth:  bool
         """
         #data storage to communicate with recursive functions
-        self.__maxDepthReached = False
-        self.__loopDetected = False
+        self.__max_depth_reached = False
+        self.__loop_detected = False
         self.__max_depth = self.get_depth()
         self.__all_families = all_families
         self.__all_dist = all_dist
         self.__only_birth = only_birth
         self.__crosslinks = False    # no crosslinks
 
-        firstRel   = -1
-        secondRel  = -1
+        first_rel = -1
+        second_rel = -1
         self.__msg = []
 
         common = []
-        firstMap = {}
-        secondMap = {}
+        first_map = {}
+        second_map = {}
         rank = 9999999
 
         try:
             if (self.storemap and self.stored_map is not None
                     and self.map_handle == orig_person.handle
                     and not self.dirtymap):
-                firstMap = self.stored_map
-                self.__maxDepthReached, self.__loopDetected, \
+                first_map = self.stored_map
+                self.__max_depth_reached, self.__loop_detected, \
                  self.__all_families,\
                  self.__all_dist, self.__only_birth,\
                  self.__crosslinks, self.__msg = self.map_meta
                 self.__msg = list(self.__msg)
             else:
-                self.__apply_filter(db, orig_person, '', [], firstMap)
-                self.map_meta = (self.__maxDepthReached,
-                                 self.__loopDetected,
+                self.__apply_filter(db, orig_person, '', [], first_map)
+                self.map_meta = (self.__max_depth_reached,
+                                 self.__loop_detected,
                                  self.__all_families,
                                  self.__all_dist, self.__only_birth,
                                  self.__crosslinks, list(self.__msg))
-            self.__apply_filter(db, other_person, '', [], secondMap,
-                                    stoprecursemap = firstMap)
+            self.__apply_filter(db, other_person, '', [], second_map,
+                                stoprecursemap=first_map)
         except RuntimeError:
-            return (-1, None, -1, [], -1, []) , \
+            return (-1, None, -1, [], -1, []), \
                             [_("Relationship loop detected")] + self.__msg
 
         if self.storemap:
-            self.stored_map = firstMap
+            self.stored_map = first_map
             self.dirtymap = False
             self.map_handle = orig_person.handle
 
-        for person_handle in secondMap :
-            if person_handle in firstMap :
+        for person_handle in second_map:
+            if person_handle in first_map:
                 com = []
                 #a common ancestor
-                for rel1, fam1 in zip(firstMap[person_handle][0],
-                                        firstMap[person_handle][1]):
-                    l1 = len(rel1)
-                    for rel2, fam2 in zip(secondMap[person_handle][0],
-                                        secondMap[person_handle][1]):
-                        l2 = len(rel2)
+                for rel1, fam1 in zip(first_map[person_handle][0],
+                                      first_map[person_handle][1]):
+                    len1 = len(rel1)
+                    for rel2, fam2 in zip(second_map[person_handle][0],
+                                          second_map[person_handle][1]):
+                        len2 = len(rel2)
                         #collect paths to arrive at common ancestor
-                        com.append((l1+l2, person_handle, rel1, fam1,
-                                                          rel2, fam2))
+                        com.append((len1+len2, person_handle, rel1, fam1,
+                                    rel2, fam2))
                 #insert common ancestor in correct position,
                 #  if shorter links, check if not subset
                 #  if longer links, check if not superset
                 pos = 0
-                for ranknew, handlenew, rel1new, fam1new, rel2new, fam2new in com :
+                for (ranknew, handlenew, rel1new, fam1new, rel2new,
+                     fam2new) in com:
                     insert = True
-                    for rank, handle, rel1, fam1, rel2, fam2 in common :
-                        if ranknew < rank :
+                    for rank, handle, rel1, fam1, rel2, fam2 in common:
+                        if ranknew < rank:
                             break
-                        elif ranknew >= rank :
+                        elif ranknew >= rank:
                             #check subset
                             if rel1 == rel1new[:len(rel1)] and \
-                                    rel2 == rel2new[:len(rel2)] :
+                                    rel2 == rel2new[:len(rel2)]:
                                 #subset relation exists already
                                 insert = False
                                 break
                         pos += 1
-                    if insert :
-                        if common :
-                            common.insert(pos, (ranknew, handlenew,
-                                    rel1new, fam1new, rel2new, fam2new))
+                    if insert:
+                        if common:
+                            common.insert(pos, (ranknew, handlenew, rel1new,
+                                                fam1new, rel2new, fam2new))
                         else:
-                            common = [(ranknew, handlenew,
-                                    rel1new, fam1new, rel2new, fam2new)]
+                            common = [(ranknew, handlenew, rel1new, fam1new,
+                                       rel2new, fam2new)]
                         #now check if superset must be deleted from common
                         deletelist = []
                         index = pos+1
-                        for rank, handle, rel1, fam1, rel2, fam2 in common[pos+1:]:
+                        for (rank, handle, rel1, fam1, rel2,
+                             fam2) in common[pos+1:]:
                             if rel1new == rel1[:len(rel1new)] and \
-                                    rel2new == rel2[:len(rel2new)] :
+                                    rel2new == rel2[:len(rel2new)]:
                                 deletelist.append(index)
                             index += 1
                         deletelist.reverse()
                         for index in deletelist:
                             del common[index]
         #check for extra messages
-        if self.__maxDepthReached :
+        if self.__max_depth_reached:
             self.__msg += [_('Family Tree reaches back more than the maximum '
-                        '%d generations searched.\nIt is possible that '
-                        'relationships have been missed') % (self.__max_depth)]
+                             '%d generations searched.\nIt is possible that '
+                             'relationships have been missed') %
+                           (self.__max_depth)]
 
-        if common and not self.__all_dist :
-            rank          = common[0][0]
+        if common and not self.__all_dist:
+            rank = common[0][0]
             person_handle = common[0][1]
-            firstRel      = common[0][2]
-            firstFam      = common[0][3]
-            secondRel     = common[0][4]
-            secondFam     = common[0][5]
-            return (rank, person_handle, firstRel, firstFam, secondRel, secondFam),\
-                        self.__msg
-        if common :
+            first_rel = common[0][2]
+            first_fam = common[0][3]
+            second_rel = common[0][4]
+            second_fam = common[0][5]
+            return (rank, person_handle, first_rel, first_fam, second_rel,
+                    second_fam), self.__msg
+        if common:
             #list with tuples (rank, handle person,rel_str_orig,rel_fam_orig,
             #       rel_str_other,rel_fam_str) and messages
             return common, self.__msg
-        if not self.__all_dist :
+        if not self.__all_dist:
             return  (-1, None, '', [], '', []), self.__msg
-        else :
+        else:
             return [(-1, None, '', [], '', [])], self.__msg
 
     def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
-                            depth=1, stoprecursemap=None):
+                       depth=1, stoprecursemap=None):
         """
         Typically this method is called recursively in two ways:
         First method is stoprecursemap= None
@@ -918,11 +954,11 @@ class RelationshipCalculator(object):
         will be looked up anyway an stored if common. At end the doubles
         are filtered out
         """
-        if person is None or not person.handle :
+        if person is None or not person.handle:
             return
 
         if depth > self.__max_depth:
-            self.__maxDepthReached = True
+            self.__max_depth_reached = True
             #print('Maximum ancestor generations ('+str(depth)+') reached', \
             #            '(' + rel_str + ').',\
             #            'Stopping relation algorithm.')
@@ -949,15 +985,15 @@ class RelationshipCalculator(object):
             #check if there is no loop father son of his son, ...
             # loop means person is twice reached, same rel_str in begin
             for rel1 in pmap[person.handle][0]:
-                for rel2 in pmap[person.handle][0] :
+                for rel2 in pmap[person.handle][0]:
                     if len(rel1) < len(rel2) and \
                             rel1 == rel2[:len(rel1)]:
                         #loop, keep one message in storage!
-                        self.__loopDetected = True
+                        self.__loop_detected = True
                         self.__msg += [_("Relationship loop detected:") + " " +
                                        _("Person %(person)s connects to himself via %(relation)s")  %
                                        {'person' : person.get_primary_name().get_name(),
-                                        'relation' : rel2[len(rel1):] }]
+                                        'relation' : rel2[len(rel1):]}]
                         return
         elif store:
             pmap[person.handle] = [[rel_str], [rel_fam]]
@@ -965,71 +1001,70 @@ class RelationshipCalculator(object):
         #having added person to the pmap, we only look up recursively to
         # parents if this person is not common relative
         # if however the first map has crosslinks, we need to continue reduced
-        if commonancestor and not self.__crosslinks :
+        if commonancestor and not self.__crosslinks:
             #don't continue search, great speedup!
             return
 
         family_handles = []
         main = person.get_main_parents_family_handle()
-        if main :
+        if main:
             family_handles = [main]
-        if self.__all_families :
+        if self.__all_families:
             family_handles = person.get_parent_family_handle_list()
 
         try:
             parentstodo = {}
             fam = 0
-            for family_handle in family_handles :
+            for family_handle in family_handles:
                 rel_fam_new = rel_fam + [fam]
                 family = db.get_family_from_handle(family_handle)
                 if not family:
                     continue
                 #obtain childref for this person
                 childrel = [(ref.get_mother_relation(),
-                             ref.get_father_relation()) for ref in
-                                family.get_child_ref_list()
-                                if ref.ref == person.handle]
+                             ref.get_father_relation())
+                            for ref in family.get_child_ref_list()
+                            if ref.ref == person.handle]
                 fhandle = family.father_handle
                 mhandle = family.mother_handle
                 for data in [(fhandle, self.REL_FATHER,
-                                self.REL_FATHER_NOTBIRTH, childrel[0][1]),
+                              self.REL_FATHER_NOTBIRTH, childrel[0][1]),
                              (mhandle, self.REL_MOTHER,
-                                self.REL_MOTHER_NOTBIRTH, childrel[0][0])]:
-                    if data[0] and data[0] not in parentstodo :
+                              self.REL_MOTHER_NOTBIRTH, childrel[0][0])]:
+                    if data[0] and data[0] not in parentstodo:
                         persontodo = db.get_person_from_handle(data[0])
-                        if data[3] == ChildRefType.BIRTH :
+                        if data[3] == ChildRefType.BIRTH:
                             addstr = data[1]
-                        elif not self.__only_birth :
+                        elif not self.__only_birth:
                             addstr = data[2]
-                        else :
+                        else:
                             addstr = ''
-                        if addstr :
+                        if addstr:
                             parentstodo[data[0]] = (persontodo,
                                                     rel_str + addstr,
                                                     rel_fam_new)
-                    elif data [0] and data[0] in parentstodo:
+                    elif data[0] and data[0] in parentstodo:
                         #this person is already scheduled to research
                         #update family list
                         famlist = parentstodo[data[0]][2]
                         if not isinstance(famlist[-1], list) and \
-                                not fam == famlist[-1]:
+                                fam != famlist[-1]:
                             famlist = famlist[:-1] + [[famlist[-1]]]
                         if isinstance(famlist[-1], list) and \
-                                fam not in famlist[-1] :
+                                fam not in famlist[-1]:
                             famlist = famlist[:-1] + [famlist[-1] + [fam]]
                             parentstodo[data[0]] = (parentstodo[data[0]][0],
                                                     parentstodo[data[0]][1],
-                                                    famlist
-                                                    )
+                                                    famlist)
                 if not fhandle and not mhandle and stoprecursemap is None:
                     #family without parents, add brothers for orig person
                     #other person has recusemap, and will stop when seeing
                     #the brother.
                     child_list = [ref.ref for ref in family.get_child_ref_list()
-                          if ref.ref != person.handle]
+                                  if ref.ref != person.handle]
                     addstr = self.REL_SIBLING
-                    for chandle in child_list :
-                        if chandle in pmap :
+                    for chandle in child_list:
+                        if chandle in pmap:
                             pmap[chandle][0] += [rel_str + addstr]
                             pmap[chandle][1] += [rel_fam_new]
                             #person is already a grandparent in another branch
@@ -1039,8 +1074,8 @@ class RelationshipCalculator(object):
 
             for handle, data in parentstodo.items():
                 self.__apply_filter(db, data[0],
-                                data[1], data[2],
-                                pmap, depth, stoprecursemap)
+                                    data[1], data[2],
+                                    pmap, depth, stoprecursemap)
         except:
             import traceback
             traceback.print_exc()
@@ -1063,17 +1098,17 @@ class RelationshipCalculator(object):
                   In the case of sibling, this is replaced by family
                   with common ancestor handles empty list []!
         """
-        if relations[0][0] == -1 :
+        if relations[0][0] == -1:
             return relations
         commonnew = []
         existing_path = []
         for relation in relations:
             relstrfirst = None
             commonhandle = [relation[1]]
-            if relation[2] :
+            if relation[2]:
                 relstrfirst = relation[2][:-1]
             relstrsec = None
-            if relation[4] :
+            if relation[4]:
                 relstrsec = relation[4][:-1]
             relfamfirst = relation[3][:]
             relfamsec = relation[5][:]
@@ -1127,21 +1162,20 @@ class RelationshipCalculator(object):
                     frstcomstr = rela2[-1]
                     scndcomstr = tmp[2][-1]
                     newcomstra = self._famrel_from_persrel(frstcomstr,
-                                                            scndcomstr)
+                                                           scndcomstr)
                     frstcomstr = rela4[-1]
                     scndcomstr = tmp[4][-1]
                     newcomstrb = self._famrel_from_persrel(frstcomstr,
-                                                            scndcomstr)
+                                                           scndcomstr)
 
                     commonnew[posfam] = (tmp[0], tmp[1]+commonhandle,
-                                 rela2[:-1]+newcomstra,
-                                 tmp[3], rela4[:-1]+newcomstrb,
-                                 tmp[5])
-                else :
+                                         rela2[:-1]+newcomstra,
+                                         tmp[3], rela4[:-1]+newcomstrb,
+                                         tmp[5])
+                else:
                     existing_path.append(familypath)
                     commonnew.append((relation[0], commonhandle, rela2,
-                                    familypath[2], rela4, familypath[3])
-                                    )
+                                      familypath[2], rela4, familypath[3]))
         #we now have multiple person handles, single families, now collapse
         #  families again if all else equal
         collapsed = commonnew[:1]
@@ -1183,14 +1217,18 @@ class RelationshipCalculator(object):
         if persrela == persrelb:
             #should not happen, procedure called in error, just return value
             return persrela
-        if (persrela == self.REL_MOTHER and persrelb == self.REL_FATHER) or \
-            (persrelb == self.REL_MOTHER and persrela == self.REL_FATHER):
+        if ((persrela == self.REL_MOTHER and persrelb == self.REL_FATHER) or
+                (persrelb == self.REL_MOTHER and persrela == self.REL_FATHER)):
             return self.REL_FAM_BIRTH
-        if (persrela == self.REL_MOTHER and persrelb == self.REL_FATHER_NOTBIRTH) or \
-            (persrelb == self.REL_MOTHER and persrela == self.REL_FATHER_NOTBIRTH):
+        if ((persrela == self.REL_MOTHER and
+             persrelb == self.REL_FATHER_NOTBIRTH) or
+                (persrelb == self.REL_MOTHER and
+                 persrela == self.REL_FATHER_NOTBIRTH)):
             return self.REL_FAM_BIRTH_MOTH_ONLY
-        if (persrela == self.REL_FATHER and persrelb == self.REL_MOTHER_NOTBIRTH) or \
-            (persrelb == self.REL_FATHER and persrela == self.REL_MOTHER_NOTBIRTH):
+        if ((persrela == self.REL_FATHER and
+             persrelb == self.REL_MOTHER_NOTBIRTH) or
+                (persrelb == self.REL_FATHER and
+                 persrela == self.REL_MOTHER_NOTBIRTH)):
             return self.REL_FAM_BIRTH_FATH_ONLY
         #catch calling with family relations already, return val
         if (persrela == self.REL_FAM_BIRTH or
@@ -1210,11 +1248,11 @@ class RelationshipCalculator(object):
         Given a path to common ancestor. Return True if only birth
         relations, False otherwise
         """
-        only_birth = True
-        for str in path:
-            only_birth = only_birth and (str not in [self.REL_FAM_NONBIRTH,
-                           self.REL_FATHER_NOTBIRTH, self.REL_MOTHER_NOTBIRTH])
-        return only_birth
+        for value in path:
+            if value in [self.REL_FAM_NONBIRTH, self.REL_FATHER_NOTBIRTH,
+                         self.REL_MOTHER_NOTBIRTH]:
+                return False
+        return True
 
     def get_one_relationship(self, db, orig_person, other_person,
                              extra_info=False, olocale=glocale):
@@ -1251,9 +1289,8 @@ class RelationshipCalculator(object):
                 return rel_str
 
         data, msg = self.get_relationship_distance_new(
-                                db, orig_person, other_person,
-                                all_dist=True,
-                                all_families=True, only_birth=False)
+            db, orig_person, other_person, all_dist=True, all_families=True,
+            only_birth=False)
         if data[0][0] == -1:
             if extra_info:
                 return ('', -1, -1)
@@ -1265,7 +1302,7 @@ class RelationshipCalculator(object):
         #most relevant relationship is a birth family relation of lowest rank
         databest = [data[0]]
         rankbest = data[0][0]
-        for rel in data :
+        for rel in data:
             #data is sorted on rank
             if rel[0] == rankbest:
                 databest.append(rel)
@@ -1276,19 +1313,15 @@ class RelationshipCalculator(object):
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == dist_other == 1:
                 rel_str = self.get_sibling_relationship_string(
-                            self.get_sibling_type(
-                                                db, orig_person, other_person),
-                            orig_person.get_gender(),
-                            other_person.get_gender())
+                    self.get_sibling_type(db, orig_person, other_person),
+                    orig_person.get_gender(),
+                    other_person.get_gender())
             else:
-                rel_str = self.get_single_relationship_string(dist_orig,
-                                                  dist_other,
-                                                  orig_person.get_gender(),
-                                                  other_person.get_gender(),
-                                                  rel[2], rel[4],
-                                                  only_birth=birth,
-                                                  in_law_a=False,
-                                                  in_law_b=False)
+                rel_str = self.get_single_relationship_string(
+                    dist_orig, dist_other,
+                    orig_person.get_gender(), other_person.get_gender(),
+                    rel[2], rel[4], only_birth=birth,
+                    in_law_a=False, in_law_b=False)
         else:
             order = [self.REL_FAM_BIRTH, self.REL_FAM_BIRTH_MOTH_ONLY,
                      self.REL_FAM_BIRTH_FATH_ONLY, self.REL_MOTHER,
@@ -1302,7 +1335,7 @@ class RelationshipCalculator(object):
                     rel = relother
                     break
                 if not relbirth and self.only_birth(relother[2]) \
-                                and self.only_birth(relother[4]) :
+                                and self.only_birth(relother[4]):
                     #birth takes precedence
                     rel = relother
                     continue
@@ -1329,20 +1362,16 @@ class RelationshipCalculator(object):
             dist_other = len(rel[4])
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == dist_other == 1:
-                rel_str =  self.get_sibling_relationship_string(
-                            self.get_sibling_type(
-                                                db, orig_person, other_person),
-                            orig_person.get_gender(),
-                            other_person.get_gender())
+                rel_str = self.get_sibling_relationship_string(
+                    self.get_sibling_type(db, orig_person, other_person),
+                    orig_person.get_gender(),
+                    other_person.get_gender())
             else:
-                rel_str = self.get_single_relationship_string(dist_orig,
-                                                  dist_other,
-                                                  orig_person.get_gender(),
-                                                  other_person.get_gender(),
-                                                  rel[2], rel[4],
-                                                  only_birth=birth,
-                                                  in_law_a=False,
-                                                  in_law_b=False)
+                rel_str = self.get_single_relationship_string(
+                    dist_orig, dist_other,
+                    orig_person.get_gender(), other_person.get_gender(),
+                    rel[2], rel[4], only_birth=birth,
+                    in_law_a=False, in_law_b=False)
         if extra_info:
             return (rel_str, dist_orig, dist_other)
         else:
@@ -1368,12 +1397,11 @@ class RelationshipCalculator(object):
             commons[is_spouse] = []
 
         data, msg = self.get_relationship_distance_new(
-                                db, orig_person, other_person,
-                                all_dist=True,
-                                all_families=True, only_birth=False)
-        if not data[0][0] == -1:
+            db, orig_person, other_person, all_dist=True, all_families=True,
+            only_birth=False)
+        if data[0][0] != -1:
             data = self.collapse_relations(data)
-            for rel in data :
+            for rel in data:
                 rel2 = rel[2]
                 rel4 = rel[4]
                 rel1 = rel[1]
@@ -1387,20 +1415,15 @@ class RelationshipCalculator(object):
                 birth = self.only_birth(rel2) and self.only_birth(rel4)
                 if dist_orig == dist_other == 1:
                     rel_str = self.get_sibling_relationship_string(
-                                self.get_sibling_type(
-                                                db, orig_person, other_person),
-                                orig_person.get_gender(),
-                                other_person.get_gender())
+                        self.get_sibling_type(db, orig_person, other_person),
+                        orig_person.get_gender(), other_person.get_gender())
                 else:
-                    rel_str = self.get_single_relationship_string(dist_orig,
-                                                     dist_other,
-                                                     orig_person.get_gender(),
-                                                     other_person.get_gender(),
-                                                     rel2, rel4,
-                                                     only_birth=birth,
-                                                     in_law_a=False,
-                                                     in_law_b=False)
-                if not rel_str in relstrings:
+                    rel_str = self.get_single_relationship_string(
+                        dist_orig, dist_other,
+                        orig_person.get_gender(), other_person.get_gender(),
+                        rel2, rel4, only_birth=birth,
+                        in_law_a=False, in_law_b=False)
+                if rel_str not in relstrings:
                     relstrings.append(rel_str)
                     if rel1:
                         commons[rel_str] = rel1
@@ -1460,54 +1483,54 @@ class RelationshipCalculator(object):
         rel_str = "distant relatives"
         if Ga == 0:
             # These are descendants
-            if Gb < len(_children_level):
-                rel_str = _children_level[Gb]
+            if Gb < len(_CHILDREN_LEVEL):
+                rel_str = _CHILDREN_LEVEL[Gb]
             else:
                 rel_str = "distant descendants"
         elif Gb == 0:
             # These are parents/grand parents
-            if Ga < len(_parents_level):
-                rel_str = _parents_level[Ga]
+            if Ga < len(_PARENTS_LEVEL):
+                rel_str = _PARENTS_LEVEL[Ga]
             else:
                 rel_str = "distant ancestors"
         elif Gb == 1:
             # These are siblings/aunts/uncles
-            if Ga < len(_siblings_level):
-                rel_str = _siblings_level[Ga]
+            if Ga < len(_SIBLINGS_LEVEL):
+                rel_str = _SIBLINGS_LEVEL[Ga]
             else:
                 rel_str = "distant uncles/aunts"
         elif Ga == 1:
             # These are nieces/nephews
-            if Gb < len(_nephews_nieces_level):
-                rel_str = _nephews_nieces_level[Gb]
+            if Gb < len(_NEPHEWS_NIECES_LEVEL):
+                rel_str = _NEPHEWS_NIECES_LEVEL[Gb]
             else:
                 rel_str = "distant nephews/nieces"
         elif Ga > 1 and Ga == Gb:
             # These are cousins in the same generation
-            if Ga <= len(_level_name):
-                rel_str = "%s cousins" % _level_name[Ga-1]
+            if Ga <= len(_LEVEL_NAME):
+                rel_str = "%s cousins" % _LEVEL_NAME[Ga-1]
             else:
                 rel_str = "distant cousins"
         elif Ga > 1 and Ga > Gb:
             # These are cousins in different generations with the second person
             # being in a higher generation from the common ancestor than the
             # first person.
-            if Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level):
-                rel_str = "%s cousins%s (up)" % ( _level_name[Gb-1],
-                                                  _removed_level[Ga-Gb] )
+            if Gb <= len(_LEVEL_NAME) and (Ga-Gb) < len(_REMOVED_LEVEL):
+                rel_str = "%s cousins%s (up)" % (_LEVEL_NAME[Gb-1],
+                                                 _REMOVED_LEVEL[Ga-Gb])
             else:
-                rel_str =  "distant cousins"
+                rel_str = "distant cousins"
         elif Gb > 1 and Gb > Ga:
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
             # first person.
-            if Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level):
-                rel_str = "%s cousins%s (down)" % ( _level_name[Ga-1],
-                                                    _removed_level[Gb-Ga] )
+            if Ga <= len(_LEVEL_NAME) and (Gb-Ga) < len(_REMOVED_LEVEL):
+                rel_str = "%s cousins%s (down)" % (_LEVEL_NAME[Ga-1],
+                                                   _REMOVED_LEVEL[Gb-Ga])
             else:
-                rel_str =  "distant cousins"
+                rel_str = "distant cousins"
 
-        if in_law_b == True:
+        if in_law_b is True:
             rel_str = "spouses of %s" % rel_str
 
         return rel_str
@@ -1611,7 +1634,7 @@ class RelationshipCalculator(object):
         else:
             step = self.STEP
 
-        if in_law_a or in_law_b :
+        if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
             inlaw = ''
@@ -1620,7 +1643,7 @@ class RelationshipCalculator(object):
 
         if Ga == 0:
             # b is descendant of a
-            if Gb == 0 :
+            if Gb == 0:
                 rel_str = 'same person'
             elif gender_b == MALE:
                 rel_str = self._get_son(Gb, step, inlaw)
@@ -1650,27 +1673,26 @@ class RelationshipCalculator(object):
                 rel_str = self._get_nephew(Gb-1, step, inlaw)
             elif gender_b == FEMALE:
                 rel_str = self._get_niece(Gb-1, step, inlaw)
-            elif Gb < len(_niece_level) and Gb < len(_nephew_level):
+            elif Gb < len(_NIECE_LEVEL) and Gb < len(_NEPHEW_LEVEL):
                 rel_str = "%s or %s" % (self._get_nephew(Gb-1, step, inlaw),
                                         self._get_niece(Gb-1, step, inlaw))
             else:
                 rel_str = "distant %snephews/nieces%s" % (step, inlaw)
         elif Ga == Gb:
             # a and b cousins in the same generation
-            rel_str = self._get_cousin(Ga-1, 0, dir = '', step=step,
-                                     inlaw=inlaw)
+            rel_str = self._get_cousin(Ga-1, 0, dir='', step=step, inlaw=inlaw)
         elif Ga > Gb:
             # These are cousins in different generations with the second person
             # being in a higher generation from the common ancestor than the
             # first person.
-            rel_str = self._get_cousin(Gb-1, Ga-Gb, dir = ' (up)',
-                                     step=step, inlaw=inlaw)
+            rel_str = self._get_cousin(Gb-1, Ga-Gb, dir=' (up)',
+                                       step=step, inlaw=inlaw)
         elif Gb > Ga:
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
             # first person.
-            rel_str = self._get_cousin(Ga-1, Gb-Ga, dir = ' (down)',
-                                     step=step, inlaw=inlaw)
+            rel_str = self._get_cousin(Ga-1, Gb-Ga, dir=' (down)',
+                                       step=step, inlaw=inlaw)
         return rel_str
 
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
@@ -1695,7 +1717,7 @@ class RelationshipCalculator(object):
         elif sib_type == self.STEP_SIB:
             typestr = self.STEP
 
-        if in_law_a or in_law_b :
+        if in_law_a or in_law_b:
             inlaw = self.INLAW
         else:
             inlaw = ''
@@ -1797,18 +1819,17 @@ class RelationshipCalculator(object):
         """
         if self.__db_connected:
             return
-        assert(len(self.signal_keys)==0)
+        assert len(self.signal_keys) == 0
         self.state_signal_key = dbstate.connect('database-changed',
-                                                    self._dbchange_callback)
+                                                self._dbchange_callback)
         self.__connect_db_signals(dbstate.db)
 
     def __connect_db_signals(self, db):
         signals = ['person-add', 'person-update', 'person-delete',
-                    'person-rebuild', 'family-add', 'family-update',
-                    'family-delete', 'family-rebuild', 'database-changed']
+                   'person-rebuild', 'family-add', 'family-update',
+                   'family-delete', 'family-rebuild', 'database-changed']
         for name in signals:
-            self.signal_keys.append(db.connect(name,
-                                                    self._datachange_callback))
+            self.signal_keys.append(db.connect(name, self._datachange_callback))
         self.storemap = True
         self.__db_connected = True
 
@@ -1831,7 +1852,7 @@ class RelationshipCalculator(object):
         #signals are disconnected on close of old database, connect to new
         self.__connect_db_signals(db)
 
-    def _datachange_callback(self, list=[]):
+    def _datachange_callback(self, handle_list):
         """
         When data in database changes, the map can no  longer be used.
         As the map might be in use or might be generated at the moment,
@@ -1881,7 +1902,8 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
                     break
         if not relation_translation_found and \
             len(PluginRegister.get_instance().relcalc_plugins()):
-            LOG.warning(_("Family relationship translator not available for language '%s'. Using 'english' instead.") % lang)
+            LOG.warning(_("Family relationship translator not available for "
+                          "language '%s'. Using 'english' instead."), lang)
     return __RELCALC_CLASS()
 
 #-------------------------------------------------------------------------
@@ -1889,8 +1911,10 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
 # Tests
 #
 #-------------------------------------------------------------------------
+MAX = 30
+FMT = '%+50s'
 
-def _test(rc, onlybirth, inlawa, inlawb, printrelstr, testNum = None):
+def _test(rcalc, onlybirth, inlawa, inlawb, printrelstr, test_num=None):
     """
     This is a generic test suite for the singular relationship
     TRANSLATORS: do NOT translate, use __main__ !
@@ -1899,24 +1923,21 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr, testNum = None):
     import random
     random.seed()
     def _rand_f_m():
-        if random.randint(0, 1) == 0 :
+        if random.randint(0, 1) == 0:
             return 'f'
         else:
             return 'm'
 
-    def _rand_relstr(len, endstr):
-        if len == 0:
+    def _rand_relstr(length, endstr):
+        if length == 0:
             return ''
         else:
             relstr = ''
-            for i in range(len-1):
+            for i in range(length-1):
                 relstr += _rand_f_m()
             return relstr + endstr
 
-    FMT = '%+50s'
-    MAX = 30
-
-    if testNum == None:
+    if test_num is None:
         print("""
 Select a test:
   0 - all tests
@@ -1940,344 +1961,286 @@ Select a test:
 
 Please enter a test number and press Enter for continue:
     """)
-        testNum = sys.stdin.readline().strip()
-        testNum = int(testNum)
+        test_num = sys.stdin.readline().strip()
+        test_num = int(test_num)
 
-    if testNum == 0 or testNum == 1:
+    if test_num == 0 or test_num == 1:
         print('\ntesting sons')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel =  FMT % rc.get_single_relationship_string(0, i,
-                                                MALE,
-                                                MALE,
-                                                '', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa,
-                                                in_law_b=inlawb)
-            if printrelstr :
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                0, i, MALE, MALE, '', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
                 print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 2:
+    if test_num == 0 or test_num == 2:
         print('\ntesting daughters\n')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(0, i,
-                                                MALE,
-                                                FEMALE,
-                                                '', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                0, i, MALE, FEMALE, '', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
                 print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 3:
+    if test_num == 0 or test_num == 3:
         print('\ntesting unknown children\n')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(0, i,
-                                                MALE,
-                                                UNKNOWN,
-                                                '', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                0, i, MALE, UNKNOWN, '', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
                 print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 4:
+    if test_num == 0 or test_num == 4:
         print('\ntesting grandfathers\n')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(i, 0,
-                                                FEMALE,
-                                                MALE,
-                                                relstr, '',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 0, FEMALE, MALE, relstr, '', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 5:
+    if test_num == 0 or test_num == 5:
         print('\ntesting grandmothers\n')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(i, 0,
-                                                FEMALE,
-                                                FEMALE,
-                                                relstr, '',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 0, FEMALE, FEMALE, relstr, '', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 6:
+    if test_num == 0 or test_num == 6:
         print('\ntesting unknown parents\n')
         #sys.stdin.readline()
-        for i in range(MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(i, 0,
-                                                FEMALE,
-                                                UNKNOWN,
-                                                relstr, '',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 0, FEMALE, UNKNOWN, relstr, '', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 7:
+    if test_num == 0 or test_num == 7:
         print('\ntesting nieces\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(1, i,
-                                                FEMALE,
-                                                FEMALE,
-                                                'm', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                1, i, FEMALE, FEMALE, 'm', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 8:
+    if test_num == 0 or test_num == 8:
         print('\ntesting nephews\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(1, i,
-                                                FEMALE,
-                                                MALE,
-                                                'f', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                1, i, FEMALE, MALE, 'f', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 9:
+    if test_num == 0 or test_num == 9:
         print('\ntesting unknown nephews/nieces\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(1, i,
-                                                FEMALE,
-                                                UNKNOWN,
-                                                'f', relstr,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                1, i, FEMALE, UNKNOWN, 'f', relstr, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 10:
+    if test_num == 0 or test_num == 10:
         print('\ntesting uncles\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(i, 1,
-                                                FEMALE,
-                                                MALE,
-                                                relstr, 'f',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 1, FEMALE, MALE, relstr, 'f', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 11:
+    if test_num == 0 or test_num == 11:
         print('\ntesting aunts\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(i, 1,
-                                                MALE,
-                                                FEMALE,
-                                                relstr, 'f',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 1, MALE, FEMALE, relstr, 'f', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 12:
+    if test_num == 0 or test_num == 12:
         print('\ntesting unknown uncles/aunts\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstr = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(i, 1,
-                                                MALE,
-                                                UNKNOWN,
-                                                relstr, 'm',
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstr)
+        for i in range(1, MAX):
+            relstr = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, 1, MALE, UNKNOWN, relstr, 'm', only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstr)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 13:
+    if test_num == 0 or test_num == 13:
         print('\ntesting male cousins same generation\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstra = _rand_relstr(i,'f')
-            relstrb = _rand_relstr(i,'f')
-            rel = FMT % rc.get_single_relationship_string(i, i,
-                                                MALE,
-                                                MALE,
-                                                relstra,
-                                                relstrb,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstra, relstrb)
+        for i in range(1, MAX):
+            relstra = _rand_relstr(i, 'f')
+            relstrb = _rand_relstr(i, 'f')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, i, MALE, MALE, relstra, relstrb, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstra, relstrb)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 14:
+    if test_num == 0 or test_num == 14:
         print('\ntesting female cousins same generation\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstra = _rand_relstr(i,'m')
-            relstrb = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(i, i,
-                                                MALE,
-                                                FEMALE,
-                                                relstra,
-                                                relstrb,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstra, relstrb)
+        for i in range(1, MAX):
+            relstra = _rand_relstr(i, 'm')
+            relstrb = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, i, MALE, FEMALE, relstra, relstrb, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstra, relstrb)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 15:
+    if test_num == 0 or test_num == 15:
         print('\ntesting unknown cousins same generation\n')
         #sys.stdin.readline()
-        for i in range(1, MAX) :
-            relstra = _rand_relstr(i,'m')
-            relstrb = _rand_relstr(i,'m')
-            rel = FMT % rc.get_single_relationship_string(i, i,
-                                                MALE,
-                                                UNKNOWN,
-                                                relstra,
-                                                relstrb,
-                                                only_birth=onlybirth,
-                                                in_law_a=inlawa, in_law_b=inlawb)
-            if printrelstr :
-                    print(rel + ' |info:', relstra, relstrb)
+        for i in range(1, MAX):
+            relstra = _rand_relstr(i, 'm')
+            relstrb = _rand_relstr(i, 'm')
+            rel = FMT % rcalc.get_single_relationship_string(
+                i, i, MALE, UNKNOWN, relstra, relstrb, only_birth=onlybirth,
+                in_law_a=inlawa, in_law_b=inlawb)
+            if printrelstr:
+                print(rel + ' |info:', relstra, relstrb)
             else:
                 print(rel)
-    if testNum == 0 or testNum == 16:
+    if test_num == 0 or test_num == 16:
         print('\ntesting some cousins up\n')
         #sys.stdin.readline()
-        import random
         random.seed()
-        for i in range(1, MAX) :
-            for j in range (i, MAX) :
+        for i in range(1, MAX):
+            for j in range(i, MAX):
                 rnd = random.randint(0, 100)
-                if rnd < 10 :
-                    relstra = _rand_relstr(j,'f')
-                    relstrb = _rand_relstr(i,'f')
-                    if rnd < 5 :
-                        rel =  (FMT + ' |info: female, Ga=%2d, Gb=%2d') % (
-                                        rc.get_single_relationship_string(j, i,
-                                        MALE,
-                                        FEMALE,
-                                        relstra, relstrb,
-                                        only_birth=onlybirth,
-                                        in_law_a=inlawa, in_law_b=inlawb), j, i )
-                        if printrelstr :
-                            print(rel + ' |info:', relstra, relstrb)
-                        else:
-                            print(rel)
-                    else:
-                        rel =  (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
-                                        rc.get_single_relationship_string(j, i,
-                                        MALE,
-                                        MALE,
-                                        relstra, relstrb,
-                                        only_birth=onlybirth,
-                                        in_law_a=inlawa, in_law_b=inlawb), j, i )
-                        if printrelstr :
-                            print(rel + ' |info:', relstra, relstrb)
-                        else:
-                            print(rel)
-    if testNum == 0 or testNum == 17:
-        print('\ntesting some cousins down\n')
-        #sys.stdin.readline()
-        for i in range(1, MAX) :
-            for j in range (i, MAX) :
-                rnd = random.randint(0, 100)
-                if rnd < 10 :
-                    relstra = _rand_relstr(i,'f')
-                    relstrb = _rand_relstr(j,'f')
-                    if rnd < 5 :
+                if rnd < 10:
+                    relstra = _rand_relstr(j, 'f')
+                    relstrb = _rand_relstr(i, 'f')
+                    if rnd < 5:
                         rel = (FMT + ' |info: female, Ga=%2d, Gb=%2d') % (
-                                        rc.get_single_relationship_string(i, j,
-                                        MALE,
-                                        FEMALE,
-                                        relstra, relstrb,
-                                        only_birth=onlybirth,
-                                        in_law_a=inlawa, in_law_b=inlawb), i, j)
-                        if printrelstr :
+                            rcalc.get_single_relationship_string(
+                                j, i, MALE, FEMALE, relstra, relstrb,
+                                only_birth=onlybirth,
+                                in_law_a=inlawa, in_law_b=inlawb), j, i)
+                        if printrelstr:
                             print(rel + ' |info:', relstra, relstrb)
                         else:
                             print(rel)
                     else:
                         rel = (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
-                                        rc.get_single_relationship_string(i, j,
-                                        MALE,
-                                        MALE,
-                                        relstra, relstrb,
-                                        only_birth=onlybirth,
-                                        in_law_a=inlawa, in_law_b=inlawb), i, j)
-                        if printrelstr :
+                            rcalc.get_single_relationship_string(
+                                j, i, MALE, MALE, relstra, relstrb,
+                                only_birth=onlybirth,
+                                in_law_a=inlawa, in_law_b=inlawb), j, i)
+                        if printrelstr:
+                            print(rel + ' |info:', relstra, relstrb)
+                        else:
+                            print(rel)
+    if test_num == 0 or test_num == 17:
+        print('\ntesting some cousins down\n')
+        #sys.stdin.readline()
+        for i in range(1, MAX):
+            for j in range(i, MAX):
+                rnd = random.randint(0, 100)
+                if rnd < 10:
+                    relstra = _rand_relstr(i, 'f')
+                    relstrb = _rand_relstr(j, 'f')
+                    if rnd < 5:
+                        rel = (FMT + ' |info: female, Ga=%2d, Gb=%2d') % (
+                            rcalc.get_single_relationship_string(
+                                i, j, MALE, FEMALE, relstra, relstrb,
+                                only_birth=onlybirth,
+                                in_law_a=inlawa, in_law_b=inlawb), i, j)
+                        if printrelstr:
+                            print(rel + ' |info:', relstra, relstrb)
+                        else:
+                            print(rel)
+                    else:
+                        rel = (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
+                            rcalc.get_single_relationship_string(
+                                i, j, MALE, MALE, relstra, relstrb,
+                                only_birth=onlybirth,
+                                in_law_a=inlawa, in_law_b=inlawb), i, j)
+                        if printrelstr:
                             print(rel + ' |info:', relstra, relstrb)
                         else:
                             print(rel)
 
-def _testsibling(rc):
-    vals = [(rc.NORM_SIB, 'sibling'),
-            (rc.HALF_SIB_MOTHER, 'half sib mother side'),
-            (rc.HALF_SIB_FATHER, 'half sib father side'),
-            (rc.STEP_SIB, 'step sib'), (rc.UNKNOWN_SIB, 'undetermined sib')]
-    FMT = '%+50s'
+def _testsibling(rcalc):
+    vals = [(rcalc.NORM_SIB, 'sibling'),
+            (rcalc.HALF_SIB_MOTHER, 'half sib mother side'),
+            (rcalc.HALF_SIB_FATHER, 'half sib father side'),
+            (rcalc.STEP_SIB, 'step sib'),
+            (rcalc.UNKNOWN_SIB, 'undetermined sib')]
     for gendr, strgen in [(MALE, 'male'),
-                           (FEMALE, 'female'),
-                           (UNKNOWN, 'unknown')]:
+                          (FEMALE, 'female'),
+                          (UNKNOWN, 'unknown')]:
         for inlaw in [False, True]:
-            for sibt, str in vals:
-                print(FMT % rc.get_sibling_relationship_string(
-                                sibt, MALE, gendr,
-                                in_law_a = inlaw) + ' |info:', str, strgen)
+            for sibt, text in vals:
+                print(FMT % rcalc.get_sibling_relationship_string(
+                    sibt, MALE, gendr, in_law_a=inlaw) +
+                      ' |info:', text, strgen)
 
-def _test_spouse(rc):
-    FMT = '%+50s'
-    vals = [(rc.PARTNER_MARRIED, 'married'), (rc.PARTNER_UNMARRIED, 'unmarried'),
-            (rc.PARTNER_CIVIL_UNION, 'civil union'),
-            (rc.PARTNER_UNKNOWN_REL, 'unknown rel'),
-            (rc.PARTNER_EX_MARRIED, 'ex-married'),
-            (rc.PARTNER_EX_UNMARRIED, 'ex-unmarried'),
-            (rc.PARTNER_EX_CIVIL_UNION, 'ex civil union'),
-            (rc.PARTNER_EX_UNKNOWN_REL, 'ex unknown rel')]
+def _test_spouse(rcalc):
+    vals = [(rcalc.PARTNER_MARRIED, 'married'),
+            (rcalc.PARTNER_UNMARRIED, 'unmarried'),
+            (rcalc.PARTNER_CIVIL_UNION, 'civil union'),
+            (rcalc.PARTNER_UNKNOWN_REL, 'unknown rel'),
+            (rcalc.PARTNER_EX_MARRIED, 'ex-married'),
+            (rcalc.PARTNER_EX_UNMARRIED, 'ex-unmarried'),
+            (rcalc.PARTNER_EX_CIVIL_UNION, 'ex civil union'),
+            (rcalc.PARTNER_EX_UNKNOWN_REL, 'ex unknown rel')]
 
     for gender, strgen in [(MALE, 'male'),
                            (FEMALE, 'female'),
-                           (UNKNOWN, 'unknown')] :
-        for spouse_type, str in vals:
-            print(FMT % rc.get_partner_relationship_string(
-                            spouse_type, MALE, gender) + \
-                            ' |info: gender='+strgen+', rel='+str)
+                           (UNKNOWN, 'unknown')]:
+        for spouse_type, text in vals:
+            print(FMT % rcalc.get_partner_relationship_string(
+                spouse_type, MALE, gender) +
+                  ' |info: gender='+strgen+', rel='+text)
 
-def test(rc, printrelstr):
+def test(rcalc, printrelstr):
     """
     This is a generic test suite for the singular relationship
     TRANSLATORS: do NOT translate, call this from
@@ -2287,13 +2250,13 @@ def test(rc, printrelstr):
     import argparse
 
     parser = argparse.ArgumentParser(description='Test the Relationship Calculator')
-    parser.add_argument('-r', type=int, help = 'type of the relations test')
-    parser.add_argument('-s', type=int, help = 'type of the singular relationship test')
+    parser.add_argument('-r', type=int, help='type of the relations test')
+    parser.add_argument('-s', type=int, help='type of the singular relationship test')
 
     args = parser.parse_args()
-    testNum = args.r
+    test_num = args.r
 
-    if testNum == None:
+    if test_num is None:
         print("""
 Select a test:
   0 - all tests
@@ -2306,39 +2269,34 @@ Select a test:
 
 Please enter a test number and press Enter for continue:
     """)
-        testNum = sys.stdin.readline().strip()
-        testNum = int(testNum)
+        test_num = sys.stdin.readline().strip()
+        test_num = int(test_num)
 
-    if testNum == 0 or testNum == 1:
+    if test_num == 0 or test_num == 1:
         print('\n\n=== Test normal relations ===')
-        _test(rc, True, False, False, printrelstr, args.s)
+        _test(rcalc, True, False, False, printrelstr, args.s)
 
-    if testNum == 0 or testNum == 2:
+    if test_num == 0 or test_num == 2:
         print('\n\n=== Test step relations ===')
-        _test(rc, False, False, False, printrelstr, args.s)
+        _test(rcalc, False, False, False, printrelstr, args.s)
 
-    if testNum == 0 or testNum == 3:
+    if test_num == 0 or test_num == 3:
         print('\n\n=== Test in-law relations (first pers) ===')
-        _test(rc, True, True, False, printrelstr, args.s)
+        _test(rcalc, True, True, False, printrelstr, args.s)
 
-    if testNum == 0 or testNum == 4:
+    if test_num == 0 or test_num == 4:
         print('\n\n=== Test step and in-law relations ===')
-        _test(rc, False, True, False, printrelstr, args.s)
+        _test(rcalc, False, True, False, printrelstr, args.s)
 
-    if testNum == 0 or testNum == 5:
+    if test_num == 0 or test_num == 5:
         print('\n\n=== Test sibling types ===')
-        _testsibling(rc)
+        _testsibling(rcalc)
 
-    if testNum == 0 or testNum == 6:
+    if test_num == 0 or test_num == 6:
         print('\n\n=== Test partner types ===')
-        _test_spouse(rc)
+        _test_spouse(rcalc)
 
 if __name__ == "__main__":
-    # Test function. Call it as follows from the command line (so as to find
-    #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src python src/plugins/rel_fr.py
-    # (Above not needed here)
-
     """
     TRANSLATORS, copy this if statement at the bottom of your
     rel_xx.py module, after adding: 'from Relationship import test'
@@ -2348,5 +2306,5 @@ if __name__ == "__main__":
 
     See eg rel_fr.py at the bottom
     """
-    rc = RelationshipCalculator()
-    test(rc, True)
+    REL_CALC = RelationshipCalculator()
+    test(REL_CALC, True)

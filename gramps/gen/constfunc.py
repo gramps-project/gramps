@@ -32,7 +32,6 @@ perform a translation on import, eg Gtk.
 #------------------------------------------------------------------------
 import platform
 import sys
-import ctypes
 import os
 
 #-------------------------------------------------------------------------
@@ -87,9 +86,12 @@ def is_quartz():
     """
     if mac():
         try:
+            import gi
+            gi.require_version('Gtk', '3.0')
+            gi.require_version('Gdk', '3.0')
             from gi.repository import Gtk
             from gi.repository import Gdk
-        except:
+        except ImportError:
             return False
         return Gdk.Display.get_default().__class__.__name__.endswith("QuartzDisplay")
     return False
@@ -102,9 +104,12 @@ def has_display():
     # in argv, and we might have unicode.
     temp, sys.argv = sys.argv, sys.argv[:1]
     try:
+        import gi
+        gi.require_version('Gtk', '3.0')
+        gi.require_version('Gdk', '3.0')
         from gi.repository import Gtk
         from gi.repository import Gdk
-    except:
+    except ImportError:
         return False
 
     try:
@@ -146,7 +151,7 @@ def get_env_var(name, default=None):
     environment variables. This routine does so using the native C
     wide-character function.
     '''
-    if not name or not name in os.environ:
+    if not name or name not in os.environ:
         return default
 
     return os.environ[name]

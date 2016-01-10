@@ -17,12 +17,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-# gen/__init__.py
 
 """
 The gen module provides packages that are common to all gramps
 interfaces (gui, cli and web).
 """
 
-__all__ = [ "datehandler", "db", "display", "filters", "lib", "locale", "merge",
-            "mime", "plug", "proxy", "simple", "utils" ]
+__all__ = ["datehandler", "db", "display", "filters", "lib", "merge",
+           "mime", "plug", "proxy", "simple", "utils"]

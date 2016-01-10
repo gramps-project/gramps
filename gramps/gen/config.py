@@ -31,7 +31,7 @@ This package implements access to GRAMPS configuration.
 # Gramps imports
 #
 #---------------------------------------------------------------
-import os, sys
+import os
 import re
 import logging
 
@@ -40,10 +40,10 @@ import logging
 # Gramps imports
 #
 #---------------------------------------------------------------
-from .const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from .const import HOME_DIR, USER_HOME, VERSION_DIR
 from .utils.configmanager import ConfigManager
+from .const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #---------------------------------------------------------------
 #
@@ -134,7 +134,7 @@ register('behavior.check-for-update-types', ["new"])
 register('behavior.last-check-for-updates', "1970/01/01")
 register('behavior.previously-seen-updates', [])
 register('behavior.do-not-show-previously-seen-updates', True)
-register('behavior.database-path', os.path.join( HOME_DIR, 'grampsdb'))
+register('behavior.database-path', os.path.join(HOME_DIR, 'grampsdb'))
 register('behavior.database-backend', 'bsddb')
 register('behavior.date-about-range', 50)
 register('behavior.date-after-range', 50)
@@ -154,13 +154,13 @@ register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
 register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps50")
 
-register('export.proxy-order', [
-        ["privacy", 0],
-        ["living", 0],
-        ["person", 0],
-        ["note", 0],
-        ["reference", 0],
-        ])
+register('export.proxy-order',
+         [["privacy", 0],
+          ["living", 0],
+          ["person", 0],
+          ["note", 0],
+          ["reference", 0]]
+        )
 
 register('geography.center-lon', 0.0)
 register('geography.lock', False)
@@ -365,7 +365,7 @@ if not os.path.exists(CONFIGMAN.filename):
         # read it in old style:
         logging.warning("Importing old key file 'keys.ini'...")
         CONFIGMAN.load(os.path.join(HOME_DIR, "keys.ini"),
-                            oldstyle=True)
+                       oldstyle=True)
         logging.warning("Done importing old key file 'keys.ini'")
     # other version upgrades here...
     # check previous version of gramps:
@@ -383,11 +383,14 @@ if not os.path.exists(CONFIGMAN.filename):
             # Perhaps addings specific list of versions to check
             # -----------------------------------------
             digits = str(int(match.groups()[0]) - i)
-            previous_grampsini = os.path.join(fullpath, "gramps" + str(digits), filename)
+            previous_grampsini = os.path.join(fullpath, "gramps" + digits,
+                                              filename)
             if os.path.exists(previous_grampsini):
-                logging.warning("Importing old config file '%s'..." % previous_grampsini)
+                logging.warning("Importing old config file '%s'...",
+                                previous_grampsini)
                 CONFIGMAN.load(previous_grampsini)
-                logging.warning("Done importing old config file '%s'" % previous_grampsini)
+                logging.warning("Done importing old config file '%s'",
+                                previous_grampsini)
                 break
 
 #---------------------------------------------------------------

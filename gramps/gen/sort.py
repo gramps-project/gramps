@@ -114,8 +114,8 @@ class Sort(object):
         return glocale.sort_key(name1)
 
 ##    def by_birthdate(self, first_id, second_id):
-##        """Sort routine for comparing two people by birth dates. If the birth dates
-##        are equal, sorts by name"""
+##        """Sort routine for comparing two people by birth dates. If the birth
+##        dates are equal, sorts by name"""
 ##        first = self.database.get_person_from_handle(first_id)
 ##        second = self.database.get_person_from_handle(second_id)
 ##
@@ -218,7 +218,8 @@ class Sort(object):
 ##            return 0
 ##        evt_a = self.database.get_event_from_handle(a_id)
 ##        evt_b = self.database.get_event_from_handle(b_id)
-##        return glocale.strcoll(evt_a.get_description(), evt_b.get_description())
+##        return glocale.strcoll(evt_a.get_description(),
+##                               evt_b.get_description())
 
     def by_event_description_key(self, a_id):
         """Sort routine for comparing two events by their descriptions. """
@@ -269,5 +270,5 @@ class Sort(object):
         """Sort routine for comparing two media objects by their title. """
         if not a_id:
             return False
-        a = self.database.get_object_from_handle(a_id)
-        return glocale.sort_key(a.desc)
+        obj_a = self.database.get_object_from_handle(a_id)
+        return glocale.sort_key(obj_a.desc)
