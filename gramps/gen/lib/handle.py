@@ -22,11 +22,35 @@ class HandleClass(str):
     def __init__(self, handle):
         super(HandleClass, self).__init__()
 
-def Handle(classname, handle):
+    def join(self, database, handle):
+        return database._tables[self.classname]["handle_func"](handle)
+
+    @classmethod
+    def get_schema(cls):
+        from gramps.gen.lib import (Person, Family, Event, Place, Source,
+                                    MediaObject, Repository, Note, Citation)
+        tables = {
+            "Person": Person,
+            "Family": Family,
+            "Event": Event,
+            "Place": Place,
+            "Source": Source,
+            "MediaObject": MediaObject,
+            "Repository": Repository,
+            "Note": Note,
+            "Citation": Citation,
+        }
+        return tables[cls.classname].get_schema()
+
+def Handle(_classname, handle):
     if handle is None:
         return None
-    h = HandleClass(handle)
-    h.classname = classname
+    class MyHandleClass(HandleClass):
+        """
+        Class created to have classname attribute.
+        """
+        classname = _classname
+    h = MyHandleClass(handle)
     return h
 
 def __from_struct(struct):

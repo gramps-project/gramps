@@ -208,6 +208,18 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             }
 
     @classmethod
+    def field_aliases(cls):
+        """
+        Return dictionary of alias to full field names
+        for this object class.
+        """
+        return {
+            "given": "primary_name.first_name",
+            "surname": "primary_name.surname_list.0.surname",
+            "surnames": "primary_name.surname_list.surname",
+        }
+
+    @classmethod
     def get_labels(cls, _):
         return {
             "_class": _("Person"),

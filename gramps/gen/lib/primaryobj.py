@@ -128,6 +128,21 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         return {}
 
     @classmethod
+    def field_aliases(cls):
+        """
+        Return dictionary of alias to full field names
+        for this object class.
+        """
+        return {}
+
+    @classmethod
+    def get_field_alias(cls, alias):
+        """
+        Return full field name for an alias, if one.
+        """
+        return cls.field_aliases().get(alias, alias)
+
+    @classmethod
     def get_schema(cls):
         """
         Return schema.
@@ -155,6 +170,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         Get the associated label given a field name of this object.
         No index positions allowed on lists.
         """
+        field = cls.get_field_alias(field)
         chain = field.split(".")
         ftype = cls._follow_schema_path(chain)
         return ftype
@@ -172,55 +188,73 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
             elif part in schema.keys():
                 path = schema[part]
             else:
-                raise Exception("No such %s in %s" % (part, schema))
+                raise Exception("No such '%s' in %s" % (part, list(schema.keys())))
             if isinstance(path, (list, tuple)):
                 path = path[0]
         return path
 
-    def get_field(self, field):
+    def get_field(self, field, db=None, ignore_errors=False):
         """
         Get the value of a field.
         """
+        field = self.__class__.get_field_alias(field)
         chain = field.split(".")
-        path = self._follow_field_path(chain)
+        path = self._follow_field_path(chain, db, ignore_errors)
         return path
 
-    def _follow_field_path(self, chain, ignore_errors=False):
+    def _follow_field_path(self, chain, db=None, ignore_errors=False):
         """
         Follow a list of items. Return endpoint.
+        With the db argument, can do joins across tables.
+        self - current object
         """
-        path = self
+        from .handle import HandleClass
+        current = self
+        path_to = []
+        parent = self
         for part in chain:
-            class_ = None
-            if hasattr(path, part): # attribute
-                path = getattr(path, part)
+            path_to.append(part)
+            if hasattr(current, part): # attribute
+                current = getattr(current, part)
             elif part.isdigit(): # index into list
-                path = path[int(part)]
-            elif part.endswith(")"): # callable
-                # parse
-                function, sargs = part.split("(", 1)
-                sargs = sargs[:-1] # remove right-parent
-                # eval arguments
-                args = []
-                for sarg in sargs.split(","):
-                    if sarg:
-                        args.append(eval(sarg.strip()))
-                # call
-                path = getattr(path, function)(*args)
-            elif ignore_errors:
-                return
-            else:
-                raise Exception("%s is not a valid field of %s; use %s" %
-                                (part, path, dir(path)))
-        return path
+                current = current[int(part)]
+                continue
+            elif isinstance(current, (list, tuple)):
+                current = [getattr(attr, part) for attr in current]
+            else: # part not found on this self
+                # current is a handle
+                # part is something on joined object
+                ptype = parent.__class__.get_field_type(".".join(path_to[:-1]))
+                if isinstance(ptype, HandleClass):
+                    if db:
+                        # start over here:
+                        try:
+                            parent = ptype.join(db, current)
+                            current = getattr(parent, part)
+                            path_to = []
+                            continue
+                        except:
+                            if ignore_errors:
+                                return
+                            else:
+                                raise
+                    else:
+                        raise Exception("Can't join without database")
+                if ignore_errors:
+                    return
+                else:
+                    raise Exception("%s is not a valid field of %s; use %s" %
+                                    (part, current, dir(current)))
+        return current
 
-    def set_field(self, field, value, ignore_errors=False):
+    def set_field(self, field, value, db=None, ignore_errors=False):
         """
         Set the value of a basic field (str, int, float, or bool).
         value can be a string or actual value.
         """
+        field = self.__class__.get_field_alias(field)
         chain = field.split(".")
-        path = self._follow_field_path(chain[:-1], ignore_errors)
+        path = self._follow_field_path(chain[:-1], db, ignore_errors)
         ftype = self.get_field_type(field)
         # ftype is str, bool, float, or int
         value = (value in ['True', True]) if ftype is bool else value

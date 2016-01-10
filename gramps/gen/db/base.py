@@ -31,6 +31,7 @@ from this class.
 #
 #-------------------------------------------------------------------------
 import re
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -1887,23 +1888,67 @@ class DbWriteBase(DbReadBase):
         sort - use sort order (argument to DB.get_X_handles)
         start - position to start
         limit - count to get; -1 for all
-        filter - {field: (SQL string_operator, value), }
+        filter - [["AND", [(field, SQL string_operator, value),
+                           (field, SQL string_operator, value), ...],
+                  ["OR",  [(field, SQL string_operator, value),
+                           (field, SQL string_operator, value), ...]]
                  handles all SQL except for NOT expression, eg NOT x = y
         """
         class Result(list):
             """
-            A list rows of just matching for this page, with total = all. 
+            A list rows of just matching for this page, with total = all,
+            and time = time to select.
             """
             total = 0
-        def hash_name(name):
+        def hash_name(table, name):
             """
             Used in filter to eval expressions involving selected
             data.
             """
+            name = self._tables[table]["class_func"].get_field_alias(name)
             return (name
                     .replace(".", "_D_")
                     .replace("(", "_P_")
                     .replace(")", "_P_"))
+        def compare(v, op, value):
+            """
+            Compare values in a SQL-like way
+            """
+            if op == "=":
+                matched = v == value
+            elif op == ">":
+                matched = v > value
+            elif op == ">=":
+                matched = v >= value
+            elif op == "<":
+                matched = v < value
+            elif op == "<=":
+                matched = v <= value
+            elif op == "IN":
+                matched = v in value
+            elif op == "NI":
+                matched = value in v
+            elif op == "IS":
+                matched = v is value
+            elif op == "IS NOT":
+                matched = v is not value
+            elif op == "IS NULL":
+                matched = v is None
+            elif op == "IS NOT NULL":
+                matched = v is not None
+            elif op == "BETWEEN":
+                matched = value[0] <= v <= value[1]
+            elif op in ["<>", "!="]:
+                matched = v != value
+            elif op == "LIKE":
+                if value and v:
+                    value = value.replace("%", "(.*)").replace("_", ".")
+                    matched = re.match("^" + value + "$", v)
+                else:
+                    matched = False
+            else:
+                raise Exception("invalid select operator: '%s'" % op)
+            return True if matched else False
         # Fields is None or list, maybe containing "*":
         if fields is None:
             fields = ["*"]
@@ -1920,55 +1965,43 @@ class DbWriteBase(DbReadBase):
         position = 0
         selected = 0
         result = Result()
+        start_time = time.time()
         if filter:
             for handle in data:
                 # have to evaluate all, because there is a filter
                 item = self._tables[table]["handle_func"](handle)
                 row = {}
                 env = {}
-                for field in filter.keys(): 
-                    # just the ones we need for filter
-                    value = item.get_field(field)
-                    env[hash_name(field)] = value
-                matched = True
-                for name, (op, value) in filter.items():
-                    v = eval(hash_name(name), env)
-                    if op == "=":
-                        matched = v == value
-                    elif op == ">":
-                        matched = v > value
-                    elif op == ">=":
-                        matched = v >= value
-                    elif op == "<":
-                        matched = v < value
-                    elif op == "<=":
-                        matched = v <= value
-                    elif op == "IN":
-                        matched = v in value
-                    elif op == "IS":
-                        matched = v is value
-                    elif op == "IS NOT":
-                        matched = v is not value
-                    elif op == "IS NULL":
-                        matched = v is None
-                    elif op == "IS NOT NULL":
-                        matched = v is not None
-                    elif op == "BETWEEN":
-                        matched = value[0] <= v <= value[1]
-                    elif op in ["<>", "!="]:
-                        matched = v != value
-                    elif op == "LIKE":
-                        value = value.replace("%", "(.*)").replace("_", ".")
-                        matched = re.match(value, v)
-                    else:
-                        raise Exception("invalid select operator: '%s'" % op)
+                for (connector, exprs) in filter:
+                    for (name, op, value) in exprs:
+                        # just the ones we need for filter
+                        value = item.get_field(name, self, ignore_errors=True)
+                        env[hash_name(table, name)] = value
+                for (connector, exprs) in filter:
+                    if connector == "AND":
+                        matched = True
+                        # all must match to be true
+                        for (name, op, value) in exprs:
+                            v = eval(hash_name(table, name), env)
+                            matched = compare(v, op, value)
+                            if not matched:
+                                break
+                    elif connector == "OR":
+                        matched = False
+                        # any must match to be true
+                        for (name, op, value) in exprs:
+                            v = eval(hash_name(table, name), env)
+                            matched = compare(v, op, value)
+                            if matched:
+                                break
                     if not matched:
                         break
+                    # else, keep going
                 if matched:
                     if selected < limit and start <= position:
                         # now, we get all of the fields
-                        for field in fields: 
-                            value = item.get_field(field)
+                        for field in fields:
+                            value = item.get_field(field, self, ignore_errors=True)
                             row[field] = value
                         selected += 1
                         result.append(row)
@@ -1981,11 +2014,12 @@ class DbWriteBase(DbReadBase):
                         break
                     item = self._tables[table]["handle_func"](handle)
                     row = {}
-                    for field in fields: 
-                        value = item.get_field(field)
+                    for field in fields:
+                        value = item.get_field(field, self, ignore_errors=True)
                         row[field] = value
                     result.append(row)
                     selected += 1
                 position += 1
             result.total = self._tables[table]["count_func"]()
+        result.time = time.time() - start_time
         return result
