@@ -1949,6 +1949,43 @@ class DbWriteBase(DbReadBase):
             else:
                 raise Exception("invalid select operator: '%s'" % op)
             return True if matched else False
+
+        def evaluate_values(condition, item, db, table, env):
+            """
+            Evaluates the names in all conditions.
+            """
+            if len(condition) == 2: # ["AND"|"OR" [...]]
+                connector, exprs = condition
+                for expr in exprs:
+                    evaluate_values(expr, item, db, table, env)
+            elif len(condition) == 3: # (name, op, value)
+                (name, op, value) = condition
+                # just the ones we need for filter
+                hname = hash_name(table, name)
+                if hname not in env:
+                    value = item.get_field(name, db, ignore_errors=True)
+                    env[hname] = value
+
+        def evaluate_truth(condition, item, db, table, env):
+            if len(condition) == 2: # ["AND"|"OR" [...]]
+                connector, exprs = condition
+                if connector == "AND": # all must be true
+                    for expr in exprs:
+                        if not evaluate_truth(expr, item, db, table, env):
+                            return False
+                    return True
+                elif connector == "OR": # any will return true
+                    for expr in exprs:
+                        if evaluate_truth(expr, item, db, table, env):
+                            return True
+                    return False
+                else:
+                    raise Exception("No such connector: '%s'" % connector)
+            elif len(condition) == 3: # (name, op, value)
+                (name, op, value) = condition
+                v = env.get(hash_name(table, name))
+                return compare(v, op, value)
+
         # Fields is None or list, maybe containing "*":
         if fields is None:
             fields = ["*"]
@@ -1972,31 +2009,9 @@ class DbWriteBase(DbReadBase):
                 item = self._tables[table]["handle_func"](handle)
                 row = {}
                 env = {}
-                for (connector, exprs) in filter:
-                    for (name, op, value) in exprs:
-                        # just the ones we need for filter
-                        value = item.get_field(name, self, ignore_errors=True)
-                        env[hash_name(table, name)] = value
-                for (connector, exprs) in filter:
-                    if connector == "AND":
-                        matched = True
-                        # all must match to be true
-                        for (name, op, value) in exprs:
-                            v = eval(hash_name(table, name), env)
-                            matched = compare(v, op, value)
-                            if not matched:
-                                break
-                    elif connector == "OR":
-                        matched = False
-                        # any must match to be true
-                        for (name, op, value) in exprs:
-                            v = eval(hash_name(table, name), env)
-                            matched = compare(v, op, value)
-                            if matched:
-                                break
-                    if not matched:
-                        break
-                    # else, keep going
+                # Go through all fliters and evaluate the fields:
+                evaluate_values(filter, item, self, table, env)
+                matched = evaluate_truth(filter, item, self, table, env)
                 if matched:
                     if selected < limit and start <= position:
                         # now, we get all of the fields
