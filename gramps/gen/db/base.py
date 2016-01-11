@@ -1888,10 +1888,10 @@ class DbWriteBase(DbReadBase):
         sort - use sort order (argument to DB.get_X_handles)
         start - position to start
         limit - count to get; -1 for all
-        filter - [["AND", [(field, SQL string_operator, value),
-                           (field, SQL string_operator, value), ...],
-                  ["OR",  [(field, SQL string_operator, value),
-                           (field, SQL string_operator, value), ...]]
+        filter - (field, SQL string_operator, value)
+                 ["AND", [filter, filter, ...]]
+                 ["OR",  [filter, filter, ...]]
+
                  handles all SQL except for NOT expression, eg NOT x = y
         """
         class Result(list):
