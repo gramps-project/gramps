@@ -1881,18 +1881,18 @@ class DbWriteBase(DbReadBase):
                filter=None):
         """
         Default implementation of a select for those databases
-        that don't support SQL. Returns a list of dicts, and total.
+        that don't support SQL. Returns a list of dicts, total,
+        and time.
 
         table - Person, Family, etc.
         fields - used by object.get_field()
         sort - use sort order (argument to DB.get_X_handles)
         start - position to start
         limit - count to get; -1 for all
-        filter - (field, SQL string_operator, value)
-                 ["AND", [filter, filter, ...]]
-                 ["OR",  [filter, filter, ...]]
-
-                 handles all SQL except for NOT expression, eg NOT x = y
+        filter - (field, SQL string_operator, value) |
+                 ["AND", [filter, filter, ...]]      |
+                 ["OR",  [filter, filter, ...]]      |
+                 ["NOT",  filter]
         """
         class Result(list):
             """
@@ -1900,6 +1900,7 @@ class DbWriteBase(DbReadBase):
             and time = time to select.
             """
             total = 0
+            time = 0.0
         def hash_name(table, name):
             """
             Used in filter to eval expressions involving selected
@@ -1954,7 +1955,7 @@ class DbWriteBase(DbReadBase):
             """
             Evaluates the names in all conditions.
             """
-            if len(condition) == 2: # ["AND"|"OR" [...]]
+            if len(condition) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
                 connector, exprs = condition
                 for expr in exprs:
                     evaluate_values(expr, item, db, table, env)
@@ -1979,6 +1980,8 @@ class DbWriteBase(DbReadBase):
                         if evaluate_truth(expr, item, db, table, env):
                             return True
                     return False
+                elif connector == "NOT": # return not of single value
+                    return not evaluate_truth(exprs, item, db, table, env)
                 else:
                     raise Exception("No such connector: '%s'" % connector)
             elif len(condition) == 3: # (name, op, value)
