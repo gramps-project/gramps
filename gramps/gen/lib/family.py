@@ -244,6 +244,19 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             "private": _("Private"),
         }
 
+    @classmethod
+    def field_aliases(cls):
+        """
+        Return dictionary of alias to full field names
+        for this object class.
+        """
+        return {
+            "mother_surname": "mother_handle.primary_name.surname_list.0.surname",
+            "mother_given": "mother_handle.primary_name.first_name",
+            "father_surname": "father_handle.primary_name.surname_list.0.surname",
+            "father_given": "father_handle.primary_name.first_name",
+        }
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
