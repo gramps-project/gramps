@@ -1915,6 +1915,12 @@ class DbWriteBase(DbReadBase):
             """
             Compare values in a SQL-like way
             """
+            if isinstance(v, (list, tuple)): # join, or multi-values
+                # If any is true:
+                for item in v:
+                    if compare(item, op, value):
+                        return True
+                return False
             if op == "=":
                 matched = v == value
             elif op == ">":
@@ -1927,8 +1933,6 @@ class DbWriteBase(DbReadBase):
                 matched = v <= value
             elif op == "IN":
                 matched = v in value
-            elif op == "NI":
-                matched = value in v
             elif op == "IS":
                 matched = v is value
             elif op == "IS NOT":
