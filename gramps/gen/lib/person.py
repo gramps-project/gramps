@@ -222,7 +222,6 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     @classmethod
     def get_labels(cls, _):
         return {
-            "_class": _("Person"),
             "handle":  _("Handle"),
             "gramps_id": _("Gramps ID"),
             "gender": _("Gender"),
@@ -292,6 +291,9 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
     @classmethod
     def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
         from .mediaref import MediaRef
         from .address import Address
         from .url import Url

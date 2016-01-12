@@ -110,3 +110,10 @@ def __index_surname(surn_list):
     else:
         surn = ""
     return surn
+
+def open_database(database, force_unlock=False):
+    """
+    Shortcut for external uses of databases.
+    """
+    from ..dbstate import DbState
+    return DbState().open_database(database, force_unlock)

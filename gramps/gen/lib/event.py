@@ -154,6 +154,33 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
                 "private": self.private}
 
     @classmethod
+    def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
+        from .attribute import Attribute
+        from .citation import Citation
+        from .note import Note
+        from .date import Date
+        from .tag import Tag
+        from .mediaobj import MediaObject
+        return {
+            "handle": Handle("Event", "EVENT-HANDLE"),
+            "gramps_id": str,
+            "type": EventType,
+            "date": Date,
+            "description": str,
+            "place": Handle("Place", "PLACE-HANDLE"),
+            "citation_list": [Citation],
+            "note_list": [Note],
+            "media_list": [MediaObject],
+            "attribute_list": [Attribute],
+            "change": float,
+            "tag_list": [Tag],
+            "private": bool,
+        }
+
+    @classmethod
     def get_labels(cls, _):
         return {
             "_class": _("Event"),

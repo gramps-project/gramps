@@ -154,6 +154,61 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 "private": self.private}
 
     @classmethod
+    def get_schema(cls):
+        """
+        Returns the schema for EventRef.
+
+        :returns: Returns a dict containing the fields to types.
+        :rtype: dict
+        """
+        from .attribute import Attribute
+        from .citation import Citation
+        from .note import Note
+        from .date import Date
+        from .tag import Tag
+        return {
+            "handle": Handle("Media", "MEDIA-HANDLE"),
+            "gramps_id": str,
+            "path": str,
+            "mime": str,
+            "desc": str,
+            "checksum": str,
+            "attribute_list": [Attribute],
+            "citation_list": [Citation],
+            "note_list": [Note],
+            "change": float,
+            "date": Date,
+            "tag_list": Tag,
+            "private": bool,
+        }
+
+    @classmethod
+    def get_labels(cls, _):
+        """
+        Given a translation function, returns the labels for
+        each field of this object.
+
+        :returns: Returns a dict containing the fields to labels.
+        :rtype: dict
+        """
+        return {
+            "_class": _("Media"),
+            "handle": _("Media"),
+            "gramps_id": _("Gramps ID"),
+            "path": _("Path"),
+            "mime": _("MIME"),
+            "desc": _("Description"),
+            "checksum": _("Checksum"),
+            "attribute_list": _("Attributes"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "change": _("Last changed"),
+            "date": _("Date"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.

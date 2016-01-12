@@ -217,8 +217,13 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
             if hasattr(current, part): # attribute
                 current = getattr(current, part)
             elif part.isdigit(): # index into list
-                current = current[int(part)]
-                continue
+                if int(part) < len(current):
+                    current = current[int(part)]
+                    continue
+                elif ignore_errors:
+                    return
+                else:
+                    raise Exception("Can't get position %s of %s" % (part, current))
             elif isinstance(current, (list, tuple)):
                 current = [getattr(attr, part) for attr in current]
             else: # part not found on this self

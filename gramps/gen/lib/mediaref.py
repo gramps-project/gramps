@@ -99,6 +99,26 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 "rect": self.rect if self.rect != (0, 0, 0, 0) else None}
 
     @classmethod
+    def get_schema(cls):
+        """
+        Returns the schema for MediaRef.
+
+        :returns: Returns a dict containing the fields to types.
+        :rtype: dict
+        """
+        from .attribute import Attribute
+        from .citation import Citation
+        from .note import Note
+        return {
+            "private": bool,
+            "citation_list": [Citation],
+            "note_list": [Note],
+            "attribute_list": [Attribute],
+            "ref": Handle("Media", "MEDIA-HANDLE"),
+            "rect": tuple, # or None if (0,0,0,0)
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.
