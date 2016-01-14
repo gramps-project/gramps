@@ -148,6 +148,27 @@ class GrampletBar(Gtk.Notebook):
         # Connect after gramplets added to prevent making them active
         self.connect('switch-page', self.__switch_page)
 
+    def _get_config_setting(self, configparser, section, setting, fn=None):
+        """
+        Get a section.setting value from the config parser.
+        Takes a configparser instance, a section, a setting, and
+        optionally a post-processing function (typically int).
+
+        Always returns a value of the appropriate type.
+        """
+        value = ""
+        try:
+            value = configparser.get(section, setting)
+            value = value.strip()
+            if fn:
+                value = fn(value)
+        except:
+            if fn:
+                value = fn()
+            else:
+                value = ""
+        return value
+
     def __load(self, defaults):
         """
         Load the gramplets from the configuration file.
@@ -165,20 +186,20 @@ class GrampletBar(Gtk.Notebook):
             for sec in cp.sections():
                 if sec == "Bar Options":
                     if "visible" in cp.options(sec):
-                        visible = cp.get(sec, "visible") == "True"
+                        visible = self._get_config_setting(cp, sec, "visible") == "True"
                     if "page" in cp.options(sec):
-                        default_page = int(cp.get(sec, "page"))
+                        default_page = self._get_config_setting(cp, sec, "page", int)
                 else:
                     data = {}
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
                             temp = data.get("data", {})
-                            #temp.append(cp.get(sec, opt).strip())
+                            #temp.append(self._get_config_setting(cp, sec, opt))
                             pos = int(opt[5:-1])
-                            temp[pos] = cp.get(sec, opt).strip()
+                            temp[pos] = self._get_config_setting(cp, sec, opt)
                             data["data"] = temp
                         else:
-                            data[opt] = cp.get(sec, opt).strip()
+                            data[opt] = self._get_config_setting(cp, sec, opt)
                     if "data" in data:
                         data["data"] = [data["data"][key]
                                         for key in sorted(data["data"].keys())]
