@@ -120,7 +120,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
         RepoRef, Repository, RepositoryType, Researcher,
         Source, SourceMediaType, SrcAttribute, SrcAttributeType,
-        Surname, Tag, Url, UrlType, PlaceType, PlaceRef)
+        Surname, Tag, Url, UrlType, PlaceType, PlaceRef, PlaceName)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.mime import get_type
@@ -5545,7 +5545,7 @@ class GedcomParser(UpdateCallback):
             
             # Create the Place Details (it is committed with the event)
             place_detail = Place()
-            place_detail.set_name(location.get_street())
+            place_detail.set_name(PlaceName(value=location.get_street()))
             place_detail.set_title(location.get_street())
             # For RootsMagic etc. Place Details e.g. address, hospital, cemetary
             place_detail.set_type((PlaceType.CUSTOM, _("Detail")))
