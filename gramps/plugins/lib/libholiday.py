@@ -175,7 +175,7 @@ class HolidayTable(object):
     def __find_holiday_files(self):
         """
         Looks in multiple places for holidays.xml files
-        It will search for the file in user;s plugin directories first,
+        It will search for the file in user's plugin directories first,
         then it will search in program's plugins directories.
         """
 
