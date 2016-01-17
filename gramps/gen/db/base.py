@@ -1961,8 +1961,11 @@ class DbWriteBase(DbReadBase):
             """
             if len(condition) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
                 connector, exprs = condition
-                for expr in exprs:
-                    evaluate_values(expr, item, db, table, env)
+                if connector in ["AND", "OR"]: 
+                    for expr in exprs:
+                        evaluate_values(expr, item, db, table, env)
+                else: # "NOT"
+                    evaluate_values(exprs, item, db, table, env)
             elif len(condition) == 3: # (name, op, value)
                 (name, op, value) = condition
                 # just the ones we need for filter
