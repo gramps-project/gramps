@@ -35,7 +35,7 @@ class HandleClass(str):
             "Event": Event,
             "Place": Place,
             "Source": Source,
-            "MediaObject": MediaObject,
+            "Media": MediaObject,
             "Repository": Repository,
             "Note": Note,
             "Citation": Citation,
