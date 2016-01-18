@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 12:04+0300\n"
-"PO-Revision-Date: 2016-01-18 16:50+0300\n"
+"PO-Revision-Date: 2016-01-18 17:15+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -21327,7 +21327,7 @@ msgstr "Генерирует SoundEx коды"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
 msgid "Place Locations"
-msgstr "Расположения мест"
+msgstr "Расположение места"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
 msgid "Gramplet showing the locations of a place over time"
@@ -21336,7 +21336,7 @@ msgstr "Отображает положения мест во времени"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 #: ../gramps/plugins/webreport/narrativeweb.py:395
 msgid "Locations"
-msgstr "Расположения"
+msgstr "Расположение"
 
 # !!!FIXME!!!
 #: ../gramps/plugins/gramplet/leak.py:100
