@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 12:04+0300\n"
-"PO-Revision-Date: 2016-01-05 14:04+0300\n"
+"PO-Revision-Date: 2016-01-18 16:50+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -7112,7 +7112,7 @@ msgstr "Округ"
 
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Borough"
-msgstr "Небольшой город"
+msgstr "Район"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Municipality"
