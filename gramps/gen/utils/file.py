@@ -72,7 +72,7 @@ def find_folder( filename):
     try:
         if os.path.isdir(filename):
             return(filename)
-    except UnicodeError:
+    except UnicodeError as err:
         LOG.error("Filename %s raised a Unicode Error %s", repr(filename), err)
 
     LOG.debug("Filename %s either not found or not a directory.",
