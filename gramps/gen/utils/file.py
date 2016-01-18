@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -73,7 +73,7 @@ def find_folder( filename):
     try:
         if os.path.isdir(filename):
             return(filename)
-    except UnicodeError:
+    except UnicodeError as err:
         LOG.error("Filename %s raised a Unicode Error %s", repr(filename), err)
 
     LOG.debug("Filename %s either not found or not a directory.",
@@ -91,7 +91,7 @@ def get_empty_tempdir(dirname):
     """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
 
     makes intervening directories if required
-    fails if _file_ by that name already exists, 
+    fails if _file_ by that name already exists,
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
@@ -121,10 +121,10 @@ def relative_path(original, base):
         return original
     original = os.path.normpath(original)
     base = os.path.normpath(base)
-    
+
     # If the db_dir and obj_dir are on different drives (win only)
     # then there cannot be a relative path. Return original obj_path
-    (base_drive, base) = os.path.splitdrive(base) 
+    (base_drive, base) = os.path.splitdrive(base)
     (orig_drive, orig_name) = os.path.splitdrive(original)
     if base_drive.upper() != orig_drive.upper():
         return original
@@ -133,7 +133,7 @@ def relative_path(original, base):
     # shared by base and target.
     base_list = (base).split(os.sep)
     target_list = (orig_name).split(os.sep)
-    # make sure '/home/person' and 'c:/home/person' both give 
+    # make sure '/home/person' and 'c:/home/person' both give
     #   list ['home', 'person']
     base_list = [_f for _f in base_list if _f]
     target_list = [_f for _f in target_list if _f]
@@ -178,7 +178,7 @@ def search_for(name):
                 return 1
         if os.access(name, os.X_OK) and not os.path.isdir(name):
             return 1
-    else: 
+    else:
         for i in os.environ['PATH'].split(':'): #not win()
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
