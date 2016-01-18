@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 12:04+0300\n"
-"PO-Revision-Date: 2016-01-05 14:04+0300\n"
+"PO-Revision-Date: 2016-01-18 17:24+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -7112,7 +7112,7 @@ msgstr "Округ"
 
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Borough"
-msgstr "Небольшой город"
+msgstr "Район"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Municipality"
@@ -21327,7 +21327,7 @@ msgstr "Генерирует SoundEx коды"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
 msgid "Place Locations"
-msgstr "Расположения мест"
+msgstr "Расположение места"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
 msgid "Gramplet showing the locations of a place over time"
@@ -21336,7 +21336,7 @@ msgstr "Отображает положения мест во времени"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 #: ../gramps/plugins/webreport/narrativeweb.py:395
 msgid "Locations"
-msgstr "Расположения"
+msgstr "Расположение"
 
 # !!!FIXME!!!
 #: ../gramps/plugins/gramplet/leak.py:100
@@ -27829,10 +27829,11 @@ msgstr "Добавить место из kml"
 msgid "Center here"
 msgstr "Центрировать тут"
 
+#!!!FIXME!!!
 #: ../gramps/plugins/lib/maps/geography.py:364
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr "Заменить '%(map)s' этим =>"
+msgstr "Заменить '%(map)s' на"
 
 #: ../gramps/plugins/lib/maps/geography.py:383
 #, python-format
@@ -27860,7 +27861,7 @@ msgstr "Выберите файл kml, чтобы добавить место"
 
 #: ../gramps/plugins/lib/maps/geography.py:1000
 msgid "You have at least two places with the same title."
-msgstr "По крайней мере два места имею одно имя."
+msgstr "По крайней мере два места имеют одно имя."
 
 #: ../gramps/plugins/lib/maps/geography.py:1001
 #, python-format
