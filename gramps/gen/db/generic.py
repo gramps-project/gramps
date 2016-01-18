@@ -263,8 +263,7 @@ class Map(object):
         return self.table.funcs[self.contains_func](key)
 
     def __getitem__(self, key):
-        if self.table.funcs[self.contains_func](key):
-            return self.table.funcs[self.raw_func](key)
+        return self.table.funcs[self.raw_func](key)
 
     def __setitem__(self, key, value):
         """
