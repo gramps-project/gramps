@@ -58,7 +58,8 @@ from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
+                                 find_parents)
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
@@ -192,6 +193,8 @@ class RelGraphReport(Report):
         person_handles = self._filter.apply(self._db,
                                             self._db.iter_person_handles())
 
+        person_handles = self.sort_persons(person_handles)
+
         if len(person_handles) > 1:
             if self._user:
                 self._user.begin_progress(_("Relationship Graph"),
@@ -201,6 +204,74 @@ class RelGraphReport(Report):
             self.add_child_links_to_families(person_handles)
             if self._user:
                 self._user.end_progress()
+
+    def sort_persons(self, person_handle_list):
+        "sort persons by close relations"
+
+        # first make a list of all persons who don't have any parents
+        root_nodes = list()
+        for person_handle in person_handle_list:
+            person = self.database.get_person_from_handle(person_handle)
+            has_parent = False
+            for parent_handle in find_parents(self.database, person):
+                if parent_handle not in person_handle_list:
+                    continue
+                has_parent = True
+            if not has_parent:
+                root_nodes.append(person_handle)
+
+        # now start from all root nodes we found and traverse their trees
+        outlist = list()
+        p_done = set()
+        for person_handle in root_nodes:
+            todolist = list()
+            todolist.append(person_handle)
+            while len(todolist) > 0:
+                # take the first person from todolist and do sanity check
+                cur = todolist.pop(0)
+                if cur in p_done:
+                    continue
+                if cur not in person_handle_list:
+                    p_done.add(cur)
+                    continue
+                person = self.database.get_person_from_handle(cur)
+
+                # first check whether both parents are added
+                missing_parents = False
+                for parent_handle in find_parents(self.database, person):
+                    if not parent_handle or parent_handle in p_done:
+                        continue
+                    if parent_handle not in person_handle_list:
+                        continue
+                    todolist.insert(0, parent_handle)
+                    missing_parents = True
+
+                # if one of the parents is still missing, wait for them
+                if missing_parents:
+                    continue
+
+                # add person to the sorted output
+                outlist.append(cur)
+                p_done.add(cur)
+
+                # add all spouses and children to the todo list
+                family_list = person.get_family_handle_list()
+                for fam_handle in family_list:
+                    family = self.database.get_family_from_handle(fam_handle)
+                    if family is None:
+                        continue
+                    if (family.get_father_handle() and
+                            family.get_father_handle() != cur):
+                        todolist.insert(0, family.get_father_handle())
+                    if (family.get_mother_handle() and
+                            family.get_mother_handle() != cur):
+                        todolist.insert(0, family.get_mother_handle())
+                    for child_ref in family.get_child_ref_list():
+                        todolist.append(child_ref.ref)
+
+        # finally store the result
+        assert len(person_handle_list) == len(outlist)
+        return outlist
 
     def add_child_links_to_families(self, person_handles):
         """
@@ -267,7 +338,7 @@ class RelGraphReport(Report):
 
         # The list of families for which we have output the node,
         # so we don't do it twice
-        families_done = {}
+        families_done = set()
         for person_handle in person_handles:
             if self._user:
                 self._user.step_progress()
@@ -298,7 +369,7 @@ class RelGraphReport(Report):
                     if family is None:
                         continue
                     if fam_handle not in families_done:
-                        families_done[fam_handle] = 1
+                        families_done.add(fam_handle)
                         self.__add_family(fam_handle)
                     # If subgraphs are not chosen then each parent is linked
                     # separately to the family. This gives Graphviz greater
