@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gramps422_fi_maintenance_POT_2015-10-27\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-27 09:33+0100\n"
-"PO-Revision-Date: 2015-10-27 22:04+0200\n"
+"PO-Revision-Date: 2016-01-22 10:25+0100\n"
 "Last-Translator: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language-Team: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language: fi\n"
@@ -64,7 +64,7 @@ msgstr "Hallinnoi sukutietoja, tee sukututkimusta ja analysoi sukutietoja"
 
 #: ../data/gramps.desktop.in.h:5
 msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
-msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM:"
+msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"
