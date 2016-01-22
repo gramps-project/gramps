@@ -294,13 +294,12 @@ class GrampsLocale(object):
         _failure = False
         try:
             locale.setlocale(locale.LC_ALL, '')
-            if not _check_locale(locale.getlocale()):
-                if not _check_locale(locale.getdefaultlocale()):
-                    LOG.debug("Usable locale not found, localization settings ignored.");
-                    self.lang = 'C'
-                    self.encoding = 'ascii'
-                    self.language = ['en']
-                    _failure = True
+            if not _check_locale(locale.getdefaultlocale(envvars=('LC_ALL', 'LANG', 'LANGUAGE'))):
+                LOG.debug("Usable locale not found, localization settings ignored.");
+                self.lang = 'C'
+                self.encoding = 'ascii'
+                self.language = ['en']
+                _failure = True
 
         except locale.Error as err:
             LOG.debug("Locale error %s, localization settings ignored.",
