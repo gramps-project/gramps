@@ -26,8 +26,8 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-31 10:39+0100\n"
-"PO-Revision-Date: 2015-08-28 15:58+0200\n"
-"Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
+"PO-Revision-Date: 2016-01-22 11:16+0100\n"
+"Last-Translator: \n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -6836,11 +6836,11 @@ msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Surname|Inherited"
-msgstr "Efternamn"
+msgstr "Ärvt efternamn efter föräldrar "
 
 #: ../gramps/gen/lib/nameorigintype.py:83
 msgid "Surname|Given"
-msgstr "Ärvt efternamn"
+msgstr "Tilldelat efternamn (soldatnamn t. ex.)"
 
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgid "Surname|Taken"
@@ -8681,7 +8681,6 @@ msgid "the filter"
 msgstr "filtret"
 
 #: ../gramps/gen/utils/grampslocale.py:839
-#, fuzzy
 msgid "the citation"
 msgstr "Varje citering"
 
@@ -9864,9 +9863,8 @@ msgid "Status bar"
 msgstr "Statusrad"
 
 #: ../gramps/gui/configure.py:1093
-#, fuzzy
 msgid "Show text label beside Navigator buttons (requires restart)"
-msgstr "Visa text i sidokolumnens knappar (aktiveras vid omstart)"
+msgstr "Visa textetiketter bredvid navigeringsknappar  (aktiveras vid omstart)"
 
 #: ../gramps/gui/configure.py:1099
 msgid "Show close button in gramplet bar tabs"
@@ -12468,7 +12466,7 @@ msgstr "Kan inte spara plats. Namn ej inmatat."
 #: ../gramps/gui/editors/editplace.py:287
 #: ../gramps/gui/editors/editplaceref.py:278
 msgid "You must enter a name before saving."
-msgstr "Du måste skriva in en namn innan du sparar."
+msgstr "Du måste skriva in ett namn innan du sparar."
 
 #: ../gramps/gui/editors/editplace.py:296
 msgid "Cannot save place. ID already exists."
@@ -13445,13 +13443,15 @@ msgstr "Tillämpa jobbet på detta"
 
 #: ../gramps/gui/glade/dialog.glade:528
 msgid "_Use this answer for the rest of the items"
-msgstr ""
+msgstr "_Använd detta svar för resterande poster"
 
 #: ../gramps/gui/glade/dialog.glade:532
 msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
 msgstr ""
+"Om du markerar denna knapp, kommer nästa svar att tillämpas på resterande "
+"valda poster"
 
 #: ../gramps/gui/glade/dialog.glade:762 ../gramps/gui/glade/dialog.glade:778
 #: ../gramps/gui/glade/dialog.glade:889
@@ -14420,7 +14420,7 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:486
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
-msgstr "Del av en person namn, som visar till vilken familj personen hör"
+msgstr "Del av en persons namn, som visar till vilken familj personen hör"
 
 #: ../gramps/gui/glade/editperson.glade:512
 msgid "Go to Name Editor to add more information about this name"
@@ -14572,6 +14572,8 @@ msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
+"Det språk namnet är skrivet. Godkända värden är två tecken ISO-koder. T. ex. "
+"sv, en, fr, de ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:280
 msgid ""
@@ -15520,14 +15522,14 @@ msgstr ""
 "Gramps kommer att avslutas nu."
 
 #: ../gramps/gui/grampsgui.py:101
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
 "At least %(major)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Din version av pygobject klarar ej kraven. Åtminstone pygobject %(major)d."
+"Din version av Gtk klarar ej kraven. Åtminstone pygobject %(major)d."
 "%(bug)d.%(minor)d behövs för att starta Gramps med ett GUI.\n"
 "\n"
 "Gramps kommer att avslutas nu."
@@ -18334,7 +18336,6 @@ msgid "Could not create jpeg version of image %(name)s"
 msgstr "Kunde inte skapa jpeg-version av bild %(name)s"
 
 #: ../gramps/plugins/docgen/latexdoc.py:57
-#, fuzzy
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
 "jpg images in LaTeX documents will not be available. Use your package "
@@ -18342,7 +18343,7 @@ msgid ""
 msgstr ""
 "PIL (Python Imaging Library) ej laddat. Skapande av jpg-bilder från icke-jpg "
 "bilder i LaTeX dokument kommer inte att vara tillgängligt. Använd din "
-"pakethanterare till att installera python-imaging eller python-pillow eller "
+"pakethanterare till att installera python3-imaging eller python3-pillow eller "
 "python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1221
@@ -20061,7 +20062,6 @@ msgstr "Longitud"
 
 #: ../gramps/plugins/export/exportcsv.py:565
 #: ../gramps/plugins/importer/importcsv.py:229
-#, fuzzy
 msgid "Enclosed_by"
 msgstr "Omgivet av"
 
@@ -21066,12 +21066,10 @@ msgid "Gramplet showing the children of a family"
 msgstr "Gramplet visande barnen i en familj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:847
-#, fuzzy
 msgid "Person References"
-msgstr "Personreferens"
+msgstr "Personreferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:848
-#, fuzzy
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Gramplet visande referenser för en person"
 
@@ -21092,32 +21090,26 @@ msgid "References"
 msgstr "Referenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:861
-#, fuzzy
 msgid "Event References"
 msgstr "Händelsereferens"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:862
-#, fuzzy
 msgid "Gramplet showing the backlink references for an event"
 msgstr "Gramplet visande referenserna för en händelse"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:875
-#, fuzzy
 msgid "Family References"
-msgstr "Familjereferens : %s"
+msgstr "Familjereferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#, fuzzy
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Gramplet visande referenserna för an familj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:889
-#, fuzzy
 msgid "Place References"
-msgstr "Redigerare för platsnamn"
+msgstr "Platsreferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
-#, fuzzy
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet visande referenserna för en plats"
 
@@ -21127,17 +21119,14 @@ msgid "Source References"
 msgstr "Källhänvisningar"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:904
-#, fuzzy
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Gramplet visande referenserna för en källa"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
-#, fuzzy
 msgid "Citation References"
-msgstr "Citeringsreferenter"
+msgstr "Citeringsreferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
-#, fuzzy
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Gramplet visande bakåtlänkat för en citering"
 
@@ -21147,27 +21136,22 @@ msgid "Repository References"
 msgstr "Arkivplatsreferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:932
-#, fuzzy
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Gramplet visande referenserna för en arkivplats"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:945
-#, fuzzy
 msgid "Media References"
-msgstr "Mediareferens"
+msgstr "Mediareferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
-#, fuzzy
 msgid "Gramplet showing the backlink references for a media object"
 msgstr "Gramplet visande referenserna för ett mediaobjekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:959
-#, fuzzy
 msgid "Note References"
-msgstr "Källhänvisningar"
+msgstr "Notisreferenser"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:960
-#, fuzzy
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Gramplet visande referenser för en notis"
 
@@ -22539,12 +22523,10 @@ msgid "call"
 msgstr "tilltalsnamn"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|Title"
 msgstr "Titel"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|title"
 msgstr "titel"
 
@@ -22565,14 +22547,12 @@ msgid "birth place"
 msgstr "födelseort"
 
 #: ../gramps/plugins/importer/importcsv.py:164
-#, fuzzy
 msgid "Birth place id"
-msgstr "Födelseort"
+msgstr "Födelseort-id"
 
 #: ../gramps/plugins/importer/importcsv.py:165
-#, fuzzy
 msgid "birth place id"
-msgstr "födelseort"
+msgstr "födelseort id"
 
 #: ../gramps/plugins/importer/importcsv.py:171
 msgid "birth source"
@@ -22583,14 +22563,12 @@ msgid "baptism place"
 msgstr "dopplats"
 
 #: ../gramps/plugins/importer/importcsv.py:176
-#, fuzzy
 msgid "Baptism place id"
-msgstr "Dopplats"
+msgstr "Dopplats id"
 
 #: ../gramps/plugins/importer/importcsv.py:177
-#, fuzzy
 msgid "baptism place id"
-msgstr "dopplats"
+msgstr "dopplats id"
 
 #: ../gramps/plugins/importer/importcsv.py:180
 msgid "baptism date"
@@ -22605,14 +22583,12 @@ msgid "burial place"
 msgstr "begravningsplats"
 
 #: ../gramps/plugins/importer/importcsv.py:186
-#, fuzzy
 msgid "Burial place id"
-msgstr "Begravningsplats"
+msgstr "Begravningsplats id"
 
 #: ../gramps/plugins/importer/importcsv.py:187
-#, fuzzy
 msgid "burial place id"
-msgstr "begravningsplats"
+msgstr "begravningsplats id"
 
 #: ../gramps/plugins/importer/importcsv.py:190
 msgid "burial date"
@@ -22627,14 +22603,12 @@ msgid "death place"
 msgstr "dödsort"
 
 #: ../gramps/plugins/importer/importcsv.py:196
-#, fuzzy
 msgid "Death place id"
-msgstr "Dödsort"
+msgstr "Dödsort id"
 
 #: ../gramps/plugins/importer/importcsv.py:197
-#, fuzzy
 msgid "death place id"
-msgstr "dödsort"
+msgstr "dödsort id"
 
 #: ../gramps/plugins/importer/importcsv.py:203
 msgid "death source"
@@ -22723,44 +22697,36 @@ msgid "place"
 msgstr "plats"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "name"
-msgstr "=namn"
+msgstr "namn"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
 msgid "type"
-msgstr "Linjetyp"
+msgstr "typ"
 
 #: ../gramps/plugins/importer/importcsv.py:225
-#, fuzzy
 msgid "latitude"
-msgstr "Latitud"
+msgstr "latitud"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
 msgid "longitude"
-msgstr "Longitud"
+msgstr "longitud"
 
 #: ../gramps/plugins/importer/importcsv.py:227
-#, fuzzy
 msgid "code"
-msgstr "Html-kod"
+msgstr "kod"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
 msgid "Enclosed by"
 msgstr "Omgivet av"
 
 #: ../gramps/plugins/importer/importcsv.py:228
-#, fuzzy
 msgid "enclosed by"
-msgstr "Omgivet av"
+msgstr "omgivet av"
 
 #: ../gramps/plugins/importer/importcsv.py:229
-#, fuzzy
 msgid "enclosed_by"
-msgstr "Omgivet av"
+msgstr "omgivet_av"
 
 #: ../gramps/plugins/importer/importcsv.py:257
 #, python-format
@@ -23864,9 +23830,8 @@ msgstr "Ett andra PLAC ignorerad"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
 #: ../gramps/plugins/lib/libgedcom.py:5551
-#, fuzzy
 msgid "Detail"
-msgstr "Detaljer"
+msgstr "Detalj"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
@@ -30408,14 +30373,12 @@ msgstr ""
 "typ. Denna åtgärd går inte att ångra."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
-#, fuzzy
 msgid "Original event type:"
-msgstr "_Ursprunglig händelsetyp:"
+msgstr "Ursprunglig händelsetyp:"
 
 #: ../gramps/plugins/tool/changetypes.glade:124
-#, fuzzy
 msgid "New event type:"
-msgstr "_Ny händelsetyp:"
+msgstr "Ny händelsetyp:"
 
 #: ../gramps/plugins/tool/changetypes.py:57
 msgid "Change Event Types"
@@ -33721,9 +33684,9 @@ msgstr ""
 "%(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1609
-#, fuzzy, python-format
+#, python-format
 msgid "Last change was the %(date)s"
-msgstr "Platser ändrade efter <datum tid>"
+msgstr "Senast ändrat %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1621
 #, python-format
