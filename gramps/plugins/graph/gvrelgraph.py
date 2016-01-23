@@ -296,7 +296,8 @@ class RelGraphReport(Report):
             return
         fam_id = fam.get_gramps_id()
 
-        date_label = place_label = None
+        m_type = m_date = m_place = ""
+        d_type = d_date = d_place = ""
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
             if event is None:
@@ -305,34 +306,38 @@ class RelGraphReport(Report):
                 (event_ref.get_role() == EventRoleType.FAMILY or
                  event_ref.get_role() == EventRoleType.PRIMARY)
                ):
-                date_label = self.get_date_string(event)
-                if not (self.event_choice == 3 and date_label):
-                    place_label = self.get_place_string(event)
+                m_type = event.type
+                m_date = self.get_date_string(event)
+                if not (self.event_choice == 3 and m_date):
+                    m_place = self.get_place_string(event)
                 break
-        if self.includeid == 0 and not date_label and not place_label:
-            label = ""
-        elif self.includeid == 0 and not date_label and place_label:
-            label = "(%s)" % place_label
-        elif self.includeid == 0 and date_label and not place_label:
-            label = "(%s)" % date_label
-        elif self.includeid == 0 and date_label and place_label:
-            label = "(%s)\\n(%s)" % (date_label, place_label)
-        elif self.includeid == 1 and not date_label and not place_label:
-            label = "(%s)" % fam_id
-        elif self.includeid == 1 and not date_label and place_label:
-            label = "(%s) (%s)" % (fam_id, place_label) # id on same line
-        elif self.includeid == 1 and date_label and not place_label:
-            label = "(%s) (%s)" % (fam_id, date_label) # id on same line
-        elif self.includeid == 1 and date_label and place_label:
-            label = "(%s) (%s)\\n(%s)" % (fam_id, date_label, place_label)
-        elif self.includeid == 2 and not date_label and not place_label:
-            label = "(%s)" % fam_id
-        elif self.includeid == 2 and not date_label and place_label:
-            label = "(%s)\\n(%s)" % (fam_id, place_label) # id on own line
-        elif self.includeid == 2 and date_label and not place_label:
-            label = "(%s)\\n(%s)" % (fam_id, date_label) # id on own line
-        elif self.includeid == 2 and date_label and place_label:
-            label = "(%s)\\n(%s)\\n(%s)" % (fam_id, date_label, place_label)
+            if (event.type == EventType.DIVORCE and
+                (event_ref.get_role() == EventRoleType.FAMILY or
+                 event_ref.get_role() == EventRoleType.PRIMARY)
+               ):
+                d_type = event.type
+                d_date = self.get_date_string(event)
+                if not (self.event_choice == 3 and d_date):
+                    d_place = self.get_place_string(event)
+                break
+
+        labellines = list()
+        if self.includeid == 2:
+            # id on separate line
+            labellines.append("(%s)" % fam_id)
+        if m_date:
+            labellines.append("(%s)" % m_date)
+        if m_place:
+            labellines.append("(%s)" % m_place)
+        label = "\\n".join(labellines)
+        labellines = list()
+        if self.includeid == 1:
+            # id on same line
+            labellines.append("(%s)" % fam_id)
+        if len(label):
+            labellines.append(label)
+        label = ' '.join(labellines)
+
         color = ""
         fill = ""
         style = "solid"
