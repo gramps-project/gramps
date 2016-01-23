@@ -101,7 +101,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             NameType, Person, UrlType, NoteType, PlaceType,
                             EventRoleType, Family, Event, Place, Source,
-                            Citation, MediaObject, Repository, Note, Tag)
+                            Citation, Media, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
@@ -4438,13 +4438,13 @@ class MediaPages(BasePage):
         @param: title -- the web site title
         """
         log.debug("obj_dict[Media]")
-        for item in self.report.obj_dict[MediaObject].items():
+        for item in self.report.obj_dict[Media].items():
             log.debug("    %s" % str(item))
         with self.report.user.progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"),
-                                  len(self.report.obj_dict[MediaObject]) + 1) as step:
+                                  len(self.report.obj_dict[Media]) + 1) as step:
 
-            sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
+            sorted_media_handles = sorted(self.report.obj_dict[Media].keys(),
                                           key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
             self.MediaListPage(self.report, title, sorted_media_handles)
 
@@ -4783,7 +4783,7 @@ class MediaPages(BasePage):
                 mediadetail += srclist
 
             # get media references
-            reflist = self.display_bkref_list(MediaObject, media_handle)
+            reflist = self.display_bkref_list(Media, media_handle)
             if reflist is not None:
                 mediadetail += reflist
 
@@ -4850,7 +4850,7 @@ class ThumbnailPreviewPage(BasePage):
         def sort_by_desc_and_gid(obj):
             return (obj.desc, obj.gramps_id)
 
-        self.photo_keys = sorted(self.report.obj_dict[MediaObject],
+        self.photo_keys = sorted(self.report.obj_dict[Media],
                                  key=lambda x: sort_by_desc_and_gid(self.dbase_.get_object_from_handle(x)))
 
         media_list = []
@@ -7251,7 +7251,7 @@ class NavWebReport(Report):
 
     def _build_obj_dict(self):
         _obj_class_list = (Person, Family, Event, Place, Source, Citation,
-                           MediaObject, Repository, Note, Tag)
+                           Media, Repository, Note, Tag)
 
         # setup a dictionary of the required structure
         self.obj_dict = defaultdict(lambda: defaultdict(set))
@@ -7593,7 +7593,7 @@ class NavWebReport(Report):
                 self._add_media(media_handle, Citation, citation_handle)
 
     def _add_media(self, media_handle, bkref_class, bkref_handle):
-        media_refs = self.bkref_dict[MediaObject].get(media_handle)
+        media_refs = self.bkref_dict[Media].get(media_handle)
         if media_refs and (bkref_class, bkref_handle) in media_refs:
             return
         media = self.database.get_object_from_handle(media_handle)
@@ -7603,18 +7603,18 @@ class NavWebReport(Report):
                                                    False) + self.ext
         else:
             media_fname = ""
-        self.obj_dict[MediaObject][media_handle] = (media_fname, media_name,
+        self.obj_dict[Media][media_handle] = (media_fname, media_name,
                                                     media.gramps_id)
-        self.bkref_dict[MediaObject][media_handle].add((bkref_class, bkref_handle))
+        self.bkref_dict[Media][media_handle].add((bkref_class, bkref_handle))
 
         ############### Attribute section ##############
         for attr in media.get_attribute_list():
             for citation_handle in attr.get_citation_list():
-                self._add_citation(citation_handle, MediaObject, media_handle)
+                self._add_citation(citation_handle, Media, media_handle)
 
         ############### Sources section ##############
         for citation_handle in media.get_citation_list():
-            self._add_citation(citation_handle, MediaObject, media_handle)
+            self._add_citation(citation_handle, Media, media_handle)
 
     def _add_repository(self, repos_handle, bkref_class, bkref_handle):
         repos = self.database.get_repository_from_handle(repos_handle)
@@ -7757,7 +7757,7 @@ class NavWebReport(Report):
         """
         with self.user.progress(_("Narrated Web Site Report"),
                                   _("Creating thumbnail preview page..."),
-                                  len(self.obj_dict[MediaObject])) as step:
+                                  len(self.obj_dict[Media])) as step:
             ThumbnailPreviewPage(self, self.title, step)
 
     def addressbook_pages(self, ind_list):

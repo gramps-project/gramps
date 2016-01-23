@@ -45,7 +45,7 @@ fname_map = {'all': _('Filtering_on|all'),
              'Inverse Place': _('Filtering_on|Inverse Place'),
              'Inverse Source': _('Filtering_on|Inverse Source'),
              'Inverse Repository': _('Filtering_on|Inverse Repository'),
-             'Inverse MediaObject': _('Filtering_on|Inverse MediaObject'),
+             'Inverse Media': _('Filtering_on|Inverse Media'),
              'Inverse Note': _('Filtering_on|Inverse Note'),
              'all people': _('Filtering_on|all people'),
              'all families': _('Filtering_on|all families'),
@@ -106,7 +106,7 @@ def run(database, document, filter_name, *args, **kwargs):
             stab.row([_("Repositories"), "Filter", "Repository"],
                      "%d/%d" % (len(database.get_repository_handles()),
                      len(database.db.get_repository_handles())))
-            stab.row([_("Media"), "Filter", "MediaObject"],
+            stab.row([_("Media"), "Filter", "Media"],
                      "%d/%d" % (len(database.get_media_object_handles()),
                                 len(database.db.get_media_object_handles())))
             stab.row([_("Notes"), "Filter", "Note"],
@@ -131,7 +131,7 @@ def run(database, document, filter_name, *args, **kwargs):
             stab.row([_("Repositories"), "Filter", "Repository"],
                      "%d/%d" % (len(database.get_repository_handles()),
                      len(database.basedb.get_repository_handles())))
-            stab.row([_("Media"), "Filter", "MediaObject"],
+            stab.row([_("Media"), "Filter", "Media"],
                      "%d/%d" % (len(database.get_media_object_handles()),
                                 len(database.basedb.get_media_object_handles())))
             stab.row([_("Notes"), "Filter", "Note"],
@@ -210,7 +210,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(repository, repository.gramps_id)
                 matches += 1
 
-    elif (filter_name == 'Inverse MediaObject'):
+    elif (filter_name == 'Inverse Media'):
         sdb.dbase = database.db
         stab.columns(_("Media"), _("Gramps ID"))
         proxy_handles = set(database.iter_media_object_handles())
@@ -266,7 +266,7 @@ def run(database, document, filter_name, *args, **kwargs):
             stab.row(obj, obj.gramps_id)
             matches += 1
 
-    elif (filter_name in ['all media', 'MediaObject']):
+    elif (filter_name in ['all media', 'Media']):
         stab.columns(_("Media"), _("Gramps ID"))
         for obj in database.iter_media_objects():
             stab.row(obj, obj.gramps_id)

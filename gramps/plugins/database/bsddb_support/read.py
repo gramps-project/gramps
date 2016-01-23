@@ -53,7 +53,7 @@ import logging
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.media import Media
 from gramps.gen.lib.person import Person
 from gramps.gen.lib.family import Family
 from gramps.gen.lib.src import Source
@@ -226,7 +226,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     :py:class:`.Person`, :py:class:`.Family`, :py:class:`.Event`,
     :py:class:`.Place`, :py:class:`.Source`,
-    :py:class:`Citation <.lib.citation.Citation>`, :py:class:`.MediaObject`,
+    :py:class:`Citation <.lib.citation.Citation>`, :py:class:`.Media`,
     :py:class:`.Repository` and :py:class:`.Note`
 
     For each object class, there are methods to retrieve data in various ways.
@@ -333,7 +333,7 @@ class DbBsddbRead(DbReadBase, Callback):
             {
                 "handle_func": self.get_object_from_handle,
                 "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
+                "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
             })
@@ -623,10 +623,10 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_object_gramps_id(self):
         """
-        Return the next available Gramps ID for a MediaObject object based
+        Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
         """
-        self.omap_index, gid = self.__find_next_gramps_id(self.mediaobject_prefix,
+        self.omap_index, gid = self.__find_next_gramps_id(self.media_prefix,
                                           self.omap_index, self.oid_trans)
         return gid
 
@@ -744,7 +744,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Object exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, MediaObject, self.media_map)
+        return self.get_from_handle(handle, Media, self.media_map)
 
     def get_place_from_handle(self, handle):
         """
@@ -875,11 +875,11 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_object_from_gramps_id(self, val):
         """
-        Find a MediaObject in the database from the passed Gramps ID.
+        Find a Media in the database from the passed Gramps ID.
 
-        If no such MediaObject exists, None is returned.
+        If no such Media exists, None is returned.
         """
-        return self.__get_obj_from_gramps_id(val, self.oid_trans, MediaObject,
+        return self.__get_obj_from_gramps_id(val, self.oid_trans, Media,
                                               self.media_map)
 
     def get_repository_from_gramps_id(self, val):
@@ -1095,7 +1095,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_media_object_handles(self, sort_handles=False):
         """
-        Return a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each Media in
         the database.
 
         If sort_handles is True, the list is sorted by title.
@@ -1219,7 +1219,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_places        = _f(get_place_cursor, Place)
     iter_sources       = _f(get_source_cursor, Source)
     iter_citations     = _f(get_citation_cursor, Citation)
-    iter_media_objects = _f(get_media_cursor, MediaObject)
+    iter_media_objects = _f(get_media_cursor, Media)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
     iter_tags          = _f(get_tag_cursor, Tag)
@@ -1350,14 +1350,14 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_object_id_prefix(self, val):
         """
-        Set the naming template for Gramps MediaObject ID values.
+        Set the naming template for Gramps Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as O%d or O%04d.
         """
-        self.mediaobject_prefix = self._validated_id_prefix(val, "O")
-        self.oid2user_format = self.__id2user_format(self.mediaobject_prefix)
+        self.media_prefix = self._validated_id_prefix(val, "O")
+        self.oid2user_format = self.__id2user_format(self.media_prefix)
 
     def set_place_id_prefix(self, val):
         """
@@ -1709,7 +1709,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def has_object_handle(self, handle):
         """
-        Return True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current Mediadatabase.
         """
         return self.__has_handle(self.media_map, handle)
 
@@ -1895,9 +1895,9 @@ class DbBsddbRead(DbReadBase, Callback):
                 'cursor_func': self.get_citation_cursor,
                 'class_func': Citation,
                 },
-            'MediaObject': {
+            'Media': {
                 'cursor_func': self.get_media_cursor,
-                'class_func': MediaObject,
+                'class_func': Media,
                 },
             'Repository': {
                 'cursor_func': self.get_repository_cursor,

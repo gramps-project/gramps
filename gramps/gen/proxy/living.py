@@ -29,7 +29,7 @@ Proxy class for the Gramps databases. Filter out all living people.
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
 from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
-                   Citation, Event, MediaObject, Place, Repository, Note, Tag)
+                   Citation, Event, Media, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
 

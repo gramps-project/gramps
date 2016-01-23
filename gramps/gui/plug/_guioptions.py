@@ -1064,7 +1064,7 @@ class GuiMediaOption(Gtk.Box):
         """
         Handle the button to choose a different note.
         """
-        select_class = SelectorFactory('MediaObject')
+        select_class = SelectorFactory('Media')
         sel = select_class(self.__dbstate, self.__uistate, self.__track)
         media = sel.run()
         self.__update_media(media)

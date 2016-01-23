@@ -27800,7 +27800,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Зворотній порядок сховища"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Зворотній порядок медіа"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

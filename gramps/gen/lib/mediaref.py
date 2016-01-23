@@ -41,7 +41,7 @@ from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
-# MediaObject References for Person/Place/Source
+# Media References for Person/Place/Source
 #
 #-------------------------------------------------------------------------
 class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
@@ -189,7 +189,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         ret = self.get_referenced_note_handles() + \
                 self.get_referenced_citation_handles()
         if self.ref:
-            ret += [('MediaObject', self.ref)]
+            ret += [('Media', self.ref)]
         return ret
 
     def get_handle_referents(self):

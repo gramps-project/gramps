@@ -28,7 +28,7 @@ Mixin for DbDir to enable find_from_handle and check_from_handle methods.
 #
 #------------------------------------------------------------------------------
 from gramps.gen.lib import (Person, Family, Event, Place, Source,
-                     MediaObject, Repository, Note, Tag)
+                     Media, Repository, Note, Tag)
 
 #------------------------------------------------------------------------------
 #
@@ -168,15 +168,15 @@ class DbMixin(object):
 
     def find_object_from_handle(self, handle, transaction):
         """
-        Find a MediaObject in the database from the passed handle.
+        Find a Media in the database from the passed handle.
 
-        If no such MediaObject exists, a new Object is added to the database.
+        If no such Media exists, a new Object is added to the database.
 
         @return: Returns a tuple, first the object, second a bool which is True
                  if the object is new
         @rtype: tuple
         """
-        return self.__find_primary_from_handle(handle, transaction, MediaObject,
+        return self.__find_primary_from_handle(handle, transaction, Media,
                                      self.get_raw_object_data, self.add_object)
 
     def find_place_from_handle(self, handle, transaction):
@@ -279,14 +279,14 @@ class DbMixin(object):
 
     def check_object_from_handle(self, handle, transaction, set_gid=True):
         """
-        Check whether a MediaObject with the passed handle exists in the
+        Check whether a Media with the passed handle exists in the
         database.
 
-        If no such MediaObject exists, a new Object is added to the database.
+        If no such Media exists, a new Object is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
 
-        self.__check_primary_from_handle(handle, transaction, MediaObject,
+        self.__check_primary_from_handle(handle, transaction, Media,
                                  self.has_object_handle, self.add_object,
                                  set_gid=set_gid)
 

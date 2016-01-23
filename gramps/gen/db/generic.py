@@ -61,7 +61,7 @@ from gramps.gen.db import (PERSON_KEY,
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
-from gramps.gen.lib import (Tag, MediaObject, Person, Family, Source, Citation, Event,
+from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
                             Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
 
@@ -527,7 +527,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             {
                 "handle_func": self.get_object_from_handle,
                 "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
+                "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
                 "add_func": self.add_object,
@@ -913,14 +913,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_object_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS MediaObject ID values.
+        Set the naming template for GRAMPS Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as O%d or O%04d.
         """
-        self.mediaobject_prefix = self._validated_id_prefix(val, "O")
-        self.oid2user_format = self.__id2user_format(self.mediaobject_prefix)
+        self.media_prefix = self._validated_id_prefix(val, "O")
+        self.oid2user_format = self.__id2user_format(self.media_prefix)
 
     def set_place_id_prefix(self, val):
         """
@@ -1019,10 +1019,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def find_next_object_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a MediaObject object based
+        Return the next available GRAMPS' ID for a Media object based
         off the media object ID prefix.
         """
-        self.omap_index, gid = self._find_next_gramps_id(self.mediaobject_prefix,
+        self.omap_index, gid = self._find_next_gramps_id(self.media_prefix,
                                                          self.omap_index,
                                                          self.media_id_map)
         return gid
@@ -1126,10 +1126,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_object_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return MediaObject.create(self._get_raw_media_data(handle))
+        return Media.create(self._get_raw_media_data(handle))
 
     def get_object_from_gramps_id(self, gramps_id):
-        return MediaObject.create(self.media_id_map[gramps_id])
+        return Media.create(self.media_id_map[gramps_id])
 
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
@@ -1165,7 +1165,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return Event.create(self.event_id_map[gramps_id])
 
     def get_media_from_gramps_id(self, gramps_id):
-        return MediaObject.create(self.media_id_map[gramps_id])
+        return Media.create(self.media_id_map[gramps_id])
 
     def get_place_from_gramps_id(self, gramps_id):
         return Place.create(self.place_id_map[gramps_id])
@@ -1379,7 +1379,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def add_object(self, obj, transaction, set_gid=True):
         """
-        Add a MediaObject to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
@@ -1539,7 +1539,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def remove_object(self, handle, transaction):
         """
-        Remove the MediaObjectPerson specified by the database handle from the
+        Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         self._do_remove(handle, transaction, self.media_map,
@@ -1824,7 +1824,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return (Event.create(data[1]) for data in self.get_event_cursor())
 
     def iter_media_objects(self):
-        return (MediaObject.create(data[1]) for data in self.get_media_cursor())
+        return (Media.create(data[1]) for data in self.get_media_cursor())
 
     def iter_notes(self):
         return (Note.create(data[1]) for data in self.get_note_cursor())

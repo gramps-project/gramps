@@ -24,7 +24,7 @@ from .. import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
 from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person,
-                            Family, Event, Place, MediaObject)
+                            Family, Event, Place, Media)
 
 class GrampsDbBaseTest(unittest.TestCase):
     """Base class for unittest that need to be able to create
@@ -158,6 +158,6 @@ class GrampsDbBaseTest(unittest.TestCase):
     def _add_media_object_with_sources(self, citations):
 
         return self._add_object_with_source(citations,
-                                            MediaObject,
+                                            Media,
                                             self._db.add_object,
                                             self._db.commit_media_object)

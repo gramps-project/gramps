@@ -49,7 +49,7 @@ from gi.repository import GdkPixbuf
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
-from gramps.gen.lib import MediaObject
+from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
@@ -530,7 +530,7 @@ class PathChange(BatchOp):
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if obj.get_path().find(from_text) != -1:
                     self.handle_list.append(handle)
@@ -567,7 +567,7 @@ class Convert2Abs(BatchOp):
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
@@ -603,7 +603,7 @@ class Convert2Rel(BatchOp):
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if os.path.isabs(obj.path):
                     self.handle_list.append(handle)
@@ -642,7 +642,7 @@ class ImagesNotIncluded(BatchOp):
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 self.handle_list.append(handle)
                 full_path = media_path_full(self.db, obj.path)
@@ -681,7 +681,7 @@ class ImagesNotIncluded(BatchOp):
                         self.path_list.append(media_full_path)
                         mime_type = get_type(media_full_path)
                         if is_image_type(mime_type):
-                            obj = MediaObject()
+                            obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
                             (root, ext) = os.path.splitext(filename)

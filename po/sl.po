@@ -27812,7 +27812,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "nahajališču obrnjeno"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "predmetu obrnjeno"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

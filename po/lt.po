@@ -28107,7 +28107,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Atviršktinės saugyklos"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Atvirkšiniai garso/vaizdo kūriniai"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

@@ -28305,7 +28305,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Repositori Invers"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Objecte Audiovisual Invers"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

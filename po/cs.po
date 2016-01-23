@@ -27722,7 +27722,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Invertovat archiv"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Invertovat objekt médií"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

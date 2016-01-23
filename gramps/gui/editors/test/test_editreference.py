@@ -32,7 +32,7 @@ except:
     MOCKING = False
 
 from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
-                             Repository, MediaObject, Note, Tag)
+                             Repository, Media, Note, Tag)
 from gramps.gen.merge.diff import DictionaryDb
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState

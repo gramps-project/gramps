@@ -56,7 +56,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-from gramps.gen.lib import (Citation, Event, EventType, Family, MediaObject,
+from gramps.gen.lib import (Citation, Event, EventType, Family, Media,
                             Name, Note, Person, Place, Repository, Source,
                             StyledText, Tag)
 from gramps.gen.db import DbTxn
@@ -778,7 +778,7 @@ class CheckIntegrity(object):
         empty_source_data = Source().serialize()
         empty_citation_data = Citation().serialize()
         empty_place_data = Place().serialize()
-        empty_media_data = MediaObject().serialize()
+        empty_media_data = Media().serialize()
         empty_repos_data = Repository().serialize()
         empty_note_data = Note().serialize()
 
@@ -1448,7 +1448,7 @@ class CheckIntegrity(object):
             handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
-            obj = MediaObject()
+            obj = Media()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1544,7 +1544,7 @@ class CheckIntegrity(object):
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         person.replace_media_references(None, new_handle)
@@ -1561,7 +1561,7 @@ class CheckIntegrity(object):
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         family.replace_media_references(None, new_handle)
@@ -1578,7 +1578,7 @@ class CheckIntegrity(object):
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         place.replace_media_references(None, new_handle)
@@ -1595,7 +1595,7 @@ class CheckIntegrity(object):
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         event.replace_media_references(None, new_handle)
@@ -1612,7 +1612,7 @@ class CheckIntegrity(object):
             citation.unserialize(info)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         citation.replace_media_references(None, new_handle)
@@ -1629,7 +1629,7 @@ class CheckIntegrity(object):
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
-                if item[0] == 'MediaObject':
+                if item[0] == 'Media':
                     if item[1] is None:
                         new_handle = create_id()
                         source.replace_media_references(None, new_handle)
@@ -1768,7 +1768,7 @@ class CheckIntegrity(object):
             handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
-            obj = MediaObject()
+            obj = Media()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -1892,7 +1892,7 @@ class CheckIntegrity(object):
             handle = bhandle.decode('utf-8')
             self.progress.step()
             info = self.db.media_map[bhandle]
-            obj = MediaObject()
+            obj = Media()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
@@ -2044,7 +2044,7 @@ class CheckIntegrity(object):
         self.db.add_repository(repo, trans, set_gid=True)
 
     def class_object(self, handle):
-        object = MediaObject()
+        object = Media()
         object.set_handle(handle)
         return object
 

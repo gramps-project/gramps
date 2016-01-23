@@ -50,7 +50,7 @@ from gramps.gen.mime import get_type
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             ChildRefType, Citation, Date, DateError, Event,
                             EventRef, EventRoleType, EventType, Family, LdsOrd,
-                            Location, MediaObject, MediaRef, Name,
+                            Location, Media, MediaRef, Name,
                             NameOriginType, NameType, Note, NoteType, Person,
                             PersonRef, Place, PlaceName, PlaceRef, PlaceType,
                             RepoRef, Repository, Researcher, Source,
@@ -2154,10 +2154,10 @@ class GrampsParser(UpdateCallback):
         self.objref = MediaRef()
         if 'hlink' in attrs:
             handle = self.inaugurate(attrs['hlink'], "media",
-                                     MediaObject)
+                                     Media)
         else: # old style XML
             handle = self.inaugurate_id(attrs.get('ref'), MEDIA_KEY,
-                                        MediaObject)
+                                        Media)
         self.objref.ref = handle
         self.objref.private = bool(attrs.get('priv'))
         if self.event:
@@ -2185,7 +2185,7 @@ class GrampsParser(UpdateCallback):
         Add a media object to db if it doesn't exist yet and assign
         id, privacy and changetime.
         """
-        self.object = MediaObject()
+        self.object = Media()
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
@@ -2266,7 +2266,7 @@ class GrampsParser(UpdateCallback):
         self.reporef = None
 
     def start_photo(self, attrs):
-        self.photo = MediaObject()
+        self.photo = Media()
         self.pref = MediaRef()
         self.pref.set_reference_handle(self.photo.get_handle())
 

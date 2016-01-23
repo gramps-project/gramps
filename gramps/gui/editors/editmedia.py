@@ -43,7 +43,7 @@ from gi.repository import Gdk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..utils import open_file_with_default_application
-from gramps.gen.lib import MediaObject, NoteType
+from gramps.gen.lib import Media, NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
@@ -53,7 +53,7 @@ from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
 from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
                          MediaBackRefList)
-from .addmedia import AddMediaObject
+from .addmedia import AddMedia
 from ..dialog import ErrorDialog
 from ..glade import Glade
 from gramps.gen.const import URL_MANUAL_SECT2
@@ -81,11 +81,11 @@ class EditMedia(EditPrimary):
                              dbstate.db.get_object_from_gramps_id, callback)
         if not self.obj.get_handle():
             #show the addmedia dialog immediately, with track of parent.
-            AddMediaObject(dbstate, self.uistate, self.track, self.obj,
+            AddMedia(dbstate, self.uistate, self.track, self.obj,
                            self._update_addmedia)
 
     def empty_object(self):
-        return MediaObject()
+        return Media()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -258,7 +258,7 @@ class EditMedia(EditPrimary):
         self.determine_mime()
         path = self.file_path.get_text()
         self.obj.set_path(path)
-        AddMediaObject(self.dbstate, self.uistate, self.track, self.obj,
+        AddMedia(self.dbstate, self.uistate, self.track, self.obj,
                        self._update_addmedia)
 
     def _update_addmedia(self, obj):

@@ -27904,7 +27904,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "depositi non presenti"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "oggetti multimediali non presenti"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

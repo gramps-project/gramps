@@ -28208,7 +28208,7 @@ msgstr "уникална медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 #, fuzzy
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "уникална медия"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

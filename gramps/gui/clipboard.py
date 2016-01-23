@@ -112,7 +112,7 @@ def map2class(target):
          'repo-link': ClipRepositoryLink,
          'pevent': ClipEvent,
          'eventref': ClipEventRef,
-         'mediaobj': ClipMediaObj,
+         'media': ClipMediaObj,
          'mediaref': ClipMediaRef,
          'place-link': ClipPlace,
          'placeref': ClipPlaceRef,
@@ -139,7 +139,7 @@ OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
          'Citation': Gdk.atom_intern('citation-link', False),
          'Repository': Gdk.atom_intern('repo-link', False),
          'Event': Gdk.atom_intern('pevent', False),
-         'Media': Gdk.atom_intern('mediaobj', False),
+         'Media': Gdk.atom_intern('media', False),
          'Place': Gdk.atom_intern('place-link', False),
          'Note': Gdk.atom_intern('note-link', False),
          }
@@ -281,7 +281,7 @@ class ClipObjWrapper(ClipWrapper):
                           'Family': self._db.get_family_from_handle,
                           'Event':  self._db.get_event_from_handle,
                           'Place': self._db.get_place_from_handle,
-                          'MediaObject': self._db.get_object_from_handle,
+                          'Media': self._db.get_object_from_handle,
                           'Source': self._db.get_source_from_handle}
 
         for (classname, handle) in self._obj.get_referenced_handles_recursively():
@@ -1064,7 +1064,7 @@ class ClipboardListView(object):
         self._db.connect('event-delete',
                          gen_del_obj(self.delete_object_ref, 'eventref'))
         self._db.connect('media-delete',
-                         gen_del_obj(self.delete_object, 'mediaobj'))
+                         gen_del_obj(self.delete_object, 'media'))
         self._db.connect('media-delete',
                          gen_del_obj(self.delete_object_ref, 'mediaref'))
         self._db.connect('place-delete',
@@ -1644,7 +1644,7 @@ class MultiTreeView(Gtk.TreeView):
                              self.uistate, [], ref)
                 except WindowActiveError:
                     pass
-        elif objclass in ['Media', 'MediaObject']:
+        elif objclass == 'Media':
             ref = self.dbstate.db.get_object_from_handle(handle)
             if ref:
                 try:

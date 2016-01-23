@@ -31,7 +31,7 @@ a person.
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Person, Family, Source, Citation, Event, MediaObject,
+from ..lib import (Person, Family, Source, Citation, Event, Media,
                    Place, Repository, Note, Tag)
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
@@ -95,7 +95,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Source": set(),
             "Citation": set(),
             "Repository": set(),
-            "MediaObject": set(),
+            "Media": set(),
             "Note": set(),
             "Tag": set(),
             }
@@ -129,7 +129,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_repository_from_handle(handle)
             if obj:
                 self.process_repository(obj)
-        elif class_name == "MediaObject":
+        elif class_name == "Media":
             obj = self.db.get_object_from_handle(handle)
             if obj:
                 self.process_media(obj)
@@ -323,9 +323,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the media object and find all of the primary objects
         that it references.
         """
-        if media is None or media.handle in self.referenced["MediaObject"]:
+        if media is None or media.handle in self.referenced["Media"]:
             return
-        self.referenced["MediaObject"].add(media.handle)
+        self.referenced["Media"].add(media.handle)
         self.process_citation_ref_list(media)
         self.process_attributes(media)
         self.process_notes(media)
@@ -344,7 +344,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 if tag.value.startswith("gramps://"):
                     obj_class, prop, value = tag.value[9:].split("/")
                     if obj_class == "Media":         # bug6493
-                        obj_class = "MediaObject"
+                        obj_class = "Media"
                     if prop == "handle":
                         self.queue_object(obj_class, value)
         self.process_tags(note)
@@ -478,7 +478,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         """
         Filter for media objects
         """
-        return handle in self.referenced["MediaObject"]
+        return handle in self.referenced["Media"]
 
     def include_event(self, handle):
         """

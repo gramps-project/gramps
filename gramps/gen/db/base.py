@@ -164,7 +164,7 @@ class DbReadBase(object):
 
     def find_next_object_gramps_id(self):
         """
-        Return the next available Gramps ID for a MediaObject object based
+        Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
         """
         raise NotImplementedError
@@ -367,7 +367,7 @@ class DbReadBase(object):
 
     def get_media_object_handles(self, sort_handles=False):
         """
-        Return a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each Media in
         the database.
 
         If sort_handles is True, the list is sorted by title.
@@ -505,9 +505,9 @@ class DbReadBase(object):
 
     def get_object_from_gramps_id(self, val):
         """
-        Find a MediaObject in the database from the passed Gramps ID.
+        Find a Media in the database from the passed Gramps ID.
 
-        If no such MediaObject exists, None is returned.
+        If no such Media exists, None is returned.
         Needs to be overridden by the derived class.
         """
         raise NotImplementedError
@@ -919,7 +919,7 @@ class DbReadBase(object):
 
     def has_object_handle(self, handle):
         """
-        Return True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current Mediadatabase.
         """
         raise NotImplementedError
 
@@ -991,7 +991,7 @@ class DbReadBase(object):
 
     def iter_media_objects(self):
         """
-        Return an iterator over objects for MediaObjects in the database
+        Return an iterator over objects for Medias in the database
         """
         raise NotImplementedError
 
@@ -1129,7 +1129,7 @@ class DbReadBase(object):
 
     def set_object_id_prefix(self, val):
         """
-        Set the naming template for Gramps MediaObject ID values.
+        Set the naming template for Gramps Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -1285,7 +1285,7 @@ class DbWriteBase(DbReadBase):
 
     def add_object(self, obj, transaction, set_gid=True):
         """
-        Add a MediaObject to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
@@ -1382,7 +1382,7 @@ class DbWriteBase(DbReadBase):
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """
-        Commit the specified MediaObject to the database, storing the changes
+        Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
         raise NotImplementedError
@@ -1507,7 +1507,7 @@ class DbWriteBase(DbReadBase):
 
     def remove_object(self, handle, transaction):
         """
-        Remove the MediaObjectPerson specified by the database handle from the
+        Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
 
         This method must be overridden in the derived class.

@@ -40,7 +40,7 @@ def SelectorFactory(classname):
     elif classname == 'Citation':
         from .selectcitation import SelectCitation
         cls = SelectCitation
-    elif classname in ['MediaObject', 'Media']:
+    elif classname == 'Media':
         from .selectobject import SelectObject
         cls = SelectObject
     elif classname == 'Repository':
