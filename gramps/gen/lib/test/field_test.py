@@ -26,7 +26,7 @@ from gramps.plugins.database.dictionarydb import DictionaryDb
 
 from  ..import (Person, Surname, Name, NameType, Family, FamilyRelType,
                 Event, EventType, Source, Place, PlaceName, Citation, Date,
-                Repository, RepositoryType, MediaObject, Note, NoteType,
+                Repository, RepositoryType, Media, Note, NoteType,
                 StyledText, StyledTextTag, StyledTextTagType, Tag,
                 ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
                 Url, UrlType, Address, EventRef, EventRoleType, RepoRef,

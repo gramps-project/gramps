@@ -148,7 +148,7 @@ class QuickTable(SimpleTable):
                 objclass, handle = self._link[index]
                 if (objclass == 'Filter' and
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
-                                  'Repository', 'Note', 'MediaObject',
+                                  'Repository', 'Note', 'Media',
                                   'Citation', 'Source']):
                     menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
                     menu_item.connect("activate",
@@ -256,7 +256,7 @@ class QuickTable(SimpleTable):
                         return True # handled event
                     except WindowActiveError:
                         pass
-            elif objclass in ['Media', 'MediaObject']:
+            elif objclass in ['Media', 'Media']:
                 ref = self.access.dbase.get_object_from_handle(handle)
                 if ref:
                     try:

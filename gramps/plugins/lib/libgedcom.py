@@ -116,7 +116,7 @@ from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
         ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
-        EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject,
+        EventType, Family, FamilyRelType, LdsOrd, Location, Media,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
         RepoRef, Repository, RepositoryType, Researcher,
         Source, SourceMediaType, SrcAttribute, SrcAttributeType,
@@ -2823,7 +2823,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new media object, assign the handle and GRAMPS ID.
         """
-        obj = MediaObject()
+        obj = Media()
         intid = self.oid2id.get(gramps_id)
         if self.dbase.has_object_handle(intid):
             obj.unserialize(self.dbase.get_raw_object_data(intid))
@@ -7532,7 +7532,7 @@ class GedcomParser(UpdateCallback):
                 path = filename
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
-                photo = MediaObject()
+                photo = Media()
                 photo.set_path(path)
                 photo.set_description(title)
                 full_path = os.path.abspath(path)

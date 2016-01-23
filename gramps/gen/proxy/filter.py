@@ -160,7 +160,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_object_from_handle(self, handle):
         """
-        Finds a MediaObject in the database from the passed Gramps handle.
+        Finds a Media in the database from the passed Gramps handle.
         If no such Object exists, None is returned.
         """
         media = self.db.get_object_from_handle(handle)
@@ -352,8 +352,8 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_object_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed Gramps ID.
-        If no such MediaObject exists, None is returned.
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
         """
         media = self.db.get_object_from_gramps_id(val)
         if media:

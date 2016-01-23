@@ -28,7 +28,7 @@ from html import escape
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib import (Person, Family, Event, Source, Place, Citation,
-                   Repository, MediaObject, Note, Date, Span)
+                   Repository, Media, Note, Date, Span)
 from ..config import config
 from ..datehandler import displayer
 
@@ -131,7 +131,7 @@ class SimpleTable(object):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Event', item.handle)
-            elif isinstance(item, MediaObject):
+            elif isinstance(item, Media):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
                     link = ('Media', item.handle)

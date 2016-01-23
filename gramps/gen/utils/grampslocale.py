@@ -828,7 +828,7 @@ class GrampsLocale(object):
             return _("the repository")
         elif objclass == "note":
             return _("the note")
-        elif objclass in ["media", "mediaobject"]:
+        elif objclass == "media":
             return _("the media")
         elif objclass == "source":
             return _("the source")

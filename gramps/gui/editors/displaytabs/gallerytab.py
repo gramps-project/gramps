@@ -49,7 +49,7 @@ from gi.repository import GLib
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from gramps.gen.lib import MediaObject, MediaRef
+from gramps.gen.lib import Media, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
                                    create_checksum)
@@ -100,8 +100,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         """
         #note: media-rebuild closes the editors, so no need to connect to it
         self.callman.register_callbacks(
-           {'media-delete': self.media_delete,  # delete a mediaobj we track
-            'media-update': self.media_update,  # change a mediaobj we track
+           {'media-delete': self.media_delete,  # delete a media we track
+            'media-update': self.media_update,  # change a media we track
            })
         self.callman.connect_all(keys=['media'])
 
@@ -285,7 +285,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         try:
             from .. import EditMediaRef
             EditMediaRef(self.dbstate, self.uistate, self.track,
-                         MediaObject(), MediaRef(),
+                         Media(), MediaRef(),
                          self.add_callback)
         except WindowActiveError:
             pass
@@ -322,7 +322,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         This function should be overridden by the derived class.
 
         """
-        SelectObject = SelectorFactory('MediaObject')
+        SelectObject = SelectorFactory('Media')
 
         sel = SelectObject(self.dbstate, self.uistate, self.track)
         src = sel.run()
@@ -515,7 +515,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         mime = get_type(name)
                         if not is_valid_type(mime):
                             return
-                        photo = MediaObject()
+                        photo = Media()
                         self.uistate.set_busy_cursor(True)
                         photo.set_checksum(create_checksum(name))
                         self.uistate.set_busy_cursor(False)

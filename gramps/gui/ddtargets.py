@@ -133,7 +133,7 @@ class _DdTargets(object):
         self.FAMILY_ATTRIBUTE   = _DdType(self, 'fattr')
         self.FAMILY_EVENT       = _DdType(self, 'fevent')
         self.LOCATION           = _DdType(self, 'location')
-        self.MEDIAOBJ           = _DdType(self, 'mediaobj')
+        self.MEDIAOBJ           = _DdType(self, 'media')
         self.MEDIAREF           = _DdType(self, 'mediaref')
         self.NAME               = _DdType(self, 'name')
         self.NOTE_LINK          = _DdType(self, 'note-link')

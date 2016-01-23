@@ -58,7 +58,7 @@ from gramps.gen.lib.citation import Citation
 from gramps.gen.lib.event import Event
 from gramps.gen.lib.place import Place
 from gramps.gen.lib.repo import Repository
-from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.media import Media
 from gramps.gen.lib.note import Note
 from gramps.gen.lib.tag import Tag
 from gramps.gen.lib.genderstats import GenderStats
@@ -304,7 +304,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             {
                 "handle_func": self.get_object_from_handle,
                 "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
+                "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
                 "add_func": self.add_object,
@@ -1366,7 +1366,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                             (self.get_place_cursor, Place),
                             (self.get_source_cursor, Source),
                             (self.get_citation_cursor, Citation),
-                            (self.get_media_cursor, MediaObject),
+                            (self.get_media_cursor, Media),
                             (self.get_repository_cursor, Repository),
                             (self.get_note_cursor, Note),
                             (self.get_tag_cursor, Tag),
@@ -1631,7 +1631,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def add_object(self, obj, transaction, set_gid=True):
         """
-        Add a MediaObject to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
@@ -1737,7 +1737,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def remove_object(self, handle, transaction):
         """
-        Remove the MediaObjectPerson specified by the database handle from the
+        Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         self.__do_remove(handle, transaction, self.media_map,
@@ -1947,7 +1947,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """
-        Commit the specified MediaObject to the database, storing the changes
+        Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
         self.commit_base(obj, self.media_map, MEDIA_KEY,

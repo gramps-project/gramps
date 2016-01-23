@@ -39,7 +39,7 @@ import os
 #-------------------------------------------------------------------------
 from ..lib import (Person, Surname, Name, NameType, Family, FamilyRelType,
                    Event, EventType, Source, Place, Citation,
-                   Repository, RepositoryType, MediaObject, Note, NoteType,
+                   Repository, RepositoryType, Media, Note, NoteType,
                    StyledText, StyledTextTag, StyledTextTagType, Tag,
                    ChildRef, ChildRefType)
 from .id import create_id
@@ -130,7 +130,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     elif isinstance(obj, Repository):
         obj.set_name(_('Unknown'))
         obj.set_type(RepositoryType.UNKNOWN)
-    elif isinstance(obj, MediaObject):
+    elif isinstance(obj, Media):
         obj.set_path(os.path.join(IMAGE_DIR, "image-missing.png"))
         obj.set_mime_type('image/png')
         obj.set_description(_('Unknown'))

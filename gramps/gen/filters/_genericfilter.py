@@ -37,7 +37,7 @@ from ..lib.citation import Citation
 from ..lib.event import Event
 from ..lib.place import Place
 from ..lib.repo import Repository
-from ..lib.mediaobj import MediaObject
+from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
 
@@ -328,7 +328,7 @@ class GenericMediaFilter(GenericFilter):
         return db.get_media_cursor()
 
     def make_obj(self):
-        return MediaObject()
+        return Media()
 
     def find_from_handle(self, db, handle):
         return db.get_object_from_handle(handle)

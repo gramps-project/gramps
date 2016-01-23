@@ -49,7 +49,7 @@ from .family import Family
 from .event import Event
 from .place import Place
 from .src import Source
-from .mediaobj import MediaObject
+from .media import Media
 from .repo import Repository
 from .note import Note
 from .citation import Citation

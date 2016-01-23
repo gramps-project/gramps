@@ -324,7 +324,7 @@ class Struct(object):
         self is class when called as a classmethod.
         """
         from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
-                                     Repository, MediaObject, Note, Tag, Date)
+                                     Repository, Media, Note, Tag, Date)
         if isinstance(struct, dict):
             if "_class" in struct.keys():
                 if struct["_class"] == "Person":
@@ -341,8 +341,8 @@ class Struct(object):
                     return Citation.create(Citation.from_struct(struct))
                 elif struct["_class"] == "Repository":
                     return Repository.create(Repository.from_struct(struct))
-                elif struct["_class"] == "MediaObject":
-                    return MediaObject.create(MediaObject.from_struct(struct))
+                elif struct["_class"] == "Media":
+                    return Media.create(Media.from_struct(struct))
                 elif struct["_class"] == "Note":
                     return Note.create(Note.from_struct(struct))
                 elif struct["_class"] == "Tag":

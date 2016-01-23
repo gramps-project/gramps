@@ -592,7 +592,7 @@ def edit_object(dbstate, uistate, reftype, ref):
             EditPlace(dbstate, uistate, [], place)
         except WindowActiveError:
             pass
-    elif reftype == 'MediaObject':
+    elif reftype == 'Media':
         try:
             obj = dbstate.db.get_object_from_handle(ref)
             EditMedia(dbstate, uistate, [], obj)

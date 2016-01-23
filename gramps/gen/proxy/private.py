@@ -40,7 +40,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from ..lib import (MediaRef, Attribute, Address, EventRef,
-                   Person, Name, Source, RepoRef, MediaObject, Place, Event,
+                   Person, Name, Source, RepoRef, Media, Place, Event,
                    Family, ChildRef, Repository, LdsOrd, Surname, Citation,
                    SrcAttribute, Note, Tag)
 from .proxybase import ProxyDbBase
@@ -209,8 +209,8 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_object_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed Gramps ID.
-        If no such MediaObject exists, None is returned.
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
         """
         obj = self.db.get_object_from_gramps_id(val)
         if obj and not obj.get_privacy():
@@ -374,7 +374,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def has_object_handle(self, handle):
         """
-        Return True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current Mediadatabase.
         """
         object = self.db.get_object_from_handle(handle)
         if object and not object.get_privacy():
@@ -432,7 +432,7 @@ class PrivateProxyDb(ProxyDbBase):
             'Source'        : self.db.get_source_from_handle,
             'Citation'      : self.db.get_citation_from_handle,
             'Place'         : self.db.get_place_from_handle,
-            'MediaObject'   : self.db.get_object_from_handle,
+            'Media'   : self.db.get_object_from_handle,
             'Note'          : self.db.get_note_from_handle,
             'Repository'    : self.db.get_repository_from_handle,
             }
@@ -930,7 +930,7 @@ def sanitize_source(db, source):
 
 def sanitize_media(db, media):
     """
-    Create a new MediaObject instance based off the passed Media
+    Create a new Media instance based off the passed Media
     instance. The returned instance has all private records
     removed from it.
 
@@ -938,11 +938,11 @@ def sanitize_media(db, media):
     :type db: DbBase
     :param media: source Media object that will be copied with
                   privacy records removed
-    :type media: MediaObject
+    :type media: Media
     :returns: 'cleansed' Media object
-    :rtype: MediaObject
+    :rtype: Media
     """
-    new_media = MediaObject()
+    new_media = Media()
 
     new_media.set_mime_type(media.get_mime_type())
     new_media.set_path(media.get_path())

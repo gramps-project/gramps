@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
-from gramps.gen.lib import Date, MediaObject
+from gramps.gen.lib import Date, Media
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
@@ -128,7 +128,7 @@ class MediaModel(FlatBaseModel):
         return ''
 
     def sort_date(self,data):
-        obj = MediaObject()
+        obj = Media()
         obj.unserialize(data)
         d = obj.get_date_object()
         if d:

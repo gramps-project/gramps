@@ -23113,7 +23113,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Käänteinen arkisto"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Käänteinen mediatiedosto"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

@@ -361,7 +361,7 @@ def navigation_label(db, nav_type, handle):
         obj = db.get_repository_from_handle(handle)
         if obj:
             label = obj.get_name()
-    elif nav_type == 'Media' or nav_type == 'MediaObject':
+    elif nav_type == 'Media' or nav_type == 'Media':
         obj = db.get_object_from_handle(handle)
         if obj:
             label = obj.get_description()
@@ -586,7 +586,7 @@ def get_citation_referents(citation_handle, db):
 
     """
     _primaries = ('Person', 'Family', 'Event', 'Place',
-                  'Source', 'MediaObject', 'Repository')
+                  'Source', 'Media', 'Repository')
 
     return (get_referents(citation_handle, db, _primaries))
 
@@ -660,6 +660,6 @@ def get_note_referents(note_handle, db):
 
     """
     _primaries = ('Person', 'Family', 'Event', 'Place',
-                  'Source', 'Citation', 'MediaObject', 'Repository')
+                  'Source', 'Citation', 'Media', 'Repository')
 
     return (get_referents(note_handle, db, _primaries))

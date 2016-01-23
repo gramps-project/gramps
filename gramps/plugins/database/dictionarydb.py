@@ -695,7 +695,7 @@ class DictionaryDb(DbGeneric):
             (self.get_place_cursor, Place),
             (self.get_source_cursor, Source),
             (self.get_citation_cursor, Citation),
-            (self.get_media_cursor, MediaObject),
+            (self.get_media_cursor, Media),
             (self.get_repository_cursor, Repository),
             (self.get_note_cursor, Note),
             (self.get_tag_cursor, Tag),

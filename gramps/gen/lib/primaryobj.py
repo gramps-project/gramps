@@ -525,7 +525,7 @@ class PrimaryObject(BasicPrimaryObject):
         """
         if classname == 'Citation' and isinstance(self, CitationBase):
             return self.has_citation_reference(handle)
-        elif classname == 'MediaObject' and isinstance(self, MediaBase):
+        elif classname == 'Media' and isinstance(self, MediaBase):
             return self.has_media_reference(handle)
         else:
             return self._has_handle_reference(classname, handle)
@@ -541,7 +541,7 @@ class PrimaryObject(BasicPrimaryObject):
         """
         if classname == 'Citation' and isinstance(self, CitationBase):
             self.remove_citation_references(handle_list)
-        elif classname == 'MediaObject' and isinstance(self, MediaBase):
+        elif classname == 'Media' and isinstance(self, MediaBase):
             self.remove_media_references(handle_list)
         else:
             self._remove_handle_references(classname, handle_list)
@@ -559,7 +559,7 @@ class PrimaryObject(BasicPrimaryObject):
         """
         if classname == 'Citation' and isinstance(self, CitationBase):
             self.replace_citation_references(old_handle, new_handle)
-        elif classname == 'MediaObject' and isinstance(self, MediaBase):
+        elif classname == 'Media' and isinstance(self, MediaBase):
             self.replace_media_references(old_handle, new_handle)
         else:
             self._replace_handle_reference(classname, old_handle, new_handle)

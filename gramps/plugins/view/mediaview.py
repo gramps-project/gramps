@@ -57,7 +57,7 @@ from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
 from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
-from gramps.gen.lib import MediaObject
+from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
 from gramps.gui.editors import EditMedia, DeleteMediaQuery
 from gramps.gen.errors import WindowActiveError
@@ -181,7 +181,7 @@ class MediaView(ListView):
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
-                photo = MediaObject()
+                photo = Media()
                 self.uistate.set_busy_cursor(True)
                 photo.set_checksum(create_checksum(name))
                 self.uistate.set_busy_cursor(False)
@@ -310,7 +310,7 @@ class MediaView(ListView):
     def add(self, obj):
         """Add a new media object to the media list"""
         try:
-            EditMedia(self.dbstate, self.uistate, [], MediaObject())
+            EditMedia(self.dbstate, self.uistate, [], Media())
         except WindowActiveError:
             pass
 
@@ -372,7 +372,7 @@ class MediaView(ListView):
         for tag_handle in handle_list:
             links = set([link[1] for link in
                          self.dbstate.db.find_backlink_handles(tag_handle,
-                                                include_classes='MediaObject')])
+                                                include_classes='Media')])
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 

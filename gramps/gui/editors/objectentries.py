@@ -44,7 +44,7 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import (Place, Source, MediaObject, Note)
+from gramps.gen.lib import (Place, Source, Media, Note)
 from .editplace import EditPlace
 from .editsource import EditSource
 from .editmedia import EditMedia
@@ -409,7 +409,7 @@ class MediaEntry(ObjEntry):
 
     def call_editor(self, obj=None):
         if obj is None:
-            object = MediaObject()
+            object = Media()
             func = self.obj_added
         else:
             object = obj
@@ -421,7 +421,7 @@ class MediaEntry(ObjEntry):
             pass
 
     def call_selector(self):
-        cls = SelectorFactory('MediaObject')
+        cls = SelectorFactory('Media')
         return cls(self.dbstate, self.uistate, self.track)
 
 # FIXME isn't used anywhere

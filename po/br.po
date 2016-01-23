@@ -27753,7 +27753,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 #, fuzzy
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Dibab ur media traezen"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

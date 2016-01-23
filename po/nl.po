@@ -25258,7 +25258,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Omgekeerde bibliotheek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Omgekeerd media-object"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

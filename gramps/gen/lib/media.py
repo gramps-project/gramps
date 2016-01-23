@@ -51,10 +51,10 @@ LOG = logging.getLogger(".citation")
 
 #-------------------------------------------------------------------------
 #
-# MediaObject class
+# Media class
 #
 #-------------------------------------------------------------------------
-class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
+class Media(CitationBase, NoteBase, DateBase, AttributeBase,
                   PrimaryObject):
     """
     Container for information about an image file, including location,
@@ -63,13 +63,13 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
     def __init__(self, source=None):
         """
-        Initialize a MediaObject.
+        Initialize a Media.
 
         If source is not None, then object is initialized from values of the
         source object.
 
         :param source: Object used to initialize the new object
-        :type source: MediaObject
+        :type source: Media
         """
         PrimaryObject.__init__(self, source)
         CitationBase.__init__(self, source)
@@ -138,7 +138,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"_class": "MediaObject",
+        return {"_class": "Media",
                 "handle": Handle("Media", self.handle),
                 "gramps_id": self.gramps_id,
                 "path": self.path,
@@ -215,7 +215,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
         :returns: Returns a serialized object
         """
-        default = MediaObject()
+        default = Media()
         return (Handle.from_struct(struct.get("handle", default.handle)),
                 struct.get("gramps_id", default.gramps_id),
                 struct.get("path", default.path),
@@ -233,7 +233,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
-        back into the data in a MediaObject structure.
+        back into the data in a Media structure.
 
         :param data: tuple containing the persistent data associated the object
         :type data: tuple
@@ -316,7 +316,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         Lost: handle, id, file, date of acquisition.
 
         :param acquisition: The media object to merge with the present object.
-        :type acquisition: MediaObject
+        :type acquisition: Media
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
@@ -326,7 +326,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
     def set_mime_type(self, mime_type):
         """
-        Set the MIME type associated with the MediaObject.
+        Set the MIME type associated with the Media.
 
         :param mime_type: MIME type to be assigned to the object
         :type mime_type: str
@@ -335,7 +335,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
     def get_mime_type(self):
         """
-        Return the MIME type associated with the MediaObject.
+        Return the MIME type associated with the Media.
 
         :returns: Returns the associated MIME type
         :rtype: str

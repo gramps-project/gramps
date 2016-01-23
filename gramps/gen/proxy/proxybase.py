@@ -258,7 +258,7 @@ class ProxyDbBase(DbReadBase):
 
     def get_media_object_handles(self, sort_handles=False):
         """
-        Return a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each Media in
         the database.
         """
         if self.db.is_open:
@@ -605,8 +605,8 @@ class ProxyDbBase(DbReadBase):
 
     def get_object_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
+        Finds a Media in the database from the passed gramps' ID.
+        If no such Media exists, None is returned.
         """
         return self.gfilter(self.include_media_object,
                 self.db.get_object_from_gramps_id(val))
@@ -873,7 +873,7 @@ class ProxyDbBase(DbReadBase):
 
     def has_object_handle(self, handle):
         """
-        returns True if the handle exists in the current MediaObjectdatabase.
+        returns True if the handle exists in the current Mediadatabase.
         """
         return self.gfilter(self.include_media_object,
                 self.db.get_object_from_handle(handle)) is not None

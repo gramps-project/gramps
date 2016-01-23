@@ -28697,7 +28697,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Αντιστροφή φίλτρου αποθετηρίων"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Αντιστροφή φίλτρου αντικειμένων μέσων"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
