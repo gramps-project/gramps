@@ -3,9 +3,9 @@
 
 
 language: c
-#python:
+python:
 #    - 3.3
-#    - 3.4
+    - 3.4
 
 install:
     - time sudo apt-get update
