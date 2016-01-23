@@ -413,7 +413,13 @@ class CommandLineReport(object):
             elif isinstance(option, EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
-                    ilist.append("%s\t%s" % (value, description))
+                    tabs = '\t'
+                    try:
+                        tabs = '\t\t' if len(value) < 10 else '\t'
+                    except TypeError: #Value is a number, use just one tab.
+                        pass
+                    val = "%s%s%s" % (value, tabs, description)
+                    ilist.append(val)
                 self.options_help[name].append(ilist)
             elif isinstance(option, Option):
                 self.options_help[name].append(option.get_help())
@@ -587,8 +593,8 @@ class CommandLineReport(object):
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
-            print('   %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0]))
             print(_("   Available values are:"))
+            print('      %s%s%s (%s)' % (self.show, tabs, opt[1], opt[0]))
             vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
