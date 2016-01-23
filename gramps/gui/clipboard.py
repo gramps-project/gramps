@@ -1644,7 +1644,7 @@ class MultiTreeView(Gtk.TreeView):
                              self.uistate, [], ref)
                 except WindowActiveError:
                     pass
-        elif objclass in ['Media', 'Media']:
+        elif objclass == 'Media':
             ref = self.dbstate.db.get_object_from_handle(handle)
             if ref:
                 try:

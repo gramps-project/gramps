@@ -256,7 +256,7 @@ class QuickTable(SimpleTable):
                         return True # handled event
                     except WindowActiveError:
                         pass
-            elif objclass in ['Media', 'Media']:
+            elif objclass == 'Media':
                 ref = self.access.dbase.get_object_from_handle(handle)
                 if ref:
                     try:
