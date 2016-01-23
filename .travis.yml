@@ -13,7 +13,7 @@ install:
 
 
     - travis_retry curl https://bootstrap.pypa.io/get-pip.py > get-pip.py
-    - sudo python3 get-pip.py
+    - sudo python3.4 get-pip.py
     - travis_retry sudo pip3 install pyicu==1.8
     - travis_retry sudo pip3 install mock
 
