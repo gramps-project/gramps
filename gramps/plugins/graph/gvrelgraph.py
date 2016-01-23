@@ -210,7 +210,7 @@ class RelGraphReport(Report):
 
         # now start from all root nodes we found and traverse their trees
         outlist = list()
-        p_done = {}
+        p_done = set()
         for person_handle in rootNodes:
             todolist = list()
             todolist.append(person_handle)
@@ -218,7 +218,7 @@ class RelGraphReport(Report):
                 # take the first person from todolist and do sanity check
                 cur = todolist.pop(0)
                 if cur in p_done: continue
-                p_done[cur] = 1
+                p_done.add(cur)
                 if not cur in self.person_handles: continue
                 person = self.database.get_person_from_handle(cur)
                 if person is None: continue
@@ -310,7 +310,7 @@ class RelGraphReport(Report):
 
         # The list of families for which we have output the node,
         # so we don't do it twice
-        families_done = {}
+        families_done = set()
         for person_handle in self.person_handles:
             # determine per person if we use HTML style label
             if self.includeimg:
@@ -339,7 +339,7 @@ class RelGraphReport(Report):
                     if family is None:
                         continue
                     if fam_handle not in families_done:
-                        families_done[fam_handle] = 1
+                        families_done.add(fam_handle)
                         self.__add_family(fam_handle)
                     # If subgraphs are not chosen then each parent is linked
                     # separately to the family. This gives Graphviz greater
