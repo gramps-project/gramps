@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-28 20:56+0200\n"
-"PO-Revision-Date: 2015-06-23 20:52+0300\n"
+"PO-Revision-Date: 2016-01-24 15:49+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -1388,9 +1388,8 @@ msgid "Path"
 msgstr "Шлях"
 
 #: ../gramps/cli/clidbman.py:170 ../gramps/gui/configure.py:1424
-#, fuzzy
 msgid "Database backend"
-msgstr "Базу даних відкрито"
+msgstr ""
 
 #: ../gramps/cli/clidbman.py:171 ../gramps/gui/dbman.py:298
 msgid "Last accessed"
@@ -3788,9 +3787,8 @@ msgid "Person ID:"
 msgstr "ID особи:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:46
-#, fuzzy
 msgid "Families having child with Id containing <text>"
-msgstr "Сім’ї, примітки яких містять <текст>"
+msgstr "Сім’ї, діти  з ІД яких містять <текст>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 msgid "Matches families where child has a specified Gramps ID"
@@ -3821,9 +3819,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Вибирає всі сім’ї, які є помічені як приватні"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
-#, fuzzy
 msgid "Families having father with Id containing <text>"
-msgstr "Сім’ї, примітки яких містять <текст>"
+msgstr "Сім’ї, з батьком ІД якого містить <текст>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 msgid "Matches families whose father has a specified Gramps ID"
@@ -5503,9 +5500,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Вибирає місця, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "Особи, які містять <запис>"
+msgstr "Місця з ІД, які містять <текст>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -5548,7 +5544,6 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Вибирає сховища, примітки яких містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
-#, fuzzy
 msgid "Repositories having notes containing <text>"
 msgstr "Сховища, примітки яких містять <текст>"
 
@@ -5607,18 +5602,16 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Вибирає сховища, відібрані фільтром"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
-#, fuzzy
 msgid "Repositories with name containing <text>"
-msgstr "Назва сховища, що містить <підрядок>"
+msgstr "Назва сховища, що містить <текст>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
 msgstr "Вибирає сховища, в назві яких міститься вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
-#, fuzzy
 msgid "Repositories with Id containing <text>"
-msgstr "Сховища, примітки яких містять <текст>"
+msgstr "Сховища з ІД, які містять <текст>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -5711,10 +5704,8 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Вибирає джерела, які мають певну кількість посилань на сховища"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr ""
-"Джерела з посиланням на сховища, що містять <підрядок> в \"Call Number\""
+msgstr "Джерела з посиланням на сховища, що містять <текс> в \"Call Number\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -5761,9 +5752,8 @@ msgid "Matches sources whose title contains a certain substring"
 msgstr "Вибирає джерела які містять підрядок тексту в назві"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
-#, fuzzy
 msgid "Sources with Id containing <text>"
-msgstr "Назва джерела, що містить <текст>"
+msgstr "Джерела з ІД, що містить <текст>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -7280,9 +7270,8 @@ msgid "Sidebar"
 msgstr "Бічна панель"
 
 #: ../gramps/gen/plug/_pluginreg.py:89
-#, fuzzy
 msgid "Database"
-msgstr "Шлях до бази даних"
+msgstr "База даних"
 
 #. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:513
@@ -7478,9 +7467,8 @@ msgstr "Внизу"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:131
-#, fuzzy
 msgid "Graphviz Layout"
-msgstr "Розмітка GraphViz"
+msgstr "Розмітка Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:133
@@ -7519,7 +7507,6 @@ msgid "Number of Horizontal Pages"
 msgstr "Кількість сторінок по горизонталі"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
-#, fuzzy
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -7534,7 +7521,6 @@ msgid "Number of Vertical Pages"
 msgstr "Кількість сторінок по вертикалі"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:162
-#, fuzzy
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -7558,9 +7544,8 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:190
-#, fuzzy
 msgid "Graphviz Options"
-msgstr "Параметри GraphViz"
+msgstr "Параметри Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:193
@@ -7643,12 +7628,11 @@ msgid "Use subgraphs"
 msgstr "Використовувати під-діаграми"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:237
-#, fuzzy
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Під-діаграми GraphViz можуть допомогти розташувати подружжя разом, але на "
+"Під-діаграми Graphviz можуть допомогти розташувати подружжя разом, але на "
 "складних графіках це приведе до більш довгих ліній, та більшого розміру "
 "самого графіку."
 
@@ -15238,15 +15222,15 @@ msgstr ""
 "Gramps зараз закриється."
 
 #: ../gramps/gui/grampsgui.py:101
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
 "At least %(major)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версія pygobject не відповідає вимогам. Щоб запустити Gramps з GUI, потрібно "
-"як мінімум pygobject %(major)d.%(bug)d.%(minor)d\n"
+"Версія Gtk не відповідає вимогам.\n"
+"Щоб запустити Gramps з GUI потрібно як мінімум %(major)d.%(minor)d\n"
 "\n"
 "Зараз Gramps завершить роботу."
 
@@ -17844,14 +17828,12 @@ msgid "Add a Family Tree"
 msgstr "Додати Сімейне дерево"
 
 #: ../gramps/plugins/database/bsddb.gpr.py:23
-#, fuzzy
 msgid "BSDDB Database Backend"
-msgstr "Базу даних відкрито"
+msgstr ""
 
 #: ../gramps/plugins/database/bsddb.gpr.py:24
-#, fuzzy
 msgid "_BSDDB Database Backend"
-msgstr "Базу даних відкрито"
+msgstr ""
 
 #: ../gramps/plugins/database/bsddb.gpr.py:25
 msgid "Berkeley Software Distribution Database Backend"
@@ -20080,9 +20062,8 @@ msgid "<No Citation>"
 msgstr "<Без Цитати>"
 
 #: ../gramps/plugins/gramplet/descendant.py:113
-#, fuzzy
 msgid "Descendent Menu"
-msgstr "Діаграма-віяло нащадків"
+msgstr "Меню нащадка"
 
 #: ../gramps/plugins/gramplet/eval.py:72
 msgid "Evaluation"
@@ -21547,7 +21528,6 @@ msgid "Gramps online manual"
 msgstr "Мережевий посібник з Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid "locale_suffix|"
 msgstr "суфікс"
 
@@ -21761,7 +21741,6 @@ msgid "Family Lines Graph"
 msgstr "Діаграма Родинних Ліній"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:32
-#, fuzzy
 msgid "Produces family line graphs using Graphviz."
 msgstr "Будує графік родинних ліній з допомогою GraphViz."
 
@@ -23537,9 +23516,8 @@ msgstr ""
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
 #: ../gramps/plugins/lib/libgedcom.py:5544
-#, fuzzy
 msgid "Detail"
-msgstr "Детальна інформація"
+msgstr "Детально"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
@@ -30144,14 +30122,12 @@ msgstr ""
 "процес неможливо виправити звачайною відміною."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
-#, fuzzy
 msgid "Original event type:"
-msgstr "_Оригінальний тип події:"
+msgstr "Оригінальний тип події:"
 
 #: ../gramps/plugins/tool/changetypes.glade:124
-#, fuzzy
 msgid "New event type:"
-msgstr "_Новий тип події:"
+msgstr "Новий тип події:"
 
 #: ../gramps/plugins/tool/changetypes.py:57
 msgid "Change Event Types"
@@ -31104,9 +31080,8 @@ msgid "Ignore Date and Confidence"
 msgstr "Ігнорувати дату та достовірність"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgid "manual|Merge_citations..."
-msgstr "Об'єднати цитати..."
+msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:131
 msgid ""
