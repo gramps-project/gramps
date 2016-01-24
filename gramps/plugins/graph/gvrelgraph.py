@@ -532,7 +532,7 @@ class RelGraphReport(Report):
                 if relationship:
                     label += "%s(%s)" % (lineDelimiter, relationship)
 
-        if self.occupation:
+        if self.occupation > 0:
            event_refs = person.get_primary_event_ref_list()
            events = [event for event in
                         [self.database.get_event_from_handle(ref.ref)
@@ -541,9 +541,26 @@ class RelGraphReport(Report):
                             EventType(EventType.OCCUPATION)]
            if len(events) > 0:
                events.sort(key=lambda x: x.get_date_object())
-               occupation = events[-1].get_description()
-               if occupation:
-                   label += "%s(%s)" % (lineDelimiter, occupation)
+               if (self.occupation == 1):
+                   occupation = events[-1].get_description()
+                   if occupation:
+                       label += "%s(%s)" % (lineDelimiter, occupation)
+               elif (self.occupation == 2):
+                   for e in events:
+                       date = self.get_date_string(e)
+                       place = self.get_place_string(e)
+                       desc = e.get_description()
+                       if (not date and not desc and not place): continue
+                       label += '%s(' % lineDelimiter
+                       if (date):
+                           label += '%s' % date
+                           if (desc): label += ' '
+                       if (desc):
+                           label += '%s' % desc
+                       if (place):
+                           if (date or desc): label += ', '
+                           label += '%s' % place
+                       label += ')'
 
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
@@ -711,7 +728,11 @@ class RelGraphOptions(MenuReportOptions):
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
 
-        occupation = BooleanOption(_("Include occupation"), False)
+        #occupation = BooleanOption(_("Include occupation"), False)
+        occupation = EnumeratedListOption(_('Include occupation'), 0)
+        occupation.add_item(0, _('Do not include any occupation'))
+        occupation.add_item(1, _('Include description of most recent occupation'))
+        occupation.add_item(2, _('Include date, description and place of all occupations'))
         occupation.set_help(_("Whether to include the last occupation"))
         add_option("occupation", occupation)
 
