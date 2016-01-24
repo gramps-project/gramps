@@ -33,6 +33,7 @@ import logging
 import shutil
 import bisect
 import ast
+from operator import itemgetter
 
 #------------------------------------------------------------------------
 #
@@ -1143,11 +1144,36 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return None
 
-    def iter_people(self):
-        return (Person.create(data[1]) for data in self.get_person_cursor())
+    def iter_items(self, order_by, class_):
+        """
+        Iterate over items in a class, possibly ordered by
+        a list of field names and direction ("ASC" or "DESC").
+        """
+        cursor = self._tables[class_.__name__]["cursor_func"]
+        if order_by is None:
+            for data in cursor():
+                yield class_.create(data[1])
+        else:
+            # first build sort order:
+            sorted_items = []
+            for data in cursor():
+                obj = class_.create(data[1])
+                # just use values and handle to keep small:
+                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+            # next we sort by fields and direction
+            pos = len(order_by) - 1
+            for (field, order) in reversed(order_by): # sort the lasts parts first
+                sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+                pos -= 1
+            # now we will look them up again:
+            for (order_by_values, handle) in sorted_items:
+                yield self._tables[class_.__name__]["handle_func"](handle)
 
-    def iter_families(self):
-        return (Family.create(data[1]) for data in self.get_family_cursor())
+    def iter_people(self, order_by=None):
+        return self.iter_items(order_by, Person)
+
+    def iter_families(self, order_by=None):
+        return self.iter_items(order_by, Family)
 
     def get_person_from_gramps_id(self, gramps_id):
         return Person.create(self.person_id_map[gramps_id])
@@ -1817,26 +1843,26 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def is_open(self):
         return self.db_is_open
 
-    def iter_citations(self):
-        return (Citation.create(data[1]) for data in self.get_citation_cursor())
+    def iter_citations(self, order_by=None):
+        return self.iter_items(order_by, Citation)
 
-    def iter_events(self):
-        return (Event.create(data[1]) for data in self.get_event_cursor())
+    def iter_events(self, order_by=None):
+        return self.iter_items(order_by, Event)
 
-    def iter_media(self):
-        return (Media.create(data[1]) for data in self.get_media_cursor())
+    def iter_media(self, order_by=None):
+        return self.iter_items(order_by, Media)
 
-    def iter_notes(self):
-        return (Note.create(data[1]) for data in self.get_note_cursor())
+    def iter_notes(self, order_by=None):
+        return self.iter_items(order_by, Note)
 
-    def iter_places(self):
-        return (Place.create(data[1]) for data in self.get_place_cursor())
+    def iter_places(self, order_by=None):
+        return self.iter_items(order_by, Place)
 
-    def iter_repositories(self):
-        return (Repository.create(data[1]) for data in self.get_repository_cursor())
+    def iter_repositories(self, order_by=None):
+        return self.iter_items(order_by, Repository)
 
-    def iter_sources(self):
-        return (Source.create(data[1]) for data in self.get_source_cursor())
+    def iter_sources(self, order_by=None):
+        return self.iter_items(order_by, Source)
 
     def iter_tags(self):
         return (Tag.create(data[1]) for data in self.get_tag_cursor())

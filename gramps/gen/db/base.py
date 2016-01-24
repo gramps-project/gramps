@@ -1892,6 +1892,7 @@ class DbWriteBase(DbReadBase):
                  ["AND", [filter, filter, ...]]      |
                  ["OR",  [filter, filter, ...]]      |
                  ["NOT",  filter]
+        order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
         class Result(list):
             """
@@ -1993,9 +1994,7 @@ class DbWriteBase(DbReadBase):
         if "*" in fields:
             fields.remove("*")
             fields.extend(self._tables[table]["class_func"].get_schema().keys())
-        #FIXME: add order_by to iter_funcs
-        #data = self._tables[table]["iter_func"](order_by=order_by)
-        data = self._tables[table]["iter_func"]()
+        data = self._tables[table]["iter_func"](order_by=order_by)
         position = 0
         selected = 0
         result = Result()
@@ -2041,3 +2040,14 @@ class DbWriteBase(DbReadBase):
         """
         name = self._tables[table]["class_func"].get_field_alias(name)
         return name.replace(".", "__")
+
+    def eval_order_by(self, order_by, obj):
+        """
+        Given a list of [[field, DIRECTION], ...]
+        return the list of values of the fields
+        """
+        values = []
+        for (field, direction) in order_by:
+            values.append(obj.get_field(field))
+        return values
+

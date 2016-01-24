@@ -34,6 +34,7 @@ import time
 import random
 import os
 from sys import maxsize
+from operator import itemgetter
 
 try:
     from bsddb3 import db
@@ -1203,12 +1204,34 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Closure that returns an iterator over objects in the database.
         """
-        def g(self):
-            with curs_(self) as cursor:
-                for key, data in cursor:
-                    obj = obj_()
-                    obj.unserialize(data)
-                    yield obj
+        def g(self, order_by=None):
+            """
+            order_by - [[field, DIRECTION], ...]
+            DIRECTION is "ASC" or "DESC"
+            """
+            if order_by is None:
+                with curs_(self) as cursor:
+                    for key, data in cursor:
+                        obj = obj_()
+                        obj.unserialize(data)
+                        yield obj
+            else:
+                # first build sort order:
+                sorted_items = []
+                with curs_(self) as cursor:
+                    for key, data in cursor:
+                        obj = obj_()
+                        obj.unserialize(data)
+                        # just use values and handle to keep small:
+                        sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                # next we sort by fields and direction
+                pos = len(order_by) - 1
+                for (field, order) in reversed(order_by): # sort the lasts parts first
+                    sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+                    pos -= 1
+                # now we will look them up again:
+                for (order_by_values, handle) in sorted_items:
+                    yield self._tables[obj_.__class__.__name__]["handle_func"](handle)
         return g
 
     # Use closure to define iterators for each primary object type
