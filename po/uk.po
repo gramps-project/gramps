@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-31 10:39+0100\n"
-"PO-Revision-Date: 2015-06-23 20:52+0300\n"
+"PO-Revision-Date: 2016-01-24 15:15+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -266,7 +266,6 @@ msgstr ""
 "відносин, а також всіх спільних предків."
 
 #: ../data/tips.xml.in.h:14
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
 "standing problem in genealogy, how to handle spelling variations. The "
@@ -276,13 +275,13 @@ msgid ""
 "library or other research facility. To view the SoundEx codes for surnames "
 "in your database, add the SoundEx Gramplet."
 msgstr ""
-"<b>SoundEx може допомогти з дослідженняс родоводу</b><br/>SoundEx вирішує "
+"<b>SoundEx може допомогти з дослідженням родоводу</b><br/>SoundEx вирішує "
 "довготривалу генеалогічну проблему як давати собі раду з різними варіантами "
 "написання імен. Інструмент SoundEx генерує спрощену форму, яка є "
 "еквівалентна іменам, що звучать однаково. Знання коду SoundEx для прізвища є "
 "дуже помічним при дослідженні даних переписів на мікрофільмах в бібліотеках "
 "та інших дослідницьких установах. Для отримання кодів SoundEx для прізвищ в "
-"Вашій базі даних, підіть до Інструменти->Утиліти->Генерувати код SoundEx..."
+"Вашій базі даних, додайте SoundEx грамплет."
 
 #: ../data/tips.xml.in.h:15
 msgid ""
@@ -388,15 +387,14 @@ msgstr ""
 "частину верхньої панелі або меню  &quot;Перегляд&quot;."
 
 #: ../data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
 "through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
 "Back&quot; or the arrow buttons."
 msgstr ""
-"<b>Навігація взад і вперед</b><br/>Gramps зберігає списки поперніх активних "
-"об'єктів, таких як Особи, Події і т.п. Ви можете переміщатися списком "
+"<b>Навігація взад і вперед</b><br/>Gramps зберігає списки попередніх "
+"активних об'єктів, таких як Особи, Події. Ви можете переміщатися списком "
 "використовуючи &quot;Йти &gt; Вперед&quot; та &quot;Йти &gt; Назад&quot;, "
 "або кнопки зі стрілками."
 
@@ -539,7 +537,6 @@ msgstr ""
 "додавати більшість інших об'єктів."
 
 #: ../data/tips.xml.in.h:34
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -568,7 +565,6 @@ msgstr ""
 "не перекладено."
 
 #: ../data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
@@ -809,7 +805,6 @@ msgstr ""
 "детальних розповідей історія Вашої родини оживе."
 
 #: ../data/tips.xml.in.h:56
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
@@ -817,7 +812,7 @@ msgid ""
 "Gramps."
 msgstr ""
 "<b>Не розмовляєте англійською?</b><br/>Добровольці переклали Gramps на більш "
-"ніж 20 мов. Якщо Gramps підтримує Вашу мову, але вона не використовується - "
+"ніж 40 мов. Якщо Gramps підтримує Вашу мову, але вона не використовується - "
 "перевірте налаштування мови за замовчуванням у Вашій операційній системі, та "
 "перезапустіть Gramps."
 
@@ -1832,7 +1827,6 @@ msgstr "День Міс. Рік"
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:160
 #: ../gramps/plugins/drawreport/calendarreport.py:232
-#, fuzzy, python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1842,7 +1836,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:168
-#, fuzzy, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1852,7 +1845,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:176
-#, fuzzy, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1862,7 +1854,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:184
-#, fuzzy, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1872,7 +1863,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:192
-#, fuzzy, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1881,7 +1871,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
-#, fuzzy, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1890,7 +1879,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:206
-#, fuzzy, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1899,7 +1887,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, fuzzy, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1908,7 +1895,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, fuzzy, python-brace-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -1917,7 +1903,6 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, fuzzy, python-brace-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -3924,9 +3909,8 @@ msgid "Person ID:"
 msgstr "ID особи:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:46
-#, fuzzy
 msgid "Families having child with Id containing <text>"
-msgstr "Сім’ї, примітки яких містять <текст>"
+msgstr "Сім’ї, діти  з ІД яких містять <текст>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 msgid "Matches families where child has a specified Gramps ID"
@@ -3957,9 +3941,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Вибирає всі сім’ї, які є помічені як приватні"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
-#, fuzzy
 msgid "Families having father with Id containing <text>"
-msgstr "Сім’ї, примітки яких містять <текст>"
+msgstr "Сім’ї, з батьком ІД якого містить <текст>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 msgid "Matches families whose father has a specified Gramps ID"
@@ -5639,9 +5622,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Вибирає місця, помічені як приватні"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "Особи, які містять <запис>"
+msgstr "Місця з ІД, які містять <текст>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -5684,7 +5666,6 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Вибирає сховища, примітки яких містять вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
-#, fuzzy
 msgid "Repositories having notes containing <text>"
 msgstr "Сховища, примітки яких містять <текст>"
 
@@ -5743,18 +5724,16 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Вибирає сховища, відібрані фільтром"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
-#, fuzzy
 msgid "Repositories with name containing <text>"
-msgstr "Назва сховища, що містить <підрядок>"
+msgstr "Назва сховища, що містить <текст>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
 msgstr "Вибирає сховища, в назві яких міститься вказаний текст"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
-#, fuzzy
 msgid "Repositories with Id containing <text>"
-msgstr "Сховища, примітки яких містять <текст>"
+msgstr "Сховища з ІД, які містять <текст>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -5847,10 +5826,8 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Вибирає джерела, які мають певну кількість посилань на сховища"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr ""
-"Джерела з посиланням на сховища, що містять <підрядок> в \"Call Number\""
+msgstr "Джерела з посиланням на сховища, що містять <рядок> в \"Call Number\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -5897,9 +5874,8 @@ msgid "Matches sources whose title contains a certain substring"
 msgstr "Вибирає джерела які містять підрядок тексту в назві"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
-#, fuzzy
 msgid "Sources with Id containing <text>"
-msgstr "Назва джерела, що містить <текст>"
+msgstr "Джерела з ІД, що містить <текст>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -8638,9 +8614,8 @@ msgid "the filter"
 msgstr "фільтр"
 
 #: ../gramps/gen/utils/grampslocale.py:839
-#, fuzzy
 msgid "the citation"
-msgstr "Кожну цитату"
+msgstr "Цитата"
 
 #: ../gramps/gen/utils/grampslocale.py:841
 msgid "See details"
@@ -10616,9 +10591,8 @@ msgid "No active note"
 msgstr "Не вибрано примітку"
 
 #: ../gramps/gui/editors/addmedia.py:71
-#, fuzzy
 msgid "manual|Select_a_media_object_selector"
-msgstr "Обрати медіа об'єкт"
+msgstr ""
 
 #: ../gramps/gui/editors/addmedia.py:105
 msgid "Select a media object"
@@ -11483,9 +11457,8 @@ msgid "_Jump to"
 msgstr "_Перейти до"
 
 #: ../gramps/gui/editors/editaddress.py:63
-#, fuzzy
 msgid "manual|Address_Editor_dialog"
-msgstr "Редактор адрес"
+msgstr ""
 
 #: ../gramps/gui/editors/editaddress.py:92
 #: ../gramps/gui/editors/editaddress.py:166
@@ -11493,9 +11466,8 @@ msgid "Address Editor"
 msgstr "Редактор адрес"
 
 #: ../gramps/gui/editors/editattribute.py:62
-#, fuzzy
 msgid "manual|Attribute_Editor_dialog"
-msgstr "Редактор атрибутів"
+msgstr ""
 
 #: ../gramps/gui/editors/editattribute.py:96
 #: ../gramps/gui/editors/editattribute.py:138
@@ -11516,9 +11488,8 @@ msgid "The attribute type cannot be empty"
 msgstr "Атрибут не може бути пустим"
 
 #: ../gramps/gui/editors/editchildref.py:68
-#, fuzzy
 msgid "manual|Child_Reference_Editor"
-msgstr "Редактор відносин дитини"
+msgstr ""
 
 #: ../gramps/gui/editors/editchildref.py:103
 #: ../gramps/gui/editors/editchildref.py:198
@@ -11530,9 +11501,8 @@ msgid "Child Reference"
 msgstr "Відносини дитини"
 
 #: ../gramps/gui/editors/editcitation.py:69
-#, fuzzy
 msgid "manual|New_Citation_dialog"
-msgstr "Об'єднати цитати..."
+msgstr ""
 
 #: ../gramps/gui/editors/editcitation.py:128
 #: ../gramps/gui/editors/editcitation.py:134
@@ -11630,9 +11600,8 @@ msgid "Calculated"
 msgstr "Підраховано"
 
 #: ../gramps/gui/editors/editdate.py:99
-#, fuzzy
 msgid "manual|Editing_dates"
-msgstr "Редагування_Дат"
+msgstr ""
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:278
 msgid "Date selection"
@@ -11707,9 +11676,8 @@ msgid "Delete Event (%s)"
 msgstr "Видалити подію (%s)"
 
 #: ../gramps/gui/editors/editeventref.py:57
-#, fuzzy
 msgid "manual|Event_Reference_Editor_dialog"
-msgstr "Редактор посилань на подію"
+msgstr ""
 
 #: ../gramps/gui/editors/editeventref.py:78
 #: ../gramps/gui/editors/editeventref.py:255
@@ -12005,9 +11973,8 @@ msgid "Add Family"
 msgstr "Додати сім'ю"
 
 #: ../gramps/gui/editors/editldsord.py:67
-#, fuzzy
 msgid "manual|LDS_Ordinance_Editor"
-msgstr "Редактор ритуалів LDS"
+msgstr ""
 
 #: ../gramps/gui/editors/editldsord.py:160
 #: ../gramps/gui/editors/editldsord.py:316
@@ -12040,9 +12007,8 @@ msgid "LDS Ordinance"
 msgstr "Ритуал LDS"
 
 #: ../gramps/gui/editors/editlink.py:49
-#, fuzzy
 msgid "manual|Link_Editor"
-msgstr "Редактор посилань"
+msgstr ""
 
 #: ../gramps/gui/editors/editlink.py:86 ../gramps/gui/editors/editlink.py:231
 msgid "Link Editor"
@@ -12121,9 +12087,8 @@ msgid "Remove Media Object"
 msgstr "Вилучити медіа об’єкт"
 
 #: ../gramps/gui/editors/editmediaref.py:72
-#, fuzzy
 msgid "manual|Media_Reference_Editor_dialog"
-msgstr "Редактор посилань на медіа"
+msgstr ""
 
 #: ../gramps/gui/editors/editmediaref.py:96
 #: ../gramps/gui/editors/editmediaref.py:410
@@ -12142,9 +12107,8 @@ msgid "Name Editor"
 msgstr "Редактор імен"
 
 #: ../gramps/gui/editors/editname.py:163
-#, fuzzy
 msgid "manual|Name_Editor"
-msgstr "Редактор імен"
+msgstr ""
 
 #: ../gramps/gui/editors/editname.py:175
 #: ../gramps/gui/editors/editperson.py:328
@@ -12198,9 +12162,8 @@ msgid "Group this name only"
 msgstr "Групувати лише це ім'я"
 
 #: ../gramps/gui/editors/editnote.py:67
-#, fuzzy
 msgid "manual|Editing_information_about_notes"
-msgstr "Редагування_Інформації_про_Події"
+msgstr ""
 
 #: ../gramps/gui/editors/editnote.py:150
 #, python-format
@@ -12268,9 +12231,8 @@ msgid "New Person"
 msgstr "Нова Особа"
 
 #: ../gramps/gui/editors/editperson.py:246
-#, fuzzy
 msgid "manual|Editing_information_about_people"
-msgstr "Редагування_Інформації_про_Події"
+msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:607
 #: ../gramps/plugins/view/geofamily.py:397
@@ -12349,9 +12311,8 @@ msgid "_Unknown"
 msgstr "_невідомо"
 
 #: ../gramps/gui/editors/editpersonref.py:68
-#, fuzzy
 msgid "manual|Person_Reference_Editor"
-msgstr "Редактор Посилань Особи"
+msgstr ""
 
 #: ../gramps/gui/editors/editpersonref.py:97
 #: ../gramps/gui/editors/editpersonref.py:224
@@ -12448,9 +12409,8 @@ msgid "Delete Place (%s)"
 msgstr "Видалити місце (%s)"
 
 #: ../gramps/gui/editors/editplacename.py:49
-#, fuzzy
 msgid "manual|Place_Name_Editor_dialog"
-msgstr "Редактор назви місця"
+msgstr ""
 
 #: ../gramps/gui/editors/editplacename.py:101
 #: ../gramps/gui/editors/editplacename.py:134
@@ -12526,9 +12486,8 @@ msgid "Add Repository"
 msgstr "Додати Сховище"
 
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgid "manual|New_Repositories_dialog"
-msgstr "_Сховища"
+msgstr ""
 
 #: ../gramps/gui/editors/editrepository.py:94
 msgid "Edit Repository"
@@ -12602,9 +12561,8 @@ msgid "Delete Source (%s)"
 msgstr "Видалити Джерело (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
-#, fuzzy
 msgid "manual|Tag_selection_dialog"
-msgstr "Мітки"
+msgstr ""
 
 #: ../gramps/gui/editors/edittaglist.py:68
 #: ../gramps/gui/editors/edittaglist.py:126
@@ -12744,9 +12702,8 @@ msgid "_OK"
 msgstr "_ОК"
 
 #: ../gramps/gui/editors/editurl.py:47
-#, fuzzy
 msgid "manual|Internet_Address_Editor"
-msgstr "Редактор Інтернет Адрес"
+msgstr ""
 
 #: ../gramps/gui/editors/editurl.py:70 ../gramps/gui/editors/editurl.py:101
 msgid "Internet Address Editor"
@@ -12757,14 +12714,12 @@ msgid "manual|Add_Rule_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:84
-#, fuzzy
 msgid "manual|Define_Filter_dialog"
-msgstr "Загальне"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:85
-#, fuzzy
 msgid "manual|Custom_Filters"
-msgstr "Власний фільтр"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:89
 msgid "Person Filters"
@@ -15463,15 +15418,15 @@ msgstr ""
 "Gramps зараз закриється."
 
 #: ../gramps/gui/grampsgui.py:101
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Your Gtk version does not meet the requirements.\n"
 "At least %(major)d.%(minor)d is needed to start Gramps with a GUI.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Версія pygobject не відповідає вимогам. Щоб запустити Gramps з GUI, потрібно "
-"як мінімум pygobject %(major)d.%(bug)d.%(minor)d\n"
+"Версія Gtk не відповідає вимогам.\n"
+" Щоб запустити Gramps з GUI, потрібно як мінімум %(major)d.%(minor)d\n"
 "\n"
 "Зараз Gramps завершить роботу."
 
@@ -15725,9 +15680,8 @@ msgstr ""
 "Вам, за те, що знайшли трішки часу для нас, щоб повідомити про помилку."
 
 #: ../gramps/gui/logger/_errorview.py:45
-#, fuzzy
 msgid "manual|Error_Report"
-msgstr "Звіт про помилку"
+msgstr ""
 
 #: ../gramps/gui/logger/_errorview.py:83
 msgid "Error Report"
@@ -16934,9 +16888,8 @@ msgid "You must select an active person for this tool to work properly."
 msgstr "Вам потрібно обрати активну особу для роботи цього інструменту."
 
 #: ../gramps/gui/selectors/selectcitation.py:51
-#, fuzzy
 msgid "manual|Select_Source_or_Citation_selector"
-msgstr "Оберіть Джерело або Цитату"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectcitation.py:68
 msgid "Select Source or Citation"
@@ -16984,9 +16937,8 @@ msgid "Select Note"
 msgstr "Оберіть примітку"
 
 #: ../gramps/gui/selectors/selectobject.py:60
-#, fuzzy
 msgid "manual|Select_Media_Object_selector"
-msgstr "Оберіть медіа об'єкт"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectobject.py:70
 msgid "Select Media Object"
@@ -17013,9 +16965,8 @@ msgid "Select Place"
 msgstr "Оберіть місце"
 
 #: ../gramps/gui/selectors/selectrepository.py:46
-#, fuzzy
 msgid "manual|Repositories"
-msgstr "Сховища"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectrepository.py:63
 msgid "Select Repository"
@@ -17726,14 +17677,12 @@ msgid "View %(name)s: %(msg)s"
 msgstr "Перегляд %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:86
-#, fuzzy
 msgid "manual|Organize_Tags_Window"
-msgstr "Впорядкувати мітки"
+msgstr ""
 
 #: ../gramps/gui/views/tags.py:87
-#, fuzzy
 msgid "manual|New_Tag_dialog"
-msgstr "Мітки"
+msgstr ""
 
 #: ../gramps/gui/views/tags.py:222
 msgid "New Tag..."
@@ -17834,7 +17783,6 @@ msgid "Building View"
 msgstr "Будую перегляд"
 
 #: ../gramps/gui/views/treemodels/treebasemodel.py:587
-#, fuzzy
 msgid "Loading items..."
 msgstr "Завантаження..."
 
@@ -18270,15 +18218,14 @@ msgid "Could not create jpeg version of image %(name)s"
 msgstr "Не можу створити jpeg версію зображення %(name)s"
 
 #: ../gramps/plugins/docgen/latexdoc.py:57
-#, fuzzy
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
 "jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python3-imaging or python3-pillow"
 msgstr ""
 "PIL (Python Imaging Library) не завантажено. Створення jpg зображень з не-"
-"jpg зображень в LaTeX документах не буде наявне. Скористайтеся менеджером "
-"пакунків щоб додати python3-imaging"
+"jpg зображень в LaTeX документах не буде можливе. Скористайтеся менеджером "
+"пакунків щоб додати python3-imaging або python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1221
 #, python-format
@@ -20245,9 +20192,8 @@ msgid "<No Citation>"
 msgstr "<Без Цитати>"
 
 #: ../gramps/plugins/gramplet/descendant.py:113
-#, fuzzy
 msgid "Descendent Menu"
-msgstr "Діаграма-віяло нащадків"
+msgstr "Меню нащадка"
 
 #: ../gramps/plugins/gramplet/eval.py:72
 msgid "Evaluation"
@@ -20997,12 +20943,10 @@ msgid "Gramplet showing the children of a family"
 msgstr "Ґрамплет показує дітей обраної сім’ї"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:847
-#, fuzzy
 msgid "Person References"
 msgstr "Посилання Особи"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:848
-#, fuzzy
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Ґрамплет показує зворотні посилання на особу"
 
@@ -21023,32 +20967,26 @@ msgid "References"
 msgstr "Посилання"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:861
-#, fuzzy
 msgid "Event References"
-msgstr "Примітка до посилання на подію"
+msgstr "Посилання на подію"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:862
-#, fuzzy
 msgid "Gramplet showing the backlink references for an event"
 msgstr "Ґрамплет показує зворотні посилання на подію"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:875
-#, fuzzy
 msgid "Family References"
-msgstr "Посилання сім’ї : %s"
+msgstr "Посилання сім’ї"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:876
-#, fuzzy
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Ґрамплет показує зворотні посилання на сім’ю"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:889
-#, fuzzy
 msgid "Place References"
-msgstr "Редактор посилань на місце"
+msgstr "Посилання на місце"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:890
-#, fuzzy
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Ґрамплет показує зворотні посилання для місця"
 
@@ -21058,17 +20996,14 @@ msgid "Source References"
 msgstr "Посилання на джерела"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:904
-#, fuzzy
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Ґрамплет показує зворотні посилання на джерело"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:917
-#, fuzzy
 msgid "Citation References"
 msgstr "Посилання на цитату"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:918
-#, fuzzy
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Ґрамплет показує зворотні посилання на цитату"
 
@@ -21078,27 +21013,22 @@ msgid "Repository References"
 msgstr "Посилання на сховища"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:932
-#, fuzzy
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Ґрамплет показує зворотні посилання для сховища"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:945
-#, fuzzy
 msgid "Media References"
-msgstr "Примітка до посилання на медіа"
+msgstr "Посилання на медіа"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
-#, fuzzy
 msgid "Gramplet showing the backlink references for a media object"
-msgstr "Ґрамплет показує зворотні посилання на медіа"
+msgstr "Ґрамплет показує зворотні посилання на медіа об’єкт"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:959
-#, fuzzy
 msgid "Note References"
-msgstr "Посилання на джерела"
+msgstr "Посилання на замітку"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:960
-#, fuzzy
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Ґрамплет показує зворотні посилання на примітку"
 
@@ -21697,7 +21627,6 @@ msgid "Gramps online manual"
 msgstr "Мережевий посібник з Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid "locale_suffix|"
 msgstr "суфікс"
 
@@ -22469,12 +22398,10 @@ msgid "call"
 msgstr "щоденне ім'я"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|Title"
 msgstr "Титул"
 
 #: ../gramps/plugins/importer/importcsv.py:156
-#, fuzzy
 msgid "Person or Place|title"
 msgstr "титул"
 
@@ -22495,14 +22422,12 @@ msgid "birth place"
 msgstr "місце народження"
 
 #: ../gramps/plugins/importer/importcsv.py:164
-#, fuzzy
 msgid "Birth place id"
-msgstr "Місце народження"
+msgstr "ІД місця народження"
 
 #: ../gramps/plugins/importer/importcsv.py:165
-#, fuzzy
 msgid "birth place id"
-msgstr "місце народження"
+msgstr "ІД місця народження"
 
 #: ../gramps/plugins/importer/importcsv.py:171
 msgid "birth source"
@@ -22513,14 +22438,12 @@ msgid "baptism place"
 msgstr "місце хрещення"
 
 #: ../gramps/plugins/importer/importcsv.py:176
-#, fuzzy
 msgid "Baptism place id"
-msgstr "Місце Хрещення (вік)"
+msgstr "ІД місця Хрещення"
 
 #: ../gramps/plugins/importer/importcsv.py:177
-#, fuzzy
 msgid "baptism place id"
-msgstr "місце хрещення"
+msgstr "ІД місця хрещення"
 
 #: ../gramps/plugins/importer/importcsv.py:180
 msgid "baptism date"
@@ -22535,14 +22458,12 @@ msgid "burial place"
 msgstr "місце поховання"
 
 #: ../gramps/plugins/importer/importcsv.py:186
-#, fuzzy
 msgid "Burial place id"
-msgstr "Місце поховання"
+msgstr "ІД місця поховання"
 
 #: ../gramps/plugins/importer/importcsv.py:187
-#, fuzzy
 msgid "burial place id"
-msgstr "місце поховання"
+msgstr "ІД місця поховання"
 
 #: ../gramps/plugins/importer/importcsv.py:190
 msgid "burial date"
@@ -22557,14 +22478,12 @@ msgid "death place"
 msgstr "місце смерті"
 
 #: ../gramps/plugins/importer/importcsv.py:196
-#, fuzzy
 msgid "Death place id"
-msgstr "Місце смерті"
+msgstr "ІД місця смерті"
 
 #: ../gramps/plugins/importer/importcsv.py:197
-#, fuzzy
 msgid "death place id"
-msgstr "місце смерті"
+msgstr "ІД місця смерті"
 
 #: ../gramps/plugins/importer/importcsv.py:203
 msgid "death source"
@@ -22653,29 +22572,24 @@ msgid "place"
 msgstr "місце"
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "name"
-msgstr "=назва"
+msgstr "назва"
 
 #: ../gramps/plugins/importer/importcsv.py:224
-#, fuzzy
 msgid "type"
-msgstr "Тип лінії"
+msgstr "тип"
 
 #: ../gramps/plugins/importer/importcsv.py:225
-#, fuzzy
 msgid "latitude"
-msgstr "Широта"
+msgstr "широта"
 
 #: ../gramps/plugins/importer/importcsv.py:226
-#, fuzzy
 msgid "longitude"
-msgstr "Довгота"
+msgstr "довгота"
 
 #: ../gramps/plugins/importer/importcsv.py:227
-#, fuzzy
 msgid "code"
-msgstr "Html код"
+msgstr "код"
 
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "Enclosed by"
@@ -23788,9 +23702,8 @@ msgstr ""
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
 #: ../gramps/plugins/lib/libgedcom.py:5551
-#, fuzzy
 msgid "Detail"
-msgstr "Детальна інформація"
+msgstr "Детально"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
@@ -30329,9 +30242,8 @@ msgid "_Accept changes and close"
 msgstr "_Прийняти зміни та закрити"
 
 #: ../gramps/plugins/tool/changenames.py:64
-#, fuzzy
 msgid "manual|Fix_Capitalization_of_Family_Names"
-msgstr "Поправити регістр в прізвищах"
+msgstr ""
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:234
@@ -30381,14 +30293,12 @@ msgstr ""
 "процес неможливо виправити звачайною відміною."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
-#, fuzzy
 msgid "Original event type:"
-msgstr "_Оригінальний тип події:"
+msgstr "Оригінальний тип події:"
 
 #: ../gramps/plugins/tool/changetypes.glade:124
-#, fuzzy
 msgid "New event type:"
-msgstr "_Новий тип події:"
+msgstr "Новий тип події:"
 
 #: ../gramps/plugins/tool/changetypes.py:57
 msgid "Change Event Types"
@@ -30961,9 +30871,8 @@ msgid "Custom filter _editor"
 msgstr "_Редактор фільтрів користувача"
 
 #: ../gramps/plugins/tool/eventcmp.py:70
-#, fuzzy
 msgid "manual|Compare_Individual_Events"
-msgstr "Порівняння особистих подій"
+msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -31095,9 +31004,8 @@ msgid "Medium"
 msgstr "Середнє"
 
 #: ../gramps/plugins/tool/finddupes.py:66
-#, fuzzy
 msgid "manual|Find_Possible_Duplicate_People"
-msgstr "Пошук можливих дублікатів осіб"
+msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:173
@@ -31367,9 +31275,8 @@ msgid "Ignore Date and Confidence"
 msgstr "Ігнорувати дату та достовірність"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgid "manual|Merge_citations"
-msgstr "Об'єднати цитати..."
+msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:131
 msgid ""
@@ -31408,9 +31315,8 @@ msgid "_Tag"
 msgstr "_Мітка"
 
 #: ../gramps/plugins/tool/notrelated.py:59
-#, fuzzy
 msgid "manual|Not_Related"
-msgstr "Не Пов'язано"
+msgstr ""
 
 #: ../gramps/plugins/tool/notrelated.py:79
 #, python-format
@@ -31496,9 +31402,8 @@ msgid "_Email:"
 msgstr "_Ел.пошта:"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
-#, fuzzy
 msgid "manual|Edit_Database_Owner_Information"
-msgstr "Редагувати інформацію про власника бази"
+msgstr ""
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -32181,9 +32086,8 @@ msgid "_Hide marked"
 msgstr "_Приховати відмічене"
 
 #: ../gramps/plugins/tool/verify.py:74
-#, fuzzy
 msgid "manual|Verify_the_Data"
-msgstr "Перевірка даних"
+msgstr ""
 
 #: ../gramps/plugins/tool/verify.py:250
 msgid "Data Verify tool"
@@ -33713,9 +33617,9 @@ msgstr ""
 "%(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1609
-#, fuzzy, python-format
+#, python-format
 msgid "Last change was the %(date)s"
-msgstr "Місця, змінені після <дати-часу>"
+msgstr "Остання зміна була %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1621
 #, python-format
