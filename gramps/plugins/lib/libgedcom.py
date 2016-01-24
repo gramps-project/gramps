@@ -2308,7 +2308,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__media_ref_note,
             TOKEN_IGNORE : self.__ignore,
         }
-        self.func_list.append(self.object_parse_tbl)
+        self.func_list.append(self.media_parse_tbl)
 
         self.parse_loc_tbl = {
             TOKEN_ADR1   : self.__location_adr1,
@@ -5178,7 +5178,7 @@ class GedcomParser(UpdateCallback):
         sub_state.note = ""
         sub_state.level = level
 
-        self.__parse_level(sub_state, self.object_parse_tbl, self.__ignore)
+        self.__parse_level(sub_state, self.media_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
         return (sub_state.form, sub_state.filename, sub_state.title,
                 sub_state.note)
