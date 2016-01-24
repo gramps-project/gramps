@@ -105,13 +105,13 @@ class ReorderIds(tool.BatchTool):
                          db.event_prefix)
             if uistate:
                 self.progress.set_pass(_('Reordering Media Object IDs'),
-                                       db.get_number_of_media_objects())
+                                       db.get_number_of_media())
             self.reorder(Media,
                          db.get_media_from_gramps_id,
                          db.get_media_from_handle,
                          db.find_next_object_gramps_id,
                          db.media_map,
-                         db.commit_media_object,
+                         db.commit_media,
                          db.media_prefix)
             if uistate:
                 self.progress.set_pass(_('Reordering Source IDs'),

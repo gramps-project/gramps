@@ -410,9 +410,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 self.process_attributes(media_ref)
                 self.process_citation_ref_list(media_ref)
                 handle = media_ref.get_reference_handle()
-                media_object = self.db.get_media_from_handle(handle)
-                if media_object:
-                    self.process_media(media_object)
+                media = self.db.get_media_from_handle(handle)
+                if media:
+                    self.process_media(media)
 
     def process_lds_ords(self, original_obj):
         """ Find all of the primary objects referred to """
@@ -474,7 +474,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         """
         return handle in self.referenced["Family"]
 
-    def include_media_object(self, handle):
+    def include_media(self, handle):
         """
         Filter for media objects
         """

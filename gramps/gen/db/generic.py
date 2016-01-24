@@ -529,14 +529,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
+                "handles_func": self.get_media_handles,
                 "add_func": self.add_object,
-                "commit_func": self.commit_media_object,
-                "iter_func": self.iter_media_objects,
+                "commit_func": self.commit_media,
+                "iter_func": self.iter_media,
                 "ids_func": self.get_media_gramps_ids,
                 "has_handle_func": self.has_handle_for_media,
                 "has_gramps_id_func": self.has_gramps_id_for_media,
-                "count_func": self.get_number_of_media_objects,
+                "count_func": self.get_number_of_media,
                 "raw_func": self._get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
                 "del_func": self.remove_object,
@@ -1391,7 +1391,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if (not obj.gramps_id):
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
-        self.commit_media_object(obj, transaction)
+        self.commit_media(obj, transaction)
         return obj.handle
 
     def add_to_surname_list(self, person, batch_transaction):
@@ -1823,7 +1823,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_events(self):
         return (Event.create(data[1]) for data in self.get_event_cursor())
 
-    def iter_media_objects(self):
+    def iter_media(self):
         return (Media.create(data[1]) for data in self.get_media_cursor())
 
     def iter_notes(self):
@@ -1892,7 +1892,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),

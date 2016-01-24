@@ -328,7 +328,7 @@ class EditMedia(EditPrimary):
             else:
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_object_gramps_id())
-                self.db.commit_media_object(self.obj, trans)
+                self.db.commit_media(self.obj, trans)
                 msg = _("Edit Media Object (%s)") % self.obj.get_description()
             trans.set_description(msg)
 

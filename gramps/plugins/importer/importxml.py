@@ -2250,7 +2250,7 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
 
     def stop_object(self, *tag):
-        self.db.commit_media_object(self.object, self.trans,
+        self.db.commit_media(self.object, self.trans,
                                     self.object.get_change_time())
         self.object = None
 
@@ -2287,7 +2287,7 @@ class GrampsParser(UpdateCallback):
         self.photo.set_mime_type(get_type(self.photo.get_path()))
         self.db.add_object(self.photo, self.trans)
         #set correct change time
-        self.db.commit_media_object(self.photo, self.trans, self.change)
+        self.db.commit_media(self.photo, self.trans, self.change)
         self.info.add('new-object', MEDIA_KEY, self.photo)
         if self.family:
             self.family.add_media_reference(self.pref)

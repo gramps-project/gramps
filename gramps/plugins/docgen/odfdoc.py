@@ -998,7 +998,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '</style:style>\n'
                     )
 
-    def add_media_object(self, file_name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
+    def add_media(self, file_name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
         """
         Add multi-media documents : photos
         """

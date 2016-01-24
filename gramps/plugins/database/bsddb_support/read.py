@@ -231,7 +231,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     For each object class, there are methods to retrieve data in various ways.
     In the methods described below, <object> can be one of person, family,
-    event, place, source, media_object, respository or note unless otherwise
+    event, place, source, media, respository or note unless otherwise
     specified.
 
     .. method:: get_<object>_from_handle()
@@ -263,7 +263,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         returns an iterator that yields one object per call.
         The objects available are: people, families, events, places,
-        sources, media_objects, repositories and notes.
+        sources, media, repositories and notes.
 
     .. method:: get_<object>_event_types()
 
@@ -335,7 +335,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
+                "handles_func": self.get_media_handles,
             })
         self._tables['Place'].update(
             {
@@ -980,7 +980,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_number_of_records(self.citation_map)
 
-    def get_number_of_media_objects(self):
+    def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
@@ -1093,7 +1093,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
-    def get_media_object_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -1193,7 +1193,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_place_handles        = _f(get_place_cursor)
     iter_source_handles       = _f(get_source_cursor)
     iter_citation_handles     = _f(get_citation_cursor)
-    iter_media_object_handles = _f(get_media_cursor)
+    iter_media_handles = _f(get_media_cursor)
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
     iter_tag_handles          = _f(get_tag_cursor)
@@ -1219,7 +1219,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_places        = _f(get_place_cursor, Place)
     iter_sources       = _f(get_source_cursor, Source)
     iter_citations     = _f(get_citation_cursor, Citation)
-    iter_media_objects = _f(get_media_cursor, Media)
+    iter_media = _f(get_media_cursor, Media)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
     iter_tags          = _f(get_tag_cursor, Tag)
@@ -1986,7 +1986,7 @@ class DbBsddbRead(DbReadBase, Callback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),

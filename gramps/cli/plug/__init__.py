@@ -392,7 +392,7 @@ class CommandLineReport(object):
                 self.options_help[name].append(id_list)
             elif isinstance(option, MediaOption):
                 id_list = []
-                for mhandle in self.database.get_media_object_handles():
+                for mhandle in self.database.get_media_handles():
                     mobject = self.database.get_media_from_handle(mhandle)
                     id_list.append(mobject.get_gramps_id())
                 self.options_help[name].append(id_list)

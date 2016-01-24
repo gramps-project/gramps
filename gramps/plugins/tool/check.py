@@ -347,7 +347,7 @@ class CheckIntegrity(object):
 
     def fix_encoding(self):
         self.progress.set_pass(_('Looking for character encoding errors'),
-                               self.db.get_number_of_media_objects())
+                               self.db.get_number_of_media())
         logging.info('Looking for character encoding errors')
         error_count = 0
         for bhandle in self.db.media_map.keys():
@@ -365,7 +365,7 @@ class CheckIntegrity(object):
                     logging.warning('    FAIL: encoding error on media object '
                                     '"%(gid)s" description "%(desc)s"' %
                                     {'gid' : obj.gramps_id, 'desc' : obj.desc})
-                self.db.commit_media_object(obj, self.trans)
+                self.db.commit_media(obj, self.trans)
                 error_count += 1
             # Once we are here, fix the mime string if not str
             if not isinstance(data[3], str):
@@ -377,7 +377,7 @@ class CheckIntegrity(object):
                         obj.mime = ""
                 except:
                     obj.mime = ""
-                self.db.commit_media_object(obj, self.trans)
+                self.db.commit_media(obj, self.trans)
                 logging.warning('    FAIL: encoding error on media object '
                                 '"%(desc)s" mime "%(mime)s"' %
                                 {'desc' : obj.desc, 'mime' : obj.mime})
@@ -616,7 +616,7 @@ class CheckIntegrity(object):
     def cleanup_missing_photos(self, cl=0):
 
         self.progress.set_pass(_('Looking for unused objects'),
-                               len(self.db.get_media_object_handles()))
+                               len(self.db.get_media_handles()))
         logging.info('Looking for missing photos')
 
         missmedia_action = 0
@@ -680,7 +680,7 @@ class CheckIntegrity(object):
                 if os.path.isfile(name):
                     obj = self.db.get_media_from_handle(ObjectId)
                     obj.set_path(name)
-                    self.db.commit_media_object(obj, self.trans)
+                    self.db.commit_media(obj, self.trans)
                     self.replaced_photo.append(ObjectId)
                     self.last_img_dir = os.path.dirname(name)
                     logging.warning('        FAIL: media object reselected to '
@@ -703,7 +703,7 @@ class CheckIntegrity(object):
 
         #-------------------------------------------------------------------------
 
-        for bObjectId in self.db.get_media_object_handles():
+        for bObjectId in self.db.get_media_handles():
             ObjectId = bObjectId.decode('utf-8')
             obj = self.db.get_media_from_handle(ObjectId)
             photo_name = media_path_full(self.db, obj.get_path())
@@ -852,7 +852,7 @@ class CheckIntegrity(object):
             ('media',
                 _db.get_media_from_handle,
                 _db.get_media_cursor,
-                _db.get_number_of_media_objects,
+                _db.get_number_of_media,
                 _('Looking for empty media records'),
                 _empty(empty_media_data, CHANGE_MEDIA),
                 _db.remove_object,
@@ -1351,7 +1351,7 @@ class CheckIntegrity(object):
                 self.db.get_number_of_places() +
                 self.db.get_number_of_citations() +
                 self.db.get_number_of_sources() +
-                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_media() +
                 self.db.get_number_of_repositories()
                 )
 
@@ -1456,7 +1456,7 @@ class CheckIntegrity(object):
                     if item[1] is None:
                         new_handle = create_id()
                         obj.replace_citation_references(None, new_handle)
-                        self.db.commit_media_object(obj, self.trans)
+                        self.db.commit_media(obj, self.trans)
                         self.invalid_citation_references.add(new_handle)
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
@@ -1521,7 +1521,7 @@ class CheckIntegrity(object):
 
     def check_media_references(self):
         known_handles = [key.decode('utf-8') for key in
-                            self.db.get_media_object_handles(False)]
+                            self.db.get_media_handles(False)]
 
         total = (
                 self.db.get_number_of_people() +
@@ -1669,7 +1669,7 @@ class CheckIntegrity(object):
                 self.db.get_number_of_families() +
                 self.db.get_number_of_events() +
                 self.db.get_number_of_places() +
-                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_media() +
                 self.db.get_number_of_citations() +
                 self.db.get_number_of_sources() +
                 self.db.get_number_of_repositories()
@@ -1776,7 +1776,7 @@ class CheckIntegrity(object):
                     if item[1] is None:
                         new_handle = create_id()
                         obj.replace_note_references(None, new_handle)
-                        self.db.commit_media_object(obj, self.trans)
+                        self.db.commit_media(obj, self.trans)
                         self.invalid_note_references.add(new_handle)
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
@@ -1827,8 +1827,8 @@ class CheckIntegrity(object):
 
     def check_checksum(self):
         self.progress.set_pass(_('Updating checksums on media'),
-                               len(self.db.get_media_object_handles()))
-        for bObjectId in self.db.get_media_object_handles():
+                               len(self.db.get_media_handles()))
+        for bObjectId in self.db.get_media_handles():
             self.progress.step()
             ObjectId = bObjectId.decode('utf-8')
             obj = self.db.get_media_from_handle(ObjectId)
@@ -1837,7 +1837,7 @@ class CheckIntegrity(object):
             if new_checksum != obj.checksum:
                 logging.info('checksum: updating ' + obj.gramps_id)
                 obj.checksum = new_checksum
-                self.db.commit_media_object(obj, self.trans)
+                self.db.commit_media(obj, self.trans)
 
     def check_tag_references(self):
         known_handles = [key.decode('utf-8') for key in
@@ -1846,7 +1846,7 @@ class CheckIntegrity(object):
         total = (
                 self.db.get_number_of_people() +
                 self.db.get_number_of_families() +
-                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_media() +
                 self.db.get_number_of_notes()
                 )
 
@@ -1900,7 +1900,7 @@ class CheckIntegrity(object):
                     if item[1] is None:
                         new_handle = create_id()
                         obj.replace_tag_references(None, new_handle)
-                        self.db.commit_media_object(obj, self.trans)
+                        self.db.commit_media(obj, self.trans)
                         self.invalid_tag_references.add(new_handle)
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])

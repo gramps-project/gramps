@@ -527,7 +527,7 @@ class PathChange(BatchOp):
 
     def _prepare(self):
         from_text = str(self.from_entry.get_text())
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
                 obj = Media()
@@ -549,7 +549,7 @@ class PathChange(BatchOp):
             obj = self.db.get_media_from_handle(handle)
             new_path = obj.get_path().replace(from_text, to_text)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -564,7 +564,7 @@ class Convert2Abs(BatchOp):
                     "that is not set, it prepends user's directory.")
 
     def _prepare(self):
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
                 obj = Media()
@@ -583,7 +583,7 @@ class Convert2Abs(BatchOp):
             obj = self.db.get_media_from_handle(handle)
             new_path = media_path_full(self.db, obj.path)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -600,7 +600,7 @@ class Convert2Rel(BatchOp):
                     "a base path that can change to your needs.")
 
     def _prepare(self):
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
                 obj = Media()
@@ -620,7 +620,7 @@ class Convert2Rel(BatchOp):
             obj = self.db.get_media_from_handle(handle)
             new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -639,7 +639,7 @@ class ImagesNotIncluded(BatchOp):
         objects in the database.
         """
         self.dir_list = set()
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
                 obj = Media()

@@ -209,7 +209,7 @@ class GrampsXmlWriter(UpdateCallback):
         source_len = self.db.get_number_of_sources()
         place_len = self.db.get_number_of_places()
         repo_len = self.db.get_number_of_repositories()
-        obj_len = self.db.get_number_of_media_objects()
+        obj_len = self.db.get_number_of_media()
         note_len = self.db.get_number_of_notes()
         tag_len = self.db.get_number_of_tags()
 
@@ -316,7 +316,7 @@ class GrampsXmlWriter(UpdateCallback):
 
         if obj_len > 0:
             self.g.write("  <objects>\n")
-            for handle in sorted(self.db.get_media_object_handles()):
+            for handle in sorted(self.db.get_media_handles()):
                 obj = self.db.get_media_from_handle(handle)
                 self.write_object(obj,2)
                 self.update()

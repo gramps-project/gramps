@@ -370,7 +370,7 @@ class AsciiDoc(BaseDoc, TextDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
-    def add_media_object(self, name, align, w_cm, h_cm, alt='',
+    def add_media(self, name, align, w_cm, h_cm, alt='',
                          style_name=None, crop=None):
         this_text = '(photo)'
         if self.in_cell:

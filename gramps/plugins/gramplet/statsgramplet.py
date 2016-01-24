@@ -82,9 +82,9 @@ class StatsGramplet(Gramplet):
         namelist = []
         notfound = []
 
-        mobjects = database.get_number_of_media_objects()
+        mobjects = database.get_number_of_media()
         mbytes = "0"
-        for media in database.iter_media_objects():
+        for media in database.iter_media():
             fullname = media_path_full(database, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)

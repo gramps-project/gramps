@@ -93,7 +93,7 @@ class MergeNoteQuery(object):
                     obj = self.database.get_media_from_handle(handle)
                     assert(obj.has_note_reference(old_handle))
                     obj.replace_note_references(old_handle, new_handle)
-                    self.database.commit_media_object(obj, trans)
+                    self.database.commit_media(obj, trans)
                 elif class_name == Repository.__name__:
                     repo = self.database.get_repository_from_handle(handle)
                     assert(repo.has_note_reference(old_handle))

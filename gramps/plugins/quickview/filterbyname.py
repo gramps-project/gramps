@@ -107,8 +107,8 @@ def run(database, document, filter_name, *args, **kwargs):
                      "%d/%d" % (len(database.get_repository_handles()),
                      len(database.db.get_repository_handles())))
             stab.row([_("Media"), "Filter", "Media"],
-                     "%d/%d" % (len(database.get_media_object_handles()),
-                                len(database.db.get_media_object_handles())))
+                     "%d/%d" % (len(database.get_media_handles()),
+                                len(database.db.get_media_handles())))
             stab.row([_("Notes"), "Filter", "Note"],
                      "%d/%d" % (len(database.get_note_handles()),
                                 len(database.db.get_note_handles())))
@@ -132,8 +132,8 @@ def run(database, document, filter_name, *args, **kwargs):
                      "%d/%d" % (len(database.get_repository_handles()),
                      len(database.basedb.get_repository_handles())))
             stab.row([_("Media"), "Filter", "Media"],
-                     "%d/%d" % (len(database.get_media_object_handles()),
-                                len(database.basedb.get_media_object_handles())))
+                     "%d/%d" % (len(database.get_media_handles()),
+                                len(database.basedb.get_media_handles())))
             stab.row([_("Notes"), "Filter", "Note"],
                      "%d/%d" % (len(database.get_note_handles()),
                                 len(database.basedb.get_note_handles())))
@@ -213,9 +213,9 @@ def run(database, document, filter_name, *args, **kwargs):
     elif (filter_name == 'Inverse Media'):
         sdb.dbase = database.db
         stab.columns(_("Media"), _("Gramps ID"))
-        proxy_handles = set(database.iter_media_object_handles())
+        proxy_handles = set(database.iter_media_handles())
 
-        for media in database.db.iter_media_objects():
+        for media in database.db.iter_media():
             if media.handle not in proxy_handles:
                 stab.row(media, media.gramps_id)
                 matches += 1
@@ -268,7 +268,7 @@ def run(database, document, filter_name, *args, **kwargs):
 
     elif (filter_name in ['all media', 'Media']):
         stab.columns(_("Media"), _("Gramps ID"))
-        for obj in database.iter_media_objects():
+        for obj in database.iter_media():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
@@ -379,14 +379,14 @@ def run(database, document, filter_name, *args, **kwargs):
 
     elif (filter_name == 'unique media'):
         stab.columns(_("Unique Media"))
-        for photo in database.iter_media_objects():
+        for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             stab.row(fullname)
             matches += 1
 
     elif (filter_name == 'missing media'):
         stab.columns(_("Missing Media"))
-        for photo in database.iter_media_objects():
+        for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             try:
                 posixpath.getsize(fullname)
@@ -396,7 +396,7 @@ def run(database, document, filter_name, *args, **kwargs):
 
     elif (filter_name == 'media by size'):
         stab.columns(_("Media"), _("Size in bytes"))
-        for photo in database.iter_media_objects():
+        for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             try:
                 bytes = posixpath.getsize(fullname)

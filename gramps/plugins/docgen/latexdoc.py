@@ -1207,7 +1207,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.emit('', CELL_END)
 
 
-    def add_media_object(self, infile, pos, x, y, alt='',
+    def add_media(self, infile, pos, x, y, alt='',
                          style_name=None, crop=None):
         """Add photo to report"""
         outfile = os.path.splitext(infile)[0]

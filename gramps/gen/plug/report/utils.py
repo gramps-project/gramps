@@ -143,12 +143,12 @@ def insert_image(database, doc, photo, user,
     """
 
     object_handle = photo.get_reference_handle()
-    media_object = database.get_media_from_handle(object_handle)
-    mime_type = media_object.get_mime_type()
+    media = database.get_media_from_handle(object_handle)
+    mime_type = media.get_mime_type()
     if mime_type and mime_type.startswith("image"):
-        filename = media_path_full(database, media_object.get_path())
+        filename = media_path_full(database, media.get_path())
         if os.path.exists(filename):
-            doc.add_media_object(filename, align, w_cm, h_cm,
+            doc.add_media(filename, align, w_cm, h_cm,
                                  alt=alt, style_name=style_name,
                                  crop=photo.get_rectangle())
         else:

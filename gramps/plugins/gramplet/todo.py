@@ -445,4 +445,4 @@ class MediaToDo(ToDo):
     def created(self, handle):
         with DbTxn('Attach Note', self.dbstate.db) as trans:
             self.obj.add_note(handle)
-            self.dbstate.db.commit_media_object(self.obj, trans)
+            self.dbstate.db.commit_media(self.obj, trans)

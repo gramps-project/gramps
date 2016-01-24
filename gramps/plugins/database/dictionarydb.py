@@ -151,7 +151,7 @@ class DictionaryDb(DbGeneric):
     def get_repository_handles(self):
         return self._repository_dict.keys()
 
-    def get_media_object_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False):
         ## Fixme: implement sort
         return self._media_dict.keys()
 
@@ -189,7 +189,7 @@ class DictionaryDb(DbGeneric):
     def get_number_of_sources(self):
         return len(self._source_dict)
 
-    def get_number_of_media_objects(self):
+    def get_number_of_media(self):
         return len(self._media_dict)
 
     def get_number_of_repositories(self):
@@ -532,7 +532,7 @@ class DictionaryDb(DbGeneric):
         if emit:
             self.emit(emit, ([tag.handle],))
 
-    def commit_media_object(self, media, trans, change_time=None):
+    def commit_media(self, media, trans, change_time=None):
         emit = None
         old_media = None
         if media.handle in self.media_map:
@@ -667,7 +667,7 @@ class DictionaryDb(DbGeneric):
     def iter_event_handles(self):
         return (key for key in self._event_dict.keys())
 
-    def iter_media_object_handles(self):
+    def iter_media_handles(self):
         return (key for key in self._media_dict.keys())
 
     def iter_note_handles(self):

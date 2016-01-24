@@ -1219,7 +1219,7 @@ class FilterEditor(ManagedWindow):
         elif self.namespace == 'Place':
             return self.db.iter_place_handles()
         elif self.namespace == 'Media':
-            return self.db.get_media_object_handles()
+            return self.db.get_media_handles()
         elif self.namespace == 'Repository':
             return self.db.get_repository_handles()
         elif self.namespace == 'Note':

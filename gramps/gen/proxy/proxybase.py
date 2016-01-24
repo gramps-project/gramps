@@ -116,7 +116,7 @@ class ProxyDbBase(DbReadBase):
         self.repository_map = ProxyMap(self, self.get_raw_repository_data,
                                  self.get_repository_handles)
         self.media_map = ProxyMap(self, self.get_raw_object_data,
-                                 self.get_media_object_handles)
+                                 self.get_media_handles)
         self.note_map = ProxyMap(self, self.get_raw_note_data,
                                  self.get_note_handles)
 
@@ -150,7 +150,7 @@ class ProxyDbBase(DbReadBase):
     include_source = \
     include_citation = \
     include_place = \
-    include_media_object = \
+    include_media = \
     include_repository = \
     include_note = \
     include_tag = \
@@ -182,7 +182,7 @@ class ProxyDbBase(DbReadBase):
 
     def get_media_cursor(self):
         return ProxyCursor(self.get_raw_object_data,
-                           self.get_media_object_handles)
+                           self.get_media_handles)
 
     def get_repository_cursor(self):
         return ProxyCursor(self.get_raw_repository_data,
@@ -256,13 +256,13 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
-    def get_media_object_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Media in
         the database.
         """
         if self.db.is_open:
-            return list(self.iter_media_object_handles())
+            return list(self.iter_media_handles())
         else:
             return []
 
@@ -346,12 +346,12 @@ class ProxyDbBase(DbReadBase):
         """
         return filter(self.include_place, self.db.iter_place_handles())
 
-    def iter_media_object_handles(self):
+    def iter_media_handles(self):
         """
         Return an iterator over database handles, one handle for each Media
         Object in the database.
         """
-        return filter(self.include_media_object, self.db.iter_media_object_handles())
+        return filter(self.include_media, self.db.iter_media_handles())
 
     def iter_repository_handles(self):
         """
@@ -416,12 +416,12 @@ class ProxyDbBase(DbReadBase):
         """
         return self.__iter_object(self.include_citation, self.db.iter_citations)
 
-    def iter_media_objects(self):
+    def iter_media(self):
         """
         Return an iterator over Media objects in the database
         """
-        return self.__iter_object(self.include_media_object,
-                                  self.db.iter_media_objects)
+        return self.__iter_object(self.include_media,
+                                  self.db.iter_media)
 
     def iter_repositories(self):
         """
@@ -528,7 +528,7 @@ class ProxyDbBase(DbReadBase):
         Finds an Object in the database from the passed gramps handle.
         If no such Object exists, None is returned.
         """
-        return self.gfilter(self.include_media_object,
+        return self.gfilter(self.include_media,
                     self.db.get_media_from_handle(handle))
 
     def get_repository_from_handle(self, handle):
@@ -608,7 +608,7 @@ class ProxyDbBase(DbReadBase):
         Finds a Media in the database from the passed gramps' ID.
         If no such Media exists, None is returned.
         """
-        return self.gfilter(self.include_media_object,
+        return self.gfilter(self.include_media,
                 self.db.get_media_from_gramps_id(val))
 
     def get_repository_from_gramps_id(self, val):
@@ -689,11 +689,11 @@ class ProxyDbBase(DbReadBase):
         """
         return len(self.get_citation_handles())
 
-    def get_number_of_media_objects(self):
+    def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
-        return len(self.get_media_object_handles())
+        return len(self.get_media_handles())
 
     def get_number_of_repositories(self):
         """
@@ -875,7 +875,7 @@ class ProxyDbBase(DbReadBase):
         """
         returns True if the handle exists in the current Mediadatabase.
         """
-        return self.gfilter(self.include_media_object,
+        return self.gfilter(self.include_media,
                 self.db.get_media_from_handle(handle)) is not None
 
     def has_repository_handle(self, handle):

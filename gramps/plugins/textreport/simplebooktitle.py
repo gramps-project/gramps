@@ -98,7 +98,7 @@ class SimpleBookTitle(Report):
                     image_size = min(
                             0.8 * self.doc.get_usable_width(),
                             0.7 * self.doc.get_usable_height() )
-                self.doc.add_media_object(filename, 'center',
+                self.doc.add_media(filename, 'center',
                                           image_size, image_size)
             else:
                 self._user.warn(_('Could not add photo to page'),

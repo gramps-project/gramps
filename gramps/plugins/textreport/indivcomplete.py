@@ -829,7 +829,7 @@ class IndivCompleteReport(Report):
 
         if p_style == 'IDS-PersonTable':
             self.doc.start_cell('IDS-NormalCell')
-            self.doc.add_media_object(image_filename, "right", 4.0, 4.0,
+            self.doc.add_media(image_filename, "right", 4.0, 4.0,
                                       crop=media0.get_rectangle())
             endnotes = self._cite_endnote(media0)
             attr_list = media0.get_attribute_list()

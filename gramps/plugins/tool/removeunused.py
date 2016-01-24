@@ -261,7 +261,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             ('events', db.get_event_cursor, db.get_number_of_events),
             ('sources', db.get_source_cursor, db.get_number_of_sources),
             ('places', db.get_place_cursor, db.get_number_of_places),
-            ('media', db.get_media_cursor, db.get_number_of_media_objects),
+            ('media', db.get_media_cursor, db.get_number_of_media),
             ('repos', db.get_repository_cursor, db.get_number_of_repositories),
             ('notes', db.get_note_cursor, db.get_number_of_notes),
             )

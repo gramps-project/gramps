@@ -393,7 +393,7 @@ class DeleteNoteQuery(object):
             for handle in media_list:
                 media = self.db.get_media_from_handle(handle)
                 media.remove_note(note_handle)
-                self.db.commit_media_object(media, trans)
+                self.db.commit_media(media, trans)
 
             for handle in repo_list:
                 repo = self.db.get_repository_from_handle(handle)

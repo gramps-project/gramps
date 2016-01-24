@@ -516,7 +516,7 @@ class EditMediaRef(EditReference):
         if self.source.handle:
             with DbTxn(_("Edit Media Object (%s)") %
                        self.source.get_description(), self.db) as trans:
-                self.db.commit_media_object(self.source, trans)
+                self.db.commit_media(self.source, trans)
         else:
             if self.check_for_duplicate_id('Media'):
                 return

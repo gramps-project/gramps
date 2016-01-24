@@ -306,10 +306,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
+                "handles_func": self.get_media_handles,
                 "add_func": self.add_object,
-                "commit_func": self.commit_media_object,
-                "count_func": self.get_number_of_media_objects,
+                "commit_func": self.commit_media,
+                "count_func": self.get_number_of_media,
                 "del_func": self.remove_object,
             })
         self._tables['Place'].update(
@@ -1638,7 +1638,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.__add_object(obj, transaction,
                     self.find_next_object_gramps_id if set_gid else None,
-                    self.commit_media_object)
+                    self.commit_media)
 
     def add_repository(self, obj, transaction, set_gid=True):
         """
@@ -1945,7 +1945,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_media_object(self, obj, transaction, change_time=None):
+    def commit_media(self, obj, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
@@ -2491,7 +2491,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),

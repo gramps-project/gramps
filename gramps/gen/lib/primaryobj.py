@@ -150,6 +150,32 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         return {}
 
     @classmethod
+    def get_extra_secondary_fields(cls):
+        """
+        Return a list of full field names and types for secondary
+        fields that are not directly listed in the schema.
+        """
+        return []
+
+    @classmethod
+    def get_index_fields(cls):
+        """
+        Return a list of full field names for indices.
+        """
+        return []
+
+    @classmethod
+    def get_secondary_fields(cls):
+        """
+        Return all seconday fields and their types
+        """
+        from .handle import HandleClass
+        return ([(key, value) for (key, value) in cls.get_schema().items()
+                 if value in [str, int, float, bool] and
+                 not isinstance(value, HandleClass)] +
+                cls.get_extra_secondary_fields())
+
+    @classmethod
     def get_label(cls, field, _):
         """
         Get the associated label given a field name of this object.

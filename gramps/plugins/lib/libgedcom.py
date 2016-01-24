@@ -3172,7 +3172,7 @@ class GedcomParser(UpdateCallback):
         __check(self.sid_map, self.dbase.sid_trans, self.__find_or_create_source,
                 self.dbase.commit_source, self.sid2id, "SOUR")
         __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_object,
-                self.dbase.commit_media_object, self.oid2id, "OBJE")
+                self.dbase.commit_media, self.oid2id, "OBJE")
         __check(self.rid_map, self.dbase.rid_trans, self.__find_or_create_repository,
                 self.dbase.commit_repository, self.rid2id, "REPO")
         __check(self.nid_map, self.dbase.nid_trans, self.__find_or_create_note,
@@ -3771,7 +3771,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.person, form, filename, title, note)
+            self.build_media(state.person, form, filename, title, note)
 
     def __person_name(self, line, state):
         """
@@ -5102,7 +5102,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.family, form, filename, title, note)
+            self.build_media(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
         """
@@ -5330,7 +5330,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.event, form, filename, title, note)
+            self.build_media(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
         """
@@ -5459,7 +5459,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.place, form, filename, title, note)
+            self.build_media(state.place, form, filename, title, note)
 
     def __event_place_sour(self, line, state):
         """
@@ -6126,7 +6126,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.citation, form, filename, title, note)
+            self.build_media(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state):
         """
@@ -6279,7 +6279,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.source, form, filename, title, note)
+            self.build_media(state.source, form, filename, title, note)
 
     def __source_chan(self, line, state):
         """
@@ -6500,7 +6500,7 @@ class GedcomParser(UpdateCallback):
         self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") %
                           media.get_gramps_id(), state, media)
         # commit the person to the database
-        self.dbase.commit_media_object(media, self.trans, media.change)
+        self.dbase.commit_media(media, self.trans, media.change)
 
     def __obje_form(self, line, state):
         """
@@ -7512,7 +7512,7 @@ class GedcomParser(UpdateCallback):
                 # too far in the future, this gives OverflowError.
                 pass
 
-    def build_media_object(self, obj, form, filename, title, note):
+    def build_media(self, obj, form, filename, title, note):
         if isinstance(form, str) and form.lower() == "url":
             url = Url()
             url.set_path(filename)

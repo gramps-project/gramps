@@ -281,7 +281,7 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_place(handle)
         return obj and not obj.get_privacy()
 
-    def include_media_object(self, handle):
+    def include_media(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """
@@ -463,8 +463,8 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     for media_ref in original_obj.get_media_list():
         if media_ref and not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
-            media_object = db.get_media_from_handle(handle)
-            if media_object and not media_object.get_privacy():
+            media = db.get_media_from_handle(handle)
+            if media and not media.get_privacy():
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 def copy_citation_ref_list(db, original_obj, clean_obj):

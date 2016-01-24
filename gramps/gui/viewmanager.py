@@ -1265,7 +1265,7 @@ class ViewManager(CLIManager):
         hbox = Gtk.Box()
         bytes = 0
         mbytes = "0"
-        for media in self.dbstate.db.iter_media_objects():
+        for media in self.dbstate.db.iter_media():
             fullname = media_path_full(self.dbstate.db, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)

@@ -382,7 +382,7 @@ class MediaView(ListView):
         """
         media = self.dbstate.db.get_media_from_handle(media_handle)
         media.add_tag(tag_handle)
-        self.dbstate.db.commit_media_object(media, transaction)
+        self.dbstate.db.commit_media(media, transaction)
 
     def get_default_gramplets(self):
         """

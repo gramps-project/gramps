@@ -256,7 +256,7 @@ class TextDoc(object):
                 else:
                     self.write_text(piece, links=links)
 
-    def add_media_object(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
         Add a photo of the specified width (in centimeters).
 

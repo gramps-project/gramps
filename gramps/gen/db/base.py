@@ -365,7 +365,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_media_object_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -461,7 +461,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_number_of_media_objects(self):
+    def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
@@ -983,13 +983,13 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def iter_media_object_handles(self):
+    def iter_media_handles(self):
         """
         Return an iterator over handles for Media in the database
         """
         raise NotImplementedError
 
-    def iter_media_objects(self):
+    def iter_media(self):
         """
         Return an iterator over objects for Medias in the database
         """
@@ -1380,7 +1380,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def commit_media_object(self, obj, transaction, change_time=None):
+    def commit_media(self, obj, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
@@ -1825,7 +1825,7 @@ class DbWriteBase(DbReadBase):
         source_len = self.get_number_of_sources()
         place_len = self.get_number_of_places()
         repo_len = self.get_number_of_repositories()
-        obj_len = self.get_number_of_media_objects()
+        obj_len = self.get_number_of_media()
 
         return person_len + family_len + event_len + \
                place_len + source_len + obj_len + repo_len
@@ -1877,8 +1877,8 @@ class DbWriteBase(DbReadBase):
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
 
-    def select(self, table, fields=None, sort=False, start=0, limit=50,
-               filter=None):
+    def select(self, table, fields=None, start=0, limit=50,
+               filter=None, order_by=None):
         """
         Default implementation of a select for those databases
         that don't support SQL. Returns a list of dicts, total,
@@ -1886,7 +1886,6 @@ class DbWriteBase(DbReadBase):
 
         table - Person, Family, etc.
         fields - used by object.get_field()
-        sort - use sort order (argument to DB.get_X_handles)
         start - position to start
         limit - count to get; -1 for all
         filter - (field, SQL string_operator, value) |
@@ -1901,16 +1900,6 @@ class DbWriteBase(DbReadBase):
             """
             total = 0
             time = 0.0
-        def hash_name(table, name):
-            """
-            Used in filter to eval expressions involving selected
-            data.
-            """
-            name = self._tables[table]["class_func"].get_field_alias(name)
-            return (name
-                    .replace(".", "_D_")
-                    .replace("(", "_P_")
-                    .replace(")", "_P_"))
         def compare(v, op, value):
             """
             Compare values in a SQL-like way
@@ -1961,7 +1950,7 @@ class DbWriteBase(DbReadBase):
             """
             if len(condition) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
                 connector, exprs = condition
-                if connector in ["AND", "OR"]: 
+                if connector in ["AND", "OR"]:
                     for expr in exprs:
                         evaluate_values(expr, item, db, table, env)
                 else: # "NOT"
@@ -1969,7 +1958,7 @@ class DbWriteBase(DbReadBase):
             elif len(condition) == 3: # (name, op, value)
                 (name, op, value) = condition
                 # just the ones we need for filter
-                hname = hash_name(table, name)
+                hname = self._hash_name(table, name)
                 if hname not in env:
                     value = item.get_field(name, db, ignore_errors=True)
                     env[hname] = value
@@ -1993,7 +1982,7 @@ class DbWriteBase(DbReadBase):
                     raise Exception("No such connector: '%s'" % connector)
             elif len(condition) == 3: # (name, op, value)
                 (name, op, value) = condition
-                v = env.get(hash_name(table, name))
+                v = env.get(self._hash_name(table, name))
                 return compare(v, op, value)
 
         # Fields is None or list, maybe containing "*":
@@ -2004,19 +1993,16 @@ class DbWriteBase(DbReadBase):
         if "*" in fields:
             fields.remove("*")
             fields.extend(self._tables[table]["class_func"].get_schema().keys())
-        # Get iterator of handles, possibly sorted by name, etc.:
-        if sort:
-            data = self._tables[table]["handles_func"](sort_handles=True)
-        else:
-            data = self._tables[table]["handles_func"]()
+        #FIXME: add order_by to iter_funcs
+        #data = self._tables[table]["iter_func"](order_by=order_by)
+        data = self._tables[table]["iter_func"]()
         position = 0
         selected = 0
         result = Result()
         start_time = time.time()
         if filter:
-            for handle in data:
+            for item in data:
                 # have to evaluate all, because there is a filter
-                item = self._tables[table]["handle_func"](handle)
                 row = {}
                 env = {}
                 # Go through all fliters and evaluate the fields:
@@ -2033,11 +2019,10 @@ class DbWriteBase(DbReadBase):
                     position += 1
             result.total = position
         else: # no filter
-            for handle in data:
+            for item in data:
                 if position >= start:
                     if selected >= limit:
                         break
-                    item = self._tables[table]["handle_func"](handle)
                     row = {}
                     for field in fields:
                         value = item.get_field(field, self, ignore_errors=True)
@@ -2048,3 +2033,11 @@ class DbWriteBase(DbReadBase):
             result.total = self._tables[table]["count_func"]()
         result.time = time.time() - start_time
         return result
+
+    def _hash_name(self, table, name):
+        """
+        Used in filter to eval expressions involving selected
+        data.
+        """
+        name = self._tables[table]["class_func"].get_field_alias(name)
+        return name.replace(".", "__")
