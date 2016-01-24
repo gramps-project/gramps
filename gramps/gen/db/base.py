@@ -503,7 +503,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
         Find a Media in the database from the passed Gramps ID.
 
@@ -512,7 +512,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Find an Object in the database from the passed Gramps ID.
 

@@ -108,7 +108,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                          'editor'  : 'EditPlace',
                          'icon'    : 'gramps-place',
                          'name_ix' : 2},
-            'media'   : {'get_func': self.db.get_object_from_handle,
+            'media'   : {'get_func': self.db.get_media_from_handle,
                          'remove'  : self.db.remove_object,
                          'get_text': None,
                          'editor'  : 'EditMedia',

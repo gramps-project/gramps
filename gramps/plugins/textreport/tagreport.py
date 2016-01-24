@@ -563,7 +563,7 @@ class TagReport(Report):
         self.doc.end_row()
 
         for media_handle in media_list:
-            media = self.database.get_object_from_handle(media_handle)
+            media = self.database.get_media_from_handle(media_handle)
 
             self.doc.start_row()
 

@@ -7543,7 +7543,7 @@ class GedcomParser(UpdateCallback):
                 self.dbase.add_object(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
-                photo = self.dbase.get_object_from_handle(photo_handle)
+                photo = self.dbase.get_media_from_handle(photo_handle)
             oref = MediaRef()
             oref.set_reference_handle(photo.handle)
             if note:

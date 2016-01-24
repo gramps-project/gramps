@@ -156,7 +156,7 @@ class HasTextMatchingSubstringOf(Rule):
             return False
         # search inside the media object and cache the result
         if media_handle not in self.media_map:
-            media = self.db.get_object_from_handle(media_handle)
+            media = self.db.get_media_from_handle(media_handle)
             if self.match_object(media):
                 self.media_map.add(media_handle)
         return media_handle in self.media_map

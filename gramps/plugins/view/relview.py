@@ -651,7 +651,7 @@ class RelationshipView(NavigationView):
         # image
         image_list = person.get_media_list()
         if image_list:
-            mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
+            mobj = self.dbstate.db.get_media_from_handle(image_list[0].ref)
             if mobj and mobj.get_mime_type()[0:5] == "image":
                 pixbuf = get_thumbnail_image(
                                 media_path_full(self.dbstate.db,

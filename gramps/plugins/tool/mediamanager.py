@@ -546,7 +546,7 @@ class PathChange(BatchOp):
         from_text = str(self.from_entry.get_text())
         to_text = str(self.to_entry.get_text())
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = obj.get_path().replace(from_text, to_text)
             obj.set_path(new_path)
             self.db.commit_media_object(obj, self.trans)
@@ -580,7 +580,7 @@ class Convert2Abs(BatchOp):
             self.prepare()
         self.set_total(len(self.handle_list))
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = media_path_full(self.db, obj.path)
             obj.set_path(new_path)
             self.db.commit_media_object(obj, self.trans)
@@ -617,7 +617,7 @@ class Convert2Rel(BatchOp):
         self.set_total(len(self.handle_list))
         base_dir = media_path(self.db)
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
             self.db.commit_media_object(obj, self.trans)

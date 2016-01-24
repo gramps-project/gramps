@@ -488,7 +488,7 @@ class IndivCompleteReport(Report):
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
             if media_handle:
-                media = self._db.get_object_from_handle(media_handle)
+                media = self._db.get_media_from_handle(media_handle)
                 if media and media.get_mime_type():
                     if media.get_mime_type().startswith("image"):
                         i_total += 1
@@ -513,7 +513,7 @@ class IndivCompleteReport(Report):
         while ( media_count < len(media_list) ):
             media_ref = media_list[media_count]
             media_handle = media_ref.get_reference_handle()
-            media = self._db.get_object_from_handle(media_handle)
+            media = self._db.get_media_from_handle(media_handle)
             if media is None:
                 from gramps.gui.dialog import RunDatabaseRepair
                 RunDatabaseRepair(_('Non existing media found in the Gallery'))
@@ -790,7 +790,7 @@ class IndivCompleteReport(Report):
         if self.use_images and len(media_list) > 0:
             media0 = media_list[0]
             media_handle = media0.get_reference_handle()
-            media = self._db.get_object_from_handle(media_handle)
+            media = self._db.get_media_from_handle(media_handle)
             self.mime0 = media.get_mime_type()
             if self.mime0 and self.mime0.startswith("image"):
                 image_filename = media_path_full(self._db, media.get_path())

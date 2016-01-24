@@ -89,7 +89,7 @@ class SimpleBookTitle(Report):
         self.doc.end_paragraph()
 
         if self.object_id:
-            the_object = self.database.get_object_from_gramps_id(self.object_id)
+            the_object = self.database.get_media_from_gramps_id(self.object_id)
             filename = media_path_full(self.database, the_object.get_path())
             if os.path.exists(filename):
                 if self.image_size:

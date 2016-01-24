@@ -1049,7 +1049,7 @@ class GuiMediaOption(Gtk.Box):
 
         # Initialize to the current value
         mid = self.__option.get_value()
-        media = self.__db.get_object_from_gramps_id(mid)
+        media = self.__db.get_media_from_gramps_id(mid)
         self.__update_media(media)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
@@ -1097,7 +1097,7 @@ class GuiMediaOption(Gtk.Box):
         Handle the change made programmatically
         """
         mid = self.__option.get_value()
-        media = self.__db.get_object_from_gramps_id(mid)
+        media = self.__db.get_media_from_gramps_id(mid)
 
         # Need to disable signals as __update_media() calls set_value()
         # which would launch the 'value-changed' signal which is what

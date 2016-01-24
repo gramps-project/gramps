@@ -87,7 +87,7 @@ class Citations(Gramplet, DbGUIElement):
         for media_ref in obj.get_media_list():
             self.add_citations(media_ref)
             self.add_attribute_citations(media_ref)
-            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            media = self.dbstate.db.get_media_from_handle(media_ref.ref)
             self.add_media_citations(media)
 
     def add_media_citations(self, media):
@@ -174,7 +174,7 @@ class Citations(Gramplet, DbGUIElement):
                 return True
             if self.check_attribute_citations(media_ref):
                 return True
-            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            media = self.dbstate.db.get_media_from_handle(media_ref.ref)
             if self.check_media_citations(media):
                 return True
         return False
@@ -516,7 +516,7 @@ class MediaCitations(Citations):
     def update_has_data(self):
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
@@ -526,7 +526,7 @@ class MediaCitations(Citations):
         self.callman.unregister_all()
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:
                 self.callman.register_obj(active)
                 self.display_citations(active)

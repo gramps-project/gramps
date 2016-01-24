@@ -1354,7 +1354,7 @@ class GedcomWriter(UpdateCallback):
         +1 <<NOTE_STRUCTURE>> {0:M}
         """
         photo_obj_id = photo.get_reference_handle()
-        photo_obj = self.dbase.get_object_from_handle(photo_obj_id)
+        photo_obj = self.dbase.get_media_from_handle(photo_obj_id)
         if photo_obj:
             mime = photo_obj.get_mime_type()
             form = MIME2GED.get(mime, mime)

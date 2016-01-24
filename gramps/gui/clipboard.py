@@ -281,7 +281,7 @@ class ClipObjWrapper(ClipWrapper):
                           'Family': self._db.get_family_from_handle,
                           'Event':  self._db.get_event_from_handle,
                           'Place': self._db.get_place_from_handle,
-                          'Media': self._db.get_object_from_handle,
+                          'Media': self._db.get_media_from_handle,
                           'Source': self._db.get_source_from_handle}
 
         for (classname, handle) in self._obj.get_referenced_handles_recursively():
@@ -662,7 +662,7 @@ class ClipMediaObj(ClipHandleWrapper):
 
     def refresh(self):
         if self._handle:
-            obj = self._db.get_object_from_handle(self._handle)
+            obj = self._db.get_media_from_handle(self._handle)
             if obj:
                 self._title = obj.get_description()
                 self._value = obj.get_path()
@@ -670,7 +670,7 @@ class ClipMediaObj(ClipHandleWrapper):
     def is_valid(self):
         data = pickle.loads(self._obj)
         handle = data[2]
-        obj = self._db.get_object_from_handle(handle)
+        obj = self._db.get_media_from_handle(handle)
         if obj:
             return True
         return False
@@ -688,7 +688,7 @@ class ClipMediaRef(ClipObjWrapper):
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_object_from_handle(self._obj.get_reference_handle())
+            base = self._db.get_media_from_handle(self._obj.get_reference_handle())
             if base:
                 self._title = base.get_description()
                 self._value = base.get_path()
@@ -1645,7 +1645,7 @@ class MultiTreeView(Gtk.TreeView):
                 except WindowActiveError:
                     pass
         elif objclass == 'Media':
-            ref = self.dbstate.db.get_object_from_handle(handle)
+            ref = self.dbstate.db.get_media_from_handle(handle)
             if ref:
                 try:
                     EditMedia(self.dbstate,

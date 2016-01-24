@@ -388,7 +388,7 @@ class DeleteCitationQuery(object):
                 self.db.commit_source(source, trans)
 
             for handle in media_list:
-                media = self.db.get_object_from_handle(handle)
+                media = self.db.get_media_from_handle(handle)
                 media.remove_citation_references(ctn_handle_list)
                 self.db.commit_media_object(media, trans)
 

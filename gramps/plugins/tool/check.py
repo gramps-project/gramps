@@ -354,7 +354,7 @@ class CheckIntegrity(object):
             handle = bhandle.decode('utf-8')
             data = self.db.media_map[bhandle]
             if not isinstance(data[2], str) or not isinstance(data[4], str):
-                obj = self.db.get_object_from_handle(handle)
+                obj = self.db.get_media_from_handle(handle)
                 if not isinstance(data[2], str):
                     obj.path = obj.path.decode('utf-8')
                     logging.warning('    FAIL: encoding error on media object '
@@ -369,7 +369,7 @@ class CheckIntegrity(object):
                 error_count += 1
             # Once we are here, fix the mime string if not str
             if not isinstance(data[3], str):
-                obj = self.db.get_object_from_handle(handle)
+                obj = self.db.get_media_from_handle(handle)
                 try:
                     if data[3] == str(data[3]):
                         obj.mime = str(data[3])
@@ -678,7 +678,7 @@ class CheckIntegrity(object):
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
-                    obj = self.db.get_object_from_handle(ObjectId)
+                    obj = self.db.get_media_from_handle(ObjectId)
                     obj.set_path(name)
                     self.db.commit_media_object(obj, self.trans)
                     self.replaced_photo.append(ObjectId)
@@ -705,7 +705,7 @@ class CheckIntegrity(object):
 
         for bObjectId in self.db.get_media_object_handles():
             ObjectId = bObjectId.decode('utf-8')
-            obj = self.db.get_object_from_handle(ObjectId)
+            obj = self.db.get_media_from_handle(ObjectId)
             photo_name = media_path_full(self.db, obj.get_path())
             photo_desc = obj.get_description()
             if photo_name is not None and photo_name != "" and not find_file(photo_name):
@@ -850,7 +850,7 @@ class CheckIntegrity(object):
                 _db.remove_place,
                 ),
             ('media',
-                _db.get_object_from_handle,
+                _db.get_media_from_handle,
                 _db.get_media_cursor,
                 _db.get_number_of_media_objects,
                 _('Looking for empty media records'),
@@ -1831,7 +1831,7 @@ class CheckIntegrity(object):
         for bObjectId in self.db.get_media_object_handles():
             self.progress.step()
             ObjectId = bObjectId.decode('utf-8')
-            obj = self.db.get_object_from_handle(ObjectId)
+            obj = self.db.get_media_from_handle(ObjectId)
             full_path = media_path_full(self.db, obj.get_path())
             new_checksum = create_checksum(full_path)
             if new_checksum != obj.checksum:

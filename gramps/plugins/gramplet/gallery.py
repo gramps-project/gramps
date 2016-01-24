@@ -56,7 +56,7 @@ class Gallery(Gramplet):
         count = 0
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
-            media = self.dbstate.db.get_object_from_handle(media_handle)
+            media = self.dbstate.db.get_media_from_handle(media_handle)
             full_path = media_path_full(self.dbstate.db, media.get_path())
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
@@ -78,7 +78,7 @@ class Gallery(Gramplet):
         media_list = obj.get_media_list()
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
-            media = self.dbstate.db.get_object_from_handle(media_handle)
+            media = self.dbstate.db.get_media_from_handle(media_handle)
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 return True

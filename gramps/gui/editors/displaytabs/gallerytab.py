@@ -132,7 +132,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
         self.menu = Gtk.Menu()
 
-        ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
+        ref_obj = self.dbstate.db.get_media_from_handle(obj.ref)
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
             item = Gtk.ImageMenuItem(_('View'))
@@ -255,7 +255,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self._build_icon_model()
         for ref in self.media_list:
             handle = ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(handle)
+            obj = self.dbstate.db.get_media_from_handle(handle)
             if obj is None :
                 #notify user of error
                 from ...dialog import RunDatabaseRepair
@@ -346,7 +346,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
-            obj = self.dbstate.db.get_object_from_handle(
+            obj = self.dbstate.db.get_media_from_handle(
                                                 ref.get_reference_handle())
             try:
                 from .. import EditMediaRef

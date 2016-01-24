@@ -77,8 +77,8 @@ class EditMedia(EditPrimary):
     def __init__(self, dbstate, uistate, track, obj, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, obj,
-                             dbstate.db.get_object_from_handle,
-                             dbstate.db.get_object_from_gramps_id, callback)
+                             dbstate.db.get_media_from_handle,
+                             dbstate.db.get_media_from_gramps_id, callback)
         if not self.obj.get_handle():
             #show the addmedia dialog immediately, with track of parent.
             AddMedia(dbstate, self.uistate, self.track, self.obj,
@@ -247,7 +247,7 @@ class EditMedia(EditPrimary):
             self.view_media(obj)
 
     def view_media(self, obj):
-        ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
+        ref_obj = self.dbstate.db.get_media_from_handle(self.obj.handle)
 
         if ref_obj:
             media_path = media_path_full(self.dbstate.db,

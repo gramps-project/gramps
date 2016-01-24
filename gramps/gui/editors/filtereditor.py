@@ -358,7 +358,7 @@ class MyID(Gtk.Box):
             citation = self.db.get_citation_from_gramps_id(gramps_id)
             name = citation.get_page()
         elif self.namespace == 'Media':
-            obj = self.db.get_object_from_gramps_id(gramps_id)
+            obj = self.db.get_media_from_gramps_id(gramps_id)
             name = obj.get_path()
         elif self.namespace == 'Repository':
             repo = self.db.get_repository_from_gramps_id(gramps_id)
@@ -994,7 +994,7 @@ class ShowResults(ManagedWindow):
             name = _pd.display(self.db, place)
             gid = place.get_gramps_id()
         elif self.namespace == 'Media':
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             name = obj.get_description()
             gid = obj.get_gramps_id()
         elif self.namespace == 'Repository':
@@ -1026,7 +1026,7 @@ class ShowResults(ManagedWindow):
             place = self.db.get_place_from_handle(handle)
             sortname = _pd.display(self.db, place)
         elif self.namespace == 'Media':
-            sortname = self.db.get_object_from_handle(handle).get_description()
+            sortname = self.db.get_media_from_handle(handle).get_description()
         elif self.namespace == 'Repository':
             sortname = self.db.get_repository_from_handle(handle).get_name()
         elif self.namespace == 'Note':

@@ -621,7 +621,7 @@ class EditPerson(EditPrimary):
             if media_list:
                 media_ref = media_list[0]
                 object_handle = media_ref.get_reference_handle()
-                media_obj = self.db.get_object_from_handle(object_handle)
+                media_obj = self.db.get_media_from_handle(object_handle)
 
                 try:
                     EditMediaRef(self.dbstate, self.uistate, self.track,
@@ -645,7 +645,7 @@ class EditPerson(EditPrimary):
         self.imgmenu = Gtk.Menu()
         menu = self.imgmenu
         menu.set_title(_("Media Object"))
-        obj = self.db.get_object_from_handle(photo.get_reference_handle())
+        obj = self.db.get_media_from_handle(photo.get_reference_handle())
         if obj:
             add_menuitem(menu, _("View"), photo,
                                    self._popup_view_photo)
@@ -661,7 +661,7 @@ class EditPerson(EditPrimary):
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
-            ref_obj = self.db.get_object_from_handle(object_handle)
+            ref_obj = self.db.get_media_from_handle(object_handle)
             photo_path = media_path_full(self.db, ref_obj.get_path())
             open_file_with_default_application(photo_path)
 
@@ -673,7 +673,7 @@ class EditPerson(EditPrimary):
         if media_list:
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
-            media_obj = self.db.get_object_from_handle(object_handle)
+            media_obj = self.db.get_media_from_handle(object_handle)
             EditMediaRef(self.dbstate, self.uistate, self.track,
                          media_obj, media_ref, self.load_photo)
 
@@ -952,7 +952,7 @@ class EditPerson(EditPrimary):
         if media_list:
             ref = media_list[0]
             handle = ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(handle)
+            obj = self.dbstate.db.get_media_from_handle(handle)
             if obj is None :
                 #notify user of error
                 from ..dialog import RunDatabaseRepair

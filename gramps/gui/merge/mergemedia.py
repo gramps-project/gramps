@@ -57,8 +57,8 @@ class MergeMedia(ManagedWindow):
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
-        self.mo1 = database.get_object_from_handle(handle1)
-        self.mo2 = database.get_object_from_handle(handle2)
+        self.mo1 = database.get_media_from_handle(handle1)
+        self.mo2 = database.get_media_from_handle(handle2)
 
         self.define_glade('mergeobject', _GLADE_FILE)
         self.set_window(self._gladeobj.toplevel,

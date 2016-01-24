@@ -227,7 +227,7 @@ class SummaryReport(Report):
         total_media = len(self.__db.get_media_object_handles())
         mbytes = "0"
         for media_id in self.__db.get_media_object_handles():
-            media = self.__db.get_object_from_handle(media_id)
+            media = self.__db.get_media_from_handle(media_id)
             try:
                 size_in_bytes += posixpath.getsize(
                                  media_path_full(self.__db, media.get_path()))

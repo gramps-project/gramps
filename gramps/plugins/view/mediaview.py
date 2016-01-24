@@ -222,7 +222,7 @@ class MediaView(ListView):
         Launch external viewers for the selected objects.
         """
         for handle in self.selected_handles():
-            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            ref_obj = self.dbstate.db.get_media_from_handle(handle)
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath)
 
@@ -231,7 +231,7 @@ class MediaView(ListView):
         Launch external viewers for the selected objects.
         """
         for handle in self.selected_handles():
-            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            ref_obj = self.dbstate.db.get_media_from_handle(handle)
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
@@ -323,7 +323,7 @@ class MediaView(ListView):
         user verification.
         """
         the_lists = get_media_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_object_from_handle(handle)
+        object = self.dbstate.db.get_media_from_handle(handle)
         query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
@@ -333,7 +333,7 @@ class MediaView(ListView):
         Edit the selected objects in the EditMedia dialog
         """
         for handle in self.selected_handles():
-            object = self.dbstate.db.get_object_from_handle(handle)
+            object = self.dbstate.db.get_media_from_handle(handle)
             try:
                 EditMedia(self.dbstate, self.uistate, [], object)
             except WindowActiveError:
@@ -358,7 +358,7 @@ class MediaView(ListView):
         """
         returns the handle of the specified object
         """
-        obj = self.dbstate.db.get_object_from_gramps_id(gid)
+        obj = self.dbstate.db.get_media_from_gramps_id(gid)
         if obj:
             return obj.get_handle()
         else:
@@ -380,7 +380,7 @@ class MediaView(ListView):
         """
         Add the given tag to the given media object.
         """
-        media = self.dbstate.db.get_object_from_handle(media_handle)
+        media = self.dbstate.db.get_media_from_handle(media_handle)
         media.add_tag(tag_handle)
         self.dbstate.db.commit_media_object(media, transaction)
 

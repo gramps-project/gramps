@@ -317,7 +317,7 @@ class GrampsXmlWriter(UpdateCallback):
         if obj_len > 0:
             self.g.write("  <objects>\n")
             for handle in sorted(self.db.get_media_object_handles()):
-                obj = self.db.get_object_from_handle(handle)
+                obj = self.db.get_media_from_handle(handle)
                 self.write_object(obj,2)
                 self.update()
             self.g.write("  </objects>\n")

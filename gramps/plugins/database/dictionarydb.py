@@ -537,7 +537,7 @@ class DictionaryDb(DbGeneric):
         old_media = None
         if media.handle in self.media_map:
             emit = "media-update"
-            old_media = self.get_object_from_handle(media.handle).serialize()
+            old_media = self.get_media_from_handle(media.handle).serialize()
             self._media_dict[media.handle] = media
             self._media_id_dict[media.gramps_id] = media
         else:

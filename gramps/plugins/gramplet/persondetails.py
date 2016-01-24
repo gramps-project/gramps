@@ -260,7 +260,7 @@ class PersonDetails(Gramplet):
         if media_list:
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(object_handle)
+            obj = self.dbstate.db.get_media_from_handle(object_handle)
             full_path = media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):

@@ -525,8 +525,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             })
         self._tables['Media'].update(
             {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
@@ -1123,12 +1123,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         return Note.create(self._get_raw_note_data(handle))
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         return Media.create(self._get_raw_media_data(handle))
 
-    def get_object_from_gramps_id(self, gramps_id):
+    def get_media_from_gramps_id(self, gramps_id):
         return Media.create(self.media_id_map[gramps_id])
 
     def get_tag_from_handle(self, handle):

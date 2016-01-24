@@ -331,7 +331,7 @@ class GenericMediaFilter(GenericFilter):
         return Media()
 
     def find_from_handle(self, db, handle):
-        return db.get_object_from_handle(handle)
+        return db.get_media_from_handle(handle)
 
 class GenericRepoFilter(GenericFilter):
 

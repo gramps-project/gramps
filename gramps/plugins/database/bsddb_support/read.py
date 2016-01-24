@@ -331,8 +331,8 @@ class DbBsddbRead(DbReadBase, Callback):
             })
         self._tables['Media'].update(
             {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
@@ -738,7 +738,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_from_handle(handle, Citation, self.citation_map)
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Find an Object in the database from the passed handle.
 
@@ -873,7 +873,7 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__get_obj_from_gramps_id(val, self.cid_trans, Citation,
                                               self.citation_map)
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
         Find a Media in the database from the passed Gramps ID.
 

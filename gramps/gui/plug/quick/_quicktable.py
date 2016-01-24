@@ -257,7 +257,7 @@ class QuickTable(SimpleTable):
                     except WindowActiveError:
                         pass
             elif objclass == 'Media':
-                ref = self.access.dbase.get_object_from_handle(handle)
+                ref = self.access.dbase.get_media_from_handle(handle)
                 if ref:
                     try:
                         EditMedia(self.simpledoc.doc.dbstate,

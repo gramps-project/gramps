@@ -130,7 +130,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             if obj:
                 self.process_repository(obj)
         elif class_name == "Media":
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             if obj:
                 self.process_media(obj)
         elif class_name == "Note":
@@ -410,7 +410,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 self.process_attributes(media_ref)
                 self.process_citation_ref_list(media_ref)
                 handle = media_ref.get_reference_handle()
-                media_object = self.db.get_object_from_handle(handle)
+                media_object = self.db.get_media_from_handle(handle)
                 if media_object:
                     self.process_media(media_object)
 

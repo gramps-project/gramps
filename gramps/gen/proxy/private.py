@@ -87,12 +87,12 @@ class PrivateProxyDb(ProxyDbBase):
             return sanitize_citation(self.db, citation)
         return None
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Finds an Object in the database from the passed Gramps ID.
         If no such Object exists, None is returned.
         """
-        media = self.db.get_object_from_handle(handle)
+        media = self.db.get_media_from_handle(handle)
         if media and not media.get_privacy():
             return sanitize_media(self.db, media)
         return None
@@ -207,12 +207,12 @@ class PrivateProxyDb(ProxyDbBase):
             return sanitize_citation(self.db, citation)
         return None
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
         Finds a Media in the database from the passed Gramps ID.
         If no such Media exists, None is returned.
         """
-        obj = self.db.get_object_from_gramps_id(val)
+        obj = self.db.get_media_from_gramps_id(val)
         if obj and not obj.get_privacy():
             return sanitize_media(self.db, obj)
         return None
@@ -376,7 +376,7 @@ class PrivateProxyDb(ProxyDbBase):
         """
         Return True if the handle exists in the current Mediadatabase.
         """
-        object = self.db.get_object_from_handle(handle)
+        object = self.db.get_media_from_handle(handle)
         if object and not object.get_privacy():
             return True
         return False
@@ -432,7 +432,7 @@ class PrivateProxyDb(ProxyDbBase):
             'Source'        : self.db.get_source_from_handle,
             'Citation'      : self.db.get_citation_from_handle,
             'Place'         : self.db.get_place_from_handle,
-            'Media'   : self.db.get_object_from_handle,
+            'Media'   : self.db.get_media_from_handle,
             'Note'          : self.db.get_note_from_handle,
             'Repository'    : self.db.get_repository_from_handle,
             }
@@ -463,7 +463,7 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     for media_ref in original_obj.get_media_list():
         if media_ref and not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
-            media_object = db.get_object_from_handle(handle)
+            media_object = db.get_media_from_handle(handle)
             if media_object and not media_object.get_privacy():
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 

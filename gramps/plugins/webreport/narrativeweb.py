@@ -1941,7 +1941,7 @@ class BasePage(object):
 
         pic_id = self.report.options[option_name]
         if pic_id:
-            obj = self.report.database.get_object_from_gramps_id(pic_id)
+            obj = self.report.database.get_media_from_gramps_id(pic_id)
             if obj is None:
                 return None
             mime_type = obj.get_mime_type()
@@ -2100,7 +2100,7 @@ class BasePage(object):
             return None
 
         photo_handle = photolist[0].get_reference_handle()
-        photo = self.report.database.get_object_from_handle(photo_handle)
+        photo = self.report.database.get_media_from_handle(photo_handle)
         mime_type = photo.get_mime_type()
         descr = photo.get_description()
 
@@ -2192,7 +2192,7 @@ class BasePage(object):
             for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
-                photo = self.report.database.get_object_from_handle(photo_handle)
+                photo = self.report.database.get_media_from_handle(photo_handle)
 
                 if photo_handle in displayed:
                     continue
@@ -2391,7 +2391,7 @@ class BasePage(object):
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
-                            media = self.dbase_.get_object_from_handle(media_handle)
+                            media = self.dbase_.get_media_from_handle(media_handle)
                             if media:
                                 mime_type = media.get_mime_type()
                                 if mime_type:
@@ -4445,7 +4445,7 @@ class MediaPages(BasePage):
                                   len(self.report.obj_dict[Media]) + 1) as step:
 
             sorted_media_handles = sorted(self.report.obj_dict[Media].keys(),
-                                          key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
+                                          key=lambda x: SORT_KEY(self.report.database.get_media_from_handle(x).desc))
             self.MediaListPage(self.report, title, sorted_media_handles)
 
             prev = None
@@ -4515,7 +4515,7 @@ class MediaPages(BasePage):
 
                 index = 1
                 for media_handle in sorted_media_handles:
-                    media = self.dbase_.get_object_from_handle(media_handle)
+                    media = self.dbase_.get_media_from_handle(media_handle)
                     if media:
                         if media.get_change_time() > ldatec: ldatec = media.get_change_time()
                         title = media.get_description() or "[untitled]"
@@ -4573,7 +4573,7 @@ class MediaPages(BasePage):
         (prev, next, page_number, total_pages) = info
         self.dbase_ = report.database
 
-        media = self.dbase_.get_object_from_handle(media_handle)
+        media = self.dbase_.get_media_from_handle(media_handle)
         BasePage.__init__(self, report, title, media.gramps_id)
         ldatec = media.get_change_time()
 
@@ -4851,11 +4851,11 @@ class ThumbnailPreviewPage(BasePage):
             return (obj.desc, obj.gramps_id)
 
         self.photo_keys = sorted(self.report.obj_dict[Media],
-                                 key=lambda x: sort_by_desc_and_gid(self.dbase_.get_object_from_handle(x)))
+                                 key=lambda x: sort_by_desc_and_gid(self.dbase_.get_media_from_handle(x)))
 
         media_list = []
         for person_handle in self.photo_keys:
-            photo = self.dbase_.get_object_from_handle(person_handle)
+            photo = self.dbase_.get_media_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
                     media_list.append((photo.get_description(), person_handle, photo))
@@ -5949,7 +5949,7 @@ class PersonPages(BasePage):
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
-                    photo = self.dbase_.get_object_from_handle(photo_handle)
+                    photo = self.dbase_.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle, person)
@@ -7596,7 +7596,7 @@ class NavWebReport(Report):
         media_refs = self.bkref_dict[Media].get(media_handle)
         if media_refs and (bkref_class, bkref_handle) in media_refs:
             return
-        media = self.database.get_object_from_handle(media_handle)
+        media = self.database.get_media_from_handle(media_handle)
         media_name = "Media"
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",

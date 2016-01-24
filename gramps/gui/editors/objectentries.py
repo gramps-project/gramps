@@ -402,7 +402,7 @@ class MediaEntry(ObjEntry):
     def get_from_handle(self, handle):
         """ return the object given the hande
         """
-        return self.db.get_object_from_handle(handle)
+        return self.db.get_media_from_handle(handle)
 
     def get_label(self, object):
         return "%s [%s]" % (object.get_description(), object.gramps_id)

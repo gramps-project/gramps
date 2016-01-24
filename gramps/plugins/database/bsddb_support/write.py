@@ -302,8 +302,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             })
         self._tables['Media'].update(
             {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,

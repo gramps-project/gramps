@@ -211,7 +211,7 @@ class Struct(object):
             current = getattr(current, item)
         return current
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         return self.db.get_from_name_and_handle(handle.classname, str(handle))
 
     def handle_join(self, item):
@@ -219,7 +219,7 @@ class Struct(object):
         If the item is a handle, look up reference object.
         """
         if isinstance(item, HandleClass) and self.db:
-            obj = self.get_object_from_handle(item)
+            obj = self.get_media_from_handle(item)
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
@@ -263,7 +263,7 @@ class Struct(object):
             if struct is None:       # invalid part to set, skip
                 return
             if isinstance(struct, HandleClass):
-                struct = self.get_object_from_handle(struct).to_struct()
+                struct = self.get_media_from_handle(struct).to_struct()
             # keep track of primary object for update, below
             if isinstance(struct, dict) and "_class" in struct and self.primary_object_q(struct["_class"]):
                 primary_obj = struct

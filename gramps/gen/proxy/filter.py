@@ -158,12 +158,12 @@ class FilterProxyDb(ProxyDbBase):
         self.sanitize_notebase(citation)
         return citation
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Finds a Media in the database from the passed Gramps handle.
         If no such Object exists, None is returned.
         """
-        media = self.db.get_object_from_handle(handle)
+        media = self.db.get_media_from_handle(handle)
 
         if media:
             # Filter notes out
@@ -350,14 +350,14 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
         Finds a Media in the database from the passed Gramps ID.
         If no such Media exists, None is returned.
         """
-        media = self.db.get_object_from_gramps_id(val)
+        media = self.db.get_media_from_gramps_id(val)
         if media:
-            return self.get_object_from_handle(media.get_handle())
+            return self.get_media_from_handle(media.get_handle())
         else:
             return None
 

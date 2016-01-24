@@ -504,7 +504,7 @@ class OrganizeTagsDialog(object):
                                 self.db.commit_citation),
                    'Repository': (self.db.get_repository_from_handle,
                                   self.db.commit_repository),
-                   'Media': (self.db.get_object_from_handle,
+                   'Media': (self.db.get_media_from_handle,
                                    self.db.commit_media_object),
                    'Note': (self.db.get_note_from_handle,
                             self.db.commit_note)}

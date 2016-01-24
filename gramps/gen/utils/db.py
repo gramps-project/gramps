@@ -362,7 +362,7 @@ def navigation_label(db, nav_type, handle):
         if obj:
             label = obj.get_name()
     elif nav_type == 'Media' or nav_type == 'Media':
-        obj = db.get_object_from_handle(handle)
+        obj = db.get_media_from_handle(handle)
         if obj:
             label = obj.get_description()
     elif nav_type == 'Note':

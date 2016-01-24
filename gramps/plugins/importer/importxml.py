@@ -1398,7 +1398,7 @@ class GrampsParser(UpdateCallback):
                     and handle not in self.db.place_bookmarks.get() ):
                 self.db.place_bookmarks.append(handle)
         elif target == 'media':
-            if (self.db.get_object_from_handle(handle) is not None
+            if (self.db.get_media_from_handle(handle) is not None
                     and handle not in self.db.media_bookmarks.get() ):
                 self.db.media_bookmarks.append(handle)
         elif target == 'repository':
@@ -2196,7 +2196,7 @@ class GrampsParser(UpdateCallback):
                                          self.db.find_next_object_gramps_id)
             self.object.set_gramps_id(gramps_id)
             if is_merge_candidate:
-                orig_object = self.db.get_object_from_handle(orig_handle)
+                orig_object = self.db.get_media_from_handle(orig_handle)
                 self.info.add('merge-candidate', MEDIA_KEY, orig_object,
                               self.object)
         else:

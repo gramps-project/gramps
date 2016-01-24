@@ -73,7 +73,7 @@ class SelectObject(BaseSelector):
         return MediaModel
 
     def get_from_handle_func(self):
-        return self.db.get_object_from_handle
+        return self.db.get_media_from_handle
 
     def get_column_titles(self):
         return [

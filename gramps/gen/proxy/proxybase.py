@@ -523,13 +523,13 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_place,
                             self.db.get_place_from_handle(handle))
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Finds an Object in the database from the passed gramps handle.
         If no such Object exists, None is returned.
         """
         return self.gfilter(self.include_media_object,
-                    self.db.get_object_from_handle(handle))
+                    self.db.get_media_from_handle(handle))
 
     def get_repository_from_handle(self, handle):
         """
@@ -603,13 +603,13 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_citation,
                 self.db.get_citation_from_gramps_id(val))
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
         Finds a Media in the database from the passed gramps' ID.
         If no such Media exists, None is returned.
         """
         return self.gfilter(self.include_media_object,
-                self.db.get_object_from_gramps_id(val))
+                self.db.get_media_from_gramps_id(val))
 
     def get_repository_from_gramps_id(self, val):
         """
@@ -806,7 +806,7 @@ class ProxyDbBase(DbReadBase):
         return self.get_family_from_handle(handle).serialize()
 
     def get_raw_object_data(self, handle):
-        return self.get_object_from_handle(handle).serialize()
+        return self.get_media_from_handle(handle).serialize()
 
     def get_raw_place_data(self, handle):
         return self.get_place_from_handle(handle).serialize()
@@ -876,7 +876,7 @@ class ProxyDbBase(DbReadBase):
         returns True if the handle exists in the current Mediadatabase.
         """
         return self.gfilter(self.include_media_object,
-                self.db.get_object_from_handle(handle)) is not None
+                self.db.get_media_from_handle(handle)) is not None
 
     def has_repository_handle(self, handle):
         """

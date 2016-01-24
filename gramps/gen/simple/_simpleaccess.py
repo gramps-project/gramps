@@ -862,7 +862,7 @@ class SimpleAccess(object):
         :rtype: list
         """
         return self.__all_objects(self.dbase.get_media_cursor,
-                                  self.dbase.get_object_from_handle)
+                                  self.dbase.get_media_from_handle)
 
     def all_places(self):
         """

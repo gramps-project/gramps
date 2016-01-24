@@ -83,7 +83,7 @@ class MergeCitationQuery(object):
                     place.replace_citation_references(old_handle, new_handle)
                     self.database.commit_place(place, trans)
                 elif class_name == Media.__name__:
-                    obj = self.database.get_object_from_handle(handle)
+                    obj = self.database.get_media_from_handle(handle)
                     assert(obj.has_citation_reference(old_handle))
                     obj.replace_citation_references(old_handle, new_handle)
                     self.database.commit_media_object(obj, trans)
