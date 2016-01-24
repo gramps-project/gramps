@@ -76,7 +76,7 @@ class SimpleBookTitle(Report):
         self.image_size = menu.get_option_by_name('imgsize').get_value()
         self.subtitle_string = menu.get_option_by_name('subtitle').get_value()
         self.footer_string = menu.get_option_by_name('footer').get_value()
-        self.object_id = menu.get_option_by_name('imgid').get_value()
+        self.media_id = menu.get_option_by_name('imgid').get_value()
 
     def write_report(self):
         """ Generate the contents of the report """
@@ -88,8 +88,8 @@ class SimpleBookTitle(Report):
         self.doc.write_text(self.subtitle_string)
         self.doc.end_paragraph()
 
-        if self.object_id:
-            the_object = self.database.get_media_from_gramps_id(self.object_id)
+        if self.media_id:
+            the_object = self.database.get_media_from_gramps_id(self.media_id)
             filename = media_path_full(self.database, the_object.get_path())
             if os.path.exists(filename):
                 if self.image_size:

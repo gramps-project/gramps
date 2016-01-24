@@ -529,7 +529,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         photo.set_description(root)
                         with DbTxn(_("Drag Media Object"),
                                    self.dbstate.db) as trans:
-                            self.dbstate.db.add_object(photo, trans)
+                            self.dbstate.db.add_media(photo, trans)
                             oref = MediaRef()
                             oref.set_reference_handle(photo.get_handle())
                             self.get_data().append(oref)

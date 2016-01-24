@@ -93,4 +93,4 @@ class MergeMediaQuery(object):
                 else:
                     raise MergeError("Encounter an object of type % s that has "
                             "a media object reference." % class_name)
-            self.database.remove_object(old_handle, trans)
+            self.database.remove_media(old_handle, trans)

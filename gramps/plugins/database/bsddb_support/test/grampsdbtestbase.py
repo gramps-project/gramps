@@ -159,5 +159,5 @@ class GrampsDbBaseTest(unittest.TestCase):
 
         return self._add_object_with_source(citations,
                                             Media,
-                                            self._db.add_object,
+                                            self._db.add_media,
                                             self._db.commit_media)

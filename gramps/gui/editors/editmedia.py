@@ -84,7 +84,7 @@ class EditMedia(EditPrimary):
             AddMedia(dbstate, self.uistate, self.track, self.obj,
                            self._update_addmedia)
 
-    def empty_object(self):
+    def empty_media(self):
         return Media()
 
     def get_menu_title(self):
@@ -323,11 +323,11 @@ class EditMedia(EditPrimary):
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
-                self.db.add_object(self.obj, trans)
+                self.db.add_media(self.obj, trans)
                 msg = _("Add Media Object (%s)") % self.obj.get_description()
             else:
                 if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_object_gramps_id())
+                    self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
                 self.db.commit_media(self.obj, trans)
                 msg = _("Edit Media Object (%s)") % self.obj.get_description()
             trans.set_description(msg)
@@ -351,10 +351,10 @@ class EditMedia(EditPrimary):
             if orig:
                 cmp_obj = orig
             else:
-                cmp_obj = self.empty_object()
+                cmp_obj = self.empty_media()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
-            cmp_obj = self.empty_object()
+            cmp_obj = self.empty_media()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
 class DeleteMediaQuery(object):
@@ -415,4 +415,4 @@ class DeleteMediaQuery(object):
                 self.db.commit_citation(citation, trans)
 
             self.db.enable_signals()
-            self.db.remove_object(self.media_handle, trans)
+            self.db.remove_media(self.media_handle, trans)

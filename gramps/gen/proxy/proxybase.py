@@ -115,7 +115,7 @@ class ProxyDbBase(DbReadBase):
                                  self.get_source_handles)
         self.repository_map = ProxyMap(self, self.get_raw_repository_data,
                                  self.get_repository_handles)
-        self.media_map = ProxyMap(self, self.get_raw_object_data,
+        self.media_map = ProxyMap(self, self.get_raw_media_data,
                                  self.get_media_handles)
         self.note_map = ProxyMap(self, self.get_raw_note_data,
                                  self.get_note_handles)
@@ -181,7 +181,7 @@ class ProxyDbBase(DbReadBase):
                            self.get_place_handles)
 
     def get_media_cursor(self):
-        return ProxyCursor(self.get_raw_object_data,
+        return ProxyCursor(self.get_raw_media_data,
                            self.get_media_handles)
 
     def get_repository_cursor(self):
@@ -805,7 +805,7 @@ class ProxyDbBase(DbReadBase):
     def get_raw_family_data(self, handle):
         return self.get_family_from_handle(handle).serialize()
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
         return self.get_media_from_handle(handle).serialize()
 
     def get_raw_place_data(self, handle):
@@ -871,7 +871,7 @@ class ProxyDbBase(DbReadBase):
         return self.gfilter(self.include_place,
                 self.db.get_place_from_handle(handle)) is not None
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
         """
         returns True if the handle exists in the current Mediadatabase.
         """

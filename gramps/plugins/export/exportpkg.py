@@ -143,7 +143,7 @@ class PackageWriter(object):
         #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_event(p,None)
-        #     self.db.remove_object(m_id,None)
+        #     self.db.remove_media(m_id,None)
 
         # def leave_clicked():
         #     # File is lost => do nothing, leave as is

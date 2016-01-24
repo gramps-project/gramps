@@ -531,7 +531,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_handles,
-                "add_func": self.add_object,
+                "add_func": self.add_media,
                 "commit_func": self.commit_media,
                 "iter_func": self.iter_media,
                 "ids_func": self.get_media_gramps_ids,
@@ -540,7 +540,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "count_func": self.get_number_of_media,
                 "raw_func": self._get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
-                "del_func": self.remove_object,
+                "del_func": self.remove_media,
             })
         self._tables['Place'].update(
             {
@@ -629,7 +629,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_bookmarks = Bookmarks()
         self.note_bookmarks = Bookmarks()
         self.set_person_id_prefix('I%04d')
-        self.set_object_id_prefix('O%04d')
+        self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
         self.set_citation_id_prefix('C%04d')
         self.set_source_id_prefix('S%04d')
@@ -912,7 +912,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.source_prefix = self._validated_id_prefix(val, "S")
         self.sid2user_format = self.__id2user_format(self.source_prefix)
 
-    def set_object_id_prefix(self, val):
+    def set_media_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Media ID values.
 
@@ -1018,7 +1018,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                                          self.event_id_map)
         return gid
 
-    def find_next_object_gramps_id(self):
+    def find_next_media_gramps_id(self):
         """
         Return the next available GRAMPS' ID for a Media object based
         off the media object ID prefix.
@@ -1276,7 +1276,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def has_tag_handle(self, handle):
         return handle in self.tag_map
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
         return handle in self.media_map
 
     def get_raw_person_data(self, handle):
@@ -1300,7 +1300,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_raw_place_data(self, handle):
         return self.place_map[handle]
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
         return self.media_map[handle]
 
     def get_raw_tag_data(self, handle):
@@ -1403,7 +1403,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.commit_tag(tag, trans)
         return tag.handle
 
-    def add_object(self, obj, transaction, set_gid=True):
+    def add_media(self, obj, transaction, set_gid=True):
         """
         Add a Media to the database, assigning internal IDs if they have
         not already been defined.
@@ -1413,7 +1413,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not obj.handle:
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
-            obj.gramps_id = self.find_next_object_gramps_id()
+            obj.gramps_id = self.find_next_media_gramps_id()
         if (not obj.gramps_id):
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
@@ -1563,7 +1563,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._do_remove(handle, transaction, self.event_map,
                          self.event_id_map, EVENT_KEY)
 
-    def remove_object(self, handle, transaction):
+    def remove_media(self, handle, transaction):
         """
         Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
@@ -1871,7 +1871,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):
         self.set_person_id_prefix(person)
-        self.set_object_id_prefix(media)
+        self.set_media_id_prefix(media)
         self.set_family_id_prefix(family)
         self.set_source_id_prefix(source)
         self.set_citation_id_prefix(citation)

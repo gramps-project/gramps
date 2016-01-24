@@ -686,7 +686,7 @@ class ImagesNotIncluded(BatchOp):
                             obj.set_mime_type(mime_type)
                             (root, ext) = os.path.splitext(filename)
                             obj.set_description(root)
-                            self.db.add_object(obj, self.trans)
+                            self.db.add_media(obj, self.trans)
             self.update()
         return True
 

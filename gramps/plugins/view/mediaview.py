@@ -194,7 +194,7 @@ class MediaView(ListView):
                 (root, ext) = os.path.splitext(basename)
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
-                    self.dbstate.db.add_object(photo, trans)
+                    self.dbstate.db.add_media(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
 
     def define_actions(self):
@@ -317,7 +317,7 @@ class MediaView(ListView):
     def remove(self, obj):
         self.remove_selected_objects()
 
-    def remove_object_from_handle(self, handle):
+    def remove_media_from_handle(self, handle):
         """
         Remove the selected objects from the database after getting
         user verification.

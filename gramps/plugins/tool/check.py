@@ -661,7 +661,7 @@ class CheckIntegrity(object):
                     self.db.commit_place(place, self.trans)
 
             self.removed_photo.append(ObjectId)
-            self.db.remove_object(ObjectId,self.trans)
+            self.db.remove_media(ObjectId,self.trans)
             logging.warning('        FAIL: media object and all references to '
                             'it removed')
 
@@ -855,7 +855,7 @@ class CheckIntegrity(object):
                 _db.get_number_of_media,
                 _('Looking for empty media records'),
                 _empty(empty_media_data, CHANGE_MEDIA),
-                _db.remove_object,
+                _db.remove_media,
                 ),
             ('repos',
                 _db.get_repository_from_handle,
@@ -1640,7 +1640,7 @@ class CheckIntegrity(object):
 
         for bad_handle in self.invalid_media_references:
             make_unknown(bad_handle, self.explanation.handle,
-                               self.class_object, self.commit_object, self.trans)
+                               self.class_media, self.commit_media, self.trans)
 
         if len (self.invalid_media_references) == 0:
             logging.info('    OK: no media reference problems found')
@@ -2043,13 +2043,13 @@ class CheckIntegrity(object):
     def commit_repo(self, repo, trans, change):
         self.db.add_repository(repo, trans, set_gid=True)
 
-    def class_object(self, handle):
+    def class_media(self, handle):
         object = Media()
         object.set_handle(handle)
         return object
 
-    def commit_object(self, object, trans, change):
-        self.db.add_object(object, trans, set_gid=True)
+    def commit_media(self, object, trans, change):
+        self.db.add_media(object, trans, set_gid=True)
 
     def class_note(self, handle):
         note = Note()

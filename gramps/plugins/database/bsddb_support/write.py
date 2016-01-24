@@ -307,10 +307,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_handles,
-                "add_func": self.add_object,
+                "add_func": self.add_media,
                 "commit_func": self.commit_media,
                 "count_func": self.get_number_of_media,
-                "del_func": self.remove_object,
+                "del_func": self.remove_media,
             })
         self._tables['Place'].update(
             {
@@ -1629,15 +1629,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     self.find_next_place_gramps_id if set_gid else None,
                     self.commit_place)
 
-    def add_object(self, obj, transaction, set_gid=True):
+    def add_media(self, media, transaction, set_gid=True):
         """
         Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
         """
-        return self.__add_object(obj, transaction,
-                    self.find_next_object_gramps_id if set_gid else None,
+        return self.__add_object(media, transaction,
+                    self.find_next_media_gramps_id if set_gid else None,
                     self.commit_media)
 
     def add_repository(self, obj, transaction, set_gid=True):
@@ -1735,7 +1735,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__do_remove(handle, transaction, self.event_map,
                               EVENT_KEY)
 
-    def remove_object(self, handle, transaction):
+    def remove_media(self, handle, transaction):
         """
         Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.

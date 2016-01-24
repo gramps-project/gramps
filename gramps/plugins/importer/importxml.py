@@ -650,7 +650,7 @@ class GrampsParser(UpdateCallback):
             "person": (self.start_person, self.stop_person),
             "img": (self.start_photo, self.stop_photo),
             "objref": (self.start_objref, self.stop_objref),
-            "object": (self.start_object, self.stop_object),
+            "object": (self.start_media, self.stop_media),
             "file": (self.start_file, None),
             "page": (None, self.stop_page),
             "place": (self.start_place, self.stop_place),
@@ -744,7 +744,7 @@ class GrampsParser(UpdateCallback):
                                     "source": self.db.get_raw_source_data,
                                     "citation": self.db.get_raw_citation_data,
                                     "repository": self.db.get_raw_repository_data,
-                                    "media": self.db.get_raw_object_data,
+                                    "media": self.db.get_raw_media_data,
                                     "note": self.db.get_raw_note_data,
                                     "tag": self.db.get_raw_tag_data}[target]
                 raw = get_raw_obj_data(handle)
@@ -772,7 +772,7 @@ class GrampsParser(UpdateCallback):
                                    "source": self.db.has_source_handle,
                                    "citation": self.db.get_raw_citation_data,
                                    "repository": self.db.has_repository_handle,
-                                   "media": self.db.has_object_handle,
+                                   "media": self.db.has_media_handle,
                                    "note": self.db.has_note_handle,
                                    "tag": self.db.has_tag_handle}[target]
                 while has_handle_func(handle):
@@ -793,7 +793,7 @@ class GrampsParser(UpdateCallback):
                         "source": self.db.add_source,
                         "citation": self.db.add_citation,
                         "repository": self.db.add_repository,
-                        "media": self.db.add_object,
+                        "media": self.db.add_media,
                         "note": self.db.add_note}[target]
             add_func(prim_obj, self.trans, set_gid=False)
         return handle
@@ -813,7 +813,7 @@ class GrampsParser(UpdateCallback):
                            self.db.has_family_handle,
                            self.db.has_source_handle,
                            self.db.has_event_handle,
-                           self.db.has_object_handle,
+                           self.db.has_media_handle,
                            self.db.has_place_handle,
                            self.db.has_repository_handle,
                            'reference',
@@ -822,7 +822,7 @@ class GrampsParser(UpdateCallback):
                     self.db.add_family,
                     self.db.add_source,
                     self.db.add_event,
-                    self.db.add_object,
+                    self.db.add_media,
                     self.db.add_place,
                     self.db.add_repository,
                     'reference',
@@ -831,7 +831,7 @@ class GrampsParser(UpdateCallback):
                             self.db.get_raw_family_data,
                             self.db.get_raw_source_data,
                             self.db.get_raw_event_data,
-                            self.db.get_raw_object_data,
+                            self.db.get_raw_media_data,
                             self.db.get_raw_place_data,
                             self.db.get_raw_repository_data,
                             'reference', self.db.get_raw_note_data][key]
@@ -847,7 +847,7 @@ class GrampsParser(UpdateCallback):
                                self.db.find_next_family_gramps_id,
                                self.db.find_next_source_gramps_id,
                                self.db.find_next_event_gramps_id,
-                               self.db.find_next_object_gramps_id,
+                               self.db.find_next_media_gramps_id,
                                self.db.find_next_place_gramps_id,
                                self.db.find_next_repository_gramps_id,
                                'reference',
@@ -2180,7 +2180,7 @@ class GrampsParser(UpdateCallback):
                 int(attrs.get('corner2_y')) )
         self.objref.set_rectangle(rect)
 
-    def start_object(self, attrs):
+    def start_media(self, attrs):
         """
         Add a media object to db if it doesn't exist yet and assign
         id, privacy and changetime.
@@ -2189,15 +2189,15 @@ class GrampsParser(UpdateCallback):
         if 'handle' in attrs:
             orig_handle = attrs['handle'].replace('_', '')
             is_merge_candidate = (self.replace_import_handle and
-                                  self.db.has_object_handle(orig_handle))
+                                  self.db.has_media_handle(orig_handle))
             self.inaugurate(orig_handle, "media", self.object)
             gramps_id = self.legalize_id(attrs.get('id'), MEDIA_KEY,
                                          self.oidswap, self.db.oid2user_format,
-                                         self.db.find_next_object_gramps_id)
+                                         self.db.find_next_media_gramps_id)
             self.object.set_gramps_id(gramps_id)
             if is_merge_candidate:
-                orig_object = self.db.get_media_from_handle(orig_handle)
-                self.info.add('merge-candidate', MEDIA_KEY, orig_object,
+                orig_media = self.db.get_media_from_handle(orig_handle)
+                self.info.add('merge-candidate', MEDIA_KEY, orig_media,
                               self.object)
         else:
             self.inaugurate_id(attrs.get('id'), MEDIA_KEY, self.object)
@@ -2249,7 +2249,7 @@ class GrampsParser(UpdateCallback):
     def stop_database(self, *tag):
         self.update(self.p.CurrentLineNumber)
 
-    def stop_object(self, *tag):
+    def stop_media(self, *tag):
         self.db.commit_media(self.object, self.trans,
                                     self.object.get_change_time())
         self.object = None
@@ -2285,7 +2285,7 @@ class GrampsParser(UpdateCallback):
                 attr.set_value(attrs[key])
                 self.photo.add_attribute(attr)
         self.photo.set_mime_type(get_type(self.photo.get_path()))
-        self.db.add_object(self.photo, self.trans)
+        self.db.add_media(self.photo, self.trans)
         #set correct change time
         self.db.commit_media(self.photo, self.trans, self.change)
         self.info.add('new-object', MEDIA_KEY, self.photo)

@@ -372,7 +372,7 @@ class DbBsddbRead(DbReadBase, Callback):
             })
 
         self.set_person_id_prefix('I%04d')
-        self.set_object_id_prefix('O%04d')
+        self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
         self.set_source_id_prefix('S%04d')
         self.set_citation_id_prefix('C%04d')
@@ -467,7 +467,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
-        self.set_object_id_prefix(media)
+        self.set_media_id_prefix(media)
         self.set_family_id_prefix(family)
         self.set_source_id_prefix(source)
         self.set_citation_id_prefix(citation)
@@ -622,7 +622,7 @@ class DbBsddbRead(DbReadBase, Callback):
                                           self.emap_index, self.eid_trans)
         return gid
 
-    def find_next_object_gramps_id(self):
+    def find_next_media_gramps_id(self):
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
@@ -1371,7 +1371,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.citation_prefix = self._validated_id_prefix(val, "C")
         self.cid2user_format = self.__id2user_format(self.citation_prefix)
 
-    def set_object_id_prefix(self, val):
+    def set_media_id_prefix(self, val):
         """
         Set the naming template for Gramps Media ID values.
 
@@ -1682,7 +1682,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_raw_family_data(self, handle):
         return self.__get_raw_data(self.family_map, handle)
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
         return self.__get_raw_data(self.media_map, handle)
 
     def get_raw_place_data(self, handle):
@@ -1730,7 +1730,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.family_map, handle)
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
         """
         Return True if the handle exists in the current Mediadatabase.
         """

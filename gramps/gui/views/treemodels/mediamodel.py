@@ -56,7 +56,7 @@ class MediaModel(FlatBaseModel):
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_media_cursor
-        self.map = db.get_raw_object_data
+        self.map = db.get_raw_media_data
 
         self.fmap = [
             self.column_description,

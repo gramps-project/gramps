@@ -416,14 +416,14 @@ class TestcaseGenerator(tool.BatchTool):
             m.set_description("leave this media object invalid description\x9f")
             m.set_path("/tmp/click_on_keep_reference.png\x9f")
             m.set_mime_type("image/png\x9f")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
             m = Media()
             self.fill_object(m)
             m.set_description("reselect this media object invalid description\x9f")
             m.set_path("/tmp/click_on_select_file.png\x9f")
             m.set_mime_type("image/png\x9f")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
             # setup media attached to Source and Citation to be removed
 
@@ -432,7 +432,7 @@ class TestcaseGenerator(tool.BatchTool):
             m.set_description('remove this media object')
             m.set_path("/tmp/click_on_remove_object.png")
             m.set_mime_type("image/png")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
             s = Source()
             s.set_title('media should be removed from this source')
@@ -494,7 +494,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.db.add_citation( c, self.trans)
 
             m = Media()
-            self.db.add_object( m, self.trans)
+            self.db.add_media( m, self.trans)
 
             r = Repository()
             self.db.add_repository( r, self.trans)
@@ -953,7 +953,7 @@ class TestcaseGenerator(tool.BatchTool):
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         m.add_attribute(a)
-        self.db.add_object(m, self.trans)
+        self.db.add_media(m, self.trans)
 
         person1_h = self.generate_person(Person.MALE,name,None)
         person2_h = self.generate_person(Person.FEMALE,name,None)
@@ -1638,7 +1638,7 @@ class TestcaseGenerator(tool.BatchTool):
             if not self.generated_media or randint(0,10) == 1:
                 m = Media()
                 self.fill_object(m)
-                self.db.add_object( m, self.trans)
+                self.db.add_media( m, self.trans)
                 self.generated_media.append( m.get_handle())
             o.set_reference_handle( choice( self.generated_media))
             if randint(0,1) == 1:

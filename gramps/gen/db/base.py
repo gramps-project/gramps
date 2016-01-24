@@ -162,7 +162,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def find_next_object_gramps_id(self):
+    def find_next_media_gramps_id(self):
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
@@ -628,7 +628,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
         """
         Return raw (serialized and pickled) Family object from handle
         """
@@ -917,7 +917,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
         """
         Return True if the handle exists in the current Mediadatabase.
         """
@@ -1127,7 +1127,7 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def set_object_id_prefix(self, val):
+    def set_media_id_prefix(self, val):
         """
         Set the naming template for Gramps Media ID values.
 
@@ -1283,7 +1283,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_object(self, obj, transaction, set_gid=True):
+    def add_media(self, obj, transaction, set_gid=True):
         """
         Add a Media to the database, assigning internal IDs if they have
         not already been defined.
@@ -1505,7 +1505,7 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def remove_object(self, handle, transaction):
+    def remove_media(self, handle, transaction):
         """
         Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
@@ -1869,7 +1869,7 @@ class DbWriteBase(DbReadBase):
         elif instance.__class__.__name__ == "Source":
             self.remove_source(instance.handle, transaction)
         elif instance.__class__.__name__ == "Media":
-            self.remove_object(instance.handle, transaction)
+            self.remove_media(instance.handle, transaction)
         elif instance.__class__.__name__ == "Note":
             self.remove_note(instance.handle, transaction)
         elif instance.__class__.__name__ == "Family":

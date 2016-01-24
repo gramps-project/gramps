@@ -522,7 +522,7 @@ class EditMediaRef(EditReference):
                 return
             with DbTxn(_("Add Media Object (%s)") %
                        self.source.get_description(), self.db) as trans:
-                self.db.add_object(self.source, trans)
+                self.db.add_media(self.source, trans)
 
         #save reference object in memory
         coord = (

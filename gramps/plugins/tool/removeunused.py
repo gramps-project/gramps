@@ -109,7 +109,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                          'icon'    : 'gramps-place',
                          'name_ix' : 2},
             'media'   : {'get_func': self.db.get_media_from_handle,
-                         'remove'  : self.db.remove_object,
+                         'remove'  : self.db.remove_media,
                          'get_text': None,
                          'editor'  : 'EditMedia',
                          'icon'    : 'gramps-media',
