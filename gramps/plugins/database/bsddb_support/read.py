@@ -297,6 +297,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
                 "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
             })
         self._tables['Family'].update(
             {
@@ -305,6 +306,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
                 "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
             })
         self._tables['Source'].update(
             {
@@ -313,6 +315,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
                 })
         self._tables['Citation'].update(
             {
@@ -321,6 +324,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
                 "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
             })
         self._tables['Event'].update(
             {
@@ -329,6 +333,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
                 "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
             })
         self._tables['Media'].update(
             {
@@ -337,6 +342,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
             })
         self._tables['Place'].update(
             {
@@ -345,6 +351,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
                 "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
             })
         self._tables['Repository'].update(
             {
@@ -353,6 +360,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
                 "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
             })
         self._tables['Note'].update(
             {
@@ -361,6 +369,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
             })
         self._tables['Tag'].update(
             {
@@ -369,6 +378,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
             })
 
         self.set_person_id_prefix('I%04d')
@@ -1231,7 +1241,7 @@ class DbBsddbRead(DbReadBase, Callback):
                     pos -= 1
                 # now we will look them up again:
                 for (order_by_values, handle) in sorted_items:
-                    yield self._tables[obj_.__class__.__name__]["handle_func"](handle)
+                    yield self._tables[obj_.__name__]["handle_func"](handle)
         return g
 
     # Use closure to define iterators for each primary object type

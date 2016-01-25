@@ -251,6 +251,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_person,
                 "count_func": self.get_number_of_people,
                 "del_func": self.remove_person,
+                "iter_func": self.iter_people,
             })
         self._tables['Family'].update(
             {
@@ -263,6 +264,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_family,
                 "count_func": self.get_number_of_families,
                 "del_func": self.remove_family,
+                "iter_func": self.iter_families,
             })
         self._tables['Source'].update(
             {
@@ -275,6 +277,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_source,
                 "count_func": self.get_number_of_sources,
                 "del_func": self.remove_source,
+                "iter_func": self.iter_sources,
                 })
         self._tables['Citation'].update(
             {
@@ -287,6 +290,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_citation,
                 "count_func": self.get_number_of_citations,
                 "del_func": self.remove_citation,
+                "iter_func": self.iter_citations,
             })
         self._tables['Event'].update(
             {
@@ -299,6 +303,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_event,
                 "count_func": self.get_number_of_events,
                 "del_func": self.remove_event,
+                "iter_func": self.iter_events,
             })
         self._tables['Media'].update(
             {
@@ -311,6 +316,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_media,
                 "count_func": self.get_number_of_media,
                 "del_func": self.remove_media,
+                "iter_func": self.iter_media,
             })
         self._tables['Place'].update(
             {
@@ -323,6 +329,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_place,
                 "count_func": self.get_number_of_places,
                 "del_func": self.remove_place,
+                "iter_func": self.iter_places,
             })
         self._tables['Repository'].update(
             {
@@ -335,6 +342,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_repository,
                 "count_func": self.get_number_of_repositories,
                 "del_func": self.remove_repository,
+                "iter_func": self.iter_repositories,
             })
         self._tables['Note'].update(
             {
@@ -347,6 +355,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_note,
                 "count_func": self.get_number_of_notes,
                 "del_func": self.remove_note,
+                "iter_func": self.iter_notes,
             })
         self._tables['Tag'].update(
             {
@@ -359,6 +368,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_tag,
                 "count_func": self.get_number_of_tags,
                 "del_func": self.remove_tag,
+                "iter_func": self.iter_tags,
             })
 
         self.secondary_connected = False
