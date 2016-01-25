@@ -31,6 +31,7 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import handle2internal
+from gramps.gen.filters import GenericFilterFactory, rules
 
 #------------------------------------------------------------------------
 #
@@ -267,6 +268,15 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             ('notes', db.get_note_cursor, db.get_number_of_notes),
             )
 
+        # bug 7619 : don't select notes from to do list.
+        # notes associated to the todo list doesn't have references.
+        # get the todo list (from get_note_list method of the todo gramplet )
+        all_notes = self.dbstate.db.get_note_handles()
+        FilterClass = GenericFilterFactory('Note')
+        filter = FilterClass()
+        filter.add_rule(rules.note.HasType(["To Do"]))
+        todo_list = filter.apply(self.dbstate.db, all_notes)
+
         for (the_type, cursor_func, total_func) in tables:
             if not self.options.handler.options_dict[the_type]:
                 # This table was not requested. Skip it.
@@ -277,8 +287,9 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
-                        self.add_results((the_type, handle2internal(handle), 
-                                          data))
+                        if not (handle in todo_list and the_type == "notes"):
+                            self.add_results((the_type, handle2internal(handle), 
+                                              data))
                     self.update()
             self.reset()
 
