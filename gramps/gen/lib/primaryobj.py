@@ -269,8 +269,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                             #print("split :", self.__class__.__name__,
                             #      current.__class__.__name__,
                             #      [str(i)] + chain[p:],
-                            #      path_to[:-len(chain[p:])])
-                            todo.append([self, current, [str(i)] + chain[p:], path_to[:-len(chain[p:])]])
+                            #      path_to[:])
+                            todo.append([self, current, [str(i)] + chain[p:], path_to[:]])
                         current = None
                         keep_going = False
                 else: # part not found on this self
@@ -312,8 +312,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                     current = None
                     keep_going = False
                 p += 1
-        if keep_going:
-            results.append(current)
+            if keep_going:
+                results.append(current)
         if len(results) == 1:
             return results[0]
         elif len(results) == 0:
