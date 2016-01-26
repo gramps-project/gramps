@@ -262,8 +262,14 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                 elif isinstance(current, (list, tuple)):
                     if part.isdigit():
                         # followed by index, so continue here
-                        current = current[int(part)]
-                        path_to.append(part)
+                        if int(part) < len(current):
+                            current = current[int(part)]
+                            path_to.append(part)
+                        elif ignore_errors:
+                            current = None
+                            keeping_going = False
+                        else:
+                            raise 
                     else: # else branch! in middle, split paths
                         for i in range(len(current)):
                             #print("split :", self.__class__.__name__,
