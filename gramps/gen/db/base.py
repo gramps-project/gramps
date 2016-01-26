@@ -1877,8 +1877,8 @@ class DbWriteBase(DbReadBase):
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
 
-    def select(self, table, fields=None, start=0, limit=50,
-               filter=None, order_by=None):
+    def select(self, table, fields=None, start=0, limit=-1,
+               where=None, order_by=None):
         """
         Default implementation of a select for those databases
         that don't support SQL. Returns a list of dicts, total,
@@ -1888,19 +1888,21 @@ class DbWriteBase(DbReadBase):
         fields - used by object.get_field()
         start - position to start
         limit - count to get; -1 for all
-        filter - (field, SQL string_operator, value) |
-                 ["AND", [filter, filter, ...]]      |
-                 ["OR",  [filter, filter, ...]]      |
-                 ["NOT",  filter]
+        where - (field, SQL string_operator, value) |
+                 ["AND", [where, where, ...]]      |
+                 ["OR",  [where, where, ...]]      |
+                 ["NOT",  where]
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
         class Result(list):
             """
             A list rows of just matching for this page, with total = all,
-            and time = time to select.
+            time = time to select, expanded (unpickled), query (N/A).
             """
             total = 0
             time = 0.0
+            expanded = True
+            query = None
         def compare(v, op, value):
             """
             Compare values in a SQL-like way
@@ -1958,7 +1960,7 @@ class DbWriteBase(DbReadBase):
                     evaluate_values(exprs, item, db, table, env)
             elif len(condition) == 3: # (name, op, value)
                 (name, op, value) = condition
-                # just the ones we need for filter
+                # just the ones we need for where
                 hname = self._hash_name(table, name)
                 if hname not in env:
                     value = item.get_field(name, db, ignore_errors=True)
@@ -1999,33 +2001,33 @@ class DbWriteBase(DbReadBase):
         selected = 0
         result = Result()
         start_time = time.time()
-        if filter:
+        if where:
             for item in data:
-                # have to evaluate all, because there is a filter
+                # have to evaluate all, because there is a where
                 row = {}
                 env = {}
                 # Go through all fliters and evaluate the fields:
-                evaluate_values(filter, item, self, table, env)
-                matched = evaluate_truth(filter, item, self, table, env)
+                evaluate_values(where, item, self, table, env)
+                matched = evaluate_truth(where, item, self, table, env)
                 if matched:
-                    if selected < limit and start <= position:
+                    if ((selected < limit) or (limit == -1)) and start <= position:
                         # now, we get all of the fields
                         for field in fields:
                             value = item.get_field(field, self, ignore_errors=True)
-                            row[field] = value
+                            row[field.replace("__", ".")] = value
                         selected += 1
                         result.append(row)
                     position += 1
             result.total = position
-        else: # no filter
+        else: # no where
             for item in data:
                 if position >= start:
-                    if selected >= limit:
+                    if ((selected >= limit) and (limit != -1)):
                         break
                     row = {}
                     for field in fields:
                         value = item.get_field(field, self, ignore_errors=True)
-                        row[field] = value
+                        row[field.replace("__", ".")] = value
                     result.append(row)
                     selected += 1
                 position += 1
@@ -2035,7 +2037,7 @@ class DbWriteBase(DbReadBase):
 
     def _hash_name(self, table, name):
         """
-        Used in filter to eval expressions involving selected
+        Used in SQL functions to eval expressions involving selected
         data.
         """
         name = self._tables[table]["class_func"].get_field_alias(name)
