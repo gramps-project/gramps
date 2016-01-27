@@ -32,6 +32,9 @@ import dbapi_support
 import time
 import pickle
 
+import logging
+LOG = logging.getLogger(".dbapi")
+
 class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
@@ -1479,7 +1482,7 @@ class DBAPI(DbGeneric):
         """
         from gramps.gen.lib.handle import HandleClass
         if isinstance(python_type, HandleClass):
-            raise Exception("should not make new handle columns")
+            return "VARCHAR(50)"
         elif python_type == str:
             return "TEXT"
         elif python_type in [bool, int]:
@@ -1493,11 +1496,23 @@ class DBAPI(DbGeneric):
         """
         Add secondary fields, update, and create indexes.
         """
-        any_altered = False
+        LOG.info("Rebuilding secondary fields...")
         for table in self._tables.keys():
-            altered = False
             if not hasattr(self._tables[table]["class_func"], "get_secondary_fields"):
                 continue
+            # do a select on all; if it works, then it is ok; else, check them all
+            try:
+                fields = [self._hash_name(table, field) for (field, ptype) in 
+                          self._tables[table]["class_func"].get_secondary_fields()]
+                if fields:
+                    self.dbapi.execute("select %s from %s limit 1;" % (", ".join(fields), table))
+                # if no error, continue
+                LOG.info("Table %s is up to date" % table)
+                continue
+            except:
+                pass # got to add missing ones, so continue
+            LOG.info("Table %s needs rebuilding..." % table)
+            altered = False
             for field_pair in self._tables[table]["class_func"].get_secondary_fields():
                 field, python_type = field_pair
                 field = self._hash_name(table, field)
@@ -1505,18 +1520,17 @@ class DBAPI(DbGeneric):
                 try:
                     # test to see if it exists:
                     self.dbapi.execute("SELECT %s FROM %s LIMIT 1;" % (field, table))
+                    LOG.info("    Table %s, field %s is up to date" % (table, field))
                 except:
                     # if not, let's add it
+                    LOG.info("    Table %s, field %s was added" % (table, field))
                     self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s;" % (table, field, sql_type))
                     altered = True
-                    any_altered = True
             if altered:
+                LOG.info("Table %s is being committed, rebuilt, and indexed..." % (table, field))
                 self.dbapi.commit()
-        # Update values:
-        if any_altered:
-            self.update_secondary_values_all()
-        # Build indexes:
-        self.create_secondary_indexes()
+                self.update_secondary_values_table(table)
+                self.create_secondary_indexes_table(table)
 
     def create_secondary_indexes(self):
         """
@@ -1525,10 +1539,16 @@ class DBAPI(DbGeneric):
         for table in self._tables.keys():
             if not hasattr(self._tables[table]["class_func"], "get_index_fields"):
                 continue
-            for fields in self._tables[table]["class_func"].get_index_fields():
-                for field in fields:
-                    field = self._hash_name(table, field)
-                    self.dbapi.try_execute("CREATE INDEX %s ON %s(%s);" % (field, table, field))
+            self.create_secondary_indexes_table(table)
+
+    def create_secondary_indexes_table(self, table):
+        """
+        Create secondary indexes for just this table.
+        """
+        for fields in self._tables[table]["class_func"].get_index_fields():
+            for field in fields:
+                field = self._hash_name(table, field)
+                self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);" % (table, field, table, field))
 
     def update_secondary_values_all(self):
         """
@@ -1639,8 +1659,25 @@ class DBAPI(DbGeneric):
         """
         Check to make sure all where fields are defined. If not, then
         we need to do the Python-based select.
+
+        secondary_fields are hashed.
         """
-        return True
+        if where is None:
+            return True
+        elif len(where) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
+            connector, exprs = where
+            if connector in ["AND", "OR"]:
+                for expr in exprs:
+                    value = self.check_where_fields(table, expr, secondary_fields)
+                    if value == False:
+                        return False
+                return True
+            else: # "NOT"
+                return self.check_where_fields(table, exprs, secondary_fields)
+        elif len(where) == 3: # (name, op, value)
+            (name, op, value) = where
+            # just the ones we need for where
+            return (self._hash_name(table, name) in secondary_fields)
 
     def select(self, table, fields=None, start=0, limit=-1,
                where=None, order_by=None):
@@ -1659,12 +1696,13 @@ class DBAPI(DbGeneric):
                  ["NOT",  where]
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
-        fields = [self._hash_name(table, field) for field in fields]
+        hashed_fields = [self._hash_name(table, field) for field in fields]
         secondary_fields = ([self._hash_name(table, field) for (field, ptype) in 
                              self._tables[table]["class_func"].get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
         if not self.check_where_fields(table, where, secondary_fields):
             return super().select(table, fields, start, limit, where, order_by)
+        fields = hashed_fields
         start_time = time.time()
         where_clause = self.build_where_clause(table, where)
         order_clause = self.build_order_clause(table, order_by)

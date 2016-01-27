@@ -171,8 +171,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         """
         from .handle import HandleClass
         return ([(key, value) for (key, value) in cls.get_schema().items()
-                 if value in [str, int, float, bool] and
-                 not isinstance(value, HandleClass)] +
+                 if value in [str, int, float, bool] or 
+                 isinstance(value, HandleClass)] +
                 cls.get_extra_secondary_fields())
 
     @classmethod
@@ -241,19 +241,18 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         # expand when you reach multiple answers [obj, chain_left, []]
         # if you get to an endpoint, put results
         # go until nothing left to expand
-        current = self
-        todo = [(self, current, chain, [])]
+        todo = [(self, self, [], chain)]
         results = []
         while todo:
-            parent, current, chain, path_to = todo.pop()
+            parent, current, path_to, chain = todo.pop()
             #print("expand:", parent.__class__.__name__,
             #      current.__class__.__name__,
-            #      chain,
-            #      path_to)
+            #      path_to,
+            #      chain)
             keep_going = True
             p = 0
             while p < len(chain) and keep_going:
-                #print("while:", p, chain, chain[p])
+                #print("while:", path_to, chain[p:])
                 part = chain[p]
                 if hasattr(current, part): # attribute
                     current = getattr(current, part)
@@ -269,14 +268,14 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                             current = None
                             keeping_going = False
                         else:
-                            raise 
+                            raise Exception("invalid index position")
                     else: # else branch! in middle, split paths
                         for i in range(len(current)):
-                            #print("split :", self.__class__.__name__,
+                            #print("split list:", self.__class__.__name__,
                             #      current.__class__.__name__,
-                            #      [str(i)] + chain[p:],
-                            #      path_to[:])
-                            todo.append([self, current, [str(i)] + chain[p:], path_to[:]])
+                            #      path_to[:],
+                            #      [str(i)] + chain[p:])
+                            todo.append([self, current, path_to[:], [str(i)] + chain[p:]])
                         current = None
                         keep_going = False
                 else: # part not found on this self
@@ -291,19 +290,18 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                                 if part == "self":
                                     current = obj
                                     path_to = []
-                                    #print("split :", obj.__class__.__name__,
+                                    #print("split self:", obj.__class__.__name__,
                                     #      current.__class__.__name__,
-                                    #      chain[p + 1:],
-                                    #      path_to[p + 1:])
-                                    todo.append([obj, current, chain[p + 1:], chain[p + 1:]])
+                                    #      path_to,
+                                    #      chain[p + 1:])
+                                    todo.append([obj, current, path_to, chain[p + 1:]])
                                 elif obj:
                                     current = getattr(obj, part)
-                                    path_to = []
                                     #print("split :", obj.__class__.__name__,
                                     #      current.__class__.__name__,
-                                    #      chain[p + 1:],
-                                    #      path_to[p:])
-                                    todo.append([obj, current, chain[p + 1:], chain[p:]])
+                                    #      [part],
+                                    #      chain[p + 1:])
+                                    todo.append([obj, current, [part], chain[p + 1:]])
                                 current = None
                                 keep_going = False
                             else:
