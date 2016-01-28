@@ -83,8 +83,8 @@ def touch(fname, mode=0o666, dir_fd=None, **kwargs):
     else:
         opened = os.open(fname, flags, mode)
 
-    with os.fdopen() as f:
-        os.utime(f.fileno(opened) if os.utime in os.supports_fd else fname,
+    with os.fdopen(opened) as f:
+        os.utime(f.fileno() if os.utime in os.supports_fd else fname,
                  dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
 class DbGenericUndo(DbUndo):
