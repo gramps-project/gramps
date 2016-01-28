@@ -286,7 +286,9 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
                         if isinstance(ptype, HandleClass):
                             if db:
                                 # start over here:
-                                obj = ptype.join(db, current)
+                                obj = None
+                                if current:
+                                    obj = ptype.join(db, current)
                                 if part == "self":
                                     current = obj
                                     path_to = []

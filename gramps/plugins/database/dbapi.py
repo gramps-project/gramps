@@ -1527,7 +1527,7 @@ class DBAPI(DbGeneric):
                     self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s;" % (table, field, sql_type))
                     altered = True
             if altered:
-                LOG.info("Table %s is being committed, rebuilt, and indexed..." % (table, field))
+                LOG.info("Table %s is being committed, rebuilt, and indexed..." % table)
                 self.dbapi.commit()
                 self.update_secondary_values_table(table)
                 self.create_secondary_indexes_table(table)
