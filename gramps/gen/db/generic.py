@@ -34,6 +34,9 @@ import shutil
 import bisect
 import ast
 from operator import itemgetter
+import platform
+
+PYVERSION = platform.python.python_version_tuple()
 
 #------------------------------------------------------------------------
 #
@@ -74,8 +77,14 @@ SIGBASE = ('person', 'family', 'source', 'event', 'media',
 def touch(fname, mode=0o666, dir_fd=None, **kwargs):
     ## After http://stackoverflow.com/questions/1158076/implement-touch-using-python
     flags = os.O_CREAT | os.O_APPEND
-    with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
-        os.utime(f.fileno() if os.utime in os.supports_fd else fname,
+
+    if PYVERSION >= ("3", "3", "0"):
+        opened = os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)
+    else:
+        opened = os.open(fname, flags, mode)
+
+    with os.fdopen() as f:
+        os.utime(f.fileno(opened) if os.utime in os.supports_fd else fname,
                  dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
 class DbGenericUndo(DbUndo):
