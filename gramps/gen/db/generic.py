@@ -36,7 +36,7 @@ import ast
 from operator import itemgetter
 import platform
 
-PYVERSION = platform.python.python_version_tuple()
+PYVERSION = platform.python_version_tuple()
 
 #------------------------------------------------------------------------
 #
