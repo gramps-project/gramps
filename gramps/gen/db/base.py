@@ -2050,6 +2050,6 @@ class DbWriteBase(DbReadBase):
         """
         values = []
         for (field, direction) in order_by:
-            values.append(obj.get_field(field))
+            values.append(obj.get_field(field, self, ignore_errors=True))
         return values
 

@@ -1032,7 +1032,41 @@ class DBAPI(DbGeneric):
         if row:
             return self.get_person_from_handle(row[0])
 
+    def iter_items_order_by_python(self, order_by, class_):
+        """
+        This method is for those iter_items with a order_by, but
+        can't be done with secondary fields.
+        """
+        # first build sort order:
+        sorted_items = []
+        query = "SELECT blob_data FROM %s;" % class_.__name__
+        self.dbapi.execute(query)
+        rows = self.dbapi.fetchall()
+        for row in rows:
+                obj = obj_()
+                obj.unserialize(row[0])
+                # just use values and handle to keep small:
+                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+        # next we sort by fields and direction
+        pos = len(order_by) - 1
+        for (field, order) in reversed(order_by): # sort the lasts parts first
+            sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+            pos -= 1
+        # now we will look them up again:
+        for (order_by_values, handle) in sorted_items:
+            yield self._tables[obj_.__name__]["handle_func"](handle)
+
     def iter_items(self, order_by, class_):
+        # check if order_by fields are secondary
+        # if so, fine
+        # else, use Python sorts
+        if order_by:
+            secondary_fields = class_.get_secondary_fields()
+            if not self.check_order_by_fields(class_.__name__, order_by, secondary_fields):
+                for item in super().iter_items(order_by, class_):
+                    yield item
+                return
+        ## Continue with dbapi select
         if order_by is None:
             query = "SELECT blob_data FROM %s;" % class_.__name__
         else:
@@ -1655,6 +1689,19 @@ class DBAPI(DbGeneric):
         else:
             return ["blob_data"] # nope, we'll have to expand blob to get all fields
 
+    def check_order_by_fields(self, table, order_by, secondary_fields):
+        """
+        Check to make sure all order_by fields are defined. If not, then
+        we need to do the Python-based order.
+
+        secondary_fields are hashed.
+        """
+        if order_by:
+            for (field, dir) in order_by:
+                if self._hash_name(table, field) not in secondary_fields:
+                    return False
+        return True
+
     def check_where_fields(self, table, where, secondary_fields):
         """
         Check to make sure all where fields are defined. If not, then
@@ -1700,7 +1747,8 @@ class DBAPI(DbGeneric):
         secondary_fields = ([self._hash_name(table, field) for (field, ptype) in 
                              self._tables[table]["class_func"].get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
-        if not self.check_where_fields(table, where, secondary_fields):
+        if ((not self.check_where_fields(table, where, secondary_fields)) or
+            (not self.check_order_by_fields(table, order_by, secondary_fields))):
             return super().select(table, fields, start, limit, where, order_by)
         fields = hashed_fields
         start_time = time.time()

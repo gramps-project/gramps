@@ -33,7 +33,6 @@ import logging
 import shutil
 import bisect
 import ast
-from operator import itemgetter
 import sys
 
 #------------------------------------------------------------------------
@@ -1166,9 +1165,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # just use values and handle to keep small:
                 sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
             # next we sort by fields and direction
+            def getitem(item, pos):
+                sort_items = item[0]
+                if isinstance(sort_items[pos], str):
+                    return sort_items[pos]
+                elif sort_items[pos] is None:
+                    return ""
+                else:
+                    # FIXME: should do something clever/recurive to 
+                    # sort these meaningfully, and return a string:
+                    return str(sort_items[pos])
             pos = len(order_by) - 1
             for (field, order) in reversed(order_by): # sort the lasts parts first
-                sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+                sorted_items.sort(key=lambda item: getitem(item, pos), 
+                                  reverse=(order=="DESC"))
                 pos -= 1
             # now we will look them up again:
             for (order_by_values, handle) in sorted_items:
