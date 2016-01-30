@@ -307,7 +307,7 @@ You can set these values via the Geography View by searching the place, or via a
                 <child>
                   <object class="GtkComboBox" id="place_type">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">What type of place this is. Eg 'Country', 'City', ... .</property>
                     <property name="has_entry">True</property>
                     <child internal-child="entry">
