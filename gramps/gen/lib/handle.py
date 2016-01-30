@@ -28,7 +28,7 @@ class HandleClass(str):
     @classmethod
     def get_schema(cls):
         from gramps.gen.lib import (Person, Family, Event, Place, Source,
-                                    Media, Repository, Note, Citation)
+                                    Media, Repository, Note, Citation, Tag)
         tables = {
             "Person": Person,
             "Family": Family,
@@ -39,6 +39,7 @@ class HandleClass(str):
             "Repository": Repository,
             "Note": Note,
             "Citation": Citation,
+            "Tag": Tag,
         }
         return tables[cls.classname].get_schema()
 
