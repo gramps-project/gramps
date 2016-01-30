@@ -329,6 +329,16 @@ class StyledText(object):
                 [StyledTextTag.from_struct(t)
                  for t in struct.get("tags", default.tags)])
 
+    @classmethod
+    def get_schema(cls):
+        """
+        The schema for StyledText.
+        """
+        return {
+            "string": str,
+            "tags": [StyledTextTag],
+        }
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
