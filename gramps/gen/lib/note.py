@@ -142,6 +142,19 @@ class Note(BasicPrimaryObject):
         }
 
     @classmethod
+    def get_labels(cls, _):
+        return {
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "text": _("Text"),
+            "format": _("Format"),
+            "type": _("Type"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.

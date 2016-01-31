@@ -339,6 +339,13 @@ class StyledText(object):
             "tags": [StyledTextTag],
         }
 
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "string": _("Text"),
+            "tags": _("Styled Text Tags"),
+        }
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
