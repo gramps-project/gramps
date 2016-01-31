@@ -20,6 +20,7 @@
 
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
+from gramps.gui.thumbnails import get_thumbnail_image
 from gramps.gen.utils.file import media_path_full
 from gi.repository import Gtk
 
@@ -63,10 +64,16 @@ class Gallery(Gramplet):
                 photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 photo.set_uistate(self.uistate, media_handle)
-                self.image_list.append(photo)
-                self.top.pack_start(photo, False, False, 0)
-                self.top.show_all()
-                count += 1
+            else:
+                photo = Photo(self.uistate.screen_height() < 1000)
+                photo.set_pixbuf(full_path, 
+                                get_thumbnail_image(full_path, 
+                                    mime_type,
+                                    media_ref.get_rectangle()))
+            self.image_list.append(photo)
+            self.top.pack_start(photo, False, False, 0)
+            count += 1
+        self.top.show_all()
         self.set_has_data(count > 0)
 
     def get_has_data(self, obj):
