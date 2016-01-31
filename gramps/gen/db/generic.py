@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2015 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2015-2016 Gramps Development Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ import shutil
 import bisect
 import ast
 import sys
+import datetime
 
 #------------------------------------------------------------------------
 #
@@ -272,10 +273,10 @@ class Map(object):
 
     def __setitem__(self, key, value):
         """
-        This is only done in a low-level raw import.
+        This is only done in a assignment via key.
 
         value: serialized object
-        key: bytes key (ignored in this implementation)
+        key: bytes key (ignored in this function)
         """
         obj = self.table.funcs["class_func"].create(value)
         self.table.funcs["commit_func"](obj, self.txn)
@@ -318,7 +319,7 @@ class Cursor(object):
         return self
     def __iter__(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.map[item])
+            yield (item, self.map[item])
     def __next__(self):
         try:
             return self._iter.__next__()
@@ -328,7 +329,7 @@ class Cursor(object):
         pass
     def iter(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.map[item])
+            yield (item, self.map[item])
     def first(self):
         self._iter = self.__iter__()
         try:
@@ -357,7 +358,7 @@ class TreeCursor(Cursor):
         """
         handles = self.db.get_place_handles(sort_handles=True)
         for handle in handles:
-            yield (bytes(handle, "utf-8"), self.db._get_raw_place_data(handle))
+            yield (handle, self.db._get_raw_place_data(handle))
 
 class Bookmarks(object):
     def __init__(self, default=[]):
@@ -1265,63 +1266,103 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return gramps_id in key2table[obj_key]
 
     def has_person_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.person_map
 
     def has_family_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.family_map
 
     def has_citation_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.citation_map
 
     def has_source_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.source_map
 
     def has_repository_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.repository_map
 
     def has_note_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.note_map
 
     def has_place_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.place_map
 
     def has_event_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.event_map
 
     def has_tag_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.tag_map
 
     def has_media_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.media_map
 
     def get_raw_person_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.person_map[handle]
 
     def get_raw_family_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.family_map[handle]
 
     def get_raw_citation_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.citation_map[handle]
 
     def get_raw_source_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.source_map[handle]
 
     def get_raw_repository_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.repository_map[handle]
 
     def get_raw_note_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.note_map[handle]
 
     def get_raw_place_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.place_map[handle]
 
     def get_raw_media_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.media_map[handle]
 
     def get_raw_tag_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.tag_map[handle]
 
     def get_raw_event_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.event_map[handle]
 
     def add_person(self, person, trans, set_gid=True):
@@ -1517,6 +1558,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             class_ = db._tables[key]["class_func"]
             for (handle, data) in cursor():
                 map = getattr(self, "%s_map" % key.lower())
+                if isinstance(handle, bytes):
+                    handle = str(handle, "utf-8")
                 map[handle] = class_.create(data)
 
     def get_transaction_class(self):
@@ -1990,7 +2033,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         from gramps.plugins.export.exportxml import XmlWriter
         from gramps.cli.user import User
         writer = XmlWriter(self, User(), strip_photos=0, compress=1)
-        filename = os.path.join(self._directory, "data.gramps")
+        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
+        filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
         writer.write(filename)
 
     def get_undodb(self):

@@ -336,17 +336,17 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle FROM person;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_family_handles(self):
         self.dbapi.execute("SELECT handle FROM family;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_event_handles(self):
         self.dbapi.execute("SELECT handle FROM event;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_citation_handles(self, sort_handles=False):
         if sort_handles:
@@ -354,7 +354,7 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle FROM citation;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_source_handles(self, sort_handles=False):
         if sort_handles:
@@ -362,7 +362,7 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle from source;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_place_handles(self, sort_handles=False):
         if sort_handles:
@@ -370,12 +370,12 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle FROM place;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_repository_handles(self):
         self.dbapi.execute("SELECT handle FROM repository;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_media_handles(self, sort_handles=False):
         if sort_handles:
@@ -383,12 +383,12 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle FROM media;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_note_handles(self):
         self.dbapi.execute("SELECT handle FROM note;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_tag_handles(self, sort_handles=False):
         if sort_handles:
@@ -396,7 +396,7 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("SELECT handle FROM tag;")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return [bytes(row[0], "utf-8") for row in rows]
 
     def get_tag_from_name(self, name):
         self.dbapi.execute("""select handle from tag where order_by = ?;""",
@@ -960,7 +960,8 @@ class DBAPI(DbGeneric):
         Remove the Person specified by the database handle from the database,
         preserving the change in the passed transaction.
         """
-
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         if self.readonly or not handle:
             return
         if handle in self.person_map:
@@ -973,6 +974,8 @@ class DBAPI(DbGeneric):
                                 person.serialize(), None)
 
     def _do_remove(self, handle, transaction, data_map, data_id_map, key):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         key2table = {
             PERSON_KEY:     "person",
             FAMILY_KEY:     "family",
@@ -1013,6 +1016,8 @@ class DBAPI(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         self.dbapi.execute("SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?;",
                                  [handle])
         rows = self.dbapi.fetchall()
@@ -1082,61 +1087,61 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT handle FROM person;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_family_handles(self):
         self.dbapi.execute("SELECT handle FROM family;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_citation_handles(self):
         self.dbapi.execute("SELECT handle FROM citation;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_event_handles(self):
         self.dbapi.execute("SELECT handle FROM event;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_media_handles(self):
         self.dbapi.execute("SELECT handle FROM media;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_note_handles(self):
         self.dbapi.execute("SELECT handle FROM note;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_place_handles(self):
         self.dbapi.execute("SELECT handle FROM place;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_repository_handles(self):
         self.dbapi.execute("SELECT handle FROM repository;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_source_handles(self):
         self.dbapi.execute("SELECT handle FROM source;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def iter_tag_handles(self):
         self.dbapi.execute("SELECT handle FROM tag;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield row[0]
+            yield bytes(row[0], "utf-8")
 
     def reindex_reference_map(self, callback):
         callback(4)
@@ -1188,42 +1193,62 @@ class DBAPI(DbGeneric):
         self.dbapi.commit()
 
     def has_handle_for_person(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM person WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_family(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM family WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_source(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM source WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_citation(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM citation WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_event(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM event WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_media(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM media WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_place(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM place WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_repository(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM repository WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_note(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM note WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
     def has_handle_for_tag(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM tag WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
@@ -1309,6 +1334,8 @@ class DBAPI(DbGeneric):
         return [row[0] for row in rows]
 
     def _get_raw_person_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM person WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1321,6 +1348,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_family_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM family WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1333,6 +1362,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_source_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM source WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1345,6 +1376,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_citation_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM citation WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1357,6 +1390,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_event_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM event WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1369,6 +1404,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_media_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM media WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1381,6 +1418,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_place_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM place WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1393,18 +1432,24 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_repository_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM repository WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
 
     def _get_raw_repository_from_id_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM repository WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
 
     def _get_raw_note_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM note WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -1417,6 +1462,8 @@ class DBAPI(DbGeneric):
             return pickle.loads(row[0])
 
     def _get_raw_tag_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         self.dbapi.execute("SELECT blob_data FROM tag WHERE handle = ?", [key])
         row = self.dbapi.fetchone()
         if row:

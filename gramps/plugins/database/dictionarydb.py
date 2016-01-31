@@ -128,39 +128,39 @@ class DictionaryDb(DbGeneric):
 
     def get_person_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self._person_dict.keys()
+        return [bytes(key, "utf-8") for key in self._person_dict.keys()]
 
     def get_family_handles(self):
-        return self._family_dict.keys()
+        return [bytes(key, "utf-8") for key in self._family_dict.keys()]
 
     def get_event_handles(self):
-        return self._event_dict.keys()
+        return [bytes(key, "utf-8") for key in self._event_dict.keys()]
 
     def get_citation_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self._citation_dict.keys()
+        return [bytes(key, "utf-8") for key in self._citation_dict.keys()]
 
     def get_source_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self._source_dict.keys()
+        return [bytes(key, "utf-8") for key in self._source_dict.keys()]
 
     def get_place_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self._place_dict.keys()
+        return [bytes(key, "utf-8") for key in self._place_dict.keys()]
 
     def get_repository_handles(self):
-        return self._repository_dict.keys()
+        return [bytes(key, "utf-8") for key in self._repository_dict.keys()]
 
     def get_media_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self._media_dict.keys()
+        return [bytes(key, "utf-8") for key in self._media_dict.keys()]
 
     def get_note_handles(self):
-        return self._note_dict.keys()
+        return [bytes(key, "utf-8") for key in self._note_dict.keys()]
 
     def get_tag_handles(self, sort_handles=False):
         # FIXME: implement sort
-        return self._tag_dict.keys()
+        return [bytes(key, "utf-8") for key in self._tag_dict.keys()]
 
     def get_tag_from_name(self, name):
         return self._tag_name_dict.get(name, None)
@@ -636,6 +636,8 @@ class DictionaryDb(DbGeneric):
 
             result_list = list(find_backlink_handles(handle))
         """
+        if isinstance(handle, bytes):
+            key = str(handle, "utf-8")
         #self._reference_list = [[obj.handle,
         #                         obj.__class__.__name__,
         #                         ref_handle,
@@ -656,34 +658,34 @@ class DictionaryDb(DbGeneric):
             return list(self._person_dict.values())[0]
 
     def iter_person_handles(self):
-        return (handle for handle in self._person_dict.keys())
+        return (bytes(handle, "utf-8") for handle in self._person_dict.keys())
 
     def iter_family_handles(self):
-        return (handle for handle in self._family_dict.keys())
+        return (bytes(handle, "utf-8") for handle in self._family_dict.keys())
 
     def iter_citation_handles(self):
-        return (key for key in self._citation_dict.keys())
+        return (bytes(key, "utf-8") for key in self._citation_dict.keys())
 
     def iter_event_handles(self):
-        return (key for key in self._event_dict.keys())
+        return (bytes(key, "utf-8") for key in self._event_dict.keys())
 
     def iter_media_handles(self):
-        return (key for key in self._media_dict.keys())
+        return (bytes(key, "utf-8") for key in self._media_dict.keys())
 
     def iter_note_handles(self):
-        return (key for key in self._note_dict.keys())
+        return (bytes(key, "utf-8") for key in self._note_dict.keys())
 
     def iter_place_handles(self):
-        return (key for key in self._place_dict.keys())
+        return (bytes(key, "utf-8") for key in self._place_dict.keys())
 
     def iter_repository_handles(self):
-        return (key for key in self._repository_dict.keys())
+        return (bytes(key, "utf-8") for key in self._repository_dict.keys())
 
     def iter_source_handles(self):
-        return (key for key in self._source_dict.keys())
+        return (bytes(key, "utf-8") for key in self._source_dict.keys())
 
     def iter_tag_handles(self):
-        return (key for key in self._tag_dict.keys())
+        return (bytes(key, "utf-8") for key in self._tag_dict.keys())
 
     def reindex_reference_map(self, callback):
         callback(4)
@@ -723,33 +725,53 @@ class DictionaryDb(DbGeneric):
         self.surname_list = self.build_surname_list()
 
     def has_handle_for_person(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._person_dict
 
     def has_handle_for_family(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._family_dict
 
     def has_handle_for_source(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._source_dict
 
     def has_handle_for_citation(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._citation_dict
 
     def has_handle_for_event(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._event_dict
 
     def has_handle_for_media(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._media_dict
 
     def has_handle_for_place(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._place_dict
 
     def has_handle_for_repository(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._repository_dict
 
     def has_handle_for_note(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._note_dict
 
     def has_handle_for_tag(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         return key in self._tag_dict
 
     def has_gramps_id_for_person(self, key):
@@ -807,6 +829,8 @@ class DictionaryDb(DbGeneric):
         return [x.gramps_id for x in self._note_dict.values()]
 
     def _get_raw_person_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._person_dict:
             return self._person_dict[key].serialize()
 
@@ -815,6 +839,8 @@ class DictionaryDb(DbGeneric):
             return self._person_id_dict[key].serialize()
 
     def _get_raw_family_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._family_dict:
             return self._family_dict[key].serialize()
 
@@ -823,6 +849,8 @@ class DictionaryDb(DbGeneric):
             return self._family_id_dict[key].serialize()
 
     def _get_raw_source_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._source_dict:
             return self._source_dict[key].serialize()
 
@@ -831,6 +859,8 @@ class DictionaryDb(DbGeneric):
             return self._source_id_dict[key].serialize()
 
     def _get_raw_citation_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._citation_dict:
             return self._citation_dict[key].serialize()
 
@@ -839,6 +869,8 @@ class DictionaryDb(DbGeneric):
             return self._citation_id_dict[key].serialize()
 
     def _get_raw_event_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._event_dict:
             return self._event_dict[key].serialize()
 
@@ -847,6 +879,8 @@ class DictionaryDb(DbGeneric):
             return self._event_id_dict[key].serialize()
 
     def _get_raw_media_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._media_dict:
             return self._media_dict[key].serialize()
 
@@ -855,6 +889,8 @@ class DictionaryDb(DbGeneric):
             return self._media_id_dict[key].serialize()
 
     def _get_raw_place_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._place_dict:
             return self._place_dict[key].serialize()
 
@@ -863,6 +899,8 @@ class DictionaryDb(DbGeneric):
             return self._place_id_dict[key].serialize()
 
     def _get_raw_repository_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._repository_dict:
             return self._repository_dict[key].serialize()
 
@@ -871,6 +909,8 @@ class DictionaryDb(DbGeneric):
             return self._repository_id_dict[key].serialize()
 
     def _get_raw_note_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._note_dict:
             return self._note_dict[key].serialize()
 
@@ -879,6 +919,8 @@ class DictionaryDb(DbGeneric):
             return self._note_id_dict[key].serialize()
 
     def _get_raw_tag_data(self, key):
+        if isinstance(key, bytes):
+            key = str(key, "utf-8")
         if key in self._tag_dict:
             return self._tag_dict[key].serialize()
 

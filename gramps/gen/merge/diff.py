@@ -190,8 +190,8 @@ def diff_dbs(db1, db2, user=None):
         for item in ['Person', 'Family', 'Source', 'Citation', 'Event', 'Media',
                      'Place', 'Repository', 'Note', 'Tag']:
             step()
-            handles1 = sorted([handle.decode('utf-8') for handle in db1._tables[item]["handles_func"]()])
-            handles2 = sorted([handle.decode('utf-8') for handle in db2._tables[item]["handles_func"]()])
+            handles1 = sorted([handle for handle in db1._tables[item]["handles_func"]()])
+            handles2 = sorted([handle for handle in db2._tables[item]["handles_func"]()])
             p1 = 0
             p2 = 0
             while p1 < len(handles1) and p2 < len(handles2):
