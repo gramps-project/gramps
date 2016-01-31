@@ -2662,31 +2662,3 @@ def upgrade_researcher(owner_data):
     addr = tuple([owner_data[0][0], ''] + list(owner_data[0][1:]))
     return (addr, owner_data[1], owner_data[2], owner_data[3])
 
-if __name__ == "__main__":
-
-    import os, sys, pdb
-
-    d = DbBsddb()
-    if len(sys.argv) > 1:
-        db_name = sys.argv[1]
-    else:
-        db_home = os.path.join(HOME_DIR,'grampsdb')
-        for dir in os.listdir(db_home):
-            db_path = os.path.join(db_home, dir)
-            db_fn = os.path.join(db_path, 'name.txt')
-            if os.stat(db_fn):
-                f = open(db_fn)
-                db_name = f.read()
-                if db_name == 'Small Example':
-                    break
-    print("loading", db_path)
-    d.load(db_path, lambda x: x)
-
-    print(d.get_default_person())
-    out = ''
-    with d.get_person_cursor() as c:
-        for key, data in c:
-            person = Person(data)
-            out += key + person.get_primary_name().get_name()
-
-    print(out, list(d.surnames.keys()))
