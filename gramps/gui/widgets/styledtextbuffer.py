@@ -567,7 +567,10 @@ class StyledTextBuffer(UndoableBuffer):
                                 foreground=self.linkcolor,
                                 underline=UNDERLINE_SINGLE)
             else:
-                g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)
+                try:
+                    g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)
+                except:
+                    g_tag = None
             if g_tag is not None:
                 for (start, end) in s_tag.ranges:
                     start_iter = self.get_iter_at_offset(start)
