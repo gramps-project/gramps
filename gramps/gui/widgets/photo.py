@@ -97,3 +97,15 @@ class Photo(Gtk.EventBox):
         """
         self.uistate = uistate
         self.handle = handle
+
+    def set_pixbuf(self, full_path, pixbuf):
+        """
+        Set the image to be displayed from a pixbuf.
+        """
+        self.full_path = full_path
+        if full_path:
+            self.photo.set_from_pixbuf(pixbuf)
+            self.photo.show()
+        else:
+            self.photo.hide()
+
