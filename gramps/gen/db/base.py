@@ -1940,7 +1940,8 @@ class DbWriteBase(DbReadBase):
             elif op == "LIKE":
                 if value and v:
                     value = value.replace("%", "(.*)").replace("_", ".")
-                    matched = re.match("^" + value + "$", v)
+                    ## FIXME: allow a case-insensitive version
+                    matched = re.match("^" + value + "$", v, re.MULTILINE)
                 else:
                     matched = False
             else:
