@@ -179,6 +179,8 @@ class DbManager(CLIDbManager):
         self.__connect_signals()
         self.__build_interface()
         self._populate_model()
+        self.before_change = ""
+        self.after_change = ""
 
     def __connect_signals(self):
         """
@@ -474,6 +476,13 @@ class DbManager(CLIDbManager):
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
+            if self.model.get_value(node, ICON_COL) != None:
+                # this database is loaded. We must change the title
+                # in case we change the name several times before quitting,
+                # we save the first old name.
+                if self.before_change == "":
+                    self.before_change = old_text
+                self.after_change = new_text
             if not old_text.strip() == new_text.strip():
                 if len(path.get_indices()) > 1 :
                     self.__rename_revision(path, new_text)
