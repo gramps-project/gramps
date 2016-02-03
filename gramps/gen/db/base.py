@@ -1894,15 +1894,6 @@ class DbWriteBase(DbReadBase):
                  ["NOT",  where]
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
-        class Result(list):
-            """
-            A list rows of just matching for this page, with total = all,
-            time = time to select, expanded (unpickled), query (N/A).
-            """
-            total = 0
-            time = 0.0
-            expanded = True
-            query = None
         def compare(v, op, value):
             """
             Compare values in a SQL-like way
@@ -1997,44 +1988,28 @@ class DbWriteBase(DbReadBase):
         if "*" in fields:
             fields.remove("*")
             fields.extend(self._tables[table]["class_func"].get_schema().keys())
-        data = self._tables[table]["iter_func"](order_by=order_by)
         position = 0
         selected = 0
-        result = Result()
-        start_time = time.time()
+        data = self._tables[table]["iter_func"](order_by=order_by)
         if where:
             for item in data:
-                # have to evaluate all, because there is a where
-                row = {}
-                env = {}
                 # Go through all fliters and evaluate the fields:
+                env = {}
                 evaluate_values(where, item, self, table, env)
                 matched = evaluate_truth(where, item, self, table, env)
                 if matched:
                     if ((selected < limit) or (limit == -1)) and start <= position:
-                        # now, we get all of the fields
-                        for field in fields:
-                            value = item.get_field(field, self, ignore_errors=True)
-                            row[field.replace("__", ".")] = value
                         selected += 1
-                        result.append(row)
+                        yield item
                     position += 1
-            result.total = position
         else: # no where
             for item in data:
                 if position >= start:
                     if ((selected >= limit) and (limit != -1)):
                         break
-                    row = {}
-                    for field in fields:
-                        value = item.get_field(field, self, ignore_errors=True)
-                        row[field.replace("__", ".")] = value
-                    result.append(row)
                     selected += 1
+                    yield item
                 position += 1
-            result.total = self._tables[table]["count_func"]()
-        result.time = time.time() - start_time
-        return result
 
     def _hash_name(self, table, name):
         """
@@ -2054,3 +2029,128 @@ class DbWriteBase(DbReadBase):
             values.append(obj.get_field(field, self, ignore_errors=True))
         return values
 
+    Person = property(lambda self:QuerySet(self, "Person"))
+    Family = property(lambda self:QuerySet(self, "Family"))
+    Note = property(lambda self:QuerySet(self, "Note"))
+    Citation = property(lambda self:QuerySet(self, "Citation"))
+    Source = property(lambda self:QuerySet(self, "Source"))
+    Repository = property(lambda self:QuerySet(self, "Repository"))
+    Place = property(lambda self:QuerySet(self, "Place"))
+    Tag = property(lambda self:QuerySet(self, "Tag"))
+
+class OPERATOR(object):
+    """
+    Base for QuerySet operators.
+    """
+    op = "OP"
+    def __init__(self, *expresions, **kwargs):
+        if self.op in ["AND", "OR"]:
+            exprs = [expression.list for expression 
+                     in expressions]
+            for key in kwargs:
+                exprs.append((key, "=", kwargs[key]))
+        else: # "NOT"
+            if expressions:
+                exprs = expression.list
+            else:
+                keys, values = kwargs.items()
+                exprs = (keys[0], "=", values[0])
+        self.list = [self.op, exprs]
+
+class AND(object):
+    op = "AND"
+
+class OR(object):
+    """
+    OR operator for QuerySet logical WHERE expressions.
+    """
+    op = "OR"
+
+class NOT(object):
+    """
+    NOT operator for QuerySet logical WHERE expressions.
+    """
+    op = "NOT"
+
+class QuerySet(object):
+    """
+    A container for selection criteria before being actually
+    applied to a database.
+    """
+    def __init__(self, database, table):
+        self.database = database
+        self.table = table
+        self.where_by = None
+        self.order_by = None
+        self.limit = -1
+        self.start = 0
+
+    def limit(self, start=None, limit=None):
+        """
+        Put limits on the selection.
+        """
+        if start is not None:
+            self.start = start
+        if limit is not None:
+            self.limit = limit
+        return self
+
+    def order(self, **kwargs):
+        """
+        Put an ordering on the selection.
+        """
+        # FIXME: kwargs are unordered
+        for keyword in kwargs:
+            if self.order_by is None:
+                self.order_by = []
+            self.order_by.append((keyword, kwargs[keyword]))
+        return self
+
+    def where(self, *args, **kwargs):
+        """
+        Filter the selection.
+        """
+        # First, handle AND, OR, NOT args:
+        and_expr = []
+        for arg in args:
+            expr = arg.list
+            and_expr.append(expr)
+        # Next, handle kwargs:
+        for keyword in kwargs:
+            and_expr.append((keyword, "=", kwargs[keyword]))
+        if and_expr:
+            if self.where_by:
+                self.where_by = ["AND", [self.where_by] + and_expr]
+            elif len(and_expr) == 1:
+                self.where_by = and_expr[0]
+            else:
+                self.where_by = ["AND", and_expr]
+        return self
+
+    def count(self):
+        """
+        Run query with just where, start, limit to get count.
+        """
+        ## FIXME: add special fieldname check in select
+        generator = self.database.select(self.table,
+                                         ["count(1)"],
+                                         where=self.where_by,
+                                         start=self.start,
+                                         limit=self.limit)
+        return next(generator)[0]
+
+    def select(self, *args):
+        """
+        Actually touch the database.
+        """
+        if len(args) == 0:
+            ## FIXME: add special fieldname check in select
+            args = ["self"]
+        generator = self.database.select(self.table,
+                                         args,
+                                         order_by=self.order_by,
+                                         where=self.where_by,
+                                         start=self.start,
+                                         limit=self.limit)
+        for i in generator:
+            yield i
