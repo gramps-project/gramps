@@ -1068,7 +1068,7 @@ class DBAPI(DbGeneric):
         if order_by:
             secondary_fields = class_.get_secondary_fields()
             if not self.check_order_by_fields(class_.__name__, order_by, secondary_fields):
-                for item in super().iter_items(order_by, class_):
+                for item in self.iter_items_order_by_python(order_by, class_):
                     yield item
                 return
         ## Continue with dbapi select
@@ -1790,35 +1790,30 @@ class DBAPI(DbGeneric):
                  ["NOT",  where]
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
-        hashed_fields = [self._hash_name(table, field) for field in fields]
         secondary_fields = ([self._hash_name(table, field) for (field, ptype) in 
                              self._tables[table]["class_func"].get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
+        # If no fields, then we need objects:
+        if fields is None:
+            fields = ["blob_data"]
+        # Check to see if where matches SQL fields:
         if ((not self.check_where_fields(table, where, secondary_fields)) or
             (not self.check_order_by_fields(table, order_by, secondary_fields))):
+            # If not, then need to do select via Python:
             return super().select(table, fields, start, limit, where, order_by)
-        fields = hashed_fields
-        start_time = time.time()
+        # Otherwise, we are SQL
+        get_count_only = False
+        if fields[0] == "count(1)":
+            hashed_fields = ["count(1)"]
+            fields = ["count(1)"]
+            select_fields = ["count(1)"]
+            get_count_only = True
+        else:
+            hashed_fields = [self._hash_name(table, field) for field in fields]
+            fields = hashed_fields
+            select_fields = self.build_select_fields(table, fields, secondary_fields)
         where_clause = self.build_where_clause(table, where)
         order_clause = self.build_order_clause(table, order_by)
-        select_fields = self.build_select_fields(table, fields, secondary_fields)
-        # Get the total count:
-        if limit != -1 or start != 0: # get the total that would match:
-            self.dbapi.execute("select count(1) from %s %s;" % (table, where_clause))
-            total = self.dbapi.fetchone()[0]
-        else:
-            total = None # need to get later
-        class Result(list):
-            """
-            A list rows of just matching for this page, with total = all,
-            time = time to select, query = the SQL query, and expanded
-            if unpickled.
-            """
-            total = 0
-            time = 0.0
-            query = None
-            expanded = False
-        result = Result()
         if start:
             query = "SELECT %s FROM %s %s %s LIMIT %s, %s;" % (
                 ", ".join(select_fields), table, where_clause, order_clause, start, limit
@@ -1829,26 +1824,24 @@ class DBAPI(DbGeneric):
             )
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
-        if total is None:
-            total = len(rows)
-        expanded = False
-        for row in rows:
-            obj = None # don't build it if you don't need it
-            data = {}
-            for field in fields:
-                if field in select_fields:
-                    data[field.replace("__", ".")] = row[select_fields.index(field)]
+        if get_count_only:
+            yield rows[0][0]
+        else:
+            for row in rows:
+                if fields:
+                    obj = None # don't build it if you don't need it
+                    data = {}
+                    for field in fields:
+                        if field in select_fields:
+                            data[field.replace("__", ".")] = row[select_fields.index(field)]
+                        else:
+                            if obj is None:  # we need it! create it and cache it:
+                                obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
+                            # get the field, even if we need to do a join:
+                            # FIXME: possible optimize: do a join in select for this if needed:
+                            field = field.replace("__", ".")
+                            data[field] = obj.get_field(field, self, ignore_errors=True)
+                    yield data
                 else:
-                    if obj is None:  # we need it! create it and cache it:
-                        obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
-                        expanded = True
-                    # get the field, even if we need to do a join:
-                    # FIXME: possible optimize: do a join in select for this if needed:
-                    field = field.replace("__", ".")
-                    data[field] = obj.get_field(field, self, ignore_errors=True)
-            result.append(data)
-        result.total = total
-        result.time = time.time() - start_time
-        result.query = query
-        result.expanded = expanded
-        return result
+                    obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
+                    yield obj

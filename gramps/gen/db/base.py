@@ -1992,8 +1992,11 @@ class DbWriteBase(DbReadBase):
         position = 0
         selected = 0
         if get_count_only:
-            # no need to order for a count
-            data = self._tables[table]["iter_func"]()
+            if where or limit != -1 or start != 0:
+                # no need to order for a count
+                data = self._tables[table]["iter_func"]()
+            else:
+                yield self._tables[table]["count_func"]()
         else:
             data = self._tables[table]["iter_func"](order_by=order_by)
         if where:
