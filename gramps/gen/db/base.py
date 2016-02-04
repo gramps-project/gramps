@@ -1982,15 +1982,20 @@ class DbWriteBase(DbReadBase):
 
         # Fields is None or list, maybe containing "*":
         if fields is None:
-            fields = ["*"]
+            pass # ok
         elif not isinstance(fields, (list, tuple)):
             raise Exception("fields must be a list/tuple of field names")
-        if "*" in fields:
+        elif "*" in fields:
             fields.remove("*")
             fields.extend(self._tables[table]["class_func"].get_schema().keys())
+        get_count_only = (fields is not None and fields[0] == "count(1)")
         position = 0
         selected = 0
-        data = self._tables[table]["iter_func"](order_by=order_by)
+        if get_count_only:
+            # no need to order for a count
+            data = self._tables[table]["iter_func"]()
+        else:
+            data = self._tables[table]["iter_func"](order_by=order_by)
         if where:
             for item in data:
                 # Go through all fliters and evaluate the fields:
@@ -2000,16 +2005,36 @@ class DbWriteBase(DbReadBase):
                 if matched:
                     if ((selected < limit) or (limit == -1)) and start <= position:
                         selected += 1
-                        yield item
+                        if not get_count_only:
+                            if fields:
+                                row = {}
+                                for field in fields:
+                                    value = item.get_field(field, self, ignore_errors=True)
+                                    row[field.replace("__", ".")] = value
+                                yield row
+                            else:
+                                yield item
                     position += 1
+            if get_count_only:
+                yield selected
         else: # no where
             for item in data:
                 if position >= start:
                     if ((selected >= limit) and (limit != -1)):
                         break
                     selected += 1
-                    yield item
+                    if not get_count_only:
+                        if fields:
+                            row = {}
+                            for field in fields:
+                                value = item.get_field(field, self, ignore_errors=True)
+                                row[field.replace("__", ".")] = value
+                            yield row
+                        else:
+                            yield item
                 position += 1
+            if get_count_only:
+                yield selected
 
     def _hash_name(self, table, name):
         """
@@ -2038,35 +2063,36 @@ class DbWriteBase(DbReadBase):
     Place = property(lambda self:QuerySet(self, "Place"))
     Tag = property(lambda self:QuerySet(self, "Tag"))
 
-class OPERATOR(object):
+class Operator(object):
     """
     Base for QuerySet operators.
     """
     op = "OP"
-    def __init__(self, *expresions, **kwargs):
+    def __init__(self, *expressions, **kwargs):
         if self.op in ["AND", "OR"]:
             exprs = [expression.list for expression 
                      in expressions]
             for key in kwargs:
-                exprs.append((key, "=", kwargs[key]))
+                exprs.append(
+                    _select_field_operator_value(key, "=", kwargs[key]))
         else: # "NOT"
             if expressions:
-                exprs = expression.list
+                exprs = expressions.list
             else:
-                keys, values = kwargs.items()
-                exprs = (keys[0], "=", values[0])
+                key, value = list(kwargs.items())[0]
+                exprs = _select_field_operator_value(key, "=", value)
         self.list = [self.op, exprs]
 
-class AND(object):
+class AND(Operator):
     op = "AND"
 
-class OR(object):
+class OR(Operator):
     """
     OR operator for QuerySet logical WHERE expressions.
     """
     op = "OR"
 
-class NOT(object):
+class NOT(Operator):
     """
     NOT operator for QuerySet logical WHERE expressions.
     """
@@ -2095,15 +2121,17 @@ class QuerySet(object):
             self.limit = limit
         return self
 
-    def order(self, **kwargs):
+    def order(self, *args):
         """
         Put an ordering on the selection.
         """
-        # FIXME: kwargs are unordered
-        for keyword in kwargs:
+        for arg in args:
             if self.order_by is None:
                 self.order_by = []
-            self.order_by.append((keyword, kwargs[keyword]))
+            if arg.startswith("-"):
+                self.order_by.append((arg[1:], "DESC"))
+            else:
+                self.order_by.append((arg, "ASC"))
         return self
 
     def where(self, *args, **kwargs):
@@ -2117,7 +2145,9 @@ class QuerySet(object):
             and_expr.append(expr)
         # Next, handle kwargs:
         for keyword in kwargs:
-            and_expr.append((keyword, "=", kwargs[keyword]))
+            and_expr.append(
+                _select_field_operator_value(
+                    keyword, "=", kwargs[keyword]))
         if and_expr:
             if self.where_by:
                 self.where_by = ["AND", [self.where_by] + and_expr]
@@ -2131,21 +2161,19 @@ class QuerySet(object):
         """
         Run query with just where, start, limit to get count.
         """
-        ## FIXME: add special fieldname check in select
         generator = self.database.select(self.table,
                                          ["count(1)"],
                                          where=self.where_by,
                                          start=self.start,
                                          limit=self.limit)
-        return next(generator)[0]
+        return next(generator)
 
     def select(self, *args):
         """
         Actually touch the database.
         """
         if len(args) == 0:
-            ## FIXME: add special fieldname check in select
-            args = ["self"]
+            args = None
         generator = self.database.select(self.table,
                                          args,
                                          order_by=self.order_by,
@@ -2154,3 +2182,35 @@ class QuerySet(object):
                                          limit=self.limit)
         for i in generator:
             yield i
+
+def _to_dot_format(field):
+    """
+    Convert a field keyword arg into a proper
+    dotted field name.
+    """
+    return field.replace("__", ".")
+
+def _select_field_operator_value(field, op, value):
+    """
+    Convert a field keyword arg into proper
+    field, op, and value.
+    """
+    alias = {
+        "LT": "<",
+        "GT": ">",
+        "LTE": "<=",
+        "GTE": ">=",
+        "IS_NOT": "IS NOT",
+        "IS_NULL": "IS NULL",
+        "IS_NOT_NULL": "IS NOT NULL",
+        "NE": "<>",
+    }
+    for operator in ["LIKE", "IN"] + list(alias.keys()):
+        operator = "__" + operator
+        if field.endswith(operator):
+            op = field[-len(operator) + 2:]
+            field = field[:-len(operator)]
+            op = alias.get(op, op)
+    field = _to_dot_format(field)
+    return (field, op, value)
+
