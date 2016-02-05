@@ -31,6 +31,8 @@ Proxy class for the Gramps databases. Apply filter
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
+from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
+                   Citation, Event, Media, Place, Repository, Note, Tag)
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -70,6 +72,155 @@ class FilterProxyDb(ProxyDbBase):
             if person:
                 self.flist.update(person.get_family_handle_list())
                 self.flist.update(person.get_parent_family_handle_list())
+        self._tables['Person'].update(
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "add_func": self.add_person,
+                "commit_func": self.commit_person,
+                "iter_func": self.iter_people,
+                "has_handle_func": self.has_handle_for_person,
+                "has_gramps_id_func": self.has_gramps_id_for_person,
+                "count_func": self.get_number_of_people,
+                "del_func": self.remove_person,
+            })
+        self._tables['Family'].update(
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "add_func": self.add_family,
+                "commit_func": self.commit_family,
+                "iter_func": self.iter_families,
+                "has_handle_func": self.has_handle_for_family,
+                "has_gramps_id_func": self.has_gramps_id_for_family,
+                "count_func": self.get_number_of_families,
+                "del_func": self.remove_family,
+            })
+        self._tables['Source'].update(
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "add_func": self.add_source,
+                "commit_func": self.commit_source,
+                "iter_func": self.iter_sources,
+                "has_handle_func": self.has_handle_for_source,
+                "has_gramps_id_func": self.has_gramps_id_for_source,
+                "count_func": self.get_number_of_sources,
+                "del_func": self.remove_source,
+                })
+        self._tables['Citation'].update(
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "add_func": self.add_citation,
+                "commit_func": self.commit_citation,
+                "iter_func": self.iter_citations,
+                "has_handle_func": self.has_handle_for_citation,
+                "has_gramps_id_func": self.has_gramps_id_for_citation,
+                "count_func": self.get_number_of_citations,
+                "del_func": self.remove_citation,
+            })
+        self._tables['Event'].update(
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "add_func": self.add_event,
+                "commit_func": self.commit_event,
+                "iter_func": self.iter_events,
+                "has_handle_func": self.has_handle_for_event,
+                "has_gramps_id_func": self.has_gramps_id_for_event,
+                "count_func": self.get_number_of_events,
+                "del_func": self.remove_event,
+            })
+        self._tables['Media'].update(
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "add_func": self.add_media,
+                "commit_func": self.commit_media,
+                "iter_func": self.iter_media,
+                "has_handle_func": self.has_handle_for_media,
+                "has_gramps_id_func": self.has_gramps_id_for_media,
+                "count_func": self.get_number_of_media,
+                "del_func": self.remove_media,
+            })
+        self._tables['Place'].update(
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "add_func": self.add_place,
+                "commit_func": self.commit_place,
+                "iter_func": self.iter_places,
+                "has_handle_func": self.has_handle_for_place,
+                "has_gramps_id_func": self.has_gramps_id_for_place,
+                "count_func": self.get_number_of_places,
+                "del_func": self.remove_place,
+            })
+        self._tables['Repository'].update(
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "add_func": self.add_repository,
+                "commit_func": self.commit_repository,
+                "iter_func": self.iter_repositories,
+                "has_handle_func": self.has_handle_for_repository,
+                "has_gramps_id_func": self.has_gramps_id_for_repository,
+                "count_func": self.get_number_of_repositories,
+                "del_func": self.remove_repository,
+            })
+        self._tables['Note'].update(
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "add_func": self.add_note,
+                "commit_func": self.commit_note,
+                "iter_func": self.iter_notes,
+                "has_handle_func": self.has_handle_for_note,
+                "has_gramps_id_func": self.has_gramps_id_for_note,
+                "count_func": self.get_number_of_notes,
+                "del_func": self.remove_note,
+            })
+        self._tables['Tag'].update(
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "add_func": self.add_tag,
+                "commit_func": self.commit_tag,
+                "has_handle_func": self.has_handle_for_tag,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+                "del_func": self.remove_tag,
+            })
 
     def get_person_from_handle(self, handle):
         """
@@ -398,10 +549,11 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.plist
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Return an iterator over objects for Persons in the database
         """
+        # FIXME: implement order_by
         return map(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
@@ -418,7 +570,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.elist
 
-    def iter_events(self):
+    def iter_events(self, order_by=None):
         """
         Return an iterator over objects for Events in the database
         """
@@ -438,7 +590,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.flist
 
-    def iter_families(self):
+    def iter_families(self, order_by=None):
         """
         Return an iterator over objects for Families in the database
         """
@@ -458,7 +610,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.nlist
 
-    def iter_notes(self):
+    def iter_notes(self, order_by=None):
         """
         Return an iterator over objects for Notes in the database
         """

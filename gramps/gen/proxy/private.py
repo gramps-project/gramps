@@ -285,7 +285,7 @@ class PrivateProxyDb(ProxyDbBase):
         """
         Predicate returning True if object is to be included, else False
         """
-        obj = self.get_unfiltered_object(handle)
+        obj = self.get_unfiltered_media(handle)
         return obj and not obj.get_privacy()
 
     def include_repository(self, handle):

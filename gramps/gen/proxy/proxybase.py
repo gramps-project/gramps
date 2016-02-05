@@ -74,7 +74,7 @@ class ProxyMap(object):
     def keys(self):
         return [bytes(key, "utf-8") for key in self.get_keys()]
 
-class ProxyDbBase(DbReadBase):
+class ProxyDbBase(DbWriteBase):
     """
     ProxyDbBase is a base class for building a proxy to a Gramps database.
     This class attempts to implement functions that are likely to be common
@@ -380,63 +380,64 @@ class ProxyDbBase(DbReadBase):
         return filter(lambda obj: ((selector is None) or selector(obj.handle)),
                        method())
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Return an iterator over Person objects in the database
         """
+        # FIXME: add order_by
         return self.__iter_object(self.include_person, self.db.iter_people)
 
-    def iter_families(self):
+    def iter_families(self, order_by=None):
         """
         Return an iterator over Family objects in the database
         """
         return self.__iter_object(self.include_family, self.db.iter_families)
 
-    def iter_events(self):
+    def iter_events(self, order_by=None):
         """
         Return an iterator over Event objects in the database
         """
         return self.__iter_object(self.include_event, self.db.iter_events)
 
-    def iter_places(self):
+    def iter_places(self, order_by=None):
         """
         Return an iterator over Place objects in the database
         """
         return self.__iter_object(self.include_place, self.db.iter_places)
 
-    def iter_sources(self):
+    def iter_sources(self, order_by=None):
         """
         Return an iterator over Source objects in the database
         """
         return self.__iter_object(self.include_source, self.db.iter_sources)
 
-    def iter_citations(self):
+    def iter_citations(self, order_by=None):
         """
         Return an iterator over Citation objects in the database
         """
         return self.__iter_object(self.include_citation, self.db.iter_citations)
 
-    def iter_media(self):
+    def iter_media(self, order_by=None):
         """
         Return an iterator over Media objects in the database
         """
         return self.__iter_object(self.include_media,
                                   self.db.iter_media)
 
-    def iter_repositories(self):
+    def iter_repositories(self, order_by=None):
         """
         Return an iterator over Repositories objects in the database
         """
         return self.__iter_object(self.include_repository,
                                   self.db.iter_repositories)
 
-    def iter_notes(self):
+    def iter_notes(self, order_by=None):
         """
         Return an iterator over Note objects in the database
         """
         return self.__iter_object(self.include_note, self.db.iter_notes)
 
-    def iter_tags(self):
+    def iter_tags(self, order_by=None):
         """
         Return an iterator over Tag objects in the database
         """
@@ -468,10 +469,10 @@ class ProxyDbBase(DbReadBase):
             return attr
 
         # if a write-method:
-        if (name in DbWriteBase.__dict__ and
-            not name.startswith("__") and
-            type(DbWriteBase.__dict__[name]) is types.FunctionType):
-            raise AttributeError
+        #if (name in DbWriteBase.__dict__ and
+        #    not name.startswith("__") and
+        #    type(DbWriteBase.__dict__[name]) is types.FunctionType):
+        #    raise AttributeError
         # Default behaviour: lookup attribute in parent object
         return getattr(self.db, name)
 

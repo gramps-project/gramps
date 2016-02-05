@@ -2194,9 +2194,34 @@ class QuerySet(object):
         for i in self.generator:
             yield i
 
+    def proxy(self, proxy_name, *args, **kwargs):
+        """
+        Apply a named proxy to the db.
+        """
+        from gramps.gen.proxy import (LivingProxyDb, PrivateProxyDb, 
+                                      ReferencedBySelectionProxyDb)
+        if proxy_name == "living":
+            proxy_class = LivingProxyDb
+        elif proxy_name == "private":
+            proxy_class = PrivateProxyDb
+        elif proxy_name == "referenced":
+            proxy_class = ReferencedBySelectionProxyDb
+        else:
+            raise Exception("No such proxy name: '%s'" % proxy_name)
+        self.database = proxy_class(self.database, *args, **kwargs)
+        return self
+
+    def filter(self, filter_obj, *args, **kwargs):
+        """
+        Apply a filter to the database.
+        """
+        from gramps.gen.proxy import FilterProxyDb
+        self.database = FilterProxyDb(self.database, filter_obj, *args, **kwargs)
+        return self
+
     def ancestors(self, *args, **kwargs):
         """
-        Recursively get ancestors of people in 
+        Recursively get ancestors of people from a
         selection.
         """
         if self.generator is None:
