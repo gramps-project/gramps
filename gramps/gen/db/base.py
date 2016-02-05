@@ -2298,8 +2298,9 @@ class QuerySet(object):
                 self.database.add_tag(tag, trans)
             commit_func = self.database._tables[self.table]["commit_func"]
             for item in self.generator:
-                item.add_tag(tag.handle)
-                commit_func(item, trans)
+                if tag.handle not in item.tag_list:
+                    item.add_tag(tag.handle)
+                    commit_func(item, trans)
 
 def _to_dot_format(field):
     """
