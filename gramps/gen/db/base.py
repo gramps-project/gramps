@@ -1908,8 +1908,8 @@ class DbWriteBase(DbReadBase):
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
 
-    def select(self, table, fields=None, start=0, limit=-1,
-               where=None, order_by=None):
+    def _select(self, table, fields=None, start=0, limit=-1,
+                where=None, order_by=None):
         """
         Default implementation of a select for those databases
         that don't support SQL. Returns a list of dicts, total,
@@ -2186,23 +2186,23 @@ class QuerySet(object):
         """
         Run query with just where, start, limit to get count.
         """
-        generator = self.database.select(self.table,
-                                         ["count(1)"],
-                                         where=self.where_by,
-                                         start=self.start,
-                                         limit=self.limit)
+        generator = self.database._select(self.table,
+                                          ["count(1)"],
+                                          where=self.where_by,
+                                          start=self.start,
+                                          limit=self.limit)
         return next(generator)
 
     def _generate(self, args=None):
         """
         Create a generator from current options.
         """
-        return self.database.select(self.table,
-                                    args,
-                                    order_by=self.order_by,
-                                    where=self.where_by,
-                                    start=self.start,
-                                    limit=self.limit)
+        return self.database._select(self.table,
+                                     args,
+                                     order_by=self.order_by,
+                                     where=self.where_by,
+                                     start=self.start,
+                                     limit=self.limit)
 
     def select(self, *args):
         """
@@ -2240,51 +2240,10 @@ class QuerySet(object):
         self.database = FilterProxyDb(self.database, filter_obj, *args, **kwargs)
         return self
 
-    def ancestors(self, *args, **kwargs):
-        """
-        Recursively get ancestors of people from a
-        selection.
-        """
-        if self.generator is None:
-            self.generator = self._generate()
-        # first get todo list:
-        todo = set()
-        for item in self.generator:
-            if self.table == "Person":
-                todo.add(item.handle)
-            elif self.table == "Family":
-                if item.mother_handle:
-                    todo.add(item.mother_handle)
-                if item.father_handle:
-                    todo.add(item.father_handle)
-            else:
-                raise Exception("Can't get ancestors from table '%s'" % self.table)
-        # now, get the ancestor handles:
-        ancestor_handles = set()
-        while len(todo):
-            p_handle = todo.pop()
-            # Don't process the same handle twice.  This can happen
-            # if there is a cycle in the database, or if the
-            # initial list contains X and some of X's ancestors.
-            if p_handle in ancestor_handles:
-                continue
-            ancestor_handles.add(p_handle)
-            p = self.database.get_person_from_handle(p_handle)
-            for fam_handle in p.get_parent_family_handle_list():
-                fam = self.database.get_family_from_handle(fam_handle)
-                if fam:
-                    f_handle = fam.father_handle
-                    m_handle = fam.mother_handle
-                    if f_handle: todo.add(f_handle)
-                    if m_handle: todo.add(m_handle)
-        # create generator
-        def generator():
-            for p_handle in ancestor_handles:
-                yield self.database.get_person_from_handle(p_handle)
-        self.generator = generator()
-        return self
-
     def map(self, f):
+        """
+        Apply the function f to the selected items and return results.
+        """
         if self.generator is None:
             self.generator = self._generate()
         previous_generator = self.generator

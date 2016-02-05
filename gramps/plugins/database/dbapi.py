@@ -1671,7 +1671,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("UPDATE %s SET %s where handle = ?;" % (table, ", ".join(sets)),
                                values + [item.handle])
 
-    def sql_repr(self, value):
+    def _sql_repr(self, value):
         """
         Given a Python value, turn it into a SQL value.
         """
@@ -1684,7 +1684,7 @@ class DBAPI(DbGeneric):
         else:
             return repr(value)
 
-    def build_where_clause_recursive(self, table, where):
+    def _build_where_clause_recursive(self, table, where):
         """
         where - (field, op, value)
                - ["NOT", where]
@@ -1695,26 +1695,26 @@ class DBAPI(DbGeneric):
             return ""
         elif len(where) == 3:
             field, op, value = where
-            return "(%s %s %s)" % (self._hash_name(table, field), op, self.sql_repr(value))
+            return "(%s %s %s)" % (self._hash_name(table, field), op, self._sql_repr(value))
         elif where[0] in ["AND", "OR"]:
-            parts = [self.build_where_clause_recursive(table, part)
+            parts = [self._build_where_clause_recursive(table, part)
                      for part in where[1]]
             return "(%s)" % ((" %s " % where[0]).join(parts))
         else:
-            return "(NOT %s)" % self.build_where_clause_recursive(table, where[1])
+            return "(NOT %s)" % self._build_where_clause_recursive(table, where[1])
 
-    def build_where_clause(self, table, where):
+    def _build_where_clause(self, table, where):
         """
         where - a list in where format
         return - "WHERE conditions..."
         """
-        parts = self.build_where_clause_recursive(table, where)
+        parts = self._build_where_clause_recursive(table, where)
         if parts:
             return ("WHERE " + parts)
         else:
             return ""
 
-    def build_order_clause(self, table, order_by):
+    def _build_order_clause(self, table, order_by):
         """
         order_by - [(field, "ASC" | "DESC"), ...]
         """
@@ -1725,7 +1725,7 @@ class DBAPI(DbGeneric):
         else:
             return ""
 
-    def build_select_fields(self, table, select_fields, secondary_fields):
+    def _build_select_fields(self, table, select_fields, secondary_fields):
         """
         fields - [field, ...]
         return: "field, field, field"
@@ -1736,7 +1736,7 @@ class DBAPI(DbGeneric):
         else:
             return ["blob_data"] # nope, we'll have to expand blob to get all fields
 
-    def check_order_by_fields(self, table, order_by, secondary_fields):
+    def _check_order_by_fields(self, table, order_by, secondary_fields):
         """
         Check to make sure all order_by fields are defined. If not, then
         we need to do the Python-based order.
@@ -1749,7 +1749,7 @@ class DBAPI(DbGeneric):
                     return False
         return True
 
-    def check_where_fields(self, table, where, secondary_fields):
+    def _check_where_fields(self, table, where, secondary_fields):
         """
         Check to make sure all where fields are defined. If not, then
         we need to do the Python-based select.
@@ -1762,19 +1762,19 @@ class DBAPI(DbGeneric):
             connector, exprs = where
             if connector in ["AND", "OR"]:
                 for expr in exprs:
-                    value = self.check_where_fields(table, expr, secondary_fields)
+                    value = self._check_where_fields(table, expr, secondary_fields)
                     if value == False:
                         return False
                 return True
             else: # "NOT"
-                return self.check_where_fields(table, exprs, secondary_fields)
+                return self._check_where_fields(table, exprs, secondary_fields)
         elif len(where) == 3: # (name, op, value)
             (name, op, value) = where
             # just the ones we need for where
             return (self._hash_name(table, name) in secondary_fields)
 
-    def select(self, table, fields=None, start=0, limit=-1,
-               where=None, order_by=None):
+    def _select(self, table, fields=None, start=0, limit=-1,
+                where=None, order_by=None):
         """
         Default implementation of a select for those databases
         that don't support SQL. Returns a list of dicts, total,
@@ -1795,8 +1795,8 @@ class DBAPI(DbGeneric):
                             ["handle"]) # handle is a sql field, but not listed in secondaries
         # If no fields, then we need objects:
         # Check to see if where matches SQL fields:
-        if ((not self.check_where_fields(table, where, secondary_fields)) or
-            (not self.check_order_by_fields(table, order_by, secondary_fields))):
+        if ((not self._check_where_fields(table, where, secondary_fields)) or
+            (not self._check_order_by_fields(table, order_by, secondary_fields))):
             # If not, then need to do select via Python:
             generator = super().select(table, fields, start, limit, where, order_by)
             for item in generator:
@@ -1814,9 +1814,9 @@ class DBAPI(DbGeneric):
         else:
             hashed_fields = [self._hash_name(table, field) for field in fields]
             fields = hashed_fields
-            select_fields = self.build_select_fields(table, fields, secondary_fields)
-        where_clause = self.build_where_clause(table, where)
-        order_clause = self.build_order_clause(table, order_by)
+            select_fields = self._build_select_fields(table, fields, secondary_fields)
+        where_clause = self._build_where_clause(table, where)
+        order_clause = self._build_order_clause(table, order_by)
         if start:
             query = "SELECT %s FROM %s %s %s LIMIT %s, %s;" % (
                 ", ".join(select_fields), table, where_clause, order_clause, start, limit
