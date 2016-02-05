@@ -79,39 +79,39 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(all([isinstance(r, EventRef) for r in result]), result)
 
     def test_select_1(self):
-        result = self.db.select("Person", ["gramps_id"])
+        result = self.db._select("Person", ["gramps_id"])
         self.assertTrue(len(result) == 60, len(result))
 
     def test_select_2(self):
-        result = self.db.select("Person", ["gramps_id"],
+        result = self.db._select("Person", ["gramps_id"],
                                 where=("gramps_id", "LIKE", "I000%"))
         self.assertTrue(len(result) == 10, len(result))
 
     def test_select_3(self):
-        result = self.db.select("Family", ["mother_handle.gramps_id"],
+        result = self.db._select("Family", ["mother_handle.gramps_id"],
                                 where=("mother_handle.gramps_id", "LIKE", "I003%"))
         self.assertTrue(len(result) == 6, result)
 
     def test_select_4(self):
-        result = self.db.select("Family", ["mother_handle.event_ref_list.ref.gramps_id"])
+        result = self.db._select("Family", ["mother_handle.event_ref_list.ref.gramps_id"])
         self.assertTrue(len(result) == 23, len(result))
 
     def test_select_4(self):
-        result = self.db.select("Family", ["mother_handle.event_ref_list.ref.gramps_id"],
+        result = self.db._select("Family", ["mother_handle.event_ref_list.ref.gramps_id"],
                                 where=("mother_handle.event_ref_list.ref.gramps_id", "=", 'E0156'))
         self.assertTrue(len(result) == 1, len(result))
 
     def test_select_5(self):
-        result = self.db.select("Family", ["mother_handle.event_ref_list.ref.self.gramps_id"])
+        result = self.db._select("Family", ["mother_handle.event_ref_list.ref.self.gramps_id"])
         self.assertTrue(len(result) == 23, len(result))
 
     def test_select_6(self):
-        result = self.db.select("Family", ["mother_handle.event_ref_list.0"])
+        result = self.db._select("Family", ["mother_handle.event_ref_list.0"])
         self.assertTrue(all([isinstance(r["mother_handle.event_ref_list.0"], (EventRef, type(None))) for r in result]),
                         [r["mother_handle.event_ref_list.0"] for r in result])
 
     def test_select_7(self):
-        result = self.db.select("Family", ["mother_handle.event_ref_list.0"],
+        result = self.db._select("Family", ["mother_handle.event_ref_list.0"],
                                 where=("mother_handle.event_ref_list.0", "!=", None))
         self.assertTrue(len(result) == 21, len(result))
 
