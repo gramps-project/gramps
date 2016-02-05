@@ -2107,6 +2107,7 @@ class QuerySet(object):
     applied to a database.
     """
     def __init__(self, database, table):
+        self.generator = None
         self.database = database
         self.table = table
         self.where_by = None
@@ -2171,20 +2172,109 @@ class QuerySet(object):
                                          limit=self.limit)
         return next(generator)
 
+    def _generate(self, args=None):
+        """
+        Create a generator from current options.
+        """
+        return self.database.select(self.table,
+                                    args,
+                                    order_by=self.order_by,
+                                    where=self.where_by,
+                                    start=self.start,
+                                    limit=self.limit)
+
     def select(self, *args):
         """
         Actually touch the database.
         """
         if len(args) == 0:
             args = None
-        generator = self.database.select(self.table,
-                                         args,
-                                         order_by=self.order_by,
-                                         where=self.where_by,
-                                         start=self.start,
-                                         limit=self.limit)
-        for i in generator:
+        if self.generator is None:
+            self.generator = self._generate(args)
+        for i in self.generator:
             yield i
+
+    def ancestors(self, *args, **kwargs):
+        """
+        Recursively get ancestors of people in 
+        selection.
+        """
+        if self.generator is None:
+            self.generator = self._generate()
+        # first get todo list:
+        todo = set()
+        for item in self.generator:
+            if self.table == "Person":
+                todo.add(item.handle)
+            elif self.table == "Family":
+                if item.mother_handle:
+                    todo.add(item.mother_handle)
+                if item.father_handle:
+                    todo.add(item.father_handle)
+            else:
+                raise Exception("Can't get ancestors from table '%s'" % self.table)
+        # now, get the ancestor handles:
+        ancestor_handles = set()
+        while len(todo):
+            p_handle = todo.pop()
+            # Don't process the same handle twice.  This can happen
+            # if there is a cycle in the database, or if the
+            # initial list contains X and some of X's ancestors.
+            if p_handle in ancestor_handles:
+                continue
+            ancestor_handles.add(p_handle)
+            p = self.database.get_person_from_handle(p_handle)
+            for fam_handle in p.get_parent_family_handle_list():
+                fam = self.database.get_family_from_handle(fam_handle)
+                if fam:
+                    f_handle = fam.father_handle
+                    m_handle = fam.mother_handle
+                    if f_handle: todo.add(f_handle)
+                    if m_handle: todo.add(m_handle)
+        # create generator
+        def generator():
+            for p_handle in ancestor_handles:
+                yield self.database.get_person_from_handle(p_handle)
+        self.generator = generator()
+        return self
+
+    def list(self, *args):
+        """
+        Get the results as a list.
+        """
+        generator = self.select(*args)
+        results = []
+        for item in generator:
+            results.append(item)
+        return results
+
+    def map(self, f):
+        if self.generator is None:
+            self.generator = self._generate()
+        previous_generator = self.generator
+        def generator():
+            for item in previous_generator:
+                yield f(item)
+        self.generator = generator()
+        return self
+
+    def tag(self, tag_text):
+        """
+        Tag the selected items with the tag name.
+        """
+        if self.generator is None:
+            self.generator = self._generate()
+        tag = self.database.get_tag_from_name(tag_text)
+        trans_class = self.database.get_transaction_class()
+        with trans_class("Tag Selected Items", self.database, batch=True) as trans:
+            if tag is None:
+                tag = self.database._tables["Tag"]["class_func"]()
+                tag.set_name(tag_text)
+                self.database.add_tag(tag, trans)
+            commit_func = self.database._tables[self.table]["commit_func"]
+            for item in self.generator:
+                item.add_tag(tag.handle)
+                commit_func(item, trans)
 
 def _to_dot_format(field):
     """
