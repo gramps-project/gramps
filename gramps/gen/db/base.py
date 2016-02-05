@@ -1898,7 +1898,7 @@ class DbWriteBase(DbReadBase):
             """
             Compare values in a SQL-like way
             """
-            if isinstance(v, (list, tuple)): # join, or multi-values
+            if isinstance(v, (list, tuple)) and len(v) > 0: # join, or multi-values
                 # If any is true:
                 for item in v:
                     if compare(item, op, value):

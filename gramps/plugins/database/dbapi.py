@@ -1794,14 +1794,17 @@ class DBAPI(DbGeneric):
                              self._tables[table]["class_func"].get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
         # If no fields, then we need objects:
-        if fields is None:
-            fields = ["blob_data"]
         # Check to see if where matches SQL fields:
         if ((not self.check_where_fields(table, where, secondary_fields)) or
             (not self.check_order_by_fields(table, order_by, secondary_fields))):
             # If not, then need to do select via Python:
-            return super().select(table, fields, start, limit, where, order_by)
+            generator = super().select(table, fields, start, limit, where, order_by)
+            for item in generator:
+                yield item
+            return
         # Otherwise, we are SQL
+        if fields is None:
+            fields = ["blob_data"]
         get_count_only = False
         if fields[0] == "count(1)":
             hashed_fields = ["count(1)"]
@@ -1828,7 +1831,7 @@ class DBAPI(DbGeneric):
             yield rows[0][0]
         else:
             for row in rows:
-                if fields:
+                if fields[0] != "blob_data":
                     obj = None # don't build it if you don't need it
                     data = {}
                     for field in fields:
