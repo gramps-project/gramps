@@ -31,6 +31,7 @@ import dbapi_support
 
 import time
 import pickle
+from operator import itemgetter
 
 import logging
 LOG = logging.getLogger(".dbapi")
@@ -1048,10 +1049,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
         for row in rows:
-                obj = obj_()
-                obj.unserialize(row[0])
+                obj = self._tables[class_.__name__]["class_func"].create(pickle.loads(row[0]))
                 # just use values and handle to keep small:
-                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
         # next we sort by fields and direction
         pos = len(order_by) - 1
         for (field, order) in reversed(order_by): # sort the lasts parts first
@@ -1059,7 +1059,7 @@ class DBAPI(DbGeneric):
             pos -= 1
         # now we will look them up again:
         for (order_by_values, handle) in sorted_items:
-            yield self._tables[obj_.__name__]["handle_func"](handle)
+            yield self._tables[class_.__name__]["handle_func"](handle)
 
     def iter_items(self, order_by, class_):
         # check if order_by fields are secondary

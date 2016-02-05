@@ -70,7 +70,7 @@ from gramps.gen.lib.nameorigintype import NameOriginType
 
 from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
-from gramps.gen.db.base import DbReadBase
+from gramps.gen.db.base import DbReadBase, eval_order_by
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -1233,7 +1233,7 @@ class DbBsddbRead(DbReadBase, Callback):
                         obj = obj_()
                         obj.unserialize(data)
                         # just use values and handle to keep small:
-                        sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                        sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
                 # next we sort by fields and direction
                 pos = len(order_by) - 1
                 for (field, order) in reversed(order_by): # sort the lasts parts first

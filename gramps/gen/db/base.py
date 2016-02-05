@@ -32,6 +32,7 @@ from this class.
 #-------------------------------------------------------------------------
 import re
 import time
+from operator import itemgetter
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +45,36 @@ from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
 from .exceptions import DbTransactionCancel
+
+
+def eval_order_by(order_by, obj, db):
+    """
+    Given a list of [[field, DIRECTION], ...]
+    return the list of values of the fields
+    """
+    values = []
+    for (field, direction) in order_by:
+        values.append(obj.get_field(field, db, ignore_errors=True))
+    return values
+
+def sort_objects(objects, order_by, db):
+    """
+    Python-based sorting.
+    """
+    # first build sort order:
+    sorted_items = []
+    map_items = {}
+    for obj in objects:
+        # just use values and handle to keep small:
+        sorted_items.append((eval_order_by(order_by, obj, db), obj.handle))
+        map_items[obj.handle] = obj
+    # next we sort by fields and direction
+    pos = len(order_by) - 1
+    for (field, order) in reversed(order_by): # sort the lasts parts first
+        sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+        pos -= 1
+    for (order_by_values, handle) in sorted_items:
+        yield map_items[handle]
 
 #-------------------------------------------------------------------------
 #
@@ -2047,16 +2078,6 @@ class DbWriteBase(DbReadBase):
         name = self._tables[table]["class_func"].get_field_alias(name)
         return name.replace(".", "__")
 
-    def eval_order_by(self, order_by, obj):
-        """
-        Given a list of [[field, DIRECTION], ...]
-        return the list of values of the fields
-        """
-        values = []
-        for (field, direction) in order_by:
-            values.append(obj.get_field(field, self, ignore_errors=True))
-        return values
-
     Person = property(lambda self:QuerySet(self, "Person"))
     Family = property(lambda self:QuerySet(self, "Family"))
     Note = property(lambda self:QuerySet(self, "Note"))
@@ -2262,16 +2283,6 @@ class QuerySet(object):
                 yield self.database.get_person_from_handle(p_handle)
         self.generator = generator()
         return self
-
-    def list(self, *args):
-        """
-        Get the results as a list.
-        """
-        generator = self.select(*args)
-        results = []
-        for item in generator:
-            results.append(item)
-        return results
 
     def map(self, f):
         if self.generator is None:

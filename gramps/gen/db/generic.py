@@ -59,7 +59,8 @@ from gramps.gen.db import (PERSON_KEY,
                            PLACE_KEY,
                            REPOSITORY_KEY,
                            NOTE_KEY,
-                           TAG_KEY)
+                           TAG_KEY,
+                           eval_order_by)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -1164,7 +1165,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             for data in cursor():
                 obj = class_.create(data[1])
                 # just use values and handle to keep small:
-                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
             # next we sort by fields and direction
             def getitem(item, pos):
                 sort_items = item[0]

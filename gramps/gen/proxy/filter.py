@@ -30,6 +30,7 @@ Proxy class for the Gramps databases. Apply filter
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
+from gramps.gen.db.base import sort_objects
 from .proxybase import ProxyDbBase
 from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
                    Citation, Event, Media, Place, Repository, Note, Tag)
@@ -553,8 +554,10 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Persons in the database
         """
-        # FIXME: implement order_by
-        return map(self.get_person_from_handle, self.plist)
+        if order_by:
+            return sort_objects(map(self.get_person_from_handle, self.plist), order_by, self)
+        else:
+            return map(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
         """
@@ -574,7 +577,10 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Events in the database
         """
-        return map(self.get_event_from_handle, self.elist)
+        if order_by:
+            return sort_objects(map(self.get_event_from_handle, self.elist), order_by, self)
+        else:
+            return map(self.get_event_from_handle, self.elist)
 
     def get_family_handles(self):
         """
@@ -594,7 +600,10 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Families in the database
         """
-        return map(self.get_family_from_handle, self.flist)
+        if order_by:
+            return sort_objects(map(self.get_family_from_handle, self.flist), order_by, self)
+        else:
+            return map(self.get_family_from_handle, self.flist)
 
     def get_note_handles(self):
         """
@@ -614,7 +623,10 @@ class FilterProxyDb(ProxyDbBase):
         """
         Return an iterator over objects for Notes in the database
         """
-        return map(self.get_note_from_handle, self.nlist)
+        if order_by:
+            return sort_objects(map(self.get_note_from_handle, self.nlist), order_by, self)
+        else:
+            return map(self.get_note_from_handle, self.nlist)
 
     def get_default_person(self):
         """returns the default Person of the database"""

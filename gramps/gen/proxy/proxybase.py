@@ -35,7 +35,7 @@ import types
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from ..db.base import DbReadBase, DbWriteBase
+from ..db.base import DbReadBase, DbWriteBase, sort_objects
 
 class ProxyCursor(object):
     """
@@ -374,74 +374,76 @@ class ProxyDbBase(DbWriteBase):
         """
         return filter(self.include_tag, self.db.iter_tag_handles())
 
-    @staticmethod
-    def __iter_object(selector, method):
+    def __iter_object(self, selector, method, order_by=None):
         """ Helper function to return an iterator over an object class """
-        return filter(lambda obj: ((selector is None) or selector(obj.handle)),
-                       method())
+        retval = filter(lambda obj: ((selector is None) or selector(obj.handle)),
+                        method())
+        if order_by:
+            sort_items([item for item in retval], order_by, self)
+        else:
+            return retval
 
     def iter_people(self, order_by=None):
         """
         Return an iterator over Person objects in the database
         """
-        # FIXME: add order_by
-        return self.__iter_object(self.include_person, self.db.iter_people)
+        return self.__iter_object(self.include_person, self.db.iter_people, order_by)
 
     def iter_families(self, order_by=None):
         """
         Return an iterator over Family objects in the database
         """
-        return self.__iter_object(self.include_family, self.db.iter_families)
+        return self.__iter_object(self.include_family, self.db.iter_families, order_by)
 
     def iter_events(self, order_by=None):
         """
         Return an iterator over Event objects in the database
         """
-        return self.__iter_object(self.include_event, self.db.iter_events)
+        return self.__iter_object(self.include_event, self.db.iter_events, order_by)
 
     def iter_places(self, order_by=None):
         """
         Return an iterator over Place objects in the database
         """
-        return self.__iter_object(self.include_place, self.db.iter_places)
+        return self.__iter_object(self.include_place, self.db.iter_places, order_by)
 
     def iter_sources(self, order_by=None):
         """
         Return an iterator over Source objects in the database
         """
-        return self.__iter_object(self.include_source, self.db.iter_sources)
+        return self.__iter_object(self.include_source, self.db.iter_sources, order_by)
 
     def iter_citations(self, order_by=None):
         """
         Return an iterator over Citation objects in the database
         """
-        return self.__iter_object(self.include_citation, self.db.iter_citations)
+        return self.__iter_object(self.include_citation, self.db.iter_citations, order_by)
 
     def iter_media(self, order_by=None):
         """
         Return an iterator over Media objects in the database
         """
         return self.__iter_object(self.include_media,
-                                  self.db.iter_media)
+                                  self.db.iter_media, order_by)
 
     def iter_repositories(self, order_by=None):
         """
         Return an iterator over Repositories objects in the database
         """
         return self.__iter_object(self.include_repository,
-                                  self.db.iter_repositories)
+                                  self.db.iter_repositories, order_by)
 
     def iter_notes(self, order_by=None):
         """
         Return an iterator over Note objects in the database
         """
-        return self.__iter_object(self.include_note, self.db.iter_notes)
+        return self.__iter_object(self.include_note, self.db.iter_notes, order_by)
 
     def iter_tags(self, order_by=None):
         """
         Return an iterator over Tag objects in the database
         """
-        return self.__iter_object(self.include_tag, self.db.iter_tags)
+        return self.__iter_object(self.include_tag, self.db.iter_tags, order_by)
 
     @staticmethod
     def gfilter(predicate, obj):
