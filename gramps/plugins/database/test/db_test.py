@@ -165,6 +165,10 @@ class BSDDBTest(unittest.TestCase):
         result = list(self.db.Person.proxy("living", True).select())
         self.assertTrue(len(result) == 60, len(result))
 
+    def test_proxy_3(self):
+        result = len(list(self.db.Person.proxy("private").order("-gramps_id").select("gramps_id")))
+        self.assertTrue(result == 60, result)
+
     def test_map_1(self):
         result = sum(list(self.db.Person.map(lambda p: 1).select()))
         self.assertTrue(result == 60, result)
