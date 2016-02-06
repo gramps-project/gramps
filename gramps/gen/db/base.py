@@ -2153,9 +2153,9 @@ class QuerySet(object):
                 self.order_by.append((arg, "ASC"))
         return self
 
-    def where(self, *args, **kwargs):
+    def _add_where_clause(self, *args, **kwargs):
         """
-        Filter the selection.
+        Add a condition to the where clause.
         """
         # First, handle AND, OR, NOT args:
         and_expr = []
@@ -2226,12 +2226,26 @@ class QuerySet(object):
         self.database = proxy_class(self.database, *args, **kwargs)
         return self
 
-    def filter(self, filter_obj, *args, **kwargs):
+    def filter(self, *args, **kwargs):
         """
         Apply a filter to the database.
         """
         from gramps.gen.proxy import FilterProxyDb
-        self.database = FilterProxyDb(self.database, filter_obj, *args, **kwargs)
+        from gramps.gen.filters import GenericFilter
+        for i in range(len(args)):
+            arg = args[i]
+            if isinstance(arg, GenericFilter):
+                self.database = FilterProxyDb(self.database, arg, *args[i+1:])
+                if arg.where:
+                    self._add_where_clause(arg.where)
+            elif isinstance(arg, Operator):
+                self._add_where_clause(arg)
+            elif callable(arg):
+                self.generator = filter(arg, self.generator)
+            else:
+                pass # ignore
+        if kwargs:
+            self._add_where_clause(**kwargs)
         return self
 
     def map(self, f):

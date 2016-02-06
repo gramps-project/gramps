@@ -120,11 +120,11 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 60, len(result))
 
     def test_queryset_2(self):
-        result = list(self.db.Person.where(gramps_id__LIKE="I000%").select())
+        result = list(self.db.Person.filter(gramps_id__LIKE="I000%").select())
         self.assertTrue(len(result) == 10, len(result))
 
     def test_queryset_3(self):
-        result = list(self.db.Family.where(mother_handle__gramps_id__LIKE="I003%").select())
+        result = list(self.db.Family.filter(mother_handle__gramps_id__LIKE="I003%").select())
         self.assertTrue(len(result) == 6, result)
 
     def test_queryset_4(self):
@@ -132,7 +132,7 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 23, len(result))
 
     def test_queryset_4(self):
-        result = list(self.db.Family.where(mother_handle__event_ref_list__ref__gramps_id='E0156').select())
+        result = list(self.db.Family.filter(mother_handle__event_ref_list__ref__gramps_id='E0156').select())
         self.assertTrue(len(result) == 1, len(result))
 
     def test_queryset_5(self):
@@ -146,7 +146,7 @@ class BSDDBTest(unittest.TestCase):
 
     def test_queryset_7(self):
         from gramps.gen.db import NOT
-        result = list(self.db.Family.where(NOT(mother_handle__event_ref_list__0=None)).select())
+        result = list(self.db.Family.filter(NOT(mother_handle__event_ref_list__0=None)).select())
         self.assertTrue(len(result) == 21, len(result))
 
     def test_order_1(self):
@@ -170,8 +170,8 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(result == 60, result)
 
     def test_tag_1(self):
-        self.db.Person.where(gramps_id="I0001").tag("Test")
-        result = self.db.Person.where(tag_list__name="Test").count()
+        self.db.Person.filter(gramps_id="I0001").tag("Test")
+        result = self.db.Person.filter(tag_list__name="Test").count()
         self.assertTrue(result == 1, result)
 
     def filter_1(self):
@@ -186,6 +186,14 @@ class BSDDBTest(unittest.TestCase):
                                       True]))
         result = self.db.Person.filter(filter).count()
         self.assertTrue(result == 20, result)
+
+    def filter_2(self):
+        result = self.db.Person.filter(lambda p: p.private).count()
+        self.assertTrue(result == 1, result)
+
+    def filter_3(self):
+        result = self.db.Person.filter(lambda p: not p.private).count()
+        self.assertTrue(result == 59, result)
         
 
 class DBAPITest(BSDDBTest):
