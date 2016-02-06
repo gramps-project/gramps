@@ -1798,7 +1798,7 @@ class DBAPI(DbGeneric):
         if ((not self._check_where_fields(table, where, secondary_fields)) or
             (not self._check_order_by_fields(table, order_by, secondary_fields))):
             # If not, then need to do select via Python:
-            generator = super().select(table, fields, start, limit, where, order_by)
+            generator = super()._select(table, fields, start, limit, where, order_by)
             for item in generator:
                 yield item
             return

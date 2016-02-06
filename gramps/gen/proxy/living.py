@@ -85,11 +85,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
                 "handles_func": self.get_person_handles,
-                "add_func": self.add_person,
-                "commit_func": self.commit_person,
                 "iter_func": self.iter_people,
                 "count_func": self.get_number_of_people,
-                "del_func": self.remove_person,
             })
         self._tables['Family'].update(
             {
@@ -98,11 +95,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
                 "handles_func": self.get_family_handles,
-                "add_func": self.add_family,
-                "commit_func": self.commit_family,
                 "iter_func": self.iter_families,
                 "count_func": self.get_number_of_families,
-                "del_func": self.remove_family,
             })
         self._tables['Source'].update(
             {
@@ -111,11 +105,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 "handles_func": self.get_source_handles,
-                "add_func": self.add_source,
-                "commit_func": self.commit_source,
                 "iter_func": self.iter_sources,
                 "count_func": self.get_number_of_sources,
-                "del_func": self.remove_source,
                 })
         self._tables['Citation'].update(
             {
@@ -124,11 +115,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
                 "handles_func": self.get_citation_handles,
-                "add_func": self.add_citation,
-                "commit_func": self.commit_citation,
                 "iter_func": self.iter_citations,
                 "count_func": self.get_number_of_citations,
-                "del_func": self.remove_citation,
             })
         self._tables['Event'].update(
             {
@@ -137,11 +125,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
                 "handles_func": self.get_event_handles,
-                "add_func": self.add_event,
-                "commit_func": self.commit_event,
                 "iter_func": self.iter_events,
                 "count_func": self.get_number_of_events,
-                "del_func": self.remove_event,
             })
         self._tables['Media'].update(
             {
@@ -150,11 +135,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_handles,
-                "add_func": self.add_media,
-                "commit_func": self.commit_media,
                 "iter_func": self.iter_media,
                 "count_func": self.get_number_of_media,
-                "del_func": self.remove_media,
             })
         self._tables['Place'].update(
             {
@@ -163,11 +145,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
                 "handles_func": self.get_place_handles,
-                "add_func": self.add_place,
-                "commit_func": self.commit_place,
                 "iter_func": self.iter_places,
                 "count_func": self.get_number_of_places,
-                "del_func": self.remove_place,
             })
         self._tables['Repository'].update(
             {
@@ -176,11 +155,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
                 "handles_func": self.get_repository_handles,
-                "add_func": self.add_repository,
-                "commit_func": self.commit_repository,
                 "iter_func": self.iter_repositories,
                 "count_func": self.get_number_of_repositories,
-                "del_func": self.remove_repository,
             })
         self._tables['Note'].update(
             {
@@ -189,11 +165,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 "handles_func": self.get_note_handles,
-                "add_func": self.add_note,
-                "commit_func": self.commit_note,
                 "iter_func": self.iter_notes,
                 "count_func": self.get_number_of_notes,
-                "del_func": self.remove_note,
             })
         self._tables['Tag'].update(
             {
@@ -202,11 +175,8 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
-                "add_func": self.add_tag,
-                "commit_func": self.commit_tag,
                 "iter_func": self.iter_tags,
                 "count_func": self.get_number_of_tags,
-                "del_func": self.remove_tag,
             })
 
     def get_person_from_handle(self, handle):
