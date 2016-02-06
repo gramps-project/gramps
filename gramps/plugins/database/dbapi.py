@@ -1049,7 +1049,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
         for row in rows:
-                obj = self._tables[class_.__name__]["class_func"].create(pickle.loads(row[0]))
+                obj = self.get_table_func(class_.__name__,"class_func").create(pickle.loads(row[0]))
                 # just use values and handle to keep small:
                 sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
         # next we sort by fields and direction
@@ -1059,7 +1059,7 @@ class DBAPI(DbGeneric):
             pos -= 1
         # now we will look them up again:
         for (order_by_values, handle) in sorted_items:
-            yield self._tables[class_.__name__]["handle_func"](handle)
+            yield self.get_table_func(class_.__name__,"handle_func")(handle)
 
     def iter_items(self, order_by, class_):
         # check if order_by fields are secondary
@@ -1578,13 +1578,13 @@ class DBAPI(DbGeneric):
         Add secondary fields, update, and create indexes.
         """
         LOG.info("Rebuilding secondary fields...")
-        for table in self._tables.keys():
-            if not hasattr(self._tables[table]["class_func"], "get_secondary_fields"):
+        for table in self.get_table_func():
+            if not hasattr(self.get_table_func(table,"class_func"), "get_secondary_fields"):
                 continue
             # do a select on all; if it works, then it is ok; else, check them all
             try:
                 fields = [self._hash_name(table, field) for (field, ptype) in 
-                          self._tables[table]["class_func"].get_secondary_fields()]
+                          self.get_table_func(table,"class_func").get_secondary_fields()]
                 if fields:
                     self.dbapi.execute("select %s from %s limit 1;" % (", ".join(fields), table))
                 # if no error, continue
@@ -1594,7 +1594,7 @@ class DBAPI(DbGeneric):
                 pass # got to add missing ones, so continue
             LOG.info("Table %s needs rebuilding..." % table)
             altered = False
-            for field_pair in self._tables[table]["class_func"].get_secondary_fields():
+            for field_pair in self.get_table_func(table,"class_func").get_secondary_fields():
                 field, python_type = field_pair
                 field = self._hash_name(table, field)
                 sql_type = self._sql_type(python_type)
@@ -1617,8 +1617,8 @@ class DBAPI(DbGeneric):
         """
         Create the indexes for the secondary fields.
         """
-        for table in self._tables.keys():
-            if not hasattr(self._tables[table]["class_func"], "get_index_fields"):
+        for table in self.get_table_func():
+            if not hasattr(self.get_table_func(table,"class_func"), "get_index_fields"):
                 continue
             self.create_secondary_indexes_table(table)
 
@@ -1626,7 +1626,7 @@ class DBAPI(DbGeneric):
         """
         Create secondary indexes for just this table.
         """
-        for fields in self._tables[table]["class_func"].get_index_fields():
+        for fields in self.get_table_func(table,"class_func").get_index_fields():
             for field in fields:
                 field = self._hash_name(table, field)
                 self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);" % (table, field, table, field))
@@ -1636,7 +1636,7 @@ class DBAPI(DbGeneric):
         Go through all items in all tables, and update their secondary
         field values.
         """
-        for table in self._tables.keys():
+        for table in self.get_table_func():
             self.update_secondary_values_table(table)
 
     def update_secondary_values_table(self, table):
@@ -1646,9 +1646,9 @@ class DBAPI(DbGeneric):
         table - "Person", "Place", "Media", etc.
         Commits changes.
         """
-        if not hasattr(self._tables[table]["class_func"], "get_secondary_fields"):
+        if not hasattr(self.get_table_func(table,"class_func"), "get_secondary_fields"):
             return
-        for item in self._tables[table]["iter_func"]():
+        for item in self.get_table_func(table,"iter_func")():
             self.update_secondary_values(item)
         self.dbapi.commit()
 
@@ -1658,7 +1658,7 @@ class DBAPI(DbGeneric):
         Does not commit.
         """
         table = item.__class__.__name__
-        fields = self._tables[table]["class_func"].get_secondary_fields()
+        fields = self.get_table_func(table,"class_func").get_secondary_fields()
         fields = [field for (field, direction) in fields]
         sets = []
         values = []
@@ -1791,7 +1791,7 @@ class DBAPI(DbGeneric):
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
         secondary_fields = ([self._hash_name(table, field) for (field, ptype) in 
-                             self._tables[table]["class_func"].get_secondary_fields()] + 
+                             self.get_table_func(table,"class_func").get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
         # If no fields, then we need objects:
         # Check to see if where matches SQL fields:
@@ -1839,12 +1839,12 @@ class DBAPI(DbGeneric):
                             data[field.replace("__", ".")] = row[select_fields.index(field)]
                         else:
                             if obj is None:  # we need it! create it and cache it:
-                                obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
+                                obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
                             # get the field, even if we need to do a join:
                             # FIXME: possible optimize: do a join in select for this if needed:
                             field = field.replace("__", ".")
                             data[field] = obj.get_field(field, self, ignore_errors=True)
                     yield data
                 else:
-                    obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
+                    obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
                     yield obj

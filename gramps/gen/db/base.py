@@ -98,18 +98,12 @@ class DbReadBase(object):
         """
         self.basedb = self
         self.__feature = {} # {"feature": VALUE, ...}
-        self._tables = {
-            "Citation": {},
-            "Event": {},
-            "Family": {},
-            "Media": {},
-            "Note": {},
-            "Person": {},
-            "Place": {},
-            "Repository": {},
-            "Source": {},
-            "Tag": {},
-        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Base implementation of get_table_func.
+        """
+        return None
 
     def get_feature(self, feature):
         """
@@ -1375,18 +1369,18 @@ class DbReadBase(object):
             raise Exception("fields must be a list/tuple of field names")
         elif "*" in fields:
             fields.remove("*")
-            fields.extend(self._tables[table]["class_func"].get_schema().keys())
+            fields.extend(self.get_table_func(table,"class_func").get_schema().keys())
         get_count_only = (fields is not None and fields[0] == "count(1)")
         position = 0
         selected = 0
         if get_count_only:
             if where or limit != -1 or start != 0:
                 # no need to order for a count
-                data = self._tables[table]["iter_func"]()
+                data = self.get_table_func(table,"iter_func")()
             else:
-                yield self._tables[table]["count_func"]()
+                yield self.get_table_func(table,"count_func")()
         else:
-            data = self._tables[table]["iter_func"](order_by=order_by)
+            data = self.get_table_func(table, "iter_func")(order_by=order_by)
         if where:
             for item in data:
                 # Go through all fliters and evaluate the fields:
@@ -1432,7 +1426,7 @@ class DbReadBase(object):
         Used in SQL functions to eval expressions involving selected
         data.
         """
-        name = self._tables[table]["class_func"].get_field_alias(name)
+        name = self.get_table_func(table,"class_func").get_field_alias(name)
         return name.replace(".", "__")
 
     Person = property(lambda self:QuerySet(self, "Person"))
@@ -2263,10 +2257,10 @@ class QuerySet(object):
         trans_class = self.database.get_transaction_class()
         with trans_class("Tag Selected Items", self.database, batch=True) as trans:
             if tag is None:
-                tag = self.database._tables["Tag"]["class_func"]()
+                tag = self.database.get_table_func("Tag","class_func")()
                 tag.set_name(tag_text)
                 self.database.add_tag(tag, trans)
-            commit_func = self.database._tables[self.table]["commit_func"]
+            commit_func = self.database.get_table_func(self.table,"commit_func")
             for item in self.generator:
                 if tag.handle not in item.tag_list:
                     item.add_tag(tag.handle)

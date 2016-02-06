@@ -83,7 +83,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj_type, handle, reference = self.queue.pop()
             self.process_object(obj_type, handle, reference)
 
-        self._tables['Person'].update(
+        self.__tables = {
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -95,8 +96,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_people,
                 "count_func": self.get_number_of_people,
                 "del_func": self.remove_person,
-            })
-        self._tables['Family'].update(
+            },
+            'Family':
             {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
@@ -108,8 +109,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_families,
                 "count_func": self.get_number_of_families,
                 "del_func": self.remove_family,
-            })
-        self._tables['Source'].update(
+            },
+            'Source':
             {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
@@ -121,8 +122,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_sources,
                 "count_func": self.get_number_of_sources,
                 "del_func": self.remove_source,
-                })
-        self._tables['Citation'].update(
+            },
+            'Citation':
             {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
@@ -134,8 +135,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_citations,
                 "count_func": self.get_number_of_citations,
                 "del_func": self.remove_citation,
-            })
-        self._tables['Event'].update(
+            },
+            'Event':
             {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
@@ -147,8 +148,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_events,
                 "count_func": self.get_number_of_events,
                 "del_func": self.remove_event,
-            })
-        self._tables['Media'].update(
+            },
+            'Media':
             {
                 "handle_func": self.get_media_from_handle,
                 "gramps_id_func": self.get_media_from_gramps_id,
@@ -160,8 +161,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_media,
                 "count_func": self.get_number_of_media,
                 "del_func": self.remove_media,
-            })
-        self._tables['Place'].update(
+            },
+            'Place':
             {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
@@ -173,8 +174,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_places,
                 "count_func": self.get_number_of_places,
                 "del_func": self.remove_place,
-            })
-        self._tables['Repository'].update(
+            },
+            'Repository':
             {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
@@ -186,8 +187,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_repositories,
                 "count_func": self.get_number_of_repositories,
                 "del_func": self.remove_repository,
-            })
-        self._tables['Note'].update(
+            },
+            'Note':
             {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
@@ -199,8 +200,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_notes,
                 "count_func": self.get_number_of_notes,
                 "del_func": self.remove_note,
-            })
-        self._tables['Tag'].update(
+            },
+            'Tag':
             {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
@@ -212,7 +213,21 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "iter_func": self.iter_tags,
                 "count_func": self.get_number_of_tags,
                 "del_func": self.remove_tag,
-            })
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def queue_object(self, obj_type, handle, reference=True):
         self.queue.append((obj_type, handle, reference))

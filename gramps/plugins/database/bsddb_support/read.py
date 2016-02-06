@@ -290,96 +290,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         DbReadBase.__init__(self)
         Callback.__init__(self)
-        self._tables['Person'].update(
-            {
-                "handle_func": self.get_person_from_handle,
-                "gramps_id_func": self.get_person_from_gramps_id,
-                "class_func": Person,
-                "cursor_func": self.get_person_cursor,
-                "handles_func": self.get_person_handles,
-                "iter_func": self.iter_people,
-            })
-        self._tables['Family'].update(
-            {
-                "handle_func": self.get_family_from_handle,
-                "gramps_id_func": self.get_family_from_gramps_id,
-                "class_func": Family,
-                "cursor_func": self.get_family_cursor,
-                "handles_func": self.get_family_handles,
-                "iter_func": self.iter_families,
-            })
-        self._tables['Source'].update(
-            {
-                "handle_func": self.get_source_from_handle,
-                "gramps_id_func": self.get_source_from_gramps_id,
-                "class_func": Source,
-                "cursor_func": self.get_source_cursor,
-                "handles_func": self.get_source_handles,
-                "iter_func": self.iter_sources,
-                })
-        self._tables['Citation'].update(
-            {
-                "handle_func": self.get_citation_from_handle,
-                "gramps_id_func": self.get_citation_from_gramps_id,
-                "class_func": Citation,
-                "cursor_func": self.get_citation_cursor,
-                "handles_func": self.get_citation_handles,
-                "iter_func": self.iter_citations,
-            })
-        self._tables['Event'].update(
-            {
-                "handle_func": self.get_event_from_handle,
-                "gramps_id_func": self.get_event_from_gramps_id,
-                "class_func": Event,
-                "cursor_func": self.get_event_cursor,
-                "handles_func": self.get_event_handles,
-                "iter_func": self.iter_events,
-            })
-        self._tables['Media'].update(
-            {
-                "handle_func": self.get_media_from_handle,
-                "gramps_id_func": self.get_media_from_gramps_id,
-                "class_func": Media,
-                "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_handles,
-                "iter_func": self.iter_media,
-            })
-        self._tables['Place'].update(
-            {
-                "handle_func": self.get_place_from_handle,
-                "gramps_id_func": self.get_place_from_gramps_id,
-                "class_func": Place,
-                "cursor_func": self.get_place_cursor,
-                "handles_func": self.get_place_handles,
-                "iter_func": self.iter_places,
-            })
-        self._tables['Repository'].update(
-            {
-                "handle_func": self.get_repository_from_handle,
-                "gramps_id_func": self.get_repository_from_gramps_id,
-                "class_func": Repository,
-                "cursor_func": self.get_repository_cursor,
-                "handles_func": self.get_repository_handles,
-                "iter_func": self.iter_repositories,
-            })
-        self._tables['Note'].update(
-            {
-                "handle_func": self.get_note_from_handle,
-                "gramps_id_func": self.get_note_from_gramps_id,
-                "class_func": Note,
-                "cursor_func": self.get_note_cursor,
-                "handles_func": self.get_note_handles,
-                "iter_func": self.iter_notes,
-            })
-        self._tables['Tag'].update(
-            {
-                "handle_func": self.get_tag_from_handle,
-                "gramps_id_func": None,
-                "class_func": Tag,
-                "cursor_func": self.get_tag_cursor,
-                "handles_func": self.get_tag_handles,
-                "iter_func": self.iter_tags,
-            })
 
         self.set_person_id_prefix('I%04d')
         self.set_media_id_prefix('O%04d')
@@ -474,6 +384,112 @@ class DbBsddbRead(DbReadBase, Callback):
         self.txn = None
         self.has_changed = False
 
+        self.__tables = {
+            'Person': 
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
+
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
@@ -493,12 +509,12 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self._tables.keys())
+        return list(self.get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self._tables:
-            return self._tables[table_name]
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name)
         return None
 
     def get_cursor(self, table, *args, **kwargs):
@@ -552,12 +568,6 @@ class DbBsddbRead(DbReadBase, Callback):
         self.basedb = None
         #remove links to functions
         self.disconnect_all()
-        for key in self._tables:
-            for subkey in self._tables[key]:
-                self._tables[key][subkey] = None
-            del self._tables[key][subkey]
-            self._tables[key] = None
-        del self._tables
 ##        self.bookmarks = None
 ##        self.family_bookmarks = None
 ##        self.event_bookmarks = None
@@ -706,8 +716,8 @@ class DbBsddbRead(DbReadBase, Callback):
         >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["handle_func"](handle)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"handle_func")(handle)
         return None
 
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
@@ -721,8 +731,8 @@ class DbBsddbRead(DbReadBase, Callback):
         >>> self.get_from_name_and_gramps_id("Family", "F056")
         >>> self.get_from_name_and_gramps_id("Media", "M00012")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["gramps_id_func"](gramps_id)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
         return None
 
     def get_person_from_handle(self, handle):
@@ -1241,7 +1251,7 @@ class DbBsddbRead(DbReadBase, Callback):
                     pos -= 1
                 # now we will look them up again:
                 for (order_by_values, handle) in sorted_items:
-                    yield self._tables[obj_.__name__]["handle_func"](handle)
+                    yield self.get_table_func(obj_.__name__,"handle_func")(handle)
         return g
 
     # Use closure to define iterators for each primary object type
