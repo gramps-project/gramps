@@ -74,7 +74,7 @@ class ProxyMap(object):
     def keys(self):
         return [bytes(key, "utf-8") for key in self.get_keys()]
 
-class ProxyDbBase(DbWriteBase):
+class ProxyDbBase(DbReadBase):
     """
     ProxyDbBase is a base class for building a proxy to a Gramps database.
     This class attempts to implement functions that are likely to be common
@@ -471,6 +471,7 @@ class ProxyDbBase(DbWriteBase):
             return attr
 
         # if a write-method:
+        # FIXME: include base methods too
         #if (name in DbWriteBase.__dict__ and
         #    not name.startswith("__") and
         #    type(DbWriteBase.__dict__[name]) is types.FunctionType):
