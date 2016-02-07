@@ -183,15 +183,13 @@ class BSDDBTest(unittest.TestCase):
                                                      IsAncestorOf)
         from gramps.gen.filters import GenericFilter
         filter = GenericFilter()
-        #FIXME: the complete or test here appears broken in 5.0 with BSDDB
-        #filter.set_logical_op("or")
+        filter.set_logical_op("or")
         filter.add_rule(IsDescendantOf([self.db.get_default_person().gramps_id,
                                         True]))
-        #filter.add_rule(IsAncestorOf([self.db.get_default_person().gramps_id,
-        #                              True]))
+        filter.add_rule(IsAncestorOf([self.db.get_default_person().gramps_id,
+                                      True]))
         result = self.db.Person.filter(filter).count()
-        #self.assertTrue(result == 15, result)
-        self.assertTrue(result == 3, result)
+        self.assertTrue(result == 15, result)
 
     def test_filter_2(self):
         result = self.db.Person.filter(lambda p: p.private).count()
