@@ -161,10 +161,12 @@ def insert_image(database, doc, photo, user,
 #
 #-------------------------------------------------------------------------
 def find_spouse(person, family):
-    if person.get_handle() == family.get_father_handle():
-        spouse_handle = family.get_mother_handle()
-    else:
-        spouse_handle = family.get_father_handle()
+    spouse_handle = None
+    if family:
+        if person.get_handle() == family.get_father_handle():
+            spouse_handle = family.get_mother_handle()
+        else:
+            spouse_handle = family.get_father_handle()
     return spouse_handle
 
 #-------------------------------------------------------------------------

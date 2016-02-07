@@ -1938,9 +1938,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_sources(self, order_by=None):
         return self.iter_items(order_by, Source)
 
-    def iter_tags(self):
-        return (Tag.create(data[1]) for data in self.get_tag_cursor())
-
+    def iter_tags(self, order_by=None):
+        return self.iter_items(order_by, Tag)
 
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):

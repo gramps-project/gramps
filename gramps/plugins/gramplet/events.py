@@ -212,9 +212,9 @@ class PersonEvents(Events):
             spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
         else:
             spouse = None
-
-        for event_ref in family.get_event_ref_list():
-            self.add_event_ref(event_ref, spouse)
+        if family:
+            for event_ref in family.get_event_ref_list():
+                self.add_event_ref(event_ref, spouse)
 
     def get_start_date(self):
         """

@@ -393,8 +393,9 @@ def find_children(db,p):
     childlist = []
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
-        for child_ref in family.get_child_ref_list():
-            childlist.append(child_ref.ref)
+        if family:
+            for child_ref in family.get_child_ref_list():
+                childlist.append(child_ref.ref)
     return childlist
 
 #-------------------------------------------------------------------------
