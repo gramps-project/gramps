@@ -75,6 +75,8 @@ class PersonEventEmbedList(EventEmbedList):
             if family_handle_list:
                 for family_handle in family_handle_list:
                     family = self.dbstate.db.get_family_from_handle(family_handle)
+                    if family is None:
+                        continue
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
                     if self.obj.get_handle()  == father_handle:

@@ -187,12 +187,13 @@ class Citations(Gramplet, DbGUIElement):
         return False
 
     def check_eventref_citations(self, obj):
-        for event_ref in obj.get_event_ref_list():
-            if self.check_attribute_citations(event_ref):
-                return True
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if self.check_event_citations(event):
-                return True
+        if obj:
+            for event_ref in obj.get_event_ref_list():
+                if self.check_attribute_citations(event_ref):
+                    return True
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if self.check_event_citations(event):
+                    return True
         return False
 
     def check_event_citations(self, event):
