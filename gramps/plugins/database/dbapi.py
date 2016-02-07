@@ -1817,34 +1817,38 @@ class DBAPI(DbGeneric):
             select_fields = self._build_select_fields(table, fields, secondary_fields)
         where_clause = self._build_where_clause(table, where)
         order_clause = self._build_order_clause(table, order_by)
+        if get_count_only:
+            select_fields = ["1"]
         if start:
-            query = "SELECT %s FROM %s %s %s LIMIT %s, %s;" % (
+            query = "SELECT %s FROM %s %s %s LIMIT %s, %s" % (
                 ", ".join(select_fields), table, where_clause, order_clause, start, limit
             )
         else:
-            query = "SELECT %s FROM %s %s %s LIMIT %s;" % (
+            query = "SELECT %s FROM %s %s %s LIMIT %s" % (
                 ", ".join(select_fields), table, where_clause, order_clause, limit
             )
+        if get_count_only:
+            self.dbapi.execute("SELECT count(1) from (%s);" % query)
+            rows = self.dbapi.fetchall()
+            yield rows[0][0]
+            return
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
-        if get_count_only:
-            yield rows[0][0]
-        else:
-            for row in rows:
-                if fields[0] != "blob_data":
-                    obj = None # don't build it if you don't need it
-                    data = {}
-                    for field in fields:
-                        if field in select_fields:
-                            data[field.replace("__", ".")] = row[select_fields.index(field)]
-                        else:
-                            if obj is None:  # we need it! create it and cache it:
-                                obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
-                            # get the field, even if we need to do a join:
-                            # FIXME: possible optimize: do a join in select for this if needed:
-                            field = field.replace("__", ".")
-                            data[field] = obj.get_field(field, self, ignore_errors=True)
-                    yield data
-                else:
-                    obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
-                    yield obj
+        for row in rows:
+            if fields[0] != "blob_data":
+                obj = None # don't build it if you don't need it
+                data = {}
+                for field in fields:
+                    if field in select_fields:
+                        data[field.replace("__", ".")] = row[select_fields.index(field)]
+                    else:
+                        if obj is None:  # we need it! create it and cache it:
+                            obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
+                        # get the field, even if we need to do a join:
+                        # FIXME: possible optimize: do a join in select for this if needed:
+                        field = field.replace("__", ".")
+                        data[field] = obj.get_field(field, self, ignore_errors=True)
+                yield data
+            else:
+                obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
+                yield obj

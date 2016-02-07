@@ -1436,6 +1436,7 @@ class DbReadBase(object):
     Source = property(lambda self:QuerySet(self, "Source"))
     Repository = property(lambda self:QuerySet(self, "Repository"))
     Place = property(lambda self:QuerySet(self, "Place"))
+    Event = property(lambda self:QuerySet(self, "Event"))
     Tag = property(lambda self:QuerySet(self, "Tag"))
 
 class DbWriteBase(DbReadBase):
@@ -2127,17 +2128,17 @@ class QuerySet(object):
         self.table = table
         self.where_by = None
         self.order_by = None
-        self.limit = -1
+        self.limit_by = -1
         self.start = 0
 
-    def limit(self, start=None, limit=None):
+    def limit(self, start=None, count=None):
         """
         Put limits on the selection.
         """
         if start is not None:
             self.start = start
-        if limit is not None:
-            self.limit = limit
+        if count is not None:
+            self.limit_by = count
         return self
 
     def order(self, *args):
@@ -2180,12 +2181,15 @@ class QuerySet(object):
         """
         Run query with just where, start, limit to get count.
         """
-        generator = self.database._select(self.table,
-                                          ["count(1)"],
-                                          where=self.where_by,
-                                          start=self.start,
-                                          limit=self.limit)
-        return next(generator)
+        if self.generator is None:
+            generator = self.database._select(self.table,
+                                              ["count(1)"],
+                                              where=self.where_by,
+                                              start=self.start,
+                                              limit=self.limit_by)
+            return next(generator)
+        else:
+            return len(list(self.generator))
 
     def _generate(self, args=None):
         """
@@ -2196,7 +2200,7 @@ class QuerySet(object):
                                      order_by=self.order_by,
                                      where=self.where_by,
                                      start=self.start,
-                                     limit=self.limit)
+                                     limit=self.limit_by)
 
     def select(self, *args):
         """
@@ -2206,8 +2210,14 @@ class QuerySet(object):
             args = None
         if self.generator is None:
             self.generator = self._generate(args)
-        for i in self.generator:
-            yield i
+            for i in self.generator:
+                yield i
+        elif args:
+            for i in self.generator:
+                yield [i.get_field(arg) for arg in args]
+        else:
+            for i in self.generator:
+                yield i
 
     def proxy(self, proxy_name, *args, **kwargs):
         """
@@ -2241,6 +2251,8 @@ class QuerySet(object):
             elif isinstance(arg, Operator):
                 self._add_where_clause(arg)
             elif callable(arg):
+                if self.generator is None:
+                    self.generator = self._generate()
                 self.generator = filter(arg, self.generator)
             else:
                 pass # ignore
