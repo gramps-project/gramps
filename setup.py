@@ -180,8 +180,8 @@ def build_man(build_cmd):
                 filename = False
 
             lang = man_dir[8:]
-            src = build_cmd.build_base  + '/data/man/' + lang  + '/gramps.1.gz'
-            target = 'share/man/' + lang + '/man1'
+            src = build_cmd.build_base  + '/data/man' + lang  + '/gramps.1.gz'
+            target = 'share/man' + lang + '/man1'
             data_files.append((target, [src]))
 
 def build_intl(build_cmd):
