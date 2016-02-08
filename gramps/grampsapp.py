@@ -43,8 +43,40 @@ from subprocess import Popen, PIPE
 #
 #-------------------------------------------------------------------------
 from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
+from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
+
+#-------------------------------------------------------------------------
+#
+# Instantiate Localization
+#
+#-------------------------------------------------------------------------
+
+from .gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+#-------------------------------------------------------------------------
+#
+# Ensure that output is encoded correctly to stdout and
+# stderr. This is much less cumbersome and error-prone than
+# encoding individual outputs:
+#
+#-------------------------------------------------------------------------
+
+try:
+    # They're the same using python3 on Win or Linux, but sys.stdout.encoding
+    # gives the wrong answer on Darwin.
+    if mac():
+        _encoding =  sys.getdefaultencoding()
+    else:
+        _encoding = sys.stdout.encoding
+except:
+    _encoding = "UTF-8"
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding=_encoding,
+                  buffering=1, errors='backslashreplace')
+sys.stderr = open(sys.stderr.fileno(), mode='w', encoding=_encoding,
+                  buffering=1, errors='backslashreplace')
 
 #-------------------------------------------------------------------------
 #
@@ -68,8 +100,8 @@ form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
 if win():
     # If running in GUI mode redirect stdout and stderr to log file
     if hasattr(sys.stdout, "fileno") and sys.stdout.fileno() < 0:
-        logfile = os.path.join(HOME_DIR, 
-            "Gramps%s%s.log") % (VERSION_TUPLE[0], 
+        logfile = os.path.join(HOME_DIR,
+            "Gramps%s%s.log") % (VERSION_TUPLE[0],
             VERSION_TUPLE[1])
         # We now carry out the first step in build_user_paths(), to make sure
         # that the user home directory is available to store the log file. When
@@ -110,14 +142,6 @@ sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
 
-#-------------------------------------------------------------------------
-#
-# Instantiate Localization
-#
-#-------------------------------------------------------------------------
-
-from .gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -131,7 +155,7 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
              "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
              " start Gramps.\n\n"
              "Gramps will terminate now.") % {
-             'v1': MIN_PYTHON_VERSION[0], 
+             'v1': MIN_PYTHON_VERSION[0],
              'v2': MIN_PYTHON_VERSION[1],
              'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
@@ -143,7 +167,7 @@ except ImportError:
         " This package is needed to start Gramps.\n\n"
          "Gramps will terminate now."))
     sys.exit(1)
-    
+
 #-------------------------------------------------------------------------
 #
 # Gramps libraries
@@ -172,7 +196,7 @@ def show_settings():
     try:
         from gi.repository import Gtk
         try:
-            gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(), 
+            gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(),
                         Gtk.get_minor_version(), Gtk.get_micro_version())
         except : # any failure to 'get' the version
             gtkver_str = 'unknown version'
@@ -206,7 +230,7 @@ def show_settings():
     try:
         import cairo
         try:
-            pycairover_str = '%d.%d.%d' % cairo.version_info 
+            pycairover_str = '%d.%d.%d' % cairo.version_info
             cairover_str = cairo.cairo_version_string()
         except :# any failure to 'get' the version
             pycairover_str = 'unknown version'
@@ -268,7 +292,7 @@ def show_settings():
         bsddb_str = 'not found'
         bsddb_db_str = 'not found'
 
-    try: 
+    try:
         from .gen.const import VERSION
         gramps_str = VERSION
     except:
@@ -308,7 +332,7 @@ def show_settings():
 
     os_path = get_env_var('PATH','not set')
     os_path = os_path.split(os.pathsep)
-    
+
     print ("Gramps Settings:")
     print ("----------------")
     print (' python    : %s' % py_str)
@@ -352,24 +376,24 @@ def show_settings():
 
 def run():
     error = []
-    
+
     try:
-        build_user_paths()   
+        build_user_paths()
     except OSError as msg:
         error += [(_("Configuration error:"), str(msg))]
         return error
     except msg:
         LOG.error("Error reading configuration.", exc_info=True)
         return [(_("Error reading configuration"), str(msg))]
-        
+
     if not mime_type_is_defined(APP_GRAMPS):
-        error += [(_("Configuration error:"), 
+        error += [(_("Configuration error:"),
                     _("A definition for the MIME-type %s could not "
                       "be found \n\n Possibly the installation of Gramps "
                       "was incomplete. Make sure the MIME-types "
                       "of Gramps are properly installed.")
                     % APP_GRAMPS)]
-    
+
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session
 
@@ -381,7 +405,7 @@ def run():
     argv_copy = sys.argv[:]
     argpars = ArgParser(argv_copy)
 
-    # Calls to LOG must be after setup_logging() and ArgParser() 
+    # Calls to LOG must be after setup_logging() and ArgParser()
     LOG = logging.getLogger(".locale")
     LOG.debug("Encoding: %s", glocale.encoding)
     LOG.debug("Translating Gramps to %s", glocale.language[0])
@@ -400,7 +424,7 @@ def run():
                          get_env_var('LANGUAGE'))
     else:
         LOG.debug('environment: LANGUAGE is not defined')
-    
+
     if argpars.need_gui():
         LOG.debug("A GUI is needed, set it up")
         if "--qml" in sys.argv:
