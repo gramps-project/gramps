@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2014      Nick Hall
+# Copyright (C) 2014-2016 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,14 +44,14 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 class Locations(Gramplet, DbGUIElement):
-
-    def __init__(self, gui, nav_group=0):
-        Gramplet.__init__(self, gui, nav_group)
-        DbGUIElement.__init__(self, self.dbstate.db)
-
     """
     Gramplet showing the locations of a place over time.
     """
+    def __init__(self, gui, nav_group=0):
+        Gramplet.__init__(self, gui, nav_group)
+        DbGUIElement.__init__(self, self.dbstate.db)
+        self.db = self.dbstate.db
+
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -96,17 +96,23 @@ class Locations(Gramplet, DbGUIElement):
     def update_has_data(self):
         active_handle = self.get_active('Place')
         if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
+            active = self.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
+
+    def get_has_data(self, place):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        pass
 
     def main(self):
         self.model.clear()
         self.callman.unregister_all()
         active_handle = self.get_active('Place')
         if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
+            active = self.db.get_place_from_handle(active_handle)
             if active:
                 self.display_place(active, None, [active_handle])
             else:
@@ -118,27 +124,57 @@ class Locations(Gramplet, DbGUIElement):
         """
         Display the location hierarchy for the active place.
         """
+        pass
+
+    def add_place(self, placeref, place, node, visited):
+        """
+        Add a place to the model.
+        """
+        place_date = get_date(placeref)
+        place_sort = '%012d' % placeref.get_date_object().get_sort_value()
+        place_name = place.get_name().get_value()
+        place_type = str(place.get_type())
+
+        new_node = self.model.add([place.handle,
+                                   place_name,
+                                   place_type,
+                                   place_date,
+                                   place_sort],
+                                  node=node)
+
+        self.display_place(place, new_node, visited + [place.handle])
+
+    def edit_place(self, treeview):
+        """
+        Edit the selected place.
+        """
+        model, iter_ = treeview.get_selection().get_selected()
+        if iter_:
+            handle = model.get_value(iter_, 0)
+            place = self.db.get_place_from_handle(handle)
+            try:
+                EditPlace(self.dbstate, self.uistate, [], place)
+            except WindowActiveError:
+                pass
+
+#-------------------------------------------------------------------------
+#
+# EnclosedBy gramplet
+#
+#-------------------------------------------------------------------------
+class EnclosedBy(Locations):
+
+    def display_place(self, place, node, visited):
+        """
+        Display the location hierarchy for the active place.
+        """
         self.callman.register_obj(place)
         for placeref in place.get_placeref_list():
             if placeref.ref in visited:
                 continue
 
-            place_date = get_date(placeref)
-            place_sort = '%012d' % placeref.get_date_object().get_sort_value()
-            parent_place = self.dbstate.db.get_place_from_handle(placeref.ref)
-            parent_name = parent_place.get_name().get_value()
-            parent_type = str(parent_place.get_type())
-
-            parent_node = self.model.add([placeref.ref,
-                                          parent_name,
-                                          parent_type,
-                                          place_date,
-                                          place_sort],
-                                          node=node)
-
-            self.display_place(parent_place,
-                               parent_node,
-                               visited + [placeref.ref])
+            parent_place = self.db.get_place_from_handle(placeref.ref)
+            self.add_place(placeref, parent_place, node, visited)
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
@@ -151,18 +187,44 @@ class Locations(Gramplet, DbGUIElement):
             return False
         if len(place.get_placeref_list()) > 0:
             return True
-        else:
-            return False
+        return False
 
-    def edit_place(self, treeview):
+#-------------------------------------------------------------------------
+#
+# Encloses gramplet
+#
+#-------------------------------------------------------------------------
+class Encloses(Locations):
+
+    def display_place(self, place, node, visited):
         """
-        Edit the selected place.
+        Display the location hierarchy for the active place.
         """
-        model, iter_ = treeview.get_selection().get_selected()
-        if iter_:
-            handle = model.get_value(iter_, 0)
-            place = self.dbstate.db.get_place_from_handle(handle)
-            try:
-                EditPlace(self.dbstate, self.uistate, [], place)
-            except WindowActiveError:
-                pass
+        self.callman.register_obj(place)
+        for link in self.db.find_backlink_handles(place.handle,
+                                                  include_classes=['Place']):
+            if link[1] in visited:
+                continue
+
+            child_place = self.db.get_place_from_handle(link[1])
+            placeref = None
+            for placeref in child_place.get_placeref_list():
+                if placeref.ref != place.handle:
+                    continue
+
+            if placeref:
+                self.add_place(placeref, child_place, node, visited)
+
+        self.set_has_data(self.model.count > 0)
+        self.model.tree.expand_all()
+
+    def get_has_data(self, place):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if place is None:
+            return False
+        for link in self.db.find_backlink_handles(place.handle,
+                                                  include_classes=['Place']):
+            return True
+        return False
