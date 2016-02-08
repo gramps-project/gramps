@@ -43,8 +43,40 @@ from subprocess import Popen, PIPE
 #
 #-------------------------------------------------------------------------
 from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
+from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
+
+#-------------------------------------------------------------------------
+#
+# Instantiate Localization
+#
+#-------------------------------------------------------------------------
+
+from .gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+#-------------------------------------------------------------------------
+#
+# Ensure that output is encoded correctly to stdout and
+# stderr. This is much less cumbersome and error-prone than
+# encoding individual outputs:
+#
+#-------------------------------------------------------------------------
+
+try:
+    # They're the same using python3 on Win or Linux, but sys.stdout.encoding
+    # gives the wrong answer on Darwin.
+    if mac():
+        _encoding =  sys.getdefaultencoding()
+    else:
+        _encoding = sys.stdout.encoding
+except:
+    _encoding = "UTF-8"
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding=_encoding,
+                  buffering=1, errors='backslashreplace')
+sys.stderr = open(sys.stderr.fileno(), mode='w', encoding=_encoding,
+                  buffering=1, errors='backslashreplace')
 
 #-------------------------------------------------------------------------
 #
@@ -110,14 +142,6 @@ sys.excepthook = exc_hook
 
 from .gen.mime import mime_type_is_defined
 
-#-------------------------------------------------------------------------
-#
-# Instantiate Localization
-#
-#-------------------------------------------------------------------------
-
-from .gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
