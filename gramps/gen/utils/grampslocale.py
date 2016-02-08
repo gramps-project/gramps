@@ -120,6 +120,10 @@ def _check_mswin_locale(locale):
             msloc = _LOCALE_NAMES[locale[:2]][:2]
             locale = locale[:2]
         except KeyError:
+            #US English is the outlier, all other English locales want
+            #real English:
+            if locale[:2] == ('en') and locale[:5] != 'en_US':
+                return ('en_GB', '1252')
             return (None, None)
     return (locale, msloc)
 
@@ -127,7 +131,9 @@ def _check_mswin_locale_reverse(locale):
     for (loc, msloc) in _LOCALE_NAMES.items():
         if msloc and locale == msloc[0]:
             return (loc, msloc[1])
-
+    #US English is the outlier, all other English locales want real English:
+    if locale.startswith('English') and locale != 'English_United States':
+        return ('en_GB', '1252')
     return (None, None)
 
 #------------------------------------------------------------------------
@@ -284,6 +290,8 @@ class GrampsLocale(object):
             if not locale[0]:
                 return False
             lang = self.check_available_translations(locale[0])
+            if not lang and locale[0].startswith('en'):
+                locale[0] = lang = 'en_GB'
             if not lang:
                 return False
             self.lang = locale[0]
@@ -795,9 +803,11 @@ class GrampsLocale(object):
 
         if locale[:5] in self.languages:
             return locale[:5]
+        #US English is the outlier, all other English locales want real English:
+        if locale[:2] == 'en' and locale[:5] != 'en_US':
+            return 'en_GB'
         if locale[:2] in self.languages:
             return locale[:2]
-
         return None
 
     def get_language_dict(self):
