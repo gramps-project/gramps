@@ -50,6 +50,7 @@ class Locations(Gramplet, DbGUIElement):
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
         DbGUIElement.__init__(self, self.dbstate.db)
+        self.db = self.dbstate.db
 
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -95,7 +96,7 @@ class Locations(Gramplet, DbGUIElement):
     def update_has_data(self):
         active_handle = self.get_active('Place')
         if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
+            active = self.db.get_place_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
@@ -111,7 +112,7 @@ class Locations(Gramplet, DbGUIElement):
         self.callman.unregister_all()
         active_handle = self.get_active('Place')
         if active_handle:
-            active = self.dbstate.db.get_place_from_handle(active_handle)
+            active = self.db.get_place_from_handle(active_handle)
             if active:
                 self.display_place(active, None, [active_handle])
             else:
@@ -172,7 +173,11 @@ class EnclosedBy(Locations):
             if placeref.ref in visited:
                 continue
 
+<<<<<<< HEAD
             parent_place = self.dbstate.db.get_place_from_handle(placeref.ref)
+=======
+            parent_place = self.db.get_place_from_handle(placeref.ref)
+>>>>>>> Enhance the Locations gramplet
             self.add_place(placeref, parent_place, node, visited)
 
         self.set_has_data(self.model.count > 0)
@@ -200,12 +205,21 @@ class Encloses(Locations):
         Display the location hierarchy for the active place.
         """
         self.callman.register_obj(place)
+<<<<<<< HEAD
         for link in self.dbstate.db.find_backlink_handles(
                 place.handle, include_classes=['Place']):
             if link[1] in visited:
                 continue
 
             child_place = self.dbstate.db.get_place_from_handle(link[1])
+=======
+        for link in self.db.find_backlink_handles(place.handle,
+                                                  include_classes=['Place']):
+            if link[1] in visited:
+                continue
+
+            child_place = self.db.get_place_from_handle(link[1])
+>>>>>>> Enhance the Locations gramplet
             placeref = None
             for placeref in child_place.get_placeref_list():
                 if placeref.ref != place.handle:
@@ -223,7 +237,12 @@ class Encloses(Locations):
         """
         if place is None:
             return False
+<<<<<<< HEAD
         for link in self.dbstate.db.find_backlink_handles(
                 place.handle, include_classes=['Place']):
+=======
+        for link in self.db.find_backlink_handles(place.handle,
+                                                  include_classes=['Place']):
+>>>>>>> Enhance the Locations gramplet
             return True
         return False
