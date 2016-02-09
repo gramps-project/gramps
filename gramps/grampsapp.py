@@ -65,8 +65,8 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 
 try:
-    # They're the same using python3 on Win or Linux, but sys.stdout.encoding
-    # gives the wrong answer on Darwin.
+    # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
+    # sys.stdout.enoding, and on Linux they're both right.
     if mac():
         _encoding =  sys.getdefaultencoding()
     else:
