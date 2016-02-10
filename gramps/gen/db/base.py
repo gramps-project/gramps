@@ -2123,13 +2123,14 @@ class QuerySet(object):
     applied to a database.
     """
     def __init__(self, database, table):
-        self.generator = None
         self.database = database
         self.table = table
+        self.generator = None
         self.where_by = None
         self.order_by = None
         self.limit_by = -1
         self.start = 0
+        self.needs_to_run = False
 
     def limit(self, start=None, count=None):
         """
@@ -2139,6 +2140,7 @@ class QuerySet(object):
             self.start = start
         if count is not None:
             self.limit_by = count
+        self.needs_to_run = True
         return self
 
     def order(self, *args):
@@ -2152,6 +2154,7 @@ class QuerySet(object):
                 self.order_by.append((arg[1:], "DESC"))
             else:
                 self.order_by.append((arg, "ASC"))
+        self.needs_to_run = True
         return self
 
     def _add_where_clause(self, *args, **kwargs):
@@ -2175,13 +2178,14 @@ class QuerySet(object):
                 self.where_by = and_expr[0]
             else:
                 self.where_by = ["AND", and_expr]
+        self.needs_to_run = True
         return self
 
     def count(self):
         """
         Run query with just where, start, limit to get count.
         """
-        if self.generator is None:
+        if self.generator is None or self.needs_to_run:
             generator = self.database._select(self.table,
                                               ["count(1)"],
                                               where=self.where_by,
@@ -2195,12 +2199,19 @@ class QuerySet(object):
         """
         Create a generator from current options.
         """
-        return self.database._select(self.table,
-                                     args,
-                                     order_by=self.order_by,
-                                     where=self.where_by,
-                                     start=self.start,
-                                     limit=self.limit_by)
+        generator = self.database._select(self.table,
+                                          args,
+                                          order_by=self.order_by,
+                                          where=self.where_by,
+                                          start=self.start,
+                                          limit=self.limit_by)
+        # Reset all criteria
+        self.where_by = None
+        self.order_by = None
+        self.limit_by = -1
+        self.start = 0
+        self.needs_to_run = False
+        return generator
 
     def select(self, *args):
         """
@@ -2208,7 +2219,7 @@ class QuerySet(object):
         """
         if len(args) == 0:
             args = None
-        if self.generator is None:
+        if self.generator is None or self.needs_to_run:
             self.generator = self._generate(args)
             for i in self.generator:
                 yield i
@@ -2251,7 +2262,7 @@ class QuerySet(object):
             elif isinstance(arg, Operator):
                 self._add_where_clause(arg)
             elif callable(arg):
-                if self.generator is None:
+                if self.generator is None or self.needs_to_run:
                     self.generator = self._generate()
                 self.generator = filter(arg, self.generator)
             else:
@@ -2264,7 +2275,7 @@ class QuerySet(object):
         """
         Apply the function f to the selected items and return results.
         """
-        if self.generator is None:
+        if self.generator is None or self.needs_to_run:
             self.generator = self._generate()
         previous_generator = self.generator
         def generator():
@@ -2277,7 +2288,7 @@ class QuerySet(object):
         """
         Tag the selected items with the tag name.
         """
-        if self.generator is None:
+        if self.generator is None or self.needs_to_run:
             self.generator = self._generate()
         tag = self.database.get_tag_from_name(tag_text)
         trans_class = self.database.get_transaction_class()
