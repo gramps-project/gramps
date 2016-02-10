@@ -246,8 +246,8 @@ class Citations(Gramplet, DbGUIElement):
             # bug 9094. 
             # str(model.get_path(iter_)) return something like NNN:MMM
             # So if we have only NNN, it's a node
-            path = str(model.get_path(iter_))
-            if path.find(':') == -1: # we don't have ':' in the returned string.
+            # removing the str() solves the problem.
+            if len(model.get_path(iter_)) == 1:
                 self.edit_source(handle)
             else:
                 self.edit_citation(handle)
