@@ -2089,7 +2089,7 @@ class Operator(object):
     op = "OP"
     def __init__(self, *expressions, **kwargs):
         if self.op in ["AND", "OR"]:
-            exprs = [expression.list for expression 
+            exprs = [expression.list for expression
                      in expressions]
             for key in kwargs:
                 exprs.append(
@@ -2185,15 +2185,17 @@ class QuerySet(object):
         """
         Run query with just where, start, limit to get count.
         """
-        if self.generator is None or self.needs_to_run:
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            return len(list(self.generator))
+        else:
             generator = self.database._select(self.table,
                                               ["count(1)"],
                                               where=self.where_by,
                                               start=self.start,
                                               limit=self.limit_by)
             return next(generator)
-        else:
-            return len(list(self.generator))
 
     def _generate(self, args=None):
         """
@@ -2219,14 +2221,18 @@ class QuerySet(object):
         """
         if len(args) == 0:
             args = None
-        if self.generator is None or self.needs_to_run:
+        if self.generator and self.needs_to_run:
+            ## problem
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            if args: # there is a generator, with args
+                for i in self.generator:
+                    yield [i.get_field(arg) for arg in args]
+            else: # generator, no args
+                for i in self.generator:
+                    yield i
+        else: # need to run or not
             self.generator = self._generate(args)
-            for i in self.generator:
-                yield i
-        elif args:
-            for i in self.generator:
-                yield [i.get_field(arg) for arg in args]
-        else:
             for i in self.generator:
                 yield i
 
@@ -2234,7 +2240,7 @@ class QuerySet(object):
         """
         Apply a named proxy to the db.
         """
-        from gramps.gen.proxy import (LivingProxyDb, PrivateProxyDb, 
+        from gramps.gen.proxy import (LivingProxyDb, PrivateProxyDb,
                                       ReferencedBySelectionProxyDb)
         if proxy_name == "living":
             proxy_class = LivingProxyDb
@@ -2262,11 +2268,16 @@ class QuerySet(object):
             elif isinstance(arg, Operator):
                 self._add_where_clause(arg)
             elif callable(arg):
-                if self.generator is None or self.needs_to_run:
+                if self.generator and self.needs_to_run:
+                    ## error
+                    raise Exception("Queries in invalid order")
+                elif self.generator:
+                    pass # ok
+                else:
                     self.generator = self._generate()
                 self.generator = filter(arg, self.generator)
             else:
-                pass # ignore
+                pass # ignore, may have been arg from previous Filter
         if kwargs:
             self._add_where_clause(**kwargs)
         return self
@@ -2275,7 +2286,11 @@ class QuerySet(object):
         """
         Apply the function f to the selected items and return results.
         """
-        if self.generator is None or self.needs_to_run:
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            pass # ok
+        else:
             self.generator = self._generate()
         previous_generator = self.generator
         def generator():
@@ -2288,7 +2303,11 @@ class QuerySet(object):
         """
         Tag the selected items with the tag name.
         """
-        if self.generator is None or self.needs_to_run:
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            pass # ok
+        else:
             self.generator = self._generate()
         tag = self.database.get_tag_from_name(tag_text)
         trans_class = self.database.get_transaction_class()
@@ -2333,4 +2352,3 @@ def _select_field_operator_value(field, op, value):
             op = alias.get(op, op)
     field = _to_dot_format(field)
     return (field, op, value)
-

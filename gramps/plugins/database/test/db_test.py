@@ -89,20 +89,23 @@ class BSDDBTest(unittest.TestCase):
 
     def test_select_3(self):
         result = list(self.db._select("Family", ["mother_handle.gramps_id"],
-                                      where=("mother_handle.gramps_id", "LIKE", "I003%")))
+                        where=("mother_handle.gramps_id", "LIKE", "I003%")))
         self.assertTrue(len(result) == 6, result)
 
     def test_select_4(self):
-        result = list(self.db._select("Family", ["mother_handle.event_ref_list.ref.gramps_id"]))
+        result = list(self.db._select("Family",
+              ["mother_handle.event_ref_list.ref.gramps_id"]))
         self.assertTrue(len(result) == 23, len(result))
 
     def test_select_5(self):
-        result = list(self.db._select("Family", ["mother_handle.event_ref_list.ref.self.gramps_id"]))
+        result = list(self.db._select("Family",
+              ["mother_handle.event_ref_list.ref.self.gramps_id"]))
         self.assertTrue(len(result) == 23, len(result))
 
     def test_select_6(self):
         result = list(self.db._select("Family", ["mother_handle.event_ref_list.0"]))
-        self.assertTrue(all([isinstance(r["mother_handle.event_ref_list.0"], (EventRef, type(None))) for r in result]),
+        self.assertTrue(all([isinstance(r["mother_handle.event_ref_list.0"],
+                                        (EventRef, type(None))) for r in result]),
                         [r["mother_handle.event_ref_list.0"] for r in result])
 
     def test_select_7(self):
@@ -124,7 +127,9 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 10, len(result))
 
     def test_queryset_3(self):
-        result = list(self.db.Family.filter(mother_handle__gramps_id__LIKE="I003%").select())
+        result = list(self.db.Family
+                      .filter(mother_handle__gramps_id__LIKE="I003%")
+                      .select())
         self.assertTrue(len(result) == 6, result)
 
     def test_queryset_4(self):
@@ -132,21 +137,27 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 23, len(result))
 
     def test_queryset_4(self):
-        result = list(self.db.Family.filter(mother_handle__event_ref_list__ref__gramps_id='E0156').select())
+        result = list(self.db.Family
+                      .filter(mother_handle__event_ref_list__ref__gramps_id='E0156')
+                      .select())
         self.assertTrue(len(result) == 1, len(result))
 
     def test_queryset_5(self):
-        result = list(self.db.Family.select("mother_handle.event_ref_list.ref.self.gramps_id"))
+        result = list(self.db.Family
+                      .select("mother_handle.event_ref_list.ref.self.gramps_id"))
         self.assertTrue(len(result) == 23, len(result))
 
     def test_queryset_6(self):
         result = list(self.db.Family.select("mother_handle.event_ref_list.0"))
-        self.assertTrue(all([isinstance(r["mother_handle.event_ref_list.0"], (EventRef, type(None))) for r in result]),
+        self.assertTrue(all([isinstance(r["mother_handle.event_ref_list.0"],
+                                        (EventRef, type(None))) for r in result]),
                         [r["mother_handle.event_ref_list.0"] for r in result])
 
     def test_queryset_7(self):
         from gramps.gen.db import NOT
-        result = list(self.db.Family.filter(NOT(mother_handle__event_ref_list__0=None)).select())
+        result = list(self.db.Family
+                      .filter(NOT(mother_handle__event_ref_list__0=None))
+                      .select())
         self.assertTrue(len(result) == 21, len(result))
 
     def test_order_1(self):
@@ -166,7 +177,10 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 60, len(result))
 
     def test_proxy_3(self):
-        result = len(list(self.db.Person.proxy("private").order("-gramps_id").select("gramps_id")))
+        result = len(list(self.db.Person
+                          .proxy("private")
+                          .order("-gramps_id")
+                          .select("gramps_id")))
         self.assertTrue(result == 59, result)
 
     def test_map_1(self):
@@ -202,11 +216,33 @@ class BSDDBTest(unittest.TestCase):
     def test_limit_1(self):
         result = self.db.Person.limit(count=50).count()
         self.assertTrue(result == 50, result)
-        
+
     def test_limit_2(self):
         result = self.db.Person.limit(start=50, count=50).count()
         self.assertTrue(result == 10, result)
-        
+
+    def test_ordering_1(self):
+        worked = None
+        try:
+            result = list(self.db.Person
+                          .filter(lambda p: p.private)
+                          .order("private")
+                          .select())
+            worked = True
+        except:
+            worked = False
+        self.assertTrue(not worked, "should have failed")
+
+    def test_ordering_2(self):
+        worked = None
+        try:
+            result = list(self.db.Person.order("private")
+                          .filter(lambda p: p.private)
+                          .select())
+            worked = True
+        except:
+            worked = False
+        self.assertTrue(worked, "should have worked")
 
 class DBAPITest(BSDDBTest):
     dbwrap = DBAPI()
