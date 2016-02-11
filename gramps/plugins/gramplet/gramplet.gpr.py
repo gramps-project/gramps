@@ -1262,8 +1262,8 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
-         id="Place Enclosed By",
-         name=_("Place Enclosed By"),
+         id="Place Locations",
+         name=_("Place Locations"),
          description = _("Gramplet showing the places enclosed by the active place"),
          version="1.0.0",
          gramps_target_version=MODULE_VERSION,
