@@ -1,10 +1,13 @@
 # After changing this file, check it on:
 #   http://lint.travis-ci.org/
 
-
 language: python
 #python:
 #    - 3.4
+
+before_install:
+    - sudo pip install --upgrade pip
+    - sudo pip install --upgrade nose coverage codecov
 
 install:
     - time sudo apt-get update
@@ -28,4 +31,8 @@ script:
     -  mkdir -p ~/.gramps/grampsdb/
     # --exclude=TestUser because of older version of mock
     #                    without configure_mock
-    -  nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+    -  nosetests3 --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+
+after_success:
+    - codecov
+
