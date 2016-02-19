@@ -287,9 +287,6 @@ class Span(object):
                 _repr = trans_text("greater than %s years") % Span.ALIVE
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
-                    if fdate12[0] == '-':
-                        # a negative age is not realistic
-                        fdate12 = '(' + fdate12[1:].replace('-', '') + ')'
                     _repr = fdate12
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     _repr = trans_text("more than") + " " + fdate12
