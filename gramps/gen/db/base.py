@@ -46,7 +46,6 @@ from ..lib.childref import ChildRef
 from .txn import DbTxn
 from .exceptions import DbTransactionCancel
 
-
 def eval_order_by(order_by, obj, db):
     """
     Given a list of [[field, DIRECTION], ...]
@@ -2081,6 +2080,12 @@ class DbWriteBase(DbReadBase):
             self.remove_family(instance.handle, transaction)
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
+
+    def get_queryset_by_table_name(self, table_name):
+        """
+        Get Person, Family queryset by name.
+        """
+        return getattr(self, table_name)
 
 class Operator(object):
     """
