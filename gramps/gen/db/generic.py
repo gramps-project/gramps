@@ -46,21 +46,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP,
-                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL)
+                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
+                           PERSON_KEY, FAMILY_KEY, CITATION_KEY,
+                           SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
+                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
+                           TAG_KEY, eval_order_by)
+from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
-from gramps.gen.db import (PERSON_KEY,
-                           FAMILY_KEY,
-                           CITATION_KEY,
-                           SOURCE_KEY,
-                           EVENT_KEY,
-                           MEDIA_KEY,
-                           PLACE_KEY,
-                           REPOSITORY_KEY,
-                           NOTE_KEY,
-                           TAG_KEY,
-                           eval_order_by)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -738,7 +732,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return self.__tables[table] # dict of functions
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else: 
+        else:
             return super().get_table_func(table, func)
 
     def load(self, directory, callback=None, mode=None,
@@ -1189,12 +1183,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 elif sort_items[pos] is None:
                     return ""
                 else:
-                    # FIXME: should do something clever/recurive to 
+                    # FIXME: should do something clever/recurive to
                     # sort these meaningfully, and return a string:
                     return str(sort_items[pos])
             pos = len(order_by) - 1
             for (field, order) in reversed(order_by): # sort the lasts parts first
-                sorted_items.sort(key=lambda item: getitem(item, pos), 
+                sorted_items.sort(key=lambda item: getitem(item, pos),
                                   reverse=(order=="DESC"))
                 pos -= 1
             # now we will look them up again:
@@ -2090,3 +2084,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_default_person_handle(self, handle):
         self.set_metadata("default-person-handle", handle)
         self.emit('home-person-changed')
+
+    def add_table_funcs(self, table, funcs):
+        """
+        Add a new table and funcs to the database.
+        """
+        self.__tables[table] = funcs
+        setattr(DbGeneric, table, property(lambda self: QuerySet(self, table)))
