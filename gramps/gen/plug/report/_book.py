@@ -426,12 +426,13 @@ class BookList(object):
         """
         del self.bookmap[name]
 
-    def get_book_map(self):
-        """
-        Return the map of names to books.
-        """
-        return self.bookmap
-
+## 2/2016 the string "get_book_map" appears nowhere else in gramps
+##    def get_book_map(self):
+##        """
+##        Return the map of names to books.
+##        """
+##        return self.bookmap
+##
     def get_book(self, name):
         """
         Return the Book associated with the name
