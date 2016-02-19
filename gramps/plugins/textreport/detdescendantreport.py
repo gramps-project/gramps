@@ -195,7 +195,11 @@ class DetDescendantReport(Report):
     def apply_henry_filter(self,person_handle, index, pid, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
             return
-        self.dnumber[person_handle] = pid
+        if person_handle in self.dnumber:
+            if self.dnumber[person_handle] > pid:
+                self.dnumber[person_handle] = pid
+        else:
+            self.dnumber[person_handle] = pid
         self.map[index] = person_handle
 
         if len(self.gen_keys) < cur_gen:
