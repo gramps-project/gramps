@@ -153,6 +153,7 @@ class ListView(NavigationView):
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
         self.list.connect('key-press-event', self._key_press)
+        self.list.connect('start-interactive-search',self.open_all_nodes)
         self.searchbox = InteractiveSearchBox(self.list)
 
         if self.drag_info():
