@@ -158,6 +158,19 @@ plg.ptype = RELCALC
 plg.relcalcclass = 'RelationshipCalculator'
 plg.lang_list = ["hu", "HU", "hu_HU", "hu_HU.utf8", "hu_HU.UTF8"]
 
+# is
+plg = newplugin()
+plg.id    = 'relcalc_is'
+plg.name  = _("Icelandic Relationship Calculator")
+plg.description =  _("Calculates relationships between people")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'rel_is.py'
+plg.ptype = RELCALC
+plg.relcalcclass = 'RelationshipCalculator'
+plg.lang_list = ["is", "IS", "is_IS", "is_IS@euro", "is_IS.utf8"]
+
 # it
 plg = newplugin()
 plg.id    = 'relcalc_it'
