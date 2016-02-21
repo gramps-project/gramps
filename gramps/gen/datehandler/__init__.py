@@ -49,6 +49,7 @@ from . import _date_fi
 from . import _date_fr
 from . import _date_hr
 from . import _date_hu
+from . import _date_is
 from . import _date_it
 from . import _date_ja
 from . import _date_lt

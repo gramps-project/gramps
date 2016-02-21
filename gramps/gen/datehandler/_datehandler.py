@@ -85,6 +85,8 @@ LANG_TO_DISPLAY = {
     'English_United States' : DateDisplayEn,
     'ko_KR'                 : DateDisplay,
     'nb_NO'                 : DateDisplay,
+    'is'                    : DateDisplay,
+    'is_IS'                 : DateDisplay,
     }
 
 def register_datehandler(locales,parse_class,display_class):
