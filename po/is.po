@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 16:31+0100\n"
-"PO-Revision-Date: 2016-02-16 17:24+0000\n"
+"PO-Revision-Date: 2016-02-19 09:20+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -1341,16 +1341,17 @@ msgid "Importing data..."
 msgstr "Innflutningur gagna..."
 
 #: ../gramps/cli/clidbman.py:406
-#, fuzzy
 msgid "Remove family tree warning"
-msgstr "Fjarlægja ættartölu"
+msgstr "Aðvörun vegna fjarlægingar ættartölu"
 
 #: ../gramps/cli/clidbman.py:407
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "Ertu viss um að þú viljir uppfæra þessa ættartölu?"
+msgstr ""
+"Ertu viss um að þú viljir fjarlægja ættartöluna\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:408
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
@@ -1734,14 +1735,12 @@ msgstr ""
 "er þægilegt ættfræðiforrit."
 
 #: ../gramps/gen/const.py:250
-#, fuzzy
 msgid "surname|none"
-msgstr "Kenninafn óþekkt"
+msgstr "ekkert"
 
 #: ../gramps/gen/const.py:251
-#, fuzzy
 msgid "given-name|none"
-msgstr "eiginnafn"
+msgstr "ekkert"
 
 #: ../gramps/gen/datehandler/__init__.py:75
 #, python-format
@@ -1995,14 +1994,14 @@ msgstr "{date_quality}frá {date_start} til {date_stop}{nonstd_calendar_and_ny}"
 #. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:423
 msgid "between-date|"
-msgstr "between"
+msgstr ""
 
 #. If there is no special inflection for "and <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:428
 msgid "and-date|"
-msgstr "and"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:429
 #, python-brace-format
@@ -2711,58 +2710,50 @@ msgstr "Fjöldi fjölskyldna"
 #: ../gramps/gen/db/generic.py:1975
 #: ../gramps/plugins/database/bsddb_support/read.py:2019
 #: ../gramps/plugins/database/bsddb_support/write.py:2501
-#, fuzzy
 msgid "Number of sources"
-msgstr "Fjöldi kenninafna"
+msgstr "Fjöldi heimilda"
 
 #: ../gramps/gen/db/generic.py:1976
 #: ../gramps/plugins/database/bsddb_support/read.py:2020
 #: ../gramps/plugins/database/bsddb_support/write.py:2502
-#, fuzzy
 msgid "Number of citations"
-msgstr "Fjöldi kynslóða:"
+msgstr "Fjöldi tilvitnana"
 
 #: ../gramps/gen/db/generic.py:1977
 #: ../gramps/plugins/database/bsddb_support/read.py:2021
 #: ../gramps/plugins/database/bsddb_support/write.py:2503
-#, fuzzy
 msgid "Number of events"
-msgstr "Fjöldi foreldra"
+msgstr "Fjöldi atburða"
 
 #: ../gramps/gen/db/generic.py:1978
 #: ../gramps/plugins/database/bsddb_support/read.py:2022
 #: ../gramps/plugins/database/bsddb_support/write.py:2504
-#, fuzzy
 msgid "Number of media"
-msgstr "Fjöldi fjölskyldna"
+msgstr "Fjöldi gagnahluta"
 
 #: ../gramps/gen/db/generic.py:1979
 #: ../gramps/plugins/database/bsddb_support/read.py:2023
 #: ../gramps/plugins/database/bsddb_support/write.py:2505
-#, fuzzy
 msgid "Number of places"
-msgstr "Fjöldi einstaklinga"
+msgstr "Fjöldi staða"
 
 #: ../gramps/gen/db/generic.py:1980
 #: ../gramps/plugins/database/bsddb_support/read.py:2024
 #: ../gramps/plugins/database/bsddb_support/write.py:2506
-#, fuzzy
 msgid "Number of repositories"
-msgstr "Leita að gagnasöfnum"
+msgstr "Fjöldi gagnasafna"
 
 #: ../gramps/gen/db/generic.py:1981
 #: ../gramps/plugins/database/bsddb_support/read.py:2025
 #: ../gramps/plugins/database/bsddb_support/write.py:2507
-#, fuzzy
 msgid "Number of notes"
-msgstr "Fjöldi foreldra"
+msgstr "Fjöldi minnispunkta"
 
 #: ../gramps/gen/db/generic.py:1982
 #: ../gramps/plugins/database/bsddb_support/read.py:2026
 #: ../gramps/plugins/database/bsddb_support/write.py:2508
-#, fuzzy
 msgid "Number of tags"
-msgstr "Fjöldi hjúskapa"
+msgstr "Fjöldi merkja"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:349 ../gramps/plugins/lib/libtreebase.py:707
@@ -6075,9 +6066,8 @@ msgid "0 days"
 msgstr "0 dagar"
 
 #: ../gramps/gen/lib/date.py:1864
-#, fuzzy
 msgid "date-quality|none"
-msgstr "áætlað "
+msgstr "ekkert"
 
 #: ../gramps/gen/lib/date.py:1865
 msgid "calculated"
@@ -6088,9 +6078,8 @@ msgid "estimated"
 msgstr "áætlað"
 
 #: ../gramps/gen/lib/date.py:1879
-#, fuzzy
 msgid "date-modifier|none"
-msgstr "fyrir"
+msgstr "ekkert"
 
 #: ../gramps/gen/lib/date.py:1880 ../gramps/plugins/lib/libsubstkeyword.py:315
 msgid "about"
@@ -6607,7 +6596,6 @@ msgstr "Hjónaband"
 
 #: ../gramps/gen/lib/grampstype.py:213 ../gramps/gen/lib/grampstype.py:214
 #: ../gramps/gen/lib/grampstype.py:215
-#, fuzzy
 msgid "Family Relationship"
 msgstr "Vensl fjölskyldu"
 
@@ -6815,7 +6803,6 @@ msgid "Notes"
 msgstr "Minnispunktar"
 
 #: ../gramps/gen/lib/media.py:205 ../gramps/gen/lib/person.py:260
-#, fuzzy
 msgid "Last changed"
 msgstr "Síðast breytt"
 
@@ -7111,33 +7098,28 @@ msgid "Type"
 msgstr "Gerð"
 
 #: ../gramps/gen/lib/name.py:209
-#, fuzzy
 msgid "Group as"
-msgstr "Hó_pa sem:"
+msgstr "Hópa sem"
 
 #: ../gramps/gen/lib/name.py:210
-#, fuzzy
 msgid "Sort as"
-msgstr "R_aða sem:"
+msgstr "Raða sem"
 
 #: ../gramps/gen/lib/name.py:211
-#, fuzzy
 msgid "Display as"
-msgstr "_Birta sem:"
+msgstr "Birta sem"
 
 #: ../gramps/gen/lib/name.py:212 ../gramps/plugins/importer/importcsv.py:152
 msgid "Call name"
 msgstr "Birtingarnafn"
 
 #: ../gramps/gen/lib/name.py:213
-#, fuzzy
 msgid "Nick name"
 msgstr "Gælunafn"
 
 #: ../gramps/gen/lib/name.py:214
-#, fuzzy
 msgid "Family nick name"
-msgstr "Viðurnefni fjölskyldu:"
+msgstr "Viðurnefni fjölskyldu"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:516 ../gramps/gen/lib/name.py:531
@@ -7361,27 +7343,22 @@ msgid "Gender"
 msgstr "Kyn"
 
 #: ../gramps/gen/lib/person.py:246
-#, fuzzy
 msgid "Primary name"
-msgstr "Helsta hlutverk:"
+msgstr "Aðalnafn"
 
 #: ../gramps/gen/lib/person.py:247
-#, fuzzy
 msgid "Alternate names"
 msgstr "Varanöfn"
 
 #: ../gramps/gen/lib/person.py:248
-#, fuzzy
 msgid "Death reference index"
-msgstr "Minnispunktur tilvísunar atburðar"
+msgstr "Tilvísun í andlát"
 
 #: ../gramps/gen/lib/person.py:249
-#, fuzzy
 msgid "Birth reference index"
-msgstr "Breyta tilvísun"
+msgstr "Tilvísun í fæðingu"
 
 #: ../gramps/gen/lib/person.py:250
-#, fuzzy
 msgid "Event references"
 msgstr "Tilvísanir atburðar"
 
@@ -7404,9 +7381,8 @@ msgid "Families"
 msgstr "Fjölskyldur"
 
 #: ../gramps/gen/lib/person.py:252
-#, fuzzy
 msgid "Parent families"
-msgstr "Endurraða fjölskyldum"
+msgstr "Fjölskyldur foreldra"
 
 #: ../gramps/gen/lib/person.py:254 ../gramps/gui/merge/mergeperson.py:254
 #: ../gramps/plugins/textreport/indivcomplete.py:343
@@ -7416,22 +7392,19 @@ msgstr "Heimilisföng"
 
 #: ../gramps/gen/lib/person.py:256
 msgid "Urls"
-msgstr ""
+msgstr "Slóðir"
 
 #: ../gramps/gen/lib/person.py:257
-#, fuzzy
 msgid "LDS ordinances"
 msgstr "SDH kirkjuskipun"
 
 #: ../gramps/gen/lib/person.py:263
-#, fuzzy
 msgid "Person references"
 msgstr "Tilvísanir í einstakling"
 
 #: ../gramps/gen/lib/person.py:264
-#, fuzzy
 msgid "Probably alive"
-msgstr "Einstaklingar líklega á lífi"
+msgstr "Líklega á lífi"
 
 #: ../gramps/gen/lib/person.py:639
 msgid "Merged Gramps ID"
@@ -8504,7 +8477,7 @@ msgstr "Uppfært"
 
 #: ../gramps/gen/plug/utils.py:262
 msgid "updates|New"
-msgstr "Nýtt"
+msgstr "Nýtt :"
 
 #: ../gramps/gen/plug/utils.py:292 ../gramps/gen/plug/utils.py:299
 #, python-format
@@ -8567,10 +8540,10 @@ msgid "Registered '%s'"
 msgstr "Skráði '%s'"
 
 #: ../gramps/gen/recentfiles.py:204
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
 msgstr ""
-"Tókst ekki að opna lista yfir nýlegar gagnagrunnsskrár {fname}: {error}"
+"Tókst ekki að vista lista yfir nýlegar gagnagrunnsskrár {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:265
 #, python-brace-format
@@ -10471,14 +10444,13 @@ msgstr "Veldu skráa_tegund:"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/dbman.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "Sýsla _með ættartölur..."
+msgstr "%s_-_Sýsla _með ættartölur"
 
 #: ../gramps/gui/dbman.py:97
-#, fuzzy
 msgid "Family_Trees_manager_window"
-msgstr "Heiti ættartölu"
+msgstr "Gluggi_til_að_skipuleggja_ættartölur"
 
 #: ../gramps/gui/dbman.py:110 ../gramps/gui/glade/dbman.glade:320
 msgid "_Archive"
@@ -10489,9 +10461,8 @@ msgid "_Extract"
 msgstr "_Afþjappa"
 
 #: ../gramps/gui/dbman.py:116 ../gramps/gui/dbman.py:139
-#, fuzzy
 msgid "Database Information"
-msgstr "Engar dagsetningupplýsingar"
+msgstr "Upplýsingar um gagnagrunn"
 
 #: ../gramps/gui/dbman.py:118 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:40
@@ -10548,9 +10519,8 @@ msgid "_OK"
 msgstr "Í _lagi"
 
 #: ../gramps/gui/dbman.py:124
-#, fuzzy
 msgid "Setting"
-msgstr "Ræsing"
+msgstr "Stilling"
 
 #: ../gramps/gui/dbman.py:321
 msgid "Family Tree name"
@@ -10730,7 +10700,7 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:964 ../gramps/gui/dbman.py:992
 msgid "Archiving failed"
-msgstr ""
+msgstr "Gerð safnskrár mistókst"
 
 #: ../gramps/gui/dbman.py:965
 #, python-format
@@ -10828,12 +10798,10 @@ msgid "No active note"
 msgstr "Enginn virkur minnispunktur"
 
 #: ../gramps/gui/displaystate.py:580
-#, fuzzy
 msgid "No active object"
-msgstr "Enginn virkur minnispunktur"
+msgstr "Enginn virkur hlutur"
 
 #: ../gramps/gui/editors/addmedia.py:70
-#, fuzzy
 msgid "manual|Select_a_media_selector"
 msgstr "Velja_gagnahluta"
 
@@ -13338,9 +13306,8 @@ msgid "_New"
 msgstr "_Nýtt"
 
 #: ../gramps/gui/glade/dbman.glade:257
-#, fuzzy
 msgid "_Info"
-msgstr "Upplýsingar"
+msgstr "_Upplýsingar"
 
 #: ../gramps/gui/glade/dbman.glade:288
 msgid "_Rename"
@@ -15354,6 +15321,13 @@ msgid ""
 "If you close this dialog now, you can install addons later from the menu "
 "under Edit -> Preferences."
 msgstr ""
+"Gramps kemur með kjarnasett af foruppsettum viðbótum, sem gefa færi á að nota "
+"alla helstu eiginleika. Hins vegar er hægt að útvíkka virkni Gramps með því "
+"að bæta inn viðbótum. Þessar viðbætur koma með nýjar tegundir af skýrslum, "
+"listum, sýnum, gramplingum og ýmsu fleira. Hér geturðu valið úr tiltækum "
+"viðbótum, þær verða sóttar á vef Gramps og settar upp staðvært á tölvuna "
+"þína. Ef þú lokar þessum glugga núna, geturðu alltaf sett upp viðbætur með "
+"því að fara í valmyndina Breyta --> Kjörstillingar."
 
 #: ../gramps/gui/glade/updateaddons.glade:106
 msgid "_Select All"
@@ -15516,13 +15490,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/logger/_errorreportassistant.py:422
-#, fuzzy
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
 msgstr ""
-"Þetta er tækifærið til að lýsa því hvað þú varst að gera þegar villan kom "
-"upp (á ensku)."
+"Gefðu upp eins mikið af upplýsingum og mögulegt er varðandi hvað þú varst að "
+"gera þegar villan kom upp (á ensku)."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:461
 #: ../gramps/gui/logger/_errorreportassistant.py:486
@@ -15530,13 +15503,12 @@ msgid "Further Information"
 msgstr "Meiri upplýsingar"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:466
-#, fuzzy
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
 msgstr ""
-"Þetta er tækifærið til að lýsa því hvað þú varst að gera þegar villan kom "
-"upp (á ensku)."
+"Þetta er tækifærið til að lýsa því hvað þú varst að gera þegar villan kom upp "
+"(á ensku)."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:493
 msgid ""
@@ -16397,9 +16369,8 @@ msgid "Name of the book. MANDATORY"
 msgstr "Heiti bókarinnar. KRAFIST"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:371
-#, fuzzy
 msgid "Manage Books"
-msgstr "Tiltækar bækur"
+msgstr "Sýsla með bækur"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:409
 msgid "New Book"
@@ -16502,9 +16473,8 @@ msgid "You are about to save away a book with a name which already exists."
 msgstr "Þú ert við það að vista bók með heiti sem þegar er til."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:918
-#, fuzzy
 msgid "Generate Book"
-msgstr "Gert með"
+msgstr "Útbúa bók"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:955
 msgid "Gramps Book"
@@ -16864,9 +16834,8 @@ msgstr "Veldu gagnasafn"
 #. -------------------------------------------------------------------------
 #. FIXME
 #: ../gramps/gui/selectors/selectsource.py:46
-#, fuzzy
 msgid "manual|xxxx"
-msgstr "Merki"
+msgstr "xxxx"
 
 #: ../gramps/gui/selectors/selectsource.py:63
 msgid "Select Source"
@@ -17188,6 +17157,8 @@ msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
+"Ef hætt er við breytingar mun gagnagrunnurinn verða í því ástandi sem hann "
+"var áður en þú hófst þessa breytingasetu."
 
 #: ../gramps/gui/viewmanager.py:780
 msgid "Abort changes"
@@ -17590,6 +17561,8 @@ msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
+"Skilgreining merkisins verður fjarlægð. Merkið verður einnig fjarlægt af "
+"öllum atriðum í gagnagrunninum."
 
 #: ../gramps/gui/views/tags.py:517
 msgid "Removing Tags"
@@ -17774,6 +17747,7 @@ msgstr ""
 #: ../gramps/gui/widgets/grampletpane.py:794
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
+"Dragðu eiginleikahnappinn til að flytja og smelltu á hann til að setja upp"
 
 #. build the GUI:
 #: ../gramps/gui/widgets/grampletpane.py:990
@@ -17830,7 +17804,7 @@ msgstr "Dagsetning er meira en eitt ár í framtíðinni"
 msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
-msgstr ""
+msgstr "Tvísmelltu á myndina til að sjá hana í sjálfgefnu myndskoðunarforriti."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -18044,14 +18018,12 @@ msgstr "Útgáfa á skema"
 
 #: ../gramps/plugins/database/dbapi.gpr.py:23
 #: ../gramps/plugins/database/dbapi.gpr.py:25
-#, fuzzy
 msgid "DB-API 2.0 Database Backend"
-msgstr "BSDDB gagnagrunnsbakendi"
+msgstr "DB-API 2.0 gagnagrunnsbakendi"
 
 #: ../gramps/plugins/database/dbapi.gpr.py:24
-#, fuzzy
 msgid "DB-_API 2.0 Database Backend"
-msgstr "BSDDB gagnagrunnsbakendi"
+msgstr "DB-_API 2.0 gagnagrunnsbakendi"
 
 #: ../gramps/plugins/database/dictionarydb.gpr.py:23
 msgid "Dictionary Database Backend"
@@ -18467,7 +18439,7 @@ msgstr "Taka með reit fyrir hjónaband"
 #: ../gramps/plugins/drawreport/ancestortree.py:869
 #: ../gramps/plugins/drawreport/descendtree.py:1572
 msgid "Whether to include a separate marital box in the report"
-msgstr ""
+msgstr "Hvort hafa eigi með sérstakan reit fyrir hjúskap í skýrslunni"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:872
 #: ../gramps/plugins/drawreport/descendtree.py:1575
@@ -18481,7 +18453,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:873
 #: ../gramps/plugins/drawreport/descendtree.py:1576
 msgid "Display format for the marital box."
-msgstr ""
+msgstr "Birtingarsnið fyrir hjúskaparreiti"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:879
 #: ../gramps/plugins/drawreport/descendtree.py:1591
@@ -21139,33 +21111,28 @@ msgid "Gramplet to generate SoundEx codes"
 msgstr "Gramplingur sem útbýr soundex-kóða"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
-#, fuzzy
 msgid "Place Enclosed By"
-msgstr "Umlukt af"
+msgstr "Staður umluktur af"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
-#, fuzzy
 msgid "Gramplet showing the places enclosed by the active place"
-msgstr "Gramplingur sem birtir minnispunkta staðar"
+msgstr "Gramplingur sem birtir þá staði sem eru umluktir af virkum stað"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1280
-#, fuzzy
 msgid "Place Encloses"
-msgstr "Minnispunktar staða"
+msgstr "Staður umlykur"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
-#, fuzzy
 msgid "Gramplet showing the places that the active place encloses"
-msgstr "Gramplingur sem birtir tilvitnanir vegna staðar"
+msgstr "Gramplingur sem birtir alla þá staði sem virkur staður umlykur"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1288
-#, fuzzy
 msgid "Encloses"
-msgstr "Umlukt af"
+msgstr "Umlykur"
 
 #: ../gramps/plugins/gramplet/leak.py:99
 msgid "Uncollected object"
-msgstr ""
+msgstr "Ósafnaður hlutur"
 
 #: ../gramps/plugins/gramplet/leak.py:108
 msgid "Refresh"
@@ -21184,7 +21151,7 @@ msgstr "%d vísar til"
 #: ../gramps/plugins/gramplet/leak.py:178
 #, python-format
 msgid "Uncollected Objects: %s"
-msgstr ""
+msgstr "Ósafnaðir hlutir: %s"
 
 #: ../gramps/plugins/gramplet/locations.py:80
 msgid "Double-click on a row to edit the selected place."
@@ -22219,18 +22186,16 @@ msgid "Thumbnail Location"
 msgstr "Staðsetning smámyndar"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:671
-#, fuzzy
 msgid "Include occupation"
-msgstr "Hafa með systkinabörn foreldra"
+msgstr "Hafa með atvinnu"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:672
-#, fuzzy
 msgid "Whether to include the last occupation"
-msgstr "Hvort hafa eigi með möguleika á að hala niður gagnagrunni"
+msgstr "Hvort hafa eigi með upplýsingar um síðasta starf"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:676
 msgid "Include relationship debugging numbers also"
-msgstr ""
+msgstr "Hafa einnig með aflúsunarnúmer vegna villuleitar vensla"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:679
 msgid ""
@@ -22760,7 +22725,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importgpkg.py:117
 msgid "Cannot set base media path"
-msgstr ""
+msgstr "Get ekki sett grunnslóð fyrir gagnahluti"
 
 #: ../gramps/plugins/importer/importgpkg.py:118
 #, python-format
@@ -23127,11 +23092,11 @@ msgstr "Nafn vitnis: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1277
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr ""
+msgstr "Allar tilvísanir í atburði verða að vera með 'hlink'-eigindi."
 
 #: ../gramps/plugins/importer/importxml.py:1550
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr ""
+msgstr "Allar tilvísanir í einstaklinga verða að vera með 'hlink'-eigindi."
 
 #: ../gramps/plugins/importer/importxml.py:1738
 #, python-format
@@ -23150,7 +23115,7 @@ msgstr "Óþekkt við innflutning"
 
 #: ../gramps/plugins/importer/importxml.py:1969
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr ""
+msgstr "Allar tilvísanir í minnispunkta verða að vera með 'hlink'-eigindi."
 
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
@@ -23365,7 +23330,7 @@ msgstr "8 í Hanukkah"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:44
 msgid "New Zealand"
-msgstr "Nýjasjáland"
+msgstr "Nýja-Sjáland"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:45
 msgid "Ukraine"
@@ -23656,7 +23621,7 @@ msgstr "Flytja inn úr %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7103
 msgid "Submission record identifier"
-msgstr ""
+msgstr "Auðkenni innsendrar færslu"
 
 #: ../gramps/plugins/lib/libgedcom.py:7116
 msgid "Language of GEDCOM text"
@@ -26493,6 +26458,8 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
 msgstr ""
+"Þessi einstaklingur var í sambandi við %(spouse)s á tímabilinu "
+"%(partial_date)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1225
 #, python-format
@@ -26500,6 +26467,9 @@ msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Þessi einstaklingur var í sambandi við "
+"%(spouse)s %(full_date)s, "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1226
 #, python-format
@@ -26507,6 +26477,9 @@ msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Þessi einstaklingur var í sambandi við "
+"%(spouse)s %(modified_date)s, "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1229
 #, python-format
@@ -26514,6 +26487,8 @@ msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hann var í sambandi við %(spouse)s á tímabilinu %(partial_date)s, "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
@@ -26521,6 +26496,8 @@ msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hann var í sambandi við %(spouse)s %(full_date)s, %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -26528,6 +26505,8 @@ msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hann var í sambandi við %(spouse)s %(modified_date)s, %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1234
 #, python-format
@@ -26535,6 +26514,8 @@ msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hún var í sambandi við %(spouse)s á tímabilinu %(partial_date)s, "
+"%(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1235
 #, python-format
@@ -26542,6 +26523,8 @@ msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hún var í sambandi við %(spouse)s %(full_date)s, %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1236
 #, python-format
@@ -26549,6 +26532,8 @@ msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Hún var í sambandi við %(spouse)s %(modified_date)s, %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
@@ -26673,7 +26658,7 @@ msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
 msgstr ""
-"Þessi einstaklingur var í sambandi við %(spouse)s á tímabilinu "
+"Þessi einstaklingur hóf samband við %(spouse)s á tímabilinu "
 "%(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1271
@@ -26681,47 +26666,47 @@ msgstr ""
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
-"Þessi einstaklingur var í sambandi við %(spouse)s %(full_date)s%(endnotes)s."
+"Þessi einstaklingur hóf samband við %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1272
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
-"Þessi einstaklingur var í sambandi við %(spouse)s %(modified_date)s"
+"Þessi einstaklingur hóf samband við %(spouse)s %(modified_date)s"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1275
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Hann var í sambandi við %(spouse)s á tímabilinu %(partial_date)s%(endnotes)s."
+"Hann hóf samband við %(spouse)s á tímabilinu %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1276
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hann var í sambandi við %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Hann hóf samband við %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1277
 #, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hann var í sambandi við %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hann hóf samband við %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1280
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr ""
-"Hún var í sambandi við %(spouse)s á tímabilinu %(partial_date)s%(endnotes)s."
+"Hún hóf samband við %(spouse)s á tímabilinu %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1281
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hún var í sambandi við %(spouse)s %(full_date)s%(endnotes)s."
+msgstr "Hún hóf samband við %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1282
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hún var í sambandi við %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hún hóf samband við %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1285
 #, python-format
@@ -26826,18 +26811,17 @@ msgstr "Einnig í sambandi við %(spouse)s %(modified_date)s%(endnotes)s."
 #, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Þessi einstaklingur var í sambandi við %(spouse)s, %(place)s%(endnotes)s."
+msgstr "Þessi einstaklingur hóf samband við %(spouse)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hann var í sambandi við %(spouse)s, %(place)s%(endnotes)s."
+msgstr "Hann hóf samband við %(spouse)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1317
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hún var í sambandi við %(spouse)s, %(place)s%(endnotes)s."
+msgstr "Hún hóf samband við %(spouse)s, %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
@@ -26870,17 +26854,17 @@ msgstr "Einnig í sambandi við %(spouse)s, %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Þessi einstaklingur var í sambandi við %(spouse)s%(endnotes)s."
+msgstr "Þessi einstaklingur hóf samband við %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Hann var í sambandi við %(spouse)s%(endnotes)s."
+msgstr "Hann hóf samband við %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Hún var í sambandi við %(spouse)s%(endnotes)s."
+msgstr "Hún hóf samband við %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1332
 #, python-format
@@ -27040,6 +27024,8 @@ msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
 msgstr ""
+"Þú verður að velja stað til að geta séð hann á landakorti. Sumar "
+"kortaþjónustur gefa kost á að velja mörg atriði í einu."
 
 #: ../gramps/plugins/lib/libplaceview.py:363
 msgid "Cannot delete place."
@@ -27067,7 +27053,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:414
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "Sameining á þessum stöðum mun orsaka hringvísun í stigskipun staða."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -27087,7 +27073,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:103
 msgid "Provides holiday information for different countries."
-msgstr ""
+msgstr "Gefur upplýsingar um frídaga í ýmsum löndum."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:121
 msgid "Manages a HTML file implementing DocBackend."
@@ -27129,6 +27115,8 @@ msgstr ""
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
+"Er nauðsynlegur grunnur fyrir gerð myndrænna skýrslna um forfeður og "
+"afkomendur."
 
 #: ../gramps/plugins/lib/librecords.py:54
 msgid "Youngest living person"
@@ -27199,21 +27187,19 @@ msgid "Longest past marriage"
 msgstr "Lengsta liðna hjónaband"
 
 #: ../gramps/plugins/lib/librecords.py:71
-#, fuzzy
 msgid "Couple with smallest age difference"
-msgstr "Par með flest börn"
+msgstr "Par með minnsta aldurmun"
 
 #: ../gramps/plugins/lib/librecords.py:72
-#, fuzzy
 msgid "Couple with biggest age difference"
-msgstr "Hámarks aldurmunur systkina"
+msgstr "Par með mesta aldurmun"
 
 #. Add call name to first name.
 #. translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:423
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s og %(name2)s"
+msgstr ""
 
 #: ../gramps/plugins/lib/libtreebase.py:756
 msgid "Top Left"
@@ -27653,7 +27639,6 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Víxla gagnasöfnum"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse Media"
 msgstr "Víxla gagnahlutum"
 
@@ -27806,7 +27791,7 @@ msgstr "Gagnasöfn"
 #: ../gramps/plugins/quickview/filterbyname.py:148
 #, python-format
 msgid "Filtering on %s"
-msgstr "Síun eftir %s"
+msgstr "Síun: %s"
 
 #: ../gramps/plugins/quickview/filterbyname.py:282
 #: ../gramps/plugins/quickview/filterbyname.py:290
@@ -28576,7 +28561,7 @@ msgstr "Birta tvíteknar ættartölur"
 
 #: ../gramps/plugins/textreport/descendreport.py:430
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr ""
+msgstr "Hvort birta eigi tvíteknar ættartölur í skýrslunni."
 
 #: ../gramps/plugins/textreport/descendreport.py:460
 #, python-format
@@ -32292,9 +32277,8 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoevents.py:297
 #: ../gramps/plugins/view/geoevents.py:308
-#, fuzzy
 msgid "Selecting all events"
-msgstr "allir atburðir"
+msgstr "Val á öllum atburðum"
 
 #: ../gramps/plugins/view/geoevents.py:353
 #: ../gramps/plugins/view/geoevents.py:385
@@ -32564,9 +32548,8 @@ msgstr "GeoPlaces"
 
 #: ../gramps/plugins/view/geoplaces.py:272
 #: ../gramps/plugins/view/geoplaces.py:283
-#, fuzzy
 msgid "Selecting all places"
-msgstr "Val á einstaklingum"
+msgstr "Val á öllum stöðum"
 
 #: ../gramps/plugins/view/geoplaces.py:306
 msgid "The place name in the status bar is disabled."
@@ -33154,11 +33137,9 @@ msgid "Narrative"
 msgstr "Frásögn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1601
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr ""
-"Gert með %(gramps_home_html_start)sGramps%(html_end)s %(version)s þann "
-"%(date)s"
+msgstr "Gert með %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1610
 #, python-format
@@ -33166,9 +33147,9 @@ msgid "Last change was the %(date)s"
 msgstr "Síðasta breyting þann %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1612
-#, fuzzy, python-format
+#, python-format
 msgid " on %(date)s"
-msgstr "%(date)s"
+msgstr " %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1624
 #, python-format
@@ -33252,6 +33233,9 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla einstaklinga í gagnagrunninum sem "
+"hafa kenninafnið %s. Sé smellt á nafn einstaklings, er farið yfir á síðuna um "
+"þann einstakling."
 
 #. Name Column
 #: ../gramps/plugins/webreport/narrativeweb.py:2940
@@ -33287,6 +33271,9 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir allar fjölskyldur/vensl í "
+"gagnagrunninum, raðað eftir ættarnafni/kenninafni. Sé smellt á nafn "
+"einstaklings, er farið yfir á síðuna um þá fjölskyldu/vensl."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3153
 #: ../gramps/plugins/webreport/narrativeweb.py:3423
@@ -33310,6 +33297,9 @@ msgid ""
 "their title. Clicking on a place&#8217;s title will take you to that "
 "place&#8217;s page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla staði í gagnagrunninum, raðað "
+"eftir heiti þeirra. Sé smellt á heiti staðar, er farið yfir á síðuna um þann "
+"stað."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3424
 msgid "Place Name | Name"
@@ -33335,6 +33325,9 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla atburði í gagnagrunninum, raðað "
+"eftir gerð þeirra og dagsetningu (ef einhver er). Sé smellt á Gramps auðkenni "
+"atburðarins, er farið yfir á síðuna um þann atburð."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3775
 #, python-format
@@ -33352,6 +33345,9 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla einstaklinga í gagnagrunninum, "
+"raðað eftir kenninafni þeirra. Sé smellt á nafn einstaklings, er farið yfir á "
+"síðuna um þann einstakling."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4025
 msgid "Number of People"
@@ -33377,6 +33373,9 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir allar heimildir í gagnagrunninum, raðað "
+"eftir heiti þeirra. Sé smellt á heiti heimildar, er farið yfir á síðuna um þá "
+"heimild."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4279
 msgid "Source Name|Name"
@@ -33434,7 +33433,7 @@ msgstr "Skráategund"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4839
 msgid "Missing media object:"
-msgstr ""
+msgstr "Gagnahlutir sem vantar:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4875
 msgid ""
@@ -33476,6 +33475,9 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla einstaklinga í gagnagrunninum, "
+"raðað eftir eftirnafni þeirra. Sé smellt á nafn einstaklings, er farið yfir á "
+"síðuna um þann einstakling."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5347
 #, python-format
@@ -33536,7 +33538,7 @@ msgstr "Ekki systkin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6516
 msgid "Relation to main person"
-msgstr "Vensl við uaðaleinstakling"
+msgstr "Vensl við aðaleinstakling"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6518
 msgid "Relation within this family (if not by birth)"
@@ -33552,6 +33554,9 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir öll gagnasöfn í gagnagrunninum, raðað "
+"eftir heiti þeirra. Sé smellt á heiti gagnasafns, er farið yfir á síðuna um "
+"það gagnasafn."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6691
 msgid "Repository |Name"
@@ -33565,6 +33570,10 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
+"Þessi síða inniheldur atriðaskrá yfir alla einstaklinga í gagnagrunninum, "
+"raðað eftir kenninafni þeirra, ásamt einu af eftirtöldu: Heimilisfang, búseta "
+"eða veftenglar. Sé smellt á nafn einstaklings, er farið yfir á nafnaskrársíðu "
+"þessa einstaklings."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6832
 msgid "Full Name"
@@ -33606,7 +33615,7 @@ msgstr "Beiti einstaklingasíu..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7274
 msgid "Constructing list of other objects..."
-msgstr "Útbú lista með öðrum atriðum..."
+msgstr "Útbý lista með öðrum atriðum..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7485
 #, python-format
@@ -34113,22 +34122,20 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8498
-#, fuzzy
 msgid "CMS inclusion"
-msgstr "Umskurður"
+msgstr "Innfelling í vefumsjónarkerfi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8501
 msgid "Do we include these pages in a cms web ?"
-msgstr ""
+msgstr "Eru þessar síður notaðar í vefumsjónarkerfi (CMS) ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8505
-#, fuzzy
 msgid "URI"
 msgstr "Slóð"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8508
 msgid "Where do you place your web site ? default = /NAVWEB"
-msgstr ""
+msgstr "Hvar er vefsvæðið þitt gefið út til birtingar ? Sjálfgefið = /NAVWEB"
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../gramps/plugins/webreport/narrativeweb.py:8975
