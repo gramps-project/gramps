@@ -474,3 +474,26 @@ optionclass = 'MergeCitationsOptions',
 tool_modes = [TOOL_MODE_GUI]
   )
 
+#------------------------------------------------------------------------
+#
+# Find Possible Loop
+#
+#------------------------------------------------------------------------
+
+register(TOOL,
+id    = 'loop',
+name  = _("Find Possible Loop"),
+description =  _("Searches the entire database, looking for "
+                    "a possible loop."),
+version = '1.0',
+gramps_target_version = MODULE_VERSION,
+status = STABLE,
+fname = 'findloop.py',
+authors = ["Serge Noiraud"],
+authors_email = ["serge.noiraud@free.fr"],
+category = TOOL_UTILS,
+toolclass = 'FindLoop',
+optionclass = 'FindLoopOptions',
+tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+  )
+
