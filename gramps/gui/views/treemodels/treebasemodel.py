@@ -914,7 +914,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if val is None:
             return ''
         elif not isinstance(val, str):
-            return val.encode('utf-8')
+            return val.decode('utf-8')
         else:
             return val
 
