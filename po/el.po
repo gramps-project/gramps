@@ -10567,7 +10567,7 @@ msgstr "Επιλογή καταλόγου μέσων"
 #: ../gramps/gui/glade/baseselector.glade:24
 #: ../gramps/gui/glade/configure.glade:23
 #: ../gramps/gui/glade/dialog.glade:416
- ../gramps/gui/glade/dialog.glade:700
+#: ../gramps/gui/glade/dialog.glade:700
 #: ../gramps/gui/glade/dialog.glade:839
 #: ../gramps/gui/glade/editaddress.glade:21
 #: ../gramps/gui/glade/editattribute.glade:21
@@ -11330,7 +11330,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/editperson.glade:22
 #: ../gramps/gui/glade/editperson.glade:362
 #: ../gramps/gui/glade/rule.glade:425
- ../gramps/gui/glade/rule.glade:432
+#: ../gramps/gui/glade/rule.glade:432
 #: ../gramps/gui/glade/styleeditor.glade:1830
 #: ../gramps/gui/glade/styleeditor.glade:1837
 #: ../gramps/gui/widgets/fanchart.py:1847
