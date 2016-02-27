@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-17 13:18+0100\n"
-"PO-Revision-Date: 2016-01-17 13:27+0100\n"
+"POT-Creation-Date: 2016-02-27 18:24+0100\n"
+"PO-Revision-Date: 2016-02-27 18:31+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1723,24 +1723,24 @@ msgstr "=css Dateiname"
 msgid "CSS filename to use, html format only"
 msgstr "Der zu verwendende css Dateiname darf nur im html Format sein."
 
-#: ../gramps/cli/plug/__init__.py:421
+#: ../gramps/cli/plug/__init__.py:427
 #, python-format
 msgid "Unknown option: %s"
 msgstr "Unbekannte Option: %s"
 
-#: ../gramps/cli/plug/__init__.py:422 ../gramps/cli/plug/__init__.py:504
+#: ../gramps/cli/plug/__init__.py:428 ../gramps/cli/plug/__init__.py:510
 msgid "   Valid options are:"
 msgstr "   Gültige Optionen sind:"
 
-#: ../gramps/cli/plug/__init__.py:425 ../gramps/cli/plug/__init__.py:507
-#: ../gramps/cli/plug/__init__.py:584
+#: ../gramps/cli/plug/__init__.py:431 ../gramps/cli/plug/__init__.py:513
+#: ../gramps/cli/plug/__init__.py:590
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
 "  Verwende '%(donottranslate)s', um eine Beschreibung und gültige Werte zu "
 "sehen."
 
-#: ../gramps/cli/plug/__init__.py:478
+#: ../gramps/cli/plug/__init__.py:484
 #, python-format
 msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
@@ -1749,30 +1749,30 @@ msgstr ""
 "Ignoriere  '%(notranslate1)s=%(notranslate2)s' und verwende "
 "'%(notranslate1)s=%(notranslate3)s'."
 
-#: ../gramps/cli/plug/__init__.py:484
+#: ../gramps/cli/plug/__init__.py:490
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Verwende '%(notranslate)s', um gültige Werte zu sehen."
 
-#: ../gramps/cli/plug/__init__.py:503
+#: ../gramps/cli/plug/__init__.py:509
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ignoriere unbekannte Option: %s"
 
-#: ../gramps/cli/plug/__init__.py:573
+#: ../gramps/cli/plug/__init__.py:579
 msgid "   Available options:"
 msgstr "   Verfügbare Optionen:"
 
-#: ../gramps/cli/plug/__init__.py:582
+#: ../gramps/cli/plug/__init__.py:588
 msgid "(no help available)"
 msgstr "(keine Hilfe verfügbar)"
 
-#: ../gramps/cli/plug/__init__.py:591
+#: ../gramps/cli/plug/__init__.py:596
 msgid "   Available values are:"
 msgstr "   Verfügbare Werte sind:"
 
 #. there was a show option given, but the option is invalid
-#: ../gramps/cli/plug/__init__.py:601
+#: ../gramps/cli/plug/__init__.py:607
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -1781,7 +1781,7 @@ msgstr ""
 "Die Option '%(optionname)s' ist nicht gültig. Verwende '%(donottranslate)s', "
 "um alle gültigen Optionen zu sehen."
 
-#: ../gramps/cli/plug/__init__.py:615
+#: ../gramps/cli/plug/__init__.py:621
 msgid "Failed to write report. "
 msgstr "Das Schreiben des Berichts ist fehlgeschlagen."
 
@@ -1824,14 +1824,14 @@ msgstr ""
 msgid "none"
 msgstr "kein"
 
-#: ../gramps/gen/datehandler/__init__.py:75
+#: ../gramps/gen/datehandler/__init__.py:76
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 "Der Datumsanalysator für '%s' ist nicht verfügbar. Ein Standardwert wurde "
 "gesetzt."
 
-#: ../gramps/gen/datehandler/__init__.py:91
+#: ../gramps/gen/datehandler/__init__.py:92
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
@@ -8781,47 +8781,47 @@ msgstr "Chinesisch (Hong Kong)"
 msgid "Chinese (Traditional)"
 msgstr "Chinesisch (traditionell)"
 
-#: ../gramps/gen/utils/grampslocale.py:821
+#: ../gramps/gen/utils/grampslocale.py:830
 msgid "the person"
 msgstr "die Person"
 
-#: ../gramps/gen/utils/grampslocale.py:823
+#: ../gramps/gen/utils/grampslocale.py:832
 msgid "the family"
 msgstr "die Familie"
 
-#: ../gramps/gen/utils/grampslocale.py:825
+#: ../gramps/gen/utils/grampslocale.py:834
 msgid "the place"
 msgstr "der Ort"
 
-#: ../gramps/gen/utils/grampslocale.py:827
+#: ../gramps/gen/utils/grampslocale.py:836
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../gramps/gen/utils/grampslocale.py:829
+#: ../gramps/gen/utils/grampslocale.py:838
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../gramps/gen/utils/grampslocale.py:831
+#: ../gramps/gen/utils/grampslocale.py:840
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../gramps/gen/utils/grampslocale.py:833
+#: ../gramps/gen/utils/grampslocale.py:842
 msgid "the media"
 msgstr "das Medium"
 
-#: ../gramps/gen/utils/grampslocale.py:835
+#: ../gramps/gen/utils/grampslocale.py:844
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../gramps/gen/utils/grampslocale.py:837
+#: ../gramps/gen/utils/grampslocale.py:846
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../gramps/gen/utils/grampslocale.py:839
+#: ../gramps/gen/utils/grampslocale.py:848
 msgid "the citation"
 msgstr "die Fundstelle"
 
-#: ../gramps/gen/utils/grampslocale.py:841
+#: ../gramps/gen/utils/grampslocale.py:850
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -9131,7 +9131,7 @@ msgstr ""
 "Objekte, die mit dieser Notiz referenziert sind, fehlen in der am %s "
 "importierten Datei."
 
-#: ../gramps/grampsapp.py:130
+#: ../gramps/grampsapp.py:154
 #, python-format
 msgid ""
 "Your Python version does not meet the requirements. At least python %(v1)d."
@@ -9144,7 +9144,7 @@ msgstr ""
 "\n"
 "Gramps wird nun beendet."
 
-#: ../gramps/grampsapp.py:142
+#: ../gramps/grampsapp.py:166
 msgid ""
 "\n"
 "You don't have the python3 bsddb3 package installed. This package is needed "
@@ -9158,16 +9158,16 @@ msgstr ""
 "\n"
 "Gramps wird nun beendet."
 
-#: ../gramps/grampsapp.py:359 ../gramps/grampsapp.py:366
-#: ../gramps/grampsapp.py:414
+#: ../gramps/grampsapp.py:383 ../gramps/grampsapp.py:390
+#: ../gramps/grampsapp.py:438
 msgid "Configuration error:"
 msgstr "Konfigurationsfehler:"
 
-#: ../gramps/grampsapp.py:363
+#: ../gramps/grampsapp.py:387
 msgid "Error reading configuration"
 msgstr "Fehler beim Lesen der Konfiguration"
 
-#: ../gramps/grampsapp.py:367
+#: ../gramps/grampsapp.py:391
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -9343,7 +9343,7 @@ msgstr "Orts ref"
 #: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:67
-#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/locations.py:84
 #: ../gramps/plugins/gramplet/placedetails.py:111
 #: ../gramps/plugins/importer/importcsv.py:223
 #: ../gramps/plugins/lib/libpersonview.py:98
@@ -9355,7 +9355,7 @@ msgstr "Orts ref"
 #: ../gramps/plugins/textreport/tagreport.py:630
 #: ../gramps/plugins/tool/dumpgenderstats.py:62
 #: ../gramps/plugins/tool/notrelated.py:124
-#: ../gramps/plugins/tool/removeunused.py:202
+#: ../gramps/plugins/tool/removeunused.py:203
 #: ../gramps/plugins/tool/verify.py:529 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/narrativeweb.py:6513
 msgid "Name"
@@ -9508,7 +9508,7 @@ msgstr "Aufbewahrungsort"
 #: ../gramps/plugins/export/exportcsv.py:564
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:75
-#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:112
 #: ../gramps/plugins/importer/importcsv.py:224
 #: ../gramps/plugins/lib/libplaceview.py:87
@@ -9937,7 +9937,7 @@ msgstr "_Bearbeiten"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
 #: ../gramps/gui/editors/editfamily.py:154
 #: ../gramps/gui/plug/report/_bookdialog.py:661
-#: ../gramps/gui/views/bookmarks.py:232 ../gramps/gui/views/listview.py:211
+#: ../gramps/gui/views/bookmarks.py:232 ../gramps/gui/views/listview.py:212
 #: ../gramps/gui/views/tags.py:413 ../gramps/plugins/lib/libpersonview.py:382
 msgid "_Remove"
 msgstr "_Entfernen"
@@ -10345,7 +10345,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/plug/_guioptions.py:1698 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
 #: ../gramps/gui/plug/report/_reportdialog.py:160 ../gramps/gui/utils.py:170
-#: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1005
+#: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1006
 #: ../gramps/gui/views/navigationview.py:361 ../gramps/gui/views/tags.py:632
 #: ../gramps/gui/widgets/progressdialog.py:438
 #: ../gramps/plugins/lib/maps/geography.py:938
@@ -10914,7 +10914,7 @@ msgstr "Gewählte Adresse nach unten verschieben"
 #: ../gramps/plugins/export/exportcsv.py:565
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
 #: ../gramps/plugins/gramplet/events.py:77
-#: ../gramps/plugins/gramplet/locations.py:87
+#: ../gramps/plugins/gramplet/locations.py:86
 #: ../gramps/plugins/gramplet/personresidence.py:49
 #: ../gramps/plugins/importer/importcsv.py:220
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -11016,7 +11016,7 @@ msgstr "_Attribute"
 #: ../gramps/plugins/tool/eventcmp.py:251
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:398
-#: ../gramps/plugins/tool/removeunused.py:196
+#: ../gramps/plugins/tool/removeunused.py:197
 #: ../gramps/plugins/tool/sortevents.py:56
 #: ../gramps/plugins/tool/verify.py:522
 #: ../gramps/plugins/view/citationlistview.py:99
@@ -11565,6 +11565,7 @@ msgstr "Alternative Namen"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:104
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
 msgid "Enclosed By"
 msgstr "Teil von"
 
@@ -13316,7 +13317,7 @@ msgid "%s does not contain"
 msgstr "%s enthält nicht"
 
 #: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1144 ../gramps/gui/views/listview.py:1164
+#: ../gramps/gui/views/listview.py:1145 ../gramps/gui/views/listview.py:1165
 msgid "Updating display..."
 msgstr "Anzeige wird aktualisiert..."
 
@@ -13639,7 +13640,7 @@ msgstr "_Ohne speichern schließen"
 #. widget
 #: ../gramps/gui/glade/dialog.glade:856
 #: ../gramps/gui/plug/report/_bookdialog.py:664
-#: ../gramps/gui/views/listview.py:1006
+#: ../gramps/gui/views/listview.py:1007
 #: ../gramps/gui/widgets/grampletpane.py:575
 #: ../gramps/plugins/tool/eventcmp.py:398
 msgid "_Save"
@@ -15133,7 +15134,7 @@ msgstr "Notiz 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
 #: ../gramps/gui/glade/mergenote.glade:295
-#: ../gramps/gui/views/listview.py:1010
+#: ../gramps/gui/views/listview.py:1011
 msgid "Format:"
 msgstr "Format:"
 
@@ -17819,31 +17820,31 @@ msgstr "Lesezeichen organisieren"
 msgid "Cannot bookmark this reference"
 msgstr "Kann kein Lesezeichen für diese Referenz erstellen"
 
-#: ../gramps/gui/views/listview.py:209
+#: ../gramps/gui/views/listview.py:210
 #: ../gramps/plugins/lib/libpersonview.py:380
 msgid "_Add..."
 msgstr "_Hinzufügen..."
 
-#: ../gramps/gui/views/listview.py:213
+#: ../gramps/gui/views/listview.py:214
 #: ../gramps/plugins/lib/libpersonview.py:384
 msgid "_Merge..."
 msgstr "_Zusammenfassen..."
 
-#: ../gramps/gui/views/listview.py:215
+#: ../gramps/gui/views/listview.py:216
 #: ../gramps/plugins/lib/libpersonview.py:386
 msgid "Export View..."
 msgstr "Ansicht exportieren..."
 
-#: ../gramps/gui/views/listview.py:221
+#: ../gramps/gui/views/listview.py:222
 #: ../gramps/plugins/lib/libpersonview.py:371
 msgid "action|_Edit..."
 msgstr "_Bearbeiten..."
 
-#: ../gramps/gui/views/listview.py:437
+#: ../gramps/gui/views/listview.py:438
 msgid "Active object not visible"
 msgstr "Aktives Objekt ist nicht sichtbar"
 
-#: ../gramps/gui/views/listview.py:448
+#: ../gramps/gui/views/listview.py:449
 #: ../gramps/gui/views/navigationview.py:255
 #: ../gramps/plugins/lib/maps/geography.py:184
 #: ../gramps/plugins/lib/maps/geography.py:197
@@ -17851,15 +17852,15 @@ msgstr "Aktives Objekt ist nicht sichtbar"
 msgid "Could Not Set a Bookmark"
 msgstr "Das Lesezeichen konnte nicht gesetzt werden"
 
-#: ../gramps/gui/views/listview.py:449
+#: ../gramps/gui/views/listview.py:450
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Das Lesezeichen konnte nicht gesetzt werden, da nichts ausgewählt war."
 
-#: ../gramps/gui/views/listview.py:541
+#: ../gramps/gui/views/listview.py:542
 msgid "Multiple Selection Delete"
 msgstr "Mehrfache Auswahl löschen"
 
-#: ../gramps/gui/views/listview.py:542
+#: ../gramps/gui/views/listview.py:543
 msgid ""
 "More than one item has been selected for deletion. Select the option "
 "indicating how to delete the items:"
@@ -17867,15 +17868,15 @@ msgstr ""
 "Mehr als ein Element wurden zum Löschen gewählt. Wähle die Option wie die "
 "Elemente gelöscht werden sollen:"
 
-#: ../gramps/gui/views/listview.py:544
+#: ../gramps/gui/views/listview.py:545
 msgid "Delete All"
 msgstr "Alle Löschen"
 
-#: ../gramps/gui/views/listview.py:545
+#: ../gramps/gui/views/listview.py:546
 msgid "Confirm Each Delete"
 msgstr "Jedes Löschen Bestätigen"
 
-#: ../gramps/gui/views/listview.py:556
+#: ../gramps/gui/views/listview.py:557
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -17883,39 +17884,39 @@ msgstr ""
 "Dieses Element wird derzeit verwendet. Beim Löschen wird es aus der "
 "Datenbank und allen referenzierenden Objekten entfernt."
 
-#: ../gramps/gui/views/listview.py:560
+#: ../gramps/gui/views/listview.py:561
 #: ../gramps/plugins/view/familyview.py:268
 msgid "Deleting item will remove it from the database."
 msgstr "Das Löschen des Elementes wird es aus der Datenbank ganz entfernen."
 
-#: ../gramps/gui/views/listview.py:567
+#: ../gramps/gui/views/listview.py:568
 #: ../gramps/plugins/lib/libpersonview.py:312
 #: ../gramps/plugins/view/familyview.py:261
 #, python-format
 msgid "Delete %s?"
 msgstr "%s löschen?"
 
-#: ../gramps/gui/views/listview.py:568
+#: ../gramps/gui/views/listview.py:569
 msgid "_Delete Item"
 msgstr "Element _löschen"
 
-#: ../gramps/gui/views/listview.py:610
+#: ../gramps/gui/views/listview.py:611
 msgid "Column clicked, sorting..."
 msgstr "Spalte geklickt, sortiere..."
 
-#: ../gramps/gui/views/listview.py:1002
+#: ../gramps/gui/views/listview.py:1003
 msgid "Export View as Spreadsheet"
 msgstr "Ansicht als Tabelle exportieren"
 
-#: ../gramps/gui/views/listview.py:1015
+#: ../gramps/gui/views/listview.py:1016
 msgid "CSV"
 msgstr "CSV"
 
-#: ../gramps/gui/views/listview.py:1016
+#: ../gramps/gui/views/listview.py:1017
 msgid "OpenDocument Spreadsheet"
 msgstr "OpenDocument Tabelle"
 
-#: ../gramps/gui/views/listview.py:1212
+#: ../gramps/gui/views/listview.py:1213
 msgid "Columns"
 msgstr "Spalten"
 
@@ -21572,13 +21573,20 @@ msgid "Place Locations"
 msgstr "Ortslagen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1267
-msgid "Gramplet showing the locations of a place over time"
-msgstr "Gramplet zeigt die Lagen für einen Ort über die Zeit"
+msgid "Gramplet showing the places enclosed by the active place"
+msgstr "Gramplet zeigt die  Orte die im aktuellen Ort enthalten sind"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
-#: ../gramps/plugins/webreport/narrativeweb.py:395
-msgid "Locations"
-msgstr "Lagen"
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1280
+msgid "Place Encloses"
+msgstr "Enthaltene Orte"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
+msgid "Gramplet showing the places that the active place encloses"
+msgstr "Gramplet zeigt die Orte die der aktive Ort enthält"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1288
+msgid "Encloses"
+msgstr "Enthalten"
 
 #: ../gramps/plugins/gramplet/leak.py:100
 msgid "Uncollected object"
@@ -21603,7 +21611,7 @@ msgstr "%d bezieht sich auf"
 msgid "Uncollected Objects: %s"
 msgstr "Nicht erfasste Objekte: %s"
 
-#: ../gramps/plugins/gramplet/locations.py:81
+#: ../gramps/plugins/gramplet/locations.py:80
 msgid "Double-click on a row to edit the selected place."
 msgstr "Doppelklick auf eine Zeile um den gewählten Ort zu bearbeiten."
 
@@ -28977,14 +28985,15 @@ msgstr "Katalanischer Verwandtschaftsrechner"
 #: ../gramps/plugins/rel/relplugins.gpr.py:152
 #: ../gramps/plugins/rel/relplugins.gpr.py:165
 #: ../gramps/plugins/rel/relplugins.gpr.py:178
-#: ../gramps/plugins/rel/relplugins.gpr.py:195
-#: ../gramps/plugins/rel/relplugins.gpr.py:212
-#: ../gramps/plugins/rel/relplugins.gpr.py:228
-#: ../gramps/plugins/rel/relplugins.gpr.py:244
-#: ../gramps/plugins/rel/relplugins.gpr.py:260
-#: ../gramps/plugins/rel/relplugins.gpr.py:274
+#: ../gramps/plugins/rel/relplugins.gpr.py:191
+#: ../gramps/plugins/rel/relplugins.gpr.py:208
+#: ../gramps/plugins/rel/relplugins.gpr.py:225
+#: ../gramps/plugins/rel/relplugins.gpr.py:241
+#: ../gramps/plugins/rel/relplugins.gpr.py:257
+#: ../gramps/plugins/rel/relplugins.gpr.py:273
 #: ../gramps/plugins/rel/relplugins.gpr.py:287
-#: ../gramps/plugins/rel/relplugins.gpr.py:301
+#: ../gramps/plugins/rel/relplugins.gpr.py:300
+#: ../gramps/plugins/rel/relplugins.gpr.py:314
 msgid "Calculates relationships between people"
 msgstr "Berechnet die Verwandtschaftsbeziehungen zwischen Personen"
 
@@ -29021,42 +29030,46 @@ msgid "Hungarian Relationship Calculator"
 msgstr "Ungarischer Verwandtschaftsrechner"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:164
+msgid "Icelandic Relationship Calculator"
+msgstr "Isländischer Verwandtschaftsrechner"
+
+#: ../gramps/plugins/rel/relplugins.gpr.py:177
 msgid "Italian Relationship Calculator"
 msgstr "Italienischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:177
+#: ../gramps/plugins/rel/relplugins.gpr.py:190
 msgid "Dutch Relationship Calculator"
 msgstr "Niederländischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:194
+#: ../gramps/plugins/rel/relplugins.gpr.py:207
 msgid "Norwegian Relationship Calculator"
 msgstr "Norwegischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:211
+#: ../gramps/plugins/rel/relplugins.gpr.py:224
 msgid "Polish Relationship Calculator"
 msgstr "Polnischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:227
+#: ../gramps/plugins/rel/relplugins.gpr.py:240
 msgid "Portuguese Relationship Calculator"
 msgstr "Portugiesischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:243
+#: ../gramps/plugins/rel/relplugins.gpr.py:256
 msgid "Russian Relationship Calculator"
 msgstr "Russischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:259
+#: ../gramps/plugins/rel/relplugins.gpr.py:272
 msgid "Slovak Relationship Calculator"
 msgstr "Slowakischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:273
+#: ../gramps/plugins/rel/relplugins.gpr.py:286
 msgid "Slovenian Relationship Calculator"
 msgstr "Slowenischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:286
+#: ../gramps/plugins/rel/relplugins.gpr.py:299
 msgid "Swedish Relationship Calculator"
 msgstr "Schwedischer Verwandtschaftsrechner"
 
-#: ../gramps/plugins/rel/relplugins.gpr.py:300
+#: ../gramps/plugins/rel/relplugins.gpr.py:313
 msgid "Ukrainian Relationship Calculator"
 msgstr "Ukrainischer Verwandtschaftsrechner"
 
@@ -32044,18 +32057,18 @@ msgstr "Markierungen in_vertieren"
 msgid "Double-click on a row to view/edit data"
 msgstr "Doppelklick auf eine Zeile um die Daten zu betrachten/bearbeiten"
 
-#: ../gramps/plugins/tool/removeunused.py:80
+#: ../gramps/plugins/tool/removeunused.py:81
 msgid "Unused Objects"
 msgstr "Unbenutzte Objekte"
 
 #. Add mark column
 #. Add ignore column
-#: ../gramps/plugins/tool/removeunused.py:185
+#: ../gramps/plugins/tool/removeunused.py:186
 #: ../gramps/plugins/tool/verify.py:504
 msgid "Mark"
 msgstr "Markieren"
 
-#: ../gramps/plugins/tool/removeunused.py:286
+#: ../gramps/plugins/tool/removeunused.py:297
 msgid "Remove unused objects"
 msgstr "Unbenutzte Objekte entfernen"
 
@@ -34055,6 +34068,10 @@ msgstr "Bundesland/ Provinz"
 msgid "Alternate Locations"
 msgstr "Alternative Ortsangaben"
 
+#: ../gramps/plugins/webreport/narrativeweb.py:395
+msgid "Locations"
+msgstr "Lagen"
+
 #: ../gramps/plugins/webreport/narrativeweb.py:397
 msgid "<absent>"
 msgstr "<fehlt>"
@@ -35474,6 +35491,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
+
+#~ msgid "Gramplet showing the locations of a place over time"
+#~ msgstr "Gramplet zeigt die Lagen für einen Ort über die Zeit"
 
 #~ msgid "manual|xxxx"
 #~ msgstr "xxxx"
@@ -37907,9 +37927,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Place Sources"
 #~ msgstr "Ortequellen"
-
-#~ msgid "Gramplet showing the sources for a place"
-#~ msgstr "Gramplet zeigt die Quellen eines Ort"
 
 #~ msgid "Media Sources"
 #~ msgstr "Medieumquellen"
