@@ -12,7 +12,7 @@ install:
     - travis_retry sudo apt-get install python3-mock 
     - travis_retry sudo wget https://bootstrap.pypa.io/get-pip.py
     - sudo python get-pip.py
-    - travis_retry sudo pip3.4 install --upgrade coverage codecov pillow
+    - travis_retry sudo pip install --upgrade coverage codecov pillow
 
     # - travis_retry sudo apt-get install python3-icu
 
