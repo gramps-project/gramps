@@ -30,7 +30,7 @@ script:
     -  mkdir -p ~/.gramps/grampsdb/
     # --exclude=TestUser because of older version of mock
     #                    without configure_mock
-    -  nosetests -v --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+    -  nosetests-3.4 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
 
 after_success:
     - codecov
