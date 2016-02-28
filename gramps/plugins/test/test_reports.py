@@ -105,6 +105,7 @@ reports = ReportControl()
 def output_contains(text):
     def test_output_file(out, err, report_name):
         contents = open(report_name + ".txt").read()
+        print(contents)
         return text in contents
     return test_output_file
 
