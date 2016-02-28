@@ -1729,8 +1729,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_metadata('place_types', self.place_types)
 
             # Save misc items:
-            self.save_surname_list()
-            self.save_gender_stats(self.genderStats)
+            if self.has_changed:
+                self.save_surname_list()
+                self.save_gender_stats(self.genderStats)
 
             # Indexes:
             self.set_metadata('cmap_index', self.cmap_index)
@@ -1745,6 +1746,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
             self.close_backend()
         self.db_is_open = False
+        self._directory = None
 
     def get_bookmarks(self):
         return self.bookmarks
