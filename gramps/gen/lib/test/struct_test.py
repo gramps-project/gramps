@@ -109,9 +109,9 @@ def generate_case(obj):
     #setattr(DatabaseCheck, name, test2)
 
 db = import_as_dict("example/gramps/example.gramps", User())
-for table in db._tables.keys():
-    for handle in db._tables[table]["handles_func"]():
-        obj = db._tables[table]["handle_func"](handle)
+for table in db.get_table_func():
+    for handle in db.get_table_func(table,"handles_func")():
+        obj = db.get_table_func(table,"handle_func")(handle)
         generate_case(obj)
 
 class StructTest(unittest.TestCase):

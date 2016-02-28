@@ -31,6 +31,7 @@ import dbapi_support
 
 import time
 import pickle
+from operator import itemgetter
 
 import logging
 LOG = logging.getLogger(".dbapi")
@@ -1048,10 +1049,9 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
         for row in rows:
-                obj = obj_()
-                obj.unserialize(row[0])
+                obj = self.get_table_func(class_.__name__,"class_func").create(pickle.loads(row[0]))
                 # just use values and handle to keep small:
-                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
         # next we sort by fields and direction
         pos = len(order_by) - 1
         for (field, order) in reversed(order_by): # sort the lasts parts first
@@ -1059,7 +1059,7 @@ class DBAPI(DbGeneric):
             pos -= 1
         # now we will look them up again:
         for (order_by_values, handle) in sorted_items:
-            yield self._tables[obj_.__name__]["handle_func"](handle)
+            yield self.get_table_func(class_.__name__,"handle_func")(handle)
 
     def iter_items(self, order_by, class_):
         # check if order_by fields are secondary
@@ -1068,7 +1068,7 @@ class DBAPI(DbGeneric):
         if order_by:
             secondary_fields = class_.get_secondary_fields()
             if not self.check_order_by_fields(class_.__name__, order_by, secondary_fields):
-                for item in super().iter_items(order_by, class_):
+                for item in self.iter_items_order_by_python(order_by, class_):
                     yield item
                 return
         ## Continue with dbapi select
@@ -1578,13 +1578,13 @@ class DBAPI(DbGeneric):
         Add secondary fields, update, and create indexes.
         """
         LOG.info("Rebuilding secondary fields...")
-        for table in self._tables.keys():
-            if not hasattr(self._tables[table]["class_func"], "get_secondary_fields"):
+        for table in self.get_table_func():
+            if not hasattr(self.get_table_func(table,"class_func"), "get_secondary_fields"):
                 continue
             # do a select on all; if it works, then it is ok; else, check them all
             try:
                 fields = [self._hash_name(table, field) for (field, ptype) in 
-                          self._tables[table]["class_func"].get_secondary_fields()]
+                          self.get_table_func(table,"class_func").get_secondary_fields()]
                 if fields:
                     self.dbapi.execute("select %s from %s limit 1;" % (", ".join(fields), table))
                 # if no error, continue
@@ -1594,7 +1594,7 @@ class DBAPI(DbGeneric):
                 pass # got to add missing ones, so continue
             LOG.info("Table %s needs rebuilding..." % table)
             altered = False
-            for field_pair in self._tables[table]["class_func"].get_secondary_fields():
+            for field_pair in self.get_table_func(table,"class_func").get_secondary_fields():
                 field, python_type = field_pair
                 field = self._hash_name(table, field)
                 sql_type = self._sql_type(python_type)
@@ -1617,8 +1617,8 @@ class DBAPI(DbGeneric):
         """
         Create the indexes for the secondary fields.
         """
-        for table in self._tables.keys():
-            if not hasattr(self._tables[table]["class_func"], "get_index_fields"):
+        for table in self.get_table_func():
+            if not hasattr(self.get_table_func(table,"class_func"), "get_index_fields"):
                 continue
             self.create_secondary_indexes_table(table)
 
@@ -1626,7 +1626,7 @@ class DBAPI(DbGeneric):
         """
         Create secondary indexes for just this table.
         """
-        for fields in self._tables[table]["class_func"].get_index_fields():
+        for fields in self.get_table_func(table,"class_func").get_index_fields():
             for field in fields:
                 field = self._hash_name(table, field)
                 self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);" % (table, field, table, field))
@@ -1636,7 +1636,7 @@ class DBAPI(DbGeneric):
         Go through all items in all tables, and update their secondary
         field values.
         """
-        for table in self._tables.keys():
+        for table in self.get_table_func():
             self.update_secondary_values_table(table)
 
     def update_secondary_values_table(self, table):
@@ -1646,9 +1646,9 @@ class DBAPI(DbGeneric):
         table - "Person", "Place", "Media", etc.
         Commits changes.
         """
-        if not hasattr(self._tables[table]["class_func"], "get_secondary_fields"):
+        if not hasattr(self.get_table_func(table,"class_func"), "get_secondary_fields"):
             return
-        for item in self._tables[table]["iter_func"]():
+        for item in self.get_table_func(table,"iter_func")():
             self.update_secondary_values(item)
         self.dbapi.commit()
 
@@ -1658,7 +1658,7 @@ class DBAPI(DbGeneric):
         Does not commit.
         """
         table = item.__class__.__name__
-        fields = self._tables[table]["class_func"].get_secondary_fields()
+        fields = self.get_table_func(table,"class_func").get_secondary_fields()
         fields = [field for (field, direction) in fields]
         sets = []
         values = []
@@ -1671,7 +1671,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("UPDATE %s SET %s where handle = ?;" % (table, ", ".join(sets)),
                                values + [item.handle])
 
-    def sql_repr(self, value):
+    def _sql_repr(self, value):
         """
         Given a Python value, turn it into a SQL value.
         """
@@ -1684,7 +1684,7 @@ class DBAPI(DbGeneric):
         else:
             return repr(value)
 
-    def build_where_clause_recursive(self, table, where):
+    def _build_where_clause_recursive(self, table, where):
         """
         where - (field, op, value)
                - ["NOT", where]
@@ -1695,26 +1695,26 @@ class DBAPI(DbGeneric):
             return ""
         elif len(where) == 3:
             field, op, value = where
-            return "(%s %s %s)" % (self._hash_name(table, field), op, self.sql_repr(value))
+            return "(%s %s %s)" % (self._hash_name(table, field), op, self._sql_repr(value))
         elif where[0] in ["AND", "OR"]:
-            parts = [self.build_where_clause_recursive(table, part)
+            parts = [self._build_where_clause_recursive(table, part)
                      for part in where[1]]
             return "(%s)" % ((" %s " % where[0]).join(parts))
         else:
-            return "(NOT %s)" % self.build_where_clause_recursive(table, where[1])
+            return "(NOT %s)" % self._build_where_clause_recursive(table, where[1])
 
-    def build_where_clause(self, table, where):
+    def _build_where_clause(self, table, where):
         """
         where - a list in where format
         return - "WHERE conditions..."
         """
-        parts = self.build_where_clause_recursive(table, where)
+        parts = self._build_where_clause_recursive(table, where)
         if parts:
             return ("WHERE " + parts)
         else:
             return ""
 
-    def build_order_clause(self, table, order_by):
+    def _build_order_clause(self, table, order_by):
         """
         order_by - [(field, "ASC" | "DESC"), ...]
         """
@@ -1725,7 +1725,7 @@ class DBAPI(DbGeneric):
         else:
             return ""
 
-    def build_select_fields(self, table, select_fields, secondary_fields):
+    def _build_select_fields(self, table, select_fields, secondary_fields):
         """
         fields - [field, ...]
         return: "field, field, field"
@@ -1736,7 +1736,7 @@ class DBAPI(DbGeneric):
         else:
             return ["blob_data"] # nope, we'll have to expand blob to get all fields
 
-    def check_order_by_fields(self, table, order_by, secondary_fields):
+    def _check_order_by_fields(self, table, order_by, secondary_fields):
         """
         Check to make sure all order_by fields are defined. If not, then
         we need to do the Python-based order.
@@ -1749,7 +1749,7 @@ class DBAPI(DbGeneric):
                     return False
         return True
 
-    def check_where_fields(self, table, where, secondary_fields):
+    def _check_where_fields(self, table, where, secondary_fields):
         """
         Check to make sure all where fields are defined. If not, then
         we need to do the Python-based select.
@@ -1762,19 +1762,19 @@ class DBAPI(DbGeneric):
             connector, exprs = where
             if connector in ["AND", "OR"]:
                 for expr in exprs:
-                    value = self.check_where_fields(table, expr, secondary_fields)
+                    value = self._check_where_fields(table, expr, secondary_fields)
                     if value == False:
                         return False
                 return True
             else: # "NOT"
-                return self.check_where_fields(table, exprs, secondary_fields)
+                return self._check_where_fields(table, exprs, secondary_fields)
         elif len(where) == 3: # (name, op, value)
             (name, op, value) = where
             # just the ones we need for where
             return (self._hash_name(table, name) in secondary_fields)
 
-    def select(self, table, fields=None, start=0, limit=-1,
-               where=None, order_by=None):
+    def _select(self, table, fields=None, start=0, limit=-1,
+                where=None, order_by=None):
         """
         Default implementation of a select for those databases
         that don't support SQL. Returns a list of dicts, total,
@@ -1790,65 +1790,65 @@ class DBAPI(DbGeneric):
                  ["NOT",  where]
         order_by - [[fieldname, "ASC" | "DESC"], ...]
         """
-        hashed_fields = [self._hash_name(table, field) for field in fields]
         secondary_fields = ([self._hash_name(table, field) for (field, ptype) in 
-                             self._tables[table]["class_func"].get_secondary_fields()] + 
+                             self.get_table_func(table,"class_func").get_secondary_fields()] + 
                             ["handle"]) # handle is a sql field, but not listed in secondaries
-        if ((not self.check_where_fields(table, where, secondary_fields)) or
-            (not self.check_order_by_fields(table, order_by, secondary_fields))):
-            return super().select(table, fields, start, limit, where, order_by)
-        fields = hashed_fields
-        start_time = time.time()
-        where_clause = self.build_where_clause(table, where)
-        order_clause = self.build_order_clause(table, order_by)
-        select_fields = self.build_select_fields(table, fields, secondary_fields)
-        # Get the total count:
-        if limit != -1 or start != 0: # get the total that would match:
-            self.dbapi.execute("select count(1) from %s %s;" % (table, where_clause))
-            total = self.dbapi.fetchone()[0]
+        # If no fields, then we need objects:
+        # Check to see if where matches SQL fields:
+        if ((not self._check_where_fields(table, where, secondary_fields)) or
+            (not self._check_order_by_fields(table, order_by, secondary_fields))):
+            # If not, then need to do select via Python:
+            generator = super()._select(table, fields, start, limit, where, order_by)
+            for item in generator:
+                yield item
+            return
+        # Otherwise, we are SQL
+        if fields is None:
+            fields = ["blob_data"]
+        get_count_only = False
+        if fields[0] == "count(1)":
+            hashed_fields = ["count(1)"]
+            fields = ["count(1)"]
+            select_fields = ["count(1)"]
+            get_count_only = True
         else:
-            total = None # need to get later
-        class Result(list):
-            """
-            A list rows of just matching for this page, with total = all,
-            time = time to select, query = the SQL query, and expanded
-            if unpickled.
-            """
-            total = 0
-            time = 0.0
-            query = None
-            expanded = False
-        result = Result()
+            hashed_fields = [self._hash_name(table, field) for field in fields]
+            fields = hashed_fields
+            select_fields = self._build_select_fields(table, fields, secondary_fields)
+        where_clause = self._build_where_clause(table, where)
+        order_clause = self._build_order_clause(table, order_by)
+        if get_count_only:
+            select_fields = ["1"]
         if start:
-            query = "SELECT %s FROM %s %s %s LIMIT %s, %s;" % (
+            query = "SELECT %s FROM %s %s %s LIMIT %s, %s" % (
                 ", ".join(select_fields), table, where_clause, order_clause, start, limit
             )
         else:
-            query = "SELECT %s FROM %s %s %s LIMIT %s;" % (
+            query = "SELECT %s FROM %s %s %s LIMIT %s" % (
                 ", ".join(select_fields), table, where_clause, order_clause, limit
             )
+        if get_count_only:
+            self.dbapi.execute("SELECT count(1) from (%s);" % query)
+            rows = self.dbapi.fetchall()
+            yield rows[0][0]
+            return
         self.dbapi.execute(query)
         rows = self.dbapi.fetchall()
-        if total is None:
-            total = len(rows)
-        expanded = False
         for row in rows:
-            obj = None # don't build it if you don't need it
-            data = {}
-            for field in fields:
-                if field in select_fields:
-                    data[field.replace("__", ".")] = row[select_fields.index(field)]
-                else:
-                    if obj is None:  # we need it! create it and cache it:
-                        obj = self._tables[table]["class_func"].create(pickle.loads(row[0]))
-                        expanded = True
-                    # get the field, even if we need to do a join:
-                    # FIXME: possible optimize: do a join in select for this if needed:
-                    field = field.replace("__", ".")
-                    data[field] = obj.get_field(field, self, ignore_errors=True)
-            result.append(data)
-        result.total = total
-        result.time = time.time() - start_time
-        result.query = query
-        result.expanded = expanded
-        return result
+            if fields[0] != "blob_data":
+                obj = None # don't build it if you don't need it
+                data = {}
+                for field in fields:
+                    if field in select_fields:
+                        data[field.replace("__", ".")] = row[select_fields.index(field)]
+                    else:
+                        if obj is None:  # we need it! create it and cache it:
+                            obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
+                        # get the field, even if we need to do a join:
+                        # FIXME: possible optimize: do a join in select for this if needed:
+                        field = field.replace("__", ".")
+                        data[field] = obj.get_field(field, self, ignore_errors=True)
+                yield data
+            else:
+                obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
+                yield obj

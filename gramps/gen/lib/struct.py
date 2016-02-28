@@ -297,20 +297,20 @@ class Struct(object):
                     name, handle = struct["_class"], struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
                     if old_obj:
-                        commit_func = self.db._tables[name]["commit_func"]
+                        commit_func = self.db.get_table_func(name,"commit_func")
                         commit_func(new_obj, trans)
                     else:
-                        add_func = self.db._tables[name]["add_func"]
+                        add_func = self.db.get_table_func(name,"add_func")
                         add_func(new_obj, trans)
             else:
                 new_obj = Struct.instance_from_struct(struct)
                 name, handle = struct["_class"], struct["handle"]
                 old_obj = self.db.get_from_name_and_handle(name, handle)
                 if old_obj:
-                    commit_func = self.db._tables[name]["commit_func"]
+                    commit_func = self.db.get_table_func(name,"commit_func")
                     commit_func(new_obj, trans)
                 else:
-                    add_func = self.db._tables[name]["add_func"]
+                    add_func = self.db.get_table_func(name,"add_func")
                     add_func(new_obj, trans)
 
     def from_struct(self):

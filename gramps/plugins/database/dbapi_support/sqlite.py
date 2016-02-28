@@ -1,14 +1,17 @@
 import os
 import sqlite3
+import logging
 
 sqlite3.paramstyle = 'qmark'
 
 class Sqlite(object):
     def __init__(self, *args, **kwargs):
+        self.log = logging.getLogger(".sqlite")
         self.connection = sqlite3.connect(*args, **kwargs)
         self.queries = {}
 
     def execute(self, *args, **kwargs):
+        self.log.debug(args)
         self.cursor = self.connection.execute(*args, **kwargs)
 
     def fetchone(self):

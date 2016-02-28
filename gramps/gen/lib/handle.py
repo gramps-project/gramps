@@ -23,7 +23,7 @@ class HandleClass(str):
         super(HandleClass, self).__init__()
 
     def join(self, database, handle):
-        return database._tables[self.classname]["handle_func"](handle)
+        return database.get_table_func(self.classname,"handle_func")(handle)
 
     @classmethod
     def get_schema(cls):

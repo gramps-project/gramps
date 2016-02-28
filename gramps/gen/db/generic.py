@@ -46,20 +46,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP,
-                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL)
+                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
+                           PERSON_KEY, FAMILY_KEY, CITATION_KEY,
+                           SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
+                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
+                           TAG_KEY, eval_order_by)
+from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
-from gramps.gen.db import (PERSON_KEY,
-                           FAMILY_KEY,
-                           CITATION_KEY,
-                           SOURCE_KEY,
-                           EVENT_KEY,
-                           MEDIA_KEY,
-                           PLACE_KEY,
-                           REPOSITORY_KEY,
-                           NOTE_KEY,
-                           TAG_KEY)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -227,7 +222,7 @@ class Table(object):
         if funcs:
             self.funcs = funcs
         else:
-            self.funcs = db._tables[table_name]
+            self.funcs = db.get_table_func(table_name)
 
     def cursor(self):
         """
@@ -439,7 +434,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
-        self._tables['Person'].update(
+        self.__tables =  {
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -456,8 +452,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_person_data,
                 "raw_id_func": self._get_raw_person_from_id_data,
                 "del_func": self.remove_person,
-            })
-        self._tables['Family'].update(
+            },
+            'Family':
             {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
@@ -474,8 +470,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_family_data,
                 "raw_id_func": self._get_raw_family_from_id_data,
                 "del_func": self.remove_family,
-            })
-        self._tables['Source'].update(
+            },
+            'Source':
             {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
@@ -492,8 +488,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_source_data,
                 "raw_id_func": self._get_raw_source_from_id_data,
                 "del_func": self.remove_source,
-                })
-        self._tables['Citation'].update(
+                },
+            'Citation':
             {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
@@ -510,8 +506,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_citation_data,
                 "raw_id_func": self._get_raw_citation_from_id_data,
                 "del_func": self.remove_citation,
-            })
-        self._tables['Event'].update(
+            },
+            'Event':
             {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
@@ -528,8 +524,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_event_data,
                 "raw_id_func": self._get_raw_event_from_id_data,
                 "del_func": self.remove_event,
-            })
-        self._tables['Media'].update(
+            },
+            'Media':
             {
                 "handle_func": self.get_media_from_handle,
                 "gramps_id_func": self.get_media_from_gramps_id,
@@ -546,8 +542,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
                 "del_func": self.remove_media,
-            })
-        self._tables['Place'].update(
+            },
+            'Place':
             {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
@@ -564,8 +560,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_place_data,
                 "raw_id_func": self._get_raw_place_from_id_data,
                 "del_func": self.remove_place,
-            })
-        self._tables['Repository'].update(
+            },
+            'Repository':
             {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
@@ -582,8 +578,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_repository_data,
                 "raw_id_func": self._get_raw_repository_from_id_data,
                 "del_func": self.remove_repository,
-            })
-        self._tables['Note'].update(
+            },
+            'Note':
             {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
@@ -600,8 +596,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_note_data,
                 "raw_id_func": self._get_raw_note_from_id_data,
                 "del_func": self.remove_note,
-            })
-        self._tables['Tag'].update(
+            },
+            'Tag':
             {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
@@ -615,7 +611,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "count_func": self.get_number_of_tags,
                 "raw_func": self._get_raw_tag_data,
                 "del_func": self.remove_tag,
-            })
+            }
+        }
         self.set_save_path(directory)
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
@@ -725,6 +722,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table] # dict of functions
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else:
+            return super().get_table_func(table, func)
+
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
@@ -801,12 +811,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self._tables.keys())
+        return list(self.get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self._tables:
-            return self._tables[table_name]
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name)
         return None
 
     def transaction_begin(self, transaction):
@@ -1154,7 +1164,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Iterate over items in a class, possibly ordered by
         a list of field names and direction ("ASC" or "DESC").
         """
-        cursor = self._tables[class_.__name__]["cursor_func"]
+        cursor = self.get_table_func(class_.__name__,"cursor_func")
         if order_by is None:
             for data in cursor():
                 yield class_.create(data[1])
@@ -1164,7 +1174,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             for data in cursor():
                 obj = class_.create(data[1])
                 # just use values and handle to keep small:
-                sorted_items.append((self.eval_order_by(order_by, obj), obj.handle))
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
             # next we sort by fields and direction
             def getitem(item, pos):
                 sort_items = item[0]
@@ -1173,17 +1183,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 elif sort_items[pos] is None:
                     return ""
                 else:
-                    # FIXME: should do something clever/recurive to 
+                    # FIXME: should do something clever/recurive to
                     # sort these meaningfully, and return a string:
                     return str(sort_items[pos])
             pos = len(order_by) - 1
             for (field, order) in reversed(order_by): # sort the lasts parts first
-                sorted_items.sort(key=lambda item: getitem(item, pos), 
+                sorted_items.sort(key=lambda item: getitem(item, pos),
                                   reverse=(order=="DESC"))
                 pos -= 1
             # now we will look them up again:
             for (order_by_values, handle) in sorted_items:
-                yield self._tables[class_.__name__]["handle_func"](handle)
+                yield self.get_table_func(class_.__name__,"handle_func")(handle)
 
     def iter_people(self, order_by=None):
         return self.iter_items(order_by, Person)
@@ -1553,9 +1563,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         A (possibily) implementation-specific method to get data from
         db into this database.
         """
-        for key in db._tables.keys():
-            cursor = db._tables[key]["cursor_func"]
-            class_ = db._tables[key]["class_func"]
+        for key in db.get_table_func():
+            cursor = db.get_table_func(key,"cursor_func")
+            class_ = db.get_table_func(key,"class_func")
             for (handle, data) in cursor():
                 map = getattr(self, "%s_map" % key.lower())
                 if isinstance(handle, bytes):
@@ -1578,8 +1588,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["handle_func"](handle)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"handle_func")(handle)
         return None
 
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
@@ -1593,8 +1603,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_gramps_id("Family", "F056")
         >>> self.get_from_name_and_gramps_id("Media", "M00012")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["gramps_id_func"](gramps_id)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
         return None
 
     def remove_source(self, handle, transaction):
@@ -1673,8 +1683,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return true if there are no [primary] records in the database
         """
-        for table in self._tables:
-            if len(self._tables[table]["handles_func"]()) > 0:
+        for table in self.get_table_func():
+            if len(self.get_table_func(table,"handles_func")()) > 0:
                 return False
         return True
 
@@ -1719,8 +1729,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_metadata('place_types', self.place_types)
 
             # Save misc items:
-            self.save_surname_list()
-            self.save_gender_stats(self.genderStats)
+            if self.has_changed:
+                self.save_surname_list()
+                self.save_gender_stats(self.genderStats)
 
             # Indexes:
             self.set_metadata('cmap_index', self.cmap_index)
@@ -1735,6 +1746,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
             self.close_backend()
         self.db_is_open = False
+        self._directory = None
 
     def get_bookmarks(self):
         return self.bookmarks
@@ -2074,3 +2086,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_default_person_handle(self, handle):
         self.set_metadata("default-person-handle", handle)
         self.emit('home-person-changed')
+
+    def add_table_funcs(self, table, funcs):
+        """
+        Add a new table and funcs to the database.
+        """
+        self.__tables[table] = funcs
+        setattr(DbGeneric, table, property(lambda self: QuerySet(self, table)))

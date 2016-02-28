@@ -202,8 +202,9 @@ class Test4(U.TestCase):
             logging.error(emsg)
             ll = tl.logfile_getlines()
             nl = len(ll)
-            self.assertEquals(nl,3,
-                tu.msg(nl,3, "pass %d: expected line count" % i))
+            print(repr(ll))
+            self.assertEquals(nl,2,
+                tu.msg(nl,2, "pass %d: expected line count" % i))
             #del tl
 
 

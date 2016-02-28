@@ -35,7 +35,11 @@ import types
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from ..db.base import DbReadBase, DbWriteBase
+from ..db.base import DbReadBase, DbWriteBase, sort_objects
+from ..lib import (MediaRef, Attribute, Address, EventRef,
+                   Person, Name, Source, RepoRef, Media, Place, Event,
+                   Family, ChildRef, Repository, LdsOrd, Surname, Citation,
+                   SrcAttribute, Note, Tag)
 
 class ProxyCursor(object):
     """
@@ -119,6 +123,122 @@ class ProxyDbBase(DbReadBase):
                                  self.get_media_handles)
         self.note_map = ProxyMap(self, self.get_raw_note_data,
                                  self.get_note_handles)
+
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def is_open(self):
         """
@@ -374,73 +494,76 @@ class ProxyDbBase(DbReadBase):
         """
         return filter(self.include_tag, self.db.iter_tag_handles())
 
-    @staticmethod
-    def __iter_object(selector, method):
+    def __iter_object(self, selector, method, order_by=None):
         """ Helper function to return an iterator over an object class """
-        return filter(lambda obj: ((selector is None) or selector(obj.handle)),
-                       method())
+        retval = filter(lambda obj: ((selector is None) or selector(obj.handle)),
+                        method())
+        if order_by:
+            return sort_objects([item for item in retval], order_by, self)
+        else:
+            return retval
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Return an iterator over Person objects in the database
         """
-        return self.__iter_object(self.include_person, self.db.iter_people)
+        return self.__iter_object(self.include_person, self.db.iter_people, order_by)
 
-    def iter_families(self):
+    def iter_families(self, order_by=None):
         """
         Return an iterator over Family objects in the database
         """
-        return self.__iter_object(self.include_family, self.db.iter_families)
+        return self.__iter_object(self.include_family, self.db.iter_families, order_by)
 
-    def iter_events(self):
+    def iter_events(self, order_by=None):
         """
         Return an iterator over Event objects in the database
         """
-        return self.__iter_object(self.include_event, self.db.iter_events)
+        return self.__iter_object(self.include_event, self.db.iter_events, order_by)
 
-    def iter_places(self):
+    def iter_places(self, order_by=None):
         """
         Return an iterator over Place objects in the database
         """
-        return self.__iter_object(self.include_place, self.db.iter_places)
+        return self.__iter_object(self.include_place, self.db.iter_places, order_by)
 
-    def iter_sources(self):
+    def iter_sources(self, order_by=None):
         """
         Return an iterator over Source objects in the database
         """
-        return self.__iter_object(self.include_source, self.db.iter_sources)
+        return self.__iter_object(self.include_source, self.db.iter_sources, order_by)
 
-    def iter_citations(self):
+    def iter_citations(self, order_by=None):
         """
         Return an iterator over Citation objects in the database
         """
-        return self.__iter_object(self.include_citation, self.db.iter_citations)
+        return self.__iter_object(self.include_citation, self.db.iter_citations, order_by)
 
-    def iter_media(self):
+    def iter_media(self, order_by=None):
         """
         Return an iterator over Media objects in the database
         """
         return self.__iter_object(self.include_media,
-                                  self.db.iter_media)
+                                  self.db.iter_media, order_by)
 
-    def iter_repositories(self):
+    def iter_repositories(self, order_by=None):
         """
         Return an iterator over Repositories objects in the database
         """
         return self.__iter_object(self.include_repository,
-                                  self.db.iter_repositories)
+                                  self.db.iter_repositories, order_by)
 
-    def iter_notes(self):
+    def iter_notes(self, order_by=None):
         """
         Return an iterator over Note objects in the database
         """
-        return self.__iter_object(self.include_note, self.db.iter_notes)
+        return self.__iter_object(self.include_note, self.db.iter_notes, order_by)
 
-    def iter_tags(self):
+    def iter_tags(self, order_by=None):
         """
         Return an iterator over Tag objects in the database
         """
-        return self.__iter_object(self.include_tag, self.db.iter_tags)
+        return self.__iter_object(self.include_tag, self.db.iter_tags, order_by)
 
     @staticmethod
     def gfilter(predicate, obj):
@@ -468,9 +591,12 @@ class ProxyDbBase(DbReadBase):
             return attr
 
         # if a write-method:
-        if (name in DbWriteBase.__dict__ and
-            not name.startswith("__") and
-            type(DbWriteBase.__dict__[name]) is types.FunctionType):
+        if ((name in DbWriteBase.__dict__ and
+             not name.startswith("__") and
+             type(DbWriteBase.__dict__[name]) is types.FunctionType) or
+            (name in DbWriteBase.__dict__ and
+             not name.startswith("__") and
+             type(DbWriteBase.__dict__[name]) is types.FunctionType)):
             raise AttributeError
         # Default behaviour: lookup attribute in parent object
         return getattr(self.db, name)

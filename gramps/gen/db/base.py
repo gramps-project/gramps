@@ -32,6 +32,7 @@ from this class.
 #-------------------------------------------------------------------------
 import re
 import time
+from operator import itemgetter
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +45,35 @@ from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
 from .exceptions import DbTransactionCancel
+
+def eval_order_by(order_by, obj, db):
+    """
+    Given a list of [[field, DIRECTION], ...]
+    return the list of values of the fields
+    """
+    values = []
+    for (field, direction) in order_by:
+        values.append(obj.get_field(field, db, ignore_errors=True))
+    return values
+
+def sort_objects(objects, order_by, db):
+    """
+    Python-based sorting.
+    """
+    # first build sort order:
+    sorted_items = []
+    map_items = {}
+    for obj in objects:
+        # just use values and handle to keep small:
+        sorted_items.append((eval_order_by(order_by, obj, db), obj.handle))
+        map_items[obj.handle] = obj
+    # next we sort by fields and direction
+    pos = len(order_by) - 1
+    for (field, order) in reversed(order_by): # sort the lasts parts first
+        sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+        pos -= 1
+    for (order_by_values, handle) in sorted_items:
+        yield map_items[handle]
 
 #-------------------------------------------------------------------------
 #
@@ -67,18 +97,12 @@ class DbReadBase(object):
         """
         self.basedb = self
         self.__feature = {} # {"feature": VALUE, ...}
-        self._tables = {
-            "Citation": {},
-            "Event": {},
-            "Family": {},
-            "Media": {},
-            "Note": {},
-            "Person": {},
-            "Place": {},
-            "Repository": {},
-            "Source": {},
-            "Tag": {},
-        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Base implementation of get_table_func.
+        """
+        return None
 
     def get_feature(self, feature):
         """
@@ -1234,6 +1258,186 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def _select(self, table, fields=None, start=0, limit=-1,
+                where=None, order_by=None):
+        """
+        Default implementation of a select for those databases
+        that don't support SQL. Returns a list of dicts, total,
+        and time.
+
+        table - Person, Family, etc.
+        fields - used by object.get_field()
+        start - position to start
+        limit - count to get; -1 for all
+        where - (field, SQL string_operator, value) |
+                 ["AND", [where, where, ...]]      |
+                 ["OR",  [where, where, ...]]      |
+                 ["NOT",  where]
+        order_by - [[fieldname, "ASC" | "DESC"], ...]
+        """
+        def compare(v, op, value):
+            """
+            Compare values in a SQL-like way
+            """
+            if isinstance(v, (list, tuple)) and len(v) > 0: # join, or multi-values
+                # If any is true:
+                for item in v:
+                    if compare(item, op, value):
+                        return True
+                return False
+            if op == "=":
+                matched = v == value
+            elif op == ">":
+                matched = v > value
+            elif op == ">=":
+                matched = v >= value
+            elif op == "<":
+                matched = v < value
+            elif op == "<=":
+                matched = v <= value
+            elif op == "IN":
+                matched = v in value
+            elif op == "IS":
+                matched = v is value
+            elif op == "IS NOT":
+                matched = v is not value
+            elif op == "IS NULL":
+                matched = v is None
+            elif op == "IS NOT NULL":
+                matched = v is not None
+            elif op == "BETWEEN":
+                matched = value[0] <= v <= value[1]
+            elif op in ["<>", "!="]:
+                matched = v != value
+            elif op == "LIKE":
+                if value and v:
+                    value = value.replace("%", "(.*)").replace("_", ".")
+                    ## FIXME: allow a case-insensitive version
+                    matched = re.match("^" + value + "$", v, re.MULTILINE)
+                else:
+                    matched = False
+            else:
+                raise Exception("invalid select operator: '%s'" % op)
+            return True if matched else False
+
+        def evaluate_values(condition, item, db, table, env):
+            """
+            Evaluates the names in all conditions.
+            """
+            if len(condition) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
+                connector, exprs = condition
+                if connector in ["AND", "OR"]:
+                    for expr in exprs:
+                        evaluate_values(expr, item, db, table, env)
+                else: # "NOT"
+                    evaluate_values(exprs, item, db, table, env)
+            elif len(condition) == 3: # (name, op, value)
+                (name, op, value) = condition
+                # just the ones we need for where
+                hname = self._hash_name(table, name)
+                if hname not in env:
+                    value = item.get_field(name, db, ignore_errors=True)
+                    env[hname] = value
+
+        def evaluate_truth(condition, item, db, table, env):
+            if len(condition) == 2: # ["AND"|"OR" [...]]
+                connector, exprs = condition
+                if connector == "AND": # all must be true
+                    for expr in exprs:
+                        if not evaluate_truth(expr, item, db, table, env):
+                            return False
+                    return True
+                elif connector == "OR": # any will return true
+                    for expr in exprs:
+                        if evaluate_truth(expr, item, db, table, env):
+                            return True
+                    return False
+                elif connector == "NOT": # return not of single value
+                    return not evaluate_truth(exprs, item, db, table, env)
+                else:
+                    raise Exception("No such connector: '%s'" % connector)
+            elif len(condition) == 3: # (name, op, value)
+                (name, op, value) = condition
+                v = env.get(self._hash_name(table, name))
+                return compare(v, op, value)
+
+        # Fields is None or list, maybe containing "*":
+        if fields is None:
+            pass # ok
+        elif not isinstance(fields, (list, tuple)):
+            raise Exception("fields must be a list/tuple of field names")
+        elif "*" in fields:
+            fields.remove("*")
+            fields.extend(self.get_table_func(table,"class_func").get_schema().keys())
+        get_count_only = (fields is not None and fields[0] == "count(1)")
+        position = 0
+        selected = 0
+        if get_count_only:
+            if where or limit != -1 or start != 0:
+                # no need to order for a count
+                data = self.get_table_func(table,"iter_func")()
+            else:
+                yield self.get_table_func(table,"count_func")()
+        else:
+            data = self.get_table_func(table, "iter_func")(order_by=order_by)
+        if where:
+            for item in data:
+                # Go through all fliters and evaluate the fields:
+                env = {}
+                evaluate_values(where, item, self, table, env)
+                matched = evaluate_truth(where, item, self, table, env)
+                if matched:
+                    if ((selected < limit) or (limit == -1)) and start <= position:
+                        selected += 1
+                        if not get_count_only:
+                            if fields:
+                                row = {}
+                                for field in fields:
+                                    value = item.get_field(field, self, ignore_errors=True)
+                                    row[field.replace("__", ".")] = value
+                                yield row
+                            else:
+                                yield item
+                    position += 1
+            if get_count_only:
+                yield selected
+        else: # no where
+            for item in data:
+                if position >= start:
+                    if ((selected >= limit) and (limit != -1)):
+                        break
+                    selected += 1
+                    if not get_count_only:
+                        if fields:
+                            row = {}
+                            for field in fields:
+                                value = item.get_field(field, self, ignore_errors=True)
+                                row[field.replace("__", ".")] = value
+                            yield row
+                        else:
+                            yield item
+                position += 1
+            if get_count_only:
+                yield selected
+
+    def _hash_name(self, table, name):
+        """
+        Used in SQL functions to eval expressions involving selected
+        data.
+        """
+        name = self.get_table_func(table,"class_func").get_field_alias(name)
+        return name.replace(".", "__")
+
+    Person = property(lambda self:QuerySet(self, "Person"))
+    Family = property(lambda self:QuerySet(self, "Family"))
+    Note = property(lambda self:QuerySet(self, "Note"))
+    Citation = property(lambda self:QuerySet(self, "Citation"))
+    Source = property(lambda self:QuerySet(self, "Source"))
+    Repository = property(lambda self:QuerySet(self, "Repository"))
+    Place = property(lambda self:QuerySet(self, "Place"))
+    Event = property(lambda self:QuerySet(self, "Event"))
+    Tag = property(lambda self:QuerySet(self, "Tag"))
+
 class DbWriteBase(DbReadBase):
     """
     Gramps database object. This object is a base class for all
@@ -1877,180 +2081,279 @@ class DbWriteBase(DbReadBase):
         else:
             raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
 
-    def select(self, table, fields=None, start=0, limit=-1,
-               where=None, order_by=None):
+    def get_queryset_by_table_name(self, table_name):
         """
-        Default implementation of a select for those databases
-        that don't support SQL. Returns a list of dicts, total,
-        and time.
+        Get Person, Family queryset by name.
+        """
+        return getattr(self, table_name)
 
-        table - Person, Family, etc.
-        fields - used by object.get_field()
-        start - position to start
-        limit - count to get; -1 for all
-        where - (field, SQL string_operator, value) |
-                 ["AND", [where, where, ...]]      |
-                 ["OR",  [where, where, ...]]      |
-                 ["NOT",  where]
-        order_by - [[fieldname, "ASC" | "DESC"], ...]
-        """
-        class Result(list):
-            """
-            A list rows of just matching for this page, with total = all,
-            time = time to select, expanded (unpickled), query (N/A).
-            """
-            total = 0
-            time = 0.0
-            expanded = True
-            query = None
-        def compare(v, op, value):
-            """
-            Compare values in a SQL-like way
-            """
-            if isinstance(v, (list, tuple)): # join, or multi-values
-                # If any is true:
-                for item in v:
-                    if compare(item, op, value):
-                        return True
-                return False
-            if op == "=":
-                matched = v == value
-            elif op == ">":
-                matched = v > value
-            elif op == ">=":
-                matched = v >= value
-            elif op == "<":
-                matched = v < value
-            elif op == "<=":
-                matched = v <= value
-            elif op == "IN":
-                matched = v in value
-            elif op == "IS":
-                matched = v is value
-            elif op == "IS NOT":
-                matched = v is not value
-            elif op == "IS NULL":
-                matched = v is None
-            elif op == "IS NOT NULL":
-                matched = v is not None
-            elif op == "BETWEEN":
-                matched = value[0] <= v <= value[1]
-            elif op in ["<>", "!="]:
-                matched = v != value
-            elif op == "LIKE":
-                if value and v:
-                    value = value.replace("%", "(.*)").replace("_", ".")
-                    ## FIXME: allow a case-insensitive version
-                    matched = re.match("^" + value + "$", v, re.MULTILINE)
-                else:
-                    matched = False
+class Operator(object):
+    """
+    Base for QuerySet operators.
+    """
+    op = "OP"
+    def __init__(self, *expressions, **kwargs):
+        if self.op in ["AND", "OR"]:
+            exprs = [expression.list for expression
+                     in expressions]
+            for key in kwargs:
+                exprs.append(
+                    _select_field_operator_value(key, "=", kwargs[key]))
+        else: # "NOT"
+            if expressions:
+                exprs = expressions.list
             else:
-                raise Exception("invalid select operator: '%s'" % op)
-            return True if matched else False
+                key, value = list(kwargs.items())[0]
+                exprs = _select_field_operator_value(key, "=", value)
+        self.list = [self.op, exprs]
 
-        def evaluate_values(condition, item, db, table, env):
-            """
-            Evaluates the names in all conditions.
-            """
-            if len(condition) == 2: # ["AND" [...]] | ["OR" [...]] | ["NOT" expr]
-                connector, exprs = condition
-                if connector in ["AND", "OR"]:
-                    for expr in exprs:
-                        evaluate_values(expr, item, db, table, env)
-                else: # "NOT"
-                    evaluate_values(exprs, item, db, table, env)
-            elif len(condition) == 3: # (name, op, value)
-                (name, op, value) = condition
-                # just the ones we need for where
-                hname = self._hash_name(table, name)
-                if hname not in env:
-                    value = item.get_field(name, db, ignore_errors=True)
-                    env[hname] = value
+class AND(Operator):
+    op = "AND"
 
-        def evaluate_truth(condition, item, db, table, env):
-            if len(condition) == 2: # ["AND"|"OR" [...]]
-                connector, exprs = condition
-                if connector == "AND": # all must be true
-                    for expr in exprs:
-                        if not evaluate_truth(expr, item, db, table, env):
-                            return False
-                    return True
-                elif connector == "OR": # any will return true
-                    for expr in exprs:
-                        if evaluate_truth(expr, item, db, table, env):
-                            return True
-                    return False
-                elif connector == "NOT": # return not of single value
-                    return not evaluate_truth(exprs, item, db, table, env)
+class OR(Operator):
+    """
+    OR operator for QuerySet logical WHERE expressions.
+    """
+    op = "OR"
+
+class NOT(Operator):
+    """
+    NOT operator for QuerySet logical WHERE expressions.
+    """
+    op = "NOT"
+
+class QuerySet(object):
+    """
+    A container for selection criteria before being actually
+    applied to a database.
+    """
+    def __init__(self, database, table):
+        self.database = database
+        self.table = table
+        self.generator = None
+        self.where_by = None
+        self.order_by = None
+        self.limit_by = -1
+        self.start = 0
+        self.needs_to_run = False
+
+    def limit(self, start=None, count=None):
+        """
+        Put limits on the selection.
+        """
+        if start is not None:
+            self.start = start
+        if count is not None:
+            self.limit_by = count
+        self.needs_to_run = True
+        return self
+
+    def order(self, *args):
+        """
+        Put an ordering on the selection.
+        """
+        for arg in args:
+            if self.order_by is None:
+                self.order_by = []
+            if arg.startswith("-"):
+                self.order_by.append((arg[1:], "DESC"))
+            else:
+                self.order_by.append((arg, "ASC"))
+        self.needs_to_run = True
+        return self
+
+    def _add_where_clause(self, *args, **kwargs):
+        """
+        Add a condition to the where clause.
+        """
+        # First, handle AND, OR, NOT args:
+        and_expr = []
+        for arg in args:
+            expr = arg.list
+            and_expr.append(expr)
+        # Next, handle kwargs:
+        for keyword in kwargs:
+            and_expr.append(
+                _select_field_operator_value(
+                    keyword, "=", kwargs[keyword]))
+        if and_expr:
+            if self.where_by:
+                self.where_by = ["AND", [self.where_by] + and_expr]
+            elif len(and_expr) == 1:
+                self.where_by = and_expr[0]
+            else:
+                self.where_by = ["AND", and_expr]
+        self.needs_to_run = True
+        return self
+
+    def count(self):
+        """
+        Run query with just where, start, limit to get count.
+        """
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            return len(list(self.generator))
+        else:
+            generator = self.database._select(self.table,
+                                              ["count(1)"],
+                                              where=self.where_by,
+                                              start=self.start,
+                                              limit=self.limit_by)
+            return next(generator)
+
+    def _generate(self, args=None):
+        """
+        Create a generator from current options.
+        """
+        generator = self.database._select(self.table,
+                                          args,
+                                          order_by=self.order_by,
+                                          where=self.where_by,
+                                          start=self.start,
+                                          limit=self.limit_by)
+        # Reset all criteria
+        self.where_by = None
+        self.order_by = None
+        self.limit_by = -1
+        self.start = 0
+        self.needs_to_run = False
+        return generator
+
+    def select(self, *args):
+        """
+        Actually touch the database.
+        """
+        if len(args) == 0:
+            args = None
+        if self.generator and self.needs_to_run:
+            ## problem
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            if args: # there is a generator, with args
+                for i in self.generator:
+                    yield [i.get_field(arg) for arg in args]
+            else: # generator, no args
+                for i in self.generator:
+                    yield i
+        else: # need to run or not
+            self.generator = self._generate(args)
+            for i in self.generator:
+                yield i
+
+    def proxy(self, proxy_name, *args, **kwargs):
+        """
+        Apply a named proxy to the db.
+        """
+        from gramps.gen.proxy import (LivingProxyDb, PrivateProxyDb,
+                                      ReferencedBySelectionProxyDb)
+        if proxy_name == "living":
+            proxy_class = LivingProxyDb
+        elif proxy_name == "private":
+            proxy_class = PrivateProxyDb
+        elif proxy_name == "referenced":
+            proxy_class = ReferencedBySelectionProxyDb
+        else:
+            raise Exception("No such proxy name: '%s'" % proxy_name)
+        self.database = proxy_class(self.database, *args, **kwargs)
+        return self
+
+    def filter(self, *args, **kwargs):
+        """
+        Apply a filter to the database.
+        """
+        from gramps.gen.proxy import FilterProxyDb
+        from gramps.gen.filters import GenericFilter
+        for i in range(len(args)):
+            arg = args[i]
+            if isinstance(arg, GenericFilter):
+                self.database = FilterProxyDb(self.database, arg, *args[i+1:])
+                if arg.where_by:
+                    self._add_where_clause(arg.where_by)
+            elif isinstance(arg, Operator):
+                self._add_where_clause(arg)
+            elif callable(arg):
+                if self.generator and self.needs_to_run:
+                    ## error
+                    raise Exception("Queries in invalid order")
+                elif self.generator:
+                    pass # ok
                 else:
-                    raise Exception("No such connector: '%s'" % connector)
-            elif len(condition) == 3: # (name, op, value)
-                (name, op, value) = condition
-                v = env.get(self._hash_name(table, name))
-                return compare(v, op, value)
+                    self.generator = self._generate()
+                self.generator = filter(arg, self.generator)
+            else:
+                pass # ignore, may have been arg from previous Filter
+        if kwargs:
+            self._add_where_clause(**kwargs)
+        return self
 
-        # Fields is None or list, maybe containing "*":
-        if fields is None:
-            fields = ["*"]
-        elif not isinstance(fields, (list, tuple)):
-            raise Exception("fields must be a list/tuple of field names")
-        if "*" in fields:
-            fields.remove("*")
-            fields.extend(self._tables[table]["class_func"].get_schema().keys())
-        data = self._tables[table]["iter_func"](order_by=order_by)
-        position = 0
-        selected = 0
-        result = Result()
-        start_time = time.time()
-        if where:
-            for item in data:
-                # have to evaluate all, because there is a where
-                row = {}
-                env = {}
-                # Go through all fliters and evaluate the fields:
-                evaluate_values(where, item, self, table, env)
-                matched = evaluate_truth(where, item, self, table, env)
-                if matched:
-                    if ((selected < limit) or (limit == -1)) and start <= position:
-                        # now, we get all of the fields
-                        for field in fields:
-                            value = item.get_field(field, self, ignore_errors=True)
-                            row[field.replace("__", ".")] = value
-                        selected += 1
-                        result.append(row)
-                    position += 1
-            result.total = position
-        else: # no where
-            for item in data:
-                if position >= start:
-                    if ((selected >= limit) and (limit != -1)):
-                        break
-                    row = {}
-                    for field in fields:
-                        value = item.get_field(field, self, ignore_errors=True)
-                        row[field.replace("__", ".")] = value
-                    result.append(row)
-                    selected += 1
-                position += 1
-            result.total = self._tables[table]["count_func"]()
-        result.time = time.time() - start_time
-        return result
+    def map(self, f):
+        """
+        Apply the function f to the selected items and return results.
+        """
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            pass # ok
+        else:
+            self.generator = self._generate()
+        previous_generator = self.generator
+        def generator():
+            for item in previous_generator:
+                yield f(item)
+        self.generator = generator()
+        return self
 
-    def _hash_name(self, table, name):
+    def tag(self, tag_text):
         """
-        Used in SQL functions to eval expressions involving selected
-        data.
+        Tag the selected items with the tag name.
         """
-        name = self._tables[table]["class_func"].get_field_alias(name)
-        return name.replace(".", "__")
+        if self.generator and self.needs_to_run:
+            raise Exception("Queries in invalid order")
+        elif self.generator:
+            pass # ok
+        else:
+            self.generator = self._generate()
+        tag = self.database.get_tag_from_name(tag_text)
+        trans_class = self.database.get_transaction_class()
+        with trans_class("Tag Selected Items", self.database, batch=True) as trans:
+            if tag is None:
+                tag = self.database.get_table_func("Tag","class_func")()
+                tag.set_name(tag_text)
+                self.database.add_tag(tag, trans)
+            commit_func = self.database.get_table_func(self.table,"commit_func")
+            for item in self.generator:
+                if tag.handle not in item.tag_list:
+                    item.add_tag(tag.handle)
+                    commit_func(item, trans)
 
-    def eval_order_by(self, order_by, obj):
-        """
-        Given a list of [[field, DIRECTION], ...]
-        return the list of values of the fields
-        """
-        values = []
-        for (field, direction) in order_by:
-            values.append(obj.get_field(field, self, ignore_errors=True))
-        return values
+def _to_dot_format(field):
+    """
+    Convert a field keyword arg into a proper
+    dotted field name.
+    """
+    return field.replace("__", ".")
 
+def _select_field_operator_value(field, op, value):
+    """
+    Convert a field keyword arg into proper
+    field, op, and value.
+    """
+    alias = {
+        "LT": "<",
+        "GT": ">",
+        "LTE": "<=",
+        "GTE": ">=",
+        "IS_NOT": "IS NOT",
+        "IS_NULL": "IS NULL",
+        "IS_NOT_NULL": "IS NOT NULL",
+        "NE": "<>",
+    }
+    for operator in ["LIKE", "IN"] + list(alias.keys()):
+        operator = "__" + operator
+        if field.endswith(operator):
+            op = field[-len(operator) + 2:]
+            field = field[:-len(operator)]
+            op = alias.get(op, op)
+    field = _to_dot_format(field)
+    return (field, op, value)
