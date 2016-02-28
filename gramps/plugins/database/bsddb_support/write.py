@@ -240,7 +240,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         DbBsddbRead.__init__(self)
         DbWriteBase.__init__(self)
         #UpdateCallback.__init__(self)
-        self._tables['Person'].update(
+        self.__tables = {
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -252,8 +253,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_people,
                 "del_func": self.remove_person,
                 "iter_func": self.iter_people,
-            })
-        self._tables['Family'].update(
+            },
+            'Family':
             {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
@@ -265,8 +266,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_families,
                 "del_func": self.remove_family,
                 "iter_func": self.iter_families,
-            })
-        self._tables['Source'].update(
+            },
+            'Source':
             {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
@@ -278,8 +279,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_sources,
                 "del_func": self.remove_source,
                 "iter_func": self.iter_sources,
-                })
-        self._tables['Citation'].update(
+            },
+            'Citation':
             {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
@@ -291,8 +292,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_citations,
                 "del_func": self.remove_citation,
                 "iter_func": self.iter_citations,
-            })
-        self._tables['Event'].update(
+            },
+            'Event':
             {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
@@ -304,8 +305,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_events,
                 "del_func": self.remove_event,
                 "iter_func": self.iter_events,
-            })
-        self._tables['Media'].update(
+            },
+            'Media':
             {
                 "handle_func": self.get_media_from_handle,
                 "gramps_id_func": self.get_media_from_gramps_id,
@@ -317,8 +318,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_media,
                 "del_func": self.remove_media,
                 "iter_func": self.iter_media,
-            })
-        self._tables['Place'].update(
+            },
+            'Place':
             {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
@@ -330,8 +331,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_places,
                 "del_func": self.remove_place,
                 "iter_func": self.iter_places,
-            })
-        self._tables['Repository'].update(
+            },
+            'Repository':
             {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
@@ -343,8 +344,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_repositories,
                 "del_func": self.remove_repository,
                 "iter_func": self.iter_repositories,
-            })
-        self._tables['Note'].update(
+            },
+            'Note':
             {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
@@ -356,8 +357,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_notes,
                 "del_func": self.remove_note,
                 "iter_func": self.iter_notes,
-            })
-        self._tables['Tag'].update(
+            },
+            'Tag':
             {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
@@ -369,7 +370,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "count_func": self.get_number_of_tags,
                 "del_func": self.remove_tag,
                 "iter_func": self.iter_tags,
-            })
+            }
+        }
 
         self.secondary_connected = False
         self.has_changed = False
@@ -377,6 +379,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.update_env_version = False
         self.update_python_version = False
         self.update_pickle_version = False
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def catch_db_error(func):
         """

@@ -32,6 +32,7 @@ from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
                    Citation, Event, Media, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
+from gramps.gen.db.base import sort_objects
 
 #-------------------------------------------------------------------------
 #
@@ -77,6 +78,121 @@ class LivingProxyDb(ProxyDbBase):
         else:
             self.current_date = None
         self.years_after_death = years_after_death
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):
         """
@@ -100,18 +216,32 @@ class LivingProxyDb(ProxyDbBase):
         family = self.__remove_living_from_family(family)
         return family
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Protected version of iter_people
         """
-        for person in filter(None, self.db.iter_people()):
-            if self.__is_living(person):
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    continue
+        if order_by:
+            retval = []
+            for person in filter(None, self.db.iter_people()):
+                if self.__is_living(person):
+                    if self.mode == self.MODE_EXCLUDE_ALL:
+                        continue
+                    else:
+                        retval.append(self.__restrict_person(person))
                 else:
-                    yield self.__restrict_person(person)
-            else:
-                yield person
+                    retval.append(person)
+            retval = sort_objects(retval, order_by, self)
+            for item in retval:
+                yield item
+        else:
+            for person in filter(None, self.db.iter_people()):
+                if self.__is_living(person):
+                    if self.mode == self.MODE_EXCLUDE_ALL:
+                        continue
+                    else:
+                        yield self.__restrict_person(person)
+                else:
+                    yield person
 
     def get_person_from_gramps_id(self, val):
         """

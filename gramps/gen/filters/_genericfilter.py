@@ -59,6 +59,8 @@ class GenericFilter(object):
             self.comment = source.comment
             self.logical_op = source.logical_op
             self.invert = source.invert
+            if hasattr(source, "where"):
+                self.where = source.where
         else:
             self.need_param = 0
             self.flist = []
@@ -66,6 +68,30 @@ class GenericFilter(object):
             self.comment = ''
             self.logical_op = 'and'
             self.invert = False
+            self.where = None
+
+    def add_where_clause(self, *args, **kwargs):
+        """
+        Add a where-clause for possibly fast selection.
+        """
+        from gramps.gen.db.base import _select_field_operator_value
+        # First, handle AND, OR, NOT args:
+        and_expr = []
+        for arg in args:
+            expr = arg.list
+            and_expr.append(expr)
+        # Next, handle kwargs:
+        for keyword in kwargs:
+            and_expr.append(
+                _select_field_operator_value(
+                    keyword, "=", kwargs[keyword]))
+        if and_expr:
+            if self.where:
+                self.where = ["AND", [self.where] + and_expr]
+            elif len(and_expr) == 1:
+                self.where = and_expr[0]
+            else:
+                self.where = ["AND", and_expr]
 
     def match(self, handle, db):
         """

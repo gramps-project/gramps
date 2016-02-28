@@ -71,7 +71,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             # get rid of orphaned people:
             # first, get all of the links from people:
             for person in self.db.iter_people():
-                self.queue_object("Person", person, False)
+                self.queue_object("Person", person.handle, False)
             # save those people:
             self.restricted_to["Person"] = self.referenced["Person"]
             # reset, and just follow those people
@@ -82,6 +82,152 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         while len(self.queue):
             obj_type, handle, reference = self.queue.pop()
             self.process_object(obj_type, handle, reference)
+
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "add_func": self.add_person,
+                "commit_func": self.commit_person,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+                "del_func": self.remove_person,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "add_func": self.add_family,
+                "commit_func": self.commit_family,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+                "del_func": self.remove_family,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "add_func": self.add_source,
+                "commit_func": self.commit_source,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+                "del_func": self.remove_source,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "add_func": self.add_citation,
+                "commit_func": self.commit_citation,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+                "del_func": self.remove_citation,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "add_func": self.add_event,
+                "commit_func": self.commit_event,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+                "del_func": self.remove_event,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "add_func": self.add_media,
+                "commit_func": self.commit_media,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+                "del_func": self.remove_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "add_func": self.add_place,
+                "commit_func": self.commit_place,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+                "del_func": self.remove_place,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "add_func": self.add_repository,
+                "commit_func": self.commit_repository,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+                "del_func": self.remove_repository,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "add_func": self.add_note,
+                "commit_func": self.commit_note,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+                "del_func": self.remove_note,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "add_func": self.add_tag,
+                "commit_func": self.commit_tag,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+                "del_func": self.remove_tag,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return self.__tables.keys()
+        elif func is None:
+            return self.__tables[table].keys()
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def queue_object(self, obj_type, handle, reference=True):
         self.queue.append((obj_type, handle, reference))
