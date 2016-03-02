@@ -6053,7 +6053,10 @@ class PersonPages(BasePage):
         if gen_nr > maxgen:
             return tree
         gen_offset = int(max_size / pow(2, gen_nr+1))
-        person = self.dbase_.get_person_from_handle(person_handle)
+        if person_handle:
+            person = self.dbase_.get_person_from_handle(person_handle)
+        else:
+            person = None
         if not person:
             return tree
 
@@ -6160,9 +6163,10 @@ class PersonPages(BasePage):
                 for birthdate, handle in children:
                     if handle == self.person.get_handle():
                         child_ped(ol)
-                    else:
+                    elif handle:
                         child = self.dbase_.get_person_from_handle(handle)
-                        ol += Html("li") + self.pedigree_person(child)
+                        if child:
+                            ol += Html("li") + self.pedigree_person(child)
             else:
                 child_ped(ol)
             return ol
@@ -6181,8 +6185,14 @@ class PersonPages(BasePage):
             family = self.dbase_.get_family_from_handle(parent_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
-            mother = self.dbase_.get_person_from_handle(mother_handle)
-            father = self.dbase_.get_person_from_handle(father_handle)
+            if mother_handle:
+                mother = self.dbase_.get_person_from_handle(mother_handle)
+            else:
+                mother = None
+            if father_handle:
+                father = self.dbase_.get_person_from_handle(father_handle)
+            else:
+                father = None
         else:
             family = None
             father = None
@@ -6588,9 +6598,10 @@ class PersonPages(BasePage):
                     pedsp += [childol]
                     for child_ref in childlist:
                         child = self.dbase_.get_person_from_handle(child_ref.ref)
-                        childol += (Html("li") +
-                                    self.pedigree_person(child)
-                                   )
+                        if child:
+                            childol += (Html("li") +
+                                        self.pedigree_person(child)
+                                    )
         return ped
 
     def display_event_header(self):
@@ -7718,7 +7729,7 @@ class NavWebReport(Report):
                         self.write_gendex(gendex_io, person)
                     else:
                         self.write_gendex(fp_gendex, person)
-                self.close_file(fp_gendex, gendex_io, date)
+                self.close_file(fp_gendex, gendex_io, 0)
 
     def write_gendex(self, fp, person):
         """

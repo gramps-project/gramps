@@ -102,16 +102,26 @@ reports = ReportControl()
 # If you could run all reports in a standard way:
 #reports.testall(TestDynamic)
 
-def output_contains(text):
+def report_contains(text):
     def test_output_file(out, err, report_name):
         contents = open(report_name + ".txt").read()
         print(contents)
         return text in contents
     return test_output_file
 
+def err_does_not_contain(text):
+    def test_output_file(out, err, report_name):
+        print(err)
+        return text not in err
+    return test_output_file
+
 reports.addtest(TestDynamic, "tag_report", 
-                output_contains("I0037  Smith, Edwin Michael"),
+                report_contains("I0037  Smith, Edwin Michael"),
                 'off=txt,tag=tag1')
+
+reports.addtest(TestDynamic, "navwebpage", 
+                err_does_not_contain("Failed to write report."),
+                'off=html')
 
 if __name__ == "__main__":
     unittest.main()
