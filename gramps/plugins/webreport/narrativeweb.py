@@ -494,7 +494,7 @@ def get_gendex_data(database, event_ref):
     """
     doe = "" # date of event
     poe = "" # place of event
-    if event_ref:
+    if event_ref and event_ref.ref:
         event = database.get_event_from_handle(event_ref.ref)
         if event:
             date = event.get_date_object()
@@ -1132,10 +1132,17 @@ class BasePage(object):
         husband, spouse = [False]*2
 
         husband_handle = family.get_father_handle()
-        spouse_handle = family.get_mother_handle()
 
-        husband = self.dbase_.get_person_from_handle(husband_handle)
-        spouse = self.dbase_.get_person_from_handle(spouse_handle)
+        if husband_handle:
+            husband = self.database.get_person_from_handle(husband_handle)
+        else:
+            husband = None
+
+        spouse_handle = family.get_mother_handle()
+        if spouse_handle:
+            spouse = self.database.get_person_from_handle(spouse_handle)
+        else:
+            spouse = None
 
         if husband:
             husband_name = self.get_name(husband)
@@ -7476,8 +7483,14 @@ class NavWebReport(Report):
         husband_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle()
 
-        husband = self.database.get_person_from_handle(husband_handle)
-        spouse = self.database.get_person_from_handle(spouse_handle)
+        if husband_handle:
+            husband = self.database.get_person_from_handle(husband_handle)
+        else:
+            husband = None
+        if spouse_handle:
+            spouse = self.database.get_person_from_handle(spouse_handle)
+        else:
+            spouse = None
 
         if husband and spouse:
             husband_name = self.get_person_name(husband)
