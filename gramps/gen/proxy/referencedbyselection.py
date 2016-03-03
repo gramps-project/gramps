@@ -66,7 +66,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                                             self.db.iter_person_handles()]
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
-                self.queue_object("Person", handle)
+                if handle:
+                    self.queue_object("Person", handle)
         else:
             # get rid of orphaned people:
             # first, get all of the links from people:
@@ -77,7 +78,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             # reset, and just follow those people
             self.reset_references()
             for handle in self.restricted_to["Person"]:
-                self.queue_object("Person", handle)
+                if handle:
+                    self.queue_object("Person", handle)
         # process:
         while len(self.queue):
             obj_type, handle, reference = self.queue.pop()
@@ -91,11 +93,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
                 "handles_func": self.get_person_handles,
-                "add_func": self.add_person,
-                "commit_func": self.commit_person,
                 "iter_func": self.iter_people,
                 "count_func": self.get_number_of_people,
-                "del_func": self.remove_person,
             },
             'Family':
             {
@@ -104,11 +103,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
                 "handles_func": self.get_family_handles,
-                "add_func": self.add_family,
-                "commit_func": self.commit_family,
                 "iter_func": self.iter_families,
                 "count_func": self.get_number_of_families,
-                "del_func": self.remove_family,
             },
             'Source':
             {
@@ -117,11 +113,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 "handles_func": self.get_source_handles,
-                "add_func": self.add_source,
-                "commit_func": self.commit_source,
                 "iter_func": self.iter_sources,
                 "count_func": self.get_number_of_sources,
-                "del_func": self.remove_source,
             },
             'Citation':
             {
@@ -130,11 +123,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
                 "handles_func": self.get_citation_handles,
-                "add_func": self.add_citation,
-                "commit_func": self.commit_citation,
                 "iter_func": self.iter_citations,
                 "count_func": self.get_number_of_citations,
-                "del_func": self.remove_citation,
             },
             'Event':
             {
@@ -143,11 +133,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
                 "handles_func": self.get_event_handles,
-                "add_func": self.add_event,
-                "commit_func": self.commit_event,
                 "iter_func": self.iter_events,
                 "count_func": self.get_number_of_events,
-                "del_func": self.remove_event,
             },
             'Media':
             {
@@ -156,11 +143,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Media,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_handles,
-                "add_func": self.add_media,
-                "commit_func": self.commit_media,
                 "iter_func": self.iter_media,
                 "count_func": self.get_number_of_media,
-                "del_func": self.remove_media,
             },
             'Place':
             {
@@ -169,11 +153,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
                 "handles_func": self.get_place_handles,
-                "add_func": self.add_place,
-                "commit_func": self.commit_place,
                 "iter_func": self.iter_places,
                 "count_func": self.get_number_of_places,
-                "del_func": self.remove_place,
             },
             'Repository':
             {
@@ -182,11 +163,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
                 "handles_func": self.get_repository_handles,
-                "add_func": self.add_repository,
-                "commit_func": self.commit_repository,
                 "iter_func": self.iter_repositories,
                 "count_func": self.get_number_of_repositories,
-                "del_func": self.remove_repository,
             },
             'Note':
             {
@@ -195,11 +173,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 "handles_func": self.get_note_handles,
-                "add_func": self.add_note,
-                "commit_func": self.commit_note,
                 "iter_func": self.iter_notes,
                 "count_func": self.get_number_of_notes,
-                "del_func": self.remove_note,
             },
             'Tag':
             {
@@ -208,11 +183,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
-                "add_func": self.add_tag,
-                "commit_func": self.commit_tag,
                 "iter_func": self.iter_tags,
                 "count_func": self.get_number_of_tags,
-                "del_func": self.remove_tag,
             }
         }
 
@@ -352,8 +324,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             return
         self.referenced["Family"].add(family.handle)
 
-        self.queue_object("Person", family.mother_handle)
-        self.queue_object("Person", family.father_handle)
+        if family.mother_handle:
+            self.queue_object("Person", family.mother_handle)
+        if family.father_handle:
+            self.queue_object("Person", family.father_handle)
         for child_ref in family.get_child_ref_list():
             if not child_ref:
                 continue
