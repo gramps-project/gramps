@@ -312,7 +312,10 @@ def show_settings():
 
     try:
         if win():
-            gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
+            try:
+                gsversion_str = Popen(['gswin32c', '--version'], stdout=PIPE).communicate(input=None)[0]
+            except:
+                gsversion_str = Popen(['gswin64c', '--version'], stdout=PIPE).communicate(input=None)[0]
         else:
             gsversion_str = Popen(['gs', '--version'], stdout=PIPE).communicate(input=None)[0]
         if isinstance(gsversion_str, bytes) and sys.stdin.encoding:
