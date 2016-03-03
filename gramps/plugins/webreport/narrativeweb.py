@@ -5435,8 +5435,14 @@ class PersonPages(BasePage):
                             family = self.dbase_.get_family_from_handle(parent_handle)
                             father_handle = family.get_father_handle()
                             mother_handle = family.get_mother_handle()
-                            father = self.dbase_.get_person_from_handle(father_handle)
-                            mother = self.dbase_.get_person_from_handle(mother_handle)
+                            if father_handle:
+                                father = self.dbase_.get_person_from_handle(father_handle)
+                            else:
+                                father = None
+                            if mother_handle:
+                                mother = self.dbase_.get_person_from_handle(mother_handle)
+                            else:
+                                mother = None
                             if father:
                                 father_name = self.get_name(father)
                             if mother:
