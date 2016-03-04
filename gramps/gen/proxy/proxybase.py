@@ -591,12 +591,9 @@ class ProxyDbBase(DbReadBase):
             return attr
 
         # if a write-method:
-        if ((name in DbWriteBase.__dict__ and
+        if (name in DbWriteBase.__dict__ and
              not name.startswith("__") and
-             type(DbWriteBase.__dict__[name]) is types.FunctionType) or
-            (name in DbWriteBase.__dict__ and
-             not name.startswith("__") and
-             type(DbWriteBase.__dict__[name]) is types.FunctionType)):
+             type(DbWriteBase.__dict__[name]) is types.FunctionType):
             raise AttributeError
         # Default behaviour: lookup attribute in parent object
         return getattr(self.db, name)
