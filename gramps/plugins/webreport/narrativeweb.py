@@ -702,7 +702,9 @@ class BasePage(object):
             with Html("table", class_ = table_class) as table:
                 section += table
                 for person_handle in [family.get_father_handle(), family.get_mother_handle()]:
-                    person = self.dbase_.get_person_from_handle(person_handle)
+                    person = None
+                    if person_handle:
+                        person = self.dbase_.get_person_from_handle(person_handle)
                     if person:
                         table += self.display_spouse(person, family, place_lat_long)
 
@@ -3030,12 +3032,15 @@ class SurnamePage(BasePage):
                             family = self.dbase_.get_family_from_handle(parent_handle)
                             father_id = family.get_father_handle()
                             mother_id = family.get_mother_handle()
-                            father = self.dbase_.get_person_from_handle(father_id)
-                            mother = self.dbase_.get_person_from_handle(mother_id)
-                            if father:
-                                father_name = self.get_name(father)
-                            if mother:
-                                mother_name = self.get_name(mother)
+                            mother = father = None
+                            if father_id:
+                                father = self.dbase_.get_person_from_handle(father_id)
+                                if father:
+                                    father_name = self.get_name(father)
+                            if mother_id:
+                                mother = self.dbase_.get_person_from_handle(mother_id)
+                                if mother:
+                                    mother_name = self.get_name(mother)
                             if mother and father:
                                 tcell = Html("span", father_name, class_ = "father fatherNmother")
                                 tcell += Html("span", mother_name, class_ = "mother")
