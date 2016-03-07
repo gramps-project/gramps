@@ -982,6 +982,11 @@ class GrampsXmlWriter(UpdateCallback):
     def dump_name(self, name,alternative=False,index=1):
         sp = "  "*index
         name_type = name.get_type().xml_str()
+        # bug 9242
+        if len(name.get_first_name().splitlines()) != 1:
+            firstname = "".join(name.get_first_name().splitlines())
+        else:
+            firstname = name.get_first_name()
         self.g.write('%s<name' % sp)
         if alternative:
             self.g.write(' alt="1"')
@@ -994,7 +999,7 @@ class GrampsXmlWriter(UpdateCallback):
         if name.get_display_as() != 0:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
-        self.write_line("first", name.get_first_name(), index+1)
+        self.write_line("first", firstname, index+1)
         self.write_line("call", name.get_call_name(), index+1)
         for surname in name.get_surname_list():
             self.write_surname(surname,index+1)

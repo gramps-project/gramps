@@ -2825,6 +2825,9 @@ class GrampsParser(UpdateCallback):
                 set_date(self.event, tag)
 
     def stop_first(self, tag):
+        # bug 9242
+        if len(tag.splitlines()) != 1:
+            tag = "".join(tag.splitlines())
         self.name.set_first_name(tag)
 
     def stop_call(self, tag):
