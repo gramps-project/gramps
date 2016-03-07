@@ -60,7 +60,7 @@ class InteractiveSearchBox():
         self.__disable_popdown = False
         self._entry_flush_timeout = None
         self._entry_launchsearch_timeout = None
-        self.__selected_search_result = None
+        self.__selected_search_result = 0
         # Disable builtin interactive search by intercepting CTRL-F instead.
         # self._treeview.connect('start-interactive-search',
         #                       self.start_interactive_search)
