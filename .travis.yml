@@ -3,35 +3,50 @@
 
 language: python
 python:
-    - 3.4
+ - 3.4
+sudo: false
+cache: pip
+addons:
+  apt:
+    packages:
+    - gir1.2-pango-1.0
+    - gir1.2-gtk-3.0
+    - xdg-utils
+    - librsvg2-common
+    - libglib2.0-dev
+    - intltool
+    # - python3-gobject Provided by python3-gi
+    - python3-gi
+    - python3-cairo
+    - python3-gi-cairo
+    - python3-bsddb3
+    - python3-dev
+    - python3-nose
+    - python3-mock
 
 before_install:
-    - pip install --upgrade pip
-    - pip install --upgrade setuptools wheel nose coverage codecov
+ - pip install --upgrade pip
+ - pip install --upgrade setuptools wheel nose coverage codecov
 
 install:
-    - time sudo apt-get update
-    - travis_retry sudo apt-get install gir1.2-pango gir1.2-gtk xdg-utils librsvg2-common libglib2.0-dev intltool
-    - travis_retry sudo apt-get install python3-gobject python3-gi python3-cairo python3-gi-cairo python3-bsddb3 python3-dev python3-nose 
-    - travis_retry sudo apt-get install python3-mock 
-    - travis_retry sudo pip install --upgrade pillow
-    - travis_retry sudo pip install pyicu==1.8
+ - travis_retry pip install --upgrade pillow
+ - travis_retry pip install pyicu==1.8
+ 
+ # - cd $TRAVIS_BUILD_DIR
+ # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
+ # for example: /home/travis/build/gramps-project/gramps
+ - python setup.py build
 
-    - cd $TRAVIS_BUILD_DIR
-    # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
-    # for example: /home/travis/build/gramps-project/gramps
-    - python setup.py build
-
-#before_script:
+before_script:
 #    - sudo Xvfb :99 -ac &
 #    - export DISPLAY=:99
+ - mkdir -p ~/.gramps/grampsdb/
 
 script:
-    -  mkdir -p ~/.gramps/grampsdb/
-    # --exclude=TestUser because of older version of mock
-    #                    without configure_mock
-    -  nosetests3 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+ # --exclude=TestUser because of older version of mock
+ #                    without configure_mock
+ - nosetests3 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
 
 after_success:
-    - codecov
+ - codecov
 
