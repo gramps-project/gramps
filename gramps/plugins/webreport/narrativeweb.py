@@ -3440,7 +3440,7 @@ class PlacePages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for place_handle_key in sorted(handle_list):
+                for place_handle_key in handle_list:
                     event = self.report.obj_dict[Place][place_handle_key][3]
                     place = self.dbase_.get_place_from_handle(place_handle_key)
                     if place: 
