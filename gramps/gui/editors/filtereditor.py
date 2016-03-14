@@ -455,6 +455,7 @@ class EditRule(ManagedWindow):
                         self.get_widget('rule_editor_title'),label)
         self.window.hide()
         self.valuebox = self.get_widget('valuebox')
+        self.rname_filter = self.get_widget('ruletreefilter')
         self.rname = self.get_widget('ruletree')
         self.rule_name = self.get_widget('rulename')
         self.description = self.get_widget('description')
@@ -619,11 +620,13 @@ class EditRule(ManagedWindow):
             self.page_num = self.page_num + 1
         self.page_num = 0
         self.store = Gtk.TreeStore(GObject.TYPE_STRING, GObject.TYPE_PYOBJECT)
+        self.ruletree_filter = self.store.filter_new()
+        self.ruletree_filter.set_visible_func(self.rtree_visible_func)
         self.selection = self.rname.get_selection()
         col = Gtk.TreeViewColumn(_('Rule Name'), Gtk.CellRendererText(),
                                  text=0)
         self.rname.append_column(col)
-        self.rname.set_model(self.store)
+        self.rname.set_model(self.ruletree_filter)
 
         prev = None
         last_top = None
@@ -677,6 +680,7 @@ class EditRule(ManagedWindow):
         self.get_widget('rule_editor_ok').connect('clicked', self.rule_ok)
         self.get_widget('rule_editor_cancel').connect('clicked', self.close_window)
         self.get_widget('rule_editor_help').connect('clicked', self.on_help_clicked)
+        self.rname_filter.connect('changed', self.on_rname_filter_changed)
 
         self._set_size()
         self.show()
@@ -735,6 +739,12 @@ class EditRule(ManagedWindow):
             class_obj = store.get_value(node, 1)
             self.display_values(class_obj)
 
+    def on_rname_filter_changed(self, obj):
+        """
+        Update the ruletree based on the filter.
+        """
+        self.ruletree_filter.refilter()
+
     def display_values(self, class_obj):
         if class_obj in self.class2page:
             page = self.class2page[class_obj]
@@ -764,6 +774,18 @@ class EditRule(ManagedWindow):
             self.close()
         except KeyError:
             pass
+
+    def rtree_visible_func(self, model, iter, data):
+        """
+        Callback function to determine if a row of the tree is visible
+        """
+        filter_text = self.rname_filter.get_text()
+        tree_text = model[iter][0]
+        children = model[iter].iterchildren()
+        result = (not tree_text or
+                children.iter or
+                filter_text.lower() in tree_text.lower())
+        return result
 
 #-------------------------------------------------------------------------
 #
