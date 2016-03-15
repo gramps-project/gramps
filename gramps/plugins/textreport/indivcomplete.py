@@ -79,6 +79,7 @@ for event_group, type_list in EventType().get_menu_standard_xml():
         TYPE2GROUP[event_type] = event_group
 SECTION_LIST.append(CUSTOM)
 TYPE2GROUP[EventType.CUSTOM] = CUSTOM
+TYPE2GROUP[EventType.UNKNOWN] = _T_("Unknown")
 
 #------------------------------------------------------------------------
 #
