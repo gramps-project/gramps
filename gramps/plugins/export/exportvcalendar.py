@@ -90,7 +90,7 @@ class CalendarWriter(object):
             self.oldval = newval
 
     def writeln(self, text):
-        self.g.write('%s\n' % text.encode('ascii', 'backslashreplace'))
+        self.g.write('%s\n' % text)
 
     def export_data(self, filename):
 
@@ -239,7 +239,7 @@ class CalendarWriter(object):
             self.writeln("SUMMARY:"+_("Anniversary: %s") % event_text)
             if location:
                 self.writeln("LOCATION:%s" % location)
-            self.writeln("RRULE:YD1 #0")
+            self.writeln("RRULE:FREQ=YEARLY")
             self.writeln(date_string)
             self.writeln("END:VEVENT")
 
