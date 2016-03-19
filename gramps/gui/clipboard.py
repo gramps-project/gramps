@@ -864,8 +864,10 @@ class ClipDropList(object):
         retval = []
         for (target, handle) in handles:
             _class = map2class(target)
-            obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
-            retval.append(obj)
+            if _class:
+                obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
+                if obj:
+                    retval.append(obj)
         return retval
 
 class ClipDropRawList(ClipDropList):
