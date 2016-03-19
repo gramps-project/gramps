@@ -7694,9 +7694,12 @@ class NavWebReport(Report):
             with self.user.progress(_("Narrated Web Site Report"),
                     _('Creating GENDEX file'), len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
+                date = 0
                 for person_handle in ind_list:
                     step()
                     person = self.database.get_person_from_handle(person_handle)
+                    datex = person.get_change_time()
+                    if datex > date: date = datex
                     if self.archive:
                         self.write_gendex(gendex_io, person)
                     else:
