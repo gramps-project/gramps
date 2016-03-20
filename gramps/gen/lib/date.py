@@ -280,9 +280,6 @@ class Span(object):
                 _repr = trans_text("greater than %s years") % Span.ALIVE
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
-                    if fdate12[0] == '-':
-                        # a negative age is not realistic
-                        fdate12 = '(' + fdate12[1:].replace('-', '') + ')'
                     _repr = fdate12
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     _repr = trans_text("more than") + " " + fdate12
@@ -361,7 +358,10 @@ class Span(object):
                              self._format(self._diff(start1, stop2), dlocale) +
                              " " + trans_text("and") + " " +
                              self._format(self._diff(stop1, start2), dlocale))
-        return _repr
+        if _repr.find('-') == -1: # we don't have a negative value to return.
+            return _repr
+        else:
+            return '(' + _repr.replace('-', '') + ')'
 
     def __eq__(self, other):
         """
