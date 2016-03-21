@@ -1060,6 +1060,7 @@ def sanitize_place(db, place):
     new_place.set_latitude(place.get_latitude())
     new_place.set_alternate_locations(place.get_alternate_locations())
     new_place.set_name(place.get_name())
+    new_place.set_alternative_names(place.get_alternative_names())
     new_place.set_type(place.get_type())
     new_place.set_code(place.get_code())
     new_place.set_placeref_list(place.get_placeref_list())
