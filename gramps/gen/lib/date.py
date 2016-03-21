@@ -348,7 +348,10 @@ class Span(object):
                     stop2 = Date(*stop2)
                     _repr = (trans_text("between") + " " + self._format(self._diff(start1, stop2),dlocale) + 
                                  " " + trans_text("and") + " " + self._format(self._diff(stop1, start2),dlocale))
-        return _repr
+        if _repr.find('-') == -1: # we don't have a negative value to return.
+            return _repr
+        else:
+            return '(' + _repr.replace('-', '') + ')'
 
     def __eq__(self, other):
         """
