@@ -690,6 +690,7 @@ class CheckIntegrity(object):
                     logging.warning('    FAIL: references to missing file kept')
 
             fs_top = Gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
+                        parent=self.parent_window,
                         buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
                                  _('_OK'), Gtk.ResponseType.OK)
                         )

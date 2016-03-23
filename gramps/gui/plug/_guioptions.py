@@ -1643,6 +1643,7 @@ class GuiDestinationOption(Gtk.Box):
         """
         Gtk.Box.__init__(self)
         self.__option = option
+        self.__uistate = uistate
         self.__entry = Gtk.Entry()
         self.__entry.set_text( self.__option.get_value() )
 
@@ -1695,6 +1696,7 @@ class GuiDestinationOption(Gtk.Box):
             my_action = Gtk.FileChooserAction.SAVE
 
         fcd = Gtk.FileChooserDialog(_("Save As"), action=my_action,
+                                    parent=self.__uistate.window,
                                     buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
                                              _('_Open'),

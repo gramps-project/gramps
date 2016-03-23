@@ -938,6 +938,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         kml = Gtk.FileChooserDialog(
             _("Select a kml file used to add places"),
             action=Gtk.FileChooserAction.OPEN,
+            parent=self.uistate.window,
             buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
                      _('_Apply'), Gtk.ResponseType.OK))
         mpath = HOME_DIR
@@ -1182,6 +1183,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         f = Gtk.FileChooserDialog(
             _("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
+            parent=self.uistate.window,
             buttons=(_('_Cancel'),
                      Gtk.ResponseType.CANCEL,
                      _('_Apply'),

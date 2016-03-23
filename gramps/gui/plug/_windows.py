@@ -423,6 +423,7 @@ class PluginStatus(ManagedWindow):
         Select a file from the file system.
         """
         fcd = Gtk.FileChooserDialog(_("Load Addon"),
+                                    parent=self.__uistate.window,
                                     buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
                                              _('_Open'),
