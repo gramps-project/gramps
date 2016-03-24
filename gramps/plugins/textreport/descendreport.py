@@ -328,6 +328,8 @@ class DescendantReport(Report):
         name_format   - Preferred format to display names
         dups          - Whether to include duplicate descendant trees
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
 
         Report.__init__(self, database, options, user)
@@ -335,6 +337,7 @@ class DescendantReport(Report):
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
 
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
@@ -404,6 +407,8 @@ class DescendantOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
