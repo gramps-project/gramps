@@ -716,7 +716,7 @@ class DbBsddbRead(DbReadBase, Callback):
         >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
-        if table_name in self.get_table_func():
+        if table_name in self.get_table_func() and handle:
             return self.get_table_func(table_name,"handle_func")(handle)
         return None
 
