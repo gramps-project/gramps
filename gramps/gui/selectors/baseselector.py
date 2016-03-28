@@ -273,7 +273,7 @@ class BaseSelector(ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        if not self.filter[1]
+        if not self.filter[1]:
             filter_info = (False, self.search_bar.get_value(), False)
         else:
             filter_info = self.filter
