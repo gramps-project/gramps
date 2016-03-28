@@ -286,6 +286,8 @@ class StyledTextEditor(Gtk.TextView):
         x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
                                             int(event.x), int(event.y))
         iter_at_location = self.get_iter_at_location(x, y)
+        if isinstance(iter_at_location, tuple):
+            iter_at_location = iter_at_location[1]
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         tooltip = None
         if not self.match:
