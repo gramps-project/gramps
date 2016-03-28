@@ -597,6 +597,8 @@ class GuiGramplet(object):
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
+        if isinstance(iter, tuple):
+            iter = iter[1]
         cursor = self.standard_cursor
         ttip = None
         for (tag, link_type, handle, tooltip) in self._tags:
@@ -619,6 +621,8 @@ class GuiGramplet(object):
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
+        if isinstance(iter, tuple):
+            iter = iter[1]
         for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
                 if link_type == 'Person':
