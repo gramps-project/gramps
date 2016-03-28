@@ -4455,9 +4455,12 @@ class MediaPages(BasePage):
         with self.report.user.progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"),
                                   len(self.report.obj_dict[Media]) + 1) as step:
+            # bug 8950 : it seems it's better to sort on desc + gid.
+            def sort_by_desc_and_gid(obj):
+                return (obj.desc.lower(), obj.gramps_id)
 
             sorted_media_handles = sorted(self.report.obj_dict[Media].keys(),
-                                          key=lambda x: SORT_KEY(self.report.database.get_media_from_handle(x).desc))
+                                          key=lambda x: sort_by_desc_and_gid(self.report.database.get_media_from_handle(x)))
             self.MediaListPage(self.report, title, sorted_media_handles)
 
             prev = None
