@@ -268,7 +268,10 @@ class BaseSelector(ManagedWindow):
         """
         Builds the selection people see in the Selector
         """
-        filter_info = (False, self.search_bar.get_value(), False)
+        if not self.filter[1]:
+            filter_info = (False, self.search_bar.get_value(), False)
+        else:
+            filter_info = self.filter
 
         #set up cols the first time
         if self.setupcols :
