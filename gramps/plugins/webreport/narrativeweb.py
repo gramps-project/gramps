@@ -6918,7 +6918,7 @@ class AddressBookListPage(BasePage):
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
-        self.dbase_ = report.database
+        self.dbase_ = self.db = report.database
         self.bibli = Bibliography()
 
         person = self.dbase_.get_person_from_handle(person_handle)
