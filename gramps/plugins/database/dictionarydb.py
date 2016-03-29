@@ -520,6 +520,9 @@ class DictionaryDb(DbGeneric):
         emit = None
         if tag.handle in self.tag_map:
             emit = "tag-update"
+            for old_name, old_tag in list(self._tag_name_dict.items()):
+                if old_tag.handle == tag.handle:
+                    del self._tag_name_dict[old_name]
             self._tag_dict[tag.handle] = tag
             self._tag_name_dict[tag.name] = tag
         else:
