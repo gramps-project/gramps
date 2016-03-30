@@ -454,7 +454,7 @@ def html_escape(text):
     """Convert the text and replace some characters with a &# variant."""
 
     # First single characters, no quotes
-    text = escape(text)
+    text = escape(str(text))
 
     # Deal with double quotes.
     m = _html_dbl_quotes.match(text)
@@ -5366,7 +5366,7 @@ class PersonPages(BasePage):
                     elif first_surname:
                         first_surname = False
                         tcell += Html("a", html_escape(surname),
-                                      title = "Surnames " + surname)
+                                      title = "Surnames " + str(surname))
                     else:
                         tcell += "&nbsp;"
 
