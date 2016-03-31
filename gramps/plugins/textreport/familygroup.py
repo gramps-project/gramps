@@ -74,11 +74,14 @@ class FamilyGroup(Report):
         includeAttrs  - Whether to include attributes
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
 
         self.family_handle = None
 
@@ -677,6 +680,8 @@ class FamilyGroupOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "
