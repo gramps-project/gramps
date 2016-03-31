@@ -419,7 +419,7 @@ _KEYPERSON, _KEYPLACE, _KEYEVENT, _ALPHAEVENT = 0, 1, 2, 3
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
-_INCLUDE_LIVING_VALUE = 99 # Arbitrary number
+_INCLUDE_LIVING_VALUE = LivingProxyDb.MODE_INCLUDE_ALL
 _NAME_COL  = 3
 
 _DEFAULT_MAX_IMG_WIDTH = 800   # resize images that are wider than this (settable in options)

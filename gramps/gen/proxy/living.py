@@ -47,7 +47,7 @@ class LivingProxyDb(ProxyDbBase):
     MODE_EXCLUDE_ALL  = 0
     MODE_INCLUDE_LAST_NAME_ONLY = 1
     MODE_INCLUDE_FULL_NAME_ONLY = 2
-    MODE_INCLUDE_ALL = 3 # typically this will be only tested for, not invoked
+    MODE_INCLUDE_ALL = 99 # usually this will be only tested for, not invoked
 
     def __init__(self, dbase, mode, current_year=None, years_after_death=0):
         """
