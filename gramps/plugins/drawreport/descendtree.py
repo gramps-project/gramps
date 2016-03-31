@@ -1275,12 +1275,15 @@ class DescendTree(Report):
         user            - a gen.user.User() instance
 
         incl_private    - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
         self.options = options
 
         stdoptions.run_private_data_option(self, options.menu)
+        stdoptions.run_living_people_option(self, options.menu)
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
@@ -1506,6 +1509,8 @@ class DescendTreeOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         self.showparents = BooleanOption(
             _('Start with the parent(s) of the selected first'),
