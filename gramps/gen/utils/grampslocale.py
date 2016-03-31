@@ -291,7 +291,8 @@ class GrampsLocale(object):
                 return False
             lang = self.check_available_translations(locale[0])
             if not lang and locale[0].startswith('en'):
-                locale[0] = lang = 'en_GB'
+                locale = ('en_GB', 'UTF-8')
+                lang = 'en_GB'
             if not lang:
                 return False
             self.lang = locale[0]
