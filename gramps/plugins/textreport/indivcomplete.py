@@ -110,6 +110,8 @@ class IndivCompleteReport(Report):
         sections  - Which event groups should be given separate sections.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
 
         Report.__init__(self, database, options, user)
@@ -117,6 +119,7 @@ class IndivCompleteReport(Report):
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
         self._db = self.database
 
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
@@ -949,6 +952,8 @@ class IndivCompleteOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         sort = BooleanOption(_("List events chronologically"), True)
         sort.set_help(_("Whether to sort events into chronological order."))
