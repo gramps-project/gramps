@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013-2015  Paul Franklin
+# Copyright (C) 2013-2016  Paul Franklin
 # Copyright (C) 2015       Gerald Kunzmann <gerald@gkunzmann.de>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -99,6 +99,7 @@ class FamilyGroup(Report):
         self.recursive     = get_value('recursive')
         self.missingInfo   = get_value('missinginfo')
         self.generations   = get_value('generations')
+        self.incFamNotes   = get_value('incFamNotes')
         self.incParEvents  = get_value('incParEvents')
         self.incParAddr    = get_value('incParAddr')
         self.incParNotes   = get_value('incParNotes')
@@ -421,6 +422,11 @@ class FamilyGroup(Report):
                     attr_type = self._get_type(attr.get_type())
                     self.dump_parent_line(self._(attr_type), attr.get_value())
 
+            if self.incFamNotes:
+                for notehandle in family.get_note_list():
+                    note = self.database.get_note_from_handle(notehandle)
+                    self.dump_parent_noteline(self._("Note"), note)
+
             self.doc.end_table()
 
     def dump_child_event(self, text, name, event):
@@ -732,6 +738,10 @@ class FamilyGroupOptions(MenuReportOptions):
         incParMar.set_help(_("Whether to include marriage information "
                              "for parents."))
         add_option("incParMar", incParMar)
+
+        incFamNotes = BooleanOption(_("Family Notes"), False)
+        incFamNotes.set_help(_("Whether to include notes for families."))
+        add_option("incFamNotes", incFamNotes)
 
         incRelDates = BooleanOption(_("Dates of Relatives"), False)
         incRelDates.set_help(_("Whether to include dates for relatives "
