@@ -734,7 +734,7 @@ class FamilyGroupOptions(MenuReportOptions):
                                "names for parents."))
         add_option("incParNames", incParNames)
 
-        incParMar = BooleanOption(_("Parent Marriage"), False)
+        incParMar = BooleanOption(_("Parent Marriage"), True)
         incParMar.set_help(_("Whether to include marriage information "
                              "for parents."))
         add_option("incParMar", incParMar)
