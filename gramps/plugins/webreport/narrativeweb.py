@@ -15,6 +15,7 @@
 # Copyright (C) 2010,2015  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
+# Copyright (C) 2016       Allen Crider
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -7546,6 +7547,19 @@ class NavWebReport(Report):
         # is required to assert that the event happened.""
         if event_name == "" or event_name is None or event_name =='Y':
             event_name = str(event.get_type())
+            #begin add generated descriptions to media pages (request 7074 : acrider)
+            ref_name = ""
+            for (reference) in (self.database.find_backlink_handles(event_handle)):
+                ref_class, ref_handle = reference
+                if ref_class == 'Person':
+                    person = self.database.get_person_from_handle(ref_handle)
+                    ref_name = self.get_person_name(person)
+                elif ref_class == 'Family':
+                    family = self.database.get_family_from_handle(ref_handle)
+                    ref_name = self.get_family_name(family)
+            if ref_name != "":
+                event_name += ", " + ref_name
+            #end descriptions to media pages
         if self.inc_events:
             event_fname = self.build_url_fname(event_handle, "evt",
                                                    False) + self.ext
@@ -7635,7 +7649,11 @@ class NavWebReport(Report):
         if media_refs and (bkref_class, bkref_handle) in media_refs:
             return
         media = self.database.get_media_from_handle(media_handle)
-        media_name = "Media"
+        # use media title (request 7074 acrider)
+        media_name = media.get_description()
+        if media_name is None or media_name == "":
+            media_name = "Media"
+        #end media title
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",
                                                    False) + self.ext
