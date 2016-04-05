@@ -8383,6 +8383,8 @@ class NavWebOptions(MenuReportOptions):
                                _("Include Last Name Only"))
         self.__living.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
                                _("Include Full Name Only"))
+        self.__living.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                               _("Replace Complete Name"))
         self.__living.add_item(_INCLUDE_LIVING_VALUE,
                                _("Include"))
         self.__living.set_help(_("How to handle living people"))

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2016       Matt Keenan <matt.keenan@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +48,7 @@ class LivingProxyDb(ProxyDbBase):
     MODE_EXCLUDE_ALL  = 0
     MODE_INCLUDE_LAST_NAME_ONLY = 1
     MODE_INCLUDE_FULL_NAME_ONLY = 2
+    MODE_REPLACE_COMPLETE_NAME = 3
     MODE_INCLUDE_ALL = 99 # usually this will be only tested for, not invoked
 
     def __init__(self, dbase, mode, current_year=None, years_after_death=0):
@@ -57,12 +59,17 @@ class LivingProxyDb(ProxyDbBase):
         :type dbase: DbBase
         :param mode:
             The method for handling living people.
-            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether.
+            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people
+                altogether.
             LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
-            information and change their given name to "[Living]" or what has
-            been set in Preferences -> Text.
+                information and change their given name to "[Living]" or what
+                has been set in Preferences -> Text -> Private given name.
+            LivingProxyDb.MODE_REPLACE_COMPLETE_NAME will remove all
+                information and change their given name and surname to
+                "[Living]" or whatever has been set in Preferences -> Text
+                for Private surname and Private given name.
             LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
-            information but leave the entire name intact.
+                information but leave the entire name intact.
         :type mode: int
         :param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
@@ -391,20 +398,31 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_sort_as(old_name.get_sort_as())
         new_name.set_display_as(old_name.get_display_as())
         new_name.set_type(old_name.get_type())
-        if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
-            new_name.set_first_name(config.get('preferences.private-given-text'))
+        if (self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY or
+            self.mode == self.MODE_REPLACE_COMPLETE_NAME):
+            new_name.set_first_name(
+                config.get('preferences.private-given-text'))
             new_name.set_title("")
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
+
         surnlst = []
-        for surn in old_name.get_surname_list():
-            surname = Surname(source=surn)
-            if int(surname.origintype) in [NameOriginType.PATRONYMIC,
-                                           NameOriginType.MATRONYMIC]:
-                surname.set_surname(config.get('preferences.private-surname-text'))
+        if self.mode == self.MODE_REPLACE_COMPLETE_NAME:
+            surname = Surname(source=old_name.get_primary_surname())
+            surname.set_surname(
+                config.get('preferences.private-surname-text'))
             surnlst.append(surname)
+        else:
+            for surn in old_name.get_surname_list():
+                surname = Surname(source=surn)
+                if int(surname.origintype) in [NameOriginType.PATRONYMIC,
+                                               NameOriginType.MATRONYMIC]:
+                    surname.set_surname(
+                        config.get('preferences.private-surname-text'))
+                surnlst.append(surname)
+
         new_name.set_surname_list(surnlst)
         new_person.set_primary_name(new_name)
         new_person.set_privacy(person.get_privacy())

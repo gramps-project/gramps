@@ -131,10 +131,14 @@ def add_living_people_option(menu, category,
         The method for handling living people.
         LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether.
         LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
-        information and change their given name to "[Living]" or whatever
-        has been set in Preferences -> Text.
+            information and change their given name to "[Living]" or whatever
+            has been set in Preferences -> Text -> Private given name.
+        LivingProxyDb.MODE_REPLACE_COMPLETE_NAME will remove all
+            information and change their given name and surname to
+            "[Living]" or whatever has been set in Preferences -> Text
+            for Private surname and Private given name.
         LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
-        information but leave the entire name intact.
+            information but leave the entire name intact.
         LivingProxyDb.MODE_INCLUDE_ALL will not invoke LivingProxyDb at all.
     :type mode: int
     :param after_death_years:
@@ -160,6 +164,8 @@ def add_living_people_option(menu, category,
                            _("Include full names but no data"))
     living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
                            _("Replace given names and include no data"))
+    living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                           _("Replace complete names and include no data"))
     living_people.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
                            _("Do not include living people"))
     living_people.set_help(_("How to handle living people"))
