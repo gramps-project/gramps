@@ -125,7 +125,9 @@ class PlaceDetails(Gramplet):
         """
         Display alternative names for the place.
         """
-        alt_names = [name.get_value() for name in place.get_alternative_names()]
+        alt_names = ["%s (%s)" % (name.get_value(), name.get_language())
+                     if name.get_language() else name.get_value()
+                     for name in place.get_alternative_names()]
         if len(alt_names) > 0:
             self.add_row(_('Alternative Names'), '\n'.join(alt_names))
 
