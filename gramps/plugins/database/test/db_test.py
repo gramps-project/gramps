@@ -132,11 +132,11 @@ class BSDDBTest(unittest.TestCase):
                       .select())
         self.assertTrue(len(result) == 6, result)
 
-    def test_queryset_4(self):
+    def test_queryset_4a(self):
         result = list(self.db.Family.select())
         self.assertTrue(len(result) == 23, len(result))
 
-    def test_queryset_4(self):
+    def test_queryset_4b(self):
         result = list(self.db.Family
                       .filter(mother_handle__event_ref_list__ref__gramps_id='E0156')
                       .select())
