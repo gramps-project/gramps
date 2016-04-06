@@ -31,25 +31,27 @@ in the class body, outside any method:
 >    apply = child_base
 """
 
-def father_base(self,db,family):
+def father_base(self, db, family):
     father_handle = family.get_father_handle()
-    father = db.get_person_from_handle(father_handle)
-    if father:
-        return self.base_class.apply(self,db,father)
-    else:
-        return False
+    if father_handle:
+        father = db.get_person_from_handle(father_handle)
+        if father:
+            return self.base_class.apply(self, db, father)
+        else:
+            return False
 
-def mother_base(self,db,family):
+def mother_base(self, db, family):
     mother_handle = family.get_mother_handle()
-    mother = db.get_person_from_handle(mother_handle)
-    if mother:
-        return self.base_class.apply(self,db,mother)
-    else:
-        return False
+    if mother_handle:
+        mother = db.get_person_from_handle(mother_handle)
+        if mother:
+            return self.base_class.apply(self, db, mother)
+        else:
+            return False
 
-def child_base(self,db,family):
+def child_base(self, db, family):
     for child_ref in family.get_child_ref_list():
         child = db.get_person_from_handle(child_ref.ref)
-        if self.base_class.apply(self,db,child):
+        if self.base_class.apply(self, db, child):
             return True
     return False
