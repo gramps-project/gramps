@@ -82,9 +82,7 @@ class Rule(object):
                 for i in range(len(self.labels)):
                     if self.list[i]:
                         try:
-                            self.regex[i] = re.compile(
-                                str(self.list[i]),
-                                re.I|re.U|re.L)
+                            self.regex[i] = re.compile(self.list[i], re.I)
                         except re.error:
                             self.regex[i] = re.compile('')
                 self.match_substring = self.match_regex
