@@ -43,6 +43,148 @@ class BaseTest(unittest.TestCase):
         results = filter_.apply(self.db)
         return set(results)
 
+    def test_AllFamilies(self):
+        rule = AllFamilies([])
+        self.assertEqual(len(self.filter_with_rule(rule)),
+                         self.db.get_number_of_families())
+
+    def test_HasRelType(self):
+        rule = HasRelType(['Married'])
+        self.assertEqual(len(self.filter_with_rule(rule)), 738)
+
+    def test_HasGallery(self):
+        rule = HasGallery(['0', 'greater than'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasIdOf(self):
+        rule = HasIdOf(['F0001'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'48TJQCGNNIR5SJRCAK']))
+
+    def test_HasLDS(self):
+        rule = HasLDS(['0', 'greater than'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasNote(self):
+        rule = HasNote([])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_RegExpIdOf(self):
+        rule = RegExpIdOf(['F000.'], use_regex=True)
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'LOTJQC78O5B4WQGJRP', b'UPTJQC4VPCABZUDB75', b'NBTJQCIX49EKOCIHBP',
+            b'C9UJQCF6ETBTV2MRRV', b'74UJQCKV8R4NBNHCB', b'4BTJQCL4CHNA5OUTKF',
+            b'48TJQCGNNIR5SJRCAK', b'4YTJQCTEH7PQUU4AD', b'MTTJQC05LKVFFLN01A',
+            ]))
+
+    def test_HasNoteRegexp(self):
+        rule = HasNoteRegexp(['.'], use_regex=True)
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasReferenceCountOf(self):
+        rule = HasReferenceCountOf(['greater than', '12'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'29IKQCMUNFTIBV653N', b'8OUJQCUVZ0XML7BQLF', b'UPTJQC4VPCABZUDB75',
+            b'9NWJQCJGLXUR3AQSFJ', b'5G2KQCGBTS86UVSRG5', b'WG2KQCSY9LEFDFQHMN',
+            b'MTTJQC05LKVFFLN01A', b'C2VJQC71TNHO7RBBMX', b'QIDKQCJQ37SIUQ3UFU',
+            b'DV4KQCX9OBVQ74H77F']))
+
+    def test_HasSourceCount(self):
+        rule = HasSourceCount(['1', 'greater than'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasSourceOf(self):
+        rule = HasSourceOf(['S0001'])
+        self.assertEqual(self.filter_with_rule(rule),
+                        set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasCitation(self):
+        rule = HasCitation(['page 10', '', '2'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_FamilyPrivate(self):
+        rule = FamilyPrivate([])
+        self.assertEqual(self.filter_with_rule(rule), set([]))
+
+    def test_HasEvent(self):
+        rule = HasEvent(['Marriage', 'before 1900', 'USA', '', 'Garner'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'KSFKQCP4V0YXGM1LR9', b'8ZFKQC3FRSHACOJBOU', b'3XFKQCE7QUDJ99AVNV',
+            b'OVFKQC51DX0OQUV3JB', b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasAttribute(self):
+        rule = HasAttribute(['Number of Children', ''])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_IsBookmarked(self):
+        rule = IsBookmarked([])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_MatchesSourceConfidence(self):
+        rule = MatchesSourceConfidence(['0'])
+        self.assertEqual(len(self.filter_with_rule(rule)), 734)
+
+    def test_FatherHasNameOf(self):
+        rule = FatherHasNameOf(['', '', 'Dr.', '', '', '', '', '', '', '',
+                                ''])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_FatherHasIdOf(self):
+        rule = FatherHasIdOf(['I0106'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'8OUJQCUVZ0XML7BQLF']))
+
+    def test_MotherHasNameOf(self):
+        rule = MotherHasNameOf(['', 'Alvarado', '', '', '', '', '', '', '', '',
+                                ''])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'EM3KQC48HFLA02TF8D', b'K9NKQCBG105ECXZ48D',
+            b'2QMKQC5YWNAWZMG6VO', b'6JUJQCCAXGENRX990K']))
+
+    def test_MotherHasIdOf(self):
+        rule = MotherHasIdOf(['I0107'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'8OUJQCUVZ0XML7BQLF']))
+
+    def test_ChildHasNameOf(self):
+        rule = ChildHasNameOf(['Eugene', '', '', '', '', '', '', '', '', '',
+                               ''])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'D1YJQCGLEIBPPLNL4B', b'5GTJQCXVYVAIQTBVKA', b'I42KQCM3S926FMJ91O',
+            b'7CTJQCFJVBQSY076A6', b'9OUJQCBOHW9UEK9CNV', b'9IXJQCX18AHUFPQHEZ',
+            b'9NWJQCJGLXUR3AQSFJ']))
+
+    def test_ChildHasIdOf(self):
+        rule = ChildHasIdOf(['I0001'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'48TJQCGNNIR5SJRCAK']))
+
+    def test_ChangedSince(self):
+        rule = ChangedSince(['2008-01-01', '2014-01-01'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasTag(self):
+        rule = HasTag(['ToDo'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'9OUJQCBOHW9UEK9CNV']))
+
+    def test_HasTwins(self):
+        rule = HasTwins([])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'SD6KQC7LB8MYGA7F5W', b'8OUJQCUVZ0XML7BQLF', b'1BVJQCNTFAGS8273LJ',
+            b'5IUJQCRJY47YQ8PU7N', b'ZLUJQCPDV93OR8KHB7', b'4U2KQCBXG2VTPH6U1F',
+            ]))
+
     def test_IsAncestorOf(self):
         rule = IsAncestorOf(['F0031', '0'])
         self.assertEqual(self.filter_with_rule(rule), set([
