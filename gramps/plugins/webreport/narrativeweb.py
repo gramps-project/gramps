@@ -455,7 +455,7 @@ def html_escape(text):
     """Convert the text and replace some characters with a &# variant."""
 
     # First single characters, no quotes
-    text = escape(str(text))
+    text = escape(text)
 
     # Deal with double quotes.
     m = _html_dbl_quotes.match(text)
@@ -5367,7 +5367,7 @@ class PersonPages(BasePage):
                     elif first_surname:
                         first_surname = False
                         tcell += Html("a", html_escape(surname),
-                                      title = "Surnames " + str(surname))
+                                      title = "Surnames " + surname)
                     else:
                         tcell += "&nbsp;"
 
@@ -8718,8 +8718,8 @@ def sort_people(dbase, handle_list):
         if primary_name.group_as:
             surname = primary_name.group_as
         else:
-            surname = dbase.get_name_group_mapping(
-                            _nd.primary_surname(primary_name))
+            surname = str(dbase.get_name_group_mapping(
+                            _nd.primary_surname(primary_name)))
 
         # Treat people who have no name with those whose name is just
         # 'whitespace'
