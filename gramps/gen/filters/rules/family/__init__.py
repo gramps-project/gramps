@@ -59,6 +59,8 @@ from ._childhasidof import ChildHasIdOf
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
 from ._hastwins import HasTwins
+from ._isancestorof import IsAncestorOf
+from ._isdescendantof import IsDescendantOf
 
 editor_rule_list = [
     AllFamilies,
@@ -88,4 +90,6 @@ editor_rule_list = [
     ChangedSince,
     HasTag,
     HasTwins,
+    IsAncestorOf,
+    IsDescendantOf,
 ]

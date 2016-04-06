@@ -108,6 +108,8 @@ gramps/gen/filters/rules/family/_hassourceof.py
 gramps/gen/filters/rules/family/_hastag.py
 gramps/gen/filters/rules/family/_hastwins.py
 gramps/gen/filters/rules/family/_isbookmarked.py
+gramps/gen/filters/rules/family/_isancestorof.py
+gramps/gen/filters/rules/family/_isdescendantof.py
 gramps/gen/filters/rules/family/_matchesfilter.py
 gramps/gen/filters/rules/family/_matchessourceconfidence.py
 gramps/gen/filters/rules/family/_motherhasidof.py
