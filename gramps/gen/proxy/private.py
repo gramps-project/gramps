@@ -164,9 +164,9 @@ class PrivateProxyDb(ProxyDbBase):
         Private implementation of get_table_func.
         """
         if table is None:
-            return self.__tables.keys()
+            return list(self.__tables.keys())
         elif func is None:
-            return self.__tables[table].keys()
+            return self.__tables[table]
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else: 

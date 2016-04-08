@@ -727,7 +727,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Private implementation of get_table_func.
         """
         if table is None:
-            return self.__tables.keys()
+            return list(self.__tables.keys())
         elif func is None:
             return self.__tables[table] # dict of functions
         elif func in self.__tables[table].keys():
