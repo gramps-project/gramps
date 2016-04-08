@@ -193,9 +193,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Private implementation of get_table_func.
         """
         if table is None:
-            return list(self.__tables.keys())
+            return self.__tables.keys()
         elif func is None:
-            return list(self.__tables[table].keys())
+            return self.__tables[table].keys()
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else: 

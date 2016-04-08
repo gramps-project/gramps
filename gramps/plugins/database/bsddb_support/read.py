@@ -482,9 +482,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Private implementation of get_table_func.
         """
         if table is None:
-            return list(self.__tables.keys())
+            return self.__tables.keys()
         elif func is None:
-            return list(self.__tables[table].keys())
+            return self.__tables[table].keys()
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else: 
@@ -509,7 +509,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return self.get_table_func()
+        return list(self.get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
