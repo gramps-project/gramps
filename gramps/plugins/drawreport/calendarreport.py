@@ -270,7 +270,7 @@ class Calendar(Report):
                                          day_col * cell_width + cell_width/2, 
                                          header + week_row * cell_height)
                     list_ = self.calendar.get(month, {}).get(thisday.day, [])
-                    list_.sort() # to get CAL-Holiday on bottom
+                    list_.sort(key= lambda a: a[0], reverse=True) # to get CAL-Holiday on bottom
                     position = spacing
                     for (format, p, m_list) in list_:
                         for line in reversed(p.split("\n")):
