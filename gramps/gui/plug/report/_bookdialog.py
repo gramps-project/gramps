@@ -366,6 +366,9 @@ class BookSelector(ManagedWindow):
 
     def __init__(self, dbstate, uistate):
         self.db = dbstate.db
+        if self.db.get_total() == 0:
+            WarningDialog(_("Your database is empty."), parent=uistate.window)
+            return
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = _('Manage Books')
