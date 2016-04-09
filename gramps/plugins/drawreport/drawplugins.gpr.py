@@ -21,6 +21,8 @@
 
 MODULE_VERSION="5.0"
 
+# this is the default in gen/plug/_pluginreg.py: plg.require_active = True
+
 #------------------------------------------------------------------------
 #
 # Ancestor Tree
