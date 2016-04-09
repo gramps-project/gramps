@@ -345,7 +345,7 @@ class ViewManager(CLIManager):
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage)
+        ErrorDialog(title, errormessage, parent=self.uistate.window)
         return 1
 
     def __build_main_window(self):
@@ -763,7 +763,8 @@ class ViewManager(CLIManager):
             try:
                 self.dbstate.db.backup()
             except DbException as msg:
-                ErrorDialog(_("Error saving backup data"), msg)
+                ErrorDialog(_("Error saving backup data"), msg,
+                            parent=self.uistate.window)
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
 
@@ -778,7 +779,8 @@ class ViewManager(CLIManager):
                 _("Aborting changes will return the database to the state "
                   "it was before you started this editing session."),
                 _("Abort changes"),
-                _("Cancel"))
+                _("Cancel"),
+                parent=self.uistate.window)
 
             if dialog.run():
                 self.dbstate.db.disable_signals()
@@ -790,7 +792,7 @@ class ViewManager(CLIManager):
                 _("Cannot abandon session's changes"),
                 _('Changes cannot be completely abandoned because the '
                   'number of changes made in the session exceeded the '
-                  'limit.'))
+                  'limit.'), parent=self.uistate.window)
 
     def __init_action_group(self, name, actions, sensitive=True, toggles=None):
         """
@@ -1083,7 +1085,8 @@ class ViewManager(CLIManager):
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
-                InfoDialog(_('Import Statistics'), infotxt, self.window)
+                InfoDialog(_('Import Statistics'), infotxt,
+                           parent=self.window)
             self.__post_load()
 
     def __open_activate(self, obj):
@@ -1227,7 +1230,6 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        from .dialog import QuestionDialog2
         window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
@@ -1625,7 +1627,8 @@ def run_plugin(pdata, dbstate, uistate):
                 'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
-                  'error_msg': error_msg})
+                  'error_msg': error_msg},
+            parent=self.uistate.window)
         return
 
     if pdata.ptype == REPORT:
@@ -1681,7 +1684,8 @@ def get_available_views():
                     'gramps_bugtracker_url' : URL_BUGHOME,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
-                    'error_msg': lasterror})
+                    'error_msg': lasterror},
+                parent=self.uistate.window)
             continue
         viewclass = getattr(mod, pdata.viewclass)
 

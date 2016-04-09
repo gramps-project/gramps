@@ -313,7 +313,7 @@ class CitationListView(ListView):
                      "merge. A second citation can be selected by holding "
                      "down the control key while clicking on the desired "
                      "citation.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             citation1 = self.dbstate.db.get_citation_from_handle(mlist[0])
             citation2 = self.dbstate.db.get_citation_from_handle(mlist[1])
@@ -324,7 +324,7 @@ class CitationListView(ListView):
                          "source to perform a merge. If you want to merge "
                          "these two citations, then you must merge the "
                          "sources first.")
-                ErrorDialog(msg, msg2)
+                ErrorDialog(msg, msg2, parent=self.uistate.window)
             else:
                 MergeCitation(self.dbstate, self.uistate, mlist[0], mlist[1])
 
