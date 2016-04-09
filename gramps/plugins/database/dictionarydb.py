@@ -32,22 +32,9 @@ class DictionaryDb(DbGeneric):
     """
     Database backend class for dictionary databases
     """
-
-    def restore(self):
-        """
-        If you wish to support an optional restore routine, put it here.
-        """
-        pass
-
-    def write_version(self, directory):
-        """Write files for a newly created DB."""
-        versionpath = os.path.join(directory, str(DBBACKEND))
-        LOG.debug("Write database backend file to 'dictionarydb'")
-        with open(versionpath, "w") as version_file:
-            version_file.write("dictionarydb")
-
-    def initialize_backend(self, directory):
-        # Handle dicts:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+            # Handle dicts:
         self._person_dict = {}
         self._family_dict = {}
         self._source_dict = {}
@@ -76,6 +63,37 @@ class DictionaryDb(DbGeneric):
         self._name_group_dict = {}
         self._metadata_dict = {}
         self._gender_stats_dict = {}
+
+        # Types:
+        self.child_ref_types = set()
+        self.family_rel_types = set()
+        self.name_types = set()
+        self.note_types = set()
+        self.origin_types = set()
+        self.place_types = set()
+        self.repository_types = set()
+        self.source_media_types = set()
+        self.url_types = set()
+
+        # Names:
+        self.event_names = set()
+        self.event_role_names = set()
+
+    def restore(self):
+        """
+        If you wish to support an optional restore routine, put it here.
+        """
+        pass
+
+    def write_version(self, directory):
+        """Write files for a newly created DB."""
+        versionpath = os.path.join(directory, str(DBBACKEND))
+        LOG.debug("Write database backend file to 'dictionarydb'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("dictionarydb")
+
+    def initialize_backend(self, directory):
+        pass
 
     def close_backend(self):
         pass
