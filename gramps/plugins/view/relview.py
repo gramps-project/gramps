@@ -1748,6 +1748,8 @@ def has_children(db,p):
     """
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
+        if not family:
+            continue
         childlist = family.get_child_ref_list()
         if childlist and len(childlist) > 0:
             return True
