@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-09 09:53+0200\n"
-"PO-Revision-Date: 2016-04-09 12:58+0100\n"
+"PO-Revision-Date: 2016-04-09 13:12+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1141,7 +1141,6 @@ msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
 
 #: ../gramps/cli/argparser.py:52
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1190,6 +1189,7 @@ msgstr ""
 "Stammbäumen\n"
 " -i, --import=DATEINAME                 Importiert eine Datei\n"
 " -e, --export=DATEINAME                 Exportiert eine Datei\n"
+" -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume\n"
 " -f, --format=FORMAT                    Format festlegen\n"
 " -a, --action=AKTION                    Aktion festlegen\n"
 " -p, --options=OPTIONENZEICHENKETTE           Optionen festlegen\n"
@@ -1212,7 +1212,6 @@ msgstr ""
 "  -v,--version                          Zeigt die Versionen\n"
 
 #: ../gramps/cli/argparser.py:81
-#, fuzzy
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1457,16 +1456,17 @@ msgid "Importing data..."
 msgstr "Importiere Daten..."
 
 #: ../gramps/cli/clidbman.py:406
-#, fuzzy
 msgid "Remove family tree warning"
-msgstr "Stammbaum entfernen"
+msgstr "Stammbaum Warnung entfernen"
 
 #: ../gramps/cli/clidbman.py:407
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
 "\"%s\"?"
-msgstr "Willst du wirklich den Stammbaum aktualisieren?"
+msgstr ""
+"Willst du wirklich den Stammbaum  entfernen mit dem Namen\n"
+"\"%s\"?"
 
 #: ../gramps/cli/clidbman.py:408
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
@@ -1853,14 +1853,12 @@ msgstr ""
 "ist ein Programm zur Ahnenforschung."
 
 #: ../gramps/gen/const.py:250
-#, fuzzy
 msgid "surname|none"
-msgstr "Nachname unbekannt"
+msgstr "Unbekannt"
 
 #: ../gramps/gen/const.py:251
-#, fuzzy
 msgid "given-name|none"
-msgstr "Vorname"
+msgstr "Unbekannt"
 
 #: ../gramps/gen/datehandler/__init__.py:76
 #, python-format
@@ -2933,9 +2931,8 @@ msgstr "Familienanzahl"
 #: ../gramps/gen/db/generic.py:1987
 #: ../gramps/plugins/database/bsddb_support/read.py:2029
 #: ../gramps/plugins/database/bsddb_support/write.py:2516
-#, fuzzy
 msgid "Number of sources"
-msgstr "Anzahl der Nachnamen"
+msgstr "Anzahl der Quellen"
 
 #: ../gramps/gen/db/generic.py:1988
 #: ../gramps/plugins/database/bsddb_support/read.py:2030
