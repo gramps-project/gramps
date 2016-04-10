@@ -15530,7 +15530,7 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Din version av Gtk klarar ej kraven. Åtminstone pygobject %(major)d."
-"%(bug)d.%(minor)d behövs för att starta Gramps med ett GUI.\n"
+"%(minor)d behövs för att starta Gramps med ett GUI.\n"
 "\n"
 "Gramps kommer att avslutas nu."
 
