@@ -55,6 +55,8 @@ from gramps.gui.editors import EditFamily
 # Constants
 #
 #-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Find_possible_loop_in_the_database')
 
 #------------------------------------------------------------------------
 #
@@ -198,8 +200,7 @@ class FindLoop(ManagedWindow) :
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        pass
-
+        display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 #------------------------------------------------------------------------
 #
