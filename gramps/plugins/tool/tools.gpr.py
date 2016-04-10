@@ -496,4 +496,3 @@ toolclass = 'FindLoop',
 optionclass = 'FindLoopOptions',
 tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
-
