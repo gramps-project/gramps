@@ -87,7 +87,7 @@ class FindLoop(ManagedWindow) :
         # start the progress indicator
         self.progress = ProgressMeter(self.title,_('Starting'),
                                       parent=self.window)
-        self.progress.set_pass(_('Looking for possible loop for each person'), 
+        self.progress.set_pass(_('Looking for possible loop for each person'),
                                self.db.get_number_of_people())
 
         self.model = Gtk.ListStore(
@@ -95,7 +95,7 @@ class FindLoop(ManagedWindow) :
             GObject.TYPE_STRING,    # 1==father
             GObject.TYPE_STRING,    # 2==son id
             GObject.TYPE_STRING,    # 3==son
-            GObject.TYPE_STRING)    # 4==family gid 
+            GObject.TYPE_STRING)    # 4==family gid
 
         self.treeView = topDialog.get_object("treeview")
         self.treeView.set_model(self.model)
@@ -134,7 +134,7 @@ class FindLoop(ManagedWindow) :
             count += 1
             self.current = person
             self.parent = None
-            self.descendants(person_handle, [])
+            self.descendants(person_handle, set())
             self.progress.set_header("%d/%d" % (count, len(people)))
             self.progress.step()
 
@@ -145,10 +145,10 @@ class FindLoop(ManagedWindow) :
 
     def descendants(self, person_handle, new_list):
         person = self.db.get_person_from_handle(person_handle)
-        plist = []
+        pset = set()
         for item in new_list:
-            plist.append(item)
-        if person in plist:
+            pset.add(item)
+        if person.handle in pset:
             # We found one loop
             father_id = self.current.get_gramps_id()
             father = _nd.display(self.current)
@@ -156,7 +156,7 @@ class FindLoop(ManagedWindow) :
             son = _nd.display(self.parent)
             value = (father_id, father, son_id, son, self.curr_fam)
             found = False
-            for pth in range(len(self.model)): 
+            for pth in range(len(self.model)):
                 path = Gtk.TreePath(pth)
                 treeiter = self.model.get_iter(path)
                 find = (self.model.get_value(treeiter, 0),
@@ -169,17 +169,17 @@ class FindLoop(ManagedWindow) :
             if not found:
                 self.model.append(value)
             return
-        plist.append(person)
+        pset.add(person.handle)
         for family_handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(family_handle)
             self.curr_fam = family.get_gramps_id()
-            if not family: 
+            if not family:
                 # can happen with LivingProxyDb(PrivateProxyDb(db))
                 continue
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 self.parent = person
-                self.descendants(child_handle, plist)
+                self.descendants(child_handle, pset)
 
     def rowActivated(self, treeView, path, column) :
         # first we need to check that the row corresponds to a person
