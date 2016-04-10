@@ -79,6 +79,16 @@ class DictionaryDb(DbGeneric):
         self.event_names = set()
         self.event_role_names = set()
 
+        # Attributes:
+        self.event_attributes = set()
+        self.family_attributes = set()
+        self.individual_attributes = set()
+        self.media_attributes = set()
+        self.source_attributes = set()
+
+    def get_undodb(self):
+        return list()
+
     def restore(self):
         """
         If you wish to support an optional restore routine, put it here.
@@ -104,7 +114,7 @@ class DictionaryDb(DbGeneric):
         """
         self.transaction = None
         msg = txn.get_description()
-        self.undodb.commit(txn, msg)
+        #self.undodb.commit(txn, msg)
         self._after_commit(txn)
         txn.clear()
         self.has_changed = True
