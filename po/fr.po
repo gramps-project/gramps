@@ -19890,8 +19890,8 @@ msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
-"Remplacer le format d« affichage:\n"
-" »Remplace ceci' / 'par cela'"
+"Remplacer le format d'affichage:\n"
+"'Remplace ceci' / 'par cela'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:933
 #: ../gramps/plugins/drawreport/descendtree.py:1584
@@ -22668,7 +22668,7 @@ msgstr "Gramplet affichant les lieux qui sont dans le lieu actif"
 # trunk
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1288
 msgid "Encloses"
-msgstr "Part de"
+msgstr "Inclus"
 
 #: ../gramps/plugins/gramplet/leak.py:100
 msgid "Uncollected object"
