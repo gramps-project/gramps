@@ -2649,7 +2649,7 @@ def write_lock_file(name):
     if win():
         user = get_env_var('USERNAME')
         host = get_env_var('USERDOMAIN')
-        if host == None:
+        if host is None:
             host = ""
     else:
         host = os.uname()[1]
