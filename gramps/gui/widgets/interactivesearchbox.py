@@ -45,7 +45,7 @@ from gi.repository import GObject, Gtk, Gdk
 #-------------------------------------------------------------------------
 
 
-class InteractiveSearchBox():
+class InteractiveSearchBox(object):
     """
     Mainly adapted from gtktreeview.c
     """

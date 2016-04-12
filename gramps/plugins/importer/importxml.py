@@ -388,7 +388,7 @@ class LineParser(object):
 # ImportOpenFileContextManager
 #
 #-------------------------------------------------------------------------
-class ImportOpenFileContextManager:
+class ImportOpenFileContextManager(object):
     """
     Context manager to open a file or stdin for reading.
     """

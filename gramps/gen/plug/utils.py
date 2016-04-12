@@ -396,7 +396,7 @@ def load_addon_file(path, callback=None):
 # OpenFileOrStdout class
 #
 #-------------------------------------------------------------------------
-class OpenFileOrStdout:
+class OpenFileOrStdout(object):
     """Context manager to open a file or stdout for writing."""
     def __init__(self, filename, encoding=None):
         self.filename = filename
@@ -422,7 +422,7 @@ class OpenFileOrStdout:
 # OpenFileOrStdin class
 #
 #-------------------------------------------------------------------------
-class OpenFileOrStdin:
+class OpenFileOrStdin(object):
     """Context manager to open a file or stdin for reading."""
     def __init__(self, filename, add_mode='', encoding=None):
         self.filename = filename

@@ -295,7 +295,7 @@ def estimate_age(dbase, person,
 # Global options and their names
 #
 #------------------------------------------------------------------------
-class _options:
+class _options(object):
     # sort type identifiers
     SORT_VALUE = 0
     SORT_KEY = 1

@@ -37,7 +37,7 @@ try:
     from bsddb3 import db
 except:
     # FIXME: make this more abstract to deal with other backends
-    class db:
+    class db(object):
         DBRunRecoveryError = 0
         DBAccessError = 0
         DBPageNotFoundError = 0

@@ -359,7 +359,7 @@ class TitleC(DescendantTitleBase):
 # Class RecurseDown
 #
 #------------------------------------------------------------------------
-class RecurseDown:
+class RecurseDown(object):
     """
     The main recursive functions that will use add_person to make
     the tree of people (Descendants) to be included within the report.
@@ -1181,7 +1181,7 @@ class MakeReport(object):
         self.Make_report()
 
 
-class GuiConnect():
+class GuiConnect(object):
     """ This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
       get the value from a GUI variable

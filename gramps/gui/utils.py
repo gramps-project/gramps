@@ -62,7 +62,7 @@ from gramps.gen.errors import WindowActiveError
 #
 #-------------------------------------------------------------------------
 
-class CLIVbox():
+class CLIVbox(object):
     """
     Command-line interface vbox, to keep compatible with Dialog.
     """
@@ -73,7 +73,7 @@ class CLIVbox():
     def set_spacing(self, spacing):
         pass
 
-class CLIDialog:
+class CLIDialog(object):
     """
     Command-line interface vbox, to keep compatible with Dialog.
     """

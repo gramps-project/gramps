@@ -266,7 +266,7 @@ class HolidayTable(object):
 # _Element
 #
 #------------------------------------------------------------------------
-class _Element:
+class _Element(object):
     """ A parsed XML element """
     def __init__(self, name, attributes):
         'Element constructor'
@@ -302,7 +302,7 @@ class _Element:
 # _Xml2Obj
 #
 #------------------------------------------------------------------------
-class _Xml2Obj:
+class _Xml2Obj(object):
     """ XML to Object """
     def __init__(self):
         self.root = None
@@ -340,7 +340,7 @@ class _Xml2Obj:
 # _Holidays
 #
 #------------------------------------------------------------------------
-class _Holidays:
+class _Holidays(object):
     """ Class used to read XML holidays to add to calendar. """
     MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
               'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
