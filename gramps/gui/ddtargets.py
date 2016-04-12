@@ -56,7 +56,7 @@ log = logging.getLogger(".DdTargets")
 from gi.repository import Gdk
 from gi.repository import Gtk
 
-class _DdType:
+class _DdType(object):
     """Represents the fields needed by a drag and drop target."""
 
     _APP_ID_OFFSET = 40  # Starting value of app_ids

@@ -50,7 +50,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Local constants
 #
 #------------------------------------------------------------------------
-class TextTypes():
+class TextTypes(object):
     """Four enumerations that are used to for the four main parts of a string.
 
     and used for states.  Separator is not used in states.
@@ -471,7 +471,7 @@ class EventFormat(GenericFormat):
 #------------------------------------------------------------------------
 # gramps info Format strings
 #------------------------------------------------------------------------
-class GrampsFormat():
+class GrampsFormat(object):
     """ The Gramps Info Format class.
         This only polls information from system information.
     """
