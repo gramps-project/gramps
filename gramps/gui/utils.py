@@ -644,7 +644,7 @@ def model_to_text(model, cols=None, treeiter=None, indent="",
     text = ""
     if treeiter is None:
         treeiter = model.get_iter_first()
-    while treeiter != None:
+    while treeiter is not None:
         if cols is None:
             items = sep.join([str(item) for item in model[treeiter][:]])
         else:

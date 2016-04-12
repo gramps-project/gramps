@@ -1819,7 +1819,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     txn.delete(sname)
                 if group is not None:
                     txn.put(sname, group)
-            if group == None:
+            if group is None:
                 grouppar = ''
             else:
                 grouppar = group

@@ -1395,7 +1395,7 @@ if __name__ == '__main__':
     print("#None are known")
     tmp = main_level_test(consume_str, NameFormat, name_to_test)
     print(tmp)
-    print("Good" if tmp == None else "!! bad !!")
+    print("Good" if tmp is None else "!! bad !!")
 
 
     print()
