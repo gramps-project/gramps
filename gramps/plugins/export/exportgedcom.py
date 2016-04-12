@@ -578,14 +578,15 @@ class GedcomWriter(UpdateCallback):
                 if event.get_description().strip():
                     self._writeln(2, 'TYPE', event.get_description())
         else:
-            self._writeln(1, 'EVEN')
+            descr = event.get_description()
+            if descr:
+                self._writeln(1, 'EVEN', descr)
+            else:
+                self._writeln(1, 'EVEN')
             if val.strip():
                 self._writeln(2, 'TYPE', val)
             else:
                 self._writeln(2, 'TYPE', str(event.get_type()))
-            descr = event.get_description()
-            if descr:
-                self._writeln(2, 'NOTE', "Description: " + descr)
         self._dump_event_stats(event, event_ref)
         if etype == EventType.ADOPT and not adop_written:
             adop_written = True
@@ -855,13 +856,14 @@ class GedcomWriter(UpdateCallback):
             if event.get_description().strip() != "":
                 self._writeln(2, 'TYPE', event.get_description())
         else:
-            self._writeln(1, 'EVEN')
+            descr = event.get_description()
+            if descr:
+                self._writeln(1, 'EVEN', descr)
+            else:
+                self._writeln(1, 'EVEN')
             the_type = str(event.get_type())
             if the_type:
                 self._writeln(2, 'TYPE', the_type)
-            descr = event.get_description()
-            if descr:
-                self._writeln(2, 'NOTE', "Description: " + descr)
 
     def _family_event_attrs(self, attr_list, level):
         """
