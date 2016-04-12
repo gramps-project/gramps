@@ -28,8 +28,6 @@
 #-------------------------------------------------------------------------
 import os
 from io import StringIO
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +52,8 @@ from gi.repository import GLib
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.utils.callback import Callback
 from .utils import process_pending_events
 from .views.navigationview import NavigationView
@@ -249,7 +249,6 @@ _RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="Op
 _RCT_BTM = '</menu></menu></menubar></ui>'
 
 from gramps.gen.recentfiles import RecentFiles
-import os
 
 class RecentDocsMenu(object):
     def __init__(self, uistate, state, fileopen):

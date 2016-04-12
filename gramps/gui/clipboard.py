@@ -44,7 +44,7 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
+from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gramps.gen.config import config
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date

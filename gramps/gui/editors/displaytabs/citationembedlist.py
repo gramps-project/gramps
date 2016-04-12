@@ -43,7 +43,6 @@ from gi.repository import GObject, GLib
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
-from gramps.gen.lib import Source, Citation
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
 from .citationrefmodel import CitationRefModel
