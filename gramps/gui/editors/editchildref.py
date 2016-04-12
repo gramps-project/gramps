@@ -52,7 +52,6 @@ from gramps.gen.lib import NoteType
 from gramps.gen.errors import WindowActiveError
 from ..glade import Glade
 from ..ddtargets import DdTargets
-from gi.repository import Gdk
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer

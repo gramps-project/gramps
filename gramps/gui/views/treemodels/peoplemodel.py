@@ -64,7 +64,6 @@ from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from .basemodel import BaseModel
 from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #

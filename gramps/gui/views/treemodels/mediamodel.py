@@ -24,8 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 log = logging.getLogger(".")
 
@@ -41,9 +39,10 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, Media
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
