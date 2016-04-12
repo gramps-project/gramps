@@ -86,6 +86,8 @@ class DBAPI(DbGeneric):
         );""")
         self.dbapi.try_execute("""CREATE TABLE family (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
+                                    father_handle VARCHAR(50),
+                                    mother_handle VARCHAR(50),
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
@@ -331,6 +333,10 @@ class DBAPI(DbGeneric):
 
     def get_person_handles(self, sort_handles=False):
         """
+        Return a list of database handles, one handle for each Person in
+        the database.
+
+        If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
             self.dbapi.execute("SELECT handle FROM person ORDER BY order_by;")
@@ -339,8 +345,21 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
-    def get_family_handles(self):
-        self.dbapi.execute("SELECT handle FROM family;")
+    def get_family_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Family in
+        the database.
+
+        If sort_handles is True, the list is sorted by surnames.
+        """
+        if sort_handles:
+            self.dbapi.execute("""SELECT DISTINCT family.handle FROM family 
+                                    JOIN person 
+                                    ON (family.father_handle = person.handle OR
+                                        family.mother_handle = person.handle)
+                                    ORDER BY person.primary_name__surname_list__0__surname;""")
+        else:
+            self.dbapi.execute("SELECT handle FROM family;")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -573,16 +592,23 @@ class DBAPI(DbGeneric):
             emit = "family-update"
             old_family = self.get_family_from_handle(family.handle).serialize()
             self.dbapi.execute("""UPDATE family SET gramps_id = ?,
+                                                    father_handle = ?,
+                                                    mother_handle = ?,
                                                     blob_data = ?
                                                 WHERE handle = ?;""",
                                [family.gramps_id,
+                                family.father_handle,
+                                family.mother_handle,
                                 pickle.dumps(family.serialize()),
                                 family.handle])
         else:
             emit = "family-add"
-            self.dbapi.execute("""INSERT INTO family (handle, gramps_id, blob_data)
-                    VALUES(?, ?, ?);""",
-                               [family.handle, family.gramps_id,
+            self.dbapi.execute("""INSERT INTO family (handle, gramps_id, father_handle, mother_handle, blob_data)
+                    VALUES(?, ?, ?, ?, ?);""",
+                               [family.handle, 
+                                family.gramps_id,
+                                family.father_handle,
+                                family.mother_handle,
                                 pickle.dumps(family.serialize())])
         self.update_secondary_values(family)
         if not trans.batch:
