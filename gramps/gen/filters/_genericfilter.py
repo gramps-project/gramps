@@ -406,3 +406,27 @@ class DeferredFilter(GenericFilter):
         if self.name_pair[1]:
             return self._(self.name_pair[0]) % self.name_pair[1]
         return self._(self.name_pair[0])
+
+class DeferredFamilyFilter(GenericFamilyFilter):
+    """
+    Filter class allowing for deferred translation of the filter name
+    """
+
+    def __init__(self, filter_name, family_name):
+        GenericFamilyFilter.__init__(self, None)
+        self.name_pair = [filter_name, family_name]
+
+    def get_name(self, ulocale=glocale):
+        """
+        return the filter name, possibly translated
+
+        If ulocale is passed in (a :class:`.GrampsLocale`) then
+        the translated value will be returned instead.
+
+        :param ulocale: allow deferred translation of strings
+        :type ulocale: a :class:`.GrampsLocale` instance
+        """
+        self._ = ulocale.translation.gettext
+        if self.name_pair[1]:
+            return self._(self.name_pair[0]) % self.name_pair[1]
+        return self._(self.name_pair[0])

@@ -319,18 +319,20 @@ class ProxyDbBase(DbReadBase):
     def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
-        the database.
+        the database. If sort_handles is True, the list is sorted by surnames
         """
+        # FIXME: this is not a sorted list of handles
         if self.db.is_open:
             return list(self.iter_person_handles())
         else:
             return []
 
-    def get_family_handles(self, sort_handles=True):
+    def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
-        the database.
+        the database. If sort_handles is True, the list is sorted by surnames
         """
+        # FIXME: this is not a sorted list of handles
         if self.db.is_open:
             return list(self.iter_family_handles())
         else:

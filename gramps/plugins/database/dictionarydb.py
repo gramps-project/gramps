@@ -158,7 +158,8 @@ class DictionaryDb(DbGeneric):
         ## Fixme: implement sort
         return [bytes(key, "utf-8") for key in self._person_dict.keys()]
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
+        ## Fixme: implement sort
         return [bytes(key, "utf-8") for key in self._family_dict.keys()]
 
     def get_event_handles(self):

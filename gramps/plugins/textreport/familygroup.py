@@ -4,8 +4,8 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013-2016  Paul Franklin
 # Copyright (C) 2015       Gerald Kunzmann <gerald@gkunzmann.de>
+# Copyright (C) 2013-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ from functools import partial
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
-from gramps.gen.plug.menu import BooleanOption, FamilyOption
+from gramps.gen.plug.menu import BooleanOption, FamilyOption, FilterOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -70,7 +70,9 @@ class FamilyGroup(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
 
-        family_handle - Handle of the family to write report on.
+        filter    - Filter to be applied to the families of the database.
+                    The option class carries its number, and the function
+                    returning the list of filters.
         includeAttrs  - Whether to include attributes
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
@@ -78,20 +80,14 @@ class FamilyGroup(Report):
         years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
+        self._user = user
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
         self.db = self.database
 
-        self.family_handle = None
-
-        family_id = menu.get_option_by_name('family_id').get_value()
-        family = self.db.get_family_from_gramps_id(family_id)
-        if family:
-            self.family_handle = family.get_handle()
-        else:
-            self.family_handle = None
+        self.filter = menu.get_option_by_name('filter').get_filter()
 
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name:get_option_by_name(name).get_value()
@@ -109,8 +105,8 @@ class FamilyGroup(Report):
         self.incChiMar     = get_value('incChiMar')
         self.includeAttrs  = get_value('incattrs')
 
-        rlocale = self.set_locale(get_value('trans'))
-        self._ = rlocale.translation.sgettext # needed for English
+        self._locale = self.set_locale(get_value('trans'))
+        self._ = self._locale.translation.sgettext # needed for English
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -654,8 +650,22 @@ class FamilyGroup(Report):
                         self.dump_family(child_family_handle, (generation+1))
 
     def write_report(self):
-        if self.family_handle:
-            self.dump_family(self.family_handle, 1)
+        flist = self.db.get_family_handles(sort_handles=True)
+        if not self.filter:
+            fam_list = flist
+        else:
+            with self._user.progress(_('Family Group Report'),
+                                     _('Applying filter...'),
+                                     self.db.get_number_of_families()) as step:
+                fam_list = self.filter.apply(self.db, flist, step)
+        if fam_list:
+            with self._user.progress(_('Family Group Report'),
+                                     _('Writing families'),
+                                     len(fam_list)) as step:
+                for family_handle in fam_list:
+                    self.dump_family(family_handle, 1)
+                    self.doc.page_break()
+                    step()
         else:
             self.doc.start_paragraph('FGR-Title')
             self.doc.write_text(self._("Family Group Report"))
@@ -663,7 +673,7 @@ class FamilyGroup(Report):
 
 #------------------------------------------------------------------------
 #
-# MenuReportOptions
+# FamilyGroupOptions
 #
 #------------------------------------------------------------------------
 class FamilyGroupOptions(MenuReportOptions):
@@ -673,6 +683,10 @@ class FamilyGroupOptions(MenuReportOptions):
     """
 
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__fid = None
+        self.__filter = None
+        self.__recursive = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -682,20 +696,30 @@ class FamilyGroupOptions(MenuReportOptions):
         add_option = partial(menu.add_option, category_name)
         ##########################
 
-        family_id = FamilyOption(_("Center Family"))
-        family_id.set_help(_("The center family for the report"))
-        add_option("family_id", family_id)
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+            _("Select the filter to be applied to the report."))
+        add_option("filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
 
-        stdoptions.add_name_format_option(menu, category_name)
+        self.__fid = FamilyOption(_("Center Family"))
+        self.__fid.set_help(_("The center family for the filter"))
+        add_option("family_id", self.__fid)
+        self.__fid.connect('value-changed', self.__update_filters)
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
+        self.__update_filters()
 
         stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        recursive = BooleanOption(_('Recursive'), False)
-        recursive.set_help(_("Create reports for all descendants "
-                             "of this family."))
-        add_option("recursive", recursive)
+        self.__recursive = BooleanOption(_('Recursive (down)'), False)
+        self.__recursive.set_help(_("Create reports for all descendants "
+                                    "of this family."))
+        add_option("recursive", self.__recursive)
 
         stdoptions.add_localization_option(menu, category_name)
 
@@ -762,6 +786,35 @@ class FamilyGroupOptions(MenuReportOptions):
         missinginfo.set_help(_("Whether to include fields for missing "
                                "information."))
         add_option("missinginfo", missinginfo)
+
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected family
+        """
+        fid = self.__fid.get_value()
+        family = self.__db.get_family_from_gramps_id(fid)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_family_filters(self.__db, family,
+                                                     include_single=True,
+                                                     name_format=nfv)
+        self.__filter.set_filters(filter_list)
+
+    def __filter_changed(self):
+        """
+        Handle filter change.
+        If the filter is not family-specific, disable the family option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [0, 2, 3]: # filters that rely on the center family
+            self.__fid.set_available(True)
+        else: # filters that don't
+            self.__fid.set_available(False)
+        # only allow recursion if the center family is the only family
+        if self.__recursive and filter_value == 0:
+            self.__recursive.set_available(True)
+        elif self.__recursive:
+            self.__recursive.set_value(False)
+            self.__recursive.set_available(False)
 
     def make_default_style(self, default_style):
         """Make default output style for the Family Group Report."""

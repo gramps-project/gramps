@@ -548,11 +548,12 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
-        the database.
+        the database. If sort_handles is True, the list is sorted by surnames
         """
+        # FIXME: flist is not a sorted list of handles
         return list(self.flist)
 
     def iter_family_handles(self):

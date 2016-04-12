@@ -110,6 +110,16 @@ def find_byte_surname(key, data):
         return surn.encode('utf-8')
     return surn
 
+def find_fullname(key, data):
+    """
+    Creating a fullname from raw data of a person, to use for sort and index
+    returns a byte string
+    """
+    fullname_data = [(data[3][5][0][0] + ' ' + data[3][4], # surname givenname
+                      data[3][5][0][1], data[3][5][0][2],
+                      data[3][5][0][3], data[3][5][0][4])]
+    return __index_surname(fullname_data)
+
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
@@ -254,7 +264,7 @@ class DbBsddbRead(DbReadBase, Callback):
     .. method:: get_<object>_handles()
 
         returns a list of handles for the object type, optionally sorted
-        (for Person, Place, Source and Media objects)
+        (for Citation, Family, Media, Person, Place, Source, and Tag objects)
 
     .. method:: iter_<object>_handles()
 
@@ -1143,16 +1153,21 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.all_handles(self.event_map)
         return []
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
         the database.
+
+        If sort_handles is True, the list is sorted by surnames.
 
         .. warning:: For speed the keys are directly returned, so on python3
                      bytestrings are returned!
         """
         if self.db_is_open:
-            return self.all_handles(self.family_map)
+            handle_list = self.all_handles(self.family_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbyfamily_key)
+            return handle_list
         return []
 
     def get_repository_handles(self):
@@ -1803,6 +1818,24 @@ class DbBsddbRead(DbReadBase, Callback):
             handle = handle.encode('utf-8')
         return glocale.sort_key(find_surname(handle,
                                            self.person_map.get(handle)))
+
+    def __sortbyfamily_key(self, handle):
+        if isinstance(handle, str):
+            handle = handle.encode('utf-8')
+        data = self.family_map.get(handle)
+        data2 = data[2]
+        if isinstance(data2, str):
+            data2 = data2.encode('utf-8')
+        data3 = data[3]
+        if isinstance(data3, str):
+            data3 = data3.encode('utf-8')
+        if data2: # father handle
+            return glocale.sort_key(find_fullname(data2,
+                                    self.person_map.get(data2)))
+        elif data3: # mother handle
+            return glocale.sort_key(find_fullname(data3,
+                                    self.person_map.get(data3)))
+        return ''
 
     def __sortbyplace(self, first, second):
         if isinstance(first, str):
