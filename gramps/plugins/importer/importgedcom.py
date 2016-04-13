@@ -65,26 +65,31 @@ def importData(database, filename, user):
     if DbMixin not in database.__class__.__bases__:
         database.__class__.__bases__ = (DbMixin,) +  \
                                         database.__class__.__bases__
-
     try:
-        with open(filename, "rb") as ifile:
+        # Opening in utf-8 with universal newline to allow cr, lf, and crlf
+        # If the file is really UTF16 or a varient, the next block code will not
+        # find anything even if it is there, but this is ok since it won't be
+        # ANSEL, or is inconsistent...
+        with open(filename, "r", encoding='utf-8', errors='replace',
+                  newline=None) as ifile:
             ansel = False
             gramps = False
             for index in range(50):
-                # Treat the file as though it is UTF-8 since this is the more modern
-                # option; and anyway it doesn't really matter as we are only trying to
-                # detect a CHAR or SOUR line which is only 7-bit ASCII anyway,  and we
-                # ignore anything that can't be translated.
+                # Treat the file as though it is UTF-8 since this is the more
+                # modern option; and anyway it doesn't really matter as we are
+                # only trying to detect a CHAR or SOUR line which is only
+                # 7-bit ASCII anyway,  and we ignore anything that can't be
+                # translated.
                 line = ifile.readline()
-                line = line.decode(encoding='utf-8', errors='replace')
                 line = line.split()
                 if len(line) == 0:
                     break
-                if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
+                if len(line) > 2 and line[1][0:4] == 'CHAR' \
+                                 and line[2] == "ANSEL":
                     ansel = True
-                if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
+                if len(line) > 2 and line[1][0:4] == 'SOUR' \
+                                 and line[2] == "GRAMPS":
                     gramps = True
-
     except IOError:
         return
 

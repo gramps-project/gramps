@@ -7,3 +7,7 @@
 # Have Github ignore js vendored files.
 # https://github.com/gramps-project/gramps/tree/master/data/javascript
 #data/javascript/*.js linguist-vendored
+
+# don't mess with line endings for Gedcom files
+*.ged binary
+*.GED binary

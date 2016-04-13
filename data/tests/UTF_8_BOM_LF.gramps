@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-05-24" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+      <resname>/H. Eichmann/</resname>
+      <resaddr>email: h.eichmann@@gmx.de</resaddr>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000200000002" change="1464120138" id="E0000">
+      <type>Birth</type>
+      <place hlink="_0000000300000003"/>
+    </event>
+    <event handle="_0000000400000004" change="1464120138" id="E0001">
+      <type>Death</type>
+      <place hlink="_0000000500000005"/>
+    </event>
+    <event handle="_0000000800000008" change="1464120138" id="E0002">
+      <type>Birth</type>
+      <place hlink="_0000000900000009"/>
+    </event>
+    <event handle="_0000000a0000000a" change="1464120138" id="E0003">
+      <type>Death</type>
+      <place hlink="_0000000b0000000b"/>
+    </event>
+    <event handle="_0000000d0000000d" change="1464120138" id="E0004">
+      <type>Birth</type>
+      <place hlink="_0000000e0000000e"/>
+    </event>
+    <event handle="_0000000f0000000f" change="1464120138" id="E0005">
+      <type>Death</type>
+      <place hlink="_0000001000000010"/>
+    </event>
+    <event handle="_0000001200000012" change="1464120138" id="E0006">
+      <type>Birth</type>
+      <place hlink="_0000001300000013"/>
+    </event>
+    <event handle="_0000001400000014" change="1464120138" id="E0007">
+      <type>Death</type>
+      <place hlink="_0000001500000015"/>
+    </event>
+    <event handle="_0000001700000017" change="1464120138" id="E0008">
+      <type>Birth</type>
+      <place hlink="_0000001800000018"/>
+    </event>
+    <event handle="_0000001900000019" change="1464120138" id="E0009">
+      <type>Death</type>
+      <place hlink="_0000001a0000001a"/>
+    </event>
+    <event handle="_0000001c0000001c" change="1464120138" id="E0010">
+      <type>Birth</type>
+      <place hlink="_0000001d0000001d"/>
+    </event>
+    <event handle="_0000001e0000001e" change="1464120138" id="E0011">
+      <type>Death</type>
+      <place hlink="_0000001f0000001f"/>
+    </event>
+    <event handle="_0000002100000021" change="1464120138" id="E0012">
+      <type>Birth</type>
+      <place hlink="_0000002200000022"/>
+    </event>
+    <event handle="_0000002300000023" change="1464120138" id="E0013">
+      <type>Death</type>
+      <place hlink="_0000002400000024"/>
+    </event>
+    <event handle="_0000002600000026" change="1464120138" id="E0014">
+      <type>Birth</type>
+      <place hlink="_0000002700000027"/>
+    </event>
+    <event handle="_0000002800000028" change="1464120138" id="E0015">
+      <type>Death</type>
+      <place hlink="_0000002900000029"/>
+    </event>
+    <event handle="_0000002b0000002b" change="1464120138" id="E0016">
+      <type>Birth</type>
+      <place hlink="_0000002c0000002c"/>
+    </event>
+    <event handle="_0000002d0000002d" change="1464120138" id="E0017">
+      <type>Death</type>
+      <place hlink="_0000002e0000002e"/>
+    </event>
+    <event handle="_0000003000000030" change="1464120138" id="E0018">
+      <type>Birth</type>
+      <place hlink="_0000003100000031"/>
+    </event>
+    <event handle="_0000003200000032" change="1464120138" id="E0019">
+      <type>Death</type>
+      <place hlink="_0000003300000033"/>
+    </event>
+    <event handle="_0000003500000035" change="1464120138" id="E0020">
+      <type>Birth</type>
+      <place hlink="_0000003600000036"/>
+    </event>
+    <event handle="_0000003700000037" change="1464120138" id="E0021">
+      <type>Death</type>
+      <place hlink="_0000003800000038"/>
+    </event>
+    <event handle="_0000003a0000003a" change="1464120138" id="E0022">
+      <type>Birth</type>
+      <place hlink="_0000003b0000003b"/>
+    </event>
+    <event handle="_0000003c0000003c" change="1464120138" id="E0023">
+      <type>Death</type>
+      <place hlink="_0000003d0000003d"/>
+    </event>
+    <event handle="_0000003f0000003f" change="1464120138" id="E0024">
+      <type>Birth</type>
+      <place hlink="_0000003b0000003b"/>
+    </event>
+    <event handle="_0000004000000040" change="1464120138" id="E0025">
+      <type>Death</type>
+      <place hlink="_0000004100000041"/>
+    </event>
+    <event handle="_0000004300000043" change="1464120138" id="E0026">
+      <type>Birth</type>
+      <place hlink="_0000004400000044"/>
+    </event>
+    <event handle="_0000004500000045" change="1464120138" id="E0027">
+      <type>Death</type>
+      <place hlink="_0000004600000046"/>
+    </event>
+    <event handle="_0000004800000048" change="1464120138" id="E0028">
+      <type>Birth</type>
+      <place hlink="_0000004900000049"/>
+    </event>
+    <event handle="_0000004a0000004a" change="1464120138" id="E0029">
+      <type>Death</type>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_0000004d0000004d" change="1464120138" id="E0030">
+      <type>Birth</type>
+      <place hlink="_0000004e0000004e"/>
+    </event>
+    <event handle="_0000004f0000004f" change="1464120138" id="E0031">
+      <type>Death</type>
+      <place hlink="_0000005000000050"/>
+    </event>
+    <event handle="_0000005200000052" change="1464120138" id="E0032">
+      <type>Birth</type>
+      <place hlink="_0000005300000053"/>
+    </event>
+    <event handle="_0000005400000054" change="1464120138" id="E0033">
+      <type>Death</type>
+      <place hlink="_0000005500000055"/>
+    </event>
+    <event handle="_0000005700000057" change="1464120138" id="E0034">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005900000059" change="1464120138" id="E0035">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005b0000005b" change="1464120138" id="E0036">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005c0000005c" change="1464120138" id="E0037">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005e0000005e" change="1464120138" id="E0038">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005f0000005f" change="1464120138" id="E0039">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000006100000061" change="1464120138" id="E0040">
+      <type>Birth</type>
+      <place hlink="_0000006200000062"/>
+    </event>
+    <event handle="_0000006300000063" change="1464120138" id="E0041">
+      <type>Death</type>
+      <place hlink="_0000006400000064"/>
+    </event>
+    <event handle="_0000006600000066" change="1464120138" id="E0042">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000006700000067" change="1464120138" id="E0043">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000006900000069" change="1464120138" id="E0044">
+      <type>Birth</type>
+      <place hlink="_0000006a0000006a"/>
+    </event>
+    <event handle="_0000006b0000006b" change="1464120138" id="E0045">
+      <type>Death</type>
+      <place hlink="_0000006c0000006c"/>
+    </event>
+    <event handle="_0000006e0000006e" change="1464120138" id="E0046">
+      <type>Birth</type>
+      <place hlink="_0000006f0000006f"/>
+    </event>
+    <event handle="_0000007000000070" change="1464120138" id="E0047">
+      <type>Death</type>
+      <place hlink="_0000007100000071"/>
+    </event>
+    <event handle="_0000007300000073" change="1464120138" id="E0048">
+      <type>Birth</type>
+      <place hlink="_0000007400000074"/>
+    </event>
+    <event handle="_0000007500000075" change="1464120138" id="E0049">
+      <type>Death</type>
+      <place hlink="_0000007600000076"/>
+    </event>
+    <event handle="_0000007800000078" change="1464120138" id="E0050">
+      <type>Birth</type>
+      <place hlink="_0000007900000079"/>
+    </event>
+    <event handle="_0000007a0000007a" change="1464120138" id="E0051">
+      <type>Death</type>
+      <place hlink="_0000007b0000007b"/>
+    </event>
+    <event handle="_0000007d0000007d" change="1464120138" id="E0052">
+      <type>Birth</type>
+      <place hlink="_0000007e0000007e"/>
+    </event>
+    <event handle="_0000007f0000007f" change="1464120138" id="E0053">
+      <type>Death</type>
+      <place hlink="_0000008000000080"/>
+    </event>
+    <event handle="_0000008200000082" change="1464120138" id="E0054">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000008300000083" change="1464120138" id="E0055">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000008500000085" change="1464120138" id="E0056">
+      <type>Birth</type>
+      <place hlink="_0000008600000086"/>
+    </event>
+    <event handle="_0000008700000087" change="1464120138" id="E0057">
+      <type>Death</type>
+      <place hlink="_0000008800000088"/>
+    </event>
+    <event handle="_0000008a0000008a" change="1464120138" id="E0058">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000008b0000008b" change="1464120138" id="E0059">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000008d0000008d" change="1464120138" id="E0060">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000008e0000008e" change="1464120138" id="E0061">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009000000090" change="1464120138" id="E0062">
+      <type>Birth</type>
+      <place hlink="_0000009100000091"/>
+    </event>
+    <event handle="_0000009200000092" change="1464120138" id="E0063">
+      <type>Death</type>
+      <place hlink="_0000009300000093"/>
+    </event>
+    <event handle="_0000009500000095" change="1464120138" id="E0064">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009600000096" change="1464120138" id="E0065">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009800000098" change="1464120138" id="E0066">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009900000099" change="1464120138" id="E0067">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009b0000009b" change="1464120138" id="E0068">
+      <type>Birth</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000009c0000009c" change="1464120138" id="E0069">
+      <type>Death</type>
+      <place hlink="_0000005800000058"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1464120138" id="FATHER">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <surname>cyrillic</surname>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <eventref hlink="_0000000400000004" role="Primary"/>
+      <parentin hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000000700000007" change="1464120138" id="MOTHER">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <surname>greek</surname>
+      </name>
+      <eventref hlink="_0000000800000008" role="Primary"/>
+      <eventref hlink="_0000000a0000000a" role="Primary"/>
+      <parentin hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000000c0000000c" change="1464120138" id="CHILD0">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <surname>Special Characters 0</surname>
+      </name>
+      <eventref hlink="_0000000d0000000d" role="Primary"/>
+      <eventref hlink="_0000000f0000000f" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000001100000011" change="1464120138" id="CHILD1">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <surname>Special Characters 1</surname>
+      </name>
+      <eventref hlink="_0000001200000012" role="Primary"/>
+      <eventref hlink="_0000001400000014" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000001600000016" change="1464120138" id="CHILD2">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <surname>Special Characters 2</surname>
+      </name>
+      <eventref hlink="_0000001700000017" role="Primary"/>
+      <eventref hlink="_0000001900000019" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000001b0000001b" change="1464120138" id="CHILD3">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <surname>Special Characters 3</surname>
+      </name>
+      <eventref hlink="_0000001c0000001c" role="Primary"/>
+      <eventref hlink="_0000001e0000001e" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000002000000020" change="1464120138" id="CHILD4">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0309</first>
+        <surname>HOOK ABOVE</surname>
+      </name>
+      <eventref hlink="_0000002100000021" role="Primary"/>
+      <eventref hlink="_0000002300000023" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000002500000025" change="1464120138" id="CHILD5">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0300</first>
+        <surname>GRAVE</surname>
+      </name>
+      <eventref hlink="_0000002600000026" role="Primary"/>
+      <eventref hlink="_0000002800000028" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000002a0000002a" change="1464120138" id="CHILD6">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0301</first>
+        <surname>ACUTE</surname>
+      </name>
+      <eventref hlink="_0000002b0000002b" role="Primary"/>
+      <eventref hlink="_0000002d0000002d" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000002f0000002f" change="1464120138" id="CHILD7">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0302</first>
+        <surname>CIRCUMFLEX</surname>
+      </name>
+      <eventref hlink="_0000003000000030" role="Primary"/>
+      <eventref hlink="_0000003200000032" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000003400000034" change="1464120138" id="CHILD8">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0303</first>
+        <surname>TILDE</surname>
+      </name>
+      <eventref hlink="_0000003500000035" role="Primary"/>
+      <eventref hlink="_0000003700000037" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000003900000039" change="1464120138" id="CHILD9">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0304</first>
+        <surname>MACRON</surname>
+      </name>
+      <eventref hlink="_0000003a0000003a" role="Primary"/>
+      <eventref hlink="_0000003c0000003c" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000003e0000003e" change="1464120138" id="CHILD10">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0306</first>
+        <surname>BREVE</surname>
+      </name>
+      <eventref hlink="_0000003f0000003f" role="Primary"/>
+      <eventref hlink="_0000004000000040" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000004200000042" change="1464120138" id="CHILD11">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0307</first>
+        <surname>DOT ABOVE</surname>
+      </name>
+      <eventref hlink="_0000004300000043" role="Primary"/>
+      <eventref hlink="_0000004500000045" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000004700000047" change="1464120138" id="CHILD12">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0308</first>
+        <surname>DIAERESIS</surname>
+      </name>
+      <eventref hlink="_0000004800000048" role="Primary"/>
+      <eventref hlink="_0000004a0000004a" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000004c0000004c" change="1464120138" id="CHILD13">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 030C</first>
+        <surname>CARON</surname>
+      </name>
+      <eventref hlink="_0000004d0000004d" role="Primary"/>
+      <eventref hlink="_0000004f0000004f" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000005100000051" change="1464120138" id="CHILD14">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 030A</first>
+        <surname>RING ABOVE</surname>
+      </name>
+      <eventref hlink="_0000005200000052" role="Primary"/>
+      <eventref hlink="_0000005400000054" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000005600000056" change="1464120138" id="CHILD15">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: FE20</first>
+        <surname>LIGATURE LEFT HALF</surname>
+      </name>
+      <eventref hlink="_0000005700000057" role="Primary"/>
+      <eventref hlink="_0000005900000059" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000005a0000005a" change="1464120138" id="CHILD16">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: FE21</first>
+        <surname>LIGATURE RIGHT HALF</surname>
+      </name>
+      <eventref hlink="_0000005b0000005b" role="Primary"/>
+      <eventref hlink="_0000005c0000005c" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000005d0000005d" change="1464120138" id="CHILD17">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0315</first>
+        <surname>COMMA ABOVE RIGHT</surname>
+      </name>
+      <eventref hlink="_0000005e0000005e" role="Primary"/>
+      <eventref hlink="_0000005f0000005f" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000006000000060" change="1464120138" id="CHILD18">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 030B</first>
+        <surname>DOUBLE ACUTE</surname>
+      </name>
+      <eventref hlink="_0000006100000061" role="Primary"/>
+      <eventref hlink="_0000006300000063" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000006500000065" change="1464120138" id="CHILD19">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0310</first>
+        <surname>CANDRABINDU</surname>
+      </name>
+      <eventref hlink="_0000006600000066" role="Primary"/>
+      <eventref hlink="_0000006700000067" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000006800000068" change="1464120138" id="CHILD20">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0327</first>
+        <surname>CEDILLA</surname>
+      </name>
+      <eventref hlink="_0000006900000069" role="Primary"/>
+      <eventref hlink="_0000006b0000006b" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000006d0000006d" change="1464120138" id="CHILD21">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0328</first>
+        <surname>OGONEK</surname>
+      </name>
+      <eventref hlink="_0000006e0000006e" role="Primary"/>
+      <eventref hlink="_0000007000000070" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000007200000072" change="1464120138" id="CHILD22">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0323</first>
+        <surname>DOT BELOW</surname>
+      </name>
+      <eventref hlink="_0000007300000073" role="Primary"/>
+      <eventref hlink="_0000007500000075" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000007700000077" change="1464120138" id="CHILD23">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0324</first>
+        <surname>DIAERESIS BELOW</surname>
+      </name>
+      <eventref hlink="_0000007800000078" role="Primary"/>
+      <eventref hlink="_0000007a0000007a" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000007c0000007c" change="1464120138" id="CHILD24">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0325</first>
+        <surname>RING BELOW</surname>
+      </name>
+      <eventref hlink="_0000007d0000007d" role="Primary"/>
+      <eventref hlink="_0000007f0000007f" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000008100000081" change="1464120138" id="CHILD25">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0333</first>
+        <surname>DOUBLE LOW LINE</surname>
+      </name>
+      <eventref hlink="_0000008200000082" role="Primary"/>
+      <eventref hlink="_0000008300000083" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000008400000084" change="1464120138" id="CHILD26">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0332</first>
+        <surname>LINE BELOW</surname>
+      </name>
+      <eventref hlink="_0000008500000085" role="Primary"/>
+      <eventref hlink="_0000008700000087" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000008900000089" change="1464120138" id="CHILD27">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0326</first>
+        <surname>COMMA BELOW</surname>
+      </name>
+      <eventref hlink="_0000008a0000008a" role="Primary"/>
+      <eventref hlink="_0000008b0000008b" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000008c0000008c" change="1464120138" id="CHILD28">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 031C</first>
+        <surname>LEFT HALF RING BELOW</surname>
+      </name>
+      <eventref hlink="_0000008d0000008d" role="Primary"/>
+      <eventref hlink="_0000008e0000008e" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000008f0000008f" change="1464120138" id="CHILD29">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 032E</first>
+        <surname>BREVE BELOW</surname>
+      </name>
+      <eventref hlink="_0000009000000090" role="Primary"/>
+      <eventref hlink="_0000009200000092" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000009400000094" change="1464120138" id="CHILD30">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: FE22</first>
+        <surname>DOUBLE TILDE LEFT HALF</surname>
+      </name>
+      <eventref hlink="_0000009500000095" role="Primary"/>
+      <eventref hlink="_0000009600000096" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000009700000097" change="1464120138" id="CHILD31">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: FE23</first>
+        <surname>DOUBLE TILDE RIGHT HALF</surname>
+      </name>
+      <eventref hlink="_0000009800000098" role="Primary"/>
+      <eventref hlink="_0000009900000099" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000009a0000009a" change="1464120138" id="CHILD32">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>code: 0313</first>
+        <surname>COMMA ABOVE</surname>
+      </name>
+      <eventref hlink="_0000009b0000009b" role="Primary"/>
+      <eventref hlink="_0000009c0000009c" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000600000006" change="1464120138" id="FAMILY">
+      <rel type="Unknown"/>
+      <father hlink="_0000000100000001"/>
+      <mother hlink="_0000000700000007"/>
+      <childref hlink="_0000000c0000000c"/>
+      <childref hlink="_0000001100000011"/>
+      <childref hlink="_0000001600000016"/>
+      <childref hlink="_0000001b0000001b"/>
+      <childref hlink="_0000002000000020"/>
+      <childref hlink="_0000002500000025"/>
+      <childref hlink="_0000002a0000002a"/>
+      <childref hlink="_0000002f0000002f"/>
+      <childref hlink="_0000003400000034"/>
+      <childref hlink="_0000003900000039"/>
+      <childref hlink="_0000003e0000003e"/>
+      <childref hlink="_0000004200000042"/>
+      <childref hlink="_0000004700000047"/>
+      <childref hlink="_0000004c0000004c"/>
+      <childref hlink="_0000005100000051"/>
+      <childref hlink="_0000005600000056"/>
+      <childref hlink="_0000005a0000005a"/>
+      <childref hlink="_0000005d0000005d"/>
+      <childref hlink="_0000006000000060"/>
+      <childref hlink="_0000006500000065"/>
+      <childref hlink="_0000006800000068"/>
+      <childref hlink="_0000006d0000006d"/>
+      <childref hlink="_0000007200000072"/>
+      <childref hlink="_0000007700000077"/>
+      <childref hlink="_0000007c0000007c"/>
+      <childref hlink="_0000008100000081"/>
+      <childref hlink="_0000008400000084"/>
+      <childref hlink="_0000008900000089"/>
+      <childref hlink="_0000008c0000008c"/>
+      <childref hlink="_0000008f0000008f"/>
+      <childref hlink="_0000009400000094"/>
+      <childref hlink="_0000009700000097"/>
+      <childref hlink="_0000009a0000009a"/>
+    </family>
+  </families>
+  <places>
+    <placeobj handle="_0000000300000003" change="1464120138" id="P0000" type="Unknown">
+      <ptitle>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</ptitle>
+      <pname value="АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
+    </placeobj>
+    <placeobj handle="_0000000500000005" change="1464120138" id="P0001" type="Unknown">
+      <ptitle>абвгдежзийклмнопрстуфхцчшщъыьэюя</ptitle>
+      <pname value="абвгдежзийклмнопрстуфхцчшщъыьэюя"/>
+    </placeobj>
+    <placeobj handle="_0000000900000009" change="1464120138" id="P0002" type="Unknown">
+      <ptitle>ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ</ptitle>
+      <pname value="ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ"/>
+    </placeobj>
+    <placeobj handle="_0000000b0000000b" change="1464120138" id="P0003" type="Unknown">
+      <ptitle>αβγδεζηθικλμνξοπρςστυφχψω</ptitle>
+      <pname value="αβγδεζηθικλμνξοπρςστυφχψω"/>
+    </placeobj>
+    <placeobj handle="_0000000e0000000e" change="1464120138" id="P0004" type="Unknown">
+      <ptitle>capital L with stroke (Ł), capital O with stroke (Ø), capital D with stroke (Đ), capital thorn (Þ)</ptitle>
+      <pname value="capital L with stroke (Ł), capital O with stroke (Ø), capital D with stroke (Đ), capital thorn (Þ)"/>
+    </placeobj>
+    <placeobj handle="_0000001000000010" change="1464120138" id="P0005" type="Unknown">
+      <ptitle>capital AE (Æ), capital ligature OE (Œ), modified prime (ʹ), middle dot (·), music flat sign (♭)</ptitle>
+      <pname value="capital AE (Æ), capital ligature OE (Œ), modified prime (ʹ), middle dot (·), music flat sign (♭)"/>
+    </placeobj>
+    <placeobj handle="_0000001300000013" change="1464120138" id="P0006" type="Unknown">
+      <ptitle>registered sign (®), plus-minus sign (±), capital O with horn (Ơ), capital U with horn (Ư)</ptitle>
+      <pname value="registered sign (®), plus-minus sign (±), capital O with horn (Ơ), capital U with horn (Ư)"/>
+    </placeobj>
+    <placeobj handle="_0000001500000015" change="1464120138" id="P0007" type="Unknown">
+      <ptitle>modifier right half ring (ʾ), modifier left half ring (ʿ), small L with stroke (ł), small O with stroke (ø), small D with stroke (đ)</ptitle>
+      <pname value="modifier right half ring (ʾ), modifier left half ring (ʿ), small L with stroke (ł), small O with stroke (ø), small D with stroke (đ)"/>
+    </placeobj>
+    <placeobj handle="_0000001800000018" change="1464120138" id="P0008" type="Unknown">
+      <ptitle>small thorn (þ), small AE (æ), small ligature OE (œ), modified double prime (ʺ)</ptitle>
+      <pname value="small thorn (þ), small AE (æ), small ligature OE (œ), modified double prime (ʺ)"/>
+    </placeobj>
+    <placeobj handle="_0000001a0000001a" change="1464120138" id="P0009" type="Unknown">
+      <ptitle>small dotless i (ı), pound sign (£), small eth (ð), small O with horn (ơ), small U with horn (ư)</ptitle>
+      <pname value="small dotless i (ı), pound sign (£), small eth (ð), small O with horn (ơ), small U with horn (ư)"/>
+    </placeobj>
+    <placeobj handle="_0000001d0000001d" change="1464120138" id="P0010" type="Unknown">
+      <ptitle>degree sign (°), script small L (ℓ), sound recording copyright (℗), copyright sign (©)</ptitle>
+      <pname value="degree sign (°), script small L (ℓ), sound recording copyright (℗), copyright sign (©)"/>
+    </placeobj>
+    <placeobj handle="_0000001f0000001f" change="1464120138" id="P0011" type="Unknown">
+      <ptitle>music sharp sign (♯), inverted question mark (¿), inverted exclamation mark (¡), small sharp S (ß)</ptitle>
+      <pname value="music sharp sign (♯), inverted question mark (¿), inverted exclamation mark (¡), small sharp S (ß)"/>
+    </placeobj>
+    <placeobj handle="_0000002200000022" change="1464120138" id="P0012" type="Unknown">
+      <ptitle>AEIOU,Yaeio,uy</ptitle>
+      <pname value="AEIOU,Yaeio,uy"/>
+    </placeobj>
+    <placeobj handle="_0000002400000024" change="1464120138" id="P0013" type="Unknown">
+      <ptitle>ẢẺỈỎỦ,Ỷảẻỉỏ,ủỷ</ptitle>
+      <pname value="ẢẺỈỎỦ,Ỷảẻỉỏ,ủỷ"/>
+    </placeobj>
+    <placeobj handle="_0000002700000027" change="1464120138" id="P0014" type="Unknown">
+      <ptitle>AEIOU,WYaei,ouwy</ptitle>
+      <pname value="AEIOU,WYaei,ouwy"/>
+    </placeobj>
+    <placeobj handle="_0000002900000029" change="1464120138" id="P0015" type="Unknown">
+      <ptitle>ÀÈÌÒÙ,ẀỲàèì,òùẁỳ</ptitle>
+      <pname value="ÀÈÌÒÙ,ẀỲàèì,òùẁỳ"/>
+    </placeobj>
+    <placeobj handle="_0000002c0000002c" change="1464120138" id="P0016" type="Unknown">
+      <ptitle>ACEGI,KLMNO,PRSUW,YZace,giklm,noprs,uwyz</ptitle>
+      <pname value="ACEGI,KLMNO,PRSUW,YZace,giklm,noprs,uwyz"/>
+    </placeobj>
+    <placeobj handle="_0000002e0000002e" change="1464120138" id="P0017" type="Unknown">
+      <ptitle>ÁĆÉǴÍ,ḰĹḾŃÓ,ṔŔŚÚẂ,ÝŹáćé,ǵíḱĺḿ,ńóṕŕś,úẃýź</ptitle>
+      <pname value="ÁĆÉǴÍ,ḰĹḾŃÓ,ṔŔŚÚẂ,ÝŹáćé,ǵíḱĺḿ,ńóṕŕś,úẃýź"/>
+    </placeobj>
+    <placeobj handle="_0000003100000031" change="1464120138" id="P0018" type="Unknown">
+      <ptitle>ACEGH,IJOSU,WYZac,eghij,osuwy,z</ptitle>
+      <pname value="ACEGH,IJOSU,WYZac,eghij,osuwy,z"/>
+    </placeobj>
+    <placeobj handle="_0000003300000033" change="1464120138" id="P0019" type="Unknown">
+      <ptitle>ÂĈÊĜĤ,ÎĴÔŜÛ,ŴŶẐâĉ,êĝĥîĵ,ôŝûŵŷ,ẑ</ptitle>
+      <pname value="ÂĈÊĜĤ,ÎĴÔŜÛ,ŴŶẐâĉ,êĝĥîĵ,ôŝûŵŷ,ẑ"/>
+    </placeobj>
+    <placeobj handle="_0000003600000036" change="1464120138" id="P0020" type="Unknown">
+      <ptitle>AEINO,UVYae,inouv,y</ptitle>
+      <pname value="AEINO,UVYae,inouv,y"/>
+    </placeobj>
+    <placeobj handle="_0000003800000038" change="1464120138" id="P0021" type="Unknown">
+      <ptitle>ÃẼĨÑÕ,ŨṼỸãẽ,ĩñõũṽ,ỹ</ptitle>
+      <pname value="ÃẼĨÑÕ,ŨṼỸãẽ,ĩñõũṽ,ỹ"/>
+    </placeobj>
+    <placeobj handle="_0000003b0000003b" change="1464120138" id="P0022" type="Unknown">
+      <ptitle>AEGIO,Uaegi,ou</ptitle>
+      <pname value="AEGIO,Uaegi,ou"/>
+    </placeobj>
+    <placeobj handle="_0000003d0000003d" change="1464120138" id="P0023" type="Unknown">
+      <ptitle>ĀĒḠĪŌ,Ūāēḡī,ōū</ptitle>
+      <pname value="ĀĒḠĪŌ,Ūāēḡī,ōū"/>
+    </placeobj>
+    <placeobj handle="_0000004100000041" change="1464120138" id="P0024" type="Unknown">
+      <ptitle>ĂĔĞĬŎ,Ŭăĕğĭ,ŏŭ</ptitle>
+      <pname value="ĂĔĞĬŎ,Ŭăĕğĭ,ŏŭ"/>
+    </placeobj>
+    <placeobj handle="_0000004400000044" change="1464120138" id="P0025" type="Unknown">
+      <ptitle>BCDEF,GHIMN,PRSTW,XYZbc,defgh,mnprs,twxyz</ptitle>
+      <pname value="BCDEF,GHIMN,PRSTW,XYZbc,defgh,mnprs,twxyz"/>
+    </placeobj>
+    <placeobj handle="_0000004600000046" change="1464120138" id="P0026" type="Unknown">
+      <ptitle>ḂĊḊĖḞ,ĠḢİṀṄ,ṖṘṠṪẆ,ẊẎŻḃċ,ḋėḟġḣ,ṁṅṗṙṡ,ṫẇẋẏż</ptitle>
+      <pname value="ḂĊḊĖḞ,ĠḢİṀṄ,ṖṘṠṪẆ,ẊẎŻḃċ,ḋėḟġḣ,ṁṅṗṙṡ,ṫẇẋẏż"/>
+    </placeobj>
+    <placeobj handle="_0000004900000049" change="1464120138" id="P0027" type="Unknown">
+      <ptitle>AEHIO,UWXYa,ehiot,uwxy</ptitle>
+      <pname value="AEHIO,UWXYa,ehiot,uwxy"/>
+    </placeobj>
+    <placeobj handle="_0000004b0000004b" change="1464120138" id="P0028" type="Unknown">
+      <ptitle>ÄËḦÏÖ,ÜẄẌŸä,ëḧïöẗ,üẅẍÿ</ptitle>
+      <pname value="ÄËḦÏÖ,ÜẄẌŸä,ëḧïöẗ,üẅẍÿ"/>
+    </placeobj>
+    <placeobj handle="_0000004e0000004e" change="1464120138" id="P0029" type="Unknown">
+      <ptitle>ACDEG,IKLNO,RSTUZ,acdeg,ijkln,orstu,z</ptitle>
+      <pname value="ACDEG,IKLNO,RSTUZ,acdeg,ijkln,orstu,z"/>
+    </placeobj>
+    <placeobj handle="_0000005000000050" change="1464120138" id="P0030" type="Unknown">
+      <ptitle>ǍČĎĚǦ,ǏǨĽŇǑ,ŘŠŤǓŽ,ǎčďěǧ,ǐǰǩľň,ǒřšťǔ,ž</ptitle>
+      <pname value="ǍČĎĚǦ,ǏǨĽŇǑ,ŘŠŤǓŽ,ǎčďěǧ,ǐǰǩľň,ǒřšťǔ,ž"/>
+    </placeobj>
+    <placeobj handle="_0000005300000053" change="1464120138" id="P0031" type="Unknown">
+      <ptitle>AUauw,y</ptitle>
+      <pname value="AUauw,y"/>
+    </placeobj>
+    <placeobj handle="_0000005500000055" change="1464120138" id="P0032" type="Unknown">
+      <ptitle>ÅŮåůẘ,ẙ</ptitle>
+      <pname value="ÅŮåůẘ,ẙ"/>
+    </placeobj>
+    <placeobj handle="_0000005800000058" change="1464120138" id="P0033" type="Unknown">
+      <ptitle>- none -</ptitle>
+      <pname value="- none -"/>
+    </placeobj>
+    <placeobj handle="_0000006200000062" change="1464120138" id="P0034" type="Unknown">
+      <ptitle>OUou</ptitle>
+      <pname value="OUou"/>
+    </placeobj>
+    <placeobj handle="_0000006400000064" change="1464120138" id="P0035" type="Unknown">
+      <ptitle>ŐŰőű</ptitle>
+      <pname value="ŐŰőű"/>
+    </placeobj>
+    <placeobj handle="_0000006a0000006a" change="1464120138" id="P0036" type="Unknown">
+      <ptitle>CDGHK,LNRST,cdghk,lnrst</ptitle>
+      <pname value="CDGHK,LNRST,cdghk,lnrst"/>
+    </placeobj>
+    <placeobj handle="_0000006c0000006c" change="1464120138" id="P0037" type="Unknown">
+      <ptitle>ÇḐĢḨĶ,ĻŅŖŞŢ,çḑģḩķ,ļņŗşţ</ptitle>
+      <pname value="ÇḐĢḨĶ,ĻŅŖŞŢ,çḑģḩķ,ļņŗşţ"/>
+    </placeobj>
+    <placeobj handle="_0000006f0000006f" change="1464120138" id="P0038" type="Unknown">
+      <ptitle>AEIOU,aeiou</ptitle>
+      <pname value="AEIOU,aeiou"/>
+    </placeobj>
+    <placeobj handle="_0000007100000071" change="1464120138" id="P0039" type="Unknown">
+      <ptitle>ĄĘĮǪŲ,ąęįǫų</ptitle>
+      <pname value="ĄĘĮǪŲ,ąęįǫų"/>
+    </placeobj>
+    <placeobj handle="_0000007400000074" change="1464120138" id="P0040" type="Unknown">
+      <ptitle>ABDEH,IKLMN,ORSTU,VWYZa,bdehi,klmno,rstuv,wyz</ptitle>
+      <pname value="ABDEH,IKLMN,ORSTU,VWYZa,bdehi,klmno,rstuv,wyz"/>
+    </placeobj>
+    <placeobj handle="_0000007600000076" change="1464120138" id="P0041" type="Unknown">
+      <ptitle>ẠḄḌẸḤ,ỊḲḶṂṆ,ỌṚṢṬỤ,ṾẈỴẒạ,ḅḍẹḥị,ḳḷṃṇọ,ṛṣṭụṿ,ẉỵẓ</ptitle>
+      <pname value="ẠḄḌẸḤ,ỊḲḶṂṆ,ỌṚṢṬỤ,ṾẈỴẒạ,ḅḍẹḥị,ḳḷṃṇọ,ṛṣṭụṿ,ẉỵẓ"/>
+    </placeobj>
+    <placeobj handle="_0000007900000079" change="1464120138" id="P0042" type="Unknown">
+      <ptitle>Uu</ptitle>
+      <pname value="Uu"/>
+    </placeobj>
+    <placeobj handle="_0000007b0000007b" change="1464120138" id="P0043" type="Unknown">
+      <ptitle>Ṳṳ</ptitle>
+      <pname value="Ṳṳ"/>
+    </placeobj>
+    <placeobj handle="_0000007e0000007e" change="1464120138" id="P0044" type="Unknown">
+      <ptitle>Aa</ptitle>
+      <pname value="Aa"/>
+    </placeobj>
+    <placeobj handle="_0000008000000080" change="1464120138" id="P0045" type="Unknown">
+      <ptitle>Ḁḁ</ptitle>
+      <pname value="Ḁḁ"/>
+    </placeobj>
+    <placeobj handle="_0000008600000086" change="1464120138" id="P0046" type="Unknown">
+      <ptitle>BDKLN,RTZbd,hklnr,tz</ptitle>
+      <pname value="BDKLN,RTZbd,hklnr,tz"/>
+    </placeobj>
+    <placeobj handle="_0000008800000088" change="1464120138" id="P0047" type="Unknown">
+      <ptitle>ḆḎḴḺṈ,ṞṮẔḇḏ,ẖḵḻṉṟ,ṯẕ</ptitle>
+      <pname value="ḆḎḴḺṈ,ṞṮẔḇḏ,ẖḵḻṉṟ,ṯẕ"/>
+    </placeobj>
+    <placeobj handle="_0000009100000091" change="1464120138" id="P0048" type="Unknown">
+      <ptitle>Hh</ptitle>
+      <pname value="Hh"/>
+    </placeobj>
+    <placeobj handle="_0000009300000093" change="1464120138" id="P0049" type="Unknown">
+      <ptitle>Ḫḫ</ptitle>
+      <pname value="Ḫḫ"/>
+    </placeobj>
+  </places>
+</database>
