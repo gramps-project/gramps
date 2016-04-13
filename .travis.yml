@@ -31,7 +31,7 @@ before_install:
 install:
  - travis_retry pip install --upgrade pillow
  - travis_retry pip install pyicu==1.8
- - travis_retry python3 -m pip install meta --user
+ - travis_retry python3 -m pip install meta
  
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
