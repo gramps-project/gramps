@@ -1819,7 +1819,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     txn.delete(sname)
                 if group is not None:
                     txn.put(sname, group)
-            if group == None:
+            if group is None:
                 grouppar = ''
             else:
                 grouppar = group
@@ -2649,7 +2649,7 @@ def write_lock_file(name):
     if win():
         user = get_env_var('USERNAME')
         host = get_env_var('USERDOMAIN')
-        if host == None:
+        if host is None:
             host = ""
     else:
         host = os.uname()[1]

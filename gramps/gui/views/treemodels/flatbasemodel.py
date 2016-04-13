@@ -854,7 +854,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_nth_child', iter, nth
-        if iter == None:
+        if iter is None:
             return True, self.node_map.get_iter(nth)
         return False, None
 

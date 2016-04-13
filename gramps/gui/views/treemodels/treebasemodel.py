@@ -104,7 +104,7 @@ class Node(object):
         """
         Assign the handle of a Gramps object to this node.
         """
-        if not self.handle or handle == None:
+        if not self.handle or handle is None:
             self.handle = handle
             self.secondary = secondary
         else:
