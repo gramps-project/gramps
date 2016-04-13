@@ -4,7 +4,7 @@
 language: python
 python:
  - 3.4
-sudo: false
+sudo: true
 cache: pip
 addons:
   apt:
