@@ -45,15 +45,15 @@ from .utils import *
 from ._options import (Options, OptionListCollection, OptionList,
                       OptionHandler, MenuOptions)
 
-__all__ = [ "docbackend", "docgen", "menu", Plugin, PluginData,
-            PluginRegister, BasePluginManager,
-            ImportPlugin, ExportPlugin, DocGenPlugin,
-            REPORT, TOOL, CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
-            CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
-            TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
-            TOOL_UTILS, CATEGORY_QR_MISC, CATEGORY_QR_PERSON,
-            CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
-            CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, CATEGORY_QR_NOTE,
-            CATEGORY_QR_DATE, PTYPE_STR, CATEGORY_QR_MEDIA,
-            CATEGORY_QR_CITATION, CATEGORY_QR_SOURCE_OR_CITATION,
-            START, END, make_environment]
+__all__ = [ "docbackend", "docgen", "menu", "Plugin", "PluginData",
+            "PluginRegister", "BasePluginManager",
+            "ImportPlugin", "ExportPlugin", "DocGenPlugin",
+            "REPORT", "TOOL", "CATEGORY_TEXT", "CATEGORY_DRAW", "CATEGORY_CODE",
+            "CATEGORY_WEB", "CATEGORY_BOOK", "CATEGORY_GRAPHVIZ",
+            "TOOL_DEBUG", "TOOL_ANAL", "TOOL_DBPROC", "TOOL_DBFIX", "TOOL_REVCTL",
+            "TOOL_UTILS", "CATEGORY_QR_MISC", "CATEGORY_QR_PERSON",
+            "CATEGORY_QR_FAMILY", "CATEGORY_QR_EVENT", "CATEGORY_QR_SOURCE",
+            "CATEGORY_QR_PLACE", "CATEGORY_QR_REPOSITORY", "CATEGORY_QR_NOTE",
+            "CATEGORY_QR_DATE", "PTYPE_STR", "CATEGORY_QR_MEDIA",
+            "CATEGORY_QR_CITATION", "CATEGORY_QR_SOURCE_OR_CITATION",
+            "START", "END", "make_environment"]
