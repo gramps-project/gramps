@@ -67,7 +67,11 @@ def importData(database, filename, user):
                                         database.__class__.__bases__
 
     try:
-        ifile = open(filename, "rb")
+        # Opening in utf-8 with universal newline to allow cr, lf, and crlf
+        # If the file is really UTF16 or a varient, the next block code will not
+        # find anything even if it is there, but this is ok since it won't be
+        # ANSEL, or is inconsistent...
+        ifile = open(filename, "r", encoding='utf-8', errors='replace', newline=None)
     except IOError:
         return
 
@@ -79,7 +83,6 @@ def importData(database, filename, user):
         # detect a CHAR or SOUR line which is only 7-bit ASCII anyway,  and we
         # ignore anything that can't be translated.
         line = ifile.readline()
-        line = line.decode(encoding='utf-8', errors='replace')
         line = line.split()
         if len(line) == 0:
             break
