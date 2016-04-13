@@ -123,12 +123,12 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(len(result) == 60, len(result))
 
     def test_queryset_2(self):
-        result = list(self.db.Person.filter(gramps_id__LIKE="I000%").select())
+        result = list(self.db.Person.where(lambda person: LIKE(person.gramps_id, "I000%")).select())
         self.assertTrue(len(result) == 10, len(result))
 
     def test_queryset_3(self):
         result = list(self.db.Family
-                      .filter(mother_handle__gramps_id__LIKE="I003%")
+                      .where(lambda family: LIKE(family.mother_handle.gramps_id, "I003%"))
                       .select())
         self.assertTrue(len(result) == 6, result)
 
@@ -138,7 +138,7 @@ class BSDDBTest(unittest.TestCase):
 
     def test_queryset_4b(self):
         result = list(self.db.Family
-                      .filter(mother_handle__event_ref_list__ref__gramps_id='E0156')
+                      .where(lambda family: family.mother_handle.event_ref_list.ref.gramps_id == 'E0156')
                       .select())
         self.assertTrue(len(result) == 1, len(result))
 
@@ -154,9 +154,8 @@ class BSDDBTest(unittest.TestCase):
                         [r["mother_handle.event_ref_list.0"] for r in result])
 
     def test_queryset_7(self):
-        from gramps.gen.db import NOT
         result = list(self.db.Family
-                      .filter(NOT(mother_handle__event_ref_list__0=None))
+                      .where(lambda family: family.mother_handle.event_ref_list[0] != None)
                       .select())
         self.assertTrue(len(result) == 21, len(result))
 
@@ -188,22 +187,28 @@ class BSDDBTest(unittest.TestCase):
         self.assertTrue(result == 60, result)
 
     def test_tag_1(self):
-        self.db.Person.filter(gramps_id="I0001").tag("Test")
-        result = self.db.Person.filter(tag_list__name="Test").count()
+        self.db.Person.where(lambda person: person.gramps_id == "I0001").tag("Test")
+        result = self.db.Person.where(lambda person: person.tag_list.name == "Test").count()
         self.assertTrue(result == 1, result)
 
-    # def test_filter_1(self):
-    #     from gramps.gen.filters.rules.person import (IsDescendantOf,
-    #                                                  IsAncestorOf)
-    #     from gramps.gen.filters import GenericFilter
-    #     filter = GenericFilter()
-    #     filter.set_logical_op("or")
-    #     filter.add_rule(IsDescendantOf([self.db.get_default_person().gramps_id,
-    #                                     True]))
-    #     filter.add_rule(IsAncestorOf([self.db.get_default_person().gramps_id,
-    #                                   True]))
-    #     result = self.db.Person.filter(filter).count()
-    #     self.assertTrue(result == 15, result)
+    def test_filter_1(self):
+        from gramps.gen.filters.rules.person import (IsDescendantOf,
+                                                     IsAncestorOf)
+        from gramps.gen.filters import GenericFilter
+        filter = GenericFilter()
+        filter.set_logical_op("or")
+        filter.add_rule(IsDescendantOf([self.db.get_default_person().gramps_id,
+                                        True]))
+        filter.add_rule(IsAncestorOf([self.db.get_default_person().gramps_id,
+                                      True]))
+        result = self.db.Person.filter(filter).count()
+        self.assertTrue(result == 15, result)
+        filter.where = lambda person: person.private == True
+        result = self.db.Person.filter(filter).count()
+        self.assertTrue(result == 1, result)
+        filter.where = lambda person: person.private != True
+        result = self.db.Person.filter(filter).count()
+        self.assertTrue(result == 14, result)
 
     def test_filter_2(self):
         result = self.db.Person.filter(lambda p: p.private).count()
