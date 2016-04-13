@@ -26,11 +26,11 @@ addons:
 
 before_install:
  - pip install --upgrade pip
- - pip install --upgrade setuptools wheel nose coverage codecov
+# - pip install --upgrade setuptools wheel nose coverage codecov
 
 install:
- - travis_retry pip install --upgrade pillow
- - travis_retry pip install pyicu==1.8
+# - travis_retry pip install --upgrade pillow
+# - travis_retry pip install pyicu==1.8
  - travis_retry pip install meta
  
  # - cd $TRAVIS_BUILD_DIR
@@ -42,14 +42,14 @@ before_script:
 #    - sudo Xvfb :99 -ac &
 #    - export DISPLAY=:99
  - mkdir -p ~/.gramps/grampsdb/
- - dpkg-query -L python3-bsddb3
+ - sudo cp -r /home/travis/virtualenv/python3.4.2/lib/python3.4/site-packages/meta /usr/lib/python3/site-packages/
 
 script:
  # --exclude=TestUser because of older version of mock
  #                    without configure_mock
  # python -c "import sys; print(sys.path)"
  # need to find search path for nosetests' python
- - PYTHONPATH=/home/travis/virtualenv/python3.4.2/lib/python3.4:/home/travis/virtualenv/python3.4.2/lib/python3.4/site-packages nosetests --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+ - nosetests --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
 after_success:
  - codecov
 
