@@ -42,11 +42,12 @@ before_script:
 #    - sudo Xvfb :99 -ac &
 #    - export DISPLAY=:99
  - mkdir -p ~/.gramps/grampsdb/
+ - dpkg-query -L python3-bsddb3
 
 script:
  # --exclude=TestUser because of older version of mock
  #                    without configure_mock
- - python -m nose --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+ - PYTHONPATH=/usr/lib/python3/dist-packages/ python -m nose --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
 
 after_success:
  - codecov
