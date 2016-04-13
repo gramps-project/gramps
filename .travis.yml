@@ -30,20 +30,20 @@ matrix:
     - python: 3.4
       sudo: true
       dist: trusty
- 
-before_install:
- #- pip install --upgrade pip
- #- pip install --upgrade setuptools wheel nose coverage codecov
 
-install:
- #- travis_retry pip install --upgrade pillow
- #- travis_retry pip install pyicu==1.8
- - travis_retry sudo pip3 install meta
+      before_install:
+        #- pip install --upgrade pip
+        #- pip install --upgrade setuptools wheel nose coverage codecov
+
+      install:
+        #- travis_retry pip install --upgrade pillow
+	#- travis_retry pip install pyicu==1.8
+	- travis_retry sudo pip3 install meta
+	- python setup.py build
  
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
  # for example: /home/travis/build/gramps-project/gramps
- - python setup.py build
 
 before_script:
 #    - sudo Xvfb :99 -ac &
