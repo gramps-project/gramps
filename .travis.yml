@@ -35,7 +35,7 @@ install:
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
  # for example: /home/travis/build/gramps-project/gramps
- - git clone https://github.com/srossross/meta
+ - git clone -b master https://github.com/srossross/meta
  - python setup.py build
 
 before_script:
