@@ -94,7 +94,7 @@ import codecs
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict, OrderedDict
 import string
-from io import StringIO
+from io import StringIO, TextIOWrapper
 from urllib.parse import urlparse
 
 #------------------------------------------------------------------------
@@ -1248,41 +1248,41 @@ class BaseReader:
 
 class UTF8Reader(BaseReader):
 
-    def __init__(self, ifile, __add_msg):
-        BaseReader.__init__(self, ifile, 'utf8', __add_msg)
+    def __init__(self, ifile, __add_msg, enc):
+        BaseReader.__init__(self, ifile, enc, __add_msg)
         self.reset()
-
-    def reset(self):
-        self.ifile.seek(0)
-        data = self.ifile.read(3)
-        if data != b"\xef\xbb\xbf":
-            self.ifile.seek(0)
+        if enc == 'UTF_8_SIG':
+            self.ifile = TextIOWrapper(ifile, encoding='utf_8_sig',
+                                       errors='replace', newline=None)
+        else:
+            self.ifile = TextIOWrapper(ifile, encoding='utf_8',
+                                       errors='replace', newline=None)
 
     def readline(self):
         line = self.ifile.readline()
-        line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class UTF16Reader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
-        new_file = codecs.EncodedFile(ifile, 'utf8', 'utf16')
-        BaseReader.__init__(self, new_file, '', __add_msg)
+        BaseReader.__init__(self, ifile, 'UTF16', __add_msg)
+        self.ifile = TextIOWrapper(ifile, encoding='utf_16',
+                                   errors='replace', newline=None)
         self.reset()
 
     def readline(self):
         line = self.ifile.readline()
-        line = line.decode('utf8', errors='replace')
         return line.translate(STRIP_DICT)
 
 class AnsiReader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
         BaseReader.__init__(self, ifile, 'latin1', __add_msg)
+        self.ifile = TextIOWrapper(ifile, encoding='latin1',
+                                   errors='replace', newline=None)
 
     def readline(self):
         line = self.ifile.readline()
-        line = line.decode(self.enc, errors='replace')
         if line.translate(DEL_AND_C1) != line:
             self.report_error("DEL or C1 control chars in line did you mean CHAR cp1252??", line)
         return line.translate(STRIP_DICT)
@@ -1291,10 +1291,11 @@ class CP1252Reader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
         BaseReader.__init__(self, ifile, 'cp1252', __add_msg)
+        self.ifile = TextIOWrapper(ifile, encoding='cp1252',
+                                   errors='replace', newline=None)
 
     def readline(self):
         line = self.ifile.readline()
-        line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class AnselReader(BaseReader):
@@ -1562,10 +1563,17 @@ class AnselReader(BaseReader):
         return ans
 
     def __init__(self, ifile, __add_msg):
-        BaseReader.__init__(self, ifile, "", __add_msg)
+        BaseReader.__init__(self, ifile, "ANSEL", __add_msg)
+        # In theory, we should have been able to skip the encode/decode from
+        # ascii.  But this way allows us to use pythons universal newline
+        self.ifile = TextIOWrapper(ifile, encoding='ascii',
+                                   errors='surrogateescape', newline=None)
 
     def readline(self):
-        return self.__ansel_to_unicode(self.ifile.readline())
+        line = self.ifile.readline()
+        linebytes = line.encode(encoding='ascii',
+                                errors='surrogateescape')
+        return self.__ansel_to_unicode(linebytes)
 
 #-------------------------------------------------------------------------
 #
@@ -2673,8 +2681,8 @@ class GedcomParser(UpdateCallback):
 
         if enc == "ANSEL":
             rdr = AnselReader(ifile, self.__add_msg)
-        elif enc in ("UTF-8", "UTF8"):
-            rdr = UTF8Reader(ifile, self.__add_msg)
+        elif enc in ("UTF-8", "UTF8", "UTF_8_SIG"):
+            rdr = UTF8Reader(ifile, self.__add_msg, enc)
         elif enc in ("UTF-16LE", "UTF-16BE",  "UTF16", "UNICODE"):
             rdr = UTF16Reader(ifile, self.__add_msg)
         elif enc in ("CP1252", "WINDOWS-1252"):
@@ -7772,26 +7780,33 @@ class GedcomStageOne:
     def __detect_file_decoder(self, input_file):
         """
         Detects the file encoding of the file by looking for a BOM
-        (byte order marker) in the GEDCOM file. If we detect a UTF-16
-        encoded file, we must connect to a wrapper using the codecs
-        package.
+        (byte order marker) in the GEDCOM file. If we detect a UTF-16 or
+        UTF-8-BOM encoded file, we choose appropriate decoders.  If no BOM
+        is detected, we return in UTF-8 mode it is the more modern option;
+        and anyway it doesn't really matter as we are only looking for GEDCOM
+        keywords which are only 7-bit ASCII anyway.
+        In any case, we Always return the file in text mode with transparent
+        newline (CR, LF, or CRLF).
         """
         line = input_file.read(2)
         if line == b"\xef\xbb":
             input_file.read(1)
-            self.enc = "UTF8"
-            return input_file
+            self.enc = "utf_8_sig"
+            return TextIOWrapper(input_file, encoding='utf_8_sig',
+                                 errors='replace', newline=None)
         elif line == b"\xff\xfe" or line == b"\xfe\xff":
             self.enc = "UTF16"
             input_file.seek(0)
-            return codecs.EncodedFile(input_file, 'utf8', 'utf16')
-        elif not line :
+            return TextIOWrapper(input_file, encoding='utf_16',
+                                 errors='replace', newline=None)
+        elif not line:
             raise GedcomError(self.__EMPTY_GED)
-        elif line[0] == b"\x00" or line[1] == b"\x00":
+        elif line == b"\x30\x00" or line == b"\x00\x30":
             raise GedcomError(self.__BAD_UTF16)
         else:
             input_file.seek(0)
-            return input_file
+            return TextIOWrapper(input_file, encoding='utf-8',
+                                 errors='replace', newline=None)
 
     def parse(self):
         """
@@ -7802,12 +7817,8 @@ class GedcomStageOne:
         reader = self.__detect_file_decoder(self.ifile)
 
         for line in reader:
-            # Treat the file as though it is UTF-8 since this will be right if a
-            # BOM was detected; it is the more modern option; and anyway it
-            # doesn't really matter as we are only trying to detect a CHAR line
-            # which is only 7-bit ASCII anyway,  and we ignore anything that
-            # can't be translated.
-            line = line.decode(encoding='utf-8', errors='replace')
+            # Scan for a few items, keep counts.  Also look for actual CHAR
+            # Keyword to figure out actual encodeing for non-unicode file types
             line = line.strip()
             if not line:
                 continue
@@ -7838,6 +7849,7 @@ class GedcomStageOne:
         LOG.debug("parse pcnt %d" % self.pcnt)
         LOG.debug("parse famc %s" % dict(self.famc))
         LOG.debug("parse fams %s" % dict(self.fams))
+        self.ifile = reader  # need this to keep python from autoclosing file
 
     def get_famc_map(self):
         """
