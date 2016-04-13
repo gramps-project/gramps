@@ -28,18 +28,17 @@ addons:
 matrix:
   include:
     - python: 3.4
-      env: USE_DEBUG=1
       sudo: true
       dist: trusty
  
 before_install:
- - pip install --upgrade pip
- - pip install --upgrade setuptools wheel nose coverage codecov
+ #- pip install --upgrade pip
+ #- pip install --upgrade setuptools wheel nose coverage codecov
 
 install:
- - travis_retry pip install --upgrade pillow
- - travis_retry pip install pyicu==1.8
- - travis_retry pip install meta
+ #- travis_retry pip install --upgrade pillow
+ #- travis_retry pip install pyicu==1.8
+ - travis_retry sudo pip3 install meta
  
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
