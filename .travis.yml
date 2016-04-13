@@ -2,10 +2,11 @@
 #   http://lint.travis-ci.org/
 
 language: python
-python:
- - 3.4
 sudo: false
-cache: pip
+
+python:
+  - 3.4
+
 addons:
   apt:
     packages:
@@ -24,9 +25,13 @@ addons:
     - python3-nose
     - python3-mock
 
-virtualenv:
-  system_site_packages: true
-
+matrix:
+  include:
+    - python: 3.4
+      env: USE_DEBUG=1
+      sudo: true
+      dist: trusty
+ 
 before_install:
  - pip install --upgrade pip
  - pip install --upgrade setuptools wheel nose coverage codecov
@@ -50,5 +55,6 @@ script:
  # --exclude=TestUser because of older version of mock
  #                    without configure_mock
  - python -m nose --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+
 after_success:
  - codecov
