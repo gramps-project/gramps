@@ -182,24 +182,24 @@ class RelGraphReport(Report):
         self.person_handles = self._filter.apply(self.database,
                     self.database.iter_person_handles())
 
-        self.person_handles = self.sort_persons()
+        self.person_handles = self.sort_persons(self.person_handles)
 
         if len(self.person_handles) > 1:
             self.add_persons_and_families()
             self.add_child_links_to_families()
 
-    def sort_persons(self):
+    def sort_persons(self, person_handle_list):
         "sort persons by close relations"
 
         # first make a list of all persons who don't have any parents
         rootNodes = list()
-        for person_handle in self.person_handles:
+        for person_handle in person_handle_list:
             person = self.database.get_person_from_handle(person_handle)
             if person is None:
                 continue
             hasParent = False
             for parent_handle in find_parents(self.database, person):
-                if not parent_handle in self.person_handles:
+                if not parent_handle in person_handle_list:
                     continue
                 parent = self.database.get_person_from_handle(parent_handle)
                 if parent is None:
@@ -218,13 +218,29 @@ class RelGraphReport(Report):
                 # take the first person from todolist and do sanity check
                 cur = todolist.pop(0)
                 if cur in p_done: continue
-                p_done.add(cur)
-                if not cur in self.person_handles: continue
+                if not cur in person_handle_list:
+                    p_done.add(cur)
+                    continue
+
                 person = self.database.get_person_from_handle(cur)
                 if person is None: continue
 
+                # first check whether both parents are added
+                missingParents = False
+                for parent_handle in find_parents(self.database, person):
+                    if parent_handle is None: continue
+                    if parent_handle in p_done: continue
+                    parent = self.database.get_person_from_handle(parent_handle)
+                    if parent is None: continue
+                    todolist.insert(0,parent_handle)
+                    missingParents = True
+
+                # if one of the parents is still missing, wait for them
+                if missingParents: continue
+
                 # add person to the sorted output
                 outlist.append(cur)
+                p_done.add(cur)
 
                 # add all spouses and children to the todo list
                 family_list = person.get_family_handle_list()
@@ -235,14 +251,6 @@ class RelGraphReport(Report):
                     if (family.get_mother_handle() and family.get_mother_handle() != cur): todolist.insert(0,family.get_mother_handle())
                     for child_ref in family.get_child_ref_list():
                         todolist.append(child_ref.ref)
-
-                # now also make sure both parents are added with high priority
-                for parent_handle in find_parents(self.database, person):
-                    if parent_handle is None: continue
-                    if parent_handle in p_done: continue
-                    parent = self.database.get_person_from_handle(parent_handle)
-                    if parent is None: continue
-                    todolist.insert(0,parent_handle)
 
         # finally store the result
         return outlist
