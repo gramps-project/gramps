@@ -65,7 +65,7 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db = self.make_database("bsddb")
+        self.db = self.make_database("dictionarydb")
         self.open = False
         self.stack = []
 
@@ -108,8 +108,7 @@ class DbState(Callback):
         """
         self.emit('no-database', ())
         self.db.close()
-        self.db = self.make_database("bsddb")
-        self.db.db_is_open = False
+        self.db = self.make_database("dictionarydb")
         self.open = False
         self.emit('database-changed', (self.db, ))
 

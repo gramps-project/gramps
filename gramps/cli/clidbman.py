@@ -283,7 +283,7 @@ class CLIDbManager(object):
         if create_db:
             # write the version number into metadata
             if dbid is None:
-                dbid = "bsddb"
+                dbid = "dbapi"
             newdb = self.dbstate.make_database(dbid)
             newdb.write_version(new_path)
 

@@ -2043,10 +2043,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         from gramps.plugins.export.exportxml import XmlWriter
         from gramps.cli.user import User
-        writer = XmlWriter(self, User(), strip_photos=0, compress=1)
-        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
-        filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
-        writer.write(filename)
+        if self._directory:
+            writer = XmlWriter(self, User(), strip_photos=0, compress=1)
+            timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
+            filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
+            writer.write(filename)
+        else:
+            LOG.warn("No database directory, but attempted to save data. Ignored.")
 
     def get_undodb(self):
         return self.undodb
