@@ -49,7 +49,7 @@ from gi.repository import GdkPixbuf
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, ICON, SPLASH
 from gramps.gui.display import display_help
-from gramps.gen.lib import MediaObject
+from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
@@ -527,10 +527,10 @@ class PathChange(BatchOp):
 
     def _prepare(self):
         from_text = str(self.from_entry.get_text())
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if obj.get_path().find(from_text) != -1:
                     self.handle_list.append(handle)
@@ -546,10 +546,10 @@ class PathChange(BatchOp):
         from_text = str(self.from_entry.get_text())
         to_text = str(self.to_entry.get_text())
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = obj.get_path().replace(from_text, to_text)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -564,10 +564,10 @@ class Convert2Abs(BatchOp):
                     "that is not set, it prepends user's directory.")
 
     def _prepare(self):
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if not os.path.isabs(obj.path):
                     self.handle_list.append(handle)
@@ -580,10 +580,10 @@ class Convert2Abs(BatchOp):
             self.prepare()
         self.set_total(len(self.handle_list))
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = media_path_full(self.db, obj.path)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -600,10 +600,10 @@ class Convert2Rel(BatchOp):
                     "a base path that can change to your needs.")
 
     def _prepare(self):
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 if os.path.isabs(obj.path):
                     self.handle_list.append(handle)
@@ -617,10 +617,10 @@ class Convert2Rel(BatchOp):
         self.set_total(len(self.handle_list))
         base_dir = media_path(self.db)
         for handle in self.handle_list:
-            obj = self.db.get_object_from_handle(handle)
+            obj = self.db.get_media_from_handle(handle)
             new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
-            self.db.commit_media_object(obj, self.trans)
+            self.db.commit_media(obj, self.trans)
             self.update()
         return True
 
@@ -639,10 +639,10 @@ class ImagesNotIncluded(BatchOp):
         objects in the database.
         """
         self.dir_list = set()
-        self.set_total(self.db.get_number_of_media_objects())
+        self.set_total(self.db.get_number_of_media())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
-                obj = MediaObject()
+                obj = Media()
                 obj.unserialize(data)
                 self.handle_list.append(handle)
                 full_path = media_path_full(self.db, obj.path)
@@ -681,12 +681,12 @@ class ImagesNotIncluded(BatchOp):
                         self.path_list.append(media_full_path)
                         mime_type = get_type(media_full_path)
                         if is_image_type(mime_type):
-                            obj = MediaObject()
+                            obj = Media()
                             obj.set_path(media_full_path)
                             obj.set_mime_type(mime_type)
                             (root, ext) = os.path.splitext(filename)
                             obj.set_description(root)
-                            self.db.add_object(obj, self.trans)
+                            self.db.add_media(obj, self.trans)
             self.update()
         return True
 

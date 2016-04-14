@@ -57,7 +57,7 @@ from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
 from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
-from gramps.gen.lib import MediaObject
+from gramps.gen.lib import Media
 from gramps.gen.db import DbTxn
 from gramps.gui.editors import EditMedia, DeleteMediaQuery
 from gramps.gen.errors import WindowActiveError
@@ -181,7 +181,7 @@ class MediaView(ListView):
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
-                photo = MediaObject()
+                photo = Media()
                 self.uistate.set_busy_cursor(True)
                 photo.set_checksum(create_checksum(name))
                 self.uistate.set_busy_cursor(False)
@@ -194,7 +194,7 @@ class MediaView(ListView):
                 (root, ext) = os.path.splitext(basename)
                 photo.set_description(root)
                 with DbTxn(_("Drag Media Object"), self.dbstate.db) as trans:
-                    self.dbstate.db.add_object(photo, trans)
+                    self.dbstate.db.add_media(photo, trans)
         widget.emit_stop_by_name('drag_data_received')
 
     def define_actions(self):
@@ -222,7 +222,7 @@ class MediaView(ListView):
         Launch external viewers for the selected objects.
         """
         for handle in self.selected_handles():
-            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            ref_obj = self.dbstate.db.get_media_from_handle(handle)
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath)
 
@@ -231,7 +231,7 @@ class MediaView(ListView):
         Launch external viewers for the selected objects.
         """
         for handle in self.selected_handles():
-            ref_obj = self.dbstate.db.get_object_from_handle(handle)
+            ref_obj = self.dbstate.db.get_media_from_handle(handle)
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
@@ -310,20 +310,20 @@ class MediaView(ListView):
     def add(self, obj):
         """Add a new media object to the media list"""
         try:
-            EditMedia(self.dbstate, self.uistate, [], MediaObject())
+            EditMedia(self.dbstate, self.uistate, [], Media())
         except WindowActiveError:
             pass
 
     def remove(self, obj):
         self.remove_selected_objects()
 
-    def remove_object_from_handle(self, handle):
+    def remove_media_from_handle(self, handle):
         """
         Remove the selected objects from the database after getting
         user verification.
         """
         the_lists = get_media_referents(handle, self.dbstate.db)
-        object = self.dbstate.db.get_object_from_handle(handle)
+        object = self.dbstate.db.get_media_from_handle(handle)
         query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
         is_used = any(the_lists)
         return (query, is_used, object)
@@ -333,7 +333,7 @@ class MediaView(ListView):
         Edit the selected objects in the EditMedia dialog
         """
         for handle in self.selected_handles():
-            object = self.dbstate.db.get_object_from_handle(handle)
+            object = self.dbstate.db.get_media_from_handle(handle)
             try:
                 EditMedia(self.dbstate, self.uistate, [], object)
             except WindowActiveError:
@@ -350,7 +350,7 @@ class MediaView(ListView):
             msg2 = _("Exactly two media objects must be selected to perform a "
             "merge. A second object can be selected by holding down the "
             "control key while clicking on the desired object.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeMedia(self.dbstate, self.uistate, mlist[0], mlist[1])
 
@@ -358,7 +358,7 @@ class MediaView(ListView):
         """
         returns the handle of the specified object
         """
-        obj = self.dbstate.db.get_object_from_gramps_id(gid)
+        obj = self.dbstate.db.get_media_from_gramps_id(gid)
         if obj:
             return obj.get_handle()
         else:
@@ -372,7 +372,7 @@ class MediaView(ListView):
         for tag_handle in handle_list:
             links = set([link[1] for link in
                          self.dbstate.db.find_backlink_handles(tag_handle,
-                                                include_classes='MediaObject')])
+                                                include_classes='Media')])
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
@@ -380,9 +380,9 @@ class MediaView(ListView):
         """
         Add the given tag to the given media object.
         """
-        media = self.dbstate.db.get_object_from_handle(media_handle)
+        media = self.dbstate.db.get_media_from_handle(media_handle)
         media.add_tag(tag_handle)
-        self.dbstate.db.commit_media_object(media, transaction)
+        self.dbstate.db.commit_media(media, transaction)
 
     def get_default_gramplets(self):
         """

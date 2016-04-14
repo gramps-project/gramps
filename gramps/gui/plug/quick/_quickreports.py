@@ -267,7 +267,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
                 elif category == CATEGORY_QR_PLACE :
                     obj = dbstate.db.get_place_from_handle(handle)
                 elif category == CATEGORY_QR_MEDIA :
-                    obj = dbstate.db.get_object_from_handle(handle)
+                    obj = dbstate.db.get_media_from_handle(handle)
                 elif category == CATEGORY_QR_REPOSITORY :
                     obj = dbstate.db.get_repository_from_handle(handle)
                 elif category == CATEGORY_QR_NOTE :

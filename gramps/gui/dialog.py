@@ -336,7 +336,7 @@ class MissingMediaDialog(object):
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog.\n"
               "Instead select one of the available options"),
-            self.top)
+            parent=self.top)
         return True
 
 class MultiSelectDialog(object):
@@ -409,7 +409,7 @@ class MultiSelectDialog(object):
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog.\n"
               "Instead select one of the available options"),
-            self.top)
+            parent=self.top)
         return True
 
 class MessageHideDialog(object):
@@ -450,7 +450,9 @@ def main(args):
 
 
     def test_info(obj):
-        InfoDialog('The title', 'This is a lot of info\n to show to all!', parent=win)
+        InfoDialog('The title',
+                   'This is a lot of info\n to show to all!',
+                   parent=win)
 
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)

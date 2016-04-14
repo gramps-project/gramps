@@ -34,6 +34,7 @@ import time
 import random
 import os
 from sys import maxsize
+from operator import itemgetter
 
 try:
     from bsddb3 import db
@@ -53,7 +54,7 @@ import logging
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.media import Media
 from gramps.gen.lib.person import Person
 from gramps.gen.lib.family import Family
 from gramps.gen.lib.src import Source
@@ -69,7 +70,7 @@ from gramps.gen.lib.nameorigintype import NameOriginType
 
 from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
-from gramps.gen.db.base import DbReadBase
+from gramps.gen.db.base import DbReadBase, eval_order_by
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -108,6 +109,16 @@ def find_byte_surname(key, data):
     if isinstance(surn, str):
         return surn.encode('utf-8')
     return surn
+
+def find_fullname(key, data):
+    """
+    Creating a fullname from raw data of a person, to use for sort and index
+    returns a byte string
+    """
+    fullname_data = [(data[3][5][0][0] + ' ' + data[3][4], # surname givenname
+                      data[3][5][0][1], data[3][5][0][2],
+                      data[3][5][0][3], data[3][5][0][4])]
+    return __index_surname(fullname_data)
 
 def find_surname(key, data):
     """
@@ -226,12 +237,12 @@ class DbBsddbRead(DbReadBase, Callback):
 
     :py:class:`.Person`, :py:class:`.Family`, :py:class:`.Event`,
     :py:class:`.Place`, :py:class:`.Source`,
-    :py:class:`Citation <.lib.citation.Citation>`, :py:class:`.MediaObject`,
+    :py:class:`Citation <.lib.citation.Citation>`, :py:class:`.Media`,
     :py:class:`.Repository` and :py:class:`.Note`
 
     For each object class, there are methods to retrieve data in various ways.
     In the methods described below, <object> can be one of person, family,
-    event, place, source, media_object, respository or note unless otherwise
+    event, place, source, media, respository or note unless otherwise
     specified.
 
     .. method:: get_<object>_from_handle()
@@ -253,7 +264,7 @@ class DbBsddbRead(DbReadBase, Callback):
     .. method:: get_<object>_handles()
 
         returns a list of handles for the object type, optionally sorted
-        (for Person, Place, Source and Media objects)
+        (for Citation, Family, Media, Person, Place, Source, and Tag objects)
 
     .. method:: iter_<object>_handles()
 
@@ -263,7 +274,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         returns an iterator that yields one object per call.
         The objects available are: people, families, events, places,
-        sources, media_objects, repositories and notes.
+        sources, media, repositories and notes.
 
     .. method:: get_<object>_event_types()
 
@@ -289,89 +300,9 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         DbReadBase.__init__(self)
         Callback.__init__(self)
-        self._tables['Person'].update(
-            {
-                "handle_func": self.get_person_from_handle,
-                "gramps_id_func": self.get_person_from_gramps_id,
-                "class_func": Person,
-                "cursor_func": self.get_person_cursor,
-                "handles_func": self.get_person_handles,
-            })
-        self._tables['Family'].update(
-            {
-                "handle_func": self.get_family_from_handle,
-                "gramps_id_func": self.get_family_from_gramps_id,
-                "class_func": Family,
-                "cursor_func": self.get_family_cursor,
-                "handles_func": self.get_family_handles,
-            })
-        self._tables['Source'].update(
-            {
-                "handle_func": self.get_source_from_handle,
-                "gramps_id_func": self.get_source_from_gramps_id,
-                "class_func": Source,
-                "cursor_func": self.get_source_cursor,
-                "handles_func": self.get_source_handles,
-                })
-        self._tables['Citation'].update(
-            {
-                "handle_func": self.get_citation_from_handle,
-                "gramps_id_func": self.get_citation_from_gramps_id,
-                "class_func": Citation,
-                "cursor_func": self.get_citation_cursor,
-                "handles_func": self.get_citation_handles,
-            })
-        self._tables['Event'].update(
-            {
-                "handle_func": self.get_event_from_handle,
-                "gramps_id_func": self.get_event_from_gramps_id,
-                "class_func": Event,
-                "cursor_func": self.get_event_cursor,
-                "handles_func": self.get_event_handles,
-            })
-        self._tables['Media'].update(
-            {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
-                "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
-            })
-        self._tables['Place'].update(
-            {
-                "handle_func": self.get_place_from_handle,
-                "gramps_id_func": self.get_place_from_gramps_id,
-                "class_func": Place,
-                "cursor_func": self.get_place_cursor,
-                "handles_func": self.get_place_handles,
-            })
-        self._tables['Repository'].update(
-            {
-                "handle_func": self.get_repository_from_handle,
-                "gramps_id_func": self.get_repository_from_gramps_id,
-                "class_func": Repository,
-                "cursor_func": self.get_repository_cursor,
-                "handles_func": self.get_repository_handles,
-            })
-        self._tables['Note'].update(
-            {
-                "handle_func": self.get_note_from_handle,
-                "gramps_id_func": self.get_note_from_gramps_id,
-                "class_func": Note,
-                "cursor_func": self.get_note_cursor,
-                "handles_func": self.get_note_handles,
-            })
-        self._tables['Tag'].update(
-            {
-                "handle_func": self.get_tag_from_handle,
-                "gramps_id_func": None,
-                "class_func": Tag,
-                "cursor_func": self.get_tag_cursor,
-                "handles_func": self.get_tag_handles,
-            })
 
         self.set_person_id_prefix('I%04d')
-        self.set_object_id_prefix('O%04d')
+        self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
         self.set_source_id_prefix('S%04d')
         self.set_citation_id_prefix('C%04d')
@@ -463,10 +394,116 @@ class DbBsddbRead(DbReadBase, Callback):
         self.txn = None
         self.has_changed = False
 
+        self.__tables = {
+            'Person': 
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
+
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
-        self.set_object_id_prefix(media)
+        self.set_media_id_prefix(media)
         self.set_family_id_prefix(family)
         self.set_source_id_prefix(source)
         self.set_citation_id_prefix(citation)
@@ -482,12 +519,12 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self._tables.keys())
+        return list(self.get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self._tables:
-            return self._tables[table_name]
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name)
         return None
 
     def get_cursor(self, table, *args, **kwargs):
@@ -541,12 +578,6 @@ class DbBsddbRead(DbReadBase, Callback):
         self.basedb = None
         #remove links to functions
         self.disconnect_all()
-        for key in self._tables:
-            for subkey in self._tables[key]:
-                self._tables[key][subkey] = None
-            del self._tables[key][subkey]
-            self._tables[key] = None
-        del self._tables
 ##        self.bookmarks = None
 ##        self.family_bookmarks = None
 ##        self.event_bookmarks = None
@@ -621,12 +652,12 @@ class DbBsddbRead(DbReadBase, Callback):
                                           self.emap_index, self.eid_trans)
         return gid
 
-    def find_next_object_gramps_id(self):
+    def find_next_media_gramps_id(self):
         """
-        Return the next available Gramps ID for a MediaObject object based
+        Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
         """
-        self.omap_index, gid = self.__find_next_gramps_id(self.mediaobject_prefix,
+        self.omap_index, gid = self.__find_next_gramps_id(self.media_prefix,
                                           self.omap_index, self.oid_trans)
         return gid
 
@@ -695,8 +726,8 @@ class DbBsddbRead(DbReadBase, Callback):
         >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["handle_func"](handle)
+        if table_name in self.get_table_func() and handle:
+            return self.get_table_func(table_name,"handle_func")(handle)
         return None
 
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
@@ -710,8 +741,8 @@ class DbBsddbRead(DbReadBase, Callback):
         >>> self.get_from_name_and_gramps_id("Family", "F056")
         >>> self.get_from_name_and_gramps_id("Media", "M00012")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["gramps_id_func"](gramps_id)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
         return None
 
     def get_person_from_handle(self, handle):
@@ -738,13 +769,13 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_from_handle(handle, Citation, self.citation_map)
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Find an Object in the database from the passed handle.
 
         If no such Object exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, MediaObject, self.media_map)
+        return self.get_from_handle(handle, Media, self.media_map)
 
     def get_place_from_handle(self, handle):
         """
@@ -873,13 +904,13 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__get_obj_from_gramps_id(val, self.cid_trans, Citation,
                                               self.citation_map)
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
-        Find a MediaObject in the database from the passed Gramps ID.
+        Find a Media in the database from the passed Gramps ID.
 
-        If no such MediaObject exists, None is returned.
+        If no such Media exists, None is returned.
         """
-        return self.__get_obj_from_gramps_id(val, self.oid_trans, MediaObject,
+        return self.__get_obj_from_gramps_id(val, self.oid_trans, Media,
                                               self.media_map)
 
     def get_repository_from_gramps_id(self, val):
@@ -980,7 +1011,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_number_of_records(self.citation_map)
 
-    def get_number_of_media_objects(self):
+    def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
@@ -1093,9 +1124,9 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
-    def get_media_object_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False):
         """
-        Return a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each Media in
         the database.
 
         If sort_handles is True, the list is sorted by title.
@@ -1122,16 +1153,21 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.all_handles(self.event_map)
         return []
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
         the database.
+
+        If sort_handles is True, the list is sorted by surnames.
 
         .. warning:: For speed the keys are directly returned, so on python3
                      bytestrings are returned!
         """
         if self.db_is_open:
-            return self.all_handles(self.family_map)
+            handle_list = self.all_handles(self.family_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbyfamily_key)
+            return handle_list
         return []
 
     def get_repository_handles(self):
@@ -1193,7 +1229,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_place_handles        = _f(get_place_cursor)
     iter_source_handles       = _f(get_source_cursor)
     iter_citation_handles     = _f(get_citation_cursor)
-    iter_media_object_handles = _f(get_media_cursor)
+    iter_media_handles = _f(get_media_cursor)
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
     iter_tag_handles          = _f(get_tag_cursor)
@@ -1203,12 +1239,34 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Closure that returns an iterator over objects in the database.
         """
-        def g(self):
-            with curs_(self) as cursor:
-                for key, data in cursor:
-                    obj = obj_()
-                    obj.unserialize(data)
-                    yield obj
+        def g(self, order_by=None):
+            """
+            order_by - [[field, DIRECTION], ...]
+            DIRECTION is "ASC" or "DESC"
+            """
+            if order_by is None:
+                with curs_(self) as cursor:
+                    for key, data in cursor:
+                        obj = obj_()
+                        obj.unserialize(data)
+                        yield obj
+            else:
+                # first build sort order:
+                sorted_items = []
+                with curs_(self) as cursor:
+                    for key, data in cursor:
+                        obj = obj_()
+                        obj.unserialize(data)
+                        # just use values and handle to keep small:
+                        sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
+                # next we sort by fields and direction
+                pos = len(order_by) - 1
+                for (field, order) in reversed(order_by): # sort the lasts parts first
+                    sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
+                    pos -= 1
+                # now we will look them up again:
+                for (order_by_values, handle) in sorted_items:
+                    yield self.get_table_func(obj_.__name__,"handle_func")(handle)
         return g
 
     # Use closure to define iterators for each primary object type
@@ -1219,7 +1277,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_places        = _f(get_place_cursor, Place)
     iter_sources       = _f(get_source_cursor, Source)
     iter_citations     = _f(get_citation_cursor, Citation)
-    iter_media_objects = _f(get_media_cursor, MediaObject)
+    iter_media = _f(get_media_cursor, Media)
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
     iter_tags          = _f(get_tag_cursor, Tag)
@@ -1348,16 +1406,16 @@ class DbBsddbRead(DbReadBase, Callback):
         self.citation_prefix = self._validated_id_prefix(val, "C")
         self.cid2user_format = self.__id2user_format(self.citation_prefix)
 
-    def set_object_id_prefix(self, val):
+    def set_media_id_prefix(self, val):
         """
-        Set the naming template for Gramps MediaObject ID values.
+        Set the naming template for Gramps Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as O%d or O%04d.
         """
-        self.mediaobject_prefix = self._validated_id_prefix(val, "O")
-        self.oid2user_format = self.__id2user_format(self.mediaobject_prefix)
+        self.media_prefix = self._validated_id_prefix(val, "O")
+        self.oid2user_format = self.__id2user_format(self.media_prefix)
 
     def set_place_id_prefix(self, val):
         """
@@ -1659,7 +1717,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_raw_family_data(self, handle):
         return self.__get_raw_data(self.family_map, handle)
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
         return self.__get_raw_data(self.media_map, handle)
 
     def get_raw_place_data(self, handle):
@@ -1707,9 +1765,9 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.family_map, handle)
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
         """
-        Return True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current Mediadatabase.
         """
         return self.__has_handle(self.media_map, handle)
 
@@ -1760,6 +1818,24 @@ class DbBsddbRead(DbReadBase, Callback):
             handle = handle.encode('utf-8')
         return glocale.sort_key(find_surname(handle,
                                            self.person_map.get(handle)))
+
+    def __sortbyfamily_key(self, handle):
+        if isinstance(handle, str):
+            handle = handle.encode('utf-8')
+        data = self.family_map.get(handle)
+        data2 = data[2]
+        if isinstance(data2, str):
+            data2 = data2.encode('utf-8')
+        data3 = data[3]
+        if isinstance(data3, str):
+            data3 = data3.encode('utf-8')
+        if data2: # father handle
+            return glocale.sort_key(find_fullname(data2,
+                                    self.person_map.get(data2)))
+        elif data3: # mother handle
+            return glocale.sort_key(find_fullname(data3,
+                                    self.person_map.get(data3)))
+        return ''
 
     def __sortbyplace(self, first, second):
         if isinstance(first, str):
@@ -1895,9 +1971,9 @@ class DbBsddbRead(DbReadBase, Callback):
                 'cursor_func': self.get_citation_cursor,
                 'class_func': Citation,
                 },
-            'MediaObject': {
+            'Media': {
                 'cursor_func': self.get_media_cursor,
-                'class_func': MediaObject,
+                'class_func': Media,
                 },
             'Repository': {
                 'cursor_func': self.get_repository_cursor,
@@ -1986,7 +2062,7 @@ class DbBsddbRead(DbReadBase, Callback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),

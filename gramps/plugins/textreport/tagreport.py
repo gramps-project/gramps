@@ -517,7 +517,7 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_media(self):
-        mlist = self.database.get_media_object_handles(sort_handles=True)
+        mlist = self.database.get_media_handles(sort_handles=True)
         FilterClass = GenericFilterFactory('Media')
         filter = FilterClass()
         filter.add_rule(rules.media.HasTag([self.tag]))
@@ -563,7 +563,7 @@ class TagReport(Report):
         self.doc.end_row()
 
         for media_handle in media_list:
-            media = self.database.get_object_from_handle(media_handle)
+            media = self.database.get_media_from_handle(media_handle)
 
             self.doc.start_row()
 

@@ -159,7 +159,7 @@ class _PersonWidgetBase(Gtk.DrawingArea):
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
-            obj = dbstate.db.get_object_from_handle(
+            obj = dbstate.db.get_media_from_handle(
                 object_handle)
             if obj:
                 mtype = obj.get_mime_type()

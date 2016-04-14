@@ -73,7 +73,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         self._add_family_with_sources([citation])
         self._add_event_with_sources([citation])
         self._add_place_with_sources([citation])
-        self._add_media_object_with_sources([citation])
+        self._add_media_with_sources([citation])
 
         # make sure that we have the correct number of references (one for each object)
         references = list(self._db.find_backlink_handles(citation.get_handle()))
@@ -159,7 +159,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
         num_families = 10
         num_events = 10
         num_places = 10
-        num_media_objects = 10
+        num_media = 10
         num_links = 10
 
         self._populate_database(num_sources,
@@ -167,7 +167,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
                                 num_families,
                                 num_events,
                                 num_places,
-                                num_media_objects,
+                                num_media,
                                 num_links)
 
 
@@ -200,13 +200,13 @@ class ReferenceMapTest(GrampsDbBaseTest):
                     "num_families = %d \n"
                     "num_events = %d \n"
                     "num_places = %d \n"
-                    "num_media_objects = %d \n"
+                    "num_media = %d \n"
                     "num_links = %d" % (num_sources,
                                         num_persons,
                                         num_families,
                                         num_events,
                                         num_places,
-                                        num_media_objects,
+                                        num_media,
                                         num_links))
         logger.info("with refs %s\n", str(with_reference_map))
         logger.info("without refs %s\n", str(without_reference_map))

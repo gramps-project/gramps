@@ -24,7 +24,7 @@ import unittest
 
 from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
                  Event, EventType, Source, Place, PlaceName, Citation, Date,
-                 Repository, RepositoryType, MediaObject, Note, NoteType,
+                 Repository, RepositoryType, Media, Note, NoteType,
                  StyledText, StyledTextTag, StyledTextTagType, Tag,
                  ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
                  Url, UrlType, Address, EventRef, EventRoleType, RepoRef,
@@ -900,13 +900,13 @@ class MediaBaseCheck(unittest.TestCase):
         self.phoenix.replace_media_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.ref_list.serialize())
 
-class MediaObjectCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
+class MediaCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         NoteBaseTest, CitationBaseTest):
     def setUp(self):
-        self.phoenix = MediaObject()
+        self.phoenix = Media()
         self.phoenix.set_path('example.png')
-        self.titanic = MediaObject(self.phoenix)
-        self.ref_obj = MediaObject(self.phoenix)
+        self.titanic = Media(self.phoenix)
+        self.ref_obj = Media(self.phoenix)
 
 class MediaRefCheck(unittest.TestCase, PrivacyBaseTest, AttrBaseTest,
         CitationBaseTest, NoteBaseTest):

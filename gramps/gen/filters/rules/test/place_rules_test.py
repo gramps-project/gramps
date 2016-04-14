@@ -1,0 +1,148 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2016 Tom Samstag
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+
+"""
+Unittest that tests place-specific filter rules
+"""
+import unittest
+
+from gramps.gen.merge.diff import import_as_dict
+from gramps.cli.user import User
+from gramps.gen.filters import GenericFilterFactory
+
+from gramps.gen.filters.rules.place import *
+
+GenericPlaceFilter = GenericFilterFactory('Place')
+
+class BaseTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = import_as_dict("example/gramps/example.gramps", User())
+
+    def filter_with_rule(self, rule):
+        filter_ = GenericPlaceFilter()
+        filter_.add_rule(rule)
+        results = filter_.apply(self.db)
+        return set(results)
+
+    def test_AllPlaces(self):
+        rule = AllPlaces([])
+        self.assertEqual(len(self.filter_with_rule(rule)),
+                         self.db.get_number_of_places())
+
+    def test_HasCitation(self):
+        rule = HasCitation(['page 23', '', ''])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'YNUJQC8YM5EGRG868J']))
+
+    def test_HasGallery(self):
+        rule = HasGallery(['0', 'greater than'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'YNUJQC8YM5EGRG868J']))
+
+    def test_HasIdOf(self):
+        rule = HasIdOf(['P0001'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'c96587262e91149933fcea5f20a']))
+
+    def test_RegExpIdOf(self):
+        rule = RegExpIdOf(['P000.'], use_regex=True)
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'c96587262e91149933fcea5f20a', b'c96587262ff262aaac31f6db7af',
+            b'c96587262f24c33ab2420276737', b'c96587262e566596a225682bf53',
+            b'c9658726302661576894508202d', b'c96587262f8329d37b252e1b9e5',
+            b'c965872630664f33485fc18e75', b'c96587262fb7dbb954077cb1286',
+            b'c96587262f4a44183c65ff1e52', b'c96587262ed43fdb37bf04bdb7f',
+            ]))
+
+    def test_HasNote(self):
+        rule = HasNote([])
+        self.assertEqual(self.filter_with_rule(rule), set([]))
+
+    def test_HasNoteRegexp(self):
+        rule = HasNoteRegexp(['.'], use_regex=True)
+        self.assertEqual(self.filter_with_rule(rule), set([]))
+
+    def test_HasReferenceCountOf(self):
+        rule = HasReferenceCountOf(['greater than', '35'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'c96587262e566596a225682bf53', b'MATJQCJYH8ULRIRYTH',
+            b'5HTJQCSB91P69HY731', b'4ECKQCWCLO5YIHXEXC',
+            b'c965872630a68ebd32322c4a30a']))
+
+    def test_HasSourceCount(self):
+        rule = HasSourceCount(['1', 'equal to'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'YNUJQC8YM5EGRG868J']))
+
+    def test_HasSourceOf(self):
+        rule = HasSourceOf(['S0001'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'YNUJQC8YM5EGRG868J']))
+
+    def test_PlacePrivate(self):
+        rule = PlacePrivate([])
+        self.assertEqual(self.filter_with_rule(rule), set([]))
+
+    def test_MatchesSourceConfidence(self):
+        rule = MatchesSourceConfidence(['2'])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'YNUJQC8YM5EGRG868J']))
+
+    def test_HasData(self):
+        rule = HasData(['Albany', 'County', ''])
+        self.assertEqual(self.filter_with_rule(rule),
+                         set([b'c9658726d602acadb74e330116a']))
+
+    def test_HasNoLatOrLon(self):
+        rule = HasNoLatOrLon([])
+        self.assertEqual(len(self.filter_with_rule(rule)), 915)
+
+    def test_InLatLonNeighborhood(self):
+        rule = InLatLonNeighborhood(['30N', '90W', '2', '2'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'C6WJQC0GDYP3HZDPR3', b'N88LQCRB363ES5WJ83',
+            b'03EKQCC2KTNLHFLDRJ', b'M9VKQCJV91X0M12J8']))
+
+    def test_ChangedSince(self):
+        rule = ChangedSince(['2013-01-01', '2014-01-01'])
+        self.assertEqual(len(self.filter_with_rule(rule)), 435)
+
+    def test_HasTag(self):
+        rule = HasTag(['ToDo'])
+        self.assertEqual(self.filter_with_rule(rule), set([]))
+
+    def test_HasTitle(self):
+        rule = HasTitle(['Albany'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'51VJQCXUP61H9JRL66', b'9XBKQCE1LZ7PMJE56G',
+            b'c9658726d602acadb74e330116a', b'P9MKQCT08Z3YBJV5UB']))
+
+    def test_IsEnclosedBy(self):
+        rule = IsEnclosedBy(['P0001'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
+            b'V6ALQCZZFN996CO4D', b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6',
+            b'PTFKQCKPHO2VC5SYKS', b'PHUJQCJ9R4XQO5Y0WS']))
+
+
+if __name__ == "__main__":
+    unittest.main()

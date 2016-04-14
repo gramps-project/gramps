@@ -134,7 +134,7 @@ class BackRefModel(Gtk.ListStore):
                 gid = p.gramps_id
                 handle = p.handle
             else:
-                p = self.db.get_object_from_handle(ref[1])
+                p = self.db.get_media_from_handle(ref[1])
                 if not p:
                     continue
                 name = p.get_description()

@@ -391,7 +391,7 @@ class RTFDoc(BaseDoc,TextDoc):
     # dumped as a string of HEX numbers.
     #
     #--------------------------------------------------------------------
-    def add_media_object(self, name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
 
         nx, ny = image_size(name)
 

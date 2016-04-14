@@ -163,7 +163,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         from .note import Note
         from .date import Date
         from .tag import Tag
-        from .mediaobj import MediaObject
+        from .media import Media
         return {
             "handle": Handle("Event", "EVENT-HANDLE"),
             "gramps_id": str,
@@ -173,7 +173,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
             "place": Handle("Place", "PLACE-HANDLE"),
             "citation_list": [Citation],
             "note_list": [Note],
-            "media_list": [MediaObject],
+            "media_list": [Media],
             "attribute_list": [Attribute],
             "change": float,
             "tag_list": [Tag],

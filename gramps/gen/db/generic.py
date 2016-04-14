@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2015 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2015-2016 Gramps Development Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +33,8 @@ import logging
 import shutil
 import bisect
 import ast
+import sys
+import datetime
 
 #------------------------------------------------------------------------
 #
@@ -44,24 +46,19 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP,
-                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL)
+                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
+                           PERSON_KEY, FAMILY_KEY, CITATION_KEY,
+                           SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
+                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
+                           TAG_KEY, eval_order_by)
+from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
-from gramps.gen.db import (PERSON_KEY,
-                           FAMILY_KEY,
-                           CITATION_KEY,
-                           SOURCE_KEY,
-                           EVENT_KEY,
-                           MEDIA_KEY,
-                           PLACE_KEY,
-                           REPOSITORY_KEY,
-                           NOTE_KEY,
-                           TAG_KEY)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
-from gramps.gen.lib import (Tag, MediaObject, Person, Family, Source, Citation, Event,
+from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
                             Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
 
@@ -72,10 +69,14 @@ SIGBASE = ('person', 'family', 'source', 'event', 'media',
 
 def touch(fname, mode=0o666, dir_fd=None, **kwargs):
     ## After http://stackoverflow.com/questions/1158076/implement-touch-using-python
-    flags = os.O_CREAT | os.O_APPEND
-    with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
-        os.utime(f.fileno() if os.utime in os.supports_fd else fname,
-                 dir_fd=None if os.supports_fd else dir_fd, **kwargs)
+    if sys.version_info < (3, 3, 0):
+        with open(fname, 'a'):
+            os.utime(fname, None) # set to now
+    else:
+        flags = os.O_CREAT | os.O_APPEND
+        with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
+            os.utime(f.fileno() if os.utime in os.supports_fd else fname,
+                     dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
 class DbGenericUndo(DbUndo):
     def __init__(self, grampsdb, path):
@@ -221,7 +222,7 @@ class Table(object):
         if funcs:
             self.funcs = funcs
         else:
-            self.funcs = db._tables[table_name]
+            self.funcs = db.get_table_func(table_name)
 
     def cursor(self):
         """
@@ -267,10 +268,10 @@ class Map(object):
 
     def __setitem__(self, key, value):
         """
-        This is only done in a low-level raw import.
+        This is only done in a assignment via key.
 
         value: serialized object
-        key: bytes key (ignored in this implementation)
+        key: bytes key (ignored in this function)
         """
         obj = self.table.funcs["class_func"].create(value)
         self.table.funcs["commit_func"](obj, self.txn)
@@ -313,7 +314,7 @@ class Cursor(object):
         return self
     def __iter__(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.map[item])
+            yield (item, self.map[item])
     def __next__(self):
         try:
             return self._iter.__next__()
@@ -323,7 +324,7 @@ class Cursor(object):
         pass
     def iter(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.map[item])
+            yield (item, self.map[item])
     def first(self):
         self._iter = self.__iter__()
         try:
@@ -352,7 +353,7 @@ class TreeCursor(Cursor):
         """
         handles = self.db.get_place_handles(sort_handles=True)
         for handle in handles:
-            yield (bytes(handle, "utf-8"), self.db._get_raw_place_data(handle))
+            yield (handle, self.db._get_raw_place_data(handle))
 
 class Bookmarks(object):
     def __init__(self, default=[]):
@@ -433,7 +434,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
-        self._tables['Person'].update(
+        self.__tables =  {
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -450,8 +452,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_person_data,
                 "raw_id_func": self._get_raw_person_from_id_data,
                 "del_func": self.remove_person,
-            })
-        self._tables['Family'].update(
+            },
+            'Family':
             {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
@@ -468,8 +470,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_family_data,
                 "raw_id_func": self._get_raw_family_from_id_data,
                 "del_func": self.remove_family,
-            })
-        self._tables['Source'].update(
+            },
+            'Source':
             {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
@@ -486,8 +488,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_source_data,
                 "raw_id_func": self._get_raw_source_from_id_data,
                 "del_func": self.remove_source,
-                })
-        self._tables['Citation'].update(
+                },
+            'Citation':
             {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
@@ -504,8 +506,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_citation_data,
                 "raw_id_func": self._get_raw_citation_from_id_data,
                 "del_func": self.remove_citation,
-            })
-        self._tables['Event'].update(
+            },
+            'Event':
             {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
@@ -522,26 +524,26 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_event_data,
                 "raw_id_func": self._get_raw_event_from_id_data,
                 "del_func": self.remove_event,
-            })
-        self._tables['Media'].update(
+            },
+            'Media':
             {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
                 "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
-                "add_func": self.add_object,
-                "commit_func": self.commit_media_object,
-                "iter_func": self.iter_media_objects,
+                "handles_func": self.get_media_handles,
+                "add_func": self.add_media,
+                "commit_func": self.commit_media,
+                "iter_func": self.iter_media,
                 "ids_func": self.get_media_gramps_ids,
                 "has_handle_func": self.has_handle_for_media,
                 "has_gramps_id_func": self.has_gramps_id_for_media,
-                "count_func": self.get_number_of_media_objects,
+                "count_func": self.get_number_of_media,
                 "raw_func": self._get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
-                "del_func": self.remove_object,
-            })
-        self._tables['Place'].update(
+                "del_func": self.remove_media,
+            },
+            'Place':
             {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
@@ -558,8 +560,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_place_data,
                 "raw_id_func": self._get_raw_place_from_id_data,
                 "del_func": self.remove_place,
-            })
-        self._tables['Repository'].update(
+            },
+            'Repository':
             {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
@@ -576,8 +578,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_repository_data,
                 "raw_id_func": self._get_raw_repository_from_id_data,
                 "del_func": self.remove_repository,
-            })
-        self._tables['Note'].update(
+            },
+            'Note':
             {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
@@ -594,8 +596,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "raw_func": self._get_raw_note_data,
                 "raw_id_func": self._get_raw_note_from_id_data,
                 "del_func": self.remove_note,
-            })
-        self._tables['Tag'].update(
+            },
+            'Tag':
             {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
@@ -609,7 +611,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "count_func": self.get_number_of_tags,
                 "raw_func": self._get_raw_tag_data,
                 "del_func": self.remove_tag,
-            })
+            }
+        }
         self.set_save_path(directory)
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
@@ -628,7 +631,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_bookmarks = Bookmarks()
         self.note_bookmarks = Bookmarks()
         self.set_person_id_prefix('I%04d')
-        self.set_object_id_prefix('O%04d')
+        self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
         self.set_citation_id_prefix('C%04d')
         self.set_source_id_prefix('S%04d')
@@ -719,6 +722,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table] # dict of functions
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else:
+            return super().get_table_func(table, func)
+
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
@@ -795,12 +811,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self._tables.keys())
+        return list(self.get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self._tables:
-            return self._tables[table_name]
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name)
         return None
 
     def transaction_begin(self, transaction):
@@ -911,16 +927,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.source_prefix = self._validated_id_prefix(val, "S")
         self.sid2user_format = self.__id2user_format(self.source_prefix)
 
-    def set_object_id_prefix(self, val):
+    def set_media_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS MediaObject ID values.
+        Set the naming template for GRAMPS Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as O%d or O%04d.
         """
-        self.mediaobject_prefix = self._validated_id_prefix(val, "O")
-        self.oid2user_format = self.__id2user_format(self.mediaobject_prefix)
+        self.media_prefix = self._validated_id_prefix(val, "O")
+        self.oid2user_format = self.__id2user_format(self.media_prefix)
 
     def set_place_id_prefix(self, val):
         """
@@ -1017,12 +1033,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                                          self.event_id_map)
         return gid
 
-    def find_next_object_gramps_id(self):
+    def find_next_media_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a MediaObject object based
+        Return the next available GRAMPS' ID for a Media object based
         off the media object ID prefix.
         """
-        self.omap_index, gid = self._find_next_gramps_id(self.mediaobject_prefix,
+        self.omap_index, gid = self._find_next_gramps_id(self.media_prefix,
                                                          self.omap_index,
                                                          self.media_id_map)
         return gid
@@ -1123,13 +1139,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         return Note.create(self._get_raw_note_data(handle))
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return MediaObject.create(self._get_raw_media_data(handle))
+        return Media.create(self._get_raw_media_data(handle))
 
-    def get_object_from_gramps_id(self, gramps_id):
-        return MediaObject.create(self.media_id_map[gramps_id])
+    def get_media_from_gramps_id(self, gramps_id):
+        return Media.create(self.media_id_map[gramps_id])
 
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
@@ -1143,11 +1159,47 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return None
 
-    def iter_people(self):
-        return (Person.create(data[1]) for data in self.get_person_cursor())
+    def iter_items(self, order_by, class_):
+        """
+        Iterate over items in a class, possibly ordered by
+        a list of field names and direction ("ASC" or "DESC").
+        """
+        cursor = self.get_table_func(class_.__name__,"cursor_func")
+        if order_by is None:
+            for data in cursor():
+                yield class_.create(data[1])
+        else:
+            # first build sort order:
+            sorted_items = []
+            for data in cursor():
+                obj = class_.create(data[1])
+                # just use values and handle to keep small:
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
+            # next we sort by fields and direction
+            def getitem(item, pos):
+                sort_items = item[0]
+                if isinstance(sort_items[pos], str):
+                    return sort_items[pos]
+                elif sort_items[pos] is None:
+                    return ""
+                else:
+                    # FIXME: should do something clever/recurive to
+                    # sort these meaningfully, and return a string:
+                    return str(sort_items[pos])
+            pos = len(order_by) - 1
+            for (field, order) in reversed(order_by): # sort the lasts parts first
+                sorted_items.sort(key=lambda item: getitem(item, pos),
+                                  reverse=(order=="DESC"))
+                pos -= 1
+            # now we will look them up again:
+            for (order_by_values, handle) in sorted_items:
+                yield self.get_table_func(class_.__name__,"handle_func")(handle)
 
-    def iter_families(self):
-        return (Family.create(data[1]) for data in self.get_family_cursor())
+    def iter_people(self, order_by=None):
+        return self.iter_items(order_by, Person)
+
+    def iter_families(self, order_by=None):
+        return self.iter_items(order_by, Family)
 
     def get_person_from_gramps_id(self, gramps_id):
         return Person.create(self.person_id_map[gramps_id])
@@ -1165,7 +1217,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return Event.create(self.event_id_map[gramps_id])
 
     def get_media_from_gramps_id(self, gramps_id):
-        return MediaObject.create(self.media_id_map[gramps_id])
+        return Media.create(self.media_id_map[gramps_id])
 
     def get_place_from_gramps_id(self, gramps_id):
         return Place.create(self.place_id_map[gramps_id])
@@ -1224,63 +1276,103 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return gramps_id in key2table[obj_key]
 
     def has_person_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.person_map
 
     def has_family_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.family_map
 
     def has_citation_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.citation_map
 
     def has_source_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.source_map
 
     def has_repository_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.repository_map
 
     def has_note_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.note_map
 
     def has_place_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.place_map
 
     def has_event_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.event_map
 
     def has_tag_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.tag_map
 
-    def has_object_handle(self, handle):
+    def has_media_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return handle in self.media_map
 
     def get_raw_person_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.person_map[handle]
 
     def get_raw_family_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.family_map[handle]
 
     def get_raw_citation_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.citation_map[handle]
 
     def get_raw_source_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.source_map[handle]
 
     def get_raw_repository_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.repository_map[handle]
 
     def get_raw_note_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.note_map[handle]
 
     def get_raw_place_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.place_map[handle]
 
-    def get_raw_object_data(self, handle):
+    def get_raw_media_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.media_map[handle]
 
     def get_raw_tag_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.tag_map[handle]
 
     def get_raw_event_data(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         return self.event_map[handle]
 
     def add_person(self, person, trans, set_gid=True):
@@ -1377,9 +1469,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.commit_tag(tag, trans)
         return tag.handle
 
-    def add_object(self, obj, transaction, set_gid=True):
+    def add_media(self, obj, transaction, set_gid=True):
         """
-        Add a MediaObject to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
@@ -1387,11 +1479,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not obj.handle:
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
-            obj.gramps_id = self.find_next_object_gramps_id()
+            obj.gramps_id = self.find_next_media_gramps_id()
         if (not obj.gramps_id):
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
-        self.commit_media_object(obj, transaction)
+        self.commit_media(obj, transaction)
         return obj.handle
 
     def add_to_surname_list(self, person, batch_transaction):
@@ -1471,11 +1563,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         A (possibily) implementation-specific method to get data from
         db into this database.
         """
-        for key in db._tables.keys():
-            cursor = db._tables[key]["cursor_func"]
-            class_ = db._tables[key]["class_func"]
+        for key in db.get_table_func():
+            cursor = db.get_table_func(key,"cursor_func")
+            class_ = db.get_table_func(key,"class_func")
             for (handle, data) in cursor():
                 map = getattr(self, "%s_map" % key.lower())
+                if isinstance(handle, bytes):
+                    handle = str(handle, "utf-8")
                 map[handle] = class_.create(data)
 
     def get_transaction_class(self):
@@ -1494,8 +1588,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["handle_func"](handle)
+        if table_name in self.get_table_func() and handle:
+            return self.get_table_func(table_name,"handle_func")(handle)
         return None
 
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
@@ -1509,8 +1603,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_gramps_id("Family", "F056")
         >>> self.get_from_name_and_gramps_id("Media", "M00012")
         """
-        if table_name in self._tables:
-            return self._tables[table_name]["gramps_id_func"](gramps_id)
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
         return None
 
     def remove_source(self, handle, transaction):
@@ -1537,9 +1631,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._do_remove(handle, transaction, self.event_map,
                          self.event_id_map, EVENT_KEY)
 
-    def remove_object(self, handle, transaction):
+    def remove_media(self, handle, transaction):
         """
-        Remove the MediaObjectPerson specified by the database handle from the
+        Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         self._do_remove(handle, transaction, self.media_map,
@@ -1589,8 +1683,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return true if there are no [primary] records in the database
         """
-        for table in self._tables:
-            if len(self._tables[table]["handles_func"]()) > 0:
+        for table in self.get_table_func():
+            if len(self.get_table_func(table,"handles_func")()) > 0:
                 return False
         return True
 
@@ -1635,8 +1729,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.set_metadata('place_types', self.place_types)
 
             # Save misc items:
-            self.save_surname_list()
-            self.save_gender_stats(self.genderStats)
+            if self.has_changed:
+                self.save_surname_list()
+                self.save_gender_stats(self.genderStats)
 
             # Indexes:
             self.set_metadata('cmap_index', self.cmap_index)
@@ -1651,6 +1746,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
             self.close_backend()
         self.db_is_open = False
+        self._directory = None
 
     def get_bookmarks(self):
         return self.bookmarks
@@ -1817,35 +1913,34 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def is_open(self):
         return self.db_is_open
 
-    def iter_citations(self):
-        return (Citation.create(data[1]) for data in self.get_citation_cursor())
+    def iter_citations(self, order_by=None):
+        return self.iter_items(order_by, Citation)
 
-    def iter_events(self):
-        return (Event.create(data[1]) for data in self.get_event_cursor())
+    def iter_events(self, order_by=None):
+        return self.iter_items(order_by, Event)
 
-    def iter_media_objects(self):
-        return (MediaObject.create(data[1]) for data in self.get_media_cursor())
+    def iter_media(self, order_by=None):
+        return self.iter_items(order_by, Media)
 
-    def iter_notes(self):
-        return (Note.create(data[1]) for data in self.get_note_cursor())
+    def iter_notes(self, order_by=None):
+        return self.iter_items(order_by, Note)
 
-    def iter_places(self):
-        return (Place.create(data[1]) for data in self.get_place_cursor())
+    def iter_places(self, order_by=None):
+        return self.iter_items(order_by, Place)
 
-    def iter_repositories(self):
-        return (Repository.create(data[1]) for data in self.get_repository_cursor())
+    def iter_repositories(self, order_by=None):
+        return self.iter_items(order_by, Repository)
 
-    def iter_sources(self):
-        return (Source.create(data[1]) for data in self.get_source_cursor())
+    def iter_sources(self, order_by=None):
+        return self.iter_items(order_by, Source)
 
-    def iter_tags(self):
-        return (Tag.create(data[1]) for data in self.get_tag_cursor())
-
+    def iter_tags(self, order_by=None):
+        return self.iter_items(order_by, Tag)
 
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):
         self.set_person_id_prefix(person)
-        self.set_object_id_prefix(media)
+        self.set_media_id_prefix(media)
         self.set_family_id_prefix(family)
         self.set_source_id_prefix(source)
         self.set_citation_id_prefix(citation)
@@ -1892,7 +1987,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
@@ -1949,7 +2044,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         from gramps.plugins.export.exportxml import XmlWriter
         from gramps.cli.user import User
         writer = XmlWriter(self, User(), strip_photos=0, compress=1)
-        filename = os.path.join(self._directory, "data.gramps")
+        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
+        filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
         writer.write(filename)
 
     def get_undodb(self):
@@ -1990,3 +2086,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def set_default_person_handle(self, handle):
         self.set_metadata("default-person-handle", handle)
         self.emit('home-person-changed')
+
+    def add_table_funcs(self, table, funcs):
+        """
+        Add a new table and funcs to the database.
+        """
+        self.__tables[table] = funcs
+        setattr(DbGeneric, table, property(lambda self: QuerySet(self, table)))

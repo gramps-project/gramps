@@ -116,7 +116,7 @@ from gramps.gen.errors import GedcomError
 from gramps.gen.const import DATA_DIR
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
         ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
-        EventType, Family, FamilyRelType, LdsOrd, Location, MediaObject,
+        EventType, Family, FamilyRelType, LdsOrd, Location, Media,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
         RepoRef, Repository, RepositoryType, Researcher,
         Source, SourceMediaType, SrcAttribute, SrcAttributeType,
@@ -1938,7 +1938,7 @@ class GedcomParser(UpdateCallback):
             self.dbase.sid2user_format)
         self.oid_map = IdMapper(
             self.dbase.oid_trans,
-            self.dbase.find_next_object_gramps_id,
+            self.dbase.find_next_media_gramps_id,
             self.dbase.oid2user_format)
         self.rid_map = IdMapper(
             self.dbase.rid_trans,
@@ -2300,15 +2300,15 @@ class GedcomParser(UpdateCallback):
             }
         self.func_list.append(self.citation_parse_tbl)
 
-        self.object_parse_tbl = {
-            TOKEN_FORM   : self.__object_ref_form,
-            TOKEN_TITL   : self.__object_ref_titl,
-            TOKEN_FILE   : self.__object_ref_file,
-            TOKEN_NOTE   : self.__object_ref_note,
-            TOKEN_RNOTE  : self.__object_ref_note,
+        self.media_parse_tbl = {
+            TOKEN_FORM   : self.__media_ref_form,
+            TOKEN_TITL   : self.__media_ref_titl,
+            TOKEN_FILE   : self.__media_ref_file,
+            TOKEN_NOTE   : self.__media_ref_note,
+            TOKEN_RNOTE  : self.__media_ref_note,
             TOKEN_IGNORE : self.__ignore,
         }
-        self.func_list.append(self.object_parse_tbl)
+        self.func_list.append(self.media_parse_tbl)
 
         self.parse_loc_tbl = {
             TOKEN_ADR1   : self.__location_adr1,
@@ -2771,7 +2771,7 @@ class GedcomParser(UpdateCallback):
         """
         return self.__find_from_handle(gramps_id, self.fid2id)
 
-    def __find_object_handle(self, gramps_id):
+    def __find_media_handle(self, gramps_id):
         """
         Return the database handle associated with the media object's GRAMPS ID
         """
@@ -2817,16 +2817,16 @@ class GedcomParser(UpdateCallback):
             family.set_gramps_id(gramps_id)
         return family
 
-    def __find_or_create_object(self, gramps_id):
+    def __find_or_create_media(self, gramps_id):
         """
         Finds or creates a media object based on the GRAMPS ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
         we create a new media object, assign the handle and GRAMPS ID.
         """
-        obj = MediaObject()
+        obj = Media()
         intid = self.oid2id.get(gramps_id)
-        if self.dbase.has_object_handle(intid):
-            obj.unserialize(self.dbase.get_raw_object_data(intid))
+        if self.dbase.has_media_handle(intid):
+            obj.unserialize(self.dbase.get_raw_media_data(intid))
         else:
             intid = self.__find_from_handle(gramps_id, self.oid2id)
             obj.set_handle(intid)
@@ -3171,8 +3171,8 @@ class GedcomParser(UpdateCallback):
                 self.dbase.commit_family, self.fid2id, "FAM")
         __check(self.sid_map, self.dbase.sid_trans, self.__find_or_create_source,
                 self.dbase.commit_source, self.sid2id, "SOUR")
-        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_object,
-                self.dbase.commit_media_object, self.oid2id, "OBJE")
+        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_media,
+                self.dbase.commit_media, self.oid2id, "OBJE")
         __check(self.rid_map, self.dbase.rid_trans, self.__find_or_create_repository,
                 self.dbase.commit_repository, self.rid2id, "REPO")
         __check(self.nid_map, self.dbase.nid_trans, self.__find_or_create_note,
@@ -3761,7 +3761,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.person.add_media_reference(ref)
@@ -3771,7 +3771,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.person, form, filename, title, note)
+            self.build_media(state.person, form, filename, title, note)
 
     def __person_name(self, line, state):
         """
@@ -5092,7 +5092,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.family.add_media_reference(ref)
@@ -5102,7 +5102,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.family, form, filename, title, note)
+            self.build_media(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
         """
@@ -5178,12 +5178,12 @@ class GedcomParser(UpdateCallback):
         sub_state.note = ""
         sub_state.level = level
 
-        self.__parse_level(sub_state, self.object_parse_tbl, self.__ignore)
+        self.__parse_level(sub_state, self.media_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
         return (sub_state.form, sub_state.filename, sub_state.title,
                 sub_state.note)
 
-    def __object_ref_form(self, line, state):
+    def __media_ref_form(self, line, state):
         """
           +1 FORM <MULTIMEDIA_FORMAT> {1:1}
 
@@ -5194,7 +5194,7 @@ class GedcomParser(UpdateCallback):
         """
         state.form = line.data
 
-    def __object_ref_titl(self, line, state):
+    def __media_ref_titl(self, line, state):
         """
           +1 TITL <DESCRIPTIVE_TITLE> {0:1}
 
@@ -5205,7 +5205,7 @@ class GedcomParser(UpdateCallback):
         """
         state.title = line.data
 
-    def __object_ref_file(self, line, state):
+    def __media_ref_file(self, line, state):
         """
           +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
 
@@ -5216,7 +5216,7 @@ class GedcomParser(UpdateCallback):
         """
         state.filename = line.data
 
-    def __object_ref_note(self, line, state):
+    def __media_ref_note(self, line, state):
         """
           +1 <<NOTE_STRUCTURE>> {0:M}
 
@@ -5320,7 +5320,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.event.add_media_reference(ref)
@@ -5330,7 +5330,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.event, form, filename, title, note)
+            self.build_media(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
         """
@@ -5448,7 +5448,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.place.add_media_reference(ref)
@@ -5459,7 +5459,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.place, form, filename, title, note)
+            self.build_media(state.place, form, filename, title, note)
 
     def __event_place_sour(self, line, state):
         """
@@ -6116,7 +6116,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.citation.add_media_reference(ref)
@@ -6126,7 +6126,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.citation, form, filename, title, note)
+            self.build_media(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state):
         """
@@ -6269,7 +6269,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.source.add_media_reference(ref)
@@ -6279,7 +6279,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.source, form, filename, title, note)
+            self.build_media(state.source, form, filename, title, note)
 
     def __source_chan(self, line, state):
         """
@@ -6483,7 +6483,7 @@ class GedcomParser(UpdateCallback):
            +1 <<CHANGE_DATE>> {0:1} p.*
         """
         gid = line.token_text.strip()
-        media = self.__find_or_create_object(self.oid_map[gid])
+        media = self.__find_or_create_media(self.oid_map[gid])
 
         state = CurrentState()
         state.media = media
@@ -6500,7 +6500,7 @@ class GedcomParser(UpdateCallback):
         self.__check_msgs(_("OBJE (multi-media object) Gramps ID %s") %
                           media.get_gramps_id(), state, media)
         # commit the person to the database
-        self.dbase.commit_media_object(media, self.trans, media.change)
+        self.dbase.commit_media(media, self.trans, media.change)
 
     def __obje_form(self, line, state):
         """
@@ -7512,7 +7512,7 @@ class GedcomParser(UpdateCallback):
                 # too far in the future, this gives OverflowError.
                 pass
 
-    def build_media_object(self, obj, form, filename, title, note):
+    def build_media(self, obj, form, filename, title, note):
         if isinstance(form, str) and form.lower() == "url":
             url = Url()
             url.set_path(filename)
@@ -7532,7 +7532,7 @@ class GedcomParser(UpdateCallback):
                 path = filename
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
-                photo = MediaObject()
+                photo = Media()
                 photo.set_path(path)
                 photo.set_description(title)
                 full_path = os.path.abspath(path)
@@ -7540,10 +7540,10 @@ class GedcomParser(UpdateCallback):
                     photo.set_mime_type(get_type(full_path))
                 else:
                     photo.set_mime_type(MIME_MAP.get(form.lower(), 'unknown'))
-                self.dbase.add_object(photo, self.trans)
+                self.dbase.add_media(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
-                photo = self.dbase.get_object_from_handle(photo_handle)
+                photo = self.dbase.get_media_from_handle(photo_handle)
             oref = MediaRef()
             oref.set_reference_handle(photo.handle)
             if note:

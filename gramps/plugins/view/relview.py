@@ -651,7 +651,7 @@ class RelationshipView(NavigationView):
         # image
         image_list = person.get_media_list()
         if image_list:
-            mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
+            mobj = self.dbstate.db.get_media_from_handle(image_list[0].ref)
             if mobj and mobj.get_mime_type()[0:5] == "image":
                 pixbuf = get_thumbnail_image(
                                 media_path_full(self.dbstate.db,
@@ -1748,6 +1748,8 @@ def has_children(db,p):
     """
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
+        if not family:
+            continue
         childlist = family.get_child_ref_list()
         if childlist and len(childlist) > 0:
             return True

@@ -43,7 +43,7 @@ from gi.repository import Gdk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..utils import open_file_with_default_application
-from gramps.gen.lib import MediaObject, NoteType
+from gramps.gen.lib import Media, NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
 from gramps.gen.utils.thumbnails import get_thumbnail_image, find_mime_type_pixbuf
@@ -53,7 +53,7 @@ from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
 from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
                          MediaBackRefList)
-from .addmedia import AddMediaObject
+from .addmedia import AddMedia
 from ..dialog import ErrorDialog
 from ..glade import Glade
 from gramps.gen.const import URL_MANUAL_SECT2
@@ -77,15 +77,15 @@ class EditMedia(EditPrimary):
     def __init__(self, dbstate, uistate, track, obj, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, obj,
-                             dbstate.db.get_object_from_handle,
-                             dbstate.db.get_object_from_gramps_id, callback)
+                             dbstate.db.get_media_from_handle,
+                             dbstate.db.get_media_from_gramps_id, callback)
         if not self.obj.get_handle():
             #show the addmedia dialog immediately, with track of parent.
-            AddMediaObject(dbstate, self.uistate, self.track, self.obj,
+            AddMedia(dbstate, self.uistate, self.track, self.obj,
                            self._update_addmedia)
 
-    def empty_object(self):
-        return MediaObject()
+    def empty_media(self):
+        return Media()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -247,7 +247,7 @@ class EditMedia(EditPrimary):
             self.view_media(obj)
 
     def view_media(self, obj):
-        ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
+        ref_obj = self.dbstate.db.get_media_from_handle(self.obj.handle)
 
         if ref_obj:
             media_path = media_path_full(self.dbstate.db,
@@ -258,7 +258,7 @@ class EditMedia(EditPrimary):
         self.determine_mime()
         path = self.file_path.get_text()
         self.obj.set_path(path)
-        AddMediaObject(self.dbstate, self.uistate, self.track, self.obj,
+        AddMedia(self.dbstate, self.uistate, self.track, self.obj,
                        self._update_addmedia)
 
     def _update_addmedia(self, obj):
@@ -323,12 +323,12 @@ class EditMedia(EditPrimary):
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
-                self.db.add_object(self.obj, trans)
+                self.db.add_media(self.obj, trans)
                 msg = _("Add Media Object (%s)") % self.obj.get_description()
             else:
                 if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_object_gramps_id())
-                self.db.commit_media_object(self.obj, trans)
+                    self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
+                self.db.commit_media(self.obj, trans)
                 msg = _("Edit Media Object (%s)") % self.obj.get_description()
             trans.set_description(msg)
 
@@ -351,10 +351,10 @@ class EditMedia(EditPrimary):
             if orig:
                 cmp_obj = orig
             else:
-                cmp_obj = self.empty_object()
+                cmp_obj = self.empty_media()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
-            cmp_obj = self.empty_object()
+            cmp_obj = self.empty_media()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
 class DeleteMediaQuery(object):
@@ -415,4 +415,4 @@ class DeleteMediaQuery(object):
                 self.db.commit_citation(citation, trans)
 
             self.db.enable_signals()
-            self.db.remove_object(self.media_handle, trans)
+            self.db.remove_media(self.media_handle, trans)

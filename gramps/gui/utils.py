@@ -592,9 +592,9 @@ def edit_object(dbstate, uistate, reftype, ref):
             EditPlace(dbstate, uistate, [], place)
         except WindowActiveError:
             pass
-    elif reftype == 'MediaObject':
+    elif reftype == 'Media':
         try:
-            obj = dbstate.db.get_object_from_handle(ref)
+            obj = dbstate.db.get_media_from_handle(ref)
             EditMedia(dbstate, uistate, [], obj)
         except WindowActiveError:
             pass
@@ -644,7 +644,7 @@ def model_to_text(model, cols=None, treeiter=None, indent="",
     text = ""
     if treeiter is None:
         treeiter = model.get_iter_first()
-    while treeiter != None:
+    while treeiter is not None:
         if cols is None:
             items = sep.join([str(item) for item in model[treeiter][:]])
         else:

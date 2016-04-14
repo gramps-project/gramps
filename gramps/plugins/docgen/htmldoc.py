@@ -538,7 +538,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         #end div element
         self.__reduce_list()
 
-    def add_media_object(self, name, pos, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, pos, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
         Overwrite base method
         """

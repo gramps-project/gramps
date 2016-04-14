@@ -1049,7 +1049,7 @@ class GuiMediaOption(Gtk.Box):
 
         # Initialize to the current value
         mid = self.__option.get_value()
-        media = self.__db.get_object_from_gramps_id(mid)
+        media = self.__db.get_media_from_gramps_id(mid)
         self.__update_media(media)
 
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
@@ -1064,7 +1064,7 @@ class GuiMediaOption(Gtk.Box):
         """
         Handle the button to choose a different note.
         """
-        select_class = SelectorFactory('MediaObject')
+        select_class = SelectorFactory('Media')
         sel = select_class(self.__dbstate, self.__uistate, self.__track)
         media = sel.run()
         self.__update_media(media)
@@ -1097,7 +1097,7 @@ class GuiMediaOption(Gtk.Box):
         Handle the change made programmatically
         """
         mid = self.__option.get_value()
-        media = self.__db.get_object_from_gramps_id(mid)
+        media = self.__db.get_media_from_gramps_id(mid)
 
         # Need to disable signals as __update_media() calls set_value()
         # which would launch the 'value-changed' signal which is what
@@ -1643,6 +1643,7 @@ class GuiDestinationOption(Gtk.Box):
         """
         Gtk.Box.__init__(self)
         self.__option = option
+        self.__uistate = uistate
         self.__entry = Gtk.Entry()
         self.__entry.set_text( self.__option.get_value() )
 
@@ -1695,6 +1696,7 @@ class GuiDestinationOption(Gtk.Box):
             my_action = Gtk.FileChooserAction.SAVE
 
         fcd = Gtk.FileChooserDialog(_("Save As"), action=my_action,
+                                    parent=self.__uistate.window,
                                     buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
                                              _('_Open'),

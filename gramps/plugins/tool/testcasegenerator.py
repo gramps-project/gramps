@@ -49,7 +49,7 @@ from gi.repository import Gtk
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                 ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
                 EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location,
-                MediaObject, MediaRef, Name, NameOriginType, NameType, Note,
+                Media, MediaRef, Name, NameOriginType, NameType, Note,
                 NoteType, Person, PersonRef, Place, PlaceType, PlaceRef, PlaceName,
                 RepoRef, Repository, RepositoryType, Source, SourceMediaType,
                 SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
@@ -411,28 +411,28 @@ class TestcaseGenerator(tool.BatchTool):
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            m = MediaObject()
+            m = Media()
             self.fill_object(m)
             m.set_description("leave this media object invalid description\x9f")
             m.set_path("/tmp/click_on_keep_reference.png\x9f")
             m.set_mime_type("image/png\x9f")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
-            m = MediaObject()
+            m = Media()
             self.fill_object(m)
             m.set_description("reselect this media object invalid description\x9f")
             m.set_path("/tmp/click_on_select_file.png\x9f")
             m.set_mime_type("image/png\x9f")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
             # setup media attached to Source and Citation to be removed
 
-            m = MediaObject()
+            m = Media()
             self.fill_object(m)
             m.set_description('remove this media object')
             m.set_path("/tmp/click_on_remove_object.png")
             m.set_mime_type("image/png")
-            self.db.add_object(m, self.trans)
+            self.db.add_media(m, self.trans)
 
             s = Source()
             s.set_title('media should be removed from this source')
@@ -493,8 +493,8 @@ class TestcaseGenerator(tool.BatchTool):
             c = Citation()
             self.db.add_citation( c, self.trans)
 
-            m = MediaObject()
-            self.db.add_object( m, self.trans)
+            m = Media()
+            self.db.add_media( m, self.trans)
 
             r = Repository()
             self.db.add_repository( r, self.trans)
@@ -933,7 +933,7 @@ class TestcaseGenerator(tool.BatchTool):
         #         MediaRef
         #          Attribute
         #
-        #        MediaObject
+        #        Media
         #         Attribute
         #
         #        Place
@@ -942,18 +942,18 @@ class TestcaseGenerator(tool.BatchTool):
         #
         #        Repository (Repositories themselves do not have SourceRefs)
         #         Address
-        m = MediaObject()
+        m = Media()
         m.set_description(message)
         m.set_path(str(ICON))
         m.set_mime_type(get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
-        # MediaObject : Attribute
+        # Media : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
         a.add_citation(choice(c_h_list))
         m.add_attribute(a)
-        self.db.add_object(m, self.trans)
+        self.db.add_media(m, self.trans)
 
         person1_h = self.generate_person(Person.MALE,name,None)
         person2_h = self.generate_person(Person.FEMALE,name,None)
@@ -1622,7 +1622,7 @@ class TestcaseGenerator(tool.BatchTool):
             while randint(0,10) == 1:
                 o.add_media_reference( self.fill_object( MediaRef()))
 
-        if isinstance(o,MediaObject):
+        if isinstance(o,Media):
             if randint(0,3) == 1:
                 o.set_description(str(self.rand_text(self.LONG)))
                 path = choice((ICON, LOGO, SPLASH))
@@ -1636,9 +1636,9 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(o,MediaRef):
             if not self.generated_media or randint(0,10) == 1:
-                m = MediaObject()
+                m = Media()
                 self.fill_object(m)
-                self.db.add_object( m, self.trans)
+                self.db.add_media( m, self.trans)
                 self.generated_media.append( m.get_handle())
             o.set_reference_handle( choice( self.generated_media))
             if randint(0,1) == 1:

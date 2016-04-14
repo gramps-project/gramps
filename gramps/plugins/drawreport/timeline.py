@@ -94,12 +94,15 @@ class TimeLine(Report):
         sortby        - Sorting method to be used.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         self._user = user
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
 
@@ -399,6 +402,8 @@ class TimeLineOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0

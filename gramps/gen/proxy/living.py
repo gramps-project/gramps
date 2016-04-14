@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2016       Matt Keenan <matt.keenan@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,9 +30,10 @@ Proxy class for the Gramps databases. Filter out all living people.
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
 from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
-                   Citation, Event, MediaObject, Place, Repository, Note, Tag)
+                   Citation, Event, Media, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
+from gramps.gen.db.base import sort_objects
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +48,8 @@ class LivingProxyDb(ProxyDbBase):
     MODE_EXCLUDE_ALL  = 0
     MODE_INCLUDE_LAST_NAME_ONLY = 1
     MODE_INCLUDE_FULL_NAME_ONLY = 2
+    MODE_REPLACE_COMPLETE_NAME = 3
+    MODE_INCLUDE_ALL = 99 # usually this will be only tested for, not invoked
 
     def __init__(self, dbase, mode, current_year=None, years_after_death=0):
         """
@@ -55,12 +59,17 @@ class LivingProxyDb(ProxyDbBase):
         :type dbase: DbBase
         :param mode:
             The method for handling living people.
-            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether.
+            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people
+                altogether.
             LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
-            information and change their given name to "[Living]" or what has
-            been set in Preferences -> Text.
+                information and change their given name to "[Living]" or what
+                has been set in Preferences -> Text -> Private given name.
+            LivingProxyDb.MODE_REPLACE_COMPLETE_NAME will remove all
+                information and change their given name and surname to
+                "[Living]" or whatever has been set in Preferences -> Text
+                for Private surname and Private given name.
             LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
-            information but leave the entire name intact.
+                information but leave the entire name intact.
         :type mode: int
         :param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
@@ -77,6 +86,121 @@ class LivingProxyDb(ProxyDbBase):
         else:
             self.current_date = None
         self.years_after_death = years_after_death
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):
         """
@@ -100,18 +224,32 @@ class LivingProxyDb(ProxyDbBase):
         family = self.__remove_living_from_family(family)
         return family
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Protected version of iter_people
         """
-        for person in filter(None, self.db.iter_people()):
-            if self.__is_living(person):
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    continue
+        if order_by:
+            retval = []
+            for person in filter(None, self.db.iter_people()):
+                if self.__is_living(person):
+                    if self.mode == self.MODE_EXCLUDE_ALL:
+                        continue
+                    else:
+                        retval.append(self.__restrict_person(person))
                 else:
-                    yield self.__restrict_person(person)
-            else:
-                yield person
+                    retval.append(person)
+            retval = sort_objects(retval, order_by, self)
+            for item in retval:
+                yield item
+        else:
+            for person in filter(None, self.db.iter_people()):
+                if self.__is_living(person):
+                    if self.mode == self.MODE_EXCLUDE_ALL:
+                        continue
+                    else:
+                        yield self.__restrict_person(person)
+                else:
+                    yield person
 
     def get_person_from_gramps_id(self, val):
         """
@@ -260,20 +398,31 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_sort_as(old_name.get_sort_as())
         new_name.set_display_as(old_name.get_display_as())
         new_name.set_type(old_name.get_type())
-        if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
-            new_name.set_first_name(config.get('preferences.private-given-text'))
+        if (self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY or
+            self.mode == self.MODE_REPLACE_COMPLETE_NAME):
+            new_name.set_first_name(
+                config.get('preferences.private-given-text'))
             new_name.set_title("")
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
+
         surnlst = []
-        for surn in old_name.get_surname_list():
-            surname = Surname(source=surn)
-            if int(surname.origintype) in [NameOriginType.PATRONYMIC,
-                                           NameOriginType.MATRONYMIC]:
-                surname.set_surname(config.get('preferences.private-surname-text'))
+        if self.mode == self.MODE_REPLACE_COMPLETE_NAME:
+            surname = Surname(source=old_name.get_primary_surname())
+            surname.set_surname(
+                config.get('preferences.private-surname-text'))
             surnlst.append(surname)
+        else:
+            for surn in old_name.get_surname_list():
+                surname = Surname(source=surn)
+                if int(surname.origintype) in [NameOriginType.PATRONYMIC,
+                                               NameOriginType.MATRONYMIC]:
+                    surname.set_surname(
+                        config.get('preferences.private-surname-text'))
+                surnlst.append(surname)
+
         new_name.set_surname_list(surnlst)
         new_person.set_primary_name(new_name)
         new_person.set_privacy(person.get_privacy())

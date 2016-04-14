@@ -57,7 +57,7 @@ class MergeMediaQuery(object):
         self.phoenix.merge(self.titanic)
 
         with DbTxn(_("Merge Media Objects"), self.database) as trans:
-            self.database.commit_media_object(self.phoenix, trans)
+            self.database.commit_media(self.phoenix, trans)
             for (class_name, handle) in self.database.find_backlink_handles(
                     old_handle):
                 if class_name == Person.__name__:
@@ -93,4 +93,4 @@ class MergeMediaQuery(object):
                 else:
                     raise MergeError("Encounter an object of type % s that has "
                             "a media object reference." % class_name)
-            self.database.remove_object(old_handle, trans)
+            self.database.remove_media(old_handle, trans)

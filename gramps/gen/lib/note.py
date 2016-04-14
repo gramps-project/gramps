@@ -126,6 +126,35 @@ class Note(BasicPrimaryObject):
                 "private": self.private}
 
     @classmethod
+    def get_schema(cls):
+        """
+        The schema for Note.
+        """
+        return {
+            "handle": Handle("Note", "NOTE-HANDLE"),
+            "gramps_id": str,
+            "text": StyledText,
+            "format": int,
+            "type": NoteType,
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool,
+        }
+
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "text": _("Text"),
+            "format": _("Format"),
+            "type": _("Type"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
+    @classmethod
     def from_struct(cls, struct):
         """
         Given a struct data representation, return a serialized object.

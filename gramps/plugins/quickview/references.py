@@ -48,8 +48,8 @@ def get_ref(db, objclass, handle):
         ref = db.get_place_from_handle(handle)
     elif objclass == 'Note':
         ref = db.get_note_from_handle(handle)
-    elif objclass in ['MediaObject', 'Media']:
-        ref = db.get_object_from_handle(handle)
+    elif objclass == 'Media':
+        ref = db.get_media_from_handle(handle)
     else:
         ref = objclass
     return ref

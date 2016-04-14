@@ -220,6 +220,24 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         }
 
     @classmethod
+    def get_extra_secondary_fields(cls):
+        """
+        Return a list of full field names and types for secondary
+        fields that are not directly listed in the schema.
+        """
+        return [
+            ("primary_name.first_name", str),
+            ("primary_name.surname_list.0.surname", str),
+        ]
+
+    @classmethod
+    def get_index_fields(cls):
+        return [
+            "primary_name.first_name",
+            "primary_name.surname_list.0.surname",
+        ]
+
+    @classmethod
     def get_labels(cls, _):
         return {
             "handle":  _("Handle"),

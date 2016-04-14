@@ -123,3 +123,4 @@ class EnumeratedListOption(Option):
         else:
             logging.warning(_("Value '%(val)s' not found for option '%(opt)s'") %
                              {'val' : str(value), 'opt' : self.get_label()})
+            logging.warning(_("Valid values: ") + str(self.__items))

@@ -265,6 +265,8 @@ class Gramps(object):
             handler = ArgHandler(self.dbstate, argparser, self.climanager)
             # create a manager to manage the database
             handler.handle_args_cli()
+            if handler.dbstate.db.is_open():
+                handler.dbstate.db.close()
         return output
 
 #===eof===

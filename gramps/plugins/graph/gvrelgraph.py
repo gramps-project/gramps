@@ -357,7 +357,8 @@ class RelGraphReport(Report):
             return
         fam_id = fam.get_gramps_id()
 
-        date_label = place_label = None
+        m_type = m_date = m_place = ""
+        d_type = d_date = d_place = ""
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
             if event is None:
@@ -366,34 +367,61 @@ class RelGraphReport(Report):
                 (event_ref.get_role() == EventRoleType.FAMILY or
                  event_ref.get_role() == EventRoleType.PRIMARY)
                ):
-                date_label = self.get_date_string(event)
-                if not (self.event_choice == 3 and date_label):
-                    place_label = self.get_place_string(event)
+                m_type = event.type
+                m_date = self.get_date_string(event)
+                if not (self.event_choice == 3 and m_date):
+                    m_place = self.get_place_string(event)
                 break
-        if self.includeid == 0 and not date_label and not place_label:
-            label = ""
-        elif self.includeid == 0 and not date_label and place_label:
-            label = "(%s)" % place_label
-        elif self.includeid == 0 and date_label and not place_label:
-            label = "(%s)" % date_label
-        elif self.includeid == 0 and date_label and place_label:
-            label = "(%s)\\n(%s)" % (date_label, place_label)
-        elif self.includeid == 1 and not date_label and not place_label:
-            label = "(%s)" % fam_id
-        elif self.includeid == 1 and not date_label and place_label:
-            label = "(%s) (%s)" % (fam_id, place_label) # id on same line
-        elif self.includeid == 1 and date_label and not place_label:
-            label = "(%s) (%s)" % (fam_id, date_label) # id on same line
-        elif self.includeid == 1 and date_label and place_label:
-            label = "(%s) (%s)\\n(%s)" % (fam_id, date_label, place_label)
-        elif self.includeid == 2 and not date_label and not place_label:
-            label = "(%s)" % fam_id
-        elif self.includeid == 2 and not date_label and place_label:
-            label = "(%s)\\n(%s)" % (fam_id, place_label) # id on own line
-        elif self.includeid == 2 and date_label and not place_label:
-            label = "(%s)\\n(%s)" % (fam_id, date_label) # id on own line
-        elif self.includeid == 2 and date_label and place_label:
-            label = "(%s)\\n(%s)\\n(%s)" % (fam_id, date_label, place_label)
+            if (event.type == EventType.DIVORCE and
+                (event_ref.get_role() == EventRoleType.FAMILY or
+                 event_ref.get_role() == EventRoleType.PRIMARY)
+               ):
+                d_type = event.type
+                d_date = self.get_date_string(event)
+                if not (self.event_choice == 3 and d_date):
+                    d_place = self.get_place_string(event)
+                break
+
+        labellines = list()
+        if self.includeid == 2:
+            # id on separate line
+            labellines.append("(%s)" % fam_id)
+        if (self.event_choice == 7):
+            if (m_type):
+                line = m_type.get_abbreviation()
+                if (m_date):
+                    line += ' %s' % m_date
+                if (m_date and m_place):
+                    labellines.append(line)
+                    line = ''
+                if (m_place):
+                    line += ' %s' % m_place
+                labellines.append(line)
+            if (d_type):
+                line = d_type.get_abbreviation()
+                if (d_date):
+                    line += ' %s' % d_date
+                if (d_date and d_place):
+                    labellines.append(line)
+                    line = ''
+                if (d_place):
+                    line += ' %s' % d_place
+                labellines.append(line)
+        else:
+            if m_date:
+                labellines.append("(%s)" % m_date)
+            if m_place:
+                labellines.append("(%s)" % m_place)
+
+        label = "\\n".join(labellines)
+        labellines = list()
+        if self.includeid == 1:
+            # id on same line
+            labellines.append("(%s)" % fam_id)
+        if len(label):
+            labellines.append(label)
+        label = ' '.join(labellines)
+
         color = ""
         fill = ""
         style = "solid"
@@ -468,7 +496,7 @@ class RelGraphReport(Report):
             mediaList = person.get_media_list()
             if len(mediaList) > 0:
                 mediaHandle = mediaList[0].get_reference_handle()
-                media = self.database.get_object_from_handle(mediaHandle)
+                media = self.database.get_media_from_handle(mediaHandle)
                 mediaMimeType = media.get_mime_type()
                 if mediaMimeType[0:5] == "image":
                     imagePath = get_thumbnail_path(
@@ -518,7 +546,7 @@ class RelGraphReport(Report):
         elif self.includeid == 2: # own line
             label += "%s(%s)" % (lineDelimiter, p_id)
         if self.event_choice != 0:
-            b_date, d_date, b_place, d_place = self.get_event_strings(person)
+            b_date, d_date, b_place, d_place, b_type, d_type = self.get_event_strings(person)
             if self.event_choice in [1, 2, 3, 4, 5] and (b_date or d_date):
                 label += '%s(' % lineDelimiter
                 if b_date:
@@ -538,6 +566,16 @@ class RelGraphReport(Report):
                 if d_place:
                     label += '%s' % d_place
                 label += ')'
+        if (self.event_choice == 7):
+            if (b_type):
+                label += '%s%s' % (lineDelimiter, b_type.get_abbreviation())
+                if (b_date): label += ' %s' % b_date
+                if (b_place): label += ' %s' % b_place
+
+            if (d_type):
+                label += '%s%s' % (lineDelimiter, d_type.get_abbreviation())
+                if (d_date): label += ' %s' % d_date
+                if (d_place): label += ' %s' % d_place
 
         if self.increlname and self.center_person != person:
             # display relationship info
@@ -555,7 +593,7 @@ class RelGraphReport(Report):
                 if relationship:
                     label += "%s(%s)" % (lineDelimiter, relationship)
 
-        if self.occupation:
+        if self.occupation > 0:
            event_refs = person.get_primary_event_ref_list()
            events = [event for event in
                         [self.database.get_event_from_handle(ref.ref)
@@ -564,9 +602,26 @@ class RelGraphReport(Report):
                             EventType(EventType.OCCUPATION)]
            if len(events) > 0:
                events.sort(key=lambda x: x.get_date_object())
-               occupation = events[-1].get_description()
-               if occupation:
-                   label += "%s(%s)" % (lineDelimiter, occupation)
+               if (self.occupation == 1):
+                   occupation = events[-1].get_description()
+                   if occupation:
+                       label += "%s(%s)" % (lineDelimiter, occupation)
+               elif (self.occupation == 2):
+                   for e in events:
+                       date = self.get_date_string(e)
+                       place = self.get_place_string(e)
+                       desc = e.get_description()
+                       if (not date and not desc and not place): continue
+                       label += '%s(' % lineDelimiter
+                       if (date):
+                           label += '%s' % date
+                           if (desc): label += ' '
+                       if (desc):
+                           label += '%s' % desc
+                       if (place):
+                           if (date or desc): label += ', '
+                           label += '%s' % place
+                       label += ')'
 
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
@@ -580,18 +635,21 @@ class RelGraphReport(Report):
         "returns tuple of birth/christening and death/burying date strings"
 
         birth_date = birth_place = death_date = death_place = ""
+        birth_type = death_type = ""
 
         birth_event = get_birth_or_fallback(self.database, person)
         if birth_event:
+            birth_type = birth_event.type
             birth_date = self.get_date_string(birth_event)
             birth_place = self.get_place_string(birth_event)
 
         death_event = get_death_or_fallback(self.database, person)
         if death_event:
+            death_type = death_event.type
             death_date = self.get_date_string(death_event)
             death_place = self.get_place_string(death_event)
 
-        return (birth_date, death_date, birth_place, death_place)
+        return (birth_date, death_date, birth_place, death_place, birth_type, death_type)
 
     def get_date_string(self, event):
         """
@@ -608,7 +666,7 @@ class RelGraphReport(Report):
             if event_date.get_year_valid():
                 if self.event_choice in [4, 5]:
                     return '%i' % event_date.get_year()
-                elif self.event_choice in [1, 2, 3]:
+                elif self.event_choice in [1, 2, 3, 7]:
                     return self._get_date(event_date)
         return ''
 
@@ -621,7 +679,7 @@ class RelGraphReport(Report):
             place name
             empty string
         """
-        if event and self.event_choice in [2, 3, 5, 6]:
+        if event and self.event_choice in [2, 3, 5, 6, 7]:
             return place_displayer.display_event(self.database, event)
         return ''
 
@@ -688,6 +746,8 @@ class RelGraphOptions(MenuReportOptions):
                                          'years, and places'))
         self.event_choice.add_item(6, _('Include (birth, marriage, death) '
                                          'places, but no dates'))
+        self.event_choice.add_item(7, _('Include (birth, marriage, death) '
+                                         'dates and places on same line'))
         self.event_choice.set_help(_("Whether to include dates and/or places"))
         add_option("event_choice", self.event_choice)
 
@@ -729,7 +789,11 @@ class RelGraphOptions(MenuReportOptions):
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
 
-        occupation = BooleanOption(_("Include occupation"), False)
+        #occupation = BooleanOption(_("Include occupation"), False)
+        occupation = EnumeratedListOption(_('Include occupation'), 0)
+        occupation.add_item(0, _('Do not include any occupation'))
+        occupation.add_item(1, _('Include description of most recent occupation'))
+        occupation.add_item(2, _('Include date, description and place of all occupations'))
         occupation.set_help(_("Whether to include the last occupation"))
         add_option("occupation", occupation)
 

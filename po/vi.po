@@ -27813,7 +27813,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Lọc_tiêu_chí|kho đảo thứ tự"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Lọc_tiêu_chí|đối tượng đa phương tiện đảo thứ tự "
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

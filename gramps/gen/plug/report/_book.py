@@ -426,12 +426,13 @@ class BookList(object):
         """
         del self.bookmap[name]
 
-    def get_book_map(self):
-        """
-        Return the map of names to books.
-        """
-        return self.bookmap
-
+## 2/2016 the string "get_book_map" appears nowhere else in gramps
+##    def get_book_map(self):
+##        """
+##        Return the map of names to books.
+##        """
+##        return self.bookmap
+##
     def get_book(self, name):
         """
         Return the Book associated with the name
@@ -463,15 +464,15 @@ class BookList(object):
         for name in sorted(self.bookmap): # enable a diff of archived copies
             book = self.get_book(name)
             dbname = book.get_dbname()
-            f.write('<book name="%s" database="%s">\n' % (name, dbname) )
+            f.write('  <book name="%s" database="%s">\n' % (name, dbname) )
             for item in book.get_item_list():
-                f.write('  <item name="%s" trans_name="%s">\n' %
-                            (item.get_name(),item.get_translated_name() ) )
+                f.write('    <item name="%s" trans_name="%s">\n' %
+                              (item.get_name(), item.get_translated_name() ) )
                 options = item.option_class.handler.options_dict
                 for option_name in sorted(options.keys()): # enable a diff
                     option_value = options[option_name]
                     if isinstance(option_value, (list, tuple)):
-                        f.write('    <option name="%s" value="" '
+                        f.write('      <option name="%s" value="" '
                                 'length="%d">\n' % (
                                     escape(option_name),
                                     len(options[option_name]) ) )
@@ -479,43 +480,43 @@ class BookList(object):
                             option_type = type_name(option_value[list_index])
                             value = escape(str(option_value[list_index]))
                             value = value.replace('"', '&quot;')
-                            f.write('      <listitem number="%d" type="%s" '
+                            f.write('        <listitem number="%d" type="%s" '
                                     'value="%s"/>\n' % (
                                         list_index,
                                         option_type,
                                         value ) )
-                        f.write('    </option>\n')
+                        f.write('      </option>\n')
                     else:
                         option_type = type_name(option_value)
                         value = escape(str(option_value))
                         value = value.replace('"', '&quot;')
-                        f.write('    <option name="%s" type="%s" '
+                        f.write('      <option name="%s" type="%s" '
                                 'value="%s"/>\n' % (
                                     escape(option_name),
                                     option_type,
                                     value) )
 
-                f.write('    <style name="%s"/>\n' % item.get_style_name() )
-                f.write('  </item>\n')
+                f.write('      <style name="%s"/>\n' % item.get_style_name() )
+                f.write('    </item>\n')
             if book.get_paper_name():
-                f.write('  <paper name="%s"/>\n' % book.get_paper_name() )
+                f.write('    <paper name="%s"/>\n' % book.get_paper_name() )
             if book.get_orientation() is not None: # 0 is legal
-                f.write('  <orientation value="%s"/>\n' %
+                f.write('    <orientation value="%s"/>\n' %
                         book.get_orientation() )
             if book.get_paper_metric() is not None: # 0 is legal
-                f.write('  <metric value="%s"/>\n' % book.get_paper_metric() )
+                f.write('    <metric value="%s"/>\n' % book.get_paper_metric() )
             if book.get_custom_paper_size():
                 size = book.get_custom_paper_size()
-                f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
+                f.write('    <size value="%f %f"/>\n' % (size[0], size[1]) )
             if book.get_margins():
                 for pos in range(len(book.get_margins())):
-                    f.write('  <margin number="%s" value="%f"/>\n' %
-                                (pos, book.get_margin(pos)) )
+                    f.write('    <margin number="%s" value="%f"/>\n' %
+                                  (pos, book.get_margin(pos)) )
             if book.get_format_name():
-                f.write('  <format name="%s"/>\n' % book.get_format_name() )
+                f.write('    <format name="%s"/>\n' % book.get_format_name() )
             if book.get_output():
-                f.write('  <output name="%s"/>\n' % book.get_output() )
-            f.write('</book>\n')
+                f.write('    <output name="%s"/>\n' % book.get_output() )
+            f.write('  </book>\n')
 
         f.write('</booklist>\n')
         f.close()

@@ -27219,7 +27219,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "عكس المستودع"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "عكس كائن الوسائط"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

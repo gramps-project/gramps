@@ -40,7 +40,7 @@ LOG = logging.getLogger(".citation")
 #
 #-------------------------------------------------------------------------
 from ..lib import (MediaRef, Attribute, Address, EventRef,
-                   Person, Name, Source, RepoRef, MediaObject, Place, Event,
+                   Person, Name, Source, RepoRef, Media, Place, Event,
                    Family, ChildRef, Repository, LdsOrd, Surname, Citation,
                    SrcAttribute, Note, Tag)
 from .proxybase import ProxyDbBase
@@ -56,6 +56,121 @@ class PrivateProxyDb(ProxyDbBase):
         Create a new PrivateProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):
         """
@@ -87,12 +202,12 @@ class PrivateProxyDb(ProxyDbBase):
             return sanitize_citation(self.db, citation)
         return None
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
         Finds an Object in the database from the passed Gramps ID.
         If no such Object exists, None is returned.
         """
-        media = self.db.get_object_from_handle(handle)
+        media = self.db.get_media_from_handle(handle)
         if media and not media.get_privacy():
             return sanitize_media(self.db, media)
         return None
@@ -207,12 +322,12 @@ class PrivateProxyDb(ProxyDbBase):
             return sanitize_citation(self.db, citation)
         return None
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed Gramps ID.
-        If no such MediaObject exists, None is returned.
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
         """
-        obj = self.db.get_object_from_gramps_id(val)
+        obj = self.db.get_media_from_gramps_id(val)
         if obj and not obj.get_privacy():
             return sanitize_media(self.db, obj)
         return None
@@ -281,11 +396,11 @@ class PrivateProxyDb(ProxyDbBase):
         obj = self.get_unfiltered_place(handle)
         return obj and not obj.get_privacy()
 
-    def include_media_object(self, handle):
+    def include_media(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """
-        obj = self.get_unfiltered_object(handle)
+        obj = self.get_unfiltered_media(handle)
         return obj and not obj.get_privacy()
 
     def include_repository(self, handle):
@@ -374,9 +489,9 @@ class PrivateProxyDb(ProxyDbBase):
 
     def has_object_handle(self, handle):
         """
-        Return True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current Mediadatabase.
         """
-        object = self.db.get_object_from_handle(handle)
+        object = self.db.get_media_from_handle(handle)
         if object and not object.get_privacy():
             return True
         return False
@@ -432,7 +547,7 @@ class PrivateProxyDb(ProxyDbBase):
             'Source'        : self.db.get_source_from_handle,
             'Citation'      : self.db.get_citation_from_handle,
             'Place'         : self.db.get_place_from_handle,
-            'MediaObject'   : self.db.get_object_from_handle,
+            'Media'   : self.db.get_media_from_handle,
             'Note'          : self.db.get_note_from_handle,
             'Repository'    : self.db.get_repository_from_handle,
             }
@@ -463,8 +578,8 @@ def copy_media_ref_list(db, original_obj, clean_obj):
     for media_ref in original_obj.get_media_list():
         if media_ref and not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
-            media_object = db.get_object_from_handle(handle)
-            if media_object and not media_object.get_privacy():
+            media = db.get_media_from_handle(handle)
+            if media and not media.get_privacy():
                 clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 def copy_citation_ref_list(db, original_obj, clean_obj):
@@ -930,7 +1045,7 @@ def sanitize_source(db, source):
 
 def sanitize_media(db, media):
     """
-    Create a new MediaObject instance based off the passed Media
+    Create a new Media instance based off the passed Media
     instance. The returned instance has all private records
     removed from it.
 
@@ -938,11 +1053,11 @@ def sanitize_media(db, media):
     :type db: DbBase
     :param media: source Media object that will be copied with
                   privacy records removed
-    :type media: MediaObject
+    :type media: Media
     :returns: 'cleansed' Media object
-    :rtype: MediaObject
+    :rtype: Media
     """
-    new_media = MediaObject()
+    new_media = Media()
 
     new_media.set_mime_type(media.get_mime_type())
     new_media.set_path(media.get_path())
@@ -983,6 +1098,7 @@ def sanitize_place(db, place):
     new_place.set_latitude(place.get_latitude())
     new_place.set_alternate_locations(place.get_alternate_locations())
     new_place.set_name(place.get_name())
+    new_place.set_alternative_names(place.get_alternative_names())
     new_place.set_type(place.get_type())
     new_place.set_code(place.get_code())
     new_place.set_placeref_list(place.get_placeref_list())

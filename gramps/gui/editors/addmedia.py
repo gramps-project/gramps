@@ -67,31 +67,31 @@ from gramps.gen.const import URL_MANUAL_SECT2
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Select_a_media_object_selector')
+WIKI_HELP_SEC = _('manual|Select_a_media_selector')
 
 #-------------------------------------------------------------------------
 #
-# AddMediaObject
+# AddMedia
 #
 #-------------------------------------------------------------------------
-class AddMediaObject(ManagedWindow):
+class AddMedia(ManagedWindow):
     """
     Displays the Add Media Dialog window, allowing the user to select
     a file from the file system, while providing a description.
     """
 
-    def __init__(self, dbstate, uistate, track, mediaobj, callback=None):
+    def __init__(self, dbstate, uistate, track, media, callback=None):
         """
         Create and displays the dialog box
 
         db - the database in which the new object is to be stored
-        The mediaobject is updated with the information, and on save, the
+        The media is updated with the information, and on save, the
         callback function is called
         """
         ManagedWindow.__init__(self, uistate, track, self)
 
         self.dbase = dbstate.db
-        self.obj = mediaobj
+        self.obj = media
         self.callback = callback
 
         self.last_directory = config.get('behavior.addmedia-image-dir')

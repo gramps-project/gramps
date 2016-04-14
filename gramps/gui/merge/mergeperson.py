@@ -325,7 +325,8 @@ class MergePerson(ManagedWindow):
             query = MergePersonQuery(self.database, phoenix, titanic)
             query.execute()
         except MergeError as err:
-            ErrorDialog( _("Cannot merge people"), str(err))
+            ErrorDialog(_("Cannot merge people"), str(err),
+                        parent=self.uistate.window)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:

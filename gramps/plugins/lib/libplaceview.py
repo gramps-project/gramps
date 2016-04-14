@@ -258,7 +258,7 @@ class PlaceBaseView(ListView):
         if not len(self.mapservicedata):
             msg = _("No map service is available.")
             msg2 = _("Check your installation.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
             return
 
         place_handles = self.selected_handles()
@@ -269,7 +269,7 @@ class PlaceBaseView(ListView):
             msg2 = _("You need to select a place to be able to view it"
                      " on a map. Some Map Services might support multiple"
                      " selections.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
             return
 
         #TODO: support for descriptions in some cases. For now, pass None
@@ -363,7 +363,7 @@ class PlaceBaseView(ListView):
                 msg = _("Cannot delete place.")
                 msg2 = _("This place is currently referenced by another place. "
                          "First remove the places it contains.")
-                ErrorDialog(msg, msg2)
+                ErrorDialog(msg, msg2, parent=self.uistate.window)
                 return
         self.remove_selected_objects()
 
@@ -406,14 +406,14 @@ class PlaceBaseView(ListView):
             msg2 = _("Exactly two places must be selected to perform a merge. "
                      "A second place can be selected by holding down the "
                      "control key while clicking on the desired place.")
-            ErrorDialog(msg, msg2)
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             if (located_in(self.dbstate.db, mlist[0], mlist[1]) or
                 located_in(self.dbstate.db, mlist[1], mlist[0])):
                 msg = _("Cannot merge places.")
                 msg2 = _("Merging these places would create a cycle in the "
                          "place hierarchy.")
-                ErrorDialog(msg, msg2)
+                ErrorDialog(msg, msg2, parent=self.uistate.window)
             else:
                 MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1],
                            self.merged)
@@ -458,7 +458,8 @@ class PlaceBaseView(ListView):
         """
         return (("Place Filter",),
                 ("Place Details",
-                 "Place Locations",
+                 "Place Enclosed By",
+                 "Place Encloses",
                  "Place Gallery",
                  "Place Citations",
                  "Place Notes",

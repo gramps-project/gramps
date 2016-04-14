@@ -468,7 +468,7 @@ class WriterOptionBox(object):
         After this function is called, the following variables are defined:
 
            private  = privacy requested
-           restrict = restrict information on living peoplel
+           restrict = restrict information on living people
            cfitler  = return the GenericFilter selected
            nfilter  = return the NoteFilter selected
            reference = restrict referenced/orphaned records
@@ -578,8 +578,9 @@ class WriterOptionBox(object):
                     progress.update(progress.progress_cnt)
                 mode = [None, # include living
                         LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+                        LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
                         LivingProxyDb.MODE_EXCLUDE_ALL,
-                        ][self.restrict_num]
+                       ][self.restrict_num]
                 dbase = LivingProxyDb(
                             dbase,
                             mode) #
@@ -703,10 +704,11 @@ class WriterOptionBox(object):
         elif namespace == "living":
             model = Gtk.ListStore(GObject.TYPE_STRING, int)
             row = 0
-            for item in [
-                _('Include all selected people'),
-                _('Replace given names of living people'),
-                _('Do not include living people')]:
+            for item in [_('Include all selected people'),
+                         _('Replace given names of living people'),
+                         _('Replace complete name of living people'),
+                         _('Do not include living people'),
+                        ]:
                 model.append(row=[item, row])
                 row += 1
 

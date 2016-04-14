@@ -138,12 +138,11 @@ def build_trans(build_cmd):
                 reply = input(ask)
                 if reply in ['n', 'N']:
                     raise SystemExit(msg)
+            log.info('Compiling %s >> %s', po_file, mo_file)
 
         #linux specific piece:
         target = 'share/locale/' + lang + '/LC_MESSAGES'
         data_files.append((target, [mo_file_unix]))
-
-        log.info('Compiling %s >> %s.', po_file, target)
 
 def build_man(build_cmd):
     '''
@@ -164,7 +163,7 @@ def build_man(build_cmd):
             import gzip
             man_file_gz = os.path.join(newdir, 'gramps.1.gz')
             if os.path.exists(man_file_gz):
-                if newer(newfile, man_file_gz):
+                if newer(filename, man_file_gz):
                     os.remove(man_file_gz)
                 else:
                     filename = False
@@ -175,6 +174,7 @@ def build_man(build_cmd):
                 with open(newfile, 'rb') as f_in,\
                         gzip.open(man_file_gz, 'wb') as f_out:
                     f_out.writelines(f_in)
+                    log.info('Compiling %s >> %s', filename, man_file_gz)
 
                 os.remove(newfile)
                 filename = False
@@ -183,8 +183,6 @@ def build_man(build_cmd):
             src = build_cmd.build_base  + '/data/man/' + lang  + '/gramps.1.gz'
             target = 'share/man/' + lang + '/man1'
             data_files.append((target, [src]))
-
-            log.info('Compiling %s >> %s.', src, target)
 
 def build_intl(build_cmd):
     '''
@@ -329,6 +327,8 @@ package_core = ['gramps',
                 'gramps.plugins', 
                 'gramps.plugins.database', 
                 'gramps.plugins.database.bsddb_support', 
+                'gramps.plugins.database.dbapi_support',
+                'gramps.plugins.database.dbapi_support.defaults',
                 'gramps.plugins.docgen', 
                 'gramps.plugins.drawreport', 
                 'gramps.plugins.export', 
@@ -407,7 +407,6 @@ GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 IMAGE_WEB = glob.glob(os.path.join('images', 'webstuff', '*.png'))
 IMAGE_WEB.extend(glob.glob(os.path.join('images', 'webstuff','*.ico')))
 IMAGE_WEB.extend(glob.glob(os.path.join('images', 'webstuff', '*.gif')))
-JS_FILES = glob.glob(os.path.join('data', 'javascript', '*.js'))
 CSS_FILES = glob.glob(os.path.join('data', 'css', '*.css'))
 SWANKY_PURSE = glob.glob(os.path.join('data', 'css', 'swanky-purse', '*.css'))
 SWANKY_IMG = glob.glob(os.path.join('data', 'css', 'swanky-purse', 'images', '*.png'))
@@ -501,6 +500,7 @@ setup(name = 'gramps',
           "Natural Language :: Greek",
           "Natural Language :: Hebrew",
           "Natural Language :: Hungarian",
+          "Natural Language :: Icelandic",
           "Natural Language :: Italian",
           "Natural Language :: Japanese",
           "Natural Language :: Macedonian",

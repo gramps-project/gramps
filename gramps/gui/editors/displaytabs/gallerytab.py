@@ -49,7 +49,7 @@ from gi.repository import GLib
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from gramps.gen.lib import MediaObject, MediaRef
+from gramps.gen.lib import Media, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
                                    create_checksum)
@@ -100,8 +100,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         """
         #note: media-rebuild closes the editors, so no need to connect to it
         self.callman.register_callbacks(
-           {'media-delete': self.media_delete,  # delete a mediaobj we track
-            'media-update': self.media_update,  # change a mediaobj we track
+           {'media-delete': self.media_delete,  # delete a media we track
+            'media-update': self.media_update,  # change a media we track
            })
         self.callman.connect_all(keys=['media'])
 
@@ -132,7 +132,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
         self.menu = Gtk.Menu()
 
-        ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
+        ref_obj = self.dbstate.db.get_media_from_handle(obj.ref)
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
             item = Gtk.ImageMenuItem(_('View'))
@@ -255,7 +255,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         self._build_icon_model()
         for ref in self.media_list:
             handle = ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(handle)
+            obj = self.dbstate.db.get_media_from_handle(handle)
             if obj is None :
                 #notify user of error
                 from ...dialog import RunDatabaseRepair
@@ -285,7 +285,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         try:
             from .. import EditMediaRef
             EditMediaRef(self.dbstate, self.uistate, self.track,
-                         MediaObject(), MediaRef(),
+                         Media(), MediaRef(),
                          self.add_callback)
         except WindowActiveError:
             pass
@@ -322,7 +322,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         This function should be overridden by the derived class.
 
         """
-        SelectObject = SelectorFactory('MediaObject')
+        SelectObject = SelectorFactory('Media')
 
         sel = SelectObject(self.dbstate, self.uistate, self.track)
         src = sel.run()
@@ -346,7 +346,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
-            obj = self.dbstate.db.get_object_from_handle(
+            obj = self.dbstate.db.get_media_from_handle(
                                                 ref.get_reference_handle())
             try:
                 from .. import EditMediaRef
@@ -515,7 +515,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         mime = get_type(name)
                         if not is_valid_type(mime):
                             return
-                        photo = MediaObject()
+                        photo = Media()
                         self.uistate.set_busy_cursor(True)
                         photo.set_checksum(create_checksum(name))
                         self.uistate.set_busy_cursor(False)
@@ -529,7 +529,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         photo.set_description(root)
                         with DbTxn(_("Drag Media Object"),
                                    self.dbstate.db) as trans:
-                            self.dbstate.db.add_object(photo, trans)
+                            self.dbstate.db.add_media(photo, trans)
                             oref = MediaRef()
                             oref.set_reference_handle(photo.get_handle())
                             self.get_data().append(oref)

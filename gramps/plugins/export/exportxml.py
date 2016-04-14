@@ -209,7 +209,7 @@ class GrampsXmlWriter(UpdateCallback):
         source_len = self.db.get_number_of_sources()
         place_len = self.db.get_number_of_places()
         repo_len = self.db.get_number_of_repositories()
-        obj_len = self.db.get_number_of_media_objects()
+        obj_len = self.db.get_number_of_media()
         note_len = self.db.get_number_of_notes()
         tag_len = self.db.get_number_of_tags()
 
@@ -316,8 +316,8 @@ class GrampsXmlWriter(UpdateCallback):
 
         if obj_len > 0:
             self.g.write("  <objects>\n")
-            for handle in sorted(self.db.get_media_object_handles()):
-                obj = self.db.get_object_from_handle(handle)
+            for handle in sorted(self.db.get_media_handles()):
+                obj = self.db.get_media_from_handle(handle)
                 self.write_object(obj,2)
                 self.update()
             self.g.write("  </objects>\n")
@@ -979,6 +979,11 @@ class GrampsXmlWriter(UpdateCallback):
     def dump_name(self, name,alternative=False,index=1):
         sp = "  "*index
         name_type = name.get_type().xml_str()
+        # bug 9242
+        if len(name.get_first_name().splitlines()) != 1:
+            firstname = "".join(name.get_first_name().splitlines())
+        else:
+            firstname = name.get_first_name()
         self.g.write('%s<name' % sp)
         if alternative:
             self.g.write(' alt="1"')
@@ -991,7 +996,7 @@ class GrampsXmlWriter(UpdateCallback):
         if name.get_display_as() != 0:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
-        self.write_line("first", name.get_first_name(), index+1)
+        self.write_line("first", firstname, index+1)
         self.write_line("call", name.get_call_name(), index+1)
         for surname in name.get_surname_list():
             self.write_surname(surname,index+1)

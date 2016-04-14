@@ -125,7 +125,9 @@ class PlaceDetails(Gramplet):
         """
         Display alternative names for the place.
         """
-        alt_names = [name.get_value() for name in place.get_alternative_names()]
+        alt_names = ["%s (%s)" % (name.get_value(), name.get_language())
+                     if name.get_language() else name.get_value()
+                     for name in place.get_alternative_names()]
         if len(alt_names) > 0:
             self.add_row(_('Alternative Names'), '\n'.join(alt_names))
 
@@ -155,7 +157,7 @@ class PlaceDetails(Gramplet):
         if media_list:
             media_ref = media_list[0]
             object_handle = media_ref.get_reference_handle()
-            obj = self.dbstate.db.get_object_from_handle(object_handle)
+            obj = self.dbstate.db.get_media_from_handle(object_handle)
             full_path = media_path_full(self.dbstate.db, obj.get_path())
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):

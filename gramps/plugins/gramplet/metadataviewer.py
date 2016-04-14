@@ -53,7 +53,7 @@ class MetadataViewer(Gramplet):
     def main(self):
         active_handle = self.get_active('Media')
         if active_handle:
-            media = self.dbstate.db.get_object_from_handle(active_handle)
+            media = self.dbstate.db.get_media_from_handle(active_handle)
             if media:
                 full_path = media_path_full(self.dbstate.db, media.get_path())
                 has_data = self.view.display_exif_tags(full_path)
@@ -66,7 +66,7 @@ class MetadataViewer(Gramplet):
     def update_has_data(self):
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)

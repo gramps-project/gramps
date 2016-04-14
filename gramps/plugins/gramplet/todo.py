@@ -425,7 +425,7 @@ class MediaToDo(ToDo):
     def update_has_data(self):
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
@@ -434,7 +434,7 @@ class MediaToDo(ToDo):
         self.clear_text()
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:
                 self.get_notes(active)
             else:
@@ -445,4 +445,4 @@ class MediaToDo(ToDo):
     def created(self, handle):
         with DbTxn('Attach Note', self.dbstate.db) as trans:
             self.obj.add_note(handle)
-            self.dbstate.db.commit_media_object(self.obj, trans)
+            self.dbstate.db.commit_media(self.obj, trans)

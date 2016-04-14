@@ -53,8 +53,8 @@ class StatsGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
         self.set_tooltip(_("Double-click item to see matches"))
 
-    def post_init(self):
-        self.disconnect("active-changed")
+    def active_changed(self, handle):
+        self.update()
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
@@ -82,9 +82,9 @@ class StatsGramplet(Gramplet):
         namelist = []
         notfound = []
 
-        mobjects = database.get_number_of_media_objects()
+        mobjects = database.get_number_of_media()
         mbytes = "0"
-        for media in database.iter_media_objects():
+        for media in database.iter_media():
             fullname = media_path_full(database, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)

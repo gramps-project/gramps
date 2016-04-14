@@ -23,22 +23,23 @@ class HandleClass(str):
         super(HandleClass, self).__init__()
 
     def join(self, database, handle):
-        return database._tables[self.classname]["handle_func"](handle)
+        return database.get_table_func(self.classname,"handle_func")(handle)
 
     @classmethod
     def get_schema(cls):
         from gramps.gen.lib import (Person, Family, Event, Place, Source,
-                                    MediaObject, Repository, Note, Citation)
+                                    Media, Repository, Note, Citation, Tag)
         tables = {
             "Person": Person,
             "Family": Family,
             "Event": Event,
             "Place": Place,
             "Source": Source,
-            "Media": MediaObject,
+            "Media": Media,
             "Repository": Repository,
             "Note": Note,
             "Citation": Citation,
+            "Tag": Tag,
         }
         return tables[cls.classname].get_schema()
 

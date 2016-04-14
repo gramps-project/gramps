@@ -44,7 +44,7 @@ from gi.repository import GdkPixbuf
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE, GRAMPS_LOCALE as glocale
+from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE
 from gramps.gen.config import config
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
@@ -112,7 +112,7 @@ def map2class(target):
          'repo-link': ClipRepositoryLink,
          'pevent': ClipEvent,
          'eventref': ClipEventRef,
-         'mediaobj': ClipMediaObj,
+         'media': ClipMediaObj,
          'mediaref': ClipMediaRef,
          'place-link': ClipPlace,
          'placeref': ClipPlaceRef,
@@ -139,7 +139,7 @@ OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
          'Citation': Gdk.atom_intern('citation-link', False),
          'Repository': Gdk.atom_intern('repo-link', False),
          'Event': Gdk.atom_intern('pevent', False),
-         'Media': Gdk.atom_intern('mediaobj', False),
+         'Media': Gdk.atom_intern('media', False),
          'Place': Gdk.atom_intern('place-link', False),
          'Note': Gdk.atom_intern('note-link', False),
          }
@@ -281,7 +281,7 @@ class ClipObjWrapper(ClipWrapper):
                           'Family': self._db.get_family_from_handle,
                           'Event':  self._db.get_event_from_handle,
                           'Place': self._db.get_place_from_handle,
-                          'MediaObject': self._db.get_object_from_handle,
+                          'Media': self._db.get_media_from_handle,
                           'Source': self._db.get_source_from_handle}
 
         for (classname, handle) in self._obj.get_referenced_handles_recursively():
@@ -662,7 +662,7 @@ class ClipMediaObj(ClipHandleWrapper):
 
     def refresh(self):
         if self._handle:
-            obj = self._db.get_object_from_handle(self._handle)
+            obj = self._db.get_media_from_handle(self._handle)
             if obj:
                 self._title = obj.get_description()
                 self._value = obj.get_path()
@@ -670,7 +670,7 @@ class ClipMediaObj(ClipHandleWrapper):
     def is_valid(self):
         data = pickle.loads(self._obj)
         handle = data[2]
-        obj = self._db.get_object_from_handle(handle)
+        obj = self._db.get_media_from_handle(handle)
         if obj:
             return True
         return False
@@ -688,7 +688,7 @@ class ClipMediaRef(ClipObjWrapper):
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_object_from_handle(self._obj.get_reference_handle())
+            base = self._db.get_media_from_handle(self._obj.get_reference_handle())
             if base:
                 self._title = base.get_description()
                 self._value = base.get_path()
@@ -864,8 +864,10 @@ class ClipDropList(object):
         retval = []
         for (target, handle) in handles:
             _class = map2class(target)
-            obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
-            retval.append(obj)
+            if _class:
+                obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
+                if obj:
+                    retval.append(obj)
         return retval
 
 class ClipDropRawList(ClipDropList):
@@ -1064,7 +1066,7 @@ class ClipboardListView(object):
         self._db.connect('event-delete',
                          gen_del_obj(self.delete_object_ref, 'eventref'))
         self._db.connect('media-delete',
-                         gen_del_obj(self.delete_object, 'mediaobj'))
+                         gen_del_obj(self.delete_object, 'media'))
         self._db.connect('media-delete',
                          gen_del_obj(self.delete_object_ref, 'mediaref'))
         self._db.connect('place-delete',
@@ -1644,8 +1646,8 @@ class MultiTreeView(Gtk.TreeView):
                              self.uistate, [], ref)
                 except WindowActiveError:
                     pass
-        elif objclass in ['Media', 'MediaObject']:
-            ref = self.dbstate.db.get_object_from_handle(handle)
+        elif objclass == 'Media':
+            ref = self.dbstate.db.get_media_from_handle(handle)
             if ref:
                 try:
                     EditMedia(self.dbstate,

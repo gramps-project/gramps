@@ -963,9 +963,9 @@ class WebCalReport(Report):
                 continue
             for day in vals:
                 event_date = "%04d%02d%02d" % (year, month, day)
-                if evdte == None:
+                if evdte is None:
                     evdte = event_date
-                elif nxt == None:
+                elif nxt is None:
                     nxt = event_date
                     self.event_list.append((evdte, prv, nxt))
                 else:
@@ -1254,7 +1254,7 @@ class WebCalReport(Report):
                                                                        prefix = self.narweb_prefix)))
                         else:
                             text = short_name
-                        if age_at_death == None:
+                        if age_at_death is None:
                             self.add_day_item(text, year, month, day, 'Birthday', age_at_death, birth_date)
                         else:
                             self.add_day_item(text, year, month, day, 'Birthday', age_at_death, person_death)

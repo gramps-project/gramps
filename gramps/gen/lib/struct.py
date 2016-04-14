@@ -211,15 +211,12 @@ class Struct(object):
             current = getattr(current, item)
         return current
 
-    def get_object_from_handle(self, handle):
-        return self.db.get_from_name_and_handle(handle.classname, str(handle))
-
     def handle_join(self, item):
         """
         If the item is a handle, look up reference object.
         """
         if isinstance(item, HandleClass) and self.db:
-            obj = self.get_object_from_handle(item)
+            obj = self.db.get_from_name_and_handle(item.classname, str(item))
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
@@ -263,7 +260,8 @@ class Struct(object):
             if struct is None:       # invalid part to set, skip
                 return
             if isinstance(struct, HandleClass):
-                struct = self.get_object_from_handle(struct).to_struct()
+                obj = self.db.get_from_name_and_handle(struct.classname, str(struct))
+                struct = obj.to_struct()
             # keep track of primary object for update, below
             if isinstance(struct, dict) and "_class" in struct and self.primary_object_q(struct["_class"]):
                 primary_obj = struct
@@ -297,20 +295,20 @@ class Struct(object):
                     name, handle = struct["_class"], struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
                     if old_obj:
-                        commit_func = self.db._tables[name]["commit_func"]
+                        commit_func = self.db.get_table_func(name,"commit_func")
                         commit_func(new_obj, trans)
                     else:
-                        add_func = self.db._tables[name]["add_func"]
+                        add_func = self.db.get_table_func(name,"add_func")
                         add_func(new_obj, trans)
             else:
                 new_obj = Struct.instance_from_struct(struct)
                 name, handle = struct["_class"], struct["handle"]
                 old_obj = self.db.get_from_name_and_handle(name, handle)
                 if old_obj:
-                    commit_func = self.db._tables[name]["commit_func"]
+                    commit_func = self.db.get_table_func(name,"commit_func")
                     commit_func(new_obj, trans)
                 else:
-                    add_func = self.db._tables[name]["add_func"]
+                    add_func = self.db.get_table_func(name,"add_func")
                     add_func(new_obj, trans)
 
     def from_struct(self):
@@ -324,7 +322,7 @@ class Struct(object):
         self is class when called as a classmethod.
         """
         from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
-                                     Repository, MediaObject, Note, Tag, Date)
+                                     Repository, Media, Note, Tag, Date)
         if isinstance(struct, dict):
             if "_class" in struct.keys():
                 if struct["_class"] == "Person":
@@ -341,8 +339,8 @@ class Struct(object):
                     return Citation.create(Citation.from_struct(struct))
                 elif struct["_class"] == "Repository":
                     return Repository.create(Repository.from_struct(struct))
-                elif struct["_class"] == "MediaObject":
-                    return MediaObject.create(MediaObject.from_struct(struct))
+                elif struct["_class"] == "Media":
+                    return Media.create(Media.from_struct(struct))
                 elif struct["_class"] == "Note":
                     return Note.create(Note.from_struct(struct))
                 elif struct["_class"] == "Tag":

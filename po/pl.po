@@ -28027,7 +28027,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "odwróć magazyny"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "odwróć obiekty medialne"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

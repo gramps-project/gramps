@@ -45,7 +45,6 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.simple import SimpleTable
 from gramps.gen.errors import WindowActiveError
@@ -148,7 +147,7 @@ class QuickTable(SimpleTable):
                 objclass, handle = self._link[index]
                 if (objclass == 'Filter' and
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
-                                  'Repository', 'Note', 'MediaObject',
+                                  'Repository', 'Note', 'Media',
                                   'Citation', 'Source']):
                     menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
                     menu_item.connect("activate",
@@ -256,8 +255,8 @@ class QuickTable(SimpleTable):
                         return True # handled event
                     except WindowActiveError:
                         pass
-            elif objclass in ['Media', 'MediaObject']:
-                ref = self.access.dbase.get_object_from_handle(handle)
+            elif objclass == 'Media':
+                ref = self.access.dbase.get_media_from_handle(handle)
                 if ref:
                     try:
                         EditMedia(self.simpledoc.doc.dbstate,

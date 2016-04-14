@@ -24,8 +24,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 log = logging.getLogger(".")
 
@@ -41,9 +39,10 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.datehandler import displayer, format_time
-from gramps.gen.lib import Date, MediaObject
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.datehandler import displayer, format_time
+from gramps.gen.lib import Date, Media
 from .flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -56,7 +55,7 @@ class MediaModel(FlatBaseModel):
     def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_media_cursor
-        self.map = db.get_raw_object_data
+        self.map = db.get_raw_media_data
 
         self.fmap = [
             self.column_description,
@@ -128,7 +127,7 @@ class MediaModel(FlatBaseModel):
         return ''
 
     def sort_date(self,data):
-        obj = MediaObject()
+        obj = Media()
         obj.unserialize(data)
         d = obj.get_date_object()
         if d:

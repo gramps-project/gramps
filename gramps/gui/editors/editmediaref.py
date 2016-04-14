@@ -58,7 +58,7 @@ from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, MediaBackRefLis
 from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                        MonitoredDate, MonitoredTagList, SelectionWidget, Region)
 from .editreference import RefTab, EditReference
-from .addmedia import AddMediaObject
+from .addmedia import AddMedia
 from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
@@ -82,7 +82,7 @@ class EditMediaRef(EditReference):
                                media_ref, update)
         if not self.source.get_handle():
             #show the addmedia dialog immediately, with track of parent.
-            AddMediaObject(state, self.uistate, self.track, self.source,
+            AddMedia(state, self.uistate, self.track, self.source,
                            self._update_addmedia)
 
     def _local_init(self):
@@ -435,7 +435,7 @@ class EditMediaRef(EditReference):
         self.determine_mime()
         path = self.file_path.get_text()
         self.source.set_path(path)
-        AddMediaObject(self.dbstate, self.uistate, self.track, self.source,
+        AddMedia(self.dbstate, self.uistate, self.track, self.source,
                        self._update_addmedia)
 
     def _connect_signals(self):
@@ -516,13 +516,13 @@ class EditMediaRef(EditReference):
         if self.source.handle:
             with DbTxn(_("Edit Media Object (%s)") %
                        self.source.get_description(), self.db) as trans:
-                self.db.commit_media_object(self.source, trans)
+                self.db.commit_media(self.source, trans)
         else:
             if self.check_for_duplicate_id('Media'):
                 return
             with DbTxn(_("Add Media Object (%s)") %
                        self.source.get_description(), self.db) as trans:
-                self.db.add_object(self.source, trans)
+                self.db.add_media(self.source, trans)
 
         #save reference object in memory
         coord = (

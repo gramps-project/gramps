@@ -24,7 +24,7 @@
 Provide a simplified database access interface to the Gramps database.
 """
 from ..lib import (Person, Family, Event, Source, Place, Citation,
-                   MediaObject, Repository, Note, Date, Tag)
+                   Media, Repository, Note, Date, Tag)
 from ..lib.handle import Handle
 from ..datehandler import displayer
 from ..utils.string import gender as gender_map
@@ -862,7 +862,7 @@ class SimpleAccess(object):
         :rtype: list
         """
         return self.__all_objects(self.dbase.get_media_cursor,
-                                  self.dbase.get_object_from_handle)
+                                  self.dbase.get_media_from_handle)
 
     def all_places(self):
         """
@@ -977,7 +977,7 @@ class SimpleAccess(object):
                                             self.name(self.mother(obj)),
                                             self.name(self.father(obj)),
                                             self.gid(obj))
-                elif isinstance(obj, MediaObject):
+                elif isinstance(obj, Media):
                     return "%s: %s [%s]" % (_(object_class),
                                             obj.desc,
                                             self.gid(obj))
@@ -1030,7 +1030,7 @@ class SimpleAccess(object):
             return "%s/%s [%s]" % (self.name(self.mother(obj)),
                                    self.name(self.father(obj)),
                                    self.gid(obj))
-        elif isinstance(obj, MediaObject):
+        elif isinstance(obj, Media):
             return "%s [%s]" % (obj.desc,
                                 self.gid(obj))
         elif isinstance(obj, Source):

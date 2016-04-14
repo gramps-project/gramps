@@ -104,7 +104,7 @@ class Node(object):
         """
         Assign the handle of a Gramps object to this node.
         """
-        if not self.handle or handle == None:
+        if not self.handle or handle is None:
             self.handle = handle
             self.secondary = secondary
         else:
@@ -914,7 +914,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if val is None:
             return ''
         elif not isinstance(val, str):
-            return val.encode('utf-8')
+            return val.decode('utf-8')
         else:
             return val
 

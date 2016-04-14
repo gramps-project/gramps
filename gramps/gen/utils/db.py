@@ -361,8 +361,8 @@ def navigation_label(db, nav_type, handle):
         obj = db.get_repository_from_handle(handle)
         if obj:
             label = obj.get_name()
-    elif nav_type == 'Media' or nav_type == 'MediaObject':
-        obj = db.get_object_from_handle(handle)
+    elif nav_type == 'Media' or nav_type == 'Media':
+        obj = db.get_media_from_handle(handle)
         if obj:
             label = obj.get_description()
     elif nav_type == 'Note':
@@ -393,8 +393,9 @@ def find_children(db,p):
     childlist = []
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)
-        for child_ref in family.get_child_ref_list():
-            childlist.append(child_ref.ref)
+        if family:
+            for child_ref in family.get_child_ref_list():
+                childlist.append(child_ref.ref)
     return childlist
 
 #-------------------------------------------------------------------------
@@ -586,7 +587,7 @@ def get_citation_referents(citation_handle, db):
 
     """
     _primaries = ('Person', 'Family', 'Event', 'Place',
-                  'Source', 'MediaObject', 'Repository')
+                  'Source', 'Media', 'Repository')
 
     return (get_referents(citation_handle, db, _primaries))
 
@@ -660,6 +661,6 @@ def get_note_referents(note_handle, db):
 
     """
     _primaries = ('Person', 'Family', 'Event', 'Place',
-                  'Source', 'Citation', 'MediaObject', 'Repository')
+                  'Source', 'Citation', 'Media', 'Repository')
 
     return (get_referents(note_handle, db, _primaries))

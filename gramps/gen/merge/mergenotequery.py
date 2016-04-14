@@ -28,7 +28,7 @@ Provide merge capabilities for notes.
 #
 #-------------------------------------------------------------------------
 from ..lib import (Person, Family, Event, Place, Source, Citation, Repository,
-                   MediaObject)
+                   Media)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -89,11 +89,11 @@ class MergeNoteQuery(object):
                     assert(place.has_note_reference(old_handle))
                     place.replace_note_references(old_handle, new_handle)
                     self.database.commit_place(place, trans)
-                elif class_name == MediaObject.__name__:
-                    obj = self.database.get_object_from_handle(handle)
+                elif class_name == Media.__name__:
+                    obj = self.database.get_media_from_handle(handle)
                     assert(obj.has_note_reference(old_handle))
                     obj.replace_note_references(old_handle, new_handle)
-                    self.database.commit_media_object(obj, trans)
+                    self.database.commit_media(obj, trans)
                 elif class_name == Repository.__name__:
                     repo = self.database.get_repository_from_handle(handle)
                     assert(repo.has_note_reference(old_handle))

@@ -97,7 +97,7 @@ class EditTagList(ManagedWindow):
         """
         # pylint: disable-msg=E1101
         title = _("%(title)s - Gramps") % {'title': _("Edit Tags")}
-        top = Gtk.Dialog(title)
+        top = Gtk.Dialog(title, self.uistate.window)
         top.set_default_size(360, 400)
         top.set_modal(True)
         top.vbox.set_spacing(5)

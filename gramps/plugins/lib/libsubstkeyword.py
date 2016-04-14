@@ -919,7 +919,7 @@ class VariableParse(object):
         media_list = person_or_marriage.get_media_list()
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
-            media = self.database.get_object_from_handle(media_handle)
+            media = self.database.get_media_from_handle(media_handle)
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 return media
@@ -1395,7 +1395,7 @@ if __name__ == '__main__':
     print("#None are known")
     tmp = main_level_test(consume_str, NameFormat, name_to_test)
     print(tmp)
-    print("Good" if tmp == None else "!! bad !!")
+    print("Good" if tmp is None else "!! bad !!")
 
 
     print()

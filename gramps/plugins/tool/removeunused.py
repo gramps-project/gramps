@@ -61,6 +61,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
+from gramps.gen.filters import GenericFilterFactory, rules
 
 #-------------------------------------------------------------------------
 #
@@ -108,8 +109,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                          'editor'  : 'EditPlace',
                          'icon'    : 'gramps-place',
                          'name_ix' : 2},
-            'media'   : {'get_func': self.db.get_object_from_handle,
-                         'remove'  : self.db.remove_object,
+            'media'   : {'get_func': self.db.get_media_from_handle,
+                         'remove'  : self.db.remove_media,
                          'get_text': None,
                          'editor'  : 'EditMedia',
                          'icon'    : 'gramps-media',
@@ -261,10 +262,19 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             ('events', db.get_event_cursor, db.get_number_of_events),
             ('sources', db.get_source_cursor, db.get_number_of_sources),
             ('places', db.get_place_cursor, db.get_number_of_places),
-            ('media', db.get_media_cursor, db.get_number_of_media_objects),
+            ('media', db.get_media_cursor, db.get_number_of_media),
             ('repos', db.get_repository_cursor, db.get_number_of_repositories),
             ('notes', db.get_note_cursor, db.get_number_of_notes),
             )
+
+        # bug 7619 : don't select notes from to do list.
+        # notes associated to the todo list doesn't have references.
+        # get the todo list (from get_note_list method of the todo gramplet )
+        all_notes = self.dbstate.db.get_note_handles()
+        FilterClass = GenericFilterFactory('Note')
+        filter = FilterClass()
+        filter.add_rule(rules.note.HasType(["To Do"]))
+        todo_list = filter.apply(self.dbstate.db, all_notes)
 
         for (the_type, cursor_func, total_func) in tables:
             if not self.options.handler.options_dict[the_type]:
@@ -276,8 +286,9 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
-                        self.add_results((the_type, handle.decode('utf-8'),
-                                          data))
+                        if handle not in todo_list:
+                            self.add_results((the_type, handle.decode('utf-8'),
+                                              data))
                     self.update()
             self.reset()
 

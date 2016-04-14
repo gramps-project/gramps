@@ -143,7 +143,7 @@ class PackageWriter(object):
         #                 nl.remove(o)
         #         p.set_media_list(nl)
         #         self.db.commit_event(p,None)
-        #     self.db.remove_object(m_id,None)
+        #     self.db.remove_media(m_id,None)
 
         # def leave_clicked():
         #     # File is lost => do nothing, leave as is
@@ -181,8 +181,8 @@ class PackageWriter(object):
 
         # Write media files first, since the database may be modified
         # during the process (i.e. when removing object)
-        for m_id in self.db.get_media_object_handles(sort_handles=True):
-            mobject = self.db.get_object_from_handle(m_id)
+        for m_id in self.db.get_media_handles(sort_handles=True):
+            mobject = self.db.get_media_from_handle(m_id)
             filename = media_path_full(self.db, mobject.get_path())
             archname = str(mobject.get_path())
             if os.path.isfile(filename) and os.access(filename, os.R_OK):

@@ -58,7 +58,7 @@ from gramps.gen.lib.citation import Citation
 from gramps.gen.lib.event import Event
 from gramps.gen.lib.place import Place
 from gramps.gen.lib.repo import Repository
-from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.media import Media
 from gramps.gen.lib.note import Note
 from gramps.gen.lib.tag import Tag
 from gramps.gen.lib.genderstats import GenderStats
@@ -240,7 +240,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         DbBsddbRead.__init__(self)
         DbWriteBase.__init__(self)
         #UpdateCallback.__init__(self)
-        self._tables['Person'].update(
+        self.__tables = {
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -251,8 +252,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_person,
                 "count_func": self.get_number_of_people,
                 "del_func": self.remove_person,
-            })
-        self._tables['Family'].update(
+                "iter_func": self.iter_people,
+            },
+            'Family':
             {
                 "handle_func": self.get_family_from_handle,
                 "gramps_id_func": self.get_family_from_gramps_id,
@@ -263,8 +265,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_family,
                 "count_func": self.get_number_of_families,
                 "del_func": self.remove_family,
-            })
-        self._tables['Source'].update(
+                "iter_func": self.iter_families,
+            },
+            'Source':
             {
                 "handle_func": self.get_source_from_handle,
                 "gramps_id_func": self.get_source_from_gramps_id,
@@ -275,8 +278,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_source,
                 "count_func": self.get_number_of_sources,
                 "del_func": self.remove_source,
-                })
-        self._tables['Citation'].update(
+                "iter_func": self.iter_sources,
+            },
+            'Citation':
             {
                 "handle_func": self.get_citation_from_handle,
                 "gramps_id_func": self.get_citation_from_gramps_id,
@@ -287,8 +291,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_citation,
                 "count_func": self.get_number_of_citations,
                 "del_func": self.remove_citation,
-            })
-        self._tables['Event'].update(
+                "iter_func": self.iter_citations,
+            },
+            'Event':
             {
                 "handle_func": self.get_event_from_handle,
                 "gramps_id_func": self.get_event_from_gramps_id,
@@ -299,20 +304,22 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_event,
                 "count_func": self.get_number_of_events,
                 "del_func": self.remove_event,
-            })
-        self._tables['Media'].update(
+                "iter_func": self.iter_events,
+            },
+            'Media':
             {
-                "handle_func": self.get_object_from_handle,
-                "gramps_id_func": self.get_object_from_gramps_id,
-                "class_func": MediaObject,
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
                 "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_object_handles,
-                "add_func": self.add_object,
-                "commit_func": self.commit_media_object,
-                "count_func": self.get_number_of_media_objects,
-                "del_func": self.remove_object,
-            })
-        self._tables['Place'].update(
+                "handles_func": self.get_media_handles,
+                "add_func": self.add_media,
+                "commit_func": self.commit_media,
+                "count_func": self.get_number_of_media,
+                "del_func": self.remove_media,
+                "iter_func": self.iter_media,
+            },
+            'Place':
             {
                 "handle_func": self.get_place_from_handle,
                 "gramps_id_func": self.get_place_from_gramps_id,
@@ -323,8 +330,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_place,
                 "count_func": self.get_number_of_places,
                 "del_func": self.remove_place,
-            })
-        self._tables['Repository'].update(
+                "iter_func": self.iter_places,
+            },
+            'Repository':
             {
                 "handle_func": self.get_repository_from_handle,
                 "gramps_id_func": self.get_repository_from_gramps_id,
@@ -335,8 +343,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_repository,
                 "count_func": self.get_number_of_repositories,
                 "del_func": self.remove_repository,
-            })
-        self._tables['Note'].update(
+                "iter_func": self.iter_repositories,
+            },
+            'Note':
             {
                 "handle_func": self.get_note_from_handle,
                 "gramps_id_func": self.get_note_from_gramps_id,
@@ -347,8 +356,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_note,
                 "count_func": self.get_number_of_notes,
                 "del_func": self.remove_note,
-            })
-        self._tables['Tag'].update(
+                "iter_func": self.iter_notes,
+            },
+            'Tag':
             {
                 "handle_func": self.get_tag_from_handle,
                 "gramps_id_func": None,
@@ -359,7 +369,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "commit_func": self.commit_tag,
                 "count_func": self.get_number_of_tags,
                 "del_func": self.remove_tag,
-            })
+                "iter_func": self.iter_tags,
+            }
+        }
 
         self.secondary_connected = False
         self.has_changed = False
@@ -367,6 +379,19 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.update_env_version = False
         self.update_python_version = False
         self.update_pickle_version = False
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def catch_db_error(func):
         """
@@ -1366,7 +1391,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                             (self.get_place_cursor, Place),
                             (self.get_source_cursor, Source),
                             (self.get_citation_cursor, Citation),
-                            (self.get_media_cursor, MediaObject),
+                            (self.get_media_cursor, Media),
                             (self.get_repository_cursor, Repository),
                             (self.get_note_cursor, Note),
                             (self.get_tag_cursor, Tag),
@@ -1629,16 +1654,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     self.find_next_place_gramps_id if set_gid else None,
                     self.commit_place)
 
-    def add_object(self, obj, transaction, set_gid=True):
+    def add_media(self, media, transaction, set_gid=True):
         """
-        Add a MediaObject to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
         """
-        return self.__add_object(obj, transaction,
-                    self.find_next_object_gramps_id if set_gid else None,
-                    self.commit_media_object)
+        return self.__add_object(media, transaction,
+                    self.find_next_media_gramps_id if set_gid else None,
+                    self.commit_media)
 
     def add_repository(self, obj, transaction, set_gid=True):
         """
@@ -1735,9 +1760,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__do_remove(handle, transaction, self.event_map,
                               EVENT_KEY)
 
-    def remove_object(self, handle, transaction):
+    def remove_media(self, handle, transaction):
         """
-        Remove the MediaObjectPerson specified by the database handle from the
+        Remove the MediaPerson specified by the database handle from the
         database, preserving the change in the passed transaction.
         """
         self.__do_remove(handle, transaction, self.media_map,
@@ -1794,7 +1819,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     txn.delete(sname)
                 if group is not None:
                     txn.put(sname, group)
-            if group == None:
+            if group is None:
                 grouppar = ''
             else:
                 grouppar = group
@@ -1945,9 +1970,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_media_object(self, obj, transaction, change_time=None):
+    def commit_media(self, obj, transaction, change_time=None):
         """
-        Commit the specified MediaObject to the database, storing the changes
+        Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
         self.commit_base(obj, self.media_map, MEDIA_KEY,
@@ -2491,7 +2516,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Number of sources"): self.get_number_of_sources(),
             _("Number of citations"): self.get_number_of_citations(),
             _("Number of events"): self.get_number_of_events(),
-            _("Number of media"): self.get_number_of_media_objects(),
+            _("Number of media"): self.get_number_of_media(),
             _("Number of places"): self.get_number_of_places(),
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
@@ -2624,7 +2649,7 @@ def write_lock_file(name):
     if win():
         user = get_env_var('USERNAME')
         host = get_env_var('USERDOMAIN')
-        if host == None:
+        if host is None:
             host = ""
     else:
         host = os.uname()[1]
@@ -2652,31 +2677,3 @@ def upgrade_researcher(owner_data):
     addr = tuple([owner_data[0][0], ''] + list(owner_data[0][1:]))
     return (addr, owner_data[1], owner_data[2], owner_data[3])
 
-if __name__ == "__main__":
-
-    import os, sys, pdb
-
-    d = DbBsddb()
-    if len(sys.argv) > 1:
-        db_name = sys.argv[1]
-    else:
-        db_home = os.path.join(HOME_DIR,'grampsdb')
-        for dir in os.listdir(db_home):
-            db_path = os.path.join(db_home, dir)
-            db_fn = os.path.join(db_path, 'name.txt')
-            if os.stat(db_fn):
-                f = open(db_fn)
-                db_name = f.read()
-                if db_name == 'Small Example':
-                    break
-    print("loading", db_path)
-    d.load(db_path, lambda x: x)
-
-    print(d.get_default_person())
-    out = ''
-    with d.get_person_cursor() as c:
-        for key, data in c:
-            person = Person(data)
-            out += key + person.get_primary_name().get_name()
-
-    print(out, list(d.surnames.keys()))

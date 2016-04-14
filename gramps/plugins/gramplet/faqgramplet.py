@@ -126,7 +126,7 @@ class FAQGramplet(Gramplet):
               "How do you add a photo of a person/source/event?"
               "%(html_end)s\n") % faq_dict )
         faq_dict.update(
-            { 'faq_section' : "#How_do_you_find_unused_media_objects.3F'>" })
+            { 'faq_section' : "#How_do_you_find_unused_media.3F'>" })
         self.render_text(
             _("  9. %(gramps_FAQ_html_start)s%(faq_section)s"
               "How do you find unused media objects?"

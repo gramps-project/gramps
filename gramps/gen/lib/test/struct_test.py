@@ -23,7 +23,7 @@
 import unittest
 
 from  .. import (Person, Family, Event, Source, Place, Citation,
-                 Repository, MediaObject, Note, Tag)
+                 Repository, Media, Note, Tag)
 from gramps.gen.lib.struct import Struct
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
@@ -74,9 +74,9 @@ class RepositoryCheck(unittest.TestCase, BaseCheck):
         self.cls = Repository
         self.object = self.cls()
 
-class MediaObjectCheck(unittest.TestCase, BaseCheck):
+class MediaCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
-        self.cls = MediaObject
+        self.cls = Media
         self.object = self.cls()
 
 class NoteCheck(unittest.TestCase, BaseCheck):
@@ -109,9 +109,9 @@ def generate_case(obj):
     #setattr(DatabaseCheck, name, test2)
 
 db = import_as_dict("example/gramps/example.gramps", User())
-for table in db._tables.keys():
-    for handle in db._tables[table]["handles_func"]():
-        obj = db._tables[table]["handle_func"](handle)
+for table in db.get_table_func():
+    for handle in db.get_table_func(table,"handles_func")():
+        obj = db.get_table_func(table,"handle_func")(handle)
         generate_case(obj)
 
 class StructTest(unittest.TestCase):

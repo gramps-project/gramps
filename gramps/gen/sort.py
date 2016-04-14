@@ -262,13 +262,13 @@ class Sort(object):
 ##        """Sort routine for comparing two media objects by their title. """
 ##        if not (a_id and b_id):
 ##            return False
-##        a = self.database.get_object_from_handle(a_id)
-##        b = self.database.get_object_from_handle(b_id)
+##        a = self.database.get_media_from_handle(a_id)
+##        b = self.database.get_media_from_handle(b_id)
 ##        return glocale.strcoll(a.desc, b.desc)
 
     def by_media_title_key(self, a_id):
         """Sort routine for comparing two media objects by their title. """
         if not a_id:
             return False
-        obj_a = self.database.get_object_from_handle(a_id)
+        obj_a = self.database.get_media_from_handle(a_id)
         return glocale.sort_key(obj_a.desc)

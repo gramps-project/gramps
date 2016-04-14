@@ -219,7 +219,7 @@ Citation
 Media Object
 ====================================
 .. automodule:: gramps.gen.lib.mediaobj
-.. autoclass:: MediaObject
+.. autoclass:: Media
    :members:
    :undoc-members:
    :show-inheritance:

@@ -15,6 +15,7 @@
 # Copyright (C) 2010,2015  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
+# Copyright (C) 2016       Allen Crider
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,7 +102,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
                             NameType, Person, UrlType, NoteType, PlaceType,
                             EventRoleType, Family, Event, Place, Source,
-                            Citation, MediaObject, Repository, Note, Tag)
+                            Citation, Media, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
@@ -419,7 +420,7 @@ _KEYPERSON, _KEYPLACE, _KEYEVENT, _ALPHAEVENT = 0, 1, 2, 3
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
-_INCLUDE_LIVING_VALUE = 99 # Arbitrary number
+_INCLUDE_LIVING_VALUE = LivingProxyDb.MODE_INCLUDE_ALL
 _NAME_COL  = 3
 
 _DEFAULT_MAX_IMG_WIDTH = 800   # resize images that are wider than this (settable in options)
@@ -494,7 +495,7 @@ def get_gendex_data(database, event_ref):
     """
     doe = "" # date of event
     poe = "" # place of event
-    if event_ref:
+    if event_ref and event_ref.ref:
         event = database.get_event_from_handle(event_ref.ref)
         if event:
             date = event.get_date_object()
@@ -702,7 +703,9 @@ class BasePage(object):
             with Html("table", class_ = table_class) as table:
                 section += table
                 for person_handle in [family.get_father_handle(), family.get_mother_handle()]:
-                    person = self.dbase_.get_person_from_handle(person_handle)
+                    person = None
+                    if person_handle:
+                        person = self.dbase_.get_person_from_handle(person_handle)
                     if person:
                         table += self.display_spouse(person, family, place_lat_long)
 
@@ -1132,10 +1135,17 @@ class BasePage(object):
         husband, spouse = [False]*2
 
         husband_handle = family.get_father_handle()
-        spouse_handle = family.get_mother_handle()
 
-        husband = self.dbase_.get_person_from_handle(husband_handle)
-        spouse = self.dbase_.get_person_from_handle(spouse_handle)
+        if husband_handle:
+            husband = self.database.get_person_from_handle(husband_handle)
+        else:
+            husband = None
+
+        spouse_handle = family.get_mother_handle()
+        if spouse_handle:
+            spouse = self.database.get_person_from_handle(spouse_handle)
+        else:
+            spouse = None
 
         if husband:
             husband_name = self.get_name(husband)
@@ -1941,7 +1951,7 @@ class BasePage(object):
 
         pic_id = self.report.options[option_name]
         if pic_id:
-            obj = self.report.database.get_object_from_gramps_id(pic_id)
+            obj = self.report.database.get_media_from_gramps_id(pic_id)
             if obj is None:
                 return None
             mime_type = obj.get_mime_type()
@@ -2100,7 +2110,7 @@ class BasePage(object):
             return None
 
         photo_handle = photolist[0].get_reference_handle()
-        photo = self.report.database.get_object_from_handle(photo_handle)
+        photo = self.report.database.get_media_from_handle(photo_handle)
         mime_type = photo.get_mime_type()
         descr = photo.get_description()
 
@@ -2192,7 +2202,7 @@ class BasePage(object):
             for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
-                photo = self.report.database.get_object_from_handle(photo_handle)
+                photo = self.report.database.get_media_from_handle(photo_handle)
 
                 if photo_handle in displayed:
                     continue
@@ -2391,7 +2401,7 @@ class BasePage(object):
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
-                            media = self.dbase_.get_object_from_handle(media_handle)
+                            media = self.dbase_.get_media_from_handle(media_handle)
                             if media:
                                 mime_type = media.get_mime_type()
                                 if mime_type:
@@ -3023,12 +3033,15 @@ class SurnamePage(BasePage):
                             family = self.dbase_.get_family_from_handle(parent_handle)
                             father_id = family.get_father_handle()
                             mother_id = family.get_mother_handle()
-                            father = self.dbase_.get_person_from_handle(father_id)
-                            mother = self.dbase_.get_person_from_handle(mother_id)
-                            if father:
-                                father_name = self.get_name(father)
-                            if mother:
-                                mother_name = self.get_name(mother)
+                            mother = father = None
+                            if father_id:
+                                father = self.dbase_.get_person_from_handle(father_id)
+                                if father:
+                                    father_name = self.get_name(father)
+                            if mother_id:
+                                mother = self.dbase_.get_person_from_handle(mother_id)
+                                if mother:
+                                    mother_name = self.get_name(mother)
                             if mother and father:
                                 tcell = Html("span", father_name, class_ = "father fatherNmother")
                                 tcell += Html("span", mother_name, class_ = "mother")
@@ -4438,14 +4451,17 @@ class MediaPages(BasePage):
         @param: title -- the web site title
         """
         log.debug("obj_dict[Media]")
-        for item in self.report.obj_dict[MediaObject].items():
+        for item in self.report.obj_dict[Media].items():
             log.debug("    %s" % str(item))
         with self.report.user.progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"),
-                                  len(self.report.obj_dict[MediaObject]) + 1) as step:
+                                  len(self.report.obj_dict[Media]) + 1) as step:
+            # bug 8950 : it seems it's better to sort on desc + gid.
+            def sort_by_desc_and_gid(obj):
+                return (obj.desc.lower(), obj.gramps_id)
 
-            sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
-                                          key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
+            sorted_media_handles = sorted(self.report.obj_dict[Media].keys(),
+                                          key=lambda x: sort_by_desc_and_gid(self.report.database.get_media_from_handle(x)))
             self.MediaListPage(self.report, title, sorted_media_handles)
 
             prev = None
@@ -4515,7 +4531,7 @@ class MediaPages(BasePage):
 
                 index = 1
                 for media_handle in sorted_media_handles:
-                    media = self.dbase_.get_object_from_handle(media_handle)
+                    media = self.dbase_.get_media_from_handle(media_handle)
                     if media:
                         if media.get_change_time() > ldatec: ldatec = media.get_change_time()
                         title = media.get_description() or "[untitled]"
@@ -4573,7 +4589,7 @@ class MediaPages(BasePage):
         (prev, next, page_number, total_pages) = info
         self.dbase_ = report.database
 
-        media = self.dbase_.get_object_from_handle(media_handle)
+        media = self.dbase_.get_media_from_handle(media_handle)
         BasePage.__init__(self, report, title, media.gramps_id)
         ldatec = media.get_change_time()
 
@@ -4783,7 +4799,7 @@ class MediaPages(BasePage):
                 mediadetail += srclist
 
             # get media references
-            reflist = self.display_bkref_list(MediaObject, media_handle)
+            reflist = self.display_bkref_list(Media, media_handle)
             if reflist is not None:
                 mediadetail += reflist
 
@@ -4850,12 +4866,12 @@ class ThumbnailPreviewPage(BasePage):
         def sort_by_desc_and_gid(obj):
             return (obj.desc, obj.gramps_id)
 
-        self.photo_keys = sorted(self.report.obj_dict[MediaObject],
-                                 key=lambda x: sort_by_desc_and_gid(self.dbase_.get_object_from_handle(x)))
+        self.photo_keys = sorted(self.report.obj_dict[Media],
+                                 key=lambda x: sort_by_desc_and_gid(self.dbase_.get_media_from_handle(x)))
 
         media_list = []
         for person_handle in self.photo_keys:
-            photo = self.dbase_.get_object_from_handle(person_handle)
+            photo = self.dbase_.get_media_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
                     media_list.append((photo.get_description(), person_handle, photo))
@@ -5428,8 +5444,14 @@ class PersonPages(BasePage):
                             family = self.dbase_.get_family_from_handle(parent_handle)
                             father_handle = family.get_father_handle()
                             mother_handle = family.get_mother_handle()
-                            father = self.dbase_.get_person_from_handle(father_handle)
-                            mother = self.dbase_.get_person_from_handle(mother_handle)
+                            if father_handle:
+                                father = self.dbase_.get_person_from_handle(father_handle)
+                            else:
+                                father = None
+                            if mother_handle:
+                                mother = self.dbase_.get_person_from_handle(mother_handle)
+                            else:
+                                mother = None
                             if father:
                                 father_name = self.get_name(father)
                             if mother:
@@ -5949,7 +5971,7 @@ class PersonPages(BasePage):
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
-                    photo = self.dbase_.get_object_from_handle(photo_handle)
+                    photo = self.dbase_.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle, person)
@@ -6046,7 +6068,10 @@ class PersonPages(BasePage):
         if gen_nr > maxgen:
             return tree
         gen_offset = int(max_size / pow(2, gen_nr+1))
-        person = self.dbase_.get_person_from_handle(person_handle)
+        if person_handle:
+            person = self.dbase_.get_person_from_handle(person_handle)
+        else:
+            person = None
         if not person:
             return tree
 
@@ -6153,9 +6178,10 @@ class PersonPages(BasePage):
                 for birthdate, handle in children:
                     if handle == self.person.get_handle():
                         child_ped(ol)
-                    else:
+                    elif handle:
                         child = self.dbase_.get_person_from_handle(handle)
-                        ol += Html("li") + self.pedigree_person(child)
+                        if child:
+                            ol += Html("li") + self.pedigree_person(child)
             else:
                 child_ped(ol)
             return ol
@@ -6174,8 +6200,14 @@ class PersonPages(BasePage):
             family = self.dbase_.get_family_from_handle(parent_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
-            mother = self.dbase_.get_person_from_handle(mother_handle)
-            father = self.dbase_.get_person_from_handle(father_handle)
+            if mother_handle:
+                mother = self.dbase_.get_person_from_handle(mother_handle)
+            else:
+                mother = None
+            if father_handle:
+                father = self.dbase_.get_person_from_handle(father_handle)
+            else:
+                father = None
         else:
             family = None
             father = None
@@ -6581,9 +6613,10 @@ class PersonPages(BasePage):
                     pedsp += [childol]
                     for child_ref in childlist:
                         child = self.dbase_.get_person_from_handle(child_ref.ref)
-                        childol += (Html("li") +
-                                    self.pedigree_person(child)
-                                   )
+                        if child:
+                            childol += (Html("li") +
+                                        self.pedigree_person(child)
+                                    )
         return ped
 
     def display_event_header(self):
@@ -6886,7 +6919,7 @@ class AddressBookListPage(BasePage):
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
-        self.dbase_ = report.database
+        self.dbase_ = self.db = report.database
         self.bibli = Bibliography()
 
         person = self.dbase_.get_person_from_handle(person_handle)
@@ -7251,7 +7284,7 @@ class NavWebReport(Report):
 
     def _build_obj_dict(self):
         _obj_class_list = (Person, Family, Event, Place, Source, Citation,
-                           MediaObject, Repository, Note, Tag)
+                           Media, Repository, Note, Tag)
 
         # setup a dictionary of the required structure
         self.obj_dict = defaultdict(lambda: defaultdict(set))
@@ -7476,8 +7509,14 @@ class NavWebReport(Report):
         husband_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle()
 
-        husband = self.database.get_person_from_handle(husband_handle)
-        spouse = self.database.get_person_from_handle(spouse_handle)
+        if husband_handle:
+            husband = self.database.get_person_from_handle(husband_handle)
+        else:
+            husband = None
+        if spouse_handle:
+            spouse = self.database.get_person_from_handle(spouse_handle)
+        else:
+            spouse = None
 
         if husband and spouse:
             husband_name = self.get_person_name(husband)
@@ -7508,6 +7547,19 @@ class NavWebReport(Report):
         # is required to assert that the event happened.""
         if event_name == "" or event_name is None or event_name =='Y':
             event_name = str(event.get_type())
+            #begin add generated descriptions to media pages (request 7074 : acrider)
+            ref_name = ""
+            for (reference) in (self.database.find_backlink_handles(event_handle)):
+                ref_class, ref_handle = reference
+                if ref_class == 'Person':
+                    person = self.database.get_person_from_handle(ref_handle)
+                    ref_name = self.get_person_name(person)
+                elif ref_class == 'Family':
+                    family = self.database.get_family_from_handle(ref_handle)
+                    ref_name = self.get_family_name(family)
+            if ref_name != "":
+                event_name += ", " + ref_name
+            #end descriptions to media pages
         if self.inc_events:
             event_fname = self.build_url_fname(event_handle, "evt",
                                                    False) + self.ext
@@ -7593,28 +7645,32 @@ class NavWebReport(Report):
                 self._add_media(media_handle, Citation, citation_handle)
 
     def _add_media(self, media_handle, bkref_class, bkref_handle):
-        media_refs = self.bkref_dict[MediaObject].get(media_handle)
+        media_refs = self.bkref_dict[Media].get(media_handle)
         if media_refs and (bkref_class, bkref_handle) in media_refs:
             return
-        media = self.database.get_object_from_handle(media_handle)
-        media_name = "Media"
+        media = self.database.get_media_from_handle(media_handle)
+        # use media title (request 7074 acrider)
+        media_name = media.get_description()
+        if media_name is None or media_name == "":
+            media_name = "Media"
+        #end media title
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",
                                                    False) + self.ext
         else:
             media_fname = ""
-        self.obj_dict[MediaObject][media_handle] = (media_fname, media_name,
+        self.obj_dict[Media][media_handle] = (media_fname, media_name,
                                                     media.gramps_id)
-        self.bkref_dict[MediaObject][media_handle].add((bkref_class, bkref_handle))
+        self.bkref_dict[Media][media_handle].add((bkref_class, bkref_handle))
 
         ############### Attribute section ##############
         for attr in media.get_attribute_list():
             for citation_handle in attr.get_citation_list():
-                self._add_citation(citation_handle, MediaObject, media_handle)
+                self._add_citation(citation_handle, Media, media_handle)
 
         ############### Sources section ##############
         for citation_handle in media.get_citation_list():
-            self._add_citation(citation_handle, MediaObject, media_handle)
+            self._add_citation(citation_handle, Media, media_handle)
 
     def _add_repository(self, repos_handle, bkref_class, bkref_handle):
         repos = self.database.get_repository_from_handle(repos_handle)
@@ -7698,9 +7754,12 @@ class NavWebReport(Report):
             with self.user.progress(_("Narrated Web Site Report"),
                     _('Creating GENDEX file'), len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
+                date = 0
                 for person_handle in ind_list:
                     step()
                     person = self.database.get_person_from_handle(person_handle)
+                    datex = person.get_change_time()
+                    if datex > date: date = datex
                     if self.archive:
                         self.write_gendex(gendex_io, person)
                     else:
@@ -7757,7 +7816,7 @@ class NavWebReport(Report):
         """
         with self.user.progress(_("Narrated Web Site Report"),
                                   _("Creating thumbnail preview page..."),
-                                  len(self.obj_dict[MediaObject])) as step:
+                                  len(self.obj_dict[Media])) as step:
             ThumbnailPreviewPage(self, self.title, step)
 
     def addressbook_pages(self, ind_list):
@@ -8324,6 +8383,8 @@ class NavWebOptions(MenuReportOptions):
                                _("Include Last Name Only"))
         self.__living.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
                                _("Include Full Name Only"))
+        self.__living.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                               _("Replace Complete Name"))
         self.__living.add_item(_INCLUDE_LIVING_VALUE,
                                _("Include"))
         self.__living.set_help(_("How to handle living people"))
@@ -8657,8 +8718,8 @@ def sort_people(dbase, handle_list):
         if primary_name.group_as:
             surname = primary_name.group_as
         else:
-            surname = dbase.get_name_group_mapping(
-                            _nd.primary_surname(primary_name))
+            surname = str(dbase.get_name_group_mapping(
+                            _nd.primary_surname(primary_name)))
 
         # Treat people who have no name with those whose name is just
         # 'whitespace'

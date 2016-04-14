@@ -37,7 +37,7 @@ from ..lib.citation import Citation
 from ..lib.event import Event
 from ..lib.place import Place
 from ..lib.repo import Repository
-from ..lib.mediaobj import MediaObject
+from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
 
@@ -328,10 +328,10 @@ class GenericMediaFilter(GenericFilter):
         return db.get_media_cursor()
 
     def make_obj(self):
-        return MediaObject()
+        return Media()
 
     def find_from_handle(self, db, handle):
-        return db.get_object_from_handle(handle)
+        return db.get_media_from_handle(handle)
 
 class GenericRepoFilter(GenericFilter):
 
@@ -391,6 +391,30 @@ class DeferredFilter(GenericFilter):
     def __init__(self, filter_name, person_name):
         GenericFilter.__init__(self, None)
         self.name_pair = [filter_name, person_name]
+
+    def get_name(self, ulocale=glocale):
+        """
+        return the filter name, possibly translated
+
+        If ulocale is passed in (a :class:`.GrampsLocale`) then
+        the translated value will be returned instead.
+
+        :param ulocale: allow deferred translation of strings
+        :type ulocale: a :class:`.GrampsLocale` instance
+        """
+        self._ = ulocale.translation.gettext
+        if self.name_pair[1]:
+            return self._(self.name_pair[0]) % self.name_pair[1]
+        return self._(self.name_pair[0])
+
+class DeferredFamilyFilter(GenericFamilyFilter):
+    """
+    Filter class allowing for deferred translation of the filter name
+    """
+
+    def __init__(self, filter_name, family_name):
+        GenericFamilyFilter.__init__(self, None)
+        self.name_pair = [filter_name, family_name]
 
     def get_name(self, ulocale=glocale):
         """

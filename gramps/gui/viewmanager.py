@@ -345,7 +345,7 @@ class ViewManager(CLIManager):
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage)
+        ErrorDialog(title, errormessage, parent=self.uistate.window)
         return 1
 
     def __build_main_window(self):
@@ -763,7 +763,8 @@ class ViewManager(CLIManager):
             try:
                 self.dbstate.db.backup()
             except DbException as msg:
-                ErrorDialog(_("Error saving backup data"), msg)
+                ErrorDialog(_("Error saving backup data"), msg,
+                            parent=self.uistate.window)
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
 
@@ -778,7 +779,8 @@ class ViewManager(CLIManager):
                 _("Aborting changes will return the database to the state "
                   "it was before you started this editing session."),
                 _("Abort changes"),
-                _("Cancel"))
+                _("Cancel"),
+                parent=self.uistate.window)
 
             if dialog.run():
                 self.dbstate.db.disable_signals()
@@ -790,7 +792,7 @@ class ViewManager(CLIManager):
                 _("Cannot abandon session's changes"),
                 _('Changes cannot be completely abandoned because the '
                   'number of changes made in the session exceeded the '
-                  'limit.'))
+                  'limit.'), parent=self.uistate.window)
 
     def __init_action_group(self, name, actions, sensitive=True, toggles=None):
         """
@@ -1083,7 +1085,8 @@ class ViewManager(CLIManager):
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
-                InfoDialog(_('Import Statistics'), infotxt, self.window)
+                InfoDialog(_('Import Statistics'), infotxt,
+                           parent=self.window)
             self.__post_load()
 
     def __open_activate(self, obj):
@@ -1097,6 +1100,20 @@ class ViewManager(CLIManager):
             (filename, title) = value
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
+        else:
+            if dialog.after_change != "":
+                # We change the title of the main window.
+                old_title = self.uistate.window.get_title()
+                delim = old_title.find(' - ')
+                tit1 = old_title[:delim]
+                tit2 = old_title[delim:]
+                if '<=' in tit2:
+                    delim2 = tit2.find('<=') + 3
+                    tit3 = tit2[delim2:-1]
+                    new_title = dialog.after_change + tit2.replace(']', '') + ' => ' + tit1 + ']'
+                else:
+                    new_title = dialog.after_change + tit2 + ' <= [' + tit1 + ']'
+                self.uistate.window.set_title(new_title)
 
     def __post_load(self):
         """
@@ -1213,7 +1230,6 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        from .dialog import QuestionDialog2
         window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
@@ -1265,7 +1281,7 @@ class ViewManager(CLIManager):
         hbox = Gtk.Box()
         bytes = 0
         mbytes = "0"
-        for media in self.dbstate.db.iter_media_objects():
+        for media in self.dbstate.db.iter_media():
             fullname = media_path_full(self.dbstate.db, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)
@@ -1611,7 +1627,8 @@ def run_plugin(pdata, dbstate, uistate):
                 'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
-                  'error_msg': error_msg})
+                  'error_msg': error_msg},
+            parent=self.uistate.window)
         return
 
     if pdata.ptype == REPORT:
@@ -1667,7 +1684,8 @@ def get_available_views():
                     'gramps_bugtracker_url' : URL_BUGHOME,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
-                    'error_msg': lasterror})
+                    'error_msg': lasterror},
+                parent=self.uistate.window)
             continue
         viewclass = getattr(mod, pdata.viewclass)
 

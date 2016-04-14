@@ -29,7 +29,7 @@ Provide merge capabilities for citations.
 #
 #-------------------------------------------------------------------------
 from ..lib import (Person, Family, Event, Place,
-        MediaObject, Repository, Citation, Source)
+        Media, Repository, Citation, Source)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -82,11 +82,11 @@ class MergeCitationQuery(object):
                     assert(place.has_citation_reference(old_handle))
                     place.replace_citation_references(old_handle, new_handle)
                     self.database.commit_place(place, trans)
-                elif class_name == MediaObject.__name__:
-                    obj = self.database.get_object_from_handle(handle)
+                elif class_name == Media.__name__:
+                    obj = self.database.get_media_from_handle(handle)
                     assert(obj.has_citation_reference(old_handle))
                     obj.replace_citation_references(old_handle, new_handle)
-                    self.database.commit_media_object(obj, trans)
+                    self.database.commit_media(obj, trans)
                 elif class_name == Repository.__name__:
                     repository = self.database.get_repository_from_handle(handle)
                     assert(repository.has_citation_reference(old_handle))

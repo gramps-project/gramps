@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
-# Copyright (C) 2013-2015  Paul Franklin
+# Copyright (C) 2013-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,8 +32,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as global_name_display
-from gramps.gen.plug.menu import EnumeratedListOption, BooleanOption
-from gramps.gen.proxy import PrivateProxyDb
+from gramps.gen.plug.menu import (EnumeratedListOption, BooleanOption,
+                                  NumberOption)
+from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
 
 #-------------------------------------------------------------------------
 #
@@ -105,3 +106,86 @@ def run_private_data_option(report, menu):
     include_private_data = menu.get_option_by_name('incl_private').get_value()
     if not include_private_data:
         report.database = PrivateProxyDb(report.database)
+
+def add_living_people_option(menu, category,
+                             mode=LivingProxyDb.MODE_INCLUDE_ALL,
+                             after_death_years=0):
+    """
+    Insert an option for deciding how the information in the
+    database for living people shall be handled by the report
+
+    Because historically, before this option, the entire database was
+    used, including all information on all living people, the default
+    mode for this option has been set to include all such information
+
+    The value of the "living_people" option is the same as the value
+    of the "mode" argument in the call to the LivingProxyDb proxy DB
+
+    :param menu: The menu the options should be added to.
+    :type menu: :class:`.Menu`
+    :param category: A label that describes the category that the option
+        belongs to.
+        Example: "Report Options"
+    :type category: string
+    :param mode:
+        The method for handling living people.
+        LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether.
+        LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
+            information and change their given name to "[Living]" or whatever
+            has been set in Preferences -> Text -> Private given name.
+        LivingProxyDb.MODE_REPLACE_COMPLETE_NAME will remove all
+            information and change their given name and surname to
+            "[Living]" or whatever has been set in Preferences -> Text
+            for Private surname and Private given name.
+        LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
+            information but leave the entire name intact.
+        LivingProxyDb.MODE_INCLUDE_ALL will not invoke LivingProxyDb at all.
+    :type mode: int
+    :param after_death_years:
+        The number of years after a person's death to
+        still consider them as living.
+    :type after_death_years: int
+    :return: nothing
+    """
+
+    def living_people_changed():
+        """
+        Handle a change in the living_people option
+        """
+        if living_people.get_value() == LivingProxyDb.MODE_INCLUDE_ALL:
+            years_past_death.set_available(False)
+        else:
+            years_past_death.set_available(True)
+
+    living_people = EnumeratedListOption(_("Living People"), mode)
+    living_people.add_item(LivingProxyDb.MODE_INCLUDE_ALL,
+                           _("Include living people and their data"))
+    living_people.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
+                           _("Include full names but no data"))
+    living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+                           _("Replace given names and include no data"))
+    living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                           _("Replace complete names and include no data"))
+    living_people.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
+                           _("Do not include living people"))
+    living_people.set_help(_("How to handle living people"))
+    menu.add_option(category, "living_people", living_people)
+    living_people.connect('value-changed', living_people_changed)
+    years_past_death = NumberOption(_("Years from death to consider living"),
+                                      after_death_years, 0, 100)
+    years_past_death.set_help(_("This allows you to restrict "
+                                "information on people who have not "
+                                "been dead for very long"))
+    menu.add_option(category, "years_past_death", years_past_death)
+    living_people_changed()
+
+def run_living_people_option(report, menu):
+    """
+    Run the option for deciding how the information in the
+    database for living people shall be handled by the report
+    """
+    living_people = menu.get_option_by_name('living_people').get_value()
+    years_past_death = menu.get_option_by_name('years_past_death').get_value()
+    if living_people != LivingProxyDb.MODE_INCLUDE_ALL:
+        report.database = LivingProxyDb(report.database, living_people,
+                                        years_after_death=years_past_death)

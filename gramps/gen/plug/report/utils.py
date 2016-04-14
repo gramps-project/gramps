@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2015       Paul Franklin
+# Copyright (C) 2015-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -143,12 +143,12 @@ def insert_image(database, doc, photo, user,
     """
 
     object_handle = photo.get_reference_handle()
-    media_object = database.get_object_from_handle(object_handle)
-    mime_type = media_object.get_mime_type()
+    media = database.get_media_from_handle(object_handle)
+    mime_type = media.get_mime_type()
     if mime_type and mime_type.startswith("image"):
-        filename = media_path_full(database, media_object.get_path())
+        filename = media_path_full(database, media.get_path())
         if os.path.exists(filename):
-            doc.add_media_object(filename, align, w_cm, h_cm,
+            doc.add_media(filename, align, w_cm, h_cm,
                                  alt=alt, style_name=style_name,
                                  crop=photo.get_rectangle())
         else:
@@ -161,10 +161,12 @@ def insert_image(database, doc, photo, user,
 #
 #-------------------------------------------------------------------------
 def find_spouse(person, family):
-    if person.get_handle() == family.get_father_handle():
-        spouse_handle = family.get_mother_handle()
-    else:
-        spouse_handle = family.get_father_handle()
+    spouse_handle = None
+    if family:
+        if person.get_handle() == family.get_father_handle():
+            spouse_handle = family.get_mother_handle()
+        else:
+            spouse_handle = family.get_father_handle()
     return spouse_handle
 
 #-------------------------------------------------------------------------
@@ -306,4 +308,78 @@ def get_person_filters(person, include_single=True, name_format=None):
     else:
         the_filters = [all, des, df, ans, com]
     the_filters.extend(CustomFilters.get_filters('Person'))
+    return the_filters
+
+#-------------------------------------------------------------------------
+#
+# Family Filters
+#
+#-------------------------------------------------------------------------
+def get_family_filters(database, family,
+                       include_single=True, name_format=None):
+    """
+    Return a list of filters that are relevant for the given family
+
+    :param database: The database that the family is in.
+    :type database: DbBase
+    :param family: the family the filters should apply to.
+    :type family: :class:`~.family.Family`
+    :param include_single: include a filter to include the single family
+    :type include_single: boolean
+    :param name_format: optional format to control display of person's name
+    :type name_format: None or int
+    """
+    from ...filters import (GenericFilterFactory, rules, CustomFilters,
+                            DeferredFamilyFilter)
+    from ...display.name import displayer as name_displayer
+
+    if family:
+        real_format = name_displayer.get_default_format()
+        if name_format is not None:
+            name_displayer.set_default_format(name_format)
+        fhandle = family.get_father_handle()
+        if fhandle:
+            father = database.get_person_from_handle(fhandle)
+            father_name = name_displayer.display(father)
+        else:
+            father_name = _("unknown father")
+        mhandle = family.get_mother_handle()
+        if mhandle:
+            mother = database.get_person_from_handle(mhandle)
+            mother_name = name_displayer.display(mother)
+        else:
+            mother_name = _("unknown mother")
+        gramps_id = family.get_gramps_id()
+        name = _("%(father_name)s and %(mother_name)s (%(family_id)s)") % {
+                    'father_name': father_name,
+                    'mother_name': mother_name,
+                    'family_id': gramps_id}
+        name_displayer.set_default_format(real_format)
+    else:
+        # Do this in case of command line options query (show=filter)
+        name = _("FAMILY")
+        gramps_id = ''
+
+    if include_single:
+        FilterClass = GenericFilterFactory('Family')
+        filt_id = FilterClass()
+        filt_id.set_name(name)
+        filt_id.add_rule(rules.family.HasIdOf([gramps_id]))
+
+    all = DeferredFamilyFilter(_T_("Every family"), None)
+    all.add_rule(rules.family.AllFamilies([]))
+
+    # feature request 2356: avoid genitive form
+    df = DeferredFamilyFilter(_T_("Descendant Families of %s"), name)
+    df.add_rule(rules.family.IsDescendantOf([gramps_id, 1]))
+
+    # feature request 2356: avoid genitive form
+    ans = DeferredFamilyFilter(_T_("Ancestor Families of %s"), name)
+    ans.add_rule(rules.family.IsAncestorOf([gramps_id, 1]))
+
+    if include_single:
+        the_filters = [filt_id, all, df, ans]
+    else:
+        the_filters = [all, df, ans]
+    the_filters.extend(CustomFilters.get_filters('Family'))
     return the_filters

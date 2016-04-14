@@ -1852,7 +1852,7 @@ class RelationshipCalculator(object):
         #signals are disconnected on close of old database, connect to new
         self.__connect_db_signals(db)
 
-    def _datachange_callback(self, handle_list):
+    def _datachange_callback(self, handle_list=None):
         """
         When data in database changes, the map can no  longer be used.
         As the map might be in use or might be generated at the moment,

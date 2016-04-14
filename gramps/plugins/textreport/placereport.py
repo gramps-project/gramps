@@ -4,7 +4,7 @@
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Heinz Brinker
-# Copyright (C) 2013-2014  Paul Franklin
+# Copyright (C) 2013-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 from gramps.gen.plug.menu import (FilterOption, PlaceListOption,
                                   EnumeratedListOption, BooleanOption)
 from gramps.gen.plug.report import Report
@@ -85,7 +85,9 @@ class PlaceReport(Report):
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        lang = menu.get_option_by_name('trans').get_value()
+        locale = self.set_locale(lang)
+        self._ = locale.translation.sgettext
 
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
@@ -164,6 +166,17 @@ class PlaceReport(Report):
             self._("County: %s ") % location.get(PlaceType.COUNTY, ''),
             self._("State: %s") % location.get(PlaceType.STATE, ''),
             self._("Country: %s ") % location.get(PlaceType.COUNTRY, '')]
+        place_names = ''
+        all_names = place.get_all_names()
+        if len(all_names) > 1 or __debug__:
+            for place_name in all_names:
+                if place_names != '':
+                    # translators: needed for Arabic, ignore otherwise
+                    place_names += self._(", ")
+                place_names += '%s' % place_name.get_value()
+                if place_name.get_language() != '' or __debug__:
+                    place_names += ' (%s)' % place_name.get_language()
+            place_details += [self._("places|All Names: %s") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = place_displayer.display(self.database, place)
         self.doc.write_text(("%(nbr)s. %(place)s") %

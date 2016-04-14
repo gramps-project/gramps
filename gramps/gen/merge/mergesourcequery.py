@@ -30,7 +30,7 @@ Provide merge capabilities for sources.
 #
 #-------------------------------------------------------------------------
 from ..lib import (Person, Family, Event, Place, Source, Repository,
-                   MediaObject, Citation)
+                   Media, Citation)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext

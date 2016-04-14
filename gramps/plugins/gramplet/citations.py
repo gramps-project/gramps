@@ -87,7 +87,7 @@ class Citations(Gramplet, DbGUIElement):
         for media_ref in obj.get_media_list():
             self.add_citations(media_ref)
             self.add_attribute_citations(media_ref)
-            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            media = self.dbstate.db.get_media_from_handle(media_ref.ref)
             self.add_media_citations(media)
 
     def add_media_citations(self, media):
@@ -174,7 +174,7 @@ class Citations(Gramplet, DbGUIElement):
                 return True
             if self.check_attribute_citations(media_ref):
                 return True
-            media = self.dbstate.db.get_object_from_handle(media_ref.ref)
+            media = self.dbstate.db.get_media_from_handle(media_ref.ref)
             if self.check_media_citations(media):
                 return True
         return False
@@ -187,12 +187,13 @@ class Citations(Gramplet, DbGUIElement):
         return False
 
     def check_eventref_citations(self, obj):
-        for event_ref in obj.get_event_ref_list():
-            if self.check_attribute_citations(event_ref):
-                return True
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if self.check_event_citations(event):
-                return True
+        if obj:
+            for event_ref in obj.get_event_ref_list():
+                if self.check_attribute_citations(event_ref):
+                    return True
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                if self.check_event_citations(event):
+                    return True
         return False
 
     def check_event_citations(self, event):
@@ -245,7 +246,11 @@ class Citations(Gramplet, DbGUIElement):
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             handle = model.get_value(iter_, 0)
-            if len(str(model.get_path(iter_))) == 1:
+            # bug 9094. 
+            # str(model.get_path(iter_)) return something like NNN:MMM
+            # So if we have only NNN, it's a node
+            # removing the str() solves the problem.
+            if len(model.get_path(iter_)) == 1:
                 self.edit_source(handle)
             else:
                 self.edit_citation(handle)
@@ -516,7 +521,7 @@ class MediaCitations(Citations):
     def update_has_data(self):
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
@@ -526,7 +531,7 @@ class MediaCitations(Citations):
         self.callman.unregister_all()
         active_handle = self.get_active('Media')
         if active_handle:
-            active = self.dbstate.db.get_object_from_handle(active_handle)
+            active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:
                 self.callman.register_obj(active)
                 self.display_citations(active)

@@ -28,6 +28,7 @@
 import os
 from gi.repository import GObject
 from math import *
+import time
 
 #------------------------------------------------------------------------
 #
@@ -35,7 +36,8 @@ from math import *
 #
 #------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger("maps.marker")
+_LOG = logging.getLogger("maps.markerlayer")
+#_LOG = logging.getLogger("GeoGraphy.markerlayer")
 
 #-------------------------------------------------------------------------
 #
@@ -50,15 +52,6 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------
-#
-# set up logging
-#
-#-------------------------------------------------------------------------
-import time
-import logging
-_LOG = logging.getLogger("GeoGraphy.markerlayer")
 
 #-------------------------------------------------------------------------
 #

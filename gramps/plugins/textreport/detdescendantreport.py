@@ -120,6 +120,8 @@ class DetDescendantReport(Report):
         name_format   - Preferred format to display names
         incmateref    - Whether to print mate information or reference
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
@@ -131,6 +133,7 @@ class DetDescendantReport(Report):
         get_value = lambda name: get_option_by_name(name).get_value()
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
         self.db = self.database
 
         self.max_generations = get_value('gen')
@@ -912,6 +915,8 @@ class DetDescendantOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category)
 
         stdoptions.add_private_data_option(menu, category)
+
+        stdoptions.add_living_people_option(menu, category)
 
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([

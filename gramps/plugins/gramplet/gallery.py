@@ -20,6 +20,7 @@
 
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
+from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.utils.file import media_path_full
 from gi.repository import Gtk
 
@@ -56,17 +57,23 @@ class Gallery(Gramplet):
         count = 0
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
-            media = self.dbstate.db.get_object_from_handle(media_handle)
+            media = self.dbstate.db.get_media_from_handle(media_handle)
             full_path = media_path_full(self.dbstate.db, media.get_path())
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_image(full_path, mime_type, media_ref.get_rectangle())
                 photo.set_uistate(self.uistate, media_handle)
-                self.image_list.append(photo)
-                self.top.pack_start(photo, False, False, 0)
-                self.top.show_all()
-                count += 1
+            else:
+                photo = Photo(self.uistate.screen_height() < 1000)
+                photo.set_pixbuf(full_path, 
+                                get_thumbnail_image(full_path, 
+                                    mime_type,
+                                    media_ref.get_rectangle()))
+            self.image_list.append(photo)
+            self.top.pack_start(photo, False, False, 0)
+            count += 1
+        self.top.show_all()
         self.set_has_data(count > 0)
 
     def get_has_data(self, obj):
@@ -78,7 +85,7 @@ class Gallery(Gramplet):
         media_list = obj.get_media_list()
         for media_ref in media_list:
             media_handle = media_ref.get_reference_handle()
-            media = self.dbstate.db.get_object_from_handle(media_handle)
+            media = self.dbstate.db.get_media_from_handle(media_handle)
             mime_type = media.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 return True

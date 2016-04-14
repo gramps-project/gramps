@@ -30,7 +30,10 @@ Proxy class for the Gramps databases. Apply filter
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
+from gramps.gen.db.base import sort_objects
 from .proxybase import ProxyDbBase
+from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
+                   Citation, Event, Media, Place, Repository, Note, Tag)
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -70,6 +73,121 @@ class FilterProxyDb(ProxyDbBase):
             if person:
                 self.flist.update(person.get_family_handle_list())
                 self.flist.update(person.get_parent_family_handle_list())
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):
         """
@@ -158,12 +276,12 @@ class FilterProxyDb(ProxyDbBase):
         self.sanitize_notebase(citation)
         return citation
 
-    def get_object_from_handle(self, handle):
+    def get_media_from_handle(self, handle):
         """
-        Finds a MediaObject in the database from the passed Gramps handle.
+        Finds a Media in the database from the passed Gramps handle.
         If no such Object exists, None is returned.
         """
-        media = self.db.get_object_from_handle(handle)
+        media = self.db.get_media_from_handle(handle)
 
         if media:
             # Filter notes out
@@ -350,14 +468,14 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_object_from_gramps_id(self, val):
+    def get_media_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed Gramps ID.
-        If no such MediaObject exists, None is returned.
+        Finds a Media in the database from the passed Gramps ID.
+        If no such Media exists, None is returned.
         """
-        media = self.db.get_object_from_gramps_id(val)
+        media = self.db.get_media_from_gramps_id(val)
         if media:
-            return self.get_object_from_handle(media.get_handle())
+            return self.get_media_from_handle(media.get_handle())
         else:
             return None
 
@@ -398,11 +516,14 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.plist
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Return an iterator over objects for Persons in the database
         """
-        return map(self.get_person_from_handle, self.plist)
+        if order_by:
+            return sort_objects(map(self.get_person_from_handle, self.plist), order_by, self)
+        else:
+            return map(self.get_person_from_handle, self.plist)
 
     def get_event_handles(self):
         """
@@ -418,17 +539,21 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.elist
 
-    def iter_events(self):
+    def iter_events(self, order_by=None):
         """
         Return an iterator over objects for Events in the database
         """
-        return map(self.get_event_from_handle, self.elist)
+        if order_by:
+            return sort_objects(map(self.get_event_from_handle, self.elist), order_by, self)
+        else:
+            return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
-        the database.
+        the database. If sort_handles is True, the list is sorted by surnames
         """
+        # FIXME: flist is not a sorted list of handles
         return list(self.flist)
 
     def iter_family_handles(self):
@@ -438,11 +563,14 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.flist
 
-    def iter_families(self):
+    def iter_families(self, order_by=None):
         """
         Return an iterator over objects for Families in the database
         """
-        return map(self.get_family_from_handle, self.flist)
+        if order_by:
+            return sort_objects(map(self.get_family_from_handle, self.flist), order_by, self)
+        else:
+            return map(self.get_family_from_handle, self.flist)
 
     def get_note_handles(self):
         """
@@ -458,11 +586,14 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.nlist
 
-    def iter_notes(self):
+    def iter_notes(self, order_by=None):
         """
         Return an iterator over objects for Notes in the database
         """
-        return map(self.get_note_from_handle, self.nlist)
+        if order_by:
+            return sort_objects(map(self.get_note_from_handle, self.nlist), order_by, self)
+        else:
+            return map(self.get_note_from_handle, self.nlist)
 
     def get_default_person(self):
         """returns the default Person of the database"""

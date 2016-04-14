@@ -40,7 +40,7 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from gramps.gui.utils import ProgressMeter
-from gramps.gen.lib import (Event, Family, MediaObject, Note,
+from gramps.gen.lib import (Event, Family, Media, Note,
         Person, Place, Repository, Source, Citation)
 from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
@@ -105,14 +105,14 @@ class ReorderIds(tool.BatchTool):
                          db.event_prefix)
             if uistate:
                 self.progress.set_pass(_('Reordering Media Object IDs'),
-                                       db.get_number_of_media_objects())
-            self.reorder(MediaObject,
-                         db.get_object_from_gramps_id,
-                         db.get_object_from_handle,
+                                       db.get_number_of_media())
+            self.reorder(Media,
+                         db.get_media_from_gramps_id,
+                         db.get_media_from_handle,
                          db.find_next_object_gramps_id,
                          db.media_map,
-                         db.commit_media_object,
-                         db.mediaobject_prefix)
+                         db.commit_media,
+                         db.media_prefix)
             if uistate:
                 self.progress.set_pass(_('Reordering Source IDs'),
                                        db.get_number_of_sources())

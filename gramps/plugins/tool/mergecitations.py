@@ -58,7 +58,7 @@ from gramps.gen.merge import MergeCitationQuery
 
 from gramps.gui.glade import Glade
 from gramps.gen.db import DbTxn
-from gramps.gen.lib import (Person, Family, Event, Place, MediaObject, Citation,
+from gramps.gen.lib import (Person, Family, Event, Place, Media, Citation,
                      Repository)
 from gramps.gen.errors import MergeError
 

@@ -24,7 +24,7 @@ from .. import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
 from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person,
-                            Family, Event, Place, MediaObject)
+                            Family, Event, Place, Media)
 
 class GrampsDbBaseTest(unittest.TestCase):
     """Base class for unittest that need to be able to create
@@ -50,7 +50,7 @@ class GrampsDbBaseTest(unittest.TestCase):
                            num_families = 0,
                            num_events = 0,
                            num_places = 0,
-                           num_media_objects = 0,
+                           num_media = 0,
                            num_links = 1):
         # start with sources
         sources = []
@@ -65,7 +65,7 @@ class GrampsDbBaseTest(unittest.TestCase):
                               (num_families, self._add_family_with_sources),
                               (num_events, self._add_event_with_sources),
                               (num_places, self._add_place_with_sources),
-                              (num_media_objects, self._add_media_object_with_sources)):
+                              (num_media, self._add_media_with_sources)):
 
             source_idx = 1
             for person_idx in range(num):
@@ -155,9 +155,9 @@ class GrampsDbBaseTest(unittest.TestCase):
                                             self._db.add_place,
                                             self._db.commit_place)
 
-    def _add_media_object_with_sources(self, citations):
+    def _add_media_with_sources(self, citations):
 
         return self._add_object_with_source(citations,
-                                            MediaObject,
-                                            self._db.add_object,
-                                            self._db.commit_media_object)
+                                            Media,
+                                            self._db.add_media,
+                                            self._db.commit_media)

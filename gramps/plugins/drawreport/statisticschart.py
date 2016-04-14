@@ -6,7 +6,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2015 Paul Franklin
+# Copyright (C) 2012-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,14 +65,14 @@ from gramps.gen.display.place import displayer as place_displayer
 # Private Functions
 #
 #------------------------------------------------------------------------
-def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
-               end_angle,  short_radius=0):
+def draw_wedge(doc, style, centerx, centery, radius, start_angle,
+               end_angle, short_radius=0):
     from math import pi, cos, sin
 
     while end_angle < start_angle:
         end_angle += 360
 
-    p = []
+    path = []
 
     degreestoradians = pi / 180.0
     radiansdelta = degreestoradians / 2
@@ -84,39 +84,39 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
 
     if short_radius == 0:
         if (end_angle - start_angle) != 360:
-            p.append((centerx, centery))
+            path.append((centerx, centery))
     else:
         origx = (centerx + cos(angle) * short_radius)
         origy = (centery + sin(angle) * short_radius)
-        p.append((origx, origy))
+        path.append((origx, origy))
 
     while angle < eangle:
         x = centerx + cos(angle) * radius
         y = centery + sin(angle) * radius
-        p.append((x, y))
+        path.append((x, y))
         angle = angle + radiansdelta
     x = centerx + cos(eangle) * radius
     y = centery + sin(eangle) * radius
-    p.append((x, y))
+    path.append((x, y))
 
     if short_radius:
         x = centerx + cos(eangle) * short_radius
         y = centery + sin(eangle) * short_radius
-        p.append((x, y))
+        path.append((x, y))
 
         angle = eangle
         while angle >= sangle:
             x = centerx + cos(angle) * short_radius
             y = centery + sin(angle) * short_radius
-            p.append((x, y))
+            path.append((x, y))
             angle -= radiansdelta
-    doc.draw_path(style, p)
+    doc.draw_path(style, path)
 
     delta = (eangle - sangle) / 2.0
     rad = short_radius + (radius - short_radius) / 2.0
 
-    return ( (centerx + cos(sangle + delta) * rad),
-             (centery + sin(sangle + delta) * rad))
+    return ((centerx + cos(sangle + delta) * rad),
+            (centery + sin(sangle + delta) * rad))
 
 
 def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
@@ -153,7 +153,8 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
 
     for item in data:
         incr = 360.0*(item[1]/total)
-        draw_wedge(doc, item[0], center_x, center_y, radius, start, start + incr)
+        draw_wedge(doc, item[0], center_x, center_y, radius,
+                   start, start + incr)
         start += incr
 
 def draw_legend(doc, start_x, start_y, data, title, label_style):
@@ -182,30 +183,33 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         pstyle_name = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
         size = ReportUtils.pt2cm(pstyle.get_font().get_size())
-        doc.draw_text(label_style, title, start_x + (3*size), start_y - (size*0.25))
+        doc.draw_text(label_style, title,
+                      start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
 
-    for (format, size, legend) in data:
-        gstyle = style_sheet.get_draw_style(format)
+    for (sformat, size, legend) in data:
+        gstyle = style_sheet.get_draw_style(sformat)
         pstyle_name = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
         size = ReportUtils.pt2cm(pstyle.get_font().get_size())
-        doc.draw_box(format, "", start_x, start_y, (2*size), size)
-        doc.draw_text(label_style, legend, start_x + (3*size), start_y - (size*0.25))
+        doc.draw_box(sformat, "", start_x, start_y, (2*size), size)
+        doc.draw_text(label_style, legend,
+                      start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
 
 _t = time.localtime(time.time())
 _TODAY = parser.parse("%04d-%02d-%02d" % _t[:3])
 
-def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
+def estimate_age(dbase, person,
+                 end_handle=None, start_handle=None, today=_TODAY):
     """
     Estimates the age of a person based off the birth and death
     dates of the person. A tuple containing the estimated upper
     and lower bounds of the person's age is returned. If either
     the birth or death date is missing, a (-1, -1) is returned.
 
-    @param db: GRAMPS database to which the Person object belongs
-    @type db: DbBase
+    @param dbase: GRAMPS database to which the Person object belongs
+    @type dbase: DbBase
     @param person: Person object to calculate the age of
     @type person: Person
     @param end_handle: Determines the event handle that determines
@@ -240,9 +244,9 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     if not bhandle:
         return (-1, -1)
 
-    bdata = db.get_event_from_handle(bhandle).get_date_object()
+    bdata = dbase.get_event_from_handle(bhandle).get_date_object()
     if dhandle:
-        ddata = db.get_event_from_handle(dhandle).get_date_object()
+        ddata = dbase.get_event_from_handle(dhandle).get_date_object()
     else:
         if today is not None:
             ddata = today
@@ -258,10 +262,10 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
         return (-1, -1)
 
     bstart = bdata.get_start_date()
-    bstop  = bdata.get_stop_date()
+    bstop = bdata.get_stop_date()
 
     dstart = ddata.get_start_date()
-    dstop  = ddata.get_stop_date()
+    dstop = ddata.get_stop_date()
 
     def _calc_diff(low, high):
         if (low[1], low[0]) > (high[1], high[0]):
@@ -331,9 +335,9 @@ class Extract(object):
             'data_gender': ("Gender", _T_("Gender"),
                             self.get_person, self.get_gender),
             'data_byear':  ("Birth year", _T_("Birth year"),
-                             self.get_birth, self.get_year),
+                            self.get_birth, self.get_year),
             'data_dyear':  ("Death year", _T_("Death year"),
-                             self.get_death, self.get_year),
+                            self.get_death, self.get_year),
             'data_bmonth': ("Birth month", _T_("Birth month"),
                             self.get_birth, self.get_month),
             'data_dmonth': ("Death month", _T_("Death month"),
@@ -341,25 +345,30 @@ class Extract(object):
             'data_bplace': ("Birth place", _T_("Birth place"),
                             self.get_birth, self.get_place),
             'data_dplace': ("Death place", _T_("Death place"),
-                             self.get_death, self.get_place),
+                            self.get_death, self.get_place),
             'data_mplace': ("Marriage place", _T_("Marriage place"),
-                             self.get_marriage_handles, self.get_places),
-            'data_mcount': ("Number of relationships", _T_("Number of relationships"),
-                             self.get_family_handles, self.get_handle_count),
-            'data_fchild': ("Age when first child born", _T_("Age when first child born"),
-                             self.get_child_handles, self.get_first_child_age),
-            'data_lchild': ("Age when last child born", _T_("Age when last child born"),
-                             self.get_child_handles, self.get_last_child_age),
+                            self.get_marriage_handles, self.get_places),
+            'data_mcount': ("Number of relationships",
+                            _T_("Number of relationships"),
+                            self.get_any_family_handles,
+                            self.get_handle_count),
+            'data_fchild': ("Age when first child born",
+                            _T_("Age when first child born"),
+                            self.get_child_handles,
+                            self.get_first_child_age),
+            'data_lchild': ("Age when last child born",
+                            _T_("Age when last child born"),
+                            self.get_child_handles, self.get_last_child_age),
             'data_ccount': ("Number of children", _T_("Number of children"),
-                             self.get_child_handles, self.get_handle_count),
+                            self.get_child_handles, self.get_handle_count),
             'data_mage':   ("Age at marriage", _T_("Age at marriage"),
-                             self.get_marriage_handles, self.get_event_ages),
+                            self.get_marriage_handles, self.get_event_ages),
             'data_dage':   ("Age at death", _T_("Age at death"),
-                             self.get_person, self.get_death_age),
+                            self.get_person, self.get_death_age),
             'data_age':    ("Age", _T_("Age"),
-                             self.get_person, self.get_person_age),
+                            self.get_person, self.get_person_age),
             'data_etypes': ("Event type", _T_("Event type"),
-                             self.get_event_handles, self.get_event_type)
+                            self.get_event_handles, self.get_event_type)
         }
 
     # ----------------- data extraction methods --------------------
@@ -473,8 +482,8 @@ class Extract(object):
         person, event_handles = data
         for event_handle in event_handles:
             event = self.db.get_event_from_handle(event_handle)
-            evtType = self._(self._get_type(event.get_type()))
-            types.append(evtType)
+            event_type = self._(self._get_type(event.get_type()))
+            types.append(event_type)
         if types:
             return types
         return [_T_("Events missing")]
@@ -496,7 +505,10 @@ class Extract(object):
         return [_T_("Children missing")]
 
     def get_handle_count(self, data):
-        "return number of handles in given (person, handle_list) used for child count, family count"
+        """
+        return number of handles in given (person, handle_list)
+        used for child count, family count
+        """
         return ["%3d" % len(data[1])]
 
     # ------------------- utility methods -------------------------
@@ -575,15 +587,15 @@ class Extract(object):
             if int(family.get_relationship()) == FamilyRelType.MARRIED:
                 for event_ref in family.get_event_ref_list():
                     event = self.db.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == EventType.MARRIAGE and \
-                    (event_ref.get_role() == EventRoleType.FAMILY or
-                    event_ref.get_role() == EventRoleType.PRIMARY ):
+                    if (event.get_type() == EventType.MARRIAGE and
+                            (event_ref.get_role() == EventRoleType.FAMILY or
+                             event_ref.get_role() == EventRoleType.PRIMARY)):
                         marriages.append(event_ref.ref)
         if marriages:
             return (person, marriages)
         return None
 
-    def get_family_handles(self, person):
+    def get_any_family_handles(self, person):
         "return list of family handles for given person or None"
         families = person.get_family_handle_list()
 
@@ -622,12 +634,12 @@ class Extract(object):
                     chart[1][key] = 1
 
 
-    def collect_data(self, db, filter_func, menu, genders,
+    def collect_data(self, dbase, filter_func, menu, genders,
                      year_from, year_to, no_years, cb_progress, rlocale):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
-        db          - the GRAMPS database
+        dbase       - the GRAMPS database
         filter_func - filtering function selected by the StatisticsDialog
         options     - report options_dict which sets which methods are used
         genders     - which gender(s) to include into statistics
@@ -642,7 +654,7 @@ class Extract(object):
         - Dict of values with their counts
         (- Method)
         """
-        self.db = db        # store for use by methods
+        self.db = dbase        # store for use by methods
         self._locale = rlocale
         self._ = rlocale.translation.sgettext
         self._get_type = rlocale.get_type
@@ -657,9 +669,11 @@ class Extract(object):
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
 
         # go through the people and collect data
-        for person_handle in filter_func.apply(db, db.iter_person_handles(), cb_progress):
+        for person_handle in filter_func.apply(dbase,
+                                               dbase.iter_person_handles(),
+                                               cb_progress):
             cb_progress()
-            person = db.get_person_from_handle(person_handle)
+            person = dbase.get_person_from_handle(person_handle)
             # check whether person has suitable gender
             if person.gender != genders and genders != Person.UNKNOWN:
                 continue
@@ -685,7 +699,7 @@ class Extract(object):
                             if deathdate.get_year() < year_from:
                                 continue
                         if not no_years:
-                            # do not accept people who are not known to be in range
+                            # don't accept people not known to be in range
                             continue
                     else:
                         continue
@@ -717,7 +731,6 @@ class StatisticsChart(Report):
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
 
-        To see what the options are, check the options help in the options class.
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
@@ -759,8 +772,7 @@ class StatisticsChart(Report):
 
         if genders:
             span_string = self._("%(genders)s born "
-                                 "%(year_from)04d-%(year_to)04d"
-                                         % mapping )
+                                 "%(year_from)04d-%(year_to)04d" % mapping)
         else:
             span_string = self._("Persons born "
                                  "%(year_from)04d-%(year_to)04d") % mapping
@@ -785,9 +797,8 @@ class StatisticsChart(Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            heading = "%(str1)s -- %(str2)s" % {
-                        'str1' : self._(table[0]),
-                        'str2' : span_string }
+            heading = "%(str1)s -- %(str2)s" % {'str1' : self._(table[0]),
+                                                'str2' : span_string}
             self.data.append((heading, filter_name, table[0], table[1], lookup))
             self._user.step_progress()
         self._user.end_progress()
@@ -833,7 +844,7 @@ class StatisticsChart(Report):
         # set layout variables
         middle_w = self.doc.get_usable_width() / 2
         middle_h = self.doc.get_usable_height() / 2
-        middle = min(middle_w,middle_h)
+        middle = min(middle_w, middle_h)
 
         # start output
         style_sheet = self.doc.get_style_sheet()
@@ -866,7 +877,7 @@ class StatisticsChart(Report):
             yoffset = margin
 
         text = self._("%s (persons):") % self._(typename)
-        draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
+        draw_legend(self.doc, legendx, yoffset, chart_data, text, 'SC-legend')
 
 
     def output_barchart(self, title1, title2, typename, data, lookup):
@@ -880,7 +891,7 @@ class StatisticsChart(Report):
         width = self.doc.get_usable_width()
         row_h = pt2cm(font.get_size())
         max_y = self.doc.get_usable_height() - row_h
-        pad =  row_h * 0.5
+        pad = row_h * 0.5
 
         # check maximum value
         max_value = max(data[k] for k in lookup) if lookup else 0
@@ -915,7 +926,8 @@ class StatisticsChart(Report):
             # right align bar to the text
             value = data[key]
             startx = stopx - (maxsize * value / max_value)
-            self.doc.draw_box('SC-bar',"",startx,yoffset,stopx-startx,row_h)
+            self.doc.draw_box('SC-bar', "",
+                              startx, yoffset, stopx-startx, row_h)
             # text after bar
             text = "%s (%d)" % (self._(key), data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
@@ -946,8 +958,8 @@ class StatisticsChartOptions(MenuReportOptions):
         ################################
 
         self.__filter = FilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                     _("Determines what people are included in the report."))
+        self.__filter.set_help(_("Determines what people are included "
+                                 "in the report."))
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -964,12 +976,12 @@ class StatisticsChartOptions(MenuReportOptions):
         stdoptions.add_private_data_option(menu, category_name)
 
         sortby = EnumeratedListOption(_('Sort chart items by'),
-                                      _options.SORT_VALUE )
+                                      _options.SORT_VALUE)
         for item_idx in range(len(_options.opt_sorts)):
             item = _options.opt_sorts[item_idx]
-            sortby.add_item(item_idx,item[2])
-        sortby.set_help( _("Select how the statistical data is sorted."))
-        add_option("sortby",sortby)
+            sortby.add_item(item_idx, item[2])
+        sortby.set_help(_("Select how the statistical data is sorted."))
+        add_option("sortby", sortby)
 
         reverse = BooleanOption(_("Sort in reverse order"), False)
         reverse.set_help(_("Check to reverse the sorting order."))
@@ -982,7 +994,7 @@ class StatisticsChartOptions(MenuReportOptions):
         add_option("year_from", year_from)
 
         year_to = NumberOption(_("People Born Before"),
-                                 this_year, 1, this_year)
+                               this_year, 1, this_year)
         year_to.set_help(_("Birth year until which to include people"))
         add_option("year_to", year_to)
 
@@ -993,13 +1005,13 @@ class StatisticsChartOptions(MenuReportOptions):
         add_option("no_years", no_years)
 
         gender = EnumeratedListOption(_('Genders included'),
-                                      Person.UNKNOWN )
+                                      Person.UNKNOWN)
         for item_idx in range(len(_options.opt_genders)):
             item = _options.opt_genders[item_idx]
-            gender.add_item(item[0],item[2])
-        gender.set_help( _("Select which genders are included into "
-                           "statistics."))
-        add_option("gender",gender)
+            gender.add_item(item[0], item[2])
+        gender.set_help(_("Select which genders are included into "
+                          "statistics."))
+        add_option("gender", gender)
 
         bar_items = NumberOption(_("Max. items for a pie"), 8, 0, 20)
         bar_items.set_help(_("With fewer items pie chart and legend will be "
@@ -1013,17 +1025,18 @@ class StatisticsChartOptions(MenuReportOptions):
         idx = 0
         half = len(_Extract.extractors) // 2
         chart_types = []
-        for (chart_opt, tuple) in _Extract.extractors.items():
-            chart_types.append((_(tuple[1]), chart_opt, tuple))
-        sorted_chart_types = sorted(chart_types, key=lambda x:glocale.sort_key(x[0]))
-        for (translated_option_name, opt_name, tuple) in sorted_chart_types:
+        for (chart_opt, ctuple) in _Extract.extractors.items():
+            chart_types.append((_(ctuple[1]), chart_opt, ctuple))
+        sorted_chart_types = sorted(chart_types,
+                                    key=lambda x: glocale.sort_key(x[0]))
+        for (translated_option_name, opt_name, ctuple) in sorted_chart_types:
             if idx <= half:
                 category_name = _("Charts 1")
             else:
                 category_name = _("Charts 2")
             opt = BooleanOption(translated_option_name, False)
             opt.set_help(_("Include charts with indicated data."))
-            menu.add_option(category_name,opt_name,opt)
+            menu.add_option(category_name, opt_name, opt)
             idx += 1
 
         # Enable a couple of charts by default
@@ -1059,23 +1072,23 @@ class StatisticsChartOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""
         # Paragraph Styles
-        f = FontStyle()
-        f.set_size(10)
-        f.set_type_face(FONT_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_LEFT)
-        p.set_description(_("The style used for the items and values."))
-        default_style.add_paragraph_style("SC-Text",p)
+        fstyle = FontStyle()
+        fstyle.set_size(10)
+        fstyle.set_type_face(FONT_SERIF)
+        pstyle = ParagraphStyle()
+        pstyle.set_font(fstyle)
+        pstyle.set_alignment(PARA_ALIGN_LEFT)
+        pstyle.set_description(_("The style used for the items and values."))
+        default_style.add_paragraph_style("SC-Text", pstyle)
 
-        f = FontStyle()
-        f.set_size(14)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("SC-Title",p)
+        fstyle = FontStyle()
+        fstyle.set_size(14)
+        fstyle.set_type_face(FONT_SANS_SERIF)
+        pstyle = ParagraphStyle()
+        pstyle.set_font(fstyle)
+        pstyle.set_alignment(PARA_ALIGN_CENTER)
+        pstyle.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("SC-Title", pstyle)
 
         """
         Graphic Styles:
@@ -1086,81 +1099,81 @@ class StatisticsChartOptions(MenuReportOptions):
             SC-color-N - The colors for drawing pies.
             SC-bar - A red bar with 0.5pt black line.
         """
-        g = GraphicsStyle()
-        g.set_paragraph_style("SC-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("SC-title",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style("SC-Title")
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("SC-title", gstyle)
 
-        g = GraphicsStyle()
-        g.set_paragraph_style("SC-Text")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("SC-text",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style("SC-Text")
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("SC-text", gstyle)
 
         width = 0.8
         # red
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,0,0))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-0",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 0, 0))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-0", gstyle)
         # orange
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,158,33))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-1",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 158, 33))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-1", gstyle)
         # green
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((0,178,0))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-2",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((0, 178, 0))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-2", gstyle)
         # violet
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((123,0,123))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-3",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((123, 0, 123))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-3", gstyle)
         # yellow
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,0))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-4",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 0))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-4", gstyle)
         # blue
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((0,105,214))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-5",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((0, 105, 214))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-5", gstyle)
         # gray
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((210,204,210))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-color-6",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((210, 204, 210))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-color-6", gstyle)
 
-        g = GraphicsStyle()
-        g.set_color((0,0,0))
-        g.set_fill_color((255,0,0))
-        g.set_line_width(width)
-        default_style.add_draw_style("SC-bar",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 0, 0))
+        gstyle.set_line_width(width)
+        default_style.add_draw_style("SC-bar", gstyle)
 
         # legend
-        g = GraphicsStyle()
-        g.set_paragraph_style('SC-Text')
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("SC-legend",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style('SC-Text')
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("SC-legend", gstyle)

@@ -804,7 +804,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         if media_list:
             for media_ref in media_list:
                 object_handle = media_ref.get_reference_handle()
-                media_obj = self.dbstate.db.get_object_from_handle(object_handle)
+                media_obj = self.dbstate.db.get_media_from_handle(object_handle)
                 path = media_obj.get_path()
                 name, extension = os.path.splitext(path)
                 if extension == ".kml":
@@ -938,6 +938,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         kml = Gtk.FileChooserDialog(
             _("Select a kml file used to add places"),
             action=Gtk.FileChooserAction.OPEN,
+            parent=self.uistate.window,
             buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
                      _('_Apply'), Gtk.ResponseType.OK))
         mpath = HOME_DIR
@@ -1182,6 +1183,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         f = Gtk.FileChooserDialog(
             _("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
+            parent=self.uistate.window,
             buttons=(_('_Cancel'),
                      Gtk.ResponseType.CANCEL,
                      _('_Apply'),

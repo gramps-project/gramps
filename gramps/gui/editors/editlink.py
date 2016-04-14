@@ -48,7 +48,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
 WIKI_HELP_SEC = _('manual|Link_Editor')
 
-WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE = list(range(9))
+WEB, EVENT, FAMILY, MEDIA, NOTE, PERSON, PLACE, REPOSITORY, SOURCE, CITATION = list(range(10))
 OBJECT_MAP = {
     EVENT: "Event",
     FAMILY: "Family",
@@ -58,6 +58,7 @@ OBJECT_MAP = {
     PLACE: "Place",
     REPOSITORY: "Repository",
     SOURCE: "Source",
+    CITATION: "Citation",
     }
 
 #-------------------------------------------------------------------------
@@ -94,6 +95,7 @@ class EditLink(ManagedWindow):
                      _("Place"),      # 6
                      _("Repository"), # 7
                      _("Source"),     # 8
+                     _("Citation"),   # 9
                      ]:
             self.uri_list.append_text(text)
         self.pick_item = self.top.get_object('button1')
@@ -123,6 +125,8 @@ class EditLink(ManagedWindow):
                 self.uri_list.set_active(REPOSITORY)
             elif object_class == "Source":
                 self.uri_list.set_active(SOURCE)
+            elif object_class == "Citation":
+                self.uri_list.set_active(CITATION)
             # set texts:
             self.selected.set_text(self.display_link(
                     object_class, prop, value))

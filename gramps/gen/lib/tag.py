@@ -101,6 +101,19 @@ class Tag(TableObject):
          self.change) = data
         return self
 
+    @classmethod
+    def get_schema(cls):
+        """
+        Return the schema for Tag
+        """
+        return {
+            "handle": Handle("Tag", "TAG-HANDLE"),
+            "name": str,
+            "color": str,
+            "priority": int,
+            "change": int,
+        }
+
     def get_text_data_list(self):
         """
         Return the list of all textual attributes of the object.

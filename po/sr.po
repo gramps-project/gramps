@@ -27606,7 +27606,7 @@ msgid "Filtering_on|Inverse Repository"
 msgstr "Преокрени ризницу"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Преокрени медијски предмет"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49

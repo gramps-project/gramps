@@ -773,7 +773,7 @@ class FamilyLinesReport(Report):
                 mediaList = person.get_media_list()
                 if len(mediaList) > 0:
                     mediaHandle = mediaList[0].get_reference_handle()
-                    media = self._db.get_object_from_handle(mediaHandle)
+                    media = self._db.get_media_from_handle(mediaHandle)
                     mediaMimeType = media.get_mime_type()
                     if mediaMimeType[0:5] == "image":
                         imagePath = get_thumbnail_path(

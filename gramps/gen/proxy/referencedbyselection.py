@@ -31,7 +31,7 @@ a person.
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import (Person, Family, Source, Citation, Event, MediaObject,
+from ..lib import (Person, Family, Source, Citation, Event, Media,
                    Place, Repository, Note, Tag)
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
@@ -66,22 +66,140 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                                             self.db.iter_person_handles()]
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
-                self.queue_object("Person", handle)
+                if handle:
+                    self.queue_object("Person", handle)
         else:
             # get rid of orphaned people:
             # first, get all of the links from people:
             for person in self.db.iter_people():
-                self.queue_object("Person", person, False)
+                self.queue_object("Person", person.handle, False)
             # save those people:
             self.restricted_to["Person"] = self.referenced["Person"]
             # reset, and just follow those people
             self.reset_references()
             for handle in self.restricted_to["Person"]:
-                self.queue_object("Person", handle)
+                if handle:
+                    self.queue_object("Person", handle)
         # process:
         while len(self.queue):
             obj_type, handle, reference = self.queue.pop()
             self.process_object(obj_type, handle, reference)
+
+        self.__tables = {
+            'Person':
+            {
+                "handle_func": self.get_person_from_handle,
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "iter_func": self.iter_people,
+                "count_func": self.get_number_of_people,
+            },
+            'Family':
+            {
+                "handle_func": self.get_family_from_handle,
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "iter_func": self.iter_families,
+                "count_func": self.get_number_of_families,
+            },
+            'Source':
+            {
+                "handle_func": self.get_source_from_handle,
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "iter_func": self.iter_sources,
+                "count_func": self.get_number_of_sources,
+            },
+            'Citation':
+            {
+                "handle_func": self.get_citation_from_handle,
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "iter_func": self.iter_citations,
+                "count_func": self.get_number_of_citations,
+            },
+            'Event':
+            {
+                "handle_func": self.get_event_from_handle,
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "iter_func": self.iter_events,
+                "count_func": self.get_number_of_events,
+            },
+            'Media':
+            {
+                "handle_func": self.get_media_from_handle,
+                "gramps_id_func": self.get_media_from_gramps_id,
+                "class_func": Media,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_handles,
+                "iter_func": self.iter_media,
+                "count_func": self.get_number_of_media,
+            },
+            'Place':
+            {
+                "handle_func": self.get_place_from_handle,
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "iter_func": self.iter_places,
+                "count_func": self.get_number_of_places,
+            },
+            'Repository':
+            {
+                "handle_func": self.get_repository_from_handle,
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "iter_func": self.iter_repositories,
+                "count_func": self.get_number_of_repositories,
+            },
+            'Note':
+            {
+                "handle_func": self.get_note_from_handle,
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "iter_func": self.iter_notes,
+                "count_func": self.get_number_of_notes,
+            },
+            'Tag':
+            {
+                "handle_func": self.get_tag_from_handle,
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "iter_func": self.iter_tags,
+                "count_func": self.get_number_of_tags,
+            }
+        }
+
+    def get_table_func(self, table=None, func=None):
+        """
+        Private implementation of get_table_func.
+        """
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table]
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else: 
+            return super().get_table_func(table, func)
 
     def queue_object(self, obj_type, handle, reference=True):
         self.queue.append((obj_type, handle, reference))
@@ -95,7 +213,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Source": set(),
             "Citation": set(),
             "Repository": set(),
-            "MediaObject": set(),
+            "Media": set(),
             "Note": set(),
             "Tag": set(),
             }
@@ -129,8 +247,8 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             obj = self.db.get_repository_from_handle(handle)
             if obj:
                 self.process_repository(obj)
-        elif class_name == "MediaObject":
-            obj = self.db.get_object_from_handle(handle)
+        elif class_name == "Media":
+            obj = self.db.get_media_from_handle(handle)
             if obj:
                 self.process_media(obj)
         elif class_name == "Note":
@@ -206,8 +324,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             return
         self.referenced["Family"].add(family.handle)
 
-        self.queue_object("Person", family.mother_handle)
-        self.queue_object("Person", family.father_handle)
+        if family.mother_handle:
+            self.queue_object("Person", family.mother_handle)
+        if family.father_handle:
+            self.queue_object("Person", family.father_handle)
         for child_ref in family.get_child_ref_list():
             if not child_ref:
                 continue
@@ -323,9 +443,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         Follow the media object and find all of the primary objects
         that it references.
         """
-        if media is None or media.handle in self.referenced["MediaObject"]:
+        if media is None or media.handle in self.referenced["Media"]:
             return
-        self.referenced["MediaObject"].add(media.handle)
+        self.referenced["Media"].add(media.handle)
         self.process_citation_ref_list(media)
         self.process_attributes(media)
         self.process_notes(media)
@@ -344,7 +464,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 if tag.value.startswith("gramps://"):
                     obj_class, prop, value = tag.value[9:].split("/")
                     if obj_class == "Media":         # bug6493
-                        obj_class = "MediaObject"
+                        obj_class = "Media"
                     if prop == "handle":
                         self.queue_object(obj_class, value)
         self.process_tags(note)
@@ -410,9 +530,9 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 self.process_attributes(media_ref)
                 self.process_citation_ref_list(media_ref)
                 handle = media_ref.get_reference_handle()
-                media_object = self.db.get_object_from_handle(handle)
-                if media_object:
-                    self.process_media(media_object)
+                media = self.db.get_media_from_handle(handle)
+                if media:
+                    self.process_media(media)
 
     def process_lds_ords(self, original_obj):
         """ Find all of the primary objects referred to """
@@ -474,11 +594,11 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         """
         return handle in self.referenced["Family"]
 
-    def include_media_object(self, handle):
+    def include_media(self, handle):
         """
         Filter for media objects
         """
-        return handle in self.referenced["MediaObject"]
+        return handle in self.referenced["Media"]
 
     def include_event(self, handle):
         """

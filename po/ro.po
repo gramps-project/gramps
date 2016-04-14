@@ -28325,7 +28325,7 @@ msgstr "Restricteză datele la persoane în viaţă"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 #, fuzzy
-msgid "Filtering_on|Inverse MediaObject"
+msgid "Filtering_on|Inverse Media"
 msgstr "Restricteză datele la persoane în viaţă"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
