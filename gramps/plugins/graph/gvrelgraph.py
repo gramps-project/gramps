@@ -132,6 +132,7 @@ class RelGraphReport(Report):
         self.use_roundedcorners = get_value('useroundedcorners')
         self.adoptionsdashed = get_value('dashed')
         self.show_families = get_value('showfamily')
+        self.sorted_person_output = get_value('sorted_person_output')
         self.use_subgraphs = get_value('usesubgraphs')
         self.event_choice = get_value('event_choice')
         self.occupation = get_value('occupation')
@@ -182,7 +183,8 @@ class RelGraphReport(Report):
         self.person_handles = self._filter.apply(self.database,
                     self.database.iter_person_handles())
 
-        self.person_handles = self.sort_persons(self.person_handles)
+        if self.sorted_person_output:
+            self.person_handles = self.sort_persons(self.person_handles)
 
         if len(self.person_handles) > 1:
             self.add_persons_and_families()
@@ -866,6 +868,13 @@ class RelGraphOptions(MenuReportOptions):
         showfamily.set_help(_("Families will show up as ellipses, linked "
                               "to parents and children."))
         add_option("showfamily", showfamily)
+
+        sorted_person_output = BooleanOption(
+                    _("Sort persons in output from ancestors to descendants"), False)
+        sorted_person_output.set_help(
+                    _("Sort the persons in the output from ancestors to "
+                      "descendants, which usually improves the graph layout."))
+        add_option("sorted_person_output", sorted_person_output)
 
     def __update_filters(self):
         """
