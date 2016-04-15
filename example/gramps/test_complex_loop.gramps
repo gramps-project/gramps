@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-04-10" version="5.0.0"/>
+    <researcher>
+    </researcher>
+  </header>
+  <people>
+    <person handle="_d12d89b02aa5121726adba4f517" change="1456088166" id="I0000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Child</first>
+        <surname>Child</surname>
+      </name>
+      <childof hlink="_d12d8a32ae01d9449d5da18eda0"/>
+      <childof hlink="_d3e382712c1429da71250fdc5b7"/>
+      <parentin hlink="_d12d8a7573462f21848658c9c5d"/>
+    </person>
+    <person handle="_d12d89d4dce7eaaa68e31f6100e" change="1437459556" id="I0001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Father</first>
+        <surname>Father</surname>
+      </name>
+      <childof hlink="_d12d8a7573462f21848658c9c5d"/>
+      <parentin hlink="_d12d8a32ae01d9449d5da18eda0"/>
+    </person>
+    <person handle="_d3e381c6e76124b59bb9a4c312e" change="1456088118" id="I0002">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Child2</first>
+        <surname>Father</surname>
+      </name>
+      <childof hlink="_d12d8a32ae01d9449d5da18eda0"/>
+      <parentin hlink="_d3e38215ed8371bb62a9f7785f1"/>
+    </person>
+    <person handle="_d3e382494d07adfa45784539dce" change="1456088166" id="I0003">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Child3</first>
+        <surname>Father</surname>
+      </name>
+      <childof hlink="_d3e38215ed8371bb62a9f7785f1"/>
+      <parentin hlink="_d3e382712c1429da71250fdc5b7"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_d12d8a32ae01d9449d5da18eda0" change="1456088074" id="F0000">
+      <rel type="Unknown"/>
+      <father hlink="_d12d89d4dce7eaaa68e31f6100e"/>
+      <childref hlink="_d12d89b02aa5121726adba4f517"/>
+      <childref hlink="_d3e381c6e76124b59bb9a4c312e"/>
+    </family>
+    <family handle="_d12d8a7573462f21848658c9c5d" change="1437459556" id="F0001">
+      <rel type="Unknown"/>
+      <father hlink="_d12d89b02aa5121726adba4f517"/>
+      <childref hlink="_d12d89d4dce7eaaa68e31f6100e"/>
+    </family>
+    <family handle="_d3e38215ed8371bb62a9f7785f1" change="1456088118" id="F0002">
+      <rel type="Unknown"/>
+      <father hlink="_d3e381c6e76124b59bb9a4c312e"/>
+      <childref hlink="_d3e382494d07adfa45784539dce"/>
+    </family>
+    <family handle="_d3e382712c1429da71250fdc5b7" change="1456088166" id="F0003">
+      <rel type="Unknown"/>
+      <father hlink="_d3e382494d07adfa45784539dce"/>
+      <childref hlink="_d12d89b02aa5121726adba4f517"/>
+    </family>
+  </families>
+</database>

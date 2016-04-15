@@ -86,6 +86,7 @@ class ProbablyAlive(object):
         self.MAX_SIB_AGE_DIFF = max_sib_age_diff
         self.MAX_AGE_PROB_ALIVE = max_age_prob_alive
         self.AVG_GENERATION_GAP = avg_generation_gap
+        self.pset = set()
 
     def probably_alive_range(self, person, is_spouse=False):
         # FIXME: some of these computed dates need to be a span. For
@@ -95,6 +96,7 @@ class ProbablyAlive(object):
         #        "between 1930 and 1940")
         if person is None:
             return (None, None, "", None)
+        self.pset = set()
         birth_ref = person.get_birth_ref()
         death_ref = person.get_death_ref()
         death_date = None
@@ -272,6 +274,9 @@ class ProbablyAlive(object):
         # ago.
 
         def descendants_too_old (person, years):
+            if person.handle in self.pset:
+                return (None, None, "", None)
+            self.pset.add(person.handle)
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if not family:
@@ -343,6 +348,9 @@ class ProbablyAlive(object):
             return (date1, date2, explain, other)
 
         def ancestors_too_old(person, year):
+            if person.handle in self.pset:
+                return (None, None, "", None)
+            self.pset.add(person.handle)
             LOG.debug("ancestors_too_old('%s', %s)".format(
                 name_displayer.display(person), year) )
             family_handle = person.get_main_parents_family_handle()

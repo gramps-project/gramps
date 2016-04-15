@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.6.0//EN"
+"http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.6.0/">
+  <header>
+    <created date="2015-07-21" version="GrampsAIO64-4.1.3-1"/>
+    <researcher>
+    </researcher>
+  </header>
+  <people>
+    <person handle="_d12d89b02aa5121726adba4f517" change="1437459556" id="I0000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Child</first>
+        <surname>Child</surname>
+      </name>
+      <childof hlink="_d12d8a32ae01d9449d5da18eda0"/>
+      <parentin hlink="_d12d8a7573462f21848658c9c5d"/>
+    </person>
+    <person handle="_d12d89d4dce7eaaa68e31f6100e" change="1437459556" id="I0001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Father</first>
+        <surname>Father</surname>
+      </name>
+      <childof hlink="_d12d8a7573462f21848658c9c5d"/>
+      <parentin hlink="_d12d8a32ae01d9449d5da18eda0"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_d12d8a32ae01d9449d5da18eda0" change="1437459531" id="F0000">
+      <rel type="Unknown"/>
+      <father hlink="_d12d89d4dce7eaaa68e31f6100e"/>
+      <childref hlink="_d12d89b02aa5121726adba4f517"/>
+    </family>
+    <family handle="_d12d8a7573462f21848658c9c5d" change="1437459556" id="F0001">
+      <rel type="Unknown"/>
+      <father hlink="_d12d89b02aa5121726adba4f517"/>
+      <childref hlink="_d12d89d4dce7eaaa68e31f6100e"/>
+    </family>
+  </families>
+</database>
