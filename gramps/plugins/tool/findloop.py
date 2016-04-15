@@ -56,7 +56,7 @@ from gramps.gui.editors import EditFamily
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Find_possible_loop_in_the_database')
+WIKI_HELP_SEC = _('manual|Find_database_loop')
 
 #------------------------------------------------------------------------
 #
@@ -68,7 +68,7 @@ class FindLoop(ManagedWindow) :
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
-        self.title = _('Find possible loop')
+        self.title = _('Find database loop')
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         self.uistate = uistate
@@ -201,6 +201,9 @@ class FindLoop(ManagedWindow) :
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+
+    def close(self, *obj):
+        ManagedWindow.close(self,*obj)
 
 #------------------------------------------------------------------------
 #

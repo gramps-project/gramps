@@ -476,13 +476,13 @@ tool_modes = [TOOL_MODE_GUI]
 
 #------------------------------------------------------------------------
 #
-# Find Possible Loop
+# Find database Loop
 #
 #------------------------------------------------------------------------
 
 register(TOOL,
 id    = 'loop',
-name  = _("Find Possible Loop"),
+name  = _("Find database loop"),
 description =  _("Searches the entire database, looking for "
                     "a possible loop."),
 version = '1.0',
