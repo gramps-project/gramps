@@ -73,7 +73,12 @@ class DBAPI(DbGeneric):
             exec(code, globals(), default_settings)
 
         self.dbapi = default_settings["dbapi"]
+        self.update_schema()
 
+    def update_schema(self):
+        """
+        Create and update schema.
+        """
         # make sure schema is up to date:
         self.dbapi.try_execute("""CREATE TABLE person (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
