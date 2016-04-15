@@ -143,9 +143,9 @@ class ArgParser(object):
     -a, --action=ACTION             Specify action
     -p, --options=OPTIONS_STRING    Specify options
     -d, --debug=LOGGER_NAME         Enable debug logs
-    -l                              List Family Trees
-    -L                              List Family Trees in Detail
-    -t                              List Family Trees, tab delimited
+    -l [FAMILY_TREE...]             List Family Trees
+    -L [FAMILY_TREE...]             List Family Trees in Detail
+    -t [FAMILY_TREE...]             List Family Trees, tab delimited
     -u, --force-unlock              Force unlock of Family Tree
     -s, --show                      Show config settings
     -c, --config=SETTINGS           Set config setting(s) and start Gramps
