@@ -173,7 +173,7 @@ class CLIDbManager(object):
                    })
         return retval
 
-    def print_family_tree_summaries(self):
+    def print_family_tree_summaries(self, database_names=None):
         """
         Prints a detailed list of the known family trees.
         """
@@ -181,16 +181,17 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id) = item
-            summary = self.get_dbdir_summary(dirpath, name)
-            print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
-            for item in sorted(summary):
-                if item != "Family Tree":
-                    # translators: needed for French, ignore otherwise
-                    print(_("   %(item)s: %(summary)s") % {
-                        'item' : item,
-                        'summary' : summary[item] } )
+            if database_names is None or name in database_names:
+                summary = self.get_dbdir_summary(dirpath, name)
+                print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
+                for item in sorted(summary):
+                    if item != "Family Tree":
+                        # translators: needed for French, ignore otherwise
+                        print(_("   %(item)s: %(summary)s") % {
+                            'item' : item,
+                            'summary' : summary[item] } )
 
-    def family_tree_summary(self):
+    def family_tree_summary(self, database_names=None):
         """
         Return a list of dictionaries of the known family trees.
         """
@@ -199,8 +200,9 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id) = item
-            retval = self.get_dbdir_summary(dirpath, name)
-            summary_list.append( retval )
+            if database_names is None or name in database_names:
+                retval = self.get_dbdir_summary(dirpath, name)
+                summary_list.append( retval )
         return summary_list
 
     def _populate_cli(self):
