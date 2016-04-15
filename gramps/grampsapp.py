@@ -442,6 +442,10 @@ def run():
         startcli(error, argpars)
 
 def main():
+    if 'GRAMPS_RESOURCES' not in os.environ:
+        resource_path, filename = os.path.split(os.path.abspath(__file__))
+        resource_path, dirname = os.path.split(resource_path)
+        os.environ['GRAMPS_RESOURCES'] = resource_path
     errors = run()
     if errors and isinstance(errors, list):
         for error in errors:

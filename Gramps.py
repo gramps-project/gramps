@@ -25,7 +25,5 @@ able to run gramps from the source directory without setting PYTHONPATH
 
 From this position, import gramps works great
 """
-import os
-os.environ['GRAMPS_RESOURCES'] = os.path.dirname(os.path.abspath(__file__))
 import gramps.grampsapp as app
 app.main()
