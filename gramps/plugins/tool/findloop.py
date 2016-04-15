@@ -48,7 +48,6 @@ from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as _nd
-from gramps.gui.editors import EditFamily
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +126,7 @@ class FindLoop(ManagedWindow) :
         self.treeView.append_column(col4)
         self.treeView.append_column(col5)
         self.treeSelection = self.treeView.get_selection()
-        self.treeView.connect('row-activated', self.rowActivated)
+        self.treeView.connect('row-activated', self.rowactivated)
 
         people = self.db.get_person_handles()
         count = 0
@@ -183,7 +182,7 @@ class FindLoop(ManagedWindow) :
                 self.parent = person
                 self.descendants(child_handle, pset)
 
-    def rowActivated(self, treeView, path, column) :
+    def rowactivated(self, treeView, path, column) :
         # first we need to check that the row corresponds to a person
         iter = self.model.get_iter(path)
         From_id = self.model.get_value(iter, 0)
