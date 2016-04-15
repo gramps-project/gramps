@@ -1221,6 +1221,9 @@ msgstr "Nom de famille manquant"
 
 #: ../gramps/gen/config.py:310
 #: ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[Vivant]"
+
 msgid "Living"
 msgstr "Vivant"
 

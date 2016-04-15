@@ -1800,6 +1800,9 @@ msgid "Missing Surname"
 msgstr "Sobrenome faltando"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[Viva]"
+
 msgid "Living"
 msgstr "Viva"
 

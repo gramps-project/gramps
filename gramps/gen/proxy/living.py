@@ -34,6 +34,7 @@ from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
 from ..utils.alive import probably_alive
 from ..config import config
 from gramps.gen.db.base import sort_objects
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -51,7 +52,8 @@ class LivingProxyDb(ProxyDbBase):
     MODE_REPLACE_COMPLETE_NAME = 3
     MODE_INCLUDE_ALL = 99 # usually this will be only tested for, not invoked
 
-    def __init__(self, dbase, mode, current_year=None, years_after_death=0):
+    def __init__(self, dbase, mode,
+                 current_year=None, years_after_death=0, llocale=glocale):
         """
         Create a new LivingProxyDb instance.
 
@@ -77,6 +79,10 @@ class LivingProxyDb(ProxyDbBase):
         :param years_after_death: The number of years after a person's death to
                                   still consider them living.
         :type years_after_death: int
+        If llocale is passed in (a :class:`.GrampsLocale`), then (insofar as
+        possible) the translated values will be returned instead.
+        :param llocale: allow deferred translation of "[Living]"
+        :type llocale: a :class:`.GrampsLocale` instance
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
@@ -86,6 +92,10 @@ class LivingProxyDb(ProxyDbBase):
         else:
             self.current_date = None
         self.years_after_death = years_after_death
+        self._ = llocale.translation.gettext
+        self._p_f_n = self._(config.get('preferences.private-given-text'))
+        self._p_s_n = self._(config.get('preferences.private-surname-text'))
+
         self.__tables = {
             'Person':
             {
@@ -400,8 +410,7 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_type(old_name.get_type())
         if (self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY or
             self.mode == self.MODE_REPLACE_COMPLETE_NAME):
-            new_name.set_first_name(
-                config.get('preferences.private-given-text'))
+            new_name.set_first_name(self._p_f_n)
             new_name.set_title("")
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
@@ -411,16 +420,14 @@ class LivingProxyDb(ProxyDbBase):
         surnlst = []
         if self.mode == self.MODE_REPLACE_COMPLETE_NAME:
             surname = Surname(source=old_name.get_primary_surname())
-            surname.set_surname(
-                config.get('preferences.private-surname-text'))
+            surname.set_surname(self._p_s_n)
             surnlst.append(surname)
         else:
             for surn in old_name.get_surname_list():
                 surname = Surname(source=surn)
                 if int(surname.origintype) in [NameOriginType.PATRONYMIC,
                                                NameOriginType.MATRONYMIC]:
-                    surname.set_surname(
-                        config.get('preferences.private-surname-text'))
+                    surname.set_surname(self._p_s_n)
                 surnlst.append(surname)
 
         new_name.set_surname_list(surnlst)

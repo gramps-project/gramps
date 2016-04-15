@@ -1577,6 +1577,9 @@ msgid "Missing Surname"
 msgstr "缺失的姓"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[健在]"
+
 msgid "Living"
 msgstr "健在"
 

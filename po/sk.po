@@ -1679,6 +1679,9 @@ msgid "Missing Surname"
 msgstr "Priezvisko chýba"
 
 #: ../gramps/gen/config.py:311 ../gramps/gen/config.py:313
+msgid "[Living]"
+msgstr "[Žijúci]"
+
 msgid "Living"
 msgstr "Žijúci"
 

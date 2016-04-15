@@ -1810,6 +1810,9 @@ msgid "Missing Surname"
 msgstr "Chybí příjmení"
 
 #: ../gramps/gen/config.py:314 ../gramps/gen/config.py:316
+msgid "[Living]"
+msgstr "[Žijící]"
+
 msgid "Living"
 msgstr "Žijící"
 

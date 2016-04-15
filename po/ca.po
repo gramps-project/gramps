@@ -1782,6 +1782,9 @@ msgid "Missing Surname"
 msgstr "Falta el Cognom"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[Viu]"
+
 msgid "Living"
 msgstr "Viu"
 

@@ -132,8 +132,10 @@ class DetDescendantReport(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        self._locale = self.set_locale(get_value('trans'))
+
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.db = self.database
 
         self.max_generations = get_value('gen')
@@ -182,8 +184,6 @@ class DetDescendantReport(Report):
             empty_place = EMPTY_ENTRY
         else:
             empty_place = ""
-
-        self._locale = self.set_locale(get_value('trans'))
 
         stdoptions.run_name_format_option(self, menu)
 

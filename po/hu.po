@@ -1805,6 +1805,9 @@ msgid "Missing Surname"
 msgstr "Hiányzó vezetéknév"
 
 #: ../gramps/gen/config.py:314 ../gramps/gen/config.py:316
+msgid "[Living]"
+msgstr "[Élő]"
+
 msgid "Living"
 msgstr "Élő"
 

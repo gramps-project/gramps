@@ -1769,6 +1769,9 @@ msgid "Missing Surname"
 msgstr "Cognome mancante"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[In vita]"
+
 msgid "Living"
 msgstr "In vita"
 

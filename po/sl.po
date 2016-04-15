@@ -1730,6 +1730,9 @@ msgid "Missing Surname"
 msgstr "Brez priimka"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[Še živi]"
+
 msgid "Living"
 msgstr "Še živi"
 

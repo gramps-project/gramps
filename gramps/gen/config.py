@@ -45,6 +45,10 @@ from .utils.configmanager import ConfigManager
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
 #---------------------------------------------------------------
 #
 # Constants
@@ -311,9 +315,9 @@ register('preferences.oprefix', 'O%04d')
 register('preferences.paper-metric', 0)
 register('preferences.paper-preference', 'Letter')
 register('preferences.pprefix', 'P%04d')
-register('preferences.private-given-text', "[%s]" % _("Living"))
+register('preferences.private-given-text', "%s" % _T_("[Living]"))
 register('preferences.private-record-text', "[%s]" % _("Private Record"))
-register('preferences.private-surname-text', "[%s]" % _("Living"))
+register('preferences.private-surname-text', "%s" % _T_("[Living]"))
 register('preferences.rprefix', 'R%04d')
 register('preferences.sprefix', 'S%04d')
 register('preferences.use-last-view', False)

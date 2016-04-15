@@ -1747,6 +1747,9 @@ msgid "Missing Surname"
 msgstr "Недостаје презиме"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[У животу]"
+
 msgid "Living"
 msgstr "У животу"
 

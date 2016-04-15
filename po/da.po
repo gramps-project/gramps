@@ -1797,6 +1797,9 @@ msgid "Missing Surname"
 msgstr "Manglende efternavn"
 
 #: ../gramps/gen/config.py:310 ../gramps/gen/config.py:312
+msgid "[Living]"
+msgstr "[Nulevende]"
+
 msgid "Living"
 msgstr "Nulevende"
 

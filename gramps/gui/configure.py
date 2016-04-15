@@ -341,7 +341,7 @@ class ConfigureDialog(ManagedWindow):
         grid.attach(hbox, 2, index, 1, 1)
 
     def add_entry(self, grid, label, index, constant, callback=None,
-                  config=None, col_attach=0):
+                  config=None, col_attach=0, localized_config=True):
         if not config:
             config = self.__config
         if not callback:
@@ -349,7 +349,10 @@ class ConfigureDialog(ManagedWindow):
         if label:
             lwidget = BasicLabel("%s: " % label)
         entry = Gtk.Entry()
-        entry.set_text(config.get(constant))
+        if localized_config:
+            entry.set_text(config.get(constant))
+        else: # it needs localizing
+            entry.set_text(_(config.get(constant)))
         entry.connect('changed', callback, constant)
         entry.set_hexpand(True)
         if label:
@@ -1155,10 +1158,12 @@ class GrampsPreferences(ConfigureDialog):
                        'preferences.no-record-text')
         row += 1
         self.add_entry(grid, _('Private surname'), row,
-                       'preferences.private-surname-text')
+                       'preferences.private-surname-text',
+                       localized_config=False)
         row += 1
         self.add_entry(grid, _('Private given name'), row,
-                       'preferences.private-given-text')
+                       'preferences.private-given-text',
+                       localized_config=False)
         row += 1
         self.add_entry(grid, _('Private record'), row,
                        'preferences.private-record-text')

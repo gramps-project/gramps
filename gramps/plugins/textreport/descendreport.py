@@ -336,8 +336,11 @@ class DescendantReport(Report):
 
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
 
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
@@ -346,9 +349,6 @@ class DescendantReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
 
         sort = Sort(self.database)
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         #Initialize the Printinfo class
         self._showdups = menu.get_option_by_name('dups').get_value()

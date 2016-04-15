@@ -83,8 +83,12 @@ class FamilyGroup(Report):
         self._user = user
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+        self._ = self._locale.translation.sgettext # needed for English
+
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.db = self.database
 
         self.filter = menu.get_option_by_name('filter').get_filter()
@@ -104,9 +108,6 @@ class FamilyGroup(Report):
         self.incRelDates   = get_value('incRelDates')
         self.incChiMar     = get_value('incChiMar')
         self.includeAttrs  = get_value('incattrs')
-
-        self._locale = self.set_locale(get_value('trans'))
-        self._ = self._locale.translation.sgettext # needed for English
 
         stdoptions.run_name_format_option(self, menu)
 

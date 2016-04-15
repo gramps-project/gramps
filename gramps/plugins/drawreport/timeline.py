@@ -101,14 +101,14 @@ class TimeLine(Report):
         self._user = user
         menu = options.menu
 
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+        self._ = self._locale.translation.sgettext
+
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
-
-        self._lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(self._lang)
-        self._ = self._locale.translation.sgettext
 
         stdoptions.run_name_format_option(self, menu)
 

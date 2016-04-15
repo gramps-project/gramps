@@ -1282,11 +1282,10 @@ class DescendTree(Report):
 
         self.options = options
 
-        stdoptions.run_private_data_option(self, options.menu)
-        stdoptions.run_living_people_option(self, options.menu)
-
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        stdoptions.run_private_data_option(self, options.menu)
+        stdoptions.run_living_people_option(self, options.menu, self._locale)
         stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 

@@ -118,8 +118,11 @@ class IndivCompleteReport(Report):
         self._user = user
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self._db = self.database
 
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
@@ -136,9 +139,6 @@ class IndivCompleteReport(Report):
         self.bibli = None
 
         self.section_list = menu.get_option_by_name('sections').get_selected()
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
 
