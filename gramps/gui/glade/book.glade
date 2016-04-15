@@ -511,6 +511,7 @@
     <property name="can_focus">False</property>
     <property name="type_hint">normal</property>
     <property name="transient_for">top</property>
+    <property name="window_position">center</property>>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
