@@ -25,16 +25,17 @@ addons:
     - python3-mock
 
 before_install:
- - pip install --upgrade pip
- - pip install --upgrade setuptools wheel nose coverage codecov
+ #- pip install --upgrade pip
+ #- pip install --upgrade setuptools wheel nose coverage codecov
 
 install:
- - travis_retry pip install --upgrade pillow
- - travis_retry pip install pyicu==1.8
+ #- travis_retry pip install --upgrade pillow
+ #- travis_retry pip install pyicu==1.8
  
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
  # for example: /home/travis/build/gramps-project/gramps
+ - git clone -b master https://github.com/srossross/meta
  - python setup.py build
 
 before_script:
@@ -45,7 +46,7 @@ before_script:
 script:
  # --exclude=TestUser because of older version of mock
  #                    without configure_mock
- - nosetests3 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+ - PYTHONPATH=meta nosetests3 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
 
 after_success:
  - codecov
