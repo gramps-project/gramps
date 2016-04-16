@@ -159,9 +159,9 @@ class CLIDbManager(object):
         if not self.is_locked(dirpath):
             try:
                 database = self.dbstate.make_database(dbid)
-                database.load(dirpath, None)
+                database.load(dirpath, None, update=False)
                 retval = database.get_summary()
-                database.close()
+                database.close(update=False)
             except Exception as msg:
                 retval = {_("Unavailable"): str(msg)[:74] + "..."}
         else:
@@ -174,7 +174,7 @@ class CLIDbManager(object):
                    })
         return retval
 
-    def print_family_tree_summaries(self):
+    def print_family_tree_summaries(self, database_names=None):
         """
         Prints a detailed list of the known family trees.
         """
@@ -182,16 +182,18 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id, backend_type, version) = item
-            summary = self.get_dbdir_summary(dirpath, name)
-            print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
-            for item in sorted(summary):
-                if item != "Family Tree":
-                    # translators: needed for French, ignore otherwise
-                    print(_("   %(item)s: %(summary)s") % {
-                        'item' : item,
-                        'summary' : summary[item] } )
+            if (database_names is None or 
+                any([re.match(dbname, name) for dbname in database_names])):
+                summary = self.get_dbdir_summary(dirpath, name)
+                print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
+                for item in sorted(summary):
+                    if item != "Family Tree":
+                        # translators: needed for French, ignore otherwise
+                        print(_("   %(item)s: %(summary)s") % {
+                            'item' : item,
+                            'summary' : summary[item] } )
 
-    def family_tree_summary(self):
+    def family_tree_summary(self, database_names=None):
         """
         Return a list of dictionaries of the known family trees.
         """
@@ -199,9 +201,11 @@ class CLIDbManager(object):
         summary_list = []
         for item in self.current_names:
             (name, dirpath, path_name, last,
-             tval, enable, stock_id, backend_type) = item
-            retval = self.get_dbdir_summary(dirpath, name)
-            summary_list.append( retval )
+             tval, enable, stock_id, backend_type, version) = item
+            if (database_names is None or 
+                any([re.match(dbname, name) for dbname in database_names])):
+                retval = self.get_dbdir_summary(dirpath, name)
+                summary_list.append( retval )
         return summary_list
 
     def _populate_cli(self):
@@ -300,7 +304,7 @@ class CLIDbManager(object):
         (tval, last) = time_val(new_path)
 
         self.current_names.append((title, new_path, path_name,
-                                   last, tval, False, "", "Backend Type"))
+                                   last, tval, False, "", dbid))
         return new_path, title
 
     def _create_new_db(self, title=None, dbid=None):
@@ -412,10 +416,10 @@ class CLIDbManager(object):
                                "No matching family tree found: '%s'" % dbname)
         # now delete them:
         for (name, directory) in match_list:
-            if user is None or user.prompt(
+            if user is None or not user.prompt(
                     _('Remove family tree warning'),
                     _('Are you sure you want to remove the family tree named\n"%s"?' % name),
-                    _('Yes'), _('No'), None):
+                    _('no'), _('yes')):
                 try:
                     for (top, dirs, files) in os.walk(directory):
                         for filename in files:
