@@ -29,7 +29,7 @@ if [ `uname -r | cut -d . -f 1` -ge 10 ]; then
 fi
 export GI_TYPELIB_PATH="$bundle_lib/girepository-1.0"
 export GVBINDIR="$bundle_lib/graphviz"
-
+export ENCHANT_MODULE_PATH="$bundle_lib/enchant"
 
 #Set $PYTHON to point inside the bundle
 PYVER=3.4
