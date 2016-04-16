@@ -158,9 +158,9 @@ class CLIDbManager(object):
         if not self.is_locked(dirpath):
             try:
                 database = self.dbstate.make_database(dbid)
-                database.load(dirpath, None)
+                database.load(dirpath, None, update=False)
                 retval = database.get_summary()
-                database.close()
+                database.close(update=False)
             except Exception as msg:
                 retval = {_("Unavailable"): str(msg)[:74] + "..."}
         else:

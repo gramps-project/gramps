@@ -701,12 +701,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def load(self, name, callback=None, mode=DBMODE_W, force_schema_upgrade=False,
              force_bsddb_upgrade=False, force_bsddb_downgrade=False,
-             force_python_upgrade=False):
+             force_python_upgrade=False, update=True):
+        """
+        If update is False: then don't update any files; open read-only
+        """
 
         if self.__check_readonly(name):
             mode = DBMODE_R
-        else:
+        elif update:
             write_lock_file(name)
+        else:
+            mode = DBMODE_R
 
         if self.db_is_open:
             self.close()
@@ -1483,7 +1488,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.db_is_open = False
 
     @catch_db_error
-    def close(self):
+    def close(self, update=True):
+        """
+        Close the database.
+        if update is False, don't change access times, etc.
+        """
         if not self.db_is_open:
             return
         if self.txn:

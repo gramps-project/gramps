@@ -739,7 +739,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
-             force_python_upgrade=False):
+             force_python_upgrade=False,
+             update=True):
+        """
+        If update is False: then don't update any files
+        """
         # run backend-specific code:
         self.initialize_backend(directory)
 
@@ -1688,61 +1692,66 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 return False
         return True
 
-    def close(self):
+    def close(self, update=True):
+        """
+        Close the database.
+        if update is False, don't change access times, etc.
+        """
         if self._directory:
             # This is just a dummy file to indicate last modified time of the
             # database for gramps.cli.clidbman:
             filename = os.path.join(self._directory, "meta_data.db")
-            touch(filename)
-            # Save metadata
-            self.set_metadata('name_formats', self.name_formats)
-            self.set_metadata('researcher', self.owner)
+            if update:
+                touch(filename)
+                # Save metadata
+                self.set_metadata('name_formats', self.name_formats)
+                self.set_metadata('researcher', self.owner)
+                
+                # Bookmarks
+                self.set_metadata('bookmarks', self.bookmarks.get())
+                self.set_metadata('family_bookmarks', self.family_bookmarks.get())
+                self.set_metadata('event_bookmarks', self.event_bookmarks.get())
+                self.set_metadata('source_bookmarks', self.source_bookmarks.get())
+                self.set_metadata('citation_bookmarks', self.citation_bookmarks.get())
+                self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
+                self.set_metadata('media_bookmarks', self.media_bookmarks.get())
+                self.set_metadata('place_bookmarks', self.place_bookmarks.get())
+                self.set_metadata('note_bookmarks', self.note_bookmarks.get())
+                
+                # Custom type values, sets
+                self.set_metadata('event_names', self.event_names)
+                self.set_metadata('fattr_names', self.family_attributes)
+                self.set_metadata('pattr_names', self.individual_attributes)
+                self.set_metadata('sattr_names', self.source_attributes)
+                self.set_metadata('marker_names', self.marker_names)
+                self.set_metadata('child_refs', self.child_ref_types)
+                self.set_metadata('family_rels', self.family_rel_types)
+                self.set_metadata('event_roles', self.event_role_names)
+                self.set_metadata('name_types', self.name_types)
+                self.set_metadata('origin_types', self.origin_types)
+                self.set_metadata('repo_types', self.repository_types)
+                self.set_metadata('note_types', self.note_types)
+                self.set_metadata('sm_types', self.source_media_types)
+                self.set_metadata('url_types', self.url_types)
+                self.set_metadata('mattr_names', self.media_attributes)
+                self.set_metadata('eattr_names', self.event_attributes)
+                self.set_metadata('place_types', self.place_types)
+                
+                # Save misc items:
+                if self.has_changed:
+                    self.save_surname_list()
+                    self.save_gender_stats(self.genderStats)
 
-            # Bookmarks
-            self.set_metadata('bookmarks', self.bookmarks.get())
-            self.set_metadata('family_bookmarks', self.family_bookmarks.get())
-            self.set_metadata('event_bookmarks', self.event_bookmarks.get())
-            self.set_metadata('source_bookmarks', self.source_bookmarks.get())
-            self.set_metadata('citation_bookmarks', self.citation_bookmarks.get())
-            self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
-            self.set_metadata('media_bookmarks', self.media_bookmarks.get())
-            self.set_metadata('place_bookmarks', self.place_bookmarks.get())
-            self.set_metadata('note_bookmarks', self.note_bookmarks.get())
-
-            # Custom type values, sets
-            self.set_metadata('event_names', self.event_names)
-            self.set_metadata('fattr_names', self.family_attributes)
-            self.set_metadata('pattr_names', self.individual_attributes)
-            self.set_metadata('sattr_names', self.source_attributes)
-            self.set_metadata('marker_names', self.marker_names)
-            self.set_metadata('child_refs', self.child_ref_types)
-            self.set_metadata('family_rels', self.family_rel_types)
-            self.set_metadata('event_roles', self.event_role_names)
-            self.set_metadata('name_types', self.name_types)
-            self.set_metadata('origin_types', self.origin_types)
-            self.set_metadata('repo_types', self.repository_types)
-            self.set_metadata('note_types', self.note_types)
-            self.set_metadata('sm_types', self.source_media_types)
-            self.set_metadata('url_types', self.url_types)
-            self.set_metadata('mattr_names', self.media_attributes)
-            self.set_metadata('eattr_names', self.event_attributes)
-            self.set_metadata('place_types', self.place_types)
-
-            # Save misc items:
-            if self.has_changed:
-                self.save_surname_list()
-                self.save_gender_stats(self.genderStats)
-
-            # Indexes:
-            self.set_metadata('cmap_index', self.cmap_index)
-            self.set_metadata('smap_index', self.smap_index)
-            self.set_metadata('emap_index', self.emap_index)
-            self.set_metadata('pmap_index', self.pmap_index)
-            self.set_metadata('fmap_index', self.fmap_index)
-            self.set_metadata('lmap_index', self.lmap_index)
-            self.set_metadata('omap_index', self.omap_index)
-            self.set_metadata('rmap_index', self.rmap_index)
-            self.set_metadata('nmap_index', self.nmap_index)
+                # Indexes:
+                self.set_metadata('cmap_index', self.cmap_index)
+                self.set_metadata('smap_index', self.smap_index)
+                self.set_metadata('emap_index', self.emap_index)
+                self.set_metadata('pmap_index', self.pmap_index)
+                self.set_metadata('fmap_index', self.fmap_index)
+                self.set_metadata('lmap_index', self.lmap_index)
+                self.set_metadata('omap_index', self.omap_index)
+                self.set_metadata('rmap_index', self.rmap_index)
+                self.set_metadata('nmap_index', self.nmap_index)
 
             self.close_backend()
         self.db_is_open = False
