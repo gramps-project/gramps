@@ -624,7 +624,6 @@ gramps/plugins/importer/importgrdb.py
 gramps/plugins/importer/importprogen.py
 gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
-gramps/plugins/lib/holidays.xml.in
 gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgedcom.py
 gramps/plugins/lib/libhtmlbackend.py
@@ -752,5 +751,6 @@ gramps/plugins/webstuff/webstuff.py
 data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in
+data/holidays.xml.in
 data/tips.xml.in
 data/gramps.appdata.xml.in

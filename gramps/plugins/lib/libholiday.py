@@ -38,7 +38,7 @@ import os
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
+from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS, DATA_DIR
 from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 
 #------------------------------------------------------------------------
@@ -188,9 +188,9 @@ class HolidayTable(object):
             if os.path.exists(holiday_full_path):
                 HolidayTable.__holiday_files.append(holiday_full_path)
 
-        # Look for holiday files in the installation plugins directory and all
+        # Look for holiday files in the installation data directory and all
         # subdirectories.
-        for (dirpath, dirnames, filenames) in os.walk(PLUGINS_DIR):
+        for (dirpath, dirnames, filenames) in os.walk(DATA_DIR):
             holiday_full_path = os.path.join(dirpath, holiday_file)
             if os.path.exists(holiday_full_path):
                 HolidayTable.__holiday_files.append(holiday_full_path)

@@ -48,7 +48,7 @@
     <date name="Възнесение господне" value="2010/5/13" type="religious" />
     <date name="Възнесение господне" value="2011/6/2" type="religious" />
     <date name="Възнесение господне" value="2012/5/24" type="religious" />
-  </country> 
+  </country>
   <country _name="Canada">
     <date name="New Year's Day" value="*/1/1" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
@@ -117,14 +117,14 @@
     <date name="Día de la Raza" value="*/10/12" type="national" />
     <date name="Todos los Santos" value="*/11/1" type="religious" />
     <date name="Inmaculada Concepción" value="*/12/8" type="religious" />
-    <date name="Navidad" value="*/12/25" type="national" /> 
+    <date name="Navidad" value="*/12/25" type="national" />
   </country>
   <country _name="China">
     <date name="Chinese New Year" value="2006/1/29" type="national" />
   </country>
   <country _name="Croatia">
     <date name="Nova godina" value="*/1/1" type="national" />
-    <date name="Sveta tri kralja" value="*/1/6" type="national" />  
+    <date name="Sveta tri kralja" value="*/1/6" type="national" />
     <date name="Uskrs" value="> easter(y)" type="national" />
     <date name="Uskršnji ponedjeljak" value="> easter(y)" offset="1" type="national" />
     <date name="Dan rada" value="*/5/1" type="national" />
@@ -481,7 +481,7 @@
     <date value="*/dec/26" type="national" name="Boxing Day"/>
     <date value="*/dec/25" type="national" offset="+2" name="Christmas Day Holiday" if="dow(y, m, d) > 5"/>
     <date value="*/dec/26" type="national" offset="+2" name="Boxing Day Holiday" if="dow(y, m, d) > 5"/>
-  </country> 
+  </country>
   <country _name="Ukraine">
     <date value="*/1/1" type="national" name="Новий Рік"/>
     <date value="*/1/6" type="religious" name="Святий Вечір"/>

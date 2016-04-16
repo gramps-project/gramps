@@ -54,7 +54,7 @@ ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
                'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT',
                'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'tr', 'uk', 'vi',
                'zh_CN', 'zh_HK', 'zh_TW')
-INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+INTLTOOL_FILES = ('data/tips.xml', 'data/holidays.xml')
 
 svem_flag = '--single-version-externally-managed'
 if svem_flag in sys.argv:
