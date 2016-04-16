@@ -40,7 +40,6 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
-    VERSION = (18, 0, 0)
 
     def restore(self):
         """

@@ -430,6 +430,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
+    VERSION = (18, 0, 0)
+
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)

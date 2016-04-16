@@ -229,7 +229,10 @@ class CLIDbManager(object):
                     version = open(os.path.join(dirpath, "bdbversion.txt")).read()
                 except:
                     version = "(0, 0, 0)"
-                version = ast.literal_eval(version)
+                try:
+                    version = ast.literal_eval(version)
+                except:
+                    version = (0, 0, 0)
                 if os.path.isfile(path_name):
                     file = open(path_name, 'r', encoding='utf8')
                     name = file.readline().strip()
