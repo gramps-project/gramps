@@ -116,6 +116,8 @@ class RelGraphReport(Report):
         incl_private   - Whether to include private data
         event_choice   - Whether to include dates and/or places
         occupation     - Whether to include occupations
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
@@ -123,7 +125,11 @@ class RelGraphReport(Report):
         get_option_by_name = options.menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
 
         self.includeid = get_value('incid')
         self.includeurl = get_value('url')
@@ -159,9 +165,6 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'none'
         filter_option = get_option_by_name('filter')
         self._filter = filter_option.get_filter()
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -664,6 +667,8 @@ class RelGraphOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

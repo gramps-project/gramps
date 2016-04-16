@@ -181,8 +181,11 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option('maxchildren', self.max_children)
 
         # --------------------
-        add_option = partial(menu.add_option, _('Include'))
+        category_name = _('Include')
+        add_option = partial(menu.add_option, category_name)
         # --------------------
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
         include_id.add_item(0, _('Do not include'))
@@ -302,6 +305,8 @@ class FamilyLinesReport(Report):
         name_format  - Preferred format to display names
         incl_private - Whether to include private data
         incid        - Whether to include IDs.
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
@@ -309,7 +314,11 @@ class FamilyLinesReport(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self._db = self.database
 
         # initialize several convenient variables
@@ -353,9 +362,6 @@ class FamilyLinesReport(Report):
             if person:
                 #option can be from another family tree, so person can be None
                 self._interest_set.add(person.get_handle())
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
 

@@ -75,11 +75,17 @@ class HourGlassReport(Report):
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
         incid         - Whether to include IDs.
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, locale)
         self.__db = self.database
 
         self.__used_people = []
@@ -118,8 +124,6 @@ class HourGlassReport(Report):
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
 
         self.includeid = menu.get_option_by_name('incid').get_value()
-
-        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -308,6 +312,8 @@ class HourGlassOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
         max_gen.set_help(_("The number of generations of descendants to "
