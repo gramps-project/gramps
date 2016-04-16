@@ -181,7 +181,8 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id) = item
-            if database_names is None or name in database_names:
+            if (database_names is None or 
+                any([re.match(dbname, name) for dbname in database_names])):
                 summary = self.get_dbdir_summary(dirpath, name)
                 print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
                 for item in sorted(summary):
@@ -200,7 +201,8 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id) = item
-            if database_names is None or name in database_names:
+            if (database_names is None or 
+                any([re.match(dbname, name) for dbname in database_names])):
                 retval = self.get_dbdir_summary(dirpath, name)
                 summary_list.append( retval )
         return summary_list

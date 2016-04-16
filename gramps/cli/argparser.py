@@ -62,14 +62,14 @@ Application options
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
-  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s)
+  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use regular expressions)
   -f, --format=FORMAT                    Specify Family Tree format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
-  -l [FAMILY_TREE...]                    List Family Trees
-  -L [FAMILY_TREE...]                    List Family Trees in Detail
-  -t [FAMILY_TREE...]                    List Family Trees, tab delimited
+  -l [FAMILY_TREE_PATTERN...]            List Family Trees
+  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail
+  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited
   -u, --force-unlock                     Force unlock of Family Tree
   -s, --show                             Show config settings
   -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
