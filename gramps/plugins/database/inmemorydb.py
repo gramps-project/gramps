@@ -42,6 +42,9 @@ class InMemoryDB(DBAPI):
         LOG.debug("Write database backend file to 'inmemorydb'")
         with open(versionpath, "w") as version_file:
             version_file.write("inmemorydb")
+        versionpath = os.path.join(directory, "bdbversion.txt")
+        with open(versionpath, "w") as version_file:
+            version_file.write(str(self.VERSION))
 
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,

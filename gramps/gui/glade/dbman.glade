@@ -106,7 +106,7 @@
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Family Trees - Gramps</property>
     <property name="window_position">center-on-parent</property>
-    <property name="default_width">710</property>
+    <property name="default_width">800</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">

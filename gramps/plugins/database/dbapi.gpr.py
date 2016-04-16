@@ -20,9 +20,9 @@
 
 register(DATABASE,
          id    = 'dbapi',
-         name  = _("DB-API 2.0 Database Backend"),
-         name_accell  = _("DB-_API 2.0 Database Backend"),
-         description =  _("DB-API 2.0 Database Backend"),
+         name  = _("DB-API Database"),
+         name_accell  = _("DB-_API Database"),
+         description =  _("DB-API Database"),
          version = '1.0.32',
          gramps_target_version = "5.0",
          status = STABLE,

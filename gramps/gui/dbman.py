@@ -106,6 +106,7 @@ DATE_COL  = 3
 DSORT_COL = 4
 OPEN_COL  = 5
 ICON_COL = 6
+BACKEND_COL = 7
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
@@ -299,7 +300,7 @@ class DbManager(CLIDbManager):
         """
         Builds the columns for the TreeView. The columns are:
 
-        Icon, Database Name, Last Modified
+        Icon, Database Name, Last Modified, Backend Type
 
         The Icon column gets its data from column 6 of the database model.
         It is expecting either None, or a GTK stock icon name
@@ -310,8 +311,9 @@ class DbManager(CLIDbManager):
 
         The last accessed column simply displays the last time famtree was
         opened.
-        """
 
+        The Backend Type column is a string based on database backend.
+        """
         # build the database name column
         render = Gtk.CellRendererText()
         render.set_property('ellipsize', Pango.EllipsizeMode.END)
@@ -341,6 +343,12 @@ class DbManager(CLIDbManager):
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
 
+        # build the backend column
+        render = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Database Type'), render, text=BACKEND_COL)
+        column.set_sort_column_id(BACKEND_COL)
+        self.dblist.append_column(column)
+
     def __populate(self):
         """
         Builds the data and the display model.
@@ -352,14 +360,17 @@ class DbManager(CLIDbManager):
         """
         Builds the display model.
         """
-        self.model = Gtk.TreeStore(str, str, str, str, int, bool, str)
+        self.model = Gtk.TreeStore(str, str, str, str, int, bool, str, str)
 
         #use current names to set up the model
         for items in self.current_names:
-            data = list(items[:7])
-            node = self.model.append(None, data)
+            data = list(items[:8])
+            backend_type = self.get_backend_name_from_dbid(data[7])
+            version = str(".".join([str(v) for v in items[8]]))
+            node = self.model.append(None, data[:-1] + [backend_type + ", " + version])
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
-                data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
+                data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "", 
+                        backend_type + ", " + version]
                 self.model.append(node, data)
         self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
         self.dblist.set_model(self.model)
@@ -808,6 +819,13 @@ class DbManager(CLIDbManager):
                                 str(msg))
         self.new.set_sensitive(True)
 
+    def get_backend_name_from_dbid(self, dbid):
+        pmgr = GuiPluginManager.get_instance()
+        for plugin in pmgr.get_reg_databases():
+            if plugin.id == dbid:
+                return plugin._name
+        return _("Unknown Database Type")
+
     def _create_new_db(self, title=None, create_db=True, dbid=None):
         """
         Create a new database, append to model
@@ -815,8 +833,9 @@ class DbManager(CLIDbManager):
         new_path, title = self.create_new_db_cli(title, create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
+        backend_type = self.get_backend_name_from_dbid(dbid)
         node = self.model.append(None, [title, new_path, path_name,
-                                        last, tval, False, ''])
+                                        last, tval, False, '', backend_type])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)

@@ -103,6 +103,9 @@ class DictionaryDb(DbGeneric):
         LOG.debug("Write database backend file to 'dictionarydb'")
         with open(versionpath, "w") as version_file:
             version_file.write("dictionarydb")
+        versionpath = os.path.join(directory, "bdbversion.txt")
+        with open(versionpath, "w") as version_file:
+            version_file.write(str(self.VERSION))
 
     def initialize_backend(self, directory):
         pass

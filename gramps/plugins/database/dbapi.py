@@ -40,6 +40,7 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+    VERSION = (18, 0, 0)
 
     def restore(self):
         """
@@ -53,6 +54,9 @@ class DBAPI(DbGeneric):
         LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
             version_file.write("dbapi")
+        versionpath = os.path.join(directory, "bdbversion.txt")
+        with open(versionpath, "w") as version_file:
+            version_file.write(str(self.VERSION))
         # Write default_settings, sqlite.db
         defaults = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "dbapi_support", "defaults")

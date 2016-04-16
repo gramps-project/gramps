@@ -20,9 +20,9 @@
 
 plg = newplugin()
 plg.id    = 'dictionarydb'
-plg.name  = _("Dictionary Database Backend")
-plg.name_accell  = _("Di_ctionary Database Backend")
-plg.description =  _("Dictionary (in-memory) Database Backend")
+plg.name  = _("Dictionary Database")
+plg.name_accell  = _("Di_ctionary Database")
+plg.description =  _("Dictionary Database")
 plg.version = '1.0'
 plg.gramps_target_version = "5.0"
 plg.status = STABLE

@@ -35,6 +35,7 @@ import random
 import os
 from sys import maxsize
 from operator import itemgetter
+import ast
 
 try:
     from bsddb3 import db
@@ -2046,6 +2047,17 @@ class DbBsddbRead(DbReadBase, Callback):
             self.__log_error()
             name = None
         return name
+
+    def get_version(self):
+        filepath = os.path.join(self.path, "bdbversion.txt")
+        try:
+            name_file = open(filepath, "r", encoding='utf-8')
+            version = name_file.readline().strip()
+            name_file.close()
+        except (OSError, IOError) as msg:
+            self.__log_error()
+            version = "(0, 0, 0)"
+        return ast.literal_eval(version)
 
     def get_summary(self):
         """

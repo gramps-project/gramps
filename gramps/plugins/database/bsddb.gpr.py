@@ -20,8 +20,8 @@
 
 plg = newplugin()
 plg.id    = 'bsddb'
-plg.name  = _("BSDDB Database Backend")
-plg.name_accell  = _("_BSDDB Database Backend")
+plg.name  = _("BSDDB Database")
+plg.name_accell  = _("_BSDDB Database")
 plg.description =  _("Berkeley Software Distribution Database Backend")
 plg.version = '1.0'
 plg.gramps_target_version = "5.0"

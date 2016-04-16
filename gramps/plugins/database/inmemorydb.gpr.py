@@ -20,9 +20,9 @@
 
 register(DATABASE,
          id    = 'inmemorydb',
-         name  = _("In-Memory Database Backend"),
-         name_accell  = _("In-_Memory Database Backend"),
-         description =  _("In-Memory Database Backend"),
+         name  = _("In-Memory Database"),
+         name_accell  = _("In-_Memory Database"),
+         description =  _("In-Memory Database"),
          version = '1.0.0',
          gramps_target_version = "5.0",
          status = STABLE,

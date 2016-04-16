@@ -2001,6 +2001,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
+            _("Schema version"): ".".join([str(v) for v in self.VERSION]),
         }
 
     def get_dbname(self):
@@ -2102,3 +2103,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.__tables[table] = funcs
         setattr(DbGeneric, table, property(lambda self: QuerySet(self, table)))
+
+    def get_version(self):
+        """
+        Return the version number of the schema.
+        """
+        if self._directory:
+            filepath = os.path.join(self._directory, "bdbversion.txt")
+            try:
+                name_file = open(filepath, "r", encoding='utf-8')
+                version = name_file.readline().strip()
+                name_file.close()
+            except (OSError, IOError) as msg:
+                self.__log_error()
+                version = "(0, 0, 0)"
+            return ast.literal_eval(version)
+        else:
+            return (0, 0, 0)
