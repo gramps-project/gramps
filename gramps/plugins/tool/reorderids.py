@@ -109,7 +109,7 @@ class ReorderIds(tool.BatchTool):
             self.reorder(Media,
                          db.get_media_from_gramps_id,
                          db.get_media_from_handle,
-                         db.find_next_object_gramps_id,
+                         db.find_next_media_gramps_id,
                          db.media_map,
                          db.commit_media,
                          db.media_prefix)
