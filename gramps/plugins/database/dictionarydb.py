@@ -1056,7 +1056,8 @@ class DictionaryDb(DbGeneric):
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
-             force_python_upgrade=False):
+             force_python_upgrade=False,
+             update=True):
         super().load(directory,
                      callback,
                      mode,

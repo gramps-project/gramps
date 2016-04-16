@@ -22,6 +22,7 @@ from dbapi import DBAPI
 from dbapi_support.sqlite import Sqlite
 from gramps.gen.db.generic import DbGeneric, DBBACKEND, LOG
 import os
+import glob
 
 class InMemoryDB(DBAPI):
     """
@@ -46,7 +47,8 @@ class InMemoryDB(DBAPI):
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
-             force_python_upgrade=False):
+             force_python_upgrade=False,
+             update=True):
         DbGeneric.load(self, directory,
                        callback,
                        mode,
