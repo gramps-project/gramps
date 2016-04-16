@@ -369,7 +369,8 @@ class DBAPI(DbGeneric):
                                     JOIN person 
                                     ON (family.father_handle = person.handle OR
                                         family.mother_handle = person.handle)
-                                    ORDER BY person.primary_name__surname_list__0__surname;""")
+                                    ORDER BY person.primary_name__surname_list__0__surname, 
+                                             person.primary_name__first_name;""")
         else:
             self.dbapi.execute("SELECT handle FROM family;")
         rows = self.dbapi.fetchall()
