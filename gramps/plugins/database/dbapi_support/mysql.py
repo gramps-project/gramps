@@ -5,11 +5,11 @@ MySQLdb.paramstyle = 'qmark' ## Doesn't work
 class MySQL(object):
     def __init__(self, *args, **kwargs):
         self.connection = MySQLdb.connect(*args, **kwargs)
+        self.cursor = self.connection.cursor()
 
     def execute(self, query, args=[]):
         ## Workaround: no qmark support
         query = query.replace("?", "%s")
-        self.cursor = self.connection.cursor()
         self.cursor.execute(query, args)
 
     def fetchone(self):
@@ -26,11 +26,9 @@ class MySQL(object):
 
     def try_execute(self, sql):
         try:
-            cursor = self.connection.cursor()
-            cursor.execute(sql)
-            self.connection.commit()
+            self.cursor.execute(sql)
         except Exception as exc:
-            self.connection.rollback()
+            pass
             #print(str(exc))
 
     def close(self):

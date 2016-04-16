@@ -5,9 +5,9 @@ pg8000.paramstyle = 'qmark'
 class Postgresql(object):
     def __init__(self, *args, **kwargs):
         self.connection = pg8000.connect(*args, **kwargs)
+        self.cursor = self.connection.cursor()
 
     def execute(self, *args, **kwargs):
-        self.cursor = self.connection.cursor()
         self.cursor.execute(*args, **kwargs)
 
     def fetchone(self):
@@ -25,11 +25,9 @@ class Postgresql(object):
     def try_execute(self, sql):
         sql = sql.replace("BLOB", "bytea")
         try:
-            cursor = self.connection.cursor()
-            cursor.execute(sql)
-            self.connection.commit()
+            self.cursor.execute(sql)
         except Exception as exc:
-            self.connection.rollback()
+            pass
             #print(str(exc))
 
     def close(self):

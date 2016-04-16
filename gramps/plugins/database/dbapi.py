@@ -271,6 +271,14 @@ class DBAPI(DbGeneric):
     def close_backend(self):
         self.dbapi.close()
 
+    def transaction_begin(self, transaction):
+        """
+        Transactions are handled automatically by the db layer.
+        """
+        self.transaction = transaction
+        self.dbapi.begin()
+        return transaction
+
     def transaction_commit(self, txn):
         """
         Executed after a batch operation.
@@ -320,7 +328,6 @@ class DBAPI(DbGeneric):
         else:
             self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);",
                                [key, pickle.dumps(value)])
-        self.dbapi.commit()
 
     def get_name_group_keys(self):
         self.dbapi.execute("SELECT name FROM name_group ORDER BY name;")
@@ -496,7 +503,6 @@ class DBAPI(DbGeneric):
                                      [name])
         self.dbapi.execute("INSERT INTO name_group (name, grouping) VALUES(?, ?);",
                                  [name, grouping])
-        self.dbapi.commit()
 
     def commit_person(self, person, trans, change_time=None):
         emit = None
@@ -549,7 +555,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(person)
         if not trans.batch:
             self.update_backlinks(person)
-            self.dbapi.commit()
             if old_person:
                 trans.add(PERSON_KEY, TXNUPD, person.handle,
                           old_person.serialize(),
@@ -618,7 +623,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(family)
         if not trans.batch:
             self.update_backlinks(family)
-            self.dbapi.commit()
             op = TXNUPD if old_family else TXNADD
             trans.add(FAMILY_KEY, op, family.handle,
                       old_family,
@@ -679,7 +683,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(citation)
         if not trans.batch:
             self.update_backlinks(citation)
-            self.dbapi.commit()
             op = TXNUPD if old_citation else TXNADD
             trans.add(CITATION_KEY, op, citation.handle,
                       old_citation,
@@ -725,7 +728,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(source)
         if not trans.batch:
             self.update_backlinks(source)
-            self.dbapi.commit()
             op = TXNUPD if old_source else TXNADD
             trans.add(SOURCE_KEY, op, source.handle,
                       old_source,
@@ -768,7 +770,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(repository)
         if not trans.batch:
             self.update_backlinks(repository)
-            self.dbapi.commit()
             op = TXNUPD if old_repository else TXNADD
             trans.add(REPOSITORY_KEY, op, repository.handle,
                       old_repository,
@@ -804,7 +805,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(note)
         if not trans.batch:
             self.update_backlinks(note)
-            self.dbapi.commit()
             op = TXNUPD if old_note else TXNADD
             trans.add(NOTE_KEY, op, note.handle,
                       old_note,
@@ -842,7 +842,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(place)
         if not trans.batch:
             self.update_backlinks(place)
-            self.dbapi.commit()
             op = TXNUPD if old_place else TXNADD
             trans.add(PLACE_KEY, op, place.handle,
                       old_place,
@@ -886,7 +885,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(event)
         if not trans.batch:
             self.update_backlinks(event)
-            self.dbapi.commit()
             op = TXNUPD if old_event else TXNADD
             trans.add(EVENT_KEY, op, event.handle,
                       old_event,
@@ -926,7 +924,6 @@ class DBAPI(DbGeneric):
                         pickle.dumps(tag.serialize())])
         if not trans.batch:
             self.update_backlinks(tag)
-            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
@@ -957,7 +954,6 @@ class DBAPI(DbGeneric):
         self.update_secondary_values(media)
         if not trans.batch:
             self.update_backlinks(media)
-            self.dbapi.commit()
             op = TXNUPD if old_media else TXNADD
             trans.add(MEDIA_KEY, op, media.handle,
                       old_media,
@@ -1001,7 +997,6 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("DELETE FROM person WHERE handle = ?;", [handle])
             self.emit("person-delete", ([handle],))
             if not transaction.batch:
-                self.dbapi.commit()
                 transaction.add(PERSON_KEY, TXNDEL, person.handle,
                                 person.serialize(), None)
 
@@ -1027,7 +1022,6 @@ class DBAPI(DbGeneric):
                                [handle])
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
             if not transaction.batch:
-                self.dbapi.commit()
                 data = data_map[handle]
                 transaction.add(key, TXNDEL, handle, data, None)
 
@@ -1206,8 +1200,6 @@ class DBAPI(DbGeneric):
                                             obj.__class__.__name__,
                                             ref_handle,
                                             ref_class_name])
-
-        self.dbapi.commit()
         callback(5)
 
     def rebuild_secondary(self, update):
@@ -1221,7 +1213,6 @@ class DBAPI(DbGeneric):
             cur2 = self.dbapi.execute("""UPDATE place SET order_by = ? WHERE handle = ?;""",
                                       [order_by, place.handle])
             row = self.dbapi.fetchone()
-        self.dbapi.commit()
 
     def has_handle_for_person(self, key):
         if isinstance(key, bytes):
@@ -1544,7 +1535,6 @@ class DBAPI(DbGeneric):
             self.dbapi.execute("""INSERT INTO gender_stats(given_name, female, male, unknown)
                                               VALUES(?, ?, ?, ?);""",
                                [key, female, male, unknown]);
-        self.dbapi.commit()
 
     def get_surname_list(self):
         self.dbapi.execute("""SELECT DISTINCT surname FROM person ORDER BY surname;""")
@@ -1640,7 +1630,6 @@ class DBAPI(DbGeneric):
                     altered = True
             if altered:
                 LOG.info("Table %s is being committed, rebuilt, and indexed..." % table)
-                self.dbapi.commit()
                 self.update_secondary_values_table(table)
                 self.create_secondary_indexes_table(table)
 
@@ -1675,13 +1664,11 @@ class DBAPI(DbGeneric):
         Go through all items in a table, and update their secondary
         field values.
         table - "Person", "Place", "Media", etc.
-        Commits changes.
         """
         if not hasattr(self.get_table_func(table,"class_func"), "get_secondary_fields"):
             return
         for item in self.get_table_func(table,"iter_func")():
             self.update_secondary_values(item)
-        self.dbapi.commit()
 
     def update_secondary_values(self, item):
         """
