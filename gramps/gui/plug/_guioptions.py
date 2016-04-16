@@ -1222,7 +1222,8 @@ class GuiPersonListOption(Gtk.Box):
                     prompt = OptionDialog(_('Select Person'),
                                           text,
                                           _('No'), None,
-                                          _('Yes'), None)
+                                          _('Yes'), None,
+                                          parent=self.__uistate.window)
                     if prompt.get_response() == Gtk.ResponseType.YES:
                         gid = spouse.get_gramps_id()
                         self.__model.append([spouse_name, gid])

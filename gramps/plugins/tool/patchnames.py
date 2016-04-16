@@ -361,7 +361,8 @@ class PatchNames(tool.BatchTool, ManagedWindow):
             self.progress.close()
             self.close()
             OkDialog(_('No modifications made'),
-                     _("No titles, nicknames or prefixes were found"))
+                     _("No titles, nicknames or prefixes were found"),
+                     parent=self.uistate.window)
 
     def build_menu_names(self, obj):
         return (self.label, None)

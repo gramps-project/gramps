@@ -114,7 +114,7 @@ class User():
         finally:
             self.end_progress()
 
-    def prompt(self, title, message, accept_label, reject_label):
+    def prompt(self, title, message, accept_label, reject_label, parent=None):
         """
         Prompt the user with a message to select an alternative.
 

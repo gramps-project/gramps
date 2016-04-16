@@ -91,6 +91,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
+        self.user = user
 
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
@@ -124,6 +125,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         self.menu.set_active(fields)
 
         window = top.toplevel
+        window.set_transient_for(self.user.uistate.window)
         window.show()
 #        self.set_window(window, top.get_object('title'),
 #                        _('Merge citations'))
@@ -179,7 +181,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         # Save options
         self.options.handler.save_options()
 
-        self.progress = ProgressMeter(_('Checking Sources'), '')
+        self.progress = ProgressMeter(_('Checking Sources'), '',
+                                      parent=self.user.uistate.window)
         self.progress.set_pass(_('Looking for citation fields'),
                                self.db.get_number_of_citations())
 
@@ -230,7 +233,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                  # translators: leave all/any {...} untranslated
                  ngettext("{number_of} citation merged",
                           "{number_of} citations merged", num_merges
-                         ).format(number_of=num_merges) )
+                         ).format(number_of=num_merges),
+                 parent=self.user.uistate.window)
         self.close(obj)
 
 #------------------------------------------------------------------------

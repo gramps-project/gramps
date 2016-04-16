@@ -111,15 +111,21 @@ class EventNames(tool.BatchTool):
         self.db.enable_signals()
         self.db.request_rebuild()
 
+        if hasattr(self.user.uistate, 'window'):
+            parent_window = self.user.uistate.window
+        else:
+            parent_window = None
         if self.change == True:
             # translators: leave all/any {...} untranslated
             message = ngettext("{quantity} event description has been added",
                                "{quantity} event descriptions have been added",
                                counter).format(quantity=counter)
-            self.user.info(_('Modifications made'), message)
+            self.user.info(_('Modifications made'), message,
+                           parent=parent_window)
         else:
             self.user.info(_('No modifications made'),
-                           _("No event description has been added."))
+                           _("No event description has been added."),
+                           parent=parent_window)
 
 #-------------------------------------------------------------------------
 #

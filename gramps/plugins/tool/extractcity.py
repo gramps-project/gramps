@@ -415,18 +415,18 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
     """
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
+        self.uistate = user.uistate
         self.label = _('Extract Place data')
 
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, self.uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')
 
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
 
         if not self.fail:
-            uistate.set_busy_cursor(True)
+            self.uistate.set_busy_cursor(True)
             self.run(dbstate.db)
-            uistate.set_busy_cursor(False)
+            self.uistate.set_busy_cursor(False)
 
     def run(self, db):
         """
@@ -521,7 +521,8 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             self.close()
             from gramps.gui.dialog import OkDialog
             OkDialog(_('No modifications made'),
-                     _("No place information could be extracted."))
+                     _("No place information could be extracted."),
+                     parent=self.uistate.window)
 
     def display(self):
 
