@@ -224,7 +224,7 @@ def HolidaysParse(filename, mark):
             name = 'char *s = N_("%(_name)s");\n' % line
             holidays.write(name)
     holidays.close()
-    print ('Wrote .../data/holidays.xml.in.h')
+    print ('Wrote ../data/holidays.xml.in.h')
     root.clear()
 
 
