@@ -254,7 +254,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
                             surn.set_surname(sname)
                 if change:
                     #cursor.update(handle, person.serialize())
-                    self.db.commit_person(person, transaction=self.trans)
+                    self.db.commit_person(person, self.trans)
 
         self.db.enable_signals()
         self.db.request_rebuild()
