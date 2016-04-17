@@ -138,21 +138,21 @@ reports.addtest(TestDynamic, "tag_report",
 #                off="html")
 
 report_list = [
-    ("ancestor_chart", "pdf", []), # Ancestor Tree
+    ##("ancestor_chart", "pdf", []), # Ancestor Tree
     ("ancestor_report", "txt", []), # Ahnentafel Report
     ("birthday_report", "txt", []), # Birthday and Anniversary Report
-    ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
-                         "calendar-12.svg", "calendar-2.svg",
-                         "calendar-3.svg", "calendar-4.svg",
-                         "calendar-5.svg", "calendar-6.svg",
-                         "calendar-7.svg", "calendar-8.svg",
-                         "calendar-9.svg"]), # Calendar
+    # ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
+    #                      "calendar-12.svg", "calendar-2.svg",
+    #                      "calendar-3.svg", "calendar-4.svg",
+    #                      "calendar-5.svg", "calendar-6.svg",
+    #                      "calendar-7.svg", "calendar-8.svg",
+    #                      "calendar-9.svg"]), # Calendar
     ## ("d3-ancestralcollapsibletree", "txt"), # Ancestral Collapsible Tree
     ## ("d3-ancestralfanchart", "txt"), # Ancestral Fan Chart
     ## "d3-descendantindentedtree", # Descendant Indented Tree
     ("database-differences-report", "txt", []), # Database Differences Report
     ## "denominoviso", # DenominoViso
-    ("descend_chart", "svg", []), # Descendant Tree
+    ##("descend_chart", "svg", []), # Descendant Tree
     ("descend_report", "txt", []), # Descendant Report
     ("DescendantBook", "txt", []), # Descendant Book
     ## ("Descendants Lines", "txt"), # Descendants Lines
@@ -161,12 +161,12 @@ report_list = [
     ("DetailedDescendantBook", "txt", []), # Detailed Descendant Book
     ## ("DynamicWeb", "txt"), # Dynamic Web Report
     ("endofline_report", "txt", []), # End of Line Report
-    ("family_descend_chart", "svg", []), # Family Descendant Tree
+    ##("family_descend_chart", "svg", []), # Family Descendant Tree
     ("family_group", "txt", []), # Family Group Report
-    ("familylines_graph", "svg", []), # Family Lines Graph
-    ("FamilyTree", "svg", []), # Family Tree
-    ("fan_chart", "svg", []), # Fan Chart
-    ("hourglass_graph", "svg", []), # Hourglass Graph
+    ##("familylines_graph", "svg", []), # Family Lines Graph
+    # ("FamilyTree", "svg", []), # Family Tree
+    # ("fan_chart", "svg", []), # Fan Chart
+    # ("hourglass_graph", "svg", []), # Hourglass Graph
     ("indiv_complete", "txt", []), # Complete Individual Report
     ("kinship_report", "txt", []), # Kinship Report
     ("LastChangeReport", "txt", []), # Last Change Report
@@ -174,17 +174,17 @@ report_list = [
     ## "ListeEclair", # Tiny Tafel
     ("notelinkreport", "txt", []), # Note Link Report
     ("number_of_ancestors", "txt", []), # Number of Ancestors Report
-    ("PedigreeChart", "svg", ["PedigreeChart-2.svg"]), # Pedigree Chart
+    ##("PedigreeChart", "svg", ["PedigreeChart-2.svg"]), # Pedigree Chart
     ("PersonEverythingReport", "txt", []), # PersonEverything Report
     ## "place_report", # Place Report
     ("records", "txt", []), # Records Report
-    ("rel_graph", "pdf", []), # Relationship Graph
+    ##("rel_graph", "pdf", []), # Relationship Graph
     ("Repositories Report", "txt", []), # Repositories Report
     ("Repositories Report Options", "txt", []), # Repositories Report Options
-    ("statistics_chart", "svg", ["statistics_chart-2.svg",
-                                 "statistics_chart-3.svg"]), # Statistics Charts
+    # ("statistics_chart", "svg", ["statistics_chart-2.svg",
+    #                              "statistics_chart-3.svg"]), # Statistics Charts
     ("summary", "txt", []), # Database Summary Report
-    ("timeline", "pdf", []), # Timeline Chart
+    ##("timeline", "pdf", []), # Timeline Chart
     ("TodoReport", "txt", []), # Todo Report
     ## ("WebCal", "txt"), # Web Calendar
 ]
