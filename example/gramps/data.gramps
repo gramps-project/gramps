@@ -15,6 +15,7 @@
       <resphone>(555)123-4567</resphone>
       <resemail>anyone@someplace.com</resemail>
     </researcher>
+    <mediapath>{GRAMPS_RESOURCES}/example/gramps</mediapath>
   </header>
   <tags>
     <tag handle="_c7642d9389b54417e8b" change="1370206720" name="tag1" color="#000000000000" priority="0"/>
