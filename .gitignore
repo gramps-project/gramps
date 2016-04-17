@@ -8,7 +8,7 @@ dist/
 
 # Gramps
 data/tips.xml
-gramps/plugins/lib/holidays.xml
+data/holidays.xml
 po/.intltool-merge-cache
 docs/_build/
 

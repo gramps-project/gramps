@@ -215,7 +215,7 @@ def HolidaysParse(filename, mark):
     msgid "Yom Kippur"
     '''
     
-    holidays = open('../gramps/plugins/lib/holidays.xml.in.h', 'w')
+    holidays = open('../data/holidays.xml.in.h', 'w')
     for key in ellist:
         if key.attrib.get(mark):
             line = key.attrib
@@ -224,7 +224,7 @@ def HolidaysParse(filename, mark):
             name = 'char *s = N_("%(_name)s");\n' % line
             holidays.write(name)
     holidays.close()
-    print ('Wrote ../gramps/plugins/lib/holidays.xml.in.h')
+    print ('Wrote ../data/holidays.xml.in.h')
     root.clear()
 
 
@@ -538,8 +538,8 @@ def headers():
     # in.h; extract_xml
     if os.path.isfile('''../data/tips.xml.in.h'''):
         headers.append('''../data/tips.xml.in.h''')
-    if os.path.isfile('''../gramps/plugins/lib/holidays.xml.in.h'''):
-        headers.append('''../gramps/plugins/lib/holidays.xml.in.h''')
+    if os.path.isfile('''../data/holidays.xml.in.h'''):
+        headers.append('''../data/holidays.xml.in.h''')
     if os.path.isfile('''../data/gramps.xml.in.h'''):
         headers.append('''../data/gramps.xml.in.h''')
     if os.path.isfile('''../data/gramps.desktop.in.h'''):
@@ -559,7 +559,7 @@ def extract_xml():
     files. Own XML files parsing and custom translation marks.
     """
   
-    HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
+    HolidaysParse('../data/holidays.xml.in', '_name')
     TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
     XmlParse('../data/gramps.appdata.xml.in', '_p')
