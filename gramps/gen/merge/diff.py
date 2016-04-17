@@ -197,7 +197,7 @@ def diff_dbs(db1, db2, user=None):
             while p1 < len(handles1) and p2 < len(handles2):
                 if handles1[p1] == handles2[p2]: # in both
                     item1 = db1.get_table_func(item,"handle_func")(handles1[p1])
-                    item2 = db2.get_tables_func(item,"handle_func")(handles2[p2])
+                    item2 = db2.get_table_func(item,"handle_func")(handles2[p2])
                     diff = diff_items(item, item1.to_struct(), item2.to_struct())
                     if diff:
                         diffs += [(item, item1, item2)]
