@@ -82,7 +82,8 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         if self.fail:
             return
 
-        self.progress = ProgressMeter(_('Checking Family Names'),'')
+        self.progress = ProgressMeter(_('Checking Family Names'),'',
+                                    parent=uistate.window)
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
         self.name_list = []
