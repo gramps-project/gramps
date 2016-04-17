@@ -91,7 +91,8 @@ class User(user.User):
             self._progress.close()
             self._progress = None
 
-    def prompt(self, title, message, accept_label, reject_label, parent=None):
+    def prompt(self, title, message, accept_label, reject_label, parent=None,
+               default_label=None):
         """
         Prompt the user with a message to select an alternative.
 
@@ -105,6 +106,8 @@ class User(user.User):
         :param accept_label: what to call the positive choice, e.g.: "Proceed"
         :type accept_label: str
         :param reject_label: what to call the negative choice, e.g.: "Stop"
+        :param default_label: the label of the default
+        :type default_label: str or None
         :type reject_label: str
         :returns: the user's answer to the question
         :rtype: bool
