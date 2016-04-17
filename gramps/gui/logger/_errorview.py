@@ -122,6 +122,7 @@ class ErrorView(object):
         tb_label.get_buffer().set_text(self._error_detail.get_formatted_log())
         tb_label.set_border_width(6)
         tb_label.set_editable(False)
+        tb_label.set_vexpand(True)
 
         scroll = Gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
