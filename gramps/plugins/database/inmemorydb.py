@@ -63,11 +63,12 @@ class InMemoryDB(DBAPI):
         from gramps.plugins.importer.importxml import importData
         from gramps.cli.user import User
         if self._directory:
-            backups = list(reversed(glob.glob(os.path.join(
-                self._directory, "backup-*.gramps"))))
+            backups = sorted(glob.glob(os.path.join(
+                self._directory, "backup-*.gramps")), reverse=True)
             if backups:
                 filename = backups[0]
                 if os.path.isfile(filename):
                     importData(self, filename, User())
                     self.reindex_reference_map(lambda progress: None)
                     self.rebuild_secondary(lambda progress: None)
+                    self.has_changed = False
