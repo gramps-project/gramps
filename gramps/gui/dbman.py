@@ -314,6 +314,11 @@ class DbManager(CLIDbManager):
 
         The Backend Type column is a string based on database backend.
         """
+        # Put some help on the buttons:
+        dbid = config.get('behavior.database-backend')
+        backend_type = self.get_backend_name_from_dbid(dbid)
+        self.new.set_tooltip_text(backend_type)
+
         # build the database name column
         render = Gtk.CellRendererText()
         render.set_property('ellipsize', Pango.EllipsizeMode.END)
@@ -325,7 +330,7 @@ class DbManager(CLIDbManager):
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_sort_indicator(True)
         self.column.set_resizable(True)
-        self.column.set_min_width(275)
+        self.column.set_min_width(235)
         self.dblist.append_column(self.column)
         self.name_renderer = render
 
@@ -335,18 +340,21 @@ class DbManager(CLIDbManager):
                                          #icon_name=ICON_COL)
         icon_column = Gtk.TreeViewColumn(_('Status'), render)
         icon_column.set_cell_data_func(render, bug_fix)
+        icon_column.set_sort_column_id(ICON_COL)
         self.dblist.append_column(icon_column)
-
-        # build the last accessed column
-        render = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
-        column.set_sort_column_id(DSORT_COL)
-        self.dblist.append_column(column)
 
         # build the backend column
         render = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn(_('Database Type'), render, text=BACKEND_COL)
         column.set_sort_column_id(BACKEND_COL)
+        column.set_sort_indicator(True)
+        column.set_resizable(True)
+        self.dblist.append_column(column)
+
+        # build the last accessed column
+        render = Gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
+        column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
 
     def __populate(self):
@@ -824,7 +832,7 @@ class DbManager(CLIDbManager):
         for plugin in pmgr.get_reg_databases():
             if plugin.id == dbid:
                 return plugin._name
-        return _("Unknown Database Type")
+        return _("Unknown Database")
 
     def _create_new_db(self, title=None, create_db=True, dbid=None):
         """
