@@ -60,7 +60,7 @@ class User(user.User):
         self.current_step = 0;
         self._input = input
 
-        def yes(*args):
+        def yes(*args, **kwargs):
             return True
 
         if auto_accept:
@@ -109,7 +109,8 @@ class User(user.User):
         """
         self._fileout.write("\r100%\n")
 
-    def prompt(self, title, message, accept_label, reject_label, parent=None):
+    def prompt(self, title, message, accept_label, reject_label, 
+               parent=None, default_label=None):
         """
         Prompt the user with a message to select an alternative.
 
@@ -124,21 +125,35 @@ class User(user.User):
         :type accept_label: str
         :param reject_label: what to call the negative choice, e.g.: "Stop"
         :type reject_label: str
+        :param default_label: the label of the default
+        :type default_label: str or None
         :returns: the user's answer to the question
         :rtype: bool
         """
-        accept_label = accept_label.replace("_", "")
-        reject_label = reject_label.replace("_", "")
-        text = "{t}\n{m} ([{y}]/{n}): ".format(
+        accept_text = accept_label.replace("_", "")
+        reject_text = reject_label.replace("_", "")
+        if default_label is None or default_label == accept_label:
+            accept_text = "[%s]" % accept_text
+            default = True
+        else:
+            reject_text = "[%s]" % reject_text
+            default = False
+        text = "{t}\n{m} ({y}/{n}): ".format(
                 t = title,
                 m = message,
-                y = accept_label,
-                n = reject_label)
+                y = accept_text,
+                n = reject_text)
         print (text, file = self._fileout) # TODO python3 add flush=True
         try:
             reply = self._input()
-            return reply == "" or reply == accept_label
         except EOFError:
+            reply = ""
+        ### Trun response into True/False:
+        if reply == "":
+            return default
+        elif reply == accept_label:
+            return True
+        else:
             return False
 
     def warn(self, title, warning=""):

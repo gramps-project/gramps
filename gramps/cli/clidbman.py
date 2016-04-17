@@ -419,10 +419,10 @@ class CLIDbManager(object):
                                "No matching family tree found: '%s'" % dbname)
         # now delete them:
         for (name, directory) in match_list:
-            if user is None or not user.prompt(
+            if user is None or user.prompt(
                     _('Remove family tree warning'),
                     _('Are you sure you want to remove the family tree named\n"%s"?' % name),
-                    _('no'), _('yes')):
+                    _('yes'), _('no'), default_label=_('no')):
                 try:
                     for (top, dirs, files) in os.walk(directory):
                         for filename in files:

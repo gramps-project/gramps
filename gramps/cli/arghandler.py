@@ -288,7 +288,7 @@ class ArgHandler(object):
                             "WARNING: It will be overwritten:\n   %s"
                             ) % fullpath
                 accepted = self.user.prompt(_('OK to overwrite?'), message,
-                        _('yes'), _('no'))
+                                            _('yes'), _('no'), default_label=_('yes'))
                 if accepted:
                     self.__error(_("Will overwrite the existing file: %s")
                                    % fullpath)
