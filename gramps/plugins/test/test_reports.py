@@ -137,6 +137,8 @@ reports.addtest(TestDynamic, "tag_report",
 #                err_does_not_contain("Failed to write report."),
 #                off="html")
 
+### Three hashes: capture out/err seems to conflict with Travis/nose proxy:
+
 report_list = [
     ##("ancestor_chart", "pdf", []), # Ancestor Tree
     ("ancestor_report", "txt", []), # Ahnentafel Report
@@ -150,15 +152,15 @@ report_list = [
     ## ("d3-ancestralcollapsibletree", "txt"), # Ancestral Collapsible Tree
     ## ("d3-ancestralfanchart", "txt"), # Ancestral Fan Chart
     ## "d3-descendantindentedtree", # Descendant Indented Tree
-    ("database-differences-report", "txt", []), # Database Differences Report
+    ### ("database-differences-report", "txt", []), # Database Differences Report
     ## "denominoviso", # DenominoViso
     ##("descend_chart", "svg", []), # Descendant Tree
     ("descend_report", "txt", []), # Descendant Report
-    ("DescendantBook", "txt", []), # Descendant Book
+    ### ("DescendantBook", "txt", []), # Descendant Book
     ## ("Descendants Lines", "txt"), # Descendants Lines
     ("det_ancestor_report", "txt", []), # Detailed Ancestral Report
     ("det_descendant_report", "txt", []), # Detailed Descendant Report
-    ("DetailedDescendantBook", "txt", []), # Detailed Descendant Book
+    ### ("DetailedDescendantBook", "txt", []), # Detailed Descendant Book
     ## ("DynamicWeb", "txt"), # Dynamic Web Report
     ("endofline_report", "txt", []), # End of Line Report
     ##("family_descend_chart", "svg", []), # Family Descendant Tree
@@ -169,23 +171,23 @@ report_list = [
     # ("hourglass_graph", "svg", []), # Hourglass Graph
     ("indiv_complete", "txt", []), # Complete Individual Report
     ("kinship_report", "txt", []), # Kinship Report
-    ("LastChangeReport", "txt", []), # Last Change Report
-    ("LinesOfDescendency", "txt", []), # Lines of Descendency Report
+    ### ("LastChangeReport", "txt", []), # Last Change Report
+    ### ("LinesOfDescendency", "txt", []), # Lines of Descendency Report
     ## "ListeEclair", # Tiny Tafel
     ("notelinkreport", "txt", []), # Note Link Report
     ("number_of_ancestors", "txt", []), # Number of Ancestors Report
     ##("PedigreeChart", "svg", ["PedigreeChart-2.svg"]), # Pedigree Chart
-    ("PersonEverythingReport", "txt", []), # PersonEverything Report
+    ### ("PersonEverythingReport", "txt", []), # PersonEverything Report
     ## "place_report", # Place Report
     ("records", "txt", []), # Records Report
     ##("rel_graph", "pdf", []), # Relationship Graph
-    ("Repositories Report", "txt", []), # Repositories Report
-    ("Repositories Report Options", "txt", []), # Repositories Report Options
+    ### ("Repositories Report", "txt", []), # Repositories Report
+    ### ("Repositories Report Options", "txt", []), # Repositories Report Options
     # ("statistics_chart", "svg", ["statistics_chart-2.svg",
     #                              "statistics_chart-3.svg"]), # Statistics Charts
     ("summary", "txt", []), # Database Summary Report
     ##("timeline", "pdf", []), # Timeline Chart
-    ("TodoReport", "txt", []), # Todo Report
+    ### ("TodoReport", "txt", []), # Todo Report
     ## ("WebCal", "txt"), # Web Calendar
 ]
 
