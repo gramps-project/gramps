@@ -376,20 +376,6 @@ gramps/gui/widgets/validatedcomboentry.py
 gramps/gui/widgets/valueaction.py
 gramps/gui/widgets/valuetoolitem.py
 #
-# gui qt (do not need translation yet)
-#
-gramps/guiQML/__init__.py
-gramps/guiQML/qmlwidgets/TextButton.qml
-gramps/guiQML/qmlwidgets/TopBar.qml
-gramps/guiQML/questiondialog.py
-gramps/guiQML/viewmanager.py
-gramps/guiQML/views/centralview.py
-gramps/guiQML/views/centralview.qml
-gramps/guiQML/views/dbman.qml
-gramps/guiQML/views/__init__.py
-gramps/guiQML/views/peopleview.qml
-gramps/guiQML/views/personview.py
-#
 # plugins .gpr.py
 #
 gramps/plugins/__init__.py

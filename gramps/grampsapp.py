@@ -422,20 +422,15 @@ def run():
 
     if argpars.need_gui():
         LOG.debug("A GUI is needed, set it up")
-        if "--qml" in sys.argv:
-            from .guiQML.grampsqml import startqml
-            startqml(error, argpars)
-        else:
-            try:
-                from .gui.grampsgui import startgtkloop
+        try:
+            from .gui.grampsgui import startgtkloop
             # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
-            except RuntimeError as msg:
-                error += [(_("Configuration error:"), str(msg))]
-                return error
-            startgtkloop(error, argpars)
+        except RuntimeError as msg:
+            error += [(_("Configuration error:"), str(msg))]
+            return error
+        startgtkloop(error, argpars)
     else:
         # CLI use of Gramps
-
         argpars.print_help()
         argpars.print_usage()
         from .cli.grampscli import startcli
