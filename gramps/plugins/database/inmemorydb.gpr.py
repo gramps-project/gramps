@@ -20,7 +20,7 @@
 
 register(DATABASE,
          id    = 'inmemorydb',
-         name  = _("In-Memory Database"),
+         name  = _("In-Memory"),
          name_accell  = _("In-_Memory Database"),
          description =  _("In-Memory Database"),
          version = '1.0.0',

@@ -330,7 +330,7 @@ class DbManager(CLIDbManager):
         self.column.set_sort_column_id(NAME_COL)
         self.column.set_sort_indicator(True)
         self.column.set_resizable(True)
-        self.column.set_min_width(235)
+        self.column.set_min_width(250)
         self.dblist.append_column(self.column)
         self.name_renderer = render
 
@@ -832,7 +832,7 @@ class DbManager(CLIDbManager):
         for plugin in pmgr.get_reg_databases():
             if plugin.id == dbid:
                 return plugin._name
-        return _("Unknown Database")
+        return _("Unknown")
 
     def _create_new_db(self, title=None, create_db=True, dbid=None):
         """

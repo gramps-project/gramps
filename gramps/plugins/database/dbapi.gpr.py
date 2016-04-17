@@ -20,7 +20,7 @@
 
 register(DATABASE,
          id    = 'dbapi',
-         name  = _("DB-API Database"),
+         name  = _("DB-API"),
          name_accell  = _("DB-_API Database"),
          description =  _("DB-API Database"),
          version = '1.0.32',

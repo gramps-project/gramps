@@ -20,7 +20,7 @@
 
 plg = newplugin()
 plg.id    = 'bsddb'
-plg.name  = _("BSDDB Database")
+plg.name  = _("BSDDB")
 plg.name_accell  = _("_BSDDB Database")
 plg.description =  _("Berkeley Software Distribution Database Backend")
 plg.version = '1.0'
