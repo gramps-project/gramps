@@ -1287,7 +1287,7 @@ class DbReadBase(object):
                     if compare(item, op, value):
                         return True
                 return False
-            if op == "=":
+            if op in ["=", "=="]:
                 matched = v == value
             elif op == ">":
                 matched = v > value
@@ -1430,15 +1430,15 @@ class DbReadBase(object):
         name = self.get_table_func(table,"class_func").get_field_alias(name)
         return name.replace(".", "__")
 
-    Person = property(lambda self:QuerySet(self, "Person"))
-    Family = property(lambda self:QuerySet(self, "Family"))
-    Note = property(lambda self:QuerySet(self, "Note"))
-    Citation = property(lambda self:QuerySet(self, "Citation"))
-    Source = property(lambda self:QuerySet(self, "Source"))
-    Repository = property(lambda self:QuerySet(self, "Repository"))
-    Place = property(lambda self:QuerySet(self, "Place"))
-    Event = property(lambda self:QuerySet(self, "Event"))
-    Tag = property(lambda self:QuerySet(self, "Tag"))
+    Person = property(lambda self: QuerySet(self, "Person"))
+    Family = property(lambda self: QuerySet(self, "Family"))
+    Note = property(lambda self: QuerySet(self, "Note"))
+    Citation = property(lambda self: QuerySet(self, "Citation"))
+    Source = property(lambda self: QuerySet(self, "Source"))
+    Repository = property(lambda self: QuerySet(self, "Repository"))
+    Place = property(lambda self: QuerySet(self, "Place"))
+    Event = property(lambda self: QuerySet(self, "Event"))
+    Tag = property(lambda self: QuerySet(self, "Tag"))
 
 class DbWriteBase(DbReadBase):
     """
@@ -2089,41 +2089,6 @@ class DbWriteBase(DbReadBase):
         """
         return getattr(self, table_name)
 
-class Operator(object):
-    """
-    Base for QuerySet operators.
-    """
-    op = "OP"
-    def __init__(self, *expressions, **kwargs):
-        if self.op in ["AND", "OR"]:
-            exprs = [expression.list for expression
-                     in expressions]
-            for key in kwargs:
-                exprs.append(
-                    _select_field_operator_value(key, "=", kwargs[key]))
-        else: # "NOT"
-            if expressions:
-                exprs = expressions.list
-            else:
-                key, value = list(kwargs.items())[0]
-                exprs = _select_field_operator_value(key, "=", value)
-        self.list = [self.op, exprs]
-
-class AND(Operator):
-    op = "AND"
-
-class OR(Operator):
-    """
-    OR operator for QuerySet logical WHERE expressions.
-    """
-    op = "OR"
-
-class NOT(Operator):
-    """
-    NOT operator for QuerySet logical WHERE expressions.
-    """
-    op = "NOT"
-
 class QuerySet(object):
     """
     A container for selection criteria before being actually
@@ -2164,20 +2129,15 @@ class QuerySet(object):
         self.needs_to_run = True
         return self
 
-    def _add_where_clause(self, *args, **kwargs):
+    def _add_where_clause(self, *args):
         """
         Add a condition to the where clause.
         """
         # First, handle AND, OR, NOT args:
         and_expr = []
-        for arg in args:
-            expr = arg.list
+        for expr in args:
             and_expr.append(expr)
         # Next, handle kwargs:
-        for keyword in kwargs:
-            and_expr.append(
-                _select_field_operator_value(
-                    keyword, "=", kwargs[keyword]))
         if and_expr:
             if self.where_by:
                 self.where_by = ["AND", [self.where_by] + and_expr]
@@ -2260,20 +2220,32 @@ class QuerySet(object):
         self.database = proxy_class(self.database, *args, **kwargs)
         return self
 
-    def filter(self, *args, **kwargs):
+    def where(self, where_clause):
+        """
+        Apply a where_clause (closure) to the selection process.
+        """
+        from gramps.gen.db.where import eval_where
+        # if there is already a generator, then error:
+        if self.generator:
+            raise Exception("Queries in invalid order")
+        where_by = eval_where(where_clause)
+        self._add_where_clause(where_by)
+        return self
+
+    def filter(self, *args):
         """
         Apply a filter to the database.
         """
         from gramps.gen.proxy import FilterProxyDb
         from gramps.gen.filters import GenericFilter
+        from gramps.gen.db.where import eval_where
         for i in range(len(args)):
             arg = args[i]
             if isinstance(arg, GenericFilter):
                 self.database = FilterProxyDb(self.database, arg, *args[i+1:])
-                if arg.where_by:
-                    self._add_where_clause(arg.where_by)
-            elif isinstance(arg, Operator):
-                self._add_where_clause(arg)
+                if hasattr(arg, "where"):
+                    where_by = eval_where(arg.where)
+                    self._add_where_clause(where_by)
             elif callable(arg):
                 if self.generator and self.needs_to_run:
                     ## error
@@ -2285,8 +2257,6 @@ class QuerySet(object):
                 self.generator = filter(arg, self.generator)
             else:
                 pass # ignore, may have been arg from previous Filter
-        if kwargs:
-            self._add_where_clause(**kwargs)
         return self
 
     def map(self, f):
@@ -2329,33 +2299,3 @@ class QuerySet(object):
                     item.add_tag(tag.handle)
                     commit_func(item, trans)
 
-def _to_dot_format(field):
-    """
-    Convert a field keyword arg into a proper
-    dotted field name.
-    """
-    return field.replace("__", ".")
-
-def _select_field_operator_value(field, op, value):
-    """
-    Convert a field keyword arg into proper
-    field, op, and value.
-    """
-    alias = {
-        "LT": "<",
-        "GT": ">",
-        "LTE": "<=",
-        "GTE": ">=",
-        "IS_NOT": "IS NOT",
-        "IS_NULL": "IS NULL",
-        "IS_NOT_NULL": "IS NOT NULL",
-        "NE": "<>",
-    }
-    for operator in ["LIKE", "IN"] + list(alias.keys()):
-        operator = "__" + operator
-        if field.endswith(operator):
-            op = field[-len(operator) + 2:]
-            field = field[:-len(operator)]
-            op = alias.get(op, op)
-    field = _to_dot_format(field)
-    return (field, op, value)
