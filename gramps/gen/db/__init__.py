@@ -117,3 +117,10 @@ def open_database(database, force_unlock=False):
     """
     from ..dbstate import DbState
     return DbState().open_database(database, force_unlock)
+
+def make_database(dbid):
+    """
+    Shortcut for external uses of databases.
+    """
+    from ..dbstate import DbState
+    return DbState().make_database(dbid)

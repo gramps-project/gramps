@@ -33,7 +33,6 @@ except:
 
 from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                              Repository, Media, Note, Tag)
-from gramps.gen.merge.diff import DictionaryDb
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState
 from gramps.gen.merge.diff import *

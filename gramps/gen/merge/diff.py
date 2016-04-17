@@ -28,7 +28,7 @@ from gramps.cli.user import User
 from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
-from gramps.plugins.database.dictionarydb import DictionaryDb
+from gramps.gen.db import make_database
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -84,11 +84,11 @@ def parse(string):
 
 def import_as_dict(filename, user=None):
     """
-    Import the filename into a DictionaryDb and return it.
+    Import the filename into a InMemoryDB and return it.
     """
     if user is None:
         user = User()
-    db = DictionaryDb()
+    db = make_database("inmemorydb")
     db.load(None)
     db.set_feature("skip-import-additions", True)
     dbstate = DbState()
@@ -225,7 +225,7 @@ def diff_dbs(db1, db2, user=None):
 def diff_db_to_file(old_db, filename, user=None):
     if user is None:
         user = User()
-    # First, get data as a DictionaryDb
+    # First, get data as a InMemoryDB
     new_db = import_as_dict(filename, user, user)
     if new_db is not None:
         # Next get differences:
