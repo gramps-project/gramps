@@ -761,7 +761,7 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
-                self.dbstate.db.backup()
+                self.dbstate.db.backup(user=self.user)
             except DbException as msg:
                 ErrorDialog(_("Error saving backup data"), msg,
                             parent=self.uistate.window)

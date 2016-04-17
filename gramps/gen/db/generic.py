@@ -2049,13 +2049,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def _order_by_tag_key(self, key):
         return glocale.sort_key(key)
 
-    def backup(self):
+    def backup(self, user=None):
         """
         If you wish to support an optional backup routine, put it here.
         """
         from gramps.plugins.export.exportxml import XmlWriter
         from gramps.cli.user import User
-        writer = XmlWriter(self, User(), strip_photos=0, compress=1)
+        if user is None:
+            user = User()
+        writer = XmlWriter(self, user, strip_photos=0, compress=1)
         timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
         filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
         writer.write(filename)

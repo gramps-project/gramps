@@ -2471,7 +2471,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return DbTxn
 
-    def backup(self):
+    def backup(self, user=None):
         """
         Exports the database to a set of backup files. These files consist
         of the pickled database tables, one file for each table.
