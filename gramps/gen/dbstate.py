@@ -219,7 +219,6 @@ class DbState(Callback):
                         fname = os.path.join(dirpath, "lock")
                         with open(fname, 'r', encoding='utf8') as ifile:
                             locked_by = ifile.read().strip()
-                        ifile.close()
                     except (OSError, IOError):
                         pass
                     return (dirpath, locked, locked_by, backend)

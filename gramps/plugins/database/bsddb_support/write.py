@@ -436,7 +436,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __log_error(self):
         mypath = os.path.join(self.get_save_path(),DBRECOVFN)
-        with open(mypath, "w") as ofile:
+        ofile = open(mypath, "w")
+        ofile.close()
         try:
             clear_lock_file(self.get_save_path())
         except:

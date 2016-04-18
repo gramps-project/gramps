@@ -37,11 +37,11 @@ Examples:
    python update_po.py -p
 
       Generates a new template/catalog (gramps.pot).
-      
+
    python update_po.py -m de.po
 
       Merges 'de.po' file with 'gramps.pot'.
-      
+
    python update_po.py -k de.po
 
       Checks 'de.po' file, tests to compile and generates a textual resume.
@@ -55,7 +55,7 @@ from argparse import ArgumentParser
 
 # Windows OS
 
-if sys.platform == 'win32':          
+if sys.platform == 'win32':
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
     # ....\gettext\bin\msgmerge.exe needs to be on the path
     msgmergeCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgmerge.exe')
@@ -96,67 +96,64 @@ def tests():
         print ("\n====='msgmerge'=(merge our translation)================\n")
         os.system('''%(program)s -V''' % {'program': msgmergeCmd})
     except:
-        print ('Please, install %(program)s for updating your translation' 
+        print ('Please, install %(program)s for updating your translation'
                     % {'program': msgmergeCmd})
-        
+
     try:
         print ("\n==='msgfmt'=(format our translation for installation)==\n")
         os.system('''%(program)s -V''' % {'program': msgfmtCmd})
     except:
-        print ('Please, install %(program)s for checking your translation' 
+        print ('Please, install %(program)s for checking your translation'
                     % {'program': msgfmtCmd})
-        
+
     try:
         print ("\n===='msgattrib'==(list groups of messages)=============\n")
         os.system('''%(program)s -V''' % {'program': msgattribCmd})
     except:
-        print ('Please, install %(program)s for listing groups of messages' 
+        print ('Please, install %(program)s for listing groups of messages'
                     % {'program': msgattribCmd})
-        
-    
+
     try:
         print("\n===='xgettext' =(generate a new template)==============\n")
         os.system('''%(program)s -V''' % {'program': xgettextCmd})
     except:
-        print ('Please, install %(program)s for generating a new template' 
+        print ('Please, install %(program)s for generating a new template'
                     % {'program': xgettextCmd})
-    
+
     try:
         print("\n=================='python'=============================\n")
         os.system('''%(program)s -V''' % {'program': pythonCmd})
     except:
         print ('Please, install python')
-        
 
 def TipsParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'tips.xml'.
     """
-
     from xml.etree import ElementTree
-    
+
     tree = ElementTree.parse(filename)
     root = tree.getroot()
-        
+
     '''
     <?xml version="1.0" encoding="UTF-8"?>
       <tips>
         <_tip number="1">
           <b>Working with Dates</b>
             <br/>
-        A range of dates can be given by using the format &quot;between 
-        January 4, 2000 and March 20, 2003&quot;. You can also indicate 
-        the level of confidence in a date and even choose between seven 
+        A range of dates can be given by using the format &quot;between
+        January 4, 2000 and March 20, 2003&quot;. You can also indicate
+        the level of confidence in a date and even choose between seven
         different calendars. Try the button next to the date field in the
         Events Editor.
         </_tip>
-        
-    char *s = N_("<b>Working with Dates</b><br/>A range of dates can be 
+
+    char *s = N_("<b>Working with Dates</b><br/>A range of dates can be
     given by using the format &quot;between January 4, 2000 and March 20,
-    2003&quot;. You can also indicate the level of confidence in a date 
-    and even choose between seven different calendars. Try the button 
+    2003&quot;. You can also indicate the level of confidence in a date
+    and even choose between seven different calendars. Try the button
     next to the date field in the Events Editor.");
-    
+
     gramps.pot:
     msgid ""
     "<b>Working with Dates</b><br/>A range of dates can be given by using the "
@@ -165,7 +162,7 @@ def TipsParse(filename, mark):
     "different calendars. Try the button next to the date field in the Events "
     "Editor."
     '''
-    
+
     with open('../data/tips.xml.in.h', 'w') as tips:
         marklist = root.iter(mark)
         for key in marklist:
@@ -184,14 +181,13 @@ def TipsParse(filename, mark):
             tips.write('char *s = N_("%s");\n' % tip)
     print ('Wrote ../data/tips.xml.in.h')
     root.clear()
-    
+
 def HolidaysParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'holidays.xml'.
     """
-
     from xml.etree import ElementTree
-    
+
     tree = ElementTree.parse(filename)
     root = tree.getroot()
     ellist = root.iter()
@@ -203,17 +199,16 @@ def HolidaysParse(filename, mark):
           ..
         <country _name="Jewish Holidays">
           <date _name="Yom Kippur" value="> passover(y)" offset="172"/>
-          
+
     char *s = N_("Bulgaria");
     char *s = N_("Jewish Holidays");
     char *s = N_("Yom Kippur");
-    
+
     gramps.pot:
     msgid "Bulgaria"
     msgid "Jewish Holidays"
     msgid "Yom Kippur"
     '''
-    
     with open('../data/holidays.xml.in.h', 'w') as holidays:
         for key in ellist:
             if key.attrib.get(mark):
@@ -230,12 +225,11 @@ def XmlParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'file.xml.in'.
     """
-    
     from xml.etree import ElementTree
-    
+
     tree = ElementTree.parse(filename)
     root = tree.getroot()
-    
+
     '''
     <?xml version="1.0" encoding="UTF-8"?>
 
@@ -250,18 +244,17 @@ def XmlParse(filename, mark):
           <glob pattern="*.gedcom"/>
           <glob pattern="*.GED"/>
           <glob pattern="*.GEDCOM"/>
-    
+
     msgid "Gramps database"
     msgid "GEDCOM"
-    
+
     <_p> Gramps is a free software project and community.
     We strive to produce a genealogy program that is both intuitive for hobbyists
     and feature-complete for professional genealogists.
     </p>
     '''
-    
-    with open(filename + '.h', 'w') as head:
 
+    with open(filename + '.h', 'w') as head:
         for key in root.iter():
             if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
                 comment = 'char *s = N_("%s");\n' % key.text
@@ -276,20 +269,19 @@ def XmlParse(filename, mark):
     print ('Wrote %s' % filename)
     root.clear()
 
-        
 def DesktopParse(filename):
     """
     Experimental alternative to 'intltool-extract' for 'gramps.desktop'.
     """
-    
+
     '''
     [Desktop Entry]
     _Name=Gramps
     _GenericName=Genealogy System
     _X-GNOME-FullName=Gramps Genealogy System
-    _Comment=Manage genealogical information, 
+    _Comment=Manage genealogical information,
              perform genealogical research and analysis
-             
+
     msgid "Gramps"
     msgid "Genealogy System"
     msgid "Gramps Genealogy System"
@@ -297,7 +289,6 @@ def DesktopParse(filename):
           "Manage genealogical information, 
            perform genealogical research and analysis"
     '''
-    
     with open('../data/gramps.desktop.in.h', 'w') as desktop:
 
         with open(filename) as f:
@@ -316,7 +307,7 @@ def KeyParse(filename, mark):
     """
     Experimental alternative to 'intltool-extract' for 'gramps.keys'.
     """
-    
+
     '''
     application/x-gramps-xml:
     _description=Gramps XML database
@@ -332,11 +323,10 @@ def KeyParse(filename, mark):
     application/x-gedcom:
     _description=GEDCOM
     default_action_type=application
-    
+
     msgid "Gramps XML database"
     msgid "GEDCOM"
     '''
-
     with open('../data/gramps.keys.in.h', 'w') as key:
 
         with open(filename) as f:
@@ -362,15 +352,15 @@ def main():
     The utility for handling translation stuff.
     What is need by Gramps, nothing more.
     """
-       
-    parser = ArgumentParser( 
+
+    parser = ArgumentParser(
                          description='This program generates a new template and '
-                                      'also provides some common features.', 
+                                      'also provides some common features.',
                          )
     parser.add_argument("-t", "--test",
             action="store_true", dest="test",  default=True,
             help="test if 'python' and 'gettext' are properly installed")
-                        
+
     parser.add_argument("-x", "--xml",
             action="store_true", dest="xml",  default=False,
             help="extract messages from xml based file formats")
@@ -383,76 +373,75 @@ def main():
     parser.add_argument("-p", "--pot", 
             action="store_true", dest="catalog",  default=False,
             help="create a new catalog")
-                    
+
     update = parser.add_argument_group('Update', 'Maintenance around translations')
-    
+
     # need at least one argument (sv.po, de.po, etc ...)
 
-    # lang.po files maintenance                          
+    # lang.po files maintenance
     update.add_argument("-m", dest="merge",
             choices=LANG,
             help="merge lang.po files with last catalog")
-              
+
     update.add_argument("-k", dest="check",
             choices=LANG,
             help="check lang.po files")
-        
-     # testing stage
+
+    # testing stage
     trans = parser.add_argument_group('Translation', 'Display content of translations file')
-       
+
     # need one argument (eg, de.po)
-    
-    trans.add_argument("-u", dest="untranslated", 
+
+    trans.add_argument("-u", dest="untranslated",
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list untranslated messages")
     trans.add_argument("-f", dest="fuzzy",
             choices=[file for file in os.listdir('.') if file.endswith('.po')],
             help="list fuzzy messages")
-    
-    
+
     args = parser.parse_args()
     namespace, extra = parser.parse_known_args()
 
     if args.test:
         tests()
-       
+
     if args.xml:
         extract_xml()
-        
+
     if args.glade:
         create_filesfile()
         extract_glade()
         if os.path.isfile('tmpfiles'):
             os.unlink('tmpfiles')
-        
+
     if args.catalog:
         retrieve()
-        
+
     if args.clean:
         clean()
-        
+
     if args.merge:
         #retrieve() windows os?
         if sys.argv[2:] == ['all']:
             sys.argv[2:] = LANG
         merge(sys.argv[2:])
-        
+
     if args.check:
         #retrieve() windows os?
         if sys.argv[2:] == ['all']:
             sys.argv[2:] = LANG
         check(sys.argv[2:])
-        
+
     if args.untranslated:
         untranslated(sys.argv[2:])
-        
+
     if args.fuzzy:
         fuzzy(sys.argv[2:])
 
 def create_filesfile():
     """
     Create a file with all files that we should translate.
-    These are all python files not in POTFILES.skip added with those in 
+    These are all python files not in POTFILES.skip added with those in
     POTFILES.in
     """
     dir = os.getcwd()
@@ -480,7 +469,7 @@ def create_filesfile():
             # if the directory does not exist or is a link, do nothing
             if not os.path.isdir(dirpath) or os.path.islink(dirpath):
                 continue
-            
+
             for filename in os.listdir(dirpath):
                 name = os.path.split(filename)[1]
                 if name.endswith('.py') or name.endswith('.glade'):
@@ -505,7 +494,6 @@ def listing(name, extensionlist):
         files = [file.strip() for file in f if file and not file[0]=='#']
 
     with open(name, 'w') as temp:
-
         for entry in files:
             for ext in extensionlist:
                 if entry.endswith(ext):
@@ -516,7 +504,7 @@ def listing(name, extensionlist):
 def headers():
     """
     Look at existing C file format headers.
-    Generated by 'intltool-extract' but want to get rid of this 
+    Generated by 'intltool-extract' but want to get rid of this
     dependency (perl, just a set of tools).
     """
     headers = []
@@ -536,7 +524,7 @@ def headers():
         headers.append('''../data/gramps.appdata.xml.in.h''')
     if os.path.isfile('''gtklist.h'''):
         headers.append('''gtklist.h''')
-    
+
     return headers
 
 def extract_xml():
@@ -544,7 +532,6 @@ def extract_xml():
     Extract translation strings from XML based, keys, mime and desktop
     files. Own XML files parsing and custom translation marks.
     """
-  
     HolidaysParse('../data/holidays.xml.in', '_name')
     TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
@@ -557,6 +544,7 @@ def create_template():
     Create a new file for template, if it does not exist.
     """
     with open('gramps.pot', 'w') as template:
+        pass
 
 def extract_glade():
     """
@@ -577,9 +565,9 @@ def extract_gtkbuilder():
     https://savannah.gnu.org/bugs/index.php?29216
     See bug reports #6595, #5621
     """
-    
+
     from xml.etree import ElementTree
-    
+
     '''
     <?xml version="1.0" encoding="UTF-8"?>
     <interface>
@@ -602,7 +590,7 @@ def extract_gtkbuilder():
       </row>
     </data>
   </object>
-    
+
     msgid "All rules must apply"
     msgid "At least one rule must apply"
     msgid "Exactly one rule must apply"
@@ -610,7 +598,6 @@ def extract_gtkbuilder():
 
     files = ['../gramps/plugins/importer/importgedcom.glade', '../gramps/gui/glade/rule.glade']
     with open('gtklist.h', 'w') as temp:
-
         for filename in files:
             tree = ElementTree.parse(filename)
             root = tree.getroot()
@@ -628,14 +615,14 @@ def retrieve():
     Extract messages from all files used by Gramps (python, glade, xml)
     """
     extract_xml()
-    
+
     extract_gtkbuilder()
-    
+
     create_template()
-        
+
     create_filesfile()
     listing('python.txt', ['.py', '.py.in'])
-    
+
     # additional keywords must always be kept in sync with those in genpot.sh
     os.system('''%(xgettext)s -F -c -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
@@ -643,14 +630,14 @@ def retrieve():
               '''--keyword=_T_ --keyword=trans_text '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
              )
-    
+
     extract_glade()
-    
+
     # C format header (.h extension)
     for h in headers():
         print ('xgettext for %s' % h)
         os.system('''%(xgettext)s -F --add-comments -j -o gramps.pot '''
-                  '''--keyword=N_ --from-code=UTF-8 %(head)s''' 
+                  '''--keyword=N_ --from-code=UTF-8 %(head)s'''
                   % {'xgettext': xgettextCmd, 'head': h}
                   )
     clean()
@@ -680,10 +667,9 @@ def merge(args):
     """
     Merge messages with 'gramps.pot'
     """
-    
     for arg in args:
         if arg == 'all':
-            continue  
+            continue
         print ('Merge %(lang)s with current template' % {'lang': arg})
         os.system('''%(msgmerge)s %(lang)s gramps.pot -o updated_%(lang)s''' \
                     % {'msgmerge': msgmergeCmd, 'lang': arg})
@@ -693,7 +679,6 @@ def check(args):
     """
     Check the translation file
     """
-    
     for arg in args:
         if arg == 'all':
             continue
@@ -708,14 +693,12 @@ def untranslated(arg):
     """
     List untranslated messages
     """
-        
     os.system('''%(msgattrib)s --untranslated %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 def fuzzy(arg):
     """
     List fuzzy messages
     """
-   
     os.system('''%(msgattrib)s --only-fuzzy --no-obsolete %(lang.po)s''' % {'msgattrib': msgattribCmd, 'lang.po': arg[0]})
 
 if __name__ == "__main__":
