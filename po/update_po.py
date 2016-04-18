@@ -166,23 +166,22 @@ def TipsParse(filename, mark):
     "Editor."
     '''
     
-    tips = open('../data/tips.xml.in.h', 'w')
-    marklist = root.iter(mark)
-    for key in marklist:
-        tip = ElementTree.tostring(key, encoding="UTF-8", method="xml")
-        if sys.version_info[0] < 3:
-            tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
-            tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
-        else: # python3 support
-            tip = tip.decode("utf-8")
-            tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
-        tip = tip.replace("<br />", "<br/>")
-        #tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
-        #tip = tip.replace("\n<b>", "<b>") # special case tip 18
-        tip = tip.replace("</_tip>\n\n", "")
-        tip = tip.replace('"', '&quot;')
-        tips.write('char *s = N_("%s");\n' % tip)
-    tips.close()
+    with open('../data/tips.xml.in.h', 'w') as tips:
+        marklist = root.iter(mark)
+        for key in marklist:
+            tip = ElementTree.tostring(key, encoding="UTF-8", method="xml")
+            if sys.version_info[0] < 3:
+                tip = tip.replace("<?xml version='1.0' encoding='UTF-8'?>", "")
+                tip = tip.replace('\n<_tip number="%(number)s">' % key.attrib, "")
+            else: # python3 support
+                tip = tip.decode("utf-8")
+                tip = tip.replace('<_tip number="%(number)s">' % key.attrib, "")
+            tip = tip.replace("<br />", "<br/>")
+            #tip = tip.replace("\n</_tip>\n", "</_tip>\n") # special case tip 7
+            #tip = tip.replace("\n<b>", "<b>") # special case tip 18
+            tip = tip.replace("</_tip>\n\n", "")
+            tip = tip.replace('"', '&quot;')
+            tips.write('char *s = N_("%s");\n' % tip)
     print ('Wrote ../data/tips.xml.in.h')
     root.clear()
     
@@ -215,15 +214,14 @@ def HolidaysParse(filename, mark):
     msgid "Yom Kippur"
     '''
     
-    holidays = open('../data/holidays.xml.in.h', 'w')
-    for key in ellist:
-        if key.attrib.get(mark):
-            line = key.attrib
-            string = line.items
-            # mapping via the line dict (_name is the key)
-            name = 'char *s = N_("%(_name)s");\n' % line
-            holidays.write(name)
-    holidays.close()
+    with open('../data/holidays.xml.in.h', 'w') as holidays:
+        for key in ellist:
+            if key.attrib.get(mark):
+                line = key.attrib
+                string = line.items
+                # mapping via the line dict (_name is the key)
+                name = 'char *s = N_("%(_name)s");\n' % line
+                holidays.write(name)
     print ('Wrote ../data/holidays.xml.in.h')
     root.clear()
 
@@ -262,20 +260,19 @@ def XmlParse(filename, mark):
     </p>
     '''
     
-    head = open(filename + '.h', 'w')
-    
-    for key in root.iter():
-        if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
-            comment = 'char *s = N_("%s");\n' % key.text
-            head.write(comment)
-            
-    if root.tag == 'application':
+    with open(filename + '.h', 'w') as head:
+
         for key in root.iter():
-            if key.tag == mark:
+            if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
                 comment = 'char *s = N_("%s");\n' % key.text
                 head.write(comment)
-    
-    head.close()
+
+        if root.tag == 'application':
+            for key in root.iter():
+                if key.tag == mark:
+                    comment = 'char *s = N_("%s");\n' % key.text
+                    head.write(comment)
+
     print ('Wrote %s' % filename)
     root.clear()
 
@@ -301,22 +298,19 @@ def DesktopParse(filename):
            perform genealogical research and analysis"
     '''
     
-    desktop = open('../data/gramps.desktop.in.h', 'w')
-    
-    f = open(filename)
-    lines = [file.strip() for file in f]
-    f.close()
-    
-    for line in lines:
-        if line[0] == '_':
-            for i in range(len(line)):
-                if line[i] == '=':
-                    val = 'char *s = N_("%s");\n' % line[i+1:len(line)]
-                    desktop.write(val)
-                    
-    desktop.close()
+    with open('../data/gramps.desktop.in.h', 'w') as desktop:
+
+        with open(filename) as f:
+            lines = [file.strip() for file in f]
+
+        for line in lines:
+            if line[0] == '_':
+                for i in range(len(line)):
+                    if line[i] == '=':
+                        val = 'char *s = N_("%s");\n' % line[i+1:len(line)]
+                        desktop.write(val)
+
     print ('Wrote ../data/gramps.desktop.in.h')
-                    
 
 def KeyParse(filename, mark):
     """
@@ -342,29 +336,26 @@ def KeyParse(filename, mark):
     msgid "Gramps XML database"
     msgid "GEDCOM"
     '''
-    
-    key = open('../data/gramps.keys.in.h', 'w')
-    
-    f = open(filename)
-    lines = [file for file in f]
-    f.close()
-    
-    temp = []
-       
-    for line in lines:
-        for i in range(len(line)):
-            if line[i:i+12] == mark:
-                temp.append(line.strip())
-                
-    for t in temp:
-        for i in range(len(t)):
-            if t[i] == '=':
-                val = 'char *s = N_("%s");\n' % t[i+1:len(t)]
-                key.write(val)
-    
-    key.close()
+
+    with open('../data/gramps.keys.in.h', 'w') as key:
+
+        with open(filename) as f:
+            lines = [file for file in f]
+
+        temp = []
+
+        for line in lines:
+            for i in range(len(line)):
+                if line[i:i+12] == mark:
+                    temp.append(line.strip())
+
+        for t in temp:
+            for i in range(len(t)):
+                if t[i] == '=':
+                    val = 'char *s = N_("%s");\n' % t[i+1:len(t)]
+                    key.write(val)
+
     print ('Wrote ../data/gramps.keys.in.h')
-    
 
 def main():
     """
@@ -467,15 +458,14 @@ def create_filesfile():
     dir = os.getcwd()
     topdir = os.path.normpath(os.path.join(dir, '..', 'gramps'))
     lentopdir = len(topdir)
-    f = open('POTFILES.in')
-    infiles = dict(['../' + file.strip(), None] for file in f if file.strip() 
-                                                        and not file[0]=='#')
-    f.close()
-    f = open('POTFILES.skip')
-    notinfiles = dict(['../' + file.strip(), None] for file in f if file 
-                                                        and not file[0]=='#')
-    f.close()
-    
+    with open('POTFILES.in') as f:
+        infiles = dict(['../' + file.strip(), None] for file in f if file.strip()
+                                                            and not file[0]=='#')
+
+    with open('POTFILES.skip') as f:
+        notinfiles = dict(['../' + file.strip(), None] for file in f if file
+                                                            and not file[0]=='#')
+
     for (dirpath, dirnames, filenames) in os.walk(topdir):
             root, subdir = os.path.split(dirpath)
             if subdir.startswith("."):
@@ -499,11 +489,10 @@ def create_filesfile():
                     if full_filename[lentopdir:] in notinfiles:
                         infiles['../gramps' + full_filename[lentopdir:]] = None
     #now we write out all the files in form ../gramps/filename
-    f = open('tmpfiles', 'w')
-    for file in sorted(infiles.keys()):
-        f.write(file)
-        f.write('\n')
-    f.close()
+    with open('tmpfiles', 'w') as f:
+        for file in sorted(infiles.keys()):
+            f.write(file)
+            f.write('\n')
 
 def listing(name, extensionlist):
     """
@@ -511,22 +500,19 @@ def listing(name, extensionlist):
     Parsing from a textual file (gramps) is faster and easy for maintenance.
     Like POTFILES.in and POTFILES.skip
     """
-    
-    f = open('tmpfiles')
-    files = [file.strip() for file in f if file and not file[0]=='#']
-    f.close()
-    
-    temp = open(name, 'w')
-    
-    for entry in files:
-        for ext in extensionlist:
-            if entry.endswith(ext):
-                temp.write(entry)
-                temp.write('\n')
-                break
-    
-    temp.close()
-    
+
+    with open('tmpfiles') as f:
+        files = [file.strip() for file in f if file and not file[0]=='#']
+
+    with open(name, 'w') as temp:
+
+        for entry in files:
+            for ext in extensionlist:
+                if entry.endswith(ext):
+                    temp.write(entry)
+                    temp.write('\n')
+                    break
+
 def headers():
     """
     Look at existing C file format headers.
@@ -565,14 +551,13 @@ def extract_xml():
     XmlParse('../data/gramps.appdata.xml.in', '_p')
     DesktopParse('../data/gramps.desktop.in')
     KeyParse('../data/gramps.keys.in', '_description')
-    
+
 def create_template():
     """
     Create a new file for template, if it does not exist.
     """
-    template = open('gramps.pot', 'w')
-    template.close()
-    
+    with open('gramps.pot', 'w') as template:
+
 def extract_glade():
     """
     Extract messages from a temp file with all .glade
@@ -622,21 +607,20 @@ def extract_gtkbuilder():
     msgid "At least one rule must apply"
     msgid "Exactly one rule must apply"
     '''
-    
+
     files = ['../gramps/plugins/importer/importgedcom.glade', '../gramps/gui/glade/rule.glade']
-    temp = open('gtklist.h', 'w')
-    
-    for filename in files:
-        tree = ElementTree.parse(filename)
-        root = tree.getroot()
-        for line in root.iter():
-            att = line.attrib
-            if att == {'id': '0', 'translatable': 'yes'}:
-                col = 'char *s = N_("%s");\n' % line.text
-                temp.write(col)
-        root.clear()
-    
-    temp.close()
+    with open('gtklist.h', 'w') as temp:
+
+        for filename in files:
+            tree = ElementTree.parse(filename)
+            root = tree.getroot()
+            for line in root.iter():
+                att = line.attrib
+                if att == {'id': '0', 'translatable': 'yes'}:
+                    col = 'char *s = N_("%s");\n' % line.text
+                    temp.write(col)
+            root.clear()
+
     print ('Wrote gtklist.h')
 
 def retrieve():

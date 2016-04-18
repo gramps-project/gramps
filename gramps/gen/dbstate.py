@@ -203,25 +203,22 @@ class DbState(Callback):
             dirpath = os.path.join(dbdir, dpath)
             path_name = os.path.join(dirpath, "name.txt")
             if os.path.isfile(path_name):
-                file = open(path_name, 'r', encoding='utf8')
-                name = file.readline().strip()
-                file.close()
+                with open(path_name, 'r', encoding='utf8') as file:
+                    name = file.readline().strip()
                 if dbname == name:
                     locked = False
                     locked_by = None
                     backend = None
                     fname = os.path.join(dirpath, "database.txt")
                     if os.path.isfile(fname):
-                        ifile = open(fname, 'r', encoding='utf8')
-                        backend = ifile.read().strip()
-                        ifile.close()
+                        with open(fname, 'r', encoding='utf8') as ifile:
+                            backend = ifile.read().strip()
                     else:
                         backend = "bsddb"
                     try:
                         fname = os.path.join(dirpath, "lock")
-                        ifile = open(fname, 'r', encoding='utf8')
-                        locked_by = ifile.read().strip()
-                        locked = True
+                        with open(fname, 'r', encoding='utf8') as ifile:
+                            locked_by = ifile.read().strip()
                         ifile.close()
                     except (OSError, IOError):
                         pass

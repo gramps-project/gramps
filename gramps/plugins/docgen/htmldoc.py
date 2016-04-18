@@ -285,10 +285,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         Copy support files to the datadir that needs to hold them
         """
         #css of textdoc styles
-        tdfile = open(os.path.join(self._backend.datadirfull(),
-                      _TEXTDOCSCREEN), 'w')
-        tdfile.write(self.style_declaration)
-        tdfile.close()
+        with open(os.path.join(self._backend.datadirfull(), _TEXTDOCSCREEN), 'w') as tdfile:
+            tdfile.write(self.style_declaration)
         #css file
         if self.css_filename:
             #we do an extra check in case file does not exist, eg cli call
