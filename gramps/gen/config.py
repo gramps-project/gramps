@@ -189,6 +189,8 @@ register('interface.citation-sel-width', 600)
 register('interface.citation-width', 600)
 register('interface.clipboard-height', 300)
 register('interface.clipboard-width', 300)
+register('interface.clipboard-vertical-position', 300)
+register('interface.clipboard-horizontal-position', 400)
 register('interface.dont-ask', False)
 register('interface.view-categories',
          ["Dashboard", "People", "Relationships", "Families",
