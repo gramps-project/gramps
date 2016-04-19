@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import logging
+import re
 
 sqlite3.paramstyle = 'qmark'
 
@@ -10,6 +11,7 @@ class Sqlite(object):
         self.connection = sqlite3.connect(*args, **kwargs)
         self.cursor = self.connection.cursor()
         self.queries = {}
+        self.connection.create_function("regexp", 2, regexp)
 
     def execute(self, *args, **kwargs):
         self.log.debug(args)
@@ -42,3 +44,6 @@ class Sqlite(object):
     def close(self):
         self.log.debug("closing database...")
         self.connection.close()
+
+def regexp(expr, value):
+    return re.search(expr, value, re.MULTILINE) is not None

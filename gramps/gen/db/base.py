@@ -1318,6 +1318,11 @@ class DbReadBase(object):
                     matched = re.match("^" + value + "$", v, re.MULTILINE)
                 else:
                     matched = False
+            elif op == "REGEXP":
+                if value and v:
+                    matched = re.search(value, v, re.MULTILINE) is not None
+                else:
+                    matched = False
             else:
                 raise Exception("invalid select operator: '%s'" % op)
             return True if matched else False
