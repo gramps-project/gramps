@@ -902,7 +902,7 @@
       <objref hlink="_HHNT6D73QPKC0KWK2Y"/>
       <childof hlink="_S7MT6D1JSGX9PZO27F"/>
     </person>
-    <person handle="_PSNT6D0DDHJOBCFJWX" change="1370206720" id="I0037" priv="1">
+    <person handle="_PSNT6D0DDHJOBCFJWX" change="1370206720" id="I0037">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Edwin Michael</first>
@@ -1144,7 +1144,7 @@
       <eventref hlink="_bd750d46bfe3f54dc37" role="Primary"/>
       <parentin hlink="_bd750af3e934b6d3934"/>
     </person>
-    <person handle="_bd750fae3bf5fb52f41" change="1301943705" id="I0057">
+    <person handle="_bd750fae3bf5fb52f41" change="1301943705" id="I0057" priv="1">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna Louise</first>

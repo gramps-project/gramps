@@ -197,18 +197,16 @@ class BSDDBTest(unittest.TestCase):
         from gramps.gen.filters import GenericFilter
         filter = GenericFilter()
         filter.set_logical_op("or")
-        filter.add_rule(IsDescendantOf([self.db.get_default_person().gramps_id,
-                                        True]))
-        filter.add_rule(IsAncestorOf([self.db.get_default_person().gramps_id,
-                                      True]))
+        filter.add_rule(IsDescendantOf(["I0057", True]))
+        filter.add_rule(IsAncestorOf(["I0057", True]))
         result = self.db.Person.filter(filter).count()
-        self.assertTrue(result == 15, result)
+        self.assertTrue(result == 14, result)
         filter.where = lambda person: person.private == True
         result = self.db.Person.filter(filter).count()
         self.assertTrue(result == 1, result)
         filter.where = lambda person: person.private != True
         result = self.db.Person.filter(filter).count()
-        self.assertTrue(result == 14, result)
+        self.assertTrue(result == 13, result)
 
     def test_filter_2(self):
         result = self.db.Person.filter(lambda p: p.private).count()
