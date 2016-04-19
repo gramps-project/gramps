@@ -352,8 +352,8 @@ class ViewManager(CLIManager):
         """
         Builds the GTK interface
         """
-        width = config.get('interface.width')
-        height = config.get('interface.height')
+        width = config.get('interface.main-window-width')
+        height = config.get('interface.main-window-height')
 
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
@@ -747,8 +747,8 @@ class ViewManager(CLIManager):
 
         # save the current window size
         (width, height) = self.window.get_size()
-        config.set('interface.width', width)
-        config.set('interface.height', height)
+        config.set('interface.main-window-width', width)
+        config.set('interface.main-window-height', height)
         config.save()
         Gtk.main_quit()
 
