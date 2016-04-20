@@ -2723,7 +2723,7 @@ class BasePage(object):
         for placeref in place.get_placeref_list():
             place_date = get_date(placeref)
             if place_date != "":
-                parent_place = self.db.get_place_from_handle(placeref.ref)
+                parent_place = self.dbase_.get_place_from_handle(placeref.ref)
                 parent_name = parent_place.get_name().get_value()
                 trow = Html('tr') + (
                     Html("td", LOCATIONS, class_ = "ColumnAttribute", inline =True),
@@ -3082,7 +3082,7 @@ class FamilyPages(BasePage):
     def __init__(self, report):
         self.family_dict = defaultdict(set)
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self, title):
         """
@@ -3370,7 +3370,7 @@ class PlacePages(BasePage):
     # displayed.
     def __init__(self, report):
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
         self.place_dict = defaultdict(set)
 
     def display_pages(self, title):
@@ -3657,7 +3657,7 @@ class EventPages(BasePage):
         self.event_types = []
         self.event_dict = defaultdict(set)
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self, title):
         """
@@ -4195,7 +4195,7 @@ class CitationPages(BasePage):
     # told by the 'add_instances' call which 'Citation's to display.
     def __init__(self, report):
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self):
         pass
@@ -4218,7 +4218,7 @@ class SourcePages(BasePage):
     def __init__(self, report):
         self.source_dict = defaultdict(set)
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self, title):
         """
@@ -4264,7 +4264,7 @@ class SourcePages(BasePage):
 
             # Sort the sources
             for handle in source_handles:
-                source = self.db.get_source_from_handle(handle)
+                source = self.dbase_.get_source_from_handle(handle)
                 if source is not None:
                     key = source.get_title() + source.get_author() + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
@@ -4331,7 +4331,7 @@ class SourcePages(BasePage):
         @param: title -- the web site title
         @param: source_handle -- the handle of the source to be output
         """
-        source = self.db.get_source_from_handle(source_handle)
+        source = self.dbase_.get_source_from_handle(source_handle)
         if not source:
             return
 
@@ -4441,7 +4441,7 @@ class MediaPages(BasePage):
     def __init__(self, report):
         self.media_dict = defaultdict(set)
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self, title):
         """
@@ -5244,7 +5244,7 @@ class PersonPages(BasePage):
     def __init__(self, report):
         self.ind_dict = defaultdict(set)
         self.report = report
-        self.db = report.database
+        self.dbase_ = report.database
 
     def display_pages(self, title):
         """
@@ -6919,7 +6919,7 @@ class AddressBookListPage(BasePage):
 
 class AddressBookPage(BasePage):
     def __init__(self, report, title, person_handle, has_add, has_res, has_url):
-        self.dbase_ = self.db = report.database
+        self.dbase_ = report.database
         self.bibli = Bibliography()
 
         person = self.dbase_.get_person_from_handle(person_handle)
