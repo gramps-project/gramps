@@ -370,8 +370,7 @@ class DBAPI(DbGeneric):
         if sort_handles:
             self.dbapi.execute("""SELECT DISTINCT family.handle FROM family 
                                     JOIN person 
-                                    ON (family.father_handle = person.handle OR
-                                        family.mother_handle = person.handle)
+                                    ON family.father_handle = person.handle
                                     ORDER BY person.primary_name__surname_list__0__surname, 
                                              person.primary_name__first_name;""")
         else:
