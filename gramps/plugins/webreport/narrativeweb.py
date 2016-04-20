@@ -533,6 +533,11 @@ def format_date(date):
         return val
     return ""
 
+def sort_on_name_and_grampsid(obj, dbase):
+    person = dbase.get_person_from_handle(obj)
+    name = _nd.display(person)
+    return (name, person.get_gramps_id())
+
 def copy_thumbnail(report, handle, photo, region=None):
     """
     Given a handle (and optional region) make (if needed) an
@@ -3185,7 +3190,7 @@ class FamilyPages(BasePage):
                         letter ='&nbsp;'
 
                     # get person from sorted database list
-                    for person_handle in sorted(handle_list):
+                    for person_handle in sorted(handle_list, key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
                         person = self.dbase_.get_person_from_handle(person_handle)
                         if person:
                             family_list = sorted(pers_fam_dict[person_handle], key=lambda x:x.get_gramps_id())
@@ -5342,7 +5347,7 @@ class PersonPages(BasePage):
                     surname = _ABSENT
 
                 first_surname = True
-                for person_handle in sorted(handle_list):
+                for person_handle in sorted(handle_list, key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
                     person = self.dbase_.get_person_from_handle(person_handle)
                     if person.get_change_time() > date: date = person.get_change_time()
 
