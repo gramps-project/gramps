@@ -96,7 +96,9 @@ class EditUrl(EditSecondary):
 
         self.type_sel = MonitoredDataType(self.top.get_object("type"),
                                           self.obj.set_type,
-                                          self.obj.get_type, self.db.readonly)
+                                          self.obj.get_type,
+                                          self.db.readonly,
+                                          self.db.get_url_types())
 
     def build_menu_names(self, obj):
         etitle =_('Internet Address Editor')
