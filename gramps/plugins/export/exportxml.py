@@ -62,7 +62,7 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
-from gramps.gui.plug.export import WriterOptionBox
+from gramps.gui.plug.export import WriterOptionBox, WriterOptionBoxWithCompression
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
 #-------------------------------------------------------------------------
@@ -162,9 +162,9 @@ class GrampsXmlWriter(UpdateCallback):
                     try:
                         g = gzip.open(filename,"wb")
                     except:
-                        g = open(filename,"w")
+                        g = open(filename,"wb")
                 else:
-                    g = open(filename,"w")
+                    g = open(filename,"wb")
             except IOError as msg:
                 LOG.warn(str(msg))
                 raise DbWriteFailure(_('Failure writing %s') % filename,
@@ -1331,6 +1331,7 @@ def export_data(database, filename, user, option_box=None):
     if option_box:
         option_box.parse_options()
         database = option_box.get_filtered_database(database)
+        compress = compress and option_box.get_use_compression()
 
     g = XmlWriter(database, user, 0, compress)
     return g.write(filename)
