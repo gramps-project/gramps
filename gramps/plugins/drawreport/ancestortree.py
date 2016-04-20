@@ -28,7 +28,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from __future__ import division
 
 #------------------------------------------------------------------------
 #
@@ -38,6 +37,7 @@ from __future__ import division
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   EnumeratedListOption, StringOption,
                                   PersonOption)
@@ -348,6 +348,9 @@ class MakeAncestorTree(AscendPerson):
     def start(self, person_id):
         """ go ahead and make it happen """
         center = self.database.get_person_from_gramps_id(person_id)
+        if center is None:
+            raise ReportError(_("Person %s is not in the Database")
+                                  % person_id)
         center_h = center.get_handle()
 
         #Step 1.  Get the people
@@ -543,10 +546,10 @@ class AncestorTree(Report):
         self.options = options
         self._user = user
 
-        stdoptions.run_private_data_option(self, options.menu)
-
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        stdoptions.run_private_data_option(self, options.menu)
+        stdoptions.run_living_people_option(self, options.menu, self._locale)
         stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 
@@ -561,8 +564,9 @@ class AncestorTree(Report):
         scale_report - Whether to scale the report to fit the width or all.
         indblank     - Whether to include blank pages.
         compress     - Whether to compress chart.
-
-        incl_private    - Whether to include private data
+        incl_private - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
 
         We will
         1. a canvas in its full one-page size
@@ -771,6 +775,12 @@ class AncestorTreeOptions(MenuReportOptions):
         pid.set_help(_("The center person for the tree"))
         menu.add_option(category_name, "pid", pid)
 
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
         siblings = BooleanOption(_('Include siblings of the center person'), False)
         siblings.set_help(_("Whether to only display the center person or all "
             "of his/her siblings too"))
@@ -821,10 +831,6 @@ class AncestorTreeOptions(MenuReportOptions):
         prnnum = BooleanOption(_('Include Page Numbers'), False)
         prnnum.set_help(_("Whether to print page numbers on each page."))
         menu.add_option(category_name, "inc_pagenum", prnnum)
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
