@@ -164,7 +164,7 @@ def add_living_people_option(menu, category,
     living_people.add_item(LivingProxyDb.MODE_INCLUDE_ALL,
                            _("Include living people and their data"))
     if process_names:
-        living_people.add_item(LivingProyDb.MODE_INCLUDE_FULL_NAME_ONLY,
+        living_people.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
                                _("Include full names but no data"))
         living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
                                _("Replace given names and include no data"))
