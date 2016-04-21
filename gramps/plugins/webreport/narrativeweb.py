@@ -2405,9 +2405,9 @@ class BasePage(object):
                                         newpath = self.report.build_url_fname(newpath, up=self.up)
                                         dest_dir = os.path.dirname(self.report.cur_fname)
                                         if dest_dir:
-                                            copypath = os.path.join(dest_dir, newpath)
+                                            newpath = os.path.join(dest_dir, newpath)
                                         self.report.copy_file(media_path_full(
-                                            self.report.database, media.get_path()), copypath)
+                                            self.report.database, media.get_path()), newpath)
     
                                         tmp += Html("li",
                                                 self.media_link(media_handle, newpath, media.get_description(),
