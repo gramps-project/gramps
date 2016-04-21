@@ -109,7 +109,8 @@ def run_private_data_option(report, menu):
 
 def add_living_people_option(menu, category,
                              mode=LivingProxyDb.MODE_INCLUDE_ALL,
-                             after_death_years=0):
+                             after_death_years=0,
+                             process_names=True):
     """
     Insert an option for deciding how the information in the
     database for living people shall be handled by the report
@@ -146,6 +147,8 @@ def add_living_people_option(menu, category,
         still consider them as living.
     :type after_death_years: int
     :return: nothing
+    :param process_names: whether to offer name-oriented option choices
+    :type process_names: Boolean
     """
 
     def living_people_changed():
@@ -160,12 +163,13 @@ def add_living_people_option(menu, category,
     living_people = EnumeratedListOption(_("Living People"), mode)
     living_people.add_item(LivingProxyDb.MODE_INCLUDE_ALL,
                            _("Include living people and their data"))
-    living_people.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-                           _("Include full names but no data"))
-    living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                           _("Replace given names and include no data"))
-    living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-                           _("Replace complete names and include no data"))
+    if process_names:
+        living_people.add_item(LivingProyDb.MODE_INCLUDE_FULL_NAME_ONLY,
+                               _("Include full names but no data"))
+        living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+                               _("Replace given names and include no data"))
+        living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+                               _("Replace complete names and include no data"))
     living_people.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
                            _("Do not include living people"))
     living_people.set_help(_("How to handle living people"))

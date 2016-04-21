@@ -68,16 +68,18 @@ class SummaryReport(Report):
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
-
         incl_private    - Whether to count private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
-        stdoptions.run_private_data_option(self, options.menu)
-        self.__db = self.database
-
         lang = options.menu.get_option_by_name('trans').get_value()
-        self.set_locale(lang)
+        rlocale = self.set_locale(lang)
+
+        stdoptions.run_private_data_option(self, options.menu)
+        stdoptions.run_living_people_option(self, options.menu, rlocale)
+        self.__db = self.database
 
     def write_report(self):
         """
@@ -280,6 +282,9 @@ class SummaryOptions(MenuReportOptions):
         stdoptions.add_private_data_option(menu, category_name)
         include_private_data = menu.get_option_by_name('incl_private')
         include_private_data.set_help(_("Whether to count private data"))
+
+        stdoptions.add_living_people_option(menu, category_name,
+                                            process_names=False)
 
         stdoptions.add_localization_option(menu, category_name)
 
