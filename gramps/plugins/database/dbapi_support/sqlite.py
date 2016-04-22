@@ -6,6 +6,21 @@ import re
 sqlite3.paramstyle = 'qmark'
 
 class Sqlite(object):
+    @classmethod
+    def get_summary(cls):
+        """
+        Return a diction of information about this database
+        backend.
+        """
+        summary = {
+            "DB-API version": "2.0",
+            "Database SQL type": cls.__name__,
+            "Database SQL module": "sqlite3",
+            "Database SQL module version": sqlite3.version,
+            "Database SQL module location": sqlite3.__file__,
+        }
+        return summary
+
     def __init__(self, *args, **kwargs):
         self.log = logging.getLogger(".sqlite")
         self.connection = sqlite3.connect(*args, **kwargs)

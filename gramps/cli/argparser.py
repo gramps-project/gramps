@@ -43,7 +43,8 @@ import logging
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import LONGOPTS, SHORTOPTS
+from gramps.gen.const import LONGOPTS, SHORTOPTS, PLUGINS_DIR, USER_PLUGINS
+from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -76,6 +77,7 @@ Application options
   -y, --yes                              Don't ask to confirm dangerous actions (non-GUI mode only)
   -q, --quiet                            Suppress progress indication output (non-GUI mode only)
   -v, --version                          Show versions
+  -b, --databases                        Show available database backends
 """)
 
 _USAGE = _("""
@@ -152,6 +154,7 @@ class ArgParser(object):
     -y, --yes                       Don't ask to confirm dangerous actions
     -q, --quiet                     Suppress progress indication output
     -v, --version                   Show versions
+    -b, --databases                 Show available database backends
     -h, --help                      Display the help
     --usage                         Display usage information
 
@@ -206,7 +209,6 @@ class ArgParser(object):
         self.usage = False
         self.force_unlock = False
         self.create = None
-        self.runqml = False
         self.quiet = False
         self.auto_accept = False
 
@@ -319,6 +321,20 @@ class ArgParser(object):
                                   repr(config.data[section][setting])))
                     print()
                 sys.exit(0)
+            elif option in ['-b','--databases']:
+                default = config.data["behavior"]["database-backend"]
+                pmgr = BasePluginManager.get_instance()
+                pmgr.reg_plugins(PLUGINS_DIR, self, None)
+                pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
+                for plugin in pmgr.get_reg_databases():
+                    pdata = pmgr.get_plugin(plugin.id)
+                    mod = pmgr.load_plugin(pdata)
+                    database = getattr(mod, pdata.databaseclass)
+                    summary = database.get_class_summary()
+                    print("Database backend ID:", pdata.id, "(default)" if pdata.id == default else "")
+                    for key in sorted(summary.keys()):
+                        print("   ", "%s:" % key, summary[key])
+                sys.exit(0)
             elif option in ['-c', '--config']:
                 setting_name = value
                 set_value = False
@@ -361,8 +377,6 @@ class ArgParser(object):
                 self.force_unlock = True
             elif option in ['--usage']:
                 self.usage = True
-            elif option in ['--qml']:
-                self.runqml = True
             elif option in ['-y', '--yes']:
                 self.auto_accept = True
             elif option in ['-q', '--quiet']:
@@ -376,7 +390,7 @@ class ArgParser(object):
         if (len(options) > 0 and self.open is None and self.imports == [] 
             and self.removes == [] 
             and not (self.list or self.list_more or self.list_table or
-                     self.help or self.runqml)):
+                     self.help)):
             # Extract and convert to unicode the arguments in the list.
             # The % operator replaces the list elements with repr() of
             # the list elements, which is OK for latin characters

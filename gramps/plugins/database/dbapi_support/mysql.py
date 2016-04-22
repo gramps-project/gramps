@@ -3,6 +3,21 @@ import MySQLdb
 MySQLdb.paramstyle = 'qmark' ## Doesn't work
 
 class MySQL(object):
+    @classmethod
+    def get_summary(cls):
+        """
+        Return a diction of information about this database
+        backend.
+        """
+        summary = {
+            "DB-API version": "2.0",
+            "Database SQL type": cls.__name__,
+            "Database SQL module": "MySQLdb",
+            "Database SQL module version": ".".join([str(v) for v in MySQLdb.version_info]),
+            "Database SQL module location": MySQLdb.__file__,
+        }
+        return summary
+
     def __init__(self, *args, **kwargs):
         self.connection = MySQLdb.connect(*args, **kwargs)
         self.cursor = self.connection.cursor()

@@ -40,6 +40,13 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
+    @classmethod
+    def get_class_summary(cls):
+        summary = {
+            "DB-API version": "2.0",
+            "Database type": cls.__name__,
+        }
+        return summary
 
     def restore(self):
         """
@@ -1873,3 +1880,16 @@ class DBAPI(DbGeneric):
             else:
                 obj = self.get_table_func(table,"class_func").create(pickle.loads(row[0]))
                 yield obj
+
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
+        """
+        summary = super().get_summary()
+        summary.update(self.dbapi.__class__.get_summary())
+        return summary

@@ -280,9 +280,19 @@ def show_settings():
         bsddb_str = bsddb.__version__
         bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
                                         .replace('(', '').replace(')', '')
+        bsddb_location_str = bsddb.__file__
     except:
         bsddb_str = 'not found'
         bsddb_db_str = 'not found'
+        bsddb_location_str = 'not found'
+
+    try:
+        import sqlite3
+        sqlite3_version_str = sqlite3.version
+        sqlite3_location_str = sqlite3.__file__
+    except:
+        sqlite3_version_str = 'not found'
+        sqlite3_location_str = 'not found'
 
     try:
         from .gen.const import VERSION
@@ -335,8 +345,6 @@ def show_settings():
     print(' gtk++     : %s' % gtkver_str)
     print(' pygobject : %s' % pygobjectver_str)
     print(' pango     : %s' % pangover_str)
-    print(' bsddb     : %s' % bsddb_str)
-    print(' bsddb.db  : %s' % bsddb_db_str)
     print(' cairo     : %s' % cairover_str)
     print(' pycairo   : %s' % pycairover_str)
     print(' osmgpsmap : %s' % osmgpsmap_str)
@@ -367,6 +375,16 @@ def show_settings():
     print("-------------------------")
     for folder in os_path:
         print("    ", folder)
+    print('')
+    print("Databases:")
+    print("-------------------------")
+    print(' bsddb     :')
+    print('     version     : %s' % bsddb_str)
+    print('     db version  : %s' % bsddb_db_str)
+    print('     location    : %s' % bsddb_location_str)
+    print(' sqlite3   :')
+    print('     version     : %s' % sqlite3_version_str)
+    print('     location    : %s' % sqlite3_location_str)
     print('')
 
 def run():

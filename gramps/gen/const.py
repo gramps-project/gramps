@@ -258,30 +258,12 @@ ARABIC_SEMICOLON = "؛"
 #
 #-------------------------------------------------------------------------
 
-# Note: Make sure to edit argparser.py _help string too!
-# (longName, shortName, type , default, flags, descrip , argDescrip)
-POPT_TABLE = [
-    ("config", 'c', str, None, 0, "Set config setting(s) and start Gramps", ""),
-    ("open", 'O', str, None, 0, "Open family tree", "FAMILY_TREE"),
-    ("create", 'C', str, None, 0, "Create or Open family tree", "FAMILY_TREE"),
-    ("import", 'i', str, None, 0, "Import file", "FILENAME"),
-    ("export", 'e', str, None, 0, "Export file", "FILENAME"),
-    ("format", 'f', str, None, 0, 'Specify format', "FORMAT"),
-    ("action", 'a', str, None, 0, 'Specify action', "ACTION"),
-    ("options", 'p', str, None, 0, 'Specify options', "OPTIONS_STRING"),
-    ("debug", 'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"),
-    ("", 'l', None, None, 0, 'List Family Trees', ""),
-    ("", 'L', None, None, 0, 'List Family Tree Details', ""),
-    ("show", 's', None, None, 0, "Show config settings", ""),
-    ("force-unlock", 'u', None, None, 0, 'Force unlock of family tree', ""),
-    ("version", 'v', None, None, 0, 'Show versions', ""),
-]
-
 LONGOPTS = [
     "action=",
     "class=",
     "config=",
     "debug=",
+    "databases",
     "display=",
     "disable-sound",
     "disable-crash-dialog",
@@ -321,7 +303,7 @@ LONGOPTS = [
     "quiet",
 ]
 
-SHORTOPTS = "O:C:i:e:f:a:p:d:c:r:lLthuv?syq"
+SHORTOPTS = "O:C:i:e:f:a:p:d:c:r:blLthuv?syq"
 
 GRAMPS_UUID = uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 

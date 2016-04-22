@@ -38,6 +38,7 @@ import bisect
 from functools import wraps
 import logging
 from sys import maxsize, getfilesystemencoding, version_info
+from ast import literal_eval as safe_eval
 
 from bsddb3 import dbshelve, db
 from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
@@ -207,6 +208,27 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     """
     Gramps database write access object.
     """
+
+    @classmethod
+    def get_class_summary(cls):
+        """
+        Return a diction of information about this database.
+        """
+        try:
+            import bsddb3 as bsddb
+            bsddb_str = bsddb.__version__
+            bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
+                                                  .replace('(', '').replace(')', '')
+        except:
+            bsddb_str = 'not found'
+            bsddb_db_str = 'not found'
+        summary = {
+            "DB-API version": "n/a",
+            "Database type": cls.__name__,
+            'Database version': bsddb_str,
+            'Database db version': bsddb_db_str
+        }
+        return summary
 
     # Set up dictionary for callback signal handler
     # ---------------------------------------------
@@ -2517,9 +2539,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if os.path.isfile(bdbversion_file):
             vers_file = open(bdbversion_file)
             bsddb_version = vers_file.readline().strip()
+            bsddb_version = ".".join([str(v) for v in safe_eval(bsddb_version)])
         else:
             bsddb_version = _("Unknown")
         return {
+            _("DB-API version"): "n/a", 
             _("Number of people"): self.get_number_of_people(),
             _("Number of families"): self.get_number_of_families(),
             _("Number of sources"): self.get_number_of_sources(),
@@ -2530,8 +2554,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
-            _("Schema version"): schema_version,
-            _("Version"): bsddb_version,
+            _("Data version"): schema_version,
+            _("Database db version"): bsddb_version,
         }
 
 def mk_backup_name(database, base):

@@ -1990,7 +1990,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         _("Number of people")
         _("Version")
-        _("Schema version")
+        _("Data version")
         """
         return {
             _("Number of people"): self.get_number_of_people(),
@@ -2003,7 +2003,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
-            _("Schema version"): ".".join([str(v) for v in self.VERSION]),
+            _("Data version"): ".".join([str(v) for v in self.VERSION]),
         }
 
     def get_dbname(self):

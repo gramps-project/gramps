@@ -143,7 +143,7 @@ class CLIDbManager(object):
         _("Path")
         _("Family Tree")
         _("Last accessed")
-        _("Database backend")
+        _("Database")
         _("Locked?")
 
         and these details:
@@ -168,7 +168,7 @@ class CLIDbManager(object):
             retval = {_("Unavailable"): "locked"}
         retval.update({_("Family Tree"): name,
                        _("Path"): dirpath,
-                       _("Database backend"): dbid,
+                       _("Database"): dbid,
                        _("Last accessed"): time_val(dirpath)[1],
                        _("Locked?"): self.is_locked(dirpath),
                    })

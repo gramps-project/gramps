@@ -3,6 +3,21 @@ import pg8000
 pg8000.paramstyle = 'qmark'
 
 class Postgresql(object):
+    @classmethod
+    def get_summary(cls):
+        """
+        Return a diction of information about this database
+        backend.
+        """
+        summary = {
+            "DB-API version": "2.0",
+            "Database SQL type": cls.__name__,
+            "Database SQL module": "pg8000",
+            "Database SQL module version": pg8000.__version__,
+            "Database SQL module location": pg8000.__file__,
+        }
+        return summary
+
     def __init__(self, *args, **kwargs):
         self.connection = pg8000.connect(*args, **kwargs)
         self.cursor = self.connection.cursor()
