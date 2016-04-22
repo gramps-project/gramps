@@ -55,6 +55,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.user = user
+        self.dbstate = dbstate
 
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if self.fail:
@@ -78,7 +79,9 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         # Need to display localized event names
         etype = EventType()
-        event_names = sorted(etype.get_standard_names(), key=glocale.sort_key)
+        custom_events = self.dbstate.db.get_event_types()
+        event_names = sorted(etype.get_standard_names() + custom_events,
+                             key=glocale.sort_key)
 
         self.fill_combo(self.auto1,event_names)
         self.fill_combo(self.auto2,event_names)
