@@ -310,6 +310,7 @@ def show_settings():
     grampsi18n_str = get_env_var('GRAMPSI18N', 'not set')
     grampshome_str = get_env_var('GRAMPSHOME', 'not set')
     grampsdir_str = get_env_var('GRAMPSDIR', 'not set')
+    gramps_resources_str = get_env_var('GRAMPS_RESOURCES', 'not set')
 
     try:
         dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
@@ -362,6 +363,8 @@ def show_settings():
     print(' GRAMPSI18N: %s' % grampsi18n_str)
     print(' GRAMPSHOME: %s' % grampshome_str)
     print(' GRAMPSDIR : %s' % grampsdir_str)
+    if __debug__:
+        print(' GRAMPS_RESOURCES : %s' % gramps_resources_str)
     print(' PYTHONPATH:')
     for folder in sys.path:
         print("   ", folder)
