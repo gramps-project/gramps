@@ -20,11 +20,27 @@ class MySQL(object):
 
     def __init__(self, *args, **kwargs):
         self.connection = MySQLdb.connect(*args, **kwargs)
+        self.connection.autocommit(True)
         self.cursor = self.connection.cursor()
 
-    def execute(self, query, args=[]):
-        ## Workaround: no qmark support
+    def _hack_query(self, query):
+        ## Workaround: no qmark support:
         query = query.replace("?", "%s")
+        query = query.replace("INTEGER", "INT")
+        query = query.replace("REAL", "DOUBLE")
+        query = query.replace("change", "change_")
+        query = query.replace("desc", "desc_")
+        ## LIMIT offset, count
+        ## count can be -1, for all
+        ## LIMIT -1 
+        ## LIMIT offset, -1
+        query = query.replace("LIMIT -1", 
+                              "LIMIT 18446744073709551615") ## largest maxint
+        #query = query.replace("LIMIT -1", "")
+        return query
+
+    def execute(self, query, args=[]):
+        query = self._hack_query(query)
         self.cursor.execute(query, args)
 
     def fetchone(self):
@@ -34,12 +50,16 @@ class MySQL(object):
         return self.cursor.fetchall()
 
     def commit(self):
-        self.connection.commit()
+        self.cursor.execute("COMMIT;");
+
+    def begin(self):
+        self.cursor.execute("BEGIN;");
 
     def rollback(self):
         self.connection.rollback()
 
     def try_execute(self, sql):
+        query = self._hack_query(sql)
         try:
             self.cursor.execute(sql)
         except Exception as exc:
