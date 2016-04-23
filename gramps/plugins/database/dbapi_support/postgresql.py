@@ -1,4 +1,5 @@
 import psycopg2
+import re
 
 psycopg2.paramstyle = 'format'
 
@@ -23,13 +24,28 @@ class Postgresql(object):
         self.connection.autocommit = True
         self.cursor = self.connection.cursor()
 
+    def _hack_query(self, query):
+        query = query.replace("?", "%s")
+        query = query.replace("REGEXP", "~")
+        query = query.replace("desc", "desc_")
+        ## LIMIT offset, count
+        ## count can be -1, for all
+        ## LIMIT -1 
+        ## LIMIT offset, -1
+        query = query.replace("LIMIT -1", 
+                              "LIMIT all") ##
+        match = re.match(".* LIMIT (.*), (.*) ", query)
+        if match and match.groups():
+            offset, count = match.groups()
+            if count == "-1":
+                count = "all"
+            query = re.sub("(.*) LIMIT (.*), (.*) ", 
+                           "\\1 LIMIT %s OFFSET %s " % (count, offset),
+                           query)
+        return query
+
     def execute(self, *args, **kwargs):
-        sql = args[0]
-        sql = sql.replace("?", "%s")
-        sql = sql.replace("REGEXP", "~")
-        sql = sql.replace("desc", "desc_")
-        sql = sql.replace("LIMIT -1", "LIMIT all")
-        ## FIXME: limit offset, -1
+        sql = self._hack_query(args[0])
         if len(args) > 1:
             args = args[1]
         else:
@@ -56,10 +72,8 @@ class Postgresql(object):
         self.connection.rollback()
 
     def try_execute(self, sql):
-        sql = sql.replace("?", "%s")
+        sql = self._hack_query(sql)
         sql = sql.replace("BLOB", "bytea")
-        sql = sql.replace("desc", "desc_")
-        sql = sql.replace("LIMIT -1", "LIMIT all")
         try:
             self.cursor.execute(sql)
         except Exception as exc:

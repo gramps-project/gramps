@@ -1859,7 +1859,7 @@ class DBAPI(DbGeneric):
         if get_count_only:
             select_fields = ["1"]
         if start:
-            query = "SELECT %s FROM %s %s %s LIMIT %s, %s" % (
+            query = "SELECT %s FROM %s %s %s LIMIT %s, %s " % (
                 ", ".join(select_fields), table_name, where_clause, order_clause, start, limit
             )
         else:

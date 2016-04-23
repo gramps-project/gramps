@@ -1,4 +1,5 @@
 import MySQLdb
+import re
 
 MySQLdb.paramstyle = 'qmark' ## Doesn't work
 
@@ -36,8 +37,14 @@ class MySQL(object):
         ## LIMIT offset, -1
         query = query.replace("LIMIT -1", 
                               "LIMIT 18446744073709551615") ##
-        ## FIXME: regex match:
-        #query = query.replace("LIMIT .*,-1", "LIMIT $1, ALL")
+        match = re.match(".* LIMIT (.*), (.*) ", query)
+        if match and match.groups():
+            offset, count = match.groups()
+            if count == "-1":
+                count = "18446744073709551615"
+            query = re.sub("(.*) LIMIT (.*), (.*) ", 
+                           "\\1 LIMIT %s, %s " % (offset, count),
+                           query)
         return query
 
     def execute(self, query, args=[]):
