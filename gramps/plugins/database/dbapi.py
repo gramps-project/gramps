@@ -1867,7 +1867,7 @@ class DBAPI(DbGeneric):
                 ", ".join(select_fields), table_name, where_clause, order_clause, limit
             )
         if get_count_only:
-            self.dbapi.execute("SELECT count(1) from (%s);" % query)
+            self.dbapi.execute("SELECT count(1) from (%s) AS temp_select;" % query)
             rows = self.dbapi.fetchall()
             yield rows[0][0]
             return
