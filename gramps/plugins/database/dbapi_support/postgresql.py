@@ -28,6 +28,8 @@ class Postgresql(object):
         sql = sql.replace("?", "%s")
         sql = sql.replace("REGEXP", "~")
         sql = sql.replace("desc", "desc_")
+        sql = sql.replace("LIMIT -1", "LIMIT all")
+        ## FIXME: limit offset, -1
         if len(args) > 1:
             args = args[1]
         else:
@@ -57,6 +59,7 @@ class Postgresql(object):
         sql = sql.replace("?", "%s")
         sql = sql.replace("BLOB", "bytea")
         sql = sql.replace("desc", "desc_")
+        sql = sql.replace("LIMIT -1", "LIMIT all")
         try:
             self.cursor.execute(sql)
         except Exception as exc:

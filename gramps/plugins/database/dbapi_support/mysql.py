@@ -35,8 +35,9 @@ class MySQL(object):
         ## LIMIT -1 
         ## LIMIT offset, -1
         query = query.replace("LIMIT -1", 
-                              "LIMIT 18446744073709551615") ## largest maxint
-        #query = query.replace("LIMIT -1", "")
+                              "LIMIT 18446744073709551615") ##
+        ## FIXME: regex match:
+        #query = query.replace("LIMIT .*,-1", "LIMIT $1, ALL")
         return query
 
     def execute(self, query, args=[]):
