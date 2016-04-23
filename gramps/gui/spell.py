@@ -58,12 +58,16 @@ HAVE_GTKSPELL = False
 repository = Repository.get_default()
 if repository.enumerate_versions("GtkSpell"):
     try:
+        import gi
+        gi.require_version('GtkSpell', '3.0')
         from gi.repository import GtkSpell as Gtkspell
         HAVE_GTKSPELL = True
     except:
         pass
 elif repository.enumerate_versions("Gtkspell"):
     try:
+        import gi
+        gi.require_version('GtkSpell', '3.0')
         from gi.repository import Gtkspell
         HAVE_GTKSPELL = True
     except:
