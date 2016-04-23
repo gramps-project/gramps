@@ -259,6 +259,8 @@ def show_settings():
         from gi import Repository
         repository = Repository.get_default()
         if repository.enumerate_versions("GExiv2"):
+            import gi
+            gi.require_version('GExiv2', '0.10')
             from gi.repository import GExiv2
             try:
                 gexiv2_str = GExiv2._version
