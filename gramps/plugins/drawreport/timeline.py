@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2014 Paul Franklin
+# Copyright (C) 2012-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -102,13 +102,20 @@ class TimeLine(Report):
         menu = options.menu
 
         lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
-        self._ = self._locale.translation.sgettext
+        rlocale = self.set_locale(lang)
+        self._ = rlocale.translation.sgettext
 
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu, self._locale)
+        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
+        self.fil_name = self.filter.get_name(rlocale)
+
+        living_value = menu.get_option_by_name('living_people').get_value()
+        for (value, description) in living_opt.get_items():
+            if value == living_value:
+                self.living_desc = self._(description)
+                break
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -143,7 +150,7 @@ class TimeLine(Report):
         start = st_size + 0.5
         stop = self.doc.get_usable_width() - 0.5
         size = (stop - start)
-        self.header = 2.0
+        self.header = 2.6
 
         # Sort the people as requested
         with self._user.progress(_('Timeline'), _('Sorting dates...'), 0) as step:
@@ -254,19 +261,21 @@ class TimeLine(Report):
         Draws the title for the page.
         """
         width = self.doc.get_usable_width()
-        title_one = self._("Timeline Chart")
-        title_two = "%(str1)s -- %(str2)s" % {
-                        'str1' : self.filter.get_name(self._locale),
+        title = self._("Timeline Chart")
+        title3 = "%(str1)s -- %(str2)s" % {
+                        'str1' : self.living_desc,
                         # feature request 2356: avoid genitive form
                         'str2' : self._("Sorted by %s") % self.sort_name }
         mark = None
         if toc:
-            mark = IndexMark(title_one, INDEX_TYPE_TOC, 1)
-        self.doc.center_text('TLG-title', title_one, width / 2.0, 0, mark)
+            mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
         style_sheet = self.doc.get_style_sheet()
         title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
         title_y = 1.2 - (pt2cm(title_font.get_size()) * 1.2)
-        self.doc.center_text('TLG-title', title_two, width / 2.0, title_y)
+        self.doc.center_text('TLG-title', self.fil_name, width / 2.0, title_y)
+        title_y = 1.8 - (pt2cm(title_font.get_size()) * 1.2)
+        self.doc.center_text('TLG-title', title3, width / 2.0, title_y)
 
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
         """
