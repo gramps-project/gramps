@@ -143,7 +143,7 @@ class Printinfo():
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
     """
-    def __init__(self, doc, database, numbering, showmarriage, showdivorce,\
+    def __init__(self, doc, database, numbering, showmarriage, showdivorce,
                  name_display, rlocale):
         #classes
         self._name_display = name_display
