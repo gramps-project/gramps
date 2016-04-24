@@ -22,7 +22,7 @@
 """
 **Introduction**
 
-Gramps is devided into two parts. The database code, that does not
+Gramps is divided into two parts. The database code, that does not
 require any particular GUI libraries, and the gtk-based UI code
 that requires gtk and gnome libraries. The gtk-based code can use
 the gobject signal support to manage callback signals but the database
