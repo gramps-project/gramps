@@ -86,25 +86,27 @@ class AncestorReport(Report):
         pagebbg   - Whether to include page breaks between generations.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
-
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
         self.map = {}
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, rlocale)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
         self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()
         pid = menu.get_option_by_name('pid').get_value()
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -133,6 +135,8 @@ class AncestorReport(Report):
         # we have to handle that parents may not
 
         person = self.database.get_person_from_handle(person_handle)
+        if person is None:
+            return
 
         father_handle = None
         mother_handle = None
@@ -215,6 +219,8 @@ class AncestorReport(Report):
 
             self.doc.start_paragraph("AHN-Entry","%d." % key)
             person = self.database.get_person_from_handle(self.map[key])
+            if person is None:
+                continue
             name = self._name_display.display(person)
             mark = ReportUtils.get_person_mark(self.database, person)
 
@@ -270,6 +276,8 @@ class AncestorOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         maxgen = NumberOption(_("Generations"), 10, 1, 100)
         maxgen.set_help(_("The number of generations to include in the report"))
