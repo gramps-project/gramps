@@ -104,6 +104,8 @@ class DetAncestorReport(Report):
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
@@ -114,7 +116,11 @@ class DetAncestorReport(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.db = self.database
 
         self.max_generations = get_value('gen')
@@ -143,9 +149,6 @@ class DetAncestorReport(Report):
         self.center_person = self.db.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -763,6 +766,8 @@ class DetAncestorOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category)
 
         stdoptions.add_private_data_option(menu, category)
+
+        stdoptions.add_living_people_option(menu, category)
 
         gen = NumberOption(_("Generations"),10,1,100)
         gen.set_help(_("The number of generations to include in the report"))
