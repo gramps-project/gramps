@@ -50,6 +50,7 @@ from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 from gramps.gen.errors import ReportError
+from gramps.gen.proxy import LivingProxyDb
 
 class PlaceReport(Report):
     """
@@ -72,7 +73,8 @@ class PlaceReport(Report):
         center          - Center of report, person or event
         incl_private    - Whether to include private data
         name_format     - Preferred format to display names
-
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
 
         Report.__init__(self, database, options, user)
@@ -80,14 +82,21 @@ class PlaceReport(Report):
         self._user = user
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+        self._ = rlocale.translation.sgettext
+
         stdoptions.run_private_data_option(self, menu)
+        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+
+        self._lv = menu.get_option_by_name('living_people').get_value()
+        for (value, description) in living_opt.get_items():
+            if value == self._lv:
+                self.living_desc = '(%s)' % self._(description)
+                break
 
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
-
-        lang = menu.get_option_by_name('trans').get_value()
-        locale = self.set_locale(lang)
-        self._ = locale.translation.sgettext
 
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
@@ -125,6 +134,10 @@ class PlaceReport(Report):
         self.doc.start_paragraph("PLC-ReportTitle")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
+        if self._lv != LivingProxyDb.MODE_INCLUDE_ALL:
+            self.doc.start_paragraph("PLC-ReportSubtitle")
+            self.doc.write_text(self.living_desc)
+            self.doc.end_paragraph()
         self.__write_all_places()
 
     def __write_all_places(self):
@@ -414,6 +427,8 @@ class PlaceOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
+        stdoptions.add_living_people_option(menu, category_name)
+
         stdoptions.add_name_format_option(menu, category_name)
 
         center = EnumeratedListOption(_("Center on"), "Event")
@@ -431,6 +446,7 @@ class PlaceOptions(MenuReportOptions):
         """
         self.default_style = default_style
         self.__report_title_style()
+        self.__report_subtitle_style()
         self.__place_title_style()
         self.__place_details_style()
         self.__column_title_style()
@@ -454,6 +470,21 @@ class PlaceOptions(MenuReportOptions):
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the report.'))
         self.default_style.add_paragraph_style("PLC-ReportTitle", para)
+
+    def __report_subtitle_style(self):
+        """
+        Define the style used for the report subtitle
+        """
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=12, bold=1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set_top_margin(0.25)
+        para.set_bottom_margin(0.25)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_('The style used for the subtitle.'))
+        self.default_style.add_paragraph_style("PLC-ReportSubtitle", para)
 
     def __place_title_style(self):
         """
