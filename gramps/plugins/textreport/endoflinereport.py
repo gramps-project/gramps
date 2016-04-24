@@ -68,20 +68,23 @@ class EndOfLineReport(Report):
         that come in the options class.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
-
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
 
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, rlocale)
 
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-
-        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -194,15 +197,16 @@ class EndOfLineReport(Report):
         if birth_ref:
             event = self.database.get_event_from_handle(birth_ref.ref)
             birth_date = self._get_date(event.get_date_object())
-
         death_date = ""
         death_ref = person.get_death_ref()
         if death_ref:
             event = self.database.get_event_from_handle(death_ref.ref)
             death_date = self._get_date(event.get_date_object())
-        dates = self._(" (%(birth_date)s - %(death_date)s)") % {
-                                            'birth_date' : birth_date,
-                                            'death_date' : death_date }
+        dates = ''
+        if birth_date or death_date:
+            dates = self._(" (%(birth_date)s - %(death_date)s)") % {
+                               'birth_date' : birth_date,
+                               'death_date' : death_date }
 
         self.doc.start_row()
         self.doc.start_cell('EOL-TableCell', 2)
@@ -260,6 +264,8 @@ class EndOfLineOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
