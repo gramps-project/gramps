@@ -2963,7 +2963,7 @@ class SurnamePage(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for person_handle in ppl_handle_list:
+                for person_handle in sorted(ppl_handle_list, key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
  
                     person = self.dbase_.get_person_from_handle(person_handle)
                     if person.get_change_time() > ldatec: ldatec = person.get_change_time()
