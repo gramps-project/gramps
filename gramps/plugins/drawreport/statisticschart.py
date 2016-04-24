@@ -730,30 +730,39 @@ class StatisticsChart(Report):
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
-
+        incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
         self._user = user
-
-        stdoptions.run_private_data_option(self, menu)
-
-        get_option_by_name = menu.get_option_by_name
-        get_value = lambda name: get_option_by_name(name).get_value()
 
         lang = menu.get_option_by_name('trans').get_value()
         rlocale = self.set_locale(lang)
         # override default gettext, or English output will have "person|Title"
         self._ = rlocale.translation.sgettext
 
-        self.filter_option = get_option_by_name('filter')
-        self.filter = self.filter_option.get_filter()
-        filter_name = self.filter.get_name(rlocale)
+        stdoptions.run_private_data_option(self, menu)
+        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+
+        filter_opt = get_option_by_name('filter')
+        self.filter = filter_opt.get_filter()
+        self.fil_name = self.filter.get_name(rlocale)
 
         self.bar_items = get_value('bar_items')
         year_from = get_value('year_from')
         year_to = get_value('year_to')
         gender = get_value('gender')
+
+        living_value = get_value('living_people')
+        for (value, description) in living_opt.get_items():
+            if value == living_value:
+                self.living_desc = '(%s)' % self._(description)
+                break
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
@@ -780,7 +789,7 @@ class StatisticsChart(Report):
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'),
                                   _('Collecting data...'),
-                                  database.get_number_of_people())
+                                  self.database.get_number_of_people())
         tables = _Extract.collect_data(self.database, self.filter, menu,
                                        gender, year_from, year_to,
                                        get_value('no_years'),
@@ -799,7 +808,7 @@ class StatisticsChart(Report):
             # document heading
             heading = "%(str1)s -- %(str2)s" % {'str1' : self._(table[0]),
                                                 'str2' : span_string}
-            self.data.append((heading, filter_name, table[0], table[1], lookup))
+            self.data.append((heading, table[0], table[1], lookup))
             self._user.step_progress()
         self._user.end_progress()
 
@@ -831,15 +840,15 @@ class StatisticsChart(Report):
                 self.doc.draw_text('SC-title', '', 0, 0, mark) # put it in TOC
                 mark = None # crock, but we only want one of them
             if len(data[3]) < self.bar_items:
-                self.output_piechart(*data[:5])
+                self.output_piechart(*data[:4])
             else:
-                self.output_barchart(*data[:5])
+                self.output_barchart(*data[:4])
             self.doc.end_page()
             self._user.step_progress()
         self._user.end_progress()
 
 
-    def output_piechart(self, title1, title2, typename, data, lookup):
+    def output_piechart(self, title1, typename, data, lookup):
 
         # set layout variables
         middle_w = self.doc.get_usable_width() / 2
@@ -852,7 +861,9 @@ class StatisticsChart(Report):
         mark = IndexMark(title1, INDEX_TYPE_TOC, 2)
         self.doc.center_text('SC-title', title1, middle_w, 0, mark)
         yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
-        self.doc.center_text('SC-title', title2, middle_w, yoffset)
+        self.doc.center_text('SC-title', self.fil_name, middle_w, yoffset)
+        yoffset = 2 * ReportUtils.pt2cm(pstyle.get_font().get_size())
+        self.doc.center_text('SC-title', self.living_desc, middle_w, yoffset)
 
         # collect data for output
         color = 0
@@ -880,7 +891,7 @@ class StatisticsChart(Report):
         draw_legend(self.doc, legendx, yoffset, chart_data, text, 'SC-legend')
 
 
-    def output_barchart(self, title1, title2, typename, data, lookup):
+    def output_barchart(self, title1, typename, data, lookup):
 
         pt2cm = ReportUtils.pt2cm
         style_sheet = self.doc.get_style_sheet()
@@ -907,8 +918,10 @@ class StatisticsChart(Report):
         mark = IndexMark(title1, INDEX_TYPE_TOC, 2)
         self.doc.center_text('SC-title', title1, middle, 0, mark)
         yoffset = pt2cm(pstyle.get_font().get_size())
-        self.doc.center_text('SC-title', title2, middle, yoffset)
+        self.doc.center_text('SC-title', self.fil_name, middle, yoffset)
         yoffset = 2 * pt2cm(pstyle.get_font().get_size())
+        self.doc.center_text('SC-title', self.living_desc, middle, yoffset)
+        yoffset = 3 * pt2cm(pstyle.get_font().get_size())
 
         # header
         yoffset += (row_h + pad)
@@ -975,6 +988,15 @@ class StatisticsChartOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ################################
+        category_name = _("Report Details")
+        add_option = partial(menu.add_option, category_name)
+        ################################
+
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE)
         for item_idx in range(len(_options.opt_sorts)):
@@ -1017,8 +1039,6 @@ class StatisticsChartOptions(MenuReportOptions):
         bar_items.set_help(_("With fewer items pie chart and legend will be "
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
-
-        stdoptions.add_localization_option(menu, category_name)
 
         # -------------------------------------------------
         # List of available charts on separate option tabs

@@ -194,9 +194,11 @@ def run_living_people_option(report, menu, llocale=glocale):
     :param llocale: allow deferred translation of "[Living]"
     :type llocale: a :class:`.GrampsLocale` instance
     """
-    living_people = menu.get_option_by_name('living_people').get_value()
+    option = menu.get_option_by_name('living_people')
+    living_value = option.get_value()
     years_past_death = menu.get_option_by_name('years_past_death').get_value()
-    if living_people != LivingProxyDb.MODE_INCLUDE_ALL:
-        report.database = LivingProxyDb(report.database, living_people,
+    if living_value != LivingProxyDb.MODE_INCLUDE_ALL:
+        report.database = LivingProxyDb(report.database, living_value,
                                         years_after_death=years_past_death,
                                         llocale=llocale)
+    return option
