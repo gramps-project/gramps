@@ -85,6 +85,7 @@ class BirthdayReport(Report):
         mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
 
         stdoptions.run_private_data_option(self, menu)
+        # (this report has its own "living people" option ("alive") already)
 
         self.titletext = mgobn('titletext')
         self.relationships = mgobn('relationships')
@@ -107,7 +108,7 @@ class BirthdayReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
