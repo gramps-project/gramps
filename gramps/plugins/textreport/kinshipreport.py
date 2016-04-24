@@ -77,11 +77,17 @@ class KinshipReport(Report):
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, rlocale)
         self.__db = self.database
 
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
@@ -91,10 +97,8 @@ class KinshipReport(Report):
         self.inc_aunts   = menu.get_option_by_name('incaunts').get_value()
         pid              = menu.get_option_by_name('pid').get_value()
         self.person = self.database.get_person_from_gramps_id(pid)
-        if (self.person == None) :
+        if self.person is None:
             raise ReportError(_("Person %s is not in the Database") % pid )
-
-        rlocale = self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -307,9 +311,11 @@ class KinshipReport(Report):
         death = get_death_or_fallback(self.database, person)
         if death:
             death_date = self._get_date(death.get_date_object())
-        dates = self._(" (%(birth_date)s - %(death_date)s)") % {
-                                            'birth_date' : birth_date,
-                                            'death_date' : death_date }
+        dates = ''
+        if birth_date or death_date:
+            dates = self._(" (%(birth_date)s - %(death_date)s)") % {
+                               'birth_date' : birth_date,
+                               'death_date' : death_date }
 
         self.doc.start_paragraph('KIN-Normal')
         self.doc.write_text(name, mark)
@@ -343,6 +349,8 @@ class KinshipOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
         maxdescend.set_help(_("The maximum number of descendant generations"))
