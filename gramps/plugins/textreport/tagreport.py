@@ -52,6 +52,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.proxy import LivingProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -76,18 +77,28 @@ class TagReport(Report):
         tag             - The tag each object must match to be included.
         name_format     - Preferred format to display names of people
         incl_private    - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+
+        self._lv = menu.get_option_by_name('living_people').get_value()
+        for (value, description) in living_opt.get_items():
+            if value == self._lv:
+                self.living_desc = '(%s)' % self._(description)
+                break
 
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
             raise ReportError(_('Tag Report'),
                 _('You must first create a tag before running this report.'))
-
-        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -98,6 +109,10 @@ class TagReport(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
+        if self._lv != LivingProxyDb.MODE_INCLUDE_ALL:
+            self.doc.start_paragraph("TR-ReportSubtitle")
+            self.doc.write_text(self.living_desc)
+            self.doc.end_paragraph()
 
         self.write_people()
         self.write_families()
@@ -882,6 +897,8 @@ class TagOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
+        stdoptions.add_living_people_option(menu, category_name)
+
         stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self,default_style):
@@ -893,13 +910,23 @@ class TagOptions(MenuReportOptions):
         f.set_bold(1)
         p = ParagraphStyle()
         p.set_header_level(1)
-        p.set_bottom_border(1)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("TR-Title", p)
+
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=12, bold=1)
+        para = ParagraphStyle()
+        para.set_header_level(1)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_('The style used for the subtitle.'))
+        default_style.add_paragraph_style("TR-ReportSubtitle", para)
 
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=14, italic=1)
