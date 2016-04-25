@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013-2015 Paul Franklin
+# Copyright (C) 2013-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import Span
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -117,16 +118,39 @@ class RecordsReport(Report):
             rank = 0
             for (number,
                  (sort, value, name, handletype, handle)) in enumerate(top):
-                # FIXME check whether person or family, if a family mark BOTH
-                person = self.database.get_person_from_handle(handle)
-                mark = ReportUtils.get_person_mark(self.database, person)
+                mark = None
+                if handletype == 'Person':
+                    person = self.database.get_person_from_handle(handle)
+                    mark = ReportUtils.get_person_mark(self.database, person)
+                elif handletype == 'Family':
+                    family = self.database.get_family_from_handle(handle)
+                    # librecords.py checks that the family has both
+                    # a father and a mother and also that each one is
+                    # in the filter if any filter was used, so we don't
+                    # have to do any similar checking here, it's been done
+                    f_handle = family.get_father_handle()
+                    dad = self.database.get_person_from_handle(f_handle)
+                    f_mark = ReportUtils.get_person_mark(self.database, dad)
+                    m_handle = family.get_mother_handle()
+                    mom = self.database.get_person_from_handle(m_handle)
+                    m_mark = ReportUtils.get_person_mark(self.database, mom)
+                else:
+                    raise ReportError(_("Option '%(opt_name)s' is present "
+                                        "in %(file)s\n  but is not known to "
+                                        "the module.  Ignoring...") %
+                                            {'opt_name': handletype,
+                                             'file': 'libnarrate.py'})
+                    # since the error is very unlikely I reused the string
                 if value != last_value:
                     last_value = value
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
-                # FIXME this won't work for RTL languages:
-                self.doc.write_text(self._("%(number)s. ") % {'number': rank+1})
+                self.doc.write_text(self._("%(number)s. ")
+                                               % {'number': rank+1})
                 self.doc.write_markup(str(name), name.get_tags(), mark)
+                if handletype == 'Family':
+                    self.doc.write_text('', f_mark)
+                    self.doc.write_text('', m_mark)
                 if isinstance(value, Span):
                     tvalue = value.get_repr(dlocale=self._locale)
                 else:
