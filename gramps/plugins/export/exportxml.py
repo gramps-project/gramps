@@ -255,7 +255,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <tags>\n")
             for key in sorted(self.db.get_tag_handles()):
                 tag = self.db.get_tag_from_handle(key)
-                self.write_tag(tag, 2)
+                if tag:
+                    self.write_tag(tag, 2)
                 self.update()
             self.g.write("  </tags>\n")
 
@@ -264,7 +265,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <events>\n")
             for handle in sorted(self.db.get_event_handles()):
                 event = self.db.get_event_from_handle(handle)
-                self.write_event(event,2)
+                if event:
+                    self.write_event(event,2)
                 self.update()
             self.g.write("  </events>\n")
 
@@ -277,7 +279,8 @@ class GrampsXmlWriter(UpdateCallback):
 
             for handle in sorted(self.db.get_person_handles()):
                 person = self.db.get_person_from_handle(handle)
-                self.write_person(person, 2)
+                if person:
+                    self.write_person(person, 2)
                 self.update()
             self.g.write("  </people>\n")
 
@@ -285,7 +288,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <families>\n")
             for handle in sorted(self.db.iter_family_handles()):
                 family = self.db.get_family_from_handle(handle)
-                self.write_family(family,2)
+                if family:
+                    self.write_family(family,2)
                 self.update()
             self.g.write("  </families>\n")
 
@@ -293,7 +297,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <citations>\n")
             for handle in sorted(self.db.get_citation_handles()):
                 citation = self.db.get_citation_from_handle(handle)
-                self.write_citation(citation,2)
+                if citation:
+                    self.write_citation(citation,2)
                 self.update()
             self.g.write("  </citations>\n")
 
@@ -301,7 +306,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <sources>\n")
             for handle in sorted(self.db.get_source_handles()):
                 source = self.db.get_source_from_handle(handle)
-                self.write_source(source,2)
+                if source:
+                    self.write_source(source,2)
                 self.update()
             self.g.write("  </sources>\n")
 
@@ -310,7 +316,8 @@ class GrampsXmlWriter(UpdateCallback):
             for key in sorted(self.db.get_place_handles()):
                 # try:
                 place = self.db.get_place_from_handle(key)
-                self.write_place_obj(place,2)
+                if place:
+                    self.write_place_obj(place,2)
                 self.update()
             self.g.write("  </places>\n")
 
@@ -318,7 +325,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <objects>\n")
             for handle in sorted(self.db.get_media_handles()):
                 obj = self.db.get_media_from_handle(handle)
-                self.write_object(obj,2)
+                if obj:
+                    self.write_object(obj,2)
                 self.update()
             self.g.write("  </objects>\n")
 
@@ -326,7 +334,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <repositories>\n")
             for key in sorted(self.db.get_repository_handles()):
                 repo = self.db.get_repository_from_handle(key)
-                self.write_repository(repo,2)
+                if repo:
+                    self.write_repository(repo,2)
                 self.update()
             self.g.write("  </repositories>\n")
 
@@ -334,7 +343,8 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write("  <notes>\n")
             for key in sorted(self.db.get_note_handles()):
                 note = self.db.get_note_from_handle(key)
-                self.write_note(note, 2)
+                if note:
+                    self.write_note(note, 2)
                 self.update()
             self.g.write("  </notes>\n")
 
