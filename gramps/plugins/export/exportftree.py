@@ -121,61 +121,60 @@ class FtreeWriter(object):
                 id_map[key] = n
             id_name[key] = get_name(pn, sn, count)
 
-        f = open(self.filename,"w")
+        with open(self.filename,"w") as f:
 
-        for key in self.plist:
-            self.update()
-            p = self.db.get_person_from_handle(key)
-            name = id_name[key]
-            father = mother = email = web = ""
+            for key in self.plist:
+                self.update()
+                p = self.db.get_person_from_handle(key)
+                name = id_name[key]
+                father = mother = email = web = ""
 
-            family_handle = p.get_main_parents_family_handle()
-            if family_handle:
-                family = self.db.get_family_from_handle(family_handle)
-                if family.get_father_handle() and \
-                  family.get_father_handle() in id_map:
-                    father = id_map[family.get_father_handle()]
-                if family.get_mother_handle() and \
-                  family.get_mother_handle() in id_map:
-                    mother = id_map[family.get_mother_handle()]
+                family_handle = p.get_main_parents_family_handle()
+                if family_handle:
+                    family = self.db.get_family_from_handle(family_handle)
+                    if family.get_father_handle() and \
+                      family.get_father_handle() in id_map:
+                        father = id_map[family.get_father_handle()]
+                    if family.get_mother_handle() and \
+                      family.get_mother_handle() in id_map:
+                        mother = id_map[family.get_mother_handle()]
 
-            #
-            # Calculate Date
-            #
-            birth_ref = p.get_birth_ref()
-            death_ref = p.get_death_ref()
-            if birth_ref:
-                birth_event = self.db.get_event_from_handle(birth_ref.ref)
-                birth = birth_event.get_date_object()
-            else:
-                birth = None
-            if death_ref:
-                death_event = self.db.get_event_from_handle(death_ref.ref)
-                death = death_event.get_date_object()
-            else:
-                death = None
-
-            #if self.restrict:
-            #    alive = probably_alive(p, self.db)
-            #else:
-            #    alive = 0
-
-            if birth:
-                if death:
-                    dates = "%s-%s" % (fdate(birth), fdate(death))
+                #
+                # Calculate Date
+                #
+                birth_ref = p.get_birth_ref()
+                death_ref = p.get_death_ref()
+                if birth_ref:
+                    birth_event = self.db.get_event_from_handle(birth_ref.ref)
+                    birth = birth_event.get_date_object()
                 else:
-                    dates = fdate(birth)
-            else:
-                if death:
-                    dates = fdate(death)
+                    birth = None
+                if death_ref:
+                    death_event = self.db.get_event_from_handle(death_ref.ref)
+                    death = death_event.get_date_object()
                 else:
-                    dates = ""
+                    death = None
 
-            f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web,
-                                             dates))
+                #if self.restrict:
+                #    alive = probably_alive(p, self.db)
+                #else:
+                #    alive = 0
 
-        f.close()
-        return True
+                if birth:
+                    if death:
+                        dates = "%s-%s" % (fdate(birth), fdate(death))
+                    else:
+                        dates = fdate(birth)
+                else:
+                    if death:
+                        dates = fdate(death)
+                    else:
+                        dates = ""
+
+                f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web,
+                                                 dates))
+
+            return True
 
 def fdate(val):
     if val.get_year_valid():

@@ -458,8 +458,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __log_error(self):
         mypath = os.path.join(self.get_save_path(),DBRECOVFN)
-        ofile = open(mypath, "w")
-        ofile.close()
+        with open(mypath, "w") as ofile:
+            pass
         try:
             clear_lock_file(self.get_save_path())
         except:
@@ -2591,15 +2591,14 @@ def do_export(database):
     try:
         for (base, tbl) in build_tbl_map(database):
             backup_name = mk_tmp_name(database, base)
-            backup_table = open(backup_name, 'wb')
+            with open(backup_name, 'wb') as backup_table:
 
-            cursor = tbl.cursor()
-            data = cursor.first()
-            while data:
-                pickle.dump(data, backup_table, 2)
-                data = cursor.next()
-            cursor.close()
-            backup_table.close()
+                cursor = tbl.cursor()
+                data = cursor.first()
+                while data:
+                    pickle.dump(data, backup_table, 2)
+                    data = cursor.next()
+                cursor.close()
     except (IOError,OSError):
         return
 
@@ -2678,29 +2677,28 @@ def clear_lock_file(name):
 def write_lock_file(name):
     if not os.path.isdir(name):
         os.mkdir(name)
-    f = open(os.path.join(name, DBLOCKFN), "w", encoding='utf8')
-    if win():
-        user = get_env_var('USERNAME')
-        host = get_env_var('USERDOMAIN')
-        if host is None:
-            host = ""
-    else:
-        host = os.uname()[1]
-        # An ugly workaround for os.getlogin() issue with Konsole
-        try:
-            user = os.getlogin()
-        except:
-            # not win, so don't need get_env_var.
-            # under cron getlogin() throws and there is no USER.
-            user = os.environ.get('USER', 'noUSER')
-    if host:
-        text = "%s@%s" % (user, host)
-    else:
-        text = user
-    # Save only the username and host, so the massage can be
-    # printed with correct locale in DbManager.py when a lock is found
-    f.write(text)
-    f.close()
+    with open(os.path.join(name, DBLOCKFN), "w", encoding='utf8') as f:
+        if win():
+            user = get_env_var('USERNAME')
+            host = get_env_var('USERDOMAIN')
+            if host is None:
+                host = ""
+        else:
+            host = os.uname()[1]
+            # An ugly workaround for os.getlogin() issue with Konsole
+            try:
+                user = os.getlogin()
+            except:
+                # not win, so don't need get_env_var.
+                # under cron getlogin() throws and there is no USER.
+                user = os.environ.get('USER', 'noUSER')
+        if host:
+            text = "%s@%s" % (user, host)
+        else:
+            text = user
+        # Save only the username and host, so the massage can be
+        # printed with correct locale in DbManager.py when a lock is found
+        f.write(text)
 
 def upgrade_researcher(owner_data):
     """

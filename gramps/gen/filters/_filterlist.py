@@ -118,28 +118,27 @@ class FilterList(object):
         return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file, 'w', encoding='utf8')
-        f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        f.write('<filters>\n')
-        for namespace in self.filter_namespaces:
-            f.write('<object type="%s">\n' % namespace)
-            filter_list = self.filter_namespaces[namespace]
-            for the_filter in filter_list:
-                f.write('  <filter name="%s"' %self.fix(the_filter.get_name()))
-                f.write(' function="%s"' % the_filter.get_logical_op())
-                if the_filter.invert:
-                    f.write(' invert="1"')
-                comment = the_filter.get_comment()
-                if comment:
-                    f.write(' comment="%s"' % self.fix(comment))
-                f.write('>\n')
-                for rule in the_filter.get_rules():
-                    f.write('    <rule class="%s" use_regex="%s">\n'
-                            % (rule.__class__.__name__, rule.use_regex))
-                    for value in list(rule.values()):
-                        f.write('      <arg value="%s"/>\n' % self.fix(value))
-                    f.write('    </rule>\n')
-                f.write('  </filter>\n')
-            f.write('</object>\n')
-        f.write('</filters>\n')
-        f.close()
+        with open(self.file, 'w', encoding='utf8') as f:
+            f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            f.write('<filters>\n')
+            for namespace in self.filter_namespaces:
+                f.write('<object type="%s">\n' % namespace)
+                filter_list = self.filter_namespaces[namespace]
+                for the_filter in filter_list:
+                    f.write('  <filter name="%s"' %self.fix(the_filter.get_name()))
+                    f.write(' function="%s"' % the_filter.get_logical_op())
+                    if the_filter.invert:
+                        f.write(' invert="1"')
+                    comment = the_filter.get_comment()
+                    if comment:
+                        f.write(' comment="%s"' % self.fix(comment))
+                    f.write('>\n')
+                    for rule in the_filter.get_rules():
+                        f.write('    <rule class="%s" use_regex="%s">\n'
+                                % (rule.__class__.__name__, rule.use_regex))
+                        for value in list(rule.values()):
+                            f.write('      <arg value="%s"/>\n' % self.fix(value))
+                        f.write('    </rule>\n')
+                    f.write('  </filter>\n')
+                f.write('</object>\n')
+            f.write('</filters>\n')
