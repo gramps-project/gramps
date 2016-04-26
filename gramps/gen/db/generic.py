@@ -62,6 +62,7 @@ from gramps.gen.lib.researcher import Researcher
 from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
                             Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
+from gramps.gen.config import config
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -2071,7 +2072,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         from gramps.cli.user import User
         if user is None:
             user = User()
-        writer = XmlWriter(self, user, strip_photos=0, compress=1)
+        compress = config.get('behavior.database-backup-use-compression')
+        writer = XmlWriter(self, user, strip_photos=0, compress=compress)
         timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
         filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
         writer.write(filename)
