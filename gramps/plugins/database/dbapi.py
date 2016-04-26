@@ -68,6 +68,8 @@ class DBAPI(DbGeneric):
                                 "dbapi_support", "defaults")
         LOG.debug("Copy defaults from: " + defaults)
         for filename in os.listdir(defaults):
+            if filename in ["__init__.py"]: # skip these
+                continue
             fullpath = os.path.abspath(os.path.join(defaults, filename))
             if os.path.isfile(fullpath):
                 shutil.copy2(fullpath, directory)
