@@ -504,9 +504,8 @@ class OptionListCollection(_options.OptionListCollection):
             if os.path.isfile(self.filename):
                 p = make_parser()
                 p.setContentHandler(OptionParser(self))
-                the_file = open(self.filename, encoding="utf-8")
-                p.parse(the_file)
-                the_file.close()
+                with open(self.filename, encoding="utf-8") as the_file:
+                    p.parse(the_file)
         except (IOError, OSError, SAXParseException):
             pass
 
@@ -1000,9 +999,8 @@ class DocOptionListCollection(_options.OptionListCollection):
             if os.path.isfile(self.filename):
                 p = make_parser()
                 p.setContentHandler(DocOptionParser(self))
-                the_file = open(self.filename, encoding="utf-8")
-                p.parse(the_file)
-                the_file.close()
+                with open(self.filename, encoding="utf-8") as the_file:
+                    p.parse(the_file)
         except (IOError, OSError, SAXParseException):
             pass
 

@@ -30,12 +30,11 @@ from test import test_util
 test_util.path_append_parent() 
 
 def get_potfile(filename):
-    fp = open(filename, "r")
-    retvals = []
-    for line in fp:
-        if line and line[0] != "#":
-            retvals.append(line.strip())
-    fp.close()
+    with open(filename, "r") as fp:
+        retvals = []
+        for line in fp:
+            if line and line[0] != "#":
+                retvals.append(line.strip())
     return retvals
 
 # POTFILES.skip
@@ -55,9 +54,8 @@ class TestPOT(unittest.TestCase):
         realpath = (dir + "/" + file)
         pathfile = realpath[3:]
         if os.path.exists(realpath):
-            fp = open(realpath, "r")
-            lines = fp.read()
-            fp.close()
+            with open(realpath, "r") as fp:
+                lines = fp.read()
             found = False
             for search in searches:
                 if search in lines:
@@ -88,9 +86,8 @@ class TestMake(unittest.TestCase):
         if pathfile[3:] in excluded_files:
             self.assertTrue(True, "exclude '%s'" % pathfile)
         elif os.path.exists(makefile):
-            fp = open(makefile, "r")
-            lines = fp.read()
-            fp.close()
+            with open(makefile, "r") as fp:
+                lines = fp.read()
             self.assertTrue(filename in lines, "'%s' not in %s/Makefile.in" % 
                             (filename, path))
         else:
@@ -107,9 +104,8 @@ class TestGetText(unittest.TestCase):
     def helper(self, pofile, searches):
         if not os.path.exists("../../" + pofile):
             self.assertTrue(False, "'%s' is in POTFILES.in and does not exist" % pofile)
-        fp = open("../../" + pofile, "r")
-        lines = fp.read()
-        fp.close()
+        with open("../../" + pofile, "r") as fp:
+            lines = fp.read()
         found = False
         for search in searches:
             found = (search in lines) or found

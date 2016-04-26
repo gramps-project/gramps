@@ -146,31 +146,30 @@ class StyleSheetList(object):
         """
         Saves the current StyleSheet definitions to the associated file.
         """
-        xml_file = open(self.__file, "w")
-        xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
-        xml_file.write('<stylelist>\n')
+        with open(self.__file, "w") as xml_file:
+            xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+            xml_file.write('<stylelist>\n')
 
-        for name in sorted(self.map.keys()): # enable diff of archived copies
-            if name == "default":
-                continue
-            sheet = self.map[name]
-            xml_file.write('<sheet name="%s">\n' % escxml(name))
+            for name in sorted(self.map.keys()): # enable diff of archived copies
+                if name == "default":
+                    continue
+                sheet = self.map[name]
+                xml_file.write('<sheet name="%s">\n' % escxml(name))
 
-            for p_name in sheet.get_paragraph_style_names():
-                self.write_paragraph_style(xml_file, sheet, p_name)
+                for p_name in sheet.get_paragraph_style_names():
+                    self.write_paragraph_style(xml_file, sheet, p_name)
 
-            for t_name in sheet.get_table_style_names():
-                self.write_table_style(xml_file, sheet, t_name)
+                for t_name in sheet.get_table_style_names():
+                    self.write_table_style(xml_file, sheet, t_name)
 
-            for c_name in sheet.get_cell_style_names():
-                self.write_cell_style(xml_file, sheet, c_name)
+                for c_name in sheet.get_cell_style_names():
+                    self.write_cell_style(xml_file, sheet, c_name)
 
-            for g_name in sheet.get_draw_style_names():
-                self.write_graphics_style(xml_file, sheet, g_name)
+                for g_name in sheet.get_draw_style_names():
+                    self.write_graphics_style(xml_file, sheet, g_name)
 
-            xml_file.write('</sheet>\n')
-        xml_file.write('</stylelist>\n')
-        xml_file.close()
+                xml_file.write('</sheet>\n')
+            xml_file.write('</stylelist>\n')
 
     def write_paragraph_style(self, xml_file, sheet, p_name):
 
@@ -275,9 +274,8 @@ class StyleSheetList(object):
             if os.path.isfile(self.__file):
                 parser = make_parser()
                 parser.setContentHandler(SheetParser(self))
-                the_file = open(self.__file)
-                parser.parse(the_file)
-                the_file.close()
+                with open(self.__file) as the_file:
+                    parser.parse(the_file)
         except (IOError, OSError, SAXParseException):
             pass
 

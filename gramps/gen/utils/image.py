@@ -279,9 +279,8 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
     scaled.savev(dest, "jpeg", "", "")
-    ofile = open(dest, mode='rb')
-    data = ofile.read()
-    ofile.close()
+    with open(dest, mode='rb') as ofile:
+        data = ofile.read()
     try:
         os.unlink(dest)
     except:

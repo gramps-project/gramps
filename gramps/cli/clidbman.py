@@ -234,9 +234,8 @@ class CLIDbManager(object):
                 except:
                     version = (0, 0, 0)
                 if os.path.isfile(path_name):
-                    file = open(path_name, 'r', encoding='utf8')
-                    name = file.readline().strip()
-                    file.close()
+                    with open(path_name, 'r', encoding='utf8') as file:
+                        name = file.readline().strip()
 
                     (tval, last) = time_val(dirpath)
                     (enable, stock_id) = self.icon_values(dirpath, self.active,
@@ -293,9 +292,8 @@ class CLIDbManager(object):
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
 
-        name_file = open(path_name, "w", encoding='utf8')
-        name_file.write(title)
-        name_file.close()
+        with open(path_name, "w", encoding='utf8') as name_file:
+            name_file.write(title)
 
         if create_db:
             # write the version number into metadata
@@ -409,9 +407,8 @@ class CLIDbManager(object):
             dirpath = os.path.join(dbdir, dpath)
             path_name = os.path.join(dirpath, NAME_FILE)
             if os.path.isfile(path_name):
-                file = open(path_name, 'r', encoding='utf8')
-                name = file.readline().strip()
-                file.close()
+                with open(path_name, 'r', encoding='utf8') as file:
+                    name = file.readline().strip()
                 if re.match("^" + dbname + "$", name): 
                     match_list.append((name, dirpath))
         if len(match_list) == 0:
@@ -438,12 +435,10 @@ class CLIDbManager(object):
         Returns old_name, new_name if success, None, None if no success
         """
         try:
-            name_file = open(filepath, "r", encoding='utf8')
-            old_text=name_file.read()
-            name_file.close()
-            name_file = open(filepath, "w", encoding='utf8')
-            name_file.write(new_text)
-            name_file.close()
+            with open(filepath, "r", encoding='utf8') as name_file:
+                old_text=name_file.read()
+            with open(filepath, "w", encoding='utf8') as name_file:
+                name_file.write(new_text)
         except (OSError, IOError) as msg:
             CLIDbManager.ERROR(_("Could not rename Family Tree"),
                   str(msg))
@@ -543,11 +538,10 @@ def find_locker_name(dirpath):
     """
     try:
         fname = os.path.join(dirpath, "lock")
-        ifile = open(fname, 'r', encoding='utf8')
-        username = ifile.read().strip()
-        # feature request 2356: avoid genitive form
-        last = _("Locked by %s") % username
-        ifile.close()
+        with open(fname, 'r', encoding='utf8') as ifile:
+            username = ifile.read().strip()
+            # feature request 2356: avoid genitive form
+            last = _("Locked by %s") % username
     except (OSError, IOError, UnicodeDecodeError):
         last = _("Unknown")
     return last

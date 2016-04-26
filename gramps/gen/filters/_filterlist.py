@@ -103,9 +103,8 @@ class FilterList(object):
             if os.path.isfile(self.file):
                 parser = make_parser()
                 parser.setContentHandler(FilterParser(self))
-                the_file = open(self.file, 'r', encoding='utf8')
-                parser.parse(the_file)
-                the_file.close()
+                with open(self.file, 'r', encoding='utf8') as the_file:
+                    parser.parse(the_file)
         except (IOError, OSError):
             print("IO/OSError in _filterlist.py")
         except SAXParseException:

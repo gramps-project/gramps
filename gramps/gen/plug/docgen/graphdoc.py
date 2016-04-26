@@ -603,9 +603,8 @@ class GVDotDoc(GVDocBase):
         if self._filename[-3:] != ".gv":
             self._filename += ".gv"
 
-        dotfile = open(self._filename, "wb")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
+        with open(self._filename, "wb") as dotfile:
+            dotfile.write(self._dot.getvalue())
 
 #-------------------------------------------------------------------------------
 #
