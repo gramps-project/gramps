@@ -126,6 +126,8 @@ def find_records(db, filter, top_size, callname,
 
     for person_handle in person_handle_list:
         person = db.get_person_from_handle(person_handle)
+        if person is None:
+            continue
 
         # FIXME this should check for a "fallback" birth also/instead
         birth_ref = person.get_birth_ref()
