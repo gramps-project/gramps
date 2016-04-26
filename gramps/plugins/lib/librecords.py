@@ -243,7 +243,11 @@ def find_records(db, filter, top_size, callname,
                 continue
 
         father = db.get_person_from_handle(father_handle)
+        if father is None:
+            continue
         mother = db.get_person_from_handle(mother_handle)
+        if mother is None:
+            continue
 
         name = StyledText(trans_text("%(father)s and %(mother)s")) % {
                 'father': _get_styled_primary_name(father, callname,
