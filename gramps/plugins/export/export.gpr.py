@@ -146,7 +146,7 @@ plg.status = STABLE
 plg.fname = 'exportxml.py'
 plg.ptype = EXPORT
 plg.export_function = 'export_data'
-plg.export_options = 'WriterOptionBox'
+plg.export_options = 'WriterOptionBoxWithCompression'
 plg.export_options_title = _('Gramps XML export options')
 plg.extension = "gramps"
 

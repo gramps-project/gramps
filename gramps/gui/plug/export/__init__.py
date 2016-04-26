@@ -22,3 +22,4 @@
 
 from ._exportassistant import ExportAssistant
 from ._exportoptions import WriterOptionBox
+from ._exportoptions import WriterOptionBoxWithCompression

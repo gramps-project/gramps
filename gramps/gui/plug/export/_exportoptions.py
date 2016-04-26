@@ -45,6 +45,18 @@ from gramps.gen.proxy import (PrivateProxyDb,
                               FilterProxyDb,
                               ReferencedBySelectionProxyDb)
 
+#-------------------------------------------------------------------------
+#
+# Attempt to load the GZIP library. Some version of python do not seem
+# to be compiled with this available.
+#
+#-------------------------------------------------------------------------
+try:
+    import gzip
+    _gzip_ok = 1
+except:
+    _gzip_ok = 0
+
 class Progress(object):
     """
     Mirros the same interface that the ExportAssistant uses in the
@@ -722,3 +734,29 @@ class WriterOptionBox(object):
                 row += 1
 
         return model
+
+class WriterOptionBoxWithCompression(WriterOptionBox):
+    """
+    Extends the WriterOptionBox with option for using compression.
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.use_compression = _gzip_ok
+        self.use_compression_check = None
+
+    def get_use_compression(self):
+        return self.use_compression
+
+    def get_option_box(self):
+        from gi.repository import Gtk
+        option_box = super().get_option_box()
+        self.use_compression_check = Gtk.CheckButton(label=_("Use Compression"))
+        self.use_compression_check.set_active(1)
+        self.use_compression_check.set_sensitive(_gzip_ok)
+        option_box.pack_start(self.use_compression_check, False, True, 0)
+        return option_box
+
+    def parse_options(self):
+        super().parse_options()
+        if self.use_compression_check:
+            self.use_compression = self.use_compression_check.get_active()
