@@ -177,11 +177,20 @@ class DbManager(CLIDbManager):
 
         self.selection = self.dblist.get_selection()
 
+        # For already loaded database:
+        self._current_node = None
         self.__connect_signals()
         self.__build_interface()
         self._populate_model()
         self.before_change = ""
         self.after_change = ""
+        # If already loaded database, center on it:
+        if self._current_node:
+            store, node = self.selection.get_selected()
+            tree_path = store.get_path(self._current_node)
+            self.selection.select_path(tree_path)
+            self.dblist.scroll_to_cell(tree_path, None, 1, 0.5, 0)
+
 
     def __connect_signals(self):
         """
@@ -376,8 +385,11 @@ class DbManager(CLIDbManager):
             backend_type = self.get_backend_name_from_dbid(data[7])
             version = str(".".join([str(v) for v in items[8]]))
             node = self.model.append(None, data[:-1] + [backend_type + ", " + version])
+            # For already loaded database, set current_node:
+            if self.dbstate.db and self.dbstate.db.get_save_path() == data[1]:
+                self._current_node = node
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
-                data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "", 
+                data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "",
                         backend_type + ", " + version]
                 self.model.append(node, data)
         self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
