@@ -2537,9 +2537,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         schema_version = self.metadata.get(b'version', default=None)
         bdbversion_file = os.path.join(self.path, BDBVERSFN)
         if os.path.isfile(bdbversion_file):
-            vers_file = open(bdbversion_file)
-            bsddb_version = vers_file.readline().strip()
-            bsddb_version = ".".join([str(v) for v in safe_eval(bsddb_version)])
+            with open(bdbversion_file) as vers_file:
+                bsddb_version = vers_file.readline().strip()
+                bsddb_version = ".".join([str(v) for v in safe_eval(bsddb_version)])
         else:
             bsddb_version = _("Unknown")
         return {
@@ -2619,8 +2619,8 @@ def do_restore(database):
     """
     for (base, tbl) in build_tbl_map(database):
         backup_name = mk_backup_name(database, base)
-        backup_table = open(backup_name, 'rb')
-        load_tbl_txn(database, backup_table, tbl)
+        with open(backup_name, 'rb') as backup_table:
+            load_tbl_txn(database, backup_table, tbl)
 
     database.rebuild_secondary()
 
