@@ -49,6 +49,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import Span
 from gramps.gen.errors import ReportError
+from gramps.gen.proxy import LivingProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -63,15 +64,28 @@ class RecordsReport(Report):
         that come in the options class.
 
         incl_private    - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
 
         Report.__init__(self, database, options, user)
         menu = options.menu
 
-        stdoptions.run_private_data_option(self, menu)
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
 
-        self.filter_option =  menu.get_option_by_name('filter')
-        self.filter = self.filter_option.get_filter()
+        stdoptions.run_private_data_option(self, menu)
+        living_opt = stdoptions.run_living_people_option(self, menu,
+                                                         self._locale)
+
+        self._lv = menu.get_option_by_name('living_people').get_value()
+        for (value, description) in living_opt.get_items():
+            if value == self._lv:
+                self.living_desc = self._(description)
+                break
+
+        filter_option = menu.get_option_by_name('filter')
+        self.filter = filter_option.get_filter()
 
         self.top_size = menu.get_option_by_name('top_size').get_value()
         self.callname = menu.get_option_by_name('callname').get_value()
@@ -81,9 +95,6 @@ class RecordsReport(Report):
         self.include = {}
         for (text, varname, default) in RECORDS:
             self.include[varname] = menu.get_option_by_name(varname).get_value()
-
-        self._lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(self._lang)
 
         self._nf = stdoptions.run_name_format_option(self, menu)
 
@@ -103,8 +114,14 @@ class RecordsReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph('REC-Subtitle')
-        self.doc.write_text(self.filter.get_name(self._locale))
+        filter_name = self.filter.get_name(self._locale)
+        self.doc.write_text("(%s)" % filter_name)
         self.doc.end_paragraph()
+        if self._lv != LivingProxyDb.MODE_INCLUDE_ALL:
+            self.doc.start_paragraph('REC-Subtitle')
+            self.doc.write_text(self._("(Living people: %(option_name)s)"
+                                       % {'option_name': self.living_desc}))
+            self.doc.end_paragraph()
 
         for (text, varname, top) in records:
             if not self.include[varname]:
@@ -203,6 +220,8 @@ class RecordsReportOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
+        stdoptions.add_living_people_option(menu, category_name)
+
         top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
         menu.add_option(category_name, "top_size", top_size)
 
@@ -261,7 +280,7 @@ class RecordsReportOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_("The style used for the report title."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style('REC-Title', para)
 
         font = FontStyle()
@@ -271,9 +290,7 @@ class RecordsReportOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_bottom_border(True)
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
-        para.set_description(_("The style used for the report subtitle."))
+        para.set_description(_("The style used for the subtitle."))
         default_style.add_paragraph_style('REC-Subtitle', para)
 
         font = FontStyle()
