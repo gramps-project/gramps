@@ -362,43 +362,51 @@ class DeleteNoteQuery(object):
 
             for handle in person_list:
                 person = self.db.get_person_from_handle(handle)
-                person.remove_note(note_handle)
-                self.db.commit_person(person, trans)
+                if person:
+                    person.remove_note(note_handle)
+                    self.db.commit_person(person, trans)
 
             for handle in family_list:
                 family = self.db.get_family_from_handle(handle)
-                family.remove_note(note_handle)
-                self.db.commit_family(family, trans)
+                if family:
+                    family.remove_note(note_handle)
+                    self.db.commit_family(family, trans)
 
             for handle in event_list:
                 event = self.db.get_event_from_handle(handle)
-                event.remove_note(note_handle)
-                self.db.commit_event(event, trans)
+                if event:
+                    event.remove_note(note_handle)
+                    self.db.commit_event(event, trans)
 
             for handle in place_list:
                 place = self.db.get_place_from_handle(handle)
-                place.remove_note(note_handle)
-                self.db.commit_place(place, trans)
+                if place:
+                    place.remove_note(note_handle)
+                    self.db.commit_place(place, trans)
 
             for handle in source_list:
                 source = self.db.get_source_from_handle(handle)
-                source.remove_note(note_handle)
-                self.db.commit_source(source, trans)
+                if source:
+                    source.remove_note(note_handle)
+                    self.db.commit_source(source, trans)
 
             for handle in citation_list:
                 citation = self.db.get_citation_from_handle(handle)
-                citation.remove_note(note_handle)
-                self.db.commit_citation(citation, trans)
+                if citation:
+                    citation.remove_note(note_handle)
+                    self.db.commit_citation(citation, trans)
 
             for handle in media_list:
                 media = self.db.get_media_from_handle(handle)
-                media.remove_note(note_handle)
-                self.db.commit_media(media, trans)
+                if media:
+                    media.remove_note(note_handle)
+                    self.db.commit_media(media, trans)
 
             for handle in repo_list:
                 repo = self.db.get_repository_from_handle(handle)
-                repo.remove_note(note_handle)
-                self.db.commit_repository(repo, trans)
+                if repo:
+                    repo.remove_note(note_handle)
+                    self.db.commit_repository(repo, trans)
 
             self.db.enable_signals()
             self.db.remove_note(note_handle, trans)
