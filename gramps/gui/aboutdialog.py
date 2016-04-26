@@ -72,6 +72,12 @@ try:
 except:
     BSDDB_STR = 'not found'
 
+try:
+    import sqlite3
+    sqlite3_version_str = sqlite3.version
+except:
+    sqlite3_version_str = 'not found'
+
 #-------------------------------------------------------------------------
 #
 # GrampsAboutDialog
@@ -132,12 +138,14 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                  "GRAMPS: %s \n" +
                  "Python: %s \n" +
                  "BSDDB: %s \n" +
+                 "sqlite: %s \n" +
                  "LANG: %s\n" +
                  "OS: %s\n" +
                  "Distribution: %s")
                 % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
                    BSDDB_STR,
+                   sqlite3_version_str,
                    ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))
