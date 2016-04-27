@@ -96,9 +96,8 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_artists(artists.split('\n'))
 
         try:
-            ifile = open(LICENSE_FILE, "r")
-            self.set_license(ifile.read().replace('\x0c', ''))
-            ifile.close()
+            with open(LICENSE_FILE, "r") as ifile:
+                self.set_license(ifile.read().replace('\x0c', ''))
         except IOError:
             self.set_license("License file is missing")
 
@@ -214,9 +213,8 @@ def _get_authors():
         parser = make_parser()
         parser.setContentHandler(AuthorParser(authors, contributors))
 
-        authors_file = open(AUTHORS_FILE, encoding='utf-8')
-        parser.parse(authors_file)
-        authors_file.close()
+        with open(AUTHORS_FILE, encoding='utf-8') as authors_file:
+            parser.parse(authors_file)
 
         authors_text = [authors, contributors]
 

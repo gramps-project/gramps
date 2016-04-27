@@ -16,8 +16,8 @@ def get_dbdir_summary(dirpath, name):
 
     bdbversion_file = os.path.join(dirpath, BDBVERSFN)
     if os.path.isfile(bdbversion_file):
-        vers_file = open(bdbversion_file)
-        bsddb_version = vers_file.readline().strip()
+        with open(bdbversion_file) as vers_file:
+            bsddb_version = vers_file.readline().strip()
     else:
         return "Unknown", "Unknown", "Unknown"
 

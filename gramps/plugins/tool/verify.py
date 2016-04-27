@@ -572,9 +572,8 @@ class VerifyResults(ManagedWindow):
 
     def _save_ignored(self,filename):
         try:
-            f = open(filename,'wb')
-            pickle.dump(self.ignores, f, 1)
-            f.close()
+            with open(filename,'wb') as f:
+                pickle.dump(self.ignores, f, 1)
             return True
         except IOError:
             return False

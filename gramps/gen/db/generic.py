@@ -2026,9 +2026,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         filepath = os.path.join(self._directory, "name.txt")
         try:
-            name_file = open(filepath, "r")
-            name = name_file.readline().strip()
-            name_file.close()
+            with open(filepath, "r") as name_file:
+                name = name_file.readline().strip()
         except (OSError, IOError) as msg:
             LOG.error(str(msg))
             name = None
@@ -2129,9 +2128,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if self._directory:
             filepath = os.path.join(self._directory, "bdbversion.txt")
             try:
-                name_file = open(filepath, "r", encoding='utf-8')
-                version = name_file.readline().strip()
-                name_file.close()
+                with open(filepath, "r", encoding='utf-8') as name_file:
+                    version = name_file.readline().strip()
             except (OSError, IOError) as msg:
                 self.__log_error()
                 version = "(0, 0, 0)"

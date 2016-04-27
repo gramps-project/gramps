@@ -83,9 +83,8 @@ class PageSizeParser(handler.ContentHandler):
 try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
-    the_file = open(PAPERSIZE)
-    parser.parse(the_file)
-    the_file.close()
+    with open(PAPERSIZE) as the_file:
+        parser.parse(the_file)
     paper_sizes.append(PaperSize("Custom Size", -1, -1)) # always in English
 except (IOError, OSError, SAXParseException):
     paper_sizes = [
