@@ -64,8 +64,9 @@ class EnumeratedListOption(Option):
         """
         Option.__init__(self, label, value)
         self.__items = []
+        self.__xml_items = []
 
-    def add_item(self, value, description):
+    def add_item(self, value, description, xml_item=False):
         """
         Add an item to the list of possible values.
 
@@ -75,30 +76,47 @@ class EnumeratedListOption(Option):
         :param description: A description of this value.
             Example: "8.5 x 11"
         :type description: string
+        :param xml_item: allow deferred translation of item description
+        :type _xml_item: Boolean
         :return: nothing
         """
-        self.__items.append((value, description))
+        if not xml_item: # localized item description is being passed in
+            self.__items.append((value, description))
+        else: # English item description is being passed in
+            self.__xml_items.append((value, description))
+            self.__items.append((value, _(description)))
         self.emit('options-changed')
 
-    def set_items(self, items):
+    def set_items(self, items, xml_items=False):
         """
         Add a list of items to the list of possible values.
 
         :param items: A list of tuples containing value, description pairs.
             Example: [ (5,"8.5 x 11"), (6,"11 x 17")]
         :type items: array
+        :param xml_items: allow deferred translation of item descriptions
+        :type _xml_items: Boolean
         :return: nothing
         """
-        self.__items = items
+        if not xml_items: # localized item descriptions are being passed in
+            self.__items = items
+        else: # English item descriptions are being passed in
+            self.__xml_items = items
+            for (value, description) in items:
+                self.__items.append((value, _(description)))
         self.emit('options-changed')
 
-    def get_items(self):
+    def get_items(self, xml_items=False):
         """
         Get all the possible values for this option.
 
+        :param xml_items: allow deferred translation of item descriptions
+        :type _xml_items: Boolean
         :return: an array of tuples containing (value,description) pairs.
         """
-        return self.__items
+        if not xml_items: # localized item descriptions are wanted
+            return self.__items
+        return self.__xml_items # English item descriptions are wanted
 
     def clear(self):
         """
