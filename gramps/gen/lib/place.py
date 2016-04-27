@@ -577,7 +577,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param acquisition: instance to merge
         :type acquisition: :class:'~.place.Place
         """
-        if acquisition.name and (acquisition.name not in self.alt_names):
+        if acquisition.name.value and (acquisition.name not in self.alt_names):
             self.alt_names.append(acquisition.name)
 
         for addendum in acquisition.alt_names:
