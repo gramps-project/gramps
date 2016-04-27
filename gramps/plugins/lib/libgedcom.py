@@ -1708,8 +1708,6 @@ class PlaceParser(object):
                     loc.get_state(),
                     loc.get_country())
 
-        place_import.store_location(location, place.handle)
-
         for level, name in enumerate(location):
             if name:
                 break
@@ -1723,6 +1721,10 @@ class PlaceParser(object):
         place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)
+        if place.handle:    # if handle is available, store immediately
+            place_import.store_location(location, place.handle)
+        else:               # return for storage later
+            return location
 
 #-------------------------------------------------------------------------
 #
@@ -2957,15 +2959,22 @@ class GedcomParser(UpdateCallback):
                                       sub_state.place.get_placeref_list())
             if place is None:
                 place = sub_state.place
+                place_title = place_displayer.display(self.dbase, place)
+                location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.add_place(place, self.trans)
+                # if 'location was created, then store it, now that we have a handle.
+                if location:
+                    self.place_import.store_location(location, place.handle)
                 self.place_names[place.get_title()].append(place.get_handle())
                 event.set_place_handle(place.get_handle())
             else:
                 place.merge(sub_state.place)
+                place_title = place_displayer.display(self.dbase, place)
+                location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.commit_place(place, self.trans)
+                if location:
+                    self.place_import.store_location(location, place.handle)
                 event.set_place_handle(place.get_handle())
-            place_title = place_displayer.display(self.dbase, place)
-            sub_state.pf.load_place(self.place_import, place, place_title)
 
     def __find_file(self, fullname, altpath):
         tries = []
