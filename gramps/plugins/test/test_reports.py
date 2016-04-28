@@ -121,7 +121,8 @@ def report_contains(text):
         print(contents)
         if options.get("files", []):
             for filename in options.get("files", []):
-                os.remove(filename)
+                #os.remove(filename)
+                print(filename)
         else:
             os.remove(report_name + "." + ext)
         return text in contents
@@ -133,7 +134,8 @@ def err_does_not_contain(text):
         print(err)
         if options.get("files", []):
             for filename in options.get("files", []):
-                os.remove(filename)
+                #os.remove(filename)
+                print(filename)
         else:
             os.remove(report_name + "." + ext)
         return text not in err
