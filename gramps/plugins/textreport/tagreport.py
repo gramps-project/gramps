@@ -90,7 +90,7 @@ class TagReport(Report):
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
-        for (value, description) in living_opt.get_items():
+        for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
                 self.living_desc = '(%s)' % self._(description)
                 break

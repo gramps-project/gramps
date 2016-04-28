@@ -36,6 +36,10 @@ from gramps.gen.plug.menu import (EnumeratedListOption, BooleanOption,
                                   NumberOption)
 from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
 #-------------------------------------------------------------------------
 #
 # StandardReportOptions
@@ -162,16 +166,21 @@ def add_living_people_option(menu, category,
 
     living_people = EnumeratedListOption(_("Living People"), mode)
     living_people.add_item(LivingProxyDb.MODE_INCLUDE_ALL,
-                           _("Include living people and their data"))
+                           _T_("Include living people and their data"),
+                           xml_item=True)
     if process_names:
         living_people.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-                               _("Include full names but no data"))
+                               _T_("Include full names but no data"),
+                               xml_item=True)
         living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                               _("Replace given names and include no data"))
+                               _T_("Replace given names and include no data"),
+                               xml_item=True)
         living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-                               _("Replace complete names and include no data"))
+                               _T_("Replace complete names and include no data"),
+                               xml_item=True)
     living_people.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
-                           _("Do not include living people"))
+                           _T_("Do not include living people"),
+                           xml_item=True)
     living_people.set_help(_("How to handle living people"))
     menu.add_option(category, "living_people", living_people)
     living_people.connect('value-changed', living_people_changed)

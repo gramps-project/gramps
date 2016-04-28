@@ -79,7 +79,7 @@ class RecordsReport(Report):
                                                          self._locale)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
-        for (value, description) in living_opt.get_items():
+        for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
                 self.living_desc = self._(description)
                 break

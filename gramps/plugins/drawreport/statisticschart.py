@@ -759,7 +759,7 @@ class StatisticsChart(Report):
         gender = get_value('gender')
 
         living_value = get_value('living_people')
-        for (value, description) in living_opt.get_items():
+        for (value, description) in living_opt.get_items(xml_items=True):
             if value == living_value:
                 self.living_desc = '(%s)' % self._(description)
                 break
