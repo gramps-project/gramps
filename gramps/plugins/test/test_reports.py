@@ -21,6 +21,7 @@
 
 import unittest
 import os
+import shutil
 
 from gramps.test.test_util import Gramps
 
@@ -121,8 +122,12 @@ def report_contains(text):
         print(contents)
         if options.get("files", []):
             for filename in options.get("files", []):
-                #os.remove(filename)
-                print(filename)
+                if os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't delete: " + filename)
         else:
             os.remove(report_name + "." + ext)
         return text in contents
@@ -134,8 +139,12 @@ def err_does_not_contain(text):
         print(err)
         if options.get("files", []):
             for filename in options.get("files", []):
-                #os.remove(filename)
-                print(filename)
+                if os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't delete: " + filename)
         else:
             os.remove(report_name + "." + ext)
         return text not in err
