@@ -541,7 +541,7 @@ gramps/plugins/database/bsddb_support/undoredo.py
 gramps/plugins/database/bsddb_support/upgrade.py
 gramps/plugins/database/bsddb_support/write.py
 gramps/plugins/database/inmemorydb.gpr.py
-gramps/plugins/database/inmemorydbdb.py
+gramps/plugins/database/inmemorydb.py
 gramps/plugins/docgen/asciidoc.py
 gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade
