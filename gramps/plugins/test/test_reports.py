@@ -127,7 +127,7 @@ def report_contains(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't delete: " + filename)
+                    raise Exception("can't find '%s' in order to delete it" % filename)
         else:
             os.remove(report_name + "." + ext)
         return text in contents
@@ -144,7 +144,7 @@ def err_does_not_contain(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't delete: " + filename)
+                    raise Exception("can't find '%s' in order to delete it" % filename)
         else:
             os.remove(report_name + "." + ext)
         return text not in err
@@ -157,15 +157,8 @@ reports.addtest(TestDynamic, "tag_report",
 
 reports.addtest(TestDynamic, "navwebpage",
                 err_does_not_contain("Failed to write report."),
-                ["temp/download.html",
-                 "temp/individuals.html",
-                 "temp/places.html",
-                 "temp/surnames_count.html",
-                 "temp/index.html",
-                 "temp/media.html",
-                 "temp/sources.html",
-                 "temp/thumbnails.html"],
-                off="html", target="temp")
+                ["/tmp/NAVWEB"],
+                off="html", target="/tmp/NAVWEB")
 
 ### Three hashes: capture out/err seems to conflict with Travis/nose proxy:
 
