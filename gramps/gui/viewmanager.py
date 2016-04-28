@@ -1104,16 +1104,17 @@ class ViewManager(CLIManager):
             if dialog.after_change != "":
                 # We change the title of the main window.
                 old_title = self.uistate.window.get_title()
-                delim = old_title.find(' - ')
-                tit1 = old_title[:delim]
-                tit2 = old_title[delim:]
-                if '<=' in tit2:
-                    delim2 = tit2.find('<=') + 3
-                    tit3 = tit2[delim2:-1]
-                    new_title = dialog.after_change + tit2.replace(']', '') + ' => ' + tit1 + ']'
-                else:
-                    new_title = dialog.after_change + tit2 + ' <= [' + tit1 + ']'
-                self.uistate.window.set_title(new_title)
+                if old_title:
+                    delim = old_title.find(' - ')
+                    tit1 = old_title[:delim]
+                    tit2 = old_title[delim:]
+                    if '<=' in tit2:
+                        delim2 = tit2.find('<=') + 3
+                        tit3 = tit2[delim2:-1]
+                        new_title = dialog.after_change + tit2.replace(']', '') + ' => ' + tit1 + ']'
+                    else:
+                        new_title = dialog.after_change + tit2 + ' <= [' + tit1 + ']'
+                    self.uistate.window.set_title(new_title)
 
     def __post_load(self):
         """

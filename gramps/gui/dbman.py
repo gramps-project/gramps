@@ -167,7 +167,7 @@ class DbManager(CLIDbManager):
             self.top.set_transient_for(parent)
 
         for attr in ['connect', 'cancel', 'new', 'remove', 'info',
-                     'dblist', 'rename', 'repair', 'rcs', 'msg']:
+                     'dblist', 'rename', 'convert', 'repair', 'rcs', 'msg']:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -184,13 +184,21 @@ class DbManager(CLIDbManager):
         self._populate_model()
         self.before_change = ""
         self.after_change = ""
+        self._select_default()
+        self.user = User(error=ErrorDialog,
+                         callback=self.uistate.pulse_progressbar,
+                         uistate=self.uistate)
+
+    def _select_default(self):
+        """
+        Select the current, or latest, tree.
+        """
         # If already loaded database, center on it:
         if self._current_node:
             store, node = self.selection.get_selected()
             tree_path = store.get_path(self._current_node)
             self.selection.select_path(tree_path)
             self.dblist.scroll_to_cell(tree_path, None, 1, 0.5, 0)
-
 
     def __connect_signals(self):
         """
@@ -206,6 +214,7 @@ class DbManager(CLIDbManager):
         self.remove.connect('clicked', self.__remove_db)
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
+        self.convert.connect('clicked', self.__convert_db_ask)
         self.info.connect('clicked', self.__info_db)
         self.repair.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
@@ -269,6 +278,7 @@ class DbManager(CLIDbManager):
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
+            self.convert.set_sensitive(False)
             self.info.set_sensitive(False)
             self.rcs.set_sensitive(False)
             self.repair.set_sensitive(False)
@@ -283,10 +293,17 @@ class DbManager(CLIDbManager):
         self.rcs.set_label(RCS_BUTTON[is_rev])
 
         if store.get_value(node, ICON_COL) == 'document-open':
+            self.convert.set_sensitive(False)
             self.connect.set_sensitive(False)
             if _RCS_FOUND:
                 self.rcs.set_sensitive(True)
         else:
+            backend_name = self.get_backend_name_from_dbid("bsddb")
+            if (store.get_value(node, ICON_COL) in [None, ""] and
+                store.get_value(node, BACKEND_COL).startswith(backend_name)):
+                self.convert.set_sensitive(True)
+            else:
+                self.convert.set_sensitive(False)
             self.connect.set_sensitive(not is_rev)
             if _RCS_FOUND and is_rev:
                 self.rcs.set_sensitive(True)
@@ -380,18 +397,26 @@ class DbManager(CLIDbManager):
         self.model = Gtk.TreeStore(str, str, str, str, int, bool, str, str)
 
         #use current names to set up the model
+        self._current_node = None
+        last_accessed_node = None
+        last_accessed = 0
         for items in self.current_names:
             data = list(items[:8])
-            backend_type = self.get_backend_name_from_dbid(data[7])
+            backend_type = self.get_backend_name_from_dbid(data[BACKEND_COL])
             version = str(".".join([str(v) for v in items[8]]))
             node = self.model.append(None, data[:-1] + [backend_type + ", " + version])
             # For already loaded database, set current_node:
             if self.dbstate.db and self.dbstate.db.get_save_path() == data[1]:
                 self._current_node = node
+            if data[DSORT_COL] > last_accessed:
+                last_accessed = data[DSORT_COL]
+                last_accessed_node = node
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
                 data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "",
                         backend_type + ", " + version]
                 self.model.append(node, data)
+        if self._current_node is None:
+            self._current_node = last_accessed_node
         self.model.set_sort_column_id(NAME_COL, Gtk.SortType.ASCENDING)
         self.dblist.set_model(self.model)
 
@@ -470,7 +495,7 @@ class DbManager(CLIDbManager):
             dbpath = store.get_value(node, PATH_COL)
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
-            store.set_value(node, ICON_COL, "")
+            store.set_value(node, ICON_COL, "") # see bug_fix
             store.set_value(node, DATE_COL, last)
             store.set_value(node, DSORT_COL, tval)
         except IOError:
@@ -488,6 +513,7 @@ class DbManager(CLIDbManager):
         """
         self.connect.set_sensitive(False)
         self.rename.set_sensitive(False)
+        self.convert.set_sensitive(False)
         self.info.set_sensitive(False)
         self.rcs.set_sensitive(False)
         self.repair.set_sensitive(False)
@@ -507,7 +533,7 @@ class DbManager(CLIDbManager):
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
-            if self.model.get_value(node, ICON_COL) != None:
+            if self.model.get_value(node, ICON_COL) not in [None, ""]:
                 # this database is loaded. We must change the title
                 # in case we change the name several times before quitting,
                 # we save the first old name.
@@ -596,7 +622,7 @@ class DbManager(CLIDbManager):
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE)
-            check_in(self.dbstate.db, archive, User(), self.__start_cursor)
+            check_in(self.dbstate.db, archive, self.user, self.__start_cursor)
             self.__end_cursor()
 
         self.__populate()
@@ -614,7 +640,7 @@ class DbManager(CLIDbManager):
         dbase.load(new_path, None)
 
         self.__start_cursor(_("Importing archive..."))
-        check_out(dbase, revision, db_path, User())
+        check_out(dbase, revision, db_path, self.user)
         self.__end_cursor()
         dbase.close()
 
@@ -705,6 +731,73 @@ class DbManager(CLIDbManager):
 
         # rebuild the display
         self.__populate()
+
+    def __convert_db_ask(self, obj):
+        """
+        Ask to convert a closed BSDDB tree into a new DB-API
+        tree.
+        """
+        store, node = self.selection.get_selected()
+        name = store[node][0]
+        dirname = store[node][1]
+        db = self.dbstate.open_database(name)
+        if db:
+            QuestionDialog(
+                _("Convert the '%s' database?") % name,
+                _("You wish to convert this database into the new DB-API format?"),
+                _("Convert"),
+                lambda: self.__convert_db(name, dirname, db), self.top)
+        else:
+            ErrorDialog(
+                _("Opening the '%s' database") % name,
+                _("An attempt to open the database failed."))
+
+    def __convert_db(self, name, dirname, db):
+        """
+        Actually convert the db from BSDDB to DB-API.
+        """
+        plugin_manager = GuiPluginManager.get_instance()
+        export_function = None
+        for plugin in plugin_manager.get_export_plugins():
+            if plugin.get_extension() == "gramps":
+                export_function = plugin.get_export_function()
+                break
+        ## Next, get an XML dump:
+        if export_function is None:
+            ErrorDialog(
+                _("Converting the '%s' database") % name,
+                _("An attempt to export the database failed."))
+            db.close()
+            return
+        self.__start_cursor(_("Converting data..."))
+        xml_file = os.path.join(dirname, "backup.gramps")
+        export_function(db, xml_file, self.user)
+        db.close()
+        count = 1
+        new_text = "%s %s" % (name, _("(Converted #%d)") % count)
+        while self.existing_name(new_text):
+            count += 1
+            new_text = "%s %s" % (name, _("(Converted #%d)") % count)
+        new_path, newname = self._create_new_db(new_text)
+        ## Create a new database of correct type:
+        dbase = self.dbstate.make_database("dbapi")
+        dbase.write_version(new_path)
+        dbase.load(new_path)
+        ## import from XML
+        import_function = None
+        for plugin in plugin_manager.get_import_plugins():
+            if plugin.get_extension() == "gramps":
+                import_function = plugin.get_import_function()
+        if import_function is None:
+            ErrorDialog(
+                _("Converting the '%s' database") % name,
+                _("An attempt to import into the database failed."))
+        else:
+            import_function(dbase, xml_file, self.user)
+        self.__end_cursor()
+        dbase.close()
+        self.__populate()
+        self._select_default()
 
     def __rename_db(self, obj):
         """
@@ -875,7 +968,7 @@ class DbManager(CLIDbManager):
         if drag_value and urlparse(drag_value).scheme != "":
             fname, title = [], []
             for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
-                f, t = self.import_new_db(treename, User())
+                f, t = self.import_new_db(treename, self.user)
                 fname.append(f)
                 title.append(t)
         return fname, title
