@@ -93,6 +93,13 @@ def dynamic_method(report_name, test_function,
 
 class TestDynamic(unittest.TestCase):
     @classmethod
+    def setUpClass(cls):
+        try:
+            os.makedirs("temp")
+        except:
+            pass
+
+    @classmethod
     def call(cls, *args):
         print("call:", args)
         gramps = Gramps()
@@ -112,9 +119,11 @@ def report_contains(text):
         with open(report_name + "." + ext) as fp:
             contents = fp.read()
         print(contents)
-        os.remove(report_name + "." + ext)
-        for filename in options.get("files", []):
-            os.remove(filename)
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                os.remove(filename)
+        else:
+            os.remove(report_name + "." + ext)
         return text in contents
     return test_output_file
 
@@ -122,9 +131,11 @@ def err_does_not_contain(text):
     def test_output_file(out, err, report_name, **options):
         ext = options["off"]
         print(err)
-        os.remove(report_name + "." + ext)
-        for filename in options.get("files", []):
-            os.remove(filename)
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                os.remove(filename)
+        else:
+            os.remove(report_name + "." + ext)
         return text not in err
     return test_output_file
 
@@ -133,9 +144,17 @@ reports.addtest(TestDynamic, "tag_report",
                 [],
                 off="txt", tag="tag1")
 
-#reports.addtest(TestDynamic, "navwebpage",
-#                err_does_not_contain("Failed to write report."),
-#                off="html")
+reports.addtest(TestDynamic, "navwebpage",
+                err_does_not_contain("Failed to write report."),
+                ["temp/download.html",
+                 "temp/individuals.html",
+                 "temp/places.html",
+                 "temp/surnames_count.html",
+                 "temp/index.html",
+                 "temp/media.html",
+                 "temp/sources.html",
+                 "temp/thumbnails.html"],
+                off="html", target="temp")
 
 ### Three hashes: capture out/err seems to conflict with Travis/nose proxy:
 
