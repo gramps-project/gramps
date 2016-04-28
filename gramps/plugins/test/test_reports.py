@@ -200,6 +200,16 @@ reports.addreport(TestDynamic, "navwebpage",
                   ["/tmp/NAVWEB"],
                   off="html", target="/tmp/NAVWEB")
 
+reports.addreport(TestDynamic, "WebCal",
+                  err_does_not_contain("Failed to write report."),
+                  ["/tmp/WEBCAL"],
+                  off="html", target="/tmp/WEBCAL")
+
+reports.addreport(TestDynamic, "database-differences-report",
+                  err_does_not_contain("Failed to write report."),
+                  [],
+                  off="txt", filename=example)
+
 reports.addcli(TestDynamic, "import_gedcom",
                err_does_contain("Cleaning up."),
                [None],
@@ -259,21 +269,20 @@ report_list = [
     ##("ancestor_chart", "pdf", []), # Ancestor Tree
     ("ancestor_report", "txt", []), # Ahnentafel Report
     ("birthday_report", "txt", []), # Birthday and Anniversary Report
-    # ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
-    #                      "calendar-12.svg", "calendar-2.svg",
-    #                      "calendar-3.svg", "calendar-4.svg",
-    #                      "calendar-5.svg", "calendar-6.svg",
-    #                      "calendar-7.svg", "calendar-8.svg",
-    #                      "calendar-9.svg"]), # Calendar
+    ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
+                         "calendar-12.svg", "calendar-2.svg",
+                         "calendar-3.svg", "calendar-4.svg",
+                         "calendar-5.svg", "calendar-6.svg",
+                         "calendar-7.svg", "calendar-8.svg",
+                         "calendar-9.svg", "calendar.svg"]), # Calendar
     ## ("d3-ancestralcollapsibletree", "txt"), # Ancestral Collapsible Tree
     ## ("d3-ancestralfanchart", "txt"), # Ancestral Fan Chart
     ## "d3-descendantindentedtree", # Descendant Indented Tree
-    ### ("database-differences-report", "txt", []), # Database Differences Report
     ## "denominoviso", # DenominoViso
     ##("descend_chart", "svg", []), # Descendant Tree
     ("descend_report", "txt", []), # Descendant Report
-    ### ("DescendantBook", "txt", []), # Descendant Book
-    ## ("Descendants Lines", "txt"), # Descendants Lines
+    ("DescendantBook", "txt", []), # Descendant Book
+    ### real error ("Descendants Lines", "txt", []), # Descendants Lines
     ("det_ancestor_report", "txt", []), # Detailed Ancestral Report
     ("det_descendant_report", "txt", []), # Detailed Descendant Report
     ### ("DetailedDescendantBook", "txt", []), # Detailed Descendant Book
@@ -287,8 +296,8 @@ report_list = [
     # ("hourglass_graph", "svg", []), # Hourglass Graph
     ("indiv_complete", "txt", []), # Complete Individual Report
     ("kinship_report", "txt", []), # Kinship Report
-    ### ("LastChangeReport", "txt", []), # Last Change Report
-    ### ("LinesOfDescendency", "txt", []), # Lines of Descendency Report
+    ("LastChangeReport", "txt", []), # Last Change Report
+    ("LinesOfDescendency", "txt", []), # Lines of Descendency Report
     ## "ListeEclair", # Tiny Tafel
     ("notelinkreport", "txt", []), # Note Link Report
     ("number_of_ancestors", "txt", []), # Number of Ancestors Report
@@ -297,14 +306,13 @@ report_list = [
     ## "place_report", # Place Report
     ("records", "txt", []), # Records Report
     ##("rel_graph", "pdf", []), # Relationship Graph
-    ### ("Repositories Report", "txt", []), # Repositories Report
-    ### ("Repositories Report Options", "txt", []), # Repositories Report Options
+    ("Repositories Report", "txt", []), # Repositories Report
+    ("Repositories Report Options", "txt", []), # Repositories Report Options
     # ("statistics_chart", "svg", ["statistics_chart-2.svg",
     #                              "statistics_chart-3.svg"]), # Statistics Charts
     ("summary", "txt", []), # Database Summary Report
     ##("timeline", "pdf", []), # Timeline Chart
-    ### ("TodoReport", "txt", []), # Todo Report
-    ## ("WebCal", "txt"), # Web Calendar
+    ("TodoReport", "txt", []), # Todo Report
 ]
 
 for (report_name, off, files) in report_list:
