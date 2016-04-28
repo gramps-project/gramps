@@ -28,12 +28,14 @@ from gramps.test.test_util import Gramps
 ddir = os.path.dirname(__file__)
 example = os.path.join(ddir, "..", "..", "..",
                        "example", "gramps", "data.gramps")
+sample = os.path.join(ddir, "..", "..", "..",
+                      "example", "gedcom", "sample.ged")
 
 TREE_NAME = "Test_reporttest"
 
 class ReportControl(object):
     def tearDown(self):
-        out, err = self.call("-y", "--remove", TREE_NAME)
+        out, err = self.call("-y", "--remove", TREE_NAME + ".*")
 
     def call(self, *args):
         print("call:", args)
@@ -56,22 +58,10 @@ class ReportControl(object):
                 report_name, description = line.split("- ", 1)
                 self.reports.append(report_name.strip())
 
-    def testall(self, class_):
-        count = 0
-        print(self.reports)
-        for report_name in self.reports:
-            print("add attr:", report_name)
-            setattr(class_, "test_%s" % count, dynamic_method(
-                "--force",
-                "-O", TREE_NAME,
-                "--action", "report",
-                "--options", "name=%s" % report_name))
-            count += 1
-
-    def addtest(self, class_, report_name, test_function,
-                files, **options):
+    def addreport(self, class_, report_name, test_function,
+                  files, **options):
         test_name = report_name.replace("-", "_")
-        setattr(class_, test_name, dynamic_method(
+        setattr(class_, test_name, dynamic_report_method(
             report_name,
             test_function,
             files,
@@ -81,10 +71,29 @@ class ReportControl(object):
             "--options", "name=%s" % report_name,
             **options))
 
-def dynamic_method(report_name, test_function,
-                   files, *args, **options):
+    def addcli(self, class_, report_name, test_function,
+               files, *args, **options):
+        test_name = report_name.replace("-", "_")
+        setattr(class_, test_name, 
+                dynamic_cli_method(
+                    report_name,
+                    test_function,
+                    files,
+                    *args))
+
+def dynamic_report_method(report_name, test_function,
+                          files, *args, **options):
     args = list(args)
     args[-1] += "," + (",".join(["%s=%s" % (k, v) for (k,v) in options.items()]))
+    options["files"] = files
+    # This needs to have "test" in name:
+    def test_method(self):
+        out, err = self.call(*args)
+        self.assertTrue(test_function(out, err, report_name, **options))
+    return test_method
+
+def dynamic_cli_method(report_name, test_function,
+                       files, *args, **options):
     options["files"] = files
     # This needs to have "test" in name:
     def test_method(self):
@@ -110,7 +119,7 @@ class TestDynamic(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        out, err = cls.call("-y", "--remove", TREE_NAME)
+        out, err = cls.call("-y", "--remove", TREE_NAME + ".*")
 
 reports = ReportControl()
 
@@ -122,43 +131,58 @@ def report_contains(text):
         print(contents)
         if options.get("files", []):
             for filename in options.get("files", []):
-                if os.path.isdir(filename):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
                     shutil.rmtree(filename)
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
                     raise Exception("can't find '%s' in order to delete it" % filename)
-        else:
+        elif os.path.isfile(report_name + "." + ext):
             os.remove(report_name + "." + ext)
+        else:
+            raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
         return text in contents
     return test_output_file
 
 def err_does_not_contain(text):
     def test_output_file(out, err, report_name, **options):
-        ext = options["off"]
-        print(err)
         if options.get("files", []):
             for filename in options.get("files", []):
-                if os.path.isdir(filename):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
                     shutil.rmtree(filename)
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
                     raise Exception("can't find '%s' in order to delete it" % filename)
         else:
-            os.remove(report_name + "." + ext)
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
         return text not in err
     return test_output_file
 
-reports.addtest(TestDynamic, "tag_report",
-                report_contains("I0037  Smith, Edwin Michael"),
-                [],
-                off="txt", tag="tag1")
+reports.addreport(TestDynamic, "tag_report",
+                  report_contains("I0037  Smith, Edwin Michael"),
+                  [],
+                  off="txt", tag="tag1")
 
-reports.addtest(TestDynamic, "navwebpage",
-                err_does_not_contain("Failed to write report."),
-                ["/tmp/NAVWEB"],
-                off="html", target="/tmp/NAVWEB")
+reports.addreport(TestDynamic, "navwebpage",
+                  err_does_not_contain("Failed to write report."),
+                  ["/tmp/NAVWEB"],
+                  off="html", target="/tmp/NAVWEB")
+
+reports.addcli(TestDynamic, "import_gedcom",
+               err_does_not_contain("Failed to write report."),
+               [None],
+               "--force",
+               "-C", TREE_NAME + "_import_gedcom",
+               "--import", sample)
 
 ### Three hashes: capture out/err seems to conflict with Travis/nose proxy:
 
@@ -215,10 +239,10 @@ report_list = [
 ]
 
 for (report_name, off, files) in report_list:
-    reports.addtest(TestDynamic, report_name,
-                    err_does_not_contain("Failed to write report."),
-                    files=files,
-                    off=off)
+    reports.addreport(TestDynamic, report_name,
+                      err_does_not_contain("Failed to write report."),
+                      files=files,
+                      off=off)
 
 if __name__ == "__main__":
     unittest.main()
