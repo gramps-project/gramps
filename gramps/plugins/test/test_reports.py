@@ -24,6 +24,7 @@ import os
 import shutil
 
 from gramps.test.test_util import Gramps
+from gramps.gen.db import open_database
 
 ddir = os.path.dirname(__file__)
 example = os.path.join(ddir, "..", "..", "..",
@@ -50,14 +51,9 @@ class ReportControl(object):
         self.tearDown() # removes it if it existed
         out, err = self.call("-C", TREE_NAME,
                              "--import", example)
-        out, err = self.call("-O", TREE_NAME,
-                             "--action", "report",
-                             "--options", "show=all")
-        self.reports = []
-        for line in err.split("\n"):
-            if line.startswith("   "):
-                report_name, description = line.split("- ", 1)
-                self.reports.append(report_name.strip())
+        db = open_database(TREE_NAME, force_unlock=True)
+        db.Person.filter(lambda person: person.gramps_id == "I0000").tag("Cool")
+        db.close()
 
     def addreport(self, class_, report_name, test_function,
                   files, **options):
@@ -266,7 +262,13 @@ reports.addcli(TestDynamic, "export_vcf",
                "--export", "test_export.vcf")
 
 report_list = [
-    ##("ancestor_chart", "pdf", []), # Ancestor Tree
+    ("ancestor_chart", "svg", ["ancestor_chart.svg", 
+                               "ancestor_chart-2.svg", 
+                               "ancestor_chart-3.svg", 
+                               "ancestor_chart-4.svg", 
+                               "ancestor_chart-5.svg", 
+                               "ancestor_chart-6.svg", 
+                           ]), # Ancestor Tree
     ("ancestor_report", "txt", []), # Ahnentafel Report
     ("birthday_report", "txt", []), # Birthday and Anniversary Report
     ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
@@ -275,44 +277,28 @@ report_list = [
                          "calendar-5.svg", "calendar-6.svg",
                          "calendar-7.svg", "calendar-8.svg",
                          "calendar-9.svg", "calendar.svg"]), # Calendar
-    ## ("d3-ancestralcollapsibletree", "txt"), # Ancestral Collapsible Tree
-    ## ("d3-ancestralfanchart", "txt"), # Ancestral Fan Chart
-    ## "d3-descendantindentedtree", # Descendant Indented Tree
-    ## "denominoviso", # DenominoViso
-    ##("descend_chart", "svg", []), # Descendant Tree
+    ("descend_chart", "svg", []), # Descendant Tree
     ("descend_report", "txt", []), # Descendant Report
-    ("DescendantBook", "txt", []), # Descendant Book
-    ### real error ("Descendants Lines", "txt", []), # Descendants Lines
     ("det_ancestor_report", "txt", []), # Detailed Ancestral Report
     ("det_descendant_report", "txt", []), # Detailed Descendant Report
-    ### ("DetailedDescendantBook", "txt", []), # Detailed Descendant Book
-    ## ("DynamicWeb", "txt"), # Dynamic Web Report
     ("endofline_report", "txt", []), # End of Line Report
-    ##("family_descend_chart", "svg", []), # Family Descendant Tree
+    ("family_descend_chart", "svg", []), # Family Descendant Tree
     ("family_group", "txt", []), # Family Group Report
-    ##("familylines_graph", "svg", []), # Family Lines Graph
-    # ("FamilyTree", "svg", []), # Family Tree
-    # ("fan_chart", "svg", []), # Fan Chart
-    # ("hourglass_graph", "svg", []), # Hourglass Graph
+    ("familylines_graph", "svg", []), # Family Lines Graph
+    ("fan_chart", "svg", []), # Fan Chart
+    ("hourglass_graph", "svg", []), # Hourglass Graph
     ("indiv_complete", "txt", []), # Complete Individual Report
     ("kinship_report", "txt", []), # Kinship Report
-    ("LastChangeReport", "txt", []), # Last Change Report
-    ("LinesOfDescendency", "txt", []), # Lines of Descendency Report
-    ## "ListeEclair", # Tiny Tafel
     ("notelinkreport", "txt", []), # Note Link Report
     ("number_of_ancestors", "txt", []), # Number of Ancestors Report
-    ##("PedigreeChart", "svg", ["PedigreeChart-2.svg"]), # Pedigree Chart
-    ### ("PersonEverythingReport", "txt", []), # PersonEverything Report
-    ## "place_report", # Place Report
+    ("place_report", "txt", []), # Place Report
     ("records", "txt", []), # Records Report
-    ##("rel_graph", "pdf", []), # Relationship Graph
-    ("Repositories Report", "txt", []), # Repositories Report
-    ("Repositories Report Options", "txt", []), # Repositories Report Options
-    # ("statistics_chart", "svg", ["statistics_chart-2.svg",
-    #                              "statistics_chart-3.svg"]), # Statistics Charts
+    ("rel_graph", "svg", []), # Relationship Graph
+    ("statistics_chart", "svg", ["statistics_chart.svg",
+                                 "statistics_chart-2.svg",
+                                 "statistics_chart-3.svg"]), # Statistics Charts
     ("summary", "txt", []), # Database Summary Report
-    ##("timeline", "pdf", []), # Timeline Chart
-    ("TodoReport", "txt", []), # Todo Report
+    ("timeline", "svg", ["timeline.svg", "timeline-2.svg"]), # Timeline Chart
 ]
 
 for (report_name, off, files) in report_list:
