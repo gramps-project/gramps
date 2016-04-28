@@ -29,7 +29,7 @@ Commonly used report options. Call the function, don't copy the code!
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.plug.menu import (EnumeratedListOption, BooleanOption,
@@ -165,22 +165,19 @@ def add_living_people_option(menu, category,
             years_past_death.set_available(True)
 
     living_people = EnumeratedListOption(_("Living People"), mode)
-    living_people.add_item(LivingProxyDb.MODE_INCLUDE_ALL,
-                           _T_("Include living people and their data"),
-                           xml_item=True)
+    items = [(LivingProxyDb.MODE_INCLUDE_ALL,
+              _T_("'living people'|Included, and all data"))]
     if process_names:
-        living_people.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-                               _T_("Include full names but no data"),
-                               xml_item=True)
-        living_people.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                               _T_("Replace given names and include no data"),
-                               xml_item=True)
-        living_people.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-                               _T_("Replace complete names and include no data"),
-                               xml_item=True)
-    living_people.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
-                           _T_("Do not include living people"),
-                           xml_item=True)
+        items += [
+            (LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
+             _T_("'living people'|Full names, but data removed")),
+            (LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
+             _T_("'living people'|Given names replaced, and data removed")),
+            (LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
+             _T_("'living people'|Complete names replaced, and data removed"))]
+    items += [(LivingProxyDb.MODE_EXCLUDE_ALL,
+               _T_("'living people'|Not included"))]
+    living_people.set_items(items, xml_items=True) # for deferred translation
     living_people.set_help(_("How to handle living people"))
     menu.add_option(category, "living_people", living_people)
     living_people.connect('value-changed', living_people_changed)
