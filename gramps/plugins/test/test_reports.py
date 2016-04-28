@@ -167,6 +167,27 @@ def err_does_not_contain(text):
         return text not in err
     return test_output_file
 
+def err_does_contain(text):
+    def test_output_file(out, err, report_name, **options):
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        else:
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+        return text in err
+    return test_output_file
+
 reports.addreport(TestDynamic, "tag_report",
                   report_contains("I0037  Smith, Edwin Michael"),
                   [],
@@ -178,13 +199,16 @@ reports.addreport(TestDynamic, "navwebpage",
                   off="html", target="/tmp/NAVWEB")
 
 reports.addcli(TestDynamic, "import_gedcom",
-               err_does_not_contain("Failed to write report."),
+               err_does_contain("Cleaning up."),
                [None],
-               "--force",
                "-C", TREE_NAME + "_import_gedcom",
                "--import", sample)
 
-### Three hashes: capture out/err seems to conflict with Travis/nose proxy:
+reports.addcli(TestDynamic, "export_gedcom",
+               err_does_contain("Cleaning up."),
+               ["test_export.ged"],
+               "-C", TREE_NAME + "_export_gedcom",
+               "--import", sample, "--export", "test_export.ged")
 
 report_list = [
     ##("ancestor_chart", "pdf", []), # Ancestor Tree
