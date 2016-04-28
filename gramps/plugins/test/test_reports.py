@@ -201,10 +201,11 @@ reports.addreport(TestDynamic, "WebCal",
                   ["/tmp/WEBCAL"],
                   off="html", target="/tmp/WEBCAL")
 
-reports.addreport(TestDynamic, "database-differences-report",
-                  err_does_not_contain("Failed to write report."),
-                  [],
-                  off="txt", filename=example)
+# THIRD-PARTY
+#reports.addreport(TestDynamic, "database-differences-report",
+#                  err_does_not_contain("Failed to write report."),
+#                  [],
+#                  off="txt", filename=example)
 
 reports.addcli(TestDynamic, "import_gedcom",
                err_does_contain("Cleaning up."),
@@ -284,16 +285,16 @@ report_list = [
     ("endofline_report", "txt", []), # End of Line Report
     ("family_descend_chart", "svg", []), # Family Descendant Tree
     ("family_group", "txt", []), # Family Group Report
-    ("familylines_graph", "svg", []), # Family Lines Graph
+    ## COULD be dot ("familylines_graph", "dot", []), # Family Lines Graph
     ("fan_chart", "svg", []), # Fan Chart
-    ("hourglass_graph", "svg", []), # Hourglass Graph
+    ## COULD be dot ("hourglass_graph", "dot", []), # Hourglass Graph
     ("indiv_complete", "txt", []), # Complete Individual Report
     ("kinship_report", "txt", []), # Kinship Report
     ("notelinkreport", "txt", []), # Note Link Report
     ("number_of_ancestors", "txt", []), # Number of Ancestors Report
-    ("place_report", "txt", []), # Place Report
+    ## NEED a place ("place_report", "txt", []), # Place Report
     ("records", "txt", []), # Records Report
-    ("rel_graph", "svg", []), # Relationship Graph
+    ## COULD be dot ("rel_graph", "dot", []), # Relationship Graph
     ("statistics_chart", "svg", ["statistics_chart.svg",
                                  "statistics_chart-2.svg",
                                  "statistics_chart-3.svg"]), # Statistics Charts
