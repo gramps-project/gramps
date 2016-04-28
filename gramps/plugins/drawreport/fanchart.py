@@ -167,13 +167,19 @@ class FanChart(Report):
         draw_empty   - draw background when there is no information
         same_style   - use the same style for all generation
         incl_private - Whether to include private data
+        living_people - How to handle living people
+        years_past_death - Consider as living this many years after death
         """
 
         Report.__init__(self, database, options, user)
 
         menu = options.menu
 
+        lang = options.menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu, rlocale)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.circle          = menu.get_option_by_name('circle').get_value()
@@ -183,7 +189,7 @@ class FanChart(Report):
         self.draw_empty      = menu.get_option_by_name('draw_empty').get_value()
         self.same_style      = menu.get_option_by_name('same_style').get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
+        if self.center_person is None:
             raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.graphic_style = []
@@ -197,8 +203,6 @@ class FanChart(Report):
         self.height = 0
         self.map = [None] * 2**self.max_generations
         self.text = {}
-
-        self.set_locale(menu.get_option_by_name('trans').get_value())
 
     def apply_filter(self,person_handle,index):
         """traverse the ancestors recursively until either the end
@@ -654,6 +658,8 @@ class FanChartOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         max_gen = NumberOption(_("Generations"), 5, 1, self.MAX_GENERATIONS)
         max_gen.set_help(_("The number of generations "
