@@ -84,7 +84,6 @@ class PlaceReport(Report):
 
         lang = menu.get_option_by_name('trans').get_value()
         rlocale = self.set_locale(lang)
-        self._ = rlocale.translation.sgettext
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
@@ -92,8 +91,10 @@ class PlaceReport(Report):
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
-                self.living_desc = '(%s)' % self._(description)
+                living_desc = self._(description)
                 break
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                  % {'option_name': living_desc})
 
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()

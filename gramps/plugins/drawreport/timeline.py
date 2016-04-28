@@ -103,19 +103,20 @@ class TimeLine(Report):
 
         lang = options.menu.get_option_by_name('trans').get_value()
         rlocale = self.set_locale(lang)
-        self._ = rlocale.translation.sgettext
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
-        self.fil_name = self.filter.get_name(rlocale)
+        self.fil_name = "(%s)" % self.filter.get_name(rlocale)
 
         living_value = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == living_value:
-                self.living_desc = self._(description)
+                living_desc = self._(description)
                 break
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                  % {'option_name': living_desc})
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -261,11 +262,11 @@ class TimeLine(Report):
         Draws the title for the page.
         """
         width = self.doc.get_usable_width()
-        title = self._("Timeline Chart")
-        title3 = "%(str1)s -- %(str2)s" % {
-                        'str1' : self.living_desc,
+        title = "%(str1)s -- %(str2)s" % {
+                        'str1' : self._("Timeline Chart"),
                         # feature request 2356: avoid genitive form
                         'str2' : self._("Sorted by %s") % self.sort_name }
+        title3 = self.living_desc
         mark = None
         if toc:
             mark = IndexMark(title, INDEX_TYPE_TOC, 1)

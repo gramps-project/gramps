@@ -81,8 +81,10 @@ class RecordsReport(Report):
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
-                self.living_desc = self._(description)
+                living_desc = self._(description)
                 break
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                  % {'option_name': living_desc})
 
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -119,8 +121,7 @@ class RecordsReport(Report):
         self.doc.end_paragraph()
         if self._lv != LivingProxyDb.MODE_INCLUDE_ALL:
             self.doc.start_paragraph('REC-Subtitle')
-            self.doc.write_text(self._("(Living people: %(option_name)s)"
-                                       % {'option_name': self.living_desc}))
+            self.doc.write_text(self.living_desc)
             self.doc.end_paragraph()
 
         for (text, varname, top) in records:

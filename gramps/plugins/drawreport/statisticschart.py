@@ -751,7 +751,7 @@ class StatisticsChart(Report):
 
         filter_opt = get_option_by_name('filter')
         self.filter = filter_opt.get_filter()
-        self.fil_name = self.filter.get_name(rlocale)
+        self.fil_name = "(%s)" % self.filter.get_name(rlocale)
 
         self.bar_items = get_value('bar_items')
         year_from = get_value('year_from')
@@ -761,8 +761,10 @@ class StatisticsChart(Report):
         living_value = get_value('living_people')
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == living_value:
-                self.living_desc = '(%s)' % self._(description)
+                living_desc = self._(description)
                 break
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                  % {'option_name': living_desc})
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:

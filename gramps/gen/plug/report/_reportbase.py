@@ -69,7 +69,7 @@ class Report(object):
         if language == GrampsLocale.DEFAULT_TRANSLATION_STR:
             language = None
         locale = GrampsLocale(lang=language)
-        self._ = locale.translation.gettext
+        self._ = locale.translation.sgettext
         self._get_date = locale.get_date
         self._get_type = locale.get_type
         self._ldd = locale.date_displayer

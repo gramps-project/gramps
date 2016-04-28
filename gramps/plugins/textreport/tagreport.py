@@ -92,8 +92,10 @@ class TagReport(Report):
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
-                self.living_desc = '(%s)' % self._(description)
+                living_desc = self._(description)
                 break
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                  % {'option_name': living_desc})
 
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
