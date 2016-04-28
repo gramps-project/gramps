@@ -35,7 +35,8 @@ TREE_NAME = "Test_reporttest"
 
 class ReportControl(object):
     def tearDown(self):
-        out, err = self.call("-y", "--remove", TREE_NAME + ".*")
+        out, err = self.call("-y", "--remove", TREE_NAME)
+        out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
     def call(self, *args):
         print("call:", args)
@@ -119,7 +120,8 @@ class TestDynamic(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        out, err = cls.call("-y", "--remove", TREE_NAME + ".*")
+        out, err = cls.call("-y", "--remove", TREE_NAME)
+        out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
 reports = ReportControl()
 
@@ -207,8 +209,51 @@ reports.addcli(TestDynamic, "import_gedcom",
 reports.addcli(TestDynamic, "export_gedcom",
                err_does_contain("Cleaning up."),
                ["test_export.ged"],
-               "-C", TREE_NAME + "_export_gedcom",
-               "--import", sample, "--export", "test_export.ged")
+               "--force",
+               "-O", TREE_NAME,
+               "--export", "test_export.ged")
+
+# reports.addcli(TestDynamic, "export_csv",
+#                err_does_contain("Cleaning up."),
+#                ["test_export.csv"],
+#                "--force",
+#                "-O", TREE_NAME,
+#                "--export", "test_export.csv")
+
+# reports.addcli(TestDynamic, "export_wtf",
+#                err_does_contain("Cleaning up."),
+#                ["test_export.wtf"],
+#                "--force",
+#                "-O", TREE_NAME,
+#                "--export", "test_export.wtf")
+
+reports.addcli(TestDynamic, "export_gw",
+               err_does_contain("Cleaning up."),
+               ["test_export.gw"],
+               "--force",
+               "-O", TREE_NAME,
+               "--export", "test_export.gw")
+
+reports.addcli(TestDynamic, "export_gpkg",
+               err_does_contain("Cleaning up."),
+               ["test_export.gpkg"],
+               "--force",
+               "-O", TREE_NAME,
+               "--export", "test_export.gpkg")
+
+reports.addcli(TestDynamic, "export_vcs",
+               err_does_contain("Cleaning up."),
+               ["test_export.vcs"],
+               "--force",
+               "-O", TREE_NAME,
+               "--export", "test_export.vcs")
+
+reports.addcli(TestDynamic, "export_vcf",
+               err_does_contain("Cleaning up."),
+               ["test_export.vcf"],
+               "--force",
+               "-O", TREE_NAME,
+               "--export", "test_export.vcf")
 
 report_list = [
     ##("ancestor_chart", "pdf", []), # Ancestor Tree
