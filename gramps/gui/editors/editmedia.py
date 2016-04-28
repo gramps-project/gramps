@@ -84,7 +84,7 @@ class EditMedia(EditPrimary):
             AddMedia(dbstate, self.uistate, self.track, self.obj,
                            self._update_addmedia)
 
-    def empty_media(self):
+    def empty_object(self):
         return Media()
 
     def get_menu_title(self):
@@ -351,10 +351,10 @@ class EditMedia(EditPrimary):
             if orig:
                 cmp_obj = orig
             else:
-                cmp_obj = self.empty_media()
+                cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize(True)[1:]
         else:
-            cmp_obj = self.empty_media()
+            cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
 class DeleteMediaQuery(object):
