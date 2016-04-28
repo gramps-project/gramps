@@ -333,35 +333,33 @@ class ConfigManager(object):
                 if exp.errno != errno.EEXIST:
                     raise
             try:
-                key_file = open(filename, "w", encoding="utf-8")
+                with open(filename, "w", encoding="utf-8") as key_file:
+                    key_file.write(";; Gramps key file\n")
+                    key_file.write((";; Automatically created at %s" %
+                              time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
+                    sections = sorted(self.data)
+                    for section in sections:
+                        key_file.write(("[%s]\n") % section)
+                        keys = sorted(self.data[section])
+                        for key in keys:
+                            value = self.data[section][key]
+                            # If it has a default:
+                            if self.has_default("%s.%s" % (section, key)):
+                                if value == self.get_default("%s.%s" % (section, key)):
+                                    default = ";;"
+                                else:
+                                    default = ""
+                                if isinstance(value, int):
+                                    value = int(value)
+                                key_file.write(("%s%s=%s\n")% (default,
+                                                               key,
+                                                               repr(value)))
+                        key_file.write("\n")
+                # else, no filename given; nothing to save so do nothing quietly
             except IOError as err:
                 logging.warn("Failed to open %s because %s",
                              filename, str(err))
-                return;
-
-            key_file.write(";; Gramps key file\n")
-            key_file.write((";; Automatically created at %s" %
-                      time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
-            sections = sorted(self.data)
-            for section in sections:
-                key_file.write(("[%s]\n") % section)
-                keys = sorted(self.data[section])
-                for key in keys:
-                    value = self.data[section][key]
-                    # If it has a default:
-                    if self.has_default("%s.%s" % (section, key)):
-                        if value == self.get_default("%s.%s" % (section, key)):
-                            default = ";;"
-                        else:
-                            default = ""
-                        if isinstance(value, int):
-                            value = int(value)
-                        key_file.write(("%s%s=%s\n")% (default,
-                                                       key,
-                                                       repr(value)))
-                key_file.write("\n")
-            key_file.close()
-        # else, no filename given; nothing to save so do nothing quietly
+                return
 
     def get(self, key):
         """

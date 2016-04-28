@@ -67,27 +67,26 @@ def importData(database, filename, user):
                                         database.__class__.__bases__
 
     try:
-        ifile = open(filename, "rb")
+        with open(filename, "rb") as ifile:
+            ansel = False
+            gramps = False
+            for index in range(50):
+                # Treat the file as though it is UTF-8 since this is the more modern
+                # option; and anyway it doesn't really matter as we are only trying to
+                # detect a CHAR or SOUR line which is only 7-bit ASCII anyway,  and we
+                # ignore anything that can't be translated.
+                line = ifile.readline()
+                line = line.decode(encoding='utf-8', errors='replace')
+                line = line.split()
+                if len(line) == 0:
+                    break
+                if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
+                    ansel = True
+                if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
+                    gramps = True
+
     except IOError:
         return
-
-    ansel = False
-    gramps = False
-    for index in range(50):
-        # Treat the file as though it is UTF-8 since this is the more modern
-        # option; and anyway it doesn't really matter as we are only trying to
-        # detect a CHAR or SOUR line which is only 7-bit ASCII anyway,  and we
-        # ignore anything that can't be translated.
-        line = ifile.readline()
-        line = line.decode(encoding='utf-8', errors='replace')
-        line = line.split()
-        if len(line) == 0:
-            break
-        if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
-            ansel = True
-        if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
-            gramps = True
-    ifile.close()
 
     if not gramps and ansel:
         top = Glade()

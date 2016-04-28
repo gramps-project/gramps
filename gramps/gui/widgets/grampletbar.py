@@ -218,50 +218,49 @@ class GrampletBar(Gtk.Notebook):
         """
         filename = self.configfile
         try:
-            fp = open(filename, "w", encoding='utf-8')
+            with open(filename, "w", encoding='utf-8') as fp:
+                fp.write(";; Gramplet bar configuration file" + NL)
+                fp.write((";; Automatically created at %s" %
+                                         time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
+                fp.write("[Bar Options]" + NL)
+                fp.write(("visible=%s" + NL) % self.get_property('visible'))
+                fp.write(("page=%d" + NL) % self.get_current_page())
+                fp.write(NL)
+
+                if self.empty:
+                    gramplet_list = []
+                else:
+                    gramplet_list = [self.get_nth_page(page_num)
+                                     for page_num in range(self.get_n_pages())]
+
+                for page_num, gramplet in enumerate(gramplet_list):
+                    opts = get_gramplet_options_by_name(gramplet.gname)
+                    if opts is not None:
+                        base_opts = opts.copy()
+                        for key in base_opts:
+                            if key in gramplet.__dict__:
+                                base_opts[key] = gramplet.__dict__[key]
+                        fp.write(("[%s]" + NL) % gramplet.gname)
+                        for key in base_opts:
+                            if key in ["content", "title", "tname", "row", "column",
+                                       "page", "version", "gramps"]: # don't save
+                                continue
+                            elif key == "data":
+                                if not isinstance(base_opts["data"], (list, tuple)):
+                                    fp.write(("data[0]=%s" + NL) % base_opts["data"])
+                                else:
+                                    cnt = 0
+                                    for item in base_opts["data"]:
+                                        fp.write(("data[%d]=%s" + NL) % (cnt, item))
+                                        cnt += 1
+                            else:
+                                fp.write(("%s=%s" + NL)% (key, base_opts[key]))
+                        fp.write(("page=%d" + NL) % page_num)
+                        fp.write(NL)
+
         except IOError:
             LOG.warning("Failed writing '%s'; gramplets not saved" % filename)
             return
-        fp.write(";; Gramplet bar configuration file" + NL)
-        fp.write((";; Automatically created at %s" %
-                                 time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
-        fp.write("[Bar Options]" + NL)
-        fp.write(("visible=%s" + NL) % self.get_property('visible'))
-        fp.write(("page=%d" + NL) % self.get_current_page())
-        fp.write(NL)
-
-        if self.empty:
-            gramplet_list = []
-        else:
-            gramplet_list = [self.get_nth_page(page_num)
-                             for page_num in range(self.get_n_pages())]
-
-        for page_num, gramplet in enumerate(gramplet_list):
-            opts = get_gramplet_options_by_name(gramplet.gname)
-            if opts is not None:
-                base_opts = opts.copy()
-                for key in base_opts:
-                    if key in gramplet.__dict__:
-                        base_opts[key] = gramplet.__dict__[key]
-                fp.write(("[%s]" + NL) % gramplet.gname)
-                for key in base_opts:
-                    if key in ["content", "title", "tname", "row", "column",
-                               "page", "version", "gramps"]: # don't save
-                        continue
-                    elif key == "data":
-                        if not isinstance(base_opts["data"], (list, tuple)):
-                            fp.write(("data[0]=%s" + NL) % base_opts["data"])
-                        else:
-                            cnt = 0
-                            for item in base_opts["data"]:
-                                fp.write(("data[%d]=%s" + NL) % (cnt, item))
-                                cnt += 1
-                    else:
-                        fp.write(("%s=%s" + NL)% (key, base_opts[key]))
-                fp.write(("page=%d" + NL) % page_num)
-                fp.write(NL)
-
-        fp.close()
 
     def set_active(self):
         """

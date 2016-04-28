@@ -1129,13 +1129,11 @@ class GedcomInfoDB(object):
 
         try:
             filepath = os.path.join(DATA_DIR, "gedcom.xml")
-            ged_file = open(filepath, "rb")
+            with open(filepath, "rb") as ged_file:
+                parser = GedInfoParser(self)
+                parser.parse(ged_file)
         except:
             return
-
-        parser = GedInfoParser(self)
-        parser.parse(ged_file)
-        ged_file.close()
 
     def add_description(self, name, obj):
         self.map[name] = obj
