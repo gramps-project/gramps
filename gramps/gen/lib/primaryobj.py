@@ -336,7 +336,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         """
         field = self.__class__.get_field_alias(field)
         chain = field.split(".")
-        path = self._follow_field_path(chain[:-1] + ["self"], db, ignore_errors)
+        path = self._follow_field_path(chain[:-1], db, ignore_errors)
         ftype = self.get_field_type(field)
         # ftype is str, bool, float, or int
         value = (value in ['True', True]) if ftype is bool else value
@@ -346,10 +346,14 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         """
         Helper function to handle recursive lists of items.
         """
+        from .handle import HandleClass
         if isinstance(path, (list, tuple)):
             count = 0
             for item in path:
                 count += self._set_fields(item, attr, value, ftype)
+        elif isinstance(ftype, HandleClass):
+            setattr(path, attr, value)
+            count = 1
         else:
             setattr(path, attr, ftype(value))
             count = 1
