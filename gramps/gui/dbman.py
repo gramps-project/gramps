@@ -740,22 +740,22 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         name = store[node][0]
         dirname = store[node][1]
-        db = self.dbstate.open_database(name)
-        if db:
-            QuestionDialog(
-                _("Convert the '%s' database?") % name,
-                _("You wish to convert this database into the new DB-API format?"),
-                _("Convert"),
-                lambda: self.__convert_db(name, dirname, db), self.top)
-        else:
-            ErrorDialog(
-                _("Opening the '%s' database") % name,
-                _("An attempt to open the database failed."))
+        QuestionDialog(
+            _("Convert the '%s' database?") % name,
+            _("You wish to convert this database into the new DB-API format?"),
+            _("Convert"),
+            lambda: self.__convert_db(name, dirname), self.top)
 
-    def __convert_db(self, name, dirname, db):
+    def __convert_db(self, name, dirname):
         """
         Actually convert the db from BSDDB to DB-API.
         """
+        try:
+            db = self.dbstate.open_database(name)
+        except:
+            ErrorDialog(
+                _("Opening the '%s' database") % name,
+                _("An attempt to convert the database failed. Perhaps it needs updating."))
         plugin_manager = GuiPluginManager.get_instance()
         export_function = None
         for plugin in plugin_manager.get_export_plugins():
