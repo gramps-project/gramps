@@ -756,7 +756,7 @@ class ViewManager(CLIManager):
         """
         Backup the current file as a backup file.
         """
-        if self.dbstate.db.has_changed:
+        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
