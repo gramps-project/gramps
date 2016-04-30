@@ -90,7 +90,20 @@ class GeneWebWriter(object):
 
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(self.filename, "wb")
+            with open(self.filename, "wb") as self.g:
+                self.flist = [x for x in self.db.iter_family_handles()]
+                if len(self.flist) < 1:
+                    self.user.notify_error(_("No families matched by selected filter"))
+                    return False
+
+                self.count = 0
+                self.oldval = 0
+                self.total = len(self.flist)
+                for key in self.flist:
+                    self.write_family(key)
+                    self.writeln("")
+
+                return True
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2, str(msg))
@@ -98,21 +111,6 @@ class GeneWebWriter(object):
         except:
             self.user.notify_error(_("Could not create %s") % self.filename)
             return False
-
-        self.flist = [x for x in self.db.iter_family_handles()]
-        if len(self.flist) < 1:
-            self.user.notify_error(_("No families matched by selected filter"))
-            return False
-
-        self.count = 0
-        self.oldval = 0
-        self.total = len(self.flist)
-        for key in self.flist:
-            self.write_family(key)
-            self.writeln("")
-
-        self.g.close()
-        return True
 
     def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)

@@ -1214,9 +1214,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         for image in self.media_list:
             try:
-                ifile = open(image[0], mode='rb')
-                self._add_zip(zfile, "Pictures/%s" % image[1], ifile.read(), t)
-                ifile.close()
+                with open(image[0], mode='rb') as ifile:
+                    self._add_zip(zfile, "Pictures/%s" % image[1], ifile.read(), t)
             except:
                 errmsg = "%s\n%s" % (_("Could not open %s") % image[0],
                                      msg)

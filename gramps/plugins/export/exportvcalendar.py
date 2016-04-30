@@ -96,7 +96,25 @@ class CalendarWriter(object):
 
         self.dirname = os.path.dirname (filename)
         try:
-            self.g = open(filename,"w")
+            with open(filename,"w") as self.g:
+                self.writeln("BEGIN:VCALENDAR")
+                self.writeln("PRODID:-//GNU//Gramps//EN")
+                self.writeln("VERSION:1.0")
+
+                self.total = (len([x for x in self.db.iter_person_handles()]) +
+                              len([x for x in self.db.iter_family_handles()]))
+                for key in self.db.iter_person_handles():
+                    self.write_person(key)
+                    self.update()
+
+                for key in self.db.iter_family_handles():
+                    self.write_family(key)
+                    self.update()
+
+                self.writeln("")
+                self.writeln("END:VCALENDAR")
+
+            return True
         except IOError as msg:
             msg2 = _("Could not create %s") % filename
             self.user.notify_error(msg2, str(msg))
@@ -104,26 +122,6 @@ class CalendarWriter(object):
         except:
             self.user.notify_error(_("Could not create %s") % filename)
             return False
-
-        self.writeln("BEGIN:VCALENDAR")
-        self.writeln("PRODID:-//GNU//Gramps//EN")
-        self.writeln("VERSION:1.0")
-
-        self.total = (len([x for x in self.db.iter_person_handles()]) +
-                      len([x for x in self.db.iter_family_handles()]))
-        for key in self.db.iter_person_handles():
-            self.write_person(key)
-            self.update()
-
-        for key in self.db.iter_family_handles():
-            self.write_family(key)
-            self.update()
-
-        self.writeln("")
-        self.writeln("END:VCALENDAR")
-
-        self.g.close()
-        return True
 
     def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)

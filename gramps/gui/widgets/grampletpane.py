@@ -1187,82 +1187,81 @@ class GrampletPane(Gtk.ScrolledWindow):
             return # something is the matter
         filename = self.configfile
         try:
-            fp = open(filename, "w", encoding='utf-8')
+            with open(filename, "w", encoding='utf-8') as fp:
+                fp.write(";; Gramps gramplets file\n")
+                fp.write(";; Automatically created at %s" %
+                                         time.strftime("%Y/%m/%d %H:%M:%S\n\n"))
+                fp.write("[Gramplet View Options]\n")
+                fp.write("column_count=%d\n" % self.column_count)
+                fp.write("pane_position=%d\n" % self.pane_position)
+                fp.write("pane_orientation=%s\n\n" % self.pane_orientation)
+                # showing gramplets:
+                for col in range(self.column_count):
+                    row = 0
+                    for gframe in self.columns[col]:
+                        gramplet = self.frame_map[str(gframe)]
+                        opts = get_gramplet_options_by_name(gramplet.gname)
+                        if opts is not None:
+                            base_opts = opts.copy()
+                            for key in base_opts:
+                                if key in gramplet.__dict__:
+                                    base_opts[key] = gramplet.__dict__[key]
+                            fp.write("[%s]\n" % gramplet.gname)
+                            for key in base_opts:
+                                if key == "content": continue
+                                elif key == "title":
+                                    if gramplet.title_override:
+                                        fp.write("title=%s\n" % base_opts[key])
+                                elif key == "tname": continue
+                                elif key == "column": continue
+                                elif key == "row": continue
+                                elif key == "version": continue # code, don't save
+                                elif key == "gramps": continue # code, don't save
+                                elif key == "data":
+                                    if not isinstance(base_opts["data"], (list, tuple)):
+                                        fp.write("data[0]=%s\n" % base_opts["data"])
+                                    else:
+                                        cnt = 0
+                                        for item in base_opts["data"]:
+                                            fp.write("data[%d]=%s\n" % (cnt, item))
+                                            cnt += 1
+                                else:
+                                    fp.write("%s=%s\n"% (key, base_opts[key]))
+                            fp.write("column=%d\n" % col)
+                            fp.write("row=%d\n\n" % row)
+                        row += 1
+                for gramplet in self.detached_gramplets:
+                    opts = get_gramplet_options_by_name(gramplet.gname)
+                    if opts is not None:
+                        base_opts = opts.copy()
+                        for key in base_opts:
+                            if key in gramplet.__dict__:
+                                base_opts[key] = gramplet.__dict__[key]
+                        fp.write("[%s]\n" % gramplet.title)
+                        for key in base_opts:
+                            if key == "content": continue
+                            elif key == "title":
+                                if "title_override" in base_opts:
+                                    base_opts["title"] = base_opts["title_override"]
+                                fp.write("title=%s\n" % base_opts[key])
+                            elif key == "tname": continue
+                            elif key == "version": continue # code, don't save
+                            elif key == "gramps": continue # code, don't save
+                            elif key == "data":
+                                if not isinstance(base_opts["data"], (list, tuple)):
+                                    fp.write("data[0]=%s\n" % base_opts["data"])
+                                else:
+                                    cnt = 0
+                                    for item in base_opts["data"]:
+                                        fp.write("data[%d]=%s\n" % (cnt, item))
+                                        cnt += 1
+                            else:
+                                fp.write("%s=%s\n\n" % (key, base_opts[key]))
+
         except IOError as err:
             LOG.warn("Failed to open %s because $s; gramplets not saved",
                      filename, str(err))
             return
-        fp.write(";; Gramps gramplets file\n")
-        fp.write(";; Automatically created at %s" %
-                                 time.strftime("%Y/%m/%d %H:%M:%S\n\n"))
-        fp.write("[Gramplet View Options]\n")
-        fp.write("column_count=%d\n" % self.column_count)
-        fp.write("pane_position=%d\n" % self.pane_position)
-        fp.write("pane_orientation=%s\n\n" % self.pane_orientation)
-        # showing gramplets:
-        for col in range(self.column_count):
-            row = 0
-            for gframe in self.columns[col]:
-                gramplet = self.frame_map[str(gframe)]
-                opts = get_gramplet_options_by_name(gramplet.gname)
-                if opts is not None:
-                    base_opts = opts.copy()
-                    for key in base_opts:
-                        if key in gramplet.__dict__:
-                            base_opts[key] = gramplet.__dict__[key]
-                    fp.write("[%s]\n" % gramplet.gname)
-                    for key in base_opts:
-                        if key == "content": continue
-                        elif key == "title":
-                            if gramplet.title_override:
-                                fp.write("title=%s\n" % base_opts[key])
-                        elif key == "tname": continue
-                        elif key == "column": continue
-                        elif key == "row": continue
-                        elif key == "version": continue # code, don't save
-                        elif key == "gramps": continue # code, don't save
-                        elif key == "data":
-                            if not isinstance(base_opts["data"], (list, tuple)):
-                                fp.write("data[0]=%s\n" % base_opts["data"])
-                            else:
-                                cnt = 0
-                                for item in base_opts["data"]:
-                                    fp.write("data[%d]=%s\n" % (cnt, item))
-                                    cnt += 1
-                        else:
-                            fp.write("%s=%s\n"% (key, base_opts[key]))
-                    fp.write("column=%d\n" % col)
-                    fp.write("row=%d\n\n" % row)
-                row += 1
-        for gramplet in self.detached_gramplets:
-            opts = get_gramplet_options_by_name(gramplet.gname)
-            if opts is not None:
-                base_opts = opts.copy()
-                for key in base_opts:
-                    if key in gramplet.__dict__:
-                        base_opts[key] = gramplet.__dict__[key]
-                fp.write("[%s]\n" % gramplet.title)
-                for key in base_opts:
-                    if key == "content": continue
-                    elif key == "title":
-                        if "title_override" in base_opts:
-                            base_opts["title"] = base_opts["title_override"]
-                        fp.write("title=%s\n" % base_opts[key])
-                    elif key == "tname": continue
-                    elif key == "version": continue # code, don't save
-                    elif key == "gramps": continue # code, don't save
-                    elif key == "data":
-                        if not isinstance(base_opts["data"], (list, tuple)):
-                            fp.write("data[0]=%s\n" % base_opts["data"])
-                        else:
-                            cnt = 0
-                            for item in base_opts["data"]:
-                                fp.write("data[%d]=%s\n" % (cnt, item))
-                                cnt += 1
-                    else:
-                        fp.write("%s=%s\n\n" % (key, base_opts[key]))
-
-        fp.close()
 
     def drop_widget(self, source, context, x, y, timedata):
         """

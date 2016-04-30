@@ -527,9 +527,8 @@ class BookList(object):
         try:
             p = make_parser()
             p.setContentHandler(BookParser(self, self.dbase))
-            the_file = open(self.file)
-            p.parse(the_file)
-            the_file.close()
+            with open(self.file) as the_file:
+                p.parse(the_file)
         except (IOError, OSError, ValueError, SAXParseException, KeyError,
                AttributeError):
             pass

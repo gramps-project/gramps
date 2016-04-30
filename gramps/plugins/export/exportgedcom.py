@@ -238,17 +238,17 @@ class GedcomWriter(UpdateCallback):
         """
 
         self.dirname = os.path.dirname (filename)
-        self.gedcom_file = open(filename, "w", encoding='utf-8')
-        self._header(filename)
-        self._submitter()
-        self._individuals()
-        self._families()
-        self._sources()
-        self._repos()
-        self._notes()
+        with open(filename, "w", encoding='utf-8') as self.gedcom_file:
+            self._header(filename)
+            self._submitter()
+            self._individuals()
+            self._families()
+            self._sources()
+            self._repos()
+            self._notes()
 
-        self._writeln(0, "TRLR")
-        self.gedcom_file.close()
+            self._writeln(0, "TRLR")
+
         return True
 
     def _writeln(self, level, token, textlines="", limit=72):

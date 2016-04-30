@@ -265,9 +265,8 @@ class CLIManager(object):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
-                ifile = open(path)
-                title = ifile.readline().strip()
-                ifile.close()
+                with open(path) as ifile:
+                    title = ifile.readline().strip()
             except:
                 title = filename
 
