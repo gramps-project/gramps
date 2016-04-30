@@ -1696,16 +1696,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 return False
         return True
 
-    def close(self, update=True):
+    def close(self, update=True, user=None):
         """
         Close the database.
         if update is False, don't change access times, etc.
         """
         if self._directory:
-            # This is just a dummy file to indicate last modified time of the
-            # database for gramps.cli.clidbman:
-            filename = os.path.join(self._directory, "meta_data.db")
             if update:
+                self.autobackup(user)
+                # This is just a dummy file to indicate last modified time of the
+                # database for gramps.cli.clidbman:
+                filename = os.path.join(self._directory, "meta_data.db")
                 touch(filename)
                 # Save metadata
                 self.set_metadata('name_formats', self.name_formats)

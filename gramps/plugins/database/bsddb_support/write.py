@@ -1510,13 +1510,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.db_is_open = False
 
     @catch_db_error
-    def close(self, update=True):
+    def close(self, update=True, user=None):
         """
         Close the database.
         if update is False, don't change access times, etc.
         """
         if not self.db_is_open:
             return
+        self.autobackup(user)
         if self.txn:
             self.transaction_abort(self.transaction)
         self.env.txn_checkpoint()

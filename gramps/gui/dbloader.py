@@ -254,7 +254,8 @@ class DbLoader(CLIDbLoader):
             #returns that info. Otherwise None is set to import_info
             self.import_info = importer(self.dbstate.db, filename,
                             User(callback=self._pulse_progress,
-                                uistate=self.uistate))
+                                 uistate=self.uistate,
+                                 dbstate=self.dbstate))
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError as msg:
@@ -330,6 +331,11 @@ class DbLoader(CLIDbLoader):
                             force_bsddb_downgrade,
                             force_python_upgrade)
                     db.set_save_path(filename)
+                    if self.dbstate.db.is_open():
+                        self.dbstate.db.close(
+                            user=User(callback=self._pulse_progress,
+                                      uistate=self.uistate,
+                                      dbstate=self.dbstate))
                     self.dbstate.change_database(db)
                     break
                 except DbUpgradeRequiredError as msg:

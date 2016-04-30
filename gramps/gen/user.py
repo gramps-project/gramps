@@ -32,11 +32,12 @@ class User():
     provide the appropriate interaction (eg. dialogs for GTK, prompts for CLI).
     """
 
-    def __init__(self, callback=None, error=None):
+    def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
         self.callback_function = callback
         self.error_function = error
         self._fileout = sys.stderr # redirected to mocks by unit tests
-        self.uistate = None
+        self.uistate = uistate
+        self.dbstate = dbstate
 
     def begin_progress(self, title, message, steps):
         """

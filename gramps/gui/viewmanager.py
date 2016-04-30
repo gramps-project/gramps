@@ -297,8 +297,9 @@ class ViewManager(CLIManager):
         self.__build_main_window() # sets self.uistate
         if self.user is None:
             self.user = User(error=ErrorDialog,
-                    callback=self.uistate.pulse_progressbar,
-                    uistate=self.uistate)
+                             callback=self.uistate.pulse_progressbar,
+                             uistate=self.uistate,
+                             dbstate=self.dbstate)
         self.__connect_signals()
         if _GTKOSXAPPLICATION:
             self.macapp.ready()
@@ -739,8 +740,7 @@ class ViewManager(CLIManager):
         self.uistate.set_sensitive(False)
 
         # backup data, and close the database
-        self.__backup()
-        self.dbstate.db.close()
+        self.dbstate.db.close(user=self.user)
 
         # have each page save anything, if they need to:
         self.__delete_pages()
@@ -751,22 +751,6 @@ class ViewManager(CLIManager):
         config.set('interface.main-window-height', height)
         config.save()
         Gtk.main_quit()
-
-    def __backup(self):
-        """
-        Backup the current file as a backup file.
-        """
-        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
-            self.uistate.set_busy_cursor(True)
-            self.uistate.progress.show()
-            self.uistate.push_message(self.dbstate, _("Autobackup..."))
-            try:
-                self.dbstate.db.backup(user=self.user)
-            except DbException as msg:
-                ErrorDialog(_("Error saving backup data"), msg,
-                            parent=self.uistate.window)
-            self.uistate.set_busy_cursor(False)
-            self.uistate.progress.hide()
 
     def abort(self, obj=None):
         """
@@ -1097,6 +1081,8 @@ class ViewManager(CLIManager):
         dialog = DbManager(self.uistate, self.dbstate, self.window)
         value = dialog.run()
         if value:
+            if self.dbstate.db.is_open():
+                self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)

@@ -639,7 +639,7 @@ class DbManager(CLIDbManager):
         self.__start_cursor(_("Extracting archive..."))
 
         dbase = self.dbstate.make_database("bsddb")
-        dbase.load(new_path, None)
+        dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
         check_out(dbase, revision, db_path, self.user)
