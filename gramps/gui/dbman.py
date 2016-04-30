@@ -131,6 +131,8 @@ class Information(ManagedWindow):
             model.add((key, str(value),), key)
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
+        if parent:
+            self.window.set_transient_for(parent)
         self.show()
 
     def on_ok_clicked(self, obj):
