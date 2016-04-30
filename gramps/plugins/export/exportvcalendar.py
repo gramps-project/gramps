@@ -114,7 +114,7 @@ class CalendarWriter(object):
                 self.writeln("")
                 self.writeln("END:VCALENDAR")
 
-                return True
+            return True
         except IOError as msg:
             msg2 = _("Could not create %s") % filename
             self.user.notify_error(msg2, str(msg))
