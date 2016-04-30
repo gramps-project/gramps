@@ -1127,13 +1127,13 @@ class GedcomInfoDB(object):
         self.standard = GedcomDescription("GEDCOM 5.5 standard")
         self.standard.set_dest("GEDCOM 5.5")
 
-        try:
-            filepath = os.path.join(DATA_DIR, "gedcom.xml")
-            with open(filepath, "rb") as ged_file:
-                parser = GedInfoParser(self)
-                parser.parse(ged_file)
-        except:
+        filepath = os.path.join(DATA_DIR, "gedcom.xml")
+        if not os.path.exists(filepath):
             return
+
+        with open(filepath, "rb") as ged_file:
+            parser = GedInfoParser(self)
+            parser.parse(ged_file)
 
     def add_description(self, name, obj):
         self.map[name] = obj
