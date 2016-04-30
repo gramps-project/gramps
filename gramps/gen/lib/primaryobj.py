@@ -215,7 +215,7 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
             elif part in schema.keys():
                 path = schema[part]
             else:
-                raise Exception("No such '%s' in %s" % (part, list(schema.keys())))
+                raise Exception("No such field. Valid fields are: %s" % list(schema.keys()))
             if isinstance(path, (list, tuple)):
                 path = path[0]
         return path
