@@ -1817,8 +1817,8 @@ class DbBsddbRead(DbReadBase, Callback):
     def __sortbyperson_key(self, handle):
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
-        return glocale.sort_key(find_surname(handle,
-                                           self.person_map.get(handle)))
+        return glocale.sort_key(find_fullname(handle,
+                                              self.person_map.get(handle)))
 
     def __sortbyfamily_key(self, handle):
         if isinstance(handle, str):
