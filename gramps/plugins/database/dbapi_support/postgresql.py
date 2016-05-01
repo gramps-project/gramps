@@ -57,7 +57,10 @@ class Postgresql(object):
             raise
 
     def fetchone(self):
-        return self.cursor.fetchone()
+        try:
+            return self.cursor.fetchone()
+        except:
+            return None
 
     def fetchall(self):
         return self.cursor.fetchall()
