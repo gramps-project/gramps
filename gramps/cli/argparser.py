@@ -329,11 +329,12 @@ class ArgParser(object):
                 for plugin in pmgr.get_reg_databases():
                     pdata = pmgr.get_plugin(plugin.id)
                     mod = pmgr.load_plugin(pdata)
-                    database = getattr(mod, pdata.databaseclass)
-                    summary = database.get_class_summary()
-                    print("Database backend ID:", pdata.id, "(default)" if pdata.id == default else "")
-                    for key in sorted(summary.keys()):
-                        print("   ", "%s:" % key, summary[key])
+                    if mod:
+                        database = getattr(mod, pdata.databaseclass)
+                        summary = database.get_class_summary()
+                        print("Database backend ID:", pdata.id, "(default)" if pdata.id == default else "")
+                        for key in sorted(summary.keys()):
+                            print("   ", "%s:" % key, summary[key])
                 sys.exit(0)
             elif option in ['-c', '--config']:
                 setting_name = value
