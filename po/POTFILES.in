@@ -689,6 +689,7 @@ gramps/plugins/tool/eventnames.py
 gramps/plugins/tool/extractcity.py
 gramps/plugins/tool/finddupes.glade
 gramps/plugins/tool/finddupes.py
+gramps/plugins/tool/findloop.py
 gramps/plugins/tool/mediamanager.py
 gramps/plugins/tool/mergecitations.glade
 gramps/plugins/tool/mergecitations.py
