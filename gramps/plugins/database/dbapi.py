@@ -1227,6 +1227,7 @@ class DBAPI(DbGeneric):
     def rebuild_secondary(self, update):
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
+        ## Rebuild place order_by:
         self.dbapi.execute("""select blob_data from place;""")
         row = self.dbapi.fetchone()
         while row:
@@ -1234,6 +1235,51 @@ class DBAPI(DbGeneric):
             order_by = self._order_by_place_key(place)
             cur2 = self.dbapi.execute("""UPDATE place SET order_by = ? WHERE handle = ?;""",
                                       [order_by, place.handle])
+            row = self.dbapi.fetchone()
+        ## Rebuild person order_by:
+        self.dbapi.execute("""select blob_data from person;""")
+        row = self.dbapi.fetchone()
+        while row:
+            person = Person.create(pickle.loads(row[0]))
+            order_by = self._order_by_person_key(person)
+            cur2 = self.dbapi.execute("""UPDATE person SET order_by = ? WHERE handle = ?;""",
+                                      [order_by, person.handle])
+            row = self.dbapi.fetchone()
+        ## Rebuild citation order_by:
+        self.dbapi.execute("""select blob_data from citation;""")
+        row = self.dbapi.fetchone()
+        while row:
+            citation = Citation.create(pickle.loads(row[0]))
+            order_by = self._order_by_citation_key(citation)
+            cur2 = self.dbapi.execute("""UPDATE citation SET order_by = ? WHERE handle = ?;""",
+                                      [order_by, citation.handle])
+            row = self.dbapi.fetchone()
+        ## Rebuild source order_by:
+        self.dbapi.execute("""select blob_data from source;""")
+        row = self.dbapi.fetchone()
+        while row:
+            source = Source.create(pickle.loads(row[0]))
+            order_by = self._order_by_source_key(source)
+            cur2 = self.dbapi.execute("""UPDATE source SET order_by = ? WHERE handle = ?;""",
+                                      [order_by, source.handle])
+            row = self.dbapi.fetchone()
+        ## Rebuild tag order_by:
+        self.dbapi.execute("""select blob_data from tag;""")
+        row = self.dbapi.fetchone()
+        while row:
+            tag = Tag.create(pickle.loads(row[0]))
+            order_by = self._order_by_tag_key(tag.name)
+            cur2 = self.dbapi.execute("""UPDATE tag SET order_by = ? WHERE handle = ?;""",
+                                      [order_by, tag.handle])
+            row = self.dbapi.fetchone()
+        ## Rebuild media order_by:
+        self.dbapi.execute("""select blob_data from media;""")
+        row = self.dbapi.fetchone()
+        while row:
+            media = Media.create(pickle.loads(row[0]))
+            order_by = self._order_by_media_key(media)
+            cur2 = self.dbapi.execute("""UPDATE media SET order_by = ? WHERE handle = ?;""",
+                                      [order_by, media.handle])
             row = self.dbapi.fetchone()
 
     def has_handle_for_person(self, key):

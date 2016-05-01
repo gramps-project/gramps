@@ -1711,7 +1711,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 # Save metadata
                 self.set_metadata('name_formats', self.name_formats)
                 self.set_metadata('researcher', self.owner)
-                
+
                 # Bookmarks
                 self.set_metadata('bookmarks', self.bookmarks.get())
                 self.set_metadata('family_bookmarks', self.family_bookmarks.get())
@@ -1722,7 +1722,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.set_metadata('media_bookmarks', self.media_bookmarks.get())
                 self.set_metadata('place_bookmarks', self.place_bookmarks.get())
                 self.set_metadata('note_bookmarks', self.note_bookmarks.get())
-                
+
                 # Custom type values, sets
                 self.set_metadata('event_names', self.event_names)
                 self.set_metadata('fattr_names', self.family_attributes)
@@ -1741,7 +1741,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.set_metadata('mattr_names', self.media_attributes)
                 self.set_metadata('eattr_names', self.event_attributes)
                 self.set_metadata('place_types', self.place_types)
-                
+
                 # Save misc items:
                 if self.has_changed:
                     self.save_surname_list()
@@ -2004,7 +2004,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if filename.count("-") == 6:
                 backup, year, month, day, hour, minute, second = filename.split("-")
                 last_backup = time.strftime('%x %X', time.localtime(time.mktime(
-                    (int(year), int(month), int(day), int(hour), int(minute), int(second), 
+                    (int(year), int(month), int(day), int(hour), int(minute), int(second),
                      0, 0, 0))))
         return {
             _("Number of people"): self.get_number_of_people(),
@@ -2042,12 +2042,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pa/matronymic not as they change for every generation!
         returns a byte string
         """
-        if person.primary_name and person.primary_name.surname_list:
-            order_by = " ".join([x.surname for x in person.primary_name.surname_list if not
-                                 (int(x.origintype) in [NameOriginType.PATRONYMIC,
-                                                        NameOriginType.MATRONYMIC]) ])
-        else:
-            order_by = ""
+        order_by = ""
+        if person.primary_name:
+            order_by_list = [surname.surname + " " + person.primary_name.first_name
+                             for surname in person.primary_name.surname_list
+                             if not (int(surname.origintype) in
+                                     [NameOriginType.PATRONYMIC,
+                                      NameOriginType.MATRONYMIC])]
+            order_by = " ".join(order_by_list)
         return glocale.sort_key(order_by)
 
     def _order_by_place_key(self, place):

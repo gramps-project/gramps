@@ -116,9 +116,24 @@ def find_fullname(key, data):
     Creating a fullname from raw data of a person, to use for sort and index
     returns a byte string
     """
+    # data[3] -> primary_name
+    # data[3][4] -> primary given
+    # data[3][5] -> surname_list
+    # data[3][5][0] -> primary surnameobj
+    # data[3][5][0][0] -> primary surname
+    # data[3][5][0][1] -> primary surname prefix
+    # data[3][5][0][2] -> primary surname primary (bool)
+    # data[3][5][0][3] -> primary surname origin type
+    # data[3][5][0][4] -> primary surname connector
+    # [(surname + ' ' + given,
+    #   surname prefix,
+    #   surname primary,
+    #   surname origin type,
+    #   surname connector)]
     fullname_data = [(data[3][5][0][0] + ' ' + data[3][4], # surname givenname
                       data[3][5][0][1], data[3][5][0][2],
                       data[3][5][0][3], data[3][5][0][4])]
+    # ignore if origin type is PATRONYMIC or MATRONYMIC
     return __index_surname(fullname_data)
 
 def find_surname(key, data):
@@ -126,6 +141,7 @@ def find_surname(key, data):
     Creating a surname from raw data of a person, to use for sort and index
     returns a byte string
     """
+    # data[3][5] -> surname_list
     return __index_surname(data[3][5])
 
 def find_surname_name(key, data):
@@ -396,7 +412,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.has_changed = False
 
         self.__tables = {
-            'Person': 
+            'Person':
             {
                 "handle_func": self.get_person_from_handle,
                 "gramps_id_func": self.get_person_from_gramps_id,
@@ -498,7 +514,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.__tables[table]
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else: 
+        else:
             return super().get_table_func(table, func)
 
     def set_prefixes(self, person, media, family, source, citation, place,
