@@ -20377,7 +20377,7 @@ msgstr ""
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Déplacer ou non les individus vers le haut, lorsque cela est possible, "
-"évitant ainsi un arbre plus petit."
+"générant ainsi un arbre plus petit."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1537
 msgid ""
