@@ -13,9 +13,9 @@ gramps(1)                @VERSION@               gramps(1)
 **SYNOPSIS**
        **gramps** [**-?** | **--help**] [**--usage**] [**--version**]
        [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *DATABASE*
-       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *FILE*
-       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *...*]
-       [**-e** | **--export=** *FILE* [**-f** | **--format=** *FORMAT*]]
+       [**-f** | **--format=** *FORMAT*] [**-i** | **--import=** *FILE*
+       [**-f** | **--format=** *FORMAT*] [**--remove=** *FAMILY_TREE_PATTERN*]
+       [**-e** | **--export=** *FILE* [**-f** | **--format=** *FORMAT*]
        [**-a** | **--action=** *ACTION*] [*-p* | **--options=** *OPTION‐
        STRING*]] [*FILE*] [**--version**]
 
@@ -50,23 +50,23 @@ gramps(1)                @VERSION@               gramps(1)
 
           Formats  available for export are **gramps-xml** (guessed if *FILE*
           ends with **.gramps** ), **gedcom** (guessed if *FILE* ends with
-          **.ged** ), or any file export available through the Gramps plugin 
+          **.ged** ), or any file export available through the Gramps plugin
           system.
 
           Formats available for import are **gramps-xml** , **gedcom** ,
           **gramps-pkg** (guessed if *FILE* ends with **.gpkg** ),
           and **geneweb** (guessed if *FILE* ends with **.gw** ).
 
-          Formats available for export are **gramps-xml** , **gedcom** , 
-          **gramps-pkg** , **wft** (guessed if *FILE* ends with **.wft** ), 
+          Formats available for export are **gramps-xml** , **gedcom** ,
+          **gramps-pkg** , **wft** (guessed if *FILE* ends with **.wft** ),
           **geneweb**.
 
 
-       **-l**     
+       **-l**
           Print a list of known family trees.
-       
-       
-       **-L**     
+
+
+       **-L**
           Print a detailed list of known family trees.
 
 
@@ -88,16 +88,16 @@ gramps(1)                @VERSION@               gramps(1)
 
           When more than one input file is given, each has to be preceded
           by **-i** flag. The files are imported in the specified order, i.e.
-          **-i** *FILE1* **-i** *FILE2* and **-i** *FILE2* **-i** *FILE1* 
+          **-i** *FILE1* **-i** *FILE2* and **-i** *FILE2* **-i** *FILE1*
           might produce different gramps IDs in the resulting database.
-          
-          
+
+
        **-e** , **--export=** *FICHIER*
-          Export data into *FILE* . For **gramps-xml** , **gedcom** 
-          , **wft** , **gramps-pkg** , et **geneweb** , the *FILE* is the 
+          Export data into *FILE* . For **gramps-xml** , **gedcom**
+          , **wft** , **gramps-pkg** , et **geneweb** , the *FILE* is the
           name of the resulting file.
-          
-          When more than one output file is given, each has to be preceded 
+
+          When more than one output file is given, each has to be preceded
           by **-e** flag. The files are written one by one, in the specified order.
 
 
@@ -165,7 +165,7 @@ gramps(1)                @VERSION@               gramps(1)
 
 
        With or without the **-O** flag, there could be multiple imports, exports,
-       and actions specified further on the command line by using **-i** , 
+       and actions specified further on the command line by using **-i** ,
        **-e** , and **-a** flags.
 
 
@@ -194,46 +194,46 @@ gramps(1)                @VERSION@               gramps(1)
 **EXAMPLES**
        To open an existing family tree and import an xml file into it, one
        may type:
-          
+
           **gramps -O** *'My Family Tree'* **-i** *~/db3.gramps*
 
        The above changes the opened family tree, to do the  same, but import
        both in a temporary family tree and start an interactive session, one
        may type:
-       
+
           **gramps -i** *'My Family Tree'* **-i** *~/db3.gramps*
 
        To import four databases (whose formats can be  determined from their
        names) and then check the resulting database for errors, one may type:
-       
-          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
+
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
           **-i** *file4.wft* **-a** *check*
 
        To explicitly specify the formats in the above  example,  append  file‐
        names with appropriate **-f** options:
-          
-          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
+
+          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f**
           *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
           **-f** *wft* **-a** *check*
 
        To record the database resulting from all imports, supply **-e** flag  (use
        **-f** if the filename does not allow gramps to guess the format):
-       
+
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
           **-f** *gramps-pkg*
 
        To import three databases and start interactive gramps session with the
        result:
-          
+
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
 
        To run the Verify tool from the commandline and output the result to
        stdout:
-       
+
           **gramps -O** *'My Family Tree'* **-a** *tool* **-p name=** *verify*
 
        Finally, to start normal interactive session type:
-       
+
           **gramps**
 
 
@@ -257,20 +257,20 @@ gramps(1)                @VERSION@               gramps(1)
        modification of the main program.
 
        In addition to generating direct printer output, report generators also
-       target other systems, such as *LibreOffice.org* , *AbiWord* , *HTML*,  
+       target other systems, such as *LibreOffice.org* , *AbiWord* , *HTML*,
        or *LaTeX* to allow the users to modify the format to suit their needs.
 
 
 **KNOWN BUGS AND LIMITATIONS**
 
 **FILES**
-       
+
        *${PREFIX}/bin/gramps*
-       
+
        *${PREFIX}/lib/python/dist-packages/gramps/*
-       
+
        *${PREFIX}/share/*
-       
+
        *${HOME}/.gramps*
 
 
@@ -290,8 +290,8 @@ gramps(1)                @VERSION@               gramps(1)
        The user documentation is available through standard web browser
        in the form of Gramps Manual.
 
-       The developer documentation can be found on the 
-       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers 
+       The developer documentation can be found on the
+       http://www.gramps-project.org/wiki/index.php?title=Portal:Developers
        portal.
 
 

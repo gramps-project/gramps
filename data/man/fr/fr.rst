@@ -14,9 +14,9 @@ gramps(1)                @VERSION@               gramps(1)
 **SYNOPSIS**
        **gramps** [**-?** | **--help**] [**--usage**] [**--version**]
        [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *BASE_DE_DONNEES*
-       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *FILE*
-       [**-f** | **--format=** *FORMAT*]] [**-i** | **--import=** *...*]
-       [**-e** | **--export=** *FICHIER* [**-f** | **--format=** *FORMAT*]]
+       [**-f** | **--format=** *FORMAT*] [**-i** | **--import=** *FILE*
+       [**-f** | **--format=** *FORMAT*] [**--remove=** *FAMILY_TREE_PATTERN*]
+       [**-e** | **--export=** *FICHIER* [**-f** | **--format=** *FORMAT*]
        [**-a** | **--action=** *ACTION*] [*-p* | **--options=** *CHAÎNE‐
        OPTION*]] [*FICHIER*] [**--version**]
 
@@ -61,7 +61,7 @@ gramps(1)                @VERSION@               gramps(1)
           **geneweb** .
 
 
-       **-l**     
+       **-l**
           Imprime une liste des arbres familiaux disponibles.
 
 
@@ -92,11 +92,11 @@ gramps(1)                @VERSION@               gramps(1)
 
 
        **-e** , **--export=** *FICHIER*
-          Exporter des données dans un *FICHIER* . Pour les fichiers **gramps-xml** 
-          , **gedcom** , **wft** , **gramps-pkg** , et **geneweb** , le 
+          Exporter des données dans un *FICHIER* . Pour les fichiers **gramps-xml**
+          , **gedcom** , **wft** , **gramps-pkg** , et **geneweb** , le
           *FICHIER* est le nom du fichier de sortie.
-          
-          Quand plus d'un fichier doit être exporté, chacun doit être 
+
+          Quand plus d'un fichier doit être exporté, chacun doit être
           précédé par la commande **-e** . Ces fichiers sont importés dans le
           même ordre.
 
@@ -121,7 +121,7 @@ gramps(1)                @VERSION@               gramps(1)
 
           **name=name**
           Cette option est obligatoire, elle détermine quel rapport ou
-          outil sera utilisé. Si le name saisi ne correspond à aucun 
+          outil sera utilisé. Si le name saisi ne correspond à aucun
           module disponible, un message d'erreur sera ajouté.
 
           **show=all**
@@ -184,54 +184,54 @@ gramps(1)                @VERSION@               gramps(1)
        Les erreurs  rencontrées lors d'importation, d'exportation, ou d'action, seront
        mémorisées en *stdout* (si elles sont le fait de la manipulation par
        gramps) ou en *stderr* (si elles ne sont pas le fait d'une manipulation).
-       Utilisez les shell de redirection de *stdout* et *stderr* pour sauver  
+       Utilisez les shell de redirection de *stdout* et *stderr* pour sauver
        les messages et les erreurs dans les fichiers.
 
 
 **EXEMPLES**
        Pour ouvrir un arbre familial et y importer un fichier XML, on peut
        saisir:
-       
+
           **gramps -O** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
        Ceci ouvre un arbre familial, pour faire la même chose, mais importer
        dans un arbre familial temporaire et démarrer une session interactive,
        on peut saisir :
-       
+
           **gramps -i** *'Mon Arbre Familial'* **-i** *~/db3.gramps*
 
        Lecture de quatre bases de données dont les formats peuvent être
        devinés d'après les noms, puis vérification des données:
-       
-          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps* 
+
+          **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
           **-i** *file4.wft* **-a** *check*
-          
+
        Si vous voulez préciser lesformats de fichiers dans l'exemple ci-
        dessus, complétez les noms de fichiers par les options -f appropriées:
-       
-          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f** 
+
+          **gramps -i** *file1.ged* **-f** *gedcom* **-i** *file2.tgz* **-f**
           *gramps-pkg* **-i** *~/db3.gramps* **-f** *gramps-xml* **-i** *file4.wft*
           **-f** *wft* **-a** *check*
-          
-       Pour enregistrer le résultat des lectures, donnez l'option **-e** 
+
+       Pour enregistrer le résultat des lectures, donnez l'option **-e**
        (utiliser -f si le nom de fichier ne permet pas à gramps de deviner le
        format):
-       
+
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-e** *~/new-package*
           **-f** *gramps-pkg*
-          
-       Pour lire trois ensembles de données puis lancer une session 
+
+       Pour lire trois ensembles de données puis lancer une session
        interactive de gramps sur le tout :
-       
+
           **gramps -i** *file1.ged* **-i** *file2.tgz* **-i** *~/db3.gramps*
 
        Pour lancer l'outil de vérification de la base de données depuis la
        ligne de commande et obtenir le résultat :
-       
+
           **gramps -O** *'My Family Tree'* **-a** *tool* **-p name=** *verify*
 
-       Enfin, pour lancer une session interactive normale, entrer : 
-       
+       Enfin, pour lancer une session interactive normale, entrer :
+
           **gramps**
 
 
@@ -265,11 +265,11 @@ gramps(1)                @VERSION@               gramps(1)
 **FICHIERS**
 
        *${PREFIX}/bin/gramps*
-       
+
        *${PREFIX}/lib/python/dist-packages/gramps/*
-       
+
        *${PREFIX}/share/*
-       
+
        *${HOME}/.gramps*
 
 
