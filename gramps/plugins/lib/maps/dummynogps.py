@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gi.repository import GObject
 
 #------------------------------------------------------------------------
@@ -56,7 +55,9 @@ except:
     raise
 
 class DummyMapNoGpsPoint(osmgpsmap.Map):
+    """ . """
     def do_draw_gps_point(self, drawable):
+        """ . """
         pass
 
 GObject.type_register(DummyMapNoGpsPoint)

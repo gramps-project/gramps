@@ -20,18 +20,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: dummynogps.py 20708 2012-11-27 04:31:14Z paul-franklin $
-
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os,sys
 from gi.repository import GObject
-import operator
-from math import *
-import xml.etree.ElementTree as ETree
 
 #------------------------------------------------------------------------
 #
@@ -47,7 +41,6 @@ _LOG = logging.getLogger("maps.kmllayer")
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
 import cairo
-from gi.repository import Pango, PangoCairo
 
 #-------------------------------------------------------------------------
 #
@@ -69,14 +62,20 @@ try:
 except:
     raise
 
+# pylint: disable=unused-variable
+# pylint: disable=unused-argument
+# pylint: disable=no-member
+
 class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
     This is the layer used to display kml files over the map
     * Allowed : points, paths and polygons.
 
     * One point : name, (latitude, longitude)
-    * One path  : name, type, color, transparency, [ (latitude, longitude), (latitude, longitude), ...]
-    * One polygon : name, type, color, transparency, [ (latitude, longitude), (latitude, longitude), ...]
+    * One path  : name, type, color, transparency,
+    *             [ (latitude, longitude), (latitude, longitude), ...]
+    * One polygon : name, type, color, transparency,
+    *             [ (latitude, longitude), (latitude, longitude), ...]
     """
     def __init__(self):
         """
@@ -89,6 +88,7 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.name = ""
         self.type = ""
         self.points = []
+        self.kml = None
 
     def clear(self):
         """
@@ -122,7 +122,8 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+                    (coord_x,
+                     coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
@@ -137,9 +138,11 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 for idx_pt in range(0, len(map_points)):
                     if first:
                         first = False
-                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                        ctx.move_to(map_points[idx_pt][0],
+                                    map_points[idx_pt][1])
                     else:
-                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                        ctx.line_to(map_points[idx_pt][0],
+                                    map_points[idx_pt][1])
                 ctx.close_path()
                 if ptype == "Polygon":
                     ctx.stroke()
@@ -156,7 +159,8 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 map_points = []
                 for point in points:
                     conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+                    (coord_x,
+                     coord_y) = gpsmap.convert_geographic_to_screen(conv_pt)
                     map_points.append((coord_x, coord_y))
                 first = True
                 ctx.save()
@@ -169,9 +173,11 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
                 for idx_pt in range(0, len(map_points)):
                     if first:
                         first = False
-                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                        ctx.move_to(map_points[idx_pt][0],
+                                    map_points[idx_pt][1])
                     else:
-                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                        ctx.line_to(map_points[idx_pt][0],
+                                    map_points[idx_pt][1])
                 ctx.stroke()
                 ctx.restore()
 

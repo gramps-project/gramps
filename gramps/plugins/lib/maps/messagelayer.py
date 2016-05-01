@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,10 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gi.repository import GObject
-import operator
-from math import *
 
 #------------------------------------------------------------------------
 #
@@ -44,7 +41,6 @@ _LOG = logging.getLogger("maps.messagelayer")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gdk
-import cairo
 from gi.repository import Pango, PangoCairo
 
 #-------------------------------------------------------------------------
@@ -65,6 +61,10 @@ try:
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
+# pylint: disable=unused-variable
+# pylint: disable=unused-argument
+# pylint: disable=no-member
 
 class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
     """

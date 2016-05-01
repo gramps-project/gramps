@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gi.repository import GObject
 
 #------------------------------------------------------------------------
 #
@@ -78,7 +77,14 @@ try:
 except:
     raise
 
-class OsmGps():
+# pylint: disable=unused-argument
+# pylint: disable=no-member
+# pylint: disable=maybe-no-member
+
+class OsmGps(object):
+    """
+    This class is used to create a map
+    """
     def __init__(self):
         """
         Initialize the map
@@ -111,7 +117,7 @@ class OsmGps():
                 os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory %s") %
-                             cache_path )
+                             cache_path)
                 return self.vbox
 
         self.change_map(None, config.get("geography.map_service"))
@@ -127,13 +133,13 @@ class OsmGps():
             self.vbox.remove(self.osm)
             self.osm.destroy()
         tiles_path = os.path.join(config.get('geography.path'),
-                                  constants.tiles_path[map_type])
+                                  constants.TILES_PATH[map_type])
         if not os.path.isdir(tiles_path):
             try:
                 os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
             except:
                 ErrorDialog(_("Can't create tiles cache directory for '%s'.") %
-                             constants.map_title[map_type])
+                             constants.MAP_TITLE[map_type])
         config.set("geography.map_service", map_type)
         self.current_map = map_type
         http_proxy = get_env_var('http_proxy')
@@ -143,12 +149,14 @@ class OsmGps():
             if http_proxy:
                 self.osm = osmgpsmap.Map(tile_cache=tiles_path,
                                          proxy_uri=http_proxy,
-                                         map_source=constants.map_type[map_type])
+                                         map_source=constants.MAP_TYPE[
+                                                                      map_type])
             else:
                 self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                         map_source=constants.map_type[map_type])
+                                         map_source=constants.MAP_TYPE[
+                                                                      map_type])
         self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
-        current_map = osmgpsmap.MapOsd( show_dpad=False, show_zoom=True)
+        current_map = osmgpsmap.MapOsd(show_dpad=False, show_zoom=True)
         self.end_selection = None
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
@@ -158,11 +166,11 @@ class OsmGps():
         self.marker_layer = self.add_marker_layer()
         self.date_layer = self.add_date_layer()
         self.message_layer = self.add_message_layer()
-        self.cross_map = osmgpsmap.MapOsd( show_crosshair=False)
+        self.cross_map = osmgpsmap.MapOsd(show_crosshair=False)
         self.set_crosshair(config.get("geography.show_cross"))
         self.osm.set_center_and_zoom(config.get("geography.center-lat"),
                                      config.get("geography.center-lon"),
-                                     config.get("geography.zoom") )
+                                     config.get("geography.zoom"))
 
         self.osm.connect('button_release_event', self.map_clicked)
         self.osm.connect('button_press_event', self.map_clicked)
@@ -176,21 +184,30 @@ class OsmGps():
     def update_shortcuts(self, arg):
         """
         connect the keyboard or the keypad for shortcuts
-        arg is mandatory because this function is also called by the checkbox button
+        arg is mandatory because this function is also called by
+        the checkbox button
         """
         config.set('geography.use-keypad',
                          self._config.get('geography.use-keypad'))
         if config.get('geography.use-keypad'):
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("KP_Add"))
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("KP_Subtract"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN,
+                                           Gdk.keyval_from_name("KP_Add"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT,
+                                           Gdk.keyval_from_name("KP_Subtract"))
         else:
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("plus"))
-            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("minus"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN,
+                                           Gdk.keyval_from_name("plus"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT,
+                                           Gdk.keyval_from_name("minus"))
 
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.UP, Gdk.keyval_from_name("Up"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.DOWN, Gdk.keyval_from_name("Down"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.LEFT, Gdk.keyval_from_name("Left"))
-        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.RIGHT, Gdk.keyval_from_name("Right"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.UP,
+                                       Gdk.keyval_from_name("Up"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.DOWN,
+                                       Gdk.keyval_from_name("Down"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.LEFT,
+                                       Gdk.keyval_from_name("Left"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.RIGHT,
+                                       Gdk.keyval_from_name("Right"))
 
         # For shortcuts work, we must grab the focus
         self.osm.grab_focus()
@@ -296,7 +313,8 @@ class OsmGps():
         """
         Moving during selection
         """
-        current = osmmap.convert_screen_to_geographic(int(event.x), int(event.y))
+        current = osmmap.convert_screen_to_geographic(int(event.x),
+                                                      int(event.y))
         lat, lon = current.get_degrees()
         if self.zone_selection:
             # We draw a rectangle to show the selected region.
@@ -324,17 +342,17 @@ class OsmGps():
         """
         Save the longitude and lontitude in case we switch between maps.
         """
-        _LOG.debug("save_center : %s,%s" % (lat, lon) )
-        if ( -90.0 < lat < +90.0 ) and ( -180.0 < lon < +180.0 ):
+        _LOG.debug("save_center : %s,%s", lat, lon)
+        if (-90.0 < lat < +90.0) and (-180.0 < lon < +180.0):
             config.set("geography.center-lat", lat)
             config.set("geography.center-lon", lon)
         else:
-            _LOG.debug("save_center : new coordinates : %s,%s" % (lat, lon) )
-            _LOG.debug("save_center : old coordinates : %s,%s" % (lat, lon) )
+            _LOG.debug("save_center : new coordinates : %s,%s", lat, lon)
+            _LOG.debug("save_center : old coordinates : %s,%s", lat, lon)
             # osmgpsmap bug ? reset to prior values to avoid osmgpsmap problems.
             self.osm.set_center_and_zoom(config.get("geography.center-lat"),
                                          config.get("geography.center-lon"),
-                                         config.get("geography.zoom") )
+                                         config.get("geography.zoom"))
 
     def activate_selection_zoom(self, osm, event):
         """
@@ -383,7 +401,7 @@ class OsmGps():
         if self.no_show_places_in_status_bar:
             return mark_selected
         oldplace = ""
-        _LOG.debug("%s" % time.strftime("start is_there_a_place_here : "
+        _LOG.debug("%s", time.strftime("start is_there_a_place_here : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for mark in self.places_found:
             # as we are not precise with our hand, reduce the precision
@@ -406,20 +424,20 @@ class OsmGps():
                          14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
                          17 : 0.0001, 18 : 0.0001
                          }.get(config.get("geography.zoom"), 5.0)
-                latp  = precision % lat
-                lonp  = precision % lon
+                latp = precision % lat
+                lonp = precision % lon
                 mlatp = precision % float(mark[1])
                 mlonp = precision % float(mark[2])
                 latok = lonok = False
-                if (float(mlatp) >= (float(latp) - shift) ) and \
-                   (float(mlatp) <= (float(latp) + shift) ):
+                if (float(mlatp) >= (float(latp) - shift)) and \
+                   (float(mlatp) <= (float(latp) + shift)):
                     latok = True
-                if (float(mlonp) >= (float(lonp) - shift) ) and \
-                   (float(mlonp) <= (float(lonp) + shift) ):
+                if (float(mlonp) >= (float(lonp) - shift)) and \
+                   (float(mlonp) <= (float(lonp) + shift)):
                     lonok = True
                 if latok and lonok:
                     mark_selected.append(mark)
-        _LOG.debug("%s" % time.strftime("  end is_there_a_place_here : "
+        _LOG.debug("%s", time.strftime("  end is_there_a_place_here : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         return mark_selected
 
@@ -441,9 +459,9 @@ class OsmGps():
         """
         if active:
             self.osm.layer_remove(self.cross_map)
-            self.cross_map = osmgpsmap.MapOsd( show_crosshair=True)
-            self.osm.layer_add( self.cross_map )
+            self.cross_map = osmgpsmap.MapOsd(show_crosshair=True)
+            self.osm.layer_add(self.cross_map)
         else:
             self.osm.layer_remove(self.cross_map)
-            self.cross_map = osmgpsmap.MapOsd( show_crosshair=False)
-            self.osm.layer_add( self.cross_map )
+            self.cross_map = osmgpsmap.MapOsd(show_crosshair=False)
+            self.osm.layer_add(self.cross_map)

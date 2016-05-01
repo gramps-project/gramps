@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011  Serge Noiraud
+# Copyright (C) 2011-2016  Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,13 +28,10 @@ Geography for places
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
-import sys
 import time
 import operator
 from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
-import socket
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
@@ -54,14 +51,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import EventType
 from gramps.gen.config import config
-from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gui.views.pageview import PageView
-from gramps.gui.editors import EditPlace
-from gramps.gui.selectors.selectplace import SelectPlace
-from gramps.gui.filters.sidebar import PlaceSidebarFilter
-from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PlaceBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.gui.utils import ProgressMeter
@@ -106,6 +97,11 @@ _UI_DEF = '''\
 </ui>
 '''
 
+# pylint: disable=no-member
+# pylint: disable=maybe-no-member
+# pylint: disable=unused-variable
+# pylint: disable=unused-argument
+
 #-------------------------------------------------------------------------
 #
 # GeoView
@@ -136,6 +132,9 @@ class GeoPlaces(GeoGraphyView):
         self.additional_uis.append(self.additional_ui())
         self.no_show_places_in_status_bar = False
         self.show_all = False
+        self.itemoption = None
+        self.menu = None
+        self.cal = config.get('preferences.calendar-format-report')
 
     def get_title(self):
         """
@@ -197,7 +196,7 @@ class GeoPlaces(GeoGraphyView):
         else:
             self._createmap(None)
 
-    def _create_one_place(self,place):
+    def _create_one_place(self, place):
         """
         Create one entry for one place with a lat/lon.
         """
@@ -212,7 +211,7 @@ class GeoPlaces(GeoGraphyView):
         # place.get_longitude and place.get_latitude return
         # one string. We have coordinates when the two values
         # contains non null string.
-        if ( longitude and latitude ):
+        if longitude and latitude:
             self._append_to_places_list(descr, None, "",
                                         latitude, longitude,
                                         None, None,
@@ -223,13 +222,12 @@ class GeoPlaces(GeoGraphyView):
                                         None # family.gramps_id
                                        )
 
-    def _createmap(self,place_x):
+    def _createmap(self, place_x):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
         """
         dbstate = self.dbstate
-        self.cal = config.get('preferences.calendar-format-report')
         self.place_list = []
         self.places_found = []
         self.place_without_coordinates = []
@@ -252,13 +250,17 @@ class GeoPlaces(GeoGraphyView):
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 0'07" with pixbuf optimization
         # base "villes de france" : 38101 places :
-        # gramps 3.4 python 2.7 ( draw_markers are estimated when we move the map)
-        # 38101 places : createmap : 04'32"; create_markers : 0'04"; draw markers : N/A :: 0'03"
-        # 65598 places : createmap : 10'03"; create_markers : 0'07"; draw markers : N/A :: 0'05"
+        # gramps 3.4 python 2.7 (draw_markers are estimated when moving the map)
+        # 38101 places: createmap: 04'32";
+        #               create_markers: 0'04"; draw markers: N/A :: 0'03"
+        # 65598 places: createmap: 10'03";
+        #               create_markers: 0'07"; draw markers: N/A :: 0'05"
         # gramps 3.5 python 2.7 new marker layer
-        # 38101 places : createmap : 03'09"; create_markers : 0'01"; draw markers : 0'04"
-        # 65598 places : createmap : 08'48"; create_markers : 0'01"; draw markers : 0'07"
-        _LOG.debug("%s" % time.strftime("start createmap : "
+        # 38101 places: createmap: 03'09";
+        #               create_markers: 0'01"; draw markers: 0'04"
+        # 65598 places: createmap: 08'48";
+        #               create_markers: 0'01"; draw markers: 0'07"
+        _LOG.debug("%s", time.strftime("start createmap : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         if self.show_all:
             self.show_all = False
@@ -287,27 +289,29 @@ class GeoPlaces(GeoGraphyView):
                 progress.step()
             progress.close()
         elif place_x:
-                place = dbstate.db.get_place_from_handle(place_x)
-                self._create_one_place(place)
-                if ( place.get_latitude() != "" and place.get_longitude() != "" ):
-                    latitude, longitude = conv_lat_lon(place.get_latitude(),
-                                                       place.get_longitude(), "D.D8")
-                    self.osm.set_center_and_zoom(float(latitude), float(longitude),
-                                                 int(config.get("geography.zoom_when_center")))
+            place = dbstate.db.get_place_from_handle(place_x)
+            self._create_one_place(place)
+            if place.get_latitude() != "" and place.get_longitude() != "":
+                latitude, longitude = conv_lat_lon(place.get_latitude(),
+                                                   place.get_longitude(),
+                                                   "D.D8")
+                self.osm.set_center_and_zoom(float(latitude), float(longitude),
+                                             int(config.get(
+                                                 "geography.zoom_when_center")))
         _LOG.debug(" stop createmap.")
-        _LOG.debug("%s" % time.strftime("begin sort : "
+        _LOG.debug("%s", time.strftime("begin sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(0)
                           )
-        _LOG.debug("%s" % time.strftime("  end sort : "
+        _LOG.debug("%s", time.strftime("  end sort : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
-        if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+        if self.nbmarkers > 500: # performance issue. Is it the good value ?
             self.message_layer.add_message(
                  _("The place name in the status bar is disabled."))
             self.no_show_places_in_status_bar = True
-        if self.nbplaces >= self._config.get("geography.max_places") :
-            self.message_layer.set_font_attributes(None,None,"red")
+        if self.nbplaces >= self._config.get("geography.max_places"):
+            self.message_layer.set_font_attributes(None, None, "red")
             self.message_layer.add_message(
                  _("The maximum number of places is reached (%d)." %
                    self._config.get("geography.max_places")))
@@ -390,7 +394,7 @@ class GeoPlaces(GeoGraphyView):
         add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(label=_("Show all places"))
-        add_item.connect("activate", self.show_all_places, event, lat , lon)
+        add_item.connect("activate", self.show_all_places, event, lat, lon)
         add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(label=_("Centering on Place"))

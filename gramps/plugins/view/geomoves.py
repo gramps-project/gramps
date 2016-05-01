@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011  Serge Noiraud
+# Copyright (C) 2011-2016  Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,10 +33,6 @@ _ = glocale.translation.gettext
 import operator
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import GObject
-import time
-import threading
-from math import *
 from gi.repository import GLib
 
 #-------------------------------------------------------------------------
@@ -58,11 +54,9 @@ from gramps.gen.datehandler import displayer
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.plugins.lib.maps import constants
 from gramps.plugins.lib.maps.geography import GeoGraphyView
-from gramps.gui.selectors import SelectorFactory
 
 #-------------------------------------------------------------------------
 #
@@ -107,6 +101,11 @@ _UI_DEF = '''\
 </ui>
 '''
 
+# pylint: disable=no-member
+# pylint: disable=unused-variable
+# pylint: disable=unused-argument
+
+
 #-------------------------------------------------------------------------
 #
 # GeoView : GeoMoves
@@ -114,7 +113,8 @@ _UI_DEF = '''\
 #-------------------------------------------------------------------------
 class GeoMoves(GeoGraphyView):
     """
-    The view used to render all places visited by one person and all his descendants.
+    The view used to render all places visited by one person and all
+    his descendants.
     """
     CONFIGSETTINGS = (
         ('geography.path', constants.GEOGRAPHY_PATH),
@@ -164,6 +164,7 @@ class GeoMoves(GeoGraphyView):
         self.markers_by_level = dict()
         self.count = dict()
         self.no_show_places_in_status_bar = False
+        self.person_list = []
 
     def get_title(self):
         """
@@ -213,8 +214,8 @@ class GeoMoves(GeoGraphyView):
         self.date_layer.clear_dates()
         active = self.get_active()
         if active:
-            p1 = self.dbstate.db.get_person_from_handle(active)
-            self._createmap(p1)
+            person = self.dbstate.db.get_person_from_handle(active)
+            self._createmap(person)
         self.uistate.modify_statusbar(self.dbstate)
 
     def build_tree(self):
@@ -294,9 +295,9 @@ class GeoMoves(GeoGraphyView):
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
                         # contains non null string.
-                        if ( longitude and latitude ):
+                        if longitude and latitude:
                             self._append_to_places_list(descr, evt,
-                                                        person.gramps_id, #_nd.display(person),
+                                                        person.gramps_id,
                                                         latitude, longitude,
                                                         descr1, eyear,
                                                         event.get_type(),
@@ -325,7 +326,7 @@ class GeoMoves(GeoGraphyView):
                     if handle:
                         mother = dbstate.db.get_person_from_handle(handle)
                     if mother:
-                        descr1 = "%s%s" % ( descr1, _nd.display(mother))
+                        descr1 = "%s%s" % (descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(
@@ -344,12 +345,15 @@ class GeoMoves(GeoGraphyView):
                                         descr = _pd.display(dbstate.db, place)
                                         evt = EventType(
                                                   event.get_type())
-                                        eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
-                                                  str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
-                                                  str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
-                                        if ( longitude and latitude ):
-                                            self._append_to_places_list(descr, evt,
-                                                 person.gramps_id, #_nd.display(person),
+                                        eyear = str(
+         "%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
+     str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
+     str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
+                                        if longitude and latitude:
+                                            self._append_to_places_list(
+                                                 descr,
+                                                 evt,
+                                                 person.gramps_id,
                                                  latitude, longitude,
                                                  descr1, eyear,
                                                  event.get_type(),
@@ -359,13 +363,13 @@ class GeoMoves(GeoGraphyView):
                                                  role
                                                  )
                                         else:
-                                            self._append_to_places_without_coord( place.gramps_id, descr)
+                                            self._append_to_places_without_coord(place.gramps_id, descr)
 
-            sort1 = sorted(self.place_list, key=operator.itemgetter(1,6))
+            sort1 = sorted(self.place_list, key=operator.itemgetter(1, 6))
             self.draw(None, sort1, color)
             # merge with the last results
             merge_list = self.sort
-            for the_event in sort1 :
+            for the_event in sort1:
                 if the_event not in merge_list:
                     merge_list.append(the_event)
             self.sort = sorted(merge_list, key=operator.itemgetter(6))
@@ -388,7 +392,8 @@ class GeoMoves(GeoGraphyView):
         dbstate = self.dbstate
         person = None
         try:
-            person = dbstate.db.get_person_from_handle(family.get_father_handle())
+            person = dbstate.db.get_person_from_handle(
+                                                     family.get_father_handle())
         except:
             return
         family_id = family.gramps_id
@@ -425,7 +430,8 @@ class GeoMoves(GeoGraphyView):
                         child = dbstate.db.get_person_from_handle(child_ref.ref)
                         if child:
                             index += 1
-                            self._createmap_for_next_level(child, level, curlevel)
+                            self._createmap_for_next_level(child, level,
+                                                           curlevel)
                             self._add_person_to_list(child.gramps_id, curlevel)
 
     def _createmap_for_one_level(self, family, level, curlevel):
@@ -480,81 +486,84 @@ class GeoMoves(GeoGraphyView):
                 person = self.dbstate.db.get_person_from_handle(handle)
             if not person:
                 return
-        self.message_layer.add_message(_("All descendance for %s") % _nd.display(person))
+        self.message_layer.add_message(
+                              _("All descendance for %s") % _nd.display(person))
         color = Gdk.color_parse(self._config.get('geography.color_base'))
         GLib.timeout_add(int(self._config.get("geography.generation_interval")),
                          self.animate_moves, 0, person, color)
 
     def animate_moves(self, index, person, color):
-            """
-            Animate all moves for one generation.
-            """
-            self.markers_by_level = dict()
-            self._createmap_for_next_level(person, index, 0)
-            try:
-                persons = self.markers_by_level[index]
-            except:
-                return
-            for people in persons:
-                family_list = people.get_family_handle_list()
-                for fhandle in family_list:
-                    family = self.dbstate.db.get_family_from_handle(fhandle)
-                    self._prepare_for_one_family(family, index, index+1)
-            new_list = []
-            for plx, level in self.person_list:
-                plxp = self.dbstate.db.get_person_from_gramps_id(plx)
-                birth = "0000"
-                death = "0000"
-                low_date = "9999"
-                high_date = "0000"
-                for event_ref in plxp.get_event_ref_list():
-                    if not event_ref:
-                        continue
-                    event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-                    role = event_ref.get_role()
-                    try:
-                        date = event.get_date_object().to_calendar(self.cal)
-                        fyear = str("%04d" % date.get_year())
-                        if event.get_type() == EventType.BIRTH:
-                           birth = fyear
-                        if event.get_type() == EventType.DEATH:
-                           death = fyear
-                        if fyear < low_date:
-                            low_date = fyear
-                        if fyear > high_date:
-                            high_date = fyear
+        """
+        Animate all moves for one generation.
+        """
+        self.markers_by_level = dict()
+        self._createmap_for_next_level(person, index, 0)
+        try:
+            persons = self.markers_by_level[index]
+        except:
+            return
+        for people in persons:
+            family_list = people.get_family_handle_list()
+            for fhandle in family_list:
+                family = self.dbstate.db.get_family_from_handle(fhandle)
+                self._prepare_for_one_family(family, index, index+1)
+        new_list = []
+        for plx, level in self.person_list:
+            plxp = self.dbstate.db.get_person_from_gramps_id(plx)
+            birth = "0000"
+            death = "0000"
+            low_date = "9999"
+            high_date = "0000"
+            for event_ref in plxp.get_event_ref_list():
+                if not event_ref:
+                    continue
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                role = event_ref.get_role()
+                try:
+                    date = event.get_date_object().to_calendar(self.cal)
+                    fyear = str("%04d" % date.get_year())
+                    if event.get_type() == EventType.BIRTH:
+                        birth = fyear
+                    if event.get_type() == EventType.DEATH:
+                        death = fyear
+                    if fyear < low_date:
+                        low_date = fyear
+                    if fyear > high_date:
+                        high_date = fyear
 
-                    except:
-                        pass
-                    if birth == "0000":
-                        birth = low_date
-                    if death == "0000":
-                        death = high_date
-                new_list.append([level, plxp, birth, death])
-            pidx = 0;
-            if isinstance(color, str) :
-                color = Gdk.color_parse(color)
-            for (level, plxp, birth, death) in sorted(new_list, key=operator.itemgetter(0,2)):
-                if index == int(self._config.get("geography.maximum_generations")):
-                   break
-                if level == index:
-                    pidx += 1
-                    self._createmap_for_one_person(plxp, color)
-                    color.red = (float(color.red - (index)*3000)%65535)
-                    if ( index % 2 ):
-                        color.green = float((color.green + (index)*3000)%65535)
-                    else:
-                        color.blue = float((color.blue + (index)*3000)%65535)
-                    self._createmap_for_one_person(person, color)
-            if index < int(self._config.get("geography.maximum_generations")):
-                time_to_wait = int(self._config.get("geography.generation_interval"))
-                self._create_markers()
-                # process next generation in a few milliseconds
-                GLib.timeout_add(int(time_to_wait), self.animate_moves,
-                                                  index+1, person, color)
-            else:
-                self.started = False
-            return False
+                except:
+                    pass
+                if birth == "0000":
+                    birth = low_date
+                if death == "0000":
+                    death = high_date
+            new_list.append([level, plxp, birth, death])
+        pidx = 0
+        if isinstance(color, str):
+            color = Gdk.color_parse(color)
+        for (level, plxp,
+             birth, death) in sorted(new_list, key=operator.itemgetter(0, 2)):
+            if index == int(self._config.get("geography.maximum_generations")):
+                break
+            if level == index:
+                pidx += 1
+                self._createmap_for_one_person(plxp, color)
+                color.red = (float(color.red - (index)*3000)%65535)
+                if index % 2:
+                    color.green = float((color.green + (index)*3000)%65535)
+                else:
+                    color.blue = float((color.blue + (index)*3000)%65535)
+                self._createmap_for_one_person(person, color)
+        if index < int(self._config.get("geography.maximum_generations")):
+            time_to_wait = int(
+                              self._config.get("geography.generation_interval"))
+            self._create_markers()
+            # process next generation in a few milliseconds
+            GLib.timeout_add(int(time_to_wait), self.animate_moves,
+                                              index+1, person, color)
+        else:
+            self.started = False
+        return False
 
     def bubble_message(self, event, lat, lon, marks):
         """
@@ -568,7 +577,7 @@ class GeoMoves(GeoGraphyView):
         oldplace = ""
         prevmark = None
         # Be sure all markers are sorted by place then dates.
-        for mark in sorted(marks, key=operator.itemgetter(0,6)):
+        for mark in sorted(marks, key=operator.itemgetter(0, 6)):
             if mark[10] in events:
                 continue # avoid duplicate events
             else:
@@ -585,19 +594,20 @@ class GeoMoves(GeoGraphyView):
             date = displayer.display(evt.get_date_object())
             if date == "":
                 date = _("Unknown")
-            if ( mark[11] == EventRoleType.PRIMARY ):
+            if mark[11] == EventRoleType.PRIMARY:
                 person = self.dbstate.db.get_person_from_gramps_id(mark[1])
-                message = "(%s) %s : %s" % ( date, mark[2], _nd.display(person) )
-            elif ( mark[11] == EventRoleType.FAMILY ):
-                (father_name, mother_name) = self._get_father_and_mother_name(evt)
+                message = "(%s) %s : %s" % (date, mark[2], _nd.display(person))
+            elif mark[11] == EventRoleType.FAMILY:
+                (father_name,
+                 mother_name) = self._get_father_and_mother_name(evt)
                 message = "(%s) %s : %s - %s" % (date, mark[2],
                                                  father_name,
-                                                 mother_name )
+                                                 mother_name)
             else:
                 descr = evt.get_description()
                 if descr == "":
                     descr = _('No description')
-                message = "(%s) %s => %s" % ( date, mark[11], descr)
+                message = "(%s) %s => %s" % (date, mark[11], descr)
             prevmark = mark
             add_item = Gtk.MenuItem(label=message)
             add_item.show()

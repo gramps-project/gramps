@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011  Serge Noiraud
+# Copyright (C) 2011-2016  Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,12 +28,9 @@ Geography for events
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
-import sys
 import operator
 from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
-import socket
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
@@ -57,11 +54,6 @@ from gramps.gen.datehandler import displayer
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gui.views.pageview import PageView
-from gramps.gui.editors import EditPlace
-from gramps.gui.selectors.selectplace import SelectPlace
-from gramps.gui.filters.sidebar import EventSidebarFilter
-from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import EventBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
 from gramps.gui.utils import ProgressMeter
@@ -106,6 +98,10 @@ _UI_DEF = '''\
 </ui>
 '''
 
+# pylint: disable=unused-argument
+# pylint: disable=no-member
+# pylint: disable=maybe-no-member
+
 #-------------------------------------------------------------------------
 #
 # GeoView
@@ -136,6 +132,7 @@ class GeoEvents(GeoGraphyView):
         self.additional_uis.append(self.additional_ui())
         self.no_show_places_in_status_bar = False
         self.show_all = False
+        self.cal = None
 
     def get_title(self):
         """
@@ -196,7 +193,7 @@ class GeoEvents(GeoGraphyView):
         else:
             self._createmap(None)
 
-    def _createmap_for_one_event(self,event):
+    def _createmap_for_one_event(self, event):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
@@ -204,7 +201,7 @@ class GeoEvents(GeoGraphyView):
         dbstate = self.dbstate
         if self.nbplaces >= self._config.get("geography.max_places"):
             return
-        descr = descr2 = ""
+        descr1 = descr2 = ""
         if event:
             place_handle = event.get_place_handle()
             eventyear = event.get_date_object().to_calendar(self.cal).get_year()
@@ -220,7 +217,7 @@ class GeoEvents(GeoGraphyView):
                 # place.get_longitude and place.get_latitude return
                 # one string. We have coordinates when the two values
                 # contains non null string.
-                if ( longitude and latitude ):
+                if longitude and latitude:
                     person_list = [
                         dbstate.db.get_person_from_handle(ref_handle)
                         for (ref_type, ref_handle) in
@@ -232,8 +229,8 @@ class GeoEvents(GeoGraphyView):
                             if descr2 == "":
                                 descr2 = ("%s") % _nd.display(person)
                             else:
-                                descr2 = ("%s - %s") % ( descr2,
-                                                         _nd.display(person))
+                                descr2 = ("%s - %s") % (descr2,
+                                                        _nd.display(person))
                     else:
                         # family list ?
                         family_list = [
@@ -247,13 +244,15 @@ class GeoEvents(GeoGraphyView):
                                 father = mother = None
                                 hdle = family.get_father_handle()
                                 if hdle:
-                                    father = dbstate.db.get_person_from_handle(hdle)
+                                    father = dbstate.db.get_person_from_handle(
+                                                                           hdle)
                                 hdle = family.get_mother_handle()
                                 if hdle:
-                                    mother = dbstate.db.get_person_from_handle(hdle)
+                                    mother = dbstate.db.get_person_from_handle(
+                                                                           hdle)
                                 descr2 = ("%(father)s - %(mother)s") % {
-                                               'father': _nd.display(father) if father is not None else "?",
-                                               'mother': _nd.display(mother) if mother is not None else "?"
+                   'father': _nd.display(father) if father is not None else "?",
+                   'mother': _nd.display(mother) if mother is not None else "?"
                                               }
                         else:
                             descr2 = _("incomplete or unreferenced event ?")
@@ -269,7 +268,7 @@ class GeoEvents(GeoGraphyView):
                                                 None
                                                 )
 
-    def _createmap(self,obj):
+    def _createmap(self, obj):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
@@ -283,8 +282,6 @@ class GeoEvents(GeoGraphyView):
         self.maxyear = 0
         self.nbmarkers = 0
         self.nbplaces = 0
-        latitude = ""
-        longitude = ""
         self.without = 0
         self.cal = config.get('preferences.calendar-format-report')
         self.no_show_places_in_status_bar = False
@@ -317,7 +314,7 @@ class GeoEvents(GeoGraphyView):
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(3, 4, 6)
                           )
-        if self.nbmarkers > 500 : # performance issue. Is it the good value ?
+        if self.nbmarkers > 500: # performance issue. Is it the good value ?
             self.no_show_places_in_status_bar = True
         self._create_markers()
 
@@ -362,7 +359,7 @@ class GeoEvents(GeoGraphyView):
             evt = self.dbstate.db.get_event_from_gramps_id(mark[10])
             # format the date as described in preferences.
             date = displayer.display(evt.get_date_object())
-            message = "(%s) %s : %s" % (date, EventType( mark[7] ), mark[5] )
+            message = "(%s) %s : %s" % (date, EventType(mark[7]), mark[5])
             prevmark = mark
         add_item = Gtk.MenuItem(label=message)
         add_item.show()
@@ -398,7 +395,7 @@ class GeoEvents(GeoGraphyView):
         add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(label=_("Show all events"))
-        add_item.connect("activate", self.show_all_events, event, lat , lon)
+        add_item.connect("activate", self.show_all_events, event, lat, lon)
         add_item.show()
         menu.append(add_item)
         add_item = Gtk.MenuItem(label=_("Centering on Place"))
@@ -415,7 +412,8 @@ class GeoEvents(GeoGraphyView):
                 oldplace = mark[0]
                 modify = Gtk.MenuItem(label=mark[0])
                 modify.show()
-                modify.connect("activate", self.goto_place, float(mark[3]), float(mark[4]))
+                modify.connect("activate", self.goto_place,
+                               float(mark[3]), float(mark[4]))
                 itemoption.append(modify)
 
     def goto_place(self, obj, lat, lon):

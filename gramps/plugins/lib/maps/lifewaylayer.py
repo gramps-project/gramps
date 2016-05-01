@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,9 +25,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gi.repository import GObject
-from math import *
+from math import pi
 
 #------------------------------------------------------------------------
 #
@@ -42,15 +41,14 @@ _LOG = logging.getLogger("maps.lifeway")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
 from gi.repository import Gdk
+import cairo
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -64,6 +62,8 @@ try:
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
+# pylint: disable=unused-argument
 
 class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -93,7 +93,7 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         alpha is the transparence
         radius is the size of the track.
         """
-        if isinstance(color,str):
+        if isinstance(color, str):
             color = Gdk.color_parse(color)
         self.lifeways_ref.append((points, color, radius))
 
@@ -101,7 +101,7 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         Add a track or life way.
         """
-        if isinstance(color,str):
+        if isinstance(color, str):
             color = Gdk.color_parse(color)
         self.lifeways.append((points, color))
 
@@ -121,24 +121,29 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
             rds = float(lifeway[2])
             for point in lifeway[0]:
                 conv_pt1 = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(conv_pt1)
-                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0]+rds, point[1])
-                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
+                coord_x1, coord_y1 = gpsmap.convert_geographic_to_screen(
+                                                                       conv_pt1)
+                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0]+rds,
+                                                          point[1])
+                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(
+                                                                       conv_pt2)
                 coy = abs(coord_y2-coord_y1)
-                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0], point[1]+rds)
-                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(conv_pt2)
+                conv_pt2 = osmgpsmap.MapPoint.new_degrees(point[0],
+                                                          point[1]+rds)
+                coord_x2, coord_y2 = gpsmap.convert_geographic_to_screen(
+                                                                       conv_pt2)
                 cox = abs(coord_x2-coord_x1)
                 cox = cox if cox > 1.2 else 1.2
                 coy = coy if coy > 1.2 else 1.2
-                coz = abs( 1.0 / float(cox) * float(coy) )
+                coz = abs(1.0 / float(cox) * float(coy))
                 coz = coz if coz > 1.2 else 1.2
                 ctx.save()
-                ctx.scale(1.0,coz)
+                ctx.scale(1.0, coz)
                 ctx.move_to(coord_x1, coord_y1)
                 ctx.translate(coord_x1, coord_y1/coz)
                 ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
                 ctx.fill()
-                ctx.set_source_rgba(1.0,0.0,0.0,0.5)
+                ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
                 ctx.set_line_width(2.0)
                 ctx.arc(0.0, 0.0, cox, 0.0, 2*pi)
                 ctx.stroke()
@@ -164,7 +169,7 @@ class LifeWayLayer(GObject.GObject, osmgpsmap.MapLayer):
                 else:
                     ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
             ctx.stroke()
-            if len(map_points) == 1 : # We have only one point
+            if len(map_points) == 1: # We have only one point
                 crdx = map_points[0][0]
                 crdy = map_points[0][1]
                 ctx.move_to(crdx, crdy)

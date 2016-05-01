@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,6 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 import re
-from gi.repository import GObject
 import math
 
 #------------------------------------------------------------------------
@@ -56,7 +55,6 @@ from gramps.gui.managedwindow import ManagedWindow
 from .osmgps import OsmGps
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
-from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +63,9 @@ from gramps.gen.display.place import displayer as place_displayer
 #-------------------------------------------------------------------------
 PLACE_REGEXP = re.compile('<span background="green">(.*)</span>')
 PLACE_STRING = '<span background="green">%s</span>'
+
+# pylint: disable=unused-argument
+# pylint: disable=no-member
 
 #-------------------------------------------------------------------------
 #
@@ -87,8 +88,10 @@ class PlaceSelection(ManagedWindow, OsmGps):
             ManagedWindow.__init__(self, uistate, [], PlaceSelection)
         except WindowActiveError:
             return
+        OsmGps.__init__(self)
         self.uistate = uistate
         self.dbstate = dbstate
+        self.places = []
         self.lat = lat
         self.lon = lon
         self.osm = maps
@@ -162,7 +165,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
 
     def slider_change(self, obj, lat, lon):
         """
-        Display on the map a circle in which we select all the places inside this region.
+        Display on the map a circle in which we select all the places
+        inside this region.
         """
         self.radius = obj.get_value() if obj else 1.0
         self.show_the_region(self.radius)
@@ -183,14 +187,15 @@ class PlaceSelection(ManagedWindow, OsmGps):
                              )
         for place in self.places:
             if not place[0]:
-                _LOG.info('No hierarchy yet: %s' % place)
+                _LOG.info('No hierarchy yet: %s', place)
                 continue
-            p = (place[0], place[1], place[2], place[3], place[4])
-            self.plist.append(p)
+            self.plist.append((place[0], place[1],
+                               place[2], place[3], place[4]))
         # here, we could add value from geography names services ...
 
         # if we found no place, we must create a default place.
-        self.plist.append((_("New place with empty fields"), "", "...", "", None))
+        self.plist.append((_("New place with empty fields"), "",
+                           "...", "", None))
 
     def hide_the_region(self):
         """
@@ -251,7 +256,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
             if (math.hypot(lat-float(entry[3]),
                            lon-float(entry[4])) <= rds) == True:
                 # Do we already have this place ? avoid duplicates
-                country, state, county, place, other = self.get_location(entry[9])
+                (country, state, county,
+                 place, other) = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
                     self.places.append([country, state, county, place, other])
         for place in self.dbstate.db.iter_places():
@@ -260,9 +266,12 @@ class PlaceSelection(ManagedWindow, OsmGps):
             if latn and lonn:
                 if (math.hypot(lat-float(latn),
                                lon-float(lonn)) <= rds) == True:
-                    country, state, county, place, other = self.get_location(place.get_gramps_id())
-                    if not [country, state, county, place, other] in self.places:
-                        self.places.append([country, state, county, place, other])
+                    (country, state, county,
+                     place, other) = self.get_location(place.get_gramps_id())
+                    if not [country, state, county,
+                            place, other] in self.places:
+                        self.places.append([country, state, county,
+                                            place, other])
 
     def selection(self, obj, index, column, function):
         """

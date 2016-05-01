@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,10 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gi.repository import GObject
-import operator
-from math import *
 
 #------------------------------------------------------------------------
 #
@@ -43,15 +40,14 @@ _LOG = logging.getLogger("maps.datelayer")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
 from gi.repository import Gdk
+import cairo
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -66,9 +62,12 @@ try:
 except:
     raise
 
+# pylint: disable=unused-argument
+
 class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
-    This is the layer used to display the two extreme dates on the top left of the view
+    This is the layer used to display the two extreme dates
+    on the top left of the view
     """
     def __init__(self):
         """

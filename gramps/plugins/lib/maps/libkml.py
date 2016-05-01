@@ -25,10 +25,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os,sys
+import os
 from gi.repository import GObject
-import operator
-from math import *
 import xml.etree.ElementTree as ETree
 
 #------------------------------------------------------------------------
@@ -39,6 +37,8 @@ import xml.etree.ElementTree as ETree
 import logging
 _LOG = logging.getLogger("maps.libkml")
 
+# pylint: disable=unused-variable
+
 class Kml(GObject.GObject):
     """
     This is the library used to read kml files
@@ -46,7 +46,8 @@ class Kml(GObject.GObject):
 
     * One point : name, (latitude, longitude)
     * One path  : name, [ (latitude, longitude), (latitude, longitude), ...]
-    * One polygon : name, type, color, [ (latitude, longitude), (latitude, longitude), ...]
+    * One polygon : name, type, color,
+    *               [ (latitude, longitude), (latitude, longitude), ...]
 
     * Some kml files use the altitude. We don't use it.
 
@@ -54,7 +55,8 @@ class Kml(GObject.GObject):
     def __init__(self, kml_file):
         """
         Initialize the library
-        The access right and validity of the kmlfile must be verified before this method.
+        The access right and validity of the kmlfile must be verified
+        before this method.
         """
         GObject.GObject.__init__(self)
         self.tag = ""
@@ -68,8 +70,8 @@ class Kml(GObject.GObject):
         self.polygons = []
         self.tree = ETree.parse(kml_file)
         root = self.tree.getroot()
-        self.tag = root.tag.replace('}kml','}')
-        _LOG.debug("Tag version of kml file %s is %s" % (kml_file, self.tag))
+        self.tag = root.tag.replace('}kml', '}')
+        _LOG.debug("Tag version of kml file %s is %s", kml_file, self.tag)
         fname, extension = os.path.splitext(kml_file)
         fdir, self.kmlfile = os.path.split(fname)
 
@@ -110,49 +112,50 @@ class Kml(GObject.GObject):
         """
         Get all the coordinates for this marker
         """
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'coordinates':
-                self.get_coordinates(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'coordinates':
+                self.get_coordinates(sub_attribute)
 
     def get_polygon_outer_boundary(self, attributes):
         """
         This function get the coordinates used to draw a filled polygon.
         """
         self.type = 'OuterPolygon'
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'LinearRing':
-                self.get_linear_ring(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'LinearRing':
+                self.get_linear_ring(sub_attribute)
 
     def get_polygon_inner_boundary(self, attributes):
         """
-        This function get the coordinates used to draw a hole inside a filled polygon.
+        This function get the coordinates used to draw a hole inside
+        a filled polygon.
         """
         self.type = 'InnerPolygon'
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'LinearRing':
-                self.get_linear_ring(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'LinearRing':
+                self.get_linear_ring(sub_attribute)
 
     def get_polygon(self, attributes):
         """
         Get all the coordinates for the polygon
         """
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'outerBoundaryIs':
-                self.get_polygon_outer_boundary(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'outerBoundaryIs':
+                self.get_polygon_outer_boundary(sub_attribute)
                 self.polygons.append((self.name,
                                       self.type,
                                       self.color,
                                       self.transparency,
                                       self.points))
-            if subAttribute.tag == self.tag + 'innerBoundaryIs':
-                self.get_polygon_inner_boundary(subAttribute)
+            if sub_attribute.tag == self.tag + 'innerBoundaryIs':
+                self.get_polygon_inner_boundary(sub_attribute)
                 self.polygons.append((self.name,
                                       self.type,
                                       self.color,
                                       self.transparency,
                                       self.points))
-            if subAttribute.tag == self.tag + 'LinearRing':
-                self.get_linear_ring(subAttribute)
+            if sub_attribute.tag == self.tag + 'LinearRing':
+                self.get_linear_ring(sub_attribute)
                 self.type = 'Polygon'
                 self.polygons.append((self.name,
                                       self.type,
@@ -165,18 +168,18 @@ class Kml(GObject.GObject):
         Get all the coordinates for this marker
         """
         self.type = 'Point'
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'coordinates':
-                self.get_coordinates(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'coordinates':
+                self.get_coordinates(sub_attribute)
 
     def get_path(self, attributes):
         """
         Get all the coordinates for this marker
         """
         self.type = 'Path'
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'coordinates':
-                self.get_coordinates(subAttribute)
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'coordinates':
+                self.get_coordinates(sub_attribute)
                 self.paths.append((self.name,
                                    self.type,
                                    self.color,
@@ -184,45 +187,48 @@ class Kml(GObject.GObject):
                                    self.points))
 
     def get_multi_geometry(self, attributes):
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'Polygon':
-                self.polygon(subAttribute)
-            if subAttribute.tag == self.tag + 'LineString':
-                self.get_path(subAttribute)
+        """
+        Do we have some sub structures ?
+        """
+        for sub_attribute in attributes:
+            if sub_attribute.tag == self.tag + 'Polygon':
+                self.get_polygon(sub_attribute)
+            if sub_attribute.tag == self.tag + 'LineString':
+                self.get_path(sub_attribute)
 
     def add_kml(self):
         """
         Add a kml file.
         """
-        lineStrings = self.tree.findall('.//' + self.tag + 'Placemark')
-        for attributes in lineStrings:
+        line_strings = self.tree.findall('.//' + self.tag + 'Placemark')
+        for attributes in line_strings:
             self.points = []
             self.set_default()
-            for subAttribute in attributes:
-                if subAttribute.tag == self.tag + 'name':
-                    self.name = subAttribute.text
-                if subAttribute.tag == self.tag + 'Polygon':
-                    self.get_polygon(subAttribute)
-                if subAttribute.tag == self.tag + 'LineString':
-                    self.get_path(subAttribute)
-                if subAttribute.tag == self.tag + 'MultiGeometry':
-                    self.get_multi_geometry(subAttribute)
+            for sub_attribute in attributes:
+                if sub_attribute.tag == self.tag + 'name':
+                    self.name = sub_attribute.text
+                if sub_attribute.tag == self.tag + 'Polygon':
+                    self.get_polygon(sub_attribute)
+                if sub_attribute.tag == self.tag + 'LineString':
+                    self.get_path(sub_attribute)
+                if sub_attribute.tag == self.tag + 'MultiGeometry':
+                    self.get_multi_geometry(sub_attribute)
         return (self.paths, self.polygons)
 
     def add_points(self):
         """
         Add points or markers
         """
-        lineStrings = self.tree.findall('.//' + self.tag + 'Placemark')
+        line_strings = self.tree.findall('.//' + self.tag + 'Placemark')
         self.markers = []
-        for attributes in lineStrings:
+        for attributes in line_strings:
             self.points = []
             self.set_default()
-            for subAttribute in attributes:
-                if subAttribute.tag == self.tag + 'name':
-                    self.name = subAttribute.text
-                if subAttribute.tag == self.tag + 'Point':
-                    self.get_point(subAttribute)
+            for sub_attribute in attributes:
+                if sub_attribute.tag == self.tag + 'name':
+                    self.name = sub_attribute.text
+                if sub_attribute.tag == self.tag + 'Point':
+                    self.get_point(sub_attribute)
                     self.markers.append((self.name, self.points))
         return self.markers
 

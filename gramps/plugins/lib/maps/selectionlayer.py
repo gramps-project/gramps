@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from math import pi
 from gi.repository import GObject
 
@@ -56,7 +55,12 @@ try:
 except:
     raise
 
+# pylint: disable=unused-argument
+
 class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
+    """
+    This class is used to select an area on the map
+    """
     def __init__(self):
         """
         Initialize thz selection layer
@@ -108,16 +112,17 @@ class SelectionLayer(GObject.GObject, osmgpsmap.MapLayer):
             crd_x, crd_y = gpsmap.convert_geographic_to_screen(top_left)
             crd_x2, crd_y2 = gpsmap.convert_geographic_to_screen(bottom_right)
             # be sure when can select a region in all case.
-            if ( crd_x < crd_x2 ):
-                if ( crd_y < crd_y2 ):
+            if crd_x < crd_x2:
+                if crd_y < crd_y2:
                     ctx.rectangle(crd_x, crd_y, crd_x2 - crd_x, crd_y2 - crd_y)
                 else:
                     ctx.rectangle(crd_x, crd_y2, crd_x2 - crd_x, crd_y - crd_y2)
             else:
-                if ( crd_y < crd_y2 ):
+                if crd_y < crd_y2:
                     ctx.rectangle(crd_x2, crd_y, crd_x - crd_x2, crd_y2 - crd_y)
                 else:
-                    ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2, crd_y - crd_y2)
+                    ctx.rectangle(crd_x2, crd_y2, crd_x - crd_x2,
+                                  crd_y - crd_y2)
             ctx.stroke()
 
     def do_render(self, gpsmap):

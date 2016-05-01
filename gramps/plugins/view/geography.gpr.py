@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011 Serge Noiraud
+# Copyright (C) 2011-2016 Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,9 +25,15 @@
 #
 #------------------------------------------------------------------------
 
-MODULE_VERSION="5.0"
+# pylint: disable=bad-whitespace
+# pylint: disable=bad-whitespace
+
+MODULE_VERSION = "5.0"
 
 from gi import Repository
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.plug._pluginreg import register, VIEW, STABLE #, END, START
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -40,9 +46,9 @@ _LOG = logging.getLogger("Geography")
 # Attempting to import OsmGpsMap gives an error dialog if OsmGpsMap is not
 # available so test first and log just a warning to the console instead.
 OSMGPSMAP = False
-repository = Repository.get_default()
-if repository.enumerate_versions("OsmGpsMap"):
-    try :
+REPOSITORY = Repository.get_default()
+if REPOSITORY.enumerate_versions("OsmGpsMap"):
+    try:
         # current osmgpsmap support GTK3
         import gi
         gi.require_version('OsmGpsMap', '1.0')
@@ -58,22 +64,22 @@ if not OSMGPSMAP:
         if has_display():
             from gramps.gui.dialog import MessageHideDialog
             from gramps.gen.const import URL_WIKISTRING
-            osmgps_dict = { 'gramps_wiki_build_osmgps_url' :
+            OSMGPS_DICT = {'gramps_wiki_build_osmgps_url' :
                                 URL_WIKISTRING +
                                     "GEPS_029:_GTK3-GObject_introspection"
-                                    "_Conversion#OsmGpsMap_for_Geography" }
-            title = _("OsmGpsMap module not loaded.")
-            message = _("Geography functionality will not be available.\n"
+                                    "_Conversion#OsmGpsMap_for_Geography"}
+            TITLE = _("OsmGpsMap module not loaded.")
+            MESSAGE = _("Geography functionality will not be available.\n"
                        "To build it for Gramps see "
-                       "%(gramps_wiki_build_osmgps_url)s") % osmgps_dict
-            MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
+                       "%(gramps_wiki_build_osmgps_url)s") % OSMGPS_DICT
+            MessageHideDialog(TITLE, MESSAGE, 'interface.ignore-osmgpsmap')
 else:
     # Load the view only if osmgpsmap library is present.
     register(VIEW,
-             id    = 'geo1',
-             name  = _("All known places for one Person"),
-             description =  _("A view showing the places visited by "
-                              "one person during his life."),
+             id = 'geo1',
+             name = _("All known places for one Person"),
+             description = _("A view showing the places visited by "
+                             "one person during his life."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -87,10 +93,10 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo2',
-             name  = _("All known places for one Family"),
-             description =  _("A view showing the places visited by "
-                              "one family during all their life."),
+             id = 'geo2',
+             name = _("All known places for one Family"),
+             description = _("A view showing the places visited by "
+                             "one family during all their life."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -104,12 +110,14 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo3',
-             name  = _("Every residence or move for a person and any descendants"),
-             description =  _("A view showing all the places visited by "
-                              "all persons during their life."
-                              "\nThis is for a person and any descendant."
-                              "\nYou can see the dates corresponding to the period."),
+             id = 'geo3',
+             name = _("Every residence or move for a person "
+                      "and any descendants"),
+             description = _("A view showing all the places visited by "
+                             "all persons during their life."
+                             "\nThis is for a person and any descendant."
+                             "\nYou can see the dates corresponding to "
+                             "the period."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -123,11 +131,11 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo4',
-             name  = _("Have these two families been able to meet?"),
-             description =  _("A view showing the places visited by "
-                              "all family's members during their life: "
-                              "have these two people been able to meet?"),
+             id = 'geo4',
+             name = _("Have these two families been able to meet?"),
+             description = _("A view showing the places visited by "
+                             "all family's members during their life: "
+                             "have these two people been able to meet?"),
              version = '1.0.1',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -141,11 +149,11 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo5',
-             name  = _("Have they been able to meet?"),
-             description =  _("A view showing the places visited by "
-                              "two persons during their life: "
-                              "have these two people been able to meet?"),
+             id = 'geo5',
+             name = _("Have they been able to meet?"),
+             description = _("A view showing the places visited by "
+                             "two persons during their life: "
+                             "have these two people been able to meet?"),
              version = '1.0.1',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -159,9 +167,9 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo6',
-             name  = _("All known Places"),
-             description =  _("A view showing all places of the database."),
+             id = 'geo6',
+             name = _("All known Places"),
+             description = _("A view showing all places of the database."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,
@@ -175,10 +183,10 @@ else:
       )
 
     register(VIEW,
-             id    = 'geo7',
-             name  = _("All places related to Events"),
-             description =  _("A view showing all the event "
-                              "places of the database."),
+             id = 'geo7',
+             name = _("All places related to Events"),
+             description = _("A view showing all the event "
+                             "places of the database."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
              status = STABLE,

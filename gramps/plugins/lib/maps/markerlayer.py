@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011-2012       Serge Noiraud
+# Copyright (C) 2011-2016       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,9 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gi.repository import GObject
-from math import *
 import time
 
 #------------------------------------------------------------------------
@@ -37,15 +35,12 @@ import time
 #------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger("maps.markerlayer")
-#_LOG = logging.getLogger("GeoGraphy.markerlayer")
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
-import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +60,8 @@ try:
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
+
+# pylint: disable=unused-argument
 
 class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
     """
@@ -121,7 +118,7 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             max_interval = 0.01
         if min_interval == 0: # This to avoid divide by zero
             min_interval = 0.01
-        _LOG.debug("%s" % time.strftime("start drawing   : "
+        _LOG.debug("%s", time.strftime("start drawing   : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for marker in self.markers:
             ctx.save()
@@ -131,28 +128,28 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             if mark > self.nb_ref_by_places:
                 # at maximum, we'll have an icon size = (0.6 + 0.3) * 48 = 43.2
                 size += (0.3 * ((mark - self.nb_ref_by_places)
-                                 / max_interval) )
+                                 / max_interval))
             else:
                 # at minimum, we'll have an icon size = (0.6 - 0.3) * 48 = 14.4
                 size -= (0.3 * ((self.nb_ref_by_places - mark)
-                                 / min_interval) )
+                                 / min_interval))
 
             conv_pt = osmgpsmap.MapPoint.new_degrees(float(marker[0][0]),
-                                                  float(marker[0][1]))
+                                                     float(marker[0][1]))
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
             ctx.translate(coord_x, coord_y)
-            ctx.scale( size, size)
+            ctx.scale(size, size)
             # below, we try to place exactly the marker depending on its size.
-            # Normaly, the left top corner of the image is set to the coordinates.
+            # The left top corner of the image is set to the coordinates.
             # The tip of the pin which should be at the marker position is at
             # 3/18 of the width and to the height of the image.
             # So we shift the image position.
-            posY = - int( 48 * size + 0.5 ) - 10
-            posX = - int(( 48 * size ) / 6 + 0.5 ) - 10
-            ctx.set_source_surface(marker[1], posX, posY)
+            pos_y = - int(48 * size + 0.5) - 10
+            pos_x = - int((48 * size) / 6 + 0.5) - 10
+            ctx.set_source_surface(marker[1], pos_x, pos_y)
             ctx.paint()
             ctx.restore()
-        _LOG.debug("%s" % time.strftime("end drawing     : "
+        _LOG.debug("%s", time.strftime("end drawing     : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
 
     def do_render(self, gpsmap):
