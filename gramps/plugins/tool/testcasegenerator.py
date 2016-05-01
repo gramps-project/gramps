@@ -291,9 +291,11 @@ class TestcaseGenerator(tool.BatchTool):
 
     def run_tool(self, cli=False):
         self.cli = cli
-        if( not cli):
+        if (not cli):
             while Gtk.events_pending():
                 Gtk.main_iteration()
+        else:
+            self.window = None
 
         self.progress = ProgressMeter(_('Generating testcases'),'',
                                         parent=self.window)
