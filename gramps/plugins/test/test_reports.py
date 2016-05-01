@@ -71,7 +71,7 @@ class ReportControl(object):
     def addcli(self, class_, report_name, test_function,
                files, *args, **options):
         test_name = report_name.replace("-", "_")
-        setattr(class_, test_name, 
+        setattr(class_, test_name,
                 dynamic_cli_method(
                     report_name,
                     test_function,
@@ -183,7 +183,34 @@ def err_does_contain(text):
                 os.remove(report_name + "." + ext)
             else:
                 raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
-        return text in err
+        if isinstance(text, list):
+            return all([(line in err) for line in text])
+        else:
+            return text in err
+    return test_output_file
+
+def out_does_contain(text):
+    def test_output_file(out, err, report_name, **options):
+        if options.get("files", []):
+            for filename in options.get("files", []):
+                if filename is None:
+                    pass
+                elif os.path.isdir(filename):
+                    shutil.rmtree(filename)
+                elif os.path.isfile(filename):
+                    os.remove(filename)
+                else:
+                    raise Exception("can't find '%s' in order to delete it" % filename)
+        else:
+            ext = options["off"]
+            if os.path.isfile(report_name + "." + ext):
+                os.remove(report_name + "." + ext)
+            else:
+                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+        if isinstance(text, list):
+            return all([(line in out) for line in text])
+        else:
+            return text in out
     return test_output_file
 
 reports.addreport(TestDynamic, "tag_report",
@@ -263,12 +290,12 @@ reports.addcli(TestDynamic, "export_vcf",
                "--export", "test_export.vcf")
 
 report_list = [
-    ("ancestor_chart", "svg", ["ancestor_chart.svg", 
-                               "ancestor_chart-2.svg", 
-                               "ancestor_chart-3.svg", 
-                               "ancestor_chart-4.svg", 
-                               "ancestor_chart-5.svg", 
-                               "ancestor_chart-6.svg", 
+    ("ancestor_chart", "svg", ["ancestor_chart.svg",
+                               "ancestor_chart-2.svg",
+                               "ancestor_chart-3.svg",
+                               "ancestor_chart-4.svg",
+                               "ancestor_chart-5.svg",
+                               "ancestor_chart-6.svg",
                            ]), # Ancestor Tree
     ("ancestor_report", "txt", []), # Ahnentafel Report
     ("birthday_report", "txt", []), # Birthday and Anniversary Report
@@ -307,6 +334,36 @@ for (report_name, off, files) in report_list:
                       err_does_not_contain("Failed to write report."),
                       files=files,
                       off=off)
+
+reports.addcli(TestDynamic, "tool_verify",
+               out_does_contain(["W: Old age but no death, Person: I0004, Smith, Ingeman",
+                                 "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+                                 "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
+                                 "W: Multiple parents, Person: I0063, Jones, Frank Albert",
+                                 "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
+                                 "W: Multiple parents, Person: I0076, Smith, Marie Astri",
+                                 "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
+                                 "W: Old age but no death, Person: I0011, Smith, Hanna",
+                                 "W: Old age but no death, Person: I0009, Smith, Emil",
+                                 "W: Old age but no death, Person: I0036, Jefferson, Elna",
+                                 "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna"
+                             ]),
+               [None],
+               "--force",
+               "-O", TREE_NAME,
+               "-y",
+               "--action", "tool",
+               "--options", "name=verify")
+
+reports.addcli(TestDynamic, "tool_check",
+               out_does_contain(["6 media objects were referenced, but not found",
+                                 "References to 6 media objects were kept"]),
+               [None],
+               "--force",
+               "-O", TREE_NAME,
+               "-y",
+               "--action", "tool",
+               "--options", "name=check")
 
 if __name__ == "__main__":
     unittest.main()
