@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-01 12:16+0200\n"
-"PO-Revision-Date: 2016-05-01 12:33+0100\n"
+"PO-Revision-Date: 2016-05-01 13:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1337,7 +1337,6 @@ msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1386,6 +1385,8 @@ msgstr ""
 "familial\n"
 "  -i, --import=FICHIER                   Importe un fichier\n"
 "  -e, --export=FICHIER                   Exporte un fichier\n"
+"  -r, --remove=MODELE_ARBRE       Enlever les arbres correspondants "
+"(utilisez les expressions rationnelles)\n"
 "  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
 "  -a, --action=ACTION                    Spécifie l'action\n"
 "  -p, --options=OPTIONS                  Spécifie les options\n"
@@ -1410,6 +1411,8 @@ msgstr ""
 "                                               (hors interface graphique)\n"
 "  -v, --version                          Affiche les versions des "
 "bibliothèques\n"
+"  -b, --databases                        Affiche les backends de base de "
+"données disponibles\n"
 
 # master
 #: ../gramps/cli/argparser.py:83
@@ -1621,9 +1624,8 @@ msgstr "Chemin"
 
 # master
 #: ../gramps/cli/clidbman.py:171 ../gramps/gen/plug/_pluginreg.py:88
-#, fuzzy
 msgid "Database"
-msgstr "Toute la base de données"
+msgstr "Base de données"
 
 #: ../gramps/cli/clidbman.py:172 ../gramps/gui/dbman.py:384
 msgid "Last accessed"
@@ -2032,7 +2034,6 @@ msgstr "Nom de famille manquant"
 
 # master
 #: ../gramps/gen/config.py:319 ../gramps/gen/config.py:321
-#, fuzzy
 msgid "[Living]"
 msgstr "[Vivant]"
 
@@ -2052,15 +2053,13 @@ msgstr ""
 
 # master
 #: ../gramps/gen/const.py:250
-#, fuzzy
 msgid "surname|none"
-msgstr "nom de famille inconnu"
+msgstr "aucun"
 
 # master
 #: ../gramps/gen/const.py:251
-#, fuzzy
 msgid "given-name|none"
-msgstr "prénom"
+msgstr "aucun"
 
 # trunk
 #: ../gramps/gen/datehandler/__init__.py:76
@@ -3303,84 +3302,73 @@ msgstr "Nombre de familles"
 #: ../gramps/gen/db/generic.py:2012
 #: ../gramps/plugins/database/bsddb_support/read.py:2072
 #: ../gramps/plugins/database/bsddb_support/write.py:2550
-#, fuzzy
 msgid "Number of sources"
-msgstr "Nombre de noms de famille"
+msgstr "Nombre de sources"
 
 # master
 #: ../gramps/gen/db/generic.py:2013
 #: ../gramps/plugins/database/bsddb_support/read.py:2073
 #: ../gramps/plugins/database/bsddb_support/write.py:2551
-#, fuzzy
 msgid "Number of citations"
-msgstr "Nombre de générations :"
+msgstr "Nombre de citations"
 
 # master
 #: ../gramps/gen/db/generic.py:2014
 #: ../gramps/plugins/database/bsddb_support/read.py:2074
 #: ../gramps/plugins/database/bsddb_support/write.py:2552
-#, fuzzy
 msgid "Number of events"
-msgstr "Nombre de parents"
+msgstr "Nombre d'événements"
 
 # master
 #: ../gramps/gen/db/generic.py:2015
 #: ../gramps/plugins/database/bsddb_support/read.py:2075
 #: ../gramps/plugins/database/bsddb_support/write.py:2553
-#, fuzzy
 msgid "Number of media"
-msgstr "Nombre de familles"
+msgstr "Nombre de media"
 
 # master
 #: ../gramps/gen/db/generic.py:2016
 #: ../gramps/plugins/database/bsddb_support/read.py:2076
 #: ../gramps/plugins/database/bsddb_support/write.py:2554
-#, fuzzy
 msgid "Number of places"
-msgstr "Nombre d'individus"
+msgstr "Nombre de lieux"
 
 # master
 #: ../gramps/gen/db/generic.py:2017
 #: ../gramps/plugins/database/bsddb_support/read.py:2077
 #: ../gramps/plugins/database/bsddb_support/write.py:2555
-#, fuzzy
 msgid "Number of repositories"
-msgstr "Recherche des dépôts"
+msgstr "Nombre de dépôts"
 
 # master
 #: ../gramps/gen/db/generic.py:2018
 #: ../gramps/plugins/database/bsddb_support/read.py:2078
 #: ../gramps/plugins/database/bsddb_support/write.py:2556
-#, fuzzy
 msgid "Number of notes"
-msgstr "Nombre de parents"
+msgstr "Nombre de notes"
 
 # master
 #: ../gramps/gen/db/generic.py:2019
 #: ../gramps/plugins/database/bsddb_support/read.py:2079
 #: ../gramps/plugins/database/bsddb_support/write.py:2557
-#, fuzzy
 msgid "Number of tags"
-msgstr "Nombre de mariages"
+msgstr "Nombre d'étiquettes"
 
 # master
 #: ../gramps/gen/db/generic.py:2020
 #: ../gramps/plugins/database/bsddb_support/write.py:2558
-#, fuzzy
 msgid "Data version"
-msgstr "Version du schéma"
+msgstr "Version des données"
 
 # master
 #: ../gramps/gen/db/generic.py:2021
-#, fuzzy
 msgid "Backups, count"
-msgstr "Sauvegarde échouée"
+msgstr "Sauvegardes, nombre"
 
 # master
 #: ../gramps/gen/db/generic.py:2022
-#, fuzzy
 msgid "Backups, last"
-msgstr "Sauvegarde échouée"
+msgstr "Sauvegardes, dernière"
 
 # trunk
 #. translators: needed for Arabic, ignore otherwise
@@ -4693,16 +4681,15 @@ msgstr "Inclusif :"
 
 # master
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:41
-#, fuzzy
 msgid "Ancestor families of <family>"
-msgstr "Ascendants du <filtre>"
+msgstr "Familles des ascendants de <famille>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # master
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:43
-#, fuzzy
 msgid "Matches ancestor families of the specified family"
-msgstr "Correspond aux familles trouvées par le filtre spécifié"
+msgstr ""
+"Correspond aux familles des ascendants trouvées par la famille spécifiée"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:44
 msgid "Bookmarked families"
@@ -4715,16 +4702,14 @@ msgstr "Correspond aux familles marquées (signet)"
 
 # master
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:41
-#, fuzzy
 msgid "Descendant families of <family>"
-msgstr "Familles descendantes de %s"
+msgstr "Familles des descendants de <famille>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # master
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:43
-#, fuzzy
 msgid "Matches descendant families of the specified family"
-msgstr "Correspond aux descendants de l'individu spécifié"
+msgstr "Correspond aux familles des descendants de la famille spécifiée"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:44
@@ -6951,9 +6936,8 @@ msgstr "0 jour"
 
 # master
 #: ../gramps/gen/lib/date.py:1867
-#, fuzzy
 msgid "date-quality|none"
-msgstr "estimée "
+msgstr "aucune"
 
 #: ../gramps/gen/lib/date.py:1868
 msgid "calculated"
@@ -6965,9 +6949,8 @@ msgstr "estimé(e)"
 
 # master
 #: ../gramps/gen/lib/date.py:1882
-#, fuzzy
 msgid "date-modifier|none"
-msgstr "avant "
+msgstr "aucune"
 
 #: ../gramps/gen/lib/date.py:1883 ../gramps/plugins/lib/libsubstkeyword.py:315
 msgid "about"
@@ -7492,9 +7475,8 @@ msgstr "Mariés"
 # master
 #: ../gramps/gen/lib/grampstype.py:213 ../gramps/gen/lib/grampstype.py:214
 #: ../gramps/gen/lib/grampstype.py:215
-#, fuzzy
 msgid "Family Relationship"
-msgstr "Relations familiales"
+msgstr "Relation familiales"
 
 # Dotation ?
 #: ../gramps/gen/lib/ldsord.py:95
@@ -7708,9 +7690,8 @@ msgstr "Notes"
 # espace limité ...
 # master
 #: ../gramps/gen/lib/media.py:205 ../gramps/gen/lib/person.py:260
-#, fuzzy
 msgid "Last changed"
-msgstr "Modifié"
+msgstr "Dernier changement"
 
 #: ../gramps/gen/lib/media.py:206 ../gramps/gen/lib/name.py:203
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:71
@@ -8006,21 +7987,18 @@ msgstr "Type "
 
 # master
 #: ../gramps/gen/lib/name.py:209
-#, fuzzy
 msgid "Group as"
-msgstr "Grouper sous"
+msgstr "Grouper comme"
 
 # master
 #: ../gramps/gen/lib/name.py:210
-#, fuzzy
 msgid "Sort as"
-msgstr "Trier _comme :"
+msgstr "Trier comme"
 
 # master
 #: ../gramps/gen/lib/name.py:211
-#, fuzzy
 msgid "Display as"
-msgstr "Affic_her comme :"
+msgstr "Afficher comme"
 
 # call name = prénom dans le context !
 #: ../gramps/gen/lib/name.py:212 ../gramps/plugins/importer/importcsv.py:152
@@ -8029,15 +8007,13 @@ msgstr "Prénom usuel"
 
 # master
 #: ../gramps/gen/lib/name.py:213
-#, fuzzy
 msgid "Nick name"
-msgstr "Surnom :"
+msgstr "Surnom"
 
 # master
 #: ../gramps/gen/lib/name.py:214
-#, fuzzy
 msgid "Family nick name"
-msgstr "Nom-dit :"
+msgstr "Nom-dit"
 
 # trunk
 #. translators: needed for Arabic, ignore otherwise
@@ -8275,9 +8251,8 @@ msgstr "Genre"
 
 # master
 #: ../gramps/gen/lib/person.py:246
-#, fuzzy
 msgid "Primary name"
-msgstr "principal"
+msgstr "Nom principal"
 
 # master
 #: ../gramps/gen/lib/person.py:247
@@ -8286,19 +8261,16 @@ msgstr "Autres noms"
 
 # master
 #: ../gramps/gen/lib/person.py:248
-#, fuzzy
 msgid "Death reference index"
-msgstr "Note sur la référence de l'événement"
+msgstr "Index de référence du décès"
 
 # master
 #: ../gramps/gen/lib/person.py:249
-#, fuzzy
 msgid "Birth reference index"
-msgstr "Éditer la référence"
+msgstr "Index de référence de naissance"
 
 # master
 #: ../gramps/gen/lib/person.py:250
-#, fuzzy
 msgid "Event references"
 msgstr "Références de l'événement"
 
@@ -8322,9 +8294,8 @@ msgstr "Familles"
 
 # master
 #: ../gramps/gen/lib/person.py:252
-#, fuzzy
 msgid "Parent families"
-msgstr "Réorganiser les familles"
+msgstr "Familles du parent"
 
 #: ../gramps/gen/lib/person.py:254 ../gramps/gui/merge/mergeperson.py:254
 #: ../gramps/plugins/textreport/indivcomplete.py:347
@@ -8339,21 +8310,18 @@ msgstr ""
 
 # master
 #: ../gramps/gen/lib/person.py:257
-#, fuzzy
 msgid "LDS ordinances"
-msgstr "Ordonnance Saints des Derniers Jours"
+msgstr "Ordonnances Saints des Derniers Jours"
 
 # master
 #: ../gramps/gen/lib/person.py:263
-#, fuzzy
 msgid "Person references"
 msgstr "Références de l'individu"
 
 # master
 #: ../gramps/gen/lib/person.py:264
-#, fuzzy
 msgid "Probably alive"
-msgstr "Individus probablement en vie"
+msgstr "Probablement en vie"
 
 #: ../gramps/gen/lib/person.py:639
 msgid "Merged Gramps ID"
@@ -9311,9 +9279,8 @@ msgstr "Valeur '%(val)s' non-trouvée pour l'option '%(opt)s'"
 
 # master
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:144
-#, fuzzy
 msgid "Valid values: "
-msgstr "Valeurs"
+msgstr "Valeurs valides :"
 
 # Utilisé dans le menu "Rapports" et dans "Rapports > Livre > Gestionnaire de livre > Articles disponibles"
 # Ce dernier devrait être au singulier
@@ -9442,27 +9409,27 @@ msgstr "Individus vivants"
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:169
 msgid "'living people'|Included, and all data"
-msgstr ""
+msgstr "Inclus, avec toutes les données"
 
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:173
 msgid "'living people'|Full names, but data removed"
-msgstr ""
+msgstr "Noms complets, mais données non-visibles"
 
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:175
 msgid "'living people'|Given names replaced, and data removed"
-msgstr ""
+msgstr "Prénoms remplacés, données non-visibles"
 
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:177
 msgid "'living people'|Complete names replaced, and data removed"
-msgstr ""
+msgstr "Noms complets remplacés, données non-visibles"
 
 # master
 #: ../gramps/gen/plug/report/stdoptions.py:179
 msgid "'living people'|Not included"
-msgstr ""
+msgstr "Ne pas inclure"
 
 # Substantif (GNOME fr)
 #. for deferred translation
@@ -9568,9 +9535,9 @@ msgstr "FAMILLE"
 # master
 #. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:377
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestor Families of %s"
-msgstr "Ascendants de %s"
+msgstr "Familles des ascendants de %s"
 
 #: ../gramps/gen/plug/utils.py:250
 msgid "Updated"
@@ -9645,9 +9612,10 @@ msgstr "« %s » enregistré"
 
 # master
 #: ../gramps/gen/recentfiles.py:204
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unable to save list of recent DBs file {fname}: {error}"
-msgstr "Impossible d'ouvrir la liste des dernières bases {fname} : {error}"
+msgstr ""
+"Impossible d'enregistrer la liste des derniers fichiers BDs {fname} : {error}"
 
 # master
 #: ../gramps/gen/recentfiles.py:265
@@ -11514,9 +11482,8 @@ msgstr "mis à jour"
 
 # master
 #: ../gramps/gui/configure.py:1431
-#, fuzzy
 msgid "Database backend"
-msgstr "Base de données ouverte"
+msgstr "Backend de base de données"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1438
@@ -11751,9 +11718,8 @@ msgstr "_Extraire"
 
 # master
 #: ../gramps/gui/dbman.py:117 ../gramps/gui/dbman.py:142
-#, fuzzy
 msgid "Database Information"
-msgstr "Aucune information sur la date"
+msgstr "Information sur la base de données"
 
 # master
 #: ../gramps/gui/dbman.py:119 ../gramps/gui/editors/edittaglist.py:118
@@ -11838,9 +11804,8 @@ msgstr "Statut"
 
 # master
 #: ../gramps/gui/dbman.py:376
-#, fuzzy
 msgid "Database Type"
-msgstr "Base de données ouverte"
+msgstr "Type de base de données"
 
 #: ../gramps/gui/dbman.py:479
 #, python-format
@@ -11958,11 +11923,13 @@ msgstr "Enlever le verrou sur la base de données « %s » ?"
 #: ../gramps/gui/dbman.py:746
 msgid "You wish to convert this database into the new DB-API format?"
 msgstr ""
+"Souhaitez-vous convertir cette base de données vers le nouveau format DB-"
+"API ?"
 
 # master
 #: ../gramps/gui/dbman.py:747
 msgid "Convert"
-msgstr ""
+msgstr "Convertir"
 
 # master
 #: ../gramps/gui/dbman.py:758
@@ -11988,25 +11955,24 @@ msgstr "Enlever le verrou sur la base de données « %s » ?"
 # master
 #: ../gramps/gui/dbman.py:771
 msgid "An attempt to export the database failed."
-msgstr ""
+msgstr "Une tentative d'exportation de la base de données a échoué."
 
 # master
 # Substantif (GNOME fr)
 #: ../gramps/gui/dbman.py:774
-#, fuzzy
 msgid "Converting data..."
-msgstr "Tri des données..."
+msgstr "Conversion des données..."
 
 # master
 #: ../gramps/gui/dbman.py:779 ../gramps/gui/dbman.py:782
 #, python-format
 msgid "(Converted #%d)"
-msgstr ""
+msgstr "(#%d convertis)"
 
 # master
 #: ../gramps/gui/dbman.py:796
 msgid "An attempt to import into the database failed."
-msgstr ""
+msgstr "Une tentative d'importation de la base de données a échoué."
 
 #: ../gramps/gui/dbman.py:835
 msgid "Repair Family Tree?"
@@ -12212,9 +12178,8 @@ msgstr "Aucune note active"
 
 # master
 #: ../gramps/gui/displaystate.py:579
-#, fuzzy
 msgid "No active object"
-msgstr "Aucune note active"
+msgstr "Aucun objet actif"
 
 # master
 # manuel wiki
@@ -14394,9 +14359,8 @@ msgstr ""
 
 # master
 #: ../gramps/gui/editors/filtereditor.py:563
-#, fuzzy
 msgid "Include selected Gramps ID"
-msgstr "Inclure les identifiants"
+msgstr "Inclure les identifiants sélectionnés"
 
 #: ../gramps/gui/editors/filtereditor.py:565
 msgid "Use exact case of letters"
@@ -14936,9 +14900,8 @@ msgstr "_Nouveau"
 
 # master
 #: ../gramps/gui/glade/dbman.glade:257
-#, fuzzy
 msgid "_Info"
-msgstr "  Info : %s"
+msgstr "_Info"
 
 #: ../gramps/gui/glade/dbman.glade:288
 msgid "_Rename"
@@ -14947,7 +14910,7 @@ msgstr "_Renommer"
 # master
 #: ../gramps/gui/glade/dbman.glade:304
 msgid "Con_vert"
-msgstr ""
+msgstr "Con_vertir"
 
 #: ../gramps/gui/glade/dbman.glade:320
 msgid "Re_pair"
@@ -17112,6 +17075,7 @@ msgid "Column widths"
 msgstr "Largeurs des colonnes"
 
 # master
+# signe => pourcentage ...
 #: ../gramps/gui/glade/styleeditor.glade:1202
 msgid "%"
 msgstr ""
@@ -17486,7 +17450,6 @@ msgstr ""
 
 # master
 #: ../gramps/gui/logger/_errorreportassistant.py:422
-#, fuzzy
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
@@ -17501,7 +17464,6 @@ msgstr "Plus d'informations"
 
 # master
 #: ../gramps/gui/logger/_errorreportassistant.py:466
-#, fuzzy
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
@@ -18377,9 +18339,8 @@ msgstr "Remplacer les prénoms des individus vivants"
 
 # master
 #: ../gramps/gui/plug/export/_exportoptions.py:721
-#, fuzzy
 msgid "Replace complete name of living people"
-msgstr "Remplacer les prénoms des individus vivants"
+msgstr "Remplacer le nom complet des individus vivants"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:722
 msgid "Do not include living people"
@@ -18395,9 +18356,8 @@ msgstr "Ne pas inclure les enregistrements non-liés aux individus sélectionné
 
 # master
 #: ../gramps/gui/plug/export/_exportoptions.py:753
-#, fuzzy
 msgid "Use Compression"
-msgstr "Utiliser une expression rationnelle"
+msgstr "Utiliser la compression"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:94
 msgid "Web Connect"
@@ -18461,9 +18421,8 @@ msgstr "Nom du livre. OBLIGATOIRE"
 
 # master
 #: ../gramps/gui/plug/report/_bookdialog.py:371
-#, fuzzy
 msgid "Manage Books"
-msgstr "Livres disponibles"
+msgstr "Gestion des livres"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:409
 msgid "New Book"
@@ -18579,9 +18538,8 @@ msgstr "Vous êtes en train d'enregistrer un livre avec un nom existant."
 
 # master
 #: ../gramps/gui/plug/report/_bookdialog.py:918
-#, fuzzy
 msgid "Generate Book"
-msgstr "Généré par"
+msgstr "Générer le livre"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:955
 msgid "Gramps Book"
@@ -20081,9 +20039,8 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/database/bsddb.gpr.py:24
-#, fuzzy
 msgid "_BSDDB Database"
-msgstr "Toute la base de données"
+msgstr "Base de données _BSDDB"
 
 # master
 #: ../gramps/plugins/database/bsddb.gpr.py:25
@@ -20203,48 +20160,43 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/database/bsddb_support/write.py:2547
-#, fuzzy
 msgid "DB-API version"
-msgstr "Version Bsddb"
+msgstr "Version DB-API"
 
 # master
 #: ../gramps/plugins/database/bsddb_support/write.py:2559
-#, fuzzy
 msgid "Database db version"
-msgstr "Version Bsddb"
+msgstr "Version de la base de données db"
 
 # master
 #: ../gramps/plugins/database/dbapi.gpr.py:23
 msgid "DB-API"
-msgstr ""
+msgstr "DB-API"
 
 # master
 #: ../gramps/plugins/database/dbapi.gpr.py:24
 msgid "DB-_API Database"
-msgstr ""
+msgstr "DB-Base de données_API"
 
 # master
 #: ../gramps/plugins/database/dbapi.gpr.py:25
-#, fuzzy
 msgid "DB-API Database"
-msgstr "Toute la base de données"
+msgstr "Base de données DB-API"
 
 # master
 #: ../gramps/plugins/database/inmemorydb.gpr.py:23
 msgid "In-Memory"
-msgstr ""
+msgstr "En-Mémoire"
 
 # master
 #: ../gramps/plugins/database/inmemorydb.gpr.py:24
-#, fuzzy
 msgid "In-_Memory Database"
-msgstr "Toute la base de données"
+msgstr "Base de données En-_Mémoire"
 
 # master
 #: ../gramps/plugins/database/inmemorydb.gpr.py:25
-#, fuzzy
 msgid "In-Memory Database"
-msgstr "Toute la base de données"
+msgstr "Base de données En-Mémoire"
 
 # trunk
 #. internal name: don't translate
@@ -20401,7 +20353,6 @@ msgstr "Impossible de créer une version jpeg de l'image %(name)s"
 
 # master
 #: ../gramps/plugins/docgen/latexdoc.py:57
-#, fuzzy
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
 "jpg images in LaTeX documents will not be available. Use your package "
@@ -21724,7 +21675,7 @@ msgstr "Information individuelle manquante"
 #: ../gramps/plugins/textreport/tagreport.py:97
 #, python-format
 msgid "(Living people: %(option_name)s)"
-msgstr ""
+msgstr "(Individus vivants : %(option_name)s)"
 
 # master
 #: ../gramps/plugins/drawreport/statisticschart.py:785
@@ -21782,9 +21733,8 @@ msgstr "L'individu central pour ce filtre."
 # master
 #. ###############################
 #: ../gramps/plugins/drawreport/statisticschart.py:998
-#, fuzzy
 msgid "Report Details"
-msgstr "Détails du dépôt"
+msgstr "Détails du rapport"
 
 #. ###############################
 #: ../gramps/plugins/drawreport/statisticschart.py:1002
@@ -23529,7 +23479,6 @@ msgstr "Générer les codes SoundEx"
 
 # master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1266
-#, fuzzy
 msgid "Place Enclosed By"
 msgstr "Partie du lieu"
 
@@ -24610,9 +24559,10 @@ msgstr "Inclure les lieux (de naissance, mariage, décès), mais pas les dates"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:693
-#, fuzzy
 msgid "Include (birth, marriage, death) dates and places on same line"
-msgstr "Inclure les dates (de naissance, mariage, décès), ainsi que les lieux"
+msgstr ""
+"Inclure les dates (de naissance, mariage, décès), ainsi que les lieux sur la "
+"même ligne"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:695
@@ -24654,32 +24604,28 @@ msgstr "Emplacement de la miniature"
 # master
 #. occupation = BooleanOption(_("Include occupation"), False)
 #: ../gramps/plugins/graph/gvrelgraph.py:737
-#, fuzzy
 msgid "Include occupation"
-msgstr "Inclure les cousins"
+msgstr "Inclure la profession"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:738
-#, fuzzy
 msgid "Do not include any occupation"
-msgstr "Ne pas inclure de titre"
+msgstr "Ne pas inclure la profession"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:739
-#, fuzzy
 msgid "Include description of most recent occupation"
-msgstr "Inclure les frères et sœurs de la souche"
+msgstr "Inclure la description de la dernière profession"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:740
 msgid "Include date, description and place of all occupations"
-msgstr ""
+msgstr "Inclure la date, description et le lieu pour toutes les professions"
 
 # master
 #: ../gramps/plugins/graph/gvrelgraph.py:741
-#, fuzzy
 msgid "Whether to include the last occupation"
-msgstr "Inclure ou non une option pour télécharger une base de données"
+msgstr "Inclure ou non la dernière profession"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:745
 msgid "Include relationship debugging numbers also"
@@ -30078,24 +30024,22 @@ msgstr "Le mariage le plus long"
 
 # master
 #: ../gramps/plugins/lib/librecords.py:71
-#, fuzzy
 msgid "Couple with smallest age difference"
-msgstr "Couple avec le plus d'enfants"
+msgstr "Couple avec la plus petite différence d'âge"
 
 # master
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/plugins/lib/librecords.py:72
-#, fuzzy
 msgid "Couple with biggest age difference"
-msgstr "Différence d'âge max. entre frères et sœurs "
+msgstr "Couple avec la plus grande différence d'âge"
 
 # master
 #. Add call name to first name.
 #. translators: used in French+Russian, ignore otherwise
 #: ../gramps/plugins/lib/librecords.py:429
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "%(name1)s et %(name2)s"
+msgstr "\"%(callname)s\" (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:756
 msgid "Top Left"
@@ -30558,7 +30502,6 @@ msgstr "les dépôts non-présents"
 
 # master
 #: ../gramps/plugins/quickview/filterbyname.py:48
-#, fuzzy
 msgid "Filtering_on|Inverse Media"
 msgstr "les objets media non-présents"
 
@@ -31632,9 +31575,9 @@ msgstr "%(event_name)s : %(event_text)s"
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:460
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(event_name)s : %(event_text)s"
+msgstr "%(event_role)s à %(event_name)s de %(primary_person)s : %(event_text)s"
 
 # master
 #. translators: needed for Arabic, ignore otherwise
@@ -31862,15 +31805,13 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:871
-#, fuzzy
 msgid "Include other events"
-msgstr "Inclure les événements"
+msgstr "Inclure les autres événements"
 
 # master
 #: ../gramps/plugins/textreport/detancestralreport.py:872
-#, fuzzy
 msgid "Whether to include other events people participated in."
-msgstr "Inclure ou non les événements pour les parents."
+msgstr "Inclure ou non les autres événements de ces participants."
 
 #. How to handle missing information
 #. Missing information
@@ -32080,15 +32021,13 @@ msgstr "Famille centrale"
 
 # master
 #: ../gramps/plugins/textreport/familygroup.py:707
-#, fuzzy
 msgid "The center family for the filter"
 msgstr "La famille centrale pour ce rapport"
 
 # master
 #: ../gramps/plugins/textreport/familygroup.py:720
-#, fuzzy
 msgid "Recursive (down)"
-msgstr "Récursif"
+msgstr "Récursif (en bas)"
 
 #: ../gramps/plugins/textreport/familygroup.py:721
 msgid "Create reports for all descendants of this family."
@@ -32153,9 +32092,8 @@ msgstr "Inclure ou non les informations du mariage des parents."
 
 # master
 #: ../gramps/plugins/textreport/familygroup.py:768
-#, fuzzy
 msgid "Whether to include notes for families."
-msgstr "Inclure ou non les notes pour les parents."
+msgstr "Inclure ou non les notes pour les familles."
 
 #: ../gramps/plugins/textreport/familygroup.py:771
 msgid "Dates of Relatives"
@@ -32462,9 +32400,9 @@ msgstr "Pays : %s "
 
 # master
 #: ../gramps/plugins/textreport/placereport.py:193
-#, fuzzy, python-format
+#, python-format
 msgid "places|All Names: %s"
-msgstr "Nom du lieu"
+msgstr "Tous les noms : %s"
 
 #: ../gramps/plugins/textreport/placereport.py:216
 msgid "Events that happened at this place"
@@ -33296,12 +33234,14 @@ msgstr[1] "{quantity} liens conjoint/famille en double ont été trouvés\n"
 # master
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2195
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] "1 famille sans parent ni enfant a été trouvée et effacée.\n"
-msgstr[1] "1 famille sans parent ni enfant a été trouvée et effacée.\n"
+msgstr[0] ""
+"{quantity} famille sans parent ni enfant a été trouvée et effacée.\n"
+msgstr[1] ""
+"{quantity} familles sans parent ni enfant ont été trouvées et effacées.\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -33839,9 +33779,8 @@ msgstr "Édition des dates"
 # master
 #: ../gramps/plugins/tool/findloop.py:70
 #: ../gramps/plugins/tool/tools.gpr.py:485
-#, fuzzy
 msgid "Find database loop"
-msgstr "Les bases de données sont différentes"
+msgstr "Trouver une boucle dans la base de données"
 
 #. start the progress indicator
 #: ../gramps/plugins/tool/findloop.py:89
@@ -33853,21 +33792,18 @@ msgstr "Début"
 # Substantif (GNOME fr)
 # master
 #: ../gramps/plugins/tool/findloop.py:91
-#, fuzzy
 msgid "Looking for possible loop for each person"
-msgstr "Recherche pour {number_of} individu"
+msgstr "Recherche d'une éventuelle boucle pour chaque individu"
 
 # master
 #: ../gramps/plugins/tool/findloop.py:104
-#, fuzzy
 msgid "Ancestor"
-msgstr "Ascendants"
+msgstr "Ascendant"
 
 # master
 #: ../gramps/plugins/tool/findloop.py:106
-#, fuzzy
 msgid "Descendant"
-msgstr "Descendants"
+msgstr "Descendant"
 
 # manuel wiki
 # points de suspension et url ?
@@ -34205,12 +34141,12 @@ msgstr[1] "Recherche du nom pour {number_of} individus"
 # master
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
-msgstr ""
+msgstr "Copier depuis BD vers Préférences"
 
 # master
 #: ../gramps/plugins/tool/ownereditor.glade:23
 msgid "Copy from Preferences to DB"
-msgstr ""
+msgstr "Copier depuis Préférences vers BD"
 
 # trunk
 #: ../gramps/plugins/tool/ownereditor.glade:166
@@ -34246,6 +34182,8 @@ msgstr "_Courriel :"
 #: ../gramps/plugins/tool/ownereditor.glade:385
 msgid "Right-click to copy from/to Researcher Preferences"
 msgstr ""
+"Un clic sur le bouton droit pour copier vers/depuis les Préférences du "
+"chercheur"
 
 # manuel wiki
 # points de suspension et url ?
@@ -34935,9 +34873,8 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/tool/tools.gpr.py:486
-#, fuzzy
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
+msgstr "Recherche dans la base de données pour trouver une éventuelle boucle."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -35683,9 +35620,8 @@ msgstr "Événement incomplet ou non-référencé ?"
 # master
 #: ../gramps/plugins/view/geoevents.py:297
 #: ../gramps/plugins/view/geoevents.py:308
-#, fuzzy
 msgid "Selecting all events"
-msgstr "tous les événements"
+msgstr "Sélectionnez tous les événements"
 
 #: ../gramps/plugins/view/geoevents.py:353
 #: ../gramps/plugins/view/geoevents.py:385
@@ -35975,9 +35911,8 @@ msgstr "GéoLieux"
 # Substantif (GNOME fr)
 #: ../gramps/plugins/view/geoplaces.py:272
 #: ../gramps/plugins/view/geoplaces.py:283
-#, fuzzy
 msgid "Selecting all places"
-msgstr "Choix d'un individu"
+msgstr "Sélectionnez tous les lieux"
 
 #: ../gramps/plugins/view/geoplaces.py:307
 msgid "The place name in the status bar is disabled."
@@ -37408,9 +37343,8 @@ msgstr "Inclure le nom complet"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:9439
-#, fuzzy
 msgid "Replace Complete Name"
-msgstr "Individus avec des noms incomplets"
+msgstr "Remplacer le nom complet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9462
 msgid "Include download page"
@@ -37643,14 +37577,13 @@ msgstr ""
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:9626
-#, fuzzy
 msgid "CMS inclusion"
-msgstr "Circoncision"
+msgstr "Inclusion CMS"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:9630
 msgid "Do we include these pages in a cms web ?"
-msgstr ""
+msgstr "Doit-on inclure ces pages dans un cms internet ?"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:9634
@@ -37962,7 +37895,7 @@ msgstr "%(couple)s, <em>mariage</em>"
 # master
 #: ../gramps/plugins/webreport/webcal.py:1871
 msgid "Until"
-msgstr ""
+msgstr "Jusqu'à"
 
 # trunk
 #. translators: leave all/any {...} untranslated
