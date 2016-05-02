@@ -66,14 +66,14 @@ from gramps.gen.display.place import displayer as place_displayer
 # Constant options items
 #
 #------------------------------------------------------------------------
-_COLORS = [ { 'name' : _("B&W outline"),     'value' : 'outlined' },
-            { 'name' : _("Colored outline"), 'value' : 'colored' },
-            { 'name' : _("Color fill"),      'value' : 'filled' }]
+_COLORS = [{'name' : _("B&W outline"),     'value' : 'outlined'},
+           {'name' : _("Colored outline"), 'value' : 'colored'},
+           {'name' : _("Color fill"),      'value' : 'filled'}]
 
-_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
-            { 'name' : _("Descendants -> Ancestors"),  'value' : 'a' },
-            { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
-            { 'name' : _("Descendants - Ancestors"),   'value' : '' }]
+_ARROWS = [{'name' : _("Descendants <- Ancestors"),  'value' : 'd'},
+           {'name' : _("Descendants -> Ancestors"),  'value' : 'a'},
+           {'name' : _("Descendants <-> Ancestors"), 'value' : 'da'},
+           {'name' : _("Descendants - Ancestors"),   'value' : ''}]
 
 #------------------------------------------------------------------------
 #
@@ -130,17 +130,19 @@ class RelGraphReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, self._locale)
+        self._db = self.database
 
         self.includeid = get_value('incid')
         self.includeurl = get_value('url')
         self.includeimg = get_value('includeImages')
-        self.imgpos     = get_value('imageOnTheSide')
+        self.imgpos = get_value('imageOnTheSide')
         self.use_roundedcorners = get_value('useroundedcorners')
         self.adoptionsdashed = get_value('dashed')
         self.show_families = get_value('showfamily')
         self.use_subgraphs = get_value('usesubgraphs')
         self.event_choice = get_value('event_choice')
         self.occupation = get_value('occupation')
+        self.use_html_output = False
 
         self.colorize = get_value('color')
         color_males = get_value('colormales')
@@ -169,10 +171,10 @@ class RelGraphReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         pid = get_value('pid')
-        self.center_person = self.database.get_person_from_gramps_id(pid)
+        self.center_person = self._db.get_person_from_gramps_id(pid)
 
         self.increlname = get_value('increlname')
-        if self.increlname :
+        if self.increlname:
             self.rel_calc = get_relationship_calculator(reinit=True,
                                                         clocale=self._locale)
 
@@ -182,26 +184,26 @@ class RelGraphReport(Report):
             self.advrelinfo = False
 
     def write_report(self):
-        self.person_handles = self._filter.apply(self.database,
-                    self.database.iter_person_handles())
+        person_handles = self._filter.apply(self._db,
+                                            self._db.iter_person_handles())
 
-        if len(self.person_handles) > 1:
-            self.add_persons_and_families()
-            self.add_child_links_to_families()
+        if len(person_handles) > 1:
+            self.add_persons_and_families(person_handles)
+            self.add_child_links_to_families(person_handles)
 
-    def add_child_links_to_families(self):
+    def add_child_links_to_families(self, person_handles):
         """
         returns string of Graphviz edges linking parents to families or
         children
         """
         # Hash people in a dictionary for faster inclusion checking
-        person_dict = dict([handle, 1] for handle in self.person_handles)
+        person_dict = dict([handle, 1] for handle in person_handles)
 
-        for person_handle in self.person_handles:
-            person = self.database.get_person_from_handle(person_handle)
+        for person_handle in person_handles:
+            person = self._db.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             for fam_handle in person.get_parent_family_handle_list():
-                family = self.database.get_family_from_handle(fam_handle)
+                family = self._db.get_family_from_handle(fam_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
                 for child_ref in family.get_child_ref_list():
@@ -210,8 +212,8 @@ class RelGraphReport(Report):
                         mrel = child_ref.mrel
                         break
                 if (self.show_families and
-                    ((father_handle and father_handle in person_dict) or
-                     (mother_handle and mother_handle in person_dict))):
+                        ((father_handle and father_handle in person_dict) or
+                         (mother_handle and mother_handle in person_dict))):
                     # Link to the family node if either parent is in graph
                     self.add_family_link(p_id, family, frel, mrel)
                 else:
@@ -228,36 +230,36 @@ class RelGraphReport(Report):
                    (int(mrel) != ChildRefType.BIRTH))
         # If birth relation to father is NONE, meaning there is no father and
         # if birth relation to mother is BIRTH then solid line
-        if ((int(frel) == ChildRefType.NONE) and
-           (int(mrel) == ChildRefType.BIRTH)):
+        if (int(frel) == ChildRefType.NONE and
+                int(mrel) == ChildRefType.BIRTH):
             adopted = False
         if adopted and self.adoptionsdashed:
             style = 'dotted'
-        self.doc.add_link( family.get_gramps_id(), p_id, style,
-                           self.arrowheadstyle, self.arrowtailstyle )
+        self.doc.add_link(family.get_gramps_id(), p_id, style,
+                          self.arrowheadstyle, self.arrowtailstyle)
 
     def add_parent_link(self, p_id, parent_handle, rel):
         "Links the child to a parent"
         style = 'solid'
         if (int(rel) != ChildRefType.BIRTH) and self.adoptionsdashed:
             style = 'dotted'
-        parent = self.database.get_person_from_handle(parent_handle)
-        self.doc.add_link( parent.get_gramps_id(), p_id, style,
-                           self.arrowheadstyle, self.arrowtailstyle )
+        parent = self._db.get_person_from_handle(parent_handle)
+        self.doc.add_link(parent.get_gramps_id(), p_id, style,
+                          self.arrowheadstyle, self.arrowtailstyle)
 
-    def add_persons_and_families(self):
+    def add_persons_and_families(self, person_handles):
         "adds nodes for persons and their families"
         # variable to communicate with get_person_label
-        self.bUseHtmlOutput = False
+        self.use_html_output = False
 
         # The list of families for which we have output the node,
         # so we don't do it twice
         families_done = {}
-        for person_handle in self.person_handles:
+        for person_handle in person_handles:
             # determine per person if we use HTML style label
             if self.includeimg:
-                self.bUseHtmlOutput = True
-            person = self.database.get_person_from_handle(person_handle)
+                self.use_html_output = True
+            person = self._db.get_person_from_handle(person_handle)
             if person is None:
                 continue
             p_id = person.get_gramps_id()
@@ -266,10 +268,10 @@ class RelGraphReport(Report):
             (shape, style, color, fill) = self.get_gender_style(person)
             url = ""
             if self.includeurl:
-                h = person_handle
-                dirpath = "ppl/%s/%s" % (h[-1], h[-2])
+                phan = person_handle
+                dirpath = "ppl/%s/%s" % (phan[-1], phan[-2])
                 dirpath = dirpath.lower()
-                url = "%s/%s.html" % (dirpath, h)
+                url = "%s/%s.html" % (dirpath, phan)
 
             self.doc.add_node(p_id, label, shape, color, style, fill, url)
 
@@ -277,7 +279,7 @@ class RelGraphReport(Report):
             if self.show_families:
                 family_list = person.get_family_handle_list()
                 for fam_handle in family_list:
-                    family = self.database.get_family_from_handle(fam_handle)
+                    family = self._db.get_family_from_handle(fam_handle)
                     if family is None:
                         continue
                     if fam_handle not in families_done:
@@ -294,7 +296,7 @@ class RelGraphReport(Report):
 
     def __add_family(self, fam_handle):
         """Add a node for a family and optionally link the spouses to it"""
-        fam = self.database.get_family_from_handle(fam_handle)
+        fam = self._db.get_family_from_handle(fam_handle)
         if fam is None:
             return
         fam_id = fam.get_gramps_id()
@@ -302,22 +304,20 @@ class RelGraphReport(Report):
         m_type = m_date = m_place = ""
         d_type = d_date = d_place = ""
         for event_ref in fam.get_event_ref_list():
-            event = self.database.get_event_from_handle(event_ref.ref)
+            event = self._db.get_event_from_handle(event_ref.ref)
             if event is None:
                 continue
             if (event.type == EventType.MARRIAGE and
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                 event_ref.get_role() == EventRoleType.PRIMARY)
-               ):
+                    (event_ref.get_role() == EventRoleType.FAMILY or
+                     event_ref.get_role() == EventRoleType.PRIMARY)):
                 m_type = event.type
                 m_date = self.get_date_string(event)
                 if not (self.event_choice == 3 and m_date):
                     m_place = self.get_place_string(event)
                 break
             if (event.type == EventType.DIVORCE and
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                 event_ref.get_role() == EventRoleType.PRIMARY)
-               ):
+                    (event_ref.get_role() == EventRoleType.FAMILY or
+                     event_ref.get_role() == EventRoleType.PRIMARY)):
                 d_type = event.type
                 d_date = self.get_date_string(event)
                 if not (self.event_choice == 3 and d_date):
@@ -328,25 +328,25 @@ class RelGraphReport(Report):
         if self.includeid == 2:
             # id on separate line
             labellines.append("(%s)" % fam_id)
-        if (self.event_choice == 7):
-            if (m_type):
+        if self.event_choice == 7:
+            if m_type:
                 line = m_type.get_abbreviation()
-                if (m_date):
+                if m_date:
                     line += ' %s' % m_date
-                if (m_date and m_place):
+                if m_date and m_place:
                     labellines.append(line)
                     line = ''
-                if (m_place):
+                if m_place:
                     line += ' %s' % m_place
                 labellines.append(line)
-            if (d_type):
+            if d_type:
                 line = d_type.get_abbreviation()
-                if (d_date):
+                if d_date:
                     line += ' %s' % d_date
-                if (d_date and d_place):
+                if d_date and d_place:
                     labellines.append(line)
                     line = ''
-                if (d_place):
+                if d_place:
                     line += ' %s' % d_place
                 labellines.append(line)
         else:
@@ -384,13 +384,13 @@ class RelGraphReport(Report):
             f_handle = fam.get_father_handle()
             m_handle = fam.get_mother_handle()
             if f_handle:
-                father = self.database.get_person_from_handle(f_handle)
+                father = self._db.get_person_from_handle(f_handle)
                 self.doc.add_link(father.get_gramps_id(),
                                   fam_id, "",
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
             if m_handle:
-                mother = self.database.get_person_from_handle(m_handle)
+                mother = self._db.get_person_from_handle(m_handle)
                 self.doc.add_link(mother.get_gramps_id(),
                                   fam_id, "",
                                   self.arrowheadstyle,
@@ -433,24 +433,23 @@ class RelGraphReport(Report):
     def get_person_label(self, person):
         "return person label string"
         # see if we have an image to use for this person
-        imagePath = None
-        if self.bUseHtmlOutput:
-            mediaList = person.get_media_list()
-            if len(mediaList) > 0:
-                mediaHandle = mediaList[0].get_reference_handle()
-                media = self.database.get_media_from_handle(mediaHandle)
-                mediaMimeType = media.get_mime_type()
-                if mediaMimeType[0:5] == "image":
-                    imagePath = get_thumbnail_path(
-                                    media_path_full(self.database,
-                                                    media.get_path()),
-                                    rectangle=mediaList[0].get_rectangle())
+        image_path = None
+        if self.use_html_output:
+            media_list = person.get_media_list()
+            if len(media_list) > 0:
+                media_handle = media_list[0].get_reference_handle()
+                media = self._db.get_media_from_handle(media_handle)
+                media_mime_type = media.get_mime_type()
+                if media_mime_type[0:5] == "image":
+                    image_path = get_thumbnail_path(
+                        media_path_full(self._db, media.get_path()),
+                        rectangle=media_list[0].get_rectangle())
                     # test if thumbnail actually exists in thumbs
                     # (import of data means media files might not be present
-                    imagePath = find_file(imagePath)
+                    image_path = find_file(image_path)
 
         label = ""
-        lineDelimiter = '\\n'
+        line_delimiter = '\\n'
 
         # If we have an image, then start an HTML table; remember to close
         # the table afterwards!
@@ -463,34 +462,37 @@ class RelGraphReport(Report):
         #
         #       http://www.graphviz.org/info/shapes.html#html
         #
-        if self.bUseHtmlOutput and imagePath:
-            lineDelimiter = '<BR/>'
-            label += '<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" CELLBORDER="0"><TR><TD></TD><TD><IMG SRC="%s"/></TD><TD></TD>'  % imagePath
+        if self.use_html_output and image_path:
+            line_delimiter = '<BR/>'
+            label += '<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
+            label += 'CELLBORDER="0"><TR><TD></TD><TD>'
+            label += '<IMG SRC="%s"/></TD><TD></TD>' % image_path
             if self.imgpos == 0:
                 #trick it into not stretching the image
                 label += '</TR><TR><TD COLSPAN="3">'
-            else :
+            else:
                 label += '<TD>'
-        else :
+        else:
             #no need for html label with this person
-            self.bUseHtmlOutput = False
+            self.use_html_output = False
 
         # at the very least, the label must have the person's name
-        nm = self._name_display.display(person)
-        if self.bUseHtmlOutput :
+        p_name = self._name_display.display(person)
+        if self.use_html_output:
             # avoid < and > in the name, as this is html text
-            label += nm.replace('<', '&#60;').replace('>', '&#62;')
-        else :
-            label += nm
+            label += p_name.replace('<', '&#60;').replace('>', '&#62;')
+        else:
+            label += p_name
         p_id = person.get_gramps_id()
         if self.includeid == 1: # same line
             label += " (%s)" % p_id
         elif self.includeid == 2: # own line
-            label += "%s(%s)" % (lineDelimiter, p_id)
+            label += "%s(%s)" % (line_delimiter, p_id)
         if self.event_choice != 0:
-            b_date, d_date, b_place, d_place, b_type, d_type = self.get_event_strings(person)
+            b_date, d_date, b_place, d_place, b_type, d_type = \
+                self.get_event_strings(person)
             if self.event_choice in [1, 2, 3, 4, 5] and (b_date or d_date):
-                label += '%s(' % lineDelimiter
+                label += '%s(' % line_delimiter
                 if b_date:
                     label += '%s' % b_date
                 label += ' - '
@@ -498,78 +500,84 @@ class RelGraphReport(Report):
                     label += '%s' % d_date
                 label += ')'
             if (self.event_choice in [2, 3, 5, 6] and
-                (b_place or d_place) and
-                not (self.event_choice == 3 and (b_date or d_date))
+                    (b_place or d_place) and
+                    not (self.event_choice == 3 and (b_date or d_date))
                ):
-                label += '%s(' % lineDelimiter
+                label += '%s(' % line_delimiter
                 if b_place:
                     label += '%s' % b_place
                 label += ' - '
                 if d_place:
                     label += '%s' % d_place
                 label += ')'
-        if (self.event_choice == 7):
-            if (b_type):
-                label += '%s%s' % (lineDelimiter, b_type.get_abbreviation())
-                if (b_date): label += ' %s' % b_date
-                if (b_place): label += ' %s' % b_place
+        if self.event_choice == 7:
+            if b_type:
+                label += '%s%s' % (line_delimiter, b_type.get_abbreviation())
+                if b_date:
+                    label += ' %s' % b_date
+                if b_place:
+                    label += ' %s' % b_place
 
-            if (d_type):
-                label += '%s%s' % (lineDelimiter, d_type.get_abbreviation())
-                if (d_date): label += ' %s' % d_date
-                if (d_place): label += ' %s' % d_place
+            if d_type:
+                label += '%s%s' % (line_delimiter, d_type.get_abbreviation())
+                if d_date:
+                    label += ' %s' % d_date
+                if d_place:
+                    label += ' %s' % d_place
 
         if self.increlname and self.center_person != person:
             # display relationship info
             if self.advrelinfo:
-                (relationship, Ga, Gb) = self.rel_calc.get_one_relationship(
-                            self.database, self.center_person, person,
-                            extra_info=True, olocale=self._locale)
+                (relationship, _ga, _gb) = self.rel_calc.get_one_relationship(
+                    self._db, self.center_person, person,
+                    extra_info=True, olocale=self._locale)
                 if relationship:
-                    label += "%s(%s Ga=%d Gb=%d)" % (lineDelimiter,
-                                                     relationship, Ga, Gb)
+                    label += "%s(%s Ga=%d Gb=%d)" % (line_delimiter,
+                                                     relationship, _ga, _gb)
             else:
                 relationship = self.rel_calc.get_one_relationship(
-                            self.database, self.center_person, person,
-                            olocale=self._locale)
+                    self._db, self.center_person, person,
+                    olocale=self._locale)
                 if relationship:
-                    label += "%s(%s)" % (lineDelimiter, relationship)
+                    label += "%s(%s)" % (line_delimiter, relationship)
 
         if self.occupation > 0:
-           event_refs = person.get_primary_event_ref_list()
-           events = [event for event in
-                        [self.database.get_event_from_handle(ref.ref)
-                            for ref in event_refs]
-                        if event.get_type() ==
-                            EventType(EventType.OCCUPATION)]
-           if len(events) > 0:
-               events.sort(key=lambda x: x.get_date_object())
-               if (self.occupation == 1):
-                   occupation = events[-1].get_description()
-                   if occupation:
-                       label += "%s(%s)" % (lineDelimiter, occupation)
-               elif (self.occupation == 2):
-                   for e in events:
-                       date = self.get_date_string(e)
-                       place = self.get_place_string(e)
-                       desc = e.get_description()
-                       if (not date and not desc and not place): continue
-                       label += '%s(' % lineDelimiter
-                       if (date):
-                           label += '%s' % date
-                           if (desc): label += ' '
-                       if (desc):
-                           label += '%s' % desc
-                       if (place):
-                           if (date or desc): label += ', '
-                           label += '%s' % place
-                       label += ')'
+            event_refs = person.get_primary_event_ref_list()
+            events = [event for event in
+                      [self._db.get_event_from_handle(ref.ref)
+                       for ref in event_refs]
+                      if event.get_type() == EventType(EventType.OCCUPATION)]
+            if len(events) > 0:
+                events.sort(key=lambda x: x.get_date_object())
+                if self.occupation == 1:
+                    occupation = events[-1].get_description()
+                    if occupation:
+                        label += "%s(%s)" % (line_delimiter, occupation)
+                elif self.occupation == 2:
+                    for evt in events:
+                        date = self.get_date_string(evt)
+                        place = self.get_place_string(evt)
+                        desc = evt.get_description()
+                        if not date and not desc and not place:
+                            continue
+                        label += '%s(' % line_delimiter
+                        if date:
+                            label += '%s' % date
+                            if desc:
+                                label += ' '
+                        if desc:
+                            label += '%s' % desc
+                        if place:
+                            if date or desc:
+                                label += ', '
+                            label += '%s' % place
+                        label += ')'
 
         # see if we have a table that needs to be terminated
-        if self.bUseHtmlOutput:
+        if self.use_html_output:
             label += '</TD></TR></TABLE>'
             return label
-        else :
+        else:
             # non html label is enclosed by "" so escape other "
             return label.replace('"', '\\\"')
 
@@ -579,19 +587,20 @@ class RelGraphReport(Report):
         birth_date = birth_place = death_date = death_place = ""
         birth_type = death_type = ""
 
-        birth_event = get_birth_or_fallback(self.database, person)
+        birth_event = get_birth_or_fallback(self._db, person)
         if birth_event:
             birth_type = birth_event.type
             birth_date = self.get_date_string(birth_event)
             birth_place = self.get_place_string(birth_event)
 
-        death_event = get_death_or_fallback(self.database, person)
+        death_event = get_death_or_fallback(self._db, person)
         if death_event:
             death_type = death_event.type
             death_date = self.get_date_string(death_event)
             death_place = self.get_place_string(death_event)
 
-        return (birth_date, death_date, birth_place, death_place, birth_type, death_type)
+        return (birth_date, death_date, birth_place,
+                death_place, birth_type, death_type)
 
     def get_date_string(self, event):
         """
@@ -622,7 +631,7 @@ class RelGraphReport(Report):
             empty string
         """
         if event and self.event_choice in [2, 3, 5, 6, 7]:
-            return place_displayer.display_event(self.database, event)
+            return place_displayer.display_event(self._db, event)
         return ''
 
 #------------------------------------------------------------------------
@@ -638,10 +647,12 @@ class RelGraphOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         self.__show_relships = None
-        self.__show_GaGb = None
+        self.__show_ga_gb = None
         self.__include_images = None
         self.__image_on_side = None
         self.__db = dbase
+        self._nf = None
+        self.event_choice = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -652,7 +663,7 @@ class RelGraphOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                         _("Determines what people are included in the graph"))
+            _("Determines what people are included in the graph"))
         add_option("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -679,20 +690,21 @@ class RelGraphOptions(MenuReportOptions):
         self.event_choice = EnumeratedListOption(_('Dates and/or Places'), 0)
         self.event_choice.add_item(0, _('Do not include any dates or places'))
         self.event_choice.add_item(1, _('Include (birth, marriage, death) '
-                                         'dates, but no places'))
+                                        'dates, but no places'))
         self.event_choice.add_item(2, _('Include (birth, marriage, death) '
-                                         'dates, and places'))
+                                        'dates, and places'))
         self.event_choice.add_item(3, _('Include (birth, marriage, death) '
-                                         'dates, and places if no dates'))
+                                        'dates, and places if no dates'))
         self.event_choice.add_item(4, _('Include (birth, marriage, death) '
-                                         'years, but no places'))
+                                        'years, but no places'))
         self.event_choice.add_item(5, _('Include (birth, marriage, death) '
-                                         'years, and places'))
+                                        'years, and places'))
         self.event_choice.add_item(6, _('Include (birth, marriage, death) '
-                                         'places, but no dates'))
+                                        'places, but no dates'))
         self.event_choice.add_item(7, _('Include (birth, marriage, death) '
-                                         'dates and places on same line'))
-        self.event_choice.set_help(_("Whether to include dates and/or places"))
+                                        'dates and places on same line'))
+        self.event_choice.set_help(
+            _("Whether to include dates and/or places"))
         add_option("event_choice", self.event_choice)
 
         url = BooleanOption(_("Include URLs"), False)
@@ -711,17 +723,17 @@ class RelGraphOptions(MenuReportOptions):
         add_option("incid", include_id)
 
         self.__show_relships = BooleanOption(
-                            _("Include relationship to center person"), False)
-        self.__show_relships.set_help(_("Whether to show every "
-                            "person's relationship to the center person"))
+            _("Include relationship to center person"), False)
+        self.__show_relships.set_help(_("Whether to show every person's "
+                                        "relationship to the center person"))
         add_option("increlname", self.__show_relships)
         self.__show_relships.connect('value-changed',
                                      self.__show_relships_changed)
 
         self.__include_images = BooleanOption(
-                                 _('Include thumbnail images of people'), False)
+            _('Include thumbnail images of people'), False)
         self.__include_images.set_help(
-                                 _("Whether to include thumbnails of people."))
+            _("Whether to include thumbnails of people."))
         add_option("includeImages", self.__include_images)
         self.__include_images.connect('value-changed', self.__image_changed)
 
@@ -729,32 +741,34 @@ class RelGraphOptions(MenuReportOptions):
         self.__image_on_side.add_item(0, _('Above the name'))
         self.__image_on_side.add_item(1, _('Beside the name'))
         self.__image_on_side.set_help(
-                              _("Where the thumbnail image should appear "
-                                "relative to the name"))
+            _("Where the thumbnail image should appear relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
 
         #occupation = BooleanOption(_("Include occupation"), False)
         occupation = EnumeratedListOption(_('Include occupation'), 0)
         occupation.add_item(0, _('Do not include any occupation'))
-        occupation.add_item(1, _('Include description of most recent occupation'))
-        occupation.add_item(2, _('Include date, description and place of all occupations'))
+        occupation.add_item(1, _('Include description '
+                                 'of most recent occupation'))
+        occupation.add_item(2, _('Include date, description and place '
+                                 'of all occupations'))
         occupation.set_help(_("Whether to include the last occupation"))
         add_option("occupation", occupation)
 
         if __debug__:
-            self.__show_GaGb = BooleanOption(_("Include relationship "
-                                               "debugging numbers also"),
-                                             False)
-            self.__show_GaGb.set_help(_("Whether to include 'Ga' and 'Gb' "
-                            "also, to debug the relationship calculator"))
-            add_option("advrelinfo", self.__show_GaGb)
+            self.__show_ga_gb = BooleanOption(_("Include relationship "
+                                                "debugging numbers also"),
+                                              False)
+            self.__show_ga_gb.set_help(_("Whether to include 'Ga' and 'Gb' "
+                                         "also, to debug the relationship "
+                                         "calculator"))
+            add_option("advrelinfo", self.__show_ga_gb)
 
         ################################
         add_option = partial(menu.add_option, _("Graph Style"))
         ################################
 
         color = EnumeratedListOption(_("Graph coloring"), 'filled')
-        for i in range( 0, len(_COLORS) ):
+        for i in range(0, len(_COLORS)):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
                          "with red.  If the sex of an individual "
@@ -780,20 +794,19 @@ class RelGraphOptions(MenuReportOptions):
         add_option('colorfamilies', color_family)
 
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
-        for i in range( 0, len(_ARROWS) ):
+        for i in range(0, len(_ARROWS)):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
         add_option("arrow", arrow)
 
-        roundedcorners = BooleanOption(     # see bug report #2180
-                    _("Use rounded corners"), False)
-        roundedcorners.set_help(
-                    _("Use rounded corners to differentiate "
-                      "between women and men."))
+        # see bug report #2180
+        roundedcorners = BooleanOption(_("Use rounded corners"), False)
+        roundedcorners.set_help(_("Use rounded corners to differentiate "
+                                  "between women and men."))
         add_option("useroundedcorners", roundedcorners)
 
         dashed = BooleanOption(
-                  _("Indicate non-birth relationships with dotted lines"), True)
+            _("Indicate non-birth relationships with dotted lines"), True)
         dashed.set_help(_("Non-birth relationships will show up "
                           "as dotted lines in the graph."))
         add_option("dashed", dashed)
@@ -841,6 +854,6 @@ class RelGraphOptions(MenuReportOptions):
         """
         Enable/disable menu items if relationships are required
         """
-        if self.__show_GaGb:
-            self.__show_GaGb.set_available(self.__show_relships.get_value())
+        if self.__show_ga_gb:
+            self.__show_ga_gb.set_available(self.__show_relships.get_value())
         self.__filter_changed()
