@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010,2016  Serge Noiraud
+# Copyright (C) 2010-2016  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -75,12 +75,9 @@ import copy
 from hashlib import md5
 import time, datetime
 import shutil
-#import codecs
 import tarfile
 import tempfile
-#from io import StringIO, BytesIO, TextIOWrapper
 from io import BytesIO, TextIOWrapper
-#from textwrap import TextWrapper
 from unicodedata import normalize
 from collections import defaultdict
 from xml.sax.saxutils import escape
@@ -109,7 +106,6 @@ from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
-#from gramps.gen.sort import Sort
 from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
@@ -122,12 +118,10 @@ from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
-#from gramps.gen.utils.db import get_source_and_citation_referents
 from gramps.gen.constfunc import win, get_curr_dir
 from gramps.gen.config import config
 from gramps.gen.utils.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size # , resize_to_jpeg_buffer
-#from gramps.gen.mime import get_description
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.datehandler import displayer as _dd
@@ -443,13 +437,8 @@ _NAME_STYLE_DEFAULT = 1
 _NAME_STYLE_FIRST = 0
 _NAME_STYLE_SPECIAL = None
 
-#wrapper = TextWrapper()
-#wrapper.break_log_words = True
-#wrapper.width = 20
-
 PLUGMAN = BasePluginManager.get_instance()
 CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
-
 
 _HTML_DBL_QUOTES = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _HTML_SNG_QUOTES = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -480,10 +469,6 @@ def html_escape(text):
     text = text.replace("'", '&#39;')
 
     return text
-
-# table for skipping control chars from XML except 09, 0A, 0D
-#strip_dict = dict.fromkeys(list(range(9))+
-#                           list(range(11, 13))+list(range(14, 32)))
 
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
@@ -7875,9 +7860,11 @@ class NavWebReport(Report):
             self.options[optname] = menuopt.get_value()
 
         stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_living_people_option(self, menu)
+        stdoptions.run_private_data_option(self, menu)
 
-        livinginfo = self.options['living']
-        yearsafterdeath = self.options['yearsafterdeath']
+        livinginfo = self.options['living_people']
+        yearsafterdeath = self.options['years_past_death']
 
         if livinginfo != _INCLUDE_LIVING_VALUE:
             self.database = LivingProxyDb(self.database,
@@ -9256,19 +9243,20 @@ class NavWebOptions(MenuReportOptions):
 
         # We must figure out the value of the first option before we can
         # create the EnumeratedListOption
-        fmt_list = _nd.get_name_format()
-        defaultnum = _nd.get_default_format()
-        default = 0
-        for ind, val in enumerate(fmt_list):
-            if val[0] == defaultnum:
-                default = ind
-                break
-        name_format = EnumeratedListOption(_("Name format"),
-                            fmt_list[default][0])
-        for num, name, fmt_str, act in fmt_list:
-            name_format.add_item(num, name)
-        name_format.set_help(_("Select the format to display names"))
-        addopt("name_format", name_format)
+        #fmt_list = _nd.get_name_format()
+        #defaultnum = _nd.get_default_format()
+        #default = 0
+        #for ind, val in enumerate(fmt_list):
+        #    if val[0] == defaultnum:
+        #        default = ind
+        #        break
+        #name_format = EnumeratedListOption(_("Name format"),
+        #                    fmt_list[default][0])
+        #for num, name, fmt_str, act in fmt_list:
+        #    name_format.add_item(num, name)
+        #name_format.set_help(_("Select the format to display names"))
+        #addopt("name_format", name_format)
+        stdoptions.add_name_format_option(menu, category_name)
 
         ext = EnumeratedListOption(_("File extension"), ".html")
         for etype in _WEB_EXT:
@@ -9423,34 +9411,11 @@ class NavWebOptions(MenuReportOptions):
         Options on the "Privacy" tab.
         """
         category_name = _("Privacy")
-        addopt = partial(menu.add_option, category_name)
 
+        stdoptions.add_living_people_option(menu, category_name)
         stdoptions.add_private_data_option(menu, category_name, default=False)
 
-        self.__living = EnumeratedListOption(_("Living People"),
-                                             LivingProxyDb.MODE_EXCLUDE_ALL)
-        self.__living.add_item(LivingProxyDb.MODE_EXCLUDE_ALL,
-                               _("Exclude"))
-        self.__living.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
-                               _("Include Last Name Only"))
-        self.__living.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY,
-                               _("Include Full Name Only"))
-        self.__living.add_item(LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
-                               _("Replace Complete Name"))
-        self.__living.add_item(_INCLUDE_LIVING_VALUE,
-                               _("Include"))
-        self.__living.set_help(_("How to handle living people"))
-        addopt("living", self.__living)
-        self.__living.connect('value-changed', self.__living_changed)
-
-        self.__yearsafterdeath = NumberOption(_("Years from death to consider "
-                                                 "living"), 30, 0, 100)
-        self.__yearsafterdeath.set_help(_("This allows you to restrict "
-                                          "information on people who have not "
-                                          "been dead for very long"))
-        addopt("yearsafterdeath", self.__yearsafterdeath)
-
-        self.__living_changed()
+        addopt = partial(menu.add_option, category_name)
 
     def __add_download_options(self, menu):
         """
@@ -9724,15 +9689,6 @@ class NavWebOptions(MenuReportOptions):
             self.__create_thumbs_only.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
             self.__maxinitialimageheight.set_available(False)
-
-    def __living_changed(self):
-        """
-        Handle a change in the living option
-        """
-        if self.__living.get_value() == _INCLUDE_LIVING_VALUE:
-            self.__yearsafterdeath.set_available(False)
-        else:
-            self.__yearsafterdeath.set_available(True)
 
     def __download_changed(self):
         """
