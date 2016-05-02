@@ -1114,7 +1114,7 @@ class DBAPI(DbGeneric):
         # else, use Python sorts
         if order_by:
             secondary_fields = class_.get_secondary_fields()
-            if not self.check_order_by_fields(class_.__name__, order_by, secondary_fields):
+            if not self._check_order_by_fields(class_.__name__, order_by, secondary_fields):
                 for item in self.iter_items_order_by_python(order_by, class_):
                     yield item
                 return

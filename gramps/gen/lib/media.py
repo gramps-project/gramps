@@ -162,10 +162,7 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         :rtype: dict
         """
         from .attribute import Attribute
-        from .citation import Citation
-        from .note import Note
         from .date import Date
-        from .tag import Tag
         return {
             "handle": Handle("Media", "MEDIA-HANDLE"),
             "gramps_id": str,
@@ -174,11 +171,11 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
             "desc": str,
             "checksum": str,
             "attribute_list": [Attribute],
-            "citation_list": [Citation],
-            "note_list": [Note],
-            "change": float,
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "change": int,
             "date": Date,
-            "tag_list": Tag,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
             "private": bool,
         }
 

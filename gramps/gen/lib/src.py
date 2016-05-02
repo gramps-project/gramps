@@ -79,6 +79,48 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 TagBase.serialize(self),                           # 11
                 self.private)                                      # 12
 
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "title": _("Title"),
+            "author": _("Author"),
+            "pubinfo": _("Publication info"),
+            "note_list": _("Notes"),
+            "media_list": _("Media"),
+            "abbrev": _("Abbreviation"),
+            "change": _("Last changed"),
+            "srcattr_list": _("Source Attributes"),
+            "reporef_list": _("Repositories"),
+            "tag_list": _("Tags"),
+            "private": _("Private")
+        }
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
+        from .srcattribute import SrcAttribute
+        from .reporef import RepoRef
+        from .url import Url
+        return {
+            "handle": Handle("Source", "SOURCE-HANDLE"),
+            "gramps_id": str,
+            "title": str,
+            "author": str,
+            "pubinfo": str,
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "media_list": [Handle("Media", "MEDIA-HANDLE")],
+            "abbrev": str,
+            "change": int,
+            "srcattr_list": [SrcAttribute],
+            "reporef_list": [RepoRef],
+            "tag_list": [Handle("Tag", "")],
+            "private": bool
+        }
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,

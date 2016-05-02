@@ -114,6 +114,19 @@ class Tag(TableObject):
             "change": int,
         }
 
+    @classmethod
+    def get_labels(cls, _):
+        """
+        Return the label for fields
+        """
+        return {
+            "handle": _("Handle"),
+            "name": _("Name"),
+            "color": _("Color"),
+            "priority": _("Priority"),
+            "change": _("Last changed"),
+        }
+
     def get_text_data_list(self):
         """
         Return the list of all textual attributes of the object.

@@ -117,6 +117,55 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 NoteBase.serialize(self),
                 self.change, TagBase.serialize(self), self.private)
 
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "title": _("Title"),
+            "long": _("Longitude"),
+            "lat": _("Latitude"),
+            "placeref_list": _("Places"),
+            "name": _("Name"),
+            "alt_names": _("Alternate Names"),
+            "place_type": _("Type"),
+            "code": _("Code"),
+            "alt_loc": _("Alternate Locations"),
+            "urls": _("URLs"),
+            "media_list": _("Media"),
+            "citation_list": _("Citations"),
+            "note_list": _("Notes"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private")
+            }
+    @classmethod
+    def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
+        from .url import Url
+        return {
+            "handle": Handle("Place", "PLACE-HANDLE"),
+            "gramps_id": str,
+            "title": str,
+            "long": str,
+            "lat": str,
+            "placeref_list": [PlaceRef],
+            "name": PlaceName,
+            "alt_names": [str],
+            "place_type": PlaceType,
+            "code": str,
+            "alt_loc": [Location],
+            "urls": [Url],
+            "media_list": [Handle("Media", "MEDIA-HANDLE")],
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool
+        }
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,

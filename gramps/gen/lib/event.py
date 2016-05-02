@@ -175,7 +175,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
             "note_list": [Note],
             "media_list": [Media],
             "attribute_list": [Attribute],
-            "change": float,
+            "change": int,
             "tag_list": [Tag],
             "private": bool,
         }

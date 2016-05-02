@@ -69,6 +69,41 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
                 UrlBase.serialize(self),
                 self.change, TagBase.serialize(self), self.private)
 
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "handle": _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "type": _("Type"),
+            "name": _("Name"),
+            "note_list": _("Notes"),
+            "address_list": _("Addresses"),
+            "urls": _("URLs"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private")
+        }
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
+        from .address import Address
+        from .url import Url
+        return {
+            "handle": Handle("Repository", "REPOSITORY-HANDLE"),
+            "gramps_id": str,
+            "type": RepositoryType,
+            "name": str,
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "address_list": [Address],
+            "urls": [Url],
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool
+        }
+
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,

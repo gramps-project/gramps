@@ -79,6 +79,46 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         self.confidence = Citation.CONF_NORMAL         #  4
         SrcAttributeBase.__init__(self)                #  8
 
+    @classmethod
+    def get_schema(cls):
+        """
+        Return the schema as a dictionary for this class.
+        """
+        from .srcattribute import SrcAttribute
+        from .date import Date
+        return {
+            "handle": Handle("Citation", "CITATION-HANDLE"),
+            "gramps_id": str,
+            "date": Date,
+            "page": str,
+            "confidence": str,
+            "source_handle": Handle("Source", "SOURCE-HANDLE"),
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "media_list": [Handle("Media", "MEDIA-HANDLE")],
+            "srcattr_list": [SrcAttribute],
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool,
+        }
+
+    @classmethod
+    def get_labels(cls, _):
+        return {
+            "_class": _("Citation"),
+            "handle":  _("Handle"),
+            "gramps_id": _("Gramps ID"),
+            "date": _("Date"),
+            "page": _("Page"),
+            "confidence":  _("Confidence"),
+            "source_handle": _("Source"),
+            "note_list": _("Notes"),
+            "media_list": _("Media"),
+            "srcattribute_list": _("Source Attributes"),
+            "change": _("Last changed"),
+            "tag_list": _("Tags"),
+            "private": _("Private"),
+        }
+
     def serialize(self, no_text_date=False):
         """
         Convert the object to a serialized tuple of data.

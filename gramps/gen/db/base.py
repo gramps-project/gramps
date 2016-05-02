@@ -1448,6 +1448,7 @@ class DbReadBase(object):
     Place = property(lambda self: QuerySet(self, "Place"))
     Event = property(lambda self: QuerySet(self, "Event"))
     Tag = property(lambda self: QuerySet(self, "Tag"))
+    Media = property(lambda self: QuerySet(self, "Media"))
 
 class DbWriteBase(DbReadBase):
     """
