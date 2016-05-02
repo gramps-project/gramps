@@ -1783,8 +1783,9 @@ class BasePage(object):
             del page[0]
 
         # Header constants
-        _meta1 = 'name ="viewport" content="width=device-width,"'
-        _meta1 += '" initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
+        _meta1 = 'name ="viewport" content="width=device-width; '
+        _meta1 += 'height=device-height; initial-scale=0.1; '
+        _meta1 += 'maximum-scale=10.0; user-scalable=yes"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
                     PROGRAM_NAME, VERSION, URL_HOMEPAGE)
