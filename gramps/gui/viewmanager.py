@@ -1615,7 +1615,7 @@ def run_plugin(pdata, dbstate, uistate):
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
                   'error_msg': error_msg},
-            parent=self.uistate.window)
+            parent=uistate.window)
         return
 
     if pdata.ptype == REPORT:
@@ -1672,7 +1672,7 @@ def get_available_views():
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
                     'error_msg': lasterror},
-                parent=self.uistate.window)
+                parent=None)
             continue
         viewclass = getattr(mod, pdata.viewclass)
 
