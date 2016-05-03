@@ -169,7 +169,8 @@ class DbManager(CLIDbManager):
             self.top.set_transient_for(parent)
 
         for attr in ['connect', 'cancel', 'new', 'remove', 'info',
-                     'dblist', 'rename', 'convert', 'repair', 'rcs', 'msg']:
+                     'dblist', 'rename', 'convert', 'repair', 'rcs',
+                     'msg', 'close']:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -218,6 +219,7 @@ class DbManager(CLIDbManager):
         self.rename.connect('clicked', self.__rename_db)
         self.convert.connect('clicked', self.__convert_db_ask)
         self.info.connect('clicked', self.__info_db)
+        self.close.connect('clicked', self.__close_db)
         self.repair.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
@@ -282,6 +284,7 @@ class DbManager(CLIDbManager):
             self.rename.set_sensitive(False)
             self.convert.set_sensitive(False)
             self.info.set_sensitive(False)
+            self.close.set_sensitive(False)
             self.rcs.set_sensitive(False)
             self.repair.set_sensitive(False)
             self.remove.set_sensitive(False)
@@ -295,11 +298,13 @@ class DbManager(CLIDbManager):
         self.rcs.set_label(RCS_BUTTON[is_rev])
 
         if store.get_value(node, ICON_COL) == 'document-open':
+            self.close.set_sensitive(True)
             self.convert.set_sensitive(False)
             self.connect.set_sensitive(False)
             if _RCS_FOUND:
                 self.rcs.set_sensitive(True)
         else:
+            self.close.set_sensitive(False)
             backend_name = self.get_backend_name_from_dbid("bsddb")
             if (store.get_value(node, ICON_COL) in [None, ""] and
                 store.get_value(node, BACKEND_COL).startswith(backend_name)):
@@ -644,7 +649,7 @@ class DbManager(CLIDbManager):
         self.__start_cursor(_("Importing archive..."))
         check_out(dbase, revision, db_path, self.user)
         self.__end_cursor()
-        dbase.close()
+        dbase.close(user=self.user)
 
     def __remove_db(self, obj):
         """
@@ -769,18 +774,18 @@ class DbManager(CLIDbManager):
             ErrorDialog(
                 _("Converting the '%s' database") % name,
                 _("An attempt to export the database failed."))
-            db.close()
+            db.close(user=self.user)
             return
         self.__start_cursor(_("Converting data..."))
         xml_file = os.path.join(dirname, "backup.gramps")
         export_function(db, xml_file, self.user)
-        db.close()
+        db.close(user=self.user)
         count = 1
         new_text = "%s %s" % (name, _("(Converted #%d)") % count)
         while self.existing_name(new_text):
             count += 1
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
-        new_path, newname = self._create_new_db(new_text)
+        new_path, newname = self._create_new_db(new_text, edit_entry=False)
         ## Create a new database of correct type:
         dbase = self.dbstate.make_database("dbapi")
         dbase.write_version(new_path)
@@ -797,7 +802,7 @@ class DbManager(CLIDbManager):
         else:
             import_function(dbase, xml_file, self.user)
         self.__end_cursor()
-        dbase.close()
+        dbase.close(user=self.user)
         self.__populate()
         self._select_default()
 
@@ -810,6 +815,21 @@ class DbManager(CLIDbManager):
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
         self.dblist.set_cursor(path, self.column, True)
+
+    def __close_db(self, obj):
+        """
+        Start the rename process by calling the start_editing option on
+        the line with the cursor.
+        """
+        store, node = self.selection.get_selected()
+        dbpath = store.get_value(node, PATH_COL)
+        (tval, last) = time_val(dbpath)
+        store.set_value(node, OPEN_COL, 0)
+        store.set_value(node, ICON_COL, "") # see bug_fix
+        store.set_value(node, DATE_COL, last)
+        store.set_value(node, DSORT_COL, tval)
+        self.dbstate.no_database()
+        self.__update_buttons(self.selection)
 
     def __info_db(self, obj):
         """
@@ -897,7 +917,7 @@ class DbManager(CLIDbManager):
 
         self.__end_cursor()
 
-        dbase.close()
+        dbase.close(user=self.user)
         self.dbstate.no_database()
         self.__populate()
 
@@ -941,7 +961,8 @@ class DbManager(CLIDbManager):
                 return plugin._name
         return _("Unknown")
 
-    def _create_new_db(self, title=None, create_db=True, dbid=None):
+    def _create_new_db(self, title=None, create_db=True, dbid=None,
+                       edit_entry=True):
         """
         Create a new database, append to model
         """
@@ -953,8 +974,9 @@ class DbManager(CLIDbManager):
                                         last, tval, False, '', backend_type])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
-        self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(path, self.column, True)
+        if edit_entry:
+            self.name_renderer.set_property('editable', True)
+            self.dblist.set_cursor(path, self.column, True)
         return new_path, title
 
     def __drag_data_received(self, widget, context, xpos, ypos, selection,
