@@ -6234,10 +6234,15 @@ class PersonPages(BasePage):
             if sect2 is not None:
                 individualdetail += sect2
 
-            # display parents
-            sect3 = self.display_ind_parents()
+            # display relationship to the center person
+            sect3 = self.display_ind_center_person()
             if sect3 is not None:
                 individualdetail += sect3
+
+            # display parents
+            sect4 = self.display_ind_parents()
+            if sect4 is not None:
+                individualdetail += sect4
 
             # display relationships
             relationships = self.display_relationships(self.person,
@@ -7334,6 +7339,33 @@ class PersonPages(BasePage):
                     self.display_ind_parent_family(birthmother, birthfather,
                                                    parent_family, table)
                     all_family_handles.append(parent_family_handle)
+
+    def display_ind_center_person(self):
+        """
+        Display the person's relationship to the center person
+        """
+        center_person = self.report.database.get_person_from_gramps_id(
+                                                     self.report.options['pid'])
+        relationship = self.rel_class.get_one_relationship(self.dbase_,
+                                                           self.person,
+                                                           center_person)
+        if relationship == "": # No relation to display
+            return
+
+        # begin center_person division
+        section = ""
+        with Html("div", class_="subsection", id="parents") as section:
+            message = _("Relation to the center person")
+            message += " ("
+            name_format = self.report.options['name_format']
+            primary_name = center_person.get_primary_name()
+            name = Name(primary_name)
+            name.set_display_as(name_format)
+            message += _nd.display_name(name)
+            message += ") : "
+            message += relationship
+            section += Html("h4", message, inline=True)
+        return section
 
     def display_ind_parents(self):
         """
