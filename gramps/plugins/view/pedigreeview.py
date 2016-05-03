@@ -1665,7 +1665,9 @@ class PedigreeView(NavigationView):
                 sp_id = family.get_mother_handle()
             else:
                 sp_id = family.get_father_handle()
-            spouse = self.dbstate.db.get_person_from_handle(sp_id)
+            spouse = None
+            if sp_id:
+                spouse = self.dbstate.db.get_person_from_handle(sp_id)
             if not spouse:
                 continue
 
@@ -1780,7 +1782,9 @@ class PedigreeView(NavigationView):
         no_parents = 1
         par_list = find_parents(self.dbstate.db, person)
         for par_id in par_list:
-            par = self.dbstate.db.get_person_from_handle(par_id)
+            par = None
+            if par_id:
+                par = self.dbstate.db.get_person_from_handle(par_id)
             if not par:
                 continue
 
