@@ -398,8 +398,10 @@ class ArgHandler(object):
 
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
-                if (self.database_names is None or 
-                    any([re.match("^" + dbname + "$", name) for dbname in self.database_names])):
+                if (self.database_names is None or
+                    any([(re.match("^" + dbname + "$", name) or
+                          dbname == name)
+                         for dbname in self.database_names])):
                     print(_("%(full_DB_path)s with name \"%(f_t_name)s\"")
                           % {'full_DB_path' : dirname, 'f_t_name' : name})
             return

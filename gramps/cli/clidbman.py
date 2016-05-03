@@ -182,8 +182,10 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id, backend_type, version) = item
-            if (database_names is None or 
-                any([re.match("^" + dbname + "$", name) for dbname in database_names])):
+            if (database_names is None or
+                any([(re.match("^" + dbname + "$", name) or
+                      dbname == name)
+                     for dbname in database_names])):
                 summary = self.get_dbdir_summary(dirpath, name)
                 print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
                 for item in sorted(summary):
@@ -202,8 +204,10 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last,
              tval, enable, stock_id, backend_type, version) = item
-            if (database_names is None or 
-                any([re.match("^" + dbname + "$", name) for dbname in database_names])):
+            if (database_names is None or
+                any([(re.match("^" + dbname + "$", name) or
+                      dbname == name)
+                     for dbname in database_names])):
                 retval = self.get_dbdir_summary(dirpath, name)
                 summary_list.append( retval )
         return summary_list
@@ -243,7 +247,7 @@ class CLIDbManager(object):
 
                     if (stock_id == 'gramps-lock'):
                         last = find_locker_name(dirpath)
-                        
+
                     self.current_names.append(
                         (name, os.path.join(dbdir, dpath), path_name,
                          last, tval, enable, stock_id, backend_type, version))
@@ -398,7 +402,7 @@ class CLIDbManager(object):
 
     def remove_database(self, dbname, user=None):
         """
-        Deletes a database folder given a pattenr that matches 
+        Deletes a database folder given a pattenr that matches
         its proper name.
         """
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
@@ -409,10 +413,10 @@ class CLIDbManager(object):
             if os.path.isfile(path_name):
                 with open(path_name, 'r', encoding='utf8') as file:
                     name = file.readline().strip()
-                if re.match("^" + dbname + "$", name): 
+                if re.match("^" + dbname + "$", name) or dbname == name:
                     match_list.append((name, dirpath))
         if len(match_list) == 0:
-            CLIDbManager.ERROR("Family tree not found", 
+            CLIDbManager.ERROR("Family tree not found",
                                "No matching family tree found: '%s'" % dbname)
         # now delete them:
         for (name, directory) in match_list:
