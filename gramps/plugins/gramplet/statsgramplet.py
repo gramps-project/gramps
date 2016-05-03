@@ -68,18 +68,12 @@ class StatsGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing..."))
         database = self.dbstate.db
-        personList = database.iter_people()
 
-        with_media = 0
         total_media = 0
-        incomp_names = 0
-        disconnected = 0
-        missing_bday = 0
         males = 0
         females = 0
         unknowns = 0
         bytes = 0
-        namelist = []
         notfound = []
 
         mobjects = database.get_number_of_media()
@@ -96,49 +90,9 @@ class StatsGramplet(Gramplet):
             except OSError:
                 notfound.append(media.get_path())
 
-        for cnt, person in enumerate(personList):
-            length = len(person.get_media_list())
-            if length > 0:
-                with_media += 1
-                total_media += length
-
-            for name in [person.get_primary_name()] + person.get_alternate_names():
-
-            # Count unique surnames
-                if not name.get_surname().strip() in namelist \
-                    and not name.get_surname().strip() == "":
-                    namelist.append(name.get_surname().strip())
-
-                if name.get_first_name().strip() == "":
-                    incomp_names += 1
-                else:
-                    if name.get_surname_list():
-                        for surname in name.get_surname_list():
-                            if surname.get_surname().strip() == "":
-                                incomp_names += 1
-                    else:
-                        incomp_names += 1
-
-            if (not person.get_main_parents_family_handle() and
-                not len(person.get_family_handle_list())):
-                disconnected += 1
-
-            birth_ref = person.get_birth_ref()
-            if birth_ref:
-                birth = database.get_event_from_handle(birth_ref.ref)
-                if not get_date(birth):
-                    missing_bday += 1
-            else:
-                missing_bday += 1
-
-            if person.get_gender() == Person.FEMALE:
-                females += 1
-            elif person.get_gender() == Person.MALE:
-                males += 1
-            else:
-                unknowns += 1
-            if not cnt % _YIELD_INTERVAL:
-                yield True
+        males = sum([v[0] for v in database.genderStats.stats.values()]) # male, female, unknown
+        females = sum([v[1] for v in database.genderStats.stats.values()]) # male, female, unknown
+        unknown = sum([v[2] for v in database.genderStats.stats.values()]) # male, female, unknown
 
         self.clear_text()
         self.append_text(_("Individuals") + "\n")
@@ -157,18 +111,6 @@ class StatsGramplet(Gramplet):
                   'Filter', 'people with unknown gender')
         self.append_text(" %s" % unknowns)
         self.append_text("\n")
-        self.link("%s:" % _("Incomplete names"),
-                  'Filter', 'incomplete names')
-        self.append_text(" %s" % incomp_names)
-        self.append_text("\n")
-        self.link("%s:" % _("Individuals missing birth dates"),
-                  'Filter', 'people with missing birth dates')
-        self.append_text(" %s" % missing_bday)
-        self.append_text("\n")
-        self.link("%s:" % _("Disconnected individuals"),
-                  'Filter', 'disconnected people')
-        self.append_text(" %s" % disconnected)
-        self.append_text("\n")
         self.append_text("\n%s\n" % _("Family Information"))
         self.append_text("----------------------------\n")
         self.link("%s:" % _("Number of families"),
@@ -177,14 +119,10 @@ class StatsGramplet(Gramplet):
         self.append_text("\n")
         self.link("%s:" % _("Unique surnames"),
                   'Filter', 'unique surnames')
-        self.append_text(" %s" % len(namelist))
+        self.append_text(" %s" % len(set(database.surname_list)))
         self.append_text("\n")
         self.append_text("\n%s\n" % _("Media Objects"))
         self.append_text("----------------------------\n")
-        self.link("%s:" % _("Individuals with media objects"),
-                  'Filter', 'people with media')
-        self.append_text(" %s" % with_media)
-        self.append_text("\n")
         self.link("%s:" % _("Total number of media object references"),
                   'Filter', 'media references')
         self.append_text(" %s" % total_media)
