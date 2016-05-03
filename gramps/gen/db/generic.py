@@ -739,6 +739,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return super().get_table_func(table, func)
 
+    def reload(self):
+        """
+        Reload, and recreate tables (if necessary).
+        Useful after db.drop_tables()
+        """
+        self.load(self._directory)
+
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,

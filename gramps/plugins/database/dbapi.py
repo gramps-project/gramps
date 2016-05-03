@@ -1225,8 +1225,12 @@ class DBAPI(DbGeneric):
         callback(5)
 
     def rebuild_secondary(self, update):
+        # First, expand blob to individual fields:
+        self.rebuild_secondary_fields()
+        # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
+        # Rebuild all order_by fields:
         ## Rebuild place order_by:
         self.dbapi.execute("""select blob_data from place;""")
         row = self.dbapi.fetchone()
