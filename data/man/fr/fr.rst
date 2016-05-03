@@ -13,11 +13,10 @@ gramps(1)                @VERSION@               gramps(1)
 
 **SYNOPSIS**
        **gramps** [**-?** | **--help**] [**--usage**] [**--version**]
-       [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *BASE_DE_DONNEES*
-       [**-f** | **--format=** *FORMAT*] [**-i** | **--import=** *FILE*
-       [**-f** | **--format=** *FORMAT*] [**--remove=** *FAMILY_TREE_PATTERN*]
-       [**-e** | **--export=** *FICHIER* [**-f** | **--format=** *FORMAT*]
-       [**-a** | **--action=** *ACTION*] [*-p* | **--options=** *CHAÎNE‐
+       [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *BASE_DE_DONNEES*]
+       [**-f** | **--format=** *FORMAT*] [**-i** | **--import=** *FICHIER*]
+       [**-e** | **--export=** *FICHIER*] [**--remove=** *FAMILY_TREE_PATTERN*]
+       [**-a** | **--action=** *ACTION* [*-p* | **--options=** *CHAÎNE‐
        OPTION*]] [*FICHIER*] [**--version**]
 
 
@@ -266,7 +265,7 @@ gramps(1)                @VERSION@               gramps(1)
 
        *${PREFIX}/bin/gramps*
 
-       *${PREFIX}/lib/python/dist-packages/gramps/*
+       *${PREFIX}/lib/python3/dist-packages/gramps/*
 
        *${PREFIX}/share/*
 

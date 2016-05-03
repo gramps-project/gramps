@@ -14,8 +14,8 @@ gramps(1)                @VERSION@               gramps(1)
        **gramps** [**-?** | **--help**] [**--usage**] [**--version**]
        [**-l**] [**-L**] [**-u** | **--force-unlock**] [**-O** | **--open=** *DATABASE*
        [**-f** | **--format=** *FORMAT*] [**-i** | **--import=** *FILE*
-       [**-f** | **--format=** *FORMAT*] [**--remove=** *FAMILY_TREE_PATTERN*]
-       [**-e** | **--export=** *FILE* [**-f** | **--format=** *FORMAT*]
+       [**-f** | **--format=** *FORMAT*]] [**--remove=** *FAMILY_TREE_PATTERN*]
+       [**-e** | **--export=** *FILE* [**-f** | **--format=** *FORMAT*]]
        [**-a** | **--action=** *ACTION*] [*-p* | **--options=** *OPTION‐
        STRING*]] [*FILE*] [**--version**]
 
@@ -267,7 +267,7 @@ gramps(1)                @VERSION@               gramps(1)
 
        *${PREFIX}/bin/gramps*
 
-       *${PREFIX}/lib/python/dist-packages/gramps/*
+       *${PREFIX}/lib/python3/dist-packages/gramps/*
 
        *${PREFIX}/share/*
 
