@@ -1,0 +1,24 @@
+_gramps() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="--action --config --create --databases --debug --export --format --help  --import --open --options --quiet --remove --show --usage --version --yes -?  -C -L  -O -a -b -c -d -e -f -i -l  -p -q -r -s -t  -u -v -y"
+    if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    elif [[ ${cur} == --open ]] ; then
+        local IFS=$'\n'
+        local names=($( ./Gramps.py -l | grep \" | cut -d\  -f4- ))
+        COMPREPLY=( $(compgen --W "${names[*]}" -- ${cur}) )
+        return 0
+    else 
+        local IFS=$'\n'
+        local names=($( ./Gramps.py -l | grep \" | cut -d\  -f4- ))
+        COMPREPLY=( $(compgen -W "${names[*]}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _gramps gramps
+complete -F _gramps ./Gramps.py
