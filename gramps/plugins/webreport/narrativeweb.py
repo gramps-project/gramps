@@ -9274,21 +9274,6 @@ class NavWebOptions(MenuReportOptions):
 
         self.__update_filters()
 
-        # We must figure out the value of the first option before we can
-        # create the EnumeratedListOption
-        #fmt_list = _nd.get_name_format()
-        #defaultnum = _nd.get_default_format()
-        #default = 0
-        #for ind, val in enumerate(fmt_list):
-        #    if val[0] == defaultnum:
-        #        default = ind
-        #        break
-        #name_format = EnumeratedListOption(_("Name format"),
-        #                    fmt_list[default][0])
-        #for num, name, fmt_str, act in fmt_list:
-        #    name_format.add_item(num, name)
-        #name_format.set_help(_("Select the format to display names"))
-        #addopt("name_format", name_format)
         stdoptions.add_name_format_option(menu, category_name)
 
         ext = EnumeratedListOption(_("File extension"), ".html")
