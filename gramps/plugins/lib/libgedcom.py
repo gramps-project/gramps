@@ -1747,10 +1747,11 @@ class IdFinder(object):
         @rtype: str
         """
         index = self.prefix % self.index
-        while str(index) in self.ids:
+        # self.ids contains 'bytes' data
+        while index.encode('utf-8') in self.ids:
             self.index += 1
             index = self.prefix % self.index
-        self.ids.add(index)
+        self.ids.add(index.encode('utf-8'))
         self.index += 1
         return index
 
