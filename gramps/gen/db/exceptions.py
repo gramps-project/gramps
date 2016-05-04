@@ -117,7 +117,7 @@ class DbPythonError(Exception):
                  'version of Gramps supports versions %(min_vers)s to '
                  '%(max_vers)s\n\n'
                  'Please upgrade to the corresponding version or use '
-                 'XML for porting data between different schema versions.') %\
+                 'XML for porting data between different Python versions.') %\
                  {'tree_vers': self.tree_vers,
                   'min_vers': self.min_vers,
                   'max_vers': self.max_vers}
