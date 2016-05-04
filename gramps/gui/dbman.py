@@ -164,7 +164,7 @@ class DbManager(CLIDbManager):
         CLIDbManager.__init__(self, dbstate)
         self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
-
+        self.parent = parent
         if parent:
             self.top.set_transient_for(parent)
 
@@ -830,6 +830,8 @@ class DbManager(CLIDbManager):
         store.set_value(node, DSORT_COL, tval)
         self.dbstate.no_database()
         self.__update_buttons(self.selection)
+        if self.parent:
+            self.parent.set_title("Gramps")
 
     def __info_db(self, obj):
         """
