@@ -1109,7 +1109,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return gid
 
     def get_mediapath(self):
-        return self.get_metadata("media-path", "")
+        return self.get_metadata("media-path", None)
 
     def set_mediapath(self, mediapath):
         return self.set_metadata("media-path", mediapath)
