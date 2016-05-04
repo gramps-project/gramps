@@ -290,9 +290,7 @@ class Gramplet(object):
         The main interface for running the :meth:`main` method.
         """
         from gi.repository import GObject, GLib
-        if ((not self.active or
-             self.gui.gstate in ["closed", "minimized"] or
-             not self.dbstate.open) and
+        if ((not self.active) and
             not self.gui.force_update):
             self.dirty = True
             if self.dbstate.open:
