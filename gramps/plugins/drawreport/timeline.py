@@ -63,10 +63,8 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 #
 #------------------------------------------------------------------------
 def _get_sort_functions(sort):
-    return [
-        (_T_("sorted by|Birth Date"),sort.by_birthdate_key),
-        (_T_("sorted by|Name"),sort.by_last_name_key),
-]
+    return [(_T_("sorted by|Birth Date"), sort.by_birthdate_key),
+            (_T_("sorted by|Name"), sort.by_last_name_key),]
 
 #------------------------------------------------------------------------
 #
@@ -125,12 +123,14 @@ class TimeLine(Report):
         self.sort_name = self._(sort_functions[sort_func_num][0])
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
+        self.plist = []
+        self.header = 2.6
 
     def write_report(self):
         # Apply the filter
         with self._user.progress(_('Timeline'),
-                                  _('Applying filter...'),
-                                  self.database.get_number_of_people()) as step:
+                                 _('Applying filter...'),
+                                 self.database.get_number_of_people()) as step:
             self.plist = self.filter.apply(self.database,
                                            self.database.iter_person_handles(),
                                            step)
@@ -142,85 +142,95 @@ class TimeLine(Report):
         self.generate_timeline(low, high)
 
     def generate_timeline(self, low, high):
+        """ generate the timeline """
         st_size = self.name_size()
         style_sheet = self.doc.get_style_sheet()
         font = style_sheet.get_paragraph_style('TLG-Name').get_font()
         incr = pt2cm(font.get_size())
-        pad =  incr * 0.75
-        x1,x2,y1,y2 = (0, 0, 0, 0)
+        pad = incr * 0.75
+        _x1, _x2, _y1, _y2 = (0, 0, 0, 0)
         start = st_size + 0.5
         stop = self.doc.get_usable_width() - 0.5
-        size = (stop - start)
+        size = stop - start
         self.header = 2.6
 
         # Sort the people as requested
-        with self._user.progress(_('Timeline'), _('Sorting dates...'), 0) as step:
+        with self._user.progress(_('Timeline'),
+                                 _('Sorting dates...'), 0) as step:
             self.plist.sort(key=self.sort_func)
 
         self.doc.start_page()
         self.build_grid(low, high, start, stop, True)
 
         index = 1
-        current = 1;
+        current = 1
 
         length = len(self.plist)
 
-        with self._user.progress(_('Timeline'),
-                _('Calculating timeline...'), length) as step:
+        with self._user.progress(_('Timeline'), _('Calculating timeline...'),
+                                 length) as step:
 
             for p_id in self.plist:
-                p = self.database.get_person_from_handle(p_id)
-                birth = get_birth_or_fallback(self.database, p)
+                person = self.database.get_person_from_handle(p_id)
+                birth = get_birth_or_fallback(self.database, person)
                 if birth:
-                    b = birth.get_date_object().to_calendar(self.calendar).get_year()
+                    bth = birth.get_date_object()
+                    bth = bth.to_calendar(self.calendar).get_year()
                 else:
-                    b = None
+                    bth = None
 
-                death = get_death_or_fallback(self.database, p)
+                death = get_death_or_fallback(self.database, person)
                 if death:
-                    d = death.get_date_object().to_calendar(self.calendar).get_year()
+                    dth = death.get_date_object()
+                    dth = dth.to_calendar(self.calendar).get_year()
                 else:
-                    d = None
+                    dth = None
 
-                n = self._name_display.display(p)
-                mark = ReportUtils.get_person_mark(self.database, p)
-                self.doc.draw_text('TLG-text', n, incr+pad,
-                                   self.header + (incr+pad)*index, mark)
+                dname = self._name_display.display(person)
+                mark = ReportUtils.get_person_mark(self.database, person)
+                self.doc.draw_text('TLG-text', dname, incr + pad,
+                                   self.header + (incr + pad) * index, mark)
 
-                y1 = self.header + (pad+incr)*index
-                y2 = self.header + ((pad+incr)*index)+incr
-                y3 = (y1+y2)/2.0
-                w = 0.05
+                _y1 = self.header + (pad + incr) * index
+                _y2 = self.header + ((pad + incr) * index) + incr
+                _y3 = (_y1 + _y2) / 2.0
+                w05 = 0.05
 
-                if b:
-                    start_offset = ((float(b-low)/float(high-low)) * (size))
-                    x1 = start+start_offset
-                    path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                    self.doc.draw_path('TLG-line',path)
+                if bth:
+                    start_offset = ((float(bth - low) / float(high - low)) *
+                                    size)
+                    _x1 = start + start_offset
+                    path = [(_x1, _y1), (_x1 + w05, _y3),
+                            (_x1, _y2), (_x1 - w05, _y3)]
+                    self.doc.draw_path('TLG-line', path)
 
-                if d:
-                    start_offset = ((float(d-low)/float(high-low)) * (size))
-                    x1 = start+start_offset
-                    path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                    self.doc.draw_path('TLG-solid',path)
+                if dth:
+                    start_offset = ((float(dth - low) / float(high - low)) *
+                                    size)
+                    _x1 = start + start_offset
+                    path = [(_x1, _y1), (_x1 + w05, _y3),
+                            (_x1, _y2), (_x1 - w05, _y3)]
+                    self.doc.draw_path('TLG-solid', path)
 
-                if b and d:
-                    start_offset = ((float(b-low)/float(high-low)) * size) + w
-                    stop_offset = ((float(d-low)/float(high-low)) * size) - w
+                if bth and dth:
+                    start_offset = ((float(bth - low) / float(high - low)) *
+                                    size) + w05
+                    stop_offset = ((float(dth - low) / float(high - low)) *
+                                   size) - w05
 
-                    x1 = start+start_offset
-                    x2 = start+stop_offset
-                    self.doc.draw_line('open',x1,y3,x2,y3)
+                    _x1 = start + start_offset
+                    _x2 = start + stop_offset
+                    self.doc.draw_line('open', _x1, _y3, _x2, _y3)
 
-                if (y2 + incr) >= self.doc.get_usable_height():
+                if (_y2 + incr) >= self.doc.get_usable_height():
                     if current != length:
                         self.doc.end_page()
                         self.doc.start_page()
-                        self.build_grid(low, high,start,stop)
+                        self.build_grid(low, high, start, stop)
                     index = 1
-                    x1,x2,y1,y2 = (0,0,0,0)
+                    _x1, _x2, _y1, _y2 = (0, 0, 0, 0)
                 else:
-                    index += 1;
+                    index += 1
                 current += 1
                 step()
             self.doc.end_page()
@@ -252,8 +262,8 @@ class TimeLine(Report):
         """
         top_y = self.header
         bottom_y = self.doc.get_usable_height()
-        delta = (stop_pos - start_pos)/ 5
-        for val in range(0,6):
+        delta = (stop_pos - start_pos) / 5
+        for val in range(0, 6):
             xpos = start_pos + (val * delta)
             self.doc.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
 
@@ -263,9 +273,9 @@ class TimeLine(Report):
         """
         width = self.doc.get_usable_width()
         title = "%(str1)s -- %(str2)s" % {
-                        'str1' : self._("Timeline Chart"),
-                        # feature request 2356: avoid genitive form
-                        'str2' : self._("Sorted by %s") % self.sort_name }
+            'str1' : self._("Timeline Chart"),
+            # feature request 2356: avoid genitive form
+            'str2' : self._("Sorted by %s") % self.sort_name}
         title3 = self.living_desc
         mark = None
         if toc:
@@ -285,13 +295,11 @@ class TimeLine(Report):
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
         label_y = self.header - (pt2cm(label_font.get_size()) * 1.2)
-        top_y = self.header
-        bottom_y = self.doc.get_usable_height()
-        incr = (year_high - year_low)/5
-        delta = (stop_pos - start_pos)/ 5
-        for val in range(0,6):
-            xpos = start_pos+(val*delta)
-            year_str = str(int(year_low + (incr*val)))
+        incr = (year_high - year_low) / 5
+        delta = (stop_pos - start_pos) / 5
+        for val in range(0, 6):
+            xpos = start_pos + (val * delta)
+            year_str = str(int(year_low + (incr * val)))
             self.doc.center_text('TLG-label', year_str, xpos, label_y)
 
     def draw_no_date_heading(self):
@@ -312,10 +320,11 @@ class TimeLine(Report):
         Returns a tuple of low and high years. If no dates are found, the
         function returns (None, None).
         """
-        low  = None
+        low = None
         high = None
 
         def min_max_year(low, high, year):
+            """ convenience function """
             if year is not None and year != 0:
                 if low is not None:
                     low = min(low, year)
@@ -328,41 +337,44 @@ class TimeLine(Report):
             return (low, high)
 
         with self._user.progress(_('Timeline'),
-                                  _('Finding date range...'),
-                                  len(self.plist)) as step:
+                                 _('Finding date range...'),
+                                 len(self.plist)) as step:
 
             for p_id in self.plist:
-                p = self.database.get_person_from_handle(p_id)
-                birth = get_birth_or_fallback(self.database, p)
+                person = self.database.get_person_from_handle(p_id)
+                birth = get_birth_or_fallback(self.database, person)
                 if birth:
-                    b = birth.get_date_object().to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, b)
+                    bth = birth.get_date_object()
+                    bth = bth.to_calendar(self.calendar).get_year()
+                    (low, high) = min_max_year(low, high, bth)
 
-                death = get_death_or_fallback(self.database, p)
+                death = get_death_or_fallback(self.database, person)
                 if death:
-                    d = death.get_date_object().to_calendar(self.calendar).get_year()
-                    (low, high) = min_max_year(low, high, d)
+                    dth = death.get_date_object()
+                    dth = dth.to_calendar(self.calendar).get_year()
+                    (low, high) = min_max_year(low, high, dth)
                 step()
 
             # round the dates to the nearest decade
             if low is not None:
-                low = int((low/10))*10
+                low = int((low / 10)) * 10
             else:
                 low = high
 
             if high is not None:
-                high = int(((high+9)/10))*10
+                high = int(((high + 9) / 10)) * 10
             else:
                 high = low
 
-            # Make sure the difference is a multiple of 50 so all year ranges land
-            # on a decade.
+            # Make sure the difference is a multiple of 50 so
+            # all year ranges land on a decade.
             if low is not None and high is not None:
-                low -= 50 - ((high-low) % 50)
+                low -= 50 - ((high - low) % 50)
 
         return (low, high)
 
     def name_size(self):
+        """ get the length of the name """
         self.plist = self.filter.apply(self.database,
                                        self.database.iter_person_handles())
 
@@ -374,9 +386,9 @@ class TimeLine(Report):
 
         size = 0
         for p_id in self.plist:
-            p = self.database.get_person_from_handle(p_id)
-            n = self._name_display.display(p)
-            size = max(self.doc.string_width(font, n),size)
+            person = self.database.get_person_from_handle(p_id)
+            dname = self._name_display.display(person)
+            size = max(self.doc.string_width(font, dname), size)
         return pt2cm(size)
 
 #------------------------------------------------------------------------
@@ -390,6 +402,7 @@ class TimeLineOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         self.__db = dbase
+        self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -397,7 +410,7 @@ class TimeLineOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                       _("Determines what people are included in the report"))
+            _("Determines what people are included in the report"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -415,13 +428,13 @@ class TimeLineOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        sortby = EnumeratedListOption(_('Sort by'), 0 )
+        sortby = EnumeratedListOption(_('Sort by'), 0)
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):
             sortby.add_item(idx, _(item[0]))
             idx += 1
-        sortby.set_help( _("Sorting method to use"))
-        menu.add_option(category_name,"sortby",sortby)
+        sortby.set_help(_("Sorting method to use"))
+        menu.add_option(category_name, "sortby", sortby)
 
         stdoptions.add_localization_option(menu, category_name)
 
@@ -450,34 +463,34 @@ class TimeLineOptions(MenuReportOptions):
             # The rest don't
             self.__pid.set_available(False)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Timeline report."""
         # Paragraph Styles
-        f = FontStyle()
-        f.set_size(10)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_("The style used for the person's name."))
-        default_style.add_paragraph_style("TLG-Name",p)
+        fstyle = FontStyle()
+        fstyle.set_size(10)
+        fstyle.set_type_face(FONT_SANS_SERIF)
+        pstyle = ParagraphStyle()
+        pstyle.set_font(fstyle)
+        pstyle.set_description(_("The style used for the person's name."))
+        default_style.add_paragraph_style("TLG-Name", pstyle)
 
-        f = FontStyle()
-        f.set_size(8)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the year labels."))
-        default_style.add_paragraph_style("TLG-Label",p)
+        fstyle = FontStyle()
+        fstyle.set_size(8)
+        fstyle.set_type_face(FONT_SANS_SERIF)
+        pstyle = ParagraphStyle()
+        pstyle.set_font(fstyle)
+        pstyle.set_alignment(PARA_ALIGN_CENTER)
+        pstyle.set_description(_("The style used for the year labels."))
+        default_style.add_paragraph_style("TLG-Label", pstyle)
 
-        f = FontStyle()
-        f.set_size(14)
-        f.set_type_face(FONT_SANS_SERIF)
-        p = ParagraphStyle()
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("TLG-Title",p)
+        fstyle = FontStyle()
+        fstyle.set_size(14)
+        fstyle.set_type_face(FONT_SANS_SERIF)
+        pstyle = ParagraphStyle()
+        pstyle.set_font(fstyle)
+        pstyle.set_alignment(PARA_ALIGN_CENTER)
+        pstyle.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("TLG-Title", pstyle)
 
         """
         Graphic Styles
@@ -494,46 +507,46 @@ class TimeLineOptions(MenuReportOptions):
             TLG-label - Contains the TLG-Label paragraph style used for the year
                         label's in the document.
         """
-        g = GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        default_style.add_draw_style("TLG-line",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_line_width(0.5)
+        gstyle.set_color((0, 0, 0))
+        default_style.add_draw_style("TLG-line", gstyle)
 
-        g = GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        g.set_fill_color((0,0,0))
-        default_style.add_draw_style("TLG-solid",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_line_width(0.5)
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((0, 0, 0))
+        default_style.add_draw_style("TLG-solid", gstyle)
 
-        g = GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        default_style.add_draw_style("open",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_line_width(0.5)
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("open", gstyle)
 
-        g = GraphicsStyle()
-        g.set_line_width(0.5)
-        g.set_line_style(DASHED)
-        g.set_color((0,0,0))
-        default_style.add_draw_style("TLG-grid",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_line_width(0.5)
+        gstyle.set_line_style(DASHED)
+        gstyle.set_color((0, 0, 0))
+        default_style.add_draw_style("TLG-grid", gstyle)
 
-        g = GraphicsStyle()
-        g.set_paragraph_style("TLG-Name")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("TLG-text",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style("TLG-Name")
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("TLG-text", gstyle)
 
-        g = GraphicsStyle()
-        g.set_paragraph_style("TLG-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("TLG-title",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style("TLG-Title")
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("TLG-title", gstyle)
 
-        g = GraphicsStyle()
-        g.set_paragraph_style("TLG-Label")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        default_style.add_draw_style("TLG-label",g)
+        gstyle = GraphicsStyle()
+        gstyle.set_paragraph_style("TLG-Label")
+        gstyle.set_color((0, 0, 0))
+        gstyle.set_fill_color((255, 255, 255))
+        gstyle.set_line_width(0)
+        default_style.add_draw_style("TLG-label", gstyle)
