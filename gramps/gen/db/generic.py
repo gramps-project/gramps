@@ -56,6 +56,7 @@ from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
+from gramps.gen.db import exceptions
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -755,6 +756,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If update is False: then don't update any files
         """
+        db_python_version = self.get_python_version(directory)
+        current_python_version = sys.version_info[0]
+        if db_python_version != current_python_version:
+                raise exceptions.DbPythonError(str(db_python_version),
+                                               str(current_python_version),
+                                               str(current_python_version))
+        db_schema_version = self.get_schema_version(directory)
+        current_schema_version = self.VERSION[0]
+        if db_schema_version != current_schema_version:
+            raise exceptions.DbVersionError(str(db_schema_version),
+                                            str(current_schema_version),
+                                            str(current_schema_version))
         # run backend-specific code:
         self.initialize_backend(directory)
 

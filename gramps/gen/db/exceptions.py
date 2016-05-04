@@ -99,6 +99,29 @@ class DbVersionError(Exception):
                   'min_vers': self.min_vers,
                   'max_vers': self.max_vers}
 
+class DbPythonError(Exception):
+    """
+    Error used to report that a file could not be read because it is written
+    in an unsupported version of the Python format.
+    """
+    def __init__(self, tree_vers, min_vers, max_vers):
+        Exception.__init__(self)
+        self.tree_vers = tree_vers
+        self.min_vers = min_vers
+        self.max_vers = max_vers
+
+    def __str__(self):
+        return _('The Python version is not supported by this version of '
+                 'Gramps.\n\n'
+                 'This Family Tree is Python version %(tree_vers)s, and this '
+                 'version of Gramps supports versions %(min_vers)s to '
+                 '%(max_vers)s\n\n'
+                 'Please upgrade to the corresponding version or use '
+                 'XML for porting data between different schema versions.') %\
+                 {'tree_vers': self.tree_vers,
+                  'min_vers': self.min_vers,
+                  'max_vers': self.max_vers}
+
 class BsddbDowngradeError(Exception):
     """
     Error used to report that the Berkeley database used to create the family

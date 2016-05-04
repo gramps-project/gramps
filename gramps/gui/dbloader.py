@@ -59,6 +59,7 @@ from gramps.gen.config import config
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeError,
                                       DbVersionError,
+                                      DbPythonError,
                                       DbEnvironmentError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
@@ -399,6 +400,9 @@ class DbLoader(CLIDbLoader):
             self.dbstate.no_database()
             self._warn( _("Cannot open database"), str(msg))
         except DbVersionError as msg:
+            self.dbstate.no_database()
+            self._errordialog( _("Cannot open database"), str(msg))
+        except DbPythonError as msg:
             self.dbstate.no_database()
             self._errordialog( _("Cannot open database"), str(msg))
         except DbEnvironmentError as msg:
