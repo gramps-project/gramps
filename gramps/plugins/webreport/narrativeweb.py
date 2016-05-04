@@ -3453,7 +3453,8 @@ class PlacePages(BasePage):
                     place = self.dbase_.get_place_from_handle(place_handle_key)
                     if place: 
                         if place.get_change_time() > ldatec: ldatec = place.get_change_time()
-                        place_title = place.get_name().get_value()
+                        place_title = ReportUtils.place_name(self.dbase_,
+                                                             place_handle_key
                         ml = get_main_location(self.dbase_, place)
 
                         if place_title and not place_title.isspace():  
