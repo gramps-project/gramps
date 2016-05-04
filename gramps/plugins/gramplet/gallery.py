@@ -87,7 +87,9 @@ class Gallery(Gramplet):
             media_handle = media_ref.get_reference_handle()
             media = self.dbstate.db.get_media_from_handle(media_handle)
             mime_type = media.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
+            #bug 7390 : tab is not highlighted if there are only media
+            #           like pdf, open document, ...
+            if mime_type:
                 return True
         return False
 
