@@ -312,7 +312,7 @@ class CLIDbManager(object):
                                    last, tval, False, "", dbid))
         return new_path, title
 
-    def _create_new_db(self, title=None, dbid=None):
+    def _create_new_db(self, title=None, dbid=None, edit_entry=False):
         """
         Create a new database, do extra stuff needed
         """
@@ -365,12 +365,13 @@ class CLIDbManager(object):
         for plugin in pmgr.get_import_plugins():
             if format == plugin.get_extension():
 
-                new_path, name = self._create_new_db(name)
+                new_path, name = self._create_new_db(name, edit_entry=False)
 
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
 
-                dbid = config.get('behavior.database-backend')
+                ## Use bsddb, for now, because we assumed that above.
+                dbid = "bsddb" ## config.get('behavior.database-backend')
                 dbase = self.dbstate.make_database(dbid)
                 dbase.load(new_path, user.callback)
 

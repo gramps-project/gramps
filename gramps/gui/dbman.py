@@ -986,7 +986,7 @@ class DbManager(CLIDbManager):
         """
         Handle the reception of drag data
         """
-        drag_value = selection.get_data()
+        drag_value = selection.get_data().decode()
         fname = None
         type = None
         title = None
