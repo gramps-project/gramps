@@ -607,6 +607,7 @@ class BasePage(object):
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
+        self.create_unused_media = report.options['unused']
         self.create_thumbs_only = report.options['create_thumbs_only']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
@@ -5081,6 +5082,60 @@ class MediaPages(BasePage):
                         )
                         index += 1
 
+            def sort_by_desc_and_gid(obj):
+                """
+                Sort by media description and gramps ID
+                """
+                return (obj.desc, obj.gramps_id)
+
+            unused_media_handles = []
+            if self.create_unused_media:
+                # add unused media
+                media_list = self.dbase_.get_media_handles()
+                for media_ref in media_list:
+                    media_handle = media_ref.decode("utf-8")
+                    if media_handle not in self.report.obj_dict[Media]:
+                        unused_media_handles.append(media_handle)
+                unused_media_handles = sorted(unused_media_handles,
+                                          key=lambda x: sort_by_desc_and_gid(
+                                 self.report.database.get_media_from_handle(x)))
+
+            indx = 1
+            prev = None
+            total = len(unused_media_handles)
+            if total > 0:
+                trow += Html("tr")
+                trow.extend(
+                    Html("td", Html("h4", " "), inline=True) +
+                    Html("td",
+                         Html("h4",
+                              _("Below unused media objects"), inline=True),
+                         class_="") +
+                    Html("td", Html("h4", " "), inline=True) +
+                    Html("td", Html("h4", " "), inline=True)
+                )
+                for media_handle in unused_media_handles:
+                    media = self.dbase_.get_media_from_handle(media_handle)
+                    gc.collect() # Reduce memory usage when many images.
+                    next_ = None if indx == total else \
+                                                      unused_media_handles[indx]
+                    trow += Html("tr")
+                    media_data_row = [
+                        [index, "ColumnRowLabel"],
+                        [self.media_ref_link(media_handle,
+                                        media.get_description()), "ColumnName"],
+                        [_dd.display(media.get_date_object()), "ColumnDate"],
+                        [media.get_mime_type(), "ColumnMime"]]
+                    trow.extend(
+                        Html("td", data, class_=colclass)
+                            for data, colclass in media_data_row
+                    )
+                    self.mediapage(self.report, title,
+                                   media_handle, (prev, next_, index, total))
+                    prev = media_handle
+                    index += 1
+                    indx += 1
+
         # add footer section
         # add clearline for proper styling
         footer = self.write_footer(ldatec)
@@ -5466,6 +5521,15 @@ class ThumbnailPreviewPage(BasePage):
         self.photo_keys = sorted(self.report.obj_dict[Media],
                                  key=lambda x: sort_by_desc_and_gid(
                                           self.dbase_.get_media_from_handle(x)))
+
+        if self.create_unused_media:
+            # add unused media
+            media_list = self.dbase_.get_media_handles()
+            unused_media_handles = []
+            for media_ref in media_list:
+                media_handle = media_ref.decode("utf-8")
+                if media_handle not in self.report.obj_dict[Media]:
+                    self.photo_keys.append(media_handle)
 
         media_list = []
         for person_handle in self.photo_keys:
@@ -7918,6 +7982,7 @@ class NavWebReport(Report):
         self.title = self.options['title']
 
         self.inc_gallery = self.options['gallery']
+        self.inc_unused_gallery = self.options['unused']
         self.create_thumbs_only = self.options['create_thumbs_only']
 
         self.inc_contact = self.options['contactnote'] or \
@@ -9213,6 +9278,7 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_descr2 = None
         self.__down_fname2 = None
         self.__gallery = None
+        self.__unused = None
         self.__down_fname1 = None
         self.__navigation = None
         MenuReportOptions.__init__(self, name, dbase)
@@ -9390,6 +9456,13 @@ class NavWebOptions(MenuReportOptions):
                                   'a gallery of media objects'))
         addopt("gallery", self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
+
+        self.__unused = BooleanOption(
+                                   _("Include unused images and media objects"),
+                                   True)
+        self.__unused.set_help(_('Whether to include unused or unreferenced'
+                               ' media objects'))
+        addopt("unused", self.__unused)
 
         self.__create_thumbs_only = BooleanOption(
                     _("Create and only use thumbnail- sized images"), False)
