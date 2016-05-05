@@ -633,6 +633,7 @@ class DbManager(CLIDbManager):
             self.__end_cursor()
 
         self.__populate()
+        self._select_default()
 
     def __checkout_copy(self, parent_name, name, revision, db_path):
         """
@@ -709,6 +710,7 @@ class DbManager(CLIDbManager):
                             str(msg))
         # rebuild the display
         self.__populate()
+        self._select_default()
 
     def __really_delete_version(self):
         """
@@ -737,6 +739,7 @@ class DbManager(CLIDbManager):
 
         # rebuild the display
         self.__populate()
+        self._select_default()
 
     def __convert_db_ask(self, obj):
         """
@@ -922,6 +925,7 @@ class DbManager(CLIDbManager):
         dbase.close(user=self.user)
         self.dbstate.no_database()
         self.__populate()
+        self._select_default()
 
     def __start_cursor(self, msg):
         """
