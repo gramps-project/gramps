@@ -427,10 +427,7 @@ class ViewManager(CLIManager):
         if self.fullscreen:
             self.window.fullscreen()
 
-        # Showing the main window is deferred so that
-        # ArgHandler can work without it always shown
-        # But we need to realize it here to have Gdk.window handy
-        self.window.realize()
+        self.window.show()
 
     def __setup_navigator(self):
         """
