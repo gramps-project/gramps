@@ -125,9 +125,12 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.callback = self.pulse_progressbar
 
         person_handle = self.uistate.get_active('Person')
-        self.person = self.dbstate.db.get_person_from_handle(person_handle)
-        if not self.person:
-            self.person = self.dbstate.db.find_initial_person()
+        if person_handle:
+            self.person = self.dbstate.db.get_person_from_handle(person_handle)
+            if not self.person:
+                self.person = self.dbstate.db.find_initial_person()
+        else:
+            self.person = None
 
         pmgr = GuiPluginManager.get_instance()
         self.__exporters = pmgr.get_export_plugins()
