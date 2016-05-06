@@ -10,15 +10,14 @@ _gramps()
         return 0
     elif [[ ${cur} == --open ]] ; then
         local IFS=$'\n'
-        local names=($( ./Gramps.py -l | grep \" | cut -d\  -f4- ))
+        local names=($( gramps -l | grep \" | cut -d\  -f4- ))
         COMPREPLY=( $(compgen --W "${names[*]}" -- ${cur}) )
         return 0
     else 
         local IFS=$'\n'
-        local names=($( ./Gramps.py -l | grep \" | cut -d\  -f4- ))
+        local names=($( gramps -l | grep \" | cut -d\  -f4- ))
         COMPREPLY=( $(compgen -W "${names[*]}" -- ${cur}) )
         return 0
     fi
 }
 complete -F _gramps gramps
-complete -F _gramps ./Gramps.py
