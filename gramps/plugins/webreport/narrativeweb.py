@@ -613,6 +613,8 @@ class BasePage(object):
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
         self.target_uri = report.options['cmsuri']
+        self.usecal = report.options['usecal']
+        self.target_cal_uri = report.options['caluri']
         self.familymappages = None
 
     # Functions used when no Web Page plugin is provided
@@ -1882,6 +1884,12 @@ class BasePage(object):
             if self.create_thumbs_only:
                 _create_media_link = False
 
+        # create link to web calendar pages...
+        _create_calendar_link = False
+        if self.usecal:
+            _create_calendar_link = True
+            self.target_cal_uri += "/index"
+
         # Determine which menu items will be available?
         # Menu items have been adjusted to concide with Gramps Navigation
         # Sidebar order...
@@ -1900,7 +1908,8 @@ class BasePage(object):
             ('thumbnails', _("Thumbnails"), self.create_media),
             ('download', _("Download"), self.report.inc_download),
             ("addressbook", _("Address Book"), self.report.inc_addressbook),
-            ('contact', _("Contact"), self.report.use_contact)
+            ('contact', _("Contact"), self.report.use_contact),
+            (self.target_cal_uri, _("Web Calendar"), self.usecal)
         ]
 
         # Remove menu sections if they are not being created?
@@ -8025,6 +8034,10 @@ class NavWebReport(Report):
         self.usecms = self.options['usecms']
         self.target_uri = self.options['cmsuri']
 
+        # Do we need to include web calendar ?
+        self.usecal = self.options['usecal']
+        self.target_cal_uri = self.options['caluri']
+
         # either include the gender graphics or not?
         self.ancestortree = self.options['ancestortree']
 
@@ -8135,6 +8148,9 @@ class NavWebReport(Report):
         if self.usecms:
             config.set('paths.website-cms-uri',
                        os.path.dirname(self.target_uri))
+        if self.usecal:
+            config.set('paths.website-cal-uri',
+                       os.path.dirname(self.target_cal_uri))
 
         # for use with discovering biological, half, and step siblings for use
         # in display_ind_parents()...
@@ -9264,6 +9280,8 @@ class NavWebOptions(MenuReportOptions):
         self.__yearsafterdeath = None
         self.__usecms = None
         self.__cms_uri = None
+        self.__usecal = None
+        self.__calendar_uri = None
         self.__create_thumbs_only = None
         self.__mapservice = None
         self.__maxinitialimageheight = None
@@ -9296,7 +9314,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_download_options(menu)
         self.__add_advanced_options(menu)
         self.__add_place_map_options(menu)
-        self.__add_cms_options(menu)
+        self.__add_others_options(menu)
 
 
     def __add_report_options(self, menu):
@@ -9676,11 +9694,11 @@ class NavWebOptions(MenuReportOptions):
 
         self.__placemap_options()
 
-    def __add_cms_options(self, menu):
+    def __add_others_options(self, menu):
         """
-        Options for the cms tab ...
+        Options for the cms tab, web calendar inclusion, php ...
         """
-        category_name = _("CMS inclusion")
+        category_name = _("Other inclusion (CMS, Web Calendar, Php)")
         addopt = partial(menu.add_option, category_name)
 
         self.__usecms = BooleanOption(
@@ -9698,11 +9716,38 @@ class NavWebOptions(MenuReportOptions):
 
         self.__cms_uri_changed()
 
+        self.__usecal = BooleanOption(
+                           _("Do we include the web calendar ?"), False)
+        addopt("usecal", self.__usecal)
+
+        default_calendar = "/WEBCAL"
+        self.__calendar_uri = DestinationOption(_("URI"),
+                            os.path.join(config.get('paths.website-cal-uri'),
+                                         default_calendar))
+        self.__calendar_uri.set_help(_("Where do you place your web site ?"
+                                   " default = /WEBCAL"))
+        self.__calendar_uri.connect('value-changed',
+                                    self.__calendar_uri_changed)
+        addopt("caluri", self.__calendar_uri)
+
+        self.__calendar_uri_changed()
+
     def __cms_uri_changed(self):
         """
         Update the change of storage: archive or directory
         """
         self.__target_uri = self.__cms_uri.get_value()
+
+    def __calendar_uri_changed(self):
+        """
+        Update the change of storage: Where is the web calendar ?
+
+        Possible cases :
+        1 - /WEBCAL                  (relative URI to the navweb site)
+        2 - http://mysite.org/WEBCAL (URL is on another website)
+        3 - //mysite.org/WEBCAL      (PRL depend on the protocol used)
+        """
+        self.__target_cal_uri = self.__calendar_uri.get_value()
 
     def __archive_changed(self):
         """
