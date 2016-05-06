@@ -1505,6 +1505,9 @@ class WebCalReport(Report):
                 if self.fullyear:
                     self.year_glance(cal_year)
 
+                if self.home_link:
+                    self.create_page_index()
+
         # a single year
         else:
             cal_year = self.start_year
@@ -1522,6 +1525,37 @@ class WebCalReport(Report):
             # "One Day" calendar pages
             if self.fullyear:
                 self.year_glance(cal_year)
+
+            if self.home_link:
+                self.create_page_index()
+
+    def create_page_index(self):
+        """
+        Create the page index called by the narrativeweb.
+        """
+        output_file = self.create_file('index', "")
+
+        # page title
+        title = _("My Family Calendar")
+
+        nr_up = 0
+
+        # Create page header
+        # body has already been added to yearglance  already once
+        index, body = self.write_header(nr_up, title, "index", False)
+
+        # create Year Navigation menu
+        if self.multiyear and ((self.end_year - self.start_year) > 0):
+            body += self.year_navigation(nr_up, str(2016))
+
+        # create blank line for stylesheets
+        # write footer section
+        footer = self.write_footer(nr_up)
+        body += (FULLCLEAR, footer)
+
+        # send calendar page to web output
+        # and close the file
+        self.XHTMLWriter(index, output_file)
 
 # -----------------------------------------------------------------------------
 #                             WebCalOptions; Creates the Menu

@@ -634,12 +634,17 @@ class BasePage(object):
         """
         Returns the navigation menu hyperlink
         """
+        if url_fname == self.target_cal_uri:
+            uplink = False
+        else:
+            uplink = self.uplink
+
         # check for web page file extension?
         if not _has_webpage_extension(url_fname):
             url_fname += self.ext
 
         # get menu item url and begin hyperlink...
-        url = self.report.build_url_fname(url_fname, None, self.uplink)
+        url = self.report.build_url_fname(url_fname, None, uplink)
 
         return Html("a", nav_text, href=url, title=nav_text, inline=True)
 
