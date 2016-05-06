@@ -191,6 +191,14 @@ class BSDDBTest(unittest.TestCase):
         result = self.db.Person.where(lambda person: person.tag_list.name == "Test").count()
         self.assertTrue(result == 1, result)
 
+    def test_tag_2(self):
+        self.db.Person.where(lambda person: person.gramps_id == "I0001").tag("Test")
+        result = self.db.Person.where(lambda person: person.tag_list.name == "Test").count()
+        self.assertTrue(result == 1, result)
+        self.db.Person.where(lambda person: person.gramps_id == "I0001").tag("Test", remove=True)
+        result = self.db.Person.where(lambda person: person.tag_list.name == "Test").count()
+        self.assertTrue(result == 0, result)
+
     def test_filter_1(self):
         from gramps.gen.filters.rules.person import (IsDescendantOf,
                                                      IsAncestorOf)

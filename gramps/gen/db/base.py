@@ -2306,9 +2306,9 @@ class QuerySet(object):
         self.generator = generator()
         return self
 
-    def tag(self, tag_text):
+    def tag(self, tag_text, remove=False):
         """
-        Tag the selected items with the tag name.
+        Tag or untag the selected items with the tag name.
         """
         if self.generator and self.needs_to_run:
             raise Exception("Queries in invalid order")
@@ -2317,8 +2317,12 @@ class QuerySet(object):
         else:
             self.generator = self._generate()
         tag = self.database.get_tag_from_name(tag_text)
+        if (not tag and remove):
+            # no tag by this name, and want to remove it
+            # nothing to do
+            return
         trans_class = self.database.get_transaction_class()
-        with trans_class("Tag Selected Items", self.database, batch=True) as trans:
+        with trans_class("Tag Selected Items", self.database, batch=False) as trans:
             if tag is None:
                 tag = self.database.get_table_func("Tag","class_func")()
                 tag.set_name(tag_text)
@@ -2327,5 +2331,9 @@ class QuerySet(object):
             for item in self.generator:
                 if tag.handle not in item.tag_list:
                     item.add_tag(tag.handle)
-                    commit_func(item, trans)
+                elif remove:
+                    item.remove_tag(tag.handle)
+                else:
+                    continue
+                commit_func(item, trans)
 
