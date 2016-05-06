@@ -19,6 +19,7 @@
 #
 
 from gramps.gen.db.where import eval_where
+from gramps.gen.lib import Person
 import unittest
 
 ##########
@@ -39,6 +40,9 @@ class Thing(object):
 
     def where(self):
         return lambda person: person.gramps_id == self.list[1]
+
+    def apply(self, db, person):
+        return person.gender == Person.MALE
 
 class ClosureTest(unittest.TestCase):
     def check(self, test):
@@ -97,6 +101,10 @@ class ClosureTest(unittest.TestCase):
         self.check(
             (lambda person: LIKE(person.gramps_id, "I000%"),
              ["gramps_id", "LIKE", "I000%"]))
+
+    def test_11(self):
+        self.check(
+            [Thing().apply, ["gender", "==", 1]])
 
 if __name__ == "__main__":
     unittest.main()

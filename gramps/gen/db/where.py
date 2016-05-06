@@ -115,6 +115,13 @@ class ParseFilter(Visitor):
         self.parameter = self.visit(node.args)[0]
         return self.visit(node.body)
 
+    def visitFunctionDef(self, node):
+        self.parameter = self.visit(node.args)[2] # ['self', 'db', 'person']
+        return self.visit(node.body)[0]
+
+    def visitReturn(self, node):
+        return self.visit(node.value)
+
     def visitarguments(self, node):
         return [self.visit(arg) for arg in node.args]
 
