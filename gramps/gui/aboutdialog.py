@@ -74,8 +74,10 @@ except:
 
 try:
     import sqlite3
-    sqlite3_version_str = sqlite3.version
+    sqlite3_py_version_str = sqlite3.version
+    sqlite3_version_str = sqlite3.sqlite_version
 except:
+    sqlite3_py_version_str = 'not found'
     sqlite3_version_str = 'not found'
 
 #-------------------------------------------------------------------------
@@ -137,7 +139,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                  "GRAMPS: %s \n" +
                  "Python: %s \n" +
                  "BSDDB: %s \n" +
-                 "sqlite: %s \n" +
+                 "sqlite: %s (%s)\n" +
                  "LANG: %s\n" +
                  "OS: %s\n" +
                  "Distribution: %s")
@@ -145,6 +147,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                    ellipses(str(sys.version).replace('\n','')),
                    BSDDB_STR,
                    sqlite3_version_str,
+                   sqlite3_py_version_str,
                    ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))

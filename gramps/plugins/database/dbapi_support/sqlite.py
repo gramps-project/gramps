@@ -16,7 +16,8 @@ class Sqlite(object):
             "DB-API version": "2.0",
             "Database SQL type": cls.__name__,
             "Database SQL module": "sqlite3",
-            "Database SQL module version": sqlite3.version,
+            "Database SQL Python module version": sqlite3.version,
+            "Database SQL module version": sqlite3.sqlite_version,
             "Database SQL module location": sqlite3.__file__,
         }
         return summary
