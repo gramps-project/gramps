@@ -153,7 +153,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             "lat": str,
             "placeref_list": [PlaceRef],
             "name": PlaceName,
-            "alt_names": [str],
+            "alt_names": [PlaceName],
             "place_type": PlaceType,
             "code": str,
             "alt_loc": [Location],
