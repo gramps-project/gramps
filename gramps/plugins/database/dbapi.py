@@ -2047,8 +2047,9 @@ class DBAPI(DbGeneric):
         Record the signal in the signal table.
         """
         from datetime import datetime, timezone
+        import pytz
         print(signal, args)
-        timestamp = datetime.now(timezone.utc).astimezone() # local time, with timezone
+        timestamp = datetime.now(timezone.utc).astimezone(pytz.UTC) # local time, with timezone
         self.dbapi.execute("""INSERT INTO signal 
             (message_id, instance_id, signal, arguments, datetime) 
             VALUES (?, ?, ?, ?, ?);""",
@@ -2059,8 +2060,6 @@ class DBAPI(DbGeneric):
                             str(timestamp)])
 
     def get_updates_since(self, last_datetime):
-        from datetime import datetime, timezone
-        from dateutil.parser import parse
         ## get the last items from the table in a non-disruptive fashion
         ## [(signal, args), ...]
         self.dbapi.execute("""SELECT signal, arguments from signal where datetime > ?;""",

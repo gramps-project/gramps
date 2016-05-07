@@ -320,7 +320,8 @@ class ViewManager(CLIManager):
         global last_datetime
         from gi.repository import GLib
         from datetime import datetime, timezone
-        last_datetime = datetime.now(timezone.utc).astimezone() # local time, with timezone
+        import pytz
+        last_datetime = datetime.now(timezone.utc).astimezone(pytz.UTC) # local time, with timezone
 
         def update_remote_changes():
             """
@@ -328,7 +329,7 @@ class ViewManager(CLIManager):
             global last_datetime
             if self.dbstate.db.support_remote_changes() and self.dbstate.open:
                 updates = self.dbstate.db.get_updates_since(last_datetime)
-                last_datetime = datetime.now(timezone.utc).astimezone() # local time, with timezone
+                last_datetime = datetime.now(timezone.utc).astimezone(pytz.UTC) # local time, with timezone
                 for (signal, args) in updates:
                     GLib.idle_add(self.dbstate.db.emit, signal, args)
                     print("Emitting ", signal, args)
