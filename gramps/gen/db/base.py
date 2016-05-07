@@ -47,6 +47,7 @@ from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
 from .exceptions import DbTransactionCancel
+from ..utils.id import create_id
 
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -99,6 +100,7 @@ class DbReadBase(object):
         A new DbReadBase class should never be directly created. Only classes
         derived from this class should be created.
         """
+        self.instance_id = create_id()
         self.basedb = self
         self.__feature = {} # {"feature": VALUE, ...}
 
@@ -2118,6 +2120,9 @@ class DbWriteBase(DbReadBase):
             if user.uistate:
                 user.uistate.set_busy_cursor(False)
                 user.uistate.progress.hide()
+
+    def support_remote_changes(self):
+        return False
 
 class QuerySet(object):
     """

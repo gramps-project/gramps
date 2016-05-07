@@ -220,6 +220,13 @@ class DBAPI(DbGeneric):
                                     male       INTEGER,
                                     unknown    INTEGER
         );""")
+        self.dbapi.try_execute("""CREATE TABLE signal (
+                                    message_id   VARCHAR(50) PRIMARY KEY NOT NULL,
+                                    instance_id  VARCHAR(50),
+                                    signal       VARCHAR(50),
+                                    arguments    TEXT,
+                                    datetime     VARCHAR(50)
+        );""")
         ## Indices:
         self.dbapi.try_execute("""CREATE INDEX
                                   person_order_by ON person(order_by);
@@ -324,6 +331,9 @@ class DBAPI(DbGeneric):
         """)
         self.dbapi.try_execute("""CREATE INDEX
                                   person_surname ON person(surname);
+        """)
+        self.dbapi.try_execute("""CREATE INDEX
+                                  signal_datetime ON signal(datetime);
         """)
         self.rebuild_secondary_fields()
 
@@ -2036,4 +2046,32 @@ class DBAPI(DbGeneric):
         """
         Record the signal in the signal table.
         """
+        from datetime import datetime, timezone
         print(signal, args)
+        timestamp = datetime.now(timezone.utc).astimezone() # local time, with timezone
+        self.dbapi.execute("""INSERT INTO signal 
+            (message_id, instance_id, signal, arguments, datetime) 
+            VALUES (?, ?, ?, ?, ?);""",
+                           [create_id(),
+                            self.instance_id,
+                            signal,
+                            str(args),
+                            str(timestamp)])
+
+    def get_updates_since(self, last_datetime):
+        from datetime import datetime, timezone
+        from dateutil.parser import parse
+        ## get the last items from the table in a non-disruptive fashion
+        ## [(signal, args), ...]
+        self.dbapi.execute("""SELECT signal, arguments from signal where datetime > ?;""",
+                           [str(last_datetime)])
+        rows = self.dbapi.fetchall()
+        retval = []
+        for row in rows:
+            signal, arguments = row
+            print("get_updates_since:", repr(signal), repr(arguments))
+            arguments = eval(arguments)
+            print("get_updates_since:", repr(signal), repr(arguments))
+            retval.append((signal, arguments)) ## [("person-delete", ([person.handle],))]
+        return retval
+

@@ -329,9 +329,7 @@ class ViewManager(CLIManager):
             if self.dbstate.db.support_remote_changes() and self.dbstate.open:
                 updates = self.dbstate.db.get_updates_since(last_datetime)
                 last_datetime = datetime.now(timezone.utc).astimezone() # local time, with timezone
-                for update in updates:
-                    signal, args = update
-                    args = eval(args) # "person-delete", ([person.handle],)
+                for (signal, args) in updates:
                     GLib.idle_add(self.dbstate.db.emit, signal, args)
                     print("Emitting ", signal, args)
             return True # True continues
