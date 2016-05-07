@@ -1770,10 +1770,9 @@ class DBAPI(DbGeneric):
         Create secondary indexes for just this table.
         """
         table_name = table.lower()
-        for fields in self.get_table_func(table,"class_func").get_index_fields():
-            for field in fields:
-                field = self._hash_name(table, field)
-                self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);" % (table, field, table_name, field))
+        for field in self.get_table_func(table,"class_func").get_index_fields():
+            field = self._hash_name(table, field)
+            self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);" % (table, field, table_name, field))
 
     def update_secondary_values_all(self):
         """
