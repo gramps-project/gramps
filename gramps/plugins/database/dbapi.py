@@ -132,7 +132,6 @@ class DBAPI(DbGeneric):
 
         self.dbapi = default_settings["dbapi"]
         self.update_schema()
-        self.start_update_changes()
 
     def update_schema(self):
         """
@@ -2014,26 +2013,3 @@ class DBAPI(DbGeneric):
         summary.update(self.dbapi.__class__.get_summary())
         return summary
 
-    def start_update_changes(self):
-        """
-        Listen to all changes, to emit them on remote databases.
-        """
-        from functools import partial
-        signals = []
-        for item in ["person", "family", "source", "citation",
-                     "event", "media", "place", "repository",
-                     "note", "tag"]:
-            signals.append('%s-update' % item)
-            signals.append('%s-delete' % item)
-            signals.append('%s-add' % item)
-        signals += ['person-rebuild', 'family-rebuild', 'place-rebuild', 'source-rebuild', 
-                    'citation-rebuild', 'media-rebuild', 'event-rebuild', 'repository-rebuild',
-                    'note-rebuild', 'tag-rebuild', 'home-person-changed']
-        for signal in signals:
-            self.connect(signal, lambda *args, signal=signal: self.record_update_change(signal, *args))
-        
-    def record_update_change(self, signal, *args):
-        """
-        Record the signal in the signal table.
-        """
-        print(signal, args)
