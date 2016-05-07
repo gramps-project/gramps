@@ -2163,12 +2163,3 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return (0, 0, 0)
 
-    def support_remote_changes(self):
-        return True
-
-    def get_updates_since(self, last_datetime):
-        from dateutil.parser import parse
-        ## get the last items from the table in a non-disruptive fashion
-        ## [(signal, args), ...]
-        return [] ## [("person-delete", ([person.handle],))]
-
