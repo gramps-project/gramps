@@ -2329,10 +2329,10 @@ class QuerySet(object):
                 self.database.add_tag(tag, trans)
             commit_func = self.database.get_table_func(self.table,"commit_func")
             for item in self.generator:
-                if tag.handle not in item.tag_list:
-                    item.add_tag(tag.handle)
-                elif remove:
+                if remove and (tag.handle in item.tag_list):
                     item.remove_tag(tag.handle)
+                elif (not remove) and (tag.handle not in item.tag_list):
+                    item.add_tag(tag.handle)
                 else:
                     continue
                 commit_func(item, trans)

@@ -311,6 +311,32 @@ class ViewManager(CLIManager):
         # Need to call after plugins have been registered
         self.uistate.connect('update-available', self.process_updates)
         self.check_for_updates()
+        ## if sync flag:
+        self.start_update_remote_changes()
+
+    def start_update_remote_changes(self):
+        """
+        """
+        global last_datetime
+        from gi.repository import GLib
+        from datetime import datetime, timezone
+        last_datetime = datetime.now(timezone.utc).astimezone() # local time, with timezone
+
+        def update_remote_changes():
+            """
+            """
+            global last_datetime
+            if self.dbstate.db.support_remote_changes() and self.dbstate.open:
+                updates = self.dbstate.db.get_updates_since(last_datetime)
+                last_datetime = datetime.now(timezone.utc).astimezone() # local time, with timezone
+                for update in updates:
+                    signal, args = update
+                    args = eval(args) # "person-delete", ([person.handle],)
+                    GLib.idle_add(self.dbstate.db.emit, signal, args)
+                    print("Emitting ", signal, args)
+            return True # True continues
+
+        GLib.timeout_add_seconds(5, update_remote_changes)
 
     def check_for_updates(self):
         """
