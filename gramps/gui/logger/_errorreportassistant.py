@@ -37,6 +37,14 @@ try:
 except:
     BSDDB_STR = 'not found'
 
+try:
+    import sqlite3
+    sqlite3_py_version_str = sqlite3.version
+    sqlite3_version_str = sqlite3.sqlite_version
+except:
+    sqlite3_version_str = 'not found'
+    sqlite3_py_version_str = 'not found'
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -163,6 +171,7 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         return "Python version: %s \n"\
                "BSDDB version: %s \n"\
+               "sqlite version: %s (%s) \n"\
                "Gramps version: %s \n"\
                "LANG: %s\n"\
                "OS: %s\n"\
@@ -172,6 +181,8 @@ class ErrorReportAssistant(Gtk.Assistant):
                "cairo version  : %s"\
                % (str(sys.version).replace('\n',''),
                   BSDDB_STR,
+                  sqlite3_version_str,
+                  sqlite3_py_version_str,
                   str(VERSION),
                   get_env_var('LANG',''),
                   operatingsystem,
