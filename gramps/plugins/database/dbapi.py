@@ -341,6 +341,10 @@ class DBAPI(DbGeneric):
         """
         Executed after a batch operation.
         """
+        if txn.batch:
+            self.build_surname_list()
+            # FIXME: need a User GUI update callback here:
+            self.reindex_reference_map(lambda percent: percent)
         self.dbapi.commit()
         self.transaction = None
         msg = txn.get_description()

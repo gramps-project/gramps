@@ -860,11 +860,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if transaction.batch:
             self.env.txn_checkpoint()
-            # Only build surname list after surname index is surely back
-            self.build_surname_list()
-            # FIXME: need a User GUI update callback here:
-            self.reindex_reference_map(lambda percent: percent)
-
         # Reset callbacks if necessary
         if transaction.batch or not len(transaction):
             return
