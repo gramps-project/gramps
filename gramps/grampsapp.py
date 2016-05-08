@@ -186,6 +186,8 @@ def show_settings():
     """
     py_str = '%d.%d.%d' % sys.version_info[:3]
     try:
+        import gi
+        gi.require_version('Gtk', '3.0')
         from gi.repository import Gtk
         try:
             gtkver_str = '%d.%d.%d' % (Gtk.get_major_version(),
@@ -236,6 +238,8 @@ def show_settings():
         from gi import Repository
         repository = Repository.get_default()
         if repository.enumerate_versions("OsmGpsMap"):
+            import gi
+            gi.require_version('OsmGpsMap', '1.0')
             from gi.repository import OsmGpsMap as osmgpsmap
             try:
                 osmgpsmap_str = osmgpsmap._version
