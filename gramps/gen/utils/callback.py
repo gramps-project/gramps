@@ -313,7 +313,7 @@ class Callback(object):
         self.__callback_map = None
         del self.__callback_map
 
-    def emit(self, signal_name, args=tuple()):
+    def emit(self, signal_name, args=tuple(), **kwargs):
         """
         Emit the signal called signal_name. The args must be a tuple of
         arguments that match the types declared for the signals signature.
@@ -402,7 +402,11 @@ class Callback(object):
                     try:
                         if isinstance(fn, types.FunctionType) or \
                                 isinstance(fn, types.MethodType): # call func
-                            fn(*args)
+                            argspec = inspect.getfullargspec(fn)
+                            if argspec.varkw:
+                                fn(*args, **kwargs)
+                            else:
+                                fn(*args)
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:

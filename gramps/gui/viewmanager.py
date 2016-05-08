@@ -330,8 +330,8 @@ class ViewManager(CLIManager):
                 updates = self.dbstate.db.get_updates_since(last_datetime)
                 last_datetime = datetime.now(timezone.utc).astimezone(timezone.utc) # local time, with timezone
                 for (signal, args) in updates:
-                    GLib.idle_add(self.dbstate.db.emit, signal, args)
-                    print("Emitting ", signal, args)
+                    print("Emitting with kwargs", signal, args)
+                    GLib.idle_add(self.dbstate.db.emit, signal, args, remote=True)
             return True # True continues
 
         GLib.timeout_add_seconds(5, update_remote_changes)

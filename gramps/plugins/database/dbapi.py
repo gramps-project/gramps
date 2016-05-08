@@ -2040,12 +2040,16 @@ class DBAPI(DbGeneric):
                     'citation-rebuild', 'media-rebuild', 'event-rebuild', 'repository-rebuild',
                     'note-rebuild', 'tag-rebuild', 'home-person-changed']
         for signal in signals:
-            self.connect(signal, lambda *args, signal=signal: self.record_update_change(signal, *args))
+            ## This must have a **kwargs:
+            self.connect(signal, lambda *args, signal=signal, **kwargs: self.record_update_change(signal, *args, **kwargs))
         
-    def record_update_change(self, signal, *args):
+    def record_update_change(self, signal, *args, **kwargs):
         """
         Record the signal in the signal table.
+        This function must have a **kwargs
         """
+        if kwargs: # this comes from another instance; ignore
+            return
         from datetime import datetime, timezone
         print(signal, args)
         timestamp = datetime.now(timezone.utc).astimezone(timezone.utc) # local time, with timezone
@@ -2061,8 +2065,9 @@ class DBAPI(DbGeneric):
     def get_updates_since(self, last_datetime):
         ## get the last items from the table in a non-disruptive fashion
         ## [(signal, args), ...]
-        self.dbapi.execute("""SELECT signal, arguments from signal where datetime > ?;""",
-                           [str(last_datetime)])
+        self.dbapi.execute("""SELECT signal, arguments from signal where datetime > ? 
+                                and instance_id != ?;""",
+                           [str(last_datetime), self.instance_id])
         rows = self.dbapi.fetchall()
         retval = []
         for row in rows:
