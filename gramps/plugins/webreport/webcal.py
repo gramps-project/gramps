@@ -47,7 +47,7 @@ _LOG = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-NGETTEXT = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
@@ -322,8 +322,8 @@ class WebCalReport(Report):
 
         # _('translation')
         with self._user.progress(_("Web Calendar Report"),
-                               (_('Calculating Holidays for year %04d') % year),
-                               365) as step:
+                                 _('Calculating Holidays for year %04d') % year,
+                                 365) as step:
 
             holiday_table = libholiday.HolidayTable()
             country = holiday_table.get_countries()[self.country]
@@ -522,8 +522,7 @@ class WebCalReport(Report):
 
                 # each year will link to current month.
                 # this will always need an extension added
-                full_month_name = date_displayer.long_months[
-                                                         self.today.get_month()]
+                full_month_name = date_displayer.long_months[self.today.get_month()]
 
                 # Note. We use '/' here because it is a URL, not a OS dependent
                 # pathname.
@@ -1279,7 +1278,7 @@ class WebCalReport(Report):
                     death_date = death_event.get_date_object()
                     person_death = death_date
                     if (birth_date != Date() and birth_date.is_valid()
-                        and death_date):
+                                             and death_date):
                         age_at_death = death_date - birth_date
 
                 # determine birthday information???
@@ -2013,7 +2012,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 else:
                     age = '<em>%s' % nyears
                     # translators: leave all/any {...} untranslated
-                    txt_str = NGETTEXT("{couple}, {years} year anniversary",
+                    txt_str = ngettext("{couple}, {years} year anniversary",
                                        "{couple}, {years} year anniversary",
                                        nyears).format(couple=text, years=age)
                     txt_str += "</em>"
