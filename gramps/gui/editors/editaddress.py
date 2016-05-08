@@ -37,6 +37,8 @@ mechanism for the user to edit address information.
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
