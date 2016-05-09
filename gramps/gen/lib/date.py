@@ -1942,6 +1942,8 @@ class Date(object):
         self.dateval = tuple(dlist)
         self._calc_sort_value()
 
+    year = property(get_year, set_year)
+
 def Today():
     """
     Returns a Date object set to the current date.
