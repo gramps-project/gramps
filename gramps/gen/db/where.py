@@ -26,10 +26,10 @@ import copy
 class ParseFilter(Visitor):
     def visitName(self, node):
         return node.id
-    
+
     def visitNum(self, node):
         return node.n
-        
+
     def visitlong(self, node):
         return node
 
@@ -39,8 +39,8 @@ class ParseFilter(Visitor):
             return [self.process_field(expr), "==", True]
         elif len(expr) == 3:
             # (field, op, value)
-            return [self.process_field(expr[0]), 
-                    expr[1], 
+            return [self.process_field(expr[0]),
+                    expr[1],
                     self.process_value(expr[2])]
         else:
             # list of exprs
@@ -64,7 +64,7 @@ class ParseFilter(Visitor):
         """
         Handle LIKE()
         """
-        return [self.process_field(self.visit(node.args[0])), 
+        return [self.process_field(self.visit(node.args[0])),
                 self.visit(node.func),
                 self.process_value(self.visit(node.args[1]))]
 
@@ -75,8 +75,8 @@ class ParseFilter(Visitor):
         return [self.visit(node) for node in list]
 
     def visitCompare(self, node):
-        return [self.process_field(self.visit(node.left)), 
-                " ".join(self.visit(node.ops)), 
+        return [self.process_field(self.visit(node.left)),
+                " ".join(self.visit(node.ops)),
                 self.process_value(self.visit(node.comparators[0]))]
 
     def visitAttribute(self, node):
@@ -129,7 +129,7 @@ class ParseFilter(Visitor):
         return node.arg
 
     def visitSubscript(self, node):
-        return "%s[%s]" % (self.visit(node.value), 
+        return "%s[%s]" % (self.visit(node.value),
                           self.visit(node.slice))
 
     def visitIndex(self, node):

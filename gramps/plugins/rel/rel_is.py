@@ -40,12 +40,12 @@ import gramps.gen.relationship
 #-------------------------------------------------------------------------
 
 _cousin_level = [ "", "", #brother/sister, frændi/frænka -- these are taken care of separately
-"þremenningur", "fjórmenningur", "fimmmenningur", 
+"þremenningur", "fjórmenningur", "fimmmenningur",
 "sexmenningur", "sjömenningur", "áttmenningur",
-"nímenningur", "tímenningur", "ellefumenningur", 
+"nímenningur", "tímenningur", "ellefumenningur",
 "tólfmenningur", "þrettánmenningur", "fjórtánmenningur",
 "fimtánmenningur", "sekstenmenning", "syttenmenning",
-"attenmenning", "nittenmenning", "tyvemenning" ] 
+"attenmenning", "nittenmenning", "tyvemenning" ]
 
 _cousin_terms = _cousin_level + ["frændi", "frænka"]
 #-------------------------------------------------------------------------
@@ -69,7 +69,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_cousin(self, level):
         if level > len(_cousin_level)-1:
-            # FIXME: use Norwegian term term here, 
+            # FIXME: use Norwegian term term here,
             # UPDATED by Frode: unsure about the expretion "en fjern slektning", should it be just "fjern slektning".
             # Need to see it used in the program to get the understanding.
             return "fjarskyldur ættingi"
@@ -239,14 +239,14 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             return (self.get_ancestors_cousin(other_person, secondRel, firstRel), common)
         else:
             return (self.get_cousins_descendant(other_person, firstRel, secondRel), common)
-    
+
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                     reltocommon_a, reltocommon_b,
-                                    only_birth=True, 
+                                    only_birth=True,
                                     in_law_a=False, in_law_b=False):
         return self.get_relationship(reltocommon_a, reltocommon_b, gender_a, gender_b)[0];
- 
-    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b,
                                         in_law_a=False, in_law_b=False):
         return self.get_two_way_rel(gender_b, "", "")
 
@@ -258,7 +258,7 @@ if __name__ == "__main__":
     # python src/plugins/rel/rel_no.py
     # (Above not needed here)
 
-    """TRANSLATORS, copy this if statement at the bottom of your 
+    """TRANSLATORS, copy this if statement at the bottom of your
         rel_xx.py module, and test your work with:
         python src/plugins/rel/rel_xx.py
     """

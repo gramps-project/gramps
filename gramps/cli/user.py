@@ -48,7 +48,7 @@ class User(user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in :class:`.gen.user.User`
     """
-    def __init__(self, callback=None, error=None, auto_accept=False, quiet=False, 
+    def __init__(self, callback=None, error=None, auto_accept=False, quiet=False,
                  uistate=None, dbstate=None):
         """
         Init.
@@ -110,7 +110,7 @@ class User(user.User):
         """
         self._fileout.write("\r100%\n")
 
-    def prompt(self, title, message, accept_label, reject_label, 
+    def prompt(self, title, message, accept_label, reject_label,
                parent=None, default_label=None):
         """
         Prompt the user with a message to select an alternative.

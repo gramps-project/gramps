@@ -412,7 +412,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return self.__tables[table]
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else: 
+        else:
             return super().get_table_func(table, func)
 
     def catch_db_error(func):
@@ -2544,7 +2544,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             bsddb_version = _("Unknown")
         return {
-            _("DB-API version"): "n/a", 
+            _("DB-API version"): "n/a",
             _("Number of people"): self.get_number_of_people(),
             _("Number of families"): self.get_number_of_families(),
             _("Number of sources"): self.get_number_of_sources(),

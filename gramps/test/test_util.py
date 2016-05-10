@@ -239,8 +239,8 @@ def capture(stdin):
         sys.exit = oldexit
         if stdin:
             sys.stdin = oldin
-        output[0] = output[0].getvalue() 
-        output[1] = output[1].getvalue() 
+        output[0] = output[0].getvalue()
+        output[1] = output[1].getvalue()
 
 class Gramps:
     def __init__(self, user=None, dbstate=None):

@@ -186,7 +186,7 @@ class FilterProxyDb(ProxyDbBase):
             return self.__tables[table]
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else: 
+        else:
             return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):

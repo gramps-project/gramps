@@ -246,7 +246,7 @@ class Citations(Gramplet, DbGUIElement):
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             handle = model.get_value(iter_, 0)
-            # bug 9094. 
+            # bug 9094.
             # str(model.get_path(iter_)) return something like NNN:MMM
             # So if we have only NNN, it's a node
             # removing the str() solves the problem.

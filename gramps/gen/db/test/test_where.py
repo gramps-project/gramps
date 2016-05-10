@@ -30,7 +30,7 @@ def make_closure(surname):
     Test closure.
     """
     from gramps.gen.lib import Person
-    return (lambda person: 
+    return (lambda person:
             (person.primary_name.surname_list[0].surname == surname and
              person.gender == Person.MALE))
 
@@ -51,9 +51,9 @@ class ClosureTest(unittest.TestCase):
 
     def test_01(self):
         self.check(
-            (lambda family: (family.private and 
-                             family.mother_handle.gramps_id != "I0001"), 
-             ['AND', [['private', '==', True], 
+            (lambda family: (family.private and
+                             family.mother_handle.gramps_id != "I0001"),
+             ['AND', [['private', '==', True],
                       ['mother_handle.gramps_id', '!=', 'I0001']]]))
 
     def test_02(self):

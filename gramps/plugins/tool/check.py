@@ -2193,9 +2193,9 @@ class CheckIntegrity:
             self.text.write(
                 # translators: leave all/any {...} untranslated
                 ngettext("{quantity} family "
-                             "with no parents or children found, removed.\n", 
+                             "with no parents or children found, removed.\n",
                          "{quantity} families "
-                             "with no parents or children found, removed.\n", 
+                             "with no parents or children found, removed.\n",
                          efam).format(quantity=efam)
                 )
             if efam == 1:

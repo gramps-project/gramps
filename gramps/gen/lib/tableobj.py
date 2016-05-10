@@ -233,9 +233,9 @@ class TableObject(BaseObject):
         Return all seconday fields and their types
         """
         from .handle import HandleClass
-        return ([(key.lower(), value) 
+        return ([(key.lower(), value)
                  for (key, value) in cls.get_schema().items()
-                 if value in [str, int, float, bool] or 
+                 if value in [str, int, float, bool] or
                  isinstance(value, HandleClass)] +
                 cls.get_extra_secondary_fields())
 

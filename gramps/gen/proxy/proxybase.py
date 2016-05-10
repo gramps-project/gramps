@@ -237,7 +237,7 @@ class ProxyDbBase(DbReadBase):
             return self.__tables[table]
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
-        else: 
+        else:
             return super().get_table_func(table, func)
 
     def is_open(self):

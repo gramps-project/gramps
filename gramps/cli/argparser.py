@@ -388,8 +388,8 @@ class ArgParser:
         for ind in cleandbg:
             del options[ind]
 
-        if (len(options) > 0 and self.open is None and self.imports == [] 
-            and self.removes == [] 
+        if (len(options) > 0 and self.open is None and self.imports == []
+            and self.removes == []
             and not (self.list or self.list_more or self.list_table or
                      self.help)):
             # Extract and convert to unicode the arguments in the list.

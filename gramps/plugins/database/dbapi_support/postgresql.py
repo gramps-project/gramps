@@ -30,16 +30,16 @@ class Postgresql:
         query = query.replace("desc", "desc_")
         ## LIMIT offset, count
         ## count can be -1, for all
-        ## LIMIT -1 
+        ## LIMIT -1
         ## LIMIT offset, -1
-        query = query.replace("LIMIT -1", 
+        query = query.replace("LIMIT -1",
                               "LIMIT all") ##
         match = re.match(".* LIMIT (.*), (.*) ", query)
         if match and match.groups():
             offset, count = match.groups()
             if count == "-1":
                 count = "all"
-            query = re.sub("(.*) LIMIT (.*), (.*) ", 
+            query = re.sub("(.*) LIMIT (.*), (.*) ",
                            "\\1 LIMIT %s OFFSET %s " % (count, offset),
                            query)
         return query

@@ -56,12 +56,12 @@ class FieldBaseTest(unittest.TestCase):
 
     def test_field_access01(self):
         person = self.db.get_person_from_gramps_id("I0001")
-        self.assertEqual(person.get_field("primary_name.surname_list.0.surname"), 
+        self.assertEqual(person.get_field("primary_name.surname_list.0.surname"),
                          "Smith")
 
     def test_field_join01(self):
         family = self.db.get_family_from_gramps_id("F0001")
-        self.assertEqual(family.get_field("father_handle.primary_name.surname_list.0.surname", self.db), 
+        self.assertEqual(family.get_field("father_handle.primary_name.surname_list.0.surname", self.db),
                          "Smith")
 
 if __name__ == "__main__":

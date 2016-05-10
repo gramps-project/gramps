@@ -66,8 +66,8 @@ class Gallery(Gramplet):
                 photo.set_uistate(self.uistate, media_handle)
             else:
                 photo = Photo(self.uistate.screen_height() < 1000)
-                photo.set_pixbuf(full_path, 
-                                get_thumbnail_image(full_path, 
+                photo.set_pixbuf(full_path,
+                                get_thumbnail_image(full_path,
                                     mime_type,
                                     media_ref.get_rectangle()))
             self.image_list.append(photo)

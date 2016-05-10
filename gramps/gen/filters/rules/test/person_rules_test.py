@@ -127,7 +127,7 @@ class BaseTest(unittest.TestCase):
     def test_HasNickname(self):
         rule = HasNickname([])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'cc8205d883763f02abd', b'GNUJQCL9MD64AM56OH', b'Q8HKQC3VMRM1M6M7ES', 
+            b'cc8205d883763f02abd', b'GNUJQCL9MD64AM56OH', b'Q8HKQC3VMRM1M6M7ES',
             ]))
 
     def test_HasUnknownGender(self):
