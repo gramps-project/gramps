@@ -217,6 +217,8 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             "given": "primary_name.first_name",
             "surname": "primary_name.surname_list.0.surname",
             "surnames": "primary_name.surname_list.surname",
+            "event.place": "event_ref_list.ref.place.name.value",
+            "event.year": "event_ref_list.ref.date.year",
         }
 
     @classmethod
