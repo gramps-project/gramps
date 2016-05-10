@@ -197,7 +197,7 @@ def _validate_options(options, dbase):
 # Command-line report
 #
 #------------------------------------------------------------------------
-class CommandLineReport(object):
+class CommandLineReport:
     """
     Provide a way to generate report from the command line.
     """

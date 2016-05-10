@@ -333,7 +333,7 @@ class GrampletWindow(ManagedWindow):
 
 #------------------------------------------------------------------------
 
-class GuiGramplet(object):
+class GuiGramplet:
     """
     Class that handles the GUI representation of a Gramplet.
     """
@@ -1593,7 +1593,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             return gramplet.title, grid
         return gramplet_panel
 
-class Configuration(object):
+class Configuration:
     """
     A config wrapper to redirect set/get to GrampletPane.
     """

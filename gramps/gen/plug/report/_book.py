@@ -77,7 +77,7 @@ _UNSUPPORTED = _("Unsupported")
 # Book Item class
 #
 #------------------------------------------------------------------------
-class BookItem(object):
+class BookItem:
     """
     Interface into the book item -- a smallest element of the book.
     """
@@ -150,7 +150,7 @@ class BookItem(object):
 # Book class
 #
 #------------------------------------------------------------------------
-class Book(object):
+class Book:
     """
     Interface into the user-defined book -- a collection of book items.
     """
@@ -398,7 +398,7 @@ class Book(object):
 # BookList class
 #
 #------------------------------------------------------------------------
-class BookList(object):
+class BookList:
     """
     Interface into the user-defined list of books.
 

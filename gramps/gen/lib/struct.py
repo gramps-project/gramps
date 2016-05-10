@@ -23,7 +23,7 @@ from gramps.gen.lib.handle import HandleClass
 def from_struct(struct):
     return Struct.instance_from_struct(struct)
 
-class Struct(object):
+class Struct:
     """
     Class for getting and setting parts of a struct by dotted path.
 

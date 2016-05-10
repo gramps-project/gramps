@@ -23,7 +23,7 @@
 # BaseSidebar class
 #
 #-------------------------------------------------------------------------
-class BaseSidebar(object):
+class BaseSidebar:
     """
     The base class for all sidebar plugins.
     """

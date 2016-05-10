@@ -494,7 +494,7 @@ class PG30_Def:
         return '\n\n'.join([self.tables[t].diag() for t in self.tables])
 
 
-class ProgenParser(object):
+class ProgenParser:
     def __init__(self, dbase, file_):
         self.bname, ext = os.path.splitext(file_)
         if ext.lower() in ('.per', '.rel', '.mem'):

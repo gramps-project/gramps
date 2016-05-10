@@ -30,7 +30,7 @@ from gramps.gen.lib import ChildRefType
 # Livrecurse base objects only
 #
 #------------------------------------------------------------------------
-class _PersonSeen(object):
+class _PersonSeen:
     """   librecurse base boject only
     Keep track of people that have been seen so we can call the correct
     virtual method.
@@ -56,7 +56,7 @@ class _PersonSeen(object):
         if person_handle is not None:
             self.people_seen.add(person_handle)
 
-class _FamilySeen(object):
+class _FamilySeen:
     """   librecurse base boject only
     Keep track of the famalies that have been seen so we can call the correct
     virtual method.
@@ -80,7 +80,7 @@ class _FamilySeen(object):
             self.add_marriage(level, person_handle, family_handle)
         self.families_seen.add(family_handle)
 
-class _StopRecurse(object):
+class _StopRecurse:
     """ A simple class to break out the
         . stop_recursion
         . can_recurse

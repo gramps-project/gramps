@@ -403,7 +403,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
 # CairoPrintSave class
 #
 #------------------------------------------------------------------------
-class CairoPrintSave():
+class CairoPrintSave:
     """Act as an abstract document that can render onto a cairo context.
 
     It can render the model onto cairo context pages, according to the received

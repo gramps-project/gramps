@@ -69,7 +69,7 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 # MonitoredCheckbox class
 #
 #-------------------------------------------------------------------------
-class MonitoredCheckbox(object):
+class MonitoredCheckbox:
 
     def __init__(self, obj, button, set_val, get_val, on_toggle=None,
                  readonly = False):
@@ -100,7 +100,7 @@ class MonitoredCheckbox(object):
 # MonitoredEntry class
 #
 #-------------------------------------------------------------------------
-class MonitoredEntry(object):
+class MonitoredEntry:
 
     def __init__(self, obj, set_val, get_val, read_only=False,
                  autolist=None, changed=None):
@@ -208,7 +208,7 @@ class MonitoredEntryIndicator(MonitoredEntry):
 # MonitoredSpinButton class
 #
 #-------------------------------------------------------------------------
-class MonitoredSpinButton(object):
+class MonitoredSpinButton:
     """
     Class for signal handling of spinbuttons.
     (Code is a modified copy of :class:`MonitoredEntry`)
@@ -339,7 +339,7 @@ class MonitoredSpinButton(object):
 # MonitoredText class
 #
 #-------------------------------------------------------------------------
-class MonitoredText(object):
+class MonitoredText:
 
     def __init__(self, obj, set_val, get_val, read_only=False):
         self.buf = obj.get_buffer()
@@ -368,7 +368,7 @@ class MonitoredText(object):
 # MonitoredType class
 #
 #-------------------------------------------------------------------------
-class MonitoredType(object):
+class MonitoredType:
 
     def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False,
                  custom_values=None):
@@ -415,7 +415,7 @@ class MonitoredType(object):
 # MonitoredDataType class
 #
 #-------------------------------------------------------------------------
-class MonitoredDataType(object):
+class MonitoredDataType:
 
 
     def __init__(self, obj, set_val, get_val, readonly=False,
@@ -504,7 +504,7 @@ class MonitoredDataType(object):
 # MonitoredMenu class
 #
 #-------------------------------------------------------------------------
-class MonitoredMenu(object):
+class MonitoredMenu:
 
     def __init__(self, obj, set_val, get_val, mapping,
                  readonly=False, changed=None):
@@ -550,7 +550,7 @@ class MonitoredMenu(object):
 # MonitoredStrMenu class
 #
 #-------------------------------------------------------------------------
-class MonitoredStrMenu(object):
+class MonitoredStrMenu:
 
     def __init__(self, obj, set_val, get_val, mapping, readonly=False):
         self.set_val = set_val
@@ -601,7 +601,7 @@ class MonitoredStrMenu(object):
 # MonitoredDate class
 #
 #-------------------------------------------------------------------------
-class MonitoredDate(object):
+class MonitoredDate:
     """
     Class that associates a pixmap with a text widget, providing visual
     feedback that indicates if the text widget contains a valid date.
@@ -679,7 +679,7 @@ class MonitoredDate(object):
 # MonitoredComboSelectedEntry class
 #
 #-------------------------------------------------------------------------
-class MonitoredComboSelectedEntry(object):
+class MonitoredComboSelectedEntry:
     """
     A MonitoredEntry driven by a Combobox to select what the entry field
     works upon
@@ -809,7 +809,7 @@ class MonitoredComboSelectedEntry(object):
 # MonitoredTagList class
 #
 #-------------------------------------------------------------------------
-class MonitoredTagList(object):
+class MonitoredTagList:
     """
     A MonitoredTagList consists of a label to display a list of tags and a
     button to invoke the tag editor.

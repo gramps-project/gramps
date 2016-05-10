@@ -173,7 +173,7 @@ def valid_plugin_version(plugin_version_string):
                 plugin_version <= VERSION_TUPLE)
     return False
 
-class PluginData(object):
+class PluginData:
     """
     This is the base class for all plugin data objects.
     The workflow is:
@@ -1078,7 +1078,7 @@ def make_environment(**kwargs):
 # PluginRegister
 #
 #-------------------------------------------------------------------------
-class PluginRegister(object):
+class PluginRegister:
     """
     PluginRegister is a Singleton which holds plugin data
 

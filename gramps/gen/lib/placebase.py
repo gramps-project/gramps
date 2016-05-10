@@ -27,7 +27,7 @@ PlaceBase class for Gramps.
 # PlaceBase class
 #
 #-------------------------------------------------------------------------
-class PlaceBase(object):
+class PlaceBase:
     """
     Base class for place-aware objects.
     """

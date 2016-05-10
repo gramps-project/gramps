@@ -51,7 +51,7 @@ log = logging.getLogger(".DateStrings")
 # DateStrings
 #
 #-------------------------------------------------------------------------
-class DateStrings(object):
+class DateStrings:
     """
     String tables for :class:`.DateDisplay` and :class:`.DateParser`.
     """

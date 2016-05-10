@@ -45,7 +45,7 @@ LOG = logging.getLogger(".")
 # Rule
 #
 #-------------------------------------------------------------------------
-class Rule(object):
+class Rule:
     """Base rule class."""
 
     labels      = []

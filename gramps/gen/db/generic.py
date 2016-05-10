@@ -202,7 +202,7 @@ class DbGenericUndo(DbUndo):
             db.undo_history_callback()
         return True
 
-class Environment(object):
+class Environment:
     """
     Implements the Environment API.
     """
@@ -215,7 +215,7 @@ class Environment(object):
     def txn_checkpoint(self):
         pass
 
-class Table(object):
+class Table:
     """
     Implements Table interface.
     """
@@ -236,7 +236,7 @@ class Table(object):
     def put(self, key, data, txn=None):
         self.funcs["add_func"](data, txn)
 
-class Map(object):
+class Map:
     """
     Implements the map API for person_map, etc.
 
@@ -285,7 +285,7 @@ class Map(object):
     def delete(self, key):
         self.table.funcs["del_func"](key, self.txn)
 
-class MetaCursor(object):
+class MetaCursor:
     def __init__(self):
         pass
     def __enter__(self):
@@ -309,7 +309,7 @@ class MetaCursor(object):
     def close(self):
         pass
 
-class Cursor(object):
+class Cursor:
     def __init__(self, map):
         self.map = map
         self._iter = self.__iter__()
@@ -358,7 +358,7 @@ class TreeCursor(Cursor):
         for handle in handles:
             yield (handle, self.db._get_raw_place_data(handle))
 
-class Bookmarks(object):
+class Bookmarks:
     def __init__(self, default=[]):
         self.handles = list(default)
 

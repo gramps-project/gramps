@@ -184,7 +184,7 @@ def fix_spaces(text_list):
 #
 #-------------------------------------------------------------------------
 
-class ImportInfo(object):
+class ImportInfo:
     """
     Class object that can hold information about the import
     """
@@ -330,7 +330,7 @@ class ImportInfo(object):
 
         return txt
 
-class LineParser(object):
+class LineParser:
     def __init__(self, filename):
 
         self.count = 0

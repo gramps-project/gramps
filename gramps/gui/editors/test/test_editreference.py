@@ -38,7 +38,7 @@ from gramps.gen.dbstate import DbState
 from gramps.gen.merge.diff import *
 from gramps.gui.editors.editreference import EditReference
 
-class MockWindow():
+class MockWindow:
     def set_transient_for(self, *args, **kwargs):
         pass
     def show_all(self):

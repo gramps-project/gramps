@@ -209,7 +209,7 @@ class EditRepository(EditPrimary):
 
         self._do_close()
 
-class DeleteRepositoryQuery(object):
+class DeleteRepositoryQuery:
     def __init__(self, dbstate, uistate, repository, sources):
         self.obj = repository
         self.db = dbstate.db

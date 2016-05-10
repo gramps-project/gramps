@@ -170,7 +170,7 @@ def __index_surname(surn_list):
 # class DbBookmarks
 #
 #-------------------------------------------------------------------------
-class DbBookmarks(object):
+class DbBookmarks:
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
 

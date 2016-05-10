@@ -43,7 +43,7 @@ PLUGMAN = BasePluginManager.get_instance()
 # FilterList
 #
 #-------------------------------------------------------------------------
-class FilterList(object):
+class FilterList:
     """
     Container class for managing the generic filters.
     It stores, saves, and loads the filters.

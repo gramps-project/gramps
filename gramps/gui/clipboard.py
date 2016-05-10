@@ -172,7 +172,7 @@ def model_contains(model, data):
 # wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
-class ClipWrapper(object):
+class ClipWrapper:
     UNAVAILABLE_ICON = 'dialog-error'
 
     def __init__(self, dbstate, obj):
@@ -849,7 +849,7 @@ class ClipRepositoryLink(ClipHandleWrapper):
 #
 #-------------------------------------------------------------------------
 
-class ClipDropList(object):
+class ClipDropList:
     DROP_TARGETS = [DdTargets.LINK_LIST]
     DRAG_TARGET  = None
 
@@ -941,7 +941,7 @@ class ClipboardListModel(Gtk.ListStore):
 # ClipboardListView class
 #
 #-------------------------------------------------------------------------
-class ClipboardListView(object):
+class ClipboardListView:
 
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
     LOCAL_DRAG_ATOM_TYPE = Gdk.atom_intern(LOCAL_DRAG_TYPE, False)

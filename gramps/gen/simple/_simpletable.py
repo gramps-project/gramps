@@ -32,7 +32,7 @@ from ..lib import (Person, Family, Event, Source, Place, Citation,
 from ..config import config
 from ..datehandler import displayer
 
-class SimpleTable(object):
+class SimpleTable:
     """
     Provide a simplified table creation interface.
     """

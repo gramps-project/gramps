@@ -62,7 +62,7 @@ from .basemodel import BaseModel
 # Node
 #
 #-------------------------------------------------------------------------
-class Node(object):
+class Node:
     """
     This class defines an individual node of a tree in the model.  The node
     stores the following data:
@@ -174,7 +174,7 @@ class Node(object):
 # NodeMap
 #
 #-------------------------------------------------------------------------
-class NodeMap(object):
+class NodeMap:
     """
     Map of id of Node classes to real object
     """

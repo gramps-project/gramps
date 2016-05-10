@@ -44,7 +44,7 @@ except:
 #
 #-------------------------------------------------------------------------
 
-class BsddbBaseCursor(object):
+class BsddbBaseCursor:
     """
     Provide a basic iterator that allows the user to cycle through
     the elements in a particular map.

@@ -28,7 +28,7 @@ Abstracted option handling.
 # Menu class
 #
 #-------------------------------------------------------------------------
-class Menu(object):
+class Menu:
     """
     **Introduction**
 

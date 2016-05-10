@@ -96,7 +96,7 @@ def _return(*args):
 #
 #-------------------------------------------------------------------------
 
-class CallbackManager(object):
+class CallbackManager:
     """
     Manage callback handling from GUI to the db.
     It is unique to a db and some GUI element. When a db is changed, one should

@@ -936,7 +936,7 @@ class MakeFamilyTree(RecurseDown):
 # Class MakeReport
 #
 #------------------------------------------------------------------------
-class MakeReport(object):
+class MakeReport:
     """
     Make a report out of a list of people.
     The list of people is already made.  Use this information to find where
@@ -1181,7 +1181,7 @@ class MakeReport(object):
         self.Make_report()
 
 
-class GuiConnect():
+class GuiConnect:
     """ This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
       get the value from a GUI variable

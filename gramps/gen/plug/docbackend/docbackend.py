@@ -69,7 +69,7 @@ class DocBackendError(Exception):
 #
 #------------------------------------------------------------------------
 
-class DocBackend(object):
+class DocBackend:
     """
     Base class for text document backends.
     The DocBackend manages a file to which it writes. It further knowns

@@ -23,7 +23,7 @@
 #
 #
 #------------------------------------------------------------------------
-class TabbedDoc(object):
+class TabbedDoc:
     def __init__(self, columns):
         self.columns = columns
         self.name = ""

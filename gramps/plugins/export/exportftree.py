@@ -63,7 +63,7 @@ def writeData(database, filename, user, option_box=None):
 # FtreeWriter
 #
 #-------------------------------------------------------------------------
-class FtreeWriter(object):
+class FtreeWriter:
 
     def __init__(self, database, filename, user, option_box=None):
         self.db = database

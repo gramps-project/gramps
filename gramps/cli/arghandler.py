@@ -147,7 +147,7 @@ def _split_options(options_str):
 #-------------------------------------------------------------------------
 # ArgHandler
 #-------------------------------------------------------------------------
-class ArgHandler(object):
+class ArgHandler:
     """
     This class is responsible for the non GUI handling of commands.
     The handler is passed a parser object, sanitizes it, and can execute the

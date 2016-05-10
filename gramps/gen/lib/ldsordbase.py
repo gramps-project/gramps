@@ -36,7 +36,7 @@ from .const import IDENTICAL, EQUAL
 # LdsOrdBase classes
 #
 #-------------------------------------------------------------------------
-class LdsOrdBase(object):
+class LdsOrdBase:
     """
     Base class for lds_ord-aware objects.
     """

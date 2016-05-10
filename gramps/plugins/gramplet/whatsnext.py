@@ -599,9 +599,9 @@ class WhatNextGramplet(Gramplet):
         return (father, mother, family)
 
 
-class UnknownPersonClass(object):
+class UnknownPersonClass:
     pass
-class UnknownFamilyClass(object):
+class UnknownFamilyClass:
     pass
 
 UnknownPerson = UnknownPersonClass()

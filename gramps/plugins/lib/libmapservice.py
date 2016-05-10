@@ -36,7 +36,7 @@ Base class for map services. Example: open place in openstreetmap.org
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.display import display_url
 
-class MapService():
+class MapService:
     """Generic base class for map services
        A service is a singleton, we only need one to exist
        Usage is as a callable when used

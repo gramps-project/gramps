@@ -48,7 +48,7 @@ from .const import GRAMPS_LOCALE as glocale
 #
 #-------------------------------------------------------------------------
 
-class Sort(object):
+class Sort:
 
     def __init__(self, database):
         self.database = database

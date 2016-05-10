@@ -86,7 +86,7 @@ from gramps.gen.config import config
 #
 #-------------------------------------------------------------------------
 
-class Spell(object):
+class Spell:
     """Attach a gtkspell instance to the passed TextView instance.
     """
     _spellcheck_options = {'off': _('Off')}

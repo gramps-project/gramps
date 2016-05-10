@@ -320,7 +320,7 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 # Data extraction methods from the database
 #
 #------------------------------------------------------------------------
-class Extract(object):
+class Extract:
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""

@@ -46,7 +46,7 @@ from ..lib.tag import Tag
 # GenericFilter
 #
 #-------------------------------------------------------------------------
-class GenericFilter(object):
+class GenericFilter:
     """Filter class that consists of several rules."""
 
     logical_functions = ['or', 'and', 'xor', 'one']

@@ -105,7 +105,7 @@ class _DdType:
         """
         return [self.atom_drag_type, self.target_flags, self.app_id]
 
-class _DdTargets(object):
+class _DdTargets:
     """A single class that manages all the drag and drop targets."""
 
     _instance = None # Singleton instance

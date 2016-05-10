@@ -141,7 +141,7 @@ def _check_mswin_locale_reverse(locale):
 # GrampsLocale Class
 #
 #------------------------------------------------------------------------
-class GrampsLocale(object):
+class GrampsLocale:
     """
     Encapsulate a locale.  This class is a sort-of-singleton: The
     first instance created will query the environment and OSX defaults

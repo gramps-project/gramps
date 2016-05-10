@@ -59,7 +59,7 @@ def safe_eval(exp):
 # Classes
 #
 #---------------------------------------------------------------
-class ConfigManager(object):
+class ConfigManager:
     """
     Class to construct the singleton CONFIGMAN where all
     settings are stored.

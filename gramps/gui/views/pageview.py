@@ -238,12 +238,12 @@ class PageView(DbGUIElement):
             # Construct a drop:
             drag_type = obj2target(objclass)
             if drag_type:
-                class Selection(object):
+                class Selection:
                     def __init__(self, data):
                         self.data = data
                     def get_data(self):
                         return self.data
-                class Context(object):
+                class Context:
                     targets = [drag_type]
                     action = 1
                     def list_targets(self):

@@ -75,7 +75,7 @@ def version_str_to_tup(sversion, positions):
         tup = (0,) * positions
     return tup[:positions]
 
-class newplugin(object):
+class newplugin:
     """
     Fake newplugin.
     """
@@ -96,7 +96,7 @@ def register(ptype, **kwargs):
     else:
         globals()["register_results"] = [retval]
 
-class Zipfile(object):
+class Zipfile:
     """
     Class to duplicate the methods of tarfile.TarFile, for Python 2.5.
     """
@@ -127,7 +127,7 @@ class Zipfile(object):
         >>> Zipfile(buffer).extractfile("Dir/dile.py").read()
         <Contents>
         """
-        class ExtractFile(object):
+        class ExtractFile:
             def __init__(self, zip_obj, name):
                 self.zip_obj = zip_obj
                 self.name = name

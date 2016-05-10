@@ -29,7 +29,7 @@ from .handle import Handle
 # TagBase class
 #
 #-------------------------------------------------------------------------
-class TagBase(object):
+class TagBase:
     """
     Base class for tag-aware objects.
     """

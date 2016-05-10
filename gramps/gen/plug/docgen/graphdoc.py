@@ -108,7 +108,7 @@ else:
 # GVOptions
 #
 #-------------------------------------------------------------------------------
-class GVOptions():
+class GVOptions:
     """
     Defines all of the controls necessary
     to configure the graph reports.
@@ -278,7 +278,7 @@ class GVOptions():
 # GVDoc
 #
 #-------------------------------------------------------------------------------
-class GVDoc(object):
+class GVDoc:
     """
     Abstract Interface for Graphviz document generators. Output formats
     for Graphviz reports must implement this interface to be used by the

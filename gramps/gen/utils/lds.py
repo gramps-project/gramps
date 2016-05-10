@@ -32,7 +32,7 @@ _ = glocale.translation.gettext
 
 LOG = logging.getLogger(".")
 
-class LdsTemples(object):
+class LdsTemples:
     """
     Parsing class for the LDS temples file
     """

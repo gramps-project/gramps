@@ -376,7 +376,7 @@ _NEPHEWS_NIECES_LEVEL = ["",
 # RelationshipCalculator
 #
 #-------------------------------------------------------------------------
-class RelationshipCalculator(object):
+class RelationshipCalculator:
     """
     The relationship calculator helps to determine the relationship between
     two people.

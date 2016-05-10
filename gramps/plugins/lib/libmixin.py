@@ -35,7 +35,7 @@ from gramps.gen.lib import (Person, Family, Event, Place, Source,
 # DbMixin class
 #
 #------------------------------------------------------------------------------
-class DbMixin(object):
+class DbMixin:
     """
     DbMixin -- a collection of methods to be added to the main
     gramps database class for use with import functions.  To enable these

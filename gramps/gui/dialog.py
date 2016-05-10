@@ -52,7 +52,7 @@ try:
 except:
     ICON = None
 
-class SaveDialog(object):
+class SaveDialog:
     def __init__(self, msg1, msg2, task1, task2, parent=None):
         self.xml = Glade(toplevel='savedialog')
 
@@ -83,7 +83,7 @@ class SaveDialog(object):
         config.set('interface.dont-ask', self.dontask.get_active())
         self.top.destroy()
 
-class QuestionDialog(object):
+class QuestionDialog:
     def __init__(self, msg1, msg2, label, task, parent=None):
         self.xml = Glade(toplevel='questiondialog')
 
@@ -115,7 +115,7 @@ def on_activate_link(label, uri):
     display_url(uri)
     return True
 
-class QuestionDialog2(object):
+class QuestionDialog2:
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
 
@@ -147,7 +147,7 @@ class QuestionDialog2(object):
         self.top.destroy()
         return (response == Gtk.ResponseType.ACCEPT)
 
-class OptionDialog(object):
+class OptionDialog:
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel='optiondialog')
 
@@ -252,7 +252,7 @@ class OkDialog(Gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class InfoDialog(object):
+class InfoDialog:
     """
     Non modal dialog to show selectable info in a scrolled window
     """
@@ -285,7 +285,7 @@ class InfoDialog(object):
         #no matter how it finishes, destroy dialog
         dialog.destroy()
 
-class MissingMediaDialog(object):
+class MissingMediaDialog:
     def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
         self.xml = Glade(toplevel='missmediadialog')
 
@@ -339,7 +339,7 @@ class MissingMediaDialog(object):
             parent=self.top)
         return True
 
-class MultiSelectDialog(object):
+class MultiSelectDialog:
     def __init__(self, msg1_func, msg2_func, items, lookup,
                  cancel_func=None, no_func=None, yes_func=None,
                  parent=None):
@@ -412,7 +412,7 @@ class MultiSelectDialog(object):
             parent=self.top)
         return True
 
-class MessageHideDialog(object):
+class MessageHideDialog:
 
     def __init__(self, title, message, key, parent=None):
         self.xml = Glade(toplevel='hidedialog')

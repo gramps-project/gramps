@@ -38,7 +38,7 @@ from gramps.gen.utils.callman import CallbackManager
 # DbGUIElement class
 #
 #-------------------------------------------------------------------------
-class DbGUIElement(object):
+class DbGUIElement:
     """
     Most interaction with the DB should be done via the callman attribute.
     On initialization, the method :meth:`_connect_db_signals` is called.

@@ -80,7 +80,7 @@ INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 # CitationModel
 #
 #-------------------------------------------------------------------------
-class CitationBaseModel(object):
+class CitationBaseModel:
 
 # Fields access when 'data' is a Citation
 

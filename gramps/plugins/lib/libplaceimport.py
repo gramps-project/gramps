@@ -34,7 +34,7 @@ from gramps.gen.lib import Place, PlaceName, PlaceType, PlaceRef
 # PlaceImport class
 #
 #-------------------------------------------------------------------------
-class PlaceImport(object):
+class PlaceImport:
     """
     Helper class for importing places.
     """

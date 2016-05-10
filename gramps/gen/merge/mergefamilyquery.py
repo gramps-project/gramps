@@ -38,7 +38,7 @@ from . import MergePersonQuery
 # MergeFamilyQuery
 #
 #-------------------------------------------------------------------------
-class MergeFamilyQuery(object):
+class MergeFamilyQuery:
     """
     Create database query to merge two families.
     """

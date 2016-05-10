@@ -50,7 +50,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Local constants
 #
 #------------------------------------------------------------------------
-class TextTypes():
+class TextTypes:
     """Four enumerations that are used to for the four main parts of a string.
 
     and used for states.  Separator is not used in states.
@@ -66,7 +66,7 @@ TXT = TextTypes()
 # Formatting classes
 #
 #------------------------------------------------------------------------
-class GenericFormat(object):
+class GenericFormat:
     """A Generic parsing class.  Will be subclassed by specific format strings
     """
 
@@ -471,7 +471,7 @@ class EventFormat(GenericFormat):
 #------------------------------------------------------------------------
 # gramps info Format strings
 #------------------------------------------------------------------------
-class GrampsFormat():
+class GrampsFormat:
     """ The Gramps Info Format class.
         This only polls information from system information.
     """
@@ -588,7 +588,7 @@ class GalleryFormat(GenericFormat):
 # ConsumableString - The Input string class
 #
 #------------------------------------------------------------------------
-class ConsumableString(object):
+class ConsumableString:
     """
     A simple string implementation with extras to help with parsing.
 
@@ -665,7 +665,7 @@ class ConsumableString(object):
 # VarString class  - The Output string class
 #
 #------------------------------------------------------------------------
-class VarString(object):
+class VarString:
     """
     The current state of the entire string (integer from TextTypes)
     A list to hold tuple object (integer from TextTypes, string)
@@ -759,7 +759,7 @@ class VarString(object):
 #------------------------------------------------------------------------
 # SeparatorParse
 #------------------------------------------------------------------------
-class SeparatorParse(object):
+class SeparatorParse:
     """ parse out a separator """
     def __init__(self, consumer_in):
         self._in = consumer_in
@@ -777,7 +777,7 @@ class SeparatorParse(object):
 #------------------------------------------------------------------------
 # AttributeParse
 #------------------------------------------------------------------------
-class AttributeParse(object):
+class AttributeParse:
     """  Parse attributes """
 
     def __init__(self, consumer_in):
@@ -811,7 +811,7 @@ class AttributeParse(object):
 #------------------------------------------------------------------------
 # VariableParse
 #------------------------------------------------------------------------
-class VariableParse(object):
+class VariableParse:
     """ Parse the individual variables """
 
     def __init__(self, friend, database, consumer_in, locale, name_displayer):
@@ -1057,7 +1057,7 @@ class VariableParse(object):
 # SubstKeywords
 #
 #------------------------------------------------------------------------
-class SubstKeywords(object):
+class SubstKeywords:
     """Accepts a person/family with format lines and returns a new set of lines
     using variable substitution to make it.
 

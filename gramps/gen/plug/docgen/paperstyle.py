@@ -58,7 +58,7 @@ PAPER_LANDSCAPE = 1
 # PaperSize
 #
 #------------------------------------------------------------------------
-class PaperSize(object):
+class PaperSize:
     """
     Defines the dimensions of a sheet of paper. All dimensions are in
     centimeters.
@@ -116,7 +116,7 @@ class PaperSize(object):
 # PaperStyle
 #
 #------------------------------------------------------------------------
-class PaperStyle(object):
+class PaperStyle:
     """
     Define the various options for a sheet of paper.
     """

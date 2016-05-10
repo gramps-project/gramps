@@ -165,7 +165,7 @@ def importData(database, filename, user):
 # http://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
 # https://github.com/geneanet/geneweb/issues/315
 #-------------------------------------------------------------------------
-class GeneWebParser(object):
+class GeneWebParser:
     def __init__(self, dbase, file):
         self.db = dbase
         if file: # Unit tests can create the parser w/o underlying file

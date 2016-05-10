@@ -85,7 +85,7 @@ def sort_objects(objects, order_by, db):
 #
 #-------------------------------------------------------------------------
 
-class DbReadBase(object):
+class DbReadBase:
     """
     Gramps database object. This object is a base class for all
     database interfaces.  All methods raise NotImplementedError
@@ -2119,7 +2119,7 @@ class DbWriteBase(DbReadBase):
                 user.uistate.set_busy_cursor(False)
                 user.uistate.progress.hide()
 
-class QuerySet(object):
+class QuerySet:
     """
     A container for selection criteria before being actually
     applied to a database.

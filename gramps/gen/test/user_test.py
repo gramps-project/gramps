@@ -24,7 +24,7 @@
 import unittest
 from .. import user
 
-class TestUser(object):
+class TestUser:
     TITLE = "Testing prompt"
     MSG = "Choices are hard. Nevertheless, please choose!"
     ACCEPT = "To be"

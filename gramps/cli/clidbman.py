@@ -87,7 +87,7 @@ def _errordialog(title, errormessage):
 # CLIDbManager
 #
 #-------------------------------------------------------------------------
-class CLIDbManager(object):
+class CLIDbManager:
     """
     Database manager without GTK functionality, allows users to create and
     open databases

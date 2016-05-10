@@ -570,7 +570,7 @@ def copy_thumbnail(report, handle, photo, region=None):
 # pylint: disable=unused-variable
 # pylint: disable=unused-argument
 
-class BasePage(object):
+class BasePage:
     """
     Manages all the functions, variables, and everything needed
     for all of the classes contained within this plugin

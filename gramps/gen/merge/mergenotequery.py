@@ -39,7 +39,7 @@ from ..errors import MergeError
 # MergeNoteQuery
 #
 #-------------------------------------------------------------------------
-class MergeNoteQuery(object):
+class MergeNoteQuery:
     """
     Create database query to merge two notes.
     """

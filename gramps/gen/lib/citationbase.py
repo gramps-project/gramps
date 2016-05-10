@@ -45,7 +45,7 @@ LOG = logging.getLogger(".citation")
 # CitationBase class
 #
 #-------------------------------------------------------------------------
-class CitationBase(object):
+class CitationBase:
     """
     Base class for storing citations.
 
@@ -272,7 +272,7 @@ class CitationBase(object):
         for item in self.get_citation_child_list():
             item.replace_citation_references(old_handle, new_handle)
 
-class IndirectCitationBase(object):
+class IndirectCitationBase:
     """
     Citation management logic for objects that don't have citations
     for the primary objects, but only for the child (secondary) ones.

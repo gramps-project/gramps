@@ -136,7 +136,7 @@ class TitleA(TitleBox):
 # make_ancestor_tree  (main recursive functions)
 #
 #------------------------------------------------------------------------
-class CalcItems(object):
+class CalcItems:
     """ A helper class to calculate the default box text
     and text for each person / marriage
     """
@@ -371,7 +371,7 @@ class MakeAncestorTree(AscendPerson):
 #------------------------------------------------------------------------
 # Class lr_Transform
 #------------------------------------------------------------------------
-class LRTransform(object):
+class LRTransform:
     """
     setup all of the boxes on the canvas in for a left/right report
     """
@@ -406,7 +406,7 @@ class LRTransform(object):
 # class make_report
 #
 #------------------------------------------------------------------------
-class MakeReport(object):
+class MakeReport:
 
     def __init__(self, dbase, doc, canvas, font_normal):
 
@@ -476,7 +476,7 @@ class MakeReport(object):
         transform.place()
 
 
-class GUIConnect(object):
+class GUIConnect:
     """ This is a BORG object.  There is ONLY one.
     This give some common routines that EVERYONE can use like
       get the value from a GUI variable

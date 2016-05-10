@@ -74,7 +74,7 @@ WIKI_HELP_SEC = _('manual|Compare_Individual_Events')
 # EventCmp
 #
 #------------------------------------------------------------------------
-class TableReport(object):
+class TableReport:
     """
     This class provides an interface for the spreadsheet table
     used to save the data into the file.

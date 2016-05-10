@@ -37,7 +37,7 @@ _ = glocale.translation.gettext
 # SurnameBase classes
 #
 #-------------------------------------------------------------------------
-class SurnameBase(object):
+class SurnameBase:
     """
     Base class for surname-aware objects.
     """

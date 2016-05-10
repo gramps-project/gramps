@@ -103,7 +103,7 @@ def minimum_region(point1, point2):
             abs(point1[1] - point2[1]) >= MIN_SELECTION_SIZE)
 
 
-class Region(object):
+class Region:
     """
     Representation of a region of image that can be associated with
     a person.

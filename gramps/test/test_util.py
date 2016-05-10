@@ -180,7 +180,7 @@ def delete_tree(dir):
 # NB: current code reflects limited expertise on the
 # uses of the logging module
 # ---------------------------------------------------------
-class TestLogger():
+class TestLogger:
     """this class mainly just encapsulates some globals
     namely lfname, lfh  for a file log name and handle
 
@@ -242,7 +242,7 @@ def capture(stdin):
         output[0] = output[0].getvalue() 
         output[1] = output[1].getvalue() 
 
-class Gramps(object):
+class Gramps:
     def __init__(self, user=None, dbstate=None):
         ## Setup:
         from gramps.cli.clidbman import CLIDbManager

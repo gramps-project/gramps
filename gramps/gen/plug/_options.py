@@ -62,7 +62,7 @@ _ = glocale.translation.gettext
 # List of options for a single module
 #
 #-------------------------------------------------------------------------
-class OptionList(object):
+class OptionList:
     """
     Implements a set of options to parse and store for a given module.
     """
@@ -125,7 +125,7 @@ class OptionList(object):
 # Collection of option lists
 #
 #-------------------------------------------------------------------------
-class OptionListCollection(object):
+class OptionListCollection:
     """
     Implements a collection of option lists.
     """
@@ -322,7 +322,7 @@ class OptionParser(handler.ContentHandler):
 # Class handling options for plugins
 #
 #-------------------------------------------------------------------------
-class OptionHandler(object):
+class OptionHandler:
     """
     Implements handling of the options for the plugins.
     """
@@ -434,7 +434,7 @@ class OptionHandler(object):
 # Base Options class
 #
 #------------------------------------------------------------------------
-class Options(object):
+class Options:
 
     """
     Defines options and provides handling interface.
@@ -512,7 +512,7 @@ class Options(object):
 # MenuOptions class
 #
 #------------------------------------------------------------------------
-class MenuOptions(object):
+class MenuOptions:
     """
     **Introduction**
 

@@ -308,7 +308,7 @@ def make_callback(func, tag_handle):
 # Organize Tags Dialog
 #
 #-------------------------------------------------------------------------
-class OrganizeTagsDialog(object):
+class OrganizeTagsDialog:
     """
     A dialog to enable the user to organize tags.
     """
@@ -537,7 +537,7 @@ class OrganizeTagsDialog(object):
 # Tag editor
 #
 #-------------------------------------------------------------------------
-class EditTag(object):
+class EditTag:
     """
     A dialog to enable the user to create a new tag.
     """

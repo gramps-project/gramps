@@ -39,7 +39,7 @@ from ..errors import MergeError
 # MergePersonQuery
 #
 #-------------------------------------------------------------------------
-class MergePersonQuery(object):
+class MergePersonQuery:
     """
     Create database query to merge two persons.
     """

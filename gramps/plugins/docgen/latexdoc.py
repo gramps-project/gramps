@@ -489,18 +489,18 @@ def str_incr(str_counter):
 #
 #------------------------------------------------------------------------
 
-class Tab_Cell():
+class Tab_Cell:
     def __init__(self, colchar, span, head, content):
         self.colchar = colchar
         self.span = span
         self.head = head
         self.content = content
-class Tab_Row():
+class Tab_Row:
     def __init__(self):
         self.cells =[]
         self.tail = ''
         self.addit = '' # for: \\hline, \\cline{}
-class Tab_Mem():
+class Tab_Mem:
     def __init__(self, head):
         self.head = head
         self.tail =''
@@ -629,7 +629,7 @@ class LateXBackend(DocBackend):
 #
 #------------------------------------------------------------------------
 
-class TexFont(object):
+class TexFont:
     def __init__(self, style=None):
         if style:
             self.font_beg = style.font_beg

@@ -34,7 +34,7 @@ sample = os.path.join(ddir, "..", "..", "..",
 
 TREE_NAME = "Test_reporttest"
 
-class ReportControl(object):
+class ReportControl:
     def tearDown(self):
         out, err = self.call("-y", "--remove", TREE_NAME)
         out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")

@@ -118,7 +118,7 @@ def importData(dbase, filename, user):
 # CSV Parser
 #
 #-------------------------------------------------------------------------
-class CSVParser(object):
+class CSVParser:
     """Class to read data in CSV format from a file object."""
     def __init__(self, dbase, user, default_tag_format=None):
         self.db = dbase

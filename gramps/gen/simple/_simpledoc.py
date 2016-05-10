@@ -24,7 +24,7 @@ Provide a simplified database access interface to the Gramps database.
 from ..plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
                             TableCellStyle,  FONT_SANS_SERIF, PARA_ALIGN_LEFT
 
-class SimpleDoc(object):
+class SimpleDoc:
     """
     Provide a simplified database access interface to the Gramps database.
     """

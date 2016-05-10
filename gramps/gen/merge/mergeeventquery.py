@@ -38,7 +38,7 @@ from ..errors import MergeError
 # MergeEventQuery
 #
 #-------------------------------------------------------------------------
-class MergeEventQuery(object):
+class MergeEventQuery:
     """
     Create database query to merge two events.
     """

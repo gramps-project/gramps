@@ -231,7 +231,7 @@ class EditSource(EditPrimary):
         if self.callback:
             self.callback(self.obj)
 
-class DeleteSrcQuery(object):
+class DeleteSrcQuery:
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source
         self.db = dbstate.db

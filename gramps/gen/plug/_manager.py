@@ -65,7 +65,7 @@ _UNAVAILABLE = _("No description was provided")
 # BasePluginManager
 #
 #-------------------------------------------------------------------------
-class BasePluginManager(object):
+class BasePluginManager:
     """ unique singleton storage class for a :class:`.PluginManager`. """
 
     __instance = None

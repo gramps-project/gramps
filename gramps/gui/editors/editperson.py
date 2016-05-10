@@ -90,7 +90,7 @@ _select_gender = ((True, False, False),
                   (False, True, False),
                   (False, False, True))
 
-class SingSurn(object):
+class SingSurn:
     """
     Managing the single surname components
     """

@@ -54,7 +54,7 @@ from gramps.gui.glade import Glade
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as _pd
 
-class GeneWebWriter(object):
+class GeneWebWriter:
     def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.filename = filename

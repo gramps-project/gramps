@@ -155,7 +155,7 @@ def _display_welcome_message():
 # Main Gramps class
 #
 #-------------------------------------------------------------------------
-class Gramps(object):
+class Gramps:
     """
     Main class corresponding to a running gramps process.
 

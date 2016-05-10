@@ -80,7 +80,7 @@ def exportData(database, filename, user, option_box=None):
 # VCardWriter class
 #
 #-------------------------------------------------------------------------
-class VCardWriter(object):
+class VCardWriter:
     """Class to create a file with data in VCard format."""
     LINELENGTH = 73 # unclear if the 75 chars of spec includes \r\n.
     ESCAPE_CHAR = '\\'

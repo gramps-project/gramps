@@ -39,7 +39,7 @@ PT2CM = ReportUtils.pt2cm
 # Class Calc_Lines
 #
 #------------------------------------------------------------------------
-class CalcLines(object):
+class CalcLines:
     """ wrapper for libsubstkeyword and added functionality for
     replacements.
 
@@ -84,7 +84,7 @@ class CalcLines(object):
 # Class Canvas/Pages
 #
 #------------------------------------------------------------------------
-class Page(object):
+class Page:
     """ This class is a printable page.
         Offsets from the canvas, Page numbers
         boxes and lines
@@ -563,7 +563,7 @@ class Canvas(Page):
 # Class Box_Base
 #
 #------------------------------------------------------------------------
-class BoxBase(object):
+class BoxBase:
     """ boxes are always in/on a Page
     Needed to print are: boxstr, text, x_cm, y_cm, width, height
     """
@@ -742,7 +742,7 @@ class PageNumberBox(BoxBase):
                    self.text % (page.x_page_num+1, page.y_page_num+1),
                    self.x_cm, self.y_cm)
 
-class NoteType(object):
+class NoteType:
     """  Provide the different options (corners) to place the note """
 
     TOPLEFT = 0
@@ -827,7 +827,7 @@ class NoteBox(BoxBase, NoteType):
 # Class Line_base
 #
 #------------------------------------------------------------------------
-class LineBase(object):
+class LineBase:
     """ A simple line class.
     self.start is the box that we are drawing a line from
     self.end are the boxes that we are drawing lines to.
@@ -901,7 +901,7 @@ class LineBase(object):
 # Class report_options
 #
 #------------------------------------------------------------------------
-class ReportOptions(object):
+class ReportOptions:
     """
     A simple class to hold various report information
     Calculates

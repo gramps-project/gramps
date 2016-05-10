@@ -39,7 +39,7 @@ from ..errors import MergeError
 # MergePlaceQuery
 #
 #-------------------------------------------------------------------------
-class MergePlaceQuery(object):
+class MergePlaceQuery:
     """
     Create database query to merge two places.
     """

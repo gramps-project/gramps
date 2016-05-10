@@ -39,7 +39,7 @@ import math
 #-------------------------------------------------------------------------
 from ...lib.citation import Citation as lib_Citation
 
-class Citation(object):
+class Citation:
     """
     Store information about a citation and all of its references.
     """
@@ -115,7 +115,7 @@ class Citation(object):
         self.__ref_list.append((key, source_ref))
         return key
 
-class Bibliography(object):
+class Bibliography:
     """
     Store and organize multiple citations into a bibliography.
     """

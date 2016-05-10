@@ -27,7 +27,7 @@ Base Reference class for Gramps.
 # RefBase class
 #
 #-------------------------------------------------------------------------
-class RefBase(object):
+class RefBase:
     """
     Base reference class to manage references to other objects.
 

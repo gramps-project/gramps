@@ -194,7 +194,7 @@ def _get_subject(options, dbase):
 # BookList Display class
 #
 #------------------------------------------------------------------------
-class BookListDisplay(object):
+class BookListDisplay:
     """
     Interface into a dialog with the list of available books.
 

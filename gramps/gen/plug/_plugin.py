@@ -23,7 +23,7 @@
 This module provides the base class for plugins.
 """
 
-class Plugin(object):
+class Plugin:
     """
     This class serves as a base class for all plugins that can be registered
     with the plugin manager

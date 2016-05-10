@@ -47,7 +47,7 @@ log = sys.stderr.write
 #
 #-------------------------------------------------------------------------
 
-class Callback(object):
+class Callback:
     """
     Callback and signal support objects.
 
@@ -104,7 +104,7 @@ class Callback(object):
         t.connect('test-signal', fn)
 
         # connect to a bound method
-        class C(object):
+        class C:
 
             def cb_func(self, i):
                 print 'got class signal = ', 1
@@ -124,7 +124,7 @@ class Callback(object):
         t = TestSignals()
 
         # connect to a bound method
-        class C(object):
+        class C:
 
             def cb_func(self, i):
                 print 'got class signal = ', 1

@@ -149,7 +149,7 @@ def cmp(a, b):
 # HolidayTable
 #
 #------------------------------------------------------------------------
-class HolidayTable(object):
+class HolidayTable:
     """
     HolidayTable is a class which provides holidays for various
     countries and years.

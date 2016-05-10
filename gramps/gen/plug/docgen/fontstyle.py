@@ -58,7 +58,7 @@ FONT_MONOSPACE  = 2
 # FontStyle
 #
 #------------------------------------------------------------------------
-class FontStyle(object):
+class FontStyle:
     """
     Defines a font style. Controls the font face, size, color, and
     attributes. In order to remain generic, the only font faces available

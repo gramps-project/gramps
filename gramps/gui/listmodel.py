@@ -49,7 +49,7 @@ NOSORT = -1
 # ListModel
 #
 #-------------------------------------------------------------------------
-class ListModel(object):
+class ListModel:
     """
     Simple model for lists in smaller dialogs (not views).
 

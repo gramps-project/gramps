@@ -82,7 +82,7 @@ from .basemodel import BaseModel
 
 UEMPTY = ""
 
-class FlatNodeMap(object):
+class FlatNodeMap:
     """
     A NodeMap for a flat treeview. In such a TreeView, the paths possible are
     0, 1, 2, ..., n-1, where n is the number of items to show. For the model

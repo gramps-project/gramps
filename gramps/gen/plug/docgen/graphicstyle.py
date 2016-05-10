@@ -76,7 +76,7 @@ def get_line_style_by_name(style_name):
 # GraphicsStyle
 #
 #------------------------------------------------------------------------
-class GraphicsStyle(object):
+class GraphicsStyle:
     """
     Defines the properties of graphics objects, such as line width,
     color, fill, ect.

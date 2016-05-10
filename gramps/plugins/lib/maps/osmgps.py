@@ -81,7 +81,7 @@ except:
 # pylint: disable=no-member
 # pylint: disable=maybe-no-member
 
-class OsmGps(object):
+class OsmGps:
     """
     This class is used to create a map
     """

@@ -53,7 +53,7 @@ log = logging.getLogger(".basedoc")
 # BaseDoc
 #
 #------------------------------------------------------------------------
-class BaseDoc(object):
+class BaseDoc:
     """
     Base class for document generators. Different output formats,
     such as OpenOffice, AbiWord, and LaTeX are derived from this base

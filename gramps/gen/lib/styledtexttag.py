@@ -33,7 +33,7 @@ from .styledtexttagtype import StyledTextTagType
 # StyledTextTag class
 #
 #-------------------------------------------------------------------------
-class StyledTextTag(object):
+class StyledTextTag:
     """Hold formatting information for :py:class:`.StyledText`.
 
     :py:class:`StyledTextTag` is a container class, it's attributes are

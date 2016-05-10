@@ -37,7 +37,7 @@ from .const import IDENTICAL, EQUAL
 # AttributeRootBase class
 #
 #-------------------------------------------------------------------------
-class AttributeRootBase(object):
+class AttributeRootBase:
     """
     Base class for attribute-aware objects.
     """

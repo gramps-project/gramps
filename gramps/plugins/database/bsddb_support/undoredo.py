@@ -71,7 +71,7 @@ _SIGBASE = ('person', 'family', 'source', 'event', 'media',
 # DbUndo class
 #
 #-------------------------------------------------------------------------
-class DbUndo(object):
+class DbUndo:
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.

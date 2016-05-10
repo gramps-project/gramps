@@ -83,7 +83,7 @@ def cnv2color(text):
 # StyleSheetList
 #
 #------------------------------------------------------------------------
-class StyleSheetList(object):
+class StyleSheetList:
     """
     Interface into the user's defined style sheets. Each StyleSheetList
     has a predefined default style specified by the report. Additional
@@ -284,7 +284,7 @@ class StyleSheetList(object):
 # StyleSheet
 #
 #------------------------------------------------------------------------
-class StyleSheet(object):
+class StyleSheet:
     """
     A collection of named paragraph styles.
     """

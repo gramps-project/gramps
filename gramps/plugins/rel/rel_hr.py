@@ -43,7 +43,7 @@ _CHILDS_SP = ['', 'snahe i zetovi', 'prasnahe i prazetovi',
 # Class HrDeclination
 #
 #-------------------------------------------------------------------------
-class HrDeclination(object):
+class HrDeclination:
     """
     Croatian declination system
     """

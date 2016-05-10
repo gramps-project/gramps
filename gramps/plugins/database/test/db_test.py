@@ -29,7 +29,7 @@ ddir = os.path.dirname(__file__)
 example = os.path.join(ddir, "..", "..", "..", "..",
                        "example", "gramps", "data.gramps")
 
-class BSDDB(object):
+class BSDDB:
     NAME = "Example BSDDB Test"
     backend = "bsddb"
 

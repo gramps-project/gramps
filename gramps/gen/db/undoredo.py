@@ -7,7 +7,7 @@ import time
 import pickle
 from collections import deque
 
-class DbUndo(object):
+class DbUndo:
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.

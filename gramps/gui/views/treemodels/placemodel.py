@@ -64,7 +64,7 @@ _ = glocale.translation.gettext
 # PlaceBaseModel
 #
 #-------------------------------------------------------------------------
-class PlaceBaseModel(object):
+class PlaceBaseModel:
 
     def __init__(self, db):
         self.gen_cursor = db.get_place_cursor

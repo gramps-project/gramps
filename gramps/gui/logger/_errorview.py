@@ -44,7 +44,7 @@ from ..display import display_help
 WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Error_Report')
 
-class ErrorView(object):
+class ErrorView:
     """
     A Dialog for displaying errors.
     """

@@ -129,7 +129,7 @@ def fitin(prototype, receiver, element):
 # VCardParser class
 #
 #-------------------------------------------------------------------------
-class VCardParser(object):
+class VCardParser:
     """Class to read data in VCard format from a file."""
     DATE_RE = re.compile(r'^(\d{4}-\d{1,2}-\d{1,2})|(?:(\d{4})-?(\d\d)-?(\d\d))')
     GROUP_RE = re.compile(r'^(?:[-0-9A-Za-z]+\.)?(.+)$') # see RFC 2425 sec5.8.2

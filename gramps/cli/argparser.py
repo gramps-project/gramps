@@ -128,7 +128,7 @@ Syntax may be different for other shells and for Windows.
 #-------------------------------------------------------------------------
 # ArgParser
 #-------------------------------------------------------------------------
-class ArgParser(object):
+class ArgParser:
     """
     This class is responsible for parsing the command line arguments (if any)
     given to gramps, and determining if a GUI or a CLI session must be started.

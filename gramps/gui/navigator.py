@@ -76,7 +76,7 @@ CATEGORY_ICON = {
 # Navigator class
 #
 #-------------------------------------------------------------------------
-class Navigator(object):
+class Navigator:
     """
     A class which defines the graphical representation of the Gramps navigator.
     """

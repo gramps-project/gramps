@@ -66,7 +66,7 @@ except ImportError:
 # ProbablyAlive class
 #
 #-------------------------------------------------------------------------
-class ProbablyAlive(object):
+class ProbablyAlive:
     """
     An object to hold the parameters for considering someone alive.
     """

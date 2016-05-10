@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from .undoablebuffer import Stack
 
-class UndoableInsertEntry(object):
+class UndoableInsertEntry:
     """something that has been inserted into our Gtk.editable"""
     def __init__(self, text, length, position, editable):
         self.offset = position
@@ -62,7 +62,7 @@ class UndoableInsertEntry(object):
         else:
             self.mergeable = True
 
-class UndoableDeleteEntry(object):
+class UndoableDeleteEntry:
     """something that has been deleted from our textbuffer"""
     def __init__(self, editable, start, end):
         self.text = editable.get_chars(start, end)

@@ -30,7 +30,7 @@ from .handle import Handle
 # NoteBase class
 #
 #-------------------------------------------------------------------------
-class NoteBase(object):
+class NoteBase:
     """
     Base class for storing notes.
 

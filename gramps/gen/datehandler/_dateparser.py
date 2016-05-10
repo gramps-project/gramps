@@ -186,7 +186,7 @@ def _generate_variants(months):
 # DateParser class
 #
 #-------------------------------------------------------------------------
-class DateParser(object):
+class DateParser:
     """
     Convert a text string into a :class:`.Date` object. If the date cannot be
     converted, the text string is assigned.

@@ -780,7 +780,7 @@ class VerifyOptions(tool.ToolOptions):
 # Base classes for different tests -- the rules
 #
 #-------------------------------------------------------------------------
-class Rule(object):
+class Rule:
     """
     Basic class for use in this tool.
 

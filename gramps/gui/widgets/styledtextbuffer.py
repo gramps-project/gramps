@@ -111,7 +111,7 @@ class LinkTag(Gtk.TextTag):
 # GtkSpellState class
 #
 #-------------------------------------------------------------------------
-class GtkSpellState(object):
+class GtkSpellState:
     """
     A simple state machine kinda thingy.
 

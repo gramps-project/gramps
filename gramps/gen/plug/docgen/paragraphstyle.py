@@ -58,7 +58,7 @@ PARA_ALIGN_JUSTIFY = 3
 # ParagraphStyle
 #
 #------------------------------------------------------------------------
-class ParagraphStyle(object):
+class ParagraphStyle:
     """
     Defines the characteristics of a paragraph. The characteristics are:
     font (a :class:`.FontStyle` instance), right margin, left margin,

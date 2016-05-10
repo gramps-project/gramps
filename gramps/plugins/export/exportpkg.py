@@ -91,7 +91,7 @@ def writeData(database, filename, user, option_box=None):
 # PackageWriter
 #
 #-------------------------------------------------------------------------
-class PackageWriter(object):
+class PackageWriter:
 
     def __init__(self, database, filename, user):
         self.db = database

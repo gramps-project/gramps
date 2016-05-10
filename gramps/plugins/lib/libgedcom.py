@@ -676,7 +676,7 @@ class GedcomDateParser(DateParser):
 # Lexer - serves as the lexical analysis engine
 #
 #-------------------------------------------------------------------------
-class Lexer(object):
+class Lexer:
 
     def __init__(self, ifile, __add_msg):
         self.ifile = ifile
@@ -798,7 +798,7 @@ class Lexer(object):
 # GedLine - represents a tokenized version of a GEDCOM line
 #
 #-----------------------------------------------------------------------
-class GedLine(object):
+class GedLine:
     """
     GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line
     is:
@@ -1025,7 +1025,7 @@ _MAP_DATA = {
 # GedcomDescription
 #
 #-------------------------------------------------------------------------
-class GedcomDescription(object):
+class GedcomDescription:
     def __init__(self, name):
         self.name = name
         self.dest = ""
@@ -1120,7 +1120,7 @@ class GedcomDescription(object):
 # GedcomInfoDB
 #
 #-------------------------------------------------------------------------
-class GedcomInfoDB(object):
+class GedcomInfoDB:
     def __init__(self):
         self.map = {}
 
@@ -1157,7 +1157,7 @@ class GedcomInfoDB(object):
 # GedInfoParser
 #
 #-------------------------------------------------------------------------
-class GedInfoParser(object):
+class GedInfoParser:
     def __init__(self, parent):
         self.parent = parent
         self.current = None
@@ -1226,7 +1226,7 @@ class GedInfoParser(object):
 # File Readers
 #
 #-------------------------------------------------------------------------
-class BaseReader(object):
+class BaseReader:
     def __init__(self, ifile, encoding, __add_msg):
         self.ifile = ifile
         self.enc = encoding
@@ -1572,7 +1572,7 @@ class AnselReader(BaseReader):
 # CurrentState
 #
 #-------------------------------------------------------------------------
-class CurrentState(object):
+class CurrentState:
     """
     Keep track of the current state variables.
     """
@@ -1632,7 +1632,7 @@ class CurrentState(object):
 # PlaceParser
 #
 #-------------------------------------------------------------------------
-class PlaceParser(object):
+class PlaceParser:
     """
     Provide the ability to parse GEDCOM FORM statements for places, and
     the parse the line of text, mapping the text components to Location
@@ -1726,7 +1726,7 @@ class PlaceParser(object):
 # IdFinder
 #
 #-------------------------------------------------------------------------
-class IdFinder(object):
+class IdFinder:
     """
     Provide method of finding the next available ID.
     """
@@ -1760,7 +1760,7 @@ class IdFinder(object):
 # IdMapper
 #
 #-------------------------------------------------------------------------
-class IdMapper(object):
+class IdMapper:
 
     def __init__(self, trans, find_next, id2user_format):
         self.trans = trans
@@ -7711,7 +7711,7 @@ class GedcomParser(UpdateCallback):
 # GedcomStageOne
 #
 #-------------------------------------------------------------------------
-class GedcomStageOne(object):
+class GedcomStageOne:
     """
     The GedcomStageOne parser scans the file quickly, looking for a few things.
      This includes:

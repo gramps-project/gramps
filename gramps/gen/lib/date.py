@@ -54,7 +54,7 @@ _ = glocale.translation.sgettext
 
 LOG = logging.getLogger(".Date")
 
-class Span(object):
+class Span:
     """
     Span is used to represent the difference between two dates for three
     main purposes: sorting, ranking, and describing.
@@ -526,7 +526,7 @@ class Span(object):
 # Date class
 #
 #-------------------------------------------------------------------------
-class Date(object):
+class Date:
     """
     The core date handling class for Gramps.
 

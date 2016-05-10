@@ -40,7 +40,7 @@ from ..errors import MergeError
 # MergeCitationQuery
 #
 #-------------------------------------------------------------------------
-class MergeCitationQuery(object):
+class MergeCitationQuery:
     """
     Create database query to merge two citations.
     """

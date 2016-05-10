@@ -250,7 +250,7 @@ _RCT_BTM = '</menu></menu></menubar></ui>'
 
 from gramps.gen.recentfiles import RecentFiles
 
-class RecentDocsMenu(object):
+class RecentDocsMenu:
     def __init__(self, uistate, state, fileopen):
         self.action_group = Gtk.ActionGroup(name='RecentFiles')
         self.active = DISABLED

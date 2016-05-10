@@ -83,7 +83,7 @@ class LongOpStatus(Callback):
 
                 status.end()
 
-        class MyListener(object):
+        class MyListener:
 
              def __init__(self):
              self._op = MyClass()
@@ -255,7 +255,7 @@ class LongOpStatus(Callback):
 # _StatusObjectFacade
 #
 #-------------------------------------------------------------------------
-class _StatusObjectFacade(object):
+class _StatusObjectFacade:
     """
     This provides a simple structure for recording the information
     needs about a status object.
@@ -281,7 +281,7 @@ class _StatusObjectFacade(object):
 # ProgressMonitor
 #
 #-------------------------------------------------------------------------
-class ProgressMonitor(object):
+class ProgressMonitor:
     """
     A dialog for displaying the status of long running operations.
 

@@ -345,7 +345,7 @@ class EditCitation(EditPrimary):
             cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
-class DeleteCitationQuery(object):
+class DeleteCitationQuery:
     def __init__(self, dbstate, uistate, citation, the_lists):
         self.citation = citation
         self.db = dbstate.db

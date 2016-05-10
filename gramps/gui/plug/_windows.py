@@ -1052,7 +1052,7 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
 # UpdateAddons
 #
 #-------------------------------------------------------------------------
-class UpdateAddons():
+class UpdateAddons:
 
     def __init__(self, addon_update_list, parent_window):
         self.title = _('Available Gramps Updates for Addons')

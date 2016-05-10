@@ -36,7 +36,7 @@ from .const import IDENTICAL, EQUAL
 # AddressBase classes
 #
 #-------------------------------------------------------------------------
-class AddressBase(object):
+class AddressBase:
     """
     Base class for address-aware objects.
     """

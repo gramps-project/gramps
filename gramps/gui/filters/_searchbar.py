@@ -41,7 +41,7 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 # SearchBar
 #
 #-------------------------------------------------------------------------
-class SearchBar(object):
+class SearchBar:
     def __init__( self, dbstate, uistate, on_apply, apply_done = None, apply_clear = None):
         self.on_apply_callback = on_apply
         self.apply_done_callback = apply_done

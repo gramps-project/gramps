@@ -50,7 +50,7 @@ log = logging.getLogger(".drawdoc")
 # DrawDoc
 #
 #------------------------------------------------------------------------
-class DrawDoc(object):
+class DrawDoc:
     """
     Abstract Interface for graphical document generators. Output formats
     for graphical reports must implement this interface to be used by the

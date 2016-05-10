@@ -42,7 +42,7 @@ _ = glocale.translation.gettext
 # Local functions
 #
 #-------------------------------------------------------------------------
-class SimpleAccess(object):
+class SimpleAccess:
     """
     Provide a simplified database access system. This system has been designed
     to ease the development of reports.

@@ -59,7 +59,7 @@ from gramps.gen.display.place import displayer as place_displayer
 # ObjEntry
 #
 #-------------------------------------------------------------------------
-class ObjEntry(object):
+class ObjEntry:
     """
     Handles the selection of a existing or new Object. Supports Drag and Drop
     to select the object.

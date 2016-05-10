@@ -28,7 +28,7 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 #
 #-------------------------------------------------------------------------
 
-class BSDDBTxn(object):
+class BSDDBTxn:
     """
     Wrapper for BSDDB methods that set up and manage transactions.  Implements
     context management functionality allowing constructs like:

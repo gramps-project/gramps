@@ -33,7 +33,7 @@ from .styledtexttag import StyledTextTag
 # StyledText class
 #
 #-------------------------------------------------------------------------
-class StyledText(object):
+class StyledText:
     """Helper class to enable character based text formatting.
 
     :py:class:`StyledText` is a wrapper class binding the clear text string and

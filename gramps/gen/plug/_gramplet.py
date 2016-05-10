@@ -36,7 +36,7 @@ LOG = logging.getLogger(".Gramplets")
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-class Gramplet(object):
+class Gramplet:
     """
     Base class for non-graphical gramplet code.
     """

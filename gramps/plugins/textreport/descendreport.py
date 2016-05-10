@@ -62,7 +62,7 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
 #   Simple numbering system
 #
 #------------------------------------------------------------------------
-class PrintSimple():
+class PrintSimple:
     def __init__(self, showdups):
         self.showdups = showdups
         self.num = {0:1}
@@ -89,7 +89,7 @@ class PrintSimple():
 #   de_Villiers_Pama numbering system
 #
 #------------------------------------------------------------------------
-class PrintVilliers():
+class PrintVilliers:
     def __init__(self):
         self.pama = 'abcdefghijklmnopqrstuvwxyz'
         self.num = {0:1}
@@ -112,7 +112,7 @@ class PrintVilliers():
 #   Meurgey_de_Tupigny numbering system
 #
 #------------------------------------------------------------------------
-class PrintMeurgey():
+class PrintMeurgey:
     def __init__(self):
         self.childnum = [""]
 
@@ -138,7 +138,7 @@ class PrintMeurgey():
 # Printinfo
 #
 #------------------------------------------------------------------------
-class Printinfo():
+class Printinfo:
     """
     A base class used to help make the individual numbering system classes.
     This class must first be initialized with set_class_vars
@@ -246,7 +246,7 @@ class Printinfo():
 # RecurseDown
 #
 #------------------------------------------------------------------------
-class RecurseDown():
+class RecurseDown:
     """
     A simple object to recurse from a person down through their descendants
 

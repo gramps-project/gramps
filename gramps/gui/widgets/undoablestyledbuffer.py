@@ -51,7 +51,7 @@ class UndoableDeleteStyled(UndoableDelete):
         self.tags = text_buffer.get_text(text_buffer.get_start_iter(),
                                 text_buffer.get_end_iter(), True).get_tags()
 
-class UndoableApplyStyle():
+class UndoableApplyStyle:
     """a style has been applied to our textbuffer"""
     def __init__(self, text_buffer, tag, start, end):
         self.offset = text_buffer.get_iter_at_mark(text_buffer.get_insert()).get_offset()

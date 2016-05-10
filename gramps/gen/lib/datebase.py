@@ -34,7 +34,7 @@ from .date import Date
 # DateBase classes
 #
 #-------------------------------------------------------------------------
-class DateBase(object):
+class DateBase:
     """
     Base class for storing date information.
     """

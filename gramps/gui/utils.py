@@ -64,7 +64,7 @@ from gramps.gen.errors import WindowActiveError
 #
 #-------------------------------------------------------------------------
 
-class CLIVbox():
+class CLIVbox:
     """
     Command-line interface vbox, to keep compatible with Dialog.
     """
@@ -103,7 +103,7 @@ class CLIDialog:
 #
 #-------------------------------------------------------------------------
 
-class ProgressMeter(object):
+class ProgressMeter:
     """
     Progress meter class for Gramps.
 
@@ -315,7 +315,7 @@ class ProgressMeter(object):
 #
 #-------------------------------------------------------------------------
 
-class SystemFonts(object):
+class SystemFonts:
     """
     Define fonts available to Gramps
 

@@ -5,7 +5,7 @@ import re
 
 sqlite3.paramstyle = 'qmark'
 
-class Sqlite(object):
+class Sqlite:
     @classmethod
     def get_summary(cls):
         """

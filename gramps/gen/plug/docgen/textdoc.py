@@ -68,7 +68,7 @@ LOCAL_TARGET = 3
 # IndexMark
 #
 #------------------------------------------------------------------------
-class IndexMark(object):
+class IndexMark:
     """
     Defines a mark to be associated with text for indexing.
     """
@@ -87,7 +87,7 @@ class IndexMark(object):
 #
 #------------------------------------------------------------------------
 
-class TextDoc(object):
+class TextDoc:
     """
     Abstract Interface for text document generators. Output formats for
     text reports must implement this interface to be used by the report

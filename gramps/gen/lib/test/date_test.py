@@ -162,7 +162,7 @@ for calendar in (Date.CAL_JULIAN,
             dates.append( d)
 
 # CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
-class Context(object):
+class Context:
     def __init__(self, retval):
         self.retval = retval
     def __enter__(self):

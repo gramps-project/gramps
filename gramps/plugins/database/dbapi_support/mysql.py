@@ -3,7 +3,7 @@ import re
 
 MySQLdb.paramstyle = 'qmark' ## Doesn't work
 
-class MySQL(object):
+class MySQL:
     @classmethod
     def get_summary(cls):
         """

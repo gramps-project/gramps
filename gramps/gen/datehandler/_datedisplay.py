@@ -49,7 +49,7 @@ from ._datestrings import DateStrings
 # DateDisplay
 #
 #-------------------------------------------------------------------------
-class DateDisplay(object):
+class DateDisplay:
     """
     Base date display class.
     """

@@ -27,7 +27,7 @@ from bsddb3 import dbshelve, db
 
 from ..read import DbBsddbTreeCursor
 
-class Data(object):
+class Data:
 
     def __init__(self, handle,surname, name):
         self.handle = handle

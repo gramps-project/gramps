@@ -41,7 +41,7 @@ _LOG = logging.getLogger(".gen")
 # Callback updater
 #
 #-------------------------------------------------------------------------
-class UpdateCallback(object):
+class UpdateCallback:
     """
     Basic class providing way of calling the callback to update
     things during lengthy operations.

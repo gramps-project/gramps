@@ -3,7 +3,7 @@ import re
 
 psycopg2.paramstyle = 'format'
 
-class Postgresql(object):
+class Postgresql:
     @classmethod
     def get_summary(cls):
         """

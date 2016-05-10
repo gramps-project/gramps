@@ -34,7 +34,7 @@ def make_closure(surname):
             (person.primary_name.surname_list[0].surname == surname and
              person.gender == Person.MALE))
 
-class Thing(object):
+class Thing:
     def __init__(self):
         self.list = ["I0", "I1", "I2"]
 

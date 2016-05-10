@@ -25,7 +25,7 @@ The User class provides basic interaction with the user.
 import sys
 from contextlib import contextmanager
 
-class User():
+class User:
     """
     This class provides a means to interact with the user in an abstract way.
     This class should be overridden by each respective user interface to

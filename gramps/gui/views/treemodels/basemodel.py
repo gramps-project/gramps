@@ -28,7 +28,7 @@
 from .lru import LRU
 from gramps.gen.config import config
 
-class BaseModel(object):
+class BaseModel:
 
     # LRU cache size
     _CACHE_SIZE = config.get('interface.treemodel-cache-size')

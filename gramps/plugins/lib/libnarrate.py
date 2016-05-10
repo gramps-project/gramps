@@ -1344,7 +1344,7 @@ relationship_also_only = {
 # Narrator
 #
 #------------------------------------------------------------------------
-class Narrator(object):
+class Narrator:
     """
     Narrator is a class which provides narration text.
     """

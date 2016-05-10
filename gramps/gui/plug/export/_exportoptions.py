@@ -57,7 +57,7 @@ try:
 except:
     _gzip_ok = 0
 
-class Progress(object):
+class Progress:
     """
     Mirros the same interface that the ExportAssistant uses in the
     selection, but this is for the preview selection.
@@ -99,7 +99,7 @@ class Progress(object):
 # WriterOptionBox
 #
 #-------------------------------------------------------------------------
-class WriterOptionBox(object):
+class WriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.

@@ -38,7 +38,7 @@ from ..errors import MergeError
 # MergeRepoQuery
 #
 #-------------------------------------------------------------------------
-class MergeRepositoryQuery(object):
+class MergeRepositoryQuery:
     """
     Create database query to merge two repositories.
     """

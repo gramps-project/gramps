@@ -68,7 +68,7 @@ from gramps.gen.recentfiles import recent_files
 # CLI DbLoader class
 #
 #-------------------------------------------------------------------------
-class CLIDbLoader(object):
+class CLIDbLoader:
     """
     Base class for Db loading action inside a :class:`.DbState`. Only the
     minimum is present needed for CLI handling
@@ -215,7 +215,7 @@ class CLIDbLoader(object):
 #
 #-------------------------------------------------------------------------
 
-class CLIManager(object):
+class CLIManager:
     """
     Sessionmanager for Gramps. This is in effect a reduced :class:`.ViewManager`
     instance (see gui/viewmanager), suitable for CLI actions.

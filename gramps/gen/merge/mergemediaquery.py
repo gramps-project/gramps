@@ -38,7 +38,7 @@ from ..errors import MergeError
 # MergeMediaQuery
 #
 #-------------------------------------------------------------------------
-class MergeMediaQuery(object):
+class MergeMediaQuery:
     """
     Create datqabase query to merge two media objects.
     """

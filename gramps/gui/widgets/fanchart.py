@@ -1519,7 +1519,7 @@ class FanChartWidget(FanChartBaseWidget):
         self._mouse_click = False
         self.queue_draw()
 
-class FanChartGrampsGUI(object):
+class FanChartGrampsGUI:
     """ class for functions fanchart GUI elements will need in Gramps
     """
     def __init__(self, on_childmenu_changed):

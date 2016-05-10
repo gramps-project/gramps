@@ -250,7 +250,7 @@ def raw_length(s):
         ##"""
         ##return self.colwid[index]
 
-class FrameStyle(object):
+class FrameStyle:
     """Define the style properties of a Frame.
 
     - width: Width of the frame in cm.
@@ -273,7 +273,7 @@ class FrameStyle(object):
 #
 #------------------------------------------------------------------------
 
-class GtkDocBaseElement(object):
+class GtkDocBaseElement:
     """Base of all document elements.
 
     Support document element structuring and can render itself onto

@@ -35,7 +35,7 @@ from .const import IDENTICAL, EQUAL
 # UrlBase classes
 #
 #-------------------------------------------------------------------------
-class UrlBase(object):
+class UrlBase:
     """
     Base class for url-aware objects.
     """

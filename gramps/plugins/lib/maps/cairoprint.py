@@ -45,7 +45,7 @@ PRINT_SETTINGS = None
 # CairoPrintSave class
 #
 #------------------------------------------------------------------------
-class CairoPrintSave(object):
+class CairoPrintSave:
     """
     Act as an abstract document that can render onto a cairo context.
 

@@ -64,7 +64,7 @@ tool_categories = {
 # Tool
 #
 #-------------------------------------------------------------------------
-class Tool(object):
+class Tool:
     """
     The Tool base class.  This is a base class for generating
     customized tools.  It cannot be used as is, but it can be easily
@@ -147,7 +147,7 @@ class ActivePersonTool(Tool):
 # Command-line tool
 #
 #------------------------------------------------------------------------
-class CommandLineTool(object):
+class CommandLineTool:
     """
     Provide a way to run tool from the command line.
 

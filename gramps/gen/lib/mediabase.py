@@ -36,7 +36,7 @@ from .const import IDENTICAL, EQUAL, DIFFERENT
 # MediaBase class
 #
 #-------------------------------------------------------------------------
-class MediaBase(object):
+class MediaBase:
     """
     Base class for storing media references.
     """

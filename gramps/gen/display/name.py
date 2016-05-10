@@ -318,7 +318,7 @@ def cleanup_name(namestring):
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
-class NameDisplay(object):
+class NameDisplay:
     """
     Base class for displaying of Name instances.
 
@@ -504,7 +504,7 @@ class NameDisplay(object):
         We use this in Gramps as understanding the old compare function is
         not trivial. This should be replaced by a proper key function
         """
-        class K(object):
+        class K:
             def __init__(self, obj, *args):
                 self.obj = obj
             def __lt__(self, other):

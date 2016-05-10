@@ -76,7 +76,7 @@ from gramps.gui.glade import Glade
 # All except 09, 0A, 0D are replaced with space.
 strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)),  " ")
 
-class ProgressMeter(object):
+class ProgressMeter:
     def __init__(self, *args, **kwargs): pass
     def set_pass(self, *args): pass
     def step(self): pass
@@ -211,7 +211,7 @@ class Check(tool.BatchTool):
 #
 #
 #-------------------------------------------------------------------------
-class CheckIntegrity(object):
+class CheckIntegrity:
 
     def __init__(self, dbstate, uistate, trans):
         self.uistate = uistate

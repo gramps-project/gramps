@@ -47,7 +47,7 @@ log = logging.getLogger(".tablestyle")
 # TableStyle
 #
 #------------------------------------------------------------------------
-class TableStyle(object):
+class TableStyle:
     """
     Specifies the style or format of a table. The TableStyle contains the
     characteristics of table width (in percentage of the full width), the
@@ -131,7 +131,7 @@ class TableStyle(object):
 # TableCellStyle
 #
 #------------------------------------------------------------------------
-class TableCellStyle(object):
+class TableCellStyle:
     """
     Defines the style of a particular table cell. Characteristics are:
     right border, left border, top border, bottom border, and padding.

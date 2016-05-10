@@ -54,7 +54,7 @@ from gramps.gen.lib import Date, EventType
 from gramps.gui.glade import Glade
 from gramps.gen.display.place import displayer as _pd
 
-class CalendarWriter(object):
+class CalendarWriter:
     def __init__(self, database, filename, user, option_box=None):
         self.db = database
         self.filename = filename

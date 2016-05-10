@@ -35,7 +35,7 @@ from gramps.gen.config import config
 # Report
 #
 #-------------------------------------------------------------------------
-class Report(object):
+class Report:
     """
     The Report base class.  This is a base class for generating
     customized reports.  It cannot be used as is, but it can be easily

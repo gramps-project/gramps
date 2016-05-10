@@ -357,7 +357,7 @@ class EditMedia(EditPrimary):
             cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
 
-class DeleteMediaQuery(object):
+class DeleteMediaQuery:
 
     def __init__(self, dbstate, uistate, media_handle, the_lists):
         self.db = dbstate.db

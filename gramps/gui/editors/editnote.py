@@ -343,7 +343,7 @@ class EditNote(EditPrimary):
             self.callback(self.obj.get_handle())
         self._do_close()
 
-class DeleteNoteQuery(object):
+class DeleteNoteQuery:
     def __init__(self, dbstate, uistate, note, the_lists):
         self.note = note
         self.db = dbstate.db

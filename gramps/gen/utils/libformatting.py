@@ -47,7 +47,7 @@ from .db import (get_birth_or_fallback, get_death_or_fallback,
 # FormattingHelper class
 #
 #-------------------------------------------------------------------------
-class FormattingHelper(object):
+class FormattingHelper:
     """Format of commonly used expressions, making use of a cache to not
     recompute
     """
@@ -199,7 +199,7 @@ class FormattingHelper(object):
         self._markup_cache = {}
 
 
-class ImportInfo(object):
+class ImportInfo:
     """
     Class object that can hold information about the import
     """

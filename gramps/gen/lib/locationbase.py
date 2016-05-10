@@ -28,7 +28,7 @@ LocationBase class for Gramps.
 # LocationBase class
 #
 #-------------------------------------------------------------------------
-class LocationBase(object):
+class LocationBase:
     """
     Base class for all things Address.
     """

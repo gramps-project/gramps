@@ -41,7 +41,7 @@ from ..errors import MergeError
 # MergeSourceQuery
 #
 #-------------------------------------------------------------------------
-class MergeSourceQuery(object):
+class MergeSourceQuery:
     """
     Create database query to merge two sources.
     """

@@ -39,7 +39,7 @@ _ = glocale.translation.sgettext
 HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge'))
 HAS_EXPORTRAW = os.path.isdir(os.path.join(USER_PLUGINS, 'ExportRaw'))
 
-class CopiedDoc(object):
+class CopiedDoc:
     """Context manager that creates a deep copy of an libxml-xml document."""
     def __init__(self, xmldoc):
         self.xmldoc = xmldoc
@@ -53,7 +53,7 @@ class CopiedDoc(object):
         self.copy.freeDoc()
         return False
 
-class XpathContext(object):
+class XpathContext:
     """Context manager that creates a libxml2 xpath context that allows
        evaluation of xpath expressions."""
     def __init__(self, xmldoc):

@@ -36,7 +36,7 @@ from ..lib import PlaceType
 # PlaceDisplay class
 #
 #-------------------------------------------------------------------------
-class PlaceDisplay(object):
+class PlaceDisplay:
 
     def display_event(self, db, event):
         if not event:

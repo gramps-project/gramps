@@ -27,7 +27,7 @@ LOG.addHandler(_hdlr)
 
 from ..constfunc import get_env_var
 
-class ResourcePath(object):
+class ResourcePath:
     """
     ResourcePath is a singleton, meaning that only one of them is ever
     created.  At startup it finds the paths to Gramps's resource files and

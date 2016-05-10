@@ -46,7 +46,7 @@ class Stack(list):
             self.pop(0)
         return super(Stack, self).append(item)
 
-class UndoableInsert(object):
+class UndoableInsert:
     """something that has been inserted into our textbuffer"""
     def __init__(self, text_iter, text, length, text_buffer):
         self.offset = text_iter.get_offset()
@@ -60,7 +60,7 @@ class UndoableInsert(object):
             self.mergeable = True
         self.tags = None
 
-class UndoableDelete(object):
+class UndoableDelete:
     """something that has been deleted from our textbuffer"""
     def __init__(self, text_buffer, start_iter, end_iter):
         self.text = str(text_buffer.get_text(start_iter, end_iter, True))

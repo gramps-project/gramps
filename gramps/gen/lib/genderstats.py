@@ -35,7 +35,7 @@ from .person import Person
 #
 #
 #-------------------------------------------------------------------------
-class GenderStats(object):
+class GenderStats:
     """
     Class for keeping track of statistics related to Given Name vs. Gender.
 
