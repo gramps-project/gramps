@@ -390,7 +390,7 @@ try:
         available = True
     else:
         available = False
-except ImportError:
+except (ImportError, ValueError):
     available = False
 
 if available:

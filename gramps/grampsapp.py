@@ -267,6 +267,8 @@ def show_settings():
 
     except ImportError:
         gexiv2_str = 'not found'
+    except ValueError:
+        gexiv2_str = 'not new enough'
 
     try:
         import PyICU
