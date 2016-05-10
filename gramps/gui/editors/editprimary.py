@@ -26,6 +26,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+import abc
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +50,7 @@ from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
 from ..dbguielement import DbGUIElement
 
-class EditPrimary(ManagedWindow, DbGUIElement):
+class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     QR_CATEGORY = -1
 
@@ -245,12 +246,9 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             self._do_close()
             return False
 
+    @abc.abstractmethod
     def empty_object(self):
-        #empty_object should be overridden in base class and will throw an
-        #exception if it is not because self.empty_object().serialize() is
-        #called and PrimaryObject does not implement serialize(). See
-        #BaseObject.serialize()
-        return PrimaryObject
+        """ empty_object should be overridden in child class """
 
     def data_has_changed(self):
         if self.db.readonly:
