@@ -52,7 +52,8 @@ ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType,
                             Family, FamilyRelType, Name, NameType, Note,
                             NoteType, Person, Place, Source, Surname, Tag,
-                            PlaceName, PlaceType, PlaceRef)
+                            PlaceName, PlaceType, PlaceRef, Attribute,
+                            AttributeType)
 from gramps.gen.db import DbTxn
 from gramps.gen.datehandler import parser as _dp
 from gramps.gen.utils.string import gender as gender_map
@@ -202,6 +203,8 @@ class CSVParser:
                 _("death source")),
             "deathcause": ("Deathcause", "Death cause", _("Death cause"),
                 "deathcause", "death_cause", "death cause", _("death cause")),
+            "refn": ("REFN", _("refn")),
+            "afn": ("AFN", _("afn")),
             "grampsid": ("Grampsid", "ID", "Gramps id", _("Gramps ID"),
                 "grampsid", "id", "gramps_id", "gramps id", _("Gramps id")),
             "person": ("Person", _("Person"), "person", _("person")),
@@ -581,6 +584,8 @@ class CSVParser:
         deathcause  = rd(line_number, row, col, "deathcause")
         grampsid    = rd(line_number, row, col, "grampsid")
         person_ref  = rd(line_number, row, col, "person")
+        afn         = rd(line_number, row, col, "afn")
+        refn        = rd(line_number, row, col, "refn")
         #########################################################
         # if this person already exists, don't create them
         person = self.lookup("person", person_ref)
@@ -641,6 +646,18 @@ class CSVParser:
                     new_note.add_tag(self.default_tag.handle)
                 self.db.add_note(new_note, self.trans)
                 person.add_note(new_note.handle)
+        # AFN
+        if afn is not None:
+            attr = Attribute()
+            attr.set_type((AttributeType.CUSTOM, "AFN"))
+            attr.set_value(afn)
+            person.add_attribute(attr)
+        # REFN
+        if refn is not None:
+            attr = Attribute()
+            attr.set_type((AttributeType.CUSTOM, "REFN"))
+            attr.set_value(refn)
+            person.add_attribute(attr)
         if grampsid is not None:
             person.gramps_id = grampsid
         elif person_ref is not None:
