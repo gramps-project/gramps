@@ -631,9 +631,13 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param acquisition: instance to merge
         :type acquisition: :class:'~.place.Place
         """
-        if acquisition.name and (acquisition.name not in self.alt_names):
-            self.alt_names.append(acquisition.name)
+        if acquisition.name.value:
+            if acquisition.name != self.name:
+                if acquisition.name not in self.alt_names:
+                    self.alt_names.append(acquisition.name)
 
         for addendum in acquisition.alt_names:
-            if addendum not in self.alt_names:
-                self.alt_names.append(addendum)
+            if addendum.value:
+                if addendum != self.name:
+                    if addendum not in self.alt_names:
+                        self.alt_names.append(addendum)
