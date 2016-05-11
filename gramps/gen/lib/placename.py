@@ -200,6 +200,12 @@ class PlaceName(SecondaryObject, DateBase):
             else:
                 return EQUAL
 
+    def __eq__(self, other):
+        return self.is_equal(other)
+
+    def __ne__(self, other):
+        return not self.is_equal(other)
+
     def set_value(self, value):
         """
         Set the name for the PlaceName instance.
