@@ -3319,15 +3319,19 @@ class GedcomParser(UpdateCallback):
         If just ADR1, ADR2, CITY, STAE, POST or CTRY are provided (this is not
         actually legal GEDCOM symtax, but may be possible by GEDCOM extensions)
         then just the structrued address is used.
+        The routine returns a string suitable for a title.
         """
+        title = ''
+        free_form_address = free_form_address.replace('\n', ', ')
         if not (addr.get_street() or addr.get_locality() or
                 addr.get_city() or addr.get_state() or
                 addr.get_postal_code()):
 
             addr.set_street(free_form_address)
+            return free_form_address
         else:
             # structured address provided
-            addr_list = free_form_address.split("\n")
+            addr_list = free_form_address.split(",")
             str_list = []
             for func in (addr.get_street(), addr.get_locality(),
                          addr.get_city(), addr.get_state(),
@@ -3341,6 +3345,13 @@ class GedcomParser(UpdateCallback):
                     self.__add_msg(_("ADDR element ignored '%s'"
                                      % elmn), line, state)
             # The free-form address ADDR is discarded
+            # Assemble a title out of structured address
+            for elmn in str_list:
+                if elmn:
+                    if title != '':
+                        title += ', '
+                    title += elmn
+            return title
 
     def __parse_trailer(self):
         """
@@ -5395,7 +5406,7 @@ class GedcomParser(UpdateCallback):
             place = state.place
             if place:
                 # We encounter a PLAC, having previously encountered an ADDR
-                if place.get_title() and place.get_title() != "":
+                if state.place.place_type.string != _("Address"):
                     # We have previously found a PLAC
                     self.__add_msg(_("A second PLAC ignored"), line, state)
                     # ignore this second PLAC, and use the old one
@@ -5523,7 +5534,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        self.__merge_address(free_form, sub_state.location, line, state)
+        title = self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
 
@@ -5570,6 +5581,9 @@ class GedcomParser(UpdateCallback):
                 state.place = Place()
                 place = state.place
                 place.add_alternate_locations(location)
+                place.set_name(PlaceName(value=title))
+                place.set_title(title)
+                place.set_type((PlaceType.CUSTOM, _("Address")))
 
         # merge notes etc into place
         place.merge(sub_state.place)
