@@ -329,6 +329,27 @@ class DBAPI(DbGeneric):
     def close_backend(self):
         self.dbapi.close()
 
+    def transaction_backend_begin(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db BEGIN;
+        """
+        self.dbapi.begin()
+
+    def transaction_backend_commit(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db END;
+        """
+        self.dbapi.commit()
+
+    def transaction_backend_abort(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db ROLLBACK;
+        """
+        self.dbapi.rollback()
+
     def transaction_begin(self, transaction):
         """
         Transactions are handled automatically by the db layer.
