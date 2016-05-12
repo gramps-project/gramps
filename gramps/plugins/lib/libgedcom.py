@@ -5437,6 +5437,8 @@ class GedcomParser(UpdateCallback):
             self.__parse_level(sub_state, self.event_place_map,
                              self.__undefined)
             state.msg += sub_state.msg
+        # merge notes etc into place
+        state.place.merge(sub_state.place)
 
     def __event_place_note(self, line, state):
         """
@@ -5595,7 +5597,7 @@ class GedcomParser(UpdateCallback):
                 place.set_type((PlaceType.CUSTOM, _("Address")))
 
         # merge notes etc into place
-        place.merge(sub_state.place)
+        state.place.merge(sub_state.place)
 
     def __add_location(self, place, location):
         """
