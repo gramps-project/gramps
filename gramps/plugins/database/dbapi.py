@@ -360,13 +360,30 @@ class DBAPI(DbGeneric):
 
     def transaction_commit(self, txn):
         """
-        Executed after a batch operation.
+        Executed at the end of a transaction.
         """
+        action = {TXNADD: "-add",
+                  TXNUPD: "-update",
+                  TXNDEL: "-delete",
+                  None: "-delete"}
         if txn.batch:
             self.build_surname_list()
             # FIXME: need a User GUI update callback here:
             self.reindex_reference_map(lambda percent: percent)
         self.dbapi.commit()
+        # Now, emit signals:
+        import pdb; pdb.set_trace()
+        for (obj_type_val, txn_type_val) in list(txn):
+            if txn_type_val == TXNDEL:
+                handles = [handle for (handle, data) in
+                           txn[(obj_type_val, txn_type_val)]]
+            else:
+                handles = [handle for (handle, data) in
+                           txn[(obj_type_val, txn_type_val)]
+                           if (handle, None) not in txn[(obj_type_val, TXNDEL)]]
+            signal = KEY_TO_NAME_MAP[obj_type_val] + action[txn_type_val]
+            if handles:
+                self.emit(signal, (handles, ))
         self.transaction = None
         msg = txn.get_description()
         self.undodb.commit(txn, msg)
@@ -598,11 +615,9 @@ class DBAPI(DbGeneric):
                                  [name, grouping])
 
     def commit_person(self, person, trans, change_time=None):
-        emit = None
         old_person = None
         person.change = int(change_time or time.time())
         if person.handle in self.person_map:
-            emit = "person-update"
             old_person = self.get_person_from_handle(person.handle)
             # Update gender statistics if necessary
             if (old_person.gender != person.gender or
@@ -633,7 +648,6 @@ class DBAPI(DbGeneric):
                                 gender_type,
                                 person.handle])
         else:
-            emit = "person-add"
             self.genderStats.count_person(person)
             self.add_to_surname_list(person, trans.batch)
             given_name, surname, gender_type = self.get_person_data(person)
@@ -684,17 +698,11 @@ class DBAPI(DbGeneric):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([person.handle],))
-        self.has_changed = True
 
     def commit_family(self, family, trans, change_time=None):
-        emit = None
         old_family = None
         family.change = int(change_time or time.time())
         if family.handle in self.family_map:
-            emit = "family-update"
             old_family = self.get_family_from_handle(family.handle).serialize()
             self.dbapi.execute("""UPDATE family SET gramps_id = ?,
                                                     father_handle = ?,
@@ -707,7 +715,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(family.serialize()),
                                 family.handle])
         else:
-            emit = "family-add"
             self.dbapi.execute("""INSERT INTO family (handle, gramps_id, father_handle, mother_handle, blob_data)
                     VALUES(?, ?, ?, ?, ?);""",
                                [family.handle,
@@ -748,17 +755,11 @@ class DBAPI(DbGeneric):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([family.handle],))
-        self.has_changed = True
 
     def commit_citation(self, citation, trans, change_time=None):
-        emit = None
         old_citation = None
         citation.change = int(change_time or time.time())
         if citation.handle in self.citation_map:
-            emit = "citation-update"
             old_citation = self.get_citation_from_handle(citation.handle).serialize()
             self.dbapi.execute("""UPDATE citation SET gramps_id = ?,
                                                       order_by = ?,
@@ -769,7 +770,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(citation.serialize()),
                                 citation.handle])
         else:
-            emit = "citation-add"
             self.dbapi.execute("""INSERT INTO citation (handle, order_by, gramps_id, blob_data)
                      VALUES(?, ?, ?, ?);""",
                        [citation.handle,
@@ -794,17 +794,10 @@ class DBAPI(DbGeneric):
             [str(attr.type) for attr in citation.attribute_list
              if attr.type.is_custom() and str(attr.type)])
 
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([citation.handle],))
-        self.has_changed = True
-
     def commit_source(self, source, trans, change_time=None):
-        emit = None
         old_source = None
         source.change = int(change_time or time.time())
         if source.handle in self.source_map:
-            emit = "source-update"
             old_source = self.get_source_from_handle(source.handle).serialize()
             self.dbapi.execute("""UPDATE source SET gramps_id = ?,
                                                     order_by = ?,
@@ -815,7 +808,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(source.serialize()),
                                 source.handle])
         else:
-            emit = "source-add"
             self.dbapi.execute("""INSERT INTO source (handle, order_by, gramps_id, blob_data)
                     VALUES(?, ?, ?, ?);""",
                        [source.handle,
@@ -842,17 +834,11 @@ class DBAPI(DbGeneric):
         self.source_attributes.update(
             [str(attr.type) for attr in source.attribute_list
              if attr.type.is_custom() and str(attr.type)])
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([source.handle],))
-        self.has_changed = True
 
     def commit_repository(self, repository, trans, change_time=None):
-        emit = None
         old_repository = None
         repository.change = int(change_time or time.time())
         if repository.handle in self.repository_map:
-            emit = "repository-update"
             old_repository = self.get_repository_from_handle(repository.handle).serialize()
             self.dbapi.execute("""UPDATE repository SET gramps_id = ?,
                                                     blob_data = ?
@@ -861,7 +847,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(repository.serialize()),
                                 repository.handle])
         else:
-            emit = "repository-add"
             self.dbapi.execute("""INSERT INTO repository (handle, gramps_id, blob_data)
                      VALUES(?, ?, ?);""",
                        [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
@@ -878,17 +863,11 @@ class DBAPI(DbGeneric):
 
         self.url_types.update([str(url.type) for url in repository.urls
                                if url.type.is_custom()])
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([repository.handle],))
-        self.has_changed = True
 
     def commit_note(self, note, trans, change_time=None):
-        emit = None
         old_note = None
         note.change = int(change_time or time.time())
         if note.handle in self.note_map:
-            emit = "note-update"
             old_note = self.get_note_from_handle(note.handle).serialize()
             self.dbapi.execute("""UPDATE note SET gramps_id = ?,
                                                     blob_data = ?
@@ -897,7 +876,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(note.serialize()),
                                 note.handle])
         else:
-            emit = "note-add"
             self.dbapi.execute("""INSERT INTO note (handle, gramps_id, blob_data)
                      VALUES(?, ?, ?);""",
                        [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
@@ -911,17 +889,11 @@ class DBAPI(DbGeneric):
         # Misc updates:
         if note.type.is_custom():
             self.note_types.add(str(note.type))
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([note.handle],))
-        self.has_changed = True
 
     def commit_place(self, place, trans, change_time=None):
-        emit = None
         old_place = None
         place.change = int(change_time or time.time())
         if place.handle in self.place_map:
-            emit = "place-update"
             old_place = self.get_place_from_handle(place.handle).serialize()
             self.dbapi.execute("""UPDATE place SET gramps_id = ?,
                                                    order_by = ?,
@@ -932,7 +904,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(place.serialize()),
                                 place.handle])
         else:
-            emit = "place-add"
             self.dbapi.execute("""INSERT INTO place (handle, order_by, gramps_id, blob_data)
                     VALUES(?, ?, ?, ?);""",
                        [place.handle,
@@ -958,17 +929,11 @@ class DBAPI(DbGeneric):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([place.handle],))
-        self.has_changed = True
 
     def commit_event(self, event, trans, change_time=None):
-        emit = None
         old_event = None
         event.change = int(change_time or time.time())
         if event.handle in self.event_map:
-            emit = "event-update"
             old_event = self.get_event_from_handle(event.handle).serialize()
             self.dbapi.execute("""UPDATE event SET gramps_id = ?,
                                                     blob_data = ?
@@ -977,7 +942,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(event.serialize()),
                                 event.handle])
         else:
-            emit = "event-add"
             self.dbapi.execute("""INSERT INTO event (handle, gramps_id, blob_data)
                   VALUES(?, ?, ?);""",
                        [event.handle,
@@ -1001,16 +965,10 @@ class DBAPI(DbGeneric):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([event.handle],))
-        self.has_changed = True
 
     def commit_tag(self, tag, trans, change_time=None):
-        emit = None
         tag.change = int(change_time or time.time())
         if tag.handle in self.tag_map:
-            emit = "tag-update"
             self.dbapi.execute("""UPDATE tag SET blob_data = ?,
                                                  order_by = ?
                                          WHERE handle = ?;""",
@@ -1018,7 +976,6 @@ class DBAPI(DbGeneric):
                                 self._order_by_tag_key(tag.name),
                                 tag.handle])
         else:
-            emit = "tag-add"
             self.dbapi.execute("""INSERT INTO tag (handle, order_by, blob_data)
                   VALUES(?, ?, ?);""",
                        [tag.handle,
@@ -1026,17 +983,11 @@ class DBAPI(DbGeneric):
                         pickle.dumps(tag.serialize())])
         if not trans.batch:
             self.update_backlinks(tag)
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([tag.handle],))
-        self.has_changed = True
 
     def commit_media(self, media, trans, change_time=None):
-        emit = None
         old_media = None
         media.change = int(change_time or time.time())
         if media.handle in self.media_map:
-            emit = "media-update"
             old_media = self.get_media_from_handle(media.handle).serialize()
             self.dbapi.execute("""UPDATE media SET gramps_id = ?,
                                                    order_by = ?,
@@ -1047,7 +998,6 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(media.serialize()),
                                 media.handle])
         else:
-            emit = "media-add"
             self.dbapi.execute("""INSERT INTO media (handle, order_by, gramps_id, blob_data)
                   VALUES(?, ?, ?, ?);""",
                        [media.handle,
@@ -1065,10 +1015,6 @@ class DBAPI(DbGeneric):
         self.media_attributes.update(
             [str(attr.type) for attr in media.attribute_list
              if attr.type.is_custom() and str(attr.type)])
-        # Emit after added:
-        if emit:
-            self.emit(emit, ([media.handle],))
-        self.has_changed = True
 
     def update_backlinks(self, obj):
         # First, delete the current references:
@@ -1098,7 +1044,6 @@ class DBAPI(DbGeneric):
         if handle in self.person_map:
             person = Person.create(self.person_map[handle])
             self.dbapi.execute("DELETE FROM person WHERE handle = ?;", [handle])
-            self.emit("person-delete", ([handle],))
             if not transaction.batch:
                 transaction.add(PERSON_KEY, TXNDEL, person.handle,
                                 person.serialize(), None)
@@ -1123,7 +1068,6 @@ class DBAPI(DbGeneric):
         if handle in data_map:
             self.dbapi.execute("DELETE FROM %s WHERE handle = ?;" % key2table[key],
                                [handle])
-            self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
             if not transaction.batch:
                 data = data_map[handle]
                 transaction.add(key, TXNDEL, handle, data, None)
@@ -2046,4 +1990,3 @@ class DBAPI(DbGeneric):
         summary = super().get_summary()
         summary.update(self.dbapi.__class__.get_summary())
         return summary
-
