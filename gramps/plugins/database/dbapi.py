@@ -371,19 +371,19 @@ class DBAPI(DbGeneric):
             # FIXME: need a User GUI update callback here:
             self.reindex_reference_map(lambda percent: percent)
         self.dbapi.commit()
-        # Now, emit signals:
-        import pdb; pdb.set_trace()
-        for (obj_type_val, txn_type_val) in list(txn):
-            if txn_type_val == TXNDEL:
-                handles = [handle for (handle, data) in
-                           txn[(obj_type_val, txn_type_val)]]
-            else:
-                handles = [handle for (handle, data) in
-                           txn[(obj_type_val, txn_type_val)]
-                           if (handle, None) not in txn[(obj_type_val, TXNDEL)]]
-            signal = KEY_TO_NAME_MAP[obj_type_val] + action[txn_type_val]
-            if handles:
-                self.emit(signal, (handles, ))
+        if not txn.batch:
+            # Now, emit signals:
+            for (obj_type_val, txn_type_val) in list(txn):
+                if txn_type_val == TXNDEL:
+                    handles = [handle for (handle, data) in
+                               txn[(obj_type_val, txn_type_val)]]
+                else:
+                    handles = [handle for (handle, data) in
+                               txn[(obj_type_val, txn_type_val)]
+                               if (handle, None) not in txn[(obj_type_val, TXNDEL)]]
+                if handles:
+                    signal = KEY_TO_NAME_MAP[obj_type_val] + action[txn_type_val]
+                    self.emit(signal, (handles, ))
         self.transaction = None
         msg = txn.get_description()
         self.undodb.commit(txn, msg)
