@@ -565,7 +565,7 @@ class DisplayState(Callback):
 
     def modify_statusbar(self, dbstate, active=None):
         view = self.viewmanager.active_page
-        if not isinstance(view, NavigationView):
+        if not isinstance(view, NavigationView) or dbstate is None:
             return
 
         nav_type = view.navigation_type()
