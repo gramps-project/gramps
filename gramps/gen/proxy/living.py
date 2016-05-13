@@ -336,10 +336,13 @@ class LivingProxyDb(ProxyDbBase):
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
-            if class_name == 'Person':
-                if not self.get_person_from_handle(handle):
-                    continue
-            yield (class_name, handle)
+            if class_name == "Person" and self.mode != self.MODE_INCLUDE_ALL:
+                ## Don't get backlinks to living people at all
+                person = self.db.get_person_from_handle(handle)
+                if person and not self.__is_living(person):
+                    yield (class_name, handle)
+            else:
+                yield (class_name, handle)
         return
 
     def __is_living(self, person):
