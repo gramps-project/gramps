@@ -31,6 +31,7 @@ class MySQL:
         query = query.replace("REAL", "DOUBLE")
         query = query.replace("change", "change_")
         query = query.replace("desc", "desc_")
+        query = query.replace(" long ", " long_ ")
         ## LIMIT offset, count
         ## count can be -1, for all
         ## LIMIT -1

@@ -1705,8 +1705,6 @@ class PlaceParser:
                     loc.get_state(),
                     loc.get_country())
 
-        place_import.store_location(location, place.handle)
-
         for level, name in enumerate(location):
             if name:
                 break
@@ -1720,6 +1718,10 @@ class PlaceParser:
         place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)
+        if place.handle:    # if handle is available, store immediately
+            place_import.store_location(location, place.handle)
+        else:               # return for storage later
+            return location
 
 #-------------------------------------------------------------------------
 #
@@ -2954,15 +2956,22 @@ class GedcomParser(UpdateCallback):
                                       sub_state.place.get_placeref_list())
             if place is None:
                 place = sub_state.place
+                place_title = place_displayer.display(self.dbase, place)
+                location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.add_place(place, self.trans)
+                # if 'location was created, then store it, now that we have a handle.
+                if location:
+                    self.place_import.store_location(location, place.handle)
                 self.place_names[place.get_title()].append(place.get_handle())
                 event.set_place_handle(place.get_handle())
             else:
                 place.merge(sub_state.place)
+                place_title = place_displayer.display(self.dbase, place)
+                location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.commit_place(place, self.trans)
+                if location:
+                    self.place_import.store_location(location, place.handle)
                 event.set_place_handle(place.get_handle())
-            place_title = place_displayer.display(self.dbase, place)
-            sub_state.pf.load_place(self.place_import, place, place_title)
 
     def __find_file(self, fullname, altpath):
         tries = []
@@ -3319,15 +3328,19 @@ class GedcomParser(UpdateCallback):
         If just ADR1, ADR2, CITY, STAE, POST or CTRY are provided (this is not
         actually legal GEDCOM symtax, but may be possible by GEDCOM extensions)
         then just the structrued address is used.
+        The routine returns a string suitable for a title.
         """
+        title = ''
+        free_form_address = free_form_address.replace('\n', ', ')
         if not (addr.get_street() or addr.get_locality() or
                 addr.get_city() or addr.get_state() or
                 addr.get_postal_code()):
 
             addr.set_street(free_form_address)
+            return free_form_address
         else:
             # structured address provided
-            addr_list = free_form_address.split("\n")
+            addr_list = free_form_address.split(",")
             str_list = []
             for func in (addr.get_street(), addr.get_locality(),
                          addr.get_city(), addr.get_state(),
@@ -3341,6 +3354,13 @@ class GedcomParser(UpdateCallback):
                     self.__add_msg(_("ADDR element ignored '%s'"
                                      % elmn), line, state)
             # The free-form address ADDR is discarded
+            # Assemble a title out of structured address
+            for elmn in str_list:
+                if elmn:
+                    if title != '':
+                        title += ', '
+                    title += elmn
+            return title
 
     def __parse_trailer(self):
         """
@@ -5395,7 +5415,7 @@ class GedcomParser(UpdateCallback):
             place = state.place
             if place:
                 # We encounter a PLAC, having previously encountered an ADDR
-                if place.get_title() and place.get_title() != "":
+                if state.place.place_type.string != _("Address"):
                     # We have previously found a PLAC
                     self.__add_msg(_("A second PLAC ignored"), line, state)
                     # ignore this second PLAC, and use the old one
@@ -5419,6 +5439,8 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
             if sub_state.pf:                # if we found local PLAC:FORM
                 state.pf = sub_state.pf     # save to override global value
+        # merge notes etc into place
+        state.place.merge(sub_state.place)
 
     def __event_place_note(self, line, state):
         """
@@ -5525,7 +5547,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        self.__merge_address(free_form, sub_state.location, line, state)
+        title = self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
 
@@ -5572,9 +5594,12 @@ class GedcomParser(UpdateCallback):
                 state.place = Place()
                 place = state.place
                 place.add_alternate_locations(location)
+                place.set_name(PlaceName(value=title))
+                place.set_title(title)
+                place.set_type((PlaceType.CUSTOM, _("Address")))
 
         # merge notes etc into place
-        place.merge(sub_state.place)
+        state.place.merge(sub_state.place)
 
     def __add_location(self, place, location):
         """

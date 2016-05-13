@@ -1389,8 +1389,14 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
     def setUp(self):
         self.phoenix = Place()
         self.phoenix.set_title('Place 1')
-        self.titanic = Place(self.phoenix)
-        self.ref_obj = Place(self.phoenix)
+        # __init__ copy has bad side effects, don't use it
+        # self.titanic = Place(self.phoenix)
+        self.titanic = Place()
+        self.titanic.set_title('Place 1')
+        # __init__ copy has bad side effects, don't use it
+        # self.ref_obj = Place(self.phoenix)
+        self.ref_obj = Place()
+        self.ref_obj.set_title('Place 1')
         self.amsterdam = PlaceName()
         self.amsterdam.set_value('Amsterdam')
         self.rotterdam = PlaceName()
@@ -1433,9 +1439,11 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.titanic.add_alternative_name(self.leiden)
         self.ref_obj.set_name(self.amsterdam)
         self.ref_obj.set_type(PlaceType.CITY)
-        self.ref_obj.add_alternative_name(self.amsterdam)
-        self.ref_obj.add_alternative_name(self.rotterdam)
+        # Base name shouldn't be in alt_names list
+        # self.ref_obj.add_alternative_name(self.amsterdam)
+        # alt_names must be in correct order for test to pass
         self.ref_obj.add_alternative_name(self.utrecht)
+        self.ref_obj.add_alternative_name(self.rotterdam)
         self.ref_obj.add_alternative_name(self.leiden)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
@@ -1493,6 +1501,22 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.ref_obj.set_name(self.amsterdam)
         self.ref_obj.set_type(PlaceType.CITY)
         self.ref_obj.add_alternative_name(self.rotterdam)
+        self.phoenix.merge(self.titanic)
+        self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
+        
+    def test_merge_empty(self):
+        self.phoenix.set_name(self.amsterdam)
+        self.phoenix.set_type(PlaceType.CITY)
+        self.phoenix.add_alternative_name(self.rotterdam)
+        self.titanic.set_title('Place 2')
+        # titanic gets empty name
+        self.titanic.set_type(PlaceType.CITY)
+        self.titanic.add_alternative_name(self.utrecht)
+        self.titanic.add_alternative_name(PlaceName())  # empty alt_name
+        self.ref_obj.set_name(self.amsterdam)
+        self.ref_obj.set_type(PlaceType.CITY)
+        self.ref_obj.add_alternative_name(self.rotterdam)
+        self.ref_obj.add_alternative_name(self.utrecht)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 

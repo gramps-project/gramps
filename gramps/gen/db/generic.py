@@ -139,15 +139,22 @@ class DbGenericUndo(DbUndo):
         subitems = transaction.get_recnos()
 
         # Process all records in the transaction
-        for record_id in subitems:
-            (key, trans_type, handle, old_data, new_data) = \
-                pickle.loads(self.undodb[record_id])
+        try:
+            self.db.transaction_backend_begin()
+            for record_id in subitems:
+                (key, trans_type, handle, old_data, new_data) = \
+                    pickle.loads(self.undodb[record_id])
 
-            if key == REFERENCE_KEY:
-                self.undo_reference(new_data, handle, self.mapbase[key])
-            else:
-                self.undo_data(new_data, handle, self.mapbase[key],
-                                    db.emit, SIGBASE[key])
+                if key == REFERENCE_KEY:
+                    self.undo_reference(new_data, handle, self.mapbase[key])
+                else:
+                    self.undo_data(new_data, handle, self.mapbase[key],
+                                        db.emit, SIGBASE[key])
+            self.db.transaction_backend_commit()
+        except:
+            self.db.transaction_backend_abort()
+            raise
+
         # Notify listeners
         if db.undo_callback:
             db.undo_callback(_("_Undo %s")
@@ -846,6 +853,27 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if table_name in self.get_table_func():
             return self.get_table_func(table_name)
         return None
+
+    def transaction_backend_begin(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db BEGIN;
+        """
+        pass
+
+    def transaction_backend_commit(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db END;
+        """
+        pass
+
+    def transaction_backend_abort(self):
+        """
+        Lowlevel interface to the backend transaction.
+        Executes a db ROLLBACK;
+        """
+        pass
 
     def transaction_begin(self, transaction):
         """
