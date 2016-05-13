@@ -600,7 +600,6 @@ class DBAPI(DbGeneric):
     def commit_person(self, person, trans, change_time=None):
         emit = None
         old_person = None
-        person.change = int(change_time or time.time())
         if person.handle in self.person_map:
             emit = "person-update"
             old_person = self.get_person_from_handle(person.handle)
@@ -692,7 +691,6 @@ class DBAPI(DbGeneric):
     def commit_family(self, family, trans, change_time=None):
         emit = None
         old_family = None
-        family.change = int(change_time or time.time())
         if family.handle in self.family_map:
             emit = "family-update"
             old_family = self.get_family_from_handle(family.handle).serialize()
@@ -756,7 +754,6 @@ class DBAPI(DbGeneric):
     def commit_citation(self, citation, trans, change_time=None):
         emit = None
         old_citation = None
-        citation.change = int(change_time or time.time())
         if citation.handle in self.citation_map:
             emit = "citation-update"
             old_citation = self.get_citation_from_handle(citation.handle).serialize()
@@ -802,7 +799,6 @@ class DBAPI(DbGeneric):
     def commit_source(self, source, trans, change_time=None):
         emit = None
         old_source = None
-        source.change = int(change_time or time.time())
         if source.handle in self.source_map:
             emit = "source-update"
             old_source = self.get_source_from_handle(source.handle).serialize()
@@ -850,7 +846,6 @@ class DBAPI(DbGeneric):
     def commit_repository(self, repository, trans, change_time=None):
         emit = None
         old_repository = None
-        repository.change = int(change_time or time.time())
         if repository.handle in self.repository_map:
             emit = "repository-update"
             old_repository = self.get_repository_from_handle(repository.handle).serialize()
@@ -886,7 +881,6 @@ class DBAPI(DbGeneric):
     def commit_note(self, note, trans, change_time=None):
         emit = None
         old_note = None
-        note.change = int(change_time or time.time())
         if note.handle in self.note_map:
             emit = "note-update"
             old_note = self.get_note_from_handle(note.handle).serialize()
@@ -919,7 +913,6 @@ class DBAPI(DbGeneric):
     def commit_place(self, place, trans, change_time=None):
         emit = None
         old_place = None
-        place.change = int(change_time or time.time())
         if place.handle in self.place_map:
             emit = "place-update"
             old_place = self.get_place_from_handle(place.handle).serialize()
@@ -966,7 +959,6 @@ class DBAPI(DbGeneric):
     def commit_event(self, event, trans, change_time=None):
         emit = None
         old_event = None
-        event.change = int(change_time or time.time())
         if event.handle in self.event_map:
             emit = "event-update"
             old_event = self.get_event_from_handle(event.handle).serialize()
@@ -1008,7 +1000,6 @@ class DBAPI(DbGeneric):
 
     def commit_tag(self, tag, trans, change_time=None):
         emit = None
-        tag.change = int(change_time or time.time())
         if tag.handle in self.tag_map:
             emit = "tag-update"
             self.dbapi.execute("""UPDATE tag SET blob_data = ?,
@@ -1034,7 +1025,6 @@ class DBAPI(DbGeneric):
     def commit_media(self, media, trans, change_time=None):
         emit = None
         old_media = None
-        media.change = int(change_time or time.time())
         if media.handle in self.media_map:
             emit = "media-update"
             old_media = self.get_media_from_handle(media.handle).serialize()
