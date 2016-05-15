@@ -339,9 +339,8 @@ class LineParser:
         if GZIP_OK:
             use_gzip = 1
             try:
-                f = gzip.open(filename, "r")
-                f.read(1)
-                f.close()
+                with gzip.open(filename, "r") as f:
+                    f.read(1)
             except IOError as msg:
                 use_gzip = 0
             except ValueError as msg:
@@ -419,9 +418,8 @@ class ImportOpenFileContextManager:
         if GZIP_OK:
             use_gzip = True
             try:
-                ofile = gzip.open(filename, "r")
-                ofile.read(1)
-                ofile.close()
+                with gzip.open(filename, "r") as ofile:
+                    ofile.read(1)
             except IOError as msg:
                 use_gzip = False
             except ValueError as msg:

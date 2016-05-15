@@ -555,7 +555,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __make_zip_backup(self, dirname):
         import zipfile
-        # In Windows resrved characters is "<>:"/\|?*"
+        # In Windows reserved characters is "<>:"/\|?*"
         reserved_char = r':,<>"/\|?* '
         replace_char = "-__________"
         title = self.get_dbname()
@@ -569,11 +569,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         dotgramps_path = os.path.dirname(grampsdb_path)
         zipname = title + time.strftime("_%Y-%m-%d_%H-%M-%S") + ".zip"
         zippath = os.path.join(dotgramps_path, zipname)
-        myzip = zipfile.ZipFile(zippath, 'w')
-        for filename in os.listdir(dirname):
-            pathname = os.path.join(dirname, filename)
-            myzip.write(pathname, os.path.join(db_code, filename))
-        myzip.close()
+        with zipfile.ZipFile(zippath, 'w') as myzip:
+            for filename in os.listdir(dirname):
+                pathname = os.path.join(dirname, filename)
+                myzip.write(pathname, os.path.join(db_code, filename))
         _LOG.warning("If upgrade and loading the Family Tree works, you can "
                      "delete the zip file at %s" %
                      zippath)
