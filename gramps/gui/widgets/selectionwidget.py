@@ -73,7 +73,7 @@ def scale_to_fit(orig_x, orig_y, target_x, target_y):
 def resize_keep_aspect(orig_x, orig_y, target_x, target_y):
     """
     Calculates the dimensions of the rectangle obtained from
-    the rectangle orig_x * orig_y by scaling to fit 
+    the rectangle orig_x * orig_y by scaling to fit
     target_x * target_y keeping the aspect ratio.
     """
     orig_aspect = orig_x / orig_y
@@ -178,7 +178,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         "right-button-clicked": (GObject.SignalFlags.RUN_FIRST, None, ()),
         "zoomed-in": (GObject.SignalFlags.RUN_FIRST, None, ()),
         "zoomed-out": (GObject.SignalFlags.RUN_FIRST, None, ())
-    }        
+    }
 
     def __init__(self):
         """
@@ -216,9 +216,9 @@ class SelectionWidget(Gtk.ScrolledWindow):
           self._button_press_event)
         self.event_box.connect('button-release-event',
           self._button_release_event)
-        self.event_box.connect('motion-notify-event',
+        self.connect('motion-notify-event',
           self._motion_notify_event)
-        self.event_box.connect('scroll-event',
+        self.connect('scroll-event',
           self._motion_scroll_event)
         self.event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.event_box.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
@@ -419,7 +419,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         if w >= 1 and h >= 1 and self.pixbuf:
             subpixbuf = self.pixbuf.new_subpixbuf(region.x1, region.y1, w, h)
             size = resize_keep_aspect(w, h, *thumbnail_size)
-            return subpixbuf.scale_simple(size[0], size[1], 
+            return subpixbuf.scale_simple(size[0], size[1],
                                           GdkPixbuf.InterpType.BILINEAR)
         else:
             return None
@@ -476,12 +476,12 @@ class SelectionWidget(Gtk.ScrolledWindow):
             offset_y = (image_rect[1] - viewport_rect.height) / 2
         else:
             offset_y = 0.0
-        return (int(coords[0] * self.scale - offset_x), 
+        return (int(coords[0] * self.scale - offset_x),
                 int(coords[1] * self.scale - offset_y))
 
     def _screen_to_image(self, coords):
         """
-        Translates viewport coordinates to original (unscaled) image coordinates 
+        Translates viewport coordinates to original (unscaled) image coordinates
         using the current scale and viewport size.
         """
         viewport_rect = self.viewport.get_allocation()
@@ -494,7 +494,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
             offset_y = (image_rect[1] - viewport_rect.height) / 2
         else:
             offset_y = 0.0
-        return (int((coords[0] + offset_x) / self.scale), 
+        return (int((coords[0] + offset_x) / self.scale),
                 int((coords[1] + offset_y) / self.scale))
 
     def _truncate_to_image_size(self, coords):
@@ -557,7 +557,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
             x1, y1, x2, y2 = self._rect_image_to_screen(self.selection)
 
             # transparent shading
-            self._draw_transparent_shading(cr, x1, y1, x2, y2, w, h, 
+            self._draw_transparent_shading(cr, x1, y1, x2, y2, w, h,
                                           offset_x, offset_y)
 
             # selection frame
@@ -571,7 +571,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                 x1, y1, x2, y2 = self._rect_image_to_screen(region.coords())
                 self._draw_region_frame(cr, x1, y1, x2, y2)
 
-    def _draw_transparent_shading(self, cr, x1, y1, x2, y2, w, h, 
+    def _draw_transparent_shading(self, cr, x1, y1, x2, y2, w, h,
                                  offset_x, offset_y):
         """
         Draws the shading for a selection box.
@@ -631,7 +631,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Recalculates the sizes using the current scale and updates
         the buffers.
         """
-        self.scaled_size = (int(self.original_image_size[0] * self.scale), 
+        self.scaled_size = (int(self.original_image_size[0] * self.scale),
                             int(self.original_image_size[1] * self.scale))
         self.scaled_image = self.pixbuf.scale_simple(self.scaled_size[0],
                                                 self.scaled_size[1],
@@ -704,7 +704,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                         self.emit("selection-cleared")
                     elif self.grabber != INSIDE:
                         # clicked on one of the grabbers
-                        dx, dy = (event.x - self.start_point_screen[0], 
+                        dx, dy = (event.x - self.start_point_screen[0],
                                   event.y - self.start_point_screen[1])
                         self.grabber_to_draw = self._modify_selection(dx, dy)
                         self.current.set_coords(*self.selection)
@@ -744,7 +744,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
             # selection or dragging (mouse button pressed)
             if self.grabber is not None and self.grabber != INSIDE:
                 # dragging the grabber
-                dx, dy = (event.x - self.start_point_screen[0], 
+                dx, dy = (event.x - self.start_point_screen[0],
                           event.y - self.start_point_screen[1])
                 self.grabber_to_draw = self._modify_selection(dx, dy)
             elif self._can_select():
