@@ -216,9 +216,9 @@ class SelectionWidget(Gtk.ScrolledWindow):
           self._button_press_event)
         self.event_box.connect('button-release-event',
           self._button_release_event)
-        self.event_box.connect('motion-notify-event',
+        self.connect('motion-notify-event',
           self._motion_notify_event)
-        self.event_box.connect('scroll-event',
+        self.connect('scroll-event',
           self._motion_scroll_event)
         self.event_box.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.event_box.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
