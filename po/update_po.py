@@ -256,10 +256,12 @@ def XmlParse(filename, mark):
     msgid "Gramps database"
     msgid "GEDCOM"
     
+    <description>
     <_p> Gramps is a free software project and community.
     We strive to produce a genealogy program that is both intuitive for hobbyists
     and feature-complete for professional genealogists.
     </p>
+    </description>
     '''
     
     head = open(filename + '.h', 'w')
@@ -268,7 +270,10 @@ def XmlParse(filename, mark):
         if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
             comment = 'char *s = N_("%s");\n' % key.text
             head.write(comment)
-            
+        if key.tag == mark: #appdata
+            comment = 'char *s = N_("%s");\n' % key.text
+            head.write(comment)
+
     if root.tag == 'application':
         for key in root.iter():
             if key.tag == mark:
