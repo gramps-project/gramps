@@ -1217,7 +1217,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 ifile = open(image[0], mode='rb')
                 self._add_zip(zfile, "Pictures/%s" % image[1], ifile.read(), t)
                 ifile.close()
-            except:
+            except OSError as msg:
                 errmsg = "%s\n%s" % (_("Could not open %s") % image[0],
                                      msg)
                 raise ReportError(errmsg)
