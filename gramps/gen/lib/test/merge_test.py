@@ -1503,7 +1503,7 @@ class PlaceCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.ref_obj.add_alternative_name(self.rotterdam)
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
-        
+
     def test_merge_empty(self):
         self.phoenix.set_name(self.amsterdam)
         self.phoenix.set_type(PlaceType.CITY)
