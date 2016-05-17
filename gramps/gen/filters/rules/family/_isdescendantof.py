@@ -19,6 +19,10 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Rule that checks for a family that is a descendant of a specified family.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -37,9 +41,9 @@ class IsDescendantOf(Rule):
     """
     Rule that checks for a family that is a descendant of a specified family.
     """
-    labels      = [ _('ID:'), _('Inclusive:') ]
-    name        = _('Descendant families of <family>')
-    category    = _('General filters')
+    labels = [_('ID:'), _('Inclusive:')]
+    name = _('Descendant families of <family>')
+    category = _('General filters')
     description = _('Matches descendant families of the specified family')
 
     def prepare(self, db):
@@ -55,6 +59,9 @@ class IsDescendantOf(Rule):
         return family.handle in self.map
 
     def init_list(self, db, family, first):
+        """
+        Initialise family handle list.
+        """
         if not family:
             return
         if not first:

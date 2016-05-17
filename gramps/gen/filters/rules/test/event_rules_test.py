@@ -27,42 +27,70 @@ from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.filters import GenericFilterFactory
 
-from gramps.gen.filters.rules.event import *
+from gramps.gen.filters.rules.event import (
+    AllEvents, HasType, HasIdOf, HasGallery, RegExpIdOf, HasCitation, HasNote,
+    HasNoteRegexp, HasReferenceCountOf, HasSourceCount, EventPrivate,
+    MatchesSourceConfidence, HasAttribute, HasData, ChangedSince, HasTag,
+    HasDayOfWeek)
 
 GenericEventFilter = GenericFilterFactory('Event')
 
 class BaseTest(unittest.TestCase):
+    """
+    Event rule tests.
+    """
 
     @classmethod
     def setUpClass(cls):
+        """
+        Import example database.
+        """
         cls.db = import_as_dict("example/gramps/example.gramps", User())
 
     def filter_with_rule(self, rule):
+        """
+        Apply a filter with the given rule.
+        """
         filter_ = GenericEventFilter()
         filter_.add_rule(rule)
         results = filter_.apply(self.db)
         return set(results)
 
-    def test_AllEvents(self):
+    def test_allevents(self):
+        """
+        Test AllEvents rule.
+        """
         rule = AllEvents([])
         self.assertEqual(len(self.filter_with_rule(rule)),
                          self.db.get_number_of_events())
 
-    def test_HasType(self):
+    def test_hastype(self):
+        """
+        Test HasType rule.
+        """
         rule = HasType(['Burial'])
         self.assertEqual(len(self.filter_with_rule(rule)), 296)
 
-    def test_HasIdOf(self):
+    def test_hasidof(self):
+        """
+        Test HasIdOf rule.
+        """
         rule = HasIdOf(['E0001'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0eb696917232725']))
 
-    def test_HasGallery(self):
+    def test_hasgallery(self):
+        """
+        Test HasGallery rule.
+        """
         rule = HasGallery(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb107303354a0']))
 
-    def test_RegExpIdOf(self):
+    def test_regexpidof(self):
+        """
+        Test RegExpIdOf rule.
+        """
         rule = RegExpIdOf(['E000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
             b'a5af0eb69cf2d3fb615', b'a5af0eb667015e355db',
@@ -71,63 +99,99 @@ class BaseTest(unittest.TestCase):
             b'a5af0eb69f41bfb5a6a', b'a5af0eb69c40c179441',
             b'a5af0eb6a3229544ba2', b'a5af0eb696917232725']))
 
-    def test_HasCitation(self):
+    def test_hascitation(self):
+        """
+        Test HasCitation rule.
+        """
         rule = HasCitation(['page 1', '', ''])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb107303354a0']))
 
-    def test_HasNote(self):
+    def test_hasnote(self):
+        """
+        Test HasNote rule.
+        """
         rule = HasNote([])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb11f5ac3110e']))
 
-    def test_HasNoteRegexp(self):
+    def test_hasnoteregexp(self):
+        """
+        Test HasNoteRegexp rule.
+        """
         rule = HasNoteRegexp(['.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb11f5ac3110e']))
 
-    def test_HasReferenceCountOf(self):
+    def test_hasreferencecountof(self):
+        """
+        Test HasReferenceCountOf rule.
+        """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'cc8205d86fc4e9706a5', b'a5af0ed60de7a612b9e',
             b'cc820604ef05cb67907']))
 
-    def test_HasSourceCount(self):
+    def test_hassourcecount(self):
+        """
+        Test HasSourceCount rule.
+        """
         rule = HasSourceCount(['1', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb107303354a0']))
 
-    def test_EventPrivate(self):
+    def test_eventprivate(self):
+        """
+        Test EventPrivate rule.
+        """
         rule = EventPrivate([])
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_MatchesSourceConfidence(self):
+    def test_matchessourceconfidence(self):
+        """
+        Test MatchesSourceConfidence rule.
+        """
         rule = MatchesSourceConfidence(['2'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb107303354a0']))
 
-    def test_HasAttribute(self):
+    def test_hasattribute(self):
+        """
+        Test HasAttribute rule.
+        """
         rule = HasAttribute(['Cause', ''])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'a5af0ecb11f5ac3110e']))
 
-    def test_HasData(self):
+    def test_hasdata(self):
+        """
+        Test HasData rule.
+        """
         rule = HasData(['Burial', 'before 1800', 'USA', ''])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'a5af0ed4211095487d2', b'a5af0ed36793c1d3e05',
             b'a5af0ecfcc16ce7a96a']))
 
-    def test_ChangedSince(self):
+    def test_changedsince(self):
+        """
+        Test ChangedSince rule.
+        """
         rule = ChangedSince(['2011-01-01', '2014-01-01'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'a5af0ecb107303354a0', b'a5af0ecb11f5ac3110e',
             b'a5af0ed5df832ee65c1']))
 
-    def test_HasTag(self):
+    def test_hastag(self):
+        """
+        Test HasTag rule.
+        """
         rule = HasTag(['ToDo'])
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_HasDayOfWeek(self):
+    def test_hasdayofweek(self):
+        """
+        Test HasDayOfWeek rule.
+        """
         rule = HasDayOfWeek(['2'])
         self.assertEqual(len(self.filter_with_rule(rule)), 177)
 

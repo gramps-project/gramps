@@ -34,20 +34,18 @@ from gi.repository import GObject
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.plug import tool
-from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gui.editors import EditPerson, EditFamily
+from gramps.gui.editors import EditFamily
+from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
 from gramps.gui.glade import Glade
-from gramps.gen.lib import Tag
-from gramps.gen.db import DbTxn
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 
 #-------------------------------------------------------------------------
 #
@@ -62,8 +60,10 @@ WIKI_HELP_SEC = _('manual|Find_database_loop')
 # FindLoop class
 #
 #------------------------------------------------------------------------
-class FindLoop(ManagedWindow) :
-
+class FindLoop(ManagedWindow):
+    """
+    Find loops in the family tree.
+    """
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
@@ -73,20 +73,20 @@ class FindLoop(ManagedWindow) :
         self.uistate = uistate
         self.db = dbstate.db
 
-        topDialog = Glade()
+        top_dialog = Glade()
 
-        topDialog.connect_signals({
+        top_dialog.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_delete_event"       : self.close,
         })
 
-        window = topDialog.toplevel
-        title = topDialog.get_object("title")
+        window = top_dialog.toplevel
+        title = top_dialog.get_object("title")
         self.set_window(window, title, self.title)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title,_('Starting'),
+        self.progress = ProgressMeter(self.title, _('Starting'),
                                       parent=self.window)
         self.progress.set_pass(_('Looking for possible loop for each person'),
                                self.db.get_number_of_people())
@@ -98,13 +98,18 @@ class FindLoop(ManagedWindow) :
             GObject.TYPE_STRING,    # 3==son
             GObject.TYPE_STRING)    # 4==family gid
 
-        self.treeView = topDialog.get_object("treeview")
-        self.treeView.set_model(self.model)
-        col1 = Gtk.TreeViewColumn(_('Gramps ID'),     Gtk.CellRendererText(), text=0)
-        col2 = Gtk.TreeViewColumn(_('Ancestor'),   Gtk.CellRendererText(), text=1)
-        col3 = Gtk.TreeViewColumn(_('Gramps ID'),     Gtk.CellRendererText(), text=2)
-        col4 = Gtk.TreeViewColumn(_('Descendant'),     Gtk.CellRendererText(), text=3)
-        col5 = Gtk.TreeViewColumn(_('Family ID'), Gtk.CellRendererText(), text=4)
+        self.treeview = top_dialog.get_object("treeview")
+        self.treeview.set_model(self.model)
+        col1 = Gtk.TreeViewColumn(_('Gramps ID'),
+                                  Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('Ancestor'),
+                                  Gtk.CellRendererText(), text=1)
+        col3 = Gtk.TreeViewColumn(_('Gramps ID'),
+                                  Gtk.CellRendererText(), text=2)
+        col4 = Gtk.TreeViewColumn(_('Descendant'),
+                                  Gtk.CellRendererText(), text=3)
+        col5 = Gtk.TreeViewColumn(_('Family ID'),
+                                  Gtk.CellRendererText(), text=4)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col3.set_resizable(True)
@@ -120,14 +125,15 @@ class FindLoop(ManagedWindow) :
         col3.set_sort_column_id(2)
         col4.set_sort_column_id(3)
         col5.set_sort_column_id(4)
-        self.treeView.append_column(col1)
-        self.treeView.append_column(col2)
-        self.treeView.append_column(col3)
-        self.treeView.append_column(col4)
-        self.treeView.append_column(col5)
-        self.treeSelection = self.treeView.get_selection()
-        self.treeView.connect('row-activated', self.rowactivated)
+        self.treeview.append_column(col1)
+        self.treeview.append_column(col2)
+        self.treeview.append_column(col3)
+        self.treeview.append_column(col4)
+        self.treeview.append_column(col5)
+        self.treeselection = self.treeview.get_selection()
+        self.treeview.connect('row-activated', self.rowactivated_cb)
 
+        self.curr_fam = None
         people = self.db.get_person_handles()
         count = 0
         for person_handle in people:
@@ -145,6 +151,9 @@ class FindLoop(ManagedWindow) :
         self.show()
 
     def descendants(self, person_handle, new_list):
+        """
+        Find the descendants of a given person.
+        """
         person = self.db.get_person_from_handle(person_handle)
         pset = set()
         for item in new_list:
@@ -182,13 +191,14 @@ class FindLoop(ManagedWindow) :
                 self.parent = person
                 self.descendants(child_handle, pset)
 
-    def rowactivated(self, treeView, path, column) :
+    def rowactivated_cb(self, treeview, path, column):
+        """
+        Called when a row is activated.
+        """
         # first we need to check that the row corresponds to a person
-        iter = self.model.get_iter(path)
-        From_id = self.model.get_value(iter, 0)
-        To_id = self.model.get_value(iter, 2)
-        Fam_id = self.model.get_value(iter, 4)
-        fam = self.dbstate.db.get_family_from_gramps_id(Fam_id)
+        iter_ = self.model.get_iter(path)
+        fam_id = self.model.get_value(iter_, 4)
+        fam = self.dbstate.db.get_family_from_gramps_id(fam_id)
         if fam:
             try:
                 EditFamily(self.dbstate, self.uistate, [], fam)
@@ -198,11 +208,13 @@ class FindLoop(ManagedWindow) :
         return False
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """
+        Display the relevant portion of Gramps manual.
+        """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def close(self, *obj):
-        ManagedWindow.close(self,*obj)
+        ManagedWindow.close(self, *obj)
 
 #------------------------------------------------------------------------
 #

@@ -27,43 +27,71 @@ from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.filters import GenericFilterFactory
 
-from gramps.gen.filters.rules.place import *
+from gramps.gen.filters.rules.place import (
+    AllPlaces, HasCitation, HasGallery, HasIdOf, RegExpIdOf, HasNote,
+    HasNoteRegexp, HasReferenceCountOf, HasSourceCount, HasSourceOf,
+    PlacePrivate, MatchesSourceConfidence, HasData, HasNoLatOrLon,
+    InLatLonNeighborhood, ChangedSince, HasTag, HasTitle, IsEnclosedBy)
 
 GenericPlaceFilter = GenericFilterFactory('Place')
 
 class BaseTest(unittest.TestCase):
+    """
+    Place rule tests.
+    """
 
     @classmethod
     def setUpClass(cls):
+        """
+        Import example database.
+        """
         cls.db = import_as_dict("example/gramps/example.gramps", User())
 
     def filter_with_rule(self, rule):
+        """
+        Apply a filter with the given rule.
+        """
         filter_ = GenericPlaceFilter()
         filter_.add_rule(rule)
         results = filter_.apply(self.db)
         return set(results)
 
-    def test_AllPlaces(self):
+    def test_allplaces(self):
+        """
+        Test AllPlaces rule.
+        """
         rule = AllPlaces([])
         self.assertEqual(len(self.filter_with_rule(rule)),
                          self.db.get_number_of_places())
 
-    def test_HasCitation(self):
+    def test_hascitation(self):
+        """
+        Test HasCitation rule.
+        """
         rule = HasCitation(['page 23', '', ''])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'YNUJQC8YM5EGRG868J']))
 
-    def test_HasGallery(self):
+    def test_hasgallery(self):
+        """
+        Test HasGallery rule.
+        """
         rule = HasGallery(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'YNUJQC8YM5EGRG868J']))
 
-    def test_HasIdOf(self):
+    def test_hasidof(self):
+        """
+        Test HasIdOf rule.
+        """
         rule = HasIdOf(['P0001'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'c96587262e91149933fcea5f20a']))
 
-    def test_RegExpIdOf(self):
+    def test_regexpidof(self):
+        """
+        Test RegExpIdOf rule.
+        """
         rule = RegExpIdOf(['P000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
             b'c96587262e91149933fcea5f20a', b'c96587262ff262aaac31f6db7af',
@@ -73,70 +101,112 @@ class BaseTest(unittest.TestCase):
             b'c96587262f4a44183c65ff1e52', b'c96587262ed43fdb37bf04bdb7f',
             ]))
 
-    def test_HasNote(self):
+    def test_hasnote(self):
+        """
+        Test HasNote rule.
+        """
         rule = HasNote([])
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_HasNoteRegexp(self):
+    def test_hasnoteregexp(self):
+        """
+        Test HasNoteRegexp rule.
+        """
         rule = HasNoteRegexp(['.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_HasReferenceCountOf(self):
+    def test_hasreferencecountof(self):
+        """
+        Test HasReferenceCountOf rule.
+        """
         rule = HasReferenceCountOf(['greater than', '35'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'c96587262e566596a225682bf53', b'MATJQCJYH8ULRIRYTH',
             b'5HTJQCSB91P69HY731', b'4ECKQCWCLO5YIHXEXC',
             b'c965872630a68ebd32322c4a30a']))
 
-    def test_HasSourceCount(self):
+    def test_hassourcecount(self):
+        """
+        Test HasSourceCount rule.
+        """
         rule = HasSourceCount(['1', 'equal to'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'YNUJQC8YM5EGRG868J']))
 
-    def test_HasSourceOf(self):
+    def test_hassourceof(self):
+        """
+        Test HasSourceOf rule.
+        """
         rule = HasSourceOf(['S0001'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'YNUJQC8YM5EGRG868J']))
 
-    def test_PlacePrivate(self):
+    def test_placeprivate(self):
+        """
+        Test PlacePrivate rule.
+        """
         rule = PlacePrivate([])
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_MatchesSourceConfidence(self):
+    def test_matchessourceconfidence(self):
+        """
+        Test MatchesSourceConfidence rule.
+        """
         rule = MatchesSourceConfidence(['2'])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'YNUJQC8YM5EGRG868J']))
 
-    def test_HasData(self):
+    def test_hasdata(self):
+        """
+        Test HasData rule.
+        """
         rule = HasData(['Albany', 'County', ''])
         self.assertEqual(self.filter_with_rule(rule),
                          set([b'c9658726d602acadb74e330116a']))
 
-    def test_HasNoLatOrLon(self):
+    def test_hasnolatorlon(self):
+        """
+        Test HasNoLatOrLon rule.
+        """
         rule = HasNoLatOrLon([])
         self.assertEqual(len(self.filter_with_rule(rule)), 915)
 
-    def test_InLatLonNeighborhood(self):
+    def test_inlatlonneighborhood(self):
+        """
+        Test InLatLonNeighborhood rule.
+        """
         rule = InLatLonNeighborhood(['30N', '90W', '2', '2'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'C6WJQC0GDYP3HZDPR3', b'N88LQCRB363ES5WJ83',
             b'03EKQCC2KTNLHFLDRJ', b'M9VKQCJV91X0M12J8']))
 
-    def test_ChangedSince(self):
+    def test_changedsince(self):
+        """
+        Test ChangedSince rule.
+        """
         rule = ChangedSince(['2013-01-01', '2014-01-01'])
         self.assertEqual(len(self.filter_with_rule(rule)), 435)
 
-    def test_HasTag(self):
+    def test_hastag(self):
+        """
+        Test HasTag rule.
+        """
         rule = HasTag(['ToDo'])
         self.assertEqual(self.filter_with_rule(rule), set([]))
 
-    def test_HasTitle(self):
+    def test_hastitle(self):
+        """
+        Test HasTitle rule.
+        """
         rule = HasTitle(['Albany'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'51VJQCXUP61H9JRL66', b'9XBKQCE1LZ7PMJE56G',
             b'c9658726d602acadb74e330116a', b'P9MKQCT08Z3YBJV5UB']))
 
-    def test_IsEnclosedBy(self):
+    def test_isenclosedby(self):
+        """
+        Test IsEnclosedBy rule.
+        """
         rule = IsEnclosedBy(['P0001'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
