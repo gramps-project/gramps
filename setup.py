@@ -80,8 +80,8 @@ def intltool_version():
     '''
     if sys.platform == 'win32':
         cmd = ["perl", "-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
-        try: 
-            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE, 
+        try:
+            ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, shell=True).communicate()
             ver = ver.decode("utf-8")
             if ver > "":
@@ -121,9 +121,9 @@ def build_trans(build_cmd):
     data_files = build_cmd.distribution.data_files
     for lang in ALL_LINGUAS:
         po_file = os.path.join('po', lang + '.po')
-        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES', 
+        mo_file = os.path.join(build_cmd.build_base, 'mo', lang, 'LC_MESSAGES',
                                'gramps.mo')
-        mo_file_unix = (build_cmd.build_base + '/mo/' + lang + 
+        mo_file_unix = (build_cmd.build_base + '/mo/' + lang +
                         '/LC_MESSAGES/gramps.mo')
         mo_dir = os.path.dirname(mo_file)
         if not(os.path.isdir(mo_dir) or os.path.islink(mo_dir)):
@@ -225,20 +225,20 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
         if sys.platform == 'win32':
             cmd = (('set LC_ALL=C && perl -S intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') % 
-              {'opt' : option, 
+                '%(out_file)s') %
+              {'opt' : option,
                'po_dir' : po_dir,
-               'in_file' : in_file, 
+               'in_file' : in_file,
                'out_file' : out_file})
         else:
             cmd = (('LC_ALL=C intltool-merge %(opt)s %(po_dir)s %(in_file)s '
-                '%(out_file)s') % 
-              {'opt' : option, 
+                '%(out_file)s') %
+              {'opt' : option,
                'po_dir' : po_dir,
-               'in_file' : in_file, 
+               'in_file' : in_file,
                'out_file' : out_file})
         if os.system(cmd) != 0:
-            msg = ('ERROR: %s was not merged into the translation files!\n' % 
+            msg = ('ERROR: %s was not merged into the translation files!\n' %
                     out_file)
             raise SystemExit(msg)
 
@@ -324,27 +324,27 @@ package_core = ['gramps',
                 'gramps.gen.utils',
                 'gramps.gen.utils.docgen',
                 'gramps.test',
-                'gramps.plugins', 
-                'gramps.plugins.database', 
-                'gramps.plugins.database.bsddb_support', 
+                'gramps.plugins',
+                'gramps.plugins.database',
+                'gramps.plugins.database.bsddb_support',
                 'gramps.plugins.database.dbapi_support',
                 'gramps.plugins.database.dbapi_support.defaults',
-                'gramps.plugins.docgen', 
-                'gramps.plugins.drawreport', 
-                'gramps.plugins.export', 
-                'gramps.plugins.gramplet', 
+                'gramps.plugins.docgen',
+                'gramps.plugins.drawreport',
+                'gramps.plugins.export',
+                'gramps.plugins.gramplet',
                 'gramps.plugins.graph',
-                'gramps.plugins.importer', 
-                'gramps.plugins.lib', 
-                'gramps.plugins.lib.maps', 
-                'gramps.plugins.mapservices', 
-                'gramps.plugins.quickview', 
-                'gramps.plugins.rel', 
-                'gramps.plugins.sidebar', 
+                'gramps.plugins.importer',
+                'gramps.plugins.lib',
+                'gramps.plugins.lib.maps',
+                'gramps.plugins.mapservices',
+                'gramps.plugins.quickview',
+                'gramps.plugins.rel',
+                'gramps.plugins.sidebar',
                 'gramps.plugins.textreport',
-                'gramps.plugins.tool', 
-                'gramps.plugins.view', 
-                'gramps.plugins.webreport', 
+                'gramps.plugins.tool',
+                'gramps.plugins.view',
+                'gramps.plugins.webreport',
                 'gramps.plugins.webstuff',
                 ]
 package_gui = ['gramps.gui',
@@ -377,7 +377,7 @@ package_data_core = []
 basedir = os.path.join('gramps', 'plugins')
 for (dirpath, dirnames, filenames) in os.walk(basedir):
     root, subdir = os.path.split(dirpath)
-    if subdir.startswith("."): 
+    if subdir.startswith("."):
         dirnames[:] = []
         continue
     for dirname in dirnames:
@@ -450,20 +450,20 @@ data_files = data_files_core + data_files_gui
 # Setup
 #
 #-------------------------------------------------------------------------
-setup(name = 'gramps', 
+setup(name = 'gramps',
       description = ('Gramps (Genealogical Research and Analysis Management '
-                     'Programming System)'), 
+                     'Programming System)'),
       long_description = ('Gramps (Genealogical Research and Analysis '
                           'Management Programming System) is a full featured '
                           'genealogy program supporting a Python based plugin '
                           'system.'),
-      version = VERSION, 
-      author = 'Donald N. Allingham', 
-      author_email = 'don@gramps-project.org', 
-      maintainer = 'Gramps Development Team', 
-      maintainer_email = 'benny.malengier@gmail.com', 
-      url = 'http://gramps-project.org', 
-      license = 'GPL v2 or greater', 
+      version = VERSION,
+      author = 'Donald N. Allingham',
+      author_email = 'don@gramps-project.org',
+      maintainer = 'Gramps Development Team',
+      maintainer_email = 'benny.malengier@gmail.com',
+      url = 'http://gramps-project.org',
+      license = 'GPL v2 or greater',
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
       cmdclass = {'build': build, 'install': install, 'test': test},
       packages = packages,

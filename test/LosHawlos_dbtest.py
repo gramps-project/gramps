@@ -86,7 +86,7 @@ try:
     add_source( db,"A short test",True,False)
     print "Add person 3"
     add_person( db,"Chris","Connor",True,False)
-    print_db_content( db)    
+    print_db_content( db)
     print "Closing Database file: %s" % filename1
     #db.close()
 
@@ -97,7 +97,7 @@ try:
     add_person( db,"Felix", "Fowler",True,False)
     print "Add person 4"
     add_person( db,"Felix", "Fowler",False,False)
-    print_db_content( db)    
+    print_db_content( db)
     print "Closing Database file: %s" % filename1
     #db.close()
 
@@ -110,7 +110,7 @@ try:
     print "Add source 2 will fail"
     add_source( db,"Bang bang bang",True,True)
 
-    print_db_content( db)    
+    print_db_content( db)
     print "Closing Database file: %s" % filename2
     #db.close()
 finally:

@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -27,7 +27,7 @@ import unittest
 import os
 import glob
 from test import test_util
-test_util.path_append_parent() 
+test_util.path_append_parent()
 
 def get_potfile(filename):
     with open(filename, "r") as fp:
@@ -62,10 +62,10 @@ class TestPOT(unittest.TestCase):
                     found = True
             if found:
                 self.assertFalse(pathfile[3:] not in excluded_files and
-                                 pathfile[3:] not in self.potfiles, 
+                                 pathfile[3:] not in self.potfiles,
                                  "'%s' is not in POTFILES.in" % (pathfile[3:],))
             else:
-                self.assertTrue(True, "'%s' doesn't contain '%s'" % 
+                self.assertTrue(True, "'%s' doesn't contain '%s'" %
                                 (file, search))
         else:
             self.assertTrue(True, "'%s' doesn't exist" % file)
@@ -88,7 +88,7 @@ class TestMake(unittest.TestCase):
         elif os.path.exists(makefile):
             with open(makefile, "r") as fp:
                 lines = fp.read()
-            self.assertTrue(filename in lines, "'%s' not in %s/Makefile.in" % 
+            self.assertTrue(filename in lines, "'%s' not in %s/Makefile.in" %
                             (filename, path))
         else:
             self.assertTrue(True, "no makefile in '%s'" % dir)
@@ -109,7 +109,7 @@ class TestGetText(unittest.TestCase):
         found = False
         for search in searches:
             found = (search in lines) or found
-        self.assertTrue(found, "'%s' is in POTFILES.in but does not contain '%s'" % 
+        self.assertTrue(found, "'%s' is in POTFILES.in but does not contain '%s'" %
                         (pofile, searches))
 
 class TestDups(unittest.TestCase):
@@ -130,15 +130,15 @@ def suite1():
     Suite of tests designed to see if that if one of a set of phrases
     is in a file, then that file better be in POTFILES.in.
     """
-    suite = unittest.TestSuite()            
+    suite = unittest.TestSuite()
     for dir, subdir, files in os.walk('../../src'):
         for file in files:
             if glob.fnmatch.fnmatch(file,"*.py"):
-                suite.addTest(TestPOT('test_pot_py_%04d', 
+                suite.addTest(TestPOT('test_pot_py_%04d',
                                       dir, file, ["import gettext",
                                                   "import sgettext"]))
             elif glob.fnmatch.fnmatch(file,"*.glade"):
-                suite.addTest(TestPOT('test_pot_glade_%04d', 
+                suite.addTest(TestPOT('test_pot_glade_%04d',
                                       dir, file, ["translatable=\"yes\""]))
             if glob.fnmatch.fnmatch(file,"*.py"):
                 suite.addTest(TestMake('test_make_py_%04d', dir, file))
@@ -162,7 +162,7 @@ def suite2():
             continue
         if glob.fnmatch.fnmatch(potfile,"*.py"):
             suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
-                                      ["import gettext", 
+                                      ["import gettext",
                                        "from gramps.gen.ggettext",
                                        "import sgettext"]))
         elif glob.fnmatch.fnmatch(potfile,"*.glade"):

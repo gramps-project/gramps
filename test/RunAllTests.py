@@ -25,7 +25,7 @@ Testing framework for performing a variety of unttests for GRAMPS.
 """
 
 import logging
- 
+
 import os
 import sys
 import unittest
@@ -39,9 +39,9 @@ def make_parser():
     usage = "usage: %prog [options]"
     parser = OptionParser(usage)
     parser.add_option("-v", "--verbosity", type="int", dest="verbose_level", default=0,
-                      help="Level of verboseness")  
+                      help="Level of verboseness")
     parser.add_option("-p", "--performance", action="store_true", dest="performance", default=False,
-                      help="Run the performance tests.")  
+                      help="Run the performance tests.")
     return parser
 
 
@@ -50,7 +50,7 @@ def getTestSuites():
     # It just walks the filetree from '.' downwards and returns
     # a tuple per directory of (dirpath,filelist) if the directory
     # contains any test files.
-    
+
     paths = [(f[0],f[2]) for f in os.walk('.') \
              if len ([i for i in f[2] \
                       if i[-8:] == "_Test.py"]) ]
@@ -78,7 +78,7 @@ def allTheTests():
 
 def perfTests():
     return unittest.TestSuite(getTestSuites()[1])
-    
+
 if __name__ == '__main__':
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     logger = logging.getLogger('Gramps')
     logger.addHandler(console)
-    
+
     (options,args) = make_parser().parse_args()
 
     if options.verbose_level == 1:

@@ -24,7 +24,7 @@
 """
 update_man.py for command line documentation.
 
-Examples: 
+Examples:
    python update_man.py -t
 
       Tests if 'sphinx' and 'python' are well configured.
@@ -49,7 +49,7 @@ DATE = ''
 # You can set these variables from the command line.
 SPHINXBUILD   = 'sphinx-build'
 
-if sys.platform == 'win32':          
+if sys.platform == 'win32':
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
     sphinxCmd = os.path.join(sys.prefix, 'bin', 'sphinx-build.exe')
 elif sys.platform in ['linux2', 'darwin', 'cygwin']:
@@ -70,13 +70,13 @@ def tests():
         os.system('''%(program)s -V''' % {'program': pythonCmd})
     except:
         print ('Please, install python')
-        
+
     try:
         print("\n=================='Sphinx-build'=============================\n")
         os.system('''%(program)s''' % {'program': sphinxCmd})
     except:
         print ('Please, install sphinx')
-        
+
     if not DOCUTILS:
         print('\nNo docutils support, cannot use -m/--man and -o/--odt arguments.')
 
@@ -85,49 +85,49 @@ def main():
     The utility for handling documentation stuff.
     What is need by Gramps, nothing more.
     """
-    
-    parser = ArgumentParser( 
-                         description='This program aims to handle documentation' 
-                                      ' and related translated versions.', 
+
+    parser = ArgumentParser(
+                         description='This program aims to handle documentation'
+                                      ' and related translated versions.',
                          )
-                         
+
     parser.add_argument("-t", "--test",
             action="store_true", dest="test",  default=True,
             help="test if 'python' and 'sphinx' are properly installed")
-    
+
     parser.add_argument("-b", "--build",
             action="store_true", dest="build",  default=False,
             help="build man documentation (via sphinx-build)")
-    
+
     parser.add_argument("-m", "--man",
             action="store_true", dest="man",  default=False,
             help="build man documentation (via docutils)")
-    
+
     parser.add_argument("-o", "--odt",
             action="store_true", dest="odt",  default=False,
             help="build odt documentation (via docutils)")
-                             
+
     args = parser.parse_args()
-    
+
     if args.test:
         tests()
-        
+
     if args.build:
         build()
-        
+
     if args.man and DOCUTILS:
         man()
-        
+
     if args.odt and DOCUTILS:
         odt()
-        
+
 def build():
     """
     Build documentation.
     """
-    
+
     # testing stage
-    
+
     os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
     os.system('''%(program)s -b htmlhelp . _build/htmlhelp''' % {'program': sphinxCmd})
     if DOCUTILS:
@@ -136,48 +136,48 @@ def build():
     os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
     #os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
     os.system('''%(program)s -b gettext . _build/gettext''' % {'program': sphinxCmd})
-    
+
     for lang in LANGUAGES:
-        os.system('''%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
+        os.system('''%(program)s -b html -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
                    % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
+        os.system('''%(program)s -b htmlhelp -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
                    % {'lang': lang, 'program': sphinxCmd})
         if DOCUTILS:
-            os.system('''%(program)s -b man %(lang)s %(lang)s''' 
+            os.system('''%(program)s -b man %(lang)s %(lang)s'''
                        % {'lang': lang, 'program': sphinxCmd})
-        os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s''' 
+        os.system('''%(program)s -b text -D language="%(lang)s" master_doc="%(lang)s" %(lang)s %(lang)s'''
                    % {'lang': lang, 'program': sphinxCmd})
         # for update/migration
-        os.system('''%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s''' 
+        os.system('''%(program)s -b gettext -D language="%(lang)s" master_doc="%(lang)s" . _build/gettext/%(lang)s'''
                    % {'lang': lang, 'program': sphinxCmd})
-                   
+
 def man():
     """
     man file generation via docutils (python)
-    
+
     from docutils.core import publish_cmdline, default_description
     from docutils.writers import manpage
     """
-    
-    os.system('''rst2man en.rst gramps.1''') 
-    
+
+    os.system('''rst2man en.rst gramps.1''')
+
     for lang in LANGUAGES:
-        os.system('''rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1''' 
+        os.system('''rst2man %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.1'''
                    % {'lang': lang})
-                   
+
 def odt():
     """
     odt file generation via docutils (python)
-    
+
     from docutils.core import publish_cmdline_to_binary, default_description
     from docutils.writers.odf_odt import Writer, Reader
     """
-    
-    os.system('''rst2odt en.rst gramps.odt''') 
-    
+
+    os.system('''rst2odt en.rst gramps.odt''')
+
     for lang in LANGUAGES:
-        os.system('''rst2odt %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.odt''' 
+        os.system('''rst2odt %(lang)s/%(lang)s.rst -l %(lang)s %(lang)s/gramps.odt'''
                    % {'lang': lang})
-    
+
 if __name__ == "__main__":
     main()

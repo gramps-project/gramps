@@ -42,11 +42,11 @@ class GtkHandlerTest(unittest.TestCase):
 
         rh = RotateHandler(capacity=20)
         rh.setLevel(logging.DEBUG)
-        
+
         gtkh = GtkHandler(rotate_handler=rh)
         gtkh.setLevel(logging.ERROR)
 
-        l = logging.getLogger("GtkHandlerTest")        
+        l = logging.getLogger("GtkHandlerTest")
         l.setLevel(logging.DEBUG)
 
         l.addHandler(rh)
@@ -65,7 +65,7 @@ class GtkHandlerTest(unittest.TestCase):
             Gtk.main_iteration()
 
 
-        
+
 def testSuite():
     suite = unittest.makeSuite(GtkHandlerTest,'test')
     return suite

@@ -25,7 +25,7 @@
 """
 update_po.py for Gramps translations.
 
-Examples: 
+Examples:
    python update_po.py -t
 
       Tests if 'gettext' and 'python' are well configured.
@@ -291,7 +291,7 @@ def DesktopParse(filename):
     msgid "Genealogy System"
     msgid "Gramps Genealogy System"
     msgid ""
-          "Manage genealogical information, 
+          "Manage genealogical information,
            perform genealogical research and analysis"
     '''
     with open('../data/gramps.desktop.in.h', 'w') as desktop:
@@ -375,7 +375,7 @@ def main():
     parser.add_argument("-c", "--clean",
             action="store_true", dest="clean",  default=False,
             help="remove created files")
-    parser.add_argument("-p", "--pot", 
+    parser.add_argument("-p", "--pot",
             action="store_true", dest="catalog",  default=False,
             help="create a new catalog")
 
@@ -691,7 +691,7 @@ def check(args):
                     % {'lang.po': arg, 'txt': arg[:-3]})
         os.system('''%(python)s ./check_po -s %(lang.po)s > %(lang)s.txt''' \
                     % {'python': pythonCmd, 'lang.po': arg, 'lang': arg[:-3]})
-        os.system('''%(msgfmt)s -c -v %(lang.po)s''' 
+        os.system('''%(msgfmt)s -c -v %(lang.po)s'''
                     % {'msgfmt': msgfmtCmd, 'lang.po': arg})
 
 def untranslated(arg):
