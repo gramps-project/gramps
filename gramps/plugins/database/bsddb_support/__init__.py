@@ -50,15 +50,6 @@ The full database hierarchy is:
 
   * :py:class:`.UpdateCallback` - callback functionality
 
-- :py:class:`.DbDjango` - read and write implementation to Django-based
-  databases
-
-  * :py:class:`.DbWriteBase` - virtual and implementation-independent methods
-    for reading data
-
-  * :py:class:`.DbReadBase` - virtual and implementation-independent methods
-    for reading data
-
 DbBsddb
 =======
 
@@ -68,17 +59,6 @@ The :py:class:`.DbBsddb` interface defines a hierarchical database
 such thing as a database schema, and the meaning of the data is
 defined in the Python classes above. The data is stored as pickled
 tuples and unserialized into the primary data types (below).
-
-DbDjango
-========
-
-The DbDjango interface defines the Gramps data in terms of
-*models* and *relations* from the
-`Django project <http://www.djangoproject.com/>`_. The database
-backend can be any implementation that supports Django, including
-such popular SQL implementations as sqlite, MySQL, Postgresql, and
-Oracle. The data is retrieved from the SQL fields, serialized and
-then unserialized into the primary data types (below).
 
 More details can be found in the manual's
 `Using database API <http://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
