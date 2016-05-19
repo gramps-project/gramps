@@ -31,7 +31,7 @@ before_install:
 install:
  - travis_retry pip install --upgrade pillow
  - travis_retry pip install pyicu==1.8
- 
+
  # - cd $TRAVIS_BUILD_DIR
  # $TRAVIS_BUILD_DIR is set to the location of the cloned repository:
  # for example: /home/travis/build/gramps-project/gramps
@@ -47,6 +47,10 @@ script:
  # --exclude=TestUser because of older version of mock
  #                    without configure_mock
  - PYTHONPATH=meta GRAMPS_RESOURCES=. nosetests3 --nologcapture --with-coverage --cover-package=gramps --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  --exclude=user_test gramps
+ - if git --no-pager grep --color -n --full-name '[ 	]$' -- \*.py; then
+     echo "ERROR - Trailing whitespace found in source file(s)";
+     exit 1;
+   fi
 
 after_success:
  - codecov
