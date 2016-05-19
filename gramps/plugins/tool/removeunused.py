@@ -103,6 +103,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                          'editor'  : 'EditSource',
                          'icon'    : 'gramps-source',
                          'name_ix' : 2},
+            'citations' : {'get_func': self.db.get_citation_from_handle,
+                         'remove'  : self.db.remove_citation,
+                         'get_text': None,
+                         'editor'  : 'EditCitation',
+                         'icon'   : 'gramps-citation',
+                         'name_ix' : 3},
             'places'  : {'get_func': self.db.get_place_from_handle,
                          'remove'  : self.db.remove_place,
                          'get_text': None,
@@ -138,6 +144,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.events_box = self.top.get_object('events_box')
         self.sources_box = self.top.get_object('sources_box')
+        self.citations_box = self.top.get_object('citations_box')
         self.places_box = self.top.get_object('places_box')
         self.media_box = self.top.get_object('media_box')
         self.repos_box = self.top.get_object('repos_box')
@@ -148,6 +155,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.events_box.set_active(self.options.handler.options_dict['events'])
         self.sources_box.set_active(
             self.options.handler.options_dict['sources'])
+        self.citations_box.set_active(
+            self.options.handler.options_dict['citations'])
         self.places_box.set_active(
             self.options.handler.options_dict['places'])
         self.media_box.set_active(self.options.handler.options_dict['media'])
@@ -229,6 +238,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.options.handler.options_dict.update(
             events  = self.events_box.get_active(),
             sources = self.sources_box.get_active(),
+            citations = self.citations_box.get_active(),
             places  = self.places_box.get_active(),
             media   = self.media_box.get_active(),
             repos   = self.repos_box.get_active(),
@@ -261,6 +271,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         tables = (
             ('events', db.get_event_cursor, db.get_number_of_events),
             ('sources', db.get_source_cursor, db.get_number_of_sources),
+            ('citations', db.get_citation_cursor, db.get_number_of_citations),
             ('places', db.get_place_cursor, db.get_number_of_places),
             ('media', db.get_media_cursor, db.get_number_of_media),
             ('repos', db.get_repository_cursor, db.get_number_of_repositories),
@@ -449,6 +460,7 @@ class CheckOptions(tool.ToolOptions):
         self.options_dict = {
             'events'  : 1,
             'sources' : 1,
+            'citations' : 1,
             'places'  : 1,
             'media'   : 1,
             'repos'   : 1,
@@ -460,6 +472,9 @@ class CheckOptions(tool.ToolOptions):
                          True),
             'sources' : ("=0/1","Whether to use check for unused sources",
                          ["Do not check sources","Check sources"],
+                         True),
+            'citations' : ("=0/1","Whether to use check for unused citations",
+                         ["Do not check citations","Check citations"],
                          True),
             'places'  : ("=0/1","Whether to use check for unused places",
                           ["Do not check places","Check places"],
