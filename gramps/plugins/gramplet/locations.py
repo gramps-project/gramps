@@ -208,11 +208,8 @@ class Encloses(Locations):
             child_place = self.dbstate.db.get_place_from_handle(link[1])
             placeref = None
             for placeref in child_place.get_placeref_list():
-                if placeref.ref != place.handle:
-                    continue
-
-            if placeref:
-                self.add_place(placeref, child_place, node, visited)
+                if placeref.ref == place.handle:
+                    self.add_place(placeref, child_place, node, visited)
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
