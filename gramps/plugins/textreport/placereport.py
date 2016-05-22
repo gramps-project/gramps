@@ -95,13 +95,15 @@ class PlaceReport(Report):
 
         self.sort = Sort(self.database)
 
+        self.place_handles = []
         if self.filter.get_name() != '':
             # Use the selected filter to provide a list of place handles
             plist = self.database.iter_place_handles()
             self.place_handles = self.filter.apply(self.database, plist)
-        else:
-            # Use the place handles selected without a filter
-            self.place_handles = self.__get_place_handles(places)
+
+        if places:
+            # Add places selected individually
+            self.place_handles += self.__get_place_handles(places)
 
         if not self.place_handles:
             raise ReportError(_('Place Report'),
