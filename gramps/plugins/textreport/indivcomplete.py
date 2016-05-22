@@ -555,7 +555,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table("three","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('Marriages/Children'),
+        self.write_paragraph(self._('Families'),
                              style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
@@ -747,7 +747,7 @@ class IndivCompleteReport(Report):
 
         text = self._name_display.display(self.person)
         # feature request 2356: avoid genitive form
-        title = self._("Summary of %s") % text
+        title = self._("Complete Individual Report: %s") % text
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")
         self.doc.write_text(title, mark)
