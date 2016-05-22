@@ -159,7 +159,8 @@ class PlaceReport(Report):
         place_details = [self._("Gramps ID: %s ") % place.get_gramps_id()]
         for level in get_location_list(self.database, place):
             place_details.append("%(type)s: %(name)s " %
-                                 {'type': str(level[1]), 'name': level[0]})
+                                 {'type': self._(level[1].xml_str()),
+                                  'name': level[0]})
 
         self.doc.start_paragraph("PLC-PlaceTitle")
         place_title = place_displayer.display(self.database, place)
