@@ -132,18 +132,6 @@ class BaseSelector(ManagedWindow):
         """
         iter_ = self.model.get_iter_from_handle(handle)
         if iter_:
-            if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
-                # Expand tree
-                parent_iter = self.model.iter_parent(iter_)
-                if parent_iter:
-                    parent_path = self.model.get_path(parent_iter)
-                    if parent_path:
-                        parent_path_list = parent_path.get_indices()
-                        for i in range(len(parent_path_list)):
-                            expand_path = Gtk.TreePath(
-                                    tuple([x for x in parent_path_list[:i+1]]))
-                            self.tree.expand_row(expand_path, False)
-
             # Select active object
             path = self.model.get_path(iter_)
             self.selection.unselect_all()
@@ -299,6 +287,9 @@ class BaseSelector(ManagedWindow):
         self.tree.set_search_column(search_col)
 
         self.setupcols = False
+
+        if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
+            self.tree.expand_all()
 
     def column_clicked(self, obj, data):
         if self.sort_col != data:
