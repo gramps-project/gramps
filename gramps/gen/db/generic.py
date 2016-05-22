@@ -81,6 +81,27 @@ def touch(fname, mode=0o666, dir_fd=None, **kwargs):
             os.utime(f.fileno() if os.utime in os.supports_fd else fname,
                      dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
+class IDMapTransaction:
+    """
+    Provide compatibility with BSDDB. A class to provide a lookup
+    to see if a gramps_id has been inserted.
+    """
+    def __init__(self, table_name, database):
+        """
+        Takes a table_name and database.
+        Provides .get(b"gramps_id")
+        """
+        self.table_name = table_name
+        self.database = database
+
+    def get(self, bkey, default=None, txn=None, **kwargs):
+        """
+        Returns True if bkey (binary gramps_id) is in database.
+        """
+        skey = bkey.decode("utf-8")
+        return self.database.get_table_func(self.table_name,
+                                            "has_gramps_id_func")(skey)
+
 class DbGenericUndo(DbUndo):
     def __init__(self, grampsdb, path):
         super(DbGenericUndo, self).__init__(grampsdb)
@@ -259,7 +280,8 @@ class Map:
         self.keys_func = keys_func
         self.contains_func = contains_func
         self.raw_func = raw_func
-        self.txn = DbGenericTxn("Dummy transaction", db=self.table.db, batch=True)
+        self.txn = DbGenericTxn("Dummy transaction",
+                                db=self.table.db, batch=True)
 
     def keys(self):
         return self.table.funcs[self.keys_func]()
@@ -393,24 +415,16 @@ class Bookmarks:
     def close(self):
         del self.handles
 
-
 class DbGenericTxn(DbTxn):
+    """
+    Generic Transaction.
+    """
     def __init__(self, message, db, batch=False):
+        """
+        Placeholder. This can probably be removed once it is
+        known that it is not needed.
+        """
         DbTxn.__init__(self, message, db, batch)
-
-    def get(self, key, default=None, txn=None, **kwargs):
-        """
-        Returns the data object associated with key
-        """
-        if txn and key in txn:
-            return txn[key]
-        else:
-            return None
-
-    def put(self, handle, new_data, txn):
-        """
-        """
-        txn[handle] = new_data
 
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
@@ -653,15 +667,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_note_id_prefix('N%04d')
         # ----------------------------------
         self.undodb = None
-        self.id_trans  = DbGenericTxn("ID Transaction", self)
-        self.fid_trans = DbGenericTxn("FID Transaction", self)
-        self.pid_trans = DbGenericTxn("PID Transaction", self)
-        self.cid_trans = DbGenericTxn("CID Transaction", self)
-        self.sid_trans = DbGenericTxn("SID Transaction", self)
-        self.oid_trans = DbGenericTxn("OID Transaction", self)
-        self.rid_trans = DbGenericTxn("RID Transaction", self)
-        self.nid_trans = DbGenericTxn("NID Transaction", self)
-        self.eid_trans = DbGenericTxn("EID Transaction", self)
+        self.id_trans  = IDMapTransaction("Person", self)
+        self.fid_trans = IDMapTransaction("Family", self)
+        self.pid_trans = IDMapTransaction("Place", self)
+        self.cid_trans = IDMapTransaction("Citation", self)
+        self.sid_trans = IDMapTransaction("Source", self)
+        self.oid_trans = IDMapTransaction("Media", self)
+        self.rid_trans = IDMapTransaction("Repository", self)
+        self.nid_trans = IDMapTransaction("Note", self)
+        self.eid_trans = IDMapTransaction("Event", self)
         self.cmap_index = 0
         self.smap_index = 0
         self.emap_index = 0
@@ -2185,4 +2199,3 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return ast.literal_eval(version)
         else:
             return (0, 0, 0)
-
