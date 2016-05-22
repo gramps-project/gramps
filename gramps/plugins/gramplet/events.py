@@ -93,7 +93,7 @@ class Events(Gramplet, DbGUIElement):
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
         event_date = get_date(event)
         event_sort = '%012d' % event.get_date_object().get_sort_value()
-        person_age      = self.column_age(event)
+        person_age = self.column_age(event)
         person_age_sort = self.column_sort_age(event)
         place = place_displayer.display_event(self.dbstate.db, event)
 
@@ -118,7 +118,7 @@ class Events(Gramplet, DbGUIElement):
         month, days"
         """
         date = event.get_date_object()
-        start_date = self.get_start_date()
+        start_date = self.cached_start_date
         if date and start_date:
             return (date - start_date).format(precision=age_precision)
         else:
@@ -129,7 +129,7 @@ class Events(Gramplet, DbGUIElement):
         Returns a string version of number of days of age.
         """
         date = event.get_date_object()
-        start_date = self.get_start_date()
+        start_date = self.cached_start_date
         if date and start_date:
             return "%09d" % int(date - start_date)
         else:
@@ -171,6 +171,7 @@ class PersonEvents(Events):
         Return True if the gramplet has data, else return False.
         """
         if active_person:
+            self.cached_start_date = self.get_start_date()
             if active_person.get_event_ref_list():
                 return True
             for family_handle in active_person.get_family_handle_list():
@@ -178,6 +179,8 @@ class PersonEvents(Events):
                 if family:
                     for event_ref in family.get_event_ref_list():
                         return True
+        else:
+            self.cached_start_date = None
         return False
 
     def main(self): # return false finishes
