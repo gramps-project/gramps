@@ -1,0 +1,78 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (22.2.5)
+2 NAME Family Tree Maker for Mac OS X
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST GED55
+1 DATE 16 DEC 2015
+1 CHAR UTF-8
+1 FILE test_FTM_16dec2015-mod.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+0 @I278@ INDI
+1 NAME Andrew /May/
+2 SOUR @S29@
+3 PAGE Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll:
+4 CONC  M432_394; Page: 435B; Image: 248
+3 OBJE @M159@
+1 SEX M
+1 BIRT
+2 DATE 1816
+2 PLAC Tennessee, USA
+2 SOUR @S29@
+3 PAGE Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll:
+4 CONC  M432_394; Page: 435B; Image: 248
+3 OBJE @M159@
+1 RESI
+2 DATE 1850
+2 PLAC District 14, Cape Girardeau, Missouri, USA
+2 SOUR @S29@
+3 PAGE Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll:
+4 CONC  M432_394; Page: 435B; Image: 248
+3 OBJE @M159@
+1 DEAT
+2 DATE 1850/1860
+2 PLAC Bollinger Co. MO
+1 FAMS @F73@
+1 FAMS @F74@
+1 FAMC @F73@
+1 FAMC @F73@
+1 FAMC @F74@
+1 FAMC @F74@
+0 @F73@ FAM
+1 HUSB @I278@
+1 MARR
+2 DATE ABT 1841
+2 PLAC Union Co.?, IL
+0 @F74@ FAM
+1 HUSB @I278@
+1 MARR
+2 DATE AUG 1847
+2 PLAC Wayne, Missouri, United States
+0 @S29@ SOUR
+1 AUTH Ancestry.com
+1 TITL 1850 United States Federal Census
+1 PUBL  Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date:
+2 CONC  2009;
+1 REPO @R1@
+0 @R1@ REPO
+1 NAME Ancestry.com
+1 ADDR
+1 EMAIL
+1 PHON
+0 @M159@ OBJE
+1 FILE 1850 United States Federal Census(11)-1.jpg
+2 TITL 1850 United States Federal Census
+1 NOTE  Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll:
+2 CONC  M432_394; Page: 435B; Image: 248 
+0 @M158@ OBJE
+1 FILE D:\Users\PRC\Downloads\1850 United States Federal Census(11)-1.jpg
+0 @M157@ OBJE
+1 FILE http://1.gravatar.com/avatar/77e02a3c8c665155ad1acaac8c2742e0?s=120&d=mm&r=pg
+0 TRLR
