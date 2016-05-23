@@ -559,7 +559,7 @@ class EditRule(ManagedWindow):
                                             key=lambda s: s.lower())
                     t = MySelect(_name2typeclass[v], additional)
                 elif v == _('Inclusive:'):
-                    t = MyBoolean(_('Include original person'))
+                    t = MyBoolean(_('Include selected Gramps ID'))
                 elif v == _('Case sensitive:'):
                     t = MyBoolean(_('Use exact case of letters'))
                 elif v == _('Regular-Expression matching:'):
