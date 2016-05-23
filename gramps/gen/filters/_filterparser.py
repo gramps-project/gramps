@@ -166,6 +166,9 @@ class FilterParser(handler.ContentHandler):
         # HasEvent rule has extra primary role field in v3.4.7
         if self.r == rules.person.HasEvent and len(self.a) == 5:
             self.a.append('1')
+        # IsEnclosedBy rule has extra inclusive field in v4.2.4
+        if self.r == rules.place.IsEnclosedBy and len(self.a) == 1:
+            self.a.append('0')
 
 #-------------------------------------------------------------------------
 #
