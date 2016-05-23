@@ -245,7 +245,7 @@ class EditPerson(EditPrimary):
                 WIKI_HELP_PAGE,
                 _('manual|Editing_information_about_people'))
 
-        self.given.connect("focus_out_event", self._given_focus_out_event)
+        self.given.connect("focus-out-event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",
                                                  self._edit_name_clicked)
         self.top.get_object("multsurnamebtn").connect("clicked",
