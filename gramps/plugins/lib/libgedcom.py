@@ -4347,6 +4347,8 @@ class GedcomParser(UpdateCallback):
             attr.set_type(AttributeType.NICKNAME)
             attr.set_value(line.data)
             state.person.add_attribute(attr)
+        elif name_len == 0:
+            return
         else:
             name = Name()
             surname = Surname()
