@@ -1147,6 +1147,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         
         self._valid = True
         self._def_error_msg = None
+        self._start_color = Gdk.color_parse("#ffffff")
         self._fade = FadeOut(self, err_color)
         self._fade.connect('color-changed', self._on_fadeout__color_changed)
         
@@ -1332,7 +1333,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         c = SignalContainer()
         c.signal_id = self._fade.connect('done', done, c)
 
-        if self._fade.start(self.get_background()):
+        if self._fade.start(self._start_color):
             self.set_pixbuf(None)
 
     def set_blank(self):
