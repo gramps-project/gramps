@@ -207,11 +207,22 @@ class BaseTest(unittest.TestCase):
         """
         Test IsEnclosedBy rule.
         """
-        rule = IsEnclosedBy(['P0001'])
+        rule = IsEnclosedBy(['P0001', '0'])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
             b'V6ALQCZZFN996CO4D', b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6',
             b'PTFKQCKPHO2VC5SYKS', b'PHUJQCJ9R4XQO5Y0WS']))
+
+    def test_isenclosedby_inclusive(self):
+        """
+        Test IsEnclosedBy rule with inclusive option.
+        """
+        rule = IsEnclosedBy(['P0001', '1'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'c96587262e91149933fcea5f20a', b'EAFKQCR0ED5QWL87EO',
+            b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2', b'V6ALQCZZFN996CO4D',
+            b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6', b'PTFKQCKPHO2VC5SYKS',
+            b'PHUJQCJ9R4XQO5Y0WS']))
 
 
 if __name__ == "__main__":
