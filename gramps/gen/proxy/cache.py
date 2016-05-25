@@ -34,7 +34,7 @@ class CacheProxyDb:
         CacheProxy will cache items based on their handle.
 
         Assumes all handles (regardless of type) are unique.
-        Database is called self.db for consistancy with other
+        Database is called self.db for consistency with other
         proxies.
         """
         self.db = database
