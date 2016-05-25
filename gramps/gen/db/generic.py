@@ -745,8 +745,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.surname_list = []
         self.genderStats = GenderStats() # can pass in loaded stats as dict
         self.owner = Researcher()
+        self.clear_cache()
         if directory:
             self.load(directory)
+
+    def clear_cache(self, obj=None):
+        """
+        """
+        if obj is None:
+            self.cache_handle = {}
+            self.cache_id = {}
+        else:
+            if obj.handle in self.cache_handle:
+                del self.cache_handle[obj.handle]
+            if obj.gramps_id in self.cache_id:
+                del self.cache_id[obj.gramps_id]
 
     def get_table_func(self, table=None, func=None):
         """
@@ -1167,55 +1180,77 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_event_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Event.create(self._get_raw_event_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Event.create(self._get_raw_event_data(handle))
+        return self.cache_handle[handle]
 
     def get_family_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Family.create(self._get_raw_family_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Family.create(self._get_raw_family_data(handle))
+        return self.cache_handle[handle]
 
     def get_repository_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Repository.create(self._get_raw_repository_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Repository.create(self._get_raw_repository_data(handle))
+        return self.cache_handle[handle]
 
     def get_person_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Person.create(self._get_raw_person_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Person.create(self._get_raw_person_data(handle))
+        return self.cache_handle[handle]
 
     def get_place_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Place.create(self._get_raw_place_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Place.create(self._get_raw_place_data(handle))
+        return self.cache_handle[handle]
 
     def get_citation_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Citation.create(self._get_raw_citation_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Citation.create(self._get_raw_citation_data(handle))
+        return self.cache_handle[handle]
 
     def get_source_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Source.create(self._get_raw_source_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Source.create(self._get_raw_source_data(handle))
+        return self.cache_handle[handle]
 
     def get_note_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Note.create(self._get_raw_note_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Note.create(self._get_raw_note_data(handle))
+        return self.cache_handle[handle]
 
     def get_media_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Media.create(self._get_raw_media_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Media.create(self._get_raw_media_data(handle))
+        return self.cache_handle[handle]
 
     def get_media_from_gramps_id(self, gramps_id):
-        return Media.create(self.media_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Media.create(self.media_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Tag.create(self._get_raw_tag_data(handle))
+        if handle not in self.cache_handle:
+            self.cache_handle[handle] = Tag.create(self._get_raw_tag_data(handle))
+        return self.cache_handle[handle]
 
     def get_default_person(self):
         handle = self.get_default_handle()
@@ -1267,31 +1302,49 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.iter_items(order_by, Family)
 
     def get_person_from_gramps_id(self, gramps_id):
-        return Person.create(self.person_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Person.create(self.person_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_family_from_gramps_id(self, gramps_id):
-        return Family.create(self.family_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Family.create(self.family_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_citation_from_gramps_id(self, gramps_id):
-        return Citation.create(self.citation_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Citation.create(self.citation_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_source_from_gramps_id(self, gramps_id):
-        return Source.create(self.source_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Source.create(self.source_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_event_from_gramps_id(self, gramps_id):
-        return Event.create(self.event_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Event.create(self.event_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_media_from_gramps_id(self, gramps_id):
-        return Media.create(self.media_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Media.create(self.media_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_place_from_gramps_id(self, gramps_id):
-        return Place.create(self.place_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Place.create(self.place_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_repository_from_gramps_id(self, gramps_id):
-        return Repository.create(self.repository_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Repository.create(self.repository_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_note_from_gramps_id(self, gramps_id):
-        return Note.create(self.note_id_map[gramps_id])
+        if gramps_id not in self.cache_id:
+            self.cache_id[gramps_id] = Note.create(self.note_id_map[gramps_id])
+        return self.cache_id[gramps_id]
 
     def get_place_cursor(self):
         return Cursor(self.place_map)
@@ -1550,6 +1603,76 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             obj.gramps_id = str(random.random())
         self.commit_media(obj, transaction)
         return obj.handle
+
+    def commit_person(self, person, trans, change_time=None):
+        """
+        Add or update a person.
+        """
+        self.clear_cache(person)
+        self._commit_person(person, trans, change_time)
+
+    def commit_family(self, family, trans, change_time=None):
+        """
+        Add or update a family.
+        """
+        self.clear_cache(family)
+        self._commit_family(family, trans, change_time)
+
+    def commit_citation(self, citation, trans, change_time=None):
+        """
+        Add or update a citation.
+        """
+        self.clear_cache(citation)
+        self._commit_citation(citation, trans, change_time)
+
+    def commit_source(self, source, trans, change_time=None):
+        """
+        Add or update a source.
+        """
+        self.clear_cache(source)
+        self._commit_source(source, trans, change_time)
+
+    def commit_repository(self, repository, trans, change_time=None):
+        """
+        Add or update a repository.
+        """
+        self.clear_cache(repository)
+        self._commit_repository(repository, trans, change_time)
+
+    def commit_note(self, note, trans, change_time=None):
+        """
+        Add or update a note.
+        """
+        self.clear_cache(note)
+        self._commit_note(note, trans, change_time)
+
+    def commit_place(self, place, trans, change_time=None):
+        """
+        Add or update a place.
+        """
+        self.clear_cache(place)
+        self._commit_place(place, trans, change_time)
+
+    def commit_event(self, event, trans, change_time=None):
+        """
+        Add or update an event.
+        """
+        self.clear_cache(event)
+        self._commit_event(event, trans, change_time)
+
+    def commit_tag(self, tag, trans, change_time=None):
+        """
+        Add or update a tag.
+        """
+        self.clear_cache(tag)
+        self._commit_tag(tag, trans, change_time)
+
+    def commit_media(self, media, trans, change_time=None):
+        """
+        Add or update a media object.
+        """
+        self.clear_cache(media)
+        self._commit_media(media, trans, change_time)
 
     def add_to_surname_list(self, person, batch_transaction):
         """
