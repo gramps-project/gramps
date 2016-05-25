@@ -5108,7 +5108,10 @@ class MediaPages(BasePage):
                 # add unused media
                 media_list = self.dbase_.get_media_handles()
                 for media_ref in media_list:
-                    media_handle = media_ref.decode("utf-8")
+                    if isinstance(media_ref, bytes):
+                        media_handle = media_ref.decode("utf-8")
+                    else:
+                        media_handle = media_ref
                     if media_handle not in self.report.obj_dict[Media]:
                         unused_media_handles.append(media_handle)
                 unused_media_handles = sorted(unused_media_handles,
@@ -5542,7 +5545,10 @@ class ThumbnailPreviewPage(BasePage):
             media_list = self.dbase_.get_media_handles()
             unused_media_handles = []
             for media_ref in media_list:
-                media_handle = media_ref.decode("utf-8")
+                if isinstance(media_ref, bytes):
+                    media_handle = media_ref.decode("utf-8")
+                else:
+                    media_handle = media_ref
                 if media_handle not in self.report.obj_dict[Media]:
                     self.photo_keys.append(media_handle)
 
