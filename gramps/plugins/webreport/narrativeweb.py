@@ -8328,14 +8328,14 @@ class NavWebReport(Report):
         @param: bkref_handle  -- The handle associated to this person
         """
         person = self.database.get_person_from_handle(person_handle)
-        person_name = self.get_person_name(person)
-        person_fname = self.build_url_fname(person_handle, "ppl",
-                                                   False) + self.ext
-        self.obj_dict[Person][person_handle] = (person_fname, person_name,
-                                                person.gramps_id)
-        self.bkref_dict[Person][person_handle].add((bkref_class, bkref_handle))
-
         if person:
+            person_name = self.get_person_name(person)
+            person_fname = self.build_url_fname(person_handle, "ppl",
+                                                False) + self.ext
+            self.obj_dict[Person][person_handle] = (person_fname, person_name,
+                                                    person.gramps_id)
+            self.bkref_dict[Person][person_handle].add((bkref_class, bkref_handle))
+
             ############### Header section ##############
             for citation_handle in person.get_citation_list():
                 self._add_citation(citation_handle, Person, person_handle)
