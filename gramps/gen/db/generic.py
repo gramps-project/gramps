@@ -758,7 +758,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             if obj.handle in self.cache_handle:
                 del self.cache_handle[obj.handle]
-            if obj.gramps_id in self.cache_id:
+            if hasattr(obj, "gramps_id") and obj.gramps_id in self.cache_id:
                 del self.cache_id[obj.gramps_id]
 
     def get_table_func(self, table=None, func=None):
