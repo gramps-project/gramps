@@ -48,7 +48,7 @@ gender = {
     Person.UNKNOWN : _("gender|unknown"),
     }
 
-def format_gender( type):
+def format_gender(type):
     return gender.get(type[0], _("Invalid"))
 
 conf_strings = {
@@ -63,16 +63,16 @@ conf_strings = {
 
 family_rel_descriptions = {
     FamilyRelType.MARRIED     : _("A legal or common-law relationship "
-                                         "between a husband and wife"),
+                                  "between a husband and wife"),
     FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
-                                         "between man and woman"),
+                                  "between man and woman"),
     FamilyRelType.CIVIL_UNION : _("An established relationship between "
-                                         "members of the same sex"),
+                                  "members of the same sex"),
     FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
-                                         "and woman"),
+                                  "and woman"),
     FamilyRelType.CUSTOM      : _("An unspecified relationship between "
-                                         "a man and woman"),
+                                  "a man and woman"),
     }
 
 data_recover_msg = _('The data can only be recovered by Undo operation '
-            'or by quitting with abandoning changes.')
+                     'or by quitting with abandoning changes.')

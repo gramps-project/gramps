@@ -249,7 +249,8 @@ class Callback:
             for (k, v) in s.items():
                 if k in self.__signal_map:
                     # signal name clash
-                    sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
+                    sys.stderr.write("Warning: signal name clash: %s\n"
+                                     % str(k))
                 self.__signal_map[k] = v
         # Set to None to prevent a memory leak in this recursive function
         trav = None
@@ -258,8 +259,8 @@ class Callback:
         # of signals that this instance can emit.
 
         self._log("registered signals: \n   %s\n" %
-                  "\n   ".join([ "%s: %s" % (k, v) for (k, v)
-                                 in list(self.__signal_map.items()) ]))
+                  "\n   ".join(["%s: %s" % (k, v) for (k, v)
+                                in list(self.__signal_map.items())]))
 
 
     def connect(self, signal_name, callback):
@@ -273,7 +274,7 @@ class Callback:
         # Check that signal exists.
         if signal_name not in self.__signal_map:
             self._log("Warning: attempt to connect to unknown signal: %s\n"
-                % str(signal_name))
+                      % str(signal_name))
             return
 
         # Add callable to callback_map

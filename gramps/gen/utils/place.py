@@ -48,14 +48,14 @@ import math
 degrees = "1"
 North = _("%(north_latitude)s N") % {'north_latitude' : degrees}
 South = _("%(south_latitude)s S") % {'south_latitude' : degrees}
-East  = _("%(east_longitude)s E") % {'east_longitude' : degrees}
-West  = _("%(west_longitude)s W") % {'west_longitude' : degrees}
+East = _("%(east_longitude)s E") % {'east_longitude' : degrees}
+West = _("%(west_longitude)s W") % {'west_longitude' : degrees}
 
 # extract letters we really need
-North = North.replace("1"," ").strip()
-South = South.replace("1"," ").strip()
-East  = East.replace("1"," ").strip()
-West  = West.replace("1"," ").strip()
+North = North.replace("1", " ").strip()
+South = South.replace("1", " ").strip()
+East = East.replace("1", " ").strip()
+West = West.replace("1", " ").strip()
 
 # build dictionary with translation en to local language
 translate_en_loc = {}
@@ -79,7 +79,7 @@ if 'N' == South or 'S' == North or 'E' == West or 'W' == East:
 #
 #------------------
 
-def __convert_structure_to_float(sign, degs, mins=0, secs=0.0) :
+def __convert_structure_to_float(sign, degs, mins=0, secs=0.0):
     """helper function which converts a structure to a nice
     representation
     """
@@ -94,29 +94,29 @@ def __convert_using_float_repr(stringValue):
     """ helper function that tries to convert the string using the float
     representation
     """
-    try :
+    try:
         v = float(stringValue)
         return v
-    except ValueError :
-        return None;
+    except ValueError:
+        return None
 
 def __convert_using_colon_repr(stringValue):
     """ helper function that tries to convert the string using the colon
     representation
     """
-    if stringValue.find(r':') == -1 :
+    if stringValue.find(r':') == -1:
         return None
 
     l = stringValue.split(':')
     if len(l) < 2 or len(l) > 3:
         return None
-    l[0]=l[0].strip()
+    l[0] = l[0].strip()
     # if no characters before ':' nothing useful is input!
     if len(l[0]) == 0:
         return None
     if l[0][0] in ['+', '-']:
         sign = l[0][0]
-        l[0]=l[0][1:].strip()
+        l[0] = l[0][1:].strip()
         # regard a second sign as an error
         if l[0][0] in ['+', '-']:
             return None
@@ -134,7 +134,7 @@ def __convert_using_colon_repr(stringValue):
             return None
     except:
         return None
-    secs=0.
+    secs = 0.
     if len(l) == 3:
         try:
             secs = float(l[2])
@@ -153,16 +153,16 @@ def __convert_using_classic_repr(stringValue, typedeg):
         return None    # not a valid lat or lon
 
     #exchange some characters
-    stringValue = stringValue.replace('°',r'_')
+    stringValue = stringValue.replace('°', r'_')
     #allow to input ° as #, UTF-8 code c2b00a
-    stringValue = stringValue.replace('º',r'_')
-    #allow to input º as #, UTF-8 code c2ba0a
-    stringValue = stringValue.replace(r'#',r'_')
+    stringValue = stringValue.replace('º', r'_')
+    #allow to input º as #, UTF-8 code c2b a0a
+    stringValue = stringValue.replace(r'#', r'_')
     #allow to input " as ''
-    stringValue = stringValue.replace(r"''",r'"')
+    stringValue = stringValue.replace(r"''", r'"')
     #allow some special unicode symbols
-    stringValue = stringValue.replace('\u2033',r'"')
-    stringValue = stringValue.replace('\u2032',r"'")
+    stringValue = stringValue.replace('\u2033', r'"')
+    stringValue = stringValue.replace('\u2032', r"'")
     #ignore spaces, a regex with \s* would be better here...
     stringValue = stringValue.replace(r' ', r'')
     stringValue = stringValue.replace(r'\t', r'')
@@ -193,9 +193,9 @@ def __convert_using_classic_repr(stringValue, typedeg):
         l2[0] = l4[0]
         # Convert the decimal part of minutes to seconds
         try:
-          lsecs=float('0.' + l4[1]) * 60.0
-          # Set the seconds followed by direction letter N/S/W/E
-          l2[1] = str(lsecs) +  '"' + l2[1]
+            lsecs = float('0.' + l4[1]) * 60.0
+            # Set the seconds followed by direction letter N/S/W/E
+            l2[1] = str(lsecs) +  '"' + l2[1]
         except:
             return None
 
@@ -269,13 +269,13 @@ def __convert_using_modgedcom_repr(val, typedeg):
                 stringValue = '-' + val[:pos]
             else:
                 return None
-    try :
+    try:
         v = float(stringValue)
         return v
-    except ValueError :
-        return None;
+    except ValueError:
+        return None
 
-def __convert_float_val(val, typedeg = "lat"):
+def __convert_float_val(val, typedeg="lat"):
     # function converting input to float, recognizing decimal input, or
     # degree notation input. Only english input
     # There is no check on maximum/minimum of degree
@@ -287,7 +287,7 @@ def __convert_float_val(val, typedeg = "lat"):
     #this is no problem, as a number like 100,000.20 cannot appear in
     #lat/lon
     #change XX,YY into XX.YY
-    if val.find(r'.') == -1 :
+    if val.find(r'.') == -1:
         val = val.replace(',', '.')
 
     # format: XX.YYYY
@@ -297,17 +297,17 @@ def __convert_float_val(val, typedeg = "lat"):
 
     # format: XX:YY:ZZ
     v = __convert_using_colon_repr(val)
-    if v is not None :
+    if v is not None:
         return v
 
     # format: XX° YY' ZZ" [NSWE]
     v = __convert_using_classic_repr(val, typedeg)
-    if v is not None :
+    if v is not None:
         return v
 
     # format XX.YYYY[NSWE]
     v = __convert_using_modgedcom_repr(val, typedeg)
-    if v is not None :
+    if v is not None:
         return v
 
     # no format succeeded
@@ -365,12 +365,12 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
     # we start the function changing latitude/longitude in english
     if latitude.find('N') == -1 and latitude.find('S') == -1:
         # entry is not in english, convert to english
-        latitude = latitude.replace(translate_en_loc['N'],'N')
-        latitude = latitude.replace(translate_en_loc['S'],'S')
+        latitude = latitude.replace(translate_en_loc['N'], 'N')
+        latitude = latitude.replace(translate_en_loc['S'], 'S')
     if longitude.find('E') == -1 and longitude.find('W') == -1:
         # entry is not in english, convert to english
-        longitude = longitude.replace(translate_en_loc['W'],'W')
-        longitude = longitude.replace(translate_en_loc['E'],'E')
+        longitude = longitude.replace(translate_en_loc['W'], 'W')
+        longitude = longitude.replace(translate_en_loc['E'], 'E')
 
     # take away leading spaces
     latitude = latitude.lstrip()
@@ -383,7 +383,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         longitude = longitude[1:] + longitude[0]
 
     # convert to float
-    lat_float = __convert_float_val(latitude,  'lat')
+    lat_float = __convert_float_val(latitude, 'lat')
     lon_float = __convert_float_val(longitude, 'lon')
 
     # give output (localized if needed)
@@ -403,19 +403,19 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         # correct possible roundoff error
         str_lon = "%.4f" % (lon_float)
         if str_lon == "180.0000":
-            str_lon ="-180.0000"
-        return ("%.4f" % lat_float , str_lon)
+            str_lon = "-180.0000"
+        return ("%.4f" % lat_float, str_lon)
 
     if format == "D.D8" or format == "RT90":
         # correct possible roundoff error
         str_lon = "%.8f" % (lon_float)
         if str_lon == "180.00000000":
-            str_lon ="-180.00000000"
+            str_lon = "-180.00000000"
         if format == "RT90":
             tx = __conv_WGS84_SWED_RT90(lat_float, lon_float)
             return ("%i" %  tx[0], "%i" % tx[1])
         else:
-            return ("%.8f" % lat_float , str_lon)
+            return ("%.8f" % lat_float, str_lon)
 
     if format == "GEDCOM":
         # The 5.5.1 spec is inconsistent.  Length is supposedly 5 to 8 chars,
@@ -426,20 +426,21 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         if lon_float >= 0:
             str_lon = "%.6f" % (lon_float)
             if str_lon == "180.000000":
-                str_lon ="W180.000000"
+                str_lon = "W180.000000"
             else:
                 str_lon = "E" + str_lon
         else:
             str_lon = "W" + "%.6f" % (-lon_float)
         str_lon = str_lon[:-5] + str_lon[-5:].rstrip("0")
-        str_lat = ("%s%.6f" % (("N", lat_float) if lat_float >= 0 else ("S", -lat_float)))
+        str_lat = ("%s%.6f" % (("N", lat_float) if lat_float >= 0
+                               else ("S", -lat_float)))
         str_lat = str_lat[:-5] + str_lat[-5:].rstrip("0")
         return (str_lat, str_lon)
 
     deg_lat = int(lat_float)
     deg_lon = int(lon_float)
-    min_lat = int(60.   * (lat_float - float(deg_lat)                       ))
-    min_lon = int(60.   * (lon_float - float(deg_lon)                       ))
+    min_lat = int(60. * (lat_float - float(deg_lat)))
+    min_lon = int(60. * (lon_float - float(deg_lon)))
     sec_lat = 3600. * (lat_float - float(deg_lat) - float(min_lat) / 60.)
     sec_lon = 3600. * (lon_float - float(deg_lon) - float(min_lon) / 60.)
 
@@ -463,14 +464,14 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         dir_lat = translate_en_loc['N']
     else:
         dir_lat = translate_en_loc['S']
-        sign_lat= "-"
-    sign_lon= "+"
+        sign_lat = "-"
+    sign_lon = "+"
     dir_lon = ""
     if lon_float >= 0.:
         dir_lon = translate_en_loc['E']
     else:
         dir_lon = translate_en_loc['W']
-        sign_lon= "-"
+        sign_lon = "-"
 
     if format == "DEG":
         str_lat = ("%d°%02d'%05.2f\"" % (deg_lat, min_lat, sec_lat)) + dir_lat
@@ -497,10 +498,10 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         return  (str_lat, str_lon)
 
     if format == "DEG-:":
-        if sign_lat=="+":
+        if sign_lat == "+":
             sign_lat = ""
         sign_lon_h = sign_lon
-        if sign_lon=="+":
+        if sign_lon == "+":
             sign_lon_h = ""
         str_lat = sign_lat + ("%d:%02d:%05.2f" % (deg_lat, min_lat, sec_lat))
         str_lon = sign_lon_h + ("%d:%02d:%05.2f" % (deg_lon, min_lon, sec_lon))
@@ -598,7 +599,7 @@ def __conv_WGS84_SWED_RT90(lat, lon):
     L0 = math.radians(15.8062845294)   # 15 deg 48 min 22.624306 sec
     k0 = 1.00000561024
     a = 6378137.0   # meter
-    at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n,2)+1.0/64.0*pow(n,4))
+    at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n, 2)+1.0/64.0*pow(n, 4))
     FN = -667.711 # m
     FE = 1500064.274 # m
 
@@ -606,20 +607,21 @@ def __conv_WGS84_SWED_RT90(lat, lon):
     lat_rad = math.radians(lat)
     lon_rad = math.radians(lon)
     A = e2
-    B = 1.0/6.0*(5.0*pow(e2,2) - pow(e2,3))
-    C = 1.0/120.0*(104.0*pow(e2,3) - 45.0*pow(e2,4))
-    D = 1.0/1260.0*(1237.0*pow(e2,4))
+    B = 1.0/6.0*(5.0*pow(e2, 2) - pow(e2, 3))
+    C = 1.0/120.0*(104.0*pow(e2, 3) - 45.0*pow(e2, 4))
+    D = 1.0/1260.0*(1237.0*pow(e2, 4))
     DL = lon_rad - L0
-    E = A + B*pow(math.sin(lat_rad),2) + \
-            C*pow(math.sin(lat_rad),4) + \
-            D*pow(math.sin(lat_rad),6)
+    E = A + B*pow(math.sin(lat_rad), 2) + \
+            C*pow(math.sin(lat_rad), 4) + \
+            D*pow(math.sin(lat_rad), 6)
     psi = lat_rad - math.sin(lat_rad)*math.cos(lat_rad)*E
-    xi = math.atan2(math.tan(psi),math.cos(DL))
+    xi = math.atan2(math.tan(psi), math.cos(DL))
     eta = atanh(math.cos(psi)*math.sin(DL))
-    B1 = 1.0/2.0*n - 2.0/3.0*pow(n,2) + 5.0/16.0*pow(n,3) + 41.0/180.0*pow(n,4)
-    B2 = 13.0/48.0*pow(n,2) - 3.0/5.0*pow(n,3) + 557.0/1440.0*pow(n,4)
-    B3 = 61.0/240.0*pow(n,3) - 103.0/140.0*pow(n,4)
-    B4 = 49561.0/161280.0*pow(n,4)
+    B1 = 1.0/2.0*n - 2.0/3.0*pow(n, 2) + 5.0/16.0*pow(n, 3) + \
+                     41.0/180.0*pow(n, 4)
+    B2 = 13.0/48.0*pow(n, 2) - 3.0/5.0*pow(n, 3) + 557.0/1440.0*pow(n, 4)
+    B3 = 61.0/240.0*pow(n, 3) - 103.0/140.0*pow(n, 4)
+    B4 = 49561.0/161280.0*pow(n, 4)
     X = xi + B1*math.sin(2.0*xi)*math.cosh(2.0*eta) + \
              B2*math.sin(4.0*xi)*math.cosh(4.0*eta) + \
              B3*math.sin(6.0*xi)*math.cosh(6.0*eta) + \
@@ -644,16 +646,17 @@ def __conv_SWED_RT90_WGS84(X, Y):
     L0 = math.radians(15.8062845294)   # 15 deg 48 min 22.624306 sec
     k0 = 1.00000561024
     a = 6378137.0   # meter
-    at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n,2)+1.0/64.0*pow(n,4))
+    at = a/(1.0+n)*(1.0+ 1.0/4.0* pow(n, 2)+1.0/64.0*pow(n, 4))
     FN = -667.711 # m
     FE = 1500064.274 # m
 
     xi = (X - FN)/(k0*at)
     eta = (Y - FE)/(k0*at)
-    D1 = 1.0/2.0*n - 2.0/3.0*pow(n,2) + 37.0/96.0*pow(n,3) - 1.0/360.0*pow(n,4)
-    D2 = 1.0/48.0*pow(n,2) + 1.0/15.0*pow(n,3) - 437.0/1440.0*pow(n,4)
-    D3 = 17.0/480.0*pow(n,3) - 37.0/840.0*pow(n,4)
-    D4 = 4397.0/161280.0*pow(n,4)
+    D1 = 1.0/2.0*n - 2.0/3.0*pow(n, 2) + 37.0/96.0*pow(n, 3) - \
+         1.0/360.0*pow(n, 4)
+    D2 = 1.0/48.0*pow(n, 2) + 1.0/15.0*pow(n, 3) - 437.0/1440.0*pow(n, 4)
+    D3 = 17.0/480.0*pow(n, 3) - 37.0/840.0*pow(n, 4)
+    D4 = 4397.0/161280.0*pow(n, 4)
     xip = xi - D1*math.sin(2.0*xi)*math.cosh(2.0*eta) - \
                D2*math.sin(4.0*xi)*math.cosh(4.0*eta) - \
                D3*math.sin(6.0*xi)*math.cosh(6.0*eta) - \
@@ -663,15 +666,15 @@ def __conv_SWED_RT90_WGS84(X, Y):
                  D3*math.cos(6.0*xi)*math.sinh(6.0*eta) - \
                  D4*math.cos(8.0*xi)*math.sinh(8.0*eta)
     psi = math.asin(math.sin(xip)/math.cosh(etap))
-    DL = math.atan2(math.sinh(etap),math.cos(xip))
+    DL = math.atan2(math.sinh(etap), math.cos(xip))
     LON = L0 + DL
-    A = e2 + pow(e2,2) + pow(e2,3) + pow(e2,4)
-    B = -1.0/6.0*(7.0*pow(e2,2) + 17*pow(e2,3) + 30*pow(e2,4))
-    C = 1.0/120.0*(224.0*pow(e2,3) + 889.0*pow(e2,4))
-    D = 1.0/1260.0*(4279.0*pow(e2,4))
-    E = A + B*pow(math.sin(psi),2) + \
-            C*pow(math.sin(psi),4) + \
-            D*pow(math.sin(psi),6)
+    A = e2 + pow(e2, 2) + pow(e2, 3) + pow(e2, 4)
+    B = -1.0/6.0*(7.0*pow(e2, 2) + 17*pow(e2, 3) + 30*pow(e2, 4))
+    C = 1.0/120.0*(224.0*pow(e2, 3) + 889.0*pow(e2, 4))
+    D = 1.0/1260.0*(4279.0*pow(e2, 4))
+    E = A + B*pow(math.sin(psi), 2) + \
+            C*pow(math.sin(psi), 4) + \
+            D*pow(math.sin(psi), 6)
     LAT = psi + math.sin(psi)*math.cos(psi)*E
     LAT = math.degrees(LAT)
     LON = math.degrees(LON)
@@ -686,7 +689,7 @@ def __conv_SWED_RT90_WGS84(X, Y):
 #-------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    def test_formats_success(lat1,lon1, text=''):
+    def test_formats_success(lat1, lon1, text=''):
         format0 = "D.D4"
         format1 = "D.D8"
         format2 = "DEG"
@@ -697,29 +700,29 @@ if __name__ == '__main__':
         format7 = "RT90"
         format8 = "GEDCOM"
         print("Testing conv_lat_lon function, "+text+':')
-        res1, res2 = conv_lat_lon(lat1,lon1,format0)
-        print(lat1,lon1,"in format",format0, "is   ",res1,res2)
-        res1, res2 = conv_lat_lon(lat1,lon1,format1)
-        print(lat1,lon1,"in format",format1, "is   ",res1,res2)
-        res1, res2 = conv_lat_lon(lat1,lon1,format2)
-        print(lat1,lon1,"in format",format2, "is    ",res1,res2)
-        res1, res2 = conv_lat_lon(lat1,lon1,format3)
-        print(lat1,lon1,"in format",format3, "is  ",res1,res2)
-        res = conv_lat_lon(lat1,lon1,format4)
-        print(lat1,lon1,"in format",format4, "is ",res)
-        res = conv_lat_lon(lat1,lon1,format5)
-        print(lat1,lon1,"in format",format5, "is",res)
-        res = conv_lat_lon(lat1,lon1,format6)
-        print(lat1,lon1,"in format",format6, "is",res)
-        res1, res2 = conv_lat_lon(lat1,lon1,format7)
-        print(lat1,lon1,"in format",format7, "is",res1,res2,"\n")
-        res1, res2 = conv_lat_lon(lat1,lon1,format8)
-        print(lat1,lon1,"in format",format8, "is",res1,res2,"\n")
+        res1, res2 = conv_lat_lon(lat1, lon1, format0)
+        print(lat1, lon1, "in format", format0, "is   ", res1, res2)
+        res1, res2 = conv_lat_lon(lat1, lon1, format1)
+        print(lat1, lon1, "in format", format1, "is   ", res1, res2)
+        res1, res2 = conv_lat_lon(lat1, lon1, format2)
+        print(lat1, lon1, "in format", format2, "is    ", res1, res2)
+        res1, res2 = conv_lat_lon(lat1, lon1, format3)
+        print(lat1, lon1, "in format", format3, "is  ", res1, res2)
+        res = conv_lat_lon(lat1, lon1, format4)
+        print(lat1, lon1, "in format", format4, "is ", res)
+        res = conv_lat_lon(lat1, lon1, format5)
+        print(lat1, lon1, "in format", format5, "is", res)
+        res = conv_lat_lon(lat1, lon1, format6)
+        print(lat1, lon1, "in format", format6, "is", res)
+        res1, res2 = conv_lat_lon(lat1, lon1, format7)
+        print(lat1, lon1, "in format", format7, "is", res1, res2, "\n")
+        res1, res2 = conv_lat_lon(lat1, lon1, format8)
+        print(lat1, lon1, "in format", format8, "is", res1, res2, "\n")
 
-    def test_formats_fail(lat1,lon1,text=''):
+    def test_formats_fail(lat1, lon1, text=''):
         print("This test should make conv_lat_lon function fail, "+text+":")
-        res1, res2 = conv_lat_lon(lat1,lon1)
-        print(lat1,lon1," fails to convert, result=", res1,res2,"\n")
+        res1, res2 = conv_lat_lon(lat1, lon1)
+        print(lat1, lon1, " fails to convert, result=", res1, res2, "\n")
 
     def test_RT90_conversion():
         """
@@ -728,128 +731,130 @@ if __name__ == '__main__':
         la = 59.0 + 40.0/60. + 9.09/3600.0
         lo = 12.0 + 58.0/60.0 + 57.74/3600.0
         x, y = __conv_WGS84_SWED_RT90(la, lo)
-        lanew, lonew = __conv_SWED_RT90_WGS84(x,y)
+        lanew, lonew = __conv_SWED_RT90_WGS84(x, y)
         assert math.fabs(lanew - la) < 1e-6, math.fabs(lanew - la)
         assert math.fabs(lonew - lo) < 1e-6, math.fabs(lonew - lo)
 
     lat, lon = '50.849888888888', '2.885897222222'
-    test_formats_success(lat,lon)
+    test_formats_success(lat, lon)
     lat, lon = ' 50°50\'59.60"N', '  2°53\'9.23"E'
-    test_formats_success(lat,lon)
+    test_formats_success(lat, lon)
     lat, lon = ' 50 : 50 : 59.60 ', ' -2:53 : 9.23   '
-    test_formats_success(lat,lon)
+    test_formats_success(lat, lon)
     lat, lon = ' dummy', '  2#53 \' 9.23  "  E '
-    test_formats_fail(lat,lon)
+    test_formats_fail(lat, lon)
     lat, lon = ' 50:50: 59.60', '  d u m my'
-    test_formats_fail(lat,lon)
-    lat, lon =  ' 50°59.60"N', '  2°53\'E'
-    test_formats_success(lat,lon)
-    lat, lon =  ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
-    test_formats_fail(lat,lon)
+    test_formats_fail(lat, lon)
+    lat, lon = ' 50°59.60"N', '  2°53\'E'
+    test_formats_success(lat, lon)
+    lat, lon = ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
+    test_formats_fail(lat, lon)
     # very small negative
-    lat, lon =  '-0.00006', '-0.00006'
-    test_formats_success(lat,lon)
+    lat, lon = '-0.00006', '-0.00006'
+    test_formats_success(lat, lon)
     # missing direction N/S
-    lat, lon =  ' 50°59.60"', '  2°53\'E'
-    test_formats_fail(lat,lon)
+    lat, lon = ' 50°59.60"', '  2°53\'E'
+    test_formats_fail(lat, lon)
     # wrong direction on latitude
-    lat, lon =  ' 50°59.60"E', '  2°53\'N'
-    test_formats_fail(lat,lon)
+    lat, lon = ' 50°59.60"E', '  2°53\'N'
+    test_formats_fail(lat, lon)
     # same as above
-    lat, lon =  ' 50°59.99"E', '  2°59\'59.99"N'
-    test_formats_fail(lat,lon)
+    lat, lon = ' 50°59.99"E', '  2°59\'59.99"N'
+    test_formats_fail(lat, lon)
     # test precision
-    lat, lon =  ' 50°59.99"S', '  2°59\'59.99"E'
-    test_formats_success(lat,lon)
+    lat, lon = ' 50°59.99"S', '  2°59\'59.99"E'
+    test_formats_success(lat, lon)
     lat, lon = 'N50.849888888888', 'E2.885897222222'
-    test_formats_success(lat,lon)
+    test_formats_success(lat, lon)
     # to large value of lat
-    lat, lon =  '90.849888888888', '2.885897222222'
-    test_formats_fail(lat,lon)
+    lat, lon = '90.849888888888', '2.885897222222'
+    test_formats_fail(lat, lon)
     # extreme values allowed
-    lat, lon =  '90', '-180'
-    test_formats_success(lat,lon)
+    lat, lon = '90', '-180'
+    test_formats_success(lat, lon)
     # extreme values allowed
-    lat, lon =  '90° 00\' 00.00" S ', '179° 59\'59.99"W'
-    test_formats_success(lat,lon)
+    lat, lon = '90° 00\' 00.00" S ', '179° 59\'59.99"W'
+    test_formats_success(lat, lon)
     # extreme value not allowed
-    lat, lon =  '90° 00\' 00.00" N', '180° 00\'00.00" E'
-    test_formats_fail(lat,lon)
+    lat, lon = '90° 00\' 00.00" N', '180° 00\'00.00" E'
+    test_formats_fail(lat, lon)
     # extreme values allowed
-    lat, lon =  '90: 00: 00.00 ', '-179: 59:59.99'
-    test_formats_success(lat,lon)
+    lat, lon = '90: 00: 00.00 ', '-179: 59:59.99'
+    test_formats_success(lat, lon)
     # extreme value not allowed
-    lat, lon =  '90° 00\' 00.00" N', '180:00:00.00'
-    test_formats_fail(lat,lon)
+    lat, lon = '90° 00\' 00.00" N', '180:00:00.00'
+    test_formats_fail(lat, lon)
     # extreme values not allowed
-    lat, lon =  '90', '180'
-    test_formats_fail(lat,lon)
-    lat, lon =  ' 89°59\'60"N', '  2°53\'W'
-    test_formats_fail(lat,lon)
-    lat, lon =  ' 89°60\'00"N', '  2°53\'W'
-    test_formats_fail(lat,lon)
-    lat, lon =  ' 89.1°40\'00"N', '  2°53\'W'
-    test_formats_fail(lat,lon)
-    lat, lon =  ' 89°40\'00"N', '  2°53.1\'W'
-    test_formats_fail(lat,lon)
-    lat, lon =  '0', '0'
-    test_formats_success(lat,lon,
-            "Special 0 value, crossing 0-meridian and equator")
+    lat, lon = '90', '180'
+    test_formats_fail(lat, lon)
+    lat, lon = ' 89°59\'60"N', '  2°53\'W'
+    test_formats_fail(lat, lon)
+    lat, lon = ' 89°60\'00"N', '  2°53\'W'
+    test_formats_fail(lat, lon)
+    lat, lon = ' 89.1°40\'00"N', '  2°53\'W'
+    test_formats_fail(lat, lon)
+    lat, lon = ' 89°40\'00"N', '  2°53.1\'W'
+    test_formats_fail(lat, lon)
+    lat, lon = '0', '0'
+    test_formats_success(lat, lon,
+                         "Special 0 value, crossing 0-meridian and equator")
     # small values close to equator
-    lat, lon =  ' 1°1"N', '  1°1\'E'
-    test_formats_success(lat,lon)
+    lat, lon = ' 1°1"N', '  1°1\'E'
+    test_formats_success(lat, lon)
     # roundoff
-    lat, lon =  ' 1°59.999"N', '  1°59.999"E'
-    test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
-    test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  '89°59\'59.9999"S', '179°59\'59.9999"W'
-    test_formats_success(lat,lon,'Examples of round off and how it behaves')
-    lat, lon =  '89°59\'59.9999"N', '179°59\'59.9999"E'
-    test_formats_success(lat,lon,'Examples of round off and how it behaves')
+    lat, lon = ' 1°59.999"N', '  1°59.999"E'
+    test_formats_success(lat, lon, 'Examples of round off and how it behaves')
+    lat, lon = ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
+    test_formats_success(lat, lon, 'Examples of round off and how it behaves')
+    lat, lon = '89°59\'59.9999"S', '179°59\'59.9999"W'
+    test_formats_success(lat, lon, 'Examples of round off and how it behaves')
+    lat, lon = '89°59\'59.9999"N', '179°59\'59.9999"E'
+    test_formats_success(lat, lon, 'Examples of round off and how it behaves')
     #insane number of decimals:
-    lat, lon =  '89°59\'59.99999999"N', '179°59\'59.99999999"E'
-    test_formats_success(lat,lon,'Examples of round off and how it begaves')
+    lat, lon = '89°59\'59.99999999"N', '179°59\'59.99999999"E'
+    test_formats_success(lat, lon, 'Examples of round off and how it begaves')
     #recognise '' as seconds "
-    lat, lon =  '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
-    test_formats_success(lat,lon, "input \" as ''")
+    lat, lon = '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
+    test_formats_success(lat, lon, "input \" as ''")
     #test localisation of , and . as delimiter
     lat, lon = '50.849888888888', '2,885897222222'
-    test_formats_success(lat,lon, 'localisation of . and , ')
-    lat, lon =  '89°59\'59.9999"S', '179°59\'59,9999"W'
-    test_formats_success(lat,lon, 'localisation of . and , ')
-    lat, lon =  '89°59\'1.599,999"S', '179°59\'59,9999"W'
-    test_formats_fail(lat,lon, 'localisation of . and , ')
+    test_formats_success(lat, lon, 'localisation of . and , ')
+    lat, lon = '89°59\'59.9999"S', '179°59\'59,9999"W'
+    test_formats_success(lat, lon, 'localisation of . and , ')
+    lat, lon = '89°59\'1.599,999"S', '179°59\'59,9999"W'
+    test_formats_fail(lat, lon, 'localisation of . and , ')
     #rest
-    lat, lon =  '81.2', '-182.3'
-    test_formats_fail(lat,lon)
-    lat, lon =  '-91.2', '-1'
-    test_formats_fail(lat,lon)
-    lat, lon =  '++50:10:1', '2:1:2'
-    test_formats_fail(lat,lon)
-    lat, lon =  '-50:10:1', '-+2:1:2'
-    test_formats_success(lat,lon)
-    lat, lon =  '-50::1', '-2:1:2'
-    test_formats_fail(lat,lon)
-    lat, lon =  '- 50  : 2 : 1 ', '-2:1:2'
-    test_formats_success(lat,lon)
-    lat, lon =  '+ 50:2 :  1', '-2:1:2'
-    test_formats_success(lat,lon)
-    lat, lon =  '+50:', '-2:1:2'
-    test_formats_fail(lat,lon)
-    lat, lon =  '+50:1', '-2:1:2'
-    test_formats_success(lat,lon)
-    lat, lon =  '+50: 0 : 1 : 1', '-2:1:2'
-    test_formats_fail(lat,lon)
+    lat, lon = '81.2', '-182.3'
+    test_formats_fail(lat, lon)
+    lat, lon = '-91.2', '-1'
+    test_formats_fail(lat, lon)
+    lat, lon = '++50:10:1', '2:1:2'
+    test_formats_fail(lat, lon)
+    lat, lon = '-50:10:1', '-+2:1:2'
+    test_formats_success(lat, lon)
+    lat, lon = '-50::1', '-2:1:2'
+    test_formats_fail(lat, lon)
+    lat, lon = '- 50  : 2 : 1 ', '-2:1:2'
+    test_formats_success(lat, lon)
+    lat, lon = '+ 50:2 :  1', '-2:1:2'
+    test_formats_success(lat, lon)
+    lat, lon = '+50:', '-2:1:2'
+    test_formats_fail(lat, lon)
+    lat, lon = '+50:1', '-2:1:2'
+    test_formats_success(lat, lon)
+    lat, lon = '+50: 0 : 1 : 1', '-2:1:2'
+    test_formats_fail(lat, lon)
     lat, lon = '+61° 43\' 60.00"', '+17° 7\' 60.00"'
-    test_formats_fail(lat,lon)
+    test_formats_fail(lat, lon)
     lat, lon = '+61° 44\' 00.00"N', '+17° 8\' 00.00"E'
-    test_formats_success(lat,lon)
-    lat, lon =  ': 0 : 1 : 1', ':1:2'
-    test_formats_fail(lat,lon)
+    test_formats_success(lat, lon)
+    lat, lon = ': 0 : 1 : 1', ':1:2'
+    test_formats_fail(lat, lon)
     lat, lon = 'N 50º52\'21.92"', 'E 124º52\'21.92"'
-    test_formats_success(lat,lon, 'New format with N/E first and another º - character')
+    test_formats_success(lat, lon,
+                         'New format with N/E first and another º - character')
     lat, lon = 'S 50º52\'21.92"', 'W 124º52\'21.92"'
-    test_formats_success(lat,lon, 'New format with S/W first and another º - character')
+    test_formats_success(lat, lon,
+                         'New format with S/W first and another º - character')
 
     test_RT90_conversion()
