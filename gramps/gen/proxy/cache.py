@@ -178,5 +178,3 @@ class CacheProxyDb:
         if handle not in self.cache_handle:
             self.cache_handle[handle] = self.db.get_tag_from_handle(handle)
         return self.cache_handle[handle]
-
-    
