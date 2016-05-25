@@ -614,7 +614,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("INSERT INTO name_group (name, grouping) VALUES(?, ?);",
                                  [name, grouping])
 
-    def commit_person(self, person, trans, change_time=None):
+    def _commit_person(self, person, trans, change_time=None):
         old_person = None
         person.change = int(change_time or time.time())
         if person.handle in self.person_map:
@@ -699,7 +699,7 @@ class DBAPI(DbGeneric):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_family(self, family, trans, change_time=None):
+    def _commit_family(self, family, trans, change_time=None):
         old_family = None
         family.change = int(change_time or time.time())
         if family.handle in self.family_map:
@@ -756,7 +756,7 @@ class DBAPI(DbGeneric):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_citation(self, citation, trans, change_time=None):
+    def _commit_citation(self, citation, trans, change_time=None):
         old_citation = None
         citation.change = int(change_time or time.time())
         if citation.handle in self.citation_map:
@@ -794,7 +794,7 @@ class DBAPI(DbGeneric):
             [str(attr.type) for attr in citation.attribute_list
              if attr.type.is_custom() and str(attr.type)])
 
-    def commit_source(self, source, trans, change_time=None):
+    def _commit_source(self, source, trans, change_time=None):
         old_source = None
         source.change = int(change_time or time.time())
         if source.handle in self.source_map:
@@ -835,7 +835,7 @@ class DBAPI(DbGeneric):
             [str(attr.type) for attr in source.attribute_list
              if attr.type.is_custom() and str(attr.type)])
 
-    def commit_repository(self, repository, trans, change_time=None):
+    def _commit_repository(self, repository, trans, change_time=None):
         old_repository = None
         repository.change = int(change_time or time.time())
         if repository.handle in self.repository_map:
@@ -864,7 +864,7 @@ class DBAPI(DbGeneric):
         self.url_types.update([str(url.type) for url in repository.urls
                                if url.type.is_custom()])
 
-    def commit_note(self, note, trans, change_time=None):
+    def _commit_note(self, note, trans, change_time=None):
         old_note = None
         note.change = int(change_time or time.time())
         if note.handle in self.note_map:
@@ -890,7 +890,7 @@ class DBAPI(DbGeneric):
         if note.type.is_custom():
             self.note_types.add(str(note.type))
 
-    def commit_place(self, place, trans, change_time=None):
+    def _commit_place(self, place, trans, change_time=None):
         old_place = None
         place.change = int(change_time or time.time())
         if place.handle in self.place_map:
@@ -930,7 +930,7 @@ class DBAPI(DbGeneric):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_event(self, event, trans, change_time=None):
+    def _commit_event(self, event, trans, change_time=None):
         old_event = None
         event.change = int(change_time or time.time())
         if event.handle in self.event_map:
@@ -966,7 +966,7 @@ class DBAPI(DbGeneric):
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
-    def commit_tag(self, tag, trans, change_time=None):
+    def _commit_tag(self, tag, trans, change_time=None):
         tag.change = int(change_time or time.time())
         if tag.handle in self.tag_map:
             self.dbapi.execute("""UPDATE tag SET blob_data = ?,
@@ -984,7 +984,7 @@ class DBAPI(DbGeneric):
         if not trans.batch:
             self.update_backlinks(tag)
 
-    def commit_media(self, media, trans, change_time=None):
+    def _commit_media(self, media, trans, change_time=None):
         old_media = None
         media.change = int(change_time or time.time())
         if media.handle in self.media_map:
