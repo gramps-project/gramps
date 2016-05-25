@@ -125,7 +125,7 @@ from gramps.gen.utils.image import image_size # , resize_to_jpeg_buffer
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.datehandler import displayer as _dd
-from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.datehandler import get_date
 
@@ -7989,6 +7989,8 @@ class NavWebReport(Report):
                                           livinginfo,
                                           None,
                                           yearsafterdeath)
+
+        self.database = CacheProxyDb(self.database)
 
         filters_option = menu.get_option_by_name('filter')
         self.filter = filters_option.get_filter()
