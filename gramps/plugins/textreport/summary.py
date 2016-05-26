@@ -49,6 +49,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -79,6 +80,7 @@ class SummaryReport(Report):
 
         stdoptions.run_private_data_option(self, options.menu)
         stdoptions.run_living_people_option(self, options.menu, rlocale)
+        self.database = CacheProxyDb(self.database)
         self.__db = self.database
 
     def write_report(self):

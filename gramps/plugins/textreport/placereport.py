@@ -50,7 +50,7 @@ from gramps.gen.utils.location import get_location_list
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 from gramps.gen.errors import ReportError
-from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
 class PlaceReport(Report):
     """
@@ -87,6 +87,7 @@ class PlaceReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        self.database = CacheProxyDb(self.database)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
