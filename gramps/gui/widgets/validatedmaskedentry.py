@@ -43,7 +43,6 @@ from gi.repository import GObject
 from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
-from gi.repository import GdkPixbuf
 from gi.repository import Pango
 
 #-------------------------------------------------------------------------
@@ -62,111 +61,6 @@ from .undoableentry import UndoableEntry
 # http://www.async.com.br/projects/kiwi
 #
 #============================================================================
-
-class FadeOut(GObject.GObject):
-    """
-    I am a helper class to draw the fading effect of the background
-    Call my methods :meth:`start` and :meth:`stop` to control the fading.
-    """
-    __gsignals__ = {
-        'done': (GObject.SignalFlags.RUN_FIRST, 
-                 None, 
-                 ()), 
-        'color-changed': (GObject.SignalFlags.RUN_FIRST, 
-                          None, 
-                          (Gdk.Color, )), 
-    }
-    
-    # How long time it'll take before we start (in ms)
-    COMPLAIN_DELAY = 500
-
-    MERGE_COLORS_DELAY = 100
-
-    def __init__(self, widget, err_color = "#ffd5d5"):
-        GObject.GObject.__init__(self)
-        self.ERROR_COLOR = err_color
-        self._widget = widget
-        self._start_color = None
-        self._background_timeout_id = -1
-        self._countdown_timeout_id = -1
-        self._done = False
-
-    def _merge_colors(self, src_color, dst_color, steps=10):
-        """
-        Change the background of widget from src_color to dst_color
-        in the number of steps specified
-        """
-        ##_LOG.debug('_merge_colors: %s -> %s' % (src_color, dst_color))
-
-        rs, gs, bs = src_color.red, src_color.green, src_color.blue
-        rd, gd, bd = dst_color.red, dst_color.green, dst_color.blue
-        rinc = (rd - rs) / float(steps)
-        ginc = (gd - gs) / float(steps)
-        binc = (bd - bs) / float(steps)
-        for dummy in range(steps):
-            rs += rinc
-            gs += ginc
-            bs += binc
-            col = Gdk.color_parse("#%02X%02X%02X" % (int(rs) >> 8, 
-                                                         int(gs) >> 8, 
-                                                         int(bs) >> 8))
-            self.emit('color-changed', col)
-            yield True
-
-        self.emit('done')
-        self._background_timeout_id = -1
-        self._done = True
-        yield False
-
-    def _start_merging(self):
-        # If we changed during the delay
-        if self._background_timeout_id != -1:
-            ##_LOG.debug('_start_merging: Already running')
-            return
-
-        ##_LOG.debug('_start_merging: Starting')
-        generator = self._merge_colors(self._start_color, 
-                                  Gdk.color_parse(self.ERROR_COLOR))
-        self._background_timeout_id = (
-            GLib.timeout_add(FadeOut.MERGE_COLORS_DELAY, generator.__next__))
-        self._countdown_timeout_id = -1
-
-    def start(self, color):
-        """
-        Schedules a start of the countdown.
-        
-        :param color: initial background color
-        :returns: True if we could start, False if was already in progress
-        """
-        if self._background_timeout_id != -1:
-            ##_LOG.debug('start: Background change already running')
-            return False
-        if self._countdown_timeout_id != -1:
-            ##_LOG.debug('start: Countdown already running')
-            return False
-        if self._done:
-            ##_LOG.debug('start: Not running, already set')
-            return False
-
-        self._start_color = color
-        ##_LOG.debug('start: Scheduling')
-        self._countdown_timeout_id = GLib.timeout_add(
-            FadeOut.COMPLAIN_DELAY, self._start_merging)
-
-        return True
-
-    def stop(self):
-        """Stops the fadeout and restores the background color"""
-        ##_LOG.debug('Stopping')
-        if self._background_timeout_id != -1:
-            GLib.source_remove(self._background_timeout_id)
-            self._background_timeout_id = -1
-        if self._countdown_timeout_id != -1:
-            GLib.source_remove(self._countdown_timeout_id)
-            self._countdown_timeout_id = -1
-
-        self._widget.update_background(self._start_color, unset=True)
-        self._done = False
 
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
 
@@ -1013,52 +907,6 @@ class MaskedEntry(UndoableEntry):
     def set_stock(self, icon_name):
         self.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name)
 
-    def update_background(self, color, unset=False):
-        maxvalcol = 65535.
-        if color:
-            red = int(color.red/ maxvalcol*255)
-            green = int(color.green/ maxvalcol*255)
-            blue = int(color.blue/ maxvalcol*255)
-            rgba = Gdk.RGBA()
-            Gdk.RGBA.parse(rgba, 'rgb(%f,%f,%f)'%(red, green, blue))
-            self.override_background_color(Gtk.StateFlags.NORMAL |
-                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED | 
-                Gtk.StateFlags.FOCUSED, rgba)
-            #GTK 3: workaround, background not changing in themes, use symbolic
-            self.override_symbolic_color('bg_color', rgba)
-            self.override_symbolic_color('base_color', rgba)
-            self.override_symbolic_color('theme_bg_color', rgba)
-            self.override_symbolic_color('theme_base_color', rgba)
-            ##self.get_window().set_background_rgba(rgba)
-            pango_context = self.get_layout().get_context()
-            font_description = pango_context.get_font_description()
-            if unset:
-                font_description.set_weight(Pango.Weight.NORMAL)
-            else:
-                font_description.set_weight(Pango.Weight.BOLD)
-            self.override_font(font_description)
-        else:
-            self.override_background_color(Gtk.StateFlags.NORMAL |
-                Gtk.StateFlags.ACTIVE | Gtk.StateFlags.SELECTED | 
-                Gtk.StateFlags.FOCUSED, None)
-            # Setting the following to None causes an error (bug #6353).
-            #self.override_symbolic_color('bg_color', None)
-            #self.override_symbolic_color('base_color', None)
-            #self.override_symbolic_color('theme_bg_color', None)
-            #self.override_symbolic_color('theme_base_color', None)
-            pango_context = self.get_layout().get_context()
-            font_description = pango_context.get_font_description()
-            font_description.set_weight(Pango.Weight.NORMAL)
-            self.override_font(font_description)
-
-    def get_background(self):
-        backcol = self.get_style_context().get_background_color(Gtk.StateType.NORMAL)
-        bcol= Gdk.Color.parse('#fff')[1]
-        bcol.red = int(backcol.red * 65535)
-        bcol.green = int(backcol.green * 65535)
-        bcol.blue = int(backcol.blue * 65535)
-        return bcol
-
     # Gtk.EntryCompletion convenience function
     
     def prefill(self, itemdata, sort=False):
@@ -1091,6 +939,7 @@ class MaskedEntry(UndoableEntry):
 VALIDATION_ICON_WIDTH = 16
 MANDATORY_ICON = 'dialog-information'
 ERROR_ICON = 'process-stop'
+FADE_TIME = 2500
 
 class ValidatableMaskedEntry(MaskedEntry):
     """
@@ -1137,7 +986,7 @@ class ValidatableMaskedEntry(MaskedEntry):
     #allowed_data_types = (basestring, datetime.date, datetime.time, 
                           #datetime.datetime, object) + number
 
-    def __init__(self, data_type=None, err_color = "#ffd5d5", error_icon=ERROR_ICON):
+    def __init__(self, data_type=None, err_color="pink", error_icon=ERROR_ICON):
         self.data_type = None
         self.mandatory = False
         self.error_icon = error_icon
@@ -1147,9 +996,20 @@ class ValidatableMaskedEntry(MaskedEntry):
         
         self._valid = True
         self._def_error_msg = None
-        self._fade = FadeOut(self, err_color)
-        self._fade.connect('color-changed', self._on_fadeout__color_changed)
-        
+
+        self.__fade_tag = None
+        provider = Gtk.CssProvider()
+        css = '.fade {\n'
+        css += '    background: {};\n'.format(err_color)
+        css += '    transition: background {:d}ms linear;\n'.format(FADE_TIME)
+        css += '}'
+        css += '.bg {\n'
+        css += '    background: {};\n'.format(err_color)
+        css += '}'
+        provider.load_from_data(css.encode('utf8'))
+        context = self.get_style_context()
+        context.add_provider(provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
         # FIXME put data type support back
         #self.set_property('data-type', data_type)
 
@@ -1270,10 +1130,18 @@ class ValidatableMaskedEntry(MaskedEntry):
         reset the background color
         """
         ##_LOG.debug('Setting state for %s to VALID' % self.model_attribute)
+        if self.is_valid():
+            return
+
         self._set_valid_state(True)
 
-        self._fade.stop()
-        self.set_pixbuf(None)
+        if self.__fade_tag is not None:
+            GLib.source_remove(self.__fade_tag)
+            self.__fade_tag = None
+        self.set_stock(None)
+        context = self.get_style_context()
+        context.remove_class('fade')
+        context.remove_class('bg')
 
     def set_invalid(self, text=None, fade=True):
         """
@@ -1283,6 +1151,8 @@ class ValidatableMaskedEntry(MaskedEntry):
         :param fade: if we should fade the background
         """
         ##_LOG.debug('Setting state for %s to INVALID' % self.model_attribute)
+        if not self.is_valid():
+            return
 
         self._set_valid_state(False)
 
@@ -1311,29 +1181,13 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         self.set_tooltip(text)
 
-        if not fade:
-            if self.error_icon:
-                self.set_stock(self.error_icon)
-            self.update_background(Gdk.color_parse(self._fade.ERROR_COLOR))
-            return
-
-        # When the fading animation is finished, set the error icon
-        # We don't need to check if the state is valid, since stop()
-        # (which removes this timeout) is called as soon as the user
-        # types valid data.
-        def done(fadeout, c):
-            if self.error_icon:
-                self.set_stock(self.error_icon)
-            self.queue_draw()
-            fadeout.disconnect(c.signal_id)
-
-        class SignalContainer(object):
-            pass
-        c = SignalContainer()
-        c.signal_id = self._fade.connect('done', done, c)
-
-        if self._fade.start(self.get_background()):
-            self.set_pixbuf(None)
+        context = self.get_style_context()
+        if fade:
+            self.__fade_tag = GLib.timeout_add(FADE_TIME, self.__fade_finished)
+            context.add_class('fade')
+        else:
+            self.set_stock(self.error_icon)
+            context.add_class('bg')
 
     def set_blank(self):
         """
@@ -1345,9 +1199,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         if self.mandatory:
             self.set_stock(MANDATORY_ICON)
-            self.queue_draw()
             self.set_tooltip(_('This field is mandatory'))
-            self._fade.stop()
             valid = False
         else:
             valid = True
@@ -1382,10 +1234,11 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.emit('validation-changed', state)
         self._valid = state
 
-    # Callbacks
-
-    def _on_fadeout__color_changed(self, fadeout, color):
-        self.update_background(color)
+    def __fade_finished(self):
+        """Set error icon after fade has finished."""
+        self.__fade_tag = None
+        self.set_stock(self.error_icon)
+        return False
 
 
 def main(args):
