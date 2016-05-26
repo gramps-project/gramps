@@ -45,7 +45,7 @@ class CacheProxyDb:
         If an attribute isn't found here, use the self.db
         version.
         """
-        return self.db.__getattr__(attr)
+        return getattr(self.db, attr)
 
     def clear_cache(self, handle=None):
         """
