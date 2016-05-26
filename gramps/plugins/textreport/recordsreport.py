@@ -49,7 +49,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import Span
 from gramps.gen.errors import ReportError
-from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -99,6 +99,8 @@ class RecordsReport(Report):
             self.include[varname] = menu.get_option_by_name(varname).get_value()
 
         self._nf = stdoptions.run_name_format_option(self, menu)
+
+        self.database = CacheProxyDb(self.database)
 
     def write_report(self):
         """

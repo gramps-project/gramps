@@ -59,6 +59,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import parser
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -745,6 +746,7 @@ class StatisticsChart(Report):
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        self.database = CacheProxyDb(self.database)
 
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()

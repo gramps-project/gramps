@@ -58,6 +58,7 @@ from gramps.gen.plug.report import stdoptions
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -179,6 +180,7 @@ class FanChart(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, rlocale)
+        self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.circle = menu.get_option_by_name('circle').get_value()
