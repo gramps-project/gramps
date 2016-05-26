@@ -24,13 +24,15 @@ import os
 import sys
 import re
 import time
-
+import logging
 
 from gramps.gen.merge.diff import diff_dbs, import_as_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli import user
 from gramps.gen.const import TEMP_DIR, DATA_DIR
+
+logger = logging.getLogger(__name__)
 
 # the following defines where to find the test import and result files
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
@@ -165,7 +167,7 @@ def make_tst_function(tstfile, fname):
             os.remove(fres)
         except OSError:
             pass
-        print("\n**** %s ****" % tstfile)
+        logging.info("\n**** %s ****" % tstfile)
         set_det_id(True)
         self.database1 = import_as_dict(f1, self._user)
         set_det_id(True)
@@ -220,7 +222,6 @@ if tstfile:                             # single file mode
     globals()[clname] = type(clname,
                              (CompleteCheck,),
                              {"testit": test_func})
-#                             {"test:" + fname: test_func})
 else:
     for tstfile in os.listdir(TEST_DIR):
         (fname, ext) = os.path.splitext(os.path.basename(tstfile))
@@ -231,7 +232,6 @@ else:
         globals()[clname] = type(clname,
                                  (CompleteCheck,),
                                  {"testit": test_func})
-#                                 {"test:" + fname: test_func})
 
 
 if __name__ == "__main__":
