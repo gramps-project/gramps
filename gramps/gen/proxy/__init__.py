@@ -26,3 +26,4 @@ from .filter import FilterProxyDb
 from .living import LivingProxyDb
 from .private import PrivateProxyDb
 from .referencedbyselection import ReferencedBySelectionProxyDb
+from .cache import CacheProxyDb

@@ -55,6 +55,7 @@ from gramps.gen.sort import Sort
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                                  get_marriage_or_fallback,
                                  get_divorce_or_fallback)
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -341,6 +342,7 @@ class DescendantReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, self._locale)
+        self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()

@@ -45,6 +45,7 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 from gramps.gen.sort import Sort
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -104,6 +105,7 @@ class TimeLine(Report):
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        self.database = CacheProxyDb(self.database)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
         self.fil_name = "(%s)" % self.filter.get_name(rlocale)

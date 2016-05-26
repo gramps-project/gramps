@@ -72,17 +72,17 @@ NOTECLASS = 'Note'
 TAGCLASS = 'Tag'
 
 CLASS2KEY = {
-            PERSONCLASS: PERSONKEY,
-            FAMILYCLASS: FAMILYKEY,
-            EVENTCLASS: EVENTKEY,
-            PLACECLASS: PLACEKEY,
-            MEDIACLASS: MEDIAKEY,
-            SOURCECLASS: SOURCEKEY,
-            CITATIONCLASS: CITATIONKEY,
-            REPOCLASS: REPOKEY,
-            NOTECLASS: NOTEKEY,
-            TAGCLASS: TAGKEY
-            }
+    PERSONCLASS: PERSONKEY,
+    FAMILYCLASS: FAMILYKEY,
+    EVENTCLASS: EVENTKEY,
+    PLACECLASS: PLACEKEY,
+    MEDIACLASS: MEDIAKEY,
+    SOURCECLASS: SOURCEKEY,
+    CITATIONCLASS: CITATIONKEY,
+    REPOCLASS: REPOKEY,
+    NOTECLASS: NOTEKEY,
+    TAGCLASS: TAGKEY
+    }
 
 def _return(*args):
     """
@@ -115,17 +115,17 @@ class CallbackManager:
         #no handles to track
         self.database = database
         self.__handles = {
-                PERSONKEY: [],
-                FAMILYKEY: [],
-                EVENTKEY: [],
-                PLACEKEY: [],
-                MEDIAKEY: [],
-                SOURCEKEY: [],
-                CITATIONKEY: [],
-                REPOKEY: [],
-                NOTEKEY: [],
-                TAGKEY: [],
-                }
+            PERSONKEY: [],
+            FAMILYKEY: [],
+            EVENTKEY: [],
+            PLACEKEY: [],
+            MEDIAKEY: [],
+            SOURCEKEY: [],
+            CITATIONKEY: [],
+            REPOKEY: [],
+            NOTEKEY: [],
+            TAGKEY: [],
+            }
         #no custom callbacks to do
         self.custom_signal_keys = []
         #set up callbacks to do nothing
@@ -180,7 +180,7 @@ class CallbackManager:
             handles = ahandledict.get(key)
             if handles:
                 self.__handles[key] = list(
-                                      set(self.__handles[key]).union(handles))
+                    set(self.__handles[key]).union(handles))
 
     def unregister_handles(self, ahandledict):
         """
@@ -199,17 +199,17 @@ class CallbackManager:
         Unregister all handles that are registered
         """
         self.__handles = {
-                PERSONKEY: [],
-                FAMILYKEY: [],
-                EVENTKEY: [],
-                PLACEKEY: [],
-                MEDIAKEY: [],
-                SOURCEKEY: [],
-                CITATIONKEY: [],
-                REPOKEY: [],
-                NOTEKEY: [],
-                TAGKEY: [],
-                }
+            PERSONKEY: [],
+            FAMILYKEY: [],
+            EVENTKEY: [],
+            PLACEKEY: [],
+            MEDIAKEY: [],
+            SOURCEKEY: [],
+            CITATIONKEY: [],
+            REPOKEY: [],
+            NOTEKEY: [],
+            TAGKEY: [],
+            }
 
     def register_callbacks(self, callbackdict):
         """
@@ -253,15 +253,12 @@ class CallbackManager:
                 signal = key + method
                 self.__do_unconnect(signal)
                 self.__callbacks[signal][1] = self.database.connect(
-                                        signal,
-                                        self.__callbackcreator(signal))
+                    signal, self.__callbackcreator(signal))
             for method in METHODS_NONE:
                 signal = key + method
                 self.__do_unconnect(signal)
                 self.__callbacks[signal][1] = self.database.connect(
-                                        signal,
-                                        self.__callbackcreator(signal,
-                                                               noarg=True))
+                    signal, self.__callbackcreator(signal, noarg=True))
 
     def __do_callback(self, signal, *arg):
         """
@@ -304,7 +301,8 @@ class CallbackManager:
         managed automatically.
         """
         if self.database:
-            self.custom_signal_keys.append(self.database.connect(name, callback))
+            self.custom_signal_keys.append(self.database.connect(name,
+                                                                 callback))
 
     def __callbackcreator(self, signal, noarg=False):
         """
@@ -338,17 +336,17 @@ def directhandledict(baseobj):
     Build a handledict from baseobj with all directly referenced objects
     """
     handles = {
-                PERSONKEY: [],
-                FAMILYKEY: [],
-                EVENTKEY: [],
-                PLACEKEY: [],
-                MEDIAKEY: [],
-                SOURCEKEY: [],
-                CITATIONKEY: [],
-                REPOKEY: [],
-                NOTEKEY: [],
-                TAGKEY: [],
-                }
+        PERSONKEY: [],
+        FAMILYKEY: [],
+        EVENTKEY: [],
+        PLACEKEY: [],
+        MEDIAKEY: [],
+        SOURCEKEY: [],
+        CITATIONKEY: [],
+        REPOKEY: [],
+        NOTEKEY: [],
+        TAGKEY: [],
+        }
     for classn, handle in baseobj.get_referenced_handles():
         handles[CLASS2KEY[classn]].append(handle)
     return handles
@@ -359,17 +357,17 @@ def handledict(baseobj):
     referenced base obj that are present
     """
     handles = {
-                PERSONKEY: [],
-                FAMILYKEY: [],
-                EVENTKEY: [],
-                PLACEKEY: [],
-                MEDIAKEY: [],
-                SOURCEKEY: [],
-                CITATIONKEY: [],
-                REPOKEY: [],
-                NOTEKEY: [],
-                TAGKEY: [],
-                }
+        PERSONKEY: [],
+        FAMILYKEY: [],
+        EVENTKEY: [],
+        PLACEKEY: [],
+        MEDIAKEY: [],
+        SOURCEKEY: [],
+        CITATIONKEY: [],
+        REPOKEY: [],
+        NOTEKEY: [],
+        TAGKEY: [],
+        }
     for classn, handle in baseobj.get_referenced_handles_recursively():
         handles[CLASS2KEY[classn]].append(handle)
     return handles

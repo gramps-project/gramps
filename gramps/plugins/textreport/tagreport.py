@@ -52,7 +52,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -103,6 +103,8 @@ class TagReport(Report):
                 _('You must first create a tag before running this report.'))
 
         stdoptions.run_name_format_option(self, menu)
+
+        self.database = CacheProxyDb(self.database)
 
     def write_report(self):
         self.doc.start_paragraph("TR-Title")

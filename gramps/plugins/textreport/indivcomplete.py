@@ -57,6 +57,7 @@ from gramps.gen.plug.report import endnotes as Endnotes
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.lds import TEMPLES
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -123,6 +124,7 @@ class IndivCompleteReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, self._locale)
+        self.database = CacheProxyDb(self.database)
         self._db = self.database
 
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
