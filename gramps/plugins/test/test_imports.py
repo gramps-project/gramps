@@ -30,10 +30,10 @@ from gramps.gen.merge.diff import diff_dbs, import_as_dict
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli import user
-from gramps.gen.const import TEMP_DIR
+from gramps.gen.const import TEMP_DIR, DATA_DIR
 
 # the following defines where to find the test import and result files
-TEST_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "Tstdata"))
+TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 
 # ------------------------------------------------------------------
 #  Local Functions
@@ -57,7 +57,9 @@ class CompleteCheck(unittest.TestCase):
                                        item2.to_struct())
                 if msg != "":
                     if hasattr(item1, "gramps_id"):
-                        self.msg += "%s: %s\n" % (obj_type, item1.gramps_id)
+                        self.msg += "%s: %s  handle=%s\n" % \
+                            (obj_type, item1.gramps_id,
+                             getattr(item1, "handle"))
                     else:
                         self.msg += "%s: %s\n" % (obj_type, item1.get_name())
                     self.msg += msg
@@ -153,20 +155,25 @@ class CompleteCheck(unittest.TestCase):
 # The following make_test_function creates a test function (a method,
 # to be precise) that compares the import file with the expected
 # result '.gramps' file.
-def make_test_function(tstfile, fname):
-    def test(self):
+def make_tst_function(tstfile, fname):
+    def tst(self):
         self._user = user.User(quiet=True)
         f1 = os.path.join(TEST_DIR, tstfile)
         f2 = os.path.join(TEST_DIR, (fname + ".gramps"))
         fres = os.path.join(TEMP_DIR, (fname + ".difs"))
+        try:
+            os.remove(fres)
+        except OSError:
+            pass
+        print("\n**** %s ****" % tstfile)
         set_det_id(True)
         self.database1 = import_as_dict(f1, self._user)
         set_det_id(True)
         self.database2 = import_as_dict(f2, self._user)
         self.assertIsNotNone(self.database1,
-                        "Unable to import file: %s" % f1)
+                             "Unable to import file: %s" % f1)
         self.assertIsNotNone(self.database2,
-                        "Unable to import expected result file: %s" % f2)
+                             "Unable to import expected result file: %s" % f2)
         if self.database2 is None or self.database1 is None:
             return
         diffs, added, missing = diff_dbs(self.database1,
@@ -191,7 +198,7 @@ def make_test_function(tstfile, fname):
             # if exception file matches exactly, we are done.
             if self.msg != msg:
                 self.fail(self.msg)
-    return test
+    return tst
 
 # let's see if we have a single file to run, example;
 #    "python test_import.py -i sample.ged"
@@ -208,7 +215,7 @@ if __name__ == "__main__":
 # via the modules' globals, taking advantage that they are a dict.
 if tstfile:                             # single file mode
     (fname, ext) = os.path.splitext(os.path.basename(tstfile))
-    test_func = make_test_function(tstfile, fname)
+    test_func = make_tst_function(tstfile, fname)
     clname = 'Import_{0}'.format(tstfile)
     globals()[clname] = type(clname,
                              (CompleteCheck,),
@@ -216,12 +223,10 @@ if tstfile:                             # single file mode
 #                             {"test:" + fname: test_func})
 else:
     for tstfile in os.listdir(TEST_DIR):
-        print(tstfile)
-
         (fname, ext) = os.path.splitext(os.path.basename(tstfile))
-        if ext == ".gramps" or ext == ".difs":
+        if ext == ".gramps" or ext == ".difs" or ext == ".bak":
             continue
-        test_func = make_test_function(tstfile, fname)
+        test_func = make_tst_function(tstfile, fname)
         clname = 'Import_{0}'.format(tstfile)
         globals()[clname] = type(clname,
                                  (CompleteCheck,),

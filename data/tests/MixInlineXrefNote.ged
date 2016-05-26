@@ -21,24 +21,14 @@
 1 NOTE @N0@
 1 NOTE Inline 1
 1 SOUR Inline Source 1
-1 OBJE
-2 FILE Inline1
-2 FORM jpg
 0 @N0@ NOTE
 1 CONC XREF N0
 0 @I01@ INDI
 1 NAME Living01
 1 SEX M
 1 SOUR inline Source 2
-1 OBJE
-2 FILE Inline2
-3 FORM jpg
 0 @S1@ SOUR
 1 TITL Source S1
 0 @S01@ SOUR
 1 TITL Source S01
-0 @O1@ OBJE
-1 FILE XREF1
-0 @O1@ OBJE
-1 FILE XREF2
 0 TRLR
