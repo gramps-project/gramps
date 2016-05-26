@@ -48,6 +48,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -109,6 +110,8 @@ class AncestorReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
 
         stdoptions.run_name_format_option(self, menu)
+
+        self.database = CacheProxyDb(self.database)
 
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    nlocale=rlocale)

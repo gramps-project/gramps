@@ -61,6 +61,7 @@ from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                                   SurnameColorOption)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -319,6 +320,7 @@ class FamilyLinesReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, self._locale)
+        self.database = CacheProxyDb(self.database)
         self._db = self.database
 
         # initialize several convenient variables

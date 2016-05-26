@@ -125,7 +125,7 @@ from gramps.gen.utils.image import image_size # , resize_to_jpeg_buffer
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.datehandler import displayer as _dd
-from gramps.gen.proxy import LivingProxyDb
+from gramps.gen.proxy import CacheProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.datehandler import get_date
 
@@ -418,7 +418,6 @@ _KEYPERSON, _KEYPLACE, _KEYEVENT, _ALPHAEVENT = 0, 1, 2, 3
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
-_INCLUDE_LIVING_VALUE = LivingProxyDb.MODE_INCLUDE_ALL
 _NAME_COL = 3
 
 _DEFAULT_MAX_IMG_WIDTH = 800   # resize images that are wider than this
@@ -536,37 +535,6 @@ def format_date(date):
         return val
     return ""
 
-def sort_on_name_and_grampsid(obj, dbase):
-    """ Used to sort on name and gramps ID. """
-
-    person = dbase.get_person_from_handle(obj)
-    name = _nd.display(person)
-    return (name, person.get_gramps_id())
-
-def copy_thumbnail(report, handle, photo, region=None):
-    """
-    Given a handle (and optional region) make (if needed) an
-    up-to-date cache of a thumbnail, and call report.copy_file
-    to copy the cached thumbnail to the website.
-    Return the new path to the image.
-    """
-    to_dir = report.build_path('thumb', handle)
-    to_path = os.path.join(to_dir, handle) + (
-        ('%d,%d-%d,%d.png' % region) if region else '.png'
-        )
-
-    if photo.get_mime_type():
-        full_path = media_path_full(report.database, photo.get_path())
-        from_path = get_thumbnail_path(full_path,
-                                       photo.get_mime_type(),
-                                       region)
-        if not os.path.isfile(from_path):
-            from_path = CSS["Document"]["filename"]
-    else:
-        from_path = CSS["Document"]["filename"]
-    report.copy_file(from_path, to_path)
-    return to_path
-
 # pylint: disable=unused-variable
 # pylint: disable=unused-argument
 
@@ -591,7 +559,6 @@ class BasePage:
         self.title_str = title
         self.gid = gid
         self.bibli = Bibliography()
-        self.dbase_ = report.database
 
         self.page_title = ""
 
@@ -629,6 +596,44 @@ class BasePage:
         Display the pages
         """
         pass
+
+    def sort_on_name_and_grampsid(self, handle):
+        """ Used to sort on name and gramps ID. """
+        person = self.report.database.get_person_from_handle(handle)
+        name = _nd.display(person)
+        return (name, person.get_gramps_id())
+
+    def sort_on_grampsid(self, event_ref):
+        """
+        Sort on gramps ID
+        """
+        evt = self.report.database.get_event_from_handle(
+            event_ref.ref)
+        return evt.get_gramps_id()
+
+    def copy_thumbnail(self, handle, photo, region=None):
+        """
+        Given a handle (and optional region) make (if needed) an
+        up-to-date cache of a thumbnail, and call report.copy_file
+        to copy the cached thumbnail to the website.
+        Return the new path to the image.
+        """
+        to_dir = self.report.build_path('thumb', handle)
+        to_path = os.path.join(to_dir, handle) + (
+            ('%d,%d-%d,%d.png' % region) if region else '.png'
+            )
+
+        if photo.get_mime_type():
+            full_path = media_path_full(self.report.database, photo.get_path())
+            from_path = get_thumbnail_path(full_path,
+                                           photo.get_mime_type(),
+                                           region)
+            if not os.path.isfile(from_path):
+                from_path = CSS["Document"]["filename"]
+        else:
+            from_path = CSS["Document"]["filename"]
+        self.report.copy_file(from_path, to_path)
+        return to_path
 
     def get_nav_menu_hyperlink(self, url_fname, nav_text):
         """
@@ -699,7 +704,7 @@ class BasePage:
                 section += table
 
                 for family_handle in family_list:
-                    family = self.dbase_.get_family_from_handle(family_handle)
+                    family = self.report.database.get_family_from_handle(family_handle)
                     if family:
                         link = self.family_link(
                             family_handle,
@@ -719,7 +724,7 @@ class BasePage:
                         spouse_handle = ReportUtils.find_spouse(individual,
                                                                 family)
                         if spouse_handle:
-                            spouse = self.dbase_.get_person_from_handle(
+                            spouse = self.report.database.get_person_from_handle(
                                           spouse_handle)
                             if spouse:
                                 table += self.display_spouse(spouse, family,
@@ -749,7 +754,7 @@ class BasePage:
                                       family.get_mother_handle()]:
                     person = None
                     if person_handle:
-                        person = self.dbase_.get_person_from_handle(
+                        person = self.report.database.get_person_from_handle(
                                           person_handle)
                     if person:
                         table += self.display_spouse(person,
@@ -783,7 +788,7 @@ class BasePage:
         if not self.inc_families:
             notelist = family.get_note_list()
             for notehandle in notelist:
-                note = self.dbase_.get_note_from_handle(notehandle)
+                note = self.report.database.get_note_from_handle(notehandle)
                 if note:
                     trow = Html("tr") + (
                     Html("td", "&nbsp;", class_="ColumnType", inline=True),
@@ -812,11 +817,11 @@ class BasePage:
             # add individual's children event places to family map...
             if self.familymappages:
                 for handle in childlist:
-                    child = self.dbase_.get_person_from_handle(handle)
+                    child = self.report.database.get_person_from_handle(handle)
                     if child:
                         self._get_event_place(child, place_lat_long)
 
-            children = add_birthdate(self.dbase_, childlist)
+            children = add_birthdate(self.report.database, childlist)
             if birthorder:
                 children = sorted(children)
 
@@ -875,7 +880,7 @@ class BasePage:
 
             # family event
             else:
-                _obj = self.dbase_.get_family_from_handle(handle)
+                _obj = self.report.database.get_family_from_handle(handle)
                 if _obj:
 
                     # husband and spouse in this example,
@@ -1064,7 +1069,7 @@ class BasePage:
 
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.dbase_.get_place_from_handle(place_handle)
+            place = self.report.database.get_place_from_handle(place_handle)
             if place:
                 self.append_to_place_lat_long(place, event, place_lat_long)
 
@@ -1138,7 +1143,7 @@ class BasePage:
         # 3 = place handle, 4 = event date, 5 = event type
         found = any(data[3] == place_handle for data in place_lat_long)
         if not found:
-            placetitle = _pd.display(self.dbase_, place)
+            placetitle = _pd.display(self.report.database, place)
             latitude = place.get_latitude()
             longitude = place.get_longitude()
             if latitude and longitude:
@@ -1173,11 +1178,11 @@ class BasePage:
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
-                    event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                    event = self.report.database.get_event_from_handle(evt_ref.ref)
                     if event:
                         place_handle = event.get_place_handle()
                         if place_handle:
-                            place = self.dbase_.get_place_from_handle(
+                            place = self.report.database.get_place_from_handle(
                                               place_handle)
                             if place:
                                 self.append_to_place_lat_long(place, event,
@@ -1222,13 +1227,13 @@ class BasePage:
         husband_handle = family.get_father_handle()
 
         if husband_handle:
-            husband = self.dbase_.get_person_from_handle(husband_handle)
+            husband = self.report.database.get_person_from_handle(husband_handle)
         else:
             husband = None
 
         spouse_handle = family.get_mother_handle()
         if spouse_handle:
-            spouse = self.dbase_.get_person_from_handle(spouse_handle)
+            spouse = self.report.database.get_person_from_handle(spouse_handle)
         else:
             spouse = None
 
@@ -1291,7 +1296,7 @@ class BasePage:
             table += tbody
 
             for evt_ref in event_ref_list:
-                event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                event = self.report.database.get_event_from_handle(evt_ref.ref)
 
                 # add event body row
                 tbody += self.display_event_row(event, evt_ref, place_lat_long,
@@ -1312,11 +1317,11 @@ class BasePage:
         place = None
         place_handle = evt.get_place_handle()
         if place_handle:
-            place = self.dbase_.get_place_from_handle(place_handle)
+            place = self.report.database.get_place_from_handle(place_handle)
 
         place_hyper = None
         if place:
-            place_name = _pd.display(self.dbase_, place, evt.get_date_object())
+            place_name = _pd.display(self.report.database, place, evt.get_date_object())
             place_hyper = self.place_link(place_handle, place_name,
                                           uplink=uplink)
 
@@ -1372,9 +1377,9 @@ class BasePage:
                 place_hyper = "&nbsp;"
                 place_handle = ordobj.get_place_handle()
                 if place_handle:
-                    place = self.dbase_.get_place_from_handle(place_handle)
+                    place = self.report.database.get_place_from_handle(place_handle)
                     if place:
-                        place_title = _pd.display(self.dbase_, place)
+                        place_title = _pd.display(self.report.database, place)
                         place_hyper = self.place_link(place_handle, place_title,
                             place.get_gramps_id(), uplink=True)
 
@@ -2145,7 +2150,7 @@ class BasePage:
         # get all of the backlinks to this media object; meaning all of
         # the people, events, places, etc..., that use this image
         _region_items = set()
-        for (classname, newhandle) in self.dbase_.find_backlink_handles(handle,
+        for (classname, newhandle) in self.report.database.find_backlink_handles(handle,
             include_classes=["Person", "Family", "Event", "Place"]):
 
             # for each of the backlinks, get the relevant object from the db
@@ -2158,7 +2163,7 @@ class BasePage:
                 # Is this a person for whom we have built a page:
                 if self.report.person_in_webreport(newhandle):
                     # If so, let's add a link to them:
-                    _obj = self.dbase_.get_person_from_handle(newhandle)
+                    _obj = self.report.database.get_person_from_handle(newhandle)
                     if _obj:
                         # What is the shortest possible name we could use
                         # for this person?
@@ -2169,16 +2174,16 @@ class BasePage:
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                                     "ppl", True)
             elif classname == "Family":
-                _obj = self.dbase_.get_family_from_handle(newhandle)
+                _obj = self.report.database.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
                 partner1 = None
                 partner2 = None
                 if partner1_handle:
-                    partner1 = self.dbase_.get_person_from_handle(
+                    partner1 = self.report.database.get_person_from_handle(
                                            partner1_handle)
                 if partner2_handle:
-                    partner2 = self.dbase_.get_person_from_handle(
+                    partner2 = self.report.database.get_person_from_handle(
                                            partner2_handle)
                 if partner2 and partner1:
                     _name = partner1.get_primary_name().get_first_name()
@@ -2195,15 +2200,15 @@ class BasePage:
                 if not _name:
                     _name = _UNKNOWN
             elif classname == "Event":
-                _obj = self.dbase_.get_event_from_handle(newhandle)
+                _obj = self.report.database.get_event_from_handle(newhandle)
                 _name = _obj.get_description()
                 if not _name:
                     _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                             "evt", True)
             elif classname == "Place":
-                _obj = self.dbase_.get_place_from_handle(newhandle)
-                _name = _pd.display(self.dbase_, _obj)
+                _obj = self.report.database.get_place_from_handle(newhandle)
+                _name = _pd.display(self.report.database, _obj)
                 if not _name:
                     _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(newhandle,
@@ -2290,8 +2295,7 @@ class BasePage:
                 if region:
 
                     # make a thumbnail of this region
-                    newpath = copy_thumbnail(self.report, photo_handle,
-                                             photo, region)
+                    newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
 
                     snapshot += self.media_link(photo_handle, newpath, descr,
@@ -2578,7 +2582,7 @@ class BasePage:
             for citation in citationlist:
                 cindex += 1
                 # Add this source and its references to the page
-                source = self.dbase_.get_source_from_handle(
+                source = self.report.database.get_source_from_handle(
                                                 citation.get_source_handle())
                 if source is not None:
                     if source.get_author():
@@ -2611,7 +2615,7 @@ class BasePage:
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
-                            media = self.dbase_.get_media_from_handle(
+                            media = self.report.database.get_media_from_handle(
                                                                media_handle)
                             if media:
                                 mime_type = media.get_mime_type()
@@ -2646,7 +2650,7 @@ class BasePage:
                                                         usedescr=False),
                                                     inline=True)
                     for handle in sref.get_note_list():
-                        this_note = self.dbase_.get_note_from_handle(handle)
+                        this_note = self.report.database.get_note_from_handle(handle)
                         if this_note is not None:
                             tmp += Html("li",
                                         "%s: %s" % (
@@ -2788,7 +2792,7 @@ class BasePage:
             # The person is not included in the webreport
             link = ""
             if person is None:
-                person = self.dbase_.get_person_from_handle(person_handle)
+                person = self.report.database.get_person_from_handle(person_handle)
             if person:
                 name = self.report.get_person_name(person)
                 gid = person.get_gramps_id()
@@ -2938,7 +2942,7 @@ class BasePage:
             )
             tbody += trow
 
-        mlocation = get_main_location(self.dbase_, place)
+        mlocation = get_main_location(self.report.database, place)
         for (label, data) in [
             (STREET, mlocation.get(PlaceType.STREET, '')),
             (LOCALITY, mlocation.get(PlaceType.LOCALITY, '')),
@@ -2987,7 +2991,7 @@ class BasePage:
         for placeref in place.get_placeref_list():
             place_date = get_date(placeref)
             if place_date != "":
-                parent_place = self.dbase_.get_place_from_handle(placeref.ref)
+                parent_place = self.report.database.get_place_from_handle(placeref.ref)
                 parent_name = parent_place.get_name().get_value()
                 trow = Html('tr') + (
                     Html("td", LOCATIONS, class_="ColumnAttribute",
@@ -3054,7 +3058,7 @@ class BasePage:
 
                 index = 1
                 for repo_ref in repo_ref_list:
-                    repository = self.dbase_.get_repository_from_handle(
+                    repository = self.report.database.get_repository_from_handle(
                                                                  repo_ref.ref)
                     if repository:
 
@@ -3278,9 +3282,9 @@ class SurnamePage(BasePage):
                 table += tbody
 
                 for person_handle in sorted(ppl_handle_list,
-                       key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
+                                            key=self.sort_on_name_and_grampsid):
 
-                    person = self.dbase_.get_person_from_handle(person_handle)
+                    person = self.report.database.get_person_from_handle(person_handle)
                     if person.get_change_time() > ldatec:
                         ldatec = person.get_change_time()
                     trow = Html("tr")
@@ -3297,7 +3301,7 @@ class SurnamePage(BasePage):
                         tcell = Html("td", class_="ColumnBirth", inline=True)
                         trow += tcell
 
-                        birth_date = _find_birth_date(self.dbase_, person)
+                        birth_date = _find_birth_date(self.report.database, person)
                         if birth_date is not None:
                             if birth_date.fallback:
                                 tcell += Html('em', _dd.display(birth_date),
@@ -3312,7 +3316,7 @@ class SurnamePage(BasePage):
                         tcell = Html("td", class_="ColumnDeath", inline=True)
                         trow += tcell
 
-                        death_date = _find_death_date(self.dbase_, person)
+                        death_date = _find_death_date(self.report.database, person)
                         if death_date is not None:
                             if death_date.fallback:
                                 tcell += Html('em', _dd.display(death_date),
@@ -3330,7 +3334,7 @@ class SurnamePage(BasePage):
                         first_family = True
                         if family_list:
                             for family_handle in family_list:
-                                family = self.dbase_.get_family_from_handle(
+                                family = self.report.database.get_family_from_handle(
                                                                 family_handle)
                                 partner_handle = ReportUtils.find_spouse(person,
                                                                          family)
@@ -3349,18 +3353,18 @@ class SurnamePage(BasePage):
                         parent_handle_list = person.get_parent_family_handle_list()
                         if parent_handle_list:
                             parent_handle = parent_handle_list[0]
-                            family = self.dbase_.get_family_from_handle(
+                            family = self.report.database.get_family_from_handle(
                                                                  parent_handle)
                             father_id = family.get_father_handle()
                             mother_id = family.get_mother_handle()
                             mother = father = None
                             if father_id:
-                                father = self.dbase_.get_person_from_handle(
+                                father = self.report.database.get_person_from_handle(
                                                                      father_id)
                                 if father:
                                     father_name = self.get_name(father)
                             if mother_id:
-                                mother = self.dbase_.get_person_from_handle(
+                                mother = self.report.database.get_person_from_handle(
                                                                      mother_id)
                                 if mother:
                                     mother_name = self.get_name(mother)
@@ -3474,7 +3478,7 @@ class FamilyPages(BasePage):
             # because they are not in the original family list.
             pers_fam_dict = defaultdict(list)
             for family_handle in fam_list:
-                family = self.dbase_.get_family_from_handle(family_handle)
+                family = self.report.database.get_family_from_handle(family_handle)
                 if family:
                     if family.get_change_time() > ldatec:
                         ldatec = family.get_change_time()
@@ -3486,7 +3490,7 @@ class FamilyPages(BasePage):
                         pers_fam_dict[spouse_handle].append(family)
 
             # add alphabet navigation
-            index_list = get_first_letters(self.dbase_, pers_fam_dict.keys(),
+            index_list = get_first_letters(self.report.database, pers_fam_dict.keys(),
                                            _KEYPERSON)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
@@ -3518,7 +3522,7 @@ class FamilyPages(BasePage):
                 table += tbody
 
                 # begin displaying index list
-                ppl_handle_list = sort_people(self.dbase_, pers_fam_dict.keys())
+                ppl_handle_list = sort_people(self.report.database, pers_fam_dict.keys())
                 first = True
                 for (surname, handle_list) in ppl_handle_list:
 
@@ -3530,9 +3534,8 @@ class FamilyPages(BasePage):
 
                     # get person from sorted database list
                     for person_handle in sorted(handle_list,
-                          key=lambda x: sort_on_name_and_grampsid(x,
-                                                                  self.dbase_)):
-                        person = self.dbase_.get_person_from_handle(
+                                                key=self.sort_on_name_and_grampsid):
+                        person = self.report.database.get_person_from_handle(
                                                              person_handle)
                         if person:
                             family_list = sorted(pers_fam_dict[person_handle],
@@ -3589,19 +3592,11 @@ class FamilyPages(BasePage):
                                 trow += (tcell1, tcell2)
 
                                 if fam_evt_ref_list:
-                                    def sort_on_grampsid(obj):
-                                        """
-                                        Sort on gramps ID
-                                        """
-                                        evt = self.dbase_.get_event_from_handle(
-                                                                    obj.ref)
-                                        return evt.get_gramps_id()
-
                                     fam_evt_srt_ref_list = sorted(
-                                            fam_evt_ref_list,
-                                            key=lambda x: sort_on_grampsid(x))
+                                        fam_evt_ref_list,
+                                        key=self.sort_on_grampsid)
                                     for evt_ref in fam_evt_srt_ref_list:
-                                        evt = self.dbase_.get_event_from_handle(
+                                        evt = self.report.database.get_event_from_handle(
                                                                     evt_ref.ref)
                                         if evt:
                                             evt_type = evt.get_type()
@@ -3672,7 +3667,7 @@ class FamilyPages(BasePage):
                 # the family event media here
                 if not self.inc_events:
                     for evt_ref in family.get_event_ref_list():
-                        event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                        event = self.report.database.get_event_from_handle(evt_ref.ref)
                         media_list += event.get_media_list()
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
                                                                   family)
@@ -3806,7 +3801,7 @@ class PlacePages(BasePage):
             placelist += Html("p", msg, id="description")
 
             # begin alphabet navigation
-            index_list = get_first_letters(self.dbase_, place_handles,
+            index_list = get_first_letters(self.report.database, place_handles,
                                            _KEYPLACE)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
@@ -3837,7 +3832,7 @@ class PlacePages(BasePage):
 
                 handle_list = sorted(place_handles,
                                      key=lambda x:
-                              SORT_KEY(ReportUtils.place_name(self.dbase_, x)))
+                              SORT_KEY(ReportUtils.place_name(self.report.database, x)))
                 first = True
 
                 # begin table body
@@ -3845,13 +3840,13 @@ class PlacePages(BasePage):
                 table += tbody
 
                 for place_handle in handle_list:
-                    place = self.dbase_.get_place_from_handle(place_handle)
+                    place = self.report.database.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec:
                             ldatec = place.get_change_time()
-                        place_title = ReportUtils.place_name(self.dbase_,
+                        place_title = ReportUtils.place_name(self.report.database,
                                                              place_handle)
-                        main_location = get_main_location(self.dbase_, place)
+                        main_location = get_main_location(self.report.database, place)
 
                         if place_title and not place_title.isspace():
                             letter = get_index_letter(first_letter(place_title),
@@ -3934,7 +3929,7 @@ class PlacePages(BasePage):
 
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
-        self.page_title = _pd.display(self.dbase_, place)
+        self.page_title = _pd.display(self.report.database, place)
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
@@ -4136,7 +4131,7 @@ class EventPages(BasePage):
             eventlist += Html("p", msg, id="description")
 
             # get alphabet navigation...
-            index_list = get_first_letters(self.dbase_, event_types,
+            index_list = get_first_letters(self.report.database, event_types,
                                            _ALPHAEVENT)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
@@ -4169,7 +4164,7 @@ class EventPages(BasePage):
 
                 # separate events by their type and then thier event handles
                 for (evt_type,
-                     data_list) in sort_event_types(self.dbase_,
+                     data_list) in sort_event_types(self.report.database,
                                                     event_types,
                                                     event_handle_list):
                     first = True
@@ -4180,7 +4175,7 @@ class EventPages(BasePage):
                     first_event = True
 
                     for (sort_value, event_handle) in data_list:
-                        event = self.dbase_.get_event_from_handle(event_handle)
+                        event = self.report.database.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
                         if event.get_change_time() > ldatec:
@@ -4192,13 +4187,13 @@ class EventPages(BasePage):
                             # family event
                             if int(_type) in _EVENTMAP:
                                 handle_list = set(
-                                              self.dbase_.find_backlink_handles(
+                                              self.report.database.find_backlink_handles(
                                                   event_handle,
                                                   include_classes=['Family',
                                                                    'Person']))
                             else:
                                 handle_list = set(
-                                              self.dbase_.find_backlink_handles(
+                                              self.report.database.find_backlink_handles(
                                                   event_handle,
                                                   include_classes=['Person']))
                             if handle_list:
@@ -4478,7 +4473,7 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                index_list = get_first_letters(self.dbase_, ppl_handle_list,
+                index_list = get_first_letters(self.report.database, ppl_handle_list,
                                                _KEYPERSON)
                 alpha_nav = alphabet_navigation(index_list)
                 if alpha_nav is not None:
@@ -4522,7 +4517,7 @@ class SurnameListPage(BasePage):
                 with Html("tbody") as tbody:
                     table += tbody
 
-                    ppl_handle_list = sort_people(self.dbase_, ppl_handle_list)
+                    ppl_handle_list = sort_people(self.report.database, ppl_handle_list)
                     if order_by == self.ORDER_BY_COUNT:
                         temp_list = {}
                         for (surname, data_list) in ppl_handle_list:
@@ -4632,7 +4627,7 @@ class IntroductionPage(BasePage):
 
             note_id = report.options['intronote']
             if note_id:
-                note = self.dbase_.get_note_from_gramps_id(note_id)
+                note = self.report.database.get_note_from_gramps_id(note_id)
                 note_text = self.get_note_format(note, False)
 
                 # attach note
@@ -4676,7 +4671,7 @@ class HomePage(BasePage):
 
             note_id = report.options['homenote']
             if note_id:
-                note = self.dbase_.get_note_from_gramps_id(note_id)
+                note = self.report.database.get_note_from_gramps_id(note_id)
                 note_text = self.get_note_format(note, False)
 
                 # attach note
@@ -4786,7 +4781,7 @@ class SourcePages(BasePage):
 
             # Sort the sources
             for handle in source_handles:
-                source = self.dbase_.get_source_from_handle(handle)
+                source = self.report.database.get_source_from_handle(handle)
                 if source is not None:
                     key = source.get_title() + source.get_author()
                     key += str(source.get_gramps_id())
@@ -5074,7 +5069,7 @@ class MediaPages(BasePage):
 
                 index = 1
                 for media_handle in sorted_media_handles:
-                    media = self.dbase_.get_media_from_handle(media_handle)
+                    media = self.report.database.get_media_from_handle(media_handle)
                     if media:
                         if media.get_change_time() > ldatec:
                             ldatec = media.get_change_time()
@@ -5106,9 +5101,12 @@ class MediaPages(BasePage):
             unused_media_handles = []
             if self.create_unused_media:
                 # add unused media
-                media_list = self.dbase_.get_media_handles()
+                media_list = self.report.database.get_media_handles()
                 for media_ref in media_list:
-                    media_handle = media_ref.decode("utf-8")
+                    if isinstance(media_ref, bytes):
+                        media_handle = media_ref.decode("utf-8")
+                    else:
+                        media_handle = media_ref
                     if media_handle not in self.report.obj_dict[Media]:
                         unused_media_handles.append(media_handle)
                 unused_media_handles = sorted(unused_media_handles,
@@ -5130,7 +5128,7 @@ class MediaPages(BasePage):
                     Html("td", Html("h4", " "), inline=True)
                 )
                 for media_handle in unused_media_handles:
-                    media = self.dbase_.get_media_from_handle(media_handle)
+                    media = self.report.database.get_media_from_handle(media_handle)
                     gc.collect() # Reduce memory usage when many images.
                     next_ = None if indx == total else \
                                                       unused_media_handles[indx]
@@ -5219,7 +5217,7 @@ class MediaPages(BasePage):
             #note_only = True
             target_exists = False
 
-        copy_thumbnail(self.report, media_handle, media)
+        self.copy_thumbnail(media_handle, media)
         self.page_title = media.get_description()
         (mediapage, head,
          body) = self.write_header("%s - %s" % (_("Media"),
@@ -5277,7 +5275,7 @@ class MediaPages(BasePage):
                             # the user to have to await a large download
                             # unnecessarily. Either way, set the display image
                             # size as requested.
-                            orig_image_path = media_path_full(self.dbase_,
+                            orig_image_path = media_path_full(self.report.database,
                                                               media.get_path())
                             #mtime = os.stat(orig_image_path).st_mtime
                             (width, height) = image_size(orig_image_path)
@@ -5336,7 +5334,7 @@ class MediaPages(BasePage):
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
                         if run_thumbnailer(mime_type,
-                                           media_path_full(self.dbase_,
+                                           media_path_full(self.report.database,
                                                            media.get_path()),
                                            thmb_path, 320):
                             try:
@@ -5489,7 +5487,7 @@ class MediaPages(BasePage):
         to_dir = self.report.build_path('images', handle)
         newpath = os.path.join(to_dir, handle) + ext
 
-        fullpath = media_path_full(self.dbase_, photo.get_path())
+        fullpath = media_path_full(self.report.database, photo.get_path())
         if not os.path.isfile(fullpath):
             _WRONGMEDIAPATH.append([photo.get_gramps_id(), fullpath])
             return None
@@ -5535,27 +5533,30 @@ class ThumbnailPreviewPage(BasePage):
 
         self.photo_keys = sorted(self.report.obj_dict[Media],
                                  key=lambda x: sort_by_desc_and_gid(
-                                          self.dbase_.get_media_from_handle(x)))
+                                          self.report.database.get_media_from_handle(x)))
 
         if self.create_unused_media:
             # add unused media
-            media_list = self.dbase_.get_media_handles()
+            media_list = self.report.database.get_media_handles()
             unused_media_handles = []
             for media_ref in media_list:
-                media_handle = media_ref.decode("utf-8")
+                if isinstance(media_ref, bytes):
+                    media_handle = media_ref.decode("utf-8")
+                else:
+                    media_handle = media_ref
                 if media_handle not in self.report.obj_dict[Media]:
                     self.photo_keys.append(media_handle)
 
         media_list = []
         for person_handle in self.photo_keys:
-            photo = self.dbase_.get_media_from_handle(person_handle)
+            photo = self.report.database.get_media_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
                     media_list.append((photo.get_description(), person_handle,
                                        photo))
 
                     if self.create_thumbs_only:
-                        copy_thumbnail(self.report, person_handle, photo)
+                        self.copy_thumbnail(person_handle, photo)
 
         media_list.sort(key=lambda x: SORT_KEY(x[0]))
 
@@ -5923,7 +5924,7 @@ class ContactPage(BasePage):
 
                     note_id = report.options['contactnote']
                     if note_id:
-                        note = self.dbase_.get_note_from_gramps_id(note_id)
+                        note = self.report.database.get_note_from_gramps_id(note_id)
                         note_text = self.get_note_format(note, False)
 
                         # attach note
@@ -6033,7 +6034,7 @@ class PersonPages(BasePage):
             individuallist += Html("p", msg, id="description")
 
             # add alphabet navigation
-            index_list = get_first_letters(self.dbase_, ppl_handle_list,
+            index_list = get_first_letters(self.report.database, ppl_handle_list,
                                            _KEYPERSON)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
@@ -6074,7 +6075,7 @@ class PersonPages(BasePage):
             tbody = Html("tbody")
             table += tbody
 
-            ppl_handle_list = sort_people(self.dbase_, ppl_handle_list)
+            ppl_handle_list = sort_people(self.report.database, ppl_handle_list)
             first = True
             for (surname, handle_list) in ppl_handle_list:
 
@@ -6086,8 +6087,8 @@ class PersonPages(BasePage):
 
                 first_surname = True
                 for person_handle in sorted(handle_list,
-                       key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
-                    person = self.dbase_.get_person_from_handle(person_handle)
+                                            key=self.sort_on_name_and_grampsid):
+                    person = self.report.database.get_person_from_handle(person_handle)
                     if person.get_change_time() > date:
                         date = person.get_change_time()
 
@@ -6126,7 +6127,7 @@ class PersonPages(BasePage):
                         tcell = Html("td", class_="ColumnBirth", inline=True)
                         trow += tcell
 
-                        birth_date = _find_birth_date(self.dbase_, person)
+                        birth_date = _find_birth_date(self.report.database, person)
                         if birth_date is not None:
                             if birth_date.fallback:
                                 tcell += Html('em', _dd.display(birth_date),
@@ -6141,7 +6142,7 @@ class PersonPages(BasePage):
                         tcell = Html("td", class_="ColumnDeath", inline=True)
                         trow += tcell
 
-                        death_date = _find_death_date(self.dbase_, person)
+                        death_date = _find_death_date(self.report.database, person)
                         if death_date is not None:
                             if death_date.fallback:
                                 tcell += Html('em', _dd.display(death_date),
@@ -6160,7 +6161,7 @@ class PersonPages(BasePage):
                         tcell = ()
                         if family_list:
                             for family_handle in family_list:
-                                family = self.dbase_.get_family_from_handle(
+                                family = self.report.database.get_family_from_handle(
                                                                   family_handle)
                                 partner_handle = ReportUtils.find_spouse(person,
                                                                          family)
@@ -6191,17 +6192,17 @@ class PersonPages(BasePage):
                         parent_handle_list = person.get_parent_family_handle_list()
                         if parent_handle_list:
                             parent_handle = parent_handle_list[0]
-                            family = self.dbase_.get_family_from_handle(
+                            family = self.report.database.get_family_from_handle(
                                                                   parent_handle)
                             father_handle = family.get_father_handle()
                             mother_handle = family.get_mother_handle()
                             if father_handle:
-                                father = self.dbase_.get_person_from_handle(
+                                father = self.report.database.get_person_from_handle(
                                                                   father_handle)
                             else:
                                 father = None
                             if mother_handle:
-                                mother = self.dbase_.get_person_from_handle(
+                                mother = self.report.database.get_person_from_handle(
                                                                   mother_handle)
                             else:
                                 mother = None
@@ -6347,11 +6348,11 @@ class PersonPages(BasePage):
             # Individual Pages...
             if not self.inc_families:
                 for handle in self.person.get_family_handle_list():
-                    family = self.dbase_.get_family_from_handle(handle)
+                    family = self.report.database.get_family_from_handle(handle)
                     if family:
                         media_list += family.get_media_list()
                         for evt_ref in family.get_event_ref_list():
-                            event = self.dbase_.get_event_from_handle(
+                            event = self.report.database.get_event_from_handle(
                                                                     evt_ref.ref)
                             media_list += event.get_media_list()
 
@@ -6360,7 +6361,7 @@ class PersonPages(BasePage):
             # Individual Pages...
             if not self.inc_events:
                 for evt_ref in self.person.get_primary_event_ref_list():
-                    event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                    event = self.report.database.get_event_from_handle(evt_ref.ref)
                     if event:
                         media_list += event.get_media_list()
 
@@ -6778,15 +6779,14 @@ class PersonPages(BasePage):
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
-                    photo = self.dbase_.get_media_from_handle(photo_handle)
+                    photo = self.report.database.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle,
                                                                  person)
                         if region:
                             # make a thumbnail of this region
-                            newpath = copy_thumbnail(self.report, photo_handle,
-                                                     photo, region)
+                            newpath = self.copy_thumbnail(photo_handle, photo, region)
                             # TODO. Check if build_url_fname can be used.
                             newpath = "/".join(['..']*3 + [newpath])
                             if win():
@@ -6865,7 +6865,7 @@ class PersonPages(BasePage):
         box = []
         if not handle:
             return box
-        person = self.dbase_.get_person_from_handle(handle)
+        person = self.report.database.get_person_from_handle(handle)
         box = self.draw_box(center2, col, person)
         box += self.connect_line(center1, center2, col)
         return box
@@ -6912,7 +6912,7 @@ class PersonPages(BasePage):
             return tree
         gen_offset = int(max_size / pow(2, gen_nr+1))
         if person_handle:
-            person = self.dbase_.get_person_from_handle(person_handle)
+            person = self.report.database.get_person_from_handle(person_handle)
         else:
             person = None
         if not person:
@@ -6932,7 +6932,7 @@ class PersonPages(BasePage):
             line_offset = _XOFFSET + gen_nr*_WIDTH + (gen_nr-1)*_HGAP
             tree += self.extend_line(new_center, line_offset)
 
-            family = self.dbase_.get_family_from_handle(family_handle)
+            family = self.report.database.get_family_from_handle(family_handle)
 
             f_center = new_center-gen_offset
             f_handle = family.get_father_handle()
@@ -7020,7 +7020,7 @@ class PersonPages(BasePage):
                 childlist = family.get_child_ref_list()
 
                 childlist = [child_ref.ref for child_ref in childlist]
-                children = add_birthdate(self.dbase_, childlist)
+                children = add_birthdate(self.report.database, childlist)
 
                 if birthorder:
                     children = sorted(children)
@@ -7029,7 +7029,7 @@ class PersonPages(BasePage):
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:
-                        child = self.dbase_.get_person_from_handle(handle)
+                        child = self.report.database.get_person_from_handle(handle)
                         if child:
                             ol_html += Html("li") + self.pedigree_person(child)
             else:
@@ -7052,15 +7052,15 @@ class PersonPages(BasePage):
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
             parent_handle = parent_handle_list[0]
-            family = self.dbase_.get_family_from_handle(parent_handle)
+            family = self.report.database.get_family_from_handle(parent_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if mother_handle:
-                mother = self.dbase_.get_person_from_handle(mother_handle)
+                mother = self.report.database.get_person_from_handle(mother_handle)
             else:
                 mother = None
             if father_handle:
-                father = self.dbase_.get_person_from_handle(father_handle)
+                father = self.report.database.get_person_from_handle(father_handle)
             else:
                 father = None
         else:
@@ -7147,7 +7147,7 @@ class PersonPages(BasePage):
                         unordered = Html("ul")
 
                         for notehandle in notelist:
-                            note = self.dbase_.get_note_from_handle(notehandle)
+                            note = self.report.database.get_note_from_handle(notehandle)
                             if note:
                                 note_text = self.get_note_format(note, True)
 
@@ -7210,14 +7210,14 @@ class PersonPages(BasePage):
                 birth_date = Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
                 if birth_ref:
-                    birth = self.dbase_.get_event_from_handle(birth_ref.ref)
+                    birth = self.report.database.get_event_from_handle(birth_ref.ref)
                     if birth:
                         birth_date = birth.get_date_object()
 
                 if birth_date and birth_date is not Date.EMPTY:
-                    alive = probably_alive(self.person, self.dbase_, Today())
+                    alive = probably_alive(self.person, self.report.database, Today())
 
-                    death_date = _find_death_date(self.dbase_, self.person)
+                    death_date = _find_death_date(self.report.database, self.person)
                     if not alive and death_date is not None:
                         nyears = death_date - birth_date
                         nyears.format(precision=3)
@@ -7263,7 +7263,7 @@ class PersonPages(BasePage):
                 table += tbody
 
                 for evt_ref in event_ref_list:
-                    event = self.dbase_.get_event_from_handle(evt_ref.ref)
+                    event = self.report.database.get_event_from_handle(evt_ref.ref)
                     if event:
 
                         # display event row
@@ -7353,7 +7353,7 @@ class PersonPages(BasePage):
 
         for child_ref in family.get_child_ref_list():
             child_handle = child_ref.ref
-            child = self.dbase_.get_person_from_handle(child_handle)
+            child = self.report.database.get_person_from_handle(child_handle)
             if child:
                 if child == self.person:
                     reln = ""
@@ -7364,7 +7364,7 @@ class PersonPages(BasePage):
                         # routines to work. Depending on your definition of
                         # sibling, we cannot necessarily guarantee that.
                         sibling_type = self.rel_class.get_sibling_type(
-                                self.dbase_, self.person, child)
+                                self.report.database, self.person, child)
 
                         reln = self.rel_class.get_sibling_relationship_string(
                                 sibling_type, self.person.gender,
@@ -7410,10 +7410,10 @@ class PersonPages(BasePage):
         @param: table              -- The html document to complete
         """
         if parent_handle:
-            parent = self.dbase_.get_person_from_handle(parent_handle)
+            parent = self.report.database.get_person_from_handle(parent_handle)
             for parent_family_handle in parent.get_family_handle_list():
                 if parent_family_handle not in all_family_handles:
-                    parent_family = self.dbase_.get_family_from_handle(
+                    parent_family = self.report.database.get_family_from_handle(
                                         parent_family_handle)
                     self.display_ind_parent_family(birthmother, birthfather,
                                                    parent_family, table)
@@ -7425,7 +7425,7 @@ class PersonPages(BasePage):
         """
         center_person = self.report.database.get_person_from_gramps_id(
                                                      self.report.options['pid'])
-        relationship = self.rel_class.get_one_relationship(self.dbase_,
+        relationship = self.rel_class.get_one_relationship(self.report.database,
                                                            self.person,
                                                            center_person)
         if relationship == "": # No relation to display
@@ -7483,11 +7483,11 @@ class PersonPages(BasePage):
 
                 all_family_handles = list(parent_list)
                 (birthmother, birthfather) = self.rel_class.get_birth_parents(
-                                                self.dbase_, self.person)
+                                                self.report.database, self.person)
 
                 first = True
                 for family_handle in parent_list:
-                    family = self.dbase_.get_family_from_handle(family_handle)
+                    family = self.report.database.get_family_from_handle(family_handle)
                     if family:
                         # Display this family
                         self.display_ind_parent_family(
@@ -7524,10 +7524,10 @@ class PersonPages(BasePage):
         """
         ped = []
         for family_handle in self.person.get_family_handle_list():
-            rel_family = self.dbase_.get_family_from_handle(family_handle)
+            rel_family = self.report.database.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(self.person, rel_family)
             if spouse_handle:
-                spouse = self.dbase_.get_person_from_handle(spouse_handle)
+                spouse = self.report.database.get_person_from_handle(spouse_handle)
                 pedsp = (Html("li", class_="spouse") +
                          self.pedigree_person(spouse)
                         )
@@ -7539,7 +7539,7 @@ class PersonPages(BasePage):
                 with Html("ol") as childol:
                     pedsp += [childol]
                     for child_ref in childlist:
-                        child = self.dbase_.get_person_from_handle(
+                        child = self.report.database.get_person_from_handle(
                                                                   child_ref.ref)
                         if child:
                             childol += (Html("li") +
@@ -7973,16 +7973,8 @@ class NavWebReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
-        stdoptions.run_private_data_option(self, menu)
 
-        livinginfo = self.options['living_people']
-        yearsafterdeath = self.options['years_past_death']
-
-        if livinginfo != _INCLUDE_LIVING_VALUE:
-            self.database = LivingProxyDb(self.database,
-                                          livinginfo,
-                                          None,
-                                          yearsafterdeath)
+        self.database = CacheProxyDb(self.database)
 
         filters_option = menu.get_option_by_name('filter')
         self.filter = filters_option.get_filter()
@@ -8336,14 +8328,14 @@ class NavWebReport(Report):
         @param: bkref_handle  -- The handle associated to this person
         """
         person = self.database.get_person_from_handle(person_handle)
-        person_name = self.get_person_name(person)
-        person_fname = self.build_url_fname(person_handle, "ppl",
-                                                   False) + self.ext
-        self.obj_dict[Person][person_handle] = (person_fname, person_name,
-                                                person.gramps_id)
-        self.bkref_dict[Person][person_handle].add((bkref_class, bkref_handle))
-
         if person:
+            person_name = self.get_person_name(person)
+            person_fname = self.build_url_fname(person_handle, "ppl",
+                                                False) + self.ext
+            self.obj_dict[Person][person_handle] = (person_fname, person_name,
+                                                    person.gramps_id)
+            self.bkref_dict[Person][person_handle].add((bkref_class, bkref_handle))
+
             ############### Header section ##############
             for citation_handle in person.get_citation_list():
                 self._add_citation(citation_handle, Person, person_handle)

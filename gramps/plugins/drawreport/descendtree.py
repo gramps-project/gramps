@@ -43,6 +43,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
+from gramps.gen.proxy import CacheProxyDb
 
 PT2CM = ReportUtils.pt2cm
 
@@ -1286,6 +1287,7 @@ class DescendTree(Report):
         self._locale = self.set_locale(lang)
         stdoptions.run_private_data_option(self, options.menu)
         stdoptions.run_living_people_option(self, options.menu, self._locale)
+        self.database = CacheProxyDb(self.database)
         stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 
