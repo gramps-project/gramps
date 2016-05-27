@@ -113,7 +113,7 @@ RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 class Information(ManagedWindow):
     def __init__(self, uistate, data, parent):
         super().__init__(uistate, [], self)
-        self.window = Gtk.Dialog('Gramp')
+        self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
         self.window.set_modal(True)
         self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
