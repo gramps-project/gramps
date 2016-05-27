@@ -100,6 +100,7 @@ class AncestorReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, rlocale)
+        self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
@@ -110,8 +111,6 @@ class AncestorReport(Report):
             raise ReportError(_("Person %s is not in the Database") % pid )
 
         stdoptions.run_name_format_option(self, menu)
-
-        self.database = CacheProxyDb(self.database)
 
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    nlocale=rlocale)

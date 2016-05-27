@@ -77,6 +77,7 @@ class RecordsReport(Report):
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu,
                                                          self._locale)
+        self.database = CacheProxyDb(self.database)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
@@ -99,8 +100,6 @@ class RecordsReport(Report):
             self.include[varname] = menu.get_option_by_name(varname).get_value()
 
         self._nf = stdoptions.run_name_format_option(self, menu)
-
-        self.database = CacheProxyDb(self.database)
 
     def write_report(self):
         """
