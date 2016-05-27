@@ -1103,43 +1103,65 @@ class GrampsPreferences(ConfigureDialog):
         return _('Display'), grid
 
     def add_places_panel(self, configdialog):
-        row = 0
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
-        self.add_checkbox(grid, _("Enable automatic place title generation"),
-                          row, 'preferences.place-auto', stop=3)
+        auto = self.add_checkbox(grid,
+                                _("Enable automatic place title generation"),
+                                0, 'preferences.place-auto',
+                                extra_callback=self.auto_title_changed)
+
+        row = 0
+        grid2 = Gtk.Grid()
+        grid2.set_border_width(12)
+        grid2.set_column_spacing(6)
+        grid2.set_row_spacing(6)
+        grid.attach(grid2, 1, 1, 1, 1)
+
+        self.place_widgets = []
+        cbox = self.add_checkbox(grid2, _("Suppress comma after house number"),
+                                 row, 'preferences.place-number', start=0)
+        self.place_widgets.append(cbox)
         row += 1
 
-        self.add_checkbox(grid, _("Suppress comma after house number"),
-                          row, 'preferences.place-number', stop=3)
-        row += 1
-
-        self.add_checkbox(grid, _("Reverse display order"),
-                          row, 'preferences.place-reverse', stop=3)
+        cbox = self.add_checkbox(grid2, _("Reverse display order"),
+                                 row, 'preferences.place-reverse', start=0)
+        self.place_widgets.append(cbox)
         row += 1
 
         # Place restriction
         obox = Gtk.ComboBoxText()
         formats = [_("Full place name"),
-                   _("-> Hamlet/VillageTown/City"),
-                   _("Hamlet/VillageTown/City ->")]
+                   _("-> Hamlet/Village/Town/City"),
+                   _("Hamlet/Village/Town/City ->")]
         list(map(obox.append_text, formats))
         active = config.get('preferences.place-restrict')
         obox.set_active(active)
         obox.connect('changed', self.place_restrict_changed)
         lwidget = BasicLabel("%s: " % _('Restrict'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
+        grid2.attach(lwidget, 0, row, 1, 1)
+        grid2.attach(obox, 1, row, 2, 1)
+        self.place_widgets.append(obox)
         row += 1
 
-        self.add_entry(grid, _("Language"),
-                          row, 'preferences.place-lang')
+        entry = self.add_entry(grid2, _("Language"),
+                               row, 'preferences.place-lang')
+        self.place_widgets.append(entry)
         row += 1
+
+        self.auto_title_changed(auto)
 
         return _('Places'), grid
+
+    def auto_title_changed(self, obj):
+        """
+        Update sensitivity of place configuration widgets.
+        """
+        active = obj.get_active()
+        for widget in self.place_widgets:
+            widget.set_sensitive(active)
 
     def add_text_panel(self, configdialog):
         row = 0
