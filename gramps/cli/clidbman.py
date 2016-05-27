@@ -226,11 +226,13 @@ class CLIDbManager:
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
                 try:
-                    backend_type = open(os.path.join(dirpath, "database.txt")).read()
+                    with open(os.path.join(dirpath, "database.txt")) as file:
+                        backend_type = file.read()
                 except:
                     backend_type = "bsddb"
                 try:
-                    version = open(os.path.join(dirpath, "bdbversion.txt")).read()
+                    with open(os.path.join(dirpath, "bdbversion.txt")) as file:
+                        version = file.read()
                 except:
                     version = "(0, 0, 0)"
                 try:
