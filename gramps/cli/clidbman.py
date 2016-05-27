@@ -155,7 +155,8 @@ class CLIDbManager:
         dbid = "bsddb"
         dbid_path = os.path.join(dirpath, "database.txt")
         if os.path.isfile(dbid_path):
-            dbid = open(dbid_path).read().strip()
+            with open(dbid_path) as file:
+                dbid = file.read().strip()
         if not self.is_locked(dirpath):
             try:
                 database = self.dbstate.make_database(dbid)
