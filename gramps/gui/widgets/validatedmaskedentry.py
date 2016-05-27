@@ -969,12 +969,12 @@ class ValidatableMaskedEntry(MaskedEntry):
         'data-type': (GObject.TYPE_PYOBJECT,
                        'Data Type of the widget',
                        'Type object',
-                       GObject.PARAM_READWRITE),
+                       GObject.ParamFlags.READWRITE),
         'mandatory': (GObject.TYPE_BOOLEAN,
                       'Mandatory',
                       'Mandatory',
                       False,
-                      GObject.PARAM_READWRITE),
+                      GObject.ParamFlags.READWRITE),
     }
 
     # FIXME put the data type support back
