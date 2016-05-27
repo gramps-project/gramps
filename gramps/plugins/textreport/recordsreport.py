@@ -108,7 +108,8 @@ class RecordsReport(Report):
 
         records = find_records(self.database, self.filter,
                                self.top_size, self.callname,
-                               trans_text=self._, name_format=self._nf)
+                               trans_text=self._, name_format=self._nf,
+                               living_mode=self._lv)
 
         self.doc.start_paragraph('REC-Title')
         title = self._("Records")
