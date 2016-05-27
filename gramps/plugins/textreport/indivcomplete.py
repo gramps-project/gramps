@@ -739,6 +739,8 @@ class IndivCompleteReport(Report):
 
         for count, person_handle in enumerate(ind_list):
             self.person = self._db.get_person_from_handle(person_handle)
+            if self.person is None:
+                continue
             self.family_notes_list = []
             self.write_person(count)
 
