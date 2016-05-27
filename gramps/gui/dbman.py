@@ -51,7 +51,6 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.display import display_help
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
@@ -67,6 +66,7 @@ from gramps.gen.config import config
 from gramps.gui.listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -305,7 +305,8 @@ class DbManager(CLIDbManager):
             self.close.set_sensitive(False)
             backend_name = self.get_backend_name_from_dbid("bsddb")
             if (store.get_value(node, ICON_COL) in [None, ""] and
-                    store.get_value(node, BACKEND_COL).startswith(backend_name)):
+                    store.get_value(node,
+                                    BACKEND_COL).startswith(backend_name)):
                 self.convert.set_sensitive(True)
             else:
                 self.convert.set_sensitive(False)
@@ -376,7 +377,8 @@ class DbManager(CLIDbManager):
 
         # build the backend column
         render = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Database Type'), render, text=BACKEND_COL)
+        column = Gtk.TreeViewColumn(_('Database Type'), render,
+                                    text=BACKEND_COL)
         column.set_sort_column_id(BACKEND_COL)
         column.set_sort_indicator(True)
         column.set_resizable(True)
@@ -409,7 +411,8 @@ class DbManager(CLIDbManager):
             data = list(items[:8])
             backend_type = self.get_backend_name_from_dbid(data[BACKEND_COL])
             version = str(".".join([str(v) for v in items[8]]))
-            node = self.model.append(None, data[:-1] + [backend_type + ", " + version])
+            node = self.model.append(None, data[:-1] + [backend_type + ", "
+                                                        + version])
             # For already loaded database, set current_node:
             if self.dbstate.db and self.dbstate.db.get_save_path() == data[1]:
                 self._current_node = node
@@ -491,8 +494,8 @@ class DbManager(CLIDbManager):
 
     def __really_break_lock(self):
         """
-        Deletes the lock file associated with the selected database, then updates
-        the display appropriately.
+        Deletes the lock file associated with the selected database,
+        then updates the display appropriately.
         """
         try:
             self.break_lock(self.lock_file)
@@ -663,7 +666,8 @@ class DbManager(CLIDbManager):
         if len(path.get_indices()) == 1:
             QuestionDialog(
                 _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
-                _("Removing this Family Tree will permanently destroy the data."),
+                _("Removing this Family Tree will permanently destroy "
+                  "the data."),
                 _("Remove Family Tree"),
                 self.__really_delete_db, parent=self.top)
         else:
@@ -763,7 +767,8 @@ class DbManager(CLIDbManager):
         except:
             ErrorDialog(
                 _("Opening the '%s' database") % name,
-                _("An attempt to convert the database failed. Perhaps it needs updating."))
+                _("An attempt to convert the database failed. "
+                  "Perhaps it needs updating."))
             return
         plugin_manager = GuiPluginManager.get_instance()
         export_function = None
@@ -995,7 +1000,8 @@ class DbManager(CLIDbManager):
         # Allow any type of URL ("file://", "http://", etc):
         if drag_value and urlparse(drag_value).scheme != "":
             fname, title = [], []
-            for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
+            for treename in [v.strip() for v in drag_value.split("\n")
+                             if v.strip() != '']:
                 f, t = self.import_new_db(treename, self.user)
                 fname.append(f)
                 title.append(t)
