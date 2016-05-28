@@ -112,6 +112,7 @@ class IndivCompleteReport(Report):
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
         incl_attrs    - Whether to include attributes
+        incl_census   - Whether to include census events
         incl_tags     - Whether to include tags
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
@@ -138,6 +139,7 @@ class IndivCompleteReport(Report):
         self.use_images = menu.get_option_by_name('images').get_value()
         self.use_gramps_id = menu.get_option_by_name('grampsid').get_value()
         self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
+        self.use_census = menu.get_option_by_name('incl_census').get_value()
         self.use_tags = menu.get_option_by_name('incl_tags').get_value()
 
         filter_option = options.menu.get_option_by_name('filter')
@@ -668,6 +670,9 @@ class IndivCompleteReport(Report):
             if event_ref:
                 event = self._db.get_event_from_handle(event_ref.ref)
                 if event:
+                    if (event.get_type() == EventType.CENSUS
+                            and not self.use_census):
+                        continue
                     sort_value = event.get_date_object().get_sort_value()
                     #first sort on date, equal dates, then sort as in GUI.
                     event_list.append((str(sort_value) + "%04i" % ind,
@@ -996,6 +1001,10 @@ class IndivCompleteOptions(MenuReportOptions):
         attributes = BooleanOption(_("Include Attributes"), True)
         attributes.set_help(_("Whether to include attributes."))
         menu.add_option(category_name, "incl_attrs", attributes)
+
+        census = BooleanOption(_("Include Census Events"), True)
+        census.set_help(_("Whether to include Census Events."))
+        menu.add_option(category_name, "incl_census", census)
 
         grampsid = BooleanOption(_("Include Gramps ID"), False)
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
