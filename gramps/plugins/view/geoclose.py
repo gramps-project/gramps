@@ -441,9 +441,10 @@ class GeoClose(GeoGraphyView):
                     if father:
                         descr1 = "%s - " % _nd.display(father)
                     handle = fam.get_mother_handle()
-                    mother = dbstate.db.get_person_from_handle(handle)
-                    if mother:
-                        descr1 = "%s%s" % (descr1, _nd.display(mother))
+                    if handle:
+                        mother = dbstate.db.get_person_from_handle(handle)
+                        if mother:
+                            descr1 = "%s%s" % (descr1, _nd.display(mother))
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(
