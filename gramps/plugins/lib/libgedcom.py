@@ -2977,36 +2977,33 @@ class GedcomParser(UpdateCallback):
                 event.set_place_handle(place.get_handle())
 
     def __find_file(self, fullname, altpath):
-        tries = []
+        # try to find the media file
         fullname = fullname.replace('\\', os.path.sep)
-        tries.append(fullname)
-        
         try:
             if os.path.isfile(fullname):
                 return (1, fullname)
         except UnicodeEncodeError:
             # FIXME: problem possibly caused by umlaut/accented character 
             # in filename
-            return (0, tries)
+            return (0, fullname)
+        # look where we found the '.ged', using the full path in fullname
         other = os.path.join(altpath, fullname)
-        tries.append(other)
         if os.path.isfile(other):
             return (1, other)
+        # lets try reducing to just where we found '.ged'
         other = os.path.join(altpath, os.path.basename(fullname))
-        tries.append(other)
         if os.path.isfile(other):
             return (1, other)
+        # I don't think the following code does anything because search_paths
+        # is never initialized...
         if len(fullname) > 3:
             if fullname[1] == ':':
                 fullname = fullname[2:]
                 for path in self.search_paths:
                     other = os.path.normpath("%s/%s" % (path, fullname))
-                    tries.append(other)
                     if os.path.isfile(other):
                         return (1, other)
-            return (0, tries)
-        else:
-            return (0, tries)
+        return (0, fullname)
 
     def __get_next_line(self):
         """
@@ -6556,9 +6553,9 @@ class GedcomParser(UpdateCallback):
             (file_ok, filename) = self.__find_file(line.data, self.dir_path)
             if state.media != "URL":
                 if not file_ok:
-                    self.__add_msg(_("Could not import %s") % filename[0], line,
+                    self.__add_msg(_("Could not import %s") % filename, line,
                                    state)
-            path = filename[0].replace('\\', os.path.sep)
+            path = filename
         else:
             path = line.data
             
@@ -6566,6 +6563,7 @@ class GedcomParser(UpdateCallback):
         state.media.set_mime_type(get_type(path))
         if not state.media.get_description():
             state.media.set_description(path)
+
 
     def __obje_title(self, line, state):
         """
@@ -7558,7 +7556,6 @@ class GedcomParser(UpdateCallback):
                 (valid, path) = self.__find_file(filename, self.dir_path)
                 if not valid:
                     self.__add_msg(_("Could not import %s") % filename)
-                    path = filename.replace('\\', os.path.sep)
             else:
                 path = filename
             photo_handle = self.media_map.get(path)
