@@ -5569,8 +5569,8 @@ class GedcomParser(UpdateCallback):
 
             # Create the Place Details (it is committed with the event)
             place_detail = Place()
-            place_detail.set_name(PlaceName(value=location.get_street()))
-            place_detail.set_title(location.get_street())
+            place_detail.set_name(PlaceName(value=title))
+            place_detail.set_title(title)
             # For RootsMagic etc. Place Details e.g. address, hospital, cemetary
             place_detail.set_type((PlaceType.CUSTOM, _("Detail")))
             placeref = PlaceRef()
