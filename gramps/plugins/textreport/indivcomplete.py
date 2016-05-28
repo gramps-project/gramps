@@ -113,6 +113,7 @@ class IndivCompleteReport(Report):
         incl_private  - Whether to include private data
         incl_attrs    - Whether to include attributes
         incl_census   - Whether to include census events
+        incl_notes    - Whether to include person and family notes
         incl_tags     - Whether to include tags
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
@@ -140,6 +141,7 @@ class IndivCompleteReport(Report):
         self.use_gramps_id = menu.get_option_by_name('grampsid').get_value()
         self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
         self.use_census = menu.get_option_by_name('incl_census').get_value()
+        self.use_notes = menu.get_option_by_name('incl_notes').get_value()
         self.use_tags = menu.get_option_by_name('incl_tags').get_value()
 
         filter_option = options.menu.get_option_by_name('filter')
@@ -231,7 +233,7 @@ class IndivCompleteReport(Report):
     def write_note(self):
         notelist = self.person.get_note_list()
         notelist += self.family_notes_list
-        if not notelist:
+        if not notelist or not self.use_notes:
             return
         self.doc.start_table('note','IDS-IndTable')
         self.doc.start_row()
@@ -943,6 +945,8 @@ class IndivCompleteOptions(MenuReportOptions):
         self.__db = dbase
         self.__pid = None
         self.__filter = None
+        self.__cites = None
+        self.__incsrcnotes = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -985,14 +989,18 @@ class IndivCompleteOptions(MenuReportOptions):
         category_name = _("Include")
         ################################
 
-        cites = BooleanOption(_("Include Source Information"), True)
-        cites.set_help(_("Whether to cite sources."))
-        menu.add_option(category_name, "cites", cites)
+        self.__cites = BooleanOption(_("Include Source Information"), True)
+        self.__cites.set_help(_("Whether to cite sources."))
+        menu.add_option(category_name, "cites", self.__cites)
+        self.__cites.connect('value-changed', self.__sources_changed)
 
-        incsrcnotes = BooleanOption(_("Include sources notes"), False)
-        incsrcnotes.set_help(_("Whether to include source notes in the "
-            "Endnotes section. Only works if Include sources is selected."))
-        menu.add_option(category_name, "incsrcnotes", incsrcnotes)
+        self.__incsrcnotes = BooleanOption(_("Include sources notes"), False)
+        self.__incsrcnotes.set_help(
+            _("Whether to include source notes in the Endnotes section. "
+              "Only works if Include sources is selected."))
+        menu.add_option(category_name, "incsrcnotes", self.__incsrcnotes)
+        self.__incsrcnotes.connect('value-changed', self.__sources_changed)
+        self.__sources_changed()
 
         images = BooleanOption(_("Include Photo/Images from Gallery"), True)
         images.set_help(_("Whether to include images."))
@@ -1009,6 +1017,10 @@ class IndivCompleteOptions(MenuReportOptions):
         grampsid = BooleanOption(_("Include Gramps ID"), False)
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
         menu.add_option(category_name, "grampsid", grampsid)
+
+        incl_notes = BooleanOption(_("Include Notes"), True)
+        incl_notes.set_help(_("Whether to include Person and Family Notes."))
+        menu.add_option(category_name, "incl_notes", incl_notes)
 
         tags = BooleanOption(_("Include Tags"), True)
         tags.set_help(_("Whether to include tags."))
@@ -1050,6 +1062,16 @@ class IndivCompleteOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
+
+    def __sources_changed(self):
+        """
+        If Endnotes are not enabled, disable sources in the Endnotes.
+        """
+        cites_value = self.__cites.get_value()
+        if cites_value:
+            self.__incsrcnotes.set_available(True)
+        else:
+            self.__incsrcnotes.set_available(False)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Individual Complete Report."""
