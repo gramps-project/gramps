@@ -8,7 +8,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2012      Mathieu MD
-# Copyright (C) 2013-2015 Paul Franklin
+# Copyright (C) 2013-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -111,6 +111,8 @@ class IndivCompleteReport(Report):
         sections  - Which event groups should be given separate sections.
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        incl_attrs    - Whether to include attributes
+        incl_tags     - Whether to include tags
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
         """
@@ -135,6 +137,8 @@ class IndivCompleteReport(Report):
 
         self.use_images = menu.get_option_by_name('images').get_value()
         self.use_gramps_id = menu.get_option_by_name('grampsid').get_value()
+        self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
+        self.use_tags = menu.get_option_by_name('incl_tags').get_value()
 
         filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -390,7 +394,7 @@ class IndivCompleteReport(Report):
 
         attr_list = self.person.get_attribute_list()
 
-        if len(attr_list) == 0:
+        if len(attr_list) == 0 or not self.use_attrs:
             return
 
         self.doc.start_table("attributes","IDS-IndTable")
@@ -463,7 +467,7 @@ class IndivCompleteReport(Report):
     def write_tags(self):
 
         thlist = self.person.get_tag_list()
-        if len(thlist) == 0:
+        if len(thlist) == 0 or not self.use_tags:
             return
         tags = []
 
@@ -606,7 +610,7 @@ class IndivCompleteReport(Report):
                 self.doc.end_row()
 
             attr_list = family.get_attribute_list()
-            if len(attr_list):
+            if len(attr_list) and self.use_attrs:
                 self.doc.start_row()
                 self.write_cell(self._("Attributes"))
                 self.doc.start_cell("IDS-ListCell")
@@ -841,7 +845,7 @@ class IndivCompleteReport(Report):
                                       crop=media0.get_rectangle())
             endnotes = self._cite_endnote(media0)
             attr_list = media0.get_attribute_list()
-            if len(attr_list) == 0:
+            if len(attr_list) == 0 or not self.use_attrs:
                 text = _('(image)')
             else:
                 for attr in attr_list:
@@ -910,6 +914,8 @@ class IndivCompleteReport(Report):
         return txt
 
     def do_attributes(self, attr_list):
+        if not self.use_attrs:
+            return
         for attr in attr_list:
             attr_type = attr.get_type().type2base()
             # translators: needed for French, ignore otherwise
@@ -987,9 +993,17 @@ class IndivCompleteOptions(MenuReportOptions):
         images.set_help(_("Whether to include images."))
         menu.add_option(category_name, "images", images)
 
+        attributes = BooleanOption(_("Include Attributes"), True)
+        attributes.set_help(_("Whether to include attributes."))
+        menu.add_option(category_name, "incl_attrs", attributes)
+
         grampsid = BooleanOption(_("Include Gramps ID"), False)
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
         menu.add_option(category_name, "grampsid", grampsid)
+
+        tags = BooleanOption(_("Include Tags"), True)
+        tags.set_help(_("Whether to include tags."))
+        menu.add_option(category_name, "incl_tags", tags)
 
         ################################
         category_name = _("Sections")
