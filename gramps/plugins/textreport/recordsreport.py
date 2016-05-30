@@ -77,6 +77,7 @@ class RecordsReport(Report):
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu,
                                                          self._locale)
+        self.database = CacheProxyDb(self.database)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
@@ -100,8 +101,6 @@ class RecordsReport(Report):
 
         self._nf = stdoptions.run_name_format_option(self, menu)
 
-        self.database = CacheProxyDb(self.database)
-
     def write_report(self):
         """
         Build the actual report.
@@ -109,7 +108,8 @@ class RecordsReport(Report):
 
         records = find_records(self.database, self.filter,
                                self.top_size, self.callname,
-                               trans_text=self._, name_format=self._nf)
+                               trans_text=self._, name_format=self._nf,
+                               living_mode=self._lv)
 
         self.doc.start_paragraph('REC-Title')
         title = self._("Records")

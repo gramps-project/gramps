@@ -38,35 +38,36 @@ import time
 from urllib.parse import urlparse
 from urllib.request import urlopen, url2pathname
 import tempfile
-#-------------------------------------------------------------------------
-#
-# set up logging
-#
-#-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".clidbman")
-from gramps.gen.db.dbconst import DBLOGNAME
-_LOG = logging.getLogger(DBLOGNAME)
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
+from gramps.gen.db.dbconst import DBLOGNAME
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+LOG = logging.getLogger(".clidbman")
+_LOG = logging.getLogger(DBLOGNAME)
+
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
-
 DEFAULT_TITLE = _("Family Tree")
-NAME_FILE     = "name.txt"
-META_NAME     = "meta_data.db"
+NAME_FILE = "name.txt"
+META_NAME = "meta_data.db"
 
 #-------------------------------------------------------------------------
 #
@@ -78,8 +79,8 @@ def _errordialog(title, errormessage):
     Show the error. A title for the error and an errormessage
     """
     print(_('ERROR: %(title)s \n       %(message)s') % {
-                'title': title,
-                'message': errormessage})
+        'title': title,
+        'message': errormessage})
     sys.exit()
 
 #-------------------------------------------------------------------------
@@ -98,19 +99,19 @@ class CLIDbManager:
     IND_TVAL_STR = 3
     IND_TVAL = 4
     IND_USE_ICON_BOOL = 5
-    IND_STOCK_ID =6
+    IND_STOCK_ID = 6
 
-    ICON_NONE     = 0
+    ICON_NONE = 0
     ICON_RECOVERY = 1
-    ICON_LOCK     = 2
-    ICON_OPEN     = 3
+    ICON_LOCK = 2
+    ICON_OPEN = 3
 
     ICON_MAP = {
-                ICON_NONE : None,
-                ICON_RECOVERY : None,
-                ICON_LOCK : None,
-                ICON_OPEN : None,
-               }
+        ICON_NONE : None,
+        ICON_RECOVERY : None,
+        ICON_LOCK : None,
+        ICON_OPEN : None,
+        }
 
     ERROR = _errordialog
     def __init__(self, dbstate):
@@ -118,7 +119,7 @@ class CLIDbManager:
         self.msg = None
 
         if dbstate:
-            self.active  = dbstate.db.get_save_path()
+            self.active = dbstate.db.get_save_path()
         else:
             self.active = None
 
@@ -155,7 +156,8 @@ class CLIDbManager:
         dbid = "bsddb"
         dbid_path = os.path.join(dirpath, "database.txt")
         if os.path.isfile(dbid_path):
-            dbid = open(dbid_path).read().strip()
+            with open(dbid_path) as file:
+                dbid = file.read().strip()
         if not self.is_locked(dirpath):
             try:
                 database = self.dbstate.make_database(dbid)
@@ -171,7 +173,7 @@ class CLIDbManager:
                        _("Database"): dbid,
                        _("Last accessed"): time_val(dirpath)[1],
                        _("Locked?"): self.is_locked(dirpath),
-                   })
+                      })
         return retval
 
     def print_family_tree_summaries(self, database_names=None):
@@ -183,9 +185,9 @@ class CLIDbManager:
             (name, dirpath, path_name, last,
              tval, enable, stock_id, backend_type, version) = item
             if (database_names is None or
-                any([(re.match("^" + dbname + "$", name) or
-                      dbname == name)
-                     for dbname in database_names])):
+                    any([(re.match("^" + dbname + "$", name) or
+                          dbname == name)
+                         for dbname in database_names])):
                 summary = self.get_dbdir_summary(dirpath, name)
                 print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
                 for item in sorted(summary):
@@ -193,7 +195,7 @@ class CLIDbManager:
                         # translators: needed for French, ignore otherwise
                         print(_("   %(item)s: %(summary)s") % {
                             'item' : item,
-                            'summary' : summary[item] } )
+                            'summary' : summary[item]})
 
     def family_tree_summary(self, database_names=None):
         """
@@ -205,11 +207,11 @@ class CLIDbManager:
             (name, dirpath, path_name, last,
              tval, enable, stock_id, backend_type, version) = item
             if (database_names is None or
-                any([(re.match("^" + dbname + "$", name) or
-                      dbname == name)
-                     for dbname in database_names])):
+                    any([(re.match("^" + dbname + "$", name) or
+                          dbname == name)
+                         for dbname in database_names])):
                 retval = self.get_dbdir_summary(dirpath, name)
-                summary_list.append( retval )
+                summary_list.append(retval)
         return summary_list
 
     def _populate_cli(self):
@@ -226,11 +228,13 @@ class CLIDbManager:
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
                 try:
-                    backend_type = open(os.path.join(dirpath, "database.txt")).read()
+                    with open(os.path.join(dirpath, "database.txt")) as file:
+                        backend_type = file.read()
                 except:
                     backend_type = "bsddb"
                 try:
-                    version = open(os.path.join(dirpath, "bdbversion.txt")).read()
+                    with open(os.path.join(dirpath, "bdbversion.txt")) as file:
+                        version = file.read()
                 except:
                     version = "(0, 0, 0)"
                 try:
@@ -242,10 +246,10 @@ class CLIDbManager:
                         name = file.readline().strip()
 
                     (tval, last) = time_val(dirpath)
-                    (enable, stock_id) = self.icon_values(dirpath, self.active,
-                                                     self.dbstate.db.is_open())
+                    (enable, stock_id) = self.icon_values(
+                        dirpath, self.active, self.dbstate.db.is_open())
 
-                    if (stock_id == 'gramps-lock'):
+                    if stock_id == 'gramps-lock':
                         last = find_locker_name(dirpath)
 
                     self.current_names.append(
@@ -293,7 +297,7 @@ class CLIDbManager:
         path_name = os.path.join(new_path, NAME_FILE)
 
         if title is None:
-            name_list = [ name[0] for name in self.current_names ]
+            name_list = [name[0] for name in self.current_names]
             title = find_next_db_name(name_list)
 
         with open(path_name, "w", encoding='utf8') as name_file:
@@ -352,9 +356,9 @@ class CLIDbManager:
                     # write locally:
                     temp_fp.write(data)
                     url_fp.close()
-                    from  gen.db.dbconst import BDBVERSFN
+                    from  gramps.gen.db.dbconst import BDBVERSFN
                     versionpath = os.path.join(name, BDBVERSFN)
-                    _LOG.debug("Write bsddb version %s" % str(dbase.version()))
+                    _LOG.debug("Write bsddb version %s", str(dbase.version()))
                     with open(versionpath, "w") as version_file:
                         version_file.write(str(dbase.version()))
                     temp_fp.close()
@@ -389,7 +393,7 @@ class CLIDbManager:
         """
         Returns True if there is a lock file in the dirpath
         """
-        if os.path.isfile(os.path.join(dbpath,"lock")):
+        if os.path.isfile(os.path.join(dbpath, "lock")):
             return True
         return False
 
@@ -397,7 +401,7 @@ class CLIDbManager:
         """
         Returns True if the database in dirpath needs recovery
         """
-        if os.path.isfile(os.path.join(dbpath,"need_recover")):
+        if os.path.isfile(os.path.join(dbpath, "need_recover")):
             return True
         return False
 
@@ -441,12 +445,11 @@ class CLIDbManager:
         """
         try:
             with open(filepath, "r", encoding='utf8') as name_file:
-                old_text=name_file.read()
+                old_text = name_file.read()
             with open(filepath, "w", encoding='utf8') as name_file:
                 name_file.write(new_text)
         except (OSError, IOError) as msg:
-            CLIDbManager.ERROR(_("Could not rename Family Tree"),
-                  str(msg))
+            CLIDbManager.ERROR(_("Could not rename Family Tree"), str(msg))
             return None, None
         return old_text, new_text
 
@@ -462,11 +465,11 @@ class CLIDbManager:
         If the directory path is the active path, then return values
         that indicate to use the icon, and which icon to use.
         """
-        if os.path.isfile(os.path.join(dirpath,"need_recover")):
+        if os.path.isfile(os.path.join(dirpath, "need_recover")):
             return (True, self.ICON_MAP[self.ICON_RECOVERY])
         elif dirpath == active and is_open:
             return (True, self.ICON_MAP[self.ICON_OPEN])
-        elif os.path.isfile(os.path.join(dirpath,"lock")):
+        elif os.path.isfile(os.path.join(dirpath, "lock")):
             return (True, self.ICON_MAP[self.ICON_LOCK])
         else:
             return (False, self.ICON_MAP[self.ICON_NONE])
@@ -481,7 +484,8 @@ def make_dbdir(dbdir):
     except (IOError, OSError) as msg:
         LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
                     "Open preferences and set correct database path.\n\n"
-                    "Details: Could not make database directory:\n    %s\n\n") % msg)
+                    "Details: Could not make database directory:\n    %s\n\n"),
+                  str(msg))
         return False
     return True
 

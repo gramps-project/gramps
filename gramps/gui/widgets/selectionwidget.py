@@ -171,13 +171,13 @@ class SelectionWidget(Gtk.ScrolledWindow):
     """
 
     __gsignals__ = {
-        "region-modified": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "region-created": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "region-selected": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "selection-cleared": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "right-button-clicked": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "zoomed-in": (GObject.SIGNAL_RUN_FIRST, None, ()),
-        "zoomed-out": (GObject.SIGNAL_RUN_FIRST, None, ())
+        "region-modified": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "region-created": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "region-selected": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "selection-cleared": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "right-button-clicked": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "zoomed-in": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "zoomed-out": (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
     def __init__(self):

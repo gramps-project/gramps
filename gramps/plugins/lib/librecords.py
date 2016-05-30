@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013-2015 Paul Franklin
+# Copyright (C) 2013-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ from gramps.gen.lib import (ChildRefType, Date, Span, Name, StyledText,
                             StyledTextTag, StyledTextTagType)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.alive import probably_alive
+from gramps.gen.proxy import LivingProxyDb
 
 #------------------------------------------------------------------------
 #
@@ -93,14 +94,23 @@ def _find_death_date(db, person):
     return None
 
 def find_records(db, filter, top_size, callname,
-                 trans_text=glocale.translation.sgettext, name_format=None):
+                 trans_text=glocale.translation.sgettext, name_format=None,
+                 living_mode=LivingProxyDb.MODE_INCLUDE_ALL):
     """
     @param trans_text: allow deferred translation of strings
     @type trans_text: a GrampsLocale sgettext instance
     trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
     :param name_format: optional format to control display of person's name
     :type name_format: None or int
+    :param living_mode: enable optional control of living people's records
+    :type living_mode: int
     """
+
+    def get_unfiltered_person_from_handle(person_handle):
+        if living_mode == LivingProxyDb.MODE_INCLUDE_ALL:
+            return db.get_person_from_handle(person_handle)
+        else: # we are in the proxy so get the person before proxy changes
+            return db.get_unfiltered_person(person_handle)
 
     today = datetime.date.today()
     today_date = Date(today.year, today.month, today.day)
@@ -126,6 +136,7 @@ def find_records(db, filter, top_size, callname,
 
     for person_handle in person_handle_list:
         person = db.get_person_from_handle(person_handle)
+        unfil_person = get_unfiltered_person_from_handle(person_handle)
         if person is None:
             continue
 
@@ -150,7 +161,7 @@ def find_records(db, filter, top_size, callname,
                                         name_format=name_format)
 
         if death_date is None:
-            if probably_alive(person, db):
+            if probably_alive(unfil_person, db):
                 # Still living, look for age records
                 _record(person_youngestliving, person_oldestliving,
                         today_date - birth_date, name, 'Person', person_handle,
@@ -231,6 +242,9 @@ def find_records(db, filter, top_size, callname,
 
     for family in db.iter_families():
         #family = db.get_family_from_handle(family_handle)
+        if living_mode != LivingProxyDb.MODE_INCLUDE_ALL:
+            # FIXME no iter_families method in LivingProxyDb so do it this way
+            family = db.get_family_from_handle(family.get_handle())
 
         father_handle = family.get_father_handle()
         if not father_handle:
@@ -245,9 +259,11 @@ def find_records(db, filter, top_size, callname,
                 continue
 
         father = db.get_person_from_handle(father_handle)
+        unfil_father = get_unfiltered_person_from_handle(father_handle)
         if father is None:
             continue
         mother = db.get_person_from_handle(mother_handle)
+        unfil_mother = get_unfiltered_person_from_handle(mother_handle)
         if mother is None:
             continue
 
@@ -259,9 +275,12 @@ def find_records(db, filter, top_size, callname,
                                                    trans_text=trans_text,
                                                    name_format=name_format)}
 
-        _record(None, family_mostchildren,
-                len(family.get_child_ref_list()),
-                name, 'Family', family.handle, top_size)
+        if (living_mode == LivingProxyDb.MODE_INCLUDE_ALL
+            or (not probably_alive(unfil_father, db) and
+                not probably_alive(unfil_mother, db))):
+            _record(None, family_mostchildren,
+                    len(family.get_child_ref_list()),
+                    name, 'Family', family.handle, top_size)
 
         father_birth_ref = father.get_birth_ref()
         if father_birth_ref:
@@ -311,11 +330,13 @@ def find_records(db, filter, top_size, callname,
             # Divorced but date unknown or inexact
             continue
 
-        if not probably_alive(father, db) and not _good_date(father_death_date):
+        if (not probably_alive(unfil_father, db)
+                and not _good_date(father_death_date)):
             # Father died but death date unknown or inexact
             continue
 
-        if not probably_alive(mother, db) and not _good_date(mother_death_date):
+        if (not probably_alive(unfil_mother, db)
+                and not _good_date(mother_death_date)):
             # Mother died but death date unknown or inexact
             continue
 
@@ -323,7 +344,8 @@ def find_records(db, filter, top_size, callname,
             and father_death_date is None
             and mother_death_date is None):
             # Still married and alive
-            if probably_alive(father, db) and probably_alive(mother, db):
+            if (probably_alive(unfil_father, db)
+                    and probably_alive(unfil_mother, db)):
                 _record(family_youngestmarried, family_oldestmarried,
                         today_date - marriage_date,
                         name, 'Family', family.handle, top_size)

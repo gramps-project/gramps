@@ -336,11 +336,32 @@ class LivingProxyDb(ProxyDbBase):
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
-            if class_name == 'Person':
-                if not self.get_person_from_handle(handle):
-                    continue
-            yield (class_name, handle)
-        return
+            if self.mode == self.MODE_INCLUDE_ALL:
+                yield (class_name, handle)
+            elif class_name == 'Person':
+                ## Don't get backlinks to living people at all
+                person = self.db.get_person_from_handle(handle)
+                if person and not self.__is_living(person):
+                    yield (class_name, handle)
+            elif class_name == 'Family':
+                father = mother = None
+                family = self.db.get_family_from_handle(handle)
+                father_handle = family.get_father_handle()
+                mother_handle = family.get_mother_handle()
+                if father_handle:
+                    father = self.db.get_person_from_handle(father_handle)
+                if mother_handle:
+                    mother = self.db.get_person_from_handle(mother_handle)
+                father_not_living = father and not self.__is_living(father)
+                mother_not_living = mother and not self.__is_living(mother)
+                if ((father is None and mother is None) or # shouldn't happen
+                        (father is None and mother_not_living) or # could
+                        (mother is None and father_not_living) or # could
+                        (father_not_living and mother_not_living) # could
+                   ):
+                    yield (class_name, handle)
+            else:
+                yield (class_name, handle)
 
     def __is_living(self, person):
         """

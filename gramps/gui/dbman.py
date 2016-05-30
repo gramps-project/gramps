@@ -35,23 +35,7 @@ import time
 import copy
 import subprocess
 from urllib.parse import urlparse
-
-#-------------------------------------------------------------------------
-#
-# set up logging
-#
-#-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".DbManager")
-
-from gramps.gen.constfunc import win
-if win():
-    _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
-    if _RCS_FOUND and "TZ" not in os.environ:
-        # RCS requires the "TZ" variable be set.
-        os.environ["TZ"] = str(time.timezone)
-else:
-    _RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
 
 #-------------------------------------------------------------------------
 #
@@ -67,9 +51,6 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.plug import BasePluginManager
-_ = glocale.translation.gettext
 from gramps.gui.display import display_help
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
@@ -83,37 +64,55 @@ from .glade import Glade
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.config import config
 from gramps.gui.listmodel import ListModel
+from gramps.gen.constfunc import win
+from gramps.gen.plug import BasePluginManager
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
-_RETURN = Gdk.keyval_from_name("Return")
-_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
-
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+LOG = logging.getLogger(".DbManager")
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
+if win():
+    _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
+    if _RCS_FOUND and "TZ" not in os.environ:
+        # RCS requires the "TZ" variable be set.
+        os.environ["TZ"] = str(time.timezone)
+else:
+    _RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
+
+_RETURN = Gdk.keyval_from_name("Return")
+_KP_ENTER = Gdk.keyval_from_name("KP_Enter")
+
 WIKI_HELP_PAGE = _('%s_-_Manage_Family_Trees') % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('Family_Trees_manager_window')
 
-ARCHIVE       = "rev.gramps"
-ARCHIVE_V     = "rev.gramps,v"
+ARCHIVE = "rev.gramps"
+ARCHIVE_V = "rev.gramps,v"
 
-NAME_COL  = 0
-PATH_COL  = 1
-FILE_COL  = 2
-DATE_COL  = 3
+NAME_COL = 0
+PATH_COL = 1
+FILE_COL = 2
+DATE_COL = 3
 DSORT_COL = 4
-OPEN_COL  = 5
+OPEN_COL = 5
 ICON_COL = 6
 BACKEND_COL = 7
 
-RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
+RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
 
 class Information(ManagedWindow):
     def __init__(self, uistate, data, parent):
         super().__init__(uistate, [], self)
-        self.window = Gtk.Dialog('Gramp')
+        self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
         self.window.set_modal(True)
         self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
@@ -122,8 +121,8 @@ class Information(ManagedWindow):
         self.window.set_default_size(600, 400)
         s = Gtk.ScrolledWindow()
         titles = [
-            (_('Setting'),0,150),
-            (_('Value'),1,400)
+            (_('Setting'), 0, 150),
+            (_('Value'), 1, 400)
         ]
         treeview = Gtk.TreeView()
         model = ListModel(treeview, titles)
@@ -147,11 +146,11 @@ class DbManager(CLIDbManager):
     create, rename, delete and open databases.
     """
     ICON_MAP = {
-                CLIDbManager.ICON_NONE : None,
-                CLIDbManager.ICON_RECOVERY : 'dialog-error',
-                CLIDbManager.ICON_LOCK : 'gramps-lock',
-                CLIDbManager.ICON_OPEN : 'document-open',
-               }
+        CLIDbManager.ICON_NONE : None,
+        CLIDbManager.ICON_RECOVERY : 'dialog-error',
+        CLIDbManager.ICON_LOCK : 'gramps-lock',
+        CLIDbManager.ICON_OPEN : 'document-open',
+        }
 
     ERROR = ErrorDialog
 
@@ -174,7 +173,7 @@ class DbManager(CLIDbManager):
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
-        self.column  = None
+        self.column = None
         self.lock_file = None
         self.data_to_delete = None
 
@@ -227,15 +226,14 @@ class DbManager(CLIDbManager):
         self.top.connect('drag_data_received', self.__drag_data_received)
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
-        self.define_help_button(self.glade.get_object('help'),
-                WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        self.define_help_button(
+            self.glade.get_object('help'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
         if _RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
 
     def define_help_button(self, button, webpage='', section=''):
-        button.connect('clicked', lambda x: display_help(webpage,
-                                                               section))
+        button.connect('clicked', lambda x: display_help(webpage, section))
 
     def __button_press(self, obj, event):
         """
@@ -307,7 +305,8 @@ class DbManager(CLIDbManager):
             self.close.set_sensitive(False)
             backend_name = self.get_backend_name_from_dbid("bsddb")
             if (store.get_value(node, ICON_COL) in [None, ""] and
-                store.get_value(node, BACKEND_COL).startswith(backend_name)):
+                    store.get_value(node,
+                                    BACKEND_COL).startswith(backend_name)):
                 self.convert.set_sensitive(True)
             else:
                 self.convert.set_sensitive(False)
@@ -378,7 +377,8 @@ class DbManager(CLIDbManager):
 
         # build the backend column
         render = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(_('Database Type'), render, text=BACKEND_COL)
+        column = Gtk.TreeViewColumn(_('Database Type'), render,
+                                    text=BACKEND_COL)
         column.set_sort_column_id(BACKEND_COL)
         column.set_sort_indicator(True)
         column.set_resizable(True)
@@ -411,7 +411,8 @@ class DbManager(CLIDbManager):
             data = list(items[:8])
             backend_type = self.get_backend_name_from_dbid(data[BACKEND_COL])
             version = str(".".join([str(v) for v in items[8]]))
-            node = self.model.append(None, data[:-1] + [backend_type + ", " + version])
+            node = self.model.append(None, data[:-1] + [backend_type + ", "
+                                                        + version])
             # For already loaded database, set current_node:
             if self.dbstate.db and self.dbstate.db.get_save_path() == data[1]:
                 self._current_node = node
@@ -433,7 +434,7 @@ class DbManager(CLIDbManager):
         If skippath given, the name of skippath is not considered
         """
         iter = self.model.get_iter_first()
-        while (iter):
+        while iter:
             path = self.model.get_path(iter)
             if path == skippath:
                 pass
@@ -493,8 +494,8 @@ class DbManager(CLIDbManager):
 
     def __really_break_lock(self):
         """
-        Deletes the lock file associated with the selected database, then updates
-        the display appropriately.
+        Deletes the lock file associated with the selected database,
+        then updates the display appropriately.
         """
         try:
             self.break_lock(self.lock_file)
@@ -548,7 +549,7 @@ class DbManager(CLIDbManager):
                     self.before_change = old_text
                 self.after_change = new_text
             if not old_text.strip() == new_text.strip():
-                if len(path.get_indices()) > 1 :
+                if len(path.get_indices()) > 1:
                     self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
@@ -569,9 +570,9 @@ class DbManager(CLIDbManager):
         rev = self.model.get_value(node, PATH_COL)
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-x,v", "-m%s:%s" % (rev, new_text), archive ]
+        cmd = ["rcs", "-x,v", "-m%s:%s" % (rev, new_text), archive]
 
-        proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
+        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -598,11 +599,12 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            DbManager.ERROR(_("Could not rename the Family Tree."),
-                  _("Family Tree already exists, choose a unique name."))
+            DbManager.ERROR(
+                _("Could not rename the Family Tree."),
+                _("Family Tree already exists, choose a unique name."))
             return
         old_text, new_text = self.rename_database(filename, new_text)
-        if not (old_text is None):
+        if old_text is not None:
             rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
         #scroll to new position
@@ -664,7 +666,8 @@ class DbManager(CLIDbManager):
         if len(path.get_indices()) == 1:
             QuestionDialog(
                 _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
-                _("Removing this Family Tree will permanently destroy the data."),
+                _("Removing this Family Tree will permanently destroy "
+                  "the data."),
                 _("Remove Family Tree"),
                 self.__really_delete_db, parent=self.top)
         else:
@@ -698,7 +701,7 @@ class DbManager(CLIDbManager):
         filename = self.model.get_value(node, FILE_COL)
         try:
             with open(filename, "r") as name_file:
-                file_name_to_delete=name_file.read()
+                file_name_to_delete = name_file.read()
             remove_filename(file_name_to_delete)
             directory = self.data_to_delete[1]
             for (top, dirs, files) in os.walk(directory):
@@ -722,9 +725,9 @@ class DbManager(CLIDbManager):
         rev = self.data_to_delete[PATH_COL]
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-x,v", "-o%s" % rev, "-q", archive ]
+        cmd = ["rcs", "-x,v", "-o%s" % rev, "-q", archive]
 
-        proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
+        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -764,7 +767,8 @@ class DbManager(CLIDbManager):
         except:
             ErrorDialog(
                 _("Opening the '%s' database") % name,
-                _("An attempt to convert the database failed. Perhaps it needs updating."))
+                _("An attempt to convert the database failed. "
+                  "Perhaps it needs updating."))
             return
         plugin_manager = GuiPluginManager.get_instance()
         export_function = None
@@ -858,8 +862,7 @@ class DbManager(CLIDbManager):
         #First ask user if he is really sure :-)
         yes_no = QuestionDialog2(
             _("Repair Family Tree?"),
-            _(
-              "If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
+            _("If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
               "attempt to recover your Family Tree from the last good "
               "backup. There are several ways this can cause unwanted "
               "effects, so %(bold_start)sbackup%(bold_end)s the "
@@ -884,12 +887,12 @@ class DbManager(CLIDbManager):
               "If this is the case, you can disable the repair button "
               "by removing the file %(recover_file)s in the "
               "Family Tree directory."
-             ) % { 'bold_start'   : '<b>' ,
-                   'bold_end'     : '</b>' ,
-                   'recover_file' : '<i>need_recover</i>' ,
-                   'gramps_wiki_recover_url' :
-                       URL_WIKISTRING + 'Recover_corrupted_family_tree',
-                   'dirname'      : dirname },
+             ) % {'bold_start': '<b>',
+                  'bold_end': '</b>',
+                  'recover_file': '<i>need_recover</i>',
+                  'gramps_wiki_recover_url':
+                      URL_WIKISTRING + 'Recover_corrupted_family_tree',
+                  'dirname': dirname},
             _("Proceed, I have taken a backup"),
             _("Stop"))
         prompt = yes_no.run()
@@ -934,7 +937,7 @@ class DbManager(CLIDbManager):
         """
         self.msg.set_label(msg)
         self.top.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        while (Gtk.events_pending()):
+        while Gtk.events_pending():
             Gtk.main_iteration()
 
     def __end_cursor(self):
@@ -997,7 +1000,8 @@ class DbManager(CLIDbManager):
         # Allow any type of URL ("file://", "http://", etc):
         if drag_value and urlparse(drag_value).scheme != "":
             fname, title = [], []
-            for treename in [v.strip() for v in drag_value.split("\n") if v.strip() != '']:
+            for treename in [v.strip() for v in drag_value.split("\n")
+                             if v.strip() != '']:
                 f, t = self.import_new_db(treename, self.user)
                 fname.append(f)
                 title.append(t)
@@ -1023,15 +1027,15 @@ def find_revisions(name):
     """
     import re
 
-    rev  = re.compile("\s*revision\s+([\d\.]+)")
+    rev = re.compile("\s*revision\s+([\d\.]+)")
     date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)[-+]\d\d;")
 
     if not os.path.isfile(name) or not _RCS_FOUND:
         return []
 
-    rlog = [ "rlog", "-x,v", "-zLT" , name ]
+    rlog = ["rlog", "-x,v", "-zLT", name]
 
-    proc = subprocess.Popen(rlog, stdout = subprocess.PIPE)
+    proc = subprocess.Popen(rlog, stdout=subprocess.PIPE)
     proc.wait()
 
     revlist = []
@@ -1051,9 +1055,9 @@ def find_revisions(name):
                 continue
             match = date.match(line)
             if match:
-                date_str = time.strftime('%x %X',
-                        time.strptime(match.groups()[0], '%Y-%m-%d %H:%M:%S'))
-
+                date_str = time.strftime(
+                    '%x %X', time.strptime(match.groups()[0],
+                                           '%Y-%m-%d %H:%M:%S'))
                 get_next = True
                 continue
             if get_next:
@@ -1071,10 +1075,10 @@ def check_out(dbase, rev, path, user):
     Checks out the revision from rcs, and loads the resulting XML file
     into the database.
     """
-    co_cmd   = [ "co", "-x,v", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
-                                                 os.path.join(path, ARCHIVE_V)]
+    co_cmd = ["co", "-x,v", "-q%s" % rev] + [os.path.join(path, ARCHIVE),
+                                             os.path.join(path, ARCHIVE_V)]
 
-    proc = subprocess.Popen(co_cmd, stderr = subprocess.PIPE)
+    proc = subprocess.Popen(co_cmd, stderr=subprocess.PIPE)
     status = proc.wait()
     message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
@@ -1097,12 +1101,12 @@ def check_out(dbase, rev, path, user):
     rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
-def check_in(dbase, filename, user, cursor_func = None):
+def check_in(dbase, filename, user, cursor_func=None):
     """
     Checks in the specified file into RCS
     """
-    init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"Gramps database"' ]
-    ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
+    init = ["rcs", '-x,v', '-i', '-U', '-q', '-t-"Gramps database"']
+    ci_cmd = ["ci", '-x,v', "-q", "-f"]
     archive_name = filename + ",v"
 
     glade = Glade(toplevel='comment')
@@ -1114,8 +1118,7 @@ def check_in(dbase, filename, user, cursor_func = None):
 
     if not os.path.isfile(archive_name):
         cmd = init + [archive_name]
-        proc = subprocess.Popen(cmd,
-                                stderr = subprocess.PIPE)
+        proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
@@ -1140,9 +1143,8 @@ def check_in(dbase, filename, user, cursor_func = None):
     if cursor_func:
         cursor_func(_("Saving archive..."))
 
-    cmd = ci_cmd + ['-m%s' % comment, filename, archive_name ]
-    proc = subprocess.Popen(cmd,
-                            stderr = subprocess.PIPE)
+    cmd = ci_cmd + ['-m%s' % comment, filename, archive_name]
+    proc = subprocess.Popen(cmd, stderr=subprocess.PIPE)
 
     status = proc.wait()
     message = "\n".join(proc.stderr.readlines())

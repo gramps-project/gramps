@@ -25,22 +25,6 @@
 
 #-------------------------------------------------------------------------
 #
-# python modules
-#
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".RemoveUnused")
-
-#-------------------------------------------------------------------------
-#
 # gtk modules
 #
 #-------------------------------------------------------------------------
@@ -62,6 +46,8 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 from gramps.gen.filters import GenericFilterFactory, rules
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -69,10 +55,10 @@ from gramps.gen.filters import GenericFilterFactory, rules
 #
 #-------------------------------------------------------------------------
 class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
-    MARK_COL       = 0
-    OBJ_ID_COL     = 1
-    OBJ_NAME_COL   = 2
-    OBJ_TYPE_COL   = 3
+    MARK_COL = 0
+    OBJ_ID_COL = 1
+    OBJ_NAME_COL = 2
+    OBJ_TYPE_COL = 3
     OBJ_HANDLE_COL = 4
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
@@ -84,55 +70,55 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         if self.db.readonly:
             return
 
-        ManagedWindow.__init__(self, uistate,[], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
         self.dbstate = dbstate
         self.uistate = uistate
 
         self.tables = {
-            'events'  : {'get_func': self.db.get_event_from_handle,
-                         'remove'  : self.db.remove_event,
-                         'get_text': self.get_event_text,
-                         'editor'  : 'EditEvent',
-                         'icon'    : 'gramps-event',
-                         'name_ix' : 4},
-            'sources' : {'get_func': self.db.get_source_from_handle,
-                         'remove'  : self.db.remove_source,
-                         'get_text': None,
-                         'editor'  : 'EditSource',
-                         'icon'    : 'gramps-source',
-                         'name_ix' : 2},
-            'citations' : {'get_func': self.db.get_citation_from_handle,
-                         'remove'  : self.db.remove_citation,
-                         'get_text': None,
-                         'editor'  : 'EditCitation',
-                         'icon'   : 'gramps-citation',
-                         'name_ix' : 3},
-            'places'  : {'get_func': self.db.get_place_from_handle,
-                         'remove'  : self.db.remove_place,
-                         'get_text': None,
-                         'editor'  : 'EditPlace',
-                         'icon'    : 'gramps-place',
-                         'name_ix' : 2},
-            'media'   : {'get_func': self.db.get_media_from_handle,
-                         'remove'  : self.db.remove_media,
-                         'get_text': None,
-                         'editor'  : 'EditMedia',
-                         'icon'    : 'gramps-media',
-                         'name_ix' : 4},
-            'repos'   : {'get_func': self.db.get_repository_from_handle,
-                         'remove'  : self.db.remove_repository,
-                         'get_text': None,
-                         'editor'  : 'EditRepository',
-                         'icon'    : 'gramps-repository',
-                         'name_ix' : 3},
-            'notes'   : {'get_func': self.db.get_note_from_handle,
-                         'remove'  : self.db.remove_note,
-                         'get_text': self.get_note_text,
-                         'editor'  : 'EditNote',
-                         'icon'    : 'gramps-notes',
-                         'name_ix' : 2},
+            'events': {'get_func': self.db.get_event_from_handle,
+                       'remove': self.db.remove_event,
+                       'get_text': self.get_event_text,
+                       'editor': 'EditEvent',
+                       'icon': 'gramps-event',
+                       'name_ix': 4},
+            'sources': {'get_func': self.db.get_source_from_handle,
+                        'remove': self.db.remove_source,
+                        'get_text': None,
+                        'editor': 'EditSource',
+                        'icon': 'gramps-source',
+                        'name_ix': 2},
+            'citations': {'get_func': self.db.get_citation_from_handle,
+                          'remove': self.db.remove_citation,
+                          'get_text': None,
+                          'editor': 'EditCitation',
+                          'icon': 'gramps-citation',
+                          'name_ix': 3},
+            'places': {'get_func': self.db.get_place_from_handle,
+                       'remove': self.db.remove_place,
+                       'get_text': None,
+                       'editor': 'EditPlace',
+                       'icon': 'gramps-place',
+                       'name_ix': 2},
+            'media': {'get_func': self.db.get_media_from_handle,
+                      'remove': self.db.remove_media,
+                      'get_text': None,
+                      'editor': 'EditMedia',
+                      'icon': 'gramps-media',
+                      'name_ix': 4},
+            'repos': {'get_func': self.db.get_repository_from_handle,
+                      'remove': self.db.remove_repository,
+                      'get_text': None,
+                      'editor': 'EditRepository',
+                      'icon': 'gramps-repository',
+                      'name_ix': 3},
+            'notes': {'get_func': self.db.get_note_from_handle,
+                      'remove': self.db.remove_note,
+                      'get_text': self.get_note_text,
+                      'editor': 'EditNote',
+                      'icon': 'gramps-notes',
+                      'name_ix': 2},
             }
 
         self.init_gui()
@@ -192,12 +178,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         # Add mark column
         mark_column = Gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
-                                           active=RemoveUnused.MARK_COL)
+                                         active=RemoveUnused.MARK_COL)
         mark_column.set_sort_column_id(RemoveUnused.MARK_COL)
         self.warn_tree.append_column(mark_column)
 
         # Add image column
-        img_column = Gtk.TreeViewColumn(None, self.img_renderer )
+        img_column = Gtk.TreeViewColumn(None, self.img_renderer)
         img_column.set_cell_data_func(self.img_renderer, self.get_image)
         self.warn_tree.append_column(img_column)
 
@@ -236,13 +222,13 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def find(self, obj):
         self.options.handler.options_dict.update(
-            events  = self.events_box.get_active(),
-            sources = self.sources_box.get_active(),
-            citations = self.citations_box.get_active(),
-            places  = self.places_box.get_active(),
-            media   = self.media_box.get_active(),
-            repos   = self.repos_box.get_active(),
-            notes   = self.notes_box.get_active(),
+            events=self.events_box.get_active(),
+            sources=self.sources_box.get_active(),
+            citations=self.citations_box.get_active(),
+            places=self.places_box.get_active(),
+            media=self.media_box.get_active(),
+            repos=self.repos_box.get_active(),
+            notes=elf.notes_box.get_active(),
             )
 
         for item in self.sensitive_list:
@@ -364,8 +350,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         try:
             obj = self.tables[the_type]['get_func'](handle)
             editor_str = 'from gramps.gui.editors import %s as editor' % (
-                            self.tables[the_type]['editor']
-                            )
+                self.tables[the_type]['editor'])
             exec(editor_str, globals())
             editor(self.dbstate, self.uistate, [], obj)
         except WindowActiveError:
@@ -458,34 +443,34 @@ class CheckOptions(tool.ToolOptions):
 
         # Options specific for this report
         self.options_dict = {
-            'events'  : 1,
-            'sources' : 1,
-            'citations' : 1,
-            'places'  : 1,
-            'media'   : 1,
-            'repos'   : 1,
-            'notes'   : 1,
+            'events': 1,
+            'sources': 1,
+            'citations': 1,
+            'places': 1,
+            'media': 1,
+            'repos': 1,
+            'notes': 1,
         }
         self.options_help = {
-            'events'  : ("=0/1","Whether to use check for unused events",
-                         ["Do not check events","Check events"],
-                         True),
-            'sources' : ("=0/1","Whether to use check for unused sources",
-                         ["Do not check sources","Check sources"],
-                         True),
-            'citations' : ("=0/1","Whether to use check for unused citations",
-                         ["Do not check citations","Check citations"],
-                         True),
-            'places'  : ("=0/1","Whether to use check for unused places",
-                          ["Do not check places","Check places"],
+            'events': ("=0/1", "Whether to use check for unused events",
+                       ["Do not check events", "Check events"],
+                       True),
+            'sources': ("=0/1", "Whether to use check for unused sources",
+                        ["Do not check sources", "Check sources"],
+                        True),
+            'citations': ("=0/1", "Whether to use check for unused citations",
+                          ["Do not check citations", "Check citations"],
                           True),
-            'media'   : ("=0/1","Whether to use check for unused media",
-                          ["Do not check media","Check media"],
-                          True),
-            'repos'   : ("=0/1","Whether to use check for unused repositories",
-                          ["Do not check repositories","Check repositories"],
-                          True),
-            'notes'   : ("=0/1","Whether to use check for unused notes",
-                          ["Do not check notes","Check notes"],
-                          True),
+            'places': ("=0/1", "Whether to use check for unused places",
+                       ["Do not check places", "Check places"],
+                       True),
+            'media': ("=0/1", "Whether to use check for unused media",
+                      ["Do not check media", "Check media"],
+                      True),
+            'repos': ("=0/1", "Whether to use check for unused repositories",
+                      ["Do not check repositories", "Check repositories"],
+                      True),
+            'notes': ("=0/1", "Whether to use check for unused notes",
+                      ["Do not check notes", "Check notes"],
+                      True),
             }
