@@ -53,16 +53,14 @@ def get_location_list(db, place, date=None, lang=''):
     return lines
 
 def __get_name(place, date, lang):
-    local_name = '?'
+    names = {}
     for place_name in place.get_all_names():
         name_date = place_name.get_date_object()
         if name_date.is_empty() or date.match_exact(name_date):
             name_lang = place_name.get_language()
-            if name_lang == '':
-                local_name = place_name.get_value()
-            if place_name.get_language() == lang:
-                return place_name.get_value()
-    return local_name
+            if name_lang not in names:
+                names[name_lang] = place_name.get_value()
+    return names.get(lang, names.get('', '?'))
 
 #-------------------------------------------------------------------------
 #
