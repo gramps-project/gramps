@@ -23,20 +23,14 @@ on a particular date.
 
 #------------------------------------------------------------------------
 #
-# Python modules
-#
-#------------------------------------------------------------------------
-
-#------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gen.datehandler import parser
 from gramps.gui.plug.quick import run_quick_report_by_name
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #

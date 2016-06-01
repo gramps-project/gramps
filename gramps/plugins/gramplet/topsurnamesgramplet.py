@@ -21,7 +21,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -30,16 +29,15 @@ from collections import defaultdict
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.config import config
 
 #------------------------------------------------------------------------
 #
 # Constants
 #
 #------------------------------------------------------------------------
-
 _YIELD_INTERVAL = 350
 
 #------------------------------------------------------------------------
@@ -89,7 +87,7 @@ class TopSurnamesGramplet(Gramplet):
 
         cnt = 0
         for surname in surnames:
-            surname_sort.append( (surnames[surname], surname) )
+            surname_sort.append((surnames[surname], surname))
             total += surnames[surname]
             cnt += 1
             if not cnt % _YIELD_INTERVAL:

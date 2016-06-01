@@ -21,33 +21,16 @@
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Pango
-from gi.repository import Gtk
-import math
-from gi.repository import Gdk
-try:
-    import cairo
-except ImportError:
-    pass
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.plug import Gramplet
+from gramps.gui.widgets.fanchartdesc import (FanChartDescWidget,
+                                             FanChartDescGrampsGUI,
+                                             ANGLE_WEIGHT)
+from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.plug import Gramplet
-from gramps.gen.errors import WindowActiveError
-from gramps.gui.editors import EditPerson
-from gramps.gui.widgets.fanchartdesc import (FanChartDescWidget, FanChartDescGrampsGUI,
-                                      ANGLE_WEIGHT)
-from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 
 class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
     """
@@ -67,7 +50,8 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE
         self.angle_algo = ANGLE_WEIGHT
-        self.set_fan(FanChartDescWidget(self.dbstate, self.uistate, self.on_popup))
+        self.set_fan(FanChartDescWidget(self.dbstate, self.uistate,
+                                        self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.fan)
@@ -75,7 +59,9 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate"))
+        self.set_tooltip(_("Click to expand/contract person\n"
+                           "Right-click for options\n"
+                           "Click and drag in open area to rotate"))
 
     def active_changed(self, handle):
         """

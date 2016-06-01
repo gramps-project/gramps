@@ -19,7 +19,7 @@
 
 #-------------------------------------------------------------------------
 #
-# Python modules
+# Gtk modules
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
@@ -162,7 +162,9 @@ class Locations(Gramplet, DbGUIElement):
 #
 #-------------------------------------------------------------------------
 class EnclosedBy(Locations):
-
+    """
+    Gramplet showing the locations enclosed by the active place.
+    """
     def display_place(self, place, node, visited):
         """
         Display the location hierarchy for the active place.
@@ -194,7 +196,9 @@ class EnclosedBy(Locations):
 #
 #-------------------------------------------------------------------------
 class Encloses(Locations):
-
+    """
+    Gramplet showing the locations which the active place encloses.
+    """
     def display_place(self, place, node, visited):
         """
         Display the location hierarchy for the active place.

@@ -30,14 +30,15 @@
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gui.plug.quick import (run_quick_report_by_name,
+                                   get_quick_report_list)
+from gramps.gen.plug  import (
+    CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT,
+    CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE, CATEGORY_QR_PLACE,
+    CATEGORY_QR_MEDIA, CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION,
+    CATEGORY_QR_SOURCE_OR_CITATION)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gui.plug.quick import run_quick_report_by_name, get_quick_report_list
-from gramps.gen.plug  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
-                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_NOTE,
-                         CATEGORY_QR_MISC, CATEGORY_QR_PLACE, CATEGORY_QR_MEDIA,
-                         CATEGORY_QR_REPOSITORY, CATEGORY_QR_CITATION,
-                         CATEGORY_QR_SOURCE_OR_CITATION)
 
 #------------------------------------------------------------------------
 #
@@ -112,7 +113,7 @@ class QuickViewGramplet(Gramplet):
                      ("Repository", _("Repository")),
                      ("Source", _("Source")),
                      ("Citation", _("Citation")),
-                     ]:
+                    ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
         qv_list = get_quick_report_list(CATEGORY_QR_PERSON)

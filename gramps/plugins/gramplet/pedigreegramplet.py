@@ -29,14 +29,16 @@ from html import escape
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.plug.menu import (NumberOption, BooleanOption,
+                                  EnumeratedListOption)
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 
 #------------------------------------------------------------------------
 #
@@ -53,7 +55,6 @@ class PedigreeGramplet(Gramplet):
         self.box_mode = "UTF"
 
     def build_options(self):
-        from gramps.gen.plug.menu import NumberOption, BooleanOption, EnumeratedListOption
         self.add_option(NumberOption(_("Max generations"),
                                      self.max_generations, 1, 100))
         self.add_option(BooleanOption(_("Show dates"), bool(self.show_dates)))
@@ -117,9 +118,9 @@ class PedigreeGramplet(Gramplet):
         if self.box_mode == "UTF":
             retval += "-"
             retval = retval.replace("\\", "\u2514")
-            retval = retval.replace("-",  "\u2500")
-            retval = retval.replace("|",  "\u2502")
-            retval = retval.replace("/",  "\u250c")
+            retval = retval.replace("-", "\u2500")
+            retval = retval.replace("|", "\u2502")
+            retval = retval.replace("/", "\u250c")
         elif self.box_mode == "ASCII":
             retval += "--"
         return retval
@@ -259,7 +260,7 @@ class PedigreeGramplet(Gramplet):
             if g == 0:
                 self.link(_("Generation 1"), 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation"))
-                percent = glocale.format( '%.2f', 100) + percent_sign
+                percent = glocale.format('%.2f', 100) + percent_sign
                 self.append_text(_(" has 1 of 1 individual (%(percent)s complete)\n") %  {'percent': percent})
             else:
                 all.extend(handles)
@@ -269,19 +270,19 @@ class PedigreeGramplet(Gramplet):
                 self.append_text(
                     # translators: leave all/any {...} untranslated
                     ngettext(" has {count_person} of {max_count_person} "
-                                 "individuals ({percent} complete)\n",
+                             "individuals ({percent} complete)\n",
                              " has {count_person} of {max_count_person} "
-                                 "individuals ({percent} complete)\n", 2**(g-1)
+                             "individuals ({percent} complete)\n", 2**(g-1)
                             ).format(count_person=count,
                                      max_count_person=2**(g-1),
-                                     percent=percent) )
+                                     percent=percent))
         self.link(_("All generations"), 'PersonList', all,
                   tooltip=_("Double-click to see all generations"))
         self.append_text(
             # translators: leave all/any {...} untranslated
             ngettext(" have {number_of} individual\n",
                      " have {number_of} individuals\n", len(all)
-                    ).format(number_of=len(all)) )
+                    ).format(number_of=len(all)))
         # Set to a fixed font
         if self.box_mode == "UTF":
             start, end = self.gui.buffer.get_bounds()

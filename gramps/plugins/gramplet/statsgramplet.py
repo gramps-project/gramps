@@ -29,11 +29,11 @@ import posixpath
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Person
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
@@ -90,9 +90,9 @@ class StatsGramplet(Gramplet):
             except OSError:
                 notfound.append(media.get_path())
 
-        males = sum([v[0] for v in database.genderStats.stats.values()]) # male, female, unknown
-        females = sum([v[1] for v in database.genderStats.stats.values()]) # male, female, unknown
-        unknown = sum([v[2] for v in database.genderStats.stats.values()]) # male, female, unknown
+        males = sum([v[0] for v in database.genderStats.stats.values()])
+        females = sum([v[1] for v in database.genderStats.stats.values()])
+        unknown = sum([v[2] for v in database.genderStats.stats.values()])
 
         self.clear_text()
         self.append_text(_("Individuals") + "\n")

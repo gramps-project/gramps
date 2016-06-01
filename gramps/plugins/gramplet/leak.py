@@ -26,14 +26,6 @@ Show uncollected objects in a window.
 
 #------------------------------------------------------------------------
 #
-# standard python modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#------------------------------------------------------------------------
-#
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
@@ -49,6 +41,8 @@ import gc
 from gramps.gen.plug import Gramplet
 from gramps.gui.dialog import InfoDialog
 from gramps.gui.utils import is_right_click
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +102,7 @@ class Leak(Gramplet):
         apply_button = Gtk.Button(label=_("Refresh"))
         apply_button.connect('clicked', self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
-        self.top.pack_start(bbox,  False, False, 6)
+        self.top.pack_start(bbox, False, False, 6)
 
         self.top.show_all()
 
@@ -137,7 +131,7 @@ class Leak(Gramplet):
                 except ReferenceError:
                     pass
             InfoDialog(_('Referrers of %d') % count, text,
-                        parent=self.uistate.window)
+                       parent=self.uistate.window)
 
     def refers_to(self):
         model, iter = self.selection.get_selected()
@@ -151,7 +145,7 @@ class Leak(Gramplet):
                 except ReferenceError:
                     pass
             InfoDialog(_('%d refers to') % count, text,
-                        parent=self.uistate.window)
+                       parent=self.uistate.window)
 
     def display(self):
         try:

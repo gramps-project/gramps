@@ -20,21 +20,12 @@
 
 """Descendant Gramplet"""
 
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
 #-------------------------------------------------------------------------
 #
 # GTK modules
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Gdk
 
 #------------------------------------------------------------------------
 #
@@ -49,9 +40,13 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gui.utils import model_to_text, text_to_clipboard
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class Descendant(Gramplet):
-
+    """
+    Gramplet to display descendants of the active person.
+    """
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -112,7 +107,8 @@ class Descendant(Gramplet):
         menu = Gtk.Menu()
         menu.set_title(_('Descendent Menu'))
         entries = [
-            (_("Edit"), lambda obj: self.cb_double_click(treeview), sensitivity),
+            (_("Edit"), lambda obj: self.cb_double_click(treeview),
+             sensitivity),
             (None, None, 0),
             (_("Copy all"), lambda obj: self.on_copy_all(treeview), 1),
         ]
@@ -127,6 +123,9 @@ class Descendant(Gramplet):
         self.menu.popup(None, None, None, None, event.button, event.time)
 
     def on_copy_all(self, treeview):
+        """
+        Copy tree to clipboard.
+        """
         model = treeview.get_model()
         text = model_to_text(model, [0, 1], level=1)
         text_to_clipboard(text)
@@ -155,6 +154,9 @@ class Descendant(Gramplet):
             self.set_has_data(False)
 
     def add_to_tree(self, parent_id, person_handle):
+        """
+        Add a person to the tree.
+        """
         person = self.dbstate.db.get_person_from_handle(person_handle)
         name = name_displayer.display(person)
 

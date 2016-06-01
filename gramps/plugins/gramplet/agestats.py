@@ -28,7 +28,6 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 # Python modules
 #
 #-------------------------------------------------------------------------
-
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -36,11 +35,10 @@ from collections import defaultdict
 # Gramps modules
 #
 #------------------------------------------------------------------------
-
 from gramps.gen.plug import Gramplet
+from gramps.gen.lib import ChildRefType
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import ChildRefType
 
 class AgeStatsGramplet(Gramplet):
 
@@ -150,7 +148,7 @@ class AgeStatsGramplet(Gramplet):
                         bref = f.get_birth_ref()
                         if bref:
                             bevent = self.dbstate.db.get_event_from_handle(bref.ref)
-                            bdate  = bevent.get_date_object()
+                            bdate = bevent.get_date_object()
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
                                 if diff >= 0 and diff < self.max_father_diff:
@@ -165,7 +163,7 @@ class AgeStatsGramplet(Gramplet):
                         bref = m.get_birth_ref()
                         if bref:
                             bevent = self.dbstate.db.get_event_from_handle(bref.ref)
-                            bdate  = bevent.get_date_object()
+                            bdate = bevent.get_date_object()
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
                                 if diff >= 0 and diff < self.max_mother_diff:
@@ -185,7 +183,7 @@ class AgeStatsGramplet(Gramplet):
         self.gui.buffer.apply_tag_by_name("fixed", start, end)
         self.append_text("", scroll_to="begin")
 
-    def ticks(self, width, start = 0, stop = 100, fill = " "):
+    def ticks(self, width, start=0, stop=100, fill=" "):
         """ Returns the tickmark numbers for a graph axis """
         count = int(width / 10.0)
         retval = "%-3d" % start
@@ -205,7 +203,7 @@ class AgeStatsGramplet(Gramplet):
         retval += "%3d" % int(stop)
         return retval
 
-    def format(self, text, width, align = "left", borders = "||", fill = " "):
+    def format(self, text, width, align="left", borders="||", fill=" "):
         """ Returns a formatted string for nice, fixed-font display """
         if align == "center":
             text = text.center(width, fill)
@@ -269,34 +267,39 @@ class AgeStatsGramplet(Gramplet):
         max_bin = float(max(bin))
         if max_bin != 0:
             i = 0
-            self.append_text("--------" +
-                self.format("", graph_width-4, fill = "-", borders="++") +
+            self.append_text(
+                "--------" +
+                self.format("", graph_width-4, fill="-", borders="++") +
                 "-----\n")
-            self.append_text(column.center(8) +
+            self.append_text(
+                column.center(8) +
                 self.format(title, graph_width-4, align="center") +
                 "  %  " + "\n")
-            self.append_text("--------" +
-                self.format("", graph_width-4, fill = "-", borders="++") +
+            self.append_text(
+                "--------" +
+                self.format("", graph_width-4, fill="-", borders="++") +
                 "-----\n")
             for bin in bin:
                 self.append_text((" %3d-%3d" % (i * 5, (i+1)* 5,)))
                 selected = self.make_handles_set(i * 5, (i+1) *5, handles)
                 self.link(self.format("X" * int(bin/max_bin * (graph_width-4)),
-                            graph_width-4),
+                                      graph_width-4),
                           'PersonList',
                           selected,
                           tooltip=_("Double-click to see %d people") %
-                            len(selected))
+                          len(selected))
                 procent = (float(len(selected)) /
-                                (float(sum(hash.values())))*100)
+                           (float(sum(hash.values())))*100)
                 self.append_text(glocale.format("%#5.2f", procent))
                 self.append_text("\n")
                 i += 1
-            self.append_text("--------" +
-                self.format("", graph_width-4, fill = "-", borders="++") +
+            self.append_text(
+                "--------" +
+                self.format("", graph_width-4, fill="-", borders="++") +
                 "-----\n")
-            self.append_text("    %   " +
-                self.ticks(graph_width-4, start = 0,
-                    stop = int(max_bin/(float(sum(hash.values())))*100)) +
+            self.append_text(
+                "    %   " +
+                self.ticks(graph_width-4, start=0,
+                           stop=int(max_bin/(float(sum(hash.values())))*100)) +
                 "\n\n")
             self.append_text(self.compute_stats(hash))

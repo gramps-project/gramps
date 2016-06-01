@@ -22,23 +22,17 @@
 
 #------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
-#------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.librecords import find_records, CALLNAME_DONTUSE
 from gramps.gen.plug import Gramplet
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
-# The Gramplet
+# RecordsGramplet
 #
 #------------------------------------------------------------------------
 class RecordsGramplet(Gramplet):

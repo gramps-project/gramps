@@ -27,32 +27,14 @@
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Pango
-from gi.repository import Gtk
-import math
-from gi.repository import Gdk
-try:
-    import cairo
-except ImportError:
-    pass
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.plug import Gramplet
+from gramps.gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
+                                         FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.plug import Gramplet
-from gramps.gen.errors import WindowActiveError
-from gramps.gui.editors import EditPerson
-from gramps.gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
-                    FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
 
 class FanChartGramplet(FanChartGrampsGUI, Gramplet):
     """
@@ -80,7 +62,8 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate"))
+        self.set_tooltip(_("Click to expand/contract person\nRight-click for "
+                           "options\nClick and drag in open area to rotate"))
 
     def active_changed(self, handle):
         """

@@ -17,12 +17,23 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Gtk
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+from gi.repository import Pango
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.lib import UrlType
 from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import Gtk
-from gi.repository import Pango
 
 class RepositoryDetails(Gramplet):
     """

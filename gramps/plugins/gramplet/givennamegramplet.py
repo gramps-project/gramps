@@ -18,12 +18,23 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 #
-from collections import defaultdict
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from collections import defaultdict
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gen.config import config
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 _YIELD_INTERVAL = 350
 
@@ -66,12 +77,12 @@ class GivenNameCloudGramplet(Gramplet):
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set(name.get_first_name().strip() for name in allnames)
             for givenname in allnames:
-                anyNBSP = givenname.split('\u00A0')
-                if len(anyNBSP) > 1: # there was an NBSP, a non-breaking space
-                    first_two = anyNBSP[0] + '\u00A0' + anyNBSP[1].split()[0]
+                nbsp = givenname.split('\u00A0')
+                if len(nbsp) > 1: # there was an NBSP, a non-breaking space
+                    first_two = nbsp[0] + '\u00A0' + nbsp[1].split()[0]
                     givensubnames[first_two] += 1
                     representative_handle[first_two] = person.handle
-                    givenname = ' '.join(anyNBSP[1].split()[1:])
+                    givenname = ' '.join(nbsp[1].split()[1:])
                 for givensubname in givenname.split():
                     givensubnames[givensubname] += 1
                     representative_handle[givensubname] = person.handle
@@ -84,7 +95,8 @@ class GivenNameCloudGramplet(Gramplet):
 
         total = cnt = 0
         for givensubname in givensubnames:
-            givensubname_sort.append( (givensubnames[givensubname], givensubname) )
+            givensubname_sort.append((givensubnames[givensubname],
+                                      givensubname))
             total += givensubnames[givensubname]
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
@@ -96,8 +108,8 @@ class GivenNameCloudGramplet(Gramplet):
         cloud_values = []
 
         for count, givensubname in givensubname_sort:
-            cloud_names.append( (count, givensubname) )
-            cloud_values.append( count )
+            cloud_names.append((count, givensubname))
+            cloud_values.append(count)
 
         cloud_names.sort(key=lambda k: k[1])
         counts = sorted(set(cloud_values), reverse=True)

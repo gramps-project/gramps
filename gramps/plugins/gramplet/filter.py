@@ -19,17 +19,20 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Module providing a gramplet interface to the sidebar filters.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gui.filters.sidebar import (PersonSidebarFilter, FamilySidebarFilter,
-                                 EventSidebarFilter, SourceSidebarFilter,
-                                 CitationSidebarFilter,
-                                 PlaceSidebarFilter, MediaSidebarFilter,
-                                 RepoSidebarFilter, NoteSidebarFilter)
+from gramps.gui.filters.sidebar import (
+    PersonSidebarFilter, FamilySidebarFilter, EventSidebarFilter,
+    SourceSidebarFilter, CitationSidebarFilter, PlaceSidebarFilter,
+    MediaSidebarFilter, RepoSidebarFilter, NoteSidebarFilter)
 
 #-------------------------------------------------------------------------
 #

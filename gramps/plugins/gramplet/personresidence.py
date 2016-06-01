@@ -17,16 +17,27 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, EventRoleType
 from gramps.gui.editors import EditEvent
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
-from gi.repository import Gtk
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class PersonResidence(Gramplet):
     """

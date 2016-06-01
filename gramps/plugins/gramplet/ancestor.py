@@ -45,7 +45,9 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 class Ancestor(Gramplet):
-
+    """
+    Gramplet to display ancestors of the active person.
+    """
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -120,6 +122,9 @@ class Ancestor(Gramplet):
             self.set_has_data(False)
 
     def add_to_tree(self, depth, parent_id, person_handle):
+        """
+        Add a person to the tree.
+        """
         if depth > config.get('behavior.generation-depth'):
             return
 

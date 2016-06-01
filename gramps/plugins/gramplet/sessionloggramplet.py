@@ -32,10 +32,10 @@ import time
 from gramps.gen.lib import Person, Family
 from gramps.gen.db import PERSON_KEY, FAMILY_KEY, TXNDEL
 from gramps.gen.plug import Gramplet
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.db import family_name
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
@@ -80,7 +80,7 @@ class LogGramplet(Gramplet):
                 continue
             self.last_log = (ltype, action, handle)
             self.timestamp()
-            self.append_text("%s: " % _(action) )
+            self.append_text("%s: " % _(action))
             if action == 'Deleted':
                 transaction = self.dbstate.db.transaction
                 if ltype == 'Person':
@@ -105,7 +105,7 @@ class LogGramplet(Gramplet):
                                     and hndl == handle):
                                 family = Family()
                                 family.unserialize(old_data)
-                                name = family_name(family, self.dbstate.db,name)
+                                name = family_name(family, self.dbstate.db, name)
                                 break
                 self.append_text(name)
             else:

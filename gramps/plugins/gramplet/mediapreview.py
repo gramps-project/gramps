@@ -17,10 +17,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.utils.file import media_path_full
-from gi.repository import Gtk
 
 class MediaPreview(Gramplet):
     """
@@ -72,7 +83,6 @@ class MediaPreview(Gramplet):
         """
         Load the primary image if it exists.
         """
-        self.full_path = media_path_full(self.dbstate.db,
-                                               media.get_path())
+        self.full_path = media_path_full(self.dbstate.db, media.get_path())
         mime_type = media.get_mime_type()
         self.photo.set_image(self.full_path, mime_type)

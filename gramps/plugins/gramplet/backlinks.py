@@ -18,13 +18,24 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from gramps.gui.listmodel import ListModel, NOSORT
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gramps.gui.listmodel import ListModel
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
 from gramps.gui.utils import edit_object
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import Gtk
 
 class Backlinks(Gramplet):
     """

@@ -18,13 +18,24 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#------------------------------------------------------------------------
+#
+# Gtk
+#
+#------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
 from gramps.gen.lib import StyledText
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import Gtk
 
 class Notes(Gramplet):
     """
@@ -53,7 +64,8 @@ class Notes(Gramplet):
         hbox.pack_end(self.page, False, False, 10)
 
         scrolledwindow = Gtk.ScrolledWindow()
-        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                  Gtk.PolicyType.AUTOMATIC)
         self.texteditor = StyledTextEditor()
         self.texteditor.set_editable(False)
         self.texteditor.set_wrap_mode(Gtk.WrapMode.WORD)
@@ -96,8 +108,9 @@ class Notes(Gramplet):
         note_handle = self.note_list[self.current]
         note = self.dbstate.db.get_note_from_handle(note_handle)
         self.texteditor.set_text(note.get_styledtext())
-        self.page.set_text(_('%(current)d of %(total)d') % {'current': self.current + 1,
-                                            'total': len(self.note_list)})
+        self.page.set_text(_('%(current)d of %(total)d') %
+                           {'current': self.current + 1,
+                            'total': len(self.note_list)})
 
     def left_clicked(self, button):
         """

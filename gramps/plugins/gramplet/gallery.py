@@ -18,11 +18,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#------------------------------------------------------------------------
+#
+# Gtk
+#
+#------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.utils.file import media_path_full
-from gi.repository import Gtk
 
 class Gallery(Gramplet):
     """
@@ -67,9 +78,8 @@ class Gallery(Gramplet):
             else:
                 photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_pixbuf(full_path,
-                                get_thumbnail_image(full_path,
-                                    mime_type,
-                                    media_ref.get_rectangle()))
+                                 get_thumbnail_image(full_path, mime_type,
+                                                     media_ref.get_rectangle()))
             self.image_list.append(photo)
             self.top.pack_start(photo, False, False, 0)
             count += 1

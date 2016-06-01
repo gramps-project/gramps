@@ -16,6 +16,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -24,9 +29,9 @@ from collections import defaultdict
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.config import config
 
 #------------------------------------------------------------------------
 #
@@ -91,7 +96,7 @@ class SurnameCloudGramplet(Gramplet):
         representative_handle = {}
 
         cnt = 0
-        namelist =[]
+        namelist = []
         for person in self.dbstate.db.iter_people():
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set([name.get_group_name().strip() for name in allnames])
@@ -111,7 +116,7 @@ class SurnameCloudGramplet(Gramplet):
         surname_sort = []
         total = cnt = 0
         for surname in surnames:
-            surname_sort.append( (surnames[surname], surname) )
+            surname_sort.append((surnames[surname], surname))
             total += surnames[surname]
             cnt += 1
             if not cnt % _YIELD_INTERVAL:
@@ -121,10 +126,10 @@ class SurnameCloudGramplet(Gramplet):
         cloud_names = []
         cloud_values = []
         for (count, surname) in surname_sort:
-            cloud_names.append( (count, surname) )
-            cloud_values.append( count )
+            cloud_names.append((count, surname))
+            cloud_values.append(count)
 
-        cloud_names.sort(key=lambda k:k[1])
+        cloud_names.sort(key=lambda k: k[1])
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:

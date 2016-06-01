@@ -227,7 +227,7 @@ class WhatNextGramplet(Gramplet):
         spouses = []
         spouses_queue = []
 
-        while (ancestors or families):
+        while ancestors or families:
             # (Other) families of parents
             for ancestor_group in ancestors_queue.pop(0):
                 new_family_group = []
@@ -416,9 +416,7 @@ class WhatNextGramplet(Gramplet):
             if not name2:
                 name2 = _("(person with unknown name)")
 
-        name = _("%(name1)s and %(name2)s") % {
-                'name1': name1,
-                'name2': name2}
+        name = _("%(name1)s and %(name2)s") % {'name1': name1, 'name2': name2}
 
         has_marriage = False
 
@@ -463,9 +461,7 @@ class WhatNextGramplet(Gramplet):
             if not name2:
                 name2 = _("(person with unknown name)")
 
-        name = _("%(name1)s and %(name2)s") % {
-                'name1': name1,
-                'name2': name2}
+        name = _("%(name1)s and %(name2)s") % {'name1': name1, 'name2': name2}
 
         if self.__family_complete_handle is not None and \
            self.__family_complete_handle not in family.get_tag_list():
@@ -494,8 +490,8 @@ class WhatNextGramplet(Gramplet):
 
         if missingbits:
             return [_("%(type)s: %(list)s") % {
-                    'type': event.get_type(),
-                    'list': _(", ").join(missingbits)}]
+                'type': event.get_type(),
+                'list': _(", ").join(missingbits)}]
         else:
             return []
 

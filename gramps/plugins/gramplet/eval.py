@@ -30,8 +30,6 @@ Provide a python evaluation window
 #------------------------------------------------------------------------
 import sys
 from io import StringIO
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import traceback
 
 #-------------------------------------------------------------------------
@@ -47,6 +45,8 @@ from gi.repository import Gtk
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +102,7 @@ class PythonEvaluation(Gramplet):
 
     def apply_clicked(self, obj):
         text = str(self.ebuf.get_text(self.ebuf.get_start_iter(),
-                                          self.ebuf.get_end_iter(),False))
+                                      self.ebuf.get_end_iter(), False))
 
         outtext = StringIO()
         errtext = StringIO()

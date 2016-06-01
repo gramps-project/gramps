@@ -18,14 +18,25 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gui.editors import EditSource, EditCitation
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
 from gramps.gui.dbguielement import DbGUIElement
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.errors import WindowActiveError
-from gi.repository import Gtk
 
 class Citations(Gramplet, DbGUIElement):
 

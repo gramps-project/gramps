@@ -18,17 +18,28 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+from gi.repository import Pango
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, EventRoleType
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.file import media_path_full
-from gi.repository import Gtk
-from gi.repository import Pango
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class PersonDetails(Gramplet):
     """
@@ -175,7 +186,7 @@ class PersonDetails(Gramplet):
             nlist = active_person.get_alternate_names()
             if len(nlist) > 0:
                 for altname in nlist:
-                    name_type = str( altname.get_type() )
+                    name_type = str(altname.get_type())
                     text = name_displayer.display_name(altname)
                     self.add_row(name_type, text)
                 self.display_separator()
@@ -249,7 +260,7 @@ class PersonDetails(Gramplet):
             retval = _('%(date)s - %(place)s.') % {'date' : date,
                                                    'place' : place}
         else:
-            retval = _('%(date)s.') % dict(date = date)
+            retval = _('%(date)s.') % dict(date=date)
         return retval
 
     def load_person_image(self, person):
