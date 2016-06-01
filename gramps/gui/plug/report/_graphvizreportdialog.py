@@ -23,14 +23,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+""" a ReportDialog customized for Graphviz-based reports """
+
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
 import os
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------------
 #
@@ -45,6 +45,8 @@ from gi.repository import GObject
 # Gramps modules
 #
 #-------------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.config import config
 from gramps.gen.plug.report import CATEGORY_GRAPHVIZ
 from ._reportdialog import ReportDialog
@@ -59,11 +61,12 @@ from gramps.gen.plug.menu import Menu
 #-------------------------------------------------------------------------------
 class GraphvizFormatComboBox(Gtk.ComboBox):
     """
-    Format combo box class for Graphviz report.
+    Combo box class for Graphviz report format choices.
     """
     def set(self, active=None):
-        self.store = Gtk.ListStore(GObject.TYPE_STRING)
-        self.set_model(self.store)
+        """ initialize the Graphviz choices """
+        store = Gtk.ListStore(GObject.TYPE_STRING)
+        self.set_model(store)
         cell = Gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
@@ -72,34 +75,26 @@ class GraphvizFormatComboBox(Gtk.ComboBox):
         active_index = 0
         for item in graphdoc.FORMATS:
             name = item["descr"]
-            self.store.append(row=[name])
+            store.append(row=[name])
             if item['type'] == active:
                 active_index = index
             index += 1
         self.set_active(active_index)
 
     def get_label(self):
+        """ get the format description """
         return graphdoc.FORMATS[self.get_active()]["descr"]
 
     def get_reference(self):
+        """ get the format class """
         return graphdoc.FORMATS[self.get_active()]["class"]
 
-    def get_paper(self):
-        return 1
-
-    def get_styles(self):
-        return 0
-
     def get_ext(self):
+        """ get the format extension """
         return '.%s' % graphdoc.FORMATS[self.get_active()]['ext']
 
-    def get_oformat_str(self): # the report's output-format type
-        return graphdoc.FORMATS[self.get_active()]["type"]
-
-    def is_file_output(self):
-        return True
-
     def get_clname(self):
+        """ get the report's output format type"""
         return graphdoc.FORMATS[self.get_active()]["type"]
 
 #-----------------------------------------------------------------------
@@ -108,10 +103,11 @@ class GraphvizFormatComboBox(Gtk.ComboBox):
 #
 #-----------------------------------------------------------------------
 class GraphvizReportDialog(ReportDialog):
-    """A class of ReportDialog customized for graphviz based reports."""
+    """A class of ReportDialog customized for Graphviz-based reports."""
+
     def __init__(self, dbstate, uistate, opt, name, translated_name):
         """Initialize a dialog to request that the user select options
-        for a graphviz report.  See the ReportDialog class for
+        for a Graphviz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
         self.__gvoptions = graphdoc.GVOptions()
@@ -119,11 +115,15 @@ class GraphvizReportDialog(ReportDialog):
         ReportDialog.__init__(self, dbstate, uistate, opt,
                               name, translated_name)
 
+        self.doc = None # keep pylint happy
+        self.format = None
+        self.paper_label = None
+
     def init_options(self, option_class):
         try:
             if issubclass(option_class, object):     # Old-style class
                 self.options = option_class(self.raw_name,
-                                        self.dbstate.get_database())
+                                            self.dbstate.get_database())
         except TypeError:
             self.options = option_class
 
@@ -147,7 +147,7 @@ class GraphvizReportDialog(ReportDialog):
         self.format_menu = GraphvizFormatComboBox()
         self.format_menu.set(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
-        label = Gtk.Label(label="%s:" % _("Output Format"))
+        label = Gtk.Label(label=_("%s:") % _("Output Format"))
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
         self.format_menu.set_hexpand(True)
@@ -181,12 +181,11 @@ class GraphvizReportDialog(ReportDialog):
         self.paper_label.set_use_markup(True)
         handler = self.options.handler
         self.paper_frame = PaperFrame(
-                                  handler.get_paper_metric(),
-                                  handler.get_paper_name(),
-                                  handler.get_orientation(),
-                                  handler.get_margins(),
-                                  handler.get_custom_paper_size(),
-                                  )
+            handler.get_paper_metric(),
+            handler.get_paper_name(),
+            handler.get_orientation(),
+            handler.get_margins(),
+            handler.get_custom_paper_size())
         self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
         self.paper_frame.show_all()
 
@@ -213,7 +212,7 @@ class GraphvizReportDialog(ReportDialog):
             fname = spath
         self.target_fileentry.set_filename(fname)
 
-        output_format_str = obj.get_oformat_str()
+        output_format_str = obj.get_clname()
         if output_format_str in ['gvpdf', 'gspdf', 'ps']:
             # Always use 72 DPI for PostScript and PDF files.
             self.__gvoptions.dpi.set_value(72)
@@ -254,12 +253,15 @@ class GraphvizReportDialog(ReportDialog):
         self.parse_user_options()
 
         self.options.handler.set_paper_metric(
-                                          self.paper_frame.get_paper_metric())
-        self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
-        self.options.handler.set_orientation(self.paper_frame.get_orientation())
-        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
+            self.paper_frame.get_paper_metric())
+        self.options.handler.set_paper_name(
+            self.paper_frame.get_paper_name())
+        self.options.handler.set_orientation(
+            self.paper_frame.get_orientation())
+        self.options.handler.set_margins(
+            self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(
-                                       self.paper_frame.get_custom_paper_size())
+            self.paper_frame.get_custom_paper_size())
 
         # Create the output document.
         self.make_document()

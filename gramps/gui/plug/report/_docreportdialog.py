@@ -20,14 +20,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+    base class for generating dialogs for docgen-derived reports
+"""
+
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
 import os
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -41,10 +43,13 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.config import config
 from ._reportdialog import ReportDialog
 from ._papermenu import PaperFrame
 from ...pluginmanager import GuiPluginManager
+
 PLUGMAN = GuiPluginManager.get_instance()
 
 #-------------------------------------------------------------------------
@@ -64,14 +69,21 @@ class DocReportDialog(ReportDialog):
 
         self.style_name = "default"
         self.firstpage_added = False
-        self.CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
+        self.css = PLUGMAN.process_plugin_data('WEBSTUFF')
         self.dbname = dbstate.db.get_dbname()
         ReportDialog.__init__(self, dbstate, uistate, option_class,
-                                  name, trans_name)
+                              name, trans_name)
+
+        self.basedocname = None # keep pylint happy
+        self.css_filename = None
+        self.doc = None
+        self.doc_option_class = None
+        self.format = None
+        self.html_label = None
+        self.paper_label = None
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
-
 
     def init_interface(self):
         ReportDialog.init_interface(self)
@@ -125,12 +137,14 @@ class DocReportDialog(ReportDialog):
         if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
-            self.paper_label = Gtk.Label(label='<b>%s</b>' % _("Paper Options"))
+            self.paper_label = Gtk.Label(
+                label='<b>%s</b>' % _("Paper Options"))
             self.paper_label.set_use_markup(True)
             self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()
         else:
-            self.html_label = Gtk.Label(label='<b>%s</b>' % _("HTML Options"))
+            self.html_label = Gtk.Label(
+                label='<b>%s</b>' % _("HTML Options"))
             self.html_label.set_use_markup(True)
             self.notebook.insert_page(self.html_grid, self.html_label, 0)
             self.html_grid.show_all()
@@ -167,14 +181,15 @@ class DocReportDialog(ReportDialog):
 
         self.make_doc_menu(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
-        label = Gtk.Label(label="%s:" % _("Output Format"))
+        label = Gtk.Label(label=_("%s:") % _("Output Format"))
         label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
         self.format_menu.set_hexpand(True)
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(label=_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(
+            label=_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
@@ -197,12 +212,13 @@ class DocReportDialog(ReportDialog):
             self.target_fileentry.set_filename(spath)
 
     def setup_report_options_frame(self):
-        self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),
-                                      self.options.handler.get_paper_name(),
-                                      self.options.handler.get_orientation(),
-                                      self.options.handler.get_margins(),
-                                      self.options.handler.get_custom_paper_size()
-                                      )
+        """ Set up the html/paper frame of the dialog """
+        self.paper_frame = PaperFrame(
+            self.options.handler.get_paper_metric(),
+            self.options.handler.get_paper_name(),
+            self.options.handler.get_orientation(),
+            self.options.handler.get_margins(),
+            self.options.handler.get_custom_paper_size())
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
 
@@ -216,23 +232,24 @@ class DocReportDialog(ReportDialog):
         self.html_grid.set_row_spacing(6)
         self.html_grid.set_border_width(6)
 
-        label = Gtk.Label(label="%s:" % _("CSS file"))
+        label = Gtk.Label(label=_("%s:") % _("CSS file"))
         label.set_halign(Gtk.Align.START)
         self.html_grid.attach(label, 1, 1, 1, 1)
 
         self.css_combo = Gtk.ComboBoxText()
         self.css_combo.set_hexpand(True)
 
-        css_filename = self.options.handler.get_css_filename()
+        self.css_filename = self.options.handler.get_css_filename()
         active_index = 0
         index = 0
-        for (name, id) in sorted([(self.CSS[key]["translation"], self.CSS[key]["id"])
-                                for key in self.CSS]):
-            if self.CSS[id]["user"]:
-                self.css_combo.append_text(self.CSS[id]["translation"])
+        for (name, _id) in sorted([(self.css[key]["translation"],
+                                    self.css[key]["id"])
+                                   for key in self.css]):
+            if self.css[_id]["user"]:
+                self.css_combo.append_text(self.css[_id]["translation"])
                 # Associate this index number with CSS too:
-                self.CSS[index] = self.CSS[id]
-                if css_filename == self.CSS[id]["filename"]:
+                self.css[index] = self.css[_id]
+                if self.css_filename == self.css[_id]["filename"]:
                     active_index = index
                 index += 1
 
@@ -254,7 +271,11 @@ class DocReportDialog(ReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        self.css_filename = self.CSS[self.css_combo.get_active()]["filename"]
+        active = self.css_combo.get_active()
+        if active == -1: # legal for "no active item" (see 7585, 8189, 9461)
+            active = self.style_name
+        if self.css:
+            self.css_filename = self.css[active]["filename"]
         self.options.handler.set_css_filename(self.css_filename)
 
     def on_ok_clicked(self, obj):
@@ -271,11 +292,16 @@ class DocReportDialog(ReportDialog):
         self.parse_style_frame()
         self.parse_html_frame()
 
-        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
-        self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
-        self.options.handler.set_orientation(self.paper_frame.get_orientation())
-        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
-        self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
+        self.options.handler.set_paper_metric(
+            self.paper_frame.get_paper_metric())
+        self.options.handler.set_paper_name(
+            self.paper_frame.get_paper_name())
+        self.options.handler.set_orientation(
+            self.paper_frame.get_orientation())
+        self.options.handler.set_margins(
+            self.paper_frame.get_paper_margins())
+        self.options.handler.set_custom_paper_size(
+            self.paper_frame.get_custom_paper_size())
 
         self.parse_user_options()
 
