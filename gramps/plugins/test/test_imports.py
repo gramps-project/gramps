@@ -240,6 +240,7 @@ if _tstfile:                             # single file mode
                              (CompleteCheck,),
                              {"testit": test_func})
 else:
+    _tstfiles = []
     for _tstfile in os.listdir(TEST_DIR):
         (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
         if ext == ".gramps" or ext == ".difs" or ext == ".bak":
@@ -249,7 +250,18 @@ else:
         globals()[clname] = type(clname,
                                  (CompleteCheck,),
                                  {"testit": test_func})
+        _tstfiles.append(clname)
 
+    def test_import_classes():
+        """
+        Dynamic Test-function lister for
+        nosetests. Creates an instance for each
+        import test, and yields the function to
+        test.
+        """
+        for clname in _tstfiles:
+            instance = globals()[clname]()
+            yield instance.testit
 
 if __name__ == "__main__":
     unittest.main()
