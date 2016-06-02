@@ -89,7 +89,7 @@ def importData(database, filename, user):
             gramps = True
     ifile.close()
 
-    if not gramps and ansel:
+    if not gramps and ansel and user.uistate:
         top = Glade()
         code = top.get_object('codeset')
         code.set_active(0)
