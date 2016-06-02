@@ -234,12 +234,6 @@ reports.addreport(TestDynamic, "WebCal",
 #                  [],
 #                  off="txt", filename=example)
 
-reports.addcli(TestDynamic, "import_gedcom",
-               err_does_contain("Cleaning up."),
-               [None],
-               "-C", TREE_NAME + "_import_gedcom",
-               "--import", sample)
-
 reports.addcli(TestDynamic, "export_gedcom",
                err_does_contain("Cleaning up."),
                ["test_export.ged"],
