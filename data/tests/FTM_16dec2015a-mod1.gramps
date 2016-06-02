@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-05-23" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000500000005" change="1464018002" id="E0000">
+      <type>Birth</type>
+      <dateval val="1816"/>
+      <place hlink="_0000000700000007"/>
+      <citationref hlink="_0000000600000006"/>
+    </event>
+    <event handle="_0000000800000008" change="1464018002" id="E0001">
+      <type>Residence</type>
+      <dateval val="1850"/>
+      <place hlink="_0000000a0000000a"/>
+      <citationref hlink="_0000000900000009"/>
+    </event>
+    <event handle="_0000000b0000000b" change="1464018002" id="E0002">
+      <type>Death</type>
+      <datestr val="1850/1860"/>
+      <place hlink="_0000000c0000000c"/>
+    </event>
+    <event handle="_0000000f0000000f" change="1464018002" id="E0003">
+      <type>Marriage</type>
+      <dateval val="1841" type="about"/>
+      <place hlink="_0000001000000010"/>
+    </event>
+    <event handle="_0000001100000011" change="1464018002" id="E0004">
+      <type>Marriage</type>
+      <dateval val="1847-08"/>
+      <place hlink="_0000001200000012"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1464018002" id="I0278">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Andrew</first>
+        <surname>May</surname>
+        <citationref hlink="_0000000400000004"/>
+      </name>
+      <eventref hlink="_0000000500000005" role="Primary"/>
+      <eventref hlink="_0000000800000008" role="Primary"/>
+      <eventref hlink="_0000000b0000000b" role="Primary"/>
+      <childof hlink="_0000000d0000000d"/>
+      <childof hlink="_0000000e0000000e"/>
+      <parentin hlink="_0000000d0000000d"/>
+      <parentin hlink="_0000000e0000000e"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000d0000000d" change="1464018002" id="F0073">
+      <rel type="Married"/>
+      <father hlink="_0000000100000001"/>
+      <eventref hlink="_0000000f0000000f" role="Family"/>
+      <childref hlink="_0000000100000001"/>
+    </family>
+    <family handle="_0000000e0000000e" change="1464018002" id="F0074">
+      <rel type="Married"/>
+      <father hlink="_0000000100000001"/>
+      <eventref hlink="_0000001100000011" role="Family"/>
+      <childref hlink="_0000000100000001"/>
+    </family>
+  </families>
+  <citations>
+    <citation handle="_0000000400000004" change="1464018002" id="C0000">
+      <page>Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248</page>
+      <confidence>2</confidence>
+      <objref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000200000002"/>
+    </citation>
+    <citation handle="_0000000600000006" change="1464018002" id="C0001">
+      <page>Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248</page>
+      <confidence>2</confidence>
+      <objref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000200000002"/>
+    </citation>
+    <citation handle="_0000000900000009" change="1464018002" id="C0002">
+      <page>Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248</page>
+      <confidence>2</confidence>
+      <objref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000200000002"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000000200000002" change="1464018002" id="S0029">
+      <stitle>1850 United States Federal Census</stitle>
+      <sauthor>Ancestry.com</sauthor>
+      <spubinfo>Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date: 2009;</spubinfo>
+      <reporef hlink="_0000001300000013" medium="Book"/>
+    </source>
+  </sources>
+  <places>
+    <placeobj handle="_0000000700000007" change="1464018002" id="P0000" type="Unknown">
+      <ptitle>Tennessee, USA</ptitle>
+      <pname value="Tennessee, USA"/>
+    </placeobj>
+    <placeobj handle="_0000000a0000000a" change="1464018002" id="P0001" type="Unknown">
+      <ptitle>District 14, Cape Girardeau, Missouri, USA</ptitle>
+      <pname value="District 14, Cape Girardeau, Missouri, USA"/>
+    </placeobj>
+    <placeobj handle="_0000000c0000000c" change="1464018002" id="P0002" type="Unknown">
+      <ptitle>Bollinger Co. MO</ptitle>
+      <pname value="Bollinger Co. MO"/>
+    </placeobj>
+    <placeobj handle="_0000001000000010" change="1464018002" id="P0003" type="Unknown">
+      <ptitle>Union Co.?, IL</ptitle>
+      <pname value="Union Co.?, IL"/>
+    </placeobj>
+    <placeobj handle="_0000001200000012" change="1464018002" id="P0004" type="Unknown">
+      <ptitle>Wayne, Missouri, United States</ptitle>
+      <pname value="Wayne, Missouri, United States"/>
+    </placeobj>
+  </places>
+  <objects>
+    <object handle="_0000000300000003" change="1464018002" id="M159">
+      <file src="1850 United States Federal Census(11)-1.jpg" mime="image/jpeg" description="1850 United States Federal Census"/>
+      <noteref hlink="_0000001400000014"/>
+      <noteref hlink="_0000001500000015"/>
+    </object>
+    <object handle="_0000001600000016" change="1464018002" id="M158">
+      <file src="D:/Users/PRC/Downloads/1850 United States Federal Census(11)-1.jpg" mime="image/jpeg" description="D:\Users\PRC\Downloads\1850 United States Federal Census(11)-1.jpg"/>
+    </object>
+    <object handle="_0000001700000017" change="1464018002" id="M157">
+      <file src="http://1.gravatar.com/avatar/77e02a3c8c665155ad1acaac8c2742e0?s=120&amp;d=mm&amp;r=pg" mime="unknown" description="http://1.gravatar.com/avatar/77e02a3c8c665155ad1acaac8c2742e0?s=120&amp;d=mm&amp;r=pg"/>
+    </object>
+  </objects>
+  <repositories>
+    <repository handle="_0000001300000013" change="1464018002" id="R0001">
+      <rname>Ancestry.com</rname>
+      <type>Library</type>
+      <address>
+      </address>
+      <url  href="" type="E-mail"/>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_0000001400000014" change="1464018002" id="N0000" type="General">
+      <text>Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248</text>
+    </note>
+    <note handle="_0000001500000015" change="1464018002" id="N0001" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M159:
+
+Could not import 1850 United States Federal Census(11)-1.jpg        Line    70: 1 FILE 1850 United States Federal Census(11)-1.jpg</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="200"/>
+      </style>
+    </note>
+  </notes>
+</database>

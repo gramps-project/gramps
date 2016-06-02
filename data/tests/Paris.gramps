@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-05-23" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+      <resname>Paul Culley</resname>
+      <resaddr>11210 Olde Mint House Ln</resaddr>
+      <rescity>Tomball</rescity>
+      <resstate>Tx</resstate>
+      <rescountry>USA</rescountry>
+      <respostal>77375</respostal>
+      <resemail>paulr2787@gmail.com</resemail>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000200000002" change="1464034202" id="E0000">
+      <type>Paris</type>
+      <place hlink="_0000000300000003"/>
+    </event>
+    <event handle="_0000000600000006" change="1464034202" id="E0001">
+      <type>Ordination</type>
+      <place hlink="_0000000700000007"/>
+      <description>Notre-Dame-de-Bonne-Nouvelle</description>
+    </event>
+    <event handle="_0000000800000008" change="1464034202" id="E0002">
+      <type>Ordination</type>
+      <place hlink="_0000000900000009"/>
+      <description>Saint-Benoît</description>
+    </event>
+    <event handle="_0000000a0000000a" change="1464034202" id="E0003">
+      <type>Ordination</type>
+      <place hlink="_0000000b0000000b"/>
+      <description>Saint-Christophe-de-Javel</description>
+    </event>
+    <event handle="_0000000c0000000c" change="1464034202" id="E0004">
+      <type>Ordination</type>
+      <place hlink="_0000000d0000000d"/>
+      <description>Saint-Eustache</description>
+    </event>
+    <event handle="_0000000e0000000e" change="1464034202" id="E0005">
+      <type>Ordination</type>
+      <place hlink="_0000000f0000000f"/>
+      <description>Saint-Germain-des-Prés</description>
+    </event>
+    <event handle="_0000001000000010" change="1464034202" id="E0006">
+      <type>Ordination</type>
+      <place hlink="_0000001100000011"/>
+      <description>Saint-Germain-L'Auxerrois</description>
+    </event>
+    <event handle="_0000001200000012" change="1464034202" id="E0007">
+      <type>Ordination</type>
+      <place hlink="_0000001300000013"/>
+      <description>Saint-Gervais-et-Protais</description>
+    </event>
+    <event handle="_0000001400000014" change="1464034202" id="E0008">
+      <type>Ordination</type>
+      <place hlink="_0000001500000015"/>
+      <description>Saint-Jacques-du-Haut-Pas</description>
+    </event>
+    <event handle="_0000001600000016" change="1464034202" id="E0009">
+      <type>Ordination</type>
+      <place hlink="_0000001700000017"/>
+      <description>Saint-Laurent</description>
+    </event>
+    <event handle="_0000001800000018" change="1464034202" id="E0010">
+      <type>Ordination</type>
+      <place hlink="_0000001900000019"/>
+      <description>Saint-Leu-Saint-Gilles</description>
+    </event>
+    <event handle="_0000001a0000001a" change="1464034202" id="E0011">
+      <type>Ordination</type>
+      <place hlink="_0000001b0000001b"/>
+      <description>Saint-Médard</description>
+    </event>
+    <event handle="_0000001c0000001c" change="1464034202" id="E0012">
+      <type>Ordination</type>
+      <place hlink="_0000001d0000001d"/>
+      <description>Saint-Merri</description>
+    </event>
+    <event handle="_0000001e0000001e" change="1464034202" id="E0013">
+      <type>Ordination</type>
+      <place hlink="_0000001f0000001f"/>
+      <description>Saint-Nicolas-de-Chardonnet</description>
+    </event>
+    <event handle="_0000002000000020" change="1464034202" id="E0014">
+      <type>Ordination</type>
+      <place hlink="_0000002100000021"/>
+      <description>Saint-Nicolas-des-Champs</description>
+    </event>
+    <event handle="_0000002200000022" change="1464034202" id="E0015">
+      <type>Ordination</type>
+      <place hlink="_0000002300000023"/>
+      <description>Saint-Sauveur</description>
+    </event>
+    <event handle="_0000002400000024" change="1464034202" id="E0016">
+      <type>Ordination</type>
+      <place hlink="_0000002500000025"/>
+      <description>Saint-Séverin</description>
+    </event>
+    <event handle="_0000002600000026" change="1464034202" id="E0017">
+      <type>Ordination</type>
+      <place hlink="_0000002700000027"/>
+      <description>Saint-Sulpice</description>
+    </event>
+    <event handle="_0000002800000028" change="1464034202" id="E0018">
+      <type>Ordination</type>
+      <place hlink="_0000002900000029"/>
+      <description>Catédrale Notre-Dame-de-Paris</description>
+    </event>
+    <event handle="_0000002a0000002a" change="1464034202" id="E0019">
+      <type>Ordination</type>
+      <place hlink="_0000002b0000002b"/>
+      <description>Temple Protestant de L'Oratoire du Louvre</description>
+    </event>
+    <event handle="_0000002c0000002c" change="1464034202" id="E0020">
+      <type>Ordination</type>
+      <place hlink="_0000002d0000002d"/>
+      <description>Saint-Paul</description>
+    </event>
+    <event handle="_0000002f0000002f" change="1464034202" id="E0021">
+      <type>Birth</type>
+      <place hlink="_0000003000000030"/>
+    </event>
+    <event handle="_0000003200000032" change="1464034202" id="E0022">
+      <type>Birth</type>
+      <place hlink="_0000003300000033"/>
+    </event>
+    <event handle="_0000003500000035" change="1464034202" id="E0023">
+      <type>Birth</type>
+      <place hlink="_0000003600000036"/>
+    </event>
+    <event handle="_0000003800000038" change="1464034202" id="E0024">
+      <type>Birth</type>
+      <place hlink="_0000003900000039"/>
+    </event>
+    <event handle="_0000003b0000003b" change="1464034202" id="E0025">
+      <type>Birth</type>
+      <place hlink="_0000003c0000003c"/>
+    </event>
+    <event handle="_0000003e0000003e" change="1464034202" id="E0026">
+      <type>Birth</type>
+      <place hlink="_0000003f0000003f"/>
+    </event>
+    <event handle="_0000004100000041" change="1464034202" id="E0027">
+      <type>Birth</type>
+      <place hlink="_0000004200000042"/>
+    </event>
+    <event handle="_0000004400000044" change="1464034202" id="E0028">
+      <type>Birth</type>
+      <place hlink="_0000004500000045"/>
+    </event>
+    <event handle="_0000004700000047" change="1464034202" id="E0029">
+      <type>Birth</type>
+      <place hlink="_0000004800000048"/>
+    </event>
+    <event handle="_0000004a0000004a" change="1464034202" id="E0030">
+      <type>Birth</type>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_0000004d0000004d" change="1464034202" id="E0031">
+      <type>Birth</type>
+      <place hlink="_0000004e0000004e"/>
+    </event>
+    <event handle="_0000005000000050" change="1464034202" id="E0032">
+      <type>Birth</type>
+      <place hlink="_0000005100000051"/>
+    </event>
+    <event handle="_0000005300000053" change="1464034202" id="E0033">
+      <type>Birth</type>
+      <place hlink="_0000005400000054"/>
+    </event>
+    <event handle="_0000005600000056" change="1464034202" id="E0034">
+      <type>Birth</type>
+      <place hlink="_0000005700000057"/>
+    </event>
+    <event handle="_0000005900000059" change="1464034202" id="E0035">
+      <type>Birth</type>
+      <place hlink="_0000005a0000005a"/>
+    </event>
+    <event handle="_0000005c0000005c" change="1464034202" id="E0036">
+      <type>Birth</type>
+      <place hlink="_0000005d0000005d"/>
+    </event>
+    <event handle="_0000005f0000005f" change="1464034202" id="E0037">
+      <type>Birth</type>
+      <place hlink="_0000006000000060"/>
+    </event>
+    <event handle="_0000006200000062" change="1464034202" id="E0038">
+      <type>Birth</type>
+      <place hlink="_0000006300000063"/>
+    </event>
+    <event handle="_0000006500000065" change="1464034202" id="E0039">
+      <type>Birth</type>
+      <place hlink="_0000006600000066"/>
+    </event>
+    <event handle="_0000006800000068" change="1464034202" id="E0040">
+      <type>Birth</type>
+      <place hlink="_0000006900000069"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1464034202" id="3I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Arrondissements</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <parentin hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000000500000005" change="1464034202" id="4I">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Églises</first>
+        <surname>LUTECE</surname>
+      </name>
+      <eventref hlink="_0000000600000006" role="Primary"/>
+      <eventref hlink="_0000000800000008" role="Primary"/>
+      <eventref hlink="_0000000a0000000a" role="Primary"/>
+      <eventref hlink="_0000000c0000000c" role="Primary"/>
+      <eventref hlink="_0000000e0000000e" role="Primary"/>
+      <eventref hlink="_0000001000000010" role="Primary"/>
+      <eventref hlink="_0000001200000012" role="Primary"/>
+      <eventref hlink="_0000001400000014" role="Primary"/>
+      <eventref hlink="_0000001600000016" role="Primary"/>
+      <eventref hlink="_0000001800000018" role="Primary"/>
+      <eventref hlink="_0000001a0000001a" role="Primary"/>
+      <eventref hlink="_0000001c0000001c" role="Primary"/>
+      <eventref hlink="_0000001e0000001e" role="Primary"/>
+      <eventref hlink="_0000002000000020" role="Primary"/>
+      <eventref hlink="_0000002200000022" role="Primary"/>
+      <eventref hlink="_0000002400000024" role="Primary"/>
+      <eventref hlink="_0000002600000026" role="Primary"/>
+      <eventref hlink="_0000002800000028" role="Primary"/>
+      <eventref hlink="_0000002a0000002a" role="Primary"/>
+      <eventref hlink="_0000002c0000002c" role="Primary"/>
+      <parentin hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000002e0000002e" change="1464034202" id="93I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>01 le Louvre</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000002f0000002f" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000003100000031" change="1464034202" id="95I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>02 la Bourse</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000003200000032" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000003400000034" change="1464034202" id="98I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>04 Hôtel-de-Ville</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000003500000035" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000003700000037" change="1464034202" id="100I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>09 Opéra</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000003800000038" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000003a0000003a" change="1464034202" id="102I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>05 Panthéon</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000003b0000003b" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000003d0000003d" change="1464034202" id="104I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>06 Luxembourg</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000003e0000003e" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004000000040" change="1464034202" id="106I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>07 Palais-Bourbon</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000004100000041" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004300000043" change="1464034202" id="108I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>08 Élysée</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000004400000044" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004600000046" change="1464034202" id="110I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>10 Entrepôt</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000004700000047" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004900000049" change="1464034202" id="112I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>11 Popincourt</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000004a0000004a" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004c0000004c" change="1464034202" id="114I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>12 Reuilly</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000004d0000004d" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000004f0000004f" change="1464034202" id="116I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>13 des Gobelins -  la Salpêtrière</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005000000050" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000005200000052" change="1464034202" id="118I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>14 L'Observatoire</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005300000053" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000005500000055" change="1464034202" id="120I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>19 Buttes-Chaumont</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005600000056" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000005800000058" change="1464034202" id="122I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>15 Vaugirard</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005900000059" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000005b0000005b" change="1464034202" id="124I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>16 Passy</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005c0000005c" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000005e0000005e" change="1464034202" id="126I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>17 Batignolles-Monceau</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000005f0000005f" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000006100000061" change="1464034202" id="128I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>18 Buttes-Montmartre</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000006200000062" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000006400000064" change="1464034202" id="134I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>03 Temple</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000006500000065" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000006700000067" change="1464034202" id="179I">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>20 Ménilmontant</first>
+        <surname>PARIS</surname>
+      </name>
+      <eventref hlink="_0000006800000068" role="Primary"/>
+      <childof hlink="_0000000400000004"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000400000004" change="1464034202" id="181U">
+      <rel type="Unknown"/>
+      <father hlink="_0000000100000001"/>
+      <mother hlink="_0000000500000005"/>
+      <childref hlink="_0000002e0000002e"/>
+      <childref hlink="_0000003100000031"/>
+      <childref hlink="_0000003400000034"/>
+      <childref hlink="_0000003700000037"/>
+      <childref hlink="_0000003a0000003a"/>
+      <childref hlink="_0000003d0000003d"/>
+      <childref hlink="_0000004000000040"/>
+      <childref hlink="_0000004300000043"/>
+      <childref hlink="_0000004600000046"/>
+      <childref hlink="_0000004900000049"/>
+      <childref hlink="_0000004c0000004c"/>
+      <childref hlink="_0000004f0000004f"/>
+      <childref hlink="_0000005200000052"/>
+      <childref hlink="_0000005500000055"/>
+      <childref hlink="_0000005800000058"/>
+      <childref hlink="_0000005b0000005b"/>
+      <childref hlink="_0000005e0000005e"/>
+      <childref hlink="_0000006100000061"/>
+      <childref hlink="_0000006400000064"/>
+      <childref hlink="_0000006700000067"/>
+    </family>
+  </families>
+  <places>
+    <placeobj handle="_0000000300000003" change="1464034202" id="P0000" type="City">
+      <ptitle>Paris,75056,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75056</code>
+      <pname value="Paris"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000000700000007" change="1464034202" id="P0001" type="City">
+      <ptitle>Notre-Dame-de-Bonne-Nouvelle,75102,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75102</code>
+      <pname value="Notre-Dame-de-Bonne-Nouvelle"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000000900000009" change="1464034202" id="P0002" type="City">
+      <ptitle>Saint-Benoît,75102,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75102</code>
+      <pname value="Saint-Benoît"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000000b0000000b" change="1464034202" id="P0003" type="City">
+      <ptitle>Saint-Christophe-de-Javel,75115,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75115</code>
+      <pname value="Saint-Christophe-de-Javel"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000000d0000000d" change="1464034202" id="P0004" type="City">
+      <ptitle>Saint-Eustache,75101,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75101</code>
+      <pname value="Saint-Eustache"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000000f0000000f" change="1464034202" id="P0005" type="City">
+      <ptitle>Saint-Germain-des-Prés,75114,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75114</code>
+      <pname value="Saint-Germain-des-Prés"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001100000011" change="1464034202" id="P0006" type="City">
+      <ptitle>Saint-Germain-L'Auxerrois,75101,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75101</code>
+      <pname value="Saint-Germain-L'Auxerrois"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001300000013" change="1464034202" id="P0007" type="City">
+      <ptitle>Saint-Gervais-et-Protais,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Saint-Gervais-et-Protais"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001500000015" change="1464034202" id="P0008" type="City">
+      <ptitle>Saint-Jacques-du-Haut-Pas,75105,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75105</code>
+      <pname value="Saint-Jacques-du-Haut-Pas"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001700000017" change="1464034202" id="P0009" type="City">
+      <ptitle>Saint-Laurent,75110,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75110</code>
+      <pname value="Saint-Laurent"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001900000019" change="1464034202" id="P0010" type="City">
+      <ptitle>Saint-Leu-Saint-Gilles,75101,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75101</code>
+      <pname value="Saint-Leu-Saint-Gilles"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001b0000001b" change="1464034202" id="P0011" type="City">
+      <ptitle>Saint-Médard,75105,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75105</code>
+      <pname value="Saint-Médard"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001d0000001d" change="1464034202" id="P0012" type="City">
+      <ptitle>Saint-Merri,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Saint-Merri"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000001f0000001f" change="1464034202" id="P0013" type="City">
+      <ptitle>Saint-Nicolas-de-Chardonnet,75105,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75105</code>
+      <pname value="Saint-Nicolas-de-Chardonnet"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002100000021" change="1464034202" id="P0014" type="City">
+      <ptitle>Saint-Nicolas-des-Champs,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Saint-Nicolas-des-Champs"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002300000023" change="1464034202" id="P0015" type="City">
+      <ptitle>Saint-Sauveur,75102,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75102</code>
+      <pname value="Saint-Sauveur"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002500000025" change="1464034202" id="P0016" type="City">
+      <ptitle>Saint-Séverin,75105,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75105</code>
+      <pname value="Saint-Séverin"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002700000027" change="1464034202" id="P0017" type="City">
+      <ptitle>Saint-Sulpice,75106,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75106</code>
+      <pname value="Saint-Sulpice"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002900000029" change="1464034202" id="P0018" type="City">
+      <ptitle>Notre-Dame-de-Paris,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Notre-Dame-de-Paris"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002b0000002b" change="1464034202" id="P0019" type="City">
+      <ptitle>Temple Protestant de L'Oratoire du Louvre,75101,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75101</code>
+      <pname value="Temple Protestant de L'Oratoire du Louvre"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000002d0000002d" change="1464034202" id="P0020" type="City">
+      <ptitle>Saint-Paul-Saint-Louis,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Saint-Paul-Saint-Louis"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000003000000030" change="1464034202" id="P0021" type="City">
+      <ptitle>Paris 01,75101,Paris,Ïle-de-France,FRANCE,</ptitle>
+      <code>75101</code>
+      <pname value="Paris 01"/>
+      <placeref hlink="_0000006e0000006e"/>
+    </placeobj>
+    <placeobj handle="_0000003300000033" change="1464034202" id="P0022" type="City">
+      <ptitle>Paris 02,75102,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75102</code>
+      <pname value="Paris 02"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000003600000036" change="1464034202" id="P0023" type="City">
+      <ptitle>Paris 04,75104,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75104</code>
+      <pname value="Paris 04"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000003900000039" change="1464034202" id="P0024" type="City">
+      <ptitle>Paris 09,75109,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75109</code>
+      <pname value="Paris 09"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000003c0000003c" change="1464034202" id="P0025" type="City">
+      <ptitle>Paris 05,75105,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75105</code>
+      <pname value="Paris 05"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000003f0000003f" change="1464034202" id="P0026" type="City">
+      <ptitle>Paris 06,75106,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75106</code>
+      <pname value="Paris 06"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000004200000042" change="1464034202" id="P0027" type="City">
+      <ptitle>Paris 07,75107,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75107</code>
+      <pname value="Paris 07"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000004500000045" change="1464034202" id="P0028" type="City">
+      <ptitle>Paris 08,75108,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75108</code>
+      <pname value="Paris 08"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000004800000048" change="1464034202" id="P0029" type="City">
+      <ptitle>Paris 10,75110,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75110</code>
+      <pname value="Paris 10"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000004b0000004b" change="1464034202" id="P0030" type="City">
+      <ptitle>Paris 11,75111,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75111</code>
+      <pname value="Paris 11"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000004e0000004e" change="1464034202" id="P0031" type="City">
+      <ptitle>Paris 12,75112,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75112</code>
+      <pname value="Paris 12"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000005100000051" change="1464034202" id="P0032" type="City">
+      <ptitle>Paris 13,75113,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75113</code>
+      <pname value="Paris 13"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000005400000054" change="1464034202" id="P0033" type="City">
+      <ptitle>Paris 14,75114,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75114</code>
+      <pname value="Paris 14"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000005700000057" change="1464034202" id="P0034" type="City">
+      <ptitle>Paris 19,75119,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75119</code>
+      <pname value="Paris 19"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000005a0000005a" change="1464034202" id="P0035" type="City">
+      <ptitle>Paris 15,75115,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75115</code>
+      <pname value="Paris 15"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000005d0000005d" change="1464034202" id="P0036" type="City">
+      <ptitle>Paris 16,75116,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75116</code>
+      <pname value="Paris 16"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000006000000060" change="1464034202" id="P0037" type="City">
+      <ptitle>Paris 17,75117,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75117</code>
+      <pname value="Paris 17"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000006300000063" change="1464034202" id="P0038" type="City">
+      <ptitle>Paris 18,75118,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75118</code>
+      <pname value="Paris 18"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000006600000066" change="1464034202" id="P0039" type="City">
+      <ptitle>Paris 03,75103,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75103</code>
+      <pname value="Paris 03"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000006900000069" change="1464034202" id="P0040" type="City">
+      <ptitle>Paris 20,75120,Paris,Île-de-France,FRANCE,</ptitle>
+      <code>75120</code>
+      <pname value="Paris 20"/>
+      <placeref hlink="_0000006c0000006c"/>
+    </placeobj>
+    <placeobj handle="_0000006a0000006a" change="1464034202" id="P0041" type="Country">
+      <ptitle>FRANCE</ptitle>
+      <pname value="FRANCE"/>
+    </placeobj>
+    <placeobj handle="_0000006b0000006b" change="1464034202" id="P0042" type="State">
+      <ptitle>Île-de-France, FRANCE</ptitle>
+      <pname value="Île-de-France"/>
+      <placeref hlink="_0000006a0000006a"/>
+    </placeobj>
+    <placeobj handle="_0000006c0000006c" change="1464034202" id="P0043" type="County">
+      <ptitle>Paris, Île-de-France, FRANCE</ptitle>
+      <pname value="Paris"/>
+      <placeref hlink="_0000006b0000006b"/>
+    </placeobj>
+    <placeobj handle="_0000006d0000006d" change="1464034202" id="P0044" type="State">
+      <ptitle>Ïle-de-France, FRANCE</ptitle>
+      <pname value="Ïle-de-France"/>
+      <placeref hlink="_0000006a0000006a"/>
+    </placeobj>
+    <placeobj handle="_0000006e0000006e" change="1464034202" id="P0045" type="County">
+      <ptitle>Paris, Ïle-de-France, FRANCE</ptitle>
+      <pname value="Paris"/>
+      <placeref hlink="_0000006d0000006d"/>
+    </placeobj>
+  </places>
+</database>

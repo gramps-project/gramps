@@ -1,0 +1,42 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (22.2.5)
+2 NAME Family Tree Maker for Mac OS X
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST GED55
+1 DATE 16 DEC 2015
+1 CHAR UTF-8
+1 FILE test_FTM_CONC.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+1 NAME Paul Culley
+0 @I278@ INDI
+1 NAME Andrew /May/
+2 NOTE The FTM way to do a CONC line with space at end --> 
+3 CONC <--
+2 NOTE The GEDCOM spec way to do CONC line, with space at beginning -->
+3 CONC  <--
+2 NOTE Be nice if we supported FTM way to do CONC so 
+3 CONC users would not have to spell check and edit their whole 
+3 CONC database for these kind of errors.
+2 SOUR @S29@
+3 PAGE Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: 
+4 CONC M432_394; Page: 435B; Image: 248
+0 @S29@ SOUR
+1 AUTH Ancestry.com
+1 TITL 1850 United States Federal Census
+1 PUBL Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date: 
+2 CONC 2009;
+1 REPO @R1@
+0 @R1@ REPO
+1 NAME Ancestry.com
+1 ADDR I'm sure someone knows
+1 EMAIL ancestry@ancestry.com
+1 PHON 1-234-567-8901
+0 TRLR

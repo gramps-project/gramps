@@ -1,0 +1,274 @@
+0 HEAD
+1 SOUR HEREDIS 14 PC
+2 VERS 14
+2 NAME HEREDIS PC
+2 CORP BSD Concept ©
+3 ADDR www.heredis.com
+1 DATE 9 JAN 2016
+2 TIME 18:28:16
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 PLAC
+2 FORM Town , Area code , County , Region , Country, Subdivision
+0 @3I@ INDI
+1 NAME Arrondissements/PARIS/
+2 GIVN Arrondissements
+2 SURN PARIS
+1 SEX M
+1 EVEN
+2 TYPE Acquisition
+2 TYPE Paris
+2 PLAC Paris,75056,Paris,Île-de-France,FRANCE,
+1 FAMS @181U@
+0 @4I@ INDI
+1 NAME Églises/LUTECE/
+2 GIVN Églises
+2 SURN LUTECE
+1 SEX F
+1 ORDN
+2 TYPE Notre-Dame-de-Bonne-Nouvelle
+2 PLAC Notre-Dame-de-Bonne-Nouvelle,75102,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Benoît
+2 PLAC Saint-Benoît,75102,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Christophe-de-Javel
+2 PLAC Saint-Christophe-de-Javel,75115,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Eustache
+2 PLAC Saint-Eustache,75101,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Germain-des-Prés
+2 PLAC Saint-Germain-des-Prés,75114,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Germain-L'Auxerrois
+2 PLAC Saint-Germain-L'Auxerrois,75101,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Gervais-et-Protais
+2 PLAC Saint-Gervais-et-Protais,75104,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Jacques-du-Haut-Pas
+2 PLAC Saint-Jacques-du-Haut-Pas,75105,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Laurent
+2 PLAC Saint-Laurent,75110,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Leu-Saint-Gilles
+2 PLAC Saint-Leu-Saint-Gilles,75101,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Médard
+2 PLAC Saint-Médard,75105,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Merri
+2 PLAC Saint-Merri,75104,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Nicolas-de-Chardonnet
+2 PLAC Saint-Nicolas-de-Chardonnet,75105,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Nicolas-des-Champs
+2 PLAC Saint-Nicolas-des-Champs,75104,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Sauveur
+2 PLAC Saint-Sauveur,75102,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Séverin
+2 PLAC Saint-Séverin,75105,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Sulpice
+2 PLAC Saint-Sulpice,75106,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Catédrale Notre-Dame-de-Paris
+2 PLAC Notre-Dame-de-Paris,75104,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Temple Protestant de L'Oratoire du Louvre
+2 PLAC Temple Protestant de L'Oratoire du Louvre,75101,Paris,Île-de-France,FRANCE,
+1 ORDN
+2 TYPE Saint-Paul
+2 PLAC Saint-Paul-Saint-Louis,75104,Paris,Île-de-France,FRANCE,
+1 FAMS @181U@
+0 @93I@ INDI
+1 NAME 01 le Louvre/PARIS/
+2 GIVN 01 le Louvre
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 01,75101,Paris,Ïle-de-France,FRANCE,
+1 FAMC @181U@
+0 @95I@ INDI
+1 NAME 02 la Bourse/PARIS/
+2 GIVN 02 la Bourse
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 02,75102,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @98I@ INDI
+1 NAME 04 Hôtel-de-Ville/PARIS/
+2 GIVN 04 Hôtel-de-Ville
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 04,75104,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @100I@ INDI
+1 NAME 09 Opéra/PARIS/
+2 GIVN 09 Opéra
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 09,75109,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @102I@ INDI
+1 NAME 05 Panthéon/PARIS/
+2 GIVN 05 Panthéon
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 05,75105,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @104I@ INDI
+1 NAME 06 Luxembourg/PARIS/
+2 GIVN 06 Luxembourg
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 06,75106,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @106I@ INDI
+1 NAME 07 Palais-Bourbon/PARIS/
+2 GIVN 07 Palais-Bourbon
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 07,75107,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @108I@ INDI
+1 NAME 08 Élysée/PARIS/
+2 GIVN 08 Élysée
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 08,75108,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @110I@ INDI
+1 NAME 10 Entrepôt/PARIS/
+2 GIVN 10 Entrepôt
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 10,75110,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @112I@ INDI
+1 NAME 11 Popincourt/PARIS/
+2 GIVN 11 Popincourt
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 11,75111,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @114I@ INDI
+1 NAME 12 Reuilly/PARIS/
+2 GIVN 12 Reuilly
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 12,75112,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @116I@ INDI
+1 NAME 13 des Gobelins -  la Salpêtrière/PARIS/
+2 GIVN 13 des Gobelins -  la Salpêtrière
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 13,75113,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @118I@ INDI
+1 NAME 14 L'Observatoire/PARIS/
+2 GIVN 14 L'Observatoire
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 14,75114,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @120I@ INDI
+1 NAME 19 Buttes-Chaumont/PARIS/
+2 GIVN 19 Buttes-Chaumont
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 19,75119,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @122I@ INDI
+1 NAME 15 Vaugirard/PARIS/
+2 GIVN 15 Vaugirard
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 15,75115,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @124I@ INDI
+1 NAME 16 Passy/PARIS/
+2 GIVN 16 Passy
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 16,75116,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @126I@ INDI
+1 NAME 17 Batignolles-Monceau/PARIS/
+2 GIVN 17 Batignolles-Monceau
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 17,75117,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @128I@ INDI
+1 NAME 18 Buttes-Montmartre/PARIS/
+2 GIVN 18 Buttes-Montmartre
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 18,75118,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @134I@ INDI
+1 NAME 03 Temple/PARIS/
+2 GIVN 03 Temple
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 03,75103,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @179I@ INDI
+1 NAME 20 Ménilmontant/PARIS/
+2 GIVN 20 Ménilmontant
+2 SURN PARIS
+1 SEX M
+1 BIRT
+2 PLAC Paris 20,75120,Paris,Île-de-France,FRANCE,
+1 FAMC @181U@
+0 @181U@ FAM
+1 HUSB @3I@
+1 WIFE @4I@
+1 CHIL @93I@
+1 CHIL @95I@
+1 CHIL @98I@
+1 CHIL @100I@
+1 CHIL @102I@
+1 CHIL @104I@
+1 CHIL @106I@
+1 CHIL @108I@
+1 CHIL @110I@
+1 CHIL @112I@
+1 CHIL @114I@
+1 CHIL @116I@
+1 CHIL @118I@
+1 CHIL @120I@
+1 CHIL @122I@
+1 CHIL @124I@
+1 CHIL @126I@
+1 CHIL @128I@
+1 CHIL @134I@
+1 CHIL @179I@
+0 TRLR

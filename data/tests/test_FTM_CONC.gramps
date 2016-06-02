@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-05-23" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+      <resname>Paul Culley</resname>
+    </researcher>
+  </header>
+  <people>
+    <person handle="_0000000100000001" change="1464020113" id="I0278">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>Andrew</first>
+        <surname>May</surname>
+        <noteref hlink="_0000000200000002"/>
+        <noteref hlink="_0000000300000003"/>
+        <noteref hlink="_0000000400000004"/>
+        <citationref hlink="_0000000600000006"/>
+      </name>
+    </person>
+  </people>
+  <citations>
+    <citation handle="_0000000600000006" change="1464020113" id="C0000">
+      <page>Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000500000005"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000000500000005" change="1464020113" id="S0029">
+      <stitle>1850 United States Federal Census</stitle>
+      <sauthor>Ancestry.com</sauthor>
+      <spubinfo>Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date: 2009;</spubinfo>
+      <reporef hlink="_0000000700000007" medium="Book"/>
+    </source>
+  </sources>
+  <repositories>
+    <repository handle="_0000000700000007" change="1464020113" id="R0001">
+      <rname>Ancestry.com</rname>
+      <type>Library</type>
+      <address>
+        <street>I'm sure someone knows</street>
+        <phone>1-234-567-8901</phone>
+      </address>
+      <url  href="ancestry@ancestry.com" type="E-mail"/>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_0000000200000002" change="1464020113" id="N0000" type="General">
+      <text>The FTM way to do a CONC line with space at end --&gt; &lt;--</text>
+    </note>
+    <note handle="_0000000300000003" change="1464020113" id="N0001" type="General">
+      <text>The GEDCOM spec way to do CONC line, with space at beginning --&gt; &lt;--</text>
+    </note>
+    <note handle="_0000000400000004" change="1464020113" id="N0002" type="General">
+      <text>Be nice if we supported FTM way to do CONC so users would not have to spell check and edit their whole database for these kind of errors.</text>
+    </note>
+  </notes>
+</database>

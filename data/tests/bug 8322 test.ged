@@ -1,0 +1,173 @@
+0 HEAD
+1 SOUR RootsMagic
+2 NAME RootsMagic
+2 VERS 7.0.2.2
+2 CORP RootsMagic, Inc.
+3 ADDR PO Box 495
+4 CONT Springville, UT 84663
+4 CONT USA
+3 PHON 1-800-ROOTSMAGIC
+1 DEST RootsMagic
+1 DATE 26 JAN 2015
+1 FILE rm.ged
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @I310@ INDI
+1 NAME Living
+1 SEX M
+1 _UID B9C4D3F0D254674AA1B9023745BEBFE551C1
+1 CHAN
+2 DATE 26 JAN 2015
+1 RESI
+2 DATE 1960
+2 PLAC the place
+2 ADDR the address
+3 NOTE the place created not previously used so changed to add the address; __event_addr(len==0, place is None)
+1 RESI
+2 DATE 1961
+2 PLAC the place
+3 NOTE check that this note is retained when the place is deleted. it should be merged into place
+2 ADDR the address
+3 NOTE the place created and then deleted and old data reused; __event_addr(len==0, place is not None)
+1 RESI
+2 DATE 1962
+2 PLAC the place
+3 NOTE setup the place
+1 RESI
+2 DATE 1962
+2 PLAC the place
+2 ADDR another address
+3 NOTE the place already exists; but now set doesn't match ; __event_addr(len!=0, place is None)
+1 RESI
+2 DATE 1963
+2 PLAC the place
+2 ADDR another address
+3 NOTE the place already exists but now set matches; __event_addr(len!=0, place is not None)
+1 RESI
+2 DATE 1964
+2 ADDR the address
+2 PLAC the place
+3 NOTE the address created, then destroyed as we find a matching set; __event_addr(no place_handle, create place)
+1 RESI
+2 DATE 1965
+2 ADDR the address
+1 RESI
+2 DATE 1966
+2 ADDR the address
+2 PLAC the place
+3 NOTE address reused, then destroyed as we find a matching set; __event_addr(no place_handle, place found)
+1 RESI
+2 DATE 1967
+2 PLAC the place
+2 ADDR the address
+2 ADDR second address
+3 NOTE second address ignored
+1 RESI
+2 DATE 1968
+2 ADDR the address 2
+2 PLAC the place 2
+2 ADDR second address
+3 NOTE second address ignored again
+2 ADDR a third address ignored again
+1 RESI
+2 DATE 1971
+2 ADDR address place test
+2 PLAC place test
+3 NOTE ADDR created; __event_place finds it but place does not match; __event_place(len==0, place is None)
+1 RESI
+2 DATE 1972
+2 ADDR address place test
+3 NOTE this note is stored with the old address and then merged into the matching place
+2 PLAC place test
+3 NOTE ADDR created; __event_place finds it and now place does match; __event_place(len==0, place is not None)
+1 RESI
+2 DATE 1973
+2 ADDR address place test
+3 NOTE setup address place test
+1 RESI
+2 DATE 1973
+2 ADDR address place test
+2 PLAC place test
+3 NOTE address place test found; place exists and can be reused; __event_place(len!=0, place is not None)
+1 RESI
+2 DATE 1974
+2 ADDR address place test
+2 PLAC different place test
+3 NOTE address place test found; but matching addr/plac not found; __event_place(len!=0, place is not None)
+1 RESI
+2 DATE 1975
+2 PLAC the place
+2 ADDR address place test
+3 NOTE PLAC occurs first; matching entry found; __event_place(no place handle, place is not None)
+1 RESI
+2 DATE 1976
+2 PLAC a new place
+2 ADDR address place test
+3 NOTE PLAC occurs first; matching entry not found; __event_place(no place handle, place is None)
+2 PLAC a second PLACe ignored
+2 PLAC and a third one also ignored
+2 ADDR plus an address just for good measure also ignored
+1 RESI
+2 DATE 1977
+2 ADDR address with no place
+3 NOTE note is stashed with a Place, and then merged into the address
+1 RESI
+2 DATE 1966
+2 PLAC Woerden, Zuid-Holland, Netherlands
+3 NOTE Place note
+2 ADDR Kromwijkerkade 63
+1 RESI
+2 DATE 1969
+2 PLAC Hasselt, Overijssel, Netherlands
+2 ADDR Prinsenstraat 69
+3 NOTE ADDR note
+1 RESI
+2 DATE 1978
+2 PLAC Enschede, Overijssel, Netherlands
+2 ADDR Calslaan 26-52
+1 RESI
+2 DATE 1979
+2 PLAC Enschede, Overijssel, Netherlands
+2 ADDR Calslaan 26-44
+3 NOTE PLAC previously encountered, new ADDR, so new Place
+1 RESI
+2 DATE 1984
+2 ADDR Calslaan 26-61
+2 PLAC Enschede, Overijssel, Netherlands
+3 NOTE ADDR before PLAC (check ADDR is removed)
+1 RESI
+2 DATE 1984
+2 PLAC Enschede, Overijssel, Netherlands
+1 RESI
+2 DATE 1984
+2 ADDR Calslaan 26-61
+1 RESI
+2 DATE 1984
+2 ADDR Calslaan 26-61
+2 PLAC Enschede, Overijssel, Netherlands
+3 NOTE ADDR before PLAC (address matches previous one, then needs to be reassigned)
+1 RESI
+2 DATE 1988
+2 PLAC Amsterdam, Noord-Holland, Netherlands
+2 ADDR Papendrechtstraat 37
+1 RESI
+2 DATE 1994
+2 PLAC Amsterdam, Noord-Holland, Netherlands
+3 NOTE PLAC and no ADDR
+1 RESI
+2 DATE 1994
+2 PLAC Amsterdam, Noord-Holland, Netherlands
+2 ADDR Olympiaplein 46-2
+3 NOTE PLAC matches previous one, then when ADDR is read need to create a new Place
+1 RESI
+2 DATE 1988
+2 PLAC Amsterdam, Noord-Holland, Netherlands
+2 ADDR Papendrechtstraat 37
+3 NOTE PLAC and ADDR match, use existing one
+1 RESI
+2 DATE 1994
+2 ADDR remembered address that should be set into place
+2 PLAC Amsterdam, Noord-Holland, Netherlands
+0 TRLR

@@ -46,11 +46,19 @@ from ..const import GRAMPS_UUID
 # create_id
 #
 #-------------------------------------------------------------------------
-rand = random.Random(time.time())
+_rand = random.Random(time.time())
+_det_id = False
+
 
 def create_id():
-    return "%08x%08x" % (int(time.time()*10000),
-                         rand.randint(0, sys.maxsize))
+    global _rand
+    if _det_id:
+        _rand = _rand + 1
+        return "%08x%08x" % (_rand, _rand)
+    else:
+        return "%08x%08x" % (int(time.time()*10000),
+                             _rand.randint(0, sys.maxsize))
+
 
 def create_uid(self, handle=None):
     if handle:
@@ -59,3 +67,11 @@ def create_uid(self, handle=None):
         uid = uuid.uuid4()
     return uid.hex.upper()
 
+
+def set_det_id(self, val=True):
+    global _rand, _det_id
+    _det_id = val
+    if _det_id is True:
+        _rand = 0
+    else:
+        _rand = random.Random(time.time())

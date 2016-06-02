@@ -1,0 +1,17 @@
+Mismatch on file: test_FTM_CONC.ged
+Source: S0029  handle=0000000500000005
+  Diff on: Source, pubinfo
+    <class 'str'>73: Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date:2009;
+    <class 'str'>74: Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date: 2009;
+Citation: C0000  handle=0000000600000006
+  Diff on: Citation, page
+    <class 'str'>102: Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll:M432_394; Page: 435B; Image: 248
+    <class 'str'>103: Year: 1850; Census Place: District 14, Cape Girardeau, Missouri; Roll: M432_394; Page: 435B; Image: 248
+Note: N0000  handle=0000000200000002
+  Diff on: Note, text, string
+    <class 'str'>54: The FTM way to do a CONC line with space at end --><--
+    <class 'str'>55: The FTM way to do a CONC line with space at end --> <--
+Note: N0002  handle=0000000400000004
+  Diff on: Note, text, string
+    <class 'str'>136: Be nice if we supported FTM way to do CONC sousers would not have to spell check and edit their whole database for these kind of errors.
+    <class 'str'>137: Be nice if we supported FTM way to do CONC so users would not have to spell check and edit their whole database for these kind of errors.

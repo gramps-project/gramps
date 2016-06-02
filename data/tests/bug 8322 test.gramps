@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-05-23" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+      <resname>Paul Culley</resname>
+      <resaddr>11210 Olde Mint House Ln</resaddr>
+      <rescity>Tomball</rescity>
+      <resstate>Tx</resstate>
+      <rescountry>USA</rescountry>
+      <respostal>77375</respostal>
+      <resemail>paulr2787@gmail.com</resemail>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000200000002" change="1464033808" id="E0000">
+      <type>Residence</type>
+      <dateval val="1960"/>
+      <place hlink="_0000000500000005"/>
+    </event>
+    <event handle="_0000000600000006" change="1464033808" id="E0001">
+      <type>Residence</type>
+      <dateval val="1961"/>
+      <place hlink="_0000000900000009"/>
+    </event>
+    <event handle="_0000000a0000000a" change="1464033808" id="E0002">
+      <type>Residence</type>
+      <dateval val="1962"/>
+      <place hlink="_0000000400000004"/>
+    </event>
+    <event handle="_0000000c0000000c" change="1464033808" id="E0003">
+      <type>Residence</type>
+      <dateval val="1962"/>
+      <place hlink="_0000000e0000000e"/>
+    </event>
+    <event handle="_0000000f0000000f" change="1464033808" id="E0004">
+      <type>Residence</type>
+      <dateval val="1963"/>
+      <place hlink="_0000001100000011"/>
+    </event>
+    <event handle="_0000001200000012" change="1464033808" id="E0005">
+      <type>Residence</type>
+      <dateval val="1964"/>
+      <place hlink="_0000001400000014"/>
+    </event>
+    <event handle="_0000001500000015" change="1464033808" id="E0006">
+      <type>Residence</type>
+      <dateval val="1965"/>
+      <place hlink="_0000001600000016"/>
+    </event>
+    <event handle="_0000001700000017" change="1464033808" id="E0007">
+      <type>Residence</type>
+      <dateval val="1966"/>
+      <place hlink="_0000001400000014"/>
+    </event>
+    <event handle="_0000001900000019" change="1464033808" id="E0008">
+      <type>Residence</type>
+      <dateval val="1967"/>
+      <place hlink="_0000001c0000001c"/>
+    </event>
+    <event handle="_0000001d0000001d" change="1464033808" id="E0009">
+      <type>Residence</type>
+      <dateval val="1968"/>
+      <place hlink="_0000002100000021"/>
+    </event>
+    <event handle="_0000002200000022" change="1464033808" id="E0010">
+      <type>Residence</type>
+      <dateval val="1971"/>
+      <place hlink="_0000002400000024"/>
+    </event>
+    <event handle="_0000002500000025" change="1464033808" id="E0011">
+      <type>Residence</type>
+      <dateval val="1972"/>
+      <place hlink="_0000002400000024"/>
+    </event>
+    <event handle="_0000002800000028" change="1464033808" id="E0012">
+      <type>Residence</type>
+      <dateval val="1973"/>
+      <place hlink="_0000002a0000002a"/>
+    </event>
+    <event handle="_0000002b0000002b" change="1464033808" id="E0013">
+      <type>Residence</type>
+      <dateval val="1973"/>
+      <place hlink="_0000002400000024"/>
+    </event>
+    <event handle="_0000002d0000002d" change="1464033808" id="E0014">
+      <type>Residence</type>
+      <dateval val="1974"/>
+      <place hlink="_0000002f0000002f"/>
+    </event>
+    <event handle="_0000003000000030" change="1464033808" id="E0015">
+      <type>Residence</type>
+      <dateval val="1975"/>
+      <place hlink="_0000003200000032"/>
+    </event>
+    <event handle="_0000003300000033" change="1464033808" id="E0016">
+      <type>Residence</type>
+      <dateval val="1976"/>
+      <place hlink="_0000003700000037"/>
+    </event>
+    <event handle="_0000003800000038" change="1464033808" id="E0017">
+      <type>Residence</type>
+      <dateval val="1977"/>
+      <place hlink="_0000003a0000003a"/>
+    </event>
+    <event handle="_0000003b0000003b" change="1464033808" id="E0018">
+      <type>Residence</type>
+      <dateval val="1966"/>
+      <place hlink="_0000003e0000003e"/>
+    </event>
+    <event handle="_0000003f0000003f" change="1464033808" id="E0019">
+      <type>Residence</type>
+      <dateval val="1969"/>
+      <place hlink="_0000004200000042"/>
+    </event>
+    <event handle="_0000004300000043" change="1464033808" id="E0020">
+      <type>Residence</type>
+      <dateval val="1978"/>
+      <place hlink="_0000004500000045"/>
+    </event>
+    <event handle="_0000004600000046" change="1464033808" id="E0021">
+      <type>Residence</type>
+      <dateval val="1979"/>
+      <place hlink="_0000004800000048"/>
+    </event>
+    <event handle="_0000004900000049" change="1464033808" id="E0022">
+      <type>Residence</type>
+      <dateval val="1984"/>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_0000004c0000004c" change="1464033808" id="E0023">
+      <type>Residence</type>
+      <dateval val="1984"/>
+      <place hlink="_0000004400000044"/>
+    </event>
+    <event handle="_0000004d0000004d" change="1464033808" id="E0024">
+      <type>Residence</type>
+      <dateval val="1984"/>
+      <place hlink="_0000004e0000004e"/>
+    </event>
+    <event handle="_0000004f0000004f" change="1464033808" id="E0025">
+      <type>Residence</type>
+      <dateval val="1984"/>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_0000005100000051" change="1464033808" id="E0026">
+      <type>Residence</type>
+      <dateval val="1988"/>
+      <place hlink="_0000005300000053"/>
+    </event>
+    <event handle="_0000005400000054" change="1464033808" id="E0027">
+      <type>Residence</type>
+      <dateval val="1994"/>
+      <place hlink="_0000005200000052"/>
+    </event>
+    <event handle="_0000005600000056" change="1464033808" id="E0028">
+      <type>Residence</type>
+      <dateval val="1994"/>
+      <place hlink="_0000005800000058"/>
+    </event>
+    <event handle="_0000005900000059" change="1464033808" id="E0029">
+      <type>Residence</type>
+      <dateval val="1988"/>
+      <place hlink="_0000005b0000005b"/>
+    </event>
+    <event handle="_0000005c0000005c" change="1464033808" id="E0030">
+      <type>Residence</type>
+      <dateval val="1994"/>
+      <place hlink="_0000005d0000005d"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1422252000" id="I0310">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Living</first>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <eventref hlink="_0000000600000006" role="Primary"/>
+      <eventref hlink="_0000000a0000000a" role="Primary"/>
+      <eventref hlink="_0000000c0000000c" role="Primary"/>
+      <eventref hlink="_0000000f0000000f" role="Primary"/>
+      <eventref hlink="_0000001200000012" role="Primary"/>
+      <eventref hlink="_0000001500000015" role="Primary"/>
+      <eventref hlink="_0000001700000017" role="Primary"/>
+      <eventref hlink="_0000001900000019" role="Primary"/>
+      <eventref hlink="_0000001d0000001d" role="Primary"/>
+      <eventref hlink="_0000002200000022" role="Primary"/>
+      <eventref hlink="_0000002500000025" role="Primary"/>
+      <eventref hlink="_0000002800000028" role="Primary"/>
+      <eventref hlink="_0000002b0000002b" role="Primary"/>
+      <eventref hlink="_0000002d0000002d" role="Primary"/>
+      <eventref hlink="_0000003000000030" role="Primary"/>
+      <eventref hlink="_0000003300000033" role="Primary"/>
+      <eventref hlink="_0000003800000038" role="Primary"/>
+      <eventref hlink="_0000003b0000003b" role="Primary"/>
+      <eventref hlink="_0000003f0000003f" role="Primary"/>
+      <eventref hlink="_0000004300000043" role="Primary"/>
+      <eventref hlink="_0000004600000046" role="Primary"/>
+      <eventref hlink="_0000004900000049" role="Primary"/>
+      <eventref hlink="_0000004c0000004c" role="Primary"/>
+      <eventref hlink="_0000004d0000004d" role="Primary"/>
+      <eventref hlink="_0000004f0000004f" role="Primary"/>
+      <eventref hlink="_0000005100000051" role="Primary"/>
+      <eventref hlink="_0000005400000054" role="Primary"/>
+      <eventref hlink="_0000005600000056" role="Primary"/>
+      <eventref hlink="_0000005900000059" role="Primary"/>
+      <eventref hlink="_0000005c0000005c" role="Primary"/>
+      <attribute type="_UID" value="B9C4D3F0D254674AA1B9023745BEBFE551C1"/>
+      <noteref hlink="_0000005e0000005e"/>
+    </person>
+  </people>
+  <places>
+    <placeobj handle="_0000000400000004" change="1464033808" id="P0000" type="Unknown">
+      <ptitle>the place</ptitle>
+      <pname value="the place"/>
+      <noteref hlink="_0000000700000007"/>
+      <noteref hlink="_0000000b0000000b"/>
+    </placeobj>
+    <placeobj handle="_0000000500000005" change="1464033808" id="P0001" type="Detail">
+      <ptitle>the address</ptitle>
+      <pname value="the address"/>
+      <placeref hlink="_0000000400000004"/>
+      <noteref hlink="_0000000300000003"/>
+    </placeobj>
+    <placeobj handle="_0000000900000009" change="1464033808" id="P0002" type="Detail">
+      <ptitle>the address</ptitle>
+      <pname value="the address"/>
+      <placeref hlink="_0000000400000004"/>
+      <noteref hlink="_0000000800000008"/>
+    </placeobj>
+    <placeobj handle="_0000000e0000000e" change="1464033808" id="P0003" type="Detail">
+      <ptitle>another address</ptitle>
+      <pname value="another address"/>
+      <placeref hlink="_0000000400000004"/>
+      <noteref hlink="_0000000d0000000d"/>
+    </placeobj>
+    <placeobj handle="_0000001100000011" change="1464033808" id="P0004" type="Detail">
+      <ptitle>another address</ptitle>
+      <pname value="another address"/>
+      <placeref hlink="_0000000400000004"/>
+      <noteref hlink="_0000001000000010"/>
+    </placeobj>
+    <placeobj handle="_0000001400000014" change="1464033808" id="P0005" type="Address">
+      <ptitle>the place</ptitle>
+      <pname value="the place"/>
+      <location street="the address"/>
+      <noteref hlink="_0000001300000013"/>
+      <noteref hlink="_0000001800000018"/>
+    </placeobj>
+    <placeobj handle="_0000001600000016" change="1464033808" id="P0006" type="Address">
+      <ptitle>the address</ptitle>
+      <pname value="the address"/>
+      <location street="the address"/>
+    </placeobj>
+    <placeobj handle="_0000001b0000001b" change="1464033808" id="P0007" type="Detail">
+      <ptitle>the address</ptitle>
+      <pname value="the address"/>
+      <placeref hlink="_0000000400000004"/>
+    </placeobj>
+    <placeobj handle="_0000001c0000001c" change="1464033808" id="P0008" type="Detail">
+      <ptitle>second address</ptitle>
+      <pname value="second address"/>
+      <placeref hlink="_0000001b0000001b"/>
+      <noteref hlink="_0000001a0000001a"/>
+    </placeobj>
+    <placeobj handle="_0000001f0000001f" change="1464033808" id="P0009" type="Address">
+      <ptitle>the place 2</ptitle>
+      <pname value="the place 2"/>
+      <location street="the address 2"/>
+    </placeobj>
+    <placeobj handle="_0000002000000020" change="1464033808" id="P0010" type="Detail">
+      <ptitle>second address</ptitle>
+      <pname value="second address"/>
+      <placeref hlink="_0000001f0000001f"/>
+      <noteref hlink="_0000001e0000001e"/>
+    </placeobj>
+    <placeobj handle="_0000002100000021" change="1464033808" id="P0011" type="Detail">
+      <ptitle>a third address ignored again</ptitle>
+      <pname value="a third address ignored again"/>
+      <placeref hlink="_0000002000000020"/>
+    </placeobj>
+    <placeobj handle="_0000002400000024" change="1464033808" id="P0012" type="Address">
+      <ptitle>place test</ptitle>
+      <pname value="place test"/>
+      <location street="address place test"/>
+      <noteref hlink="_0000002300000023"/>
+      <noteref hlink="_0000002600000026"/>
+      <noteref hlink="_0000002700000027"/>
+      <noteref hlink="_0000002c0000002c"/>
+    </placeobj>
+    <placeobj handle="_0000002a0000002a" change="1464033808" id="P0013" type="Address">
+      <ptitle>address place test</ptitle>
+      <pname value="address place test"/>
+      <location street="address place test"/>
+      <noteref hlink="_0000002900000029"/>
+    </placeobj>
+    <placeobj handle="_0000002f0000002f" change="1464033808" id="P0014" type="Address">
+      <ptitle>different place test</ptitle>
+      <pname value="different place test"/>
+      <location street="address place test"/>
+      <noteref hlink="_0000002e0000002e"/>
+    </placeobj>
+    <placeobj handle="_0000003200000032" change="1464033808" id="P0015" type="Detail">
+      <ptitle>address place test</ptitle>
+      <pname value="address place test"/>
+      <placeref hlink="_0000000400000004"/>
+      <noteref hlink="_0000003100000031"/>
+    </placeobj>
+    <placeobj handle="_0000003500000035" change="1464033808" id="P0016" type="Unknown">
+      <ptitle>a new place</ptitle>
+      <pname value="a new place"/>
+    </placeobj>
+    <placeobj handle="_0000003600000036" change="1464033808" id="P0017" type="Detail">
+      <ptitle>address place test</ptitle>
+      <pname value="address place test"/>
+      <placeref hlink="_0000003500000035"/>
+      <noteref hlink="_0000003400000034"/>
+    </placeobj>
+    <placeobj handle="_0000003700000037" change="1464033808" id="P0018" type="Detail">
+      <ptitle>plus an address just for good measure also ignored</ptitle>
+      <pname value="plus an address just for good measure also ignored"/>
+      <placeref hlink="_0000003600000036"/>
+    </placeobj>
+    <placeobj handle="_0000003a0000003a" change="1464033808" id="P0019" type="Address">
+      <ptitle>address with no place</ptitle>
+      <pname value="address with no place"/>
+      <location street="address with no place"/>
+      <noteref hlink="_0000003900000039"/>
+    </placeobj>
+    <placeobj handle="_0000003d0000003d" change="1464033808" id="P0020" type="Unknown">
+      <ptitle>Woerden, Zuid-Holland, Netherlands</ptitle>
+      <pname value="Woerden, Zuid-Holland, Netherlands"/>
+      <noteref hlink="_0000003c0000003c"/>
+    </placeobj>
+    <placeobj handle="_0000003e0000003e" change="1464033808" id="P0021" type="Detail">
+      <ptitle>Kromwijkerkade 63</ptitle>
+      <pname value="Kromwijkerkade 63"/>
+      <placeref hlink="_0000003d0000003d"/>
+    </placeobj>
+    <placeobj handle="_0000004100000041" change="1464033808" id="P0022" type="Unknown">
+      <ptitle>Hasselt, Overijssel, Netherlands</ptitle>
+      <pname value="Hasselt, Overijssel, Netherlands"/>
+    </placeobj>
+    <placeobj handle="_0000004200000042" change="1464033808" id="P0023" type="Detail">
+      <ptitle>Prinsenstraat 69</ptitle>
+      <pname value="Prinsenstraat 69"/>
+      <placeref hlink="_0000004100000041"/>
+      <noteref hlink="_0000004000000040"/>
+    </placeobj>
+    <placeobj handle="_0000004400000044" change="1464033808" id="P0024" type="Unknown">
+      <ptitle>Enschede, Overijssel, Netherlands</ptitle>
+      <pname value="Enschede, Overijssel, Netherlands"/>
+    </placeobj>
+    <placeobj handle="_0000004500000045" change="1464033808" id="P0025" type="Detail">
+      <ptitle>Calslaan 26-52</ptitle>
+      <pname value="Calslaan 26-52"/>
+      <placeref hlink="_0000004400000044"/>
+    </placeobj>
+    <placeobj handle="_0000004800000048" change="1464033808" id="P0026" type="Detail">
+      <ptitle>Calslaan 26-44</ptitle>
+      <pname value="Calslaan 26-44"/>
+      <placeref hlink="_0000004400000044"/>
+      <noteref hlink="_0000004700000047"/>
+    </placeobj>
+    <placeobj handle="_0000004b0000004b" change="1464033808" id="P0027" type="Address">
+      <ptitle>Enschede, Overijssel, Netherlands</ptitle>
+      <pname value="Enschede, Overijssel, Netherlands"/>
+      <location street="Calslaan 26-61"/>
+      <noteref hlink="_0000004a0000004a"/>
+      <noteref hlink="_0000005000000050"/>
+    </placeobj>
+    <placeobj handle="_0000004e0000004e" change="1464033808" id="P0028" type="Address">
+      <ptitle>Calslaan 26-61</ptitle>
+      <pname value="Calslaan 26-61"/>
+      <location street="Calslaan 26-61"/>
+    </placeobj>
+    <placeobj handle="_0000005200000052" change="1464033808" id="P0029" type="Unknown">
+      <ptitle>Amsterdam, Noord-Holland, Netherlands</ptitle>
+      <pname value="Amsterdam, Noord-Holland, Netherlands"/>
+      <noteref hlink="_0000005500000055"/>
+    </placeobj>
+    <placeobj handle="_0000005300000053" change="1464033808" id="P0030" type="Detail">
+      <ptitle>Papendrechtstraat 37</ptitle>
+      <pname value="Papendrechtstraat 37"/>
+      <placeref hlink="_0000005200000052"/>
+    </placeobj>
+    <placeobj handle="_0000005800000058" change="1464033808" id="P0031" type="Detail">
+      <ptitle>Olympiaplein 46-2</ptitle>
+      <pname value="Olympiaplein 46-2"/>
+      <placeref hlink="_0000005200000052"/>
+      <noteref hlink="_0000005700000057"/>
+    </placeobj>
+    <placeobj handle="_0000005b0000005b" change="1464033808" id="P0032" type="Detail">
+      <ptitle>Papendrechtstraat 37</ptitle>
+      <pname value="Papendrechtstraat 37"/>
+      <placeref hlink="_0000005200000052"/>
+      <noteref hlink="_0000005a0000005a"/>
+    </placeobj>
+    <placeobj handle="_0000005d0000005d" change="1464033808" id="P0033" type="Address">
+      <ptitle>Amsterdam, Noord-Holland, Netherlands</ptitle>
+      <pname value="Amsterdam, Noord-Holland, Netherlands"/>
+      <location street="remembered address that should be set into place"/>
+    </placeobj>
+  </places>
+  <notes>
+    <note handle="_0000000300000003" change="1464033808" id="N0000" type="General">
+      <text>the place created not previously used so changed to add the address; __event_addr(len==0, place is None)</text>
+    </note>
+    <note handle="_0000000700000007" change="1464033808" id="N0001" type="General">
+      <text>check that this note is retained when the place is deleted. it should be merged into place</text>
+    </note>
+    <note handle="_0000000800000008" change="1464033808" id="N0002" type="General">
+      <text>the place created and then deleted and old data reused; __event_addr(len==0, place is not None)</text>
+    </note>
+    <note handle="_0000000b0000000b" change="1464033808" id="N0003" type="General">
+      <text>setup the place</text>
+    </note>
+    <note handle="_0000000d0000000d" change="1464033808" id="N0004" type="General">
+      <text>the place already exists; but now set doesn't match ; __event_addr(len!=0, place is None)</text>
+    </note>
+    <note handle="_0000001000000010" change="1464033808" id="N0005" type="General">
+      <text>the place already exists but now set matches; __event_addr(len!=0, place is not None)</text>
+    </note>
+    <note handle="_0000001300000013" change="1464033808" id="N0006" type="General">
+      <text>the address created, then destroyed as we find a matching set; __event_addr(no place_handle, create place)</text>
+    </note>
+    <note handle="_0000001800000018" change="1464033808" id="N0007" type="General">
+      <text>address reused, then destroyed as we find a matching set; __event_addr(no place_handle, place found)</text>
+    </note>
+    <note handle="_0000001a0000001a" change="1464033808" id="N0008" type="General">
+      <text>second address ignored</text>
+    </note>
+    <note handle="_0000001e0000001e" change="1464033808" id="N0009" type="General">
+      <text>second address ignored again</text>
+    </note>
+    <note handle="_0000002300000023" change="1464033808" id="N0010" type="General">
+      <text>ADDR created; __event_place finds it but place does not match; __event_place(len==0, place is None)</text>
+    </note>
+    <note handle="_0000002600000026" change="1464033808" id="N0011" type="General">
+      <text>this note is stored with the old address and then merged into the matching place</text>
+    </note>
+    <note handle="_0000002700000027" change="1464033808" id="N0012" type="General">
+      <text>ADDR created; __event_place finds it and now place does match; __event_place(len==0, place is not None)</text>
+    </note>
+    <note handle="_0000002900000029" change="1464033808" id="N0013" type="General">
+      <text>setup address place test</text>
+    </note>
+    <note handle="_0000002c0000002c" change="1464033808" id="N0014" type="General">
+      <text>address place test found; place exists and can be reused; __event_place(len!=0, place is not None)</text>
+    </note>
+    <note handle="_0000002e0000002e" change="1464033808" id="N0015" type="General">
+      <text>address place test found; but matching addr/plac not found; __event_place(len!=0, place is not None)</text>
+    </note>
+    <note handle="_0000003100000031" change="1464033808" id="N0016" type="General">
+      <text>PLAC occurs first; matching entry found; __event_place(no place handle, place is not None)</text>
+    </note>
+    <note handle="_0000003400000034" change="1464033808" id="N0017" type="General">
+      <text>PLAC occurs first; matching entry not found; __event_place(no place handle, place is None)</text>
+    </note>
+    <note handle="_0000003900000039" change="1464033808" id="N0018" type="General">
+      <text>note is stashed with a Place, and then merged into the address</text>
+    </note>
+    <note handle="_0000003c0000003c" change="1464033808" id="N0019" type="General">
+      <text>Place note</text>
+    </note>
+    <note handle="_0000004000000040" change="1464033808" id="N0020" type="General">
+      <text>ADDR note</text>
+    </note>
+    <note handle="_0000004700000047" change="1464033808" id="N0021" type="General">
+      <text>PLAC previously encountered, new ADDR, so new Place</text>
+    </note>
+    <note handle="_0000004a0000004a" change="1464033808" id="N0022" type="General">
+      <text>ADDR before PLAC (check ADDR is removed)</text>
+    </note>
+    <note handle="_0000005000000050" change="1464033808" id="N0023" type="General">
+      <text>ADDR before PLAC (address matches previous one, then needs to be reassigned)</text>
+    </note>
+    <note handle="_0000005500000055" change="1464033808" id="N0024" type="General">
+      <text>PLAC and no ADDR</text>
+    </note>
+    <note handle="_0000005700000057" change="1464033808" id="N0025" type="General">
+      <text>PLAC matches previous one, then when ADDR is read need to create a new Place</text>
+    </note>
+    <note handle="_0000005a0000005a" change="1464033808" id="N0026" type="General">
+      <text>PLAC and ADDR match, use existing one</text>
+    </note>
+    <note handle="_0000005e0000005e" change="1464033808" id="N0027" type="GEDCOM import">
+      <text>Records not imported into INDI (individual) Gramps ID I0310:
+
+A second PLAC ignored                                               Line   109: 2 PLAC a second PLACe ignored
+A second PLAC ignored                                               Line   110: 2 PLAC and a third one also ignored</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="288"/>
+      </style>
+    </note>
+  </notes>
+</database>
