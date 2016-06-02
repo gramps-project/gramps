@@ -22,6 +22,8 @@
 Proxy class for the Gramps databases. Caches lookups from handles.
 """
 
+from gramps.gen.utils.lru import LRU
+
 class CacheProxyDb:
     """
     A Proxy for a database with cached lookups on handles.
@@ -52,7 +54,6 @@ class CacheProxyDb:
         Clears all caches if handle is None, or
         specific entry.
         """
-        from gramps.gui.views.treemodels.lru import LRU
         if handle:
             del self.cache_handle[handle]
         else:

@@ -25,7 +25,7 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .lru import LRU
+from gramps.gen.utils.lru import LRU
 from gramps.gen.config import config
 
 class BaseModel:
