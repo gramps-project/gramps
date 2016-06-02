@@ -52,7 +52,7 @@ _det_id = False
 
 def create_id():
     global _rand
-    if _det_id is True:
+    if _det_id:
         _rand = _rand + 1
         return "%08x%08x" % (_rand, _rand)
     else:

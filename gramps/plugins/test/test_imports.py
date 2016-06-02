@@ -1,5 +1,6 @@
 ﻿#! /usr/bin/env python3
-""" Test program for import modules """
+""" Test program for import modules
+"""
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -44,11 +45,13 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 
 class CompleteCheck(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
-    files to be tested.  The following defs are used by the test cases"""
+    files to be tested.  The following defs are used by the test cases
+    """
 
     def prepare_result(self, diffs, added, missing):
         """ Looks through the diffs, added, and missing items and begins
-        reporting process.  Returns True if there were significant errors. """
+        reporting process.  Returns True if there were significant errors.
+        """
         # pylint: disable=E1101
         # pylint does not like dynamically created methods
         deltas = False
@@ -113,7 +116,8 @@ class CompleteCheck(unittest.TestCase):
 
 def _report_details(path, diff1, diff2):
     """ Checks if a detail is significant, needs adjusting for xml filter
-    effects, and returns a string describing the specific difference."""
+    effects, and returns a string describing the specific difference.
+    """
     if isinstance(diff1, bool):
         desc1 = repr(diff1)
     else:
@@ -148,7 +152,8 @@ def _report_details(path, diff1, diff2):
 
 
 def _format_struct_path(path):
-    """ prepares a 'path' string for the report out of the structure. """
+    """ prepares a 'path' string for the report out of the structure.
+    """
     retval = ""
     parts = path.split(".")
     for part in parts:
@@ -164,10 +169,12 @@ def _format_struct_path(path):
 
 def make_tst_function(tstfile, file_name):
     """ This is here to support the dynamic function creation.  This creates
-    the test function (a method, to be precise). """
+    the test function (a method, to be precise).
+    """
     def tst(self):
         """ This compares the import file with the expected result '.gramps'
-        file. """
+        file.
+        """
         self.user = User(quiet=True)
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
