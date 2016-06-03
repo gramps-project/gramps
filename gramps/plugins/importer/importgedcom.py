@@ -67,9 +67,9 @@ def importData(database, filename, user):
                                         database.__class__.__bases__
     try:
         # Opening in utf-8 with universal newline to allow cr, lf, and crlf
-        # If the file is really UTF16 or a varient, the next block code will not
-        # find anything even if it is there, but this is ok since it won't be
-        # ANSEL, or is inconsistent...
+        # If the file is really UTF16 or a varient, the next block code will
+        # not find anything even if it is there, but this is ok since it
+        # won't be ANSEL, or is inconsistent...
         with open(filename, "r", encoding='utf-8', errors='replace',
                   newline=None) as ifile:
             ansel = False

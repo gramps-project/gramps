@@ -1255,9 +1255,11 @@ class UTF8Reader(BaseReader):
         BaseReader.__init__(self, ifile, enc, __add_msg)
         self.reset()
         if enc == 'UTF_8_SIG':
-            self.ifile = TextIOWrapper(ifile, encoding='utf_8_sig', errors='replace', newline=None)
+            self.ifile = TextIOWrapper(ifile, encoding='utf_8_sig',
+                                       errors='replace', newline=None)
         else:
-            self.ifile = TextIOWrapper(ifile, encoding='utf_8', errors='replace', newline=None)
+            self.ifile = TextIOWrapper(ifile, encoding='utf_8',
+                                       errors='replace', newline=None)
 
     def readline(self):
         line = self.ifile.readline()
@@ -1267,7 +1269,8 @@ class UTF16Reader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
         BaseReader.__init__(self, ifile, 'UTF16', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='utf_16', errors='replace', newline=None)
+        self.ifile = TextIOWrapper(ifile, encoding='utf_16',
+                                   errors='replace', newline=None)
         self.reset()
 
     def readline(self):
@@ -1278,7 +1281,8 @@ class AnsiReader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
         BaseReader.__init__(self, ifile, 'latin1', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='latin1', errors='replace', newline=None)
+        self.ifile = TextIOWrapper(ifile, encoding='latin1',
+                                   errors='replace', newline=None)
    
     def readline(self):
         line = self.ifile.readline()
@@ -1290,7 +1294,8 @@ class CP1252Reader(BaseReader):
 
     def __init__(self, ifile, __add_msg):
         BaseReader.__init__(self, ifile, 'cp1252', __add_msg)
-        self.ifile = TextIOWrapper(ifile, encoding='cp1252', errors='replace', newline=None)
+        self.ifile = TextIOWrapper(ifile, encoding='cp1252',
+                                   errors='replace', newline=None)
    
     def readline(self):
         line = self.ifile.readline()
@@ -1564,7 +1569,8 @@ class AnselReader(BaseReader):
         BaseReader.__init__(self, ifile, "ANSEL", __add_msg)
         # In theory, we should have been able to skip the encode/decode from
         # ascii.  But this way allows us to use pythons universal newline
-        self.ifile = TextIOWrapper(ifile, encoding='ascii', errors='surrogateescape', newline=None)
+        self.ifile = TextIOWrapper(ifile, encoding='ascii',
+                                   errors='surrogateescape', newline=None)
 
     def readline(self):
         line = self.ifile.readline()
@@ -7787,18 +7793,21 @@ class GedcomStageOne(object):
         if line == b"\xef\xbb":
             input_file.read(1)
             self.enc = "utf_8_sig"
-            return TextIOWrapper(input_file, encoding='utf_8_sig', errors='replace', newline=None)
+            return TextIOWrapper(input_file, encoding='utf_8_sig',
+                                 errors='replace', newline=None)
         elif line == b"\xff\xfe" or line == b"\xfe\xff":
             self.enc = "UTF16"
             input_file.seek(0)
-            return TextIOWrapper(input_file, encoding='utf_16', errors='replace', newline=None)
+            return TextIOWrapper(input_file, encoding='utf_16',
+                                 errors='replace', newline=None)
         elif not line :
             raise GedcomError(self.__EMPTY_GED)
         elif line == b"\x30\x00" or line == b"\x00\x30":
             raise GedcomError(self.__BAD_UTF16)
         else:
             input_file.seek(0)
-            return TextIOWrapper(input_file, encoding='utf-8', errors='replace', newline=None)
+            return TextIOWrapper(input_file, encoding='utf-8',
+                                 errors='replace', newline=None)
 
     def parse(self):
         """
@@ -7810,7 +7819,7 @@ class GedcomStageOne(object):
 
         for line in reader:
             # Scan for a few items, keep counts.  Also look for actual CHAR
-            # Keyword to figure out actual encodeing for non-unicode file types.
+            # Keyword to figure out actual encodeing for non-unicode file types
             line = line.strip()
             if not line:
                 continue
