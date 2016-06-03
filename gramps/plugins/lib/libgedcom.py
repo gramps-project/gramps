@@ -7772,7 +7772,7 @@ class GedcomStageOne:
 
     def __detect_file_decoder(self, input_file):
         """
-        Detects the file encoding of the file by looking for a BOM 
+        Detects the file encoding of the file by looking for a BOM
         (byte order marker) in the GEDCOM file. If we detect a UTF-16 or
         UTF-8-BOM encoded file, we choose appropriate decoders.  If no BOM
         is detected, we return in UTF-8 mode it is the more modern option;
