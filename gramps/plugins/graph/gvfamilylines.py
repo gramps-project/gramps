@@ -40,7 +40,7 @@ from functools import partial
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".FamilyLines")
+LOG = logging.getLogger(".FamilyLines")
 
 #------------------------------------------------------------------------
 #
@@ -68,9 +68,9 @@ from gramps.gen.proxy import CacheProxyDb
 # Constant options items
 #
 #------------------------------------------------------------------------
-_COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
-            { 'name' : _("Colored outline"), 'value' : "colored" },
-            { 'name' : _("Color fill"),      'value' : "filled"  }]
+_COLORS = [{'name' : _("B&W outline"), 'value' : "outline"},
+           {'name' : _("Colored outline"), 'value' : "colored"},
+           {'name' : _("Color fill"), 'value' : "filled"}]
 
 #------------------------------------------------------------------------
 #
@@ -98,6 +98,8 @@ class FamilyLinesOptions(MenuReportOptions):
         self.max_children = None
         self.include_images = None
         self.image_location = None
+        self.justyears = None
+        self.include_dates = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -294,6 +296,8 @@ class FamilyLinesOptions(MenuReportOptions):
 #
 #------------------------------------------------------------------------
 class FamilyLinesReport(Report):
+    """ FamilyLines report """
+
     def __init__(self, database, options, user):
         """
         Create FamilyLinesReport object that eventually produces the report.
@@ -370,10 +374,12 @@ class FamilyLinesReport(Report):
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
         tmp = get_value('surnamecolors')
-        if (tmp.find('\xb0') >= 0):
-            tmp = tmp.split('\xb0')    # new style delimiter (see bug report #2162)
+        if tmp.find('\xb0') >= 0:
+            # new style delimiter (see bug report #2162)
+            tmp = tmp.split('\xb0')
         else:
-            tmp = tmp.split(' ')        # old style delimiter
+            # old style delimiter
+            tmp = tmp.split(' ')
 
         while len(tmp) > 1:
             surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
@@ -394,14 +400,14 @@ class FamilyLinesReport(Report):
         self._people.clear()
         self._families.clear()
         if self._followpar:
-            self.findParents()
+            self.find_parents()
 
             if self._removeextra:
-                self.removeUninterestingParents()
+                self.remove_uninteresting_parents()
 
         # ...and/or with the people of interest we add their children:
         if self._followchild:
-            self.findChildren()
+            self.find_children()
         # once we get here we have a full list of people
         # and families that we need to generate a report
 
@@ -414,38 +420,47 @@ class FamilyLinesReport(Report):
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
 
-        self.doc.add_comment('# Number of people in database:    %d'
-                             % self._db.get_number_of_people())
-        self.doc.add_comment('# Number of people of interest:    %d'
-                             % len(self._people))
-        self.doc.add_comment('# Number of families in database:  %d'
-                             % self._db.get_number_of_families())
-        self.doc.add_comment('# Number of families of interest:  %d'
-                             % len(self._families))
+        self.doc.add_comment('# %s %d' %
+                             (self._('Number of people in database:'),
+                              self._db.get_number_of_people()))
+        self.doc.add_comment('# %s %d' %
+                             (self._('Number of people of interest:'),
+                              len(self._people)))
+        self.doc.add_comment('# %s %d' %
+                             (self._('Number of families in database:'),
+                              self._db.get_number_of_families()))
+        self.doc.add_comment('# %s %d' %
+                             (self._('Number of families of interest:'),
+                              len(self._families)))
         if self._removeextra:
-            self.doc.add_comment('# Additional people removed:       %d'
-                                 % self._deleted_people)
-            self.doc.add_comment('# Additional families removed:     %d'
-                                 % self._deleted_families)
-        self.doc.add_comment('# Initial list of people of interest:')
+            self.doc.add_comment('# %s %d' %
+                                 (self._('Additional people removed:'),
+                                  self._deleted_people))
+            self.doc.add_comment('# %s %d' %
+                                 (self._('Additional families removed:'),
+                                  self._deleted_families))
+        self.doc.add_comment('# %s' %
+                             self._('Initial list of people of interest:'))
         for handle in self._interest_set:
             person = self._db.get_person_from_handle(handle)
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
-            self.doc.add_comment('# -> %s, %s' % (gid, name))
+            # translators: needed for Arabic, ignore othewise
+            self.doc.add_comment('# -> ' + self._('%s, %s') % (gid, name))
 
-        self.writePeople()
-        self.writeFamilies()
+        self.write_people()
+        self.write_families()
 
 
-    def findParents(self):
+    def find_parents(self):
+        """ find the parents """
         # we need to start with all of our "people of interest"
-        ancestorsNotYetProcessed = set(self._interest_set)
+        ancestors_not_yet_processed = set(self._interest_set)
 
         # now we find all the immediate ancestors of our people of interest
 
-        while ancestorsNotYetProcessed:
-            handle = ancestorsNotYetProcessed.pop()
+        while ancestors_not_yet_processed:
+            handle = ancestors_not_yet_processed.pop()
 
             # One of 2 things can happen here:
             #   1) we already know about this person and he/she is already
@@ -477,14 +492,15 @@ class FamilyLinesReport(Report):
                     spouse_handle = ReportUtils.find_spouse(person, family)
                     if spouse_handle:
                         if (spouse_handle in self._people or
-                           spouse_handle in ancestorsNotYetProcessed):
+                                spouse_handle in ancestors_not_yet_processed):
                             self._families.add(family_handle)
 
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more ancestors
-                if self._limitparents and (self._maxparents <
-                        len(ancestorsNotYetProcessed) + len(self._people)):
+                if (self._limitparents and
+                        (self._maxparents <
+                         len(ancestors_not_yet_processed) + len(self._people))):
                     # get back to the top of the while loop so we can finish
                     # processing the people queued up in the "not yet
                     # processed" list
@@ -498,17 +514,18 @@ class FamilyLinesReport(Report):
                     if father_handle:
                         father = self._db.get_person_from_handle(father_handle)
                         if father:
-                            ancestorsNotYetProcessed.add(father_handle)
+                            ancestors_not_yet_processed.add(father_handle)
                             self._families.add(family_handle)
 
                     mother_handle = family.get_mother_handle()
                     if mother_handle:
                         mother = self._db.get_person_from_handle(mother_handle)
                         if mother:
-                            ancestorsNotYetProcessed.add(mother_handle)
+                            ancestors_not_yet_processed.add(mother_handle)
                             self._families.add(family_handle)
 
-    def removeUninterestingParents(self):
+    def remove_uninteresting_parents(self):
+        """ remove any uninteresting parents """
         # start with all the people we've already identified
         unprocessed_parents = set(self._people)
 
@@ -539,7 +556,7 @@ class FamilyLinesReport(Report):
             spouse_mother_handle = None
             spouse_surname = ""
             surname = person.get_primary_name().get_surname()
-            surname = surname.encode('iso-8859-1','xmlcharrefreplace')
+            surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
 
             # first we get the person's father and mother
             for family_handle in person.get_parent_family_handle_list():
@@ -561,15 +578,14 @@ class FamilyLinesReport(Report):
                     spouse_handle = handle
                     spouse_surname = spouse.get_primary_name().get_surname()
                     spouse_surname = spouse_surname.encode(
-                                        'iso-8859-1', 'xmlcharrefreplace'
-                                        )
+                        'iso-8859-1', 'xmlcharrefreplace')
 
                     # see if the spouse has parents
                     if not spouse_father_handle and not spouse_mother_handle:
                         for family_handle in \
-                          spouse.get_parent_family_handle_list():
+                                spouse.get_parent_family_handle_list():
                             family = self._db.get_family_from_handle(
-                                                              family_handle)
+                                family_handle)
                             handle = family.get_father_handle()
                             if handle in self._people:
                                 spouse_father_handle = handle
@@ -606,7 +622,8 @@ class FamilyLinesReport(Report):
 
             # if the spouse has parents, then we automatically keep
             # this person
-            if spouse_father_handle is not None or spouse_mother_handle is not None:
+            if (spouse_father_handle is not None or
+                    spouse_mother_handle is not None):
                 continue
 
             # if this is a person of interest, then we automatically keep
@@ -619,15 +636,19 @@ class FamilyLinesReport(Report):
 
             # if the surname (or the spouse's surname) matches a person
             # of interest, then we automatically keep this person
-            bKeepThisPerson = False
-            for personOfInterestHandle in self._interest_set:
-                personOfInterest = self._db.get_person_from_handle(personOfInterestHandle)
-                surnameOfInterest = personOfInterest.get_primary_name().get_surname().encode('iso-8859-1','xmlcharrefreplace')
-                if surnameOfInterest == surname or surnameOfInterest == spouse_surname:
-                    bKeepThisPerson = True
+            keep_this_person = False
+            for person_of_interest_handle in self._interest_set:
+                person_of_interest = self._db.get_person_from_handle(
+                    person_of_interest_handle)
+                surname_of_interest = person_of_interest.get_primary_name()
+                surname_of_interest = surname_of_interest.get_surname().encode(
+                    'iso-8859-1', 'xmlcharrefreplace')
+                if (surname_of_interest == surname or
+                        surname_of_interest == spouse_surname):
+                    keep_this_person = True
                     break
 
-            if bKeepThisPerson:
+            if keep_this_person:
                 continue
 
             # if we have a special colour to use for this person,
@@ -640,7 +661,8 @@ class FamilyLinesReport(Report):
             if spouse_surname in self._surnamecolors:
                 continue
 
-            # took us a while, but if we get here, then we can remove this person
+            # took us a while,
+            # but if we get here then we can remove this person
             self._deleted_people += 1
             self._people.remove(person.get_handle())
 
@@ -661,33 +683,35 @@ class FamilyLinesReport(Report):
                     unprocessed_parents.add(child_handle)
 
 
-    def findChildren(self):
+    def find_children(self):
+        """ find any children """
         # we need to start with all of our "people of interest"
-        childrenNotYetProcessed = set(self._interest_set)
-        childrenToInclude = set()
+        children_not_yet_processed = set(self._interest_set)
+        children_to_include = set()
 
         # now we find all the children of our people of interest
 
-        while len(childrenNotYetProcessed) > 0:
-            handle = childrenNotYetProcessed.pop()
+        while len(children_not_yet_processed) > 0:
+            handle = children_not_yet_processed.pop()
 
-            if handle not in childrenToInclude:
+            if handle not in children_to_include:
 
                 person = self._db.get_person_from_handle(handle)
 
                 # remember this person!
-                childrenToInclude.add(handle)
+                children_to_include.add(handle)
 
                 # if we have a limit on the number of people, and we've
                 # reached that limit, then don't attempt to find any
                 # more children
-                if self._limitchildren and (
-                    self._maxchildren < (
-                        len(childrenNotYetProcessed) + len(childrenToInclude)
-                        )
-                    ):
-                    # get back to the top of the while loop so we can finish
-                    # processing the people queued up in the "not yet processed" list
+                if (self._limitchildren and
+                        (self._maxchildren <
+                         len(children_not_yet_processed) +
+                         len(children_to_include)
+                        )):
+                    # get back to the top of the while loop
+                    # so we can finish processing the people
+                    # queued up in the "not yet processed" list
                     continue
 
                 # iterate through this person's families
@@ -695,30 +719,30 @@ class FamilyLinesReport(Report):
                     family = self._db.get_family_from_handle(family_handle)
 
                     # queue up any children from this person's family
-                    for childRef in family.get_child_ref_list():
-                        child = self._db.get_person_from_handle(childRef.ref)
-                        childrenNotYetProcessed.add(child.get_handle())
+                    for childref in family.get_child_ref_list():
+                        child = self._db.get_person_from_handle(childref.ref)
+                        children_not_yet_processed.add(child.get_handle())
                         self._families.add(family_handle)
 
                     # include the spouse from this person's family
                     spouse_handle = ReportUtils.find_spouse(person, family)
                     if spouse_handle:
-                        spouse = self._db.get_person_from_handle(spouse_handle)
-                        childrenToInclude.add(spouse_handle)
+                        children_to_include.add(spouse_handle)
                         self._families.add(family_handle)
 
-        # we now merge our temp set "childrenToInclude" into our master set
-        self._people.update(childrenToInclude)
+        # we now merge our temp set "children_to_include" into our master set
+        self._people.update(children_to_include)
 
-    def writePeople(self):
+    def write_people(self):
+        """ write the people """
 
         self.doc.add_comment('')
 
         # If we're going to attempt to include images, then use the HTML style
         # of .gv file.
-        bUseHtmlOutput = False
+        use_html_output = False
         if self._incimages:
-            bUseHtmlOutput = True
+            use_html_output = True
 
         # loop through all the people we need to output
         for handle in sorted(self._people): # enable a diff
@@ -735,7 +759,8 @@ class FamilyLinesReport(Report):
                 colour = self._colorfemales
 
             # see if we have surname colours that match this person
-            surname = person.get_primary_name().get_surname().encode('iso-8859-1','xmlcharrefreplace')
+            surname = person.get_primary_name().get_surname()
+            surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
             if surname in self._surnamecolors:
                 colour = self._surnamecolors[surname]
 
@@ -748,13 +773,13 @@ class FamilyLinesReport(Report):
                 dth_event = None
 
             # output the birth or fallback event
-            birthStr = None
+            birth_str = None
             if bth_event and self._incdates:
                 date = bth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    birthStr = '%i' % date.get_year()
+                    birth_str = '%i' % date.get_year()
                 else:
-                    birthStr = self._get_date(date)
+                    birth_str = self._get_date(date)
 
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
@@ -762,13 +787,13 @@ class FamilyLinesReport(Report):
                 birthplace = self.get_event_place(bth_event)
 
             # see if we have a deceased date we can use
-            deathStr = None
+            death_str = None
             if dth_event and self._incdates:
                 date = dth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    deathStr = '%i' % date.get_year()
+                    death_str = '%i' % date.get_year()
                 else:
-                    deathStr = self._get_date(date)
+                    death_str = self._get_date(date)
 
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
@@ -776,32 +801,30 @@ class FamilyLinesReport(Report):
                 deathplace = self.get_event_place(dth_event)
 
             # see if we have an image to use for this person
-            imagePath = None
+            image_path = None
             if self._incimages:
-                mediaList = person.get_media_list()
-                if len(mediaList) > 0:
-                    mediaHandle = mediaList[0].get_reference_handle()
-                    media = self._db.get_media_from_handle(mediaHandle)
-                    mediaMimeType = media.get_mime_type()
-                    if mediaMimeType[0:5] == "image":
-                        imagePath = get_thumbnail_path(
-                                        media_path_full(self._db,
-                                                        media.get_path()),
-                                        rectangle=mediaList[0].get_rectangle())
+                media_list = person.get_media_list()
+                if len(media_list) > 0:
+                    media_handle = media_list[0].get_reference_handle()
+                    media = self._db.get_media_from_handle(media_handle)
+                    media_mime_type = media.get_mime_type()
+                    if media_mime_type[0:5] == "image":
+                        image_path = get_thumbnail_path(
+                            media_path_full(self._db, media.get_path()),
+                            rectangle=media_list[0].get_rectangle())
 
             # put the label together and output this person
             label = ""
-            lineDelimiter = '\\n'
-            if bUseHtmlOutput:
-                lineDelimiter = '<BR/>'
+            line_delimiter = '\\n'
+            if use_html_output:
+                line_delimiter = '<BR/>'
 
             # if we have an image, then start an HTML table;
             # remember to close the table afterwards!
-            if imagePath:
+            if image_path:
                 label = ('<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" '
-                         'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>'
-                            % imagePath
-                        )
+                         'CELLBORDER="0"><TR><TD><IMG SRC="%s"/></TD>' %
+                         image_path)
                 if self._imageonside == 0:
                     label += '</TR><TR>'
                 label += '<TD>'
@@ -811,20 +834,20 @@ class FamilyLinesReport(Report):
             if self.includeid == 1: # same line
                 label += " (%s)" % p_id
             elif self.includeid == 2: # own line
-                label += "%s(%s)" % (lineDelimiter, p_id)
+                label += "%s(%s)" % (line_delimiter, p_id)
 
-            if birthStr or deathStr:
-                label += '%s(' % lineDelimiter
-                if birthStr:
-                    label += '%s' % birthStr
+            if birth_str or death_str:
+                label += '%s(' % line_delimiter
+                if birth_str:
+                    label += '%s' % birth_str
                 label += ' - '
-                if deathStr:
-                    label += '%s' % deathStr
+                if death_str:
+                    label += '%s' % death_str
                 label += ')'
             if birthplace or deathplace:
                 if birthplace == deathplace:
                     deathplace = None    # no need to print the same name twice
-                label += '%s' % lineDelimiter
+                label += '%s' % line_delimiter
                 if birthplace:
                     label += '%s' % birthplace
                 if birthplace and deathplace:
@@ -833,18 +856,18 @@ class FamilyLinesReport(Report):
                     label += '%s' % deathplace
 
             # see if we have a table that needs to be terminated
-            if imagePath:
+            if image_path:
                 label += '</TD></TR></TABLE>'
 
-            shape   = "box"
-            style   = "solid"
-            border  = colour
-            fill    = colour
+            shape = "box"
+            style = "solid"
+            border = colour
+            fill = colour
 
             # do not use colour if this is B&W outline
             if self._colorize == 'outline':
-                border  = ""
-                fill    = ""
+                border = ""
+                fill = ""
 
             if gender == person.FEMALE and self._useroundedcorners:
                 style = "rounded"
@@ -858,14 +881,15 @@ class FamilyLinesReport(Report):
 
             # we're done -- add the node
             self.doc.add_node(p_id,
-                 label=label,
-                 shape=shape,
-                 color=border,
-                 style=style,
-                 fillcolor=fill,
-                 htmloutput=bUseHtmlOutput)
+                              label=label,
+                              shape=shape,
+                              color=border,
+                              style=style,
+                              fillcolor=fill,
+                              htmloutput=use_html_output)
 
-    def writeFamilies(self):
+    def write_families(self):
+        """ write the families """
 
         self.doc.add_comment('')
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
@@ -876,49 +900,49 @@ class FamilyLinesReport(Report):
             fgid = family.get_gramps_id()
 
             # figure out a wedding date or placename we can use
-            weddingDate = None
-            weddingPlace = None
+            wedding_date = None
+            wedding_place = None
             if self._incdates or self._incplaces:
                 for event_ref in family.get_event_ref_list():
                     event = self._db.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == EventType.MARRIAGE and \
-                    (event_ref.get_role() == EventRoleType.FAMILY or
-                    event_ref.get_role() == EventRoleType.PRIMARY ):
+                    if (event.get_type() == EventType.MARRIAGE and
+                            (event_ref.get_role() == EventRoleType.FAMILY or
+                             event_ref.get_role() == EventRoleType.PRIMARY)):
                         # get the wedding date
                         if self._incdates:
                             date = event.get_date_object()
                             if self._just_years and date.get_year_valid():
-                                weddingDate = '%i' % date.get_year()
+                                wedding_date = '%i' % date.get_year()
                             else:
-                                weddingDate = self._get_date(date)
+                                wedding_date = self._get_date(date)
                         # get the wedding location
                         if self._incplaces:
-                            weddingPlace = self.get_event_place(event)
+                            wedding_place = self.get_event_place(event)
                         break
 
             # figure out the number of children (if any)
-            childrenStr = None
+            children_str = None
             if self._incchildcount:
                 child_count = len(family.get_child_ref_list())
                 if child_count >= 1:
                     # translators: leave all/any {...} untranslated
-                    childrenStr = ngettext("{number_of} child",
-                                           "{number_of} children", child_count
-                                          ).format(number_of=child_count)
+                    children_str = ngettext("{number_of} child",
+                                            "{number_of} children", child_count
+                                           ).format(number_of=child_count)
 
             label = ''
             fgid_already = False
-            if weddingDate:
+            if wedding_date:
                 if label != '':
                     label += '\\n'
-                label += '%s' % weddingDate
+                label += '%s' % wedding_date
                 if self.includeid == 1 and not fgid_already: # same line
                     label += " (%s)" % fgid
                     fgid_already = True
-            if weddingPlace:
+            if wedding_place:
                 if label != '':
                     label += '\\n'
-                label += '%s' % weddingPlace
+                label += '%s' % wedding_place
                 if self.includeid == 1 and not fgid_already: # same line
                     label += " (%s)" % fgid
                     fgid_already = True
@@ -931,23 +955,23 @@ class FamilyLinesReport(Report):
             elif self.includeid == 2 and label and not fgid_already:
                 label += "\\n(%s)" % fgid
                 fgid_already = True
-            if childrenStr:
+            if children_str:
                 if label != '':
                     label += '\\n'
-                label += '%s' % childrenStr
+                label += '%s' % children_str
                 if self.includeid == 1 and not fgid_already: # same line
                     label += " (%s)" % fgid
                     fgid_already = True
 
-            shape   = "ellipse"
-            style   = "solid"
-            border  = self._colorfamilies
-            fill    = self._colorfamilies
+            shape = "ellipse"
+            style = "solid"
+            border = self._colorfamilies
+            fill = self._colorfamilies
 
             # do not use colour if this is B&W outline
             if self._colorize == 'outline':
-                border  = ""
-                fill    = ""
+                border = ""
+                fill = ""
 
             # if we're filling the entire node:
             if self._colorize == 'filled':
@@ -957,7 +981,8 @@ class FamilyLinesReport(Report):
             # we're done -- add the node
             self.doc.add_node(fgid, label, shape, border, style, fill)
 
-        # now that we have the families written, go ahead and link the parents and children to the families
+        # now that we have the families written,
+        # go ahead and link the parents and children to the families
         for family_handle in self._families:
 
             # get the parents for this family
@@ -975,27 +1000,34 @@ class FamilyLinesReport(Report):
             if father_handle:
                 if father_handle in self._people:
                     father = self._db.get_person_from_handle(father_handle)
-                    comment = "father: %s" % father.get_primary_name().get_regular_name()
-                    self.doc.add_link(father.get_gramps_id(), fgid, comment=comment)
+                    father_rn = father.get_primary_name().get_regular_name()
+                    comment = self._("father: %s") % father_rn
+                    self.doc.add_link(father.get_gramps_id(),
+                                      fgid, comment=comment)
 
             # see if we have a mother to link to this family
             if mother_handle:
                 if mother_handle in self._people:
                     mother = self._db.get_person_from_handle(mother_handle)
-                    comment = "mother: %s" % mother.get_primary_name().get_regular_name()
-                    self.doc.add_link(mother.get_gramps_id(), fgid, comment=comment)
+                    mother_rn = mother.get_primary_name().get_regular_name()
+                    comment = self._("mother: %s") % mother_rn
+                    self.doc.add_link(mother.get_gramps_id(),
+                                      fgid, comment=comment)
 
             if self._usesubgraphs and father_handle and mother_handle:
                 self.doc.end_subgraph()
 
             # link the children to the family
-            for childRef in family.get_child_ref_list():
-                if childRef.ref in self._people:
-                    child = self._db.get_person_from_handle(childRef.ref)
-                    comment = "child:  %s" % child.get_primary_name().get_regular_name()
-                    self.doc.add_link(fgid, child.get_gramps_id(), comment=comment)
+            for childref in family.get_child_ref_list():
+                if childref.ref in self._people:
+                    child = self._db.get_person_from_handle(childref.ref)
+                    child_rn = child.get_primary_name().get_regular_name()
+                    comment = self._("child: %s") % child_rn
+                    self.doc.add_link(fgid, child.get_gramps_id(),
+                                      comment=comment)
 
     def get_event_place(self, event):
+        """ get the place of the event """
         place_text = None
         place_handle = event.get_place_handle()
         if place_handle:
