@@ -31,33 +31,32 @@ Report output generator for html documents, based on Html and HtmlBackend
 
 #------------------------------------------------------------------------
 #
-# python modules
+# Python modules
 #
 #------------------------------------------------------------------------
 import os
 import shutil
-import time
+import logging
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.utils.image import resize_to_jpeg
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
-from gramps.gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF, URL_PATTERN
+from gramps.gen.plug.docgen import BaseDoc, TextDoc, URL_PATTERN
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.plugins.lib.libhtml import Html
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # Set up logging
 #
 #------------------------------------------------------------------------
-import logging
 LOG = logging.getLogger(".htmldoc")
 
 _TEXTDOCSCREEN = 'grampstextdoc.css'
@@ -107,6 +106,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.__title_written = -1  # -1 = not written, 0 = writing, 1 = written
         self.__link_attrs = {}     # additional link attrs, eg {"style": "...", "class": "..."}
         self.use_table_headers = False # th, td
+        self.first_row = True
 
     def set_css_filename(self, css_filename):
         """
@@ -136,9 +136,9 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         # add additional meta tags and stylesheet links to head section
         # create additional meta tags
-        _meta1 = 'name="generator" content="%s %s %s"' % (PROGRAM_NAME,
-                    VERSION, URL_HOMEPAGE)
-        meta = Html('meta', attr = _meta1)
+        _meta1 = 'name="generator" content="%s %s %s"' % (
+            PROGRAM_NAME, VERSION, URL_HOMEPAGE)
+        meta = Html('meta', attr=_meta1)
 
         #set styles of the report as inline css
         self.build_style_declaration()
@@ -151,13 +151,12 @@ class HtmlDoc(BaseDoc, TextDoc):
 
         # links for GRAMPS favicon and stylesheets
         links = Html('link', rel='shortcut icon', href=fname1,
-                        type='image/x-icon') + (
-                Html('link', rel='stylesheet', href=fname2, type='text/css',
-                        media='screen', indent=False),)
+                     type='image/x-icon') + (
+                         Html('link', rel='stylesheet', href=fname2,
+                              type='text/css', media='screen', indent=False),)
         if self.css_filename:
             links += (Html('link', rel='stylesheet', href=fname3,
-                      type='text/css', media='screen', indent=False),
-                )
+                           type='text/css', media='screen', indent=False),)
         self._backend.html_header += (meta, links)
 
     def build_style_declaration(self, id="grampstextdoc"):
@@ -184,8 +183,8 @@ class HtmlDoc(BaseDoc, TextDoc):
                         '\tpadding: %s %s %s %s;\n'
                         '\tborder-top:%s; border-bottom:%s;\n'
                         '\tborder-left:%s; border-right:%s;\n}'
-                    % (id, sname, pad, pad, pad, pad, top, bottom,
-                       left, right))
+                        % (id, sname, pad, pad, pad, pad, top, bottom,
+                           left, right))
 
 
         for style_name in sorted(styles.get_paragraph_style_names()):
@@ -243,7 +242,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
-        while len(self.htmllist)>1 :
+        while len(self.htmllist) > 1:
             self.__reduce_list()
         #now write the actual file
         self._backend.close()
@@ -251,8 +250,8 @@ class HtmlDoc(BaseDoc, TextDoc):
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
-        Copy a file from a source to a (report) destination.
-        If to_dir is not present, then the destination directory will be created.
+        Copy a file from a source to a (report) destination. If to_dir is not
+        present, then the destination directory will be created.
 
         Normally 'to_fname' will be just a filename, without directory path.
 
@@ -285,7 +284,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         Copy support files to the datadir that needs to hold them
         """
         #css of textdoc styles
-        with open(os.path.join(self._backend.datadirfull(), _TEXTDOCSCREEN), 'w') as tdfile:
+        with open(os.path.join(self._backend.datadirfull(),
+                               _TEXTDOCSCREEN), 'w') as tdfile:
             tdfile.write(self.style_declaration)
         #css file
         if self.css_filename:
@@ -295,7 +295,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                 self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
         self.copy_file(os.path.join(IMAGE_DIR, 'webstuff', 'favicon.ico'),
-                        'favicon.ico')
+                       'favicon.ico')
 
     def __reduce_list(self):
         """
@@ -315,9 +315,9 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         if not markup:
             text = self._backend.ESCAPE_FUNC()(text)
-        if self.__title_written == 0 :
+        if self.__title_written == 0:
             self.title += text
-        if links == True:
+        if links is True:
             import re
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
         self.htmllist[-1] += text
@@ -352,7 +352,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         styles = self.get_style_sheet()
         self._tbl = styles.get_table_style(style)
         self.htmllist += [Html('table', width=str(self._tbl.get_width())+'%',
-                                cellspacing='0')]
+                               cellspacing='0')]
 
     def end_table(self):
         """
@@ -384,14 +384,13 @@ class HtmlDoc(BaseDoc, TextDoc):
             tag = "td"
         self._empty = 1
         if span > 1:
-            self.htmllist += (Html(tag, colspan=str(span),
-                                    class_=style_name),)
+            self.htmllist += (Html(tag, colspan=str(span), class_=style_name),)
             self._col += span
         else:
             self.htmllist += (Html(tag, colspan=str(span),
-                                width=str(self._tbl.get_column_width(
-                                            self._col))+ '%',
-                                class_=style_name),)
+                                   width=str(self._tbl.get_column_width(
+                                       self._col))+ '%',
+                                   class_=style_name),)
         self._col += 1
 
     def end_cell(self):
@@ -419,7 +418,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                                        inline=True),)
             else:
                 self.htmllist += (Html('h1', class_=style_name, inline=True),)
-        elif 2<= level <= 5:
+        elif 2 <= level <= 5:
             tag = 'h'+str(level+1)
             self.htmllist += (Html(tag, class_=style_name, inline=True),)
         else:
@@ -506,7 +505,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             for line in markuptext.split('\n'):
                 [line, sigcount] = process_spaces(line, format)
                 if sigcount == 0:
-                    if inpara == False:
+                    if inpara is False:
                         # needed for runs of three or more newlines
                         self.start_paragraph(style_name)
                         inpara = True
@@ -515,7 +514,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                     inpara = False
                     linenb = 1
                 else:
-                    if inpara == False:
+                    if inpara is False:
                         self.start_paragraph(style_name)
                         inpara = True
                         self._empty = 1   # para is empty
@@ -524,19 +523,20 @@ class HtmlDoc(BaseDoc, TextDoc):
                     self.__write_text(line, markup=True, links=links)
                     self._empty = 0  # para is not empty
                     linenb += 1
-            if inpara == True:
+            if inpara is True:
                 self.end_paragraph()
             if sigcount == 0:
-                # if the last line was blank, then as well as outputting the previous para,
-                # which we have just done,
-                # we also output a new blank para
+                # if the last line was blank, then as well as outputting the
+                # previous para, which we have just done, we also output a new
+                # blank para
                 self.start_paragraph(style_name)
                 self._empty = 1   # para is empty
                 self.end_paragraph()
         #end div element
         self.__reduce_list()
 
-    def add_media(self, name, pos, w_cm, h_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, pos, w_cm, h_cm, alt='', style_name=None,
+                  crop=None):
         """
         Overwrite base method
         """
@@ -547,35 +547,36 @@ class HtmlDoc(BaseDoc, TextDoc):
         imdir = self._backend.datadirfull()
 
         try:
-            resize_to_jpeg(name, imdir + os.sep + refname, size, size, crop=crop)
+            resize_to_jpeg(name, imdir + os.sep + refname, size, size,
+                           crop=crop)
         except:
-            LOG.warn(_("Could not create jpeg version of image %(name)s") %
-                        {'name' : name})
+            LOG.warning(_("Could not create jpeg version of image %(name)s"),
+                        name)
             return
 
         if len(alt):
             alt = '<br />'.join(alt)
 
-        if pos not in ["right", "left"] :
+        if pos not in ["right", "left"]:
             if len(alt):
                 self.htmllist[-1] += Html('div') + (
-                    Html('img', src= imdir + os.sep + refname,
-                         border = '0', alt=alt),
+                    Html('img', src=imdir + os.sep + refname,
+                         border='0', alt=alt),
                     Html('p', class_="DDR-Caption") + alt
                 )
             else:
-                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname,
-                            border = '0', alt=alt)
+                self.htmllist[-1] += Html('img', src=imdir + os.sep + refname,
+                                          border='0', alt=alt)
         else:
             if len(alt):
-                self.htmllist[-1] += Html('div', style_="float: %s; padding: 5px; margin: 0;" % pos) + (
-                    Html('img', src= imdir + os.sep + refname,
-                         border = '0', alt=alt),
-                    Html('p', class_="DDR-Caption") + alt
-                )
+                self.htmllist[-1] += Html(
+                    'div', style_="float: %s; padding: 5px; margin: 0;" % pos
+                    ) + (Html('img', src=imdir + os.sep + refname,
+                              border='0', alt=alt),
+                         Html('p', class_="DDR-Caption") + alt)
             else:
-                self.htmllist[-1] += Html('img', src= imdir + os.sep + refname,
-                            border = '0', alt=alt, align=pos)
+                self.htmllist[-1] += Html('img', src=imdir + os.sep + refname,
+                                          border='0', alt=alt, align=pos)
 
     def page_break(self):
         """

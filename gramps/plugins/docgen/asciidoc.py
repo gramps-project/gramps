@@ -23,25 +23,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
-#
-# python modules
-#
-#------------------------------------------------------------------------
-import sys
+"""
+ACSII document generator.
+"""
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
-                            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
+                                    PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import NumberOption
 from gramps.gen.plug.report import DocOptions
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -70,7 +67,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
     alllines = para.split('\n')
     for realline in alllines:
         words = realline.split()
-        line  = ''
+        line = ''
         word = 0
         end_words = 0
         while not end_words:
@@ -79,7 +76,7 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
                 break
             if len(words[word]) > right-real_left: # Handle very long words
                 line = words[word]
-                word +=1
+                word += 1
                 if word >= len(words):
                     end_words = 1
             else:                             # Compose line of words
@@ -99,15 +96,15 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
         if right_pad:
             return '\n'.join(
                 [' '*(left+first) + ln.center(right-left-first)
-                 for ln in lines[0:1] ] +
-                [ ' '*left + ln.center(right-left) for ln in lines[1:] ]
+                 for ln in lines[0:1]] +
+                [' '*left + ln.center(right-left) for ln in lines[1:]]
                 )
         else:
             return '\n'.join(
                 [' '*(left+first) + ln.center(right-left-first).rstrip()
-                 for ln in lines[0:1] ] +
+                 for ln in lines[0:1]] +
                 [' '*left + ln.center(right-left).rstrip()
-                 for ln in lines[1:] ]
+                 for ln in lines[1:]]
                 )
     elif just == RIGHT:
         if right_pad:
@@ -118,13 +115,13 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
         if right_pad:
             return '\n'.join(
                 [' '*(left+first) + line.ljust(right-left-first)
-                 for line in lines[0:1] ] +
-                [' '*left + line.ljust(right-left) for line in lines[1:] ]
+                 for line in lines[0:1]] +
+                [' '*left + line.ljust(right-left) for line in lines[1:]]
                 )
         else:
             return '\n'.join(
-                [' '*(left+first) + line for line in lines[0:1] ] +
-                [' '*left + line for line in lines[1:] ]
+                [' '*(left+first) + line for line in lines[0:1]] +
+                [' '*left + line for line in lines[1:]]
                 )
 
 #------------------------------------------------------------------------
@@ -133,15 +130,33 @@ def reformat_para(para='', left=0, right=72, just=LEFT, right_pad=0, first=0):
 #
 #------------------------------------------------------------------------
 class AsciiDoc(BaseDoc, TextDoc):
-
-    def __init__(self, styles, type, options=None):
-        BaseDoc.__init__(self, styles, type)
+    """
+    ASCII document generator.
+    """
+    def __init__(self, styles, paper_style, options=None):
+        BaseDoc.__init__(self, styles, paper_style)
         self.__note_format = False
 
         self._cpl = 72 # characters per line, in case the options are ignored
         if options:
             menu = options.menu
             self._cpl = menu.get_option_by_name('linechars').get_value()
+
+        self.file = None
+        self.filename = ''
+
+        self.text = ''
+        self.para = None
+        self.leader = None
+
+        self.tbl_style = None
+        self.in_cell = None
+        self.ncols = 0
+        self.cellpars = []
+        self.cell_lines = []
+        self.cell_widths = []
+        self.cellnum = -1
+        self.maxlines = 0
 
     #--------------------------------------------------------------------
     #
@@ -155,7 +170,7 @@ class AsciiDoc(BaseDoc, TextDoc):
             self.filename = filename
 
         try:
-            self.f = open(self.filename, "w", errors = 'backslashreplace')
+            self.file = open(self.filename, "w", errors='backslashreplace')
         except Exception as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
@@ -169,9 +184,12 @@ class AsciiDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def close(self):
-        self.f.close()
+        self.file.close()
 
     def get_usable_width(self):
+        """
+        Return the usable width of the document in characters.
+        """
         return self._cpl
 
     #--------------------------------------------------------------------
@@ -180,7 +198,7 @@ class AsciiDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def page_break(self):
-        self.f.write('\012')
+        self.file.write('\012')
 
     def start_bold(self):
         pass
@@ -201,7 +219,7 @@ class AsciiDoc(BaseDoc, TextDoc):
     #--------------------------------------------------------------------
     def start_paragraph(self, style_name, leader=None):
         styles = self.get_style_sheet()
-        self.p = styles.get_paragraph_style(style_name)
+        self.para = styles.get_paragraph_style(style_name)
         self.leader = leader
 
     #--------------------------------------------------------------------
@@ -212,9 +230,9 @@ class AsciiDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_paragraph(self):
-        if self.p.get_alignment() == PARA_ALIGN_RIGHT:
+        if self.para.get_alignment() == PARA_ALIGN_RIGHT:
             fmt = RIGHT
-        elif self.p.get_alignment() == PARA_ALIGN_CENTER:
+        elif self.para.get_alignment() == PARA_ALIGN_CENTER:
             fmt = CENTER
         else:
             fmt = LEFT
@@ -227,10 +245,10 @@ class AsciiDoc(BaseDoc, TextDoc):
         # Compute indents in characters. Keep first_indent relative!
         regular_indent = 0
         first_indent = 0
-        if self.p.get_left_margin():
-            regular_indent = int(4*self.p.get_left_margin())
-        if self.p.get_first_indent():
-            first_indent = int(4*self.p.get_first_indent())
+        if self.para.get_left_margin():
+            regular_indent = int(4*self.para.get_left_margin())
+        if self.para.get_first_indent():
+            first_indent = int(4*self.para.get_first_indent())
 
         if self.in_cell and self.cellnum < self.ncols - 1:
             right_pad = 1
@@ -247,7 +265,8 @@ class AsciiDoc(BaseDoc, TextDoc):
             # Do not reformat if preformatted notes
             if not self.__note_format:
                 self.leader += ' '
-                start_at = regular_indent + min(len(self.leader)+first_indent, 0)
+                start_at = regular_indent + min(len(self.leader)+first_indent,
+                                                0)
                 this_text = reformat_para(self.text, regular_indent, right, fmt,
                                           right_pad)
                 this_text = (' ' * (regular_indent+first_indent) +
@@ -261,7 +280,7 @@ class AsciiDoc(BaseDoc, TextDoc):
             # line indent, as specified by style.
             # Do not reformat if preformatted notes
             if not self.__note_format:
-                this_text = reformat_para(self.text, regular_indent, right,fmt,
+                this_text = reformat_para(self.text, regular_indent, right, fmt,
                                           right_pad, first_indent)
             else:
                 this_text = ' ' * (regular_indent + first_indent) + self.text
@@ -277,7 +296,7 @@ class AsciiDoc(BaseDoc, TextDoc):
         if self.in_cell:
             self.cellpars[self.cellnum] += this_text
         else:
-            self.f.write(this_text)
+            self.file.write(this_text)
 
         self.text = ""
 
@@ -312,10 +331,11 @@ class AsciiDoc(BaseDoc, TextDoc):
         self.cell_widths = [0] * self.ncols
         self.cellnum = -1
         self.maxlines = 0
-        table_width = self.get_usable_width() * self.tbl_style.get_width() / 100.0
+        table_width = (self.get_usable_width() *
+                       self.tbl_style.get_width() / 100.0)
         for cell in range(self.ncols):
-            self.cell_widths[cell] = int(table_width *
-                self.tbl_style.get_column_width(cell) / 100.0)
+            self.cell_widths[cell] = int(
+                table_width * self.tbl_style.get_column_width(cell) / 100.0)
 
     #--------------------------------------------------------------------
     #
@@ -337,8 +357,8 @@ class AsciiDoc(BaseDoc, TextDoc):
         for line in range(self.maxlines):
             for cell in range(self.ncols):
                 if self.cell_widths[cell]:
-                    self.f.write(cell_text[cell][line])
-            self.f.write('\n')
+                    self.file.write(cell_text[cell][line])
+            self.file.write('\n')
 
     #--------------------------------------------------------------------
     #
@@ -370,13 +390,13 @@ class AsciiDoc(BaseDoc, TextDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
-    def add_media(self, name, align, w_cm, h_cm, alt='',
-                         style_name=None, crop=None):
+    def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None,
+                  crop=None):
         this_text = '(photo)'
         if self.in_cell:
             self.cellpars[self.cellnum] += this_text
         else:
-            self.f.write(this_text)
+            self.file.write(this_text)
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):

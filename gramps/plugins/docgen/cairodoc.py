@@ -28,7 +28,15 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-import sys
+import logging
+
+#-------------------------------------------------------------------------
+#
+# GTK modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Pango, PangoCairo
+import cairo
 
 #------------------------------------------------------------------------
 #
@@ -40,22 +48,13 @@ from gramps.gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
 from gramps.gen.errors import ReportError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import lin
+
 #------------------------------------------------------------------------
 #
 # Set up logging
 #
 #------------------------------------------------------------------------
-import logging
 LOG = logging.getLogger(".cairodoc")
-
-#-------------------------------------------------------------------------
-#
-# GTK modules
-#
-#-------------------------------------------------------------------------
-from gi.repository import Pango, PangoCairo
-import cairo
 
 #------------------------------------------------------------------------
 #
