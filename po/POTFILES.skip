@@ -78,8 +78,15 @@ gramps/gen/filters/_searchfilter.py
 #
 gramps/gen/filters/rules/_hastextmatchingregexpof.py
 gramps/gen/filters/rules/__init__.py
-gramps/gen/filters/rules/test/person_rules_test.py
+#
+# gen.filters.rules.test package
+#
+gramps/gen/filters/rules/test/event_rules_test.py
 gramps/gen/filters/rules/test/family_rules_test.py
+gramps/gen/filters/rules/test/media_rules_test.py
+gramps/gen/filters/rules/test/note_rules_test.py
+gramps/gen/filters/rules/test/person_rules_test.py
+gramps/gen/filters/rules/test/place_rules_test.py
 #
 # gen.filters.rules.person package
 #
