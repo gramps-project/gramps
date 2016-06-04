@@ -32,28 +32,34 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
+# Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from bisect import bisect
-import re, os, sys
+import re
+import os
 import logging
-_LOG = logging.getLogger(".latexdoc")
 
-#----------------------------------------------------------------------- -
-#
-# gramps modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF, URL_PATTERN
-from gramps.gen.plug.docbackend import DocBackend
-HAVE_PIL = False
 try:
     from PIL import Image
     HAVE_PIL = True
-except:
+except ImportError:
+    HAVE_PIL = False
+
+#----------------------------------------------------------------------- -
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
+from gramps.gen.plug.docgen import (BaseDoc, TextDoc, PAPER_LANDSCAPE,
+                                    FONT_SANS_SERIF, URL_PATTERN)
+from gramps.gen.plug.docbackend import DocBackend
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+
+_LOG = logging.getLogger(".latexdoc")
+if not HAVE_PIL:
     _LOG.warning(_("PIL (Python Imaging Library) not loaded. "
                    "Production of jpg images from non-jpg images "
                    "in LaTeX documents will not be available. "
@@ -435,8 +441,8 @@ def map_font_size(fontsize):
 TBLFMT_PAT = re.compile(r'({\|?)l(\|?})')
 
 # constants for routing in table construction:
-(CELL_BEG, CELL_TEXT, CELL_END,
-    ROW_BEG, ROW_END, TAB_BEG, TAB_END) = list(range(7))
+(CELL_BEG, CELL_TEXT, CELL_END, ROW_BEG, ROW_END, TAB_BEG,
+ TAB_END) = list(range(7))
 FIRST_ROW, SUBSEQ_ROW = list(range(2))
 
 
@@ -489,22 +495,22 @@ def str_incr(str_counter):
 #
 #------------------------------------------------------------------------
 
-class Tab_Cell:
+class TabCell:
     def __init__(self, colchar, span, head, content):
         self.colchar = colchar
         self.span = span
         self.head = head
         self.content = content
-class Tab_Row:
+class TabRow:
     def __init__(self):
-        self.cells =[]
+        self.cells = []
         self.tail = ''
         self.addit = '' # for: \\hline, \\cline{}
-class Tab_Mem:
+class TabMem:
     def __init__(self, head):
         self.head = head
-        self.tail =''
-        self.rows =[]
+        self.tail = ''
+        self.rows = []
 
 #------------------------------------------------------------------------
 #
@@ -513,25 +519,7 @@ class Tab_Mem:
 #------------------------------------------------------------------------
 def latexescape(text):
     """
-    change text in text that latex shows correctly
-    special characters: \&     \$     \%     \#     \_    \{     \}
-    """
-    text = text.replace('&','\\&')
-    text = text.replace('$','\\$')
-    text = text.replace('%','\\%')
-    text = text.replace('#','\\#')
-    text = text.replace('_','\\_')
-    text = text.replace('{','\\{')
-    text = text.replace('}','\\}')
-    # replace character unknown to LaTeX
-    text = text.replace('→','$\\longrightarrow$')
-    return text
-
-def latexescapeverbatim(text):
-    """
-    change text in text that latex shows correctly respecting whitespace
-    special characters: \&     \$     \%     \#     \_    \{     \}
-    Now also make sure space and newline is respected
+    Escape the following special characters: & $ % # _ { }
     """
     text = text.replace('&', '\\&')
     text = text.replace('$', '\\$')
@@ -540,14 +528,22 @@ def latexescapeverbatim(text):
     text = text.replace('_', '\\_')
     text = text.replace('{', '\\{')
     text = text.replace('}', '\\}')
+    # replace character unknown to LaTeX
+    text = text.replace('→', '$\\longrightarrow$')
+    return text
+
+def latexescapeverbatim(text):
+    """
+    Escape special characters and also make sure that LaTeX respects whitespace
+    and newlines correctly.
+    """
+    text = latexescape(text)
     text = text.replace(' ', '\\ ')
     text = text.replace('\n', '~\\newline \n')
     #spaces at begin are normally ignored, make sure they are not.
     #due to above a space at begin is now \newline\n\
     text = text.replace('\\newline\n\\ ',
                         '\\newline\n\\hspace*{0.1\\grbaseindent}\\ ')
-    # replace character unknown to LaTeX
-    text = text.replace('→','$\\longrightarrow$')
     return text
 
 #------------------------------------------------------------------------
@@ -563,12 +559,12 @@ class LateXBackend(DocBackend):
     """
     # overwrite base class attributes, they become static var of LaTeXDoc
     SUPPORTED_MARKUP = [
-            DocBackend.BOLD,
-            DocBackend.ITALIC,
-            DocBackend.UNDERLINE,
-            DocBackend.FONTSIZE,
-            DocBackend.FONTFACE,
-            DocBackend.SUPERSCRIPT ]
+        DocBackend.BOLD,
+        DocBackend.ITALIC,
+        DocBackend.UNDERLINE,
+        DocBackend.FONTSIZE,
+        DocBackend.FONTFACE,
+        DocBackend.SUPERSCRIPT]
 
     STYLETAG_MARKUP = {
         DocBackend.BOLD        : ("\\textbf{", "}"),
@@ -634,13 +630,13 @@ class TexFont:
         if style:
             self.font_beg = style.font_beg
             self.font_end = style.font_end
-            self.leftIndent = style.left_indent
-            self.firstLineIndent = style.firstLineIndent
+            self.left_indent = style.left_indent
+            self.first_line_indent = style.first_line_indent
         else:
             self.font_beg = ""
             self.font_end = ""
-            self.leftIndent = ""
-            self.firstLineIndent = ""
+            self.left_indent = ""
+            self.first_line_indent = ""
 
 
 #------------------------------------------------------------------
@@ -691,9 +687,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
             if span > 1: # phantom columns prior to multicolumns
                 for col in range(self.curcol - span, self.curcol - 1):
                     col_char = get_charform(col)
-                    phantom = Tab_Cell(col_char, 0, '', '')
+                    phantom = TabCell(col_char, 0, '', '')
                     self.tabrow.cells.append(phantom)
-            self.tabcell = Tab_Cell(self.curcol_char, span, text, '')
+            self.tabcell = TabCell(self.curcol_char, span, text, '')
         elif tab_state == CELL_TEXT:
             self.textmem.append(text)
         elif tab_state == CELL_END: # text == ''
@@ -701,13 +697,13 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
             if self.tabcell.content.find('\\centering') != -1:
                 self.tabcell.content = self.tabcell.content.replace(
-                        '\\centering', '')
+                    '\\centering', '')
                 self.tabcell.head = re.sub(
                     TBLFMT_PAT, '\\1c\\2', self.tabcell.head)
             self.tabrow.cells.append(self.tabcell)
             self.textmem = []
         elif tab_state == ROW_BEG:
-            self.tabrow = Tab_Row()
+            self.tabrow = TabRow()
         elif tab_state == ROW_END:
             self.tabrow.addit = text # text: \\hline, \\cline{}
             self.tabrow.tail = ''.join(self.textmem) # \\\\ row-termination
@@ -717,8 +713,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.tabmem.rows.append(self.tabrow)
         elif tab_state == TAB_BEG: # text: \\begin{longtable}[l]{
             self._backend.write(''.join(('\\grinittab{\\textwidth}{',
-                repr(1.0/self.numcols), '}%\n')))
-            self.tabmem = Tab_Mem(text)
+                                         repr(1.0/self.numcols), '}%\n')))
+            self.tabmem = TabMem(text)
         elif tab_state == TAB_END: # text: \\end{longtable}
             self.tabmem.tail = text
 
@@ -740,8 +736,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         # extract cell.contents
         bare_contents = [cell.content.strip(SEPARATION_PAT).replace(
-                                               '\n', '').split(SEPARATION_PAT)
-                                               for cell in self.tabrow.cells]
+            '\n', '').split(SEPARATION_PAT) for cell in self.tabrow.cells]
+
         # mk equal length & transpose
         num_new_rows = max([len(mult_row_cont)
                             for mult_row_cont in bare_contents])
@@ -759,17 +755,20 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 self.pict = transp_cont[0][-1]
                 last_cell -= 1
                 self.numcols -= 1
-                self._backend.write(''.join(('\\addtolength{\\grtabwidth}{-',
-                   repr(self.pict_width), '\\grbaseindent -2\\tabcolsep}%\n')))
+                self._backend.write(''.join(
+                    ('\\addtolength{\\grtabwidth}{-',
+                     repr(self.pict_width),
+                     '\\grbaseindent -2\\tabcolsep}%\n')))
             self.pict_in_table = False
 
         # new row-col structure
         for row in range(num_new_rows):
-            new_row = Tab_Row()
+            new_row = TabRow()
             for i in range(first_cell, last_cell):
-                new_cell = Tab_Cell(get_charform(i + first_cell),
-                        self.tabrow.cells[i].span, self.tabrow.cells[i].head,
-                        transp_cont[row][i + first_cell])
+                new_cell = TabCell(
+                    get_charform(i + first_cell),
+                    self.tabrow.cells[i].span, self.tabrow.cells[i].head,
+                    transp_cont[row][i + first_cell])
                 new_row.cells.append(new_cell)
             new_row.tail = self.tabrow.tail
             new_row.addit = ''
@@ -796,80 +795,91 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 if cell.span == 0:
                     continue
                 if cell.content.startswith('\\grmkpicture'):
-                    self._backend.write(''.join(('\\setlength{\\grpictsize}{',
-                        self.pict_width, '\\grbaseindent}%\n')))
+                    self._backend.write(
+                        ''.join(('\\setlength{\\grpictsize}{',
+                                 self.pict_width, '\\grbaseindent}%\n')))
                 else:
                     for part in cell.content.split(SEPARATION_PAT):
-                        self._backend.write(''.join(('\\grtextneedwidth{',
-                            part, '}%\n')))
+                        self._backend.write(
+                            ''.join(('\\grtextneedwidth{', part, '}%\n')))
                     row.cells[col_num].content = cell.content.replace(
-                            SEPARATION_PAT, '~\\newline \n')
+                        SEPARATION_PAT, '~\\newline \n')
 
                 if cell.span == 1:
                     self._backend.write(''.join(('\\grsetreqfull%\n')))
                 elif cell.span > 1:
-                    self._backend.write(''.join(('\\grsetreqpart{\\grcolbeg',
-                        get_charform(get_numform(cell.colchar) - cell.span +1),
-                        '}%\n')))
+                    self._backend.write(
+                        ''.join(('\\grsetreqpart{\\grcolbeg',
+                                 get_charform(get_numform(cell.colchar) -
+                                              cell.span +1),
+                                 '}%\n')))
 
-            self._backend.write(''.join(('\\grcolsfirstfix',
-                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
-                '}{\\grfinalwidth', col_char, '}{\\grpictreq',   col_char,
-                '}{\\grtextreq',    col_char, '}%\n')))
-
-        self._backend.write(''.join(('\\grdividelength%\n')))
-        for col_char in tabcol_chars:
-            self._backend.write(''.join(('\\grcolssecondfix',
-                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
-                '}{\\grfinalwidth', col_char, '}{\\grpictreq',   col_char,
-                '}%\n')))
+            self._backend.write(
+                ''.join(('\\grcolsfirstfix',
+                         ' {\\grcolbeg', col_char, '}{\\grtempwidth', col_char,
+                         '}{\\grfinalwidth', col_char, '}{\\grpictreq',
+                         col_char, '}{\\grtextreq', col_char, '}%\n')))
 
         self._backend.write(''.join(('\\grdividelength%\n')))
         for col_char in tabcol_chars:
-            self._backend.write(''.join(('\\grcolsthirdfix',
-                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
-                '}{\\grfinalwidth', col_char, '}%\n')))
+            self._backend.write(
+                ''.join(('\\grcolssecondfix',
+                         ' {\\grcolbeg', col_char, '}{\\grtempwidth', col_char,
+                         '}{\\grfinalwidth', col_char, '}{\\grpictreq',
+                         col_char, '}%\n')))
 
         self._backend.write(''.join(('\\grdividelength%\n')))
         for col_char in tabcol_chars:
-            self._backend.write(''.join(('\\grcolsfourthfix',
-                ' {\\grcolbeg',     col_char, '}{\\grtempwidth', col_char,
-                '}{\\grfinalwidth', col_char, '}%\n')))
+            self._backend.write(
+                ''.join(('\\grcolsthirdfix',
+                         ' {\\grcolbeg', col_char, '}{\\grtempwidth', col_char,
+                         '}{\\grfinalwidth', col_char, '}%\n')))
+
+        self._backend.write(''.join(('\\grdividelength%\n')))
+        for col_char in tabcol_chars:
+            self._backend.write(
+                ''.join(('\\grcolsfourthfix',
+                         ' {\\grcolbeg', col_char, '}{\\grtempwidth', col_char,
+                         '}{\\grfinalwidth', col_char, '}%\n')))
 
         self.multcol_alph_counter = str_incr(MULTCOL_COUNT_BASE)
         for row in self.tabmem.rows:
             for cell in row.cells:
                 if cell.span > 1:
                     multcol_alph_id = next(self.multcol_alph_counter)
-                    self._backend.write(''.join(('\\grgetspanwidth{',
-                        '\\grspanwidth', multcol_alph_id,
-                        '}{\\grcolbeg', get_charform(get_numform(cell.colchar)-
-                                                     cell.span + 1),
-                        '}{\\grcolbeg', cell.colchar,
-                        '}{\\grtempwidth', cell.colchar,
-                        '}%\n')))
+                    self._backend.write(
+                        ''.join(('\\grgetspanwidth{',
+                                 '\\grspanwidth', multcol_alph_id,
+                                 '}{\\grcolbeg', get_charform(
+                                     get_numform(cell.colchar)- cell.span + 1),
+                                 '}{\\grcolbeg', cell.colchar,
+                                 '}{\\grtempwidth', cell.colchar,
+                                 '}%\n')))
 
     def write_table(self):
         # Choosing RaggedRight (with hyphenation) in table and
         # provide manually adjusting of column widths
-        self._backend.write(''.join((
-            '%\n', self.pict,
-            '%\n%\n',
-            '%  ==> Comment out one of the two lines ',
-            'by a leading "%" (first position)\n',
-            '{ \\RaggedRight%       left align with hyphenation in table \n',
-            '%{%                no left align in table \n%\n',
-            '%  ==>  You may add pos or neg values ',
-            'to the following ', repr(self.numcols), ' column widths %\n')))
+        self._backend.write(
+            ''.join((
+                '%\n', self.pict,
+                '%\n%\n',
+                '%  ==> Comment out one of the two lines ',
+                'by a leading "%" (first position)\n',
+                '{ \\RaggedRight%      left align with hyphenation in table \n',
+                '%{%                no left align in table \n%\n',
+                '%  ==>  You may add pos or neg values ',
+                'to the following ', repr(self.numcols), ' column widths %\n')))
         for col_num in range(self.numcols):
-            self._backend.write(''.join(('\\addtolength{\\grtempwidth',
-                get_charform(col_num), '}{+0.0cm}%\n')))
+            self._backend.write(
+                ''.join(('\\addtolength{\\grtempwidth',
+                         get_charform(col_num), '}{+0.0cm}%\n')))
         self._backend.write('%  === %\n')
 
         # adjust & open table':
         if self.pict:
-            self._backend.write(''.join(('%\n\\vspace{\\grtabprepos}%\n',
-                '\\setlength{\\grtabprepos}{0ex}%\n')))
+            self._backend.write(
+                ''.join(('%\n\\vspace{\\grtabprepos}%\n',
+                         '\\setlength{\\grtabprepos}{0ex}%\n')))
             self.pict = ''
         self._backend.write(''.join(self.tabmem.head))
 
@@ -887,7 +897,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write('\\endfoot%\n')
         if self.head_line:
             self._backend.write('\\hline%\n')
-            self.head_line= False
+            self.head_line = False
         else:
             self._backend.write('%\n')
         self._backend.write(complete_row)
@@ -902,7 +912,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.write(''.join((''.join(self.tabmem.tail), '}%\n\n')))
 
     def mk_splitting_row(self, row):
-        splitting =[]
+        splitting = []
         add_vdots = '\\grempty'
         for cell in row.cells:
             if cell.span == 0:
@@ -914,13 +924,14 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 cell_width = ''.join(('\\grtempwidth', cell.colchar))
             else:
                 cell_width = ''.join(('\\grspanwidth',
-                    next(self.multcol_alph_counter)))
-            splitting.append(''.join(('\\grtabpgbreak{', cell.head, '}{',
-                cell_width, '}{', add_vdots, '}{+2ex}%\n')))
+                                      next(self.multcol_alph_counter)))
+            splitting.append(
+                ''.join(('\\grtabpgbreak{', cell.head, '}{',
+                         cell_width, '}{', add_vdots, '}{+2ex}%\n')))
         return ''.join((' & '.join(splitting), '%\n', row.tail))
 
     def mk_complete_row(self, row):
-        complete =[]
+        complete = []
         for cell in row.cells:
             if cell.span == 0:
                 continue
@@ -928,9 +939,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
                 cell_width = ''.join(('\\grtempwidth', cell.colchar))
             else:
                 cell_width = ''.join(('\\grspanwidth',
-                    next(self.multcol_alph_counter)))
-            complete.append(''.join(('\\grcolpart{%\n  ', cell.head,
-                '}{%\n', cell_width, '}{%\n  ', cell.content, '%\n}%\n')))
+                                      next(self.multcol_alph_counter)))
+            complete.append(
+                ''.join(('\\grcolpart{%\n  ', cell.head, '}{%\n', cell_width,
+                         '}{%\n  ', cell.content, '%\n}%\n')))
         return ''.join((' & '.join(complete), '%\n', row.tail, row.addit))
 
 #       ---------------------------------------------------------------------
@@ -1014,10 +1026,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
             thisstyle.font_beg += " "
             thisstyle.font_end += " "
 
-            left  = style.get_left_margin()
+            left = style.get_left_margin()
             first = style.get_first_indent() + left
-            thisstyle.leftIndent = left
-            thisstyle.firstLineIndent = first
+            thisstyle.left_indent = left
+            thisstyle.first_line_indent = first
             self.latexstyle[style_name] = thisstyle
 
 
@@ -1045,10 +1057,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.fbeg = ltxstyle.font_beg
         self.fend = ltxstyle.font_end
 
-        self.indent = ltxstyle.leftIndent
-        self.FLindent = ltxstyle.firstLineIndent
+        self.indent = ltxstyle.left_indent
+        self.first_line_indent = ltxstyle.first_line_indent
         if self.indent == 0:
-            self.indent = self.FLindent
+            self.indent = self.first_line_indent
 
         # For additional vertical space beneath title line(s)
         # i.e. when the first centering ended:
@@ -1059,8 +1071,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
             self.in_multrow_cell = True
         else:
             if leader:
-                self._backend.write(''.join(('\\grprepleader{', leader,
-                    '}%\n')))
+                self._backend.write(
+                    ''.join(('\\grprepleader{', leader, '}%\n')))
             else:
                 self._backend.write('\\grprepnoleader%\n')
 
@@ -1070,14 +1082,15 @@ class LaTeXDoc(BaseDoc, TextDoc):
             #   there another value might be choosen.
 #           -------------------------------------------------------------------
             if self.indent is not None:
-                self._backend.write(''.join(('\\grminpghead{',
-                    repr(self.indent), '}{', repr(self.pict_width), '}%\n')))
+                self._backend.write(
+                    ''.join(('\\grminpghead{', repr(self.indent), '}{',
+                             repr(self.pict_width), '}%\n')))
                 self.fix_indent = True
 
                 if leader is not None and not self.in_list:
                     self.in_list = True
                     self._backend.write(''.join(('\\grlisthead{', leader,
-                        '}%\n')))
+                                                 '}%\n')))
 
         if leader is None:
             self.emit('\n')
@@ -1116,7 +1129,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
     def end_superscript(self):
         self.emit('}')
 
-    def start_table(self, name,style_name):
+    def start_table(self, name, style_name):
         """Begin new table"""
         self.in_table = True
         self.currow = 0
@@ -1149,7 +1162,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.doline:
             if self.skipfirst:
                 self.emit(''.join((('\\cline{2-%d}' %
-                    self.numcols), '%\n')), ROW_END)
+                                    self.numcols), '%\n')), ROW_END)
             else:
                 self.emit('\\hline %\n', ROW_END)
         else:
@@ -1171,10 +1184,10 @@ class LaTeXDoc(BaseDoc, TextDoc):
         # values imported here are used for test '==1' and '!=0'. To get
         # local boolean values the tests are now transfered to the import lines
 #       ------------------------------------------------------------------
-        self.lborder = 1 == self.cstyle.get_left_border()
-        self.rborder = 1 == self.cstyle.get_right_border()
-        self.bborder = 1 == self.cstyle.get_bottom_border()
-        self.tborder = 0 != self.cstyle.get_top_border()
+        self.lborder = self.cstyle.get_left_border() == 1
+        self.rborder = self.cstyle.get_right_border() == 1
+        self.bborder = self.cstyle.get_bottom_border() == 1
+        self.tborder = self.cstyle.get_top_border() != 0
 
         # self.llist not needed any longer.
         # now column widths are arranged in self.calc_latex_widths()
@@ -1207,45 +1220,44 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.emit('', CELL_END)
 
 
-    def add_media(self, infile, pos, x, y, alt='',
-                         style_name=None, crop=None):
+    def add_media(self, infile, pos, x, y, alt='', style_name=None, crop=None):
         """Add photo to report"""
         outfile = os.path.splitext(infile)[0]
         pictname = latexescape(os.path.split(outfile)[1])
         outfile = ''.join((outfile, '.jpg'))
         outfile2 = ''.join((outfile, '.jpeg'))
         outfile3 = ''.join((outfile, '.png'))
-        if HAVE_PIL and infile not in [outfile, outfile2, outfile3] :
+        if HAVE_PIL and infile not in [outfile, outfile2, outfile3]:
             try:
                 curr_img = Image.open(infile)
                 curr_img.save(outfile)
-                px, py = curr_img.size
-                if py > px:
-                    y = y*py/px
+                width, height = curr_img.size
+                if height > width:
+                    y = y*height/width
             except IOError:
                 self.emit(''.join(('%\n *** Error: cannot convert ', infile,
-                                    '\n ***                    to ', outfile,
-                                    '%\n')))
+                                   '\n ***                    to ', outfile,
+                                   '%\n')))
         elif not HAVE_PIL:
-                self.emit(''.join(('%\n *** Error: cannot convert ', infile,
-                                    '\n ***                    to ', outfile,
-                                    'PIL not installed %\n')))
+            self.emit(''.join(('%\n *** Error: cannot convert ', infile,
+                               '\n ***                    to ', outfile,
+                               'PIL not installed %\n')))
 
         if self.in_table:
             self.pict_in_table = True
 
         self.emit(''.join(('\\grmkpicture{', outfile, '}{', repr(x), '}{',
-            repr(y), '}{', pictname, '}%\n')))
+                           repr(y), '}{', pictname, '}%\n')))
         self.pict_width = x
         self.pict_height = y
 
-    def write_text(self,text,mark=None,links=False):
+    def write_text(self, text, mark=None, links=False):
         """Write the text to the file"""
         if text == '\n':
             text = ''
         text = latexescape(text)
 
-        if links == True:
+        if links is True:
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
         #hard coded replace of the underline used for missing names/data
@@ -1277,7 +1289,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
 
-        if links == True:
+        if links is True:
             markuptext = re.sub(URL_PATTERN, _CLICKABLE, markuptext)
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
 

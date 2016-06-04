@@ -24,24 +24,26 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
+# Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
-LOG = logging.getLogger(".rtfdoc")
 
 #------------------------------------------------------------------------
 #
-# Load the base BaseDoc class
+# Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
-                             PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY,
-                             URL_PATTERN)
-from gramps.gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
+from gramps.gen.plug.docgen import (
+    BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER,
+    PARA_ALIGN_JUSTIFY, URL_PATTERN)
+from gramps.gen.utils.image import (image_size, image_actual_size,
+                                    resize_to_jpeg_buffer)
 from gramps.gen.errors import ReportError
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+LOG = logging.getLogger(".rtfdoc")
 
 #------------------------------------------------------------------------
 #
@@ -52,15 +54,18 @@ _CLICKABLE = r'''{\\field{\\*\\fldinst HYPERLINK "\1"}{\\fldrslt \1}}'''
 
 #------------------------------------------------------------------------
 #
-# RTF uses a unit called "twips" for its measurements. According to the
-# RTF specification, 1 point is 20 twips. This routines converts
-# centimeters to twips
-#
-# 2.54 cm/inch 72pts/inch, 20twips/pt
+# Functions
 #
 #------------------------------------------------------------------------
-def twips(cm):
-    return int(((cm/2.54)*72)+0.5)*20
+def twips(length_cm):
+    """
+    RTF uses a unit called "twips" for its measurements. According to the
+    RTF specification, 1 point is 20 twips. This routines converts
+    centimeters to twips
+
+    2.54 cm/inch 72pts/inch, 20twips/pt
+    """
+    return int(((length_cm/2.54)*72)+0.5)*20
 
 #------------------------------------------------------------------------
 #
@@ -68,25 +73,21 @@ def twips(cm):
 # use style sheets. Instead it writes raw formatting.
 #
 #------------------------------------------------------------------------
-class RTFDoc(BaseDoc,TextDoc):
-
-    #--------------------------------------------------------------------
-    #
-    # Opens the file, and writes the header. Builds the color and font
-    # tables.  Fonts are chosen using the MS TrueType fonts, since it
-    # is assumed that if you are generating RTF, you are probably
-    # targeting Word.  This generator assumes a Western Europe character
-    # set.
-    #
-    #--------------------------------------------------------------------
-    def open(self,filename):
+class RTFDoc(BaseDoc, TextDoc):
+    """
+    Opens the file, and writes the header. Builds the color and font tables.
+    Fonts are chosen using the MS TrueType fonts, since it is assumed that if
+    you are generating RTF, you are probably targeting Word.  This generator
+    assumes a Western Europe character set.
+    """
+    def open(self, filename):
         if filename[-4:] != ".rtf":
             self.filename = filename + ".rtf"
         else:
             self.filename = filename
 
         try:
-            self.f = open(self.filename,"w")
+            self.file = open(self.filename, "w")
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise ReportError(errmsg)
@@ -95,7 +96,7 @@ class RTFDoc(BaseDoc,TextDoc):
 
         style_sheet = self.get_style_sheet()
 
-        self.f.write(
+        self.file.write(
             '{\\rtf1\\ansi\\ansicpg1252\\deff0\n'
             '{\\fonttbl\n'
             '{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n'
@@ -105,22 +106,22 @@ class RTFDoc(BaseDoc,TextDoc):
 
         self.color_map = {}
         index = 1
-        self.color_map[(0,0,0)] = 0
-        self.f.write('\\red0\\green0\\blue0;')
+        self.color_map[(0, 0, 0)] = 0
+        self.file.write('\\red0\\green0\\blue0;')
         for style_name in style_sheet.get_paragraph_style_names():
             style = style_sheet.get_paragraph_style(style_name)
             fgcolor = style.get_font().get_color()
             bgcolor = style.get_background_color()
             if fgcolor not in self.color_map:
                 self.color_map[fgcolor] = index
-                self.f.write('\\red%d\\green%d\\blue%d;' % fgcolor)
+                self.file.write('\\red%d\\green%d\\blue%d;' % fgcolor)
                 index += 1
             if bgcolor not in self.color_map:
-                self.f.write('\\red%d\\green%d\\blue%d;' % bgcolor)
+                self.file.write('\\red%d\\green%d\\blue%d;' % bgcolor)
                 self.color_map[bgcolor] = index
                 index += 1
-        self.f.write('}\n')
-        self.f.write(
+        self.file.write('}\n')
+        self.file.write(
             '\\kerning0\\cf0\\viewkind1' +
             '\\paperw%d' % twips(self.paper.get_size().get_width()) +
             '\\paperh%d' % twips(self.paper.get_size().get_height()) +
@@ -139,8 +140,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def close(self):
-        self.f.write('}\n')
-        self.f.close()
+        self.file.write('}\n')
+        self.file.close()
 
     #--------------------------------------------------------------------
     #
@@ -148,7 +149,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_page(self):
-        self.f.write('\\sbkpage\n')
+        self.file.write('\\sbkpage\n')
 
     #--------------------------------------------------------------------
     #
@@ -157,70 +158,70 @@ class RTFDoc(BaseDoc,TextDoc):
     # does work.
     #
     #--------------------------------------------------------------------
-    def start_paragraph(self,style_name,leader=None):
+    def start_paragraph(self, style_name, leader=None):
         self.opened = 0
         style_sheet = self.get_style_sheet()
-        p = style_sheet.get_paragraph_style(style_name)
+        para = style_sheet.get_paragraph_style(style_name)
 
         # build font information
 
-        f = p.get_font()
-        size = f.get_size()*2
-        bgindex = self.color_map[p.get_background_color()]
-        fgindex = self.color_map[f.get_color()]
-        if f.get_type_face() == FONT_SERIF:
+        font = para.get_font()
+        size = font.get_size()*2
+        bgindex = self.color_map[para.get_background_color()]
+        fgindex = self.color_map[font.get_color()]
+        if font.get_type_face() == FONT_SERIF:
             self.font_type = '\\f0'
         else:
             self.font_type = '\\f1'
-        self.font_type += '\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+        self.font_type += '\\fs%d\\cf%d\\cb%d' % (size, fgindex, bgindex)
 
-        if f.get_bold():
+        if font.get_bold():
             self.font_type += "\\b"
-        if f.get_underline():
+        if font.get_underline():
             self.font_type += "\\ul"
-        if f.get_italic():
+        if font.get_italic():
             self.font_type += "\\i"
 
         # build paragraph information
 
         if not self.in_table:
-            self.f.write('\\pard')
-        if p.get_alignment() == PARA_ALIGN_RIGHT:
-            self.f.write('\\qr')
-        elif p.get_alignment() == PARA_ALIGN_CENTER:
-            self.f.write('\\qc')
-        self.f.write(
-            '\\ri%d' % twips(p.get_right_margin()) +
-            '\\li%d' % twips(p.get_left_margin()) +
-            '\\fi%d' % twips(p.get_first_indent())
+            self.file.write('\\pard')
+        if para.get_alignment() == PARA_ALIGN_RIGHT:
+            self.file.write('\\qr')
+        elif para.get_alignment() == PARA_ALIGN_CENTER:
+            self.file.write('\\qc')
+        self.file.write(
+            '\\ri%d' % twips(para.get_right_margin()) +
+            '\\li%d' % twips(para.get_left_margin()) +
+            '\\fi%d' % twips(para.get_first_indent())
             )
-        if p.get_alignment() == PARA_ALIGN_JUSTIFY:
-            self.f.write('\\qj')
-        if p.get_padding():
-            self.f.write('\\sa%d' % twips(p.get_padding()/2.0))
-        if p.get_top_border():
-            self.f.write('\\brdrt\\brdrs')
-        if p.get_bottom_border():
-            self.f.write('\\brdrb\\brdrs')
-        if p.get_left_border():
-            self.f.write('\\brdrl\\brdrs')
-        if p.get_right_border():
-            self.f.write('\\brdrr\\brdrs')
-        if p.get_first_indent():
-            self.f.write('\\fi%d' % twips(p.get_first_indent()))
-        if p.get_left_margin():
-            self.f.write('\\li%d' % twips(p.get_left_margin()))
-        if p.get_right_margin():
-            self.f.write('\\ri%d' % twips(p.get_right_margin()))
+        if para.get_alignment() == PARA_ALIGN_JUSTIFY:
+            self.file.write('\\qj')
+        if para.get_padding():
+            self.file.write('\\sa%d' % twips(para.get_padding()/2.0))
+        if para.get_top_border():
+            self.file.write('\\brdrt\\brdrs')
+        if para.get_bottom_border():
+            self.file.write('\\brdrb\\brdrs')
+        if para.get_left_border():
+            self.file.write('\\brdrl\\brdrs')
+        if para.get_right_border():
+            self.file.write('\\brdrr\\brdrs')
+        if para.get_first_indent():
+            self.file.write('\\fi%d' % twips(para.get_first_indent()))
+        if para.get_left_margin():
+            self.file.write('\\li%d' % twips(para.get_left_margin()))
+        if para.get_right_margin():
+            self.file.write('\\ri%d' % twips(para.get_right_margin()))
 
         if leader:
             self.opened = 1
-            self.f.write('\\tx%d' % twips(p.get_left_margin()))
-            self.f.write('{%s ' % self.font_type)
+            self.file.write('\\tx%d' % twips(para.get_left_margin()))
+            self.file.write('{%s ' % self.font_type)
             self.write_text(leader)
-            self.f.write(self.text)
+            self.file.write(self.text)
             self.text = ""
-            self.f.write('\\tab}')
+            self.file.write('\\tab}')
             self.opened = 0
 
     #--------------------------------------------------------------------
@@ -233,20 +234,21 @@ class RTFDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def end_paragraph(self):
         # FIXME: I don't understand why no end paragraph marker is output when
-        # we are inside a table. Since at least version 3.2.2, this seems to mean that
-        # there is no new paragraph after the first line of a table entry.
+        # we are inside a table. Since at least version 3.2.2, this seems to
+        # mean that there is no new paragraph after the first line of a table
+        # entry.
         # For example in the birth cell, the first paragraph should be the
-        # description (21 Jan 1900 in London); if there is a note following this,
-        # there is no newline between the description and the note.
+        # description (21 Jan 1900 in London); if there is a note following
+        # this, there is no newline between the description and the note.
         if not self.in_table:
-            self.f.write(self.text)
-            LOG.debug("end_paragraph: opened: %d write: %s" %
-                      (self.opened,
-                       self.text + '}' if self.opened else "" + "newline"))
+            self.file.write(self.text)
+            LOG.debug("end_paragraph: opened: %d write: %s",
+                      self.opened,
+                      self.text + '}' if self.opened else "" + "newline")
             if self.opened:
-                self.f.write('}')
+                self.file.write('}')
                 self.opened = 0
-            self.f.write('\n\\par')
+            self.file.write('\n\\par')
             self.text = ""
         else:
             if self.text == "":
@@ -259,7 +261,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def page_break(self):
-        self.f.write('\\page\n')
+        self.file.write('\\page\n')
 
     #--------------------------------------------------------------------
     #
@@ -267,9 +269,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def start_bold(self):
-        LOG.debug("start_bold: opened: %d saved text: %s" %
-                  (self.opened,
-                   '}' if self.opened else "" + '{%s\\b ' % self.font_type))
+        LOG.debug("start_bold: opened: %d saved text: %s", self.opened,
+                  '}' if self.opened else "" + '{%s\\b ' % self.font_type)
         if self.opened:
             self.text += '}'
         self.text += '{%s\\b ' % self.font_type
@@ -281,9 +282,8 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_bold(self):
-        LOG.debug("end_bold: opened: %d saved text: %s" %
-                  (self.opened,
-                   self.text + '}'))
+        LOG.debug("end_bold: opened: %d saved text: %s", self.opened,
+                  self.text + '}')
         if not self.opened == 1:
             print(self.opened)
             raise RuntimeError
@@ -304,7 +304,7 @@ class RTFDoc(BaseDoc,TextDoc):
     # table, since a table is treated as a bunch of rows.
     #
     #--------------------------------------------------------------------
-    def start_table(self, name,style_name):
+    def start_table(self, name, style_name):
         self.in_table = 1
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
@@ -330,7 +330,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.cell = 0
         self.prev = 0
         self.cell_percent = 0.0
-        self.f.write('\\trowd\n')
+        self.file.write('\\trowd\n')
 
     #--------------------------------------------------------------------
     #
@@ -339,11 +339,11 @@ class RTFDoc(BaseDoc,TextDoc):
     #
     #--------------------------------------------------------------------
     def end_row(self):
-        self.f.write('{')
+        self.file.write('{')
         for line in self.contents:
-            self.f.write(line)
-            self.f.write('\\cell ')
-        self.f.write('}\\pard\\intbl\\row\n')
+            self.file.write(line)
+            self.file.write('\\cell ')
+        self.file.write('}\\pard\\intbl\\row\n')
 
     #--------------------------------------------------------------------
     #
@@ -354,23 +354,23 @@ class RTFDoc(BaseDoc,TextDoc):
     # previous cells plus its own width.
     #
     #--------------------------------------------------------------------
-    def start_cell(self,style_name,span=1):
+    def start_cell(self, style_name, span=1):
         styles = self.get_style_sheet()
         s = styles.get_cell_style(style_name)
         self.remain = span -1
         if s.get_top_border():
-            self.f.write('\\clbrdrt\\brdrs\\brdrw10\n')
+            self.file.write('\\clbrdrt\\brdrs\\brdrw10\n')
         if s.get_bottom_border():
-            self.f.write('\\clbrdrb\\brdrs\\brdrw10\n')
+            self.file.write('\\clbrdrb\\brdrs\\brdrw10\n')
         if s.get_left_border():
-            self.f.write('\\clbrdrl\\brdrs\\brdrw10\n')
+            self.file.write('\\clbrdrl\\brdrs\\brdrw10\n')
         if s.get_right_border():
-            self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
+            self.file.write('\\clbrdrr\\brdrs\\brdrw10\n')
         table_width = float(self.paper.get_usable_width())
-        for cell in range(self.cell,self.cell+span):
+        for cell in range(self.cell, self.cell+span):
             self.cell_percent += float(self.tbl_style.get_column_width(cell))
         cell_width = twips((table_width * self.cell_percent)/100.0)
-        self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
+        self.file.write('\\cellx%d\\pard\intbl\n' % cell_width)
         self.cell += 1
 
     #--------------------------------------------------------------------
@@ -391,35 +391,37 @@ class RTFDoc(BaseDoc,TextDoc):
     # dumped as a string of HEX numbers.
     #
     #--------------------------------------------------------------------
-    def add_media(self, name, pos, x_cm, y_cm, alt='', style_name=None, crop=None):
+    def add_media(self, name, pos, x_cm, y_cm, alt='', style_name=None,
+                  crop=None):
 
-        nx, ny = image_size(name)
+        width, height = image_size(name)
 
-        if (nx, ny) == (0,0):
+        if (width, height) == (0, 0):
             return
 
-        (act_width, act_height) = image_actual_size(x_cm, y_cm, nx, ny)
+        (act_width, act_height) = image_actual_size(x_cm, y_cm, width, height)
 
         act_width = twips(act_width)
         act_height = twips(act_height)
 
         size = [act_width, act_height]
         buf = resize_to_jpeg_buffer(name, size, crop=crop)
-        act_width = size[0] # In case it changed because of cropping or keeping the ratio
+        # The size may change because of cropping or keeping the ratio
+        act_width = size[0]
         act_height = size[1]
 
-        self.f.write('{\*\shppict{\\pict\\jpegblip')
-        self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
+        self.file.write('{\*\shppict{\\pict\\jpegblip')
+        self.file.write('\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height))
         index = 1
         for i in buf:
-            self.f.write('%02x' % i)
-            if index%32==0:
-                self.f.write('\n')
+            self.file.write('%02x' % i)
+            if index%32 == 0:
+                self.file.write('\n')
             index = index+1
-        self.f.write('}}\\par\n')
+        self.file.write('}}\\par\n')
 
         if len(alt):
-            self.f.write('%s\n\\par\n' % '\\par'.join(alt))
+            self.file.write('%s\n\\par\n' % '\\par'.join(alt))
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
@@ -447,15 +449,15 @@ class RTFDoc(BaseDoc,TextDoc):
                 self.start_paragraph(style_name)
                 linenb = 1
             else:
-                if ( linenb > 1 ):
+                if linenb > 1:
                     self.write_text('\\line ')
                 self.write_text(line, links=links)
                 linenb += 1
         # FIXME: I don't understand why these newlines are necessary.
-        # It may be related to the behaviour of end_paragraph inside tables, and
-        # write_text converting \n to end paragraph.
-        # This code prevents the whole document going wrong, but seems to produce an extra
-        # paragraph mark at the end of each table cell.
+        # It may be related to the behaviour of end_paragraph inside tables,
+        # and write_text converting \n to end paragraph.
+        # This code prevents the whole document going wrong, but seems to
+        # produce an extra paragraph mark at the end of each table cell.
         if self.in_table:
         #    # Add LF when in table as in indiv_complete report
             self.write_text('\n')
@@ -472,9 +474,7 @@ class RTFDoc(BaseDoc,TextDoc):
     def write_text(self, text, mark=None, links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
         text = str(text)
-        LOG.debug("write_text: opened: %d input text: %s" %
-                  (self.opened,
-                   text))
+        LOG.debug("write_text: opened: %d input text: %s", self.opened, text)
         if self.opened == 0:
             self.opened = 1
             self.text += '{%s ' % self.font_type
@@ -488,18 +488,17 @@ class RTFDoc(BaseDoc,TextDoc):
                     # RTF req valus in decimal, not hex.
                     self.text += '{\\uc1\\u%d\\uc0}' % ord(i)
             elif i == '\n':
-                self.text += '\n\\par ';
+                self.text += '\n\\par '
             elif i == '{' or i == '}' or i == '\\':
                 self.text += '\\%s' % i
             else:
                 self.text += i
 
-        if links ==  True:
+        if links is True:
             import re
             self.text = re.sub(URL_PATTERN, _CLICKABLE, self.text)
-        LOG.debug("write_text, exit: opened: %d saved text: %s" %
-                  (self.opened,
-                   self.text))
+        LOG.debug("write_text, exit: opened: %d saved text: %s", self.opened,
+                  self.text)
 
 def process_spaces(line, format):
     """
@@ -511,26 +510,27 @@ def process_spaces(line, format):
     are removed, and multiple spaces are reduced to one.
     If the text is pre-formatted (format==1). then all spaces are preserved
 
-    Note that xml is just treated like any other text,
-    because it will be from the original note, and it is just printed, not interpreted.
-    Returns the processed text, and the number of significant (i.e. non-white-space) chars.
+    Note that xml is just treated like any other text, because it will be from
+    the original note, and it is just printed, not interpreted.
+    Returns the processed text, and the number of significant
+    (i.e. non-white-space) chars.
     """
     txt = ""
     xml = False
     space = False
     sigcount = 0
-    # we loop through every character, which is very inefficient, but an attempt to use
-    # a regex replace didn't always work.
+    # we loop through every character, which is very inefficient, but an
+    # attempt to use a regex replace didn't always work.
     for char in line:
         if char == " " or char == "\t":
             if format == 1:
                 txt += char
             elif format == 0 and sigcount == 0:
                 pass
-            elif format == 0 and space == False:
+            elif format == 0 and space is False:
                 space = True
                 txt += char
-            elif format == 0 and space == True:
+            elif format == 0 and space is True:
                 pass
         else:
             sigcount += 1

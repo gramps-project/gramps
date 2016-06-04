@@ -27,27 +27,8 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from math import radians
-
-#------------------------------------------------------------------------
-#
-# Gramps modules
-#
-#------------------------------------------------------------------------
-from gramps.gen.plug.docgen import PAPER_PORTRAIT
-import gramps.plugins.lib.libcairodoc as libcairodoc
-from gramps.gen.errors import UnavailableError
-#import constfunc
-
-#------------------------------------------------------------------------
-#
-# Set up logging
-#
-#------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".GtkPrint")
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +41,23 @@ try: # the Gramps-Connect server has no DISPLAY
     from gi.repository import Gtk
 except:
     pass
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
+from gramps.gen.plug.docgen import PAPER_PORTRAIT
+import gramps.plugins.lib.libcairodoc as libcairodoc
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+LOG = logging.getLogger(".GtkPrint")
 
 #------------------------------------------------------------------------
 #
@@ -128,7 +126,7 @@ def paperstyle_to_pagesetup(paper_style):
     # are handled as custom format, because we are not intelligent enough.
     if gramps_paper_name in gramps_to_gtk:
         paper_size = Gtk.PaperSize.new(name=gramps_to_gtk[gramps_paper_name])
-        log.debug("Selected paper size: %s" % gramps_to_gtk[gramps_paper_name])
+        LOG.debug("Selected paper size: %s", gramps_to_gtk[gramps_paper_name])
     else:
         if paper_style.get_orientation() == PAPER_PORTRAIT:
             paper_width = gramps_paper_size.get_width() * 10
@@ -139,7 +137,7 @@ def paperstyle_to_pagesetup(paper_style):
         paper_size = Gtk.PaperSize.new_custom("custom", "Custom Size",
                                               paper_width, paper_height,
                                               Gtk.Unit.MM)
-        log.debug("Selected paper size: (%f,%f)" % (paper_width, paper_height))
+        LOG.debug("Selected paper size: (%f,%f)", paper_width, paper_height)
 
     page_setup = Gtk.PageSetup()
     page_setup.set_paper_size(paper_size)
@@ -234,7 +232,7 @@ class PrintPreview:
 
         ##"""
         ##if page_no >= len(self._page_numbers):
-            ##log.debug("Page number %d doesn't exist." % page_no)
+            ##LOG.debug("Page number %d doesn't exist." % page_no)
             ##page_no = 0
 
         ##if page_no not in self._page_surfaces:
