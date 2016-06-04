@@ -65,6 +65,12 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  (These are Python bindings for the ICU package. 
  https://pypi.python.org/pypi/PyICU/)
 
+* **Meta**
+
+ Required for experimental "where"  clause creation. This functionality
+ is not yet in main-line code but the package is needed to support further
+ development. Install with pypi: https://pypi.python.org/pypi/meta.
+
 The following packages are optional:
 ------------------------------------
 * **gtkspell** 
