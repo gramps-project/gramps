@@ -1159,61 +1159,61 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT handle FROM person;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_family_handles(self):
         self.dbapi.execute("SELECT handle FROM family;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_citation_handles(self):
         self.dbapi.execute("SELECT handle FROM citation;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_event_handles(self):
         self.dbapi.execute("SELECT handle FROM event;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_media_handles(self):
         self.dbapi.execute("SELECT handle FROM media;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_note_handles(self):
         self.dbapi.execute("SELECT handle FROM note;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_place_handles(self):
         self.dbapi.execute("SELECT handle FROM place;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_repository_handles(self):
         self.dbapi.execute("SELECT handle FROM repository;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_source_handles(self):
         self.dbapi.execute("SELECT handle FROM source;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def iter_tag_handles(self):
         self.dbapi.execute("SELECT handle FROM tag;")
         rows = self.dbapi.fetchall()
         for row in rows:
-            yield bytes(row[0], "utf-8")
+            yield row[0]
 
     def reindex_reference_map(self, callback):
         callback(4)
