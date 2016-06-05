@@ -989,19 +989,25 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def iter_citations(self, order_by=None):
+        """
+        Return an iterator over objects for Citations in the database
+        """
+        raise NotImplementedError
+
     def iter_event_handles(self):
         """
         Return an iterator over handles for Events in the database
         """
         raise NotImplementedError
 
-    def iter_events(self):
+    def iter_events(self, order_by=None):
         """
         Return an iterator over objects for Events in the database
         """
         raise NotImplementedError
 
-    def iter_families(self):
+    def iter_families(self, order_by=None):
         """
         Return an iterator over objects for Families in the database
         """
@@ -1019,7 +1025,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_media(self):
+    def iter_media(self, order_by=None):
         """
         Return an iterator over objects for Medias in the database
         """
@@ -1031,13 +1037,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_notes(self):
+    def iter_notes(self, order_by=None):
         """
         Return an iterator over objects for Notes in the database
         """
         raise NotImplementedError
 
-    def iter_people(self):
+    def iter_people(self, order_by=None):
         """
         Return an iterator over objects for Persons in the database
         """
@@ -1055,13 +1061,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_places(self):
+    def iter_places(self, order_by=None):
         """
         Return an iterator over objects for Places in the database
         """
         raise NotImplementedError
 
-    def iter_repositories(self):
+    def iter_repositories(self, order_by=None):
         """
         Return an iterator over objects for Repositories in the database
         """
@@ -1079,7 +1085,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_sources(self):
+    def iter_sources(self, order_by=None):
         """
         Return an iterator over objects for Sources in the database
         """
@@ -1091,7 +1097,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_tags(self):
+    def iter_tags(self, order_by=None):
         """
         Return an iterator over objects for Tags in the database
         """

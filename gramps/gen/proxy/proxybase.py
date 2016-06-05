@@ -36,10 +36,8 @@ import types
 #
 #-------------------------------------------------------------------------
 from ..db.base import DbReadBase, DbWriteBase, sort_objects
-from ..lib import (MediaRef, Attribute, Address, EventRef,
-                   Person, Name, Source, RepoRef, Media, Place, Event,
-                   Family, ChildRef, Repository, LdsOrd, Surname, Citation,
-                   SrcAttribute, Note, Tag)
+from ..lib import (Citation, Event, Family, Media, Note, Person, Place,
+                   Repository, Source, Tag)
 
 class ProxyCursor:
     """
@@ -76,6 +74,7 @@ class ProxyMap:
         return self.get_raw(handle)
 
     def keys(self):
+        """ return the keys """
         return [bytes(key, "utf-8") for key in self.get_keys()]
 
 class ProxyDbBase(DbReadBase):
@@ -108,19 +107,19 @@ class ProxyDbBase(DbReadBase):
         self.note_bookmarks = db.note_bookmarks
 
         self.person_map = ProxyMap(self, self.get_raw_person_data,
-                                 self.get_person_handles)
+                                   self.get_person_handles)
         self.family_map = ProxyMap(self, self.get_raw_family_data,
-                                 self.get_family_handles)
+                                   self.get_family_handles)
         self.event_map = ProxyMap(self, self.get_raw_event_data,
-                                 self.get_event_handles)
+                                  self.get_event_handles)
         self.place_map = ProxyMap(self, self.get_raw_place_data,
-                                 self.get_place_handles)
+                                  self.get_place_handles)
         self.source_map = ProxyMap(self, self.get_raw_source_data,
-                                 self.get_source_handles)
+                                   self.get_source_handles)
         self.repository_map = ProxyMap(self, self.get_raw_repository_data,
-                                 self.get_repository_handles)
+                                       self.get_repository_handles)
         self.media_map = ProxyMap(self, self.get_raw_media_data,
-                                 self.get_media_handles)
+                                  self.get_media_handles)
         self.note_map = ProxyMap(self, self.get_raw_note_data,
                                  self.get_note_handles)
 
@@ -338,7 +337,7 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
-    def get_event_handles(self, sort_handles=True):
+    def get_event_handles(self):
         """
         Return a list of database handles, one handle for each Event in
         the database.
@@ -388,7 +387,7 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
-    def get_repository_handles(self, sort_handles=True):
+    def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository in
         the database.
@@ -398,7 +397,7 @@ class ProxyDbBase(DbReadBase):
         else:
             return []
 
-    def get_note_handles(self, sort_handles=True):
+    def get_note_handles(self):
         """
         Return a list of database handles, one handle for each Note in
         the database.
@@ -480,7 +479,8 @@ class ProxyDbBase(DbReadBase):
         Return an iterator over database handles, one handle for each
         Repository in the database.
         """
-        return filter(self.include_repository, self.db.iter_repository_handles())
+        return filter(self.include_repository,
+                      self.db.iter_repository_handles())
 
     def iter_note_handles(self):
         """
@@ -498,7 +498,8 @@ class ProxyDbBase(DbReadBase):
 
     def __iter_object(self, selector, method, order_by=None):
         """ Helper function to return an iterator over an object class """
-        retval = filter(lambda obj: ((selector is None) or selector(obj.handle)),
+        retval = filter(lambda obj:
+                        ((selector is None) or selector(obj.handle)),
                         method())
         if order_by:
             return sort_objects([item for item in retval], order_by, self)
@@ -509,37 +510,43 @@ class ProxyDbBase(DbReadBase):
         """
         Return an iterator over Person objects in the database
         """
-        return self.__iter_object(self.include_person, self.db.iter_people, order_by)
+        return self.__iter_object(self.include_person,
+                                  self.db.iter_people, order_by)
 
     def iter_families(self, order_by=None):
         """
         Return an iterator over Family objects in the database
         """
-        return self.__iter_object(self.include_family, self.db.iter_families, order_by)
+        return self.__iter_object(self.include_family,
+                                  self.db.iter_families, order_by)
 
     def iter_events(self, order_by=None):
         """
         Return an iterator over Event objects in the database
         """
-        return self.__iter_object(self.include_event, self.db.iter_events, order_by)
+        return self.__iter_object(self.include_event,
+                                  self.db.iter_events, order_by)
 
     def iter_places(self, order_by=None):
         """
         Return an iterator over Place objects in the database
         """
-        return self.__iter_object(self.include_place, self.db.iter_places, order_by)
+        return self.__iter_object(self.include_place,
+                                  self.db.iter_places, order_by)
 
     def iter_sources(self, order_by=None):
         """
         Return an iterator over Source objects in the database
         """
-        return self.__iter_object(self.include_source, self.db.iter_sources, order_by)
+        return self.__iter_object(self.include_source,
+                                  self.db.iter_sources, order_by)
 
     def iter_citations(self, order_by=None):
         """
         Return an iterator over Citation objects in the database
         """
-        return self.__iter_object(self.include_citation, self.db.iter_citations, order_by)
+        return self.__iter_object(self.include_citation,
+                                  self.db.iter_citations, order_by)
 
     def iter_media(self, order_by=None):
         """
@@ -559,13 +566,15 @@ class ProxyDbBase(DbReadBase):
         """
         Return an iterator over Note objects in the database
         """
-        return self.__iter_object(self.include_note, self.db.iter_notes, order_by)
+        return self.__iter_object(self.include_note,
+                                  self.db.iter_notes, order_by)
 
     def iter_tags(self, order_by=None):
         """
         Return an iterator over Tag objects in the database
         """
-        return self.__iter_object(self.include_tag, self.db.iter_tags, order_by)
+        return self.__iter_object(self.include_tag,
+                                  self.db.iter_tags, order_by)
 
     @staticmethod
     def gfilter(predicate, obj):
@@ -594,8 +603,8 @@ class ProxyDbBase(DbReadBase):
 
         # if a write-method:
         if (name in DbWriteBase.__dict__ and
-             not name.startswith("__") and
-             type(DbWriteBase.__dict__[name]) is types.FunctionType):
+                not name.startswith("__") and
+                type(DbWriteBase.__dict__[name]) is types.FunctionType):
             raise AttributeError
         # Default behaviour: lookup attribute in parent object
         return getattr(self.db, name)
@@ -654,7 +663,7 @@ class ProxyDbBase(DbReadBase):
         If no such Object exists, None is returned.
         """
         return self.gfilter(self.include_media,
-                    self.db.get_media_from_handle(handle))
+                            self.db.get_media_from_handle(handle))
 
     def get_repository_from_handle(self, handle):
         """
@@ -686,7 +695,7 @@ class ProxyDbBase(DbReadBase):
         If no such Person exists, None is returned.
         """
         return self.gfilter(self.include_person,
-                self.db.get_person_from_gramps_id(val))
+                            self.db.get_person_from_gramps_id(val))
 
     def get_family_from_gramps_id(self, val):
         """
@@ -694,7 +703,7 @@ class ProxyDbBase(DbReadBase):
         If no such Family exists, None is returned.
         """
         return self.gfilter(self.include_family,
-                self.db.get_family_from_gramps_id(val))
+                            self.db.get_family_from_gramps_id(val))
 
     def get_event_from_gramps_id(self, val):
         """
@@ -702,7 +711,7 @@ class ProxyDbBase(DbReadBase):
         If no such Event exists, None is returned.
         """
         return self.gfilter(self.include_event,
-                self.db.get_event_from_gramps_id(val))
+                            self.db.get_event_from_gramps_id(val))
 
     def get_place_from_gramps_id(self, val):
         """
@@ -710,7 +719,7 @@ class ProxyDbBase(DbReadBase):
         If no such Place exists, None is returned.
         """
         return self.gfilter(self.include_place,
-                self.db.get_place_from_gramps_id(val))
+                            self.db.get_place_from_gramps_id(val))
 
     def get_source_from_gramps_id(self, val):
         """
@@ -718,7 +727,7 @@ class ProxyDbBase(DbReadBase):
         If no such Source exists, None is returned.
         """
         return self.gfilter(self.include_source,
-                self.db.get_source_from_gramps_id(val))
+                            self.db.get_source_from_gramps_id(val))
 
     def get_citation_from_gramps_id(self, val):
         """
@@ -726,7 +735,7 @@ class ProxyDbBase(DbReadBase):
         If no such Citation exists, None is returned.
         """
         return self.gfilter(self.include_citation,
-                self.db.get_citation_from_gramps_id(val))
+                            self.db.get_citation_from_gramps_id(val))
 
     def get_media_from_gramps_id(self, val):
         """
@@ -734,7 +743,7 @@ class ProxyDbBase(DbReadBase):
         If no such Media exists, None is returned.
         """
         return self.gfilter(self.include_media,
-                self.db.get_media_from_gramps_id(val))
+                            self.db.get_media_from_gramps_id(val))
 
     def get_repository_from_gramps_id(self, val):
         """
@@ -742,7 +751,7 @@ class ProxyDbBase(DbReadBase):
         If no such Repository exists, None is returned.
         """
         return self.gfilter(self.include_repository,
-                self.db.get_repository_from_gramps_id(val))
+                            self.db.get_repository_from_gramps_id(val))
 
     def get_note_from_gramps_id(self, val):
         """
@@ -750,7 +759,7 @@ class ProxyDbBase(DbReadBase):
         If no such Note exists, None is returned.
         """
         return self.gfilter(self.include_note,
-                self.db.get_note_from_gramps_id(val))
+                            self.db.get_note_from_gramps_id(val))
 
     def get_tag_from_name(self, val):
         """
@@ -758,7 +767,7 @@ class ProxyDbBase(DbReadBase):
         If no such Tag exists, None is returned.
         """
         return self.gfilter(self.include_tag,
-                self.db.get_tag_from_name(val))
+                            self.db.get_tag_from_name(val))
 
     def get_name_group_mapping(self, surname):
         """
@@ -895,8 +904,11 @@ class ProxyDbBase(DbReadBase):
         return self.db.get_name_types()
 
     def get_origin_types(self):
-        """returns a list of all custom origin types associated with Person/Surname
-        instances in the database"""
+        """
+        returns a list of all custom origin types
+        associated with Person/Surname
+        instances in the database
+        """
         return self.db.get_origin_types()
 
     def get_repository_types(self):
@@ -910,8 +922,8 @@ class ProxyDbBase(DbReadBase):
         return self.db.get_note_types()
 
     def get_source_attribute_types(self):
-        """returns a list of all Attribute types associated with Source/Citation
-           instances in the database"""
+        """returns a list of all Attribute types associated with
+        Source/Citation instances in the database"""
         return self.db.get_source_attribute_types()
 
     def get_source_media_types(self):
@@ -959,70 +971,80 @@ class ProxyDbBase(DbReadBase):
         Returns True if the handle exists in the current Person database.
         """
         return self.gfilter(self.include_person,
-                self.db.get_person_from_handle(handle)) is not None
+                            self.db.get_person_from_handle(handle)
+                           ) is not None
 
     def has_family_handle(self, handle):
         """
         Returns True if the handle exists in the current Family database.
         """
         return self.gfilter(self.include_family,
-                self.db.get_family_from_handle(handle)) is not None
+                            self.db.get_family_from_handle(handle)
+                           ) is not None
 
     def has_event_handle(self, handle):
         """
         returns True if the handle exists in the current Event database.
         """
         return self.gfilter(self.include_event,
-                self.db.get_event_from_handle(handle)) is not None
+                            self.db.get_event_from_handle(handle)
+                           ) is not None
 
     def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Source database.
         """
         return self.gfilter(self.include_source,
-                self.db.get_source_from_handle(handle)) is not None
+                            self.db.get_source_from_handle(handle)
+                           ) is not None
 
     def has_citation_handle(self, handle):
         """
         returns True if the handle exists in the current Citation database.
         """
         return self.gfilter(self.include_citation,
-                self.db.get_citation_from_handle(handle)) is not None
+                            self.db.get_citation_from_handle(handle)
+                           ) is not None
 
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Place database.
         """
         return self.gfilter(self.include_place,
-                self.db.get_place_from_handle(handle)) is not None
+                            self.db.get_place_from_handle(handle)
+                           ) is not None
 
     def has_media_handle(self, handle):
         """
         returns True if the handle exists in the current Mediadatabase.
         """
         return self.gfilter(self.include_media,
-                self.db.get_media_from_handle(handle)) is not None
+                            self.db.get_media_from_handle(handle)
+                           ) is not None
 
     def has_repository_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
         return self.gfilter(self.include_repository,
-                self.db.get_repository_from_handle(handle)) is not None
+                            self.db.get_repository_from_handle(handle)
+                           ) is not None
 
     def has_note_handle(self, handle):
         """
         returns True if the handle exists in the current Note database.
         """
         return self.gfilter(self.include_note,
-                self.db.get_note_from_handle(handle)) is not None
+                            self.db.get_note_from_handle(handle)
+                           ) is not None
 
     def has_tag_handle(self, handle):
         """
         returns True if the handle exists in the current Tag database.
         """
         return self.gfilter(self.include_tag,
-                self.db.get_tag_from_handle(handle)) is not None
+                            self.db.get_tag_from_handle(handle)
+                           ) is not None
 
     def get_mediapath(self):
         """returns the default media path of the database"""
