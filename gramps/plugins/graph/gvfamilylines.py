@@ -446,11 +446,11 @@ class FamilyLinesReport(Report):
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
             # translators: needed for Arabic, ignore othewise
-            self.doc.add_comment('# -> ' + self._('%s, %s') % (gid, name))
+            id_n = self._("%(str1)s, %(str2)s") % {'str1':gid, 'str2':name}
+            self.doc.add_comment('# -> ' + id_n)
 
         self.write_people()
         self.write_families()
-
 
     def find_parents(self):
         """ find the parents """
