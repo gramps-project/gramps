@@ -36,7 +36,6 @@ from gramps.gen.plug.menu import (PersonOption, FilterOption,
                                   EnumeratedListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
-pt2cm = ReportUtils.pt2cm
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
@@ -52,7 +51,6 @@ from gramps.gen.proxy import CacheProxyDb
 # private constants
 #
 #------------------------------------------------------------------------
-cal = config.get('preferences.calendar-format-report')
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
@@ -73,6 +71,7 @@ def _get_sort_functions(sort):
 #
 #------------------------------------------------------------------------
 class TimeLine(Report):
+    """ TimeLine Report """
 
     def __init__(self, database, options, user):
         """
@@ -115,8 +114,8 @@ class TimeLine(Report):
             if value == living_value:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                  % {'option_name': living_desc})
+        self.living_desc = self._(
+            "(Living people: %(option_name)s)") % {'option_name': living_desc}
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -148,7 +147,7 @@ class TimeLine(Report):
         st_size = self.name_size()
         style_sheet = self.doc.get_style_sheet()
         font = style_sheet.get_paragraph_style('TLG-Name').get_font()
-        incr = pt2cm(font.get_size())
+        incr = ReportUtils.pt2cm(font.get_size())
         pad = incr * 0.75
         _x1, _x2, _y1, _y2 = (0, 0, 0, 0)
         start = st_size + 0.5
@@ -285,9 +284,9 @@ class TimeLine(Report):
         self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
         style_sheet = self.doc.get_style_sheet()
         title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
-        title_y = 1.2 - (pt2cm(title_font.get_size()) * 1.2)
+        title_y = 1.2 - (ReportUtils.pt2cm(title_font.get_size()) * 1.2)
         self.doc.center_text('TLG-title', self.fil_name, width / 2.0, title_y)
-        title_y = 1.8 - (pt2cm(title_font.get_size()) * 1.2)
+        title_y = 1.8 - (ReportUtils.pt2cm(title_font.get_size()) * 1.2)
         self.doc.center_text('TLG-title', title3, width / 2.0, title_y)
 
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
@@ -296,7 +295,7 @@ class TimeLine(Report):
         """
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
-        label_y = self.header - (pt2cm(label_font.get_size()) * 1.2)
+        label_y = self.header - (ReportUtils.pt2cm(label_font.get_size()) * 1.2)
         incr = (year_high - year_low) / 5
         delta = (stop_pos - start_pos) / 5
         for val in range(0, 6):
@@ -311,7 +310,7 @@ class TimeLine(Report):
         width = self.doc.get_usable_width()
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
-        label_y = self.header - (pt2cm(label_font.get_size()) * 1.2)
+        label_y = self.header - (ReportUtils.pt2cm(label_font.get_size()) * 1.2)
         self.doc.center_text('TLG-label', self._("No Date Information"),
                              width / 2.0, label_y)
 
@@ -391,7 +390,7 @@ class TimeLine(Report):
             person = self.database.get_person_from_handle(p_id)
             dname = self._name_display.display(person)
             size = max(self.doc.string_width(font, dname), size)
-        return pt2cm(size)
+        return ReportUtils.pt2cm(size)
 
 #------------------------------------------------------------------------
 #
@@ -399,6 +398,7 @@ class TimeLine(Report):
 #
 #------------------------------------------------------------------------
 class TimeLineOptions(MenuReportOptions):
+    """ Options for the TimeLine Report """
 
     def __init__(self, name, dbase):
         self.__pid = None

@@ -60,6 +60,7 @@ from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 #
 #------------------------------------------------------------------------
 class TagReport(Report):
+    """ Tag Report """
 
     def __init__(self, database, options, user):
         """
@@ -95,12 +96,13 @@ class TagReport(Report):
             if value == self._lv:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                  % {'option_name': living_desc})
+        self.living_desc = self._(
+            "(Living people: %(option_name)s)") % {'option_name': living_desc}
 
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
-            raise ReportError(_('Tag Report'),
+            raise ReportError(
+                _('Tag Report'),
                 _('You must first create a tag before running this report.'))
 
         stdoptions.run_name_format_option(self, menu)
@@ -128,11 +130,12 @@ class TagReport(Report):
         self.write_citations()
 
     def write_people(self):
+        """ write the people associated with the tag """
         plist = self.database.iter_person_handles()
-        FilterClass = GenericFilterFactory('Person')
-        filter = FilterClass()
-        filter.add_rule(rules.person.HasTag([self.tag]))
-        ind_list = filter.apply(self.database, plist)
+        filter_class = GenericFilterFactory('Person')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.person.HasTag([self.tag]))
+        ind_list = a_filter.apply(self.database, plist)
 
         if not ind_list:
             return
@@ -143,7 +146,7 @@ class TagReport(Report):
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('PeopleTable','TR-Table')
+        self.doc.start_table('PeopleTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -197,7 +200,7 @@ class TagReport(Report):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 event = self.database.get_event_from_handle(birth_ref.ref)
-                self.doc.write_text(get_date( event ))
+                self.doc.write_text(get_date(event))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -206,7 +209,7 @@ class TagReport(Report):
             death_ref = person.get_death_ref()
             if death_ref:
                 event = self.database.get_event_from_handle(death_ref.ref)
-                self.doc.write_text(get_date( event ))
+                self.doc.write_text(get_date(event))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -215,22 +218,23 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_families(self):
+        """ write the families associated with the tag """
         flist = self.database.iter_family_handles()
-        FilterClass = GenericFilterFactory('Family')
-        filter = FilterClass()
-        filter.add_rule(rules.family.HasTag([self.tag]))
-        fam_list = filter.apply(self.database, flist)
+        filter_class = GenericFilterFactory('Family')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.family.HasTag([self.tag]))
+        fam_list = a_filter.apply(self.database, flist)
 
         if not fam_list:
             return
 
         self.doc.start_paragraph("TR-Heading")
         header = self._("Families")
-        mark = IndexMark(header,INDEX_TYPE_TOC, 2)
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('FamilyTable','TR-Table')
+        self.doc.start_table('FamilyTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -294,7 +298,7 @@ class TagReport(Report):
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             relation = family.get_relationship()
-            self.doc.write_text(str(relation) )
+            self.doc.write_text(str(relation))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -303,11 +307,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_events(self):
+        """ write the events associated with the tag """
         elist = self.database.get_event_handles()
-        FilterClass = GenericFilterFactory('Event')
-        filter = FilterClass()
-        filter.add_rule(rules.event.HasTag([self.tag]))
-        event_list = filter.apply(self.database, elist)
+        filter_class = GenericFilterFactory('Event')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.event.HasTag([self.tag]))
+        event_list = a_filter.apply(self.database, elist)
 
         if not event_list:
             return
@@ -318,7 +323,7 @@ class TagReport(Report):
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('EventTable','TR-Table')
+        self.doc.start_table('EventTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -385,11 +390,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_places(self):
+        """ write the places associated with the tag """
         plist = self.database.get_place_handles()
-        FilterClass = GenericFilterFactory('Place')
-        filter = FilterClass()
-        filter.add_rule(rules.place.HasTag([self.tag]))
-        place_list = filter.apply(self.database, plist)
+        filter_class = GenericFilterFactory('Place')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.place.HasTag([self.tag]))
+        place_list = a_filter.apply(self.database, plist)
 
         if not place_list:
             return
@@ -400,7 +406,7 @@ class TagReport(Report):
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('PlaceTable','TR-Table')
+        self.doc.start_table('PlaceTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -465,11 +471,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_notes(self):
+        """ write the notes associated with the tag """
         nlist = self.database.get_note_handles()
-        FilterClass = GenericFilterFactory('Note')
-        filter = FilterClass()
-        filter.add_rule(rules.note.HasTag([self.tag]))
-        note_list = filter.apply(self.database, nlist)
+        filter_class = GenericFilterFactory('Note')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.note.HasTag([self.tag]))
+        note_list = a_filter.apply(self.database, nlist)
 
         if not note_list:
             return
@@ -477,10 +484,10 @@ class TagReport(Report):
         self.doc.start_paragraph("TR-Heading")
         header = self._("Notes")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
-        self.doc.write_text(header ,mark)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('NoteTable','TR-Table')
+        self.doc.start_table('NoteTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -517,17 +524,15 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            type = note.get_type()
-            self.doc.write_text(str(type))
+            note_type = note.get_type()
+            self.doc.write_text(str(note_type))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
             self.doc.start_cell('TR-TableCell', 2)
-            self.doc.write_styled_note(note.get_styledtext(),
-                                       note.get_format(), 'TR-Note',
-                                       contains_html = (note.get_type()
-                                                        == NoteType.HTML_CODE)
-                                      )
+            self.doc.write_styled_note(
+                note.get_styledtext(), note.get_format(), 'TR-Note',
+                contains_html=((note.get_type() == NoteType.HTML_CODE)))
             self.doc.end_cell()
 
             self.doc.end_row()
@@ -535,11 +540,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_media(self):
+        """ write the media associated with the tag """
         mlist = self.database.get_media_handles(sort_handles=True)
-        FilterClass = GenericFilterFactory('Media')
-        filter = FilterClass()
-        filter.add_rule(rules.media.HasTag([self.tag]))
-        media_list = filter.apply(self.database, mlist)
+        filter_class = GenericFilterFactory('Media')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.media.HasTag([self.tag]))
+        media_list = a_filter.apply(self.database, mlist)
 
         if not media_list:
             return
@@ -547,10 +553,10 @@ class TagReport(Report):
         self.doc.start_paragraph("TR-Heading")
         header = self._("Media")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
-        self.doc.write_text(header ,mark)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('MediaTable','TR-Table')
+        self.doc.start_table('MediaTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -618,11 +624,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_repositories(self):
+        """ write the repositories associated with the tag """
         rlist = self.database.get_repository_handles()
-        FilterClass = GenericFilterFactory('Repository')
-        filter = FilterClass()
-        filter.add_rule(rules.repository.HasTag([self.tag]))
-        repo_list = filter.apply(self.database, rlist)
+        filter_class = GenericFilterFactory('Repository')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.repository.HasTag([self.tag]))
+        repo_list = a_filter.apply(self.database, rlist)
 
         if not repo_list:
             return
@@ -630,10 +637,10 @@ class TagReport(Report):
         self.doc.start_paragraph("TR-Heading")
         header = self._("Repositories")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
-        self.doc.write_text(header ,mark)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('ReopTable','TR-Table')
+        self.doc.start_table('ReopTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -702,11 +709,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_sources(self):
+        """ write the sources associated with the tag """
         slist = self.database.get_source_handles(sort_handles=True)
-        FilterClass = GenericFilterFactory('Source')
-        filter = FilterClass()
-        filter.add_rule(rules.source.HasTag([self.tag]))
-        source_list = filter.apply(self.database, slist)
+        filter_class = GenericFilterFactory('Source')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.source.HasTag([self.tag]))
+        source_list = a_filter.apply(self.database, slist)
 
         if not source_list:
             return
@@ -714,10 +722,10 @@ class TagReport(Report):
         self.doc.start_paragraph("TR-Heading")
         header = self._("Source")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
-        self.doc.write_text(header ,mark)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('SourceTable','TR-Table')
+        self.doc.start_table('SourceTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -781,11 +789,12 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_citations(self):
+        """ write the citations associated with the tag """
         clist = self.database.get_citation_handles(sort_handles=True)
-        FilterClass = GenericFilterFactory('Citation')
-        filter = FilterClass()
-        filter.add_rule(rules.citation.HasTag([self.tag]))
-        citation_list = filter.apply(self.database, clist)
+        filter_class = GenericFilterFactory('Citation')
+        a_filter = filter_class()
+        a_filter.add_rule(rules.citation.HasTag([self.tag]))
+        citation_list = a_filter.apply(self.database, clist)
 
         if not citation_list:
             return
@@ -793,10 +802,10 @@ class TagReport(Report):
         self.doc.start_paragraph("TR-Heading")
         header = self._("Citations")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
-        self.doc.write_text(header ,mark)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
-        self.doc.start_table('CitationTable','TR-Table')
+        self.doc.start_table('CitationTable', 'TR-Table')
 
         self.doc.start_row()
 
@@ -869,6 +878,7 @@ class TagReport(Report):
 #
 #------------------------------------------------------------------------
 class TagOptions(MenuReportOptions):
+    """ Options for the Tag Report """
 
     def __init__(self, name, dbase):
         self.__db = dbase
@@ -893,7 +903,7 @@ class TagOptions(MenuReportOptions):
             tag_option = EnumeratedListOption(_('Tag'), '')
             tag_option.add_item('', '')
 
-        tag_option.set_help( _("The tag to use for the report"))
+        tag_option.set_help(_("The tag to use for the report"))
         menu.add_option(category_name, "tag", tag_option)
 
         stdoptions.add_name_format_option(menu, category_name)
@@ -904,21 +914,21 @@ class TagOptions(MenuReportOptions):
 
         stdoptions.add_localization_option(menu, category_name)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Tag Report."""
         # Paragraph Styles
-        f = FontStyle()
-        f.set_size(16)
-        f.set_type_face(FONT_SANS_SERIF)
-        f.set_bold(1)
-        p = ParagraphStyle()
-        p.set_header_level(1)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("TR-Title", p)
+        font = FontStyle()
+        font.set_size(16)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_header_level(1)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("TR-Title", para)
 
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=12, bold=1)
@@ -943,31 +953,31 @@ class TagOptions(MenuReportOptions):
 
         font = FontStyle()
         font.set_size(12)
-        p = ParagraphStyle()
-        p.set(first_indent=-0.75, lmargin=.75)
-        p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("TR-Normal", p)
+        para = ParagraphStyle()
+        para.set(first_indent=-0.75, lmargin=.75)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("TR-Normal", para)
 
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
-        p = ParagraphStyle()
-        p.set(first_indent=-0.75, lmargin=.75)
-        p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
-        p.set_description(_('The basic style used for table headings.'))
-        default_style.add_paragraph_style("TR-Normal-Bold", p)
+        para = ParagraphStyle()
+        para.set(first_indent=-0.75, lmargin=.75)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('The basic style used for table headings.'))
+        default_style.add_paragraph_style("TR-Normal-Bold", para)
 
         para = ParagraphStyle()
-        p.set(first_indent=-0.75, lmargin=.75)
+        para.set(first_indent=-0.75, lmargin=.75)
         para.set_top_margin(ReportUtils.pt2cm(3))
         para.set_bottom_margin(ReportUtils.pt2cm(3))
         para.set_description(_('The basic style used for the note display.'))
-        default_style.add_paragraph_style("TR-Note",para)
+        default_style.add_paragraph_style("TR-Note", para)
 
         #Table Styles
         cell = TableCellStyle()
@@ -980,4 +990,4 @@ class TagOptions(MenuReportOptions):
         table.set_column_width(1, 30)
         table.set_column_width(2, 30)
         table.set_column_width(3, 30)
-        default_style.add_table_style('TR-Table',table)
+        default_style.add_table_style('TR-Table', table)

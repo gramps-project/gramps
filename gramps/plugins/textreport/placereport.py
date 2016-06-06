@@ -37,7 +37,7 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.plug.menu import (FilterOption, PlaceListOption,
-                                  EnumeratedListOption, BooleanOption)
+                                  EnumeratedListOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
@@ -48,7 +48,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_location_list
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.lib import PlaceType
 from gramps.gen.errors import ReportError
 from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
@@ -88,17 +87,18 @@ class PlaceReport(Report):
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
         self.database = CacheProxyDb(self.database)
+        self._db = self.database
 
         self._lv = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):
             if value == self._lv:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                  % {'option_name': living_desc})
+        self.living_desc = self._(
+            "(Living people: %(option_name)s)") % {'option_name': living_desc}
 
         places = menu.get_option_by_name('places').get_value()
-        self.center  = menu.get_option_by_name('center').get_value()
+        self.center = menu.get_option_by_name('center').get_value()
 
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
@@ -106,20 +106,21 @@ class PlaceReport(Report):
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
 
-        self.sort = Sort(self.database)
+        self.sort = Sort(self._db)
 
         self.place_handles = []
         if self.filter.get_name() != '':
             # Use the selected filter to provide a list of place handles
-            plist = self.database.iter_place_handles()
-            self.place_handles = self.filter.apply(self.database, plist)
+            plist = self._db.iter_place_handles()
+            self.place_handles = self.filter.apply(self._db, plist)
 
         if places:
             # Add places selected individually
             self.place_handles += self.__get_place_handles(places)
 
         if not self.place_handles:
-            raise ReportError(_('Place Report'),
+            raise ReportError(
+                _('Place Report'),
                 _('Please select at least one place before running this.'))
 
         self.place_handles.sort(key=self.sort.by_place_title_key)
@@ -151,8 +152,8 @@ class PlaceReport(Report):
         place_nbr = 1
 
         with self._user.progress(_("Place Report"),
-                                  _("Generating report"),
-                                  len(self.place_handles)) as step:
+                                 _("Generating report"),
+                                 len(self.place_handles)) as step:
 
             for handle in self.place_handles:
                 self.__write_place(handle, place_nbr)
@@ -161,7 +162,7 @@ class PlaceReport(Report):
                 elif self.center == "Person":
                     self.__write_referenced_persons(handle)
                 else:
-                  raise AttributeError("no such center: '%s'" % self.center)
+                    raise AttributeError("no such center: '%s'" % self.center)
                 place_nbr += 1
                 # increment progress bar
                 step()
@@ -171,13 +172,14 @@ class PlaceReport(Report):
         """
         This procedure writes out the details of a single place
         """
-        place = self.database.get_place_from_handle(handle)
+        place = self._db.get_place_from_handle(handle)
 
         place_details = [self._("Gramps ID: %s ") % place.get_gramps_id()]
-        for level in get_location_list(self.database, place):
-            place_details.append("%(type)s: %(name)s " %
-                                 {'type': self._(level[1].xml_str()),
-                                  'name': level[0]})
+        for level in get_location_list(self._db, place):
+            # translators: needed for French, ignore otherwise
+            place_details.append(self._(
+                "%(str1)s: %(str2)s") % {'str1': self._(level[1].xml_str()),
+                                         'str2': level[0]})
 
         place_names = ''
         all_names = place.get_all_names()
@@ -191,10 +193,9 @@ class PlaceReport(Report):
                     place_names += ' (%s)' % place_name.get_language()
             place_details += [self._("places|All Names: %s") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
-        place_title = place_displayer.display(self.database, place)
-        self.doc.write_text(("%(nbr)s. %(place)s") %
-                                {'nbr' : place_nbr,
-                                 'place' : place_title})
+        place_title = place_displayer.display(self._db, place)
+        self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,
+                                                      'place' : place_title})
         self.doc.end_paragraph()
 
         for item in place_details:
@@ -207,7 +208,7 @@ class PlaceReport(Report):
         This procedure writes out each of the events related to the place
         """
         event_handles = [event_handle for (object_type, event_handle) in
-                         self.database.find_backlink_handles(handle, ['Event'])]
+                         self._db.find_backlink_handles(handle, ['Event'])]
         event_handles.sort(key=self.sort.by_date_key)
 
         if event_handles:
@@ -228,7 +229,7 @@ class PlaceReport(Report):
             self.doc.end_row()
 
         for evt_handle in event_handles:
-            event = self.database.get_event_from_handle(evt_handle)
+            event = self._db.get_event_from_handle(evt_handle)
             if event: # will be None if marked private
                 date = self._get_date(event.get_date_object())
                 descr = event.get_description()
@@ -236,14 +237,14 @@ class PlaceReport(Report):
 
                 person_list = []
                 ref_handles = [x for x in
-                               self.database.find_backlink_handles(evt_handle)]
+                               self._db.find_backlink_handles(evt_handle)]
                 if not ref_handles: # since the backlink may point to private
                     continue        # data, ignore an event with no backlinks
                 for (ref_type, ref_handle) in ref_handles:
                     if ref_type == 'Person':
                         person_list.append(ref_handle)
                     else:
-                        family = self.database.get_family_from_handle(ref_handle)
+                        family = self._db.get_family_from_handle(ref_handle)
                         father = family.get_father_handle()
                         if father:
                             person_list.append(father)
@@ -254,7 +255,7 @@ class PlaceReport(Report):
                 people = ""
                 person_list = list(set(person_list))
                 for p_handle in person_list:
-                    person = self.database.get_person_from_handle(p_handle)
+                    person = self._db.get_person_from_handle(p_handle)
                     if person:
                         if people == "":
                             people = "%(name)s (%(id)s)" \
@@ -285,7 +286,7 @@ class PlaceReport(Report):
         This procedure writes out each of the people related to the place
         """
         event_handles = [event_handle for (object_type, event_handle) in
-                         self.database.find_backlink_handles(handle, ['Event'])]
+                         self._db.find_backlink_handles(handle, ['Event'])]
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
@@ -307,44 +308,44 @@ class PlaceReport(Report):
         person_dict = {}
         for evt_handle in event_handles:
             ref_handles = [x for x in
-                           self.database.find_backlink_handles(evt_handle)]
+                           self._db.find_backlink_handles(evt_handle)]
             for (ref_type, ref_handle) in ref_handles:
                 if ref_type == 'Person':
-                    person = self.database.get_person_from_handle(ref_handle)
-                    nameEntry = "%s (%s)" % (self._nd.display(person),
-                                             person.get_gramps_id())
+                    person = self._db.get_person_from_handle(ref_handle)
+                    name_entry = "%s (%s)" % (self._nd.display(person),
+                                              person.get_gramps_id())
                 else:
-                    family = self.database.get_family_from_handle(ref_handle)
+                    family = self._db.get_family_from_handle(ref_handle)
                     f_handle = family.get_father_handle()
                     m_handle = family.get_mother_handle()
                     if f_handle and m_handle:
-                        father = self.database.get_person_from_handle(f_handle)
-                        mother = self.database.get_person_from_handle(m_handle)
-                        nameEntry = self._("%(father)s (%(father_id)s) and "
-                                           "%(mother)s (%(mother_id)s)") % \
-                                        { 'father' : self._nd.display(father),
-                                          'father_id' : father.get_gramps_id(),
-                                          'mother' : self._nd.display(mother),
-                                          'mother_id' : mother.get_gramps_id()}
+                        father = self._db.get_person_from_handle(f_handle)
+                        mother = self._db.get_person_from_handle(m_handle)
+                        name_entry = self._(
+                            "%(father)s (%(father_id)s) and "
+                            "%(mother)s (%(mother_id)s)") % {
+                                'father' : self._nd.display(father),
+                                'father_id' : father.get_gramps_id(),
+                                'mother' : self._nd.display(mother),
+                                'mother_id' : mother.get_gramps_id()}
                     elif f_handle or m_handle:
                         if f_handle:
                             p_handle = f_handle
                         else:
                             p_handle = m_handle
-                        person = self.database.get_person_from_handle(p_handle)
+                        person = self._db.get_person_from_handle(p_handle)
 
-                        nameEntry = "%s (%s)" % \
-                                     (self._nd.display(person),
-                                      person.get_gramps_id())
+                        name_entry = "%s (%s)" % (self._nd.display(person),
+                                                  person.get_gramps_id())
                     else:
                         # No parents - bug #7299
                         continue
 
-                if nameEntry in person_dict:
-                    person_dict[nameEntry].append(evt_handle)
+                if name_entry in person_dict:
+                    person_dict[name_entry].append(evt_handle)
                 else:
-                    person_dict[nameEntry] = []
-                    person_dict[nameEntry].append(evt_handle)
+                    person_dict[name_entry] = []
+                    person_dict[name_entry].append(evt_handle)
 
         keys = list(person_dict.keys())
         keys.sort()
@@ -353,7 +354,7 @@ class PlaceReport(Report):
             people = entry
             person_dict[entry].sort(key=self.sort.by_date_key)
             for evt_handle in person_dict[entry]:
-                event = self.database.get_event_from_handle(evt_handle)
+                event = self._db.get_event_from_handle(evt_handle)
                 if event:
                     date = self._get_date(event.get_date_object())
                     descr = event.get_description()
@@ -382,7 +383,7 @@ class PlaceReport(Report):
         """
         place_handles = []
         for place_gid in places.split():
-            place = self.database.get_place_from_gramps_id(place_gid)
+            place = self._db.get_place_from_gramps_id(place_gid)
             if place is not None:
                 #place can be None if option is gid of other fam tree
                 place_handles.append(place.get_handle())
@@ -432,9 +433,7 @@ class PlaceOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         center = EnumeratedListOption(_("Center on"), "Event")
-        center.set_items([
-                ("Event",   _("Event")),
-                ("Person", _("Person"))])
+        center.set_items([("Event", _("Event")), ("Person", _("Person"))])
         center.set_help(_("If report is event or person centered"))
         menu.add_option(category_name, "center", center)
 

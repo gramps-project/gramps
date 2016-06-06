@@ -45,7 +45,6 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.datehandler import get_date
 from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -54,6 +53,7 @@ from gramps.gen.proxy import CacheProxyDb
 #
 #------------------------------------------------------------------------
 class EndOfLineReport(Report):
+    """ EndOfLine Report """
 
     def __init__(self, database, options, user):
         """
@@ -85,8 +85,8 @@ class EndOfLineReport(Report):
 
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
+        if self.center_person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -143,7 +143,7 @@ class EndOfLineReport(Report):
                 self.eol_map[gen] = {}
             if person_handle not in self.eol_map[gen]:
                 self.eol_map[gen][person_handle] = []
-            self.eol_map[gen][person_handle].append( new_pedigree )
+            self.eol_map[gen][person_handle].append(new_pedigree)
 
     def write_report(self):
         """
@@ -166,7 +166,7 @@ class EndOfLineReport(Report):
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
-        self.doc.start_table('EolTable','EOL-Table')
+        self.doc.start_table('EolTable', 'EOL-Table')
         for generation, handles in self.eol_map.items():
             self.write_generation_row(generation)
             for person_handle, pedigrees in handles.items():
@@ -206,9 +206,9 @@ class EndOfLineReport(Report):
             death_date = self._get_date(event.get_date_object())
         dates = ''
         if birth_date or death_date:
-            dates = self._(" (%(birth_date)s - %(death_date)s)") % {
-                               'birth_date' : birth_date,
-                               'death_date' : death_date }
+            dates = self._(" (%(birth_date)s - %(death_date)s)"
+                           % {'birth_date' : birth_date,
+                              'death_date' : death_date})
 
         self.doc.start_row()
         self.doc.start_cell('EOL-TableCell', 2)
@@ -274,54 +274,55 @@ class EndOfLineOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the End of Line Report."""
         # Paragraph Styles
-        f = FontStyle()
-        f.set_size(16)
-        f.set_type_face(FONT_SANS_SERIF)
-        f.set_bold(1)
-        p = ParagraphStyle()
-        p.set_header_level(1)
-        p.set_bottom_border(1)
-        p.set_bottom_margin(ReportUtils.pt2cm(8))
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("EOL-Title", p)
+        font = FontStyle()
+        font.set_size(16)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_header_level(1)
+        para.set_bottom_border(1)
+        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("EOL-Title", para)
 
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=12, italic=1)
-        p = ParagraphStyle()
-        p.set_bottom_margin(ReportUtils.pt2cm(6))
-        p.set_font(font)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_('The style used for the section headers.'))
-        default_style.add_paragraph_style("EOL-Subtitle", p)
+        para = ParagraphStyle()
+        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_('The style used for the section headers.'))
+        default_style.add_paragraph_style("EOL-Subtitle", para)
 
         font = FontStyle()
         font.set_size(10)
-        p = ParagraphStyle()
-        p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(6))
-        p.set_bottom_margin(ReportUtils.pt2cm(6))
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("EOL-Normal", p)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("EOL-Normal", para)
 
         font = FontStyle()
         font.set_size(12)
         font.set_italic(True)
-        p = ParagraphStyle()
-        p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(6))
-        p.set_description(_('The basic style used for generation headings.'))
-        default_style.add_paragraph_style("EOL-Generation", p)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_description(
+            _('The basic style used for generation headings.'))
+        default_style.add_paragraph_style("EOL-Generation", para)
 
         font = FontStyle()
         font.set_size(8)
-        p = ParagraphStyle()
-        p.set_font(font)
-        p.set_top_margin(0)
-        p.set_bottom_margin(ReportUtils.pt2cm(6))
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("EOL-Pedigree", p)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(0)
+        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("EOL-Pedigree", para)
 
         #Table Styles
         cell = TableCellStyle()

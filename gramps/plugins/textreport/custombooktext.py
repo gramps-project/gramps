@@ -20,6 +20,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+""" custom text for the book report """
+
 # Written by Alex Roitman,
 # largely based on the SimpleBookTitle.py by Don Allingham
 
@@ -55,6 +57,7 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
 #
 #------------------------------------------------------------------------
 class CustomText(Report):
+    """ CustomText """
 
     def __init__(self, database, options, user):
         """
@@ -125,19 +128,19 @@ class CustomTextOptions(MenuReportOptions):
 
         category_name = _("Text")
 
-        top = TextOption(_("Initial Text"), [""] )
+        top = TextOption(_("Initial Text"), [""])
         top.set_help(_("Text to display at the top."))
         menu.add_option(category_name, "top", top)
 
-        mid = TextOption(_("Middle Text"), [""] )
+        mid = TextOption(_("Middle Text"), [""])
         mid.set_help(_("Text to display in the middle"))
         menu.add_option(category_name, "mid", mid)
 
-        bot = TextOption(_("Final Text"), [""] )
+        bot = TextOption(_("Final Text"), [""])
         bot.set_help(_("Text to display last."))
         menu.add_option(category_name, "bot", bot)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Custom Text report."""
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=12, bold=0, italic=0)
@@ -145,7 +148,8 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('The style used for the first portion of the custom text.'))
+        para.set_description(
+            _('The style used for the first portion of the custom text.'))
         default_style.add_paragraph_style("CBT-Initial", para)
 
         font = FontStyle()
@@ -154,7 +158,8 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set(pad=0.5)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the middle portion of the custom text.'))
+        para.set_description(
+            _('The style used for the middle portion of the custom text.'))
         default_style.add_paragraph_style("CBT-Middle", para)
 
         font = FontStyle()
@@ -163,5 +168,6 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('The style used for the last portion of the custom text.'))
+        para.set_description(
+            _('The style used for the last portion of the custom text.'))
         default_style.add_paragraph_style("CBT-Final", para)

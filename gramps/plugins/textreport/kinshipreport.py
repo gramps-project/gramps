@@ -56,6 +56,7 @@ from gramps.gen.proxy import CacheProxyDb
 #
 #------------------------------------------------------------------------
 class KinshipReport(Report):
+    """ Kinship Report """
 
     def __init__(self, database, options, user):
         """
@@ -93,14 +94,14 @@ class KinshipReport(Report):
         self.__db = self.database
 
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
-        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
+        self.max_ascend = menu.get_option_by_name('maxascend').get_value()
         self.inc_spouses = menu.get_option_by_name('incspouses').get_value()
         self.inc_cousins = menu.get_option_by_name('inccousins').get_value()
-        self.inc_aunts   = menu.get_option_by_name('incaunts').get_value()
-        pid              = menu.get_option_by_name('pid').get_value()
+        self.inc_aunts = menu.get_option_by_name('incaunts').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
         self.person = self.database.get_person_from_gramps_id(pid)
         if self.person is None:
-            raise ReportError(_("Person %s is not in the Database") % pid )
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -140,12 +141,12 @@ class KinshipReport(Report):
             for Gb in Gbs:
                 # To understand these calculations, see:
                 # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-                x = min (Ga, Gb)
-                y = abs(Ga-Gb)
+                _x_ = min(Ga, Gb)
+                _y_ = abs(Ga - Gb)
                 # Skip unrequested people
-                if x == 1 and y > 0 and not self.inc_aunts:
+                if _x_ == 1 and _y_ > 0 and not self.inc_aunts:
                     continue
-                elif x > 1 and not self.inc_cousins:
+                elif _x_ > 1 and not self.inc_cousins:
                     continue
 
                 get_rel_str = self.rel_calc.get_plural_relationship_string
@@ -154,8 +155,8 @@ class KinshipReport(Report):
                 self.write_people(self._(title), self.kinship_map[Ga][Gb])
 
                 if (self.inc_spouses and
-                   Ga in self.spouse_map and
-                   Gb in self.spouse_map[Ga]):
+                        Ga in self.spouse_map and
+                        Gb in self.spouse_map[Ga]):
                     title = get_rel_str(Ga, Gb, in_law_b=True)
                     self.write_people(self._(title), self.spouse_map[Ga][Gb])
 
@@ -315,9 +316,9 @@ class KinshipReport(Report):
             death_date = self._get_date(death.get_date_object())
         dates = ''
         if birth_date or death_date:
-            dates = self._(" (%(birth_date)s - %(death_date)s)") % {
-                               'birth_date' : birth_date,
-                               'death_date' : death_date }
+            dates = self._(" (%(birth_date)s - %(death_date)s)"
+                           % {'birth_date' : birth_date,
+                              'death_date' : death_date})
 
         self.doc.start_paragraph('KIN-Normal')
         self.doc.write_text(name, mark)
@@ -378,33 +379,33 @@ class KinshipOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Kinship Report."""
-        f = FontStyle()
-        f.set_size(16)
-        f.set_type_face(FONT_SANS_SERIF)
-        f.set_bold(1)
-        p = ParagraphStyle()
-        p.set_header_level(1)
-        p.set_bottom_border(1)
-        p.set_bottom_margin(ReportUtils.pt2cm(8))
-        p.set_font(f)
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("KIN-Title", p)
+        font = FontStyle()
+        font.set_size(16)
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_header_level(1)
+        para.set_bottom_border(1)
+        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_font(font)
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("KIN-Title", para)
 
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
-        p = ParagraphStyle()
-        p.set_header_level(3)
-        p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(6))
-        p.set_description(_('The basic style used for sub-headings.'))
-        default_style.add_paragraph_style("KIN-Subtitle", p)
+        para = ParagraphStyle()
+        para.set_header_level(3)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_description(_('The basic style used for sub-headings.'))
+        default_style.add_paragraph_style("KIN-Subtitle", para)
 
         font = FontStyle()
         font.set_size(10)
-        p = ParagraphStyle()
-        p.set_font(font)
-        p.set_left_margin(0.5)
-        p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("KIN-Normal", p)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_left_margin(0.5)
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("KIN-Normal", para)

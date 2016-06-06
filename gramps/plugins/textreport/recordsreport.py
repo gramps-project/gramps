@@ -21,6 +21,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+""" Records Report """
+
 #------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -57,6 +59,7 @@ from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 #
 #------------------------------------------------------------------------
 class RecordsReport(Report):
+    """ Records Report """
 
     def __init__(self, database, options, user):
         """
@@ -84,8 +87,8 @@ class RecordsReport(Report):
             if value == self._lv:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                  % {'option_name': living_desc})
+        self.living_desc = self._(
+            "(Living people: %(option_name)s)") % {'option_name': living_desc}
 
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -155,18 +158,19 @@ class RecordsReport(Report):
                     mom = self.database.get_person_from_handle(m_handle)
                     m_mark = ReportUtils.get_person_mark(self.database, mom)
                 else:
-                    raise ReportError(_("Option '%(opt_name)s' is present "
-                                        "in %(file)s\n  but is not known to "
-                                        "the module.  Ignoring...") %
-                                            {'opt_name': handletype,
-                                             'file': 'libnarrate.py'})
+                    raise ReportError(_(
+                        "Option '%(opt_name)s' is present "
+                        "in %(file)s\n  but is not known to "
+                        "the module.  Ignoring...")
+                                      % {'opt_name': handletype,
+                                         'file': 'libnarrate.py'})
                     # since the error is very unlikely I reused the string
                 if value != last_value:
                     last_value = value
                     rank = number
                 self.doc.start_paragraph('REC-Normal')
-                self.doc.write_text(self._("%(number)s. ")
-                                               % {'number': rank+1})
+                self.doc.write_text(
+                    self._("%(number)s. ") % {'number': rank+1})
                 self.doc.write_markup(str(name), name.get_tags(), mark)
                 if handletype == 'Family':
                     self.doc.write_text('', f_mark)
@@ -198,6 +202,7 @@ class RecordsReportOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         self.__db = dbase
+        self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
 
@@ -207,7 +212,7 @@ class RecordsReportOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-                      _("Determines what people are included in the report."))
+            _("Determines what people are included in the report."))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -232,7 +237,9 @@ class RecordsReportOptions(MenuReportOptions):
         callname.set_items([
             (CALLNAME_DONTUSE, _("Don't use call name")),
             (CALLNAME_REPLACE, _("Replace first names with call name")),
-            (CALLNAME_UNDERLINE_ADD, _("Underline call name in first names / add call name to first name"))])
+            (CALLNAME_UNDERLINE_ADD,
+             _("Underline call name in first names / "
+               "add call name to first name"))])
         menu.add_option(category_name, "callname", callname)
 
         footer = StringOption(_("Footer text"), "")

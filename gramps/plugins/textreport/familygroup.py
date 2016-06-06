@@ -57,6 +57,7 @@ from gramps.gen.proxy import CacheProxyDb
 #
 #------------------------------------------------------------------------
 class FamilyGroup(Report):
+    """ Family Group Report """
 
     def __init__(self, database, options, user):
         """
@@ -74,7 +75,7 @@ class FamilyGroup(Report):
         filter    - Filter to be applied to the families of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
-        includeAttrs  - Whether to include attributes
+        incattrs      - Whether to include attributes
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
         living_people - How to handle living people
@@ -96,20 +97,20 @@ class FamilyGroup(Report):
         self.filter = menu.get_option_by_name('filter').get_filter()
 
         get_option_by_name = menu.get_option_by_name
-        get_value = lambda name:get_option_by_name(name).get_value()
-        self.gramps_ids    = get_value('gramps_ids')
-        self.recursive     = get_value('recursive')
-        self.missingInfo   = get_value('missinginfo')
-        self.generations   = get_value('generations')
-        self.incFamNotes   = get_value('incFamNotes')
-        self.incParEvents  = get_value('incParEvents')
-        self.incParAddr    = get_value('incParAddr')
-        self.incParNotes   = get_value('incParNotes')
-        self.incParNames   = get_value('incParNames')
-        self.incParMar     = get_value('incParMar')
-        self.incRelDates   = get_value('incRelDates')
-        self.incChiMar     = get_value('incChiMar')
-        self.includeAttrs  = get_value('incattrs')
+        get_value = lambda name: get_option_by_name(name).get_value()
+        self.gramps_ids = get_value('gramps_ids')
+        self.recursive = get_value('recursive')
+        self.missing_info = get_value('missinginfo')
+        self.generations = get_value('generations')
+        self.inc_fam_notes = get_value('incFamNotes')
+        self.inc_par_events = get_value('incParEvents')
+        self.inc_par_addr = get_value('incParAddr')
+        self.inc_par_notes = get_value('incParNotes')
+        self.inc_par_names = get_value('incParNames')
+        self.inc_par_mar = get_value('incParMar')
+        self.inc_rel_dates = get_value('incRelDates')
+        self.inc_chi_mar = get_value('incChiMar')
+        self.include_attrs = get_value('incattrs')
 
         stdoptions.run_name_format_option(self, menu)
 
@@ -124,16 +125,16 @@ class FamilyGroup(Report):
                 place = ''
             descr = event.get_description()
 
-            if self.includeAttrs:
+            if self.include_attrs:
                 for attr in event.get_attribute_list():
                     if descr:
                         # translators: needed for Arabic, ignore otherwise
                         descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
                     # translators: needed for French, ignore otherwise
-                    descr += self._("%(str1)s: %(str2)s") % {
-                                          'str1' : self._(attr_type),
-                                          'str2' : attr.get_value() }
+                    descr += self._("%(str1)s: %(str2)s"
+                                    % {'str1' : self._(attr_type),
+                                       'str2' : attr.get_value()})
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -184,7 +185,7 @@ class FamilyGroup(Report):
                     gid = father.get_gramps_id()
                     if gid:
                         father_name += " (%s)" % gid
-                if self.incRelDates:
+                if self.inc_rel_dates:
                     birth_ref = father.get_birth_ref()
                     birth = "  "
                     if birth_ref:
@@ -205,7 +206,7 @@ class FamilyGroup(Report):
                     gid = mother.get_gramps_id()
                     if gid:
                         mother_name += " (%s)" % gid
-                if self.incRelDates:
+                if self.inc_rel_dates:
                     birth_ref = mother.get_birth_ref()
                     birth = "  "
                     if birth_ref:
@@ -233,7 +234,7 @@ class FamilyGroup(Report):
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
-        elif self.missingInfo:
+        elif self.missing_info:
             self.dump_parent_line(self._("Father"), "")
 
         if mother_name != "":
@@ -250,7 +251,7 @@ class FamilyGroup(Report):
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
-        elif self.missingInfo:
+        elif self.missing_info:
             self.dump_parent_line(self._("Mother"), "")
 
     def dump_parent_line(self, name, text):
@@ -275,17 +276,15 @@ class FamilyGroup(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd", 2)
-        self.doc.write_styled_note(note.get_styledtext(),
-                                   note.get_format(), 'FGR-Note',
-                                   contains_html=
-                                       (note.get_type()==NoteType.HTML_CODE)
-                                  )
+        self.doc.write_styled_note(
+            note.get_styledtext(), note.get_format(), 'FGR-Note',
+            contains_html=(note.get_type() == NoteType.HTML_CODE))
         self.doc.end_cell()
         self.doc.end_row()
 
     def dump_parent(self, title, person_handle):
 
-        if not person_handle and not self.missingInfo:
+        if not person_handle and not self.missing_info:
             return
         elif not person_handle:
             person = Person()
@@ -299,9 +298,9 @@ class FamilyGroup(Report):
         self.doc.start_paragraph('FGR-ParentName')
         mark = ReportUtils.get_person_mark(self.db, person)
         # translators: needed for French, ignore otherwise
-        self.doc.write_text(self._("%(str1)s: %(str2)s") % {
-                                          'str1' : title,
-                                          'str2' : name }, mark)
+        self.doc.write_text(self._("%(str1)s: %(str2)s"
+                                   % {'str1' : title,
+                                      'str2' : name}), mark)
         if self.gramps_ids:
             gid = person.get_gramps_id()
             if gid:
@@ -312,30 +311,30 @@ class FamilyGroup(Report):
 
         birth_ref = person.get_birth_ref()
         birth = None
-        evtName = self._("Birth")
+        ev_name = self._("Birth")
         if birth_ref:
             birth = self.db.get_event_from_handle(birth_ref.ref)
-        if birth or self.missingInfo:
-            self.dump_parent_event(evtName, birth)
+        if birth or self.missing_info:
+            self.dump_parent_event(ev_name, birth)
 
         death_ref = person.get_death_ref()
         death = None
-        evtName = self._("Death")
+        ev_name = self._("Death")
         if death_ref:
             death = self.db.get_event_from_handle(death_ref.ref)
-        if death or self.missingInfo:
-            self.dump_parent_event(evtName, death)
+        if death or self.missing_info:
+            self.dump_parent_event(ev_name, death)
 
         self.dump_parent_parents(person)
 
-        if self.incParEvents:
+        if self.inc_par_events:
             for event_ref in person.get_primary_event_ref_list():
                 if event_ref != birth_ref and event_ref != death_ref:
                     event = self.db.get_event_from_handle(event_ref.ref)
                     event_type = self._get_type(event.get_type())
                     self.dump_parent_event(self._(event_type), event)
 
-        if self.incParAddr:
+        if self.inc_par_addr:
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
                 location = ReportUtils.get_address_str(addr)
@@ -359,17 +358,17 @@ class FamilyGroup(Report):
                 self.doc.end_cell()
                 self.doc.end_row()
 
-        if self.incParNotes:
+        if self.inc_par_notes:
             for notehandle in person.get_note_list():
                 note = self.db.get_note_from_handle(notehandle)
                 self.dump_parent_noteline(self._("Note"), note)
 
-        if self.includeAttrs:
+        if self.include_attrs:
             for attr in person.get_attribute_list():
                 attr_type = self._get_type(attr.get_type())
                 self.dump_parent_line(self._(attr_type), attr.get_value())
 
-        if self.incParNames:
+        if self.inc_par_names:
             for alt_name in person.get_alternate_names():
                 name_type = self._get_type(alt_name.get_type())
                 name = self._name_display.display_name(alt_name)
@@ -387,13 +386,13 @@ class FamilyGroup(Report):
         for event_ref in family_list:
             if event_ref:
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == EventType.MARRIAGE and \
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                event_ref.get_role() == EventRoleType.PRIMARY):
+                if (event.get_type() == EventType.MARRIAGE and
+                        (event_ref.get_role() == EventRoleType.FAMILY or
+                         event_ref.get_role() == EventRoleType.PRIMARY)):
                     mrg = event
                     break
 
-        if len(family_list) > 0 or self.missingInfo or self.includeAttrs:
+        if len(family_list) > 0 or self.missing_info or self.include_attrs:
             self.doc.start_table("MarriageInfo", 'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead', 3)
@@ -416,12 +415,12 @@ class FamilyGroup(Report):
                         event_type = self._get_type(event.get_type())
                         self.dump_parent_event(self._(event_type), event)
 
-            if self.includeAttrs:
+            if self.include_attrs:
                 for attr in family.get_attribute_list():
                     attr_type = self._get_type(attr.get_type())
                     self.dump_parent_line(self._(attr_type), attr.get_value())
 
-            if self.incFamNotes:
+            if self.inc_fam_notes:
                 for notehandle in family.get_note_list():
                     note = self.database.get_note_from_handle(notehandle)
                     self.dump_parent_noteline(self._("Note"), note)
@@ -476,8 +475,8 @@ class FamilyGroup(Report):
         else:
             death = None
 
-        spouse_count = 0;
-        if self.incChiMar:
+        spouse_count = 0
+        if self.inc_chi_mar:
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 spouse_id = None
@@ -489,9 +488,10 @@ class FamilyGroup(Report):
                     spouse_count += 1
 
         self.doc.start_row()
-        if (spouse_count != 0 or self.missingInfo
-                              or death is not None
-                              or birth is not None):
+        if (spouse_count != 0
+                or self.missing_info
+                or death is not None
+                or birth is not None):
             self.doc.start_cell('FGR-TextChild1')
         else:
             self.doc.start_cell('FGR-TextChild2')
@@ -517,19 +517,19 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        if self.missingInfo or birth is not None:
-            if spouse_count != 0 or self.missingInfo or death is not None:
+        if self.missing_info or birth is not None:
+            if spouse_count != 0 or self.missing_info or death is not None:
                 self.dump_child_event('FGR-TextChild1', self._('Birth'), birth)
             else:
                 self.dump_child_event('FGR-TextChild2', self._('Birth'), birth)
 
-        if self.missingInfo or death is not None:
-            if spouse_count == 0 or not self.incChiMar:
+        if self.missing_info or death is not None:
+            if spouse_count == 0 or not self.inc_chi_mar:
                 self.dump_child_event('FGR-TextChild2', self._('Death'), death)
             else:
                 self.dump_child_event('FGR-TextChild1', self._('Death'), death)
 
-        if self.incChiMar:
+        if self.inc_chi_mar:
             index = 0
             for family_handle in person.get_family_handle_list():
                 mrg = None
@@ -573,7 +573,7 @@ class FamilyGroup(Report):
                         gid = spouse.get_gramps_id()
                         if gid:
                             spouse_name += " (%s)" % gid
-                    if self.incRelDates:
+                    if self.inc_rel_dates:
                         birth = "  "
                         birth_ref = spouse.get_birth_ref()
                         if birth_ref:
@@ -597,11 +597,11 @@ class FamilyGroup(Report):
                     self.doc.end_row()
 
                 if mrg:
-                    evtName = self._("Marriage")
+                    ev_name = self._("Marriage")
                     if index == families:
-                        self.dump_child_event('FGR-TextChild2', evtName, mrg)
+                        self.dump_child_event('FGR-TextChild2', ev_name, mrg)
                     else:
-                        self.dump_child_event('FGR-TextChild1', evtName, mrg)
+                        self.dump_child_event('FGR-TextChild1', ev_name, mrg)
 
     def dump_family(self, family_handle, generation):
         self.doc.start_paragraph('FGR-Title')
@@ -619,7 +619,7 @@ class FamilyGroup(Report):
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
-        if self.incParMar:
+        if self.inc_par_mar:
             self.dump_marriage(family)
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
@@ -690,6 +690,7 @@ class FamilyGroupOptions(MenuReportOptions):
         self.__fid = None
         self.__filter = None
         self.__recursive = None
+        self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -740,45 +741,45 @@ class FamilyGroupOptions(MenuReportOptions):
                                "report (recursive only)."))
         add_option("generations", generations)
 
-        incParEvents = BooleanOption(_("Parent Events"), False)
-        incParEvents.set_help(_("Whether to include events for parents."))
-        add_option("incParEvents", incParEvents)
+        inc_par_events = BooleanOption(_("Parent Events"), False)
+        inc_par_events.set_help(_("Whether to include events for parents."))
+        add_option("incParEvents", inc_par_events)
 
-        incParAddr = BooleanOption(_("Parent Addresses"), False)
-        incParAddr.set_help(_("Whether to include addresses for parents."))
-        add_option("incParAddr", incParAddr)
+        inc_par_addr = BooleanOption(_("Parent Addresses"), False)
+        inc_par_addr.set_help(_("Whether to include addresses for parents."))
+        add_option("incParAddr", inc_par_addr)
 
-        incParNotes = BooleanOption(_("Parent Notes"), False)
-        incParNotes.set_help(_("Whether to include notes for parents."))
-        add_option("incParNotes", incParNotes)
+        inc_par_notes = BooleanOption(_("Parent Notes"), False)
+        inc_par_notes.set_help(_("Whether to include notes for parents."))
+        add_option("incParNotes", inc_par_notes)
 
         incattrs = BooleanOption(_("Parent Attributes"), False)
         incattrs.set_help(_("Whether to include attributes."))
         add_option("incattrs", incattrs)
 
-        incParNames = BooleanOption(_("Alternate Parent Names"), False)
-        incParNames.set_help(_("Whether to include alternate "
-                               "names for parents."))
-        add_option("incParNames", incParNames)
+        inc_par_names = BooleanOption(_("Alternate Parent Names"), False)
+        inc_par_names.set_help(
+            _("Whether to include alternate names for parents."))
+        add_option("incParNames", inc_par_names)
 
-        incParMar = BooleanOption(_("Parent Marriage"), True)
-        incParMar.set_help(_("Whether to include marriage information "
-                             "for parents."))
-        add_option("incParMar", incParMar)
+        inc_par_mar = BooleanOption(_("Parent Marriage"), True)
+        inc_par_mar.set_help(
+            _("Whether to include marriage information for parents."))
+        add_option("incParMar", inc_par_mar)
 
-        incFamNotes = BooleanOption(_("Family Notes"), False)
-        incFamNotes.set_help(_("Whether to include notes for families."))
-        add_option("incFamNotes", incFamNotes)
+        inc_fam_notes = BooleanOption(_("Family Notes"), False)
+        inc_fam_notes.set_help(_("Whether to include notes for families."))
+        add_option("incFamNotes", inc_fam_notes)
 
-        incRelDates = BooleanOption(_("Dates of Relatives"), False)
-        incRelDates.set_help(_("Whether to include dates for relatives "
-                               "(father, mother, spouse)."))
-        add_option("incRelDates", incRelDates)
+        inc_rel_dates = BooleanOption(_("Dates of Relatives"), False)
+        inc_rel_dates.set_help(_("Whether to include dates for relatives "
+                                 "(father, mother, spouse)."))
+        add_option("incRelDates", inc_rel_dates)
 
-        incChiMar = BooleanOption(_("Children Marriages"), True)
-        incChiMar.set_help(_("Whether to include marriage information "
-                             "for children."))
-        add_option("incChiMar", incChiMar)
+        inc_chi_mar = BooleanOption(_("Children Marriages"), True)
+        inc_chi_mar.set_help(
+            _("Whether to include marriage information for children."))
+        add_option("incChiMar", inc_chi_mar)
 
         ##########################
         add_option = partial(menu.add_option, _("Missing Information"))
@@ -812,6 +813,7 @@ class FamilyGroupOptions(MenuReportOptions):
             self.__fid.set_available(True)
         else: # filters that don't
             self.__fid.set_available(False)
+
         # only allow recursion if the center family is the only family
         if self.__recursive and filter_value == 0:
             self.__recursive.set_available(True)

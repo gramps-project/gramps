@@ -20,6 +20,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+""" Simple Book Title for the book report """
+
 #------------------------------------------------------------------------
 #
 # python modules
@@ -49,6 +51,7 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report):
     """ This report class generates a title page for a book. """
+
     def __init__(self, database, options, user):
         """
         Create SimpleBookTitle object that produces the report.
@@ -95,11 +98,10 @@ class SimpleBookTitle(Report):
                 if self.image_size:
                     image_size = self.image_size
                 else:
-                    image_size = min(
-                            0.8 * self.doc.get_usable_width(),
-                            0.7 * self.doc.get_usable_height() )
+                    image_size = min(0.8 * self.doc.get_usable_width(),
+                                     0.7 * self.doc.get_usable_height())
                 self.doc.add_media(filename, 'center',
-                                          image_size, image_size)
+                                   image_size, image_size)
             else:
                 self._user.warn(_('Could not add photo to page'),
                                 _('File %s does not exist') % filename)
@@ -127,24 +129,25 @@ class SimpleBookTitleOptions(MenuReportOptions):
         """ Add the options for this report """
         category_name = _("Report Options")
 
-        title = StringOption(_('book|Title'), _('Title of the Book') )
+        title = StringOption(_('book|Title'), _('Title of the Book'))
         title.set_help(_("Title string for the book."))
         menu.add_option(category_name, "title", title)
 
-        subtitle = StringOption(_('Subtitle'), _('Subtitle of the Book') )
+        subtitle = StringOption(_('Subtitle'), _('Subtitle of the Book'))
         subtitle.set_help(_("Subtitle string for the book."))
         menu.add_option(category_name, "subtitle", subtitle)
 
         dateinfo = time.localtime(time.time())
         rname = self.__db.get_researcher().get_name()
         footer_string = _('Copyright %(year)d %(name)s') % {
-            'year' : dateinfo[0], 'name' : rname }
-        footer = StringOption(_('Footer'), footer_string )
+            'year' : dateinfo[0], 'name' : rname}
+        footer = StringOption(_('Footer'), footer_string)
         footer.set_help(_("Footer string for the page."))
         menu.add_option(category_name, "footer", footer)
 
         imgid = MediaOption(_('Image'))
-        imgid.set_help( _("Gramps ID of the media object to use as an image."))
+        imgid.set_help(
+            _("Gramps ID of the media object to use as an image."))
         menu.add_option(category_name, "imgid", imgid)
 
         imgsize = NumberOption(_('Image Size'), 0, 0, 20, 0.1)

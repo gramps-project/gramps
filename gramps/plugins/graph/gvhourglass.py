@@ -46,7 +46,6 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
 
@@ -55,10 +54,9 @@ from gramps.gen.proxy import CacheProxyDb
 # Constant options items
 #
 #------------------------------------------------------------------------
-_COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
-            { 'name' : _("Colored outline"), 'value' : "colored" },
-            { 'name' : _("Color fill"),      'value' : "filled"  }]
-
+_COLORS = [{'name' : _("B&W outline"), 'value' : "outline"},
+           {'name' : _("Colored outline"), 'value' : "colored"},
+           {'name' : _("Color fill"), 'value' : "filled"}]
 
 #------------------------------------------------------------------------
 #
@@ -95,11 +93,11 @@ class HourGlassReport(Report):
         self.__family_mother = [] # links allocated from family to mother
 
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
-        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
+        self.max_ascend = menu.get_option_by_name('maxascend').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = self.__db.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
+        if self.center_person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         # Would be nice to get rid of these 2 hard-coded arrays of colours
         # and instead allow the user to pick-and-choose whatever colour they
@@ -146,7 +144,7 @@ class HourGlassReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.__db.get_family_from_handle(family_handle)
             self.add_family(family)
-            self.doc.add_link( person.get_gramps_id(), family.get_gramps_id() )
+            self.doc.add_link(person.get_gramps_id(), family.get_gramps_id())
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 if child_handle not in self.__used_people:
@@ -155,7 +153,7 @@ class HourGlassReport(Report):
                     child = self.__db.get_person_from_handle(child_handle)
                     self.add_person(child)
                     self.doc.add_link(family.get_gramps_id(),
-                                      child.get_gramps_id() )
+                                      child.get_gramps_id())
                     self.traverse_down(child, gen+1)
 
     def traverse_up(self, person, gen):
@@ -169,8 +167,8 @@ class HourGlassReport(Report):
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.add_family(family)
-            self.doc.add_link( family_id, person.get_gramps_id(),
-                               head='none', tail='normal' )
+            self.doc.add_link(family_id, person.get_gramps_id(),
+                              head='none', tail='normal')
 
             # create link from family to father
             father_handle = family.get_father_handle()
@@ -179,8 +177,8 @@ class HourGlassReport(Report):
                 self.__family_father.append(family_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
-                self.doc.add_link( father.get_gramps_id(), family_id,
-                                   head='none', tail='normal' )
+                self.doc.add_link(father.get_gramps_id(), family_id,
+                                  head='none', tail='normal')
                 # no need to go up if he is a father in another family
                 if father_handle not in self.__used_people:
                     self.__used_people.append(father_handle)
@@ -191,10 +189,10 @@ class HourGlassReport(Report):
             if mother_handle and family_handle not in self.__family_mother:
                 # allocate only one mother per family
                 self.__family_mother.append(family_handle)
-                mother = self.__db.get_person_from_handle( mother_handle )
-                self.add_person( mother )
-                self.doc.add_link( mother.get_gramps_id(), family_id,
-                                   head='none', tail='normal' )
+                mother = self.__db.get_person_from_handle(mother_handle)
+                self.add_person(mother)
+                self.doc.add_link(mother.get_gramps_id(), family_id,
+                                  head='none', tail='normal')
                 # no need to go up if she is a mother in another family
                 if mother_handle not in self.__used_people:
                     self.__used_people.append(mother_handle)
@@ -341,16 +339,14 @@ class HourGlassOptions(MenuReportOptions):
         ################################
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range( 0, len(_COLORS) ):
+        for i in range(0, len(_COLORS)):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
 
-        roundedcorners = BooleanOption(     # see bug report #2180
-                    _("Use rounded corners"), False)
+        roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
         roundedcorners.set_help(
-                    _("Use rounded corners to differentiate "
-                      "between women and men."))
+            _("Use rounded corners to differentiate between women and men."))
         menu.add_option(category_name, "roundcorners", roundedcorners)

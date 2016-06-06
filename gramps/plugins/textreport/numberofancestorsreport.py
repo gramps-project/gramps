@@ -79,8 +79,8 @@ class NumberOfAncestorsReport(Report):
 
         pid = options.menu.get_option_by_name('pid').get_value()
         self.__person = self.__db.get_person_from_gramps_id(pid)
-        if (self.__person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
+        if self.__person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
@@ -95,7 +95,7 @@ class NumberOfAncestorsReport(Report):
         thisgen = {}
         all_people = {}
         total_theoretical = 0
-        thisgen[self.__person.get_handle()]=1
+        thisgen[self.__person.get_handle()] = 1
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         self.doc.start_paragraph("NOA-Title")
@@ -113,10 +113,10 @@ class NumberOfAncestorsReport(Report):
             if thisgen != {}:
                 thisgensize = len(thisgen)
                 gen += 1
-                theoretical = math.pow(2, ( gen - 1 ) )
+                theoretical = math.pow(2, (gen - 1))
                 total_theoretical += theoretical
-                percent = '(%s%%)' % self._locale.format('%3.2f',
-                    ((sum(thisgen.values()) / theoretical ) * 100))
+                percent = '(%s%%)' % self._locale.format(
+                    '%3.2f', ((sum(thisgen.values()) / theoretical) * 100))
 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
@@ -156,21 +156,20 @@ class NumberOfAncestorsReport(Report):
                             all_people.get(mother_handle, 0) + person_data
                             )
 
-        if( total_theoretical != 1 ):
-            percent = '(%3.2f%%)' % (( sum(all_people.values())
-                                        / (total_theoretical-1) ) * 100)
+        if total_theoretical != 1:
+            percent = '(%3.2f%%)' % (
+                (sum(all_people.values()) / (total_theoretical-1)) * 100)
         else:
             percent = 0
 
         # TC # English return something like:
         # Total ancestors in generations 2 to 3 is 4. (66.67%)
-        text = self._("Total ancestors in generations %(second_generation)d to "
-                 "%(last_generation)d is %(count)d. %(percent)s") % {
-                 'second_generation': 2,
-                 'last_generation'  : gen,
-                 'count'            : len(all_people),
-                 'percent'          : percent
-                 }
+        text = self._("Total ancestors in generations %(second_generation)d "
+                      "to %(last_generation)d is %(count)d. %(percent)s") % {
+                          'second_generation': 2,
+                          'last_generation'  : gen,
+                          'count'            : len(all_people),
+                          'percent'          : percent}
 
         self.doc.start_paragraph('NOA-Normal')
         self.doc.write_text(text)

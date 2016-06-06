@@ -68,6 +68,7 @@ from gramps.gen.proxy import CacheProxyDb
 #------------------------------------------------------------------------
 def draw_wedge(doc, style, centerx, centery, radius, start_angle,
                end_angle, short_radius=0):
+    """ draw a wedge """
     from math import pi, cos, sin
 
     while end_angle < start_angle:
@@ -92,24 +93,24 @@ def draw_wedge(doc, style, centerx, centery, radius, start_angle,
         path.append((origx, origy))
 
     while angle < eangle:
-        x = centerx + cos(angle) * radius
-        y = centery + sin(angle) * radius
-        path.append((x, y))
+        _x_ = centerx + cos(angle) * radius
+        _y_ = centery + sin(angle) * radius
+        path.append((_x_, _y_))
         angle = angle + radiansdelta
-    x = centerx + cos(eangle) * radius
-    y = centery + sin(eangle) * radius
-    path.append((x, y))
+    _x_ = centerx + cos(eangle) * radius
+    _y_ = centery + sin(eangle) * radius
+    path.append((_x_, _y_))
 
     if short_radius:
-        x = centerx + cos(eangle) * short_radius
-        y = centery + sin(eangle) * short_radius
-        path.append((x, y))
+        _x_ = centerx + cos(eangle) * short_radius
+        _y_ = centery + sin(eangle) * short_radius
+        path.append((_x_, _y_))
 
         angle = eangle
         while angle >= sangle:
-            x = centerx + cos(angle) * short_radius
-            y = centery + sin(angle) * short_radius
-            path.append((x, y))
+            _x_ = centerx + cos(angle) * short_radius
+            _y_ = centery + sin(angle) * short_radius
+            path.append((_x_, _y_))
             angle -= radiansdelta
     doc.draw_path(style, path)
 
@@ -198,8 +199,8 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
                       start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
 
-_t = time.localtime(time.time())
-_TODAY = parser.parse("%04d-%02d-%02d" % _t[:3])
+_TTT = time.localtime(time.time())
+_TODAY = parser.parse("%04d-%02d-%02d" % _TTT[:3])
 
 def estimate_age(dbase, person,
                  end_handle=None, start_handle=None, today=_TODAY):
@@ -322,6 +323,7 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 #
 #------------------------------------------------------------------------
 class Extract:
+    """ Class for extracting statistical data from the database """
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""
@@ -396,7 +398,7 @@ class Extract:
     def get_surname(self, person):
         "return surnames for given person"
         # TODO: return all surnames, not just primary ones...
-        # TODO: have the surname fromatted according to the name_format too
+        # TODO: have the surname formatted according to the name_format too
         surnames = person.get_primary_name().get_surname().strip()
         if surnames:
             return surnames.split()
@@ -720,6 +722,7 @@ _Extract = Extract()
 #
 #------------------------------------------------------------------------
 class StatisticsChart(Report):
+    """ StatisticsChart report """
 
     def __init__(self, database, options, user):
         """
@@ -765,8 +768,8 @@ class StatisticsChart(Report):
             if value == living_value:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._("(Living people: %(option_name)s)"
-                                  % {'option_name': living_desc})
+        self.living_desc = self._(
+            "(Living people: %(option_name)s)") % {'option_name': living_desc}
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
@@ -957,11 +960,13 @@ class StatisticsChart(Report):
 #
 #------------------------------------------------------------------------
 class StatisticsChartOptions(MenuReportOptions):
+    """ Options for StatisticsChart report """
 
     def __init__(self, name, dbase):
         self.__pid = None
         self.__filter = None
         self.__db = dbase
+        self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
