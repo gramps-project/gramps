@@ -49,7 +49,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.lib import NoteType, UrlType
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.errors import ReportError
-from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
@@ -200,7 +199,7 @@ class TagReport(Report):
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 event = self.database.get_event_from_handle(birth_ref.ref)
-                self.doc.write_text(get_date(event))
+                self.doc.write_text(self._get_date(event.get_date_object()))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -209,7 +208,7 @@ class TagReport(Report):
             death_ref = person.get_death_ref()
             if death_ref:
                 event = self.database.get_event_from_handle(death_ref.ref)
-                self.doc.write_text(get_date(event))
+                self.doc.write_text(self._get_date(event.get_date_object()))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -366,7 +365,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            self.doc.write_text(str(event.get_type()))
+            self.doc.write_text(self._(self._get_type(event.get_type())))
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -379,7 +378,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            date = get_date(event)
+            date = self._get_date(event.get_date_object())
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()
@@ -613,7 +612,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            date = get_date(media)
+            date = self._get_date(media.get_date_object())
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()
@@ -854,7 +853,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            date = get_date(citation)
+            date = self._get_date(citation.get_date_object())
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()
