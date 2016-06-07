@@ -18,24 +18,30 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import time
+import sys
+import pickle
+from operator import itemgetter
+
 #------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.db.generic import *
+from gramps.gen.db.dbconst import DBLOGNAME
+import dbapi_support
+import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-import dbapi_support
-
-import time
-import sys
-import pickle
-from operator import itemgetter
-
-import logging
 LOG = logging.getLogger(".dbapi")
+_LOG = logging.getLogger(DBLOGNAME)
 
 class DBAPI(DbGeneric):
     """
@@ -93,22 +99,30 @@ class DBAPI(DbGeneric):
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
-        versionpath = os.path.join(directory, str(DBBACKEND))
-        LOG.debug("Write database backend file to 'dbapi'")
-        with open(versionpath, "w") as version_file:
-            version_file.write("dbapi")
         versionpath = os.path.join(directory, "bdbversion.txt")
+        _LOG.debug("Write bsddb version %s" % str(self.VERSION))
         with open(versionpath, "w") as version_file:
             version_file.write(str(self.VERSION))
-        versionpath = os.path.join(directory, "pickleupgrade.txt")
-        with open(versionpath, "w") as version_file:
-            version_file.write("YES")
+
         versionpath = os.path.join(directory, "pythonversion.txt")
+        _LOG.debug("Write python version file to %s" % str(sys.version_info[0]))
         with open(versionpath, "w") as version_file:
             version_file.write(str(sys.version_info[0]))
+
+        versionpath = os.path.join(directory, "pickleupgrade.txt")
+        _LOG.debug("Write pickle version file to %s" % "Yes")
+        with open(versionpath, "w") as version_file:
+            version_file.write("YES")
+
+        _LOG.debug("Write schema version file to %s" % str(self.VERSION[0]))
         versionpath = os.path.join(directory, "schemaversion.txt")
         with open(versionpath, "w") as version_file:
             version_file.write(str(self.VERSION[0]))
+
+        versionpath = os.path.join(directory, str(DBBACKEND))
+        _LOG.debug("Write database backend file to 'dbapi'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("dbapi")
         # Write default_settings, sqlite.db
         defaults = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "dbapi_support", "defaults")
@@ -334,6 +348,7 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
+        _LOG.debug("    DBAPI %s transaction begin" % hex(id(self)))
         self.dbapi.begin()
 
     def transaction_backend_commit(self):
@@ -341,6 +356,8 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
+        _LOG.debug("    DBAPI %s transaction commit"
+                   % hex(id(self)))
         self.dbapi.commit()
 
     def transaction_backend_abort(self):
@@ -354,6 +371,9 @@ class DBAPI(DbGeneric):
         """
         Transactions are handled automatically by the db layer.
         """
+        _LOG.debug("    %sDBAPI %s transaction begin for '%s'"
+                   % ("Batch " if transaction.batch else "",
+                      hex(id(self)), transaction.get_description()))
         self.transaction = transaction
         self.dbapi.begin()
         return transaction
@@ -362,6 +382,10 @@ class DBAPI(DbGeneric):
         """
         Executed at the end of a transaction.
         """
+        _LOG.debug("    %sDBAPI %s transaction commit for '%s'"
+                   % ("Batch " if txn.batch else "", hex(id(self)),
+                      txn.get_description()))
+
         action = {TXNADD: "-add",
                   TXNUPD: "-update",
                   TXNDEL: "-delete",

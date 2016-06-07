@@ -41,6 +41,7 @@ from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
+from gramps.gen.db.dbconst import DBLOGNAME
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +49,7 @@ from .config import config
 #
 #-------------------------------------------------------------------------
 LOG = logging.getLogger(".dbstate")
+_LOG = logging.getLogger(DBLOGNAME)
 
 class DbState(Callback):
     """
@@ -182,6 +184,7 @@ class DbState(Callback):
                     self.save_modules()
             mod = pmgr.load_plugin(pdata)
             database = getattr(mod, pdata.databaseclass)
+            _LOG.debug("make_database %s" % database)
             return database()
 
     def open_database(self, dbname, force_unlock=False, callback=None):

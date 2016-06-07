@@ -2197,6 +2197,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
           Boolean, defaults to False, indicating if secondary indices should be
           disconnected.
         """
+        _LOG.debug("    %s%sDbBsddb %s transaction begin for '%s'"
+                   % ("Magic " if getattr(transaction, 'no_magic', False)
+                      else "",
+                      "Batch " if transaction.batch else "",
+                      hex(id(self)),
+                      transaction.get_description()))
         if self.txn is not None:
             msg = self.transaction.get_description()
             self.transaction_abort(self.transaction)
@@ -2269,6 +2275,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.undodb.commit(transaction, msg)
         self.__after_commit(transaction)
         self.has_changed = True
+        _LOG.debug("    %s%sDbBsddb %s transaction commit for '%s'"
+                   % ("Magic " if getattr(transaction, 'no_magic', False)
+                      else "",
+                      "Batch " if transaction.batch else "",
+                      hex(id(self)),
+                      transaction.get_description()))
 
     def __emit(self, transaction, obj_type, trans_type, obj, suffix):
         """

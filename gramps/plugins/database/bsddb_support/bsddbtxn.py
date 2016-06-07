@@ -24,6 +24,23 @@ BSDDBTxn class: Wrapper for BSDDB transaction-oriented methods
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import logging
+import inspect
+import os
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.db.dbconst import DBLOGNAME
+_LOG = logging.getLogger(DBLOGNAME)
+
+#-------------------------------------------------------------------------
+#
 # BSDDBTxn
 #
 #-------------------------------------------------------------------------
@@ -54,6 +71,16 @@ class BSDDBTxn:
         """
         Initialize transaction instance
         """
+        # Conditional on __debug__ because all that frame stuff may be slow
+        if __debug__:
+            caller_frame = inspect.stack()[1]
+            _LOG.debug("        BSDDBTxn %s instantiated. Called from file %s,"
+                       " line %s, in %s" %
+                       ((hex(id(self)),)+
+                        (os.path.split(caller_frame[1])[1],)+
+                        (tuple(caller_frame[i] for i in range(2, 4)))
+                       )
+                      )
         self.env = env
         self.db = db
         self.txn = None
@@ -66,6 +93,7 @@ class BSDDBTxn:
 
         Begin the transaction
         """
+        _LOG.debug("    BSDDBTxn %s entered" % hex(id(self)))
         self.txn = self.begin(parent, **kwargs)
         self.parent = parent
         return self
@@ -76,6 +104,7 @@ class BSDDBTxn:
 
         Commit the transaction if no exception occurred
         """
+        _LOG.debug("        BSDDBTxn %s exited" % hex(id(self)))
         if exc_type is not None:
             return False
         if self.txn:
@@ -88,6 +117,11 @@ class BSDDBTxn:
         """
         Create and begin a new transaction. A DBTxn object is returned
         """
+        _LOG.debug("        BSDDBTxn %s begin" % hex(id(self)))
+        _LOG.debug("        BSDDBTxn %s calls %s %s txn_begin" %
+                   (hex(id(self)), self.env.__class__.__name__,
+                    hex(id(self.env)))
+                   )
         self.txn = self.env.txn_begin(*args, **kwargs)
         return self.txn
 
@@ -97,7 +131,7 @@ class BSDDBTxn:
         log and then flush the log
         """
         if self.env:
-             self.env.txn_checkpoint(*args, **kwargs)
+            self.env.txn_checkpoint(*args, **kwargs)
 
     def stat(self):
         """
@@ -128,6 +162,7 @@ class BSDDBTxn:
         """
         End the transaction, committing any changes to the databases
         """
+        _LOG.debug("        BSDDBTxn %s commit" % hex(id(self)))
         if self.txn:
             self.txn.commit(flags)
             self.txn = None
