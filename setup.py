@@ -54,7 +54,7 @@ ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
                'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT',
                'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'tr', 'uk', 'vi',
                'zh_CN', 'zh_HK', 'zh_TW')
-INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
+_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
 server = False
 if '--server' in sys.argv:
@@ -188,8 +188,13 @@ def build_intl(build_cmd):
     '''
     Merge translation files into desktop and mime files
     '''
+    for filename in _FILES:
+        filename = convert_path(filename)
+        strip_files(filename + '.in', filename, ['_tip', '_name'])
+
     i_v = intltool_version()
     if i_v is None or i_v < (0, 25, 0):
+        log.info('No intltool or version < 0.25.0, build_intl is aborting')
         return
     data_files = build_cmd.distribution.data_files
     base = build_cmd.build_base
@@ -208,10 +213,21 @@ def build_intl(build_cmd):
         merge(filenamelocal + '.in', newfile, option)
         data_files.append((target, [base + '/' + filename]))
 
-    for filename in INTLTOOL_FILES:
-        filename = convert_path(filename)
-        merge(filename + '.in', filename, '-x', po_dir=os.sep + 'tmp',
-              cache=False)
+def strip_files(in_file, out_file, mark):
+    '''
+    strip the file of the first character (typically an underscore) in each
+    keyword (in the "mark" argument list) in the file -- so this method is an
+    Alternative to intltool-merge command.
+    '''
+    if (not os.path.exists(out_file) and os.path.exists(in_file)):
+        old = open(in_file, 'r', encoding='utf-8')
+        with open(out_file, 'w', encoding='utf-8', errors='strict') as fb:
+            for line in old:
+                for marker in mark:
+                    line = line.replace(marker, marker[1:])
+                fb.write(line)
+        old.close()
+        log.info('Compiling %s >> %s', in_file, out_file)
 
 def merge(in_file, out_file, option, po_dir='po', cache=True):
     '''
@@ -241,6 +257,7 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
             msg = ('ERROR: %s was not merged into the translation files!\n' % 
                     out_file)
             raise SystemExit(msg)
+        log.info('Compiling %s >> %s', in_file, out_file)
 
 class build(_build):
     """Custom build command."""
