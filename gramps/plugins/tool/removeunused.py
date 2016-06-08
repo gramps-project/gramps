@@ -228,7 +228,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             places=self.places_box.get_active(),
             media=self.media_box.get_active(),
             repos=self.repos_box.get_active(),
-            notes=elf.notes_box.get_active(),
+            notes=self.notes_box.get_active(),
             )
 
         for item in self.sensitive_list:
