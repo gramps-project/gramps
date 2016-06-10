@@ -142,28 +142,28 @@ class CalcItems:
     and text for each person / marriage
     """
     def __init__(self, dbase):
-        __gui = GUIConnect()
+        _gui = GUIConnect()
 
         #calculate the printed lines for each box
         #display_repl = [] #Not used in this report
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        self.__calc_l =  CalcLines(dbase, [], __gui._locale, __gui._nd)
+        self.__calc_l = CalcLines(dbase, [], _gui.locale, _gui.n_d)
 
         self.__blank_father = None
         self.__blank_mother = None
 
         self.__blank_father = \
-            self.__calc_l.calc_lines( None, None, __gui.get_val("father_disp"))
+            self.__calc_l.calc_lines(None, None, _gui.get_val("father_disp"))
         self.__blank_mother = \
-            self.__calc_l.calc_lines( None, None, __gui.get_val("mother_disp"))
+            self.__calc_l.calc_lines(None, None, _gui.get_val("mother_disp"))
 
-        self.center_use = __gui.get_val("center_uses")
-        self.disp_father = __gui.get_val("father_disp")
-        self.disp_mother = __gui.get_val("mother_disp")
+        self.center_use = _gui.get_val("center_uses")
+        self.disp_father = _gui.get_val("father_disp")
+        self.disp_mother = _gui.get_val("mother_disp")
 
-        self.disp_marr = [__gui.get_val("marr_disp")]
+        self.disp_marr = [_gui.get_val("marr_disp")]
         self.__blank_marriage = \
             self.__calc_l.calc_lines(None, None, self.disp_marr)
 
@@ -184,14 +184,14 @@ class CalcItems:
             return working_lines
         else:
             return self.__calc_l.calc_lines(indi_handle, fams_handle,
-                                    working_lines)
+                                            working_lines)
 
     def calc_marriage(self, indi_handle, fams_handle):
         if indi_handle == fams_handle == None:
             return self.__blank_marriage
         else:
             return self.__calc_l.calc_lines(indi_handle, fams_handle,
-                                self.disp_marr)
+                                            self.disp_marr)
 
 class MakeAncestorTree(AscendPerson):
     """
@@ -227,11 +227,11 @@ class MakeAncestorTree(AscendPerson):
         if index[LVL_GEN] > self.max_generation:
             self.max_generation = index[LVL_GEN]
 
-        myself.text = self.calc_items.calc_person(
-                            index, indi_handle, fams_handle)
+        myself.text = self.calc_items.calc_person(index,
+                                                  indi_handle, fams_handle)
 
         myself.add_mark(self.database,
-                self.database.get_person_from_handle(indi_handle))
+                        self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 
@@ -282,11 +282,12 @@ class MakeAncestorTree(AscendPerson):
         then compress the tree if desired
         '''
         min_y = self.y_index(self.canvas.boxes[0].level[LVL_GEN],
-                self.canvas.boxes[0].level[LVL_INDX])
+                             self.canvas.boxes[0].level[LVL_INDX])
         for box in self.canvas.boxes:
             if "fam" in box.boxstr:
                 box.level = box.level + \
-                    (self.y_index(box.level[LVL_GEN]-1, int(box.level[LVL_INDX]/2)),)
+                    (self.y_index(box.level[LVL_GEN]-1,
+                                  int(box.level[LVL_INDX]/2)),)
             else:
                 box.level = box.level + \
                     (self.y_index(box.level[LVL_GEN], box.level[LVL_INDX]),)
@@ -331,27 +332,28 @@ class MakeAncestorTree(AscendPerson):
 
         move = level - (len(mykids)//2) + ((len(mykids)+1)%2)
 
-        if move < 0:  # more kids than parents.  ran off the page.  Move them all down
+        if move < 0:
+            # more kids than parents.  ran off the page.  Move them all down
             for box in self.canvas.boxes:
                 box.level = (box.level[0], box.level[1], box.level[2]-move)
             move = 0
 
 
         line.start = []
-        r = -1  # if len(mykids)%2 == 1 else 0
+        rrr = -1  # if len(mykids)%2 == 1 else 0
         for kid in mykids:
-            r += 1
-            me = self.add_person((1, 1, move+r), kid, self.center_family)
-            line.add_from(me)
-            #me.level = (0, 1, level - (len(mykids)//2)+r )
+            rrr += 1
+            mee = self.add_person((1, 1, move+rrr), kid, self.center_family)
+            line.add_from(mee)
+            #mee.level = (0, 1, level - (len(mykids)//2)+rrr)
 
 
     def start(self, person_id):
         """ go ahead and make it happen """
         center = self.database.get_person_from_gramps_id(person_id)
         if center is None:
-            raise ReportError(_("Person %s is not in the Database")
-                                  % person_id)
+            raise ReportError(
+                _("Person %s is not in the Database") % person_id)
         center_h = center.get_handle()
 
         #Step 1.  Get the people
@@ -386,7 +388,7 @@ class LRTransform:
         #1. cm_x
         box.x_cm = self.rept_opts.littleoffset
         box.x_cm += (box.level[LVL_GEN] *
-                (self.rept_opts.col_width + self.rept_opts.max_box_width))
+                     (self.rept_opts.col_width + self.rept_opts.max_box_width))
         #2. cm_y
         box.y_cm = self.rept_opts.max_box_height + self.rept_opts.box_pgap
         box.y_cm *= box.level[LVL_Y]
@@ -448,7 +450,7 @@ class MakeReport:
         return self.max_generations
 
     def start(self):
-        __gui = GUIConnect()
+        ## __gui = GUIConnect()
         # 1.
         #set the sizes for each box and get the max_generations.
         self.father_ht = 0.0
@@ -490,8 +492,8 @@ class GUIConnect:
     def set__opts(self, options, locale, name_displayer):
         """ Set only once as we are BORG.  """
         self.__opts = options
-        self._locale = locale
-        self._nd = name_displayer
+        self.locale = locale
+        self.n_d = name_displayer
 
     def get_val(self, val):
         """ Get a GUI value. """
@@ -506,9 +508,9 @@ class GUIConnect:
         GUI options """
         title_type = self.get_val('report_title')
         if title_type:
-            return TitleA(doc, self._locale, self._nd)
+            return TitleA(doc, self.locale, self.n_d)
         else:
-            return TitleN(doc, self._locale)
+            return TitleN(doc, self.locale)
 
     def inc_marr(self):
         return self.get_val("inc_marr")
@@ -531,6 +533,7 @@ class GUIConnect:
 #
 #------------------------------------------------------------------------
 class AncestorTree(Report):
+    """ AncestorTree Report """
 
     def __init__(self, database, options, user):
         """
@@ -588,7 +591,7 @@ class AncestorTree(Report):
 
         #The canvas that we will put our report on and print off of
         self.canvas = Canvas(self.doc,
-                        ReportOptions(self.doc, font_normal, 'AC2-line'))
+                             ReportOptions(self.doc, font_normal, 'AC2-line'))
 
         self.canvas.report_opts.box_shadow *= \
                         self.connect.get_val('shadowscale')
@@ -596,10 +599,10 @@ class AncestorTree(Report):
         self.canvas.report_opts.box_mgap *= self.connect.get_val('box_Yscale')
 
         with self._user.progress(_('Ancestor Tree'),
-                _('Making the Tree...'), 4) as step:
+                                 _('Making the Tree...'), 4) as step:
 
             #make the tree onto the canvas
-            inlc_marr = self.connect.get_val("inc_marr")
+            ## inlc_marr = self.connect.get_val("inc_marr")
             self.max_generations = self.connect.get_val('maxgen')
             tree = MakeAncestorTree(database, self.canvas)
             tree.start(self.connect.get_val('pid'))
@@ -610,8 +613,7 @@ class AncestorTree(Report):
             #Title
             title = self.connect.title_class(self.doc)
             center = self.database.get_person_from_gramps_id(
-                        self.connect.get_val('pid')
-                        )
+                self.connect.get_val('pid'))
             title.calc_title(center)
             self.canvas.add_title(title)
 
@@ -639,7 +641,8 @@ class AncestorTree(Report):
             scale_report = self.connect.get_val("scale_tree")
 
             scale = self.canvas.scale_report(one_page,
-                                             scale_report != 0, scale_report == 2)
+                                             scale_report != 0,
+                                             scale_report == 2)
 
             step()
 
@@ -662,7 +665,7 @@ class AncestorTree(Report):
         colsperpage = self.doc.get_usable_width()
         colsperpage += self.canvas.report_opts.col_width
         colsperpage = int(colsperpage / (self.canvas.report_opts.max_box_width +
-                                       self.canvas.report_opts.col_width))
+                                         self.canvas.report_opts.col_width))
         colsperpage = colsperpage or 1
 
         #####################
@@ -681,8 +684,8 @@ class AncestorTree(Report):
         #lets finally make some pages!!!
         #####################
         pages = self.canvas.page_count(incblank)
-        with self._user.progress( _('Ancestor Tree'),
-                _('Printing the Tree...'), pages) as step:
+        with self._user.progress(_('Ancestor Tree'),
+                                 _('Printing the Tree...'), pages) as step:
 
             for page in self.canvas.page_iter_gen(incblank):
 
@@ -783,9 +786,11 @@ class AncestorTreeOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
-        siblings = BooleanOption(_('Include siblings of the center person'), False)
-        siblings.set_help(_("Whether to only display the center person or all "
-            "of his/her siblings too"))
+        siblings = BooleanOption(
+            _('Include siblings of the center person'), False)
+        siblings.set_help(
+            _("Whether to only display the center person or all "
+              "of his/her siblings too"))
         menu.add_option(category_name, "inc_siblings", siblings)
 
         self.max_gen = NumberOption(_("Generations"), 10, 1, 50)
@@ -803,16 +808,17 @@ class AncestorTreeOptions(MenuReportOptions):
         self.__fillout_vals()
 
         compress = BooleanOption(_('Compress tree'), True)
-        compress.set_help(_("Whether to remove any extra blank spaces set "
-            "aside for people that are unknown"))
+        compress.set_help(
+            _("Whether to remove any extra blank spaces set "
+              "aside for people that are unknown"))
         menu.add_option(category_name, "compress_tree", compress)
 
         #better to 'Show siblings of\nthe center person
         #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
         #                                     "person"), 0)
-        #Spouse_disp.add_item( 0, _("No.  Do not show Spouses"))
-        #Spouse_disp.add_item( 1, _("Yes, and use the Main Display Format"))
-        #Spouse_disp.add_item( 2, _("Yes, and use the Secondary "
+        #Spouse_disp.add_item(0, _("No.  Do not show Spouses"))
+        #Spouse_disp.add_item(1, _("Yes, and use the Main Display Format"))
+        #Spouse_disp.add_item(2, _("Yes, and use the Secondary "
         #                           "Display Format"))
         #Spouse_disp.set_help(_("Show spouses of the center person?"))
         #menu.add_option(category_name, "Spouse_disp", Spouse_disp)
@@ -840,37 +846,36 @@ class AncestorTreeOptions(MenuReportOptions):
         category_name = _("Display")
 
         disp = TextOption(_("Father\nDisplay Format"),
-                           ["$n",
-                            "%s $b" %_BORN,
-                            "-{%s $d}" %_DIED])
+                          ["$n",
+                           "%s $b" %_BORN,
+                           "-{%s $d}" %_DIED])
         disp.set_help(_("Display format for the fathers box."))
         menu.add_option(category_name, "father_disp", disp)
 
         #Will add when libsubstkeyword supports it.
         #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
         #                                 with"), 0)
-        #missing.add_item( 0, _("Does not display anything"))
-        #missing.add_item( 1, _("Displays '_____'"))
+        #missing.add_item(0, _("Does not display anything"))
+        #missing.add_item(1, _("Displays '_____'"))
         #missing.set_help(_("What will print when information is not known"))
         #menu.add_option(category_name, "miss_val", missing)
 
         #category_name = _("Secondary")
 
-        dispMom = TextOption(_("Mother\nDisplay Format"),
-                               ["$n",
-                                "%s $b" %_BORN,
-                                "%s $m" %_MARR,
-                                "-{%s $d}" %_DIED]
-                            )
-        dispMom.set_help(_("Display format for the mothers box."))
-        menu.add_option(category_name, "mother_disp", dispMom)
+        disp_mom = TextOption(_("Mother\nDisplay Format"),
+                              ["$n",
+                               "%s $b" %_BORN,
+                               "%s $m" %_MARR,
+                               "-{%s $d}" %_DIED])
+        disp_mom.set_help(_("Display format for the mothers box."))
+        menu.add_option(category_name, "mother_disp", disp_mom)
 
-        centerDisp = EnumeratedListOption(_("Center person uses\n"
-                                        "which format"), 0)
-        centerDisp.add_item(0, _("Use Fathers Display format"))
-        centerDisp.add_item(1, _("Use Mothers display format"))
-        centerDisp.set_help(_("Which Display format to use the center person"))
-        menu.add_option(category_name, "center_uses", centerDisp)
+        center_disp = EnumeratedListOption(_("Center person uses\n"
+                                             "which format"), 0)
+        center_disp.add_item(0, _("Use Fathers Display format"))
+        center_disp.add_item(1, _("Use Mothers display format"))
+        center_disp.set_help(_("Which Display format to use the center person"))
+        menu.add_option(category_name, "center_uses", center_disp)
 
         incmarr = BooleanOption(_('Include Marriage box'), False)
         incmarr.set_help(
@@ -895,27 +900,28 @@ class AncestorTreeOptions(MenuReportOptions):
         self.scale.connect('value-changed', self.__check_blank)
 
         if "BKI" not in self.name.split(","):
-            self.__onepage = BooleanOption(_("Resize Page to Fit Tree size\n"
-                "\n"
-                "Note: Overrides options in the 'Paper Option' tab"
-                ),
+            self.__onepage = BooleanOption(
+                _("Resize Page to Fit Tree size\n"
+                  "\n"
+                  "Note: Overrides options in the 'Paper Option' tab"
+                 ),
                 False)
             self.__onepage.set_help(
                 _("Whether to resize the page to fit the size \n"
-                "of the tree.  Note:  the page will have a \n"
-                "non standard size.\n"
-                "\n"
-                "With this option selected, the following will happen:\n"
-                "\n"
-                "With the 'Do not scale tree' option the page\n"
-                "  is resized to the height/width of the tree\n"
-                "\n"
-                "With 'Scale tree to fit page width only' the height of\n"
-                "  the page is resized to the height of the tree\n"
-                "\n"
-                "With 'Scale tree to fit the size of the page' the page\n"
-                "  is resized to remove any gap in either height or width"
-                ))
+                  "of the tree.  Note:  the page will have a \n"
+                  "non standard size.\n"
+                  "\n"
+                  "With this option selected, the following will happen:\n"
+                  "\n"
+                  "With the 'Do not scale tree' option the page\n"
+                  "  is resized to the height/width of the tree\n"
+                  "\n"
+                  "With 'Scale tree to fit page width only' the height of\n"
+                  "  the page is resized to the height of the tree\n"
+                  "\n"
+                  "With 'Scale tree to fit the size of the page' the page\n"
+                  "  is resized to remove any gap in either height or width"
+                 ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
@@ -923,7 +929,8 @@ class AncestorTreeOptions(MenuReportOptions):
 
         self.box_Y_sf = NumberOption(_("inter-box scale factor"),
                                      1.00, 0.10, 2.00, 0.01)
-        self.box_Y_sf.set_help(_("Make the inter-box spacing bigger or smaller"))
+        self.box_Y_sf.set_help(
+            _("Make the inter-box spacing bigger or smaller"))
         menu.add_option(category_name, "box_Yscale", self.box_Y_sf)
 
         self.box_shadow_sf = NumberOption(_("box shadow scale factor"),
@@ -995,10 +1002,10 @@ class AncestorTreeOptions(MenuReportOptions):
             item_list.append([1, _("One Generation of empty boxes "
                                    "for unknown ancestors")])
 
-        item_list.extend([itr, str(itr) +
-                _(" Generations of empty boxes for unknown ancestors")]
-                    for itr in range(2, max_gen)
-                )
+        item_list.extend(
+            [itr, str(itr) +
+             _(" Generations of empty boxes for unknown ancestors")]
+            for itr in range(2, max_gen))
 
         self.fillout.set_items(item_list)
         if old_val+2 > len(item_list):
