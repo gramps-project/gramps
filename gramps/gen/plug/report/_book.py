@@ -47,12 +47,8 @@ import os
 # SAX interface
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser, handler, SAXParseException
-    from xml.sax.saxutils import escape
-except:
-    from _xmlplus.sax import make_parser, handler, SAXParseException
-    from _xmlplus.sax.saxutils import escape
+from xml.sax import make_parser, handler, SAXParseException
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #

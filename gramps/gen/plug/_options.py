@@ -39,12 +39,8 @@ import sys
 # SAX interface
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser, handler, SAXParseException
-    from xml.sax.saxutils import quoteattr
-except:
-    from _xmlplus.sax import make_parser, handler, SAXParseException
-    from _xmlplus.sax.saxutils import quoteattr
+from xml.sax import make_parser, handler, SAXParseException
+from xml.sax.saxutils import quoteattr
 
 #-------------------------------------------------------------------------
 #

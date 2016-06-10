@@ -31,10 +31,7 @@ import sys
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
 
-try:
-    from xml.sax import make_parser, handler, SAXParseException
-except ImportError:
-    from _xmlplus.sax import make_parser, handler, SAXParseException
+from xml.sax import make_parser, handler, SAXParseException
 
 #-------------------------------------------------------------------------
 #

@@ -60,10 +60,7 @@ log = logging.getLogger(".stylesheet")
 # SAX interface
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser, handler, SAXParseException
-except ImportError:
-    from _xmlplus.sax import make_parser, handler, SAXParseException
+from xml.sax import make_parser, handler, SAXParseException
 
 #------------------------------------------------------------------------
 #

@@ -40,10 +40,7 @@ from ...const import PAPERSIZE
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser, handler, SAXParseException
-except:
-    from _xmlplus.sax import make_parser, handler, SAXParseException
+from xml.sax import make_parser, handler, SAXParseException
 
 #-------------------------------------------------------------------------
 #

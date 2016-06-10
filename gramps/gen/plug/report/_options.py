@@ -44,10 +44,7 @@ def escxml(word):
 # SAX interface
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser, SAXParseException
-except:
-    from _xmlplus.sax import make_parser, SAXParseException
+from xml.sax import make_parser, SAXParseException
 
 #-------------------------------------------------------------------------
 #
