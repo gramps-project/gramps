@@ -57,14 +57,7 @@ from gramps.gen.plug.docbackend import DocBackend
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-
 _LOG = logging.getLogger(".latexdoc")
-if not HAVE_PIL:
-    _LOG.warning(_("PIL (Python Imaging Library) not loaded. "
-                   "Production of jpg images from non-jpg images "
-                   "in LaTeX documents will not be available. "
-                   "Use your package manager to install python-imaging "
-                   "or python-pillow or python3-pillow"))
 
 _CLICKABLE = '\\url{\\1}'
 
@@ -1239,9 +1232,21 @@ class LaTeXDoc(BaseDoc, TextDoc):
                                    '\n ***                    to ', outfile,
                                    '%\n')))
         elif not HAVE_PIL:
+            from gramps.gen.config import config
+            if not config.get('interface.ignore-pil'):
+                from gramps.gen.constfunc import has_display
+                if has_display():
+                    from gramps.gui.dialog import MessageHideDialog
+                    title = _("PIL (Python Imaging Library) not loaded.")
+                    message = _("Production of jpg images from non-jpg images "
+                                "in LaTeX documents will not be available. "
+                                "Use your package manager to install "
+                                "python-imaging or python-pillow or "
+                                "python3-pillow")
+                    MessageHideDialog(title, message, 'interface.ignore-pil')
             self.emit(''.join(('%\n *** Error: cannot convert ', infile,
                                '\n ***                    to ', outfile,
-                               'PIL not installed %\n')))
+                               '\n *** PIL not installed %\n')))
 
         if self.in_table:
             self.pict_in_table = True
