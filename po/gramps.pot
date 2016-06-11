@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-06 13:20-0700\n"
+"POT-Creation-Date: 2016-06-11 13:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1525,27 +1525,27 @@ msgstr ""
 msgid "Failed to write report. "
 msgstr ""
 
-#: ../gramps/gen/config.py:297
+#: ../gramps/gen/config.py:298
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr ""
 
-#: ../gramps/gen/config.py:311
+#: ../gramps/gen/config.py:312
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../gramps/gen/config.py:312
+#: ../gramps/gen/config.py:313
 msgid "Missing Record"
 msgstr ""
 
-#: ../gramps/gen/config.py:313
+#: ../gramps/gen/config.py:314
 msgid "Missing Surname"
 msgstr ""
 
-#: ../gramps/gen/config.py:320 ../gramps/gen/config.py:322
+#: ../gramps/gen/config.py:321 ../gramps/gen/config.py:323
 msgid "[Living]"
 msgstr ""
 
-#: ../gramps/gen/config.py:321
+#: ../gramps/gen/config.py:322
 msgid "Private Record"
 msgstr ""
 
@@ -17711,11 +17711,15 @@ msgstr ""
 msgid "Could not create jpeg version of image %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/docgen/latexdoc.py:63
+#: ../gramps/plugins/docgen/latexdoc.py:1240
+msgid "PIL (Python Imaging Library) not loaded."
+msgstr ""
+
+#: ../gramps/plugins/docgen/latexdoc.py:1241
 msgid ""
-"PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
-"jpg images in LaTeX documents will not be available. Use your package "
-"manager to install python-imaging or python-pillow or python3-pillow"
+"Production of jpg images from non-jpg images in LaTeX documents will not be "
+"available. Use your package manager to install python-imaging or python-"
+"pillow or python3-pillow"
 msgstr ""
 
 #: ../gramps/plugins/docgen/odfdoc.py:1164
