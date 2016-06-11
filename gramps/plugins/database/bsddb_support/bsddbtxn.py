@@ -93,7 +93,7 @@ class BSDDBTxn:
 
         Begin the transaction
         """
-        _LOG.debug("    BSDDBTxn %s entered" % hex(id(self)))
+        _LOG.debug("        BSDDBTxn %s entered" % hex(id(self)))
         self.txn = self.begin(parent, **kwargs)
         self.parent = parent
         return self
