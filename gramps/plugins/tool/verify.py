@@ -173,6 +173,19 @@ def get_birth_date(db, person, estimate=False):
         ret = 0 if ret is None else ret
     return ret
 
+def get_death(db, person):
+    """
+    boolean whether there is a death event or not
+    (if a user claims a person is dead, we will believe it even with no date)
+    """
+    if not person:
+        return False
+    death_ref = person.get_death_ref()
+    if death_ref:
+        return True
+    else:
+        return False
+
 def get_death_date(db, person, estimate=False):
     if not person:
         return 0
@@ -1579,8 +1592,9 @@ class OldAgeButNoDeath(PersonRule):
 
     def broken(self):
         birth_date = get_birth_date(self.db,self.obj,self.est)
-        dead = get_death_date(self.db,self.obj,True) # if no death use burial
-        if dead or not birth_date:
+        dead = get_death(self.db, self.obj)
+        death_date = get_death_date(self.db, self.obj, True) # use burial ...
+        if dead or death_date or not birth_date:
             return 0
         age = ( _today - birth_date ) / 365
         return ( age > self.old_age )
