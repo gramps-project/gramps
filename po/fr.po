@@ -6937,7 +6937,7 @@ msgstr "Validation d'un testament"
 
 #: ../gramps/gen/lib/eventtype.py:199
 msgid "Property"
-msgstr "Possessions"
+msgstr "Propriété"
 
 #: ../gramps/gen/lib/eventtype.py:200
 #: ../gramps/plugins/gramplet/persondetails.py:126
