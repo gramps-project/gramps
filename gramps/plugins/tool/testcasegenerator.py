@@ -86,6 +86,47 @@ from gramps.gen.const import URL_MANUAL_PAGE
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('Generate_Testcases_for_Persons_and_Families')
 
+LDS_ORD_BAPT_STATUS = (
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
+        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED)
+
+LDS_ORD_CHILD_SEALING_STATUS = (
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_BIC, LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED,LdsOrd.STATUS_DNS,
+        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED)
+
+LDS_ENDOWMENT_DATE_STATUS = (
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
+        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED)
+
+LDS_SPOUSE_SEALING_DATE_STATUS = (
+        LdsOrd.STATUS_NONE,
+        LdsOrd.STATUS_CANCELED, LdsOrd.STATUS_CLEARED,
+        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
+        LdsOrd.STATUS_DNS_CAN, LdsOrd.STATUS_PRE_1970,
+        LdsOrd.STATUS_QUALIFIED, LdsOrd.STATUS_SUBMITTED,
+        LdsOrd.STATUS_UNCLEARED)
+
+LDS_INDIVIDUAL_ORD = [(LdsOrd.BAPTISM, LDS_ORD_BAPT_STATUS),
+                      (LdsOrd.CONFIRMATION, LDS_ORD_BAPT_STATUS),
+                      (LdsOrd.ENDOWMENT, LDS_ENDOWMENT_DATE_STATUS),
+                      (LdsOrd.SEAL_TO_PARENTS,
+                                        LDS_ORD_CHILD_SEALING_STATUS)]
+
+LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE,
+                                        LDS_SPOUSE_SEALING_DATE_STATUS)]
+
 #-------------------------------------------------------------------------
 #
 #
@@ -1589,14 +1630,17 @@ class TestcaseGenerator(tool.BatchTool):
             while randint(0,1) == 1:
                 ldsord = LdsOrd()
                 self.fill_object( ldsord)
-                # TODO: adapt type and status to family/person
-                #if isinstance(o,Person):
-                #if isinstance(o,Family):
-                ldsord.set_type( choice(
-                    [item[0] for item in LdsOrd._TYPE_MAP] ))
-                ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
-                if self.generated_families:
-                    ldsord.set_family_handle( choice(self.generated_families))
+                if isinstance(o,Person):
+                    lds_type = choice([item for item in LDS_INDIVIDUAL_ORD] )
+                if isinstance(o,Family):
+                    lds_type = LDS_SPOUSE_SEALING[0]
+                    if self.generated_families:
+                        ldsord.set_family_handle(
+                                        choice(self.generated_families))
+                ldsord.set_type(lds_type[0])
+                status = choice(lds_type[1])
+                if status != LdsOrd.STATUS_NONE:
+                    ldsord.set_status(status)
                 o.add_lds_ord( ldsord)
 
         if isinstance(o,Location):
