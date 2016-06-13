@@ -185,43 +185,53 @@ class RTFDoc(BaseDoc, TextDoc):
         # build paragraph information
 
         if not self.in_table:
-            self.file.write('\\pard')
+            para_type = '\n\\pard'
+        else:
+            para_type = '\n\\pard\\intbl'
         if para.get_alignment() == PARA_ALIGN_RIGHT:
-            self.file.write('\\qr')
+            para_type += '\\qr'
         elif para.get_alignment() == PARA_ALIGN_CENTER:
-            self.file.write('\\qc')
-        self.file.write(
-            '\\ri%d' % twips(para.get_right_margin()) +
-            '\\li%d' % twips(para.get_left_margin()) +
+            para_type += '\\qc'
+        para_type += \
+            '\\ri%d' % twips(para.get_right_margin()) + \
+            '\\li%d' % twips(para.get_left_margin()) + \
             '\\fi%d' % twips(para.get_first_indent())
-            )
+
         if para.get_alignment() == PARA_ALIGN_JUSTIFY:
-            self.file.write('\\qj')
+            para_type += '\\qj'
         if para.get_padding():
-            self.file.write('\\sa%d' % twips(para.get_padding()/2.0))
+            para_type += '\\sa%d' % twips(para.get_padding()/2.0)
         if para.get_top_border():
-            self.file.write('\\brdrt\\brdrs')
+            para_type += '\\brdrt\\brdrs'
         if para.get_bottom_border():
-            self.file.write('\\brdrb\\brdrs')
+            para_type += '\\brdrb\\brdrs'
         if para.get_left_border():
-            self.file.write('\\brdrl\\brdrs')
+            para_type += '\\brdrl\\brdrs'
         if para.get_right_border():
-            self.file.write('\\brdrr\\brdrs')
+            para_type += '\\brdrr\\brdrs'
         if para.get_first_indent():
-            self.file.write('\\fi%d' % twips(para.get_first_indent()))
+            para_type += '\\fi%d' % twips(para.get_first_indent())
         if para.get_left_margin():
-            self.file.write('\\li%d' % twips(para.get_left_margin()))
+            para_type += '\\li%d' % twips(para.get_left_margin())
         if para.get_right_margin():
-            self.file.write('\\ri%d' % twips(para.get_right_margin()))
+            para_type += '\\ri%d' % twips(para.get_right_margin())
+
+        # the deferred newline while in table cell
+        if self.in_table and self.need_nl:
+            self.text += '\n\\line}'
+            self.need_nl = False
+
+        self.text += para_type
 
         if leader:
             self.opened = 1
-            self.file.write('\\tx%d' % twips(para.get_left_margin()))
-            self.file.write('{%s ' % self.font_type)
-            self.write_text(leader)
-            self.file.write(self.text)
-            self.text = ""
-            self.file.write('\\tab}')
+            self.text += '\\tx%d' % twips(para.get_left_margin())
+            self.text += '{%s ' % self.font_type
+            self.text += leader
+            # self.write_text(leader)
+            # self.file.write(self.text)
+            # self.text = ""
+            self.text += '\\tab}'
             self.opened = 0
 
     #--------------------------------------------------------------------
@@ -233,13 +243,9 @@ class RTFDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_paragraph(self):
-        # FIXME: I don't understand why no end paragraph marker is output when
-        # we are inside a table. Since at least version 3.2.2, this seems to
-        # mean that there is no new paragraph after the first line of a table
-        # entry.
-        # For example in the birth cell, the first paragraph should be the
-        # description (21 Jan 1900 in London); if there is a note following
-        # this, there is no newline between the description and the note.
+        # To deal with newlines in the table cell, we defer them till the
+        # beginning of the next paragraph.  This is so that we don't get
+        # an excessive space at the end of a table.
         if not self.in_table:
             self.file.write(self.text)
             LOG.debug("end_paragraph: opened: %d write: %s",
@@ -253,7 +259,7 @@ class RTFDoc(BaseDoc, TextDoc):
         else:
             if self.text == "":
                 self.write_text(" ")
-            self.text += '}'
+            self.need_nl = True
 
     #--------------------------------------------------------------------
     #
@@ -330,6 +336,7 @@ class RTFDoc(BaseDoc, TextDoc):
         self.cell = 0
         self.prev = 0
         self.cell_percent = 0.0
+        self.text = ""
         self.file.write('\\trowd\n')
 
     #--------------------------------------------------------------------
@@ -343,7 +350,7 @@ class RTFDoc(BaseDoc, TextDoc):
         for line in self.contents:
             self.file.write(line)
             self.file.write('\\cell ')
-        self.file.write('}\\pard\\intbl\\row\n')
+        self.file.write('}\\row\n')
 
     #--------------------------------------------------------------------
     #
@@ -370,7 +377,8 @@ class RTFDoc(BaseDoc, TextDoc):
         for cell in range(self.cell, self.cell+span):
             self.cell_percent += float(self.tbl_style.get_column_width(cell))
         cell_width = twips((table_width * self.cell_percent)/100.0)
-        self.file.write('\\cellx%d\\pard\intbl\n' % cell_width)
+        self.need_nl = False
+        self.file.write('\\cellx%d\n' % cell_width)
         self.cell += 1
 
     #--------------------------------------------------------------------
@@ -380,6 +388,9 @@ class RTFDoc(BaseDoc, TextDoc):
     #
     #--------------------------------------------------------------------
     def end_cell(self):
+        if self.opened == 1:    # We defered paragraph end and now need it.
+            self.text += '}'
+            self.opened = 0
         self.contents.append(self.text)
         self.text = ""
 
@@ -410,15 +421,26 @@ class RTFDoc(BaseDoc, TextDoc):
         act_width = size[0]
         act_height = size[1]
 
-        self.file.write('{\*\shppict{\\pict\\jpegblip')
-        self.file.write('\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height))
-        index = 1
-        for i in buf:
-            self.file.write('%02x' % i)
-            if index%32 == 0:
-                self.file.write('\n')
-            index = index+1
-        self.file.write('}}\\par\n')
+        if self.in_table:
+            self.text += '{\*\shppict{\\pict\\jpegblip'
+            self.text += '\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height)
+            index = 1
+            for i in buf:
+                self.text += '%02x' % i
+                if index % 32 == 0:
+                    self.text += '\n'
+                index = index+1
+            self.text += '}}\\par\n'
+        else:
+            self.file.write('{\*\shppict{\\pict\\jpegblip')
+            self.file.write('\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height))
+            index = 1
+            for i in buf:
+                self.file.write('%02x' % i)
+                if index % 32 == 0:
+                    self.file.write('\n')
+                index = index+1
+            self.file.write('}}\\par\n')
 
         if len(alt):
             self.file.write('%s\n\\par\n' % '\\par'.join(alt))
@@ -450,7 +472,7 @@ class RTFDoc(BaseDoc, TextDoc):
                 linenb = 1
             else:
                 if linenb > 1:
-                    self.write_text('\\line ')
+                    self.write_text('\n')
                 self.write_text(line, links=links)
                 linenb += 1
         # FIXME: I don't understand why these newlines are necessary.
