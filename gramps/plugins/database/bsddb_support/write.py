@@ -2198,7 +2198,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
           disconnected.
         """
         _LOG.debug("    %s%sDbBsddb %s transaction begin for '%s'"
-                   % ("Magic " if getattr(transaction, 'no_magic', False)
+                   % ("Magic " if not getattr(transaction, 'no_magic', False)
                       else "",
                       "Batch " if transaction.batch else "",
                       hex(id(self)),
@@ -2276,7 +2276,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__after_commit(transaction)
         self.has_changed = True
         _LOG.debug("    %s%sDbBsddb %s transaction commit for '%s'"
-                   % ("Magic " if getattr(transaction, 'no_magic', False)
+                   % ("Magic " if not getattr(transaction, 'no_magic', False)
                       else "",
                       "Batch " if transaction.batch else "",
                       hex(id(self)),
