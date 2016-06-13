@@ -58,6 +58,47 @@ import LdsUtils
 from gen.db.dbconst import *
 import const
 
+LDS_ORD_BAPT_STATUS = (
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CHILD, gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED, gen.lib.LdsOrd.STATUS_INFANT,
+        gen.lib.LdsOrd.STATUS_PRE_1970, gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN, gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED)
+
+LDS_ORD_CHILD_SEALING_STATUS = (
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_BIC, gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,gen.lib.LdsOrd.STATUS_DNS,
+        gen.lib.LdsOrd.STATUS_PRE_1970, gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN, gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED)
+
+LDS_ENDOWMENT_DATE_STATUS = (
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CHILD, gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED, gen.lib.LdsOrd.STATUS_INFANT,
+        gen.lib.LdsOrd.STATUS_PRE_1970, gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN, gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED)
+
+LDS_SPOUSE_SEALING_DATE_STATUS = (
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CANCELED, gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED, gen.lib.LdsOrd.STATUS_DNS,
+        gen.lib.LdsOrd.STATUS_DNS_CAN, gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED, gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED)
+
+LDS_INDIVIDUAL_ORD = [(gen.lib.LdsOrd.BAPTISM, LDS_ORD_BAPT_STATUS),
+                      (gen.lib.LdsOrd.CONFIRMATION, LDS_ORD_BAPT_STATUS),
+                      (gen.lib.LdsOrd.ENDOWMENT, LDS_ENDOWMENT_DATE_STATUS),
+                      (gen.lib.LdsOrd.SEAL_TO_PARENTS,
+                                        LDS_ORD_CHILD_SEALING_STATUS)]
+
+LDS_SPOUSE_SEALING = [(gen.lib.LdsOrd.SEAL_TO_SPOUSE,
+                                        LDS_SPOUSE_SEALING_DATE_STATUS)]
+
 #-------------------------------------------------------------------------
 #
 #
@@ -1541,14 +1582,17 @@ class TestcaseGenerator(tool.BatchTool):
             while randint(0,1) == 1:
                 ldsord = gen.lib.LdsOrd()
                 self.fill_object( ldsord)
-                # TODO: adapt type and status to family/person
-                #if isinstance(o,gen.lib.Person):
-                #if isinstance(o,gen.lib.Family):
-                ldsord.set_type( choice(
-                    [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
-                ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
-                if self.generated_families:
-                    ldsord.set_family_handle( choice(self.generated_families))
+                if isinstance(o,gen.lib.Person):
+                    lds_type = choice([item for item in LDS_INDIVIDUAL_ORD] )
+                if isinstance(o,gen.lib.Family):
+                    lds_type = LDS_SPOUSE_SEALING[0]
+                    if self.generated_families:
+                        ldsord.set_family_handle(
+                                        choice(self.generated_families))
+                ldsord.set_type(lds_type[0])
+                status = choice(lds_type[1])
+                if status != gen.lib.LdsOrd.STATUS_NONE:
+                    ldsord.set_status(status)
                 o.add_lds_ord( ldsord)
 
         if isinstance(o,gen.lib.Location):
