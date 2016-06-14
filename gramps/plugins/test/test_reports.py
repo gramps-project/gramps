@@ -330,17 +330,16 @@ for (report_name, off, files) in report_list:
                       off=off)
 
 reports.addcli(TestDynamic, "tool_verify",
-               out_does_contain(["W: Old age but no death, Person: I0004, Smith, Ingeman",
-                                 "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+               out_does_contain(["W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna"
                                  "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
                                  "W: Multiple parents, Person: I0063, Jones, Frank Albert",
-                                 "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
                                  "W: Multiple parents, Person: I0076, Smith, Marie Astri",
                                  "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
-                                 "W: Old age but no death, Person: I0011, Smith, Hanna",
+                                 "W: Old age but no death, Person: I0004, Smith, Ingeman",
                                  "W: Old age but no death, Person: I0009, Smith, Emil",
-                                 "W: Old age but no death, Person: I0036, Jefferson, Elna",
-                                 "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna"
+                                 "W: Old age but no death, Person: I0011, Smith, Hanna",
+                                 "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+                                 "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
                              ]),
                [None],
                "--force",
