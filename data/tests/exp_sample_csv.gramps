@@ -1,0 +1,1370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-06-14" version="5.0.0-alpha1"/>
+    <researcher>
+      <resname>Alex Roitman,,,</resname>
+      <resaddr>Not Provided</resaddr>
+    </researcher>
+  </header>
+  <tags>
+    <tag handle="_d54b22fbfc721be9331fb706e3" change="1465741788" name="Unicode" color="#000000" priority="0"/>
+  </tags>
+  <events>
+    <event handle="_0000000200000002" change="1463929997" id="E0000">
+      <type>Birth</type>
+      <dateval val="1864-10-02"/>
+      <place hlink="_0000000300000003"/>
+      <description>Birth of Anna Hansdotter</description>
+    </event>
+    <event handle="_0000000400000004" change="1463929997" id="E0001">
+      <type>Death</type>
+      <dateval val="1945-09-29"/>
+      <place hlink="_0000000500000005"/>
+      <description>Death of Anna Hansdotter</description>
+    </event>
+    <event handle="_0000000800000008" change="1463929997" id="E0002">
+      <type>Birth</type>
+      <dateval val="1966-08-11"/>
+      <place hlink="_0000000900000009"/>
+      <description>Birth of Keith Lloyd Smith</description>
+    </event>
+    <event handle="_0000000c0000000c" change="1465075916" id="E0003">
+      <type>Birth</type>
+      <dateval val="1904-04-17"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Hans Peter Smith</description>
+      <citationref hlink="_d53254b0c802fe24bdea26f3180"/>
+    </event>
+    <event handle="_0000000e0000000e" change="1463929997" id="E0004">
+      <type>Death</type>
+      <dateval val="1977-01-29"/>
+      <place hlink="_0000000900000009"/>
+      <description>Death of Hans Peter Smith</description>
+    </event>
+    <event handle="_0000001200000012" change="1463929997" id="E0005">
+      <type>Birth</type>
+      <dateval val="1821-01-29"/>
+      <place hlink="_0000001300000013"/>
+      <description>Birth of Hanna Smith</description>
+    </event>
+    <event handle="_0000001600000016" change="1463929997" id="E0006">
+      <type>Birth</type>
+      <dateval val="1889-08-31"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Herman Julius Nielsen</description>
+    </event>
+    <event handle="_0000001700000017" change="1463929997" id="E0007">
+      <type>Death</type>
+      <dateval val="1945"/>
+      <description>Death of Herman Julius Nielsen</description>
+    </event>
+    <event handle="_0000001a0000001a" change="1463929997" id="E0008">
+      <type>Birth</type>
+      <dateval val="1897" type="about"/>
+      <description>Birth of Evelyn Michaels</description>
+    </event>
+    <event handle="_0000001d0000001d" change="1463929997" id="E0009">
+      <type>Birth</type>
+      <dateval val="1934-11-04"/>
+      <place hlink="_0000001e0000001e"/>
+      <description>Birth of Marjorie Lee Smith</description>
+    </event>
+    <event handle="_0000002100000021" change="1463929997" id="E0010">
+      <type>Birth</type>
+      <dateval val="1897-09-11"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Gus Smith</description>
+    </event>
+    <event handle="_0000002200000022" change="1463929997" id="E0011">
+      <type>Death</type>
+      <dateval val="1963-10-21"/>
+      <place hlink="_0000000900000009"/>
+      <description>Death of Gus Smith</description>
+    </event>
+    <event handle="_0000002400000024" change="1463929997" id="E0012">
+      <type>Birth</type>
+      <dateval val="1907-11-05"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Jennifer Anderson</description>
+    </event>
+    <event handle="_0000002500000025" change="1463929997" id="E0013">
+      <type>Death</type>
+      <dateval val="1985-05-29"/>
+      <place hlink="_0000000900000009"/>
+      <description>Death of Jennifer Anderson</description>
+    </event>
+    <event handle="_0000002700000027" change="1463929997" id="E0014">
+      <type>Birth</type>
+      <dateval val="1910-05-02"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Lillie Harriet Jones</description>
+    </event>
+    <event handle="_0000002800000028" change="1463929997" id="E0015">
+      <type>Death</type>
+      <dateval val="1990-06-26"/>
+      <description>Death of Lillie Harriet Jones</description>
+    </event>
+    <event handle="_0000002a0000002a" change="1463929997" id="E0016">
+      <type>Birth</type>
+      <dateval val="1932-01-30"/>
+      <place hlink="_0000000900000009"/>
+      <description>Birth of John Hjalmar Smith</description>
+    </event>
+    <event handle="_0000002d0000002d" change="1463929997" id="E0017">
+      <type>Birth</type>
+      <dateval val="1963-08-28"/>
+      <place hlink="_0000000900000009"/>
+      <description>Birth of Eric Lloyd Smith</description>
+    </event>
+    <event handle="_0000002e0000002e" change="1463929997" id="E0018">
+      <type>Adopted</type>
+    </event>
+    <event handle="_0000003100000031" change="1463929997" id="E0019">
+      <type>Birth</type>
+      <dateval val="1998-04-12"/>
+      <place hlink="_0000003200000032"/>
+      <description>Birth of Amber Marie Smith</description>
+    </event>
+    <event handle="_0000003300000033" change="1463929997" id="E0020">
+      <type>Christening</type>
+      <dateval val="1998-04-26"/>
+      <place hlink="_0000003400000034"/>
+      <description>Christening of Amber Marie Smith</description>
+    </event>
+    <event handle="_0000003700000037" change="1463929997" id="E0021">
+      <type>Birth</type>
+      <dateval val="1899-12-20"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Carl Emil Smith</description>
+    </event>
+    <event handle="_0000003800000038" change="1463929997" id="E0022">
+      <type>Death</type>
+      <dateval val="1959-01-28"/>
+      <place hlink="_0000001e0000001e"/>
+      <description>Death of Carl Emil Smith</description>
+      <attribute type="Cause" value="Bad breath"/>
+    </event>
+    <event handle="_0000003a0000003a" change="1463929997" id="E0023">
+      <type>Birth</type>
+      <dateval val="1893-01-31"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Hjalmar Smith</description>
+    </event>
+    <event handle="_0000003b0000003b" change="1463929997" id="E0024">
+      <type>Death</type>
+      <dateval val="1894-09-25"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Death of Hjalmar Smith</description>
+    </event>
+    <event handle="_0000003d0000003d" change="1463929997" id="E0025">
+      <type>Birth</type>
+      <dateval val="1830-11-19"/>
+      <place hlink="_0000001300000013"/>
+      <description>Birth of Martin Smith</description>
+    </event>
+    <event handle="_0000003e0000003e" change="1463929997" id="E0026">
+      <type>Death</type>
+      <daterange start="1899" stop="1905"/>
+      <place hlink="_0000003f0000003f"/>
+      <description>Death of Martin Smith</description>
+    </event>
+    <event handle="_0000004000000040" change="1463929997" id="E0027">
+      <type>Baptism</type>
+      <dateval val="1830-11-23"/>
+      <place hlink="_0000001300000013"/>
+      <description>Baptism of Martin Smith</description>
+    </event>
+    <event handle="_0000004400000044" change="1463929997" id="E0028">
+      <type>Birth</type>
+      <dateval val="1889-01-31"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Astrid Shermanna Augusta Smith</description>
+    </event>
+    <event handle="_0000004500000045" change="1463929997" id="E0029">
+      <type>Death</type>
+      <dateval val="1963-12-21"/>
+      <place hlink="_0000000900000009"/>
+      <description>Death of Astrid Shermanna Augusta Smith</description>
+    </event>
+    <event handle="_0000004700000047" change="1463929997" id="E0030">
+      <type>Birth</type>
+      <dateval val="1862-11-28"/>
+      <place hlink="_0000004800000048"/>
+      <description>Birth of Gustaf Smith, Sr.</description>
+    </event>
+    <event handle="_0000004900000049" change="1463929997" id="E0031">
+      <type>Death</type>
+      <dateval val="1930-07-23" type="before"/>
+      <place hlink="_0000000500000005"/>
+      <description>Death of Gustaf Smith, Sr.</description>
+    </event>
+    <event handle="_0000004a0000004a" change="1463929997" id="E0032">
+      <type>Immi</type>
+      <dateval val="1908-05-21"/>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_0000004c0000004c" change="1463929997" id="E0033">
+      <type>Christening</type>
+      <dateval val="1862-12-07"/>
+      <place hlink="_0000001300000013"/>
+      <description>Christening of Gustaf Smith, Sr.</description>
+    </event>
+    <event handle="_0000004e0000004e" change="1463929997" id="E0034">
+      <type>Birth</type>
+      <dateval val="1775" type="about"/>
+      <place hlink="_0000003f0000003f"/>
+      <description>Birth of Marta Ericsdotter</description>
+    </event>
+    <event handle="_0000005100000051" change="1463929997" id="E0035">
+      <type>Birth</type>
+      <dateval val="1886-12-15"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Kirsti Marie Smith</description>
+    </event>
+    <event handle="_0000005200000052" change="1463929997" id="E0036">
+      <type>Death</type>
+      <dateval val="1966-07-18"/>
+      <place hlink="_0000000900000009"/>
+      <description>Death of Kirsti Marie Smith</description>
+    </event>
+    <event handle="_0000005500000055" change="1463929997" id="E0037">
+      <type>Birth</type>
+      <dateval val="1770" type="about"/>
+      <place hlink="_0000003f0000003f"/>
+      <description>Birth of Ingeman Smith</description>
+    </event>
+    <event handle="_0000005700000057" change="1463929997" id="E0038">
+      <type>Birth</type>
+      <dateval val="1860-09-23"/>
+      <place hlink="_0000005800000058"/>
+      <description>Birth of Anna Streiffert</description>
+    </event>
+    <event handle="_0000005900000059" change="1463929997" id="E0039">
+      <type>Death</type>
+      <dateval val="1927-02-02"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Death of Anna Streiffert</description>
+    </event>
+    <event handle="_0000005c0000005c" change="1463929997" id="E0040">
+      <type>Birth</type>
+      <dateval val="1966" type="after"/>
+      <place hlink="_0000000900000009"/>
+      <description>Birth of Craig Peter Smith</description>
+    </event>
+    <event handle="_0000005d0000005d" change="1463929997" id="E0041">
+      <type>Census</type>
+      <description>Census of Craig Peter Smith</description>
+      <noteref hlink="_0000005e0000005e"/>
+    </event>
+    <event handle="_0000006000000060" change="1463929997" id="E0042">
+      <type>Birth</type>
+      <dateval val="1858-10-06"/>
+      <place hlink="_0000006100000061"/>
+      <description>Birth of Magnes Smith</description>
+    </event>
+    <event handle="_0000006200000062" change="1463929997" id="E0043">
+      <type>Death</type>
+      <dateval val="1910-02-20"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Death of Magnes Smith</description>
+    </event>
+    <event handle="_0000006400000064" change="1463929997" id="E0044">
+      <type>Birth</type>
+      <dateval val="1965-08-26"/>
+      <place hlink="_0000006500000065"/>
+      <description>Birth of Janice Ann Adams</description>
+    </event>
+    <event handle="_0000006600000066" change="1463929997" id="E0045">
+      <type>Occupation</type>
+      <description>Retail Manager</description>
+    </event>
+    <event handle="_0000006700000067" change="1463929997" id="E0046">
+      <type>Degree</type>
+      <dateval val="1988"/>
+      <description>Business Management</description>
+    </event>
+    <event handle="_0000006900000069" change="1463929997" id="E0047">
+      <type>Birth</type>
+      <dateval val="1903-06-03"/>
+      <place hlink="_0000006a0000006a"/>
+      <description>Birth of Marjorie Ohman</description>
+    </event>
+    <event handle="_0000006b0000006b" change="1463929997" id="E0048">
+      <type>Death</type>
+      <dateval val="1980-06-22"/>
+      <place hlink="_0000001e0000001e"/>
+      <description>Death of Marjorie Ohman</description>
+    </event>
+    <event handle="_0000006d0000006d" change="1463929997" id="E0049">
+      <type>Birth</type>
+      <dateval val="1966-07-02"/>
+      <place hlink="_0000006e0000006e"/>
+      <description>Birth of Darcy Horne</description>
+    </event>
+    <event handle="_0000007000000070" change="1463929997" id="E0050">
+      <type>Birth</type>
+      <dateval val="1935-03-13"/>
+      <place hlink="_0000000900000009"/>
+      <description>Birth of Lloyd Smith</description>
+    </event>
+    <event handle="_0000007200000072" change="1463929997" id="E0051">
+      <type>Birth</type>
+      <dateval val="1933-11-22"/>
+      <place hlink="_0000000500000005"/>
+      <description>Birth of Alice Paula Perkins</description>
+    </event>
+    <event handle="_0000007400000074" change="1463929997" id="E0052">
+      <type>Birth</type>
+      <dateval val="1991-09-16"/>
+      <place hlink="_0000007500000075"/>
+      <description>Birth of Lars Peter Smith</description>
+    </event>
+    <event handle="_0000007600000076" change="1463929997" id="E0053">
+      <type>Adopted</type>
+    </event>
+    <event handle="_0000007800000078" change="1463929997" id="E0054">
+      <type>Birth</type>
+      <dateval val="1800-09-14"/>
+      <place hlink="_0000001300000013"/>
+      <description>Birth of Elna Jefferson</description>
+    </event>
+    <event handle="_0000007900000079" change="1463929997" id="E0055">
+      <type>Death</type>
+      <place hlink="_0000003f0000003f"/>
+      <description>Death of Elna Jefferson</description>
+    </event>
+    <event handle="_0000007a0000007a" change="1463929997" id="E0056">
+      <type>Christening</type>
+      <dateval val="1800-09-16"/>
+      <place hlink="_0000001300000013"/>
+      <description>Christening of Elna Jefferson</description>
+    </event>
+    <event handle="_0000007e0000007e" change="1463929997" id="E0057">
+      <type>Birth</type>
+      <dateval val="1961-05-24"/>
+      <place hlink="_0000008100000081"/>
+      <description>Birth of Edwin Michael Smith</description>
+      <citationref hlink="_0000008000000080"/>
+    </event>
+    <event handle="_0000008200000082" change="1463929997" id="E0058">
+      <type>Occupation</type>
+      <description>Software Engineer</description>
+      <noteref hlink="_0000008300000083"/>
+    </event>
+    <event handle="_0000008400000084" change="1463929997" id="E0059">
+      <type>Education</type>
+      <daterange start="1979" stop="1984"/>
+      <place hlink="_0000008500000085"/>
+      <description>Education of Edwin Michael Smith</description>
+    </event>
+    <event handle="_0000008600000086" change="1463929997" id="E0060">
+      <type>Degree</type>
+      <dateval val="1984"/>
+      <description>B.S.E.E.</description>
+    </event>
+    <event handle="_0000008800000088" change="1463929997" id="E0061">
+      <type>Birth</type>
+      <dateval val="1832-11-29"/>
+      <place hlink="_0000008900000089"/>
+      <description>Birth of Kerstina Hansdotter</description>
+    </event>
+    <event handle="_0000008a0000008a" change="1463929997" id="E0062">
+      <type>Death</type>
+      <dateval val="1908" type="before"/>
+      <place hlink="_0000003f0000003f"/>
+      <description>Death of Kerstina Hansdotter</description>
+    </event>
+    <event handle="_0000008c0000008c" change="1463929997" id="E0063">
+      <type>Birth</type>
+      <daterange start="1794" stop="1796"/>
+      <place hlink="_0000008d0000008d"/>
+      <description>Birth of Martin Smith</description>
+    </event>
+    <event handle="_0000008e0000008e" change="1463929997" id="E0064">
+      <type>Death</type>
+      <place hlink="_0000003f0000003f"/>
+      <description>Death of Martin Smith</description>
+    </event>
+    <event handle="_0000009000000090" change="1463929997" id="E0065">
+      <type>Birth</type>
+      <dateval val="1826-01-29"/>
+      <place hlink="_0000001300000013"/>
+      <description>Birth of Ingeman Smith</description>
+    </event>
+    <event handle="_0000009200000092" change="1463929997" id="E0066">
+      <type>Birth</type>
+      <dateval val="1960-02-05"/>
+      <place hlink="_0000008100000081"/>
+      <description>Birth of Marjorie Alice Smith</description>
+    </event>
+    <event handle="_0000009400000094" change="1463929997" id="E0067">
+      <type>Birth</type>
+      <dateval val="1935-12-02"/>
+      <description>Birth of Janis Elaine Green</description>
+    </event>
+    <event handle="_0000009600000096" change="1463929997" id="E0068">
+      <type>Birth</type>
+      <dateval val="1996-06-26"/>
+      <place hlink="_0000003200000032"/>
+      <description>Birth of Mason Michael Smith</description>
+    </event>
+    <event handle="_0000009700000097" change="1463929997" id="E0069">
+      <type>Christening</type>
+      <dateval val="1996-07-10"/>
+      <place hlink="_0000003400000034"/>
+      <description>Christening of Mason Michael Smith</description>
+    </event>
+    <event handle="_0000009900000099" change="1463929997" id="E0070">
+      <type>Birth</type>
+      <dateval val="1886" type="about"/>
+      <description>Birth of Edwin Willard</description>
+    </event>
+    <event handle="_0000009b0000009b" change="1463929997" id="E0071">
+      <type>Birth</type>
+      <dateval val="1823" type="after"/>
+      <place hlink="_0000001300000013"/>
+      <description>Birth of Ingar Smith</description>
+    </event>
+    <event handle="_0000009d0000009d" change="1463929997" id="E0072">
+      <type>Birth</type>
+      <dateval val="1895-04-07"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Birth of Hjalmar Smith</description>
+    </event>
+    <event handle="_0000009e0000009e" change="1463929997" id="E0073">
+      <type>Death</type>
+      <dateval val="1975-06-26"/>
+      <place hlink="_0000001e0000001e"/>
+      <description>Death of Hjalmar Smith</description>
+    </event>
+    <event handle="_0000009f0000009f" change="1463929997" id="E0074">
+      <type>Baptism</type>
+      <dateval val="1895-06-03"/>
+      <place hlink="_000000a0000000a0"/>
+      <description>Baptism of Hjalmar Smith</description>
+    </event>
+    <event handle="_000000a1000000a1" change="1463929997" id="E0075">
+      <type>Immi</type>
+      <dateval val="1912-11-14"/>
+      <place hlink="_0000004b0000004b"/>
+    </event>
+    <event handle="_000000a4000000a4" change="1463929997" id="E0076">
+      <type>Birth</type>
+      <dateval val="1860-09-27"/>
+      <place hlink="_0000006100000061"/>
+      <description>Birth of Emil Smith</description>
+    </event>
+    <event handle="_000000a5000000a5" change="1463929997" id="E0077">
+      <type>Marriage</type>
+      <dateval val="1816" type="about"/>
+      <place hlink="_0000001300000013"/>
+      <description>Marriage of Martin Smith and Elna Jefferson</description>
+    </event>
+    <event handle="_000000a6000000a6" change="1463929997" id="E0078">
+      <type>Marriage</type>
+      <dateval val="1790" type="about"/>
+      <place hlink="_0000003f0000003f"/>
+      <description>Marriage of Ingeman Smith and Marta Ericsdotter</description>
+    </event>
+    <event handle="_000000a7000000a7" change="1463929997" id="E0079">
+      <type>Marriage</type>
+      <dateval val="1986-07-12"/>
+      <place hlink="_000000a8000000a8"/>
+      <description>Marriage of Eric Lloyd Smith and Darcy Horne</description>
+    </event>
+    <event handle="_000000a9000000a9" change="1463929997" id="E0080">
+      <type>Marriage</type>
+      <dateval val="1884-08-24"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Marriage of Magnes Smith and Anna Streiffert</description>
+    </event>
+    <event handle="_000000aa000000aa" change="1463929997" id="E0081">
+      <type>Marriage</type>
+      <dateval val="1954-06-04"/>
+      <place hlink="_0000000500000005"/>
+      <description>Marriage of John Hjalmar Smith and Alice Paula Perkins</description>
+      <citationref hlink="_000000ac000000ac"/>
+    </event>
+    <event handle="_000000ad000000ad" change="1463929997" id="E0082">
+      <type>Marriage</type>
+      <dateval val="1995-05-27"/>
+      <place hlink="_000000ae000000ae"/>
+      <description>Marriage of Edwin Michael Smith and Janice Ann Adams</description>
+    </event>
+    <event handle="_000000af000000af" change="1463929997" id="E0083">
+      <type>Engagement</type>
+      <dateval val="1994-10-05"/>
+      <place hlink="_0000000900000009"/>
+      <description>Engagement of Edwin Michael Smith and Janice Ann Adams</description>
+    </event>
+    <event handle="_000000b0000000b0" change="1463929997" id="E0084">
+      <type>Marriage</type>
+      <dateval val="1856" type="about"/>
+      <description>Marriage of Martin Smith and Kerstina Hansdotter</description>
+    </event>
+    <event handle="_000000b1000000b1" change="1463929997" id="E0085">
+      <type>Marriage</type>
+      <dateval val="1885-11-27"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Marriage of Gustaf Smith, Sr. and Anna Hansdotter</description>
+    </event>
+    <event handle="_000000b2000000b2" change="1463929997" id="E0086">
+      <type>Marriage</type>
+      <dateval val="1910" type="about"/>
+      <description>Marriage of Edwin Willard and Kirsti Marie Smith</description>
+    </event>
+    <event handle="_000000b3000000b3" change="1463929997" id="E0087">
+      <type>Marriage</type>
+      <dateval val="1912-11-30"/>
+      <place hlink="_0000000d0000000d"/>
+      <description>Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith</description>
+    </event>
+    <event handle="_000000b4000000b4" change="1463929997" id="E0088">
+      <type>Marriage</type>
+      <dateval val="1927-10-31"/>
+      <place hlink="_0000001e0000001e"/>
+      <description>Marriage of Hjalmar Smith and Marjorie Ohman</description>
+    </event>
+    <event handle="_000000b5000000b5" change="1463929997" id="E0089">
+      <type>Marriage</type>
+      <dateval val="1920" type="about"/>
+      <description>Marriage of Gus Smith and Evelyn Michaels</description>
+    </event>
+    <event handle="_000000b6000000b6" change="1463929997" id="E0090">
+      <type>Marriage</type>
+      <dateval val="1958-08-10"/>
+      <place hlink="_0000000900000009"/>
+      <description>Marriage of Lloyd Smith and Janis Elaine Green</description>
+    </event>
+    <event handle="_d532520036095030992c9c7a09" change="1465075753" id="E0091">
+      <type>Burial</type>
+      <dateval val="1977-02-05"/>
+      <place hlink="_0000000900000009"/>
+      <description>In cemetary</description>
+      <citationref hlink="_d532532861ff0f69347f5e232"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1198222526" id="I0000">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Anna</first>
+        <surname>Hansdotter</surname>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <eventref hlink="_0000000400000004" role="Primary"/>
+      <parentin hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000000700000007" change="1198222526" id="I0001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Keith Lloyd</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000000800000008" role="Primary"/>
+      <childof hlink="_0000000a0000000a"/>
+    </person>
+    <person handle="_0000000b0000000b" change="1465075928" id="I0010">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Hans Peter</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000000c0000000c" role="Primary"/>
+      <eventref hlink="_0000000e0000000e" role="Primary"/>
+      <eventref hlink="_d532520036095030992c9c7a09" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+      <parentin hlink="_0000000f0000000f"/>
+      <parentin hlink="_0000001000000010"/>
+    </person>
+    <person handle="_0000001100000011" change="1198222526" id="I0011">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Hanna</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000001200000012" role="Primary"/>
+      <childof hlink="_0000001400000014"/>
+    </person>
+    <person handle="_0000001500000015" change="1198222526" id="I0012">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Herman Julius</first>
+        <surname>Nielsen</surname>
+      </name>
+      <eventref hlink="_0000001600000016" role="Primary"/>
+      <eventref hlink="_0000001700000017" role="Primary"/>
+      <parentin hlink="_0000001800000018"/>
+    </person>
+    <person handle="_0000001900000019" change="1198222526" id="I0013">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Evelyn</first>
+        <surname>Michaels</surname>
+      </name>
+      <eventref hlink="_0000001a0000001a" role="Primary"/>
+      <parentin hlink="_0000001b0000001b"/>
+    </person>
+    <person handle="_0000001c0000001c" change="1198222526" id="I0014">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marjorie Lee</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000001d0000001d" role="Primary"/>
+      <childof hlink="_0000001f0000001f"/>
+    </person>
+    <person handle="_0000002000000020" change="1198222526" id="I0015">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Gus</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000002100000021" role="Primary"/>
+      <eventref hlink="_0000002200000022" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+      <parentin hlink="_0000001b0000001b"/>
+    </person>
+    <person handle="_0000002300000023" change="1198222526" id="I0016">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Jennifer</first>
+        <surname>Anderson</surname>
+      </name>
+      <eventref hlink="_0000002400000024" role="Primary"/>
+      <eventref hlink="_0000002500000025" role="Primary"/>
+      <parentin hlink="_0000001000000010"/>
+    </person>
+    <person handle="_0000002600000026" change="1198222526" id="I0017">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Lillie Harriet</first>
+        <surname>Jones</surname>
+      </name>
+      <eventref hlink="_0000002700000027" role="Primary"/>
+      <eventref hlink="_0000002800000028" role="Primary"/>
+      <parentin hlink="_0000000f0000000f"/>
+    </person>
+    <person handle="_0000002900000029" change="1198222526" id="I0018">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>John Hjalmar</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000002a0000002a" role="Primary"/>
+      <childof hlink="_0000001f0000001f"/>
+      <parentin hlink="_0000002b0000002b"/>
+    </person>
+    <person handle="_0000002c0000002c" change="1465075513" id="I0019">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Eric Lloyd</first>
+        <surname derivation="Unknown ">Smith</surname>
+        <title>Dr.</title>
+      </name>
+      <eventref hlink="_0000002d0000002d" role="Primary"/>
+      <eventref hlink="_0000002e0000002e" role="Primary"/>
+      <childof hlink="_0000000a0000000a"/>
+      <parentin hlink="_0000002f0000002f"/>
+    </person>
+    <person handle="_0000003000000030" change="1198222526" id="I0002">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Amber Marie</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000003100000031" role="Primary"/>
+      <eventref hlink="_0000003300000033" role="Primary"/>
+      <childof hlink="_0000003500000035"/>
+    </person>
+    <person handle="_0000003600000036" change="1198222526" id="I0020">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Carl Emil</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000003700000037" role="Primary"/>
+      <eventref hlink="_0000003800000038" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000003900000039" change="1198222526" id="I0021">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Hjalmar</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000003a0000003a" role="Primary"/>
+      <eventref hlink="_0000003b0000003b" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000003c0000003c" change="1198222526" id="I0022">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Martin</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000003d0000003d" role="Primary"/>
+      <eventref hlink="_0000003e0000003e" role="Primary"/>
+      <eventref hlink="_0000004000000040" role="Primary"/>
+      <childof hlink="_0000001400000014"/>
+      <parentin hlink="_0000004100000041"/>
+      <noteref hlink="_0000004200000042"/>
+    </person>
+    <person handle="_0000004300000043" change="1198222526" id="I0023">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Astrid Shermanna Augusta</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000004400000044" role="Primary"/>
+      <eventref hlink="_0000004500000045" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+      <parentin hlink="_0000001800000018"/>
+    </person>
+    <person handle="_0000004600000046" change="1198222526" id="I0024">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Gustaf</first>
+        <surname>Smith</surname>
+        <suffix>Sr.</suffix>
+      </name>
+      <eventref hlink="_0000004700000047" role="Primary"/>
+      <eventref hlink="_0000004900000049" role="Primary"/>
+      <eventref hlink="_0000004a0000004a" role="Primary"/>
+      <eventref hlink="_0000004c0000004c" role="Primary"/>
+      <childof hlink="_0000004100000041"/>
+      <parentin hlink="_0000000600000006"/>
+    </person>
+    <person handle="_0000004d0000004d" change="1198222526" id="I0025">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marta</first>
+        <surname>Ericsdotter</surname>
+      </name>
+      <eventref hlink="_0000004e0000004e" role="Primary"/>
+      <parentin hlink="_0000004f0000004f"/>
+    </person>
+    <person handle="_0000005000000050" change="1198222526" id="I0026">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Kirsti Marie</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000005100000051" role="Primary"/>
+      <eventref hlink="_0000005200000052" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+      <parentin hlink="_0000005300000053"/>
+    </person>
+    <person handle="_0000005400000054" change="1198222526" id="I0027">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Ingeman</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000005500000055" role="Primary"/>
+      <parentin hlink="_0000004f0000004f"/>
+    </person>
+    <person handle="_0000005600000056" change="1198222526" id="I0028">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Anna</first>
+        <surname>Streiffert</surname>
+      </name>
+      <eventref hlink="_0000005700000057" role="Primary"/>
+      <eventref hlink="_0000005900000059" role="Primary"/>
+      <parentin hlink="_0000005a0000005a"/>
+    </person>
+    <person handle="_0000005b0000005b" change="1198222526" id="I0029">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Craig Peter</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000005c0000005c" role="Primary"/>
+      <eventref hlink="_0000005d0000005d" role="Primary"/>
+      <childof hlink="_0000000a0000000a"/>
+    </person>
+    <person handle="_0000005f0000005f" change="1198222526" id="I0003">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Magnes</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000006000000060" role="Primary"/>
+      <eventref hlink="_0000006200000062" role="Primary"/>
+      <childof hlink="_0000004100000041"/>
+      <parentin hlink="_0000005a0000005a"/>
+    </person>
+    <person handle="_0000006300000063" change="1198222526" id="I0030">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Janice Ann</first>
+        <surname>Adams</surname>
+      </name>
+      <eventref hlink="_0000006400000064" role="Primary"/>
+      <eventref hlink="_0000006600000066" role="Primary"/>
+      <eventref hlink="_0000006700000067" role="Primary"/>
+      <parentin hlink="_0000003500000035"/>
+    </person>
+    <person handle="_0000006800000068" change="1198222526" id="I0031">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marjorie</first>
+        <surname>Ohman</surname>
+      </name>
+      <eventref hlink="_0000006900000069" role="Primary"/>
+      <eventref hlink="_0000006b0000006b" role="Primary"/>
+      <parentin hlink="_0000001f0000001f"/>
+    </person>
+    <person handle="_0000006c0000006c" change="1198222526" id="I0032">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Darcy</first>
+        <surname>Horne</surname>
+      </name>
+      <eventref hlink="_0000006d0000006d" role="Primary"/>
+      <parentin hlink="_0000002f0000002f"/>
+    </person>
+    <person handle="_0000006f0000006f" change="1198222526" id="I0033">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Lloyd</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000007000000070" role="Primary"/>
+      <childof hlink="_0000000f0000000f"/>
+      <parentin hlink="_0000000a0000000a"/>
+    </person>
+    <person handle="_0000007100000071" change="1198222526" id="I0034">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Alice Paula</first>
+        <surname>Perkins</surname>
+      </name>
+      <eventref hlink="_0000007200000072" role="Primary"/>
+      <parentin hlink="_0000002b0000002b"/>
+    </person>
+    <person handle="_0000007300000073" change="1198222526" id="I0035">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Lars Peter</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000007400000074" role="Primary"/>
+      <eventref hlink="_0000007600000076" role="Primary"/>
+      <childof hlink="_0000002f0000002f"/>
+    </person>
+    <person handle="_0000007700000077" change="1198222526" id="I0036">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Elna</first>
+        <surname>Jefferson</surname>
+      </name>
+      <eventref hlink="_0000007800000078" role="Primary"/>
+      <eventref hlink="_0000007900000079" role="Primary"/>
+      <eventref hlink="_0000007a0000007a" role="Primary"/>
+      <parentin hlink="_0000001400000014"/>
+    </person>
+    <person handle="_0000007b0000007b" change="1198222526" id="I0037">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Edwin Michael</first>
+        <surname>Smith</surname>
+        <citationref hlink="_0000007d0000007d"/>
+      </name>
+      <eventref hlink="_0000007e0000007e" role="Primary"/>
+      <eventref hlink="_0000008200000082" role="Primary">
+        <attribute type="Age" value="23"/>
+      </eventref>
+      <eventref hlink="_0000008400000084" role="Primary"/>
+      <eventref hlink="_0000008600000086" role="Primary"/>
+      <childof hlink="_0000002b0000002b"/>
+      <parentin hlink="_0000003500000035"/>
+    </person>
+    <person handle="_0000008700000087" change="1198222526" id="I0038">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Kerstina</first>
+        <surname>Hansdotter</surname>
+      </name>
+      <eventref hlink="_0000008800000088" role="Primary"/>
+      <eventref hlink="_0000008a0000008a" role="Primary"/>
+      <parentin hlink="_0000004100000041"/>
+    </person>
+    <person handle="_0000008b0000008b" change="1198222526" id="I0039">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Martin</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000008c0000008c" role="Primary"/>
+      <eventref hlink="_0000008e0000008e" role="Primary"/>
+      <childof hlink="_0000004f0000004f"/>
+      <parentin hlink="_0000001400000014"/>
+    </person>
+    <person handle="_0000008f0000008f" change="1198222526" id="I0004">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Ingeman</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000009000000090" role="Primary"/>
+      <childof hlink="_0000001400000014"/>
+    </person>
+    <person handle="_0000009100000091" change="1198222526" id="I0040">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Marjorie Alice</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000009200000092" role="Primary"/>
+      <childof hlink="_0000002b0000002b"/>
+    </person>
+    <person handle="_0000009300000093" change="1198222526" id="I0041">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Janis Elaine</first>
+        <surname>Green</surname>
+      </name>
+      <eventref hlink="_0000009400000094" role="Primary"/>
+      <parentin hlink="_0000000a0000000a"/>
+    </person>
+    <person handle="_0000009500000095" change="1198222526" id="I0005">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Mason Michael</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000009600000096" role="Primary"/>
+      <eventref hlink="_0000009700000097" role="Primary"/>
+      <childof hlink="_0000003500000035"/>
+    </person>
+    <person handle="_0000009800000098" change="1198222526" id="I0006">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Edwin</first>
+        <surname>Willard</surname>
+      </name>
+      <eventref hlink="_0000009900000099" role="Primary"/>
+      <parentin hlink="_0000005300000053"/>
+    </person>
+    <person handle="_0000009a0000009a" change="1198222526" id="I0007">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Ingar</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000009b0000009b" role="Primary"/>
+      <childof hlink="_0000001400000014"/>
+    </person>
+    <person handle="_0000009c0000009c" change="1198222526" id="I0008">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Hjalmar</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_0000009d0000009d" role="Primary"/>
+      <eventref hlink="_0000009e0000009e" role="Primary"/>
+      <eventref hlink="_0000009f0000009f" role="Primary"/>
+      <eventref hlink="_000000a1000000a1" role="Primary"/>
+      <childof hlink="_0000000600000006"/>
+      <parentin hlink="_0000001f0000001f"/>
+      <noteref hlink="_000000a2000000a2"/>
+    </person>
+    <person handle="_000000a3000000a3" change="1198222526" id="I0009">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Emil</first>
+        <surname>Smith</surname>
+      </name>
+      <eventref hlink="_000000a4000000a4" role="Primary"/>
+      <childof hlink="_0000004100000041"/>
+    </person>
+    <person handle="_d54b1f298d25b543223ca137ad1" change="1465826943" id="I0042">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>雪</first>
+        <surname>Ke 柯</surname>
+      </name>
+      <name alt="1" type="Also Known As">
+        <first>Frank</first>
+        <surname>Neilsen</surname>
+      </name>
+      <objref hlink="_d54c1b52c8636648123580900ca"/>
+      <childof hlink="_0000001800000018"/>
+      <noteref hlink="_d54e4ed9e6647fcdb37877fedcf"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000600000006" change="1198222526" id="F0003">
+      <rel type="Married"/>
+      <father hlink="_0000004600000046"/>
+      <mother hlink="_0000000100000001"/>
+      <eventref hlink="_000000b1000000b1" role="Family"/>
+      <childref hlink="_0000005000000050"/>
+      <childref hlink="_0000004300000043"/>
+      <childref hlink="_0000003900000039"/>
+      <childref hlink="_0000009c0000009c"/>
+      <childref hlink="_0000002000000020"/>
+      <childref hlink="_0000003600000036"/>
+      <childref hlink="_0000000b0000000b"/>
+    </family>
+    <family handle="_0000000a0000000a" change="1198222526" id="F0008">
+      <rel type="Married"/>
+      <father hlink="_0000006f0000006f"/>
+      <mother hlink="_0000009300000093"/>
+      <eventref hlink="_000000b6000000b6" role="Family"/>
+      <childref hlink="_0000002c0000002c" mrel="Adopted" frel="Adopted"/>
+      <childref hlink="_0000000700000007"/>
+      <childref hlink="_0000005b0000005b"/>
+    </family>
+    <family handle="_0000000f0000000f" change="1198222526" id="F0009">
+      <rel type="Unknown"/>
+      <father hlink="_0000000b0000000b"/>
+      <mother hlink="_0000002600000026"/>
+      <childref hlink="_0000006f0000006f"/>
+    </family>
+    <family handle="_0000001000000010" change="1198222526" id="F0014">
+      <rel type="Unknown"/>
+      <father hlink="_0000000b0000000b"/>
+      <mother hlink="_0000002300000023"/>
+    </family>
+    <family handle="_0000001400000014" change="1198222526" id="F0000">
+      <rel type="Married"/>
+      <father hlink="_0000008b0000008b"/>
+      <mother hlink="_0000007700000077"/>
+      <eventref hlink="_000000a5000000a5" role="Family"/>
+      <childref hlink="_0000001100000011"/>
+      <childref hlink="_0000009a0000009a"/>
+      <childref hlink="_0000008f0000008f"/>
+      <childref hlink="_0000003c0000003c"/>
+    </family>
+    <family handle="_0000001800000018" change="1465741655" id="F0005">
+      <rel type="Married"/>
+      <father hlink="_0000001500000015"/>
+      <mother hlink="_0000004300000043"/>
+      <eventref hlink="_000000b3000000b3" role="Family"/>
+      <childref hlink="_d54b1f298d25b543223ca137ad1" mrel="Adopted" frel="Adopted"/>
+    </family>
+    <family handle="_0000001b0000001b" change="1198222526" id="F0007">
+      <rel type="Married"/>
+      <father hlink="_0000002000000020"/>
+      <mother hlink="_0000001900000019"/>
+      <eventref hlink="_000000b5000000b5" role="Family"/>
+    </family>
+    <family handle="_0000001f0000001f" change="1198222526" id="F0006">
+      <rel type="Married"/>
+      <father hlink="_0000009c0000009c"/>
+      <mother hlink="_0000006800000068"/>
+      <eventref hlink="_000000b4000000b4" role="Family"/>
+      <childref hlink="_0000002900000029"/>
+      <childref hlink="_0000001c0000001c"/>
+    </family>
+    <family handle="_0000002b0000002b" change="1198222526" id="F0012">
+      <rel type="Married"/>
+      <father hlink="_0000002900000029"/>
+      <mother hlink="_0000007100000071"/>
+      <eventref hlink="_000000aa000000aa" role="Family"/>
+      <childref hlink="_0000009100000091"/>
+      <childref hlink="_0000007b0000007b"/>
+    </family>
+    <family handle="_0000002f0000002f" change="1198222526" id="F0010">
+      <rel type="Married"/>
+      <father hlink="_0000002c0000002c"/>
+      <mother hlink="_0000006c0000006c"/>
+      <eventref hlink="_000000a7000000a7" role="Family"/>
+      <childref hlink="_0000007300000073" mrel="Adopted" frel="Adopted"/>
+    </family>
+    <family handle="_0000003500000035" change="1198222526" id="F0013">
+      <rel type="Married"/>
+      <father hlink="_0000007b0000007b"/>
+      <mother hlink="_0000006300000063"/>
+      <eventref hlink="_000000ad000000ad" role="Family"/>
+      <eventref hlink="_000000af000000af" role="Family"/>
+      <childref hlink="_0000009500000095"/>
+      <childref hlink="_0000003000000030"/>
+    </family>
+    <family handle="_0000004100000041" change="1198222526" id="F0002">
+      <rel type="Married"/>
+      <father hlink="_0000003c0000003c"/>
+      <mother hlink="_0000008700000087"/>
+      <eventref hlink="_000000b0000000b0" role="Family"/>
+      <childref hlink="_0000005f0000005f"/>
+      <childref hlink="_000000a3000000a3"/>
+      <childref hlink="_0000004600000046"/>
+    </family>
+    <family handle="_0000004f0000004f" change="1198222526" id="F0001">
+      <rel type="Married"/>
+      <father hlink="_0000005400000054"/>
+      <mother hlink="_0000004d0000004d"/>
+      <eventref hlink="_000000a6000000a6" role="Family"/>
+      <childref hlink="_0000008b0000008b"/>
+    </family>
+    <family handle="_0000005300000053" change="1198222526" id="F0004">
+      <rel type="Married"/>
+      <father hlink="_0000009800000098"/>
+      <mother hlink="_0000005000000050"/>
+      <eventref hlink="_000000b2000000b2" role="Family"/>
+    </family>
+    <family handle="_0000005a0000005a" change="1198222526" id="F0011">
+      <rel type="Married"/>
+      <father hlink="_0000005f0000005f"/>
+      <mother hlink="_0000005600000056"/>
+      <eventref hlink="_000000a9000000a9" role="Family"/>
+    </family>
+  </families>
+  <citations>
+    <citation handle="_0000007d0000007d" change="1463929997" id="C0000">
+      <confidence>2</confidence>
+      <sourceref hlink="_0000007c0000007c"/>
+    </citation>
+    <citation handle="_0000008000000080" change="1463929997" id="C0001">
+      <confidence>2</confidence>
+      <sourceref hlink="_0000007f0000007f"/>
+    </citation>
+    <citation handle="_000000ac000000ac" change="1463929997" id="C0002">
+      <confidence>2</confidence>
+      <sourceref hlink="_000000ab000000ab"/>
+    </citation>
+    <citation handle="_d532532861ff0f69347f5e232" change="1465075751" id="C0003">
+      <dateval val="1977-07-22"/>
+      <confidence>3</confidence>
+      <sourceref hlink="_d53252d41b370ebe65ebd50c34f"/>
+    </citation>
+    <citation handle="_d53254b0c802fe24bdea26f3180" change="1465075912" id="C0004">
+      <dateval val="1955-05-05"/>
+      <page>22 6</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_000000b9000000b9"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000007c0000007c" change="1198222526" id="S0001">
+      <stitle>Birth Certificate</stitle>
+    </source>
+    <source handle="_0000007f0000007f" change="1198222526" id="S0003">
+      <stitle>Birth, Death and Marriage Records</stitle>
+      <noteref hlink="_000000ba000000ba"/>
+      <reporef hlink="_000000b7000000b7" callno="CA-123-LL-456_Num/ber" medium="Film"/>
+    </source>
+    <source handle="_000000ab000000ab" change="1198222526" id="S0000">
+      <stitle>Marriage Certificae</stitle>
+      <noteref hlink="_000000b8000000b8"/>
+      <reporef hlink="_000000b7000000b7" callno="what-321-ever" medium="Photo"/>
+    </source>
+    <source handle="_000000b9000000b9" change="1198222526" id="S0002">
+      <stitle>Birth Records</stitle>
+    </source>
+    <source handle="_d53252d41b370ebe65ebd50c34f" change="1465075716" id="S0004">
+      <stitle>findagrave.com</stitle>
+    </source>
+  </sources>
+  <places>
+    <placeobj handle="_0000000300000003" change="1465741826" id="P0000" type="Unknown">
+      <ptitle>Löderup, Malmöhus Län, Sweden</ptitle>
+      <pname value="Löderup, Malmöhus Län, Sweden"/>
+      <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
+    </placeobj>
+    <placeobj handle="_0000000500000005" change="1463929997" id="P0001" type="Unknown">
+      <ptitle>Sparks, Washoe Co., NV</ptitle>
+      <pname value="Sparks, Washoe Co., NV"/>
+    </placeobj>
+    <placeobj handle="_0000000900000009" change="1463929997" id="P0002" type="Unknown">
+      <ptitle>San Francisco, San Francisco Co., CA</ptitle>
+      <pname value="San Francisco, San Francisco Co., CA"/>
+    </placeobj>
+    <placeobj handle="_0000000d0000000d" change="1463929997" id="P0003" type="Unknown">
+      <ptitle>Rønne, Bornholm, Denmark</ptitle>
+      <pname value="Rønne, Bornholm, Denmark"/>
+    </placeobj>
+    <placeobj handle="_0000001300000013" change="1465741826" id="P0004" type="Unknown">
+      <ptitle>Gladsax, Kristianstad Län, Sweden</ptitle>
+      <pname value="Gladsax, Kristianstad Län, Sweden"/>
+      <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
+    </placeobj>
+    <placeobj handle="_0000001e0000001e" change="1463929997" id="P0005" type="Unknown">
+      <ptitle>Reno, Washoe Co., NV</ptitle>
+      <pname value="Reno, Washoe Co., NV"/>
+    </placeobj>
+    <placeobj handle="_0000003200000032" change="1463929997" id="P0006" type="Unknown">
+      <ptitle>Hayward, Alameda Co., CA</ptitle>
+      <pname value="Hayward, Alameda Co., CA"/>
+    </placeobj>
+    <placeobj handle="_0000003400000034" change="1463929997" id="P0007" type="Unknown">
+      <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
+      <pname value="Community Presbyterian Church, Danville, CA"/>
+    </placeobj>
+    <placeobj handle="_0000003f0000003f" change="1463929997" id="P0008" type="Unknown">
+      <ptitle>Sweden</ptitle>
+      <pname value="Sweden"/>
+    </placeobj>
+    <placeobj handle="_0000004800000048" change="1465741826" id="P0009" type="Unknown">
+      <ptitle>Grostorp, Kristianstad Län, Sweden</ptitle>
+      <pname value="Grostorp, Kristianstad Län, Sweden"/>
+      <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
+    </placeobj>
+    <placeobj handle="_0000004b0000004b" change="1463929997" id="P0010" type="Unknown">
+      <ptitle>Copenhagen, Denmark</ptitle>
+      <pname value="Copenhagen, Denmark"/>
+    </placeobj>
+    <placeobj handle="_0000005800000058" change="1463929997" id="P0011" type="Unknown">
+      <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
+      <pname value="Hoya/Jona/Hoia, Sweden"/>
+    </placeobj>
+    <placeobj handle="_0000006100000061" change="1465741788" id="P0012" type="Unknown">
+      <ptitle>Simrishamn, Kristianstad Län, Sweden</ptitle>
+      <pname value="Simrishamn, Kristianstad Län, Sweden"/>
+      <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
+    </placeobj>
+    <placeobj handle="_0000006500000065" change="1463929997" id="P0013" type="Unknown">
+      <ptitle>Fremont, Alameda Co., CA</ptitle>
+      <pname value="Fremont, Alameda Co., CA"/>
+    </placeobj>
+    <placeobj handle="_0000006a0000006a" change="1465074983" id="P0014" type="City">
+      <ptitle>Denver, Denver Co., CO</ptitle>
+      <pname value="Denver, Denver Co., CO"/>
+      <coord long="104.9903 W" lat="39.7392"/>
+      <placeref hlink="_d5324558dba1394350365e4cf42"/>
+    </placeobj>
+    <placeobj handle="_0000006e0000006e" change="1465075284" id="P0015" type="City">
+      <ptitle>Sacramento, Sacramento Co., CA</ptitle>
+      <pname value="Sacramento, Sacramento Co., CA"/>
+      <placeref hlink="_d5324e9474c3e534f8629e64977">
+        <dateval val="2016-06-04"/>
+      </placeref>
+    </placeobj>
+    <placeobj handle="_0000007500000075" change="1463929997" id="P0016" type="Unknown">
+      <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
+      <pname value="Santa Rosa, Sonoma Co., CA"/>
+    </placeobj>
+    <placeobj handle="_0000008100000081" change="1463929997" id="P0017" type="Unknown">
+      <ptitle>San Jose, Santa Clara Co., CA</ptitle>
+      <pname value="San Jose, Santa Clara Co., CA"/>
+    </placeobj>
+    <placeobj handle="_0000008500000085" change="1463929997" id="P0018" type="Unknown">
+      <ptitle>UC Berkeley</ptitle>
+      <pname value="UC Berkeley"/>
+    </placeobj>
+    <placeobj handle="_0000008900000089" change="1463929997" id="P0019" type="Unknown">
+      <ptitle>Smestorp, Kristianstad Län, Sweden</ptitle>
+      <pname value="Smestorp, Kristianstad Län, Sweden"/>
+    </placeobj>
+    <placeobj handle="_0000008d0000008d" change="1465741826" id="P0020" type="Unknown">
+      <ptitle>Tommarp, Kristianstad Län, Sweden</ptitle>
+      <pname value="Tommarp, Kristianstad Län, Sweden"/>
+      <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
+    </placeobj>
+    <placeobj handle="_000000a0000000a0" change="1463929997" id="P0021" type="Unknown">
+      <ptitle>Rønne Bornholm, Denmark</ptitle>
+      <pname value="Rønne Bornholm, Denmark"/>
+    </placeobj>
+    <placeobj handle="_000000a8000000a8" change="1463929997" id="P0022" type="Unknown">
+      <ptitle>Woodland, Yolo Co., CA</ptitle>
+      <pname value="Woodland, Yolo Co., CA"/>
+    </placeobj>
+    <placeobj handle="_000000ae000000ae" change="1463929997" id="P0023" type="Unknown">
+      <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
+      <pname value="San Ramon, Conta Costa Co., CA"/>
+    </placeobj>
+    <placeobj handle="_d5324558dba1394350365e4cf42" change="1465316304" id="P0024" type="County">
+      <ptitle>Denver Co., Colorado, USA</ptitle>
+      <pname value="Denver Co."/>
+      <placeref hlink="_d5324c1e94119eebf093a1e3865"/>
+    </placeobj>
+    <placeobj handle="_d5324c1e94119eebf093a1e3865" change="1465316280" id="P0025" type="State">
+      <ptitle>Colorado, USA</ptitle>
+      <pname value="Colorado"/>
+      <placeref hlink="_d5324c509dc579ef9edb8afd4a8"/>
+    </placeobj>
+    <placeobj handle="_d5324c509dc579ef9edb8afd4a8" change="1465316343" id="P0026" type="Country">
+      <ptitle>United States of America</ptitle>
+      <pname value="USA"/>
+    </placeobj>
+    <placeobj handle="_d5324e9474c3e534f8629e64977" change="1465316324" id="P0027" type="County">
+      <ptitle>Sacramento Co., California, USA</ptitle>
+      <pname value="Sacramento Co."/>
+      <placeref hlink="_d5324f6ce236ebb32131789b38f">
+        <dateval val="2016-06-01"/>
+      </placeref>
+    </placeobj>
+    <placeobj handle="_d5324f6ce236ebb32131789b38f" change="1465316268" id="P0028" type="State">
+      <ptitle>California, USA</ptitle>
+      <pname value="California"/>
+      <placeref hlink="_d5324c509dc579ef9edb8afd4a8">
+        <dateval val="2016-06-04"/>
+      </placeref>
+    </placeobj>
+  </places>
+  <objects>
+    <object handle="_d54c1b52c8636648123580900ca" change="1465767829" id="O0000">
+      <file src="D:/Users/prc/Downloads/Michael O'Toole 2015-11.jpg" mime="image/jpeg" checksum="ed5423c128d9bc43dbc03a8311f185bd" description="Michael O'Toole 2015-11"/>
+    </object>
+  </objects>
+  <repositories>
+    <repository handle="_000000b7000000b7" change="1463929997" id="R0002">
+      <rname>New York Public Library</rname>
+      <type>Library</type>
+      <address>
+        <street>5th Ave at 42 street</street>
+        <city>New York</city>
+        <state>New York</state>
+        <country>USA</country>
+        <postal>11111</postal>
+      </address>
+    </repository>
+    <repository handle="_000000bb000000bb" change="1463929997" id="R0003">
+      <rname>Aunt Martha's Attic</rname>
+      <type>Library</type>
+      <address>
+        <street>123 Main St</street>
+        <city>Someville</city>
+        <state>ST</state>
+        <country>USA</country>
+      </address>
+      <url  href="http://library.gramps-project.org" type="Web Home"/>
+      <noteref hlink="_000000bc000000bc"/>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_0000004200000042" change="1463929997" id="N0002" type="General">
+      <text>BIOGRAPHY
+Martin was listed as being a Husman, (owning a house as opposed to a farm) in the house records of Gladsax.</text>
+    </note>
+    <note handle="_0000005e0000005e" change="1463929997" id="N0000" type="General">
+      <text>Witness name: John Doe
+Witness comment: This is a simple test.</text>
+    </note>
+    <note handle="_0000008300000083" change="1463929997" id="N0001" type="General">
+      <text>Witness name: No Name</text>
+    </note>
+    <note handle="_000000a2000000a2" change="1463929997" id="N0003" type="General">
+      <text>BIOGRAPHY
+
+Hjalmar sailed from Copenhagen, Denmark on the OSCAR II, 14 November 1912 arriving in New York 27 November 1912. He was seventeen years old. On the ship passenger list his trade was listed as a Blacksmith.  He came to Reno, Nevada and lived with his sister Marie for a time before settling in Sparks. He worked for Southern Pacific Railroad as a car inspector for a time, then went to work for Standard Oil
+Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corporal in the Medical Corp until his discharge 12 August 1919 at the Presidio in San Francisco, California. Both he and Marjorie are buried in the Masonic Memorial Gardens Mausoleum in Reno, he the 30th June 1975, and she the 25th of June 1980.</text>
+    </note>
+    <note handle="_000000b8000000b8" change="1463929997" id="N0004" type="General">
+      <text>But Aunt Martha still keeps the original!</text>
+    </note>
+    <note handle="_000000ba000000ba" change="1463929997" id="N0005" type="General">
+      <text>The repository reference from the source is important</text>
+    </note>
+    <note handle="_000000bc000000bc" change="1463929997" id="N0006" type="General">
+      <text>Some note on the repo</text>
+    </note>
+    <note handle="_d54e4ed9e6647fcdb37877fedcf" change="1465826919" id="N0007" type="General">
+      <text>Some Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
+Some Bold Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
+Some Italic Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈</text>
+      <style name="italic">
+        <range start="87" end="134"/>
+      </style>
+      <style name="bold">
+        <range start="41" end="87"/>
+      </style>
+    </note>
+  </notes>
+</database>
