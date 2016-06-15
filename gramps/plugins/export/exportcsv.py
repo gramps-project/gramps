@@ -104,72 +104,6 @@ def get_primary_source_title(db, obj):
 
 #-------------------------------------------------------------------------
 #
-# Encoding support for CSV, from http://docs.python.org/lib/csv-examples.html
-#
-#-------------------------------------------------------------------------
-class UTF8Recoder:
-    """Iterator that reads an encoded stream and reencodes the input to UTF-8."""
-    def __init__(self, f, encoding):
-        self.reader = codecs.getreader(encoding)(f)
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        return self.reader.next().encode("utf-8")
-
-class UnicodeReader:
-    """
-    A CSV reader which will iterate over lines in the CSV file "f", which is
-    encoded in the given encoding.
-
-    """
-
-    def __init__(self, f, encoding="utf-8", **kwds):
-        f = UTF8Recoder(f, encoding)
-        self.reader = csv.reader(f, **kwds)
-
-    def __next__(self):
-        row = next(self.reader)
-        return [str(s, "utf-8") for s in row]
-
-    def __iter__(self):
-        return self
-
-class UnicodeWriter:
-    """
-    A CSV writer which will write rows to CSV file "f", which is encoded in
-    the given encoding.
-
-    """
-
-    def __init__(self, f, encoding="utf-8", **kwds):
-        # Redirect output to a queue
-        self.queue = StringIO()
-        self.writer = csv.writer(self.queue, **kwds)
-        self.stream = f
-        self.encoder = codecs.getencoder(encoding)
-
-    def writerow(self, row):
-        self.writer.writerow(row)
-        data = self.queue.getvalue()
-        #data now contains the csv data in unicode
-        # ... and reencode it into the target encoding
-        data, length = self.encoder(data)
-        # write to the target stream
-        self.stream.write(data)
-        # empty queue, go to start position, then truncate
-        self.queue.seek(0)
-        self.queue.truncate(0)
-
-    def writerows(self, rows):
-        list(map(self.writerow, rows))
-
-    def close(self):
-        self.stream.close()
-
-#-------------------------------------------------------------------------
-#
 # CSVWriter Options
 #
 #-------------------------------------------------------------------------
@@ -270,7 +204,7 @@ class CSVWriter:
 
         # make place list so that dependencies are first:
         self.place_list = []
-        place_list = [x for x in self.db.iter_place_handles()]
+        place_list = sorted([x for x in self.db.iter_place_handles()])
         while place_list:
             handle = place_list[0]
             place = self.db.get_place_from_handle(handle)
@@ -317,9 +251,9 @@ class CSVWriter:
     def export_data(self):
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(self.filename,"w")
-            self.fp = open(self.filename, "wb")
-            self.g = UnicodeWriter(self.fp)
+            self.fp = open(self.filename, "w", encoding='utf_8_sig',
+                           newline='')
+            self.g = csv.writer(self.fp)
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2,str(msg))
@@ -594,7 +528,7 @@ class CSVWriter:
                                        place_latitude, place_longitude, place_code, "",
                                        "")
             self.writeln()
-        self.g.close()
+        self.fp.close()
         return True
 
     def format_date(self, date):
