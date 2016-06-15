@@ -43,15 +43,15 @@ LOG = logging.getLogger(".ImportCSV")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType, 
-                            Family, FamilyRelType, Name, NameType, Note, 
-                            NoteType, Person, Place, Source, Surname, Tag, 
+from gramps.gen.lib import (ChildRef, Citation, Event, EventRef, EventType,
+                            Family, FamilyRelType, Name, NameType, Note,
+                            NoteType, Person, Place, Source, Surname, Tag,
                             PlaceName, PlaceType, PlaceRef)
 from gramps.gen.db import DbTxn
 from gramps.gen.datehandler import parser as _dp
@@ -104,7 +104,7 @@ def importData(dbase, filename, user):
     if dbase.get_feature("skip-import-additions"): # don't add source or tags
         parser = CSVParser(dbase, user, None)
     else:
-        parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if 
+        parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if
                                          config.get('preferences.tag-on-import') else None))
     try:
         with open(filename, 'r') as filehandle:
@@ -116,7 +116,7 @@ def importData(dbase, filename, user):
 
 #-------------------------------------------------------------------------
 #
-# CSV Parser 
+# CSV Parser
 #
 #-------------------------------------------------------------------------
 class CSVParser(object):
@@ -131,7 +131,7 @@ class CSVParser(object):
         self.indi_count = 0
         self.place_count = 0
         self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet        
+        self.fref  = {} # family ref, internal to this sheet
         self.placeref = {}
         self.place_types = {}
         # Build reverse dictionary, name to type number
@@ -225,7 +225,7 @@ class CSVParser(object):
             "latitude": ("Latitude", _("latitude"), "latitude", _("latitude")),
             "longitude": ("Longitude", _("Longitude"), "longitude", _("longitude")),
             "code": ("Code", _("Code"), "code", _("code")),
-            "enclosed_by": ("Enclosed by", _("Enclosed by"), "enclosed by", _("enclosed by"), 
+            "enclosed_by": ("Enclosed by", _("Enclosed by"), "enclosed by", _("enclosed by"),
                             "enclosed_by", _("enclosed_by"), "Enclosed_by", _("Enclosed_by"),
                             "enclosedby")
         }
@@ -330,11 +330,11 @@ class CSVParser(object):
         :param filehandle: open file handle positioned at start of the file
         """
         progress_title = _('CSV Import')
-        with self.user.progress(progress_title, 
+        with self.user.progress(progress_title,
                 _('Reading data...'), 1) as step:
             data = self.read_csv(filehandle)
 
-        with self.user.progress(progress_title, 
+        with self.user.progress(progress_title,
                 _('Importing data...'), len(data)) as step:
             tym = time.time()
             self.db.disable_signals()
@@ -361,7 +361,7 @@ class CSVParser(object):
         self.indi_count = 0
         self.place_count = 0
         self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet        
+        self.fref  = {} # family ref, internal to this sheet
         self.placeref = {}
         header = None
         line_number = 0
@@ -672,8 +672,8 @@ class CSVParser(object):
         if birthsource is not None:
             new, birthsource = self.get_or_create_source(birthsource)
         if birthdate or birthplace or birthsource:
-            new, birth = self.get_or_create_event(person, 
-                 EventType.BIRTH, birthdate, 
+            new, birth = self.get_or_create_event(person,
+                 EventType.BIRTH, birthdate,
                  birthplace, birthsource)
             birth_ref = person.get_birth_ref()
             if birth_ref is None:
@@ -694,8 +694,8 @@ class CSVParser(object):
         if baptismsource is not None:
             new, baptismsource = self.get_or_create_source(baptismsource)
         if baptismdate or baptismplace or baptismsource:
-            new, baptism = self.get_or_create_event(person, 
-                 EventType.BAPTISM, baptismdate, 
+            new, baptism = self.get_or_create_event(person,
+                 EventType.BAPTISM, baptismdate,
                  baptismplace, baptismsource)
             baptism_ref = get_primary_event_ref_from_type(self.db, person,
                                                           "Baptism")
@@ -742,8 +742,8 @@ class CSVParser(object):
         if burialsource is not None:
             new, burialsource = self.get_or_create_source(burialsource)
         if burialdate or burialplace or burialsource:
-            new, burial = self.get_or_create_event(person, 
-                 EventType.BURIAL, burialdate, 
+            new, burial = self.get_or_create_event(person,
+                 EventType.BURIAL, burialdate,
                  burialplace, burialsource)
             burial_ref = get_primary_event_ref_from_type(self.db, person,
                                                          "Burial")
@@ -854,7 +854,7 @@ class CSVParser(object):
             self.db.commit_person(wife, self.trans)
         self.fam_count += 1
         return family
-        
+
     def get_or_create_event(self, object_, type_, date=None, place=None,
                             source=None):
         """ Add or find a type event on object """
@@ -891,7 +891,7 @@ class CSVParser(object):
             self.find_and_set_citation(event, source)
         self.db.add_event(event, self.trans)
         return (1, event)
-    
+
     def create_person(self):
         """ Used to create a new person we know doesn't exist """
         person = Person()
@@ -961,6 +961,6 @@ class CSVParser(object):
         LOG.debug("   creating citation")
         citation.set_reference_handle(source.get_handle())
         self.db.add_citation(citation, self.trans)
-        LOG.debug("   created citation, citation %s %s" % 
+        LOG.debug("   created citation, citation %s %s" %
                   (citation, citation.get_gramps_id()))
         obj.add_citation(citation.get_handle())
