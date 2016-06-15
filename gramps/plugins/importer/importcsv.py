@@ -32,6 +32,7 @@
 import time
 import csv
 import codecs
+from io import TextIOWrapper
 
 #------------------------------------------------------------------------
 #
@@ -106,7 +107,16 @@ def importData(dbase, filename, user):
         parser = CSVParser(dbase, user, (config.get('preferences.tag-on-import-format') if
                                          config.get('preferences.tag-on-import') else None))
     try:
-        with open(filename, 'r') as filehandle:
+        with open(filename, 'rb') as filehandle:
+            line = filehandle.read(3)
+            if line == codecs.BOM_UTF8:
+                filehandle.seek(0)
+                filehandle = TextIOWrapper(filehandle, encoding='utf_8_sig',
+                                           errors='replace', newline='')
+            else:                       # just open with OS encoding
+                filehandle.seek(0)
+                filehandle = TextIOWrapper(filehandle,
+                                           errors='replace', newline='')
             parser.parse(filehandle)
     except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))

@@ -11,3 +11,5 @@
 # don't mess with line endings for Gedcom files
 *.ged binary
 *.GED binary
+
+*.csv -text
