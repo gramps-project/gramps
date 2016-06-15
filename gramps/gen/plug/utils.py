@@ -281,7 +281,6 @@ def load_addon_file(path, callback=None):
     """
     from urllib.request import urlopen
     import tarfile
-    import io
     if (path.startswith("http://") or
         path.startswith("https://") or
         path.startswith("ftp://")):
