@@ -201,55 +201,54 @@ class OptionListCollection:
         """
         Saves the current OptionListCollection to the associated file.
         """
-        file = open(self.filename, "w", encoding="utf-8")
-        file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        file.write('<options>\n')
+        with open(self.filename, "w", encoding="utf-8") as file:
+            file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            file.write('<options>\n')
 
-        self.write_common(file)
+            self.write_common(file)
 
-        for module_name in sorted(self.get_module_names()): # enable a diff
-            option_list = self.get_option_list(module_name)
-            module_docgen_opts = {}
-            for docgen_name in self.docgen_names:
-                module_docgen_opts[docgen_name] = []
-            file.write('<module name=%s>\n' % quoteattr(module_name))
-            options = option_list.get_options()
-            for option_name in sorted(options.keys()): # enable a diff
-                option_data = options[option_name]
-                if isinstance(option_data, (list, tuple)):
-                    if option_data and option_data[0] in self.docgen_names:
-                        module_docgen_opts[option_data[0]].append(
-                            (option_name, option_data[1]))
+            for module_name in sorted(self.get_module_names()): # enable a diff
+                option_list = self.get_option_list(module_name)
+                module_docgen_opts = {}
+                for docgen_name in self.docgen_names:
+                    module_docgen_opts[docgen_name] = []
+                file.write('<module name=%s>\n' % quoteattr(module_name))
+                options = option_list.get_options()
+                for option_name in sorted(options.keys()): # enable a diff
+                    option_data = options[option_name]
+                    if isinstance(option_data, (list, tuple)):
+                        if option_data and option_data[0] in self.docgen_names:
+                            module_docgen_opts[option_data[0]].append(
+                                (option_name, option_data[1]))
+                        else:
+                            file.write('  <option name=%s '
+                                       'value="" length="%d">\n'
+                                       % (quoteattr(option_name),
+                                          len(option_data)))
+                            for list_index, list_data in enumerate(option_data):
+                                file.write('    <listitem '
+                                           'number="%d" value=%s/>\n'
+                                           % (list_index,
+                                              quoteattr(str(list_data))))
+                            file.write('  </option>\n')
                     else:
-                        file.write('  <option name=%s '
-                                   'value="" length="%d">\n'
+                        file.write('  <option name=%s value=%s/>\n'
                                    % (quoteattr(option_name),
-                                      len(option_data)))
-                        for list_index, list_data in enumerate(option_data):
-                            file.write('    <listitem '
-                                       'number="%d" value=%s/>\n'
-                                       % (list_index,
-                                          quoteattr(str(list_data))))
-                        file.write('  </option>\n')
-                else:
-                    file.write('  <option name=%s value=%s/>\n'
-                               % (quoteattr(option_name),
-                                  quoteattr(str(option_data))))
-            for docgen_name in self.docgen_names:
-                if module_docgen_opts[docgen_name]:
-                    for idx, data in enumerate(
-                            module_docgen_opts[docgen_name]):
-                        file.write('  <docgen-option docgen=%s '
-                                   'name=%s value=%s/>\n'
-                                   % (quoteattr(docgen_name),
-                                      quoteattr(data[0]),
-                                      quoteattr(str(data[1]))))
-            self.write_module_common(file, option_list)
+                                      quoteattr(str(option_data))))
+                for docgen_name in self.docgen_names:
+                    if module_docgen_opts[docgen_name]:
+                        for idx, data in enumerate(
+                                module_docgen_opts[docgen_name]):
+                            file.write('  <docgen-option docgen=%s '
+                                       'name=%s value=%s/>\n'
+                                       % (quoteattr(docgen_name),
+                                          quoteattr(data[0]),
+                                          quoteattr(str(data[1]))))
+                self.write_module_common(file, option_list)
 
-            file.write('</module>\n')
+                file.write('</module>\n')
 
-        file.write('</options>\n')
-        file.close()
+            file.write('</options>\n')
 
     def parse(self):
         """
