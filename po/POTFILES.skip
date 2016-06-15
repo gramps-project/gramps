@@ -87,6 +87,7 @@ gramps/gen/filters/rules/test/media_rules_test.py
 gramps/gen/filters/rules/test/note_rules_test.py
 gramps/gen/filters/rules/test/person_rules_test.py
 gramps/gen/filters/rules/test/place_rules_test.py
+gramps/gen/filters/rules/test/repository_rules_test.py
 #
 # gen.filters.rules.person package
 #
