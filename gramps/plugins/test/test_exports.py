@@ -71,8 +71,8 @@ def do_it(tstfile):
 def compare(expect_file, result_file):
     """ This uses the diff library to compare two files
     """
-    with open(expect_file, encoding='utf-8') as exp_f, \
-         open(result_file, encoding='utf-8') as res_f:
+    with open(expect_file, encoding='utf-8_sig') as exp_f, \
+         open(result_file, encoding='utf-8_sig') as res_f:
         diff = difflib.unified_diff(exp_f.readlines(),
                                     res_f.readlines(),
                                     n=2, lineterm='\n')
