@@ -31,6 +31,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 import csv
@@ -251,7 +252,8 @@ class CSVWriter:
     def export_data(self):
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.fp = open(self.filename, "w", encoding='utf_8_sig',
+            self.fp = open(self.filename, "w", encoding='utf_8_sig'
+                           if sys.platform == 'win32' else 'utf_8',
                            newline='')
             self.g = csv.writer(self.fp)
         except IOError as msg:
