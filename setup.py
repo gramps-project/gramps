@@ -42,7 +42,6 @@ import glob
 import codecs
 import subprocess
 from stat import ST_MODE
-import io
 from gramps.version import VERSION
 import unittest
 import argparse
@@ -273,8 +272,7 @@ class install(_install):
     def run(self):
         resource_file = os.path.join(os.path.dirname(__file__), 'gramps', 'gen',
                                      'utils', 'resource-path')
-        with io.open(resource_file, 'w', encoding='utf-8',
-                     errors='strict') as fp:
+        with open(resource_file, 'w', encoding='utf-8', errors='strict') as fp:
             if packaging:
                 path = resource_path
             else:
