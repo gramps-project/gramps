@@ -34,7 +34,6 @@ Specific option handling for a GUI.
 #
 #------------------------------------------------------------------------
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -98,7 +97,8 @@ class LastNameDialog(ManagedWindow):
         self.__tree_view.append_column(col2)
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.add(self.__tree_view)
-        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                   Gtk.PolicyType.AUTOMATIC)
         scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
         self.__dlg.vbox.pack_start(scrolled_window, True, True, 0)
         scrolled_window.show_all()
@@ -128,7 +128,7 @@ class LastNameDialog(ManagedWindow):
 
         # insert the names and count into the model
         for key in surnames:
-            if key.encode('iso-8859-1','xmlcharrefreplace') not in skip_list:
+            if key.encode('iso-8859-1', 'xmlcharrefreplace') not in skip_list:
                 self.__model.append([key, surnames[key]])
 
         # keep the list sorted starting with the most popular last name
@@ -149,8 +149,8 @@ class LastNameDialog(ManagedWindow):
         if response == Gtk.ResponseType.ACCEPT:
             (mode, paths) = self.__tree_selection.get_selected_rows()
             for path in paths:
-                i = self.__model.get_iter(path)
-                surname = self.__model.get_value(i, 0)
+                iii = self.__model.get_iter(path)
+                surname = self.__model.get_value(iii, 0)
                 surname_set.add(surname)
         self.__dlg.destroy()
         return surname_set
@@ -172,16 +172,18 @@ class GuiStringOption(Gtk.Entry):
         """
         Gtk.Entry.__init__(self)
         self.__option = option
-        self.set_text( self.__option.get_value() )
+        self.set_text(self.__option.get_value())
 
         # Set up signal handlers when the widget value is changed
         # from user interaction or programmatically.  When handling
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
         self.changekey = self.connect('changed', self.__text_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -191,7 +193,7 @@ class GuiStringOption(Gtk.Entry):
         Handle the change of the value made by the user.
         """
         self.__option.disable_signals()
-        self.__option.set_value( self.get_text() )
+        self.__option.set_value(self.get_text())
         self.__option.enable_signals()
 
     def __update_avail(self):
@@ -228,7 +230,6 @@ class GuiColorOption(Gtk.ColorButton):
     """
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
-        value = self.__option.get_value()
         Gtk.ColorButton.__init__(self)
         rgba = Gdk.RGBA()
         rgba.parse(self.__option.get_value())
@@ -239,9 +240,11 @@ class GuiColorOption(Gtk.ColorButton):
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
         self.changekey = self.connect('color-set', self.__color_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -309,7 +312,8 @@ class GuiNumberOption(Gtk.SpinButton):
             import math
             decimals = int(math.log10(step) * -1)
 
-        Gtk.SpinButton.__init__(self, adjustment=adj, climb_rate=1, digits=decimals)
+        Gtk.SpinButton.__init__(self, adjustment=adj,
+                                climb_rate=1, digits=decimals)
         Gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())
@@ -318,10 +322,13 @@ class GuiNumberOption(Gtk.SpinButton):
         # from user interaction or programmatically.  When handling
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
-        self.changekey = self.connect('value_changed', self.__number_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.changekey = self.connect('value_changed',
+                                      self.__number_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -332,7 +339,7 @@ class GuiNumberOption(Gtk.SpinButton):
         """
         vtype = type(self.__option.get_value())
 
-        self.__option.set_value( vtype(self.get_value()) )
+        self.__option.set_value(vtype(self.get_value()))
 
     def __update_avail(self):
         """
@@ -388,7 +395,8 @@ class GuiTextOption(Gtk.ScrolledWindow):
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
         self.bufcon = self.__buff.connect('changed', self.__text_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         # Required for tooltip
         gtext.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK)
@@ -404,7 +412,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
                                             False))
 
         self.__option.disable_signals()
-        self.__option.set_value( text_val.split('\n') )
+        self.__option.set_value(text_val.split('\n'))
         self.__option.enable_signals()
 
     def __value_changed(self):
@@ -462,9 +470,11 @@ class GuiBooleanOption(Gtk.CheckButton):
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
         self.changekey = self.connect('toggled', self.__state_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -473,7 +483,7 @@ class GuiBooleanOption(Gtk.CheckButton):
         """
         Handle the change of the value made by the user.
         """
-        self.__option.set_value( self.get_active() )
+        self.__option.set_value(self.get_active())
 
     def __update_avail(self):
         """
@@ -510,14 +520,14 @@ class GuiEnumeratedListOption(Gtk.Box):
     """
     def __init__(self, option, dbstate, uistate, track, override):
         Gtk.Box.__init__(self)
-        evtBox = Gtk.EventBox()
+        evt_box = Gtk.EventBox()
         self.__option = option
         self.__combo = Gtk.ComboBoxText()
         if len(option.get_items()) > 18:
             self.__combo.set_popup_fixed_width(False)
             self.__combo.set_wrap_width(3)
-        evtBox.add(self.__combo)
-        self.pack_start(evtBox, True, True, 0)
+        evt_box.add(self.__combo)
+        self.pack_start(evt_box, True, True, 0)
 
         self.__update_options()
 
@@ -525,11 +535,15 @@ class GuiEnumeratedListOption(Gtk.Box):
         # from user interaction or programmatically.  When handling
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
-        self.changekey = self.__combo.connect('changed', self.__selection_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.changekey = self.__combo.connect('changed',
+                                              self.__selection_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey1 = self.__option.connect('options-changed', self.__update_options)
-        self.conkey2 = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey1 = self.__option.connect('options-changed',
+                                             self.__update_options)
+        self.conkey2 = self.__option.connect('avail-changed',
+                                             self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -548,11 +562,12 @@ class GuiEnumeratedListOption(Gtk.Box):
         # the other widgets or bad things happen (like other needed
         # signals don't fire)
 
-        self.__option.set_value( value )
+        self.__option.set_value(value)
         self.value_changed()    # Allow overriding so that another class
                                 # can add functionality
 
     def value_changed(self):
+        """ Allow overriding so that another class can add functionality """
         pass
 
     def __update_options(self):
@@ -569,7 +584,7 @@ class GuiEnumeratedListOption(Gtk.Box):
             if value == cur_val:
                 active_index = current_index
             current_index += 1
-        self.__combo.set_active( active_index )
+        self.__combo.set_active(active_index)
 
     def __update_avail(self):
         """
@@ -648,9 +663,11 @@ class GuiPersonOption(Gtk.Box):
 
         self.__update_person(person)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         pevt.set_tooltip_text(self.__option.get_help())
@@ -682,7 +699,7 @@ class GuiPersonOption(Gtk.Box):
         select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate, self.__track,
                            title=_('Select a person for the report'),
-                           filter=rfilter )
+                           filter=rfilter)
         person = sel.run()
         self.__update_person(person)
 
@@ -693,7 +710,7 @@ class GuiPersonOption(Gtk.Box):
         if person:
             name = _nd.display(person)
             gid = person.get_gramps_id()
-            self.__person_label.set_text( "%s (%s)" % (name, gid) )
+            self.__person_label.set_text("%s (%s)" % (name, gid))
             self.__option.set_value(gid)
 
     def __update_avail(self):
@@ -756,9 +773,11 @@ class GuiFamilyOption(Gtk.Box):
 
         self.__initialize_family(override)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey = self.__option.connect('avail-changed',
+                                            self.__update_avail)
         self.__update_avail()
 
         pevt.set_tooltip_text(self.__option.get_help())
@@ -844,7 +863,7 @@ class GuiFamilyOption(Gtk.Box):
 
         select_class = SelectorFactory('Family')
         sel = select_class(self.__dbstate, self.__uistate, self.__track,
-                           filter=rfilter )
+                           filter=rfilter)
         family = sel.run()
         if family:
             self.__update_family(family.get_handle())
@@ -871,12 +890,13 @@ class GuiFamilyOption(Gtk.Box):
             else:
                 mother_name = _("unknown mother")
 
-            name = _("%(father_name)s and %(mother_name)s (%(family_id)s)") % {
-                        'father_name': father_name,
-                        'mother_name': mother_name,
-                        'family_id': family_id}
+            name = _(
+                "%(father_name)s and %(mother_name)s (%(family_id)s)") % {
+                    'father_name': father_name,
+                    'mother_name': mother_name,
+                    'family_id': family_id}
 
-            self.__family_label.set_text( name )
+            self.__family_label.set_text(name)
             self.__option.set_value(family_id)
 
     def __update_avail(self):
@@ -948,7 +968,8 @@ class GuiNoteOption(Gtk.Box):
         note = self.__db.get_note_from_gramps_id(nid)
         self.__update_note(note)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -976,11 +997,11 @@ class GuiNoteOption(Gtk.Box):
                 txt = txt[:35] + "..."
             txt = "%s [%s]" % (txt, note_id)
 
-            self.__note_label.set_text( txt )
+            self.__note_label.set_text(txt)
             self.__option.set_value(note_id)
         else:
             txt = "<i>%s</i>" % _('No note given, click button to select one')
-            self.__note_label.set_text( txt )
+            self.__note_label.set_text(txt)
             self.__note_label.set_use_markup(True)
             self.__option.set_value("")
 
@@ -1052,7 +1073,8 @@ class GuiMediaOption(Gtk.Box):
         media = self.__db.get_media_from_gramps_id(mid)
         self.__update_media(media)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -1077,11 +1099,11 @@ class GuiMediaOption(Gtk.Box):
             media_id = media.get_gramps_id()
             txt = "%s [%s]" % (media.get_description(), media_id)
 
-            self.__media_label.set_text( txt )
+            self.__media_label.set_text(txt)
             self.__option.set_value(media_id)
         else:
             txt = "<i>%s</i>" % _('No image given, click button to select one')
-            self.__media_label.set_text( txt )
+            self.__media_label.set_text(txt)
             self.__media_label.set_use_markup(True)
             self.__option.set_value("")
 
@@ -1140,8 +1162,8 @@ class GuiPersonListOption(Gtk.Box):
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)
-        col1 = Gtk.TreeViewColumn(_('Name'  ), Gtk.CellRendererText(), text=0)
-        col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
+        col1 = Gtk.TreeViewColumn(_('Name'), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('ID'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
@@ -1172,7 +1194,8 @@ class GuiPersonListOption(Gtk.Box):
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.pack_end(self.__vbbox, False, False, 0)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__tree_view.set_tooltip_text(self.__option.get_help())
 
@@ -1183,12 +1206,12 @@ class GuiPersonListOption(Gtk.Box):
         # people we already have must be excluded
         # so we don't list them multiple times
         skip_list = set()
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1) # get the GID stored in column #1
+        iii = self.__model.get_iter_first()
+        while iii:
+            gid = self.__model.get_value(iii, 1) # get the GID stored in col. #1
             person = self.__db.get_person_from_gramps_id(gid)
             skip_list.add(person.get_handle())
-            i = self.__model.iter_next(i)
+            iii = self.__model.iter_next(iii)
 
         select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate,
@@ -1214,8 +1237,7 @@ class GuiPersonListOption(Gtk.Box):
                     spouse_handle = family.get_father_handle()
 
                 if spouse_handle and (spouse_handle not in skip_list):
-                    spouse = self.__db.get_person_from_handle(
-                                                          spouse_handle)
+                    spouse = self.__db.get_person_from_handle(spouse_handle)
                     spouse_name = _nd.display(spouse)
                     text = _('Also include %s?') % spouse_name
 
@@ -1235,9 +1257,9 @@ class GuiPersonListOption(Gtk.Box):
         Handle the delete person button.
         """
         (path, column) = self.__tree_view.get_cursor()
-        if (path):
-            i = self.__model.get_iter(path)
-            self.__model.remove(i)
+        if path:
+            iii = self.__model.get_iter(path)
+            self.__model.remove(iii)
             self.__update_value()
 
     def __update_value(self):
@@ -1245,11 +1267,11 @@ class GuiPersonListOption(Gtk.Box):
         Parse the object and return.
         """
         gidlist = ''
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1)
+        iii = self.__model.get_iter_first()
+        while iii:
+            gid = self.__model.get_value(iii, 1)
             gidlist = gidlist + gid + ' '
-            i = self.__model.iter_next(i)
+            iii = self.__model.iter_next(iii)
 
         # Supress signals so that the set_value() handler
         # (__value_changed()) doesn't get called
@@ -1318,8 +1340,8 @@ class GuiPlaceListOption(Gtk.Box):
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)
-        col1 = Gtk.TreeViewColumn(_('Place'  ), Gtk.CellRendererText(), text=0)
-        col2 = Gtk.TreeViewColumn(_('ID'    ), Gtk.CellRendererText(), text=1)
+        col1 = Gtk.TreeViewColumn(_('Place'), Gtk.CellRendererText(), text=0)
+        col2 = Gtk.TreeViewColumn(_('ID'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
         col2.set_resizable(True)
         col1.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
@@ -1350,7 +1372,8 @@ class GuiPlaceListOption(Gtk.Box):
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.pack_end(self.__vbbox, False, False, 0)
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__tree_view.set_tooltip_text(self.__option.get_help())
 
@@ -1361,12 +1384,12 @@ class GuiPlaceListOption(Gtk.Box):
         # places we already have must be excluded
         # so we don't list them multiple times
         skip_list = set()
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1) # get the GID stored in column #1
+        iii = self.__model.get_iter_first()
+        while iii:
+            gid = self.__model.get_value(iii, 1) # get the GID stored in col. #1
             place = self.__db.get_place_from_gramps_id(gid)
             skip_list.add(place.get_handle())
-            i = self.__model.iter_next(i)
+            iii = self.__model.iter_next(iii)
 
         select_class = SelectorFactory('Place')
         sel = select_class(self.__dbstate, self.__uistate,
@@ -1383,9 +1406,9 @@ class GuiPlaceListOption(Gtk.Box):
         Handle the delete place button.
         """
         (path, column) = self.__tree_view.get_cursor()
-        if (path):
-            i = self.__model.get_iter(path)
-            self.__model.remove(i)
+        if path:
+            iii = self.__model.get_iter(path)
+            self.__model.remove(iii)
             self.__update_value()
 
     def __update_value(self):
@@ -1393,11 +1416,11 @@ class GuiPlaceListOption(Gtk.Box):
         Parse the object and return.
         """
         gidlist = ''
-        i = self.__model.get_iter_first()
-        while (i):
-            gid = self.__model.get_value(i, 1)
+        iii = self.__model.get_iter_first()
+        while iii:
+            gid = self.__model.get_value(iii, 1)
             gidlist = gidlist + gid + ' '
-            i = self.__model.iter_next(i)
+            iii = self.__model.iter_next(iii)
         self.__option.set_value(gidlist)
 
     def __value_changed(self):
@@ -1495,7 +1518,8 @@ class GuiSurnameColorOption(Gtk.Box):
 
         self.__value_changed()
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__tree_view.set_tooltip_text(self.__option.get_help())
 
@@ -1504,11 +1528,11 @@ class GuiSurnameColorOption(Gtk.Box):
         Handle the add surname button.
         """
         skip_list = set()
-        i = self.__model.get_iter_first()
-        while (i):
-            surname = self.__model.get_value(i, 0)
-            skip_list.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
-            i = self.__model.iter_next(i)
+        iii = self.__model.get_iter_first()
+        while iii:
+            surname = self.__model.get_value(iii, 0)
+            skip_list.add(surname.encode('iso-8859-1', 'xmlcharrefreplace'))
+            iii = self.__model.iter_next(iii)
 
         ln_dialog = LastNameDialog(self.__db, self.__uistate,
                                    self.__track, self.__surnames, skip_list)
@@ -1522,9 +1546,9 @@ class GuiSurnameColorOption(Gtk.Box):
         Handle the delete surname button.
         """
         (path, column) = self.__tree_view.get_cursor()
-        if (path):
-            i = self.__model.get_iter(path)
-            self.__model.remove(i)
+        if path:
+            iii = self.__model.get_iter(path)
+            self.__model.remove(iii)
             self.__update_value()
 
     def __row_clicked(self, treeview, path, column):
@@ -1532,10 +1556,10 @@ class GuiSurnameColorOption(Gtk.Box):
         Handle the case of a row being clicked on.
         """
         # get the surname and colour value for this family
-        i = self.__model.get_iter(path)
-        surname = self.__model.get_value(i, 0)
+        iii = self.__model.get_iter(path)
+        surname = self.__model.get_value(iii, 0)
         rgba = Gdk.RGBA()
-        rgba.parse(self.__model.get_value(i, 1))
+        rgba.parse(self.__model.get_value(iii, 1))
 
         title = _('Select color for %s') % surname
         colour_dialog = Gtk.ColorChooserDialog(title)
@@ -1547,7 +1571,7 @@ class GuiSurnameColorOption(Gtk.Box):
             colour_name = '#%02x%02x%02x' % (int(rgba.red * 255),
                                              int(rgba.green * 255),
                                              int(rgba.blue * 255))
-            self.__model.set_value(i, 1, colour_name)
+            self.__model.set_value(iii, 1, colour_name)
 
         colour_dialog.destroy()
         self.__update_value()
@@ -1557,13 +1581,13 @@ class GuiSurnameColorOption(Gtk.Box):
         Parse the object and return.
         """
         surname_colours = ''
-        i = self.__model.get_iter_first()
-        while (i):
-            surname = self.__model.get_value(i, 0)
-            #surname = surname.encode('iso-8859-1','xmlcharrefreplace')
-            colour = self.__model.get_value(i, 1)
+        iii = self.__model.get_iter_first()
+        while iii:
+            surname = self.__model.get_value(iii, 0)
+            #surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
+            colour = self.__model.get_value(iii, 1)
             # Tried to use a dictionary, and tried to save it as a tuple,
-            # but coulnd't get this to work right -- this is lame, but now
+            # but couldn't get this to work right -- this is lame, but now
             # the surnames and colours are saved as a plain text string
             #
             # Hmmm...putting whitespace between the fields causes
@@ -1572,8 +1596,8 @@ class GuiSurnameColorOption(Gtk.Box):
             # whitespace character which is unlikely to appear in
             # a surname.  (See bug report #2162.)
             surname_colours += surname + '\xb0' + colour + '\xb0'
-            i = self.__model.iter_next(i)
-        self.__option.set_value( surname_colours )
+            iii = self.__model.iter_next(iii)
+        self.__option.set_value(surname_colours)
 
     def __value_changed(self):
         """
@@ -1610,7 +1634,7 @@ class GuiSurnameColorOption(Gtk.Box):
         # support both the new and old format -- look for the \xb0
         # delimiter, and if it isn't there, assume this is the old-
         # style space-delimited format.  (Bug #2162.)
-        if (value.find('\xb0') >= 0):
+        if value.find('\xb0') >= 0:
             tmp = value.split('\xb0')
         else:
             tmp = value.split(' ')
@@ -1646,7 +1670,7 @@ class GuiDestinationOption(Gtk.Box):
         self.__option = option
         self.__uistate = uistate
         self.__entry = Gtk.Entry()
-        self.__entry.set_text( self.__option.get_value() )
+        self.__entry.set_text(self.__option.get_value())
 
         self.__button = Gtk.Button()
         img = Gtk.Image()
@@ -1662,10 +1686,13 @@ class GuiDestinationOption(Gtk.Box):
         # a specific signal, we need to temporarily block the signal
         # that would call the other signal handler.
         self.changekey = self.__entry.connect('changed', self.__text_changed)
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
-        self.conkey1 = self.__option.connect('options-changed', self.__option_changed)
-        self.conkey2 = self.__option.connect('avail-changed', self.__update_avail)
+        self.conkey1 = self.__option.connect('options-changed',
+                                             self.__option_changed)
+        self.conkey2 = self.__option.connect('avail-changed',
+                                             self.__update_avail)
         self.__update_avail()
 
         self.set_tooltip_text(self.__option.get_help())
@@ -1685,7 +1712,7 @@ class GuiDestinationOption(Gtk.Box):
             value = value[:-len(extension)]
             self.__option.set_value(value)
 
-        self.__entry.set_text( self.__option.get_value() )
+        self.__entry.set_text(self.__option.get_value())
 
     def __select_file(self, obj):
         """
@@ -1731,7 +1758,7 @@ class GuiDestinationOption(Gtk.Box):
         Handle the change of the value made by the user.
         """
         self.__option.disable_signals()
-        self.__option.set_value( self.__entry.get_text() )
+        self.__option.set_value(self.__entry.get_text())
         self.__option.enable_signals()
 
     def __update_avail(self):
@@ -1789,12 +1816,12 @@ class GuiStyleOption(GuiEnumeratedListOption):
         from gramps.gen.plug.docgen import StyleSheetList
         from .report._styleeditor import StyleListDisplay
         style_list = StyleSheetList(self.__option.get_style_file(),
-                                            self.__option.get_default_style())
+                                    self.__option.get_default_style())
         StyleListDisplay(style_list, None, None)
 
         new_items = []
         for style_name in style_list.get_style_names():
-            new_items.append( (style_name, style_name) )
+            new_items.append((style_name, style_name))
         self.__option.set_items(new_items)
 
 #-------------------------------------------------------------------------
@@ -1814,11 +1841,11 @@ class GuiBooleanListOption(Gtk.Box):
 
         default = option.get_value().split(',')
         if len(default) < 15:
-            COLUMNS = 2 # number of checkbox columns
+            columns = 2 # number of checkbox columns
         else:
-            COLUMNS = 3
+            columns = 3
         column = []
-        for i in range(COLUMNS):
+        for dummy in range(columns):
             vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             self.pack_start(vbox, True, True, 0)
             column.append(vbox)
@@ -1840,12 +1867,13 @@ class GuiBooleanListOption(Gtk.Box):
             button.show()
             counter += 1
             this_column_counter += 1
-            this_column_gets = (len(default)+(COLUMNS-(ncolumn+1))) // COLUMNS
+            this_column_gets = (len(default)+(columns-(ncolumn+1))) // columns
             if this_column_counter + 1 > this_column_gets:
                 ncolumn += 1
                 this_column_counter = 0
 
-        self.valuekey = self.__option.connect('value-changed', self.__value_changed)
+        self.valuekey = self.__option.connect('value-changed',
+                                              self.__value_changed)
 
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
@@ -1907,26 +1935,26 @@ class GuiBooleanListOption(Gtk.Box):
 from gramps.gen.plug import menu as menu
 _OPTIONS = (
 
-    (menu.BooleanListOption,     True, GuiBooleanListOption),
-    (menu.BooleanOption,         False, GuiBooleanOption),
-    (menu.ColorOption,           True, GuiColorOption),
-    (menu.DestinationOption,     True, GuiDestinationOption),
-    (menu.EnumeratedListOption,  True, GuiEnumeratedListOption),
-    (menu.FamilyOption,          True, GuiFamilyOption),
-    (menu.MediaOption,           True, GuiMediaOption),
-    (menu.NoteOption,            True, GuiNoteOption),
-    (menu.NumberOption,          True, GuiNumberOption),
-    (menu.PersonListOption,      True, GuiPersonListOption),
-    (menu.PersonOption,          True, GuiPersonOption),
-    (menu.PlaceListOption,       True, GuiPlaceListOption),
-    (menu.StringOption,          True, GuiStringOption),
-    (menu.StyleOption,           True, GuiStyleOption),
-    (menu.SurnameColorOption,    True, GuiSurnameColorOption),
-    (menu.TextOption,            True, GuiTextOption),
+    (menu.BooleanListOption, True, GuiBooleanListOption),
+    (menu.BooleanOption, False, GuiBooleanOption),
+    (menu.ColorOption, True, GuiColorOption),
+    (menu.DestinationOption, True, GuiDestinationOption),
+    (menu.EnumeratedListOption, True, GuiEnumeratedListOption),
+    (menu.FamilyOption, True, GuiFamilyOption),
+    (menu.MediaOption, True, GuiMediaOption),
+    (menu.NoteOption, True, GuiNoteOption),
+    (menu.NumberOption, True, GuiNumberOption),
+    (menu.PersonListOption, True, GuiPersonListOption),
+    (menu.PersonOption, True, GuiPersonOption),
+    (menu.PlaceListOption, True, GuiPlaceListOption),
+    (menu.StringOption, True, GuiStringOption),
+    (menu.StyleOption, True, GuiStyleOption),
+    (menu.SurnameColorOption, True, GuiSurnameColorOption),
+    (menu.TextOption, True, GuiTextOption),
 
     # This entry must be last!
 
-    (menu.Option,                None, None),
+    (menu.Option, None, None),
 
     )
 del menu
@@ -1965,11 +1993,11 @@ def add_gui_options(dialog):
     """
     if not hasattr(dialog.options, "menu"):
         return
-    menu = dialog.options.menu
+    o_menu = dialog.options.menu
     options_dict = dialog.options.options_dict
-    for category in menu.get_categories():
-        for name in menu.get_option_names(category):
-            option = menu.get_option(category, name)
+    for category in o_menu.get_categories():
+        for name in o_menu.get_option_names(category):
+            option = o_menu.get_option(category, name)
 
             # override option default with xml-saved value:
             if name in options_dict:
