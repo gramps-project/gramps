@@ -185,7 +185,7 @@ class BaseTest(unittest.TestCase):
         Test ChangedSince rule.
         """
         rule = ChangedSince(['2013-01-01', '2014-01-01'])
-        self.assertEqual(len(self.filter_with_rule(rule)), 435)
+        self.assertEqual(len(self.filter_with_rule(rule)), 419)
 
     def test_hastag(self):
         """

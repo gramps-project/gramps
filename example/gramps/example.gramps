@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2015-07-04" version="4.2.0"/>
+    <created date="2016-06-17" version="5.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -63072,7 +63072,7 @@
       <pname value="LA"/>
       <placeref hlink="_4ECKQCWCLO5YIHXEXC"/>
     </placeobj>
-    <placeobj handle="_c96587263ea6acc7e8cee6d55d4" change="1383986851" id="P0063" type="County">
+    <placeobj handle="_c96587263ea6acc7e8cee6d55d4" change="1466201103" id="P0063" type="Parish">
       <ptitle>Calcasieu, LA, USA</ptitle>
       <pname value="Calcasieu"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -63482,7 +63482,7 @@
       <pname value="Madison"/>
       <placeref hlink="_c96587263765eabd0274babff08"/>
     </placeobj>
-    <placeobj handle="_c96587265bd414fda331a7e1936" change="1383986851" id="P0145" type="County">
+    <placeobj handle="_c96587265bd414fda331a7e1936" change="1466201103" id="P0145" type="Parish">
       <ptitle>Tangipahoa, LA, USA</ptitle>
       <pname value="Tangipahoa"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -63587,12 +63587,12 @@
       <pname value="Maricopa"/>
       <placeref hlink="_c96587265064ee72c0c840e2414"/>
     </placeobj>
-    <placeobj handle="_c9658726629193e2fc9920c7a8c" change="1383986851" id="P0166" type="County">
+    <placeobj handle="_c9658726629193e2fc9920c7a8c" change="1466201103" id="P0166" type="Parish">
       <ptitle>Rapides, LA, USA</ptitle>
       <pname value="Rapides"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
     </placeobj>
-    <placeobj handle="_c9658726630712784a1ff7b11f3" change="1383986851" id="P0167" type="County">
+    <placeobj handle="_c9658726630712784a1ff7b11f3" change="1466201103" id="P0167" type="Parish">
       <ptitle>Caddo, LA, USA</ptitle>
       <pname value="Caddo"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -63662,7 +63662,7 @@
       <pname value="Kleberg"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c9658726684316782aff64e7ffb" change="1383986852" id="P0181" type="County">
+    <placeobj handle="_c9658726684316782aff64e7ffb" change="1466201103" id="P0181" type="Parish">
       <ptitle>Madison, LA, USA</ptitle>
       <pname value="Madison"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64027,7 +64027,7 @@
       <pname value="Santa Cruz"/>
       <placeref hlink="_c96587265064ee72c0c840e2414"/>
     </placeobj>
-    <placeobj handle="_c9658726deb5953cf082c3a77f4" change="1383986852" id="P0254" type="County">
+    <placeobj handle="_c9658726deb5953cf082c3a77f4" change="1466201103" id="P0254" type="Parish">
       <ptitle>Ouachita, LA, USA</ptitle>
       <pname value="Ouachita"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64042,7 +64042,7 @@
       <pname value="Jefferson"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c9658726dfa7131d382c2fdfedb" change="1383986852" id="P0257" type="County">
+    <placeobj handle="_c9658726dfa7131d382c2fdfedb" change="1466201103" id="P0257" type="Parish">
       <ptitle>Orleans, LA, USA</ptitle>
       <pname value="Orleans"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64082,7 +64082,7 @@
       <pname value="Hidalgo"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c9658726e2777233516d2f6c966" change="1383986852" id="P0265" type="County">
+    <placeobj handle="_c9658726e2777233516d2f6c966" change="1466201103" id="P0265" type="Parish">
       <ptitle>Lincoln, LA, USA</ptitle>
       <pname value="Lincoln"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64242,7 +64242,7 @@
       <pname value="Dawson"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c9658726ed43573bfc9b0f68392" change="1383986852" id="P0297" type="County">
+    <placeobj handle="_c9658726ed43573bfc9b0f68392" change="1466201103" id="P0297" type="Parish">
       <ptitle>Lafayette, LA, USA</ptitle>
       <pname value="Lafayette"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64327,7 +64327,7 @@
       <pname value="Lowndes"/>
       <placeref hlink="_c96587262f8329d37b252e1b9e5"/>
     </placeobj>
-    <placeobj handle="_c9658726f3c68fb80014f281a5" change="1383986852" id="P0314" type="County">
+    <placeobj handle="_c9658726f3c68fb80014f281a5" change="1466201103" id="P0314" type="Parish">
       <ptitle>East Baton Rouge, LA, USA</ptitle>
       <pname value="East Baton Rouge"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64402,7 +64402,7 @@
       <pname value="Ellis"/>
       <placeref hlink="_c96587264ba52dea2fe211f92f8"/>
     </placeobj>
-    <placeobj handle="_c9658726f861a13dea5b43276bb" change="1383986852" id="P0329" type="County">
+    <placeobj handle="_c9658726f861a13dea5b43276bb" change="1466201103" id="P0329" type="Parish">
       <ptitle>Acadia, LA, USA</ptitle>
       <pname value="Acadia"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64487,7 +64487,7 @@
       <pname value="Erath"/>
       <placeref hlink="_c965872630a68ebd32322c4a30a"/>
     </placeobj>
-    <placeobj handle="_c965872701b2a67b3088c3ad71a" change="1383986852" id="P0346" type="County">
+    <placeobj handle="_c965872701b2a67b3088c3ad71a" change="1466201103" id="P0346" type="Parish">
       <ptitle>Webster, LA, USA</ptitle>
       <pname value="Webster"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64677,7 +64677,7 @@
       <pname value="Elkhart"/>
       <placeref hlink="_c96587263765eabd0274babff08"/>
     </placeobj>
-    <placeobj handle="_c965872711c7e9e082c0d68c316" change="1383986852" id="P0384" type="County">
+    <placeobj handle="_c965872711c7e9e082c0d68c316" change="1466201103" id="P0384" type="Parish">
       <ptitle>St. Mary, LA, USA</ptitle>
       <pname value="St. Mary"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64697,7 +64697,7 @@
       <pname value="Mendocino"/>
       <placeref hlink="_c96587262ff262aaac31f6db7af"/>
     </placeobj>
-    <placeobj handle="_c965872712e6fe64dcae7da4223" change="1383986852" id="P0388" type="County">
+    <placeobj handle="_c965872712e6fe64dcae7da4223" change="1466201103" id="P0388" type="Parish">
       <ptitle>Jefferson Davis, LA, USA</ptitle>
       <pname value="Jefferson Davis"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64712,7 +64712,7 @@
       <pname value="Yuba"/>
       <placeref hlink="_c96587262ff262aaac31f6db7af"/>
     </placeobj>
-    <placeobj handle="_c96587271451b1bb73936fb26bf" change="1383986852" id="P0391" type="County">
+    <placeobj handle="_c96587271451b1bb73936fb26bf" change="1466201103" id="P0391" type="Parish">
       <ptitle>Terrebonne, LA, USA</ptitle>
       <pname value="Terrebonne"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
@@ -64922,7 +64922,7 @@
       <pname value="Montgomery"/>
       <placeref hlink="_c96587263cc11e217c35cc9003f"/>
     </placeobj>
-    <placeobj handle="_c965872722d21438a2202c465a9" change="1383986852" id="P0433" type="County">
+    <placeobj handle="_c965872722d21438a2202c465a9" change="1466201103" id="P0433" type="Parish">
       <ptitle>Washington, LA, USA</ptitle>
       <pname value="Washington"/>
       <placeref hlink="_c96587263e82a097df799eca3c"/>
