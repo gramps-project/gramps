@@ -108,8 +108,8 @@ def importData(dbase, filename, user):
                                          config.get('preferences.tag-on-import') else None))
     try:
         with open(filename, 'rb') as filehandle:
-            line = filehandle.read(2)
-            if line == b"\xef\xbb":     # if utf-8 with BOM
+            line = filehandle.read(3)
+            if line == codecs.BOM_UTF8:
                 filehandle.seek(0)
                 filehandle = TextIOWrapper(filehandle, encoding='utf_8_sig',
                                            errors='replace', newline='')
