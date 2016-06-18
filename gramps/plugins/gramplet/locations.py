@@ -83,7 +83,8 @@ class Locations(Gramplet, DbGUIElement):
         titles = [('', 0, 50),
                   (_('Name'), 1, 300),
                   (_('Type'), 2, 150),
-                  (_('Date'), 4, 150),
+                  (_('Date'), 3, 150),
+                  (_('ID'), 4, 100),
                   ('', NOSORT, 50)]
         self.model = ListModel(top, titles, list_mode="tree",
                                event_func=self.edit_place)
@@ -133,11 +134,13 @@ class Locations(Gramplet, DbGUIElement):
         place_sort = '%012d' % placeref.get_date_object().get_sort_value()
         place_name = place.get_name().get_value()
         place_type = str(place.get_type())
+        place_id = place.get_gramps_id()
 
         new_node = self.model.add([place.handle,
                                    place_name,
                                    place_type,
                                    place_date,
+                                   place_id,
                                    place_sort],
                                   node=node)
 
