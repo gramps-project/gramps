@@ -92,8 +92,6 @@ getcontext().prec = 8
 import logging
 LOG = logging.getLogger(".NarrativeWeb")
 
-# py lint: disable=line-too-long
-
 #------------------------------------------------
 # Gramps module
 #------------------------------------------------
@@ -106,9 +104,10 @@ from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
-from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
-                          BooleanOption, EnumeratedListOption, FilterOption, \
-                          NoteOption, MediaOption, DestinationOption
+from gramps.gen.plug.menu import (PersonOption, NumberOption, StringOption,
+                                  BooleanOption, EnumeratedListOption,
+                                  FilterOption, NoteOption, MediaOption,
+                                  DestinationOption)
 from gramps.gen.plug.report import (Report, Bibliography)
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -152,6 +151,7 @@ SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # constants
 #------------------------------------------------
+GOOGLE_MAPS = 'http://maps.googleapis.com/maps/'
 # javascript code for Google single Marker...
 GOOGLE_JSC = """
   var myLatLng = new google.maps.LatLng(%s, %s);
@@ -396,14 +396,11 @@ _UNKNOWN = _("Unknown")
 _ABSENT = _("<absent>")
 
 # Events that are usually a family event
-_EVENTMAP = set(
-                [EventType.MARRIAGE, EventType.MARR_ALT,
+_EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
                  EventType.MARR_SETTL, EventType.MARR_LIC,
                  EventType.MARR_CONTR, EventType.MARR_BANNS,
                  EventType.ENGAGEMENT, EventType.DIVORCE,
-                 EventType.DIV_FILING
-                ]
-              )
+                 EventType.DIV_FILING])
 
 # define clear blank line for proper styling
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
@@ -556,6 +553,8 @@ class BasePage:
         self._backend.build_link = report.build_link
 
         self.report = report
+        self.r_db = report.database
+        self.r_user = report.user
         self.title_str = title
         self.gid = gid
         self.bibli = Bibliography()
@@ -599,7 +598,7 @@ class BasePage:
 
     def sort_on_name_and_grampsid(self, handle):
         """ Used to sort on name and gramps ID. """
-        person = self.report.database.get_person_from_handle(handle)
+        person = self.r_db.get_person_from_handle(handle)
         name = _nd.display(person)
         return (name, person.get_gramps_id())
 
@@ -607,7 +606,7 @@ class BasePage:
         """
         Sort on gramps ID
         """
-        evt = self.report.database.get_event_from_handle(
+        evt = self.r_db.get_event_from_handle(
             event_ref.ref)
         return evt.get_gramps_id()
 
@@ -624,7 +623,7 @@ class BasePage:
             )
 
         if photo.get_mime_type():
-            full_path = media_path_full(self.report.database, photo.get_path())
+            full_path = media_path_full(self.r_db, photo.get_path())
             from_path = get_thumbnail_path(full_path,
                                            photo.get_mime_type(),
                                            region)
@@ -678,9 +677,7 @@ class BasePage:
 
             for url_fname, nav_text in data_list:
                 hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
-                unordered1.extend(
-                   Html("li", hyper, inline=True)
-                )
+                unordered1.extend(Html("li", hyper, inline=True))
 
     def display_relationships(self, individual, place_lat_long):
         """
@@ -704,7 +701,7 @@ class BasePage:
                 section += table
 
                 for family_handle in family_list:
-                    family = self.report.database.get_family_from_handle(family_handle)
+                    family = self.r_db.get_family_from_handle(family_handle)
                     if family:
                         link = self.family_link(
                             family_handle,
@@ -721,11 +718,9 @@ class BasePage:
                         table += trow
                         # find the spouse of the principal individual and
                         # display that person
-                        spouse_handle = ReportUtils.find_spouse(individual,
-                                                                family)
-                        if spouse_handle:
-                            spouse = self.report.database.get_person_from_handle(
-                                          spouse_handle)
+                        sp_hdl = ReportUtils.find_spouse(individual, family)
+                        if sp_hdl:
+                            spouse = self.r_db.get_person_from_handle(sp_hdl)
                             if spouse:
                                 table += self.display_spouse(spouse, family,
                                                              place_lat_long)
@@ -750,12 +745,11 @@ class BasePage:
             table_class = "infolist"
             with Html("table", class_=table_class) as table:
                 section += table
-                for person_handle in [family.get_father_handle(),
-                                      family.get_mother_handle()]:
+                for person_hdl in [family.get_father_handle(),
+                                   family.get_mother_handle()]:
                     person = None
-                    if person_handle:
-                        person = self.report.database.get_person_from_handle(
-                                          person_handle)
+                    if person_hdl:
+                        person = self.r_db.get_person_from_handle(person_hdl)
                     if person:
                         table += self.display_spouse(person,
                                                      family, place_lat_long)
@@ -788,14 +782,14 @@ class BasePage:
         if not self.inc_families:
             notelist = family.get_note_list()
             for notehandle in notelist:
-                note = self.report.database.get_note_from_handle(notehandle)
+                note = self.r_db.get_note_from_handle(notehandle)
                 if note:
                     trow = Html("tr") + (
-                    Html("td", "&nbsp;", class_="ColumnType", inline=True),
-                    Html("td", _("Narrative"), class_="ColumnAttribute",
-                         inline=True),
-                    Html("td", self.get_note_format(note, True),
-                         class_="ColumnValue")
+                        Html("td", "&nbsp;", class_="ColumnType", inline=True),
+                        Html("td", _("Narrative"), class_="ColumnAttribute",
+                             inline=True),
+                        Html("td", self.get_note_format(note, True),
+                             class_="ColumnValue")
                     )
                     table = table + trow if table is not None else trow
 
@@ -817,18 +811,17 @@ class BasePage:
             # add individual's children event places to family map...
             if self.familymappages:
                 for handle in childlist:
-                    child = self.report.database.get_person_from_handle(handle)
+                    child = self.r_db.get_person_from_handle(handle)
                     if child:
                         self._get_event_place(child, place_lat_long)
 
-            children = add_birthdate(self.report.database, childlist)
+            children = add_birthdate(self.r_db, childlist)
             if birthorder:
                 children = sorted(children)
 
             ordered.extend(
-             (Html("li") +
-              self.display_child_link(chandle))
-                    for birth_date, chandle in children
+                (Html("li") + self.display_child_link(chandle))
+                for birth_date, chandle in children
             )
 
         # family LDS ordinance list
@@ -880,7 +873,7 @@ class BasePage:
 
             # family event
             else:
-                _obj = self.report.database.get_family_from_handle(handle)
+                _obj = self.r_db.get_family_from_handle(handle)
                 if _obj:
 
                     # husband and spouse in this example,
@@ -915,14 +908,14 @@ class BasePage:
 
         trow.extend(
             Html("td", data or "&nbsp;", class_=colclass,
-                inline=True if (colclass == "Type" or "Sources") else False)
-                for (data, colclass) in [
-                    (str(attr.get_type()), "ColumnType"),
-                    (attr.get_value(), "ColumnValue"),
-                    (self.dump_notes(attr.get_note_list()), "ColumnNotes"),
-                    (self.get_citation_links(attr.get_citation_list()),
-                                                            "ColumnSources")
-                ]
+                 inline=True if (colclass == "Type" or "Sources") else False)
+            for (data, colclass) in [
+                (str(attr.get_type()), "ColumnType"),
+                (attr.get_value(), "ColumnValue"),
+                (self.dump_notes(attr.get_note_list()), "ColumnNotes"),
+                (self.get_citation_links(attr.get_citation_list()),
+                 "ColumnSources")
+            ]
         )
         return trow
 
@@ -934,8 +927,7 @@ class BasePage:
         """
         text = ""
         for citation_handle in citation_handle_list:
-            citation = self.report.database.get_citation_from_handle(
-                                       citation_handle)
+            citation = self.r_db.get_citation_from_handle(citation_handle)
             if citation:
                 index, key = self.bibli.add_reference(citation)
                 id_ = "%d%s" % (index+1, key)
@@ -956,9 +948,8 @@ class BasePage:
 
             # styled notes
             htmlnotetext = self.styled_note(
-                                       note.get_styledtext(),
-                                       note.get_format(), contains_html=
-                                       note.get_type() == NoteType.HTML_CODE)
+                note.get_styledtext(), note.get_format(),
+                contains_html=(note.get_type() == NoteType.HTML_CODE))
             text = htmlnotetext or Html("p", note_text)
 
         # return text of the note to its callers
@@ -1026,7 +1017,7 @@ class BasePage:
         # begin unordered list
         notesection = Html("div")
         for notehandle in notelist:
-            this_note = self.report.database.get_note_from_handle(notehandle)
+            this_note = self.r_db.get_note_from_handle(notehandle)
             if this_note is not None:
                 notesection.extend(Html("i", str(this_note.type),
                                         class_="NoteType"))
@@ -1069,7 +1060,7 @@ class BasePage:
 
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.report.database.get_place_from_handle(place_handle)
+            place = self.r_db.get_place_from_handle(place_handle)
             if place:
                 self.append_to_place_lat_long(place, event, place_lat_long)
 
@@ -1093,7 +1084,7 @@ class BasePage:
 
         trow.extend(
             Html("td", data or "&nbsp;", class_=colclass,
-                inline=(not data or colclass == "ColumnDate"))
+                 inline=(not data or colclass == "ColumnDate"))
             for (label, colclass, data) in event_data
         )
 
@@ -1107,12 +1098,11 @@ class BasePage:
         attrlist = event.get_attribute_list()
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
-            htmllist.extend(Html(
-                "p",
-                _("%(type)s: %(value)s") % {
-                'type'     : Html("b", attr.get_type()),
-                'value'    : attr.get_value()
-                }))
+            htmllist.extend(Html("p",
+                                 _("%(type)s: %(value)s") % {
+                                     'type'  : Html("b", attr.get_type()),
+                                     'value' : attr.get_value()
+                                     }))
 
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
@@ -1143,7 +1133,7 @@ class BasePage:
         # 3 = place handle, 4 = event date, 5 = event type
         found = any(data[3] == place_handle for data in place_lat_long)
         if not found:
-            placetitle = _pd.display(self.report.database, place)
+            placetitle = _pd.display(self.r_db, place)
             latitude = place.get_latitude()
             longitude = place.get_longitude()
             if latitude and longitude:
@@ -1165,9 +1155,9 @@ class BasePage:
         Retrieve from a person their events, and places for family map
 
         @param: person         -- Person object from the database
-        @param: place_lat_long -- For use in Family Map Pages. This will be None
-                                  if called from Family pages, which do not
-                                  create a Family Map
+        @param: place_lat_long -- For use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
         """
         if not person:
             return
@@ -1178,12 +1168,11 @@ class BasePage:
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
-                    event = self.report.database.get_event_from_handle(evt_ref.ref)
+                    event = self.r_db.get_event_from_handle(evt_ref.ref)
                     if event:
-                        place_handle = event.get_place_handle()
-                        if place_handle:
-                            place = self.report.database.get_place_from_handle(
-                                              place_handle)
+                        pl_handle = event.get_place_handle()
+                        if pl_handle:
+                            place = self.r_db.get_place_from_handle(pl_handle)
                             if place:
                                 self.append_to_place_lat_long(place, event,
                                                               place_lat_long)
@@ -1227,13 +1216,13 @@ class BasePage:
         husband_handle = family.get_father_handle()
 
         if husband_handle:
-            husband = self.report.database.get_person_from_handle(husband_handle)
+            husband = self.r_db.get_person_from_handle(husband_handle)
         else:
             husband = None
 
         spouse_handle = family.get_mother_handle()
         if spouse_handle:
-            spouse = self.report.database.get_person_from_handle(spouse_handle)
+            spouse = self.r_db.get_person_from_handle(spouse_handle)
         else:
             spouse = None
 
@@ -1296,12 +1285,12 @@ class BasePage:
             table += tbody
 
             for evt_ref in event_ref_list:
-                event = self.report.database.get_event_from_handle(evt_ref.ref)
+                event = self.r_db.get_event_from_handle(evt_ref.ref)
 
                 # add event body row
                 tbody += self.display_event_row(event, evt_ref, place_lat_long,
-                                            uplink=True, hyperlink=True,
-                                            omit=EventRoleType.FAMILY)
+                                                uplink=True, hyperlink=True,
+                                                omit=EventRoleType.FAMILY)
         return table
 
     def get_event_data(self, evt, evt_ref,
@@ -1311,17 +1300,17 @@ class BasePage:
 
         @param: evt     -- Event from database
         @param: evt_ref -- Event reference
-        @param: uplink  -- If True, then "../../../" is inserted in front of the
-                           result.
+        @param: uplink  -- If True, then "../../../" is inserted in front of
+                           the result.
         """
         place = None
         place_handle = evt.get_place_handle()
         if place_handle:
-            place = self.report.database.get_place_from_handle(place_handle)
+            place = self.r_db.get_place_from_handle(place_handle)
 
         place_hyper = None
         if place:
-            place_name = _pd.display(self.report.database, place, evt.get_date_object())
+            place_name = _pd.display(self.r_db, place, evt.get_date_object())
             place_hyper = self.place_link(place_handle, place_name,
                                           uplink=uplink)
 
@@ -1330,13 +1319,11 @@ class BasePage:
         # wrap it all up and return to its callers
         # position 0 = translatable label, position 1 = column class
         # position 2 = data
-        return [
-               (_("Date"), "ColumnDate", _dd.display(evt.get_date_object())),
-               (_("Place"), "ColumnPlace", place_hyper),
-               (_("Description"), "ColumnDescription", evt_desc)]
+        return [(_("Date"), "ColumnDate", _dd.display(evt.get_date_object())),
+                (_("Place"), "ColumnPlace", place_hyper),
+                (_("Description"), "ColumnDescription", evt_desc)]
 
-    def dump_ordinance(self, ldsobj,
-                       ldssealedtype):
+    def dump_ordinance(self, ldsobj, ldssealedtype):
         """
         will dump the LDS Ordinance information for either
         a person or a family ...
@@ -1359,14 +1346,14 @@ class BasePage:
 
             trow.extend(
                 Html("th", label, class_=colclass, inline=True)
-                    for (label, colclass) in [
-                        [_("Type"), "ColumnLDSType"],
-                        [_("Date"), "ColumnDate"],
-                        [_("Temple"), "ColumnLDSTemple"],
-                        [_("Place"), "ColumnLDSPlace"],
-                        [_("Status"), "ColumnLDSStatus"],
-                        [_("Sources"), "ColumnLDSSources"]
-                    ]
+                for (label, colclass) in [
+                    [_("Type"), "ColumnLDSType"],
+                    [_("Date"), "ColumnDate"],
+                    [_("Temple"), "ColumnLDSTemple"],
+                    [_("Place"), "ColumnLDSPlace"],
+                    [_("Status"), "ColumnLDSStatus"],
+                    [_("Sources"), "ColumnLDSSources"]
+                ]
             )
 
             # start table body
@@ -1377,10 +1364,11 @@ class BasePage:
                 place_hyper = "&nbsp;"
                 place_handle = ordobj.get_place_handle()
                 if place_handle:
-                    place = self.report.database.get_place_from_handle(place_handle)
+                    place = self.r_db.get_place_from_handle(place_handle)
                     if place:
-                        place_title = _pd.display(self.report.database, place)
-                        place_hyper = self.place_link(place_handle, place_title,
+                        place_title = _pd.display(self.r_db, place)
+                        place_hyper = self.place_link(
+                            place_handle, place_title,
                             place.get_gramps_id(), uplink=True)
 
                 # begin ordinance rows
@@ -1388,17 +1376,16 @@ class BasePage:
 
                 trow.extend(
                     Html("td", value or "&nbsp;", class_=colclass,
-                        inline=(not value or colclass == "ColumnDate"))
-                        for (value, colclass) in [
-                            (ordobj.type2xml(), "ColumnType"),
-                            (_dd.display(ordobj.get_date_object()),
-                                                  "ColumnDate"),
-                            (ordobj.get_temple(), "ColumnLDSTemple"),
-                            (place_hyper, "ColumnLDSPlace"),
-                            (ordobj.get_status(), "ColumnLDSStatus"),
-                            (self.get_citation_links(
-                                  ordobj.get_citation_list()), "ColumnSources")
-                        ]
+                         inline=(not value or colclass == "ColumnDate"))
+                    for (value, colclass) in [
+                        (ordobj.type2xml(), "ColumnType"),
+                        (_dd.display(ordobj.get_date_object()), "ColumnDate"),
+                        (ordobj.get_temple(), "ColumnLDSTemple"),
+                        (place_hyper, "ColumnLDSPlace"),
+                        (ordobj.get_status(), "ColumnLDSStatus"),
+                        (self.get_citation_links(ordobj.get_citation_list()),
+                         "ColumnSources")
+                    ]
                 )
                 tbody += trow
         return table
@@ -1524,16 +1511,15 @@ class BasePage:
                 trow = Html("tr")
                 thead += trow
 
-                addr_header = [
-                      [DHEAD, "Date"],
-                      [STREET, "StreetAddress"],
-                      [_("Locality"), "Locality"],
-                      [CITY, "City"],
-                      [STATE, "State"],
-                      [COUNTY, "County"],
-                      [POSTAL, "Postalcode"],
-                      [COUNTRY, "Cntry"],
-                      [PHONE, "Phone"]]
+                addr_header = [[DHEAD, "Date"],
+                               [STREET, "StreetAddress"],
+                               [_("Locality"), "Locality"],
+                               [CITY, "City"],
+                               [STATE, "State"],
+                               [COUNTY, "County"],
+                               [POSTAL, "Postalcode"],
+                               [COUNTRY, "Cntry"],
+                               [PHONE, "Phone"]]
 
                 # True, False, or None ** see docstring for explanation
                 if showsrc in [True, None]:
@@ -1568,20 +1554,21 @@ class BasePage:
 
                     # get source citation list
                     if showsrc in [True, None]:
-                        addr_data_row.append([
-                          self.get_citation_links(address.get_citation_list()),
-                                              "ColumnSources"])
+                        addr_data_row.append(
+                            [self.get_citation_links(
+                                address.get_citation_list()),
+                             "ColumnSources"])
 
                     trow.extend(
                         Html("td", value or "&nbsp;",
                              class_=colclass, inline=True)
-                            for (value, colclass) in addr_data_row
+                        for (value, colclass) in addr_data_row
                     )
 
                     # address: notelist
                     if showsrc is not None:
                         notelist = self.display_note_list(
-                                                address.get_note_list())
+                            address.get_note_list())
                         if notelist is not None:
                             summaryarea += notelist
         return summaryarea
@@ -1595,7 +1582,7 @@ class BasePage:
                                  of the result.
         """
         url = self.report.build_url_fname_html(person_handle, "addr", uplink)
-        person = self.report.database.get_person_from_handle(person_handle)
+        person = self.r_db.get_person_from_handle(person_handle)
         person_name = self.get_name(person)
 
         # return addressbook hyperlink to its caller
@@ -1714,7 +1701,7 @@ class BasePage:
             footer_note = self.report.options['footernote']
             if footer_note:
                 note = self.get_note_format(
-                    self.report.database.get_note_from_gramps_id(footer_note),
+                    self.r_db.get_note_from_gramps_id(footer_note),
                     False
                     )
                 user_footer = Html("div", id='user_footer')
@@ -1732,26 +1719,27 @@ class BasePage:
             if date is not None:
                 msg += "<br />"
                 last_modif = datetime.datetime.fromtimestamp(date).strftime(
-                                               '%Y-%m-%d %H:%M:%S')
+                    '%Y-%m-%d %H:%M:%S')
                 msg += _('Last change was the %(date)s') % {'date' : last_modif}
             else:
                 msg += _(' on %(date)s') % {'date' : _dd.display(Today())}
 
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
-                center_person = self.report.database.get_person_from_gramps_id(
-                                                     self.report.options['pid'])
+                center_person = self.r_db.get_person_from_gramps_id(
+                    self.report.options['pid'])
                 if (center_person and
-                   self.report.person_in_webreport(center_person.handle)):
+                        self.report.person_in_webreport(center_person.handle)):
                     center_person_url = self.report.build_url_fname_html(
                         center_person.handle, "ppl", self.uplink)
 
                     person_name = self.get_name(center_person)
                     subject_url = '<a href="' + center_person_url + '">'
                     subject_url += person_name + '</a>'
-                    msg += _('%(http_break)sCreated for %(subject_url)s') % {
-                                 'http_break'  : '<br />',
-                                 'subject_url' : subject_url}
+                    msg += _(
+                        '%(http_break)sCreated for %(subject_url)s') % {
+                            'http_break'  : '<br />',
+                            'subject_url' : subject_url}
 
             # creation author
             footer += Html("p", msg, id='createdate')
@@ -1764,8 +1752,7 @@ class BasePage:
                 if self.author:
                     year = Today().get_year()
                     text = '&copy; %(year)d %(person)s' % {
-                               'person' : self.author,
-                               'year' : year}
+                        'person' : self.author, 'year' : year}
             elif copy_nr < len(_CC):
                 # Note. This is a URL
                 fname = "/".join(["images", "somerights20.gif"])
@@ -1786,10 +1773,10 @@ class BasePage:
         # begin each html page...
         xmllang = xml_lang()
         page, head, body = Html.page('%s - %s' %
-                                    (html_escape(self.title_str.strip()),
-                                     html_escape(title)),
-                                    self.report.encoding,
-                                    xmllang, cms=self.usecms)
+                                     (html_escape(self.title_str.strip()),
+                                      html_escape(title)),
+                                     self.report.encoding,
+                                     xmllang, cms=self.usecms)
 
         # temporary fix for .php parsing error
         if self.ext in [".php", ".php3", ".cgi"]:
@@ -1801,14 +1788,14 @@ class BasePage:
         _meta1 += 'maximum-scale=10.0; user-scalable=yes"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
-                    PROGRAM_NAME, VERSION, URL_HOMEPAGE)
+            PROGRAM_NAME, VERSION, URL_HOMEPAGE)
         _meta4 = 'name="author" content="%s"' % self.author
 
         # create additional meta tags
         meta = Html("meta", attr=_meta1) + (
-                Html("meta", attr=_meta2, indent=False),
-                Html("meta", attr=_meta3, indent=False),
-                Html("meta", attr=_meta4, indent=False)
+            Html("meta", attr=_meta2, indent=False),
+            Html("meta", attr=_meta3, indent=False),
+            Html("meta", attr=_meta4, indent=False)
         )
 
         # Link to _NARRATIVESCREEN  stylesheet
@@ -1827,11 +1814,11 @@ class BasePage:
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
                      href=url4, rel="shortcut icon") + (
-             Html("link", type="text/css", href=url2,
-                  media="screen", rel="stylesheet", indent=False),
-             Html("link", type="text/css", href=url3,
-                  media='print', rel="stylesheet", indent=False)
-             )
+                         Html("link", type="text/css", href=url2,
+                              media="screen", rel="stylesheet", indent=False),
+                         Html("link", type="text/css", href=url3,
+                              media='print', rel="stylesheet", indent=False)
+                         )
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
@@ -1853,7 +1840,7 @@ class BasePage:
         header_note = self.report.options['headernote']
         if header_note:
             note = self.get_note_format(
-                self.report.database.get_note_from_gramps_id(header_note),
+                self.r_db.get_note_from_gramps_id(header_note),
                 False)
 
             user_header = Html("div", id='user_header')
@@ -1866,8 +1853,8 @@ class BasePage:
         # is the style sheet either Basic-Blue or Visually Impaired,
         # and menu layout is Drop Down?
         if (self.report.css == _("Basic-Blue") or
-            self.report.css == _("Visually Impaired")) and \
-            self.report.navigation == "dropdown":
+                self.report.css == _("Visually Impaired")
+           ) and self.report.navigation == "dropdown":
             body += self.display_drop_menu()
         else:
             body += self.display_nav_links(title)
@@ -1884,7 +1871,7 @@ class BasePage:
         # include repositories or not?
         inc_repos = True
         if (not self.report.inc_repository or
-            not len(self.report.database.get_repository_handles())):
+                not len(self.r_db.get_repository_handles())):
             inc_repos = False
 
         # create media pages...
@@ -1923,8 +1910,8 @@ class BasePage:
         ]
 
         # Remove menu sections if they are not being created?
-        navs = ((url_text, nav_text) for url_text, nav_text,
-                                         cond in navs if cond)
+        navs = ((url_text, nav_text)
+                for url_text, nav_text, cond in navs if cond)
         menu_items = [[url, text] for url, text in navs]
 
         number_items = len(menu_items)
@@ -2008,7 +1995,7 @@ class BasePage:
         # include repositories or not?
         inc_repos = True
         if (not self.report.inc_repository or
-            not len(self.report.database.get_repository_handles())):
+                not len(self.r_db.get_repository_handles())):
             inc_repos = False
 
         # create media pages...
@@ -2024,8 +2011,8 @@ class BasePage:
             (self.report.surname_fname, _("Surnames"), True),
             ("families", _("Families"), self.report.inc_families)
         ]
-        personal = ((url_text, nav_text) for url_text, nav_text,
-                                             cond in personal if cond)
+        personal = ((url_text, nav_text)
+                    for url_text, nav_text, cond in personal if cond)
         personal = [[url, text] for url, text in personal]
 
         navs1 = [
@@ -2034,31 +2021,31 @@ class BasePage:
             ("sources", _("Sources"), True),
             ("repositories", _("Repositories"), inc_repos)
         ]
-        navs1 = ((url_text, nav_text) for url_text, nav_text,
-                                          cond in navs1 if cond)
+        navs1 = ((url_text, nav_text)
+                 for url_text, nav_text, cond in navs1 if cond)
         navs1 = [[url, text] for url, text in navs1]
 
         media = [
             ("media", _("Media"), _create_media_link),
             ("thumbnails", _("Thumbnails"), True)
         ]
-        media = ((url_text, nav_text) for url_text, nav_text,
-                                          cond in media if cond)
+        media = ((url_text, nav_text)
+                 for url_text, nav_text, cond in media if cond)
         media = [[url, text] for url, text in media]
 
         misc = [
             ('download', _("Download"), self.report.inc_download),
             ("addressbook", _("Address Book"), self.report.inc_addressbook)
         ]
-        misc = ((url_text, nav_text) for url_text, nav_text,
-                                         cond in misc if cond)
+        misc = ((url_text, nav_text)
+                for url_text, nav_text, cond in misc if cond)
         misc = [[url, text] for url, text in misc]
 
         contact = [
             ('contact', _("Contact"), self.report.use_contact)
         ]
-        contact = ((url_text, nav_text) for url_text, nav_text,
-                                            cond in contact if cond)
+        contact = ((url_text, nav_text)
+                   for url_text, nav_text, cond in contact if cond)
         contact = [[url, text] for url, text in contact]
 
         # begin navigation menu division...
@@ -2069,8 +2056,9 @@ class BasePage:
 
                 if self.report.use_home:
                     list_html = Html("li",
-                           self.get_nav_menu_hyperlink(self.report.index_fname,
-                           _("Html|Home")))
+                                     self.get_nav_menu_hyperlink(
+                                         self.report.index_fname,
+                                         _("Html|Home")))
                     unordered += list_html
 
                 # add personal column
@@ -2106,7 +2094,7 @@ class BasePage:
         """
         pic_id = self.report.options[option_name]
         if pic_id:
-            obj = self.report.database.get_media_from_gramps_id(pic_id)
+            obj = self.r_db.get_media_from_gramps_id(pic_id)
             if obj is None:
                 return None
             mime_type = obj.get_mime_type()
@@ -2115,7 +2103,7 @@ class BasePage:
 
                     newpath, thumb_path = self.report.prepare_copy_media(obj)
                     self.report.copy_file(media_path_full(
-                        self.report.database, obj.get_path()), newpath)
+                        self.r_db, obj.get_path()), newpath)
 
                     # begin image
                     image = Html("img")
@@ -2131,8 +2119,8 @@ class BasePage:
                     return image
 
                 except (IOError, OSError) as msg:
-                    self.report.user.warn(_("Could not add photo to page"),
-                                          str(msg))
+                    self.r_user.warn(_("Could not add photo to page"),
+                                     str(msg))
 
         # no image to return
         return None
@@ -2150,8 +2138,9 @@ class BasePage:
         # get all of the backlinks to this media object; meaning all of
         # the people, events, places, etc..., that use this image
         _region_items = set()
-        for (classname, newhandle) in self.report.database.find_backlink_handles(handle,
-            include_classes=["Person", "Family", "Event", "Place"]):
+        for (classname, newhandle) in self.r_db.find_backlink_handles(
+                handle,
+                include_classes=["Person", "Family", "Event", "Place"]):
 
             # for each of the backlinks, get the relevant object from the db
             # and determine a few important things, such as a text name we
@@ -2163,7 +2152,7 @@ class BasePage:
                 # Is this a person for whom we have built a page:
                 if self.report.person_in_webreport(newhandle):
                     # If so, let's add a link to them:
-                    _obj = self.report.database.get_person_from_handle(newhandle)
+                    _obj = self.r_db.get_person_from_handle(newhandle)
                     if _obj:
                         # What is the shortest possible name we could use
                         # for this person?
@@ -2174,17 +2163,17 @@ class BasePage:
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                                     "ppl", True)
             elif classname == "Family":
-                _obj = self.report.database.get_family_from_handle(newhandle)
+                _obj = self.r_db.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
                 partner1 = None
                 partner2 = None
                 if partner1_handle:
-                    partner1 = self.report.database.get_person_from_handle(
-                                           partner1_handle)
+                    partner1 = self.r_db.get_person_from_handle(
+                        partner1_handle)
                 if partner2_handle:
-                    partner2 = self.report.database.get_person_from_handle(
-                                           partner2_handle)
+                    partner2 = self.r_db.get_person_from_handle(
+                        partner2_handle)
                 if partner2 and partner1:
                     _name = partner1.get_primary_name().get_first_name()
                     _linkurl = self.report.build_url_fname_html(partner1_handle,
@@ -2200,15 +2189,15 @@ class BasePage:
                 if not _name:
                     _name = _UNKNOWN
             elif classname == "Event":
-                _obj = self.report.database.get_event_from_handle(newhandle)
+                _obj = self.r_db.get_event_from_handle(newhandle)
                 _name = _obj.get_description()
                 if not _name:
                     _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                             "evt", True)
             elif classname == "Place":
-                _obj = self.report.database.get_place_from_handle(newhandle)
-                _name = _pd.display(self.report.database, _obj)
+                _obj = self.r_db.get_place_from_handle(newhandle)
+                _name = _pd.display(self.r_db, _obj)
                 if not _name:
                     _name = _UNKNOWN
                 _linkurl = self.report.build_url_fname_html(newhandle,
@@ -2265,7 +2254,7 @@ class BasePage:
         for mediaref in obj.get_media_list():
             # is this mediaref for this image?  do we have a rect?
             if (mediaref.ref == media_handle and
-                mediaref.rect is not None):
+                    mediaref.rect is not None):
                 return mediaref.rect # (x1, y1, x2, y2)
         return None
 
@@ -2282,7 +2271,7 @@ class BasePage:
             return None
 
         photo_handle = photolist[0].get_reference_handle()
-        photo = self.report.database.get_media_from_handle(photo_handle)
+        photo = self.r_db.get_media_from_handle(photo_handle)
         mime_type = photo.get_mime_type()
         descr = photo.get_description()
 
@@ -2326,8 +2315,9 @@ class BasePage:
                                  width, height, linkurl) = _region_items.pop()
                                 ordered += Html("li",
                                                 style="left:%d%%; top:%d%%; "
-                                                 "width:%d%%; height:%d%%;" % (
-                                           coord_x, coord_y, width, height))
+                                                "width:%d%%; height:%d%%;" % (
+                                                    coord_x, coord_y,
+                                                    width, height))
                                 ordered += Html("a", name, href=linkurl)
                             # Need to add link to mediadisplay to get the links:
                             mediadisplay += self.media_link(photo_handle,
@@ -2344,8 +2334,8 @@ class BasePage:
                                                         usedescr=False)
 
                         except (IOError, OSError) as msg:
-                            self.report.user.warn(_("Could not add photo "
-                                                    "to page"), str(msg))
+                            self.r_user.warn(_("Could not add photo to page"),
+                                             str(msg))
             else:
                 # begin hyperlink
                 snapshot += self.doc_link(photo_handle, descr,
@@ -2389,7 +2379,7 @@ class BasePage:
             for mediaref in photolist_ordered:
 
                 photo_handle = mediaref.get_reference_handle()
-                photo = self.report.database.get_media_from_handle(photo_handle)
+                photo = self.r_db.get_media_from_handle(photo_handle)
 
                 if photo_handle in displayed:
                     continue
@@ -2409,16 +2399,16 @@ class BasePage:
                                                    descr, uplink=self.uplink,
                                                    usedescr=True)
                     except (IOError, OSError) as msg:
-                        self.report.user.warn(_("Could not add photo to page"),
-                                              str(msg))
+                        self.r_user.warn(_("Could not add photo to page"),
+                                         str(msg))
                 else:
                     try:
                         # begin hyperlink
                         section += self.doc_link(photo_handle, descr,
                                                  uplink=self.uplink)
                     except (IOError, OSError) as msg:
-                        self.report.user.warn(_("Could not add photo to page"),
-                                              str(msg))
+                        self.r_user.warn(_("Could not add photo to page"),
+                                         str(msg))
                 displayed.append(photo_handle)
 
         # add fullclear for proper styling
@@ -2440,7 +2430,7 @@ class BasePage:
         with Html("div", class_="subsection narrative") as section:
 
             for notehandle in notelist:
-                note = self.report.database.get_note_from_handle(notehandle)
+                note = self.r_db.get_note_from_handle(notehandle)
 
                 if note:
                     note_text = self.get_note_format(note, True)
@@ -2478,11 +2468,11 @@ class BasePage:
 
                 trow.extend(
                     Html('th', label, class_=colclass, inline=True)
-                        for (label, colclass) in [
-                            (_("Type"), "ColumnType"),
-                            (_("Description"), "ColumnDescription")
-                        ]
-                    )
+                    for (label, colclass) in [
+                        (_("Type"), "ColumnType"),
+                        (_("Description"), "ColumnDescription")
+                    ]
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -2519,10 +2509,10 @@ class BasePage:
 
                     trow.extend(
                         Html("td", data, class_=colclass, inline=True)
-                            for (data, colclass) in [
-                                (str(_type), "ColumnType"),
-                                (descr, "ColumnDescription")
-                            ]
+                        for (data, colclass) in [
+                            (str(_type), "ColumnType"),
+                            (descr, "ColumnDescription")
+                        ]
                     )
         return section
 
@@ -2553,9 +2543,10 @@ class BasePage:
 
         @param: srcobj -- Sources object
         """
-        list(map(lambda i: self.bibli.add_reference(
-                              self.report.database.get_citation_from_handle(i)),
-                           srcobj.get_citation_list()))
+        list(map(
+            lambda i: self.bibli.add_reference(
+                self.r_db.get_citation_from_handle(i)),
+            srcobj.get_citation_list()))
         sourcerefs = self.display_source_refs(self.bibli)
 
         # return to its callers
@@ -2582,17 +2573,19 @@ class BasePage:
             for citation in citationlist:
                 cindex += 1
                 # Add this source and its references to the page
-                source = self.report.database.get_source_from_handle(
-                                                citation.get_source_handle())
+                source = self.r_db.get_source_from_handle(
+                    citation.get_source_handle())
                 if source is not None:
                     if source.get_author():
                         authorstring = source.get_author() + ": "
                     else:
                         authorstring = ""
-                    list_html = Html("li", self.source_link(source.get_handle(),
-                                authorstring + source.get_title(),
-                                source.get_gramps_id(), cindex,
-                                uplink=self.uplink))
+                    list_html = Html("li",
+                                     self.source_link(
+                                         source.get_handle(),
+                                         authorstring + source.get_title(),
+                                         source.get_gramps_id(), cindex,
+                                         uplink=self.uplink))
                 else:
                     list_html = Html("li", "None")
 
@@ -2606,8 +2599,7 @@ class BasePage:
                         conf = None
                     else:
                         conf = _(conf)
-                    for (label, data) in [
-                                          [_("Date"), _dd.display(sref.date)],
+                    for (label, data) in [[_("Date"), _dd.display(sref.date)],
                                           [_("Page"), sref.page],
                                           [_("Confidence"), conf]]:
                         if data:
@@ -2615,42 +2607,46 @@ class BasePage:
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
-                            media = self.report.database.get_media_from_handle(
-                                                               media_handle)
+                            media = self.r_db.get_media_from_handle(
+                                media_handle)
                             if media:
                                 mime_type = media.get_mime_type()
                                 if mime_type:
                                     if mime_type.startswith("image/"):
-                                        real_path, newpath = self.report.prepare_copy_media(media)
+                                        real_path, newpath = \
+                                            self.report.prepare_copy_media(
+                                                media)
                                         newpath = self.report.build_url_fname(
-                                                       newpath,
-                                                        uplink=self.uplink)
+                                            newpath, uplink=self.uplink)
                                         dest_dir = os.path.dirname(
-                                                       self.report.cur_fname)
+                                            self.report.cur_fname)
                                         if dest_dir:
                                             newpath = os.path.join(dest_dir,
                                                                    newpath)
-                                        self.report.copy_file(media_path_full(
-                                            self.report.database,
-                                            media.get_path()), newpath)
+                                        self.report.copy_file(
+                                            media_path_full(self.r_db,
+                                                            media.get_path()),
+                                            newpath)
 
                                         tmp += Html("li",
-                                                self.media_link(media_handle,
+                                                    self.media_link(
+                                                        media_handle,
                                                         newpath,
                                                         media.get_description(),
                                                         self.uplink,
                                                         usedescr=False),
-                                                inline=True)
+                                                    inline=True)
 
                                     else:
                                         tmp += Html("li",
-                                                    self.doc_link(media_handle,
+                                                    self.doc_link(
+                                                        media_handle,
                                                         media.get_description(),
                                                         self.uplink,
                                                         usedescr=False),
                                                     inline=True)
                     for handle in sref.get_note_list():
-                        this_note = self.report.database.get_note_from_handle(handle)
+                        this_note = self.r_db.get_note_from_handle(handle)
                         if this_note is not None:
                             tmp += Html("li",
                                         "%s: %s" % (
@@ -2792,7 +2788,7 @@ class BasePage:
             # The person is not included in the webreport
             link = ""
             if person is None:
-                person = self.report.database.get_person_from_handle(person_handle)
+                person = self.r_db.get_person_from_handle(person_handle)
             if person:
                 name = self.report.get_person_name(person)
                 gid = person.get_gramps_id()
@@ -2942,16 +2938,16 @@ class BasePage:
             )
             tbody += trow
 
-        mlocation = get_main_location(self.report.database, place)
+        mlocation = get_main_location(self.r_db, place)
         for (label, data) in [
-            (STREET, mlocation.get(PlaceType.STREET, '')),
-            (LOCALITY, mlocation.get(PlaceType.LOCALITY, '')),
-            (CITY, mlocation.get(PlaceType.CITY, '')),
-            (PARISH, mlocation.get(PlaceType.PARISH, '')),
-            (COUNTY, mlocation.get(PlaceType.COUNTY, '')),
-            (STATE, mlocation.get(PlaceType.STATE, '')),
-            (POSTAL, place.get_code()),
-            (COUNTRY, mlocation.get(PlaceType.COUNTRY, ''))]:
+                (STREET, mlocation.get(PlaceType.STREET, '')),
+                (LOCALITY, mlocation.get(PlaceType.LOCALITY, '')),
+                (CITY, mlocation.get(PlaceType.CITY, '')),
+                (PARISH, mlocation.get(PlaceType.PARISH, '')),
+                (COUNTY, mlocation.get(PlaceType.COUNTY, '')),
+                (STATE, mlocation.get(PlaceType.STATE, '')),
+                (POSTAL, place.get_code()),
+                (COUNTRY, mlocation.get(PlaceType.COUNTRY, ''))]:
             if data:
                 trow = Html("tr") + (
                     Html("td", label, class_="ColumnAttribute", inline=True),
@@ -2963,21 +2959,21 @@ class BasePage:
         if altloc:
             tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
             trow = Html("tr") + (
-                    Html("th", ALT_LOCATIONS, colspan=2,
-                         class_="ColumnAttribute", inline=True),
+                Html("th", ALT_LOCATIONS, colspan=2,
+                     class_="ColumnAttribute", inline=True),
             )
             tbody += trow
-            for loc in (nonempt for
-                           nonempt in altloc if not nonempt.is_empty()):
+            for loc in (nonempt
+                        for nonempt in altloc if not nonempt.is_empty()):
                 for (label, data) in [
-                    (STREET, loc.street),
-                    (LOCALITY, loc.locality),
-                    (CITY, loc.city),
-                    (PARISH, loc.parish),
-                    (COUNTY, loc.county),
-                    (STATE, loc.state),
-                    (POSTAL, loc.postal),
-                    (COUNTRY, loc.country),]:
+                        (STREET, loc.street),
+                        (LOCALITY, loc.locality),
+                        (CITY, loc.city),
+                        (PARISH, loc.parish),
+                        (COUNTY, loc.county),
+                        (STATE, loc.state),
+                        (POSTAL, loc.postal),
+                        (COUNTRY, loc.country),]:
                     if data:
                         trow = Html("tr") + (
                             Html("td", label, class_="ColumnAttribute",
@@ -2991,7 +2987,7 @@ class BasePage:
         for placeref in place.get_placeref_list():
             place_date = get_date(placeref)
             if place_date != "":
-                parent_place = self.report.database.get_place_from_handle(placeref.ref)
+                parent_place = self.r_db.get_place_from_handle(placeref.ref)
                 parent_name = parent_place.get_name().get_value()
                 trow = Html('tr') + (
                     Html("td", LOCATIONS, class_="ColumnAttribute",
@@ -3058,18 +3054,16 @@ class BasePage:
 
                 index = 1
                 for repo_ref in repo_ref_list:
-                    repository = self.report.database.get_repository_from_handle(
-                                                                 repo_ref.ref)
-                    if repository:
-
+                    repo = self.r_db.get_repository_from_handle(repo_ref.ref)
+                    if repo:
                         trow = Html("tr") + (
                             Html("td", index, class_="ColumnRowLabel",
                                  inline=True),
                             Html("td",
                                  self.repository_link(repo_ref.ref,
-                                                 repository.get_name(),
-                                                 repository.get_gramps_id(),
-                                                 self.uplink)),
+                                                      repo.get_name(),
+                                                      repo.get_gramps_id(),
+                                                      self.uplink)),
                             Html("td", repo_ref.get_media_type(),
                                  class_="ColumnName"),
                             Html("td", repo_ref.get_call_number(),
@@ -3097,8 +3091,7 @@ class BasePage:
 
                 place_handle = has_res.get_place_handle()
                 if place_handle:
-                    place = self.report.database.get_place_from_handle(
-                                                                place_handle)
+                    place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         self.dump_place(place, table)
 
@@ -3143,7 +3136,7 @@ class BasePage:
 
         for (bkref_class, bkref_handle) in sorted(
                 bkref_list, key=lambda x:
-                      sort_by_name_and_gid(self.report.obj_dict[x[0]][x[1]])):
+                sort_by_name_and_gid(self.report.obj_dict[x[0]][x[1]])):
             list_html = Html("li")
             path = self.report.obj_dict[bkref_class][bkref_handle][0]
             name = self.report.obj_dict[bkref_class][bkref_handle][1]
@@ -3152,13 +3145,13 @@ class BasePage:
             if path == "":
                 list_html += name
                 list_html += self.display_bkref(
-                            self.report.bkref_dict[bkref_class][bkref_handle],
-                            depth+1)
+                    self.report.bkref_dict[bkref_class][bkref_handle],
+                    depth+1)
             else:
                 url = self.report.build_url_fname(path, uplink=self.uplink)
                 if not self.noid and gid != "":
                     gid_html = Html("span", " [%s]" % gid,
-                                     class_="grampsid", inline=True)
+                                    class_="grampsid", inline=True)
                 else:
                     gid_html = ""
                 list_html += Html("a", href=url) + name + gid_html
@@ -3284,7 +3277,7 @@ class SurnamePage(BasePage):
                 for person_handle in sorted(ppl_handle_list,
                                             key=self.sort_on_name_and_grampsid):
 
-                    person = self.report.database.get_person_from_handle(person_handle)
+                    person = self.r_db.get_person_from_handle(person_handle)
                     if person.get_change_time() > ldatec:
                         ldatec = person.get_change_time()
                     trow = Html("tr")
@@ -3292,8 +3285,8 @@ class SurnamePage(BasePage):
 
                     # firstname column
                     link = self.new_person_link(person_handle, uplink=True,
-                                                 person=person,
-                                                 name_style=_NAME_STYLE_FIRST)
+                                                person=person,
+                                                name_style=_NAME_STYLE_FIRST)
                     trow += Html("td", link, class_="ColumnName")
 
                     # birth column
@@ -3301,7 +3294,7 @@ class SurnamePage(BasePage):
                         tcell = Html("td", class_="ColumnBirth", inline=True)
                         trow += tcell
 
-                        birth_date = _find_birth_date(self.report.database, person)
+                        birth_date = _find_birth_date(self.r_db, person)
                         if birth_date is not None:
                             if birth_date.fallback:
                                 tcell += Html('em', _dd.display(birth_date),
@@ -3316,7 +3309,7 @@ class SurnamePage(BasePage):
                         tcell = Html("td", class_="ColumnDeath", inline=True)
                         trow += tcell
 
-                        death_date = _find_death_date(self.report.database, person)
+                        death_date = _find_death_date(self.r_db, person)
                         if death_date is not None:
                             if death_date.fallback:
                                 tcell += Html('em', _dd.display(death_date),
@@ -3334,38 +3327,34 @@ class SurnamePage(BasePage):
                         first_family = True
                         if family_list:
                             for family_handle in family_list:
-                                family = self.report.database.get_family_from_handle(
-                                                                family_handle)
-                                partner_handle = ReportUtils.find_spouse(person,
-                                                                         family)
+                                family = self.r_db.get_family_from_handle(
+                                    family_handle)
+                                partner_handle = ReportUtils.find_spouse(
+                                    person, family)
                                 if partner_handle:
                                     if not first_family:
                                         tcell += ','
                                     tcell += self.new_person_link(
-                                                             partner_handle,
-                                                             uplink=True)
+                                        partner_handle, uplink=True)
                                     first_family = False
                         else:
                             tcell += "&nbsp;"
 
                     # parents column
                     if showparents:
-                        parent_handle_list = person.get_parent_family_handle_list()
-                        if parent_handle_list:
-                            parent_handle = parent_handle_list[0]
-                            family = self.report.database.get_family_from_handle(
-                                                                 parent_handle)
-                            father_id = family.get_father_handle()
-                            mother_id = family.get_mother_handle()
+                        parent_hdl_list = person.get_parent_family_handle_list()
+                        if parent_hdl_list:
+                            parent_hdl = parent_hdl_list[0]
+                            fam = self.r_db.get_family_from_handle(parent_hdl)
+                            f_id = fam.get_father_handle()
+                            m_id = fam.get_mother_handle()
                             mother = father = None
-                            if father_id:
-                                father = self.report.database.get_person_from_handle(
-                                                                     father_id)
+                            if f_id:
+                                father = self.r_db.get_person_from_handle(f_id)
                                 if father:
                                     father_name = self.get_name(father)
-                            if mother_id:
-                                mother = self.report.database.get_person_from_handle(
-                                                                     mother_id)
+                            if m_id:
+                                mother = self.r_db.get_person_from_handle(m_id)
                                 if mother:
                                     mother_name = self.get_name(mother)
                             if mother and father:
@@ -3433,9 +3422,10 @@ class FamilyPages(BasePage):
         for item in self.report.obj_dict[Family].items():
             LOG.debug("    %s", str(item))
 
-        with self.report.user.progress(_("Narrated Web Site Report"),
-                                 _("Creating family pages..."),
-                                 len(self.report.obj_dict[Family]) + 1) as step:
+        with self.r_user.progress(_("Narrated Web Site Report"),
+                                  _("Creating family pages..."),
+                                  len(self.report.obj_dict[Family]) + 1
+                                 ) as step:
             self.familylistpage(self.report, title,
                                 self.report.obj_dict[Family].keys())
 
@@ -3478,7 +3468,7 @@ class FamilyPages(BasePage):
             # because they are not in the original family list.
             pers_fam_dict = defaultdict(list)
             for family_handle in fam_list:
-                family = self.report.database.get_family_from_handle(family_handle)
+                family = self.r_db.get_family_from_handle(family_handle)
                 if family:
                     if family.get_change_time() > ldatec:
                         ldatec = family.get_change_time()
@@ -3490,7 +3480,7 @@ class FamilyPages(BasePage):
                         pers_fam_dict[spouse_handle].append(family)
 
             # add alphabet navigation
-            index_list = get_first_letters(self.report.database, pers_fam_dict.keys(),
+            index_list = get_first_letters(self.r_db, pers_fam_dict.keys(),
                                            _KEYPERSON)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
@@ -3509,20 +3499,20 @@ class FamilyPages(BasePage):
                # set up page columns
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
-                        for trans, colclass in [
-                            (_("Letter"), "ColumnRowLabel"),
-                            (_("Person"), "ColumnPartner"),
-                            (_("Family"), "ColumnPartner"),
-                            (_("Marriage"), "ColumnDate"),
-                            (_("Divorce"), "ColumnDate")
-                        ]
+                    for trans, colclass in [
+                        (_("Letter"), "ColumnRowLabel"),
+                        (_("Person"), "ColumnPartner"),
+                        (_("Family"), "ColumnPartner"),
+                        (_("Marriage"), "ColumnDate"),
+                        (_("Divorce"), "ColumnDate")
+                    ]
                 )
 
                 tbody = Html("tbody")
                 table += tbody
 
                 # begin displaying index list
-                ppl_handle_list = sort_people(self.report.database, pers_fam_dict.keys())
+                ppl_handle_list = sort_people(self.r_db, pers_fam_dict.keys())
                 first = True
                 for (surname, handle_list) in ppl_handle_list:
 
@@ -3533,10 +3523,9 @@ class FamilyPages(BasePage):
                         letter = '&nbsp;'
 
                     # get person from sorted database list
-                    for person_handle in sorted(handle_list,
-                                                key=self.sort_on_name_and_grampsid):
-                        person = self.report.database.get_person_from_handle(
-                                                             person_handle)
+                    for person_handle in sorted(
+                            handle_list, key=self.sort_on_name_and_grampsid):
+                        person = self.r_db.get_person_from_handle(person_handle)
                         if person:
                             family_list = sorted(pers_fam_dict[person_handle],
                                                  key=lambda x: x.get_gramps_id()
@@ -3567,8 +3556,8 @@ class FamilyPages(BasePage):
                                 if first_family:
                                     trow.attr = 'class ="BeginFamily"'
 
-                                    tcell += self.new_person_link(person_handle,
-                                                             uplink=self.uplink)
+                                    tcell += self.new_person_link(
+                                        person_handle, uplink=self.uplink)
 
                                     first_family = False
                                 else:
@@ -3596,24 +3585,24 @@ class FamilyPages(BasePage):
                                         fam_evt_ref_list,
                                         key=self.sort_on_grampsid)
                                     for evt_ref in fam_evt_srt_ref_list:
-                                        evt = self.report.database.get_event_from_handle(
-                                                                    evt_ref.ref)
+                                        evt = self.r_db.get_event_from_handle(
+                                            evt_ref.ref)
                                         if evt:
                                             evt_type = evt.get_type()
                                             if evt_type in [EventType.MARRIAGE,
                                                             EventType.DIVORCE]:
 
                                                 if (evt_type ==
-                                                            EventType.MARRIAGE):
+                                                        EventType.MARRIAGE):
                                                     tcell1 += _dd.display(
-                                                          evt.get_date_object())
+                                                        evt.get_date_object())
                                                 else:
                                                     tcell1 += '&nbsp;'
 
                                                 if (evt_type ==
-                                                            EventType.DIVORCE):
+                                                        EventType.DIVORCE):
                                                     tcell2 += _dd.display(
-                                                          evt.get_date_object())
+                                                        evt.get_date_object())
                                                 else:
                                                     tcell2 += '&nbsp;'
                                 else:
@@ -3667,19 +3656,20 @@ class FamilyPages(BasePage):
                 # the family event media here
                 if not self.inc_events:
                     for evt_ref in family.get_event_ref_list():
-                        event = self.report.database.get_event_from_handle(evt_ref.ref)
+                        event = self.r_db.get_event_from_handle(evt_ref.ref)
                         media_list += event.get_media_list()
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
-                                                                  family)
+                                                             family)
                 if thumbnail:
                     relationshipdetail += thumbnail
 
             self.person = None   # no longer used
 
-            relationshipdetail += Html("h2", self.page_title, inline=True) +\
-                (Html('sup') +\
-                 (Html('small') +
-                  self.get_citation_links(family.get_citation_list())))
+            relationshipdetail += Html(
+                "h2", self.page_title, inline=True) + (
+                    Html('sup') + (Html('small') +
+                                   self.get_citation_links(
+                                       family.get_citation_list())))
 
             # display relationships
             families = self.display_family_relationships(family, None)
@@ -3762,9 +3752,10 @@ class PlacePages(BasePage):
         LOG.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
             LOG.debug("    %s", str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        with self.r_user.progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"),
-                                  len(self.report.obj_dict[Place]) + 1) as step:
+                                  len(self.report.obj_dict[Place]) + 1
+                                 ) as step:
 
             self.placelistpage(self.report, title,
                                self.report.obj_dict[Place].keys())
@@ -3795,13 +3786,13 @@ class PlacePages(BasePage):
 
             # place list page message
             msg = _("This page contains an index of all the places in the "
-                          "database, sorted by their title. "
-                          "Clicking on a place&#8217;s "
-                          "title will take you to that place&#8217;s page.")
+                    "database, sorted by their title. "
+                    "Clicking on a place&#8217;s "
+                    "title will take you to that place&#8217;s page.")
             placelist += Html("p", msg, id="description")
 
             # begin alphabet navigation
-            index_list = get_first_letters(self.report.database, place_handles,
+            index_list = get_first_letters(self.r_db, place_handles,
                                            _KEYPLACE)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
@@ -3827,12 +3818,15 @@ class PlacePages(BasePage):
                         [_("State"), "ColumnState"],
                         [_("Country"), "ColumnCountry"],
                         [_("Latitude"), "ColumnLatitude"],
-                        [_("Longitude"), "ColumnLongitude"]]
+                        [_("Longitude"), "ColumnLongitude"]
+                    ]
                 )
 
                 handle_list = sorted(place_handles,
                                      key=lambda x:
-                              SORT_KEY(ReportUtils.place_name(self.report.database, x)))
+                                     SORT_KEY(
+                                         ReportUtils.place_name(self.r_db,
+                                                                x)))
                 first = True
 
                 # begin table body
@@ -3840,13 +3834,13 @@ class PlacePages(BasePage):
                 table += tbody
 
                 for place_handle in handle_list:
-                    place = self.report.database.get_place_from_handle(place_handle)
+                    place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec:
                             ldatec = place.get_change_time()
-                        place_title = ReportUtils.place_name(self.report.database,
+                        place_title = ReportUtils.place_name(self.r_db,
                                                              place_handle)
-                        main_location = get_main_location(self.report.database, place)
+                        main_location = get_main_location(self.r_db, place)
 
                         if place_title and not place_title.isspace():
                             letter = get_index_letter(first_letter(place_title),
@@ -3869,20 +3863,21 @@ class PlacePages(BasePage):
                         else:
                             tcell += "&nbsp;"
 
-                        trow += Html("td", self.place_link(place.get_handle(),
-                                     place_title, place.get_gramps_id()),
-                            class_="ColumnName")
+                        trow += Html("td",
+                                     self.place_link(
+                                         place.get_handle(),
+                                         place_title, place.get_gramps_id()),
+                                     class_="ColumnName")
 
                         trow.extend(
                             Html("td", data or "&nbsp;", class_=colclass,
                                  inline=True)
                             for (colclass, data) in [
-                                       ["ColumnState",
-                                        main_location.get(PlaceType.STATE,
-                                        '')],
-                                       ["ColumnCountry",
-                                        main_location.get(PlaceType.COUNTRY,
-                                        '')]]
+                                ["ColumnState",
+                                 main_location.get(PlaceType.STATE, '')],
+                                ["ColumnCountry",
+                                 main_location.get(PlaceType.COUNTRY, '')]
+                            ]
                         )
 
                         tcell1 = Html("td", class_="ColumnLatitude",
@@ -3929,7 +3924,7 @@ class PlacePages(BasePage):
 
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
-        self.page_title = _pd.display(self.report.database, place)
+        self.page_title = _pd.display(self.r_db, place)
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
@@ -3942,12 +3937,13 @@ class PlacePages(BasePage):
             if self.create_media:
                 media_list = place.get_media_list()
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
-                                                                  place)
+                                                             place)
                 if thumbnail is not None:
                     placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h3", html_escape(place.get_name().get_value()),
+            placedetail += Html("h3",
+                                html_escape(place.get_name().get_value()),
                                 inline=True)
 
             # begin summaryarea division and places table
@@ -3991,7 +3987,7 @@ class PlacePages(BasePage):
                                  media="screen", rel="stylesheet")
 
                     # add MapService specific javascript code
-                    src_js = "http://maps.googleapis.com/maps/api/js?sensor=false"
+                    src_js = GOOGLE_MAPS + "api/js?sensor=false"
                     if self.mapservice == "Google":
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
@@ -4090,11 +4086,12 @@ class EventPages(BasePage):
         event_handle_list = self.report.obj_dict[Event].keys()
         event_types = []
         for event_handle in event_handle_list:
-            event = self.report.database.get_event_from_handle(event_handle)
+            event = self.r_db.get_event_from_handle(event_handle)
             event_types.append(str(event.get_type()))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        with self.r_user.progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"),
-                                  len(event_handle_list) + 1) as step:
+                                  len(event_handle_list) + 1
+                                 ) as step:
             self.eventlistpage(self.report, title, event_types,
                                event_handle_list)
 
@@ -4131,7 +4128,7 @@ class EventPages(BasePage):
             eventlist += Html("p", msg, id="description")
 
             # get alphabet navigation...
-            index_list = get_first_letters(self.report.database, event_types,
+            index_list = get_first_letters(self.r_db, event_types,
                                            _ALPHAEVENT)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav:
@@ -4150,13 +4147,13 @@ class EventPages(BasePage):
 
                 trow.extend(
                     Html("th", label, class_=colclass, inline=True)
-                        for (label, colclass) in [
-                            (_("Letter"), "ColumnRowLabel"),
-                            (_("Type"), "ColumnType"),
-                            (_("Date"), "ColumnDate"),
-                            (_("Gramps ID"), "ColumnGRAMPSID"),
-                            (_("Person"), "ColumnPerson")
-                        ]
+                    for (label, colclass) in [
+                        (_("Letter"), "ColumnRowLabel"),
+                        (_("Type"), "ColumnType"),
+                        (_("Date"), "ColumnDate"),
+                        (_("Gramps ID"), "ColumnGRAMPSID"),
+                        (_("Person"), "ColumnPerson")
+                    ]
                 )
 
                 tbody = Html("tbody")
@@ -4164,7 +4161,7 @@ class EventPages(BasePage):
 
                 # separate events by their type and then thier event handles
                 for (evt_type,
-                     data_list) in sort_event_types(self.report.database,
+                     data_list) in sort_event_types(self.r_db,
                                                     event_types,
                                                     event_handle_list):
                     first = True
@@ -4175,7 +4172,7 @@ class EventPages(BasePage):
                     first_event = True
 
                     for (sort_value, event_handle) in data_list:
-                        event = self.report.database.get_event_from_handle(event_handle)
+                        event = self.r_db.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
                         if event.get_change_time() > ldatec:
@@ -4187,15 +4184,14 @@ class EventPages(BasePage):
                             # family event
                             if int(_type) in _EVENTMAP:
                                 handle_list = set(
-                                              self.report.database.find_backlink_handles(
-                                                  event_handle,
-                                                  include_classes=['Family',
-                                                                   'Person']))
+                                    self.r_db.find_backlink_handles(
+                                        event_handle,
+                                        include_classes=['Family', 'Person']))
                             else:
                                 handle_list = set(
-                                              self.report.database.find_backlink_handles(
-                                                  event_handle,
-                                                  include_classes=['Person']))
+                                    self.r_db.find_backlink_handles(
+                                        event_handle,
+                                        include_classes=['Person']))
                             if handle_list:
 
                                 trow = Html("tr")
@@ -4209,8 +4205,8 @@ class EventPages(BasePage):
 
                                 if evt_type and not evt_type.isspace():
                                     letter = get_index_letter(
-                                            str(evt_type)[0].capitalize(),
-                                            index_list)
+                                        str(evt_type)[0].capitalize(),
+                                        index_list)
                                 else:
                                     letter = "&nbsp;"
 
@@ -4218,8 +4214,10 @@ class EventPages(BasePage):
                                                                prev_letter):
                                     first = False
                                     prev_letter = letter
-                                    trow.attr = 'class = "BeginLetter BeginType"'
-                                    ttle = _("Event types beginning with letter %s") % letter
+                                    t_a = 'class = "BeginLetter BeginType"'
+                                    trow.attr = t_a
+                                    ttle = _("Event types beginning "
+                                             "with letter %s") % letter
                                     tcell += Html("a", letter, name=letter,
                                                   id_=letter, title=ttle,
                                                   inline=True)
@@ -4287,7 +4285,7 @@ class EventPages(BasePage):
         @param: event_handle -- The handle for the event to use
         """
         event_date = Date.EMPTY
-        event = self.report.database.get_event_from_handle(event_handle)
+        event = self.r_db.get_event_from_handle(event_handle)
         if event:
             date = event.get_date_object()
             if date:
@@ -4344,7 +4342,7 @@ class EventPages(BasePage):
             body += eventdetail
 
             thumbnail = self.disp_first_img_as_thumbnail(event_media_list,
-                                                              event)
+                                                         event)
             if thumbnail is not None:
                 eventdetail += thumbnail
 
@@ -4473,7 +4471,7 @@ class SurnameListPage(BasePage):
             # add alphabet navigation...
             # only if surname list not surname count
             if order_by == self.ORDER_BY_NAME:
-                index_list = get_first_letters(self.report.database, ppl_handle_list,
+                index_list = get_first_letters(self.r_db, ppl_handle_list,
                                                _KEYPERSON)
                 alpha_nav = alphabet_navigation(index_list)
                 if alpha_nav is not None:
@@ -4517,7 +4515,7 @@ class SurnameListPage(BasePage):
                 with Html("tbody") as tbody:
                     table += tbody
 
-                    ppl_handle_list = sort_people(self.report.database, ppl_handle_list)
+                    ppl_handle_list = sort_people(self.r_db, ppl_handle_list)
                     if order_by == self.ORDER_BY_COUNT:
                         temp_list = {}
                         for (surname, data_list) in ppl_handle_list:
@@ -4526,7 +4524,8 @@ class SurnameListPage(BasePage):
                             temp_list[index_val] = (surname, data_list)
 
                         ppl_handle_list = (temp_list[key]
-                            for key in sorted(temp_list, key=SORT_KEY))
+                                           for key in sorted(
+                                               temp_list, key=SORT_KEY))
 
                     first = True
                     first_surname = True
@@ -4553,11 +4552,10 @@ class SurnameListPage(BasePage):
                             first = False
                             prev_letter = letter
                             trow.attr = 'class = "BeginLetter"'
-                            ttle = _("Surnames beginning with letter %s") % letter
-                            hyper = Html(
-                                    "a", letter, name=letter,
-                                    title=ttle,
-                                    inline=True)
+                            ttle = _("Surnames beginning with "
+                                     "letter %s") % letter
+                            hyper = Html("a", letter, name=letter,
+                                         title=ttle, inline=True)
                             tcell += hyper
                         elif first_surname or surname != prev_surname:
                             first_surname = False
@@ -4566,7 +4564,7 @@ class SurnameListPage(BasePage):
 
                         trow += Html("td",
                                      self.surname_link(name_to_md5(surname),
-                                     html_escape(surname)),
+                                                       html_escape(surname)),
                                      class_="ColumnSurname", inline=True)
 
                         trow += Html("td", len(data_list),
@@ -4580,7 +4578,7 @@ class SurnameListPage(BasePage):
         # send page out for processing
         # and close the file
         self.xhtml_writer(surnamelistpage,
-                         output_file, sio, 0) # 0 => current date modification
+                          output_file, sio, 0) # 0 => current date modification
 
     def surname_link(self, fname, name, opt_val=None, uplink=False):
         """
@@ -4627,7 +4625,7 @@ class IntroductionPage(BasePage):
 
             note_id = report.options['intronote']
             if note_id:
-                note = self.report.database.get_note_from_gramps_id(note_id)
+                note = self.r_db.get_note_from_gramps_id(note_id)
                 note_text = self.get_note_format(note, False)
 
                 # attach note
@@ -4671,7 +4669,7 @@ class HomePage(BasePage):
 
             note_id = report.options['homenote']
             if note_id:
-                note = self.report.database.get_note_from_gramps_id(note_id)
+                note = self.r_db.get_note_from_gramps_id(note_id)
                 note_text = self.get_note_format(note, False)
 
                 # attach note
@@ -4747,9 +4745,10 @@ class SourcePages(BasePage):
         LOG.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
             LOG.debug("    %s", str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
-                                 _("Creating source pages"),
-                                 len(self.report.obj_dict[Source]) + 1) as step:
+        with self.r_user.progress(_("Narrated Web Site Report"),
+                                  _("Creating source pages"),
+                                  len(self.report.obj_dict[Source]) + 1
+                                 ) as step:
             self.sourcelistpage(self.report, title,
                                 self.report.obj_dict[Source].keys())
 
@@ -4781,7 +4780,7 @@ class SourcePages(BasePage):
 
             # Sort the sources
             for handle in source_handles:
-                source = self.report.database.get_source_from_handle(handle)
+                source = self.r_db.get_source_from_handle(handle)
                 if source is not None:
                     key = source.get_title() + source.get_author()
                     key += str(source.get_gramps_id())
@@ -4812,7 +4811,8 @@ class SourcePages(BasePage):
 
                 trow.extend(
                     Html("th", label or "&nbsp;", class_=colclass, inline=True)
-                    for (label, colclass) in header_row)
+                    for (label, colclass) in header_row
+                )
 
                 # begin table body
                 tbody = Html("tbody")
@@ -4832,8 +4832,9 @@ class SourcePages(BasePage):
                     )
                     trow.extend(
                         Html("td", self.source_link(source_handle,
-                             source.get_title(),
-                             source.get_gramps_id()), class_="ColumnName")
+                                                    source.get_title(),
+                                                    source.get_gramps_id()),
+                             class_="ColumnName")
                     )
 
         # add clearline for proper styling
@@ -4867,8 +4868,8 @@ class SourcePages(BasePage):
 
         output_file, sio = self.report.create_file(source_handle, "src")
         self.uplink = True
-        sourcepage, head, body = self.write_header("%s - %s" % (_('Sources'),
-                                                   self.page_title))
+        sourcepage, head, body = self.write_header(
+            "%s - %s" % (_('Sources'), self.page_title))
 
         ldatec = 0
         # begin source detail division
@@ -4878,7 +4879,7 @@ class SourcePages(BasePage):
             media_list = source.get_media_list()
             if self.create_media and media_list:
                 thumbnail = self.disp_first_img_as_thumbnail(media_list,
-                                                                  source)
+                                                             source)
                 if thumbnail is not None:
                     sourcedetail += thumbnail
 
@@ -4901,11 +4902,12 @@ class SourcePages(BasePage):
                     ldatec = source.get_change_time()
 
                 for (label, value) in [
-                    (_("Gramps ID"), source_gid),
-                    (_("Author"), source.get_author()),
-                    (_("Abbreviation"), source.get_abbreviation()),
-                    (_("Publication information"),
-                                        source.get_publication_info())]:
+                        (_("Gramps ID"), source_gid),
+                        (_("Author"), source.get_author()),
+                        (_("Abbreviation"), source.get_abbreviation()),
+                        (_("Publication information"),
+                         source.get_publication_info())
+                ]:
                     if value:
                         trow = Html("tr") + (
                             Html("td", label, class_="ColumnAttribute",
@@ -4933,7 +4935,7 @@ class SourcePages(BasePage):
             # Source Repository list
             if inc_repositories:
                 repo_list = self.dump_repository_ref_list(
-                                                     source.get_reporef_list())
+                    source.get_reporef_list())
                 if repo_list is not None:
                     sourcedetail += repo_list
 
@@ -4985,9 +4987,10 @@ class MediaPages(BasePage):
         LOG.debug("obj_dict[Media]")
         for item in self.report.obj_dict[Media].items():
             LOG.debug("    %s", str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        with self.r_user.progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"),
-                                  len(self.report.obj_dict[Media]) + 1) as step:
+                                  len(self.report.obj_dict[Media]) + 1
+                                 ) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
             def sort_by_desc_and_gid(obj):
                 """
@@ -4995,9 +4998,10 @@ class MediaPages(BasePage):
                 """
                 return (obj.desc.lower(), obj.gramps_id)
 
-            sorted_media_handles = sorted(self.report.obj_dict[Media].keys(),
-                                          key=lambda x: sort_by_desc_and_gid(
-                                 self.report.database.get_media_from_handle(x)))
+            sorted_media_handles = sorted(
+                self.report.obj_dict[Media].keys(),
+                key=lambda x: sort_by_desc_and_gid(
+                    self.r_db.get_media_from_handle(x)))
             self.medialistpage(self.report, title, sorted_media_handles)
 
             prev = None
@@ -5033,12 +5037,12 @@ class MediaPages(BasePage):
             body += medialist
 
             msg = _("This page contains an index of all the media objects "
-                          "in the database, sorted by their title. Clicking on "
-                          "the title will take you to that "
-                          "media object&#8217;s page.  "
-                          "If you see media size dimensions "
-                          "above an image, click on the "
-                          "image to see the full sized version.  ")
+                    "in the database, sorted by their title. Clicking on "
+                    "the title will take you to that "
+                    "media object&#8217;s page.  "
+                    "If you see media size dimensions "
+                    "above an image, click on the "
+                    "image to see the full sized version.  ")
             medialist += Html("p", msg, id="description")
 
             # begin gallery table and table head
@@ -5055,12 +5059,12 @@ class MediaPages(BasePage):
 
                 trow.extend(
                     Html("th", trans, class_=colclass, inline=True)
-                        for trans, colclass in [
-                            ("&nbsp;", "ColumnRowLabel"),
-                            (_("Media | Name"), "ColumnName"),
-                            (_("Date"), "ColumnDate"),
-                            (_("Mime Type"), "ColumnMime")
-                        ]
+                    for trans, colclass in [
+                        ("&nbsp;", "ColumnRowLabel"),
+                        (_("Media | Name"), "ColumnName"),
+                        (_("Date"), "ColumnDate"),
+                        (_("Mime Type"), "ColumnMime")
+                    ]
                 )
 
                 # begin table body
@@ -5069,7 +5073,7 @@ class MediaPages(BasePage):
 
                 index = 1
                 for media_handle in sorted_media_handles:
-                    media = self.report.database.get_media_from_handle(media_handle)
+                    media = self.r_db.get_media_from_handle(media_handle)
                     if media:
                         if media.get_change_time() > ldatec:
                             ldatec = media.get_change_time()
@@ -5083,12 +5087,12 @@ class MediaPages(BasePage):
                             [self.media_ref_link(media_handle,
                                                  title), "ColumnName"],
                             [_dd.display(media.get_date_object()),
-                                                         "ColumnDate"],
+                             "ColumnDate"],
                             [media.get_mime_type(), "ColumnMime"]]
 
                         trow.extend(
                             Html("td", data, class_=colclass)
-                                for data, colclass in media_data_row
+                            for data, colclass in media_data_row
                         )
                         index += 1
 
@@ -5101,7 +5105,7 @@ class MediaPages(BasePage):
             unused_media_handles = []
             if self.create_unused_media:
                 # add unused media
-                media_list = self.report.database.get_media_handles()
+                media_list = self.r_db.get_media_handles()
                 for media_ref in media_list:
                     if isinstance(media_ref, bytes):
                         media_handle = media_ref.decode("utf-8")
@@ -5109,11 +5113,12 @@ class MediaPages(BasePage):
                         media_handle = media_ref
                     if media_handle not in self.report.obj_dict[Media]:
                         unused_media_handles.append(media_handle)
-                unused_media_handles = sorted(unused_media_handles,
-                                          key=lambda x: sort_by_desc_and_gid(
-                                 self.report.database.get_media_from_handle(x)))
+                unused_media_handles = sorted(
+                    unused_media_handles,
+                    key=lambda x: sort_by_desc_and_gid(
+                        self.r_db.get_media_from_handle(x)))
 
-            indx = 1
+            idx = 1
             prev = None
             total = len(unused_media_handles)
             if total > 0:
@@ -5128,26 +5133,26 @@ class MediaPages(BasePage):
                     Html("td", Html("h4", " "), inline=True)
                 )
                 for media_handle in unused_media_handles:
-                    media = self.report.database.get_media_from_handle(media_handle)
+                    media = self.r_db.get_media_from_handle(media_handle)
                     gc.collect() # Reduce memory usage when many images.
-                    next_ = None if indx == total else \
-                                                      unused_media_handles[indx]
+                    next_ = None if idx == total else unused_media_handles[idx]
                     trow += Html("tr")
                     media_data_row = [
                         [index, "ColumnRowLabel"],
                         [self.media_ref_link(media_handle,
-                                        media.get_description()), "ColumnName"],
+                                             media.get_description()),
+                         "ColumnName"],
                         [_dd.display(media.get_date_object()), "ColumnDate"],
                         [media.get_mime_type(), "ColumnMime"]]
                     trow.extend(
                         Html("td", data, class_=colclass)
-                            for data, colclass in media_data_row
+                        for data, colclass in media_data_row
                     )
                     self.mediapage(self.report, title,
                                    media_handle, (prev, next_, index, total))
                     prev = media_handle
                     index += 1
-                    indx += 1
+                    idx += 1
 
         # add footer section
         # add clearline for proper styling
@@ -5219,9 +5224,9 @@ class MediaPages(BasePage):
 
         self.copy_thumbnail(media_handle, media)
         self.page_title = media.get_description()
-        (mediapage, head,
-         body) = self.write_header("%s - %s" % (_("Media"),
-                                   self.page_title))
+        esc_page_title = html_escape(self.page_title)
+        (mediapage, head, body) = self.write_header(
+            "%s - %s" % (_("Media"), self.page_title))
 
         # if there are media rectangle regions, attach behaviour style sheet
         if _region_items:
@@ -5275,14 +5280,14 @@ class MediaPages(BasePage):
                             # the user to have to await a large download
                             # unnecessarily. Either way, set the display image
                             # size as requested.
-                            orig_image_path = media_path_full(self.report.database,
+                            orig_image_path = media_path_full(self.r_db,
                                                               media.get_path())
                             #mtime = os.stat(orig_image_path).st_mtime
                             (width, height) = image_size(orig_image_path)
                             max_width = self.report.options[
-                                                        'maxinitialimagewidth']
+                                'maxinitialimagewidth']
                             max_height = self.report.options[
-                                                        'maxinitialimageheight']
+                                'maxinitialimageheight']
                             if width != 0 and height != 0:
                                 scale_w = (float(max_width)/width) or 1
                                            # the 'or 1' is so that a max of
@@ -5300,8 +5305,8 @@ class MediaPages(BasePage):
                                                               None, self.uplink)
                             with Html("div", id="GalleryDisplay",
                                       style='width: %dpx; height: %dpx' % (
-                                            new_width,
-                                            new_height)) as mediadisplay:
+                                          new_width,
+                                          new_height)) as mediadisplay:
                                 summaryarea += mediadisplay
 
                                 # Feature #2634; display the mouse-selectable
@@ -5312,34 +5317,40 @@ class MediaPages(BasePage):
                                     ordered = Html("ol", class_="RegionBox")
                                     mediadisplay += ordered
                                     while len(_region_items) > 0:
-                                        (name, coord_x, coord_y, width, height,
-                                         linkurl) = _region_items.pop()
-                                        ordered += Html("li",
-                                                        style="left:%d%%; top:%d%%; width:%d%%; height:%d%%;"
-                                            % (coord_x, coord_y,
-                                               width, height)) + (
-                                            Html("a", name, href=linkurl)
-                                        )
+                                        (name, coord_x, coord_y,
+                                         width, height, linkurl
+                                        ) = _region_items.pop()
+                                        ordered += Html(
+                                            "li",
+                                            style="left:%d%%; "
+                                                  "top:%d%%; "
+                                                  "width:%d%%; "
+                                                  "height:%d%%;" % (
+                                                      coord_x, coord_y,
+                                                      width, height)) + (
+                                                          Html("a", name,
+                                                               href=linkurl)
+                                                          )
 
                                 # display the image
                                 if orig_image_path != newpath:
-                                    url = self.report.build_url_fname(newpath,
-                                                None, self.uplink)
+                                    url = self.report.build_url_fname(
+                                        newpath, None, self.uplink)
                                 mediadisplay += Html("a", href=url) + (
                                     Html("img", width=new_width,
                                          height=new_height, src=url,
-                                         alt=html_escape(self.page_title))
+                                         alt=esc_page_title)
                                 )
                     else:
                         dirname = tempfile.mkdtemp()
                         thmb_path = os.path.join(dirname, "document.png")
                         if run_thumbnailer(mime_type,
-                                           media_path_full(self.report.database,
+                                           media_path_full(self.r_db,
                                                            media.get_path()),
                                            thmb_path, 320):
                             try:
-                                path = self.report.build_path("preview",
-                                                             media.get_handle())
+                                path = self.report.build_path(
+                                    "preview", media.get_handle())
                                 npath = os.path.join(path, media.get_handle())
                                 npath += ".png"
                                 self.report.copy_file(thmb_path, npath)
@@ -5363,11 +5374,10 @@ class MediaPages(BasePage):
                                                                   None,
                                                                   self.uplink)
                                 hyper = Html("a", href=url,
-                                             title=html_escape(
-                                                           self.page_title)) + (
-                                    Html("img", src=img_url,
-                                         alt=html_escape(self.page_title))
-                                    )
+                                             title=esc_page_title) + (
+                                                 Html("img", src=img_url,
+                                                      alt=esc_page_title)
+                                                 )
                                 mediadisplay += hyper
                             else:
                                 mediadisplay += Html("span", errormsg,
@@ -5378,8 +5388,8 @@ class MediaPages(BasePage):
                         url = self.report.build_url_image("document.png",
                                                           "images", self.uplink)
                         mediadisplay += Html("img", src=url,
-                                             alt=html_escape(self.page_title),
-                            title=html_escape(self.page_title))
+                                             alt=esc_page_title,
+                                             title=esc_page_title)
 
                 # media title
                 title = Html("h3", html_escape(self.page_title.strip()),
@@ -5468,8 +5478,9 @@ class MediaPages(BasePage):
 
         @param: photo  -- The source object (image, pdf, ...)
         """
-        list(map(lambda i: self.bibli.add_reference(
-                            self.report.database.get_citation_from_handle(i)),
+        list(map(
+            lambda i: self.bibli.add_reference(
+                self.r_db.get_citation_from_handle(i)),
             photo.get_citation_list()))
         sourcerefs = self.display_source_refs(self.bibli)
 
@@ -5487,7 +5498,7 @@ class MediaPages(BasePage):
         to_dir = self.report.build_path('images', handle)
         newpath = os.path.join(to_dir, handle) + ext
 
-        fullpath = media_path_full(self.report.database, photo.get_path())
+        fullpath = media_path_full(self.r_db, photo.get_path())
         if not os.path.isfile(fullpath):
             _WRONGMEDIAPATH.append([photo.get_gramps_id(), fullpath])
             return None
@@ -5504,10 +5515,10 @@ class MediaPages(BasePage):
                 os.utime(new_file, (mtime, mtime))
             return newpath
         except (IOError, OSError) as msg:
-            error = _("Missing media object:") +                               \
-                     "%s (%s)" % (photo.get_description(),
-                                  photo.get_gramps_id())
-            self.report.user.warn(error, str(msg))
+            error = _("Missing media object:"
+                     ) + "%s (%s)" % (photo.get_description(),
+                                      photo.get_gramps_id())
+            self.r_user.warn(error, str(msg))
             return None
 
 class ThumbnailPreviewPage(BasePage):
@@ -5533,11 +5544,11 @@ class ThumbnailPreviewPage(BasePage):
 
         self.photo_keys = sorted(self.report.obj_dict[Media],
                                  key=lambda x: sort_by_desc_and_gid(
-                                          self.report.database.get_media_from_handle(x)))
+                                     self.r_db.get_media_from_handle(x)))
 
         if self.create_unused_media:
             # add unused media
-            media_list = self.report.database.get_media_handles()
+            media_list = self.r_db.get_media_handles()
             unused_media_handles = []
             for media_ref in media_list:
                 if isinstance(media_ref, bytes):
@@ -5549,7 +5560,7 @@ class ThumbnailPreviewPage(BasePage):
 
         media_list = []
         for person_handle in self.photo_keys:
-            photo = self.report.database.get_media_from_handle(person_handle)
+            photo = self.r_db.get_media_from_handle(person_handle)
             if photo:
                 if photo.get_mime_type().startswith("image"):
                     media_list.append((photo.get_description(), person_handle,
@@ -5644,7 +5655,8 @@ class ThumbnailPreviewPage(BasePage):
 
                         # attach thumbnail to list...
                         list_html += self.thumb_hyper_image(newpath, "img",
-                                                       person_handle, ptitle)
+                                                            person_handle,
+                                                            ptitle)
 
                         index += 1
                         indexpos += 1
@@ -5792,8 +5804,9 @@ class DownloadPage(BasePage):
                         for (label, colclass) in [
                             (_("File Name"), "Filename"),
                             (DESCRHEAD, "Description"),
-                            (_("Last Modified"), "Modified")]
-                            )
+                            (_("Last Modified"), "Modified")
+                        ]
+                    )
                     # table body
                     tbody = Html("tbody")
                     table += tbody
@@ -5924,7 +5937,7 @@ class ContactPage(BasePage):
 
                     note_id = report.options['contactnote']
                     if note_id:
-                        note = self.report.database.get_note_from_gramps_id(note_id)
+                        note = self.r_db.get_note_from_gramps_id(note_id)
                         note_text = self.get_note_format(note, False)
 
                         # attach note
@@ -5982,15 +5995,15 @@ class PersonPages(BasePage):
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
             LOG.debug("    %s", str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
-                                       _('Creating individual pages'),
-                              len(self.report.obj_dict[Person]) + 1) as step:
+        with self.r_user.progress(_("Narrated Web Site Report"),
+                                  _('Creating individual pages'),
+                                  len(self.report.obj_dict[Person]) + 1
+                                 ) as step:
             self.individuallistpage(self.report, title,
                                     self.report.obj_dict[Person].keys())
             for person_handle in sorted(self.report.obj_dict[Person]):
                 step()
-                person = self.report.database.get_person_from_handle(
-                                                                  person_handle)
+                person = self.r_db.get_person_from_handle(person_handle)
                 self.individualpage(self.report, title, person)
 
 #################################################
@@ -6027,14 +6040,14 @@ class PersonPages(BasePage):
 
             # Individual List page message
             msg = _("This page contains an index of all the individuals in "
-                          "the database, sorted by their last names. "
-                          "Selecting the person&#8217;s "
-                          "name will take you to that "
-                          "person&#8217;s individual page.")
+                    "the database, sorted by their last names. "
+                    "Selecting the person&#8217;s "
+                    "name will take you to that "
+                    "person&#8217;s individual page.")
             individuallist += Html("p", msg, id="description")
 
             # add alphabet navigation
-            index_list = get_first_letters(self.report.database, ppl_handle_list,
+            index_list = get_first_letters(self.r_db, ppl_handle_list,
                                            _KEYPERSON)
             alpha_nav = alphabet_navigation(index_list)
             if alpha_nav is not None:
@@ -6042,7 +6055,7 @@ class PersonPages(BasePage):
 
             # begin table and table head
             with Html("table",
-                       class_="infolist primobjlist IndividualList") as table:
+                      class_="infolist primobjlist IndividualList") as table:
                 individuallist += table
                 thead = Html("thead")
                 table += thead
@@ -6075,7 +6088,7 @@ class PersonPages(BasePage):
             tbody = Html("tbody")
             table += tbody
 
-            ppl_handle_list = sort_people(self.report.database, ppl_handle_list)
+            ppl_handle_list = sort_people(self.r_db, ppl_handle_list)
             first = True
             for (surname, handle_list) in ppl_handle_list:
 
@@ -6088,7 +6101,7 @@ class PersonPages(BasePage):
                 first_surname = True
                 for person_handle in sorted(handle_list,
                                             key=self.sort_on_name_and_grampsid):
-                    person = self.report.database.get_person_from_handle(person_handle)
+                    person = self.r_db.get_person_from_handle(person_handle)
                     if person.get_change_time() > date:
                         date = person.get_change_time()
 
@@ -6107,9 +6120,9 @@ class PersonPages(BasePage):
                             "a", html_escape(surname), name=letter,
                             id_=letter,
                             title=_("Surnames %(surname)s beginning "
-                                    "with letter %(letter)s") %
-                                         {'surname' : surname,
-                                          'letter' : letter})
+                                    "with letter %(letter)s") % {
+                                        'surname' : surname,
+                                        'letter'  : letter})
                     elif first_surname:
                         first_surname = False
                         tcell += Html("a", html_escape(surname),
@@ -6119,7 +6132,7 @@ class PersonPages(BasePage):
 
                     # firstname column
                     link = self.new_person_link(person_handle, person=person,
-                                                 name_style=_NAME_STYLE_FIRST)
+                                                name_style=_NAME_STYLE_FIRST)
                     trow += Html("td", link, class_="ColumnName")
 
                     # birth column
@@ -6127,7 +6140,7 @@ class PersonPages(BasePage):
                         tcell = Html("td", class_="ColumnBirth", inline=True)
                         trow += tcell
 
-                        birth_date = _find_birth_date(self.report.database, person)
+                        birth_date = _find_birth_date(self.r_db, person)
                         if birth_date is not None:
                             if birth_date.fallback:
                                 tcell += Html('em', _dd.display(birth_date),
@@ -6142,7 +6155,7 @@ class PersonPages(BasePage):
                         tcell = Html("td", class_="ColumnDeath", inline=True)
                         trow += tcell
 
-                        death_date = _find_death_date(self.report.database, person)
+                        death_date = _find_death_date(self.r_db, person)
                         if death_date is not None:
                             if death_date.fallback:
                                 tcell += Html('em', _dd.display(death_date),
@@ -6161,10 +6174,10 @@ class PersonPages(BasePage):
                         tcell = ()
                         if family_list:
                             for family_handle in family_list:
-                                family = self.report.database.get_family_from_handle(
-                                                                  family_handle)
-                                partner_handle = ReportUtils.find_spouse(person,
-                                                                         family)
+                                family = self.r_db.get_family_from_handle(
+                                    family_handle)
+                                partner_handle = ReportUtils.find_spouse(
+                                    person, family)
                                 if partner_handle:
                                     if not first_family:
                                         # have to do this to get the comma on
@@ -6174,13 +6187,13 @@ class PersonPages(BasePage):
                                             # of a subclass thereof)
                                             tcell[-1].inside += ","
                                         else:
-                                            tcell = tcell[:-1] +\
-                                                ((tcell[-1] + ", "),)
+                                            tcell = tcell[:-1] + (
+                                                (tcell[-1] + ", "),)
                                     # Have to manipulate as tuples so that
                                     # subsequent people are not nested
                                     # within the first link
-                                    tcell += (self.new_person_link(
-                                                               partner_handle),)
+                                    tcell += (
+                                        self.new_person_link(partner_handle),)
                                     first_family = False
                         else:
                             tcell = "&nbsp;"
@@ -6189,21 +6202,21 @@ class PersonPages(BasePage):
                     # parents column
                     if showparents:
 
-                        parent_handle_list = person.get_parent_family_handle_list()
-                        if parent_handle_list:
-                            parent_handle = parent_handle_list[0]
-                            family = self.report.database.get_family_from_handle(
-                                                                  parent_handle)
+                        parent_hdl_list = person.get_parent_family_handle_list()
+                        if parent_hdl_list:
+                            parent_handle = parent_hdl_list[0]
+                            family = self.r_db.get_family_from_handle(
+                                parent_handle)
                             father_handle = family.get_father_handle()
                             mother_handle = family.get_mother_handle()
                             if father_handle:
-                                father = self.report.database.get_person_from_handle(
-                                                                  father_handle)
+                                father = self.r_db.get_person_from_handle(
+                                    father_handle)
                             else:
                                 father = None
                             if mother_handle:
-                                mother = self.report.database.get_person_from_handle(
-                                                                  mother_handle)
+                                mother = self.r_db.get_person_from_handle(
+                                    mother_handle)
                             else:
                                 mother = None
                             if father:
@@ -6348,20 +6361,19 @@ class PersonPages(BasePage):
             # Individual Pages...
             if not self.inc_families:
                 for handle in self.person.get_family_handle_list():
-                    family = self.report.database.get_family_from_handle(handle)
+                    family = self.r_db.get_family_from_handle(handle)
                     if family:
                         media_list += family.get_media_list()
                         for evt_ref in family.get_event_ref_list():
-                            event = self.report.database.get_event_from_handle(
-                                                                    evt_ref.ref)
+                            event = self.r_db.get_event_from_handle(evt_ref.ref)
                             media_list += event.get_media_list()
 
-            # if the Event Pages are not being createsd, then include the Event
+            # if the Event Pages are not being created, then include the Event
             # Media objects? There is no reason to add these objects to the
             # Individual Pages...
             if not self.inc_events:
                 for evt_ref in self.person.get_primary_event_ref_list():
-                    event = self.report.database.get_event_from_handle(evt_ref.ref)
+                    event = self.r_db.get_event_from_handle(evt_ref.ref)
                     if event:
                         media_list += event.get_media_list()
 
@@ -6401,8 +6413,8 @@ class PersonPages(BasePage):
                     sof = output_file
                     sstring_io = sio
                     sfname = self.report.cur_fname
-                    individualdetail += self.__display_family_map(person,
-                                                                 place_lat_long)
+                    individualdetail += self.__display_family_map(
+                        person, place_lat_long)
                     # restore output_file, string_io and cur_fname
                     # after creating a new page
                     output_file = sof
@@ -6583,8 +6595,10 @@ class PersonPages(BasePage):
             body += mapdetail
 
             # add page title
-            mapdetail += Html("h3", html_escape(_("Tracking %s") %
-                                  self.get_name(person)), inline=True)
+            mapdetail += Html("h3",
+                              html_escape(
+                                  _("Tracking %s") % self.get_name(person)),
+                              inline=True)
 
             # page description
             msg = _("This map page represents that person "
@@ -6619,10 +6633,10 @@ class PersonPages(BasePage):
                             # single marker, the javascript for place is used,
                             # which has a 'place_canvas' division, instead of a
                             # 'map_canvas' division.
-                            jsc += GOOGLE_JSC.replace("place_canvas",
-                                                      "map_canvas") % \
-                                    (latitude, longitude,
-                                                 placetitle.replace("'", "\\'"))
+                            jsc += GOOGLE_JSC.replace(
+                                "place_canvas", "map_canvas") % (
+                                    latitude, longitude,
+                                    placetitle.replace("'", "\\'"))
 
                         # we are using OpenStreetMap?
                         else:
@@ -6630,10 +6644,10 @@ class PersonPages(BasePage):
                             # single marker, the javascript for place is used,
                             # which has a 'place_canvas' division, instead of a
                             # 'map_canvas' division.
-                            jsc += OPENSTREETMAP_JSC.replace("place_canvas",
-                                                             "map_canvas") % \
-                                    (xml_lang()[3:5].lower(),
-                                     longitude, latitude)
+                            jsc += OPENSTREETMAP_JSC.replace(
+                                "place_canvas", "map_canvas") % (
+                                    xml_lang()[3:5].lower(),
+                                    longitude, latitude)
 
                     # there is more than one marker...
                     else:
@@ -6682,11 +6696,11 @@ class PersonPages(BasePage):
 
                     trow.extend(
                         Html("th", label, class_=colclass, inline=True)
-                            for (label, colclass) in [
-                                (_("Date"), "ColumnDate"),
-                                (_("Place Title"), "ColumnPlace"),
-                                (_("Event Type"), "ColumnType")
-                            ]
+                        for (label, colclass) in [
+                            (_("Date"), "ColumnDate"),
+                            (_("Place Title"), "ColumnPlace"),
+                            (_("Event Type"), "ColumnType")
+                        ]
                     )
 
                     tbody = Html("tbody")
@@ -6699,14 +6713,13 @@ class PersonPages(BasePage):
 
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
-                                for data, colclass in [
-                                    (date, "ColumnDate"),
-                                    (self.place_link(handle,
-                                                     placetitle,
-                                                     uplink=True),
-                                                         "ColumnPlace"),
-                                    (str(etype), "ColumnType")
-                                ]
+                            for data, colclass in [
+                                (date, "ColumnDate"),
+                                (self.place_link(handle, placetitle,
+                                                 uplink=True),
+                                 "ColumnPlace"),
+                                (str(etype), "ColumnType")
+                            ]
                         )
 
         # add body id for this page...
@@ -6762,8 +6775,8 @@ class PersonPages(BasePage):
             divclass = "unknown"
 
         boxbg = Html("div", class_="boxbg %s AncCol%s" % (divclass, col),
-                    style="top: %dpx; left: %dpx;" % (top, xoff+1)
-                   )
+                     style="top: %dpx; left: %dpx;" % (top, xoff+1)
+                    )
 
         person_name = self.get_name(person)
         # This does not use [new_]person_link because the requirements are
@@ -6779,14 +6792,15 @@ class PersonPages(BasePage):
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
-                    photo = self.report.database.get_media_from_handle(photo_handle)
+                    photo = self.r_db.get_media_from_handle(photo_handle)
                     mime_type = photo.get_mime_type()
                     if mime_type:
                         region = self.media_ref_region_to_object(photo_handle,
                                                                  person)
                         if region:
                             # make a thumbnail of this region
-                            newpath = self.copy_thumbnail(photo_handle, photo, region)
+                            newpath = self.copy_thumbnail(
+                                photo_handle, photo, region)
                             # TODO. Check if build_url_fname can be used.
                             newpath = "/".join(['..']*3 + [newpath])
                             if win():
@@ -6795,7 +6809,7 @@ class PersonPages(BasePage):
                         else:
                             (photo_url,
                              thumbnail_url) = self.report.prepare_copy_media(
-                                        photo)
+                                 photo)
                             thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
                             if win():
                                 thumbnail_url = thumbnail_url.replace('\\', "/")
@@ -6803,13 +6817,12 @@ class PersonPages(BasePage):
             if thumbnail_url is None:
                 boxbg += Html("a", href=url, class_="noThumb") + person_name
             else:
-                thumb = Html("span", class_="thumbnail") + \
-                    (Html("img", src=thumbnail_url, alt="Image: "
-                          + person_name))
+                thumb = Html("span", class_="thumbnail") + (
+                    Html("img", src=thumbnail_url, alt="Image: " + person_name))
                 boxbg += Html("a", href=url) + thumb + person_name
-        shadow = Html("div", class_="shadow", inline=True,
-                      style="top: %dpx; left: %dpx;"
-                                             % (top + _SHADOW, xoff + _SHADOW))
+        shadow = Html(
+            "div", class_="shadow", inline=True,
+            style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))
 
         return [boxbg, shadow]
 
@@ -6823,11 +6836,11 @@ class PersonPages(BasePage):
         style = "top: %dpx; left: %dpx; width: %dpx"
         ext_bv = Html("div", class_="bvline", inline=True,
                       style=style % (coord_y0, coord_x0, _HGAP/2)
-                    )
+                     )
         ext_gv = Html("div", class_="gvline", inline=True,
                       style=style % (coord_y0+_SHADOW,
                                      coord_x0, _HGAP/2+_SHADOW)
-                    )
+                     )
         return [ext_bv, ext_gv]
 
     def connect_line(self, coord_y0, coord_y1, col):
@@ -6844,13 +6857,17 @@ class PersonPages(BasePage):
         coord_x0 = _XOFFSET + col * _WIDTH + (col-1)*_HGAP + _HGAP/2
         cnct_bv = Html("div", class_="bvline", inline=True,
                        style=stylew % (coord_y1, coord_x0, _HGAP/2))
-        cnct_gv = Html("div", class_="gvline", inline=True, style=stylew %
-            (coord_y1+_SHADOW, coord_x0+_SHADOW, _HGAP/2+_SHADOW))
+        cnct_gv = Html("div", class_="gvline", inline=True,
+                       style=stylew % (coord_y1+_SHADOW,
+                                       coord_x0+_SHADOW,
+                                       _HGAP/2+_SHADOW))
         cnct_bh = Html("div", class_="bhline", inline=True,
                        style=styleh % (coord_y, coord_x0,
                                        abs(coord_y0-coord_y1)))
-        cnct_gh = Html("div", class_="gvline", inline=True, style=styleh %
-                 (coord_y+_SHADOW, coord_x0+_SHADOW, abs(coord_y0-coord_y1)))
+        cnct_gh = Html("div", class_="gvline", inline=True,
+                       style=styleh % (coord_y+_SHADOW,
+                                       coord_x0+_SHADOW,
+                                       abs(coord_y0-coord_y1)))
         return [cnct_bv, cnct_gv, cnct_bh, cnct_gh]
 
     def draw_connected_box(self, center1, center2, col, handle):
@@ -6865,7 +6882,7 @@ class PersonPages(BasePage):
         box = []
         if not handle:
             return box
-        person = self.report.database.get_person_from_handle(handle)
+        person = self.r_db.get_person_from_handle(handle)
         box = self.draw_box(center2, col, person)
         box += self.connect_line(center1, center2, col)
         return box
@@ -6886,9 +6903,9 @@ class PersonPages(BasePage):
         with Html("div", id="tree", class_="subsection") as tree:
             tree += Html("h4", _('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
-                    style="width:%dpx; height:%dpx;" %
-                        (_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP,
-                        max_size)
+                      style="width:%dpx; height:%dpx;" % (
+                          _XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP,
+                          max_size)
                      ) as container:
                 tree += container
                 container += self.draw_tree(1, generations, max_size,
@@ -6912,7 +6929,7 @@ class PersonPages(BasePage):
             return tree
         gen_offset = int(max_size / pow(2, gen_nr+1))
         if person_handle:
-            person = self.report.database.get_person_from_handle(person_handle)
+            person = self.r_db.get_person_from_handle(person_handle)
         else:
             person = None
         if not person:
@@ -6932,7 +6949,7 @@ class PersonPages(BasePage):
             line_offset = _XOFFSET + gen_nr*_WIDTH + (gen_nr-1)*_HGAP
             tree += self.extend_line(new_center, line_offset)
 
-            family = self.report.database.get_family_from_handle(family_handle)
+            family = self.r_db.get_family_from_handle(family_handle)
 
             f_center = new_center-gen_offset
             f_handle = family.get_father_handle()
@@ -6987,17 +7004,18 @@ class PersonPages(BasePage):
 
                     index = 0
                     for data in [
-                        person_lnk,
-                        person_ref.get_relation(),
-                        self.dump_notes(person_ref.get_note_list()),
-                        self.get_citation_links(person_ref.get_citation_list()),
+                            person_lnk,
+                            person_ref.get_relation(),
+                            self.dump_notes(person_ref.get_note_list()),
+                            self.get_citation_links(
+                                person_ref.get_citation_list()),
                         ]:
 
                         # get colclass from assoc_row
                         colclass = assoc_row[index][1]
 
                         trow += Html("td", data, class_="Column" + colclass,
-                            inline=True)
+                                     inline=True)
                         index += 1
 
         # return section to its callers
@@ -7020,7 +7038,7 @@ class PersonPages(BasePage):
                 childlist = family.get_child_ref_list()
 
                 childlist = [child_ref.ref for child_ref in childlist]
-                children = add_birthdate(self.report.database, childlist)
+                children = add_birthdate(self.r_db, childlist)
 
                 if birthorder:
                     children = sorted(children)
@@ -7029,7 +7047,7 @@ class PersonPages(BasePage):
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:
-                        child = self.report.database.get_person_from_handle(handle)
+                        child = self.r_db.get_person_from_handle(handle)
                         if child:
                             ol_html += Html("li") + self.pedigree_person(child)
             else:
@@ -7052,15 +7070,15 @@ class PersonPages(BasePage):
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
             parent_handle = parent_handle_list[0]
-            family = self.report.database.get_family_from_handle(parent_handle)
+            family = self.r_db.get_family_from_handle(parent_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if mother_handle:
-                mother = self.report.database.get_person_from_handle(mother_handle)
+                mother = self.r_db.get_person_from_handle(mother_handle)
             else:
                 mother = None
             if father_handle:
-                father = self.report.database.get_person_from_handle(father_handle)
+                father = self.r_db.get_person_from_handle(father_handle)
             else:
                 father = None
         else:
@@ -7078,16 +7096,16 @@ class PersonPages(BasePage):
                     with Html("ol") as pedma:
                         pedfa += pedma
                         pedma += (Html("li", class_="spouse") +
-                                      self.pedigree_person(mother) +
-                                      children_ped(Html("ol"))
+                                  self.pedigree_person(mother) +
+                                  children_ped(Html("ol"))
                                  )
                 elif father:
                     pedol += (Html("li") + self.pedigree_person(father) +
-                                  children_ped(Html("ol"))
+                              children_ped(Html("ol"))
                              )
                 elif mother:
                     pedol += (Html("li") + self.pedigree_person(mother) +
-                                  children_ped(Html("ol"))
+                              children_ped(Html("ol"))
                              )
                 else:
                     pedol += (Html("li") + children_ped(Html("ol")))
@@ -7099,12 +7117,13 @@ class PersonPages(BasePage):
         """
         self.page_title = self.sort_name
         thumbnail = self.disp_first_img_as_thumbnail(
-                                      self.person.get_media_list(), self.person)
+            self.person.get_media_list(), self.person)
         section_title = Html("h3", html_escape(self.page_title),
-                             inline=True) + \
-                        (Html('sup') +\
-                         (Html('small') +
-                      self.get_citation_links(self.person.get_citation_list())))
+                             inline=True) + (
+                                 Html('sup') + (
+                                     Html('small') +
+                                     self.get_citation_links(
+                                         self.person.get_citation_list())))
 
         # begin summaryarea division
         with Html("div", id='summaryarea') as summaryarea:
@@ -7136,9 +7155,9 @@ class PersonPages(BasePage):
 
                     type_ = str(name.get_type())
                     trow = Html("tr") + (
-                           Html("td", type_, class_="ColumnAttribute",
-                                inline=True)
-                                         )
+                        Html("td", type_, class_="ColumnAttribute",
+                             inline=True)
+                        )
 
                     tcell = Html("td", pname, class_="ColumnValue")
                     # display any notes associated with this name
@@ -7147,7 +7166,7 @@ class PersonPages(BasePage):
                         unordered = Html("ul")
 
                         for notehandle in notelist:
-                            note = self.report.database.get_note_from_handle(notehandle)
+                            note = self.r_db.get_note_from_handle(notehandle)
                             if note:
                                 note_text = self.get_note_format(note, True)
 
@@ -7210,14 +7229,14 @@ class PersonPages(BasePage):
                 birth_date = Date.EMPTY
                 birth_ref = self.person.get_birth_ref()
                 if birth_ref:
-                    birth = self.report.database.get_event_from_handle(birth_ref.ref)
+                    birth = self.r_db.get_event_from_handle(birth_ref.ref)
                     if birth:
                         birth_date = birth.get_date_object()
 
                 if birth_date and birth_date is not Date.EMPTY:
-                    alive = probably_alive(self.person, self.report.database, Today())
+                    alive = probably_alive(self.person, self.r_db, Today())
 
-                    death_date = _find_death_date(self.report.database, self.person)
+                    death_date = _find_death_date(self.r_db, self.person)
                     if not alive and death_date is not None:
                         nyears = death_date - birth_date
                         nyears.format(precision=3)
@@ -7263,7 +7282,7 @@ class PersonPages(BasePage):
                 table += tbody
 
                 for evt_ref in event_ref_list:
-                    event = self.report.database.get_event_from_handle(evt_ref.ref)
+                    event = self.r_db.get_event_from_handle(evt_ref.ref)
                     if event:
 
                         # display event row
@@ -7353,7 +7372,7 @@ class PersonPages(BasePage):
 
         for child_ref in family.get_child_ref_list():
             child_handle = child_ref.ref
-            child = self.report.database.get_person_from_handle(child_handle)
+            child = self.r_db.get_person_from_handle(child_handle)
             if child:
                 if child == self.person:
                     reln = ""
@@ -7364,11 +7383,10 @@ class PersonPages(BasePage):
                         # routines to work. Depending on your definition of
                         # sibling, we cannot necessarily guarantee that.
                         sibling_type = self.rel_class.get_sibling_type(
-                                self.report.database, self.person, child)
+                            self.r_db, self.person, child)
 
                         reln = self.rel_class.get_sibling_relationship_string(
-                                sibling_type, self.person.gender,
-                                child.gender)
+                            sibling_type, self.person.gender, child.gender)
                         reln = reln[0].upper() + reln[1:]
                     except:
                         reln = _("Not siblings")
@@ -7377,8 +7395,7 @@ class PersonPages(BasePage):
                 # Now output reln, child_link, (frel, mrel)
                 frel = child_ref.get_father_relation()
                 mrel = child_ref.get_mother_relation()
-                if frel != ChildRefType.BIRTH or \
-                   mrel != ChildRefType.BIRTH:
+                if frel != ChildRefType.BIRTH or mrel != ChildRefType.BIRTH:
                     frelmrel = "(%s, %s)" % (str(frel), str(mrel))
                 else:
                     frelmrel = ""
@@ -7410,11 +7427,11 @@ class PersonPages(BasePage):
         @param: table              -- The html document to complete
         """
         if parent_handle:
-            parent = self.report.database.get_person_from_handle(parent_handle)
+            parent = self.r_db.get_person_from_handle(parent_handle)
             for parent_family_handle in parent.get_family_handle_list():
                 if parent_family_handle not in all_family_handles:
-                    parent_family = self.report.database.get_family_from_handle(
-                                        parent_family_handle)
+                    parent_family = self.r_db.get_family_from_handle(
+                        parent_family_handle)
                     self.display_ind_parent_family(birthmother, birthfather,
                                                    parent_family, table)
                     all_family_handles.append(parent_family_handle)
@@ -7423,9 +7440,9 @@ class PersonPages(BasePage):
         """
         Display the person's relationship to the center person
         """
-        center_person = self.report.database.get_person_from_gramps_id(
-                                                     self.report.options['pid'])
-        relationship = self.rel_class.get_one_relationship(self.report.database,
+        center_person = self.r_db.get_person_from_gramps_id(
+            self.report.options['pid'])
+        relationship = self.rel_class.get_one_relationship(self.r_db,
                                                            self.person,
                                                            center_person)
         if relationship == "": # No relation to display
@@ -7470,12 +7487,12 @@ class PersonPages(BasePage):
 
                 trow.extend(
                     Html("th", label, class_=colclass, inline=True)
-                        for (label, colclass) in [
-                          (_("Relation to main person"), "ColumnAttribute"),
-                          (_("Name"), "ColumnValue"),
-                          (_("Relation within this family (if not by birth)"),
-                             "ColumnValue")
-                        ]
+                    for (label, colclass) in [
+                        (_("Relation to main person"), "ColumnAttribute"),
+                        (_("Name"), "ColumnValue"),
+                        (_("Relation within this family (if not by birth)"),
+                         "ColumnValue")
+                    ]
                 )
 
                 tbody = Html("tbody")
@@ -7483,16 +7500,16 @@ class PersonPages(BasePage):
 
                 all_family_handles = list(parent_list)
                 (birthmother, birthfather) = self.rel_class.get_birth_parents(
-                                                self.report.database, self.person)
+                    self.r_db, self.person)
 
                 first = True
                 for family_handle in parent_list:
-                    family = self.report.database.get_family_from_handle(family_handle)
+                    family = self.r_db.get_family_from_handle(family_handle)
                     if family:
                         # Display this family
-                        self.display_ind_parent_family(
-                                                    birthmother, birthfather,
-                                                    family, table, first)
+                        self.display_ind_parent_family(birthmother,
+                                                       birthfather,
+                                                       family, table, first)
                         first = False
 
                         if self.report.options['showhalfsiblings']:
@@ -7500,13 +7517,13 @@ class PersonPages(BasePage):
                             # involved. This displays half siblings and step
                             # siblings
                             self.display_step_families(
-                                    family.get_father_handle(), family,
-                                    all_family_handles,
-                                    birthmother, birthfather, table)
+                                family.get_father_handle(), family,
+                                all_family_handles,
+                                birthmother, birthfather, table)
                             self.display_step_families(
-                                    family.get_mother_handle(), family,
-                                    all_family_handles,
-                                    birthmother, birthfather, table)
+                                family.get_mother_handle(), family,
+                                all_family_handles,
+                                birthmother, birthfather, table)
         return section
 
     def pedigree_person(self, person):
@@ -7524,10 +7541,10 @@ class PersonPages(BasePage):
         """
         ped = []
         for family_handle in self.person.get_family_handle_list():
-            rel_family = self.report.database.get_family_from_handle(family_handle)
+            rel_family = self.r_db.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(self.person, rel_family)
             if spouse_handle:
-                spouse = self.report.database.get_person_from_handle(spouse_handle)
+                spouse = self.r_db.get_person_from_handle(spouse_handle)
                 pedsp = (Html("li", class_="spouse") +
                          self.pedigree_person(spouse)
                         )
@@ -7539,12 +7556,11 @@ class PersonPages(BasePage):
                 with Html("ol") as childol:
                     pedsp += [childol]
                     for child_ref in childlist:
-                        child = self.report.database.get_person_from_handle(
-                                                                  child_ref.ref)
+                        child = self.r_db.get_person_from_handle(child_ref.ref)
                         if child:
                             childol += (Html("li") +
                                         self.pedigree_person(child)
-                                    )
+                                       )
         return ped
 
     def display_event_header(self):
@@ -7555,15 +7571,16 @@ class PersonPages(BasePage):
         trow = Html("tr")
 
         trow.extend(
-                Html("th", label, class_="Column" + colclass, inline=True)
-                for (label, colclass) in  [
-                    (_EVENT, "Event"),
-                    (DHEAD, "Date"),
-                    (PHEAD, "Place"),
-                    (DESCRHEAD, "Description"),
-                    (NHEAD, "Notes"),
-                    (SHEAD, "Sources")]
-                )
+            Html("th", label, class_="Column" + colclass, inline=True)
+            for (label, colclass) in  [
+                (_EVENT, "Event"),
+                (DHEAD, "Date"),
+                (PHEAD, "Place"),
+                (DESCRHEAD, "Description"),
+                (NHEAD, "Notes"),
+                (SHEAD, "Sources")
+            ]
+        )
         return trow
 
 #################################################
@@ -7602,16 +7619,16 @@ class RepositoryPages(BasePage):
             LOG.debug("    %s", str(item))
 
         # set progress bar pass for Repositories
-        with self.report.user.progress(_("Narrated Web Site Report"),
-                         _('Creating repository pages'),
-                         len(self.report.obj_dict[Repository]) + 1) as step:
+        with self.r_user.progress(_("Narrated Web Site Report"),
+                                  _('Creating repository pages'),
+                                  len(self.report.obj_dict[Repository]) + 1
+                                 ) as step:
             # Sort the repositories
             repos_dict = {}
-            for repository_handle in self.report.obj_dict[Repository]:
-                repository = self.report.database.get_repository_from_handle(
-                                                              repository_handle)
+            for repo_handle in self.report.obj_dict[Repository]:
+                repository = self.r_db.get_repository_from_handle(repo_handle)
                 key = repository.get_name() + str(repository.get_gramps_id())
-                repos_dict[key] = (repository, repository_handle)
+                repos_dict[key] = (repository, repo_handle)
 
             keys = sorted(repos_dict, key=SORT_KEY)
 
@@ -7837,8 +7854,9 @@ class AddressBookListPage(BasePage):
                         [_("Full Name"), "ColumnName"],
                         [_("Address"), "ColumnAddress"],
                         [_("Residence"), "ColumnResidence"],
-                        [_("Web Links"), "ColumnWebLinks"]]
-                        )
+                        [_("Web Links"), "ColumnWebLinks"]
+                    ]
+                )
 
                 tbody = Html("tbody")
                 table += tbody
@@ -7878,11 +7896,12 @@ class AddressBookListPage(BasePage):
                         for (colclass, data) in [
                             ["ColumnRowLabel", index],
                             ["ColumnName",
-                                          self.addressbook_link(person_handle)],
+                             self.addressbook_link(person_handle)],
                             ["ColumnAddress", address],
                             ["ColumnResidence", residence],
-                            ["ColumnWebLinks", weblinks]]
-                            )
+                            ["ColumnWebLinks", weblinks]
+                        ]
+                    )
                     index += 1
 
         # Add footer and clearline
@@ -7973,8 +7992,8 @@ class NavWebReport(Report):
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
-
         self.database = CacheProxyDb(self.database)
+        self._db = self.database
 
         filters_option = menu.get_option_by_name('filter')
         self.filter = filters_option.get_filter()
@@ -7992,8 +8011,8 @@ class NavWebReport(Report):
         self.inc_unused_gallery = self.options['unused']
         self.create_thumbs_only = self.options['create_thumbs_only']
 
-        self.inc_contact = self.options['contactnote'] or \
-                           self.options['contactimg']
+        self.opts = self.options
+        self.inc_contact = self.opts['contactnote'] or self.opts['contactimg']
 
         # name format options
         self.name_format = self.options['name_format']
@@ -8020,12 +8039,9 @@ class NavWebReport(Report):
         self.encoding = self.options['encoding']
 
         self.use_archive = self.options['archive']
-        self.use_intro = self.options['intronote'] or \
-                         self.options['introimg']
-        self.use_home = self.options['homenote'] or \
-                        self.options['homeimg']
-        self.use_contact = self.options['contactnote'] or \
-                           self.options['contactimg']
+        self.use_intro = self.options['intronote'] or self.options['introimg']
+        self.use_home = self.options['homenote'] or self.options['homeimg']
+        self.use_contact = self.opts['contactnote'] or self.opts['contactimg']
 
         # Do we need to include this in a cms ?
         self.usecms = self.options['usecms']
@@ -8101,8 +8117,8 @@ class NavWebReport(Report):
                     try:
                         os.mkdir(dir_name)
                     except IOError as value:
-                        msg = _("Could not create the directory: %s") % \
-                              dir_name + "\n" + value[1]
+                        msg = _("Could not create the directory: %s"
+                               ) % dir_name + "\n" + value[1]
                         self.user.notify_error(msg)
                         return
                     except:
@@ -8119,26 +8135,27 @@ class NavWebReport(Report):
                 if not os.path.isdir(image_dir_name):
                     os.mkdir(image_dir_name)
             except IOError as value:
-                msg = _("Could not create the directory: %s") % \
-                      image_dir_name + "\n" + value[1]
+                msg = _("Could not create the directory: %s"
+                       ) % image_dir_name + "\n" + value[1]
                 self.user.notify_error(msg)
                 return
             except:
-                msg = _("Could not create the directory: %s") % \
-                      image_dir_name + "\n" + value[1]
+                msg = _("Could not create the directory: %s"
+                       ) % image_dir_name + "\n" + value[1]
                 self.user.notify_error(msg)
                 return
         else:
             if os.path.isdir(self.target_path):
-                self.user.notify_error(_('Invalid file name'),
-                        _('The archive file must be a file, not a directory'))
+                self.user.notify_error(
+                    _('Invalid file name'),
+                    _('The archive file must be a file, not a directory'))
                 return
             try:
                 self.archive = tarfile.open(self.target_path, "w:gz")
             except (OSError, IOError) as value:
                 self.user.notify_error(
-                            _("Could not create %s") % self.target_path,
-                            str(value))
+                    _("Could not create %s") % self.target_path,
+                    str(value))
                 return
         config.set('paths.website-directory',
                    os.path.dirname(self.target_path) + os.sep)
@@ -8261,9 +8278,10 @@ class NavWebReport(Report):
             self.archive.close()
 
         if len(_WRONGMEDIAPATH) > 0:
-            error = '\n'.join([_('ID=%(grampsid)s, path=%(dir)s') % {
-                            'grampsid': x[0],
-                            'dir': x[1]} for x in _WRONGMEDIAPATH[:10]])
+            error = '\n'.join([
+                _('ID=%(grampsid)s, path=%(dir)s') % {
+                    'grampsid' : x[0],
+                    'dir'      : x[1]} for x in _WRONGMEDIAPATH[:10]])
             if len(_WRONGMEDIAPATH) > 10:
                 error += '\n ...'
             self.user.warn(_("Missing media objects:"), error)
@@ -8294,16 +8312,15 @@ class NavWebReport(Report):
         for obj_class in _obj_class_list:
             self.obj_dict[obj_class] = defaultdict(set)
 
-        ind_list = self.database.iter_person_handles()
+        ind_list = self._db.iter_person_handles()
         with self.user.progress(_("Narrated Web Site Report"),
-                                  _('Applying Person Filter...'),
-                                  self.database.get_number_of_people()) as step:
-            ind_list = self.filter.apply(self.database, ind_list,
-                                         step)
+                                _('Applying Person Filter...'),
+                                self._db.get_number_of_people()) as step:
+            ind_list = self.filter.apply(self._db, ind_list, step)
 
         with self.user.progress(_("Narrated Web Site Report"),
-                                  _('Constructing list of other objects...'),
-                                  sum(1 for _ in ind_list)) as step:
+                                _('Constructing list of other objects...'),
+                                sum(1 for _ in ind_list)) as step:
             for handle in ind_list:
                 # FIXME work around bug that self.database.iter under python 3
                 # returns (binary) data rather than text
@@ -8312,11 +8329,13 @@ class NavWebReport(Report):
                 step()
                 self._add_person(handle, "", "")
 
-        LOG.debug("final object dictionary \n" + "".join(
-                         ("%s: %s\n" % item) for item in self.obj_dict.items()))
+        LOG.debug("final object dictionary \n" +
+                  "".join(("%s: %s\n" % item)
+                          for item in self.obj_dict.items()))
 
-        LOG.debug("final backref dictionary \n" + "".join(
-                       ("%s: %s\n" % item) for item in self.bkref_dict.items()))
+        LOG.debug("final backref dictionary \n" +
+                  "".join(("%s: %s\n" % item)
+                          for item in self.bkref_dict.items()))
 
     def _add_person(self, person_handle, bkref_class, bkref_handle):
         """
@@ -8327,22 +8346,23 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (person)
         @param: bkref_handle  -- The handle associated to this person
         """
-        person = self.database.get_person_from_handle(person_handle)
+        person = self._db.get_person_from_handle(person_handle)
         if person:
             person_name = self.get_person_name(person)
             person_fname = self.build_url_fname(person_handle, "ppl",
                                                 False) + self.ext
             self.obj_dict[Person][person_handle] = (person_fname, person_name,
                                                     person.gramps_id)
-            self.bkref_dict[Person][person_handle].add((bkref_class, bkref_handle))
+            self.bkref_dict[Person][person_handle].add((bkref_class,
+                                                        bkref_handle))
 
             ############### Header section ##############
             for citation_handle in person.get_citation_list():
                 self._add_citation(citation_handle, Person, person_handle)
 
             ############### Name section ##############
-            for name in [person.get_primary_name()] + \
-                            person.get_alternate_names():
+            for name in [person.get_primary_name()
+                        ] + person.get_alternate_names():
                 for citation_handle in name.get_citation_list():
                     self._add_citation(citation_handle, Person, person_handle)
 
@@ -8351,7 +8371,7 @@ class NavWebReport(Report):
             evt_ref_list = person.get_event_ref_list()
             if evt_ref_list:
                 for evt_ref in evt_ref_list:
-                    event = self.database.get_event_from_handle(evt_ref.ref)
+                    event = self._db.get_event_from_handle(evt_ref.ref)
                     if event:
                         self._add_event(evt_ref.ref, Person, person_handle)
                         place_handle = event.get_place_handle()
@@ -8379,15 +8399,15 @@ class NavWebReport(Report):
                 for family_handle in person.get_family_handle_list():
                     self._add_family(family_handle, Person, person_handle)
 
-                    # Tell the events tab to display the family events which are
-                    # referenced from the individual page.
-                    family = self.database.get_family_from_handle(family_handle)
+                    # Tell the events tab to display the family events which
+                    # are referenced from the individual page.
+                    family = self._db.get_family_from_handle(family_handle)
                     if family:
                         family_evt_ref_list = family.get_event_ref_list()
                         if family_evt_ref_list:
                             for evt_ref in family_evt_ref_list:
-                                event = self.database.get_event_from_handle(
-                                                                    evt_ref.ref)
+                                event = self._db.get_event_from_handle(
+                                    evt_ref.ref)
                                 if event:
                                     self._add_event(evt_ref.ref, Person,
                                                     person_handle)
@@ -8395,18 +8415,16 @@ class NavWebReport(Report):
                                     if place_handle:
                                         self._add_place(place_handle, Person,
                                                         person_handle, event)
-                                    for citation_handle in event.get_citation_list():
-                                        self._add_citation(citation_handle,
-                                                           Person,
+                                    for cite_hdl in event.get_citation_list():
+                                        self._add_citation(cite_hdl, Person,
                                                            person_handle)
                     # add the family media and the family event media if the
                     # families page is not being displayed (If it is displayed,
                     # the media are linked from the families page)
                                     if not self.inc_families:
-                                        for media_ref in event.get_media_list():
-                                            media_handle = media_ref.get_reference_handle()
-                                            self._add_media(media_handle,
-                                                            Person,
+                                        for m_ref in event.get_media_list():
+                                            m_hdl = m_ref.get_reference_handle()
+                                            self._add_media(m_hdl, Person,
                                                             person_handle)
 
                         for lds_ord in family.get_lds_ord_list():
@@ -8468,11 +8486,11 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (family)
         @param: bkref_handle  -- The handle associated to this family
         """
-        family = self.database.get_family_from_handle(family_handle)
+        family = self._db.get_family_from_handle(family_handle)
         family_name = self.get_family_name(family)
         if self.inc_families:
             family_fname = self.build_url_fname(family_handle, "fam",
-                                                   False) + self.ext
+                                                False) + self.ext
         else:
             family_fname = ""
         self.obj_dict[Family][family_handle] = (family_fname, family_name,
@@ -8486,7 +8504,7 @@ class NavWebReport(Report):
 
         ############### Events section ##############
         for evt_ref in family.get_event_ref_list():
-            event = self.database.get_event_from_handle(evt_ref.ref)
+            event = self._db.get_event_from_handle(evt_ref.ref)
             place_handle = event.get_place_handle()
             if place_handle:
                 self._add_place(place_handle, Family, family_handle, event)
@@ -8529,19 +8547,20 @@ class NavWebReport(Report):
         spouse_handle = family.get_mother_handle()
 
         if husband_handle:
-            husband = self.database.get_person_from_handle(husband_handle)
+            husband = self._db.get_person_from_handle(husband_handle)
         else:
             husband = None
         if spouse_handle:
-            spouse = self.database.get_person_from_handle(spouse_handle)
+            spouse = self._db.get_person_from_handle(spouse_handle)
         else:
             spouse = None
 
         if husband and spouse:
             husband_name = self.get_person_name(husband)
             spouse_name = self.get_person_name(spouse)
-            title_str = _("Family of %(husband)s and %(spouse)s") % {
-                              'husband' : husband_name, 'spouse' : spouse_name}
+            title_str = _("Family of %(husband)s and %(spouse)s"
+                         ) % {'husband' : husband_name,
+                              'spouse'  : spouse_name}
         elif husband:
             husband_name = self.get_person_name(husband)
             # Only the name of the husband is known
@@ -8563,7 +8582,7 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (event)
         @param: bkref_handle -- The handle associated to this event
         """
-        event = self.database.get_event_from_handle(event_handle)
+        event = self._db.get_event_from_handle(event_handle)
         event_name = event.get_description()
         # The event description can be Y on import from GEDCOM. See the
         # following quote from the GEDCOM spec: "The occurrence of an event is
@@ -8576,20 +8595,20 @@ class NavWebReport(Report):
             # begin add generated descriptions to media pages
             # (request 7074 : acrider)
             ref_name = ""
-            for reference in self.database.find_backlink_handles(event_handle):
+            for reference in self._db.find_backlink_handles(event_handle):
                 ref_class, ref_handle = reference
                 if ref_class == 'Person':
-                    person = self.database.get_person_from_handle(ref_handle)
+                    person = self._db.get_person_from_handle(ref_handle)
                     ref_name = self.get_person_name(person)
                 elif ref_class == 'Family':
-                    family = self.database.get_family_from_handle(ref_handle)
+                    family = self._db.get_family_from_handle(ref_handle)
                     ref_name = self.get_family_name(family)
             if ref_name != "":
                 event_name += ", " + ref_name
             # end descriptions to media pages
         if self.inc_events:
             event_fname = self.build_url_fname(event_handle, "evt",
-                                                   False) + self.ext
+                                               False) + self.ext
         else:
             event_fname = ""
         self.obj_dict[Event][event_handle] = (event_fname, event_name,
@@ -8619,12 +8638,12 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (place)
         @param: bkref_handle -- The handle associated to this place
         """
-        place = self.database.get_place_from_handle(place_handle)
+        place = self._db.get_place_from_handle(place_handle)
         if place is None:
             return
-        place_name = _pd.display_event(self.database, event)
+        place_name = _pd.display_event(self._db, event)
         place_fname = self.build_url_fname(place_handle, "plc",
-                                                   False) + self.ext
+                                           False) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle))
@@ -8647,10 +8666,10 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (source)
         @param: bkref_handle  -- The handle associated to this source
         """
-        source = self.database.get_source_from_handle(source_handle)
+        source = self._db.get_source_from_handle(source_handle)
         source_name = source.get_title()
         source_fname = self.build_url_fname(source_handle, "src",
-                                                   False) + self.ext
+                                            False) + self.ext
         self.obj_dict[Source][source_handle] = (source_fname, source_name,
                                                 source.gramps_id)
         self.bkref_dict[Source][source_handle].add((bkref_class, bkref_handle))
@@ -8675,7 +8694,7 @@ class NavWebReport(Report):
         @param: bkref_class     -- The class associated to this handle
         @param: bkref_handle    -- The handle associated to this citation
         """
-        citation = self.database.get_citation_from_handle(citation_handle)
+        citation = self._db.get_citation_from_handle(citation_handle)
         # If Page is none, we want to make sure that a tuple is generated for
         # the source backreference
         citation_name = citation.get_page() or ""
@@ -8705,7 +8724,7 @@ class NavWebReport(Report):
         media_refs = self.bkref_dict[Media].get(media_handle)
         if media_refs and (bkref_class, bkref_handle) in media_refs:
             return
-        media = self.database.get_media_from_handle(media_handle)
+        media = self._db.get_media_from_handle(media_handle)
         # use media title (request 7074 acrider)
         media_name = media.get_description()
         if media_name is None or media_name == "":
@@ -8713,11 +8732,11 @@ class NavWebReport(Report):
         #end media title
         if self.inc_gallery:
             media_fname = self.build_url_fname(media_handle, "img",
-                                                   False) + self.ext
+                                               False) + self.ext
         else:
             media_fname = ""
         self.obj_dict[Media][media_handle] = (media_fname, media_name,
-                                                    media.gramps_id)
+                                              media.gramps_id)
         self.bkref_dict[Media][media_handle].add((bkref_class, bkref_handle))
 
         ############### Attribute section ##############
@@ -8737,11 +8756,11 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (source)
         @param: bkref_handle -- The handle associated to this source
         """
-        repos = self.database.get_repository_from_handle(repos_handle)
+        repos = self._db.get_repository_from_handle(repos_handle)
         repos_name = repos.name
         if self.inc_repository:
             repos_fname = self.build_url_fname(repos_handle, "repo",
-                                                   False) + self.ext
+                                               False) + self.ext
         else:
             repos_fname = ""
         self.obj_dict[Repository][repos_handle] = (repos_fname, repos_name,
@@ -8824,12 +8843,13 @@ class NavWebReport(Report):
         """
         if self.inc_gendex:
             with self.user.progress(_("Narrated Web Site Report"),
-                    _('Creating GENDEX file'), len(ind_list)) as step:
+                                    _('Creating GENDEX file'),
+                                    len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
                 date = 0
                 for person_handle in ind_list:
                     step()
-                    person = self.database.get_person_from_handle(person_handle)
+                    person = self._db.get_person_from_handle(person_handle)
                     datex = person.get_change_time()
                     if datex > date:
                         date = datex
@@ -8859,10 +8879,10 @@ class NavWebReport(Report):
         fullname = person.get_primary_name().get_gedcom_name()
 
         # get birth info:
-        dob, pob = get_gendex_data(self.database, person.get_birth_ref())
+        dob, pob = get_gendex_data(self._db, person.get_birth_ref())
 
         # get death info:
-        dod, pod = get_gendex_data(self.database, person.get_death_ref())
+        dod, pod = get_gendex_data(self._db, person.get_death_ref())
         filep.write(
             '|'.join((url, surname, fullname, dob, pob, dod, pod)) + '|\n')
 
@@ -8873,10 +8893,11 @@ class NavWebReport(Report):
 
         @param: ind_list -- The list of person to use
         """
-        local_list = sort_people(self.database, ind_list)
+        local_list = sort_people(self._db, ind_list)
 
         with self.user.progress(_("Narrated Web Site Report"),
-                _("Creating surname pages"), len(local_list)) as step:
+                                _("Creating surname pages"),
+                                len(local_list)) as step:
 
             SurnameListPage(self, self.title, ind_list,
                             SurnameListPage.ORDER_BY_NAME,
@@ -8895,8 +8916,8 @@ class NavWebReport(Report):
         creates the thumbnail preview page
         """
         with self.user.progress(_("Narrated Web Site Report"),
-                                  _("Creating thumbnail preview page..."),
-                                  len(self.obj_dict[Media])) as step:
+                                _("Creating thumbnail preview page..."),
+                                len(self.obj_dict[Media])) as step:
             ThumbnailPreviewPage(self, self.title, step)
 
     def addressbook_pages(self, ind_list):
@@ -8910,7 +8931,7 @@ class NavWebReport(Report):
 
         for person_handle in ind_list:
 
-            person = self.database.get_person_from_handle(person_handle)
+            person = self._db.get_person_from_handle(person_handle)
             addrlist = person.get_address_list()
             evt_ref_list = person.get_event_ref_list()
             urllist = person.get_url_list()
@@ -8920,14 +8941,14 @@ class NavWebReport(Report):
             res = []
 
             for event_ref in evt_ref_list:
-                event = self.database.get_event_from_handle(event_ref.ref)
+                event = self._db.get_event_from_handle(event_ref.ref)
                 if event.get_type() == EventType.RESIDENCE:
                     res.append(event)
 
             if add or res or url:
                 primary_name = person.get_primary_name()
                 sort_name = ''.join([primary_name.get_surname(), ", ",
-                                    primary_name.get_first_name()])
+                                     primary_name.get_first_name()])
                 url_addr_res.append((sort_name, person_handle, add, res, url))
 
         url_addr_res.sort()
@@ -8937,8 +8958,8 @@ class NavWebReport(Report):
         addr_size = len(url_addr_res)
 
         with self.user.progress(_("Narrated Web Site Report"),
-                                  _("Creating address book pages ..."),
-                                  addr_size) as step:
+                                _("Creating address book pages ..."),
+                                addr_size) as step:
             for (sort_name, person_handle, add, res, url) in url_addr_res:
                 AddressBookPage(self, self.title, person_handle, add, res, url)
                 step()
@@ -9048,9 +9069,9 @@ class NavWebReport(Report):
         @param: obj_class -- The class of the related object.
         """
         if prop == "gramps_id":
-            if obj_class in self.database.get_table_names():
-                obj = self.database.get_table_metadata(obj_class)[
-                                                       "gramps_id_func"](handle)
+            if obj_class in self._db.get_table_names():
+                obj = self._db.get_table_metadata(obj_class)[
+                    "gramps_id_func"](handle)
                 if obj:
                     handle = obj.handle
                 else:
@@ -9134,7 +9155,7 @@ class NavWebReport(Report):
         if self.archive:
             string_io = BytesIO()
             output_file = TextIOWrapper(string_io, encoding=self.encoding,
-                               errors='xmlcharrefreplace')
+                                        errors='xmlcharrefreplace')
         else:
             string_io = None
             if subdir:
@@ -9143,7 +9164,7 @@ class NavWebReport(Report):
                     os.makedirs(subdir)
             fname = os.path.join(self.html_dir, self.cur_fname)
             output_file = open(fname, 'w', encoding=self.encoding,
-                      errors='xmlcharrefreplace')
+                               errors='xmlcharrefreplace')
         return (output_file, string_io)
 
     def close_file(self, output_file, string_io, date):
@@ -9330,9 +9351,10 @@ class NavWebOptions(MenuReportOptions):
 
         dbname = self.__db.get_dbname()
         default_dir = dbname + "_" + "NAVWEB"
-        self.__target = DestinationOption(_("Destination"),
-                            os.path.join(config.get('paths.website-directory'),
-                                         default_dir))
+        self.__target = DestinationOption(
+            _("Destination"),
+            os.path.join(config.get('paths.website-directory'),
+                         default_dir))
         self.__target.set_help(_("The destination directory for the web "
                                  "files"))
         addopt("target", self.__target)
@@ -9345,7 +9367,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on web site"))
+            _("Select filter to restrict people that appear on web site"))
         addopt("filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -9372,7 +9394,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
         for (fname, gid) in sorted([(CSS[key]["translation"], CSS[key]["id"])
-                                  for key in list(CSS.keys())]):
+                                    for key in list(CSS.keys())]):
             if CSS[gid]["user"]:
                 self.__css.add_item(CSS[gid]["id"], CSS[gid]["translation"])
         self.__css.set_help(_('The stylesheet to be used for the web pages'))
@@ -9400,12 +9422,12 @@ class NavWebOptions(MenuReportOptions):
             (_("Drop-Down  -- WebKit Browsers Only"), "DropDown")
         ]
         self.__citationreferents = EnumeratedListOption(
-                    _("Citation Referents Layout"), _cit_opts[0][1])
+            _("Citation Referents Layout"), _cit_opts[0][1])
         for layout in _cit_opts:
             self.__citationreferents.add_item(layout[1], layout[0])
         self.__citationreferents.set_help(
-                    _("Determine the default layout for the "
-                      "Source Page's Citation Referents section"))
+            _("Determine the default layout for the "
+              "Source Page's Citation Referents section"))
         addopt("citationreferents", self.__citationreferents)
 
         self.__ancestortree = BooleanOption(_("Include ancestor's tree"), True)
@@ -9416,7 +9438,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 5)
         self.__graphgens.set_help(_("The number of generations to include in "
-                                     "the ancestor graph"))
+                                    "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
 
         self.__graph_changed()
@@ -9446,16 +9468,16 @@ class NavWebOptions(MenuReportOptions):
 
         contactnote = NoteOption(_("Publisher contact note"))
         contactnote.set_help(_("A note to be used as the publisher contact."
-                                "\nIf no publisher information is given,"
-                                "\nno contact page will be created")
-                              )
+                               "\nIf no publisher information is given,"
+                               "\nno contact page will be created")
+                            )
         addopt("contactnote", contactnote)
 
         contactimg = MediaOption(_("Publisher contact image"))
         contactimg.set_help(_("An image to be used as the publisher contact."
-                               "\nIf no publisher information is given,"
-                               "\nno contact page will be created")
-                             )
+                              "\nIf no publisher information is given,"
+                              "\nno contact page will be created")
+                           )
         addopt("contactimg", contactimg)
 
         headernote = NoteOption(_('HTML user header'))
@@ -9474,37 +9496,34 @@ class NavWebOptions(MenuReportOptions):
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
         self.__unused = BooleanOption(
-                                   _("Include unused images and media objects"),
-                                   True)
+            _("Include unused images and media objects"), True)
         self.__unused.set_help(_('Whether to include unused or unreferenced'
-                               ' media objects'))
+                                 ' media objects'))
         addopt("unused", self.__unused)
 
         self.__create_thumbs_only = BooleanOption(
-                    _("Create and only use thumbnail- sized images"), False)
+            _("Create and only use thumbnail- sized images"), False)
         self.__create_thumbs_only.set_help(
-                    _("This option allows you to create only thumbnail images "
-                      "instead of the full-sized images on the Media Page. "
-                      "This will allow you to have a much "
-                      "smaller total upload size to your web hosting site."))
+            _("This option allows you to create only thumbnail images "
+              "instead of the full-sized images on the Media Page. "
+              "This will allow you to have a much "
+              "smaller total upload size to your web hosting site."))
         addopt("create_thumbs_only", self.__create_thumbs_only)
         self.__create_thumbs_only.connect("value-changed",
                                           self.__gallery_changed)
 
         self.__maxinitialimagewidth = NumberOption(
-                                               _("Max width of initial image"),
-                                               _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
+            _("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(
-              _("This allows you to set the maximum width "
-                "of the image shown on the media page. Set to 0 for no limit."))
+            _("This allows you to set the maximum width "
+              "of the image shown on the media page. Set to 0 for no limit."))
         addopt("maxinitialimagewidth", self.__maxinitialimagewidth)
 
         self.__maxinitialimageheight = NumberOption(
-                                               _("Max height of initial image"),
-                                               _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
+            _("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
         self.__maxinitialimageheight.set_help(
-              _("This allows you to set the maximum height "
-                "of the image shown on the media page. Set to 0 for no limit."))
+            _("This allows you to set the maximum height "
+              "of the image shown on the media page. Set to 0 for no limit."))
         addopt("maxinitialimageheight", self.__maxinitialimageheight)
 
         self.__gallery_changed()
@@ -9533,14 +9552,15 @@ class NavWebOptions(MenuReportOptions):
 
         self.__incdownload = BooleanOption(_("Include download page"), False)
         self.__incdownload.set_help(
-                             _('Whether to include a database download option'))
+            _('Whether to include a database download option'))
         addopt("incdownload", self.__incdownload)
         self.__incdownload.connect('value-changed', self.__download_changed)
 
-        self.__down_fname1 = DestinationOption(_("Download Filename"),
+        self.__down_fname1 = DestinationOption(
+            _("Download Filename"),
             os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname1.set_help(
-                             _("File to be used for downloading of database"))
+            _("File to be used for downloading of database"))
         addopt("down_fname1", self.__down_fname1)
 
         self.__dl_descr1 = StringOption(_("Description for download"),
@@ -9548,10 +9568,11 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_descr1.set_help(_('Give a description for this file.'))
         addopt("dl_descr1", self.__dl_descr1)
 
-        self.__down_fname2 = DestinationOption(_("Download Filename"),
+        self.__down_fname2 = DestinationOption(
+            _("Download Filename"),
             os.path.join(config.get('paths.website-directory'), ""))
         self.__down_fname2.set_help(
-                             _("File to be used for downloading of database"))
+            _("File to be used for downloading of database"))
         addopt("down_fname2", self.__down_fname2)
 
         self.__dl_descr2 = StringOption(_("Description for download"),
@@ -9576,18 +9597,18 @@ class NavWebOptions(MenuReportOptions):
         addopt("encoding", encoding)
 
         linkhome = BooleanOption(
-                        _('Include link to active person on every page'), False)
+            _('Include link to active person on every page'), False)
         linkhome.set_help(
-              _('Include a link to the active person (if they have a webpage)'))
+            _('Include a link to the active person (if they have a webpage)'))
         addopt("linkhome", linkhome)
 
         showbirth = BooleanOption(
-                 _("Include a column for birth dates on the index pages"), True)
+            _("Include a column for birth dates on the index pages"), True)
         showbirth.set_help(_('Whether to include a birth column'))
         addopt("showbirth", showbirth)
 
         showdeath = BooleanOption(
-                _("Include a column for death dates on the index pages"), False)
+            _("Include a column for death dates on the index pages"), False)
         showdeath.set_help(_('Whether to include a death column'))
         addopt("showdeath", showdeath)
 
@@ -9602,15 +9623,17 @@ class NavWebOptions(MenuReportOptions):
         addopt("showparents", showparents)
 
         showallsiblings = BooleanOption(
-                            _("Include half and/ or "
-                              "step-siblings on the individual pages"), False)
-        showallsiblings.set_help(_("Whether to include half and/ or "
-                              "step-siblings with the parents and siblings"))
+            _("Include half and/ or step-siblings on the individual pages"),
+            False)
+        showallsiblings.set_help(
+            _("Whether to include half and/ or "
+              "step-siblings with the parents and siblings"))
         addopt('showhalfsiblings', showallsiblings)
 
-        birthorder = BooleanOption(_('Sort all children in birth order'), False)
+        birthorder = BooleanOption(
+            _('Sort all children in birth order'), False)
         birthorder.set_help(
-             _('Whether to display children in birth order or in entry order?'))
+            _('Whether to display children in birth order or in entry order?'))
         addopt("birthorder", birthorder)
 
         inc_families = BooleanOption(_("Include family pages"), False)
@@ -9619,16 +9642,16 @@ class NavWebOptions(MenuReportOptions):
 
         inc_events = BooleanOption(_('Include event pages'), False)
         inc_events.set_help(
-                      _('Add a complete events list and relevant pages or not'))
+            _('Add a complete events list and relevant pages or not'))
         addopt("inc_events", inc_events)
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
         inc_repository.set_help(
-                      _('Whether or not to include the Repository Pages.'))
+            _('Whether or not to include the Repository Pages.'))
         addopt("inc_repository", inc_repository)
 
         inc_gendex = BooleanOption(
-                      _('Include GENDEX file (/gendex.txt)'), False)
+            _('Include GENDEX file (/gendex.txt)'), False)
         inc_gendex.set_help(_('Whether to include a GENDEX file or not'))
         addopt("inc_gendex", inc_gendex)
 
@@ -9659,10 +9682,10 @@ class NavWebOptions(MenuReportOptions):
         addopt("mapservice", self.__mapservice)
 
         self.__placemappages = BooleanOption(
-                                   _("Include Place map on Place Pages"), False)
+            _("Include Place map on Place Pages"), False)
         self.__placemappages.set_help(
-                         _("Whether to include a place map on the Place Pages, "
-                           "where Latitude/ Longitude are available."))
+            _("Whether to include a place map on the Place Pages, "
+              "where Latitude/ Longitude are available."))
         self.__placemappages.connect("value-changed", self.__placemap_options)
         addopt("placemappages", self.__placemappages)
 
@@ -9670,10 +9693,10 @@ class NavWebOptions(MenuReportOptions):
                                                 "all places shown on the map"),
                                               False)
         self.__familymappages.set_help(
-                               _("Whether or not to add an individual page map "
-                                 "showing all the places on this page. "
-                                 "This will allow you to see how your family "
-                                 "traveled around the country."))
+            _("Whether or not to add an individual page map "
+              "showing all the places on this page. "
+              "This will allow you to see how your family "
+              "traveled around the country."))
         self.__familymappages.connect("value-changed", self.__placemap_options)
         addopt("familymappages", self.__familymappages)
 
@@ -9685,8 +9708,9 @@ class NavWebOptions(MenuReportOptions):
                                                  googleopts[0][1])
         for trans, opt in googleopts:
             self.__googleopts.add_item(opt, trans)
-        self.__googleopts.set_help(_("Select which option that you would like "
-            "to have for the Google Maps Family Map pages..."))
+        self.__googleopts.set_help(
+            _("Select which option that you would like "
+              "to have for the Google Maps Family Map pages..."))
         addopt("googleopts", self.__googleopts)
 
         self.__placemap_options()
@@ -9699,30 +9723,34 @@ class NavWebOptions(MenuReportOptions):
         addopt = partial(menu.add_option, category_name)
 
         self.__usecms = BooleanOption(
-                           _("Do we include these pages in a cms web ?"), False)
+            _("Do we include these pages in a cms web ?"), False)
         addopt("usecms", self.__usecms)
 
         default_dir = "/NAVWEB"
         self.__cms_uri = DestinationOption(_("URI"),
-                            os.path.join(config.get('paths.website-cms-uri'),
-                                         default_dir))
-        self.__cms_uri.set_help(_("Where do you place your web site ?"
-                                   " default = /NAVWEB"))
+                                           os.path.join(
+                                               config.get(
+                                                   'paths.website-cms-uri'),
+                                               default_dir))
+        self.__cms_uri.set_help(
+            _("Where do you place your web site ? default = /NAVWEB"))
         self.__cms_uri.connect('value-changed', self.__cms_uri_changed)
         addopt("cmsuri", self.__cms_uri)
 
         self.__cms_uri_changed()
 
         self.__usecal = BooleanOption(
-                           _("Do we include the web calendar ?"), False)
+            _("Do we include the web calendar ?"), False)
         addopt("usecal", self.__usecal)
 
         default_calendar = "/WEBCAL"
         self.__calendar_uri = DestinationOption(_("URI"),
-                            os.path.join(config.get('paths.website-cal-uri'),
-                                         default_calendar))
-        self.__calendar_uri.set_help(_("Where do you place your web site ?"
-                                   " default = /WEBCAL"))
+                                                os.path.join(
+                                                    config.get('paths.website'
+                                                               '-cal-uri'),
+                                                    default_calendar))
+        self.__calendar_uri.set_help(
+            _("Where do you place your web site ? default = /WEBCAL"))
         self.__calendar_uri.connect('value-changed',
                                     self.__calendar_uri_changed)
         addopt("caluri", self.__calendar_uri)
@@ -9874,8 +9902,9 @@ def sort_people(dbase, handle_list):
         if primary_name.group_as:
             surname = primary_name.group_as
         else:
-            surname = str(dbase.get_name_group_mapping(
-                            _nd.primary_surname(primary_name)))
+            surname = str(
+                dbase.get_name_group_mapping(
+                    _nd.primary_surname(primary_name)))
 
         # Treat people who have no name with those whose name is just
         # 'whitespace'
@@ -9889,7 +9918,7 @@ def sort_people(dbase, handle_list):
 
     for name in temp_list:
         slist = sorted(((sortnames[x], x) for x in sname_sub[name]),
-                    key=lambda x: SORT_KEY(x[0]))
+                       key=lambda x: SORT_KEY(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
 
@@ -10025,7 +10054,7 @@ CONTRACTIONS_DICT = {
     # vi Vietnamese validSubLocales="vi_VN" no contractions.
     # zh Chinese validSubLocales="zh_Hans zh_Hans_CN zh_Hans_SG" no contractions
     # in Latin characters the others are too complex.
-                    }
+    }
 
     # The comment below from the glibc locale sv_SE in
     # localedata/locales/sv_SE :
@@ -10064,8 +10093,8 @@ def first_letter(string):
     if contractions is not None:
         for contraction in contractions:
             count = len(contraction[0][0])
-            if len(norm_unicode) >= count and \
-               norm_unicode[:count] in contraction[0]:
+            if (len(norm_unicode) >= count and
+                    norm_unicode[:count] in contraction[0]):
                 return contraction[1]
 
     # no special case
@@ -10096,7 +10125,7 @@ except:
         The test characters here must not be any that are used in contractions.
         """
 
-        return SORT_KEY(prev_key + "e") >= SORT_KEY(new_key + "f") or\
+        return SORT_KEY(prev_key + "e") >= SORT_KEY(new_key + "f") or \
             SORT_KEY(new_key + "e") >= SORT_KEY(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key):
