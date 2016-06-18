@@ -31,7 +31,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 import csv
@@ -59,6 +58,7 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as _pd
 from gramps.gui.glade import Glade
+from gramps.gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -252,8 +252,8 @@ class CSVWriter:
     def export_data(self):
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.fp = open(self.filename, "w", encoding='utf_8_sig'
-                           if sys.platform == 'win32' else 'utf_8',
+            self.fp = open(self.filename, "w",
+                           encoding='utf_8_sig' if win() else 'utf_8',
                            newline='')
             self.g = csv.writer(self.fp)
         except IOError as msg:
