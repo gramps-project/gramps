@@ -3828,11 +3828,14 @@ class PlacePages(BasePage):
                     ]
                 )
 
+                # bug 9495 : incomplete display of place hierarchy labels
+                def sort_by_place_name(obj):
+                    place = self.r_db.get_place_from_handle(obj)
+                    name = _pd.display(self.r_db, place)
+                    return (name)
+
                 handle_list = sorted(place_handles,
-                                     key=lambda x:
-                                     SORT_KEY(
-                                         ReportUtils.place_name(self.r_db,
-                                                                x)))
+                                     key=lambda x: sort_by_place_name(x))
                 first = True
 
                 # begin table body
@@ -3844,11 +3847,10 @@ class PlacePages(BasePage):
                     if place:
                         if place.get_change_time() > ldatec:
                             ldatec = place.get_change_time()
-                        place_title = ReportUtils.place_name(self.r_db,
-                                                             place_handle)
+                        place_title = _pd.display(self.r_db, place)
                         main_location = get_main_location(self.r_db, place)
 
-                        if place_title and not place_title.isspace():
+                        if place_title and place_title != " ":
                             letter = get_index_letter(first_letter(place_title),
                                                       index_list)
                         else:
