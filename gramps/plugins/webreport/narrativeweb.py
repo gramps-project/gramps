@@ -3326,16 +3326,22 @@ class SurnamePage(BasePage):
                         family_list = person.get_family_handle_list()
                         first_family = True
                         if family_list:
+                            fam_count = 0
                             for family_handle in family_list:
+                                fam_count += 1
                                 family = self.r_db.get_family_from_handle(
                                     family_handle)
                                 partner_handle = ReportUtils.find_spouse(
                                     person, family)
                                 if partner_handle:
-                                    if not first_family:
-                                        tcell += ','
-                                    tcell += self.new_person_link(
-                                        partner_handle, uplink=True)
+                                    link = self.new_person_link(partner_handle,
+                                                                uplink=True)
+                                    if fam_count < len(family_list):
+                                        if isinstance(link, Html):
+                                            link.inside += ","
+                                        else:
+                                            link += ','
+                                    tcell += link
                                     first_family = False
                         else:
                             tcell += "&nbsp;"
