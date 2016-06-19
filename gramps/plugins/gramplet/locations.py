@@ -83,7 +83,7 @@ class Locations(Gramplet, DbGUIElement):
         titles = [('', 0, 50),
                   (_('Name'), 1, 300),
                   (_('Type'), 2, 150),
-                  (_('Date'), 3, 150),
+                  (_('Date'), 5, 150),
                   (_('ID'), 4, 100),
                   ('', NOSORT, 50)]
         self.model = ListModel(top, titles, list_mode="tree",
