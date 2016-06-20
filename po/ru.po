@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: gramps42\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 12:04+0300\n"
-"PO-Revision-Date: 2016-01-18 17:30+0300\n"
+"PO-Revision-Date: 2016-06-20 17:30+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -966,7 +966,7 @@ msgstr "%(full_DB_path)s под именем \"%(f_t_name)s\""
 
 #: ../gramps/cli/arghandler.py:410 ../gramps/cli/arghandler.py:425
 msgid "Gramps Family Trees:"
-msgstr "Семейные древеса Gramps:"
+msgstr "Семейные древа Gramps:"
 
 #. We have to construct the line elements together, to avoid
 #. insertion of blank spaces when print on the same line is used
@@ -1163,10 +1163,10 @@ msgstr ""
 "  -p, --options=OPTIONS_STRING           Указать опции\n"
 "  -d, --debug=LOGGER_NAME                Включить протоколирование "
 "отладочной информации\n"
-"  -l                                     Список семейных древес\n"
-"  -L                                     Список семейных древес с "
+"  -l                                     Список семейных древ\n"
+"  -L                                     Список семейных древ с "
 "подробностями\n"
-"  -t                                     Список семейных древес, разделённый "
+"  -t                                     Список семейных древ, разделённый "
 "табуляцей\n"
 "  -u, --force-unlock                     Принудительно снять блокировку с "
 "семейного древа\n"
@@ -1539,7 +1539,7 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps обнаружил проблему в используемой базе данных Berkeley. Эта проблема, "
-"возможно, устранима через диалог «Управление семейными древесами». Выберите "
+"возможно, устранима через диалог «Управление семейными древами». Выберите "
 "базу данных и нажмите кнопку «Исправить»."
 
 #: ../gramps/cli/grampscli.py:147 ../gramps/gui/dbloader.py:300
@@ -13350,7 +13350,7 @@ msgstr "Описание версии"
 
 #: ../gramps/gui/glade/dbman.glade:103
 msgid "Family Trees - Gramps"
-msgstr "Семейные древеса - Gramps"
+msgstr "Семейные древа - Gramps"
 
 #: ../gramps/gui/glade/dbman.glade:121
 msgid "_Close Window"
@@ -17201,11 +17201,11 @@ msgstr "Открыть недавно использовавшуюся базу 
 
 #: ../gramps/gui/viewmanager.py:473
 msgid "_Family Trees"
-msgstr "_Семейные древеса"
+msgstr "_Семейные древа"
 
 #: ../gramps/gui/viewmanager.py:474
 msgid "_Manage Family Trees..."
-msgstr "_Управление семейными древесами..."
+msgstr "_Управление семейными древами..."
 
 #: ../gramps/gui/viewmanager.py:475
 msgid "Manage databases"
@@ -18149,7 +18149,7 @@ msgstr "'%s' не является корректной датой"
 
 #: ../gramps/guiQML/views/dbman.py:158
 msgid "Family Trees"
-msgstr "Семейные древеса"
+msgstr "Семейные древа"
 
 #: ../gramps/guiQML/views/dbman.py:159
 msgid "Add a Family Tree"
@@ -21813,9 +21813,9 @@ msgid ""
 "\n"
 msgstr ""
 "Первым делом необходимо создать новое семейное древо. Для создания семейного "
-"древа (иногда назваемого «базой данных»), выберите «Семейные древеса» в "
-"главном меню, затем — «Управление семейными древесами». В диалоге управления "
-"древесами нажмите «Создать», и введите название нового древа. Для более "
+"древа (иногда назваемого «базой данных»), выберите «Семейные древа» в "
+"главном меню, затем — «Управление семейными древами». В диалоге управления "
+"древами нажмите «Создать», и введите название нового древа. Для более "
 "подробных указаний, просмотрите документацию, доступную по вышеприведённым "
 "ссылкам.\n"
 "\n"
