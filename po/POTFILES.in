@@ -686,7 +686,6 @@ gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/eventcmp.glade
 gramps/plugins/tool/eventcmp.py
 gramps/plugins/tool/eventnames.py
-gramps/plugins/tool/extractcity.py
 gramps/plugins/tool/finddupes.glade
 gramps/plugins/tool/finddupes.py
 gramps/plugins/tool/findloop.py
