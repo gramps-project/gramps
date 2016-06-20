@@ -95,8 +95,8 @@ class TagReport(Report):
             if value == self._lv:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._(
-            "(Living people: %(option_name)s)") % {'option_name': living_desc}
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                 ) % {'option_name' : living_desc}
 
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:

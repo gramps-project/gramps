@@ -250,8 +250,8 @@ class Printinfo:
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
             self.doc.write_text(self._("sp. see %(reference)s: %(spouse)s"
-                                       % {'reference' : display_num,
-                                          'spouse' : name}),
+                                      ) % {'reference' : display_num,
+                                           'spouse'    : name},
                                 mark)
             self.doc.end_paragraph()
 
@@ -309,7 +309,7 @@ class RecurseDown:
                 self.obj_print.print_spouse(level, spouse_handle, family)
 
                 if spouse_handle:
-                    spouse_num = self._("%s sp." % (ref_str))
+                    spouse_num = self._("%s sp.") % ref_str
                     self.person_printed[spouse_handle] = spouse_num
 
                 if level >= self.max_generations:

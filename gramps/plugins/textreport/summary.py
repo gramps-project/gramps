@@ -117,6 +117,7 @@ class SummaryReport(Report):
         num_people = 0
         for person in self.__db.iter_people():
             num_people += 1
+            primary_names = [person.get_primary_name()]
 
             # Count people with media.
             length = len(person.get_media_list())
@@ -124,7 +125,7 @@ class SummaryReport(Report):
                 with_media += 1
 
             # Count people with incomplete names.
-            for name in [person.get_primary_name()] + person.get_alternate_names():
+            for name in primary_names + person.get_alternate_names():
                 if name.get_first_name().strip() == "":
                     incomp_names += 1
                 else:
@@ -137,7 +138,7 @@ class SummaryReport(Report):
 
             # Count people without families.
             if (not person.get_main_parents_family_handle() and
-               not len(person.get_family_handle_list())):
+                    not len(person.get_family_handle_list())):
                 disconnected += 1
 
             # Count missing birthdays.
@@ -158,9 +159,9 @@ class SummaryReport(Report):
                 unknowns += 1
 
             # Count unique surnames
-            for name in [person.get_primary_name()] + person.get_alternate_names():
-                if not name.get_surname().strip() in namelist \
-                    and not name.get_surname().strip() == "":
+            for name in primary_names + person.get_alternate_names():
+                if (not name.get_surname().strip() in namelist
+                        and not name.get_surname().strip() == ""):
                     namelist.append(name.get_surname().strip())
 
         self.doc.start_paragraph("SR-Normal")
@@ -176,8 +177,8 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals with unknown gender: %d") %
-                            unknowns)
+        self.doc.write_text(self._("Individuals with unknown gender: %d"
+                                  ) % unknowns)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
@@ -185,13 +186,13 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals missing birth dates: %d") %
-                            missing_bday)
+        self.doc.write_text(self._("Individuals missing birth dates: %d"
+                                  ) % missing_bday)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Disconnected individuals: %d") %
-                            disconnected)
+        self.doc.write_text(self._("Disconnected individuals: %d"
+                                  ) % disconnected)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
@@ -199,8 +200,8 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Individuals with media objects: %d") %
-                            with_media)
+        self.doc.write_text(self._("Individuals with media objects: %d"
+                                  ) % with_media)
         self.doc.end_paragraph()
 
     def summarize_families(self):
@@ -212,8 +213,8 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of families: %d") %
-                            self.__db.get_number_of_families())
+        self.doc.write_text(self._("Number of families: %d"
+                                  ) % self.__db.get_number_of_families())
         self.doc.end_paragraph()
 
     def summarize_media(self):
@@ -234,7 +235,7 @@ class SummaryReport(Report):
             media = self.__db.get_media_from_handle(media_id)
             try:
                 size_in_bytes += posixpath.getsize(
-                                 media_path_full(self.__db, media.get_path()))
+                    media_path_full(self.__db, media.get_path()))
                 length = len(str(size_in_bytes))
                 if size_in_bytes <= 999999:
                     mbytes = self._("less than 1")
@@ -244,13 +245,13 @@ class SummaryReport(Report):
                 notfound.append(media.get_path())
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Number of unique media objects: %d") %
-                            total_media)
+        self.doc.write_text(self._("Number of unique media objects: %d"
+                                  ) % total_media)
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(self._("Total size of media objects: %s MB") %
-                            mbytes)
+        self.doc.write_text(self._("Total size of media objects: %s MB"
+                                  ) % mbytes)
         self.doc.end_paragraph()
 
         if len(notfound) > 0:

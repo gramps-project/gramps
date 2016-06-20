@@ -161,8 +161,8 @@ class EndOfLineReport(Report):
 
         self.doc.start_paragraph("EOL-Subtitle")
         # feature request 2356: avoid genitive form
-        title = self._("All the ancestors of %s "
-                       "who are missing a parent") % pname
+        title = self._("All the ancestors of %s who are missing a parent"
+                      ) % pname
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
@@ -207,8 +207,8 @@ class EndOfLineReport(Report):
         dates = ''
         if birth_date or death_date:
             dates = self._(" (%(birth_date)s - %(death_date)s)"
-                           % {'birth_date' : birth_date,
-                              'death_date' : death_date})
+                          ) % {'birth_date' : birth_date,
+                               'death_date' : death_date}
 
         self.doc.start_row()
         self.doc.start_cell('EOL-TableCell', 2)

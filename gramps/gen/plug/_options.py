@@ -385,8 +385,8 @@ class OptionHandler:
                     and option_data[0] in docgen_names):
                 print(_("Option '%(opt_name)s' is present in %(file)s\n"
                         "  but is not known to the module.  Ignoring..."
-                        % {'opt_name' : option_name,
-                           'file' : self.option_list_collection.filename}),
+                       ) % {'opt_name' : option_name,
+                            'file'     : self.option_list_collection.filename},
                       file=sys.stderr)
             options.pop(option_name)
 

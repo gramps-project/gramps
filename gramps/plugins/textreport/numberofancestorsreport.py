@@ -165,8 +165,8 @@ class NumberOfAncestorsReport(Report):
         # TC # English return something like:
         # Total ancestors in generations 2 to 3 is 4. (66.67%)
         text = self._("Total ancestors in generations %(second_generation)d "
-                      "to %(last_generation)d is %(count)d. %(percent)s") % {
-                          'second_generation': 2,
+                      "to %(last_generation)d is %(count)d. %(percent)s"
+                     ) % {'second_generation': 2,
                           'last_generation'  : gen,
                           'count'            : len(all_people),
                           'percent'          : percent}

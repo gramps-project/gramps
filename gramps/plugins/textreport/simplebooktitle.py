@@ -139,8 +139,8 @@ class SimpleBookTitleOptions(MenuReportOptions):
 
         dateinfo = time.localtime(time.time())
         rname = self.__db.get_researcher().get_name()
-        footer_string = _('Copyright %(year)d %(name)s') % {
-            'year' : dateinfo[0], 'name' : rname}
+        footer_string = _('Copyright %(year)d %(name)s'
+                         ) % {'year' : dateinfo[0], 'name' : rname}
         footer = StringOption(_('Footer'), footer_string)
         footer.set_help(_("Footer string for the page."))
         menu.add_option(category_name, "footer", footer)

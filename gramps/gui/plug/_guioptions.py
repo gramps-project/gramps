@@ -75,8 +75,8 @@ class LastNameDialog(ManagedWindow):
 
         ManagedWindow.__init__(self, uistate, track, self)
         flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
-        buttons = (_('_Cancel'), Gtk.ResponseType.REJECT, _('_OK'),
-                   Gtk.ResponseType.ACCEPT)
+        buttons = (_('_Cancel'), Gtk.ResponseType.REJECT,
+                   _('_OK'), Gtk.ResponseType.ACCEPT)
         self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
         self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.set_window(self.__dlg, None, _('Select surname'))
@@ -890,11 +890,10 @@ class GuiFamilyOption(Gtk.Box):
             else:
                 mother_name = _("unknown mother")
 
-            name = _(
-                "%(father_name)s and %(mother_name)s (%(family_id)s)") % {
-                    'father_name': father_name,
-                    'mother_name': mother_name,
-                    'family_id': family_id}
+            name = _("%(father_name)s and %(mother_name)s (%(family_id)s)"
+                    ) % {'father_name' : father_name,
+                         'mother_name' : mother_name,
+                         'family_id'   : family_id}
 
             self.__family_label.set_text(name)
             self.__option.set_value(family_id)

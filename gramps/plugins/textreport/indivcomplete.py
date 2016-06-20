@@ -89,6 +89,7 @@ TYPE2GROUP[EventType.UNKNOWN] = _T_("Unknown")
 #
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
+    """ the Complete Individual Report """
 
     def __init__(self, database, options, user):
         """
@@ -230,10 +231,9 @@ class IndivCompleteReport(Report):
         self.write_cell(label)
         if parent_name:
             # for example (a stepfather): John Smith, relationship: Step
-            text = self._(
-                '%(parent-name)s, relationship: %(rel-type)s') % {
-                    'parent-name' : parent_name,
-                    'rel-type' : self._(rel_type)}
+            text = self._('%(parent-name)s, relationship: %(rel-type)s'
+                         ) % {'parent-name' : parent_name,
+                              'rel-type'    : self._(rel_type)}
             self.write_cell(text, mark=pmark)
         else:
             self.write_cell('')
@@ -847,9 +847,9 @@ class IndivCompleteReport(Report):
                 else:
                     self._user.warn(_("Could not add photo to page"),
                                     # translators: for French, else ignore
-                                    _("%(str1)s: %(str2)s") % {
-                                        'str1' : image_filename,
-                                        'str2' : _('File does not exist')})
+                                    _("%(str1)s: %(str2)s"
+                                     ) % {'str1' : image_filename,
+                                          'str2' : _('File does not exist')})
 
         self.doc.start_table('person', p_style)
         self.doc.start_row()
@@ -887,10 +887,9 @@ class IndivCompleteReport(Report):
                 for attr in attr_list:
                     attr_type = attr.get_type().type2base()
                     # translators: needed for French, ignore otherwise
-                    text = self._(
-                        "%(str1)s: %(str2)s") % {
-                            'str1' : self._(attr_type),
-                            'str2' : attr.get_value()}
+                    text = self._("%(str1)s: %(str2)s"
+                                 ) % {'str1' : self._(attr_type),
+                                      'str2' : attr.get_value()}
                     endnotes = self._cite_endnote(attr, prior=endnotes)
                     self.write_paragraph("(%s)" % text,
                                          endnotes=endnotes,
@@ -929,7 +928,7 @@ class IndivCompleteReport(Report):
         """ Combine two strings with a given format. """
         text = ""
         if str1 and str2:
-            text = self._(format_both) % {'str1':str1, 'str2':str2}
+            text = self._(format_both) % {'str1' : str1, 'str2' : str2}
         elif str1 and not str2:
             text = format_single % str1
         elif str2 and not str1:
@@ -958,10 +957,9 @@ class IndivCompleteReport(Report):
         for attr in attr_list:
             attr_type = attr.get_type().type2base()
             # translators: needed for French, ignore otherwise
-            text = self._(
-                "%(type)s: %(value)s") % {
-                    'type'  : self._(attr_type),
-                    'value' : attr.get_value()}
+            text = self._("%(str1)s: %(str2)s"
+                         ) % {'str1' : self._(attr_type),
+                              'str2' : attr.get_value()}
             endnotes = self._cite_endnote(attr)
             self.write_paragraph(text, endnotes)
 

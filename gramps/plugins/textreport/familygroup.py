@@ -133,8 +133,8 @@ class FamilyGroup(Report):
                     attr_type = self._get_type(attr.get_type())
                     # translators: needed for French, ignore otherwise
                     descr += self._("%(str1)s: %(str2)s"
-                                    % {'str1' : self._(attr_type),
-                                       'str2' : attr.get_value()})
+                                   ) % {'str1' : self._(attr_type),
+                                        'str2' : attr.get_value()}
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -299,8 +299,9 @@ class FamilyGroup(Report):
         mark = ReportUtils.get_person_mark(self.db, person)
         # translators: needed for French, ignore otherwise
         self.doc.write_text(self._("%(str1)s: %(str2)s"
-                                   % {'str1' : title,
-                                      'str2' : name}), mark)
+                                  ) % {'str1' : title,
+                                       'str2' : name},
+                            mark)
         if self.gramps_ids:
             gid = person.get_gramps_id()
             if gid:

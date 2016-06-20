@@ -768,8 +768,8 @@ class StatisticsChart(Report):
             if value == living_value:
                 living_desc = self._(description)
                 break
-        self.living_desc = self._(
-            "(Living people: %(option_name)s)") % {'option_name': living_desc}
+        self.living_desc = self._("(Living people: %(option_name)s)"
+                                 ) % {'option_name' : living_desc}
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
@@ -788,10 +788,12 @@ class StatisticsChart(Report):
 
         if genders:
             span_string = self._("%(genders)s born "
-                                 "%(year_from)04d-%(year_to)04d" % mapping)
+                                 "%(year_from)04d-%(year_to)04d"
+                                ) % mapping
         else:
             span_string = self._("Persons born "
-                                 "%(year_from)04d-%(year_to)04d") % mapping
+                                 "%(year_from)04d-%(year_to)04d"
+                                ) % mapping
 
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'),

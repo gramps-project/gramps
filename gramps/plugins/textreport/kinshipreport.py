@@ -317,8 +317,8 @@ class KinshipReport(Report):
         dates = ''
         if birth_date or death_date:
             dates = self._(" (%(birth_date)s - %(death_date)s)"
-                           % {'birth_date' : birth_date,
-                              'death_date' : death_date})
+                          ) % {'birth_date' : birth_date,
+                               'death_date' : death_date}
 
         self.doc.start_paragraph('KIN-Normal')
         self.doc.write_text(name, mark)
