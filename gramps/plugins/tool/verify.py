@@ -344,6 +344,8 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             self.vr.load_ignored(self.db.full_name)
         except WindowActiveError:
             pass
+        except AttributeError: # VerifyResults.load_ignored was not run
+            self.vr.ignores = {}
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
@@ -467,6 +469,7 @@ class VerifyResults(ManagedWindow):
         ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.dbstate = dbstate
+        self._set_filename()
         self.top = Glade(toplevel="verify_result")
         window = self.top.toplevel
         self.set_window(window,self.top.get_object('title2'),self.title)
@@ -554,15 +557,19 @@ class VerifyResults(ManagedWindow):
         """
         pass
 
-    def load_ignored(self, db_filename):
+    def _set_filename(self):
+        """ set the file where people who will be ignored will be kept """
+        db_filename = self.dbstate.db.get_save_path()
         if isinstance(db_filename, str):
             db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
+        self.ignores_filename = os.path.join(
+            VERSION_DIR, md5sum.hexdigest() + os.path.extsep + 'vfm')
+
+    def load_ignored(self, db_filename):
         ## a new Gramps major version means recreating the .vfm file.
         ## User can copy over old one, with name of new one, but no guarantee
         ## that will work.
-        self.ignores_filename = os.path.join(
-            VERSION_DIR, md5sum.hexdigest() + os.path.extsep + 'vfm')
         if not self._load_ignored(self.ignores_filename):
             self.ignores = {}
 
