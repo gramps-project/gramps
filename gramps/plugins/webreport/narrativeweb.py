@@ -3832,7 +3832,7 @@ class PlacePages(BasePage):
                 def sort_by_place_name(obj):
                     place = self.r_db.get_place_from_handle(obj)
                     name = _pd.display(self.r_db, place)
-                    return (name)
+                    return (name.lower())
 
                 handle_list = sorted(place_handles,
                                      key=lambda x: sort_by_place_name(x))
