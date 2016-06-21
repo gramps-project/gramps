@@ -225,7 +225,10 @@ class DateDisplayCZ(DateDisplay):
 
     display = DateDisplay.display_formatted
 
-    def orig_display(self, date):
+    # bug 9537 _grampslocale.py gets '%-d.%-m.%Y' and makes it be '%/d.%/m.%Y'
+    _tformat =  DateDisplay._tformat.replace('/', '') # so counteract that
+
+    def orig_display(self, date): # unused: only here for historical reference
         """
         Return a text string representing the date.
         """
