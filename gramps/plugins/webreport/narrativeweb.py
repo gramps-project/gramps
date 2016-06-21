@@ -3450,7 +3450,7 @@ class PlacePages(BasePage):
                 def sort_by_place_name(obj):
                     place = self.dbase_.get_place_from_handle(obj)
                     name = _pd.display(self.dbase_, place)
-                    return (name)
+                    return (name.lower())
 
                 handle_list = sorted(place_handles,
                                      key=lambda x: sort_by_place_name(x))
