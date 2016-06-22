@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: gramps42\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-21 10:57+0300\n"
-"PO-Revision-Date: 2016-06-21 11:16+0300\n"
+"PO-Revision-Date: 2016-06-22 09:54+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -290,12 +290,12 @@ msgid ""
 "in your database, add the SoundEx Gramplet."
 msgstr ""
 "<b>SoundEx может помочь в исследовании семьи</b><br/>SoundEx решает далеко "
-"стоящие вопросы в генеалогии, такие как варианты написания фамилий. The "
-"SoundEx Gramplet takes a surname and generates a simplified form that is "
-"equivalent for similar sounding names. Knowing the SoundEx Code for a "
-"surname is very helpful for researching Census Data files (microfiche) at a "
-"library or other research facility. To view the SoundEx codes for surnames "
-"in your database, add the SoundEx Gramplet."
+"стоящие вопросы в генеалогии, такие как варианты написания фамилий. Грамплет "
+"SoundEx takes a surname and generates a simplified form that is equivalent "
+"for similar sounding names. Knowing the SoundEx Code for a surname is very "
+"helpful for researching Census Data files (microfiche) at a library or other "
+"research facility. Для просмотра кодов SoundEx для фамилий в Вашей базе "
+"данных, добавьте грамплет SoundEx."
 
 #: ../data/tips.xml.in.h:15
 msgid ""
@@ -394,6 +394,10 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
+"<b>Настройка Видов</b><br/>Ваши данные могут быть представлены, как "
+"иерархически, так и в виде списка. Каждый Вид может быть настроен так, как "
+"пожелаете. Взгляните на правую часть панели инструментов или в меню &quot;"
+"Вид&quot;."
 
 #: ../data/tips.xml.in.h:23
 msgid ""
@@ -550,6 +554,12 @@ msgid ""
 "on the date button. The format of the date is set under &quot;Edit &gt; "
 "Preferences &gt; Display&quot;."
 msgstr ""
+"<b>Неверные даты</b><br/>Каждый может случайно ввести дату в неправильном "
+"формате. Неверный формат дат отображается в Gramps либо на красном фоне, "
+"либо с красной точкой в правом верхнем углу поля. Можно исправить формат "
+"используя диалог выбора даты, который может быть вызван нажатием на кнопку "
+"даты. Формат дат можно установить через &quot;Правка &gt; Настройки &gt; "
+"Отображение&quot;."
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -2603,6 +2613,9 @@ msgid ""
 "not allowed.\n"
 "Key is %s"
 msgstr ""
+"Совершена попытка записи ключа, который частично состоит из байт-кода, это "
+"не разрешается.\n"
+"Ключ: %s"
 
 #: ../gramps/gen/db/exceptions.py:91
 #, python-format
@@ -2874,7 +2887,7 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:789
 msgid "Number of new objects upgraded:\n"
-msgstr "Количество новых обновлённых объектов:\n"
+msgstr "Количество новых объектов обновлено:\n"
 
 #: ../gramps/gen/db/upgrade.py:798
 msgid ""
@@ -14321,6 +14334,10 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
+"The Person Tree view группирует лица по главной фамилии. Вы можете изменить "
+"это, задав здесь значение группировки. \n"
+"Вам будет задан вопрос, хотите ли Вы сгруппировать только данное лицо или "
+"все лица с данной главной фамилией."
 
 #: ../gramps/gui/glade/editname.glade:616
 msgid "O_verride"
@@ -14386,6 +14403,11 @@ msgid ""
 "Ramón y Cajal can be stored as Ramón, which is inherited from the father, "
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
+"Использовать несколько фамилий\n"
+"Показывает, что фамилия состоит из нескольких частей. Каждая фамилия имеет "
+"свой префикс и необходимую связку со следующей фамилией. Например, фамилия - "
+"Ramón y Cajal, может быть сохранена как - Ramón, полученная от отца, связка "
+"- y, и Cajal, полученная от матери."
 
 #: ../gramps/gui/glade/editperson.glade:400
 msgid "Set person as private data"
@@ -14451,6 +14473,11 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
+"Описание связи, например: Крёстный отец, Друг, ...\n"
+"\n"
+"Примечание: Используйте события вместо отношений привязанных к временным "
+"рамкам или оказиям. События могут быть распределены между лицами, каждое из "
+"которых определяет роль в событии."
 
 #: ../gramps/gui/glade/editpersonref.glade:176
 msgid ""
@@ -14462,7 +14489,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editpersonref.glade:193
 msgid "Select a person that has an association to the edited person."
-msgstr "Выбрать лицо, несущее основные данные для результата объединения."
+msgstr "Выбрать лицо, которое имеет связь с редактируемым лицом."
 
 #: ../gramps/gui/glade/editplace.glade:105
 msgid "L_atitude:"
@@ -18660,12 +18687,10 @@ msgstr ""
 "  поля сверху, снизу, и сбоку древа"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:916
-#, fuzzy
 msgid "inter-box scale factor"
-msgstr "Коэффициент масштабирования по оси Y."
+msgstr "Коэффициент масштабирования по оси Y"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:918
-#, fuzzy
 msgid "Make the inter-box spacing bigger or smaller"
 msgstr "Увеличивает или уменьшает расстояние по вертикали между ячейками"
 
@@ -18678,7 +18703,7 @@ msgstr "Коэффициент масштабирования теней"
 #: ../gramps/plugins/drawreport/ancestortree.py:923
 #: ../gramps/plugins/drawreport/descendtree.py:1634
 msgid "Make the box shadow bigger or smaller"
-msgstr "Сделать тени больше или меньше"
+msgstr "Делает тени больше или меньше"
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:928
@@ -18738,8 +18763,7 @@ msgid ""
 "\n"
 "$T inserts today's date"
 msgstr ""
-"Комментарий для\n"
-"добавления к графу\n"
+"Добавить комментарий\n"
 "\n"
 "$T будет заменено\n"
 "сегодняшней датой"
@@ -18752,7 +18776,7 @@ msgstr "Расположение комментария"
 #: ../gramps/plugins/drawreport/ancestortree.py:969
 #: ../gramps/plugins/drawreport/descendtree.py:1683
 msgid "Where to place the note."
-msgstr "Где разместить заметку."
+msgstr "Выберите где расположить комментарий."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:984
 msgid "No generations of empty boxes for unknown ancestors"
@@ -21596,19 +21620,19 @@ msgstr "База данных открыта -----------\n"
 #. List of translated strings used here (translated in self.log ).
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Added"
-msgstr "Добавление"
+msgstr "Добавлен"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Deleted"
-msgstr "Удаление"
+msgstr "Удалён"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Edited"
-msgstr "Правка"
+msgstr "Отредактирован"
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:59
 msgid "Selected"
-msgstr "Выбор"
+msgstr "Выбран"
 
 #: ../gramps/plugins/gramplet/soundgen.py:67
 msgid "SoundEx code:"
@@ -21777,7 +21801,7 @@ msgstr "Домашняя страница"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:111
 msgid "Start with Genealogy and Gramps"
-msgstr "Генеалогические изыскания при помощи Gramps"
+msgstr "Генеалогические исследования при помощи Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:114
 msgid "Gramps online manual"
@@ -21848,7 +21872,7 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
-"Это—вид «Приборная доска». Сюда можно добавить грамплеты по вашему вкусу. "
+"Это — вид «Приборная доска». Сюда можно добавить грамплеты по вашему вкусу. "
 "Грамплеты также можно добавлять в режиме других видов, на боковую и нижнюю "
 "панели. Для добавления нового грамплета в других видах необходимо щёлкнуть "
 "правой кнопкой мыши справа от заголовка боковой или нижней панели.\n"
@@ -21856,8 +21880,8 @@ msgstr ""
 "Щёлкните мышью по значку настройки вида, чтобы добавить дополнительные "
 "колонки. Щелчком правой кнопкой по фону можно выбрать, какие грамплеты "
 "добавить. Грамплеты можно перетаскивать с места на место за значок "
-"«свойства». Щелчком по этому значку можно перевести окно грамплета во "
-"всплывающий режим."
+"«свойства». Щелчком по этому значку можно перевести окно грамплета в "
+"плавающий режим."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -29532,7 +29556,7 @@ msgstr "Отчёт о потомках для %(person_name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:578
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr ""
+msgstr "Ссылка: %(number)s. %(name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:679
 #, python-format
@@ -30073,7 +30097,7 @@ msgstr "%(number)s. "
 
 #: ../gramps/plugins/textreport/recordsreport.py:182
 msgid "Number of ranks to display"
-msgstr ""
+msgstr "Количество отображаемых поколений"
 
 #: ../gramps/plugins/textreport/recordsreport.py:185
 msgid "Use call name"
@@ -31945,7 +31969,7 @@ msgstr ""
 #: ../gramps/plugins/tool/testcasegenerator.py:205
 #: ../gramps/plugins/tool/testcasegenerator.py:210
 msgid "Generate testcases"
-msgstr ""
+msgstr "Генерация тестовых данных"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:214
 msgid ""
@@ -31985,11 +32009,11 @@ msgid ""
 "(Number is approximate because families are generated)"
 msgstr ""
 "Количество лиц для генерации\n"
-"(Число приблизительное, потому что семью уже сгенерированы)"
+"(Число приблизительное, потому что семьи уже сгенерированы)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:298
 msgid "Generating testcases"
-msgstr ""
+msgstr "Генерируются тестовые данные"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:303
 msgid "Generating low level database errors"
@@ -32072,7 +32096,7 @@ msgstr "Генерация ошибок базы данных"
 #: ../gramps/plugins/tool/testcasegenerator.py:1463
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Шаг генерации тестовых данных %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -33089,7 +33113,7 @@ msgid ""
 msgstr ""
 "Работа с картографическими данными недоступна.\n"
 "\n"
-"Инструкция по сборке соответствующего модуля доступна на"
+"Инструкция по сборке соответствующего модуля доступна на "
 "%(gramps_wiki_build_osmgps_url)s"
 
 #: ../gramps/plugins/view/geography.gpr.py:78
@@ -33098,7 +33122,7 @@ msgstr "Все места для лица"
 
 #: ../gramps/plugins/view/geography.gpr.py:79
 msgid "A view showing the places visited by one person during his life."
-msgstr "Отображаются места посещаемые лицом в его жизни."
+msgstr "Отображаются места посещённые лицом в его жизни."
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 #: ../gramps/plugins/view/geography.gpr.py:104
@@ -33116,11 +33140,11 @@ msgstr "Все места для семьи"
 
 #: ../gramps/plugins/view/geography.gpr.py:96
 msgid "A view showing the places visited by one family during all their life."
-msgstr "Отображаются места посещаемые семьёй на протяжении её жизни."
+msgstr "Отображаются места посещённые семьёй на протяжении её жизни."
 
 #: ../gramps/plugins/view/geography.gpr.py:112
 msgid "Every residence or move for a person and any descendants"
-msgstr ""
+msgstr "Все места и перемещения для лица и его потомков"
 
 #: ../gramps/plugins/view/geography.gpr.py:113
 msgid ""
@@ -33128,9 +33152,8 @@ msgid ""
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
-"Вид, отображающий места, которые все лица посетили на протяжении своей "
-"жизни.\n"
-"Применяется к лицу и любому потомку\n"
+"Вид, отображающий места, которые лица посетили на протяжении своей жизни.\n"
+"Применяется к лицу и любому потомку.\n"
 "Вы можете увидеть даты соответствующего периода."
 
 #: ../gramps/plugins/view/geography.gpr.py:132
@@ -33829,7 +33852,8 @@ msgstr "Рассказ"
 #: ../gramps/plugins/webreport/narrativeweb.py:1606
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr "Создано с помощью %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
+msgstr ""
+"Создано с помощью %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1615
 #, python-format
@@ -34206,6 +34230,10 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Эта страница отображает карту со всеми событиями и местами лица и всех его "
+"потомках. Если вы поместите курсор над отметкой, то отобразится название "
+"места. Отметки и ссылки хранятся с сортировкой по дате (если такая есть). "
+"Клик на имени места в разделе ссылок перенесёт Вас на страницу данного места."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5869
 msgid "Drop Markers"
@@ -34878,7 +34906,7 @@ msgstr "Вычисляю праздники для %04d года"
 msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for "
 "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
+msgstr "Создано для %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:464
 #, python-format
