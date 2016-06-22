@@ -21,7 +21,7 @@
 """ Recursive base classes for reports
 """
 
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.lib import ChildRefType
 
 
@@ -284,7 +284,7 @@ class DescendPerson(_StopRecurse, _PersonSeen, _FamilySeen):
 
             family = self.database.get_family_from_handle(family_handle)
 
-            spouse_handle = ReportUtils.find_spouse(person, family)
+            spouse_handle = utils.find_spouse(person, family)
             if self.max_spouses > s_level:
                 self.__this_slevel = s_level + 1
                 self._add_person((g_level, s_level + 1),
@@ -303,7 +303,7 @@ class DescendPerson(_StopRecurse, _PersonSeen, _FamilySeen):
                 self.continue_recursion()
 
             if self.max_spouses > s_level:
-                #spouse_handle = ReportUtils.find_spouse(person,family)
+                #spouse_handle = utils.find_spouse(person,family)
                 self.recurse(spouse_handle, g_level, s_level + 1)
 
         if s_level == 1:

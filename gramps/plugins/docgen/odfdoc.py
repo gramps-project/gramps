@@ -56,7 +56,7 @@ from gramps.gen.plug.docgen.fontscale import string_width
 from gramps.plugins.lib.libodfbackend import OdfBackend
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.utils.image import (image_size, image_dpi, image_actual_size,
                                     crop_percentage_to_subpixel)
 from gramps.gen.errors import ReportError
@@ -1717,8 +1717,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         width = 0
         for line in text:
             width = max(width, string_width(font, line))
-        wcm = ReportUtils.pt2cm(width)
-        hcm = ReportUtils.pt2cm(height)
+        wcm = utils.pt2cm(width)
+        hcm = utils.pt2cm(height)
 
         rangle = radians(angle)
         xloc = x - (wcm / 2.0) * cos(rangle) + (hcm / 2.0) * sin(rangle)
@@ -1806,7 +1806,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         para_name = box_style.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
-        sw = ReportUtils.pt2cm(string_width(font, text))*1.3
+        sw = utils.pt2cm(string_width(font, text))*1.3
 
         self._write_mark(mark, text)
 
@@ -1816,7 +1816,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             'draw:style-name="%s" ' % style +
             'svg:width="%.2fcm" ' % sw +
             'svg:height="%.2fcm" '
-            % (ReportUtils.pt2cm(font.get_size() * 1.4)) +
+            % (utils.pt2cm(font.get_size() * 1.4)) +
             'svg:x="%.2fcm" ' % float(x) +
             'svg:y="%.2fcm">' % float(y) +
             '<draw:text-box> '  +

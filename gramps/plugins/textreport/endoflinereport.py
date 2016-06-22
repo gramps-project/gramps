@@ -42,7 +42,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import PersonOption
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.proxy import CacheProxyDb
@@ -193,7 +193,7 @@ class EndOfLineReport(Report):
         person = self.database.get_person_from_handle(person_handle)
 
         name = self._name_display.display(person)
-        mark = ReportUtils.get_person_mark(self.database, person)
+        mark = utils.get_person_mark(self.database, person)
         birth_date = ""
         birth_ref = person.get_birth_ref()
         if birth_ref:
@@ -281,7 +281,7 @@ class EndOfLineOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
@@ -290,7 +290,7 @@ class EndOfLineOptions(MenuReportOptions):
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=12, italic=1)
         para = ParagraphStyle()
-        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_bottom_margin(utils.pt2cm(6))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the section headers.'))
@@ -300,8 +300,8 @@ class EndOfLineOptions(MenuReportOptions):
         font.set_size(10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(6))
-        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_top_margin(utils.pt2cm(6))
+        para.set_bottom_margin(utils.pt2cm(6))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("EOL-Normal", para)
 
@@ -310,7 +310,7 @@ class EndOfLineOptions(MenuReportOptions):
         font.set_italic(True)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_top_margin(utils.pt2cm(6))
         para.set_description(
             _('The basic style used for generation headings.'))
         default_style.add_paragraph_style("EOL-Generation", para)
@@ -320,7 +320,7 @@ class EndOfLineOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(0)
-        para.set_bottom_margin(ReportUtils.pt2cm(6))
+        para.set_bottom_margin(utils.pt2cm(6))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("EOL-Pedigree", para)
 

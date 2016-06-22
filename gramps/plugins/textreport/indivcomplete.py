@@ -51,7 +51,7 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                                   BooleanListOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import endnotes as Endnotes
@@ -304,7 +304,7 @@ class IndivCompleteReport(Report):
             if father_handle:
                 father = self._db.get_person_from_handle(father_handle)
                 fname = self._name_display.display(father)
-                mark = ReportUtils.get_person_mark(self._db, father)
+                mark = utils.get_person_mark(self._db, father)
                 self.write_p_entry(self._('Father'), fname, frel, mark)
             else:
                 self.write_p_entry(self._('Father'), '', '')
@@ -313,7 +313,7 @@ class IndivCompleteReport(Report):
             if mother_handle:
                 mother = self._db.get_person_from_handle(mother_handle)
                 mname = self._name_display.display(mother)
-                mark = ReportUtils.get_person_mark(self._db, mother)
+                mark = utils.get_person_mark(self._db, mother)
                 self.write_p_entry(self._('Mother'), mname, mrel, mark)
             else:
                 self.write_p_entry(self._('Mother'), '', '')
@@ -373,7 +373,7 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
 
         for addr in alist:
-            text = ReportUtils.get_address_str(addr)
+            text = utils.get_address_str(addr)
             date = self._get_date(addr.get_date_object())
             endnotes = self._cite_endnote(addr)
             self.doc.start_row()
@@ -560,7 +560,7 @@ class IndivCompleteReport(Report):
                 self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell')
             self.write_paragraph(description, style='IDS-ImageCaptionCenter')
-            ReportUtils.insert_image(self._db, self.doc, media_ref, self._user,
+            utils.insert_image(self._db, self.doc, media_ref, self._user,
                                      align='center', w_cm=5.0, h_cm=5.0)
             self.do_attributes(media.get_attribute_list() +
                                media_ref.get_attribute_list())
@@ -604,7 +604,7 @@ class IndivCompleteReport(Report):
             if spouse_id:
                 spouse = self._db.get_person_from_handle(spouse_id)
                 text = self.get_name(spouse)
-                mark = ReportUtils.get_person_mark(self._db, spouse)
+                mark = utils.get_person_mark(self._db, spouse)
             else:
                 spouse = None
                 text = self._("unknown")
@@ -627,7 +627,7 @@ class IndivCompleteReport(Report):
                 for child_ref in child_ref_list:
                     child = self._db.get_person_from_handle(child_ref.ref)
                     name = self.get_name(child)
-                    mark = ReportUtils.get_person_mark(self._db, child)
+                    mark = utils.get_person_mark(self._db, child)
                     endnotes = self._cite_endnote(child_ref)
                     self.write_paragraph(name, endnotes=endnotes, mark=mark)
                 self.doc.end_cell()
@@ -802,7 +802,7 @@ class IndivCompleteReport(Report):
 
         name = self.person.get_primary_name()
         text = self.get_name(self.person)
-        mark = ReportUtils.get_person_mark(self._db, self.person)
+        mark = utils.get_person_mark(self._db, self.person)
         endnotes = self._cite_endnote(self.person)
         endnotes = self._cite_endnote(name, prior=endnotes)
 
@@ -814,7 +814,7 @@ class IndivCompleteReport(Report):
                 father_inst = self._db.get_person_from_handle(
                     father_inst_id)
                 father = self.get_name(father_inst)
-                fmark = ReportUtils.get_person_mark(self._db, father_inst)
+                fmark = utils.get_person_mark(self._db, father_inst)
             else:
                 father = ""
                 fmark = None
@@ -822,7 +822,7 @@ class IndivCompleteReport(Report):
             if mother_inst_id:
                 mother_inst = self._db.get_person_from_handle(mother_inst_id)
                 mother = self.get_name(mother_inst)
-                mmark = ReportUtils.get_person_mark(self._db, mother_inst)
+                mmark = utils.get_person_mark(self._db, mother_inst)
             else:
                 mother = ""
                 mmark = None
@@ -1077,7 +1077,7 @@ class IndivCompleteOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=True,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
@@ -1114,8 +1114,8 @@ class IndivCompleteOptions(MenuReportOptions):
         font.set_size(16)
         para = ParagraphStyle()
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_top_margin(ReportUtils.pt2cm(8))
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_top_margin(utils.pt2cm(8))
+        para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("IDS-Title", para)
@@ -1127,8 +1127,8 @@ class IndivCompleteOptions(MenuReportOptions):
         font.set_italic(1)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_("The style used for category labels."))
         default_style.add_paragraph_style("IDS-TableTitle", para)
 
@@ -1138,8 +1138,8 @@ class IndivCompleteOptions(MenuReportOptions):
         font.set_size(12)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_("The style used for the spouse's name."))
         default_style.add_paragraph_style("IDS-Spouse", para)
 
@@ -1147,8 +1147,8 @@ class IndivCompleteOptions(MenuReportOptions):
         font.set_size(12)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("IDS-Normal", para)
 
@@ -1157,8 +1157,8 @@ class IndivCompleteOptions(MenuReportOptions):
         font.set_italic(1)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The style used for the section headers.'))
         default_style.add_paragraph_style("IDS-Section", para)
 
@@ -1167,8 +1167,8 @@ class IndivCompleteOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_alignment(PARA_ALIGN_RIGHT)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('A style used for image facts.'))
         default_style.add_paragraph_style("IDS-ImageNote", para)
 
@@ -1177,8 +1177,8 @@ class IndivCompleteOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('A style used for image captions.'))
         default_style.add_paragraph_style("IDS-ImageCaptionCenter", para)
 

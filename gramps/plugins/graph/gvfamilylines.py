@@ -53,7 +53,7 @@ from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
@@ -489,7 +489,7 @@ class FamilyLinesReport(Report):
                     family = self._db.get_family_from_handle(family_handle)
                     if not family:
                         continue
-                    spouse_handle = ReportUtils.find_spouse(person, family)
+                    spouse_handle = utils.find_spouse(person, family)
                     if spouse_handle:
                         if (spouse_handle in self._people or
                                 spouse_handle in ancestors_not_yet_processed):
@@ -571,7 +571,7 @@ class FamilyLinesReport(Report):
             # now see how many spouses this person has
             for family_handle in person.get_family_handle_list():
                 family = self._db.get_family_from_handle(family_handle)
-                handle = ReportUtils.find_spouse(person, family)
+                handle = utils.find_spouse(person, family)
                 if handle in self._people:
                     spouse_count += 1
                     spouse = self._db.get_person_from_handle(handle)
@@ -725,7 +725,7 @@ class FamilyLinesReport(Report):
                         self._families.add(family_handle)
 
                     # include the spouse from this person's family
-                    spouse_handle = ReportUtils.find_spouse(person, family)
+                    spouse_handle = utils.find_spouse(person, family)
                     if spouse_handle:
                         children_to_include.add(spouse_handle)
                         self._families.add(family_handle)

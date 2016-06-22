@@ -44,7 +44,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
@@ -224,7 +224,7 @@ class AncestorReport(Report):
             if person is None:
                 continue
             name = self._name_display.display(person)
-            mark = ReportUtils.get_person_mark(self.database, person)
+            mark = utils.get_person_mark(self.database, person)
 
             # write the name in bold
             self.doc.start_bold()

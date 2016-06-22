@@ -41,7 +41,7 @@ from gramps.gen.lib.familyreltype import FamilyRelType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -1992,7 +1992,7 @@ class Narrator:
         place = self.__empty_place
 
         spouse_name = None
-        spouse_handle = ReportUtils.find_spouse(self.__person, family)
+        spouse_handle = utils.find_spouse(self.__person, family)
         if spouse_handle:
             spouse = self.__db.get_person_from_handle(spouse_handle)
             if spouse:
@@ -2003,7 +2003,7 @@ class Narrator:
         if not spouse_name:
             spouse_name = self.__translate_text("Unknown") # not: _("Unknown")
 
-        event = ReportUtils.find_marriage(self.__db, family)
+        event = utils.find_marriage(self.__db, family)
         if event:
             if self.__use_fulldate :
                 mdate = self.__get_date(event.get_date_object())

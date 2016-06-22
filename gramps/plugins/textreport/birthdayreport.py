@@ -48,7 +48,7 @@ from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
                                   EnumeratedListOption, FilterOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
@@ -210,7 +210,7 @@ class BirthdayReport(Report):
         if self.relationships:
             name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
-            mark = ReportUtils.get_person_mark(self.database,
+            mark = utils.get_person_mark(self.database,
                                                self.center_person)
             # feature request 2356: avoid genitive form
             self.doc.write_text(self._("Relationships shown are to %s") %
@@ -237,7 +237,7 @@ class BirthdayReport(Report):
             if thisday.month == month:
                 list = self.calendar.get(month, {}).get(thisday.day, [])
                 for p, p_obj in list:
-                    mark = ReportUtils.get_person_mark(self.database, p_obj)
+                    mark = utils.get_person_mark(self.database, p_obj)
                     p = p.replace("\n", " ")
                     if thisday not in started_day:
                         self.doc.start_paragraph("BIR-Daystyle")
@@ -505,7 +505,7 @@ class BirthdayOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

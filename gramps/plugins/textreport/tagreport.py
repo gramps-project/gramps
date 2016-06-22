@@ -39,7 +39,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.plug.menu import EnumeratedListOption
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -187,7 +187,7 @@ class TagReport(Report):
             self.doc.end_cell()
 
             name = self._name_display.display(person)
-            mark = ReportUtils.get_person_mark(self.database, person)
+            mark = utils.get_person_mark(self.database, person)
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(name, mark)
@@ -279,7 +279,7 @@ class TagReport(Report):
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
-                mark = ReportUtils.get_person_mark(self.database, father)
+                mark = utils.get_person_mark(self.database, father)
                 self.doc.write_text(self._name_display.display(father), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -289,7 +289,7 @@ class TagReport(Report):
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
-                mark = ReportUtils.get_person_mark(self.database, mother)
+                mark = utils.get_person_mark(self.database, mother)
                 self.doc.write_text(self._name_display.display(mother), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -922,8 +922,8 @@ class TagOptions(MenuReportOptions):
         font.set_bold(1)
         para = ParagraphStyle()
         para.set_header_level(1)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
@@ -933,8 +933,8 @@ class TagOptions(MenuReportOptions):
         font.set(face=FONT_SANS_SERIF, size=12, bold=1)
         para = ParagraphStyle()
         para.set_header_level(1)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the subtitle.'))
@@ -955,8 +955,8 @@ class TagOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set(first_indent=-0.75, lmargin=.75)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("TR-Normal", para)
 
@@ -966,15 +966,15 @@ class TagOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set(first_indent=-0.75, lmargin=.75)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("TR-Normal-Bold", para)
 
         para = ParagraphStyle()
         para.set(first_indent=-0.75, lmargin=.75)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The basic style used for the note display.'))
         default_style.add_paragraph_style("TR-Note", para)
 

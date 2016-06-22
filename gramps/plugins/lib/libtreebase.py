@@ -28,11 +28,11 @@
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC)
 
-PT2CM = ReportUtils.pt2cm
+PT2CM = utils.pt2cm
 
 #------------------------------------------------------------------------
 #
@@ -595,7 +595,7 @@ class BoxBase:
         self.height *= scale_amount
 
     def add_mark(self, database, person):
-        self.__mark = ReportUtils.get_person_mark(database, person)
+        self.__mark = utils.get_person_mark(database, person)
 
     def display(self):
         """ display the box accounting for page x, y offsets

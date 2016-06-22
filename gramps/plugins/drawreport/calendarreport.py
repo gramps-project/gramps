@@ -47,7 +47,7 @@ from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption,
                                   EnumeratedListOption, FilterOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
@@ -64,8 +64,8 @@ from gramps.plugins.lib.libholiday import g2iso
 # Constants
 #
 #------------------------------------------------------------------------
-pt2cm = ReportUtils.pt2cm
-cm2pt = ReportUtils.cm2pt
+pt2cm = utils.pt2cm
+cm2pt = utils.cm2pt
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
@@ -324,7 +324,7 @@ class Calendar(Report):
             for person_handle in people:
                 step()
                 person = db.get_person_from_handle(person_handle)
-                mark = ReportUtils.get_person_mark(db, person)
+                mark = utils.get_person_mark(db, person)
                 birth_ref = person.get_birth_ref()
                 birth_date = None
                 if birth_ref:
@@ -387,7 +387,7 @@ class Calendar(Report):
                         if spouse_handle:
                             spouse = db.get_person_from_handle(spouse_handle)
                             if spouse:
-                                s_m = ReportUtils.get_person_mark(db, spouse)
+                                s_m = utils.get_person_mark(db, spouse)
                                 spouse_name = self.get_name(spouse)
                                 short_name = self.get_name(person)
                                 # TEMP: this will handle ordered events
@@ -560,7 +560,7 @@ class CalendarOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

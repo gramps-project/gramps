@@ -52,7 +52,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import get_date
 from gramps.gui.dialog import WarningDialog
 from gramps.gui.plug import tool
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -448,7 +448,7 @@ class EventComparisonOptions(tool.ToolOptions):
         self.options_dict = {
             'filter'   : 0,
         }
-        filters = ReportUtils.get_person_filters(None)
+        filters = utils.get_person_filters(None)
         self.options_help = {
             'filter'   : ("=num","Filter number.",
                           [ filt.get_name() for filt in filters ],

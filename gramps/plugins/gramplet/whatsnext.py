@@ -28,7 +28,7 @@
 from gramps.gen.lib import EventType, FamilyRelType
 from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -522,7 +522,7 @@ class WhatNextGramplet(Gramplet):
 
     def __get_spouse(self, person, family):
 
-        spouse_handle = ReportUtils.find_spouse(person, family)
+        spouse_handle = utils.find_spouse(person, family)
         if not spouse_handle:
             if family.get_relationship() == FamilyRelType.MARRIED:
                 return UnknownPerson

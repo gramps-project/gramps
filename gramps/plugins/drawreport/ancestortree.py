@@ -42,15 +42,15 @@ from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   EnumeratedListOption, StringOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
 from gramps.plugins.lib.librecurse import AscendPerson
 from gramps.gen.proxy import CacheProxyDb
 
-PT2CM = ReportUtils.pt2cm
-#cm2pt = ReportUtils.cm2pt
+PT2CM = utils.pt2cm
+#cm2pt = utils.cm2pt
 
 #------------------------------------------------------------------------
 #

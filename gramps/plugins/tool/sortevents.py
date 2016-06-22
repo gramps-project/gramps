@@ -37,7 +37,7 @@ _ = glocale.translation.gettext
 from gramps.gen.sort import Sort
 from gramps.gen.db import DbTxn
 from gramps.gui.plug import MenuToolOptions, PluginWindows
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.menu import FilterOption, PersonOption, \
                           EnumeratedListOption, BooleanOption
 
@@ -210,5 +210,5 @@ class SortEventOptions(MenuToolOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        filter_list = utils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)

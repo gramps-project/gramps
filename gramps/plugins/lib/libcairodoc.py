@@ -47,7 +47,7 @@ import re
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.errors import PluginError
 from gramps.gen.plug.docbackend import CairoBackend
 from gramps.gen.utils.image import resize_to_buffer
@@ -767,7 +767,7 @@ class GtkDocParagraph(GtkDocBaseElement):
             x += f_indent
         # 3/4 of the spacing is added above the text, 1/4 is added below
         cr.move_to(x, t_margin + v_padding + spacing * 0.75)
-        cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
+        cr.set_source_rgb(*utils.rgb_color(font_style.get_color()))
         PangoCairo.show_layout(cr, layout)
 
         # calculate the full paragraph height
@@ -1173,7 +1173,7 @@ class GtkDocLine(GtkDocBaseElement):
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         start = (self._start[0] * dpi_x / 2.54, self._start[1] * dpi_y / 2.54)
         end = (self._end[0] * dpi_x / 2.54, self._end[1] * dpi_y / 2.54)
-        line_color = ReportUtils.rgb_color(self._style.get_color())
+        line_color = utils.rgb_color(self._style.get_color())
 
         cr.save()
         cr.set_source_rgb(*line_color)
@@ -1202,8 +1202,8 @@ class GtkDocPolygon(GtkDocBaseElement):
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         path = [(x * dpi_x / 2.54, y * dpi_y / 2.54) for (x, y) in self._path]
         path_start = path.pop(0)
-        path_stroke_color = ReportUtils.rgb_color(self._style.get_color())
-        path_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
+        path_stroke_color = utils.rgb_color(self._style.get_color())
+        path_fill_color = utils.rgb_color(self._style.get_fill_color())
 
         cr.save()
         cr.move_to(*path_start)
@@ -1242,9 +1242,9 @@ class GtkDocBox(GtkDocBaseElement):
         box_width = self._width * dpi_x / 2.54
         box_height = self._height * dpi_y / 2.54
 
-        box_stroke_color = ReportUtils.rgb_color((0, 0, 0))
-        box_fill_color = ReportUtils.rgb_color(self._style.get_fill_color())
-        shadow_color = ReportUtils.rgb_color((192, 192, 192))
+        box_stroke_color = utils.rgb_color((0, 0, 0))
+        box_fill_color = utils.rgb_color(self._style.get_fill_color())
+        shadow_color = utils.rgb_color((192, 192, 192))
 
         cr.save()
 
@@ -1355,7 +1355,7 @@ class GtkDocText(GtkDocBaseElement):
         cr.translate(text_x, text_y)
         cr.rotate(radians(self._angle))
         cr.move_to(align_x, align_y)
-        cr.set_source_rgb(*ReportUtils.rgb_color(font_style.get_color()))
+        cr.set_source_rgb(*utils.rgb_color(font_style.get_color()))
         PangoCairo.show_layout(cr, layout)
         cr.restore()
 

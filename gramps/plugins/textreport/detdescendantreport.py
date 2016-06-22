@@ -54,7 +54,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.plug.report import Report, Bibliography
 from gramps.gen.plug.report import endnotes
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
@@ -385,7 +385,7 @@ class DetDescendantReport(Report):
         name = self._name_display.display(person)
         if not name:
             name = self._("Unknown")
-        mark = ReportUtils.get_person_mark(self._db, person)
+        mark = utils.get_person_mark(self._db, person)
 
         self.doc.start_bold()
         self.doc.write_text(name, mark)
@@ -511,7 +511,7 @@ class DetDescendantReport(Report):
                 mother = self._db.get_person_from_handle(mother_handle)
                 mother_name = self._name_display.display_name(
                     mother.get_primary_name())
-                mother_mark = ReportUtils.get_person_mark(self._db, mother)
+                mother_mark = utils.get_person_mark(self._db, mother)
             else:
                 mother_name = ""
                 mother_mark = ""
@@ -519,7 +519,7 @@ class DetDescendantReport(Report):
                 father = self._db.get_person_from_handle(father_handle)
                 father_name = self._name_display.display_name(
                     father.get_primary_name())
-                father_mark = ReportUtils.get_person_mark(self._db, father)
+                father_mark = utils.get_person_mark(self._db, father)
             else:
                 father_name = ""
                 father_mark = ""
@@ -538,10 +538,10 @@ class DetDescendantReport(Report):
         is_first = True
         for family_handle in person.get_family_handle_list():
             family = self._db.get_family_from_handle(family_handle)
-            spouse_handle = ReportUtils.find_spouse(person, family)
+            spouse_handle = utils.find_spouse(person, family)
             if spouse_handle:
                 spouse = self._db.get_person_from_handle(spouse_handle)
-                spouse_mark = ReportUtils.get_person_mark(self._db, spouse)
+                spouse_mark = utils.get_person_mark(self._db, spouse)
             else:
                 spouse_mark = None
 
@@ -568,7 +568,7 @@ class DetDescendantReport(Report):
             name = self._name_display.display(mate)
             if not name:
                 name = self._("Unknown")
-            mark = ReportUtils.get_person_mark(self._db, mate)
+            mark = utils.get_person_mark(self._db, mate)
             if family.get_relationship() == FamilyRelType.MARRIED:
                 self.doc.write_text(self._("Spouse: %s"
                                           ) % name,
@@ -642,7 +642,7 @@ class DetDescendantReport(Report):
             child_name = self._name_display.display(child)
             if not child_name:
                 child_name = self._("Unknown")
-            child_mark = ReportUtils.get_person_mark(self._db, child)
+            child_mark = utils.get_person_mark(self._db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
@@ -663,12 +663,12 @@ class DetDescendantReport(Report):
                                          prefix
                                          + str(self.dnumber[child_handle])
                                          + " "
-                                         + ReportUtils.roman(cnt).lower()
+                                         + utils.roman(cnt).lower()
                                          + ".")
             else:
                 self.doc.start_paragraph("DDR-ChildList",
                                          prefix
-                                         + ReportUtils.roman(cnt).lower()
+                                         + utils.roman(cnt).lower()
                                          + ".")
             cnt += 1
 
@@ -770,7 +770,7 @@ class DetDescendantReport(Report):
         plist = person.get_media_list()
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self._db, self.doc, photo, self._user)
+            utils.insert_image(self._db, self.doc, photo, self._user)
 
         self.doc.start_paragraph("DDR-Entry")
 
@@ -854,7 +854,7 @@ class DetDescendantReport(Report):
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
 
-                text = ReportUtils.get_address_str(addr)
+                text = utils.get_address_str(addr)
 
                 if self.fulldate:
                     date = self._get_date(addr.get_date_object())

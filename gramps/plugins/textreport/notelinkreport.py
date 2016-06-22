@@ -41,7 +41,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                                     INDEX_TYPE_TOC)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.simple import SimpleAccess
@@ -166,8 +166,8 @@ class NoteLinkOptions(MenuReportOptions):
         p = ParagraphStyle()
         p.set_header_level(1)
         p.set_bottom_border(1)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
+        p.set_top_margin(utils.pt2cm(3))
+        p.set_bottom_margin(utils.pt2cm(3))
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
@@ -188,8 +188,8 @@ class NoteLinkOptions(MenuReportOptions):
         p = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
+        p.set_top_margin(utils.pt2cm(3))
+        p.set_bottom_margin(utils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("NoteLink-Normal", p)
 
@@ -199,8 +199,8 @@ class NoteLinkOptions(MenuReportOptions):
         p = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
-        p.set_top_margin(ReportUtils.pt2cm(3))
-        p.set_bottom_margin(ReportUtils.pt2cm(3))
+        p.set_top_margin(utils.pt2cm(3))
+        p.set_bottom_margin(utils.pt2cm(3))
         p.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("NoteLink-Normal-Bold", p)
 

@@ -48,7 +48,7 @@ from gramps.gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
                                   EnumeratedListOption)
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
@@ -133,7 +133,7 @@ class PrintMeurgey:
             if len(self.childnum) < level:
                 self.childnum.append(1)
 
-        to_return = (ReportUtils.roman(level) + dash +
+        to_return = (utils.roman(level) + dash +
                      str(self.childnum[level-1]) + ".")
 
         if level > 1:
@@ -217,7 +217,7 @@ class Printinfo:
         """ print the person """
         display_num = self.numbering.number(level)
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
-        mark = ReportUtils.get_person_mark(self.database, person)
+        mark = utils.get_person_mark(self.database, person)
         self.doc.write_text(self._name_display.display(person), mark)
         self.dump_string(person)
         self.doc.end_paragraph()
@@ -228,7 +228,7 @@ class Printinfo:
         #Currently print_spouses is the same for all numbering systems.
         if spouse_handle:
             spouse = self.database.get_person_from_handle(spouse_handle)
-            mark = ReportUtils.get_person_mark(self.database, spouse)
+            mark = utils.get_person_mark(self.database, spouse)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(spouse)
             self.doc.write_text(
@@ -246,7 +246,7 @@ class Printinfo:
         #Person and their family have already been printed so
         #print reference here
         if person:
-            mark = ReportUtils.get_person_mark(self.database, person)
+            mark = utils.get_person_mark(self.database, person)
             self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
             name = self._name_display.display(person)
             self.doc.write_text(self._("sp. see %(reference)s: %(spouse)s"
@@ -298,7 +298,7 @@ class RecurseDown:
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
 
-            spouse_handle = ReportUtils.find_spouse(person, family)
+            spouse_handle = utils.find_spouse(person, family)
 
             if not self.showdups and spouse_handle in self.person_printed:
                 # Just print a reference
@@ -464,8 +464,8 @@ class DescendantOptions(MenuReportOptions):
         pstyle = ParagraphStyle()
         pstyle.set_header_level(1)
         pstyle.set_bottom_border(1)
-        pstyle.set_top_margin(ReportUtils.pt2cm(3))
-        pstyle.set_bottom_margin(ReportUtils.pt2cm(3))
+        pstyle.set_top_margin(utils.pt2cm(3))
+        pstyle.set_bottom_margin(utils.pt2cm(3))
         pstyle.set_font(fstyle)
         pstyle.set_alignment(PARA_ALIGN_CENTER)
         pstyle.set_description(_("The style used for the title of the page."))
@@ -476,9 +476,9 @@ class DescendantOptions(MenuReportOptions):
         for i in range(1, 33):
             pstyle = ParagraphStyle()
             pstyle.set_font(fstyle)
-            pstyle.set_top_margin(ReportUtils.pt2cm(fstyle.get_size()*0.125))
+            pstyle.set_top_margin(utils.pt2cm(fstyle.get_size()*0.125))
             pstyle.set_bottom_margin(
-                ReportUtils.pt2cm(fstyle.get_size()*0.125))
+                utils.pt2cm(fstyle.get_size()*0.125))
             pstyle.set_first_indent(-0.5)
             pstyle.set_left_margin(min(10.0, float(i-0.5)))
             pstyle.set_description(
@@ -488,9 +488,9 @@ class DescendantOptions(MenuReportOptions):
 
             pstyle = ParagraphStyle()
             pstyle.set_font(fstyle)
-            pstyle.set_top_margin(ReportUtils.pt2cm(fstyle.get_size()*0.125))
+            pstyle.set_top_margin(utils.pt2cm(fstyle.get_size()*0.125))
             pstyle.set_bottom_margin(
-                ReportUtils.pt2cm(fstyle.get_size()*0.125))
+                utils.pt2cm(fstyle.get_size()*0.125))
             pstyle.set_left_margin(min(10.0, float(i-0.5)))
             pstyle.set_description(
                 _("The style used for the spouse level %d display.") % i)

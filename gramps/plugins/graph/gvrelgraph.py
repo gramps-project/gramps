@@ -51,7 +51,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.menu import (BooleanOption, EnumeratedListOption,
                                   FilterOption, PersonOption, ColorOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
@@ -825,7 +825,7 @@ class RelGraphOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

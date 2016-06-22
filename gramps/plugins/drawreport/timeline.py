@@ -35,7 +35,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.plug.menu import (PersonOption, FilterOption,
                                   EnumeratedListOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
@@ -147,7 +147,7 @@ class TimeLine(Report):
         st_size = self.name_size()
         style_sheet = self.doc.get_style_sheet()
         font = style_sheet.get_paragraph_style('TLG-Name').get_font()
-        incr = ReportUtils.pt2cm(font.get_size())
+        incr = utils.pt2cm(font.get_size())
         pad = incr * 0.75
         _x1, _x2, _y1, _y2 = (0, 0, 0, 0)
         start = st_size + 0.5
@@ -188,7 +188,7 @@ class TimeLine(Report):
                     dth = None
 
                 dname = self._name_display.display(person)
-                mark = ReportUtils.get_person_mark(self.database, person)
+                mark = utils.get_person_mark(self.database, person)
                 self.doc.draw_text('TLG-text', dname, incr + pad,
                                    self.header + (incr + pad) * index, mark)
 
@@ -284,9 +284,9 @@ class TimeLine(Report):
         self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
         style_sheet = self.doc.get_style_sheet()
         title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
-        title_y = 1.2 - (ReportUtils.pt2cm(title_font.get_size()) * 1.2)
+        title_y = 1.2 - (utils.pt2cm(title_font.get_size()) * 1.2)
         self.doc.center_text('TLG-title', self.fil_name, width / 2.0, title_y)
-        title_y = 1.8 - (ReportUtils.pt2cm(title_font.get_size()) * 1.2)
+        title_y = 1.8 - (utils.pt2cm(title_font.get_size()) * 1.2)
         self.doc.center_text('TLG-title', title3, width / 2.0, title_y)
 
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
@@ -295,7 +295,7 @@ class TimeLine(Report):
         """
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
-        label_y = self.header - (ReportUtils.pt2cm(label_font.get_size()) * 1.2)
+        label_y = self.header - (utils.pt2cm(label_font.get_size()) * 1.2)
         incr = (year_high - year_low) / 5
         delta = (stop_pos - start_pos) / 5
         for val in range(0, 6):
@@ -310,7 +310,7 @@ class TimeLine(Report):
         width = self.doc.get_usable_width()
         style_sheet = self.doc.get_style_sheet()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
-        label_y = self.header - (ReportUtils.pt2cm(label_font.get_size()) * 1.2)
+        label_y = self.header - (utils.pt2cm(label_font.get_size()) * 1.2)
         self.doc.center_text('TLG-label', self._("No Date Information"),
                              width / 2.0, label_y)
 
@@ -390,7 +390,7 @@ class TimeLine(Report):
             person = self.database.get_person_from_handle(p_id)
             dname = self._name_display.display(person)
             size = max(self.doc.string_width(font, dname), size)
-        return ReportUtils.pt2cm(size)
+        return utils.pt2cm(size)
 
 #------------------------------------------------------------------------
 #
@@ -447,7 +447,7 @@ class TimeLineOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

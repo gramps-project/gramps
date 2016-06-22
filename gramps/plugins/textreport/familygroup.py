@@ -41,7 +41,7 @@ _ = glocale.translation.sgettext
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
 from gramps.gen.plug.menu import BooleanOption, FamilyOption, FilterOption
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -229,7 +229,7 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd", 2)
             self.doc.start_paragraph('FGR-Normal')
-            mark = ReportUtils.get_person_mark(self.db, father)
+            mark = utils.get_person_mark(self.db, father)
             self.doc.write_text(father_name, mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -246,7 +246,7 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.start_cell("FGR-TextContentsEnd", 2)
             self.doc.start_paragraph('FGR-Normal')
-            mark = ReportUtils.get_person_mark(self.db, mother)
+            mark = utils.get_person_mark(self.db, mother)
             self.doc.write_text(mother_name, mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -296,7 +296,7 @@ class FamilyGroup(Report):
         self.doc.start_row()
         self.doc.start_cell('FGR-ParentHead', 3)
         self.doc.start_paragraph('FGR-ParentName')
-        mark = ReportUtils.get_person_mark(self.db, person)
+        mark = utils.get_person_mark(self.db, person)
         # translators: needed for French, ignore otherwise
         self.doc.write_text(self._("%(str1)s: %(str2)s"
                                   ) % {'str1' : title,
@@ -338,7 +338,7 @@ class FamilyGroup(Report):
         if self.inc_par_addr:
             addrlist = person.get_address_list()[:]
             for addr in addrlist:
-                location = ReportUtils.get_address_str(addr)
+                location = utils.get_address_str(addr)
                 date = self._get_date(addr.get_date_object())
 
                 self.doc.start_row()
@@ -508,7 +508,7 @@ class FamilyGroup(Report):
         self.doc.end_cell()
 
         name = self._name_display.display(person)
-        mark = ReportUtils.get_person_mark(self.db, person)
+        mark = utils.get_person_mark(self.db, person)
         self.doc.start_cell('FGR-ChildName', 3)
         self.doc.start_paragraph('FGR-ChildText')
         self.doc.write_text(name, mark)
@@ -591,7 +591,7 @@ class FamilyGroup(Report):
                         fid = family.get_gramps_id()
                         if fid:
                             spouse_name += " (%s)" % fid
-                    mark = ReportUtils.get_person_mark(self.db, spouse)
+                    mark = utils.get_person_mark(self.db, spouse)
                     self.doc.write_text(spouse_name, mark)
                     self.doc.end_paragraph()
                     self.doc.end_cell()
@@ -799,7 +799,7 @@ class FamilyGroupOptions(MenuReportOptions):
         fid = self.__fid.get_value()
         family = self.__db.get_family_from_gramps_id(fid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_family_filters(self.__db, family,
+        filter_list = utils.get_family_filters(self.__db, family,
                                                      include_single=True,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

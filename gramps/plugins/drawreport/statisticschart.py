@@ -54,7 +54,7 @@ from gramps.gen.plug.menu import (BooleanOption,
                                   EnumeratedListOption, NumberOption,
                                   FilterOption, PersonOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import parser
@@ -184,7 +184,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         gstyle = style_sheet.get_draw_style(label_style)
         pstyle_name = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
-        size = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        size = utils.pt2cm(pstyle.get_font().get_size())
         doc.draw_text(label_style, title,
                       start_x + (3*size), start_y - (size*0.25))
         start_y += size * 1.3
@@ -193,7 +193,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         gstyle = style_sheet.get_draw_style(sformat)
         pstyle_name = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
-        size = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        size = utils.pt2cm(pstyle.get_font().get_size())
         doc.draw_box(sformat, "", start_x, start_y, (2*size), size)
         doc.draw_text(label_style, legend,
                       start_x + (3*size), start_y - (size*0.25))
@@ -869,9 +869,9 @@ class StatisticsChart(Report):
         pstyle = style_sheet.get_paragraph_style('SC-Title')
         mark = IndexMark(title1, INDEX_TYPE_TOC, 2)
         self.doc.center_text('SC-title', title1, middle_w, 0, mark)
-        yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
+        yoffset = utils.pt2cm(pstyle.get_font().get_size())
         self.doc.center_text('SC-title', self.fil_name, middle_w, yoffset)
-        yoffset = 2 * ReportUtils.pt2cm(pstyle.get_font().get_size())
+        yoffset = 2 * utils.pt2cm(pstyle.get_font().get_size())
         self.doc.center_text('SC-title', self.living_desc, middle_w, yoffset)
 
         # collect data for output
@@ -902,7 +902,7 @@ class StatisticsChart(Report):
 
     def output_barchart(self, title1, typename, data, lookup):
 
-        pt2cm = ReportUtils.pt2cm
+        pt2cm = utils.pt2cm
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style('SC-Text')
         font = pstyle.get_font()
@@ -1082,7 +1082,7 @@ class StatisticsChartOptions(MenuReportOptions):
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
-        filter_list = ReportUtils.get_person_filters(person,
+        filter_list = utils.get_person_filters(person,
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)

@@ -39,13 +39,13 @@ from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   EnumeratedListOption, StringOption,
                                   PersonOption, FamilyOption)
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
 from gramps.gen.proxy import CacheProxyDb
 
-PT2CM = ReportUtils.pt2cm
+PT2CM = utils.pt2cm
 
 #------------------------------------------------------------------------
 #
@@ -533,7 +533,7 @@ class RecurseDown:
                                                  person_handle, family_handle,
                                                  father if s_level else myself)
 
-                spouse_handle = ReportUtils.find_spouse(person, family)
+                spouse_handle = utils.find_spouse(person, family)
                 if (self.max_spouses > s_level and
                         spouse_handle and
                         spouse_handle not in self.families_seen):
@@ -562,7 +562,7 @@ class RecurseDown:
 
                 if self.max_spouses > s_level and \
                    spouse_handle not in self.families_seen:
-                    #spouse_handle = ReportUtils.find_spouse(person,family)
+                    #spouse_handle = utils.find_spouse(person,family)
                     self.recurse(spouse_handle, x_level, s_level+1, spouse)
 
         if s_level == 1:

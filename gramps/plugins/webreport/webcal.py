@@ -55,7 +55,7 @@ from gramps.version import VERSION
 from gramps.gen.constfunc import win
 from gramps.gen.config import config
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
@@ -1832,7 +1832,7 @@ class WebCalOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        filter_list = utils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):

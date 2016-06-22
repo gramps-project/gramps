@@ -45,7 +45,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                                     INDEX_TYPE_TOC)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 
@@ -212,7 +212,7 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))

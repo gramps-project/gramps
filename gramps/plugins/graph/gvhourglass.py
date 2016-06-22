@@ -43,7 +43,7 @@ from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption,
                                   EnumeratedListOption)
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -235,7 +235,7 @@ class HourGlassReport(Report):
         """
         family_id = family.get_gramps_id()
         label = ""
-        marriage = ReportUtils.find_marriage(self.__db, family)
+        marriage = utils.find_marriage(self.__db, family)
         if marriage:
             label = self._get_date(marriage.get_date_object())
         if self.includeid == 1 and label: # same line

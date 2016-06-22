@@ -41,7 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import Person
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -300,8 +300,8 @@ class SummaryOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
@@ -321,7 +321,7 @@ class SummaryOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set(first_indent=-0.75, lmargin=.75)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(3))
-        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_top_margin(utils.pt2cm(3))
+        para.set_bottom_margin(utils.pt2cm(3))
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("SR-Normal", para)

@@ -109,7 +109,7 @@ from gramps.gen.plug.menu import (PersonOption, NumberOption, StringOption,
                                   FilterOption, NoteOption, MediaOption,
                                   DestinationOption)
 from gramps.gen.plug.report import (Report, Bibliography)
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 
@@ -718,7 +718,7 @@ class BasePage:
                         table += trow
                         # find the spouse of the principal individual and
                         # display that person
-                        sp_hdl = ReportUtils.find_spouse(individual, family)
+                        sp_hdl = utils.find_spouse(individual, family)
                         if sp_hdl:
                             spouse = self.r_db.get_person_from_handle(sp_hdl)
                             if spouse:
@@ -3331,7 +3331,7 @@ class SurnamePage(BasePage):
                                 fam_count += 1
                                 family = self.r_db.get_family_from_handle(
                                     family_handle)
-                                partner_handle = ReportUtils.find_spouse(
+                                partner_handle = utils.find_spouse(
                                     person, family)
                                 if partner_handle:
                                     link = self.new_person_link(partner_handle,
@@ -6184,7 +6184,7 @@ class PersonPages(BasePage):
                             for family_handle in family_list:
                                 family = self.r_db.get_family_from_handle(
                                     family_handle)
-                                partner_handle = ReportUtils.find_spouse(
+                                partner_handle = utils.find_spouse(
                                     person, family)
                                 if partner_handle:
                                     if not first_family:
@@ -7550,7 +7550,7 @@ class PersonPages(BasePage):
         ped = []
         for family_handle in self.person.get_family_handle_list():
             rel_family = self.r_db.get_family_from_handle(family_handle)
-            spouse_handle = ReportUtils.find_spouse(self.person, rel_family)
+            spouse_handle = utils.find_spouse(self.person, rel_family)
             if spouse_handle:
                 spouse = self.r_db.get_person_from_handle(spouse_handle)
                 pedsp = (Html("li", class_="spouse") +
@@ -9798,7 +9798,7 @@ class NavWebOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        filter_list = utils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -9982,7 +9982,7 @@ def __get_person_keyname(dbase, handle):
 def __get_place_keyname(dbase, handle):
     """ ... """
 
-    return ReportUtils.place_name(dbase, handle)
+    return utils.place_name(dbase, handle)
 
 # See : http://www.gramps-project.org/bugs/view.php?id = 4423
 

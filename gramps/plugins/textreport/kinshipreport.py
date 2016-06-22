@@ -44,7 +44,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from gramps.gen.plug.report import Report
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -304,7 +304,7 @@ class KinshipReport(Report):
         person = self.database.get_person_from_handle(person_handle)
 
         name = self._name_display.display(person)
-        mark = ReportUtils.get_person_mark(self.database, person)
+        mark = utils.get_person_mark(self.database, person)
         birth_date = ""
         birth = get_birth_or_fallback(self.database, person)
         if birth:
@@ -386,7 +386,7 @@ class KinshipOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
-        para.set_bottom_margin(ReportUtils.pt2cm(8))
+        para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
@@ -398,7 +398,7 @@ class KinshipOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_header_level(3)
         para.set_font(font)
-        para.set_top_margin(ReportUtils.pt2cm(6))
+        para.set_top_margin(utils.pt2cm(6))
         para.set_description(_('The basic style used for sub-headings.'))
         default_style.add_paragraph_style("KIN-Subtitle", para)
 

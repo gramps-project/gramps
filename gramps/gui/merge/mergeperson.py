@@ -38,7 +38,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.plug.report import utils
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import URL_MANUAL_SECT3
@@ -230,14 +230,14 @@ class MergePerson(ManagedWindow):
                 (fname, mname, pid) = self.get_parent_info(fid)
                 family = self.database.get_family_from_handle(fid)
                 self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), pid))
-                spouse_id = ReportUtils.find_spouse(person, family)
+                spouse_id = utils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
                     self.add(tobj, indent, "%s:\t%s" % (_('Spouse'),
                              name_of(spouse)))
                 relstr = str(family.get_relationship())
                 self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
-                event = ReportUtils.find_marriage(self.database, family)
+                event = utils.find_marriage(self.database, family)
                 if event:
                     self.add(tobj, indent, "%s:\t%s" % (
                             _('Marriage'),
