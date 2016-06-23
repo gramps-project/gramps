@@ -187,7 +187,7 @@ class NameFormat(GenericFormat):
                     name.get_suffix,           # s
                     name.get_surname,          # l
                     name.get_family_nick_name  # g
-                    ]
+                   ]
 
         return self.generic_format(name, code, upper, function)
 
@@ -301,7 +301,7 @@ class DateFormat(GenericFormat):
 
         def eu_month():
             return month(date.get_stop_month(),
-                    self.__count_chars("N", 4)).upper()
+                         self.__count_chars("N", 4)).upper()
 
         def e_day():
             return day(date.get_stop_day(), self.__count_chars("e", 2))
@@ -316,7 +316,7 @@ class DateFormat(GenericFormat):
             return ui_mods[date.get_modifier()]
 
 
-        code  = "ymMd" + "znNe" + "ot"
+        code = "ymMd" + "znNe" + "ot"
         upper = "OT"
         function = [s_year, s_month, su_month, s_day,
                     e_year, e_month, eu_month, e_day,
@@ -382,7 +382,7 @@ class PlaceFormat(GenericFormat):
                     place.get_title,
                     place.get_longitude,
                     place.get_latitude
-                    ]
+                   ]
 
         return self.generic_format(place, code, upper, function)
 
@@ -454,7 +454,7 @@ class EventFormat(GenericFormat):
                     format_place,
                     event.get_gramps_id,
                     format_attrib
-                    ]
+                   ]
 
         return self.generic_format(event, code, upper, function)
 
@@ -502,7 +502,7 @@ class GrampsFormat:
 
                 owner.get_phone(),
                 owner.get_email()
-                ]
+               ]
 
         where = code.find(self.string_in.this)
         if where != -1:
@@ -570,7 +570,7 @@ class GalleryFormat(GenericFormat):
                     format_date,
                     photo.get_gramps_id,
                     format_attrib
-                    ]
+                   ]
 
         return self.generic_format(photo, code, upper, function)
 
@@ -673,7 +673,7 @@ class VarString:
     This will contain the string that will be displayed.  or string out.
     it is used for groups and format strings.
     """
-    def __init__(self, start_state = TXT.remove):
+    def __init__(self, start_state=TXT.remove):
         self.state = start_state  # overall state of the string.
         self._text = []  # list of tuples (TXT.?, string)
 
@@ -714,7 +714,7 @@ class VarString:
                 index = index + 1
                 break  # while self._text:
 
-            type_0_1  = (self._text[index][0], self._text[index+1][0])
+            type_0_1 = (self._text[index][0], self._text[index+1][0])
 
             #if   type_0_1 == (TXT.remove, TXT.remove):
             #    pass
@@ -1025,13 +1025,13 @@ class VariableParse:
             if self.empty_attribute(self.friend.person):
                 return
             return attrib_parse.parse_format(
-                                      self.friend.person.get_attribute_list())
+                self.friend.person.get_attribute_list())
         elif next_char == "u":
             #Marriage Atribute
             if self.empty_attribute(self.friend.family):
                 return
             return attrib_parse.parse_format(
-                                      self.friend.family.get_attribute_list())
+                self.friend.family.get_attribute_list())
 
         elif next_char == "e":
             #person event
@@ -1246,7 +1246,7 @@ if __name__ == '__main__':
 # You will need to put in your own path to the src directory
 #
 #-------------------------------------------------------------------------
-    # pylint: disable-msg=C0103
+    # pylint: disable=C0103
 
     def combinations(c, r):
         # combinations('ABCD', 2) --> AB AC AD BC BD CD
@@ -1362,7 +1362,8 @@ if __name__ == '__main__':
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
     print(tmp)
     answer.append(tmp)
-    print("Good" if answer == ["1970 a99b09c3d1970f70"
+    print("Good" if answer == [
+        "1970 a99b09c3d1970f70"
         ] else "!! bad !!")
 
     import sys
@@ -1386,7 +1387,8 @@ if __name__ == '__main__':
         #now can we put something in for the last name?
         name_to_test.set_family_nick_name("The Clubs" if 5 in y_or_n else "")
 
-    line_in = "{$(c)$(t)<1>{<2>$(f)}{<3>$(n){<0> <0>}<4>$(x)}$(s)<5>$(l)<6>$(g)<0>"
+    line_in = "{$(c)$(t)<1>{<2>$(f)}{<3>$(n){<0> "
+    line_in = line_in + "<0>}<4>$(x)}$(s)<5>$(l)<6>$(g)<0>"
     consume_str = ConsumableString(line_in)
 
     print()
@@ -1436,7 +1438,7 @@ if __name__ == '__main__':
     answer = main_level_test(consume_str, NameFormat, name_to_test)
     print(answer)
     print("Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs"
-                 else "!! bad !!")
+          else "!! bad !!")
 
 
     print()
@@ -1510,7 +1512,8 @@ if __name__ == '__main__':
         #print tmp
         answer.append(len(tmp))
     print(answer)
-    print("Good" if answer == [38, 44, 44, 42, 46, 50, 49, 50, 40, 40, 38, 42,
+    print("Good" if answer == [
+        38, 44, 44, 42, 46, 50, 49, 50, 40, 40, 38, 42,
         46, 45, 46, 46, 44, 48, 52, 51, 52, 44, 48, 52, 51, 52, 46, 50, 49, 50,
         54, 53, 54, 57, 58, 57, 28, 28, 26, 30, 34, 33, 34, 34, 32, 36, 40, 39,
         40, 32, 36, 40, 39, 40, 34, 38, 37, 38, 42, 41, 42, 45, 46, 45, 30, 28,
