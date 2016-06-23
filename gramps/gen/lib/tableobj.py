@@ -25,9 +25,10 @@ Table Object class for Gramps.
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
+from abc import abstractmethod
 import time
 
 #-------------------------------------------------------------------------
@@ -78,18 +79,19 @@ class TableObject(BaseObject):
             self.handle = None
             self.change = 0
 
+    @abstractmethod
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -109,8 +111,8 @@ class TableObject(BaseObject):
 
         :returns: Returns a struct containing the data of the object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def from_struct(self, struct):
         """
         Given a struct data representation, return an object of this type.
@@ -125,7 +127,6 @@ class TableObject(BaseObject):
 
         :returns: Returns an object of this type.
         """
-        raise NotImplementedError
 
     def get_change_time(self):
         """

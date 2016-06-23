@@ -24,6 +24,13 @@ Secondary Object class for Gramps.
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from abc import abstractmethod
+
+#-------------------------------------------------------------------------
+#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
@@ -40,18 +47,19 @@ class SecondaryObject(BaseObject):
     database.
     """
 
+    @abstractmethod
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -71,8 +79,8 @@ class SecondaryObject(BaseObject):
 
         :returns: Returns a struct containing the data of the object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def from_struct(self, struct):
         """
         Given a struct data representation, return an object of this type.
@@ -87,7 +95,6 @@ class SecondaryObject(BaseObject):
 
         :returns: Returns an object of this type.
         """
-        raise NotImplementedError
 
     def is_equal(self, source):
         return self.serialize() == source.serialize()

@@ -25,6 +25,13 @@ Basic Primary Object class for Gramps.
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from abc import abstractmethod
+
+#-------------------------------------------------------------------------
+#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
@@ -71,18 +78,19 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
         else:
             self.gramps_id = None
 
+    @abstractmethod
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -102,8 +110,8 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
         :returns: Returns a struct containing the data of the object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def from_struct(self, struct):
         """
         Given a struct data representation, return an object of this type.
@@ -118,7 +126,6 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
         :returns: Returns an object of this type.
         """
-        raise NotImplementedError
 
     def set_gramps_id(self, gramps_id):
         """
@@ -259,18 +266,19 @@ class PrimaryObject(BasicPrimaryObject):
         """
         BasicPrimaryObject.__init__(self, source)
 
+    @abstractmethod
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -290,8 +298,8 @@ class PrimaryObject(BasicPrimaryObject):
 
         :returns: Returns a struct containing the data of the object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def from_struct(self, struct):
         """
         Given a struct data representation, return an object of this type.
@@ -306,7 +314,6 @@ class PrimaryObject(BasicPrimaryObject):
 
         :returns: Returns an object of this type.
         """
-        raise NotImplementedError
 
     def has_handle_reference(self, classname, handle):
         """

@@ -24,10 +24,17 @@ Base Reference class for Gramps.
 
 #-------------------------------------------------------------------------
 #
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
+
+#-------------------------------------------------------------------------
+#
 # RefBase class
 #
 #-------------------------------------------------------------------------
-class RefBase:
+class RefBase(metaclass=ABCMeta):
     """
     Base reference class to manage references to other objects.
 
@@ -62,6 +69,7 @@ class RefBase:
         self.ref = data
         return self
 
+    @abstractmethod
     def get_referenced_handles(self):
         """
         Returns the list of (classname, handle) tuples for all directly
@@ -71,7 +79,6 @@ class RefBase:
                   objects.
         :rtype: list
         """
-        raise NotImplementedError
 
     def set_reference_handle(self, handle):
         """

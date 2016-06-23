@@ -24,9 +24,10 @@ Base Object class for Gramps
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 import re
 
 #-------------------------------------------------------------------------
@@ -34,7 +35,7 @@ import re
 # Base Object
 #
 #-------------------------------------------------------------------------
-class BaseObject:
+class BaseObject(metaclass=ABCMeta):
     """
     The BaseObject is the base class for all data objects in Gramps,
     whether primary or not.
@@ -43,18 +44,19 @@ class BaseObject:
     searching through all available information.
     """
 
+    @abstractmethod
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -74,8 +76,8 @@ class BaseObject:
 
         :returns: Returns a struct containing the data of the object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def from_struct(self, struct):
         """
         Given a struct data representation, return an object of this type.
@@ -90,7 +92,6 @@ class BaseObject:
 
         :returns: Returns an object of this type.
         """
-        raise NotImplementedError
 
     def matches_string(self, pattern, case_sensitive=False):
         """
