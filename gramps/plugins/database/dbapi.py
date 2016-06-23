@@ -2014,3 +2014,60 @@ class DBAPI(DbGeneric):
         summary = super().get_summary()
         summary.update(self.dbapi.__class__.get_summary())
         return summary
+
+    # TODO: The following abstract methods need implementing.
+    # See bug #9547.
+
+    def add_family_event(event, transaction):
+        pass
+
+    def add_person_event(event, transaction):
+        pass
+
+    def all_handles(table):
+        pass
+
+    def commit_base(obj, data_map, key, transaction, change_time):
+        pass
+
+    def commit_family_event(event, transaction, change_time):
+        pass
+
+    def commit_personal_event(event, transaction, change_time):
+        pass
+
+    def delete_primary_from_reference_map(handle, transaction):
+        pass
+
+    def get_from_handle(handle, class_type, data_map):
+        pass
+
+    def get_reference_map_cursor():
+        pass
+
+    def get_reference_map_primary_cursor():
+        pass
+
+    def get_reference_map_referenced_cursor():
+        pass
+
+    def gramps_upgrade():
+        pass
+
+    def need_schema_upgrade():
+        pass
+
+    def set_auto_remove():
+        pass
+
+    def set_redo_callback(callback):
+        pass
+
+    def set_undo_callback(callback):
+        pass
+
+    def sort_surname_list():
+        pass
+
+    def update_reference_map(obj, transaction):
+        pass

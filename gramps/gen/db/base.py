@@ -30,6 +30,7 @@ from this class.
 # Python libraries
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 import re
 import time
 from operator import itemgetter
@@ -85,11 +86,11 @@ def sort_objects(objects, order_by, db):
 #
 #-------------------------------------------------------------------------
 
-class DbReadBase:
+class DbReadBase(metaclass=ABCMeta):
     """
     Gramps database object. This object is a base class for all
-    database interfaces.  All methods raise NotImplementedError
-    and must be implemented in the derived class as required.
+    database interfaces.  All methods are abstract and must be implemented
+    in the derived class as required.
     """
 
     def __init__(self):
@@ -121,24 +122,25 @@ class DbReadBase:
         """
         self.__feature[feature] = value
 
+    @abstractmethod
     def all_handles(self, table):
         """
         Return all handles from the specified table as a list
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def close(self):
         """
         Close the specified database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def db_has_bm_changes(self):
         """
         Return whethere there were bookmark changes during the session.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
@@ -161,107 +163,107 @@ class DbReadBase:
 
             result_list = list(find_backlink_handles(handle))
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_initial_person(self):
         """
         Returns first person in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_event_gramps_id(self):
         """
         Return the next available Gramps ID for a Event object based off the
         event ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_family_gramps_id(self):
         """
         Return the next available Gramps ID for a Family object based off the
         family ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_note_gramps_id(self):
         """
         Return the next available Gramps ID for a Note object based off the
         note ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_media_gramps_id(self):
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_person_gramps_id(self):
         """
         Return the next available Gramps ID for a Person object based off the
         person ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_place_gramps_id(self):
         """
         Return the next available Gramps ID for a Place object based off the
         place ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_repository_gramps_id(self):
         """
         Return the next available Gramps ID for a Repository object based
         off the repository ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def find_next_source_gramps_id(self):
         """
         Return the next available Gramps ID for a Source object based off the
         source ID prefix.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_bookmarks(self):
         """
         Return the list of Person handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_child_reference_types(self):
         """
         Return a list of all child reference types associated with Family
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_default_handle(self):
         """
         Return the default Person of the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_default_person(self):
         """
         Return the default Person of the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_bookmarks(self):
         """
         Return the list of Event handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_cursor(self):
         """
         Return a reference to a cursor over Family objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_from_gramps_id(self, val):
         """
         Find an Event in the database from the passed Gramps ID.
@@ -269,68 +271,68 @@ class DbReadBase:
         If no such Event exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_from_handle(self, handle):
         """
         Find a Event in the database from the passed Gramps ID.
 
         If no such Event exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_handles(self):
         """
         Return a list of database handles, one handle for each Event in the
         database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_roles(self):
         """
         Return a list of all custom event role names associated with Event
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_attribute_types(self):
         """
         Return a list of all Attribute types assocated with Event instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_event_types(self):
         """
         Return a list of all event types in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_attribute_types(self):
         """
         Return a list of all Attribute types associated with Family instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_bookmarks(self):
         """
         Return the list of Family handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_cursor(self):
         """
         Return a reference to a cursor over Family objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_event_types(self):
         """
         Deprecated:  Use get_event_types
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_from_gramps_id(self, val):
         """
         Find a Family in the database from the passed Gramps ID.
@@ -338,16 +340,16 @@ class DbReadBase:
         If no such Family exists, None is returned.
         Need to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_from_handle(self, handle):
         """
         Find a Family in the database from the passed Gramps ID.
 
         If no such Family exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Family in
@@ -355,46 +357,46 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by surnames.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_family_relation_types(self):
         """
         Return a list of all relationship types associated with Family
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_from_handle(self, handle, class_type, data_map):
         """
         Return unserialized data from database given handle and object class
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_gramps_ids(self, obj_key):
         """
         Returns all the keys from a table given a table name
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_attribute_types(self):
         """
         Return a list of all Attribute types associated with Media and MediaRef
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_bookmarks(self):
         """
         Return the list of Media handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_cursor(self):
         """
         Return a reference to a cursor over Media objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Media in
@@ -402,52 +404,52 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by title.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_mediapath(self):
         """
         Return the default media path of the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_name_group_mapping(self, surname):
         """
         Return the default grouping name for a surname.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_name_types(self):
         """
         Return a list of all custom names types associated with Person
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_origin_types(self):
         """
         Return a list of all custom origin types associated with Person/Surname
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_bookmarks(self):
         """
         Return the list of Note handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_cursor(self):
         """
         Return a reference to a cursor over Note objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_from_gramps_id(self, val):
         """
         Find a Note in the database from the passed Gramps ID.
@@ -455,84 +457,84 @@ class DbReadBase:
         If no such Note exists, None is returned.
         Needs to be overridden by the derived classderri.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_from_handle(self, handle):
         """
         Find a Note in the database from the passed Gramps ID.
 
         If no such Note exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_handles(self):
         """
         Return a list of database handles, one handle for each Note in the
         database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_note_types(self):
         """
         Return a list of all custom note types associated with Note instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_people(self):
         """
         Return the number of people currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_from_gramps_id(self, val):
         """
         Find a Media in the database from the passed Gramps ID.
@@ -540,35 +542,35 @@ class DbReadBase:
         If no such Media exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_media_from_handle(self, handle):
         """
         Find an Object in the database from the passed Gramps ID.
 
         If no such Object exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_attribute_types(self):
         """
         Return a list of all Attribute types associated with Person instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_cursor(self):
         """
         Return a reference to a cursor over Person objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_event_types(self):
         """
         Deprecated:  Use get_event_types
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_from_gramps_id(self, val):
         """
         Find a Person in the database from the passed Gramps ID.
@@ -576,16 +578,16 @@ class DbReadBase:
         If no such Person exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_from_handle(self, handle):
         """
         Find a Person in the database from the passed Gramps ID.
 
         If no such Person exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_person_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Person in
@@ -593,27 +595,27 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by surnames.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_attribute_types(self):
         """
         Return a list of all Attribute types associated with Source/Citation
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_bookmarks(self):
         """
         Return the list of Place handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_cursor(self):
         """
         Return a reference to a cursor over Place objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_from_gramps_id(self, val):
         """
         Find a Place in the database from the passed Gramps ID.
@@ -621,16 +623,16 @@ class DbReadBase:
         If no such Place exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_from_handle(self, handle):
         """
         Find a Place in the database from the passed Gramps ID.
 
         If no such Place exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Place in
@@ -638,98 +640,98 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by Place title.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_event_data(self, handle):
         """
         Return raw (serialized and pickled) Event object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_family_data(self, handle):
         """
         Return raw (serialized and pickled) Family object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_note_data(self, handle):
         """
         Return raw (serialized and pickled) Note object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_media_data(self, handle):
         """
         Return raw (serialized and pickled) Family object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_person_data(self, handle):
         """
         Return raw (serialized and pickled) Person object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_place_data(self, handle):
         """
         Return raw (serialized and pickled) Place object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_repository_data(self, handle):
         """
         Return raw (serialized and pickled) Repository object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_source_data(self, handle):
         """
         Return raw (serialized and pickled) Source object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_citation_data(self, handle):
         """
         Return raw (serialized and pickled) Citation object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_raw_tag_data(self, handle):
         """
         Return raw (serialized and pickled) Tag object from handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_reference_map_cursor(self):
         """
         Returns a reference to a cursor over the reference map
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_reference_map_referenced_cursor(self):
         """
         Returns a reference to a cursor over the reference map referenced map
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repo_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repository_cursor(self):
         """
         Return a reference to a cursor over Repository objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repository_from_gramps_id(self, val):
         """
         Find a Repository in the database from the passed Gramps ID.
@@ -737,55 +739,55 @@ class DbReadBase:
         If no such Repository exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repository_from_handle(self, handle):
         """
         Find a Repository in the database from the passed Gramps ID.
 
         If no such Repository exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository in
         the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_repository_types(self):
         """
         Return a list of all custom repository types associated with Repository
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_researcher(self):
         """
         Return the Researcher instance, providing information about the owner
         of the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_save_path(self):
         """
         Return the save path of the file, or "" if one does not exist.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_bookmarks(self):
         """
         Return the list of Source handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_cursor(self):
         """
         Return a reference to a cursor over Source objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_from_gramps_id(self, val):
         """
         Find a Source in the database from the passed Gramps ID.
@@ -793,16 +795,16 @@ class DbReadBase:
         If no such Source exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_from_handle(self, handle):
         """
         Find a Source in the database from the passed Gramps ID.
 
         If no such Source exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Source in
@@ -810,27 +812,27 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by Source title.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_source_media_types(self):
         """
         Return a list of all custom source media types associated with Source
         instances in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_citation_bookmarks(self):
         """
         Return the list of Citation handles in the bookmarks.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_citation_cursor(self):
         """
         Return a reference to a cursor over Citation objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_citation_from_gramps_id(self, val):
         """
         Find a Citation in the database from the passed Gramps ID.
@@ -838,16 +840,16 @@ class DbReadBase:
         If no such Citation exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_citation_from_handle(self, handle):
         """
         Find a Citation in the database from the passed Gramps ID.
 
         If no such Citation exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_citation_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Citation in
@@ -855,28 +857,28 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by Citation title.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_tag_cursor(self):
         """
         Return a reference to a cursor over Tag objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_tag_from_handle(self, handle):
         """
         Find a Tag in the database from the passed handle.
 
         If no such Tag exists, a HandleError is raised.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_tag_from_name(self, val):
         """
         Find a Tag in the database from the passed Tag name.
@@ -884,8 +886,8 @@ class DbReadBase:
         If no such Tag exists, None is returned.
         Needs to be overridden by the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_tag_handles(self, sort_handles=False):
         """
         Return a list of database handles, one handle for each Tag in
@@ -893,229 +895,229 @@ class DbReadBase:
 
         If sort_handles is True, the list is sorted by Tag name.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_url_types(self):
         """
         Return a list of all custom names types associated with Url instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_place_types(self):
         """
         Return a list of all custom place types assocated with Place instances
         in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def gramps_upgrade(self):
         """
         Return True if database is upgraded
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_family_handle(self, handle):
         """
         Return True if the handle exists in the current Family database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_gramps_id(self, obj_key, gramps_id):
         """
         Returns True if the key exists in table given a table name
 
         Not used in current codebase
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_name_group_key(self, name):
         """
         Return if a key exists in the name_group table.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_media_handle(self, handle):
         """
         Return True if the handle exists in the current Mediadatabase.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_person_handle(self, handle):
         """
         Return True if the handle exists in the current Person database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_place_handle(self, handle):
         """
         Return True if the handle exists in the current Place database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_repository_handle(self, handle):
         """
         Return True if the handle exists in the current Repository database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_source_handle(self, handle):
         """
         Return True if the handle exists in the current Source database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def has_tag_handle(self, handle):
         """
         Return True if the handle exists in the current Tag database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def is_open(self):
         """
         Return True if the database has been opened.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_citations(self, order_by=None):
         """
         Return an iterator over objects for Citations in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_event_handles(self):
         """
         Return an iterator over handles for Events in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_events(self, order_by=None):
         """
         Return an iterator over objects for Events in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_families(self, order_by=None):
         """
         Return an iterator over objects for Families in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_family_handles(self):
         """
         Return an iterator over handles for Families in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_media_handles(self):
         """
         Return an iterator over handles for Media in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_media(self, order_by=None):
         """
         Return an iterator over objects for Medias in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_note_handles(self):
         """
         Return an iterator over handles for Notes in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_notes(self, order_by=None):
         """
         Return an iterator over objects for Notes in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_people(self, order_by=None):
         """
         Return an iterator over objects for Persons in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_person_handles(self):
         """
         Return an iterator over handles for Persons in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_place_handles(self):
         """
         Return an iterator over handles for Places in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_places(self, order_by=None):
         """
         Return an iterator over objects for Places in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_repositories(self, order_by=None):
         """
         Return an iterator over objects for Repositories in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_repository_handles(self):
         """
         Return an iterator over handles for Repositories in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_source_handles(self):
         """
         Return an iterator over handles for Sources in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_sources(self, order_by=None):
         """
         Return an iterator over objects for Sources in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_tag_handles(self):
         """
         Return an iterator over handles for Tags in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def iter_tags(self, order_by=None):
         """
         Return an iterator over objects for Tags in the database
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def load(self, name, callback, mode=None, force_schema_upgrade=False,
              force_bsddb_upgrade=False):
         """
         Open the specified database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def report_bm_change(self):
         """
         Add 1 to the number of bookmark changes during this session.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def request_rebuild(self):
         """
         Notify clients that the data has changed significantly, and that all
@@ -1126,14 +1128,14 @@ class DbReadBase:
         .. todo:: it might be better to replace these rebuild signals by one
                   single database-rebuild signal.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def version_supported(self):
         """
         Return True when the file has a supported version.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_event_id_prefix(self, val):
         """
         Set the naming template for Gramps Event ID values.
@@ -1142,8 +1144,8 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as E%d or E%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_family_id_prefix(self, val):
         """
         Set the naming template for Gramps Family ID values. The string is
@@ -1151,8 +1153,8 @@ class DbReadBase:
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_note_id_prefix(self, val):
         """
         Set the naming template for Gramps Note ID values.
@@ -1161,8 +1163,8 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as N%d or N%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_media_id_prefix(self, val):
         """
         Set the naming template for Gramps Media ID values.
@@ -1171,8 +1173,8 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as O%d or O%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_person_id_prefix(self, val):
         """
         Set the naming template for Gramps Person ID values.
@@ -1181,8 +1183,8 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as I%d or I%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_place_id_prefix(self, val):
         """
         Set the naming template for Gramps Place ID values.
@@ -1191,15 +1193,15 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as P%d or P%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):
         """
         Set the prefixes for the gramps ids for all gramps objects
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_repository_id_prefix(self, val):
         """
         Set the naming template for Gramps Repository ID values.
@@ -1208,8 +1210,8 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as R%d or R%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_source_id_prefix(self, val):
         """
         Set the naming template for Gramps Source ID values.
@@ -1218,14 +1220,14 @@ class DbReadBase:
         in a format that contains a C/Python style format string using %d,
         such as S%d or S%04d.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_mediapath(self, path):
         """
         Set the default media path for database, path should be utf-8.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_redo_callback(self, callback):
         """
         Define the callback function that is called whenever an redo operation
@@ -1234,20 +1236,20 @@ class DbReadBase:
         The callback function receives a single argument that is a text string
         that defines the operation.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_researcher(self, owner):
         """
         Set the information about the owner of the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_save_path(self, path):
         """
         Set the save path for the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_undo_callback(self, callback):
         """
         Define the callback function that is called whenever an undo operation
@@ -1256,19 +1258,18 @@ class DbReadBase:
         The callback function receives a single argument that is a text string
         that defines the operation.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_dbid(self):
         """
         A unique ID for this database on this computer.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_dbname(self):
         """
         A name for this database on this computer.
         """
-        raise NotImplementedError
 
     def _select(self, table, fields=None, start=0, limit=-1,
                 where=None, order_by=None):
@@ -1459,8 +1460,8 @@ class DbReadBase:
 class DbWriteBase(DbReadBase):
     """
     Gramps database object. This object is a base class for all
-    database interfaces.  All methods raise NotImplementedError
-    and must be implemented in the derived class as required.
+    database interfaces.  All methods are abstract and must be implemented
+    in the derived class as required.
     """
 
     def __init__(self):
@@ -1472,6 +1473,7 @@ class DbWriteBase(DbReadBase):
         """
         DbReadBase.__init__(self)
 
+    @abstractmethod
     def add_event(self, event, transaction, set_gid=True):
         """
         Add an Event to the database, assigning internal IDs if they have
@@ -1479,8 +1481,8 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_family(self, family, transaction, set_gid=True):
         """
         Add a Family to the database, assigning internal IDs if they have
@@ -1488,14 +1490,14 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_family_event(self, event, transaction):
         """
         Deprecated:  Use add_event
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_note(self, obj, transaction, set_gid=True):
         """
         Add a Note to the database, assigning internal IDs if they have
@@ -1503,8 +1505,8 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_media(self, obj, transaction, set_gid=True):
         """
         Add a Media to the database, assigning internal IDs if they have
@@ -1512,8 +1514,8 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_person(self, person, transaction, set_gid=True):
         """
         Add a Person to the database, assigning internal IDs if they have
@@ -1521,14 +1523,14 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_person_event(self, event, transaction):
         """
         Deprecated:  Use add_event
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_place(self, place, transaction, set_gid=True):
         """
         Add a Place to the database, assigning internal IDs if they have
@@ -1536,8 +1538,8 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_repository(self, obj, transaction, set_gid=True):
         """
         Add a Repository to the database, assigning internal IDs if they have
@@ -1545,8 +1547,8 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_source(self, source, transaction, set_gid=True):
         """
         Add a Source to the database, assigning internal IDs if they have
@@ -1554,109 +1556,109 @@ class DbWriteBase(DbReadBase):
 
         If not set_gid, then gramps_id is not set.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_tag(self, tag, transaction):
         """
         Add a Tag to the database, assigning a handle if it has not already
         been defined.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_to_surname_list(self, person, batch_transaction, name):
         """
         Add surname from given person to list of surnames
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def build_surname_list(self):
         """
         Build the list of locale-sorted surnames contained in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_base(self, obj, data_map, key, transaction, change_time):
         """
         Commit the specified object to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_event(self, event, transaction, change_time=None):
         """
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_family(self, family, transaction, change_time=None):
         """
         Commit the specified Family to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_family_event(self, event, transaction, change_time=None):
         """
         Deprecated:  Use commit_event
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_media(self, obj, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_note(self, note, transaction, change_time=None):
         """
         Commit the specified Note to the database, storing the changes as part
         of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_person(self, person, transaction, change_time=None):
         """
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_personal_event(self, event, transaction, change_time=None):
         """
         Deprecated:  Use commit_event
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_place(self, place, transaction, change_time=None):
         """
         Commit the specified Place to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_repository(self, repository, transaction, change_time=None):
         """
         Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_source(self, source, transaction, change_time=None):
         """
         Commit the specified Source to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def commit_tag(self, tag, transaction, change_time=None):
         """
         Commit the specified Tag to the database, storing the changes as
         part of the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete_primary_from_reference_map(self, handle, transaction):
         """
         Called each time an object is removed from the database.
@@ -1664,32 +1666,32 @@ class DbWriteBase(DbReadBase):
         This can be used by subclasses to update any additional index tables
         that might need to be changed.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_undodb(self):
         """
         Return the database that keeps track of Undo/Redo operations.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def need_schema_upgrade(self):
         """
         Return True if database needs to be upgraded
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def rebuild_secondary(self, callback):
         """
         Rebuild secondary indices
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def reindex_reference_map(self, callback):
         """
         Reindex all primary records in the database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_event(self, handle, transaction):
         """
         Remove the Event specified by the database handle from the
@@ -1697,8 +1699,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_family(self, handle, transaction):
         """
         Remove the Family specified by the database handle from the
@@ -1706,8 +1708,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_from_surname_list(self, person):
         """
         Check whether there are persons with the same surname left in
@@ -1716,8 +1718,8 @@ class DbWriteBase(DbReadBase):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_note(self, handle, transaction):
         """
         Remove the Note specified by the database handle from the
@@ -1725,8 +1727,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_media(self, handle, transaction):
         """
         Remove the MediaPerson specified by the database handle from the
@@ -1734,8 +1736,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_person(self, handle, transaction):
         """
         Remove the Person specified by the database handle from the database,
@@ -1743,8 +1745,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_place(self, handle, transaction):
         """
         Remove the Place specified by the database handle from the
@@ -1752,8 +1754,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_repository(self, handle, transaction):
         """
         Remove the Repository specified by the database handle from the
@@ -1761,8 +1763,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_source(self, handle, transaction):
         """
         Remove the Source specified by the database handle from the
@@ -1770,8 +1772,8 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_tag(self, handle, transaction):
         """
         Remove the Tag specified by the database handle from the
@@ -1779,34 +1781,34 @@ class DbWriteBase(DbReadBase):
 
         This method must be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_auto_remove(self):
         """
         BSDDB change log settings using new method with renamed attributes
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_default_person_handle(self, handle):
         """
         Set the default Person to the passed instance.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_name_group_mapping(self, name, group):
         """
         Set the default grouping name for a surname.
 
         Needs to be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def sort_surname_list(self):
         """
         Sort the list of surnames contained in the database by locale ordering.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def transaction_begin(self, transaction):
         """
         Prepare the database for the start of a new transaction.
@@ -1824,21 +1826,21 @@ class DbWriteBase(DbReadBase):
         :returns: Returns the Gramps transaction.
         :rtype: :py:class:`.DbTxn`
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def transaction_commit(self, transaction):
         """
         Make the changes to the database final and add the content of the
         transaction to the undo database.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def transaction_abort(self, transaction):
         """
         Revert the changes made to the database so far during the transaction.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def update_reference_map(self, obj, transaction):
         """
         Called each time an object is writen to the database.
@@ -1846,13 +1848,12 @@ class DbWriteBase(DbReadBase):
         This can be used by subclasses to update any additional index tables
         that might need to be changed.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def write_version(self, name):
         """
         Write version number for a newly created DB.
         """
-        raise NotImplementedError
 
     def add_child_to_family(self, family, child,
                             mrel=ChildRefType(),

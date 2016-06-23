@@ -3,11 +3,12 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 import time
 import pickle
 from collections import deque
 
-class DbUndo:
+class DbUndo(metaclass=ABCMeta):
     """
     Base class for the Gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.
@@ -65,56 +66,56 @@ class DbUndo:
             self.close()
         return exc_type is None
 
+    @abstractmethod
     def open(self, value):
         """
         Open the backing storage.  Needs to be overridden in the derived
         class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def close(self):
         """
         Close the backing storage.  Needs to be overridden in the derived
         class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def append(self, value):
         """
         Add a new entry on the end.  Needs to be overridden in the derived
         class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def __getitem__(self, index):
         """
         Returns an entry by index number.  Needs to be overridden in the
         derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def __setitem__(self, index, value):
         """
         Set an entry to a value.  Needs to be overridden in the derived class.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def __len__(self):
         """
         Returns the number of entries.  Needs to be overridden in the derived
         class.
         """
-        raise NotImplementedError
 
-    def __redo(self, update_history):
+    @abstractmethod
+    def _redo(self, update_history):
         """
         """
-        raise NotImplementedError
 
-    def __undo(self, update_history):
+    @abstractmethod
+    def _undo(self, update_history):
         """
         """
-        raise NotImplementedError
 
     def commit(self, txn, msg):
         """
