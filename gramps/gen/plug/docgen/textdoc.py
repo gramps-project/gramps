@@ -28,9 +28,10 @@
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 
 #-------------------------------------------------------------------------
 #
@@ -87,30 +88,44 @@ class IndexMark:
 #
 #------------------------------------------------------------------------
 
-class TextDoc:
+class TextDoc(metaclass=ABCMeta):
     """
     Abstract Interface for text document generators. Output formats for
     text reports must implement this interface to be used by the report
     system.
     """
+
+    @abstractmethod
     def page_break(self):
         """
         Forces a page break, creating a new page.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def start_bold(self):
-        raise NotImplementedError
+        """
+        Start a section of bold text.
+        """
 
+    @abstractmethod
     def end_bold(self):
-        raise NotImplementedError
+        """
+        End a section of bold text.
+        """
 
+    @abstractmethod
     def start_superscript(self):
-        raise NotImplementedError
+        """
+        Start a section of superscript text.
+        """
 
+    @abstractmethod
     def end_superscript(self):
-        raise NotImplementedError
+        """
+        End a section of superscript text.
+        """
 
+    @abstractmethod
     def start_paragraph(self, style_name, leader=None):
         """
         Starts a new paragraph, using the specified style name.
@@ -120,14 +135,14 @@ class TextDoc:
         :param leader: Leading text for a paragraph. Typically used
                        for numbering.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def end_paragraph(self):
         """
         Ends the current paragraph.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def start_table(self, name, style_name):
         """
         Starts a new table.
@@ -135,24 +150,26 @@ class TextDoc:
         :param name: Unique name of the table.
         :param style_name: :class:`.TableStyle` to use for the new table
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def end_table(self):
-        "Ends the current table"
-        raise NotImplementedError
+        """
+        Ends the current table.
+        """
 
+    @abstractmethod
     def start_row(self):
         """
         Starts a new row on the current table.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def end_row(self):
         """
         Ends the current row on the current table.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def start_cell(self, style_name, span=1):
         """
         Starts a new table cell, using the paragraph style specified.
@@ -160,14 +177,14 @@ class TextDoc:
         :param style_name: :class:`.TableCellStyle` to use for the cell
         :param span: number of columns to span
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def end_cell(self):
         """
         Ends the current table cell.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def write_text(self, text, mark=None, links=False):
         """
         Writes the text in the current paragraph. Should only be used after a
@@ -177,7 +194,6 @@ class TextDoc:
         :param mark:  :class:`.IndexMark` to use for indexing (if supported)
         :param links: make URLs in the text clickable (if supported)
         """
-        raise NotImplementedError
 
     def write_markup(self, text, s_tags, mark=None):
         """
@@ -192,17 +208,6 @@ class TextDoc:
         :param mark:  :class:`.IndexMark` to use for indexing (if supported)
         """
         self.write_text(text, mark=mark)
-
-    def write_note(self, text, format, style_name):
-        """
-        Writes the note's text and take care of paragraphs,
-        depending on the format.
-
-        :param text: text to write.
-        :param format: format to use for writing. True for flowed text,
-                       1 for preformatted text.
-        """
-        raise NotImplementedError
 
     def write_styled_note(self, styledtext, format, style_name,
                           contains_html=False, links=False):
@@ -256,6 +261,7 @@ class TextDoc:
                 else:
                     self.write_text(piece, links=links)
 
+    @abstractmethod
     def add_media(self, name, align, w_cm, h_cm, alt='', style_name=None, crop=None):
         """
         Add a photo of the specified width (in centimeters).
@@ -269,7 +275,6 @@ class TextDoc:
         :param style_name: style to use for captions
         :param crop: image cropping parameters
         """
-        raise NotImplementedError
 
     def start_link(self, link):
         """

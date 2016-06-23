@@ -26,9 +26,10 @@
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 
 #-------------------------------------------------------------------------
 #
@@ -50,18 +51,24 @@ log = logging.getLogger(".drawdoc")
 # DrawDoc
 #
 #------------------------------------------------------------------------
-class DrawDoc:
+class DrawDoc(metaclass=ABCMeta):
     """
     Abstract Interface for graphical document generators. Output formats
     for graphical reports must implement this interface to be used by the
     report system.
     """
 
+    @abstractmethod
     def start_page(self):
-        raise NotImplementedError
+        """
+        Start a page.
+        """
 
+    @abstractmethod
     def end_page(self):
-        raise NotImplementedError
+        """
+        End a page.
+        """
 
     def get_usable_width(self):
         """
@@ -91,32 +98,38 @@ class DrawDoc:
         "Determine the width need for multiline text in given font"
         return fontscale.string_multiline_width(fontstyle, text)
 
+    @abstractmethod
     def draw_path(self, style, path):
-        raise NotImplementedError
+        """
+        Draw a path.
+        """
 
+    @abstractmethod
     def draw_box(self, style, text, x, y, w, h, mark=None):
         """
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def draw_text(self, style, text, x1, y1, mark=None):
         """
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def center_text(self, style, text, x1, y1, mark=None):
         """
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def rotate_text(self, style, text, x, y, angle, mark=None):
         """
         :param mark: :class:`.IndexMark` to use for indexing (if supported)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def draw_line(self, style, x1, y1, x2, y2):
-        raise NotImplementedError
+        """
+        Draw a line.
+        """

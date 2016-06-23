@@ -24,11 +24,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-#------------------------------------------------------------------------
+#-------------------------------------------------------------------------
 #
-# python modules
+# Standard Python modules
 #
-#------------------------------------------------------------------------
+#-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 import os
 from io import BytesIO
 import tempfile
@@ -278,12 +279,14 @@ class GVOptions:
 # GVDoc
 #
 #-------------------------------------------------------------------------------
-class GVDoc:
+class GVDoc(metaclass=ABCMeta):
     """
     Abstract Interface for Graphviz document generators. Output formats
     for Graphviz reports must implement this interface to be used by the
     report system.
     """
+
+    @abstractmethod
     def add_node(self, node_id, label, shape="", color="",
                  style="", fillcolor="", url="", htmloutput=False):
         """
@@ -313,8 +316,8 @@ class GVDoc:
         :type htmloutput: boolean
         :return: nothing
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
         Add a link between two nodes.
@@ -330,8 +333,8 @@ class GVDoc:
         :type comment: string
         :return: nothing
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_comment(self, comment):
         """
         Add a comment to the source file.
@@ -341,8 +344,8 @@ class GVDoc:
         :type comment: string
         :return: nothing
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def start_subgraph(self, graph_id):
         """
         Start a subgraph in this graph.
@@ -352,15 +355,14 @@ class GVDoc:
         :type id1: string
         :return: nothing
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def end_subgraph(self):
         """
         End a subgraph that was previously started in this graph.
 
         :return: nothing
         """
-        raise NotImplementedError
 
 #-------------------------------------------------------------------------------
 #

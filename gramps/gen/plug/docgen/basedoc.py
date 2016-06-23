@@ -29,9 +29,10 @@ interfaces should be derived from the core classes.
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +54,7 @@ log = logging.getLogger(".basedoc")
 # BaseDoc
 #
 #------------------------------------------------------------------------
-class BaseDoc:
+class BaseDoc(metaclass=ABCMeta):
     """
     Base class for document generators. Different output formats,
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
@@ -101,14 +102,16 @@ class BaseDoc:
         """
         self._style_sheet = StyleSheet(style_sheet)
 
+    @abstractmethod
     def open(self, filename):
         """
         Opens the file so that it can be generated.
 
         :param filename: path name of the file to create
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def close(self):
-        "Closes the generated file."
-        raise NotImplementedError
+        """
+        Closes the generated file.
+        """
