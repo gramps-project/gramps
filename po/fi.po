@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps50_fi_master_POT_2016-06-20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-21 09:01+0300\n"
+"POT-Creation-Date: 2016-06-20 13:00-0700\n"
 "PO-Revision-Date: 2016-06-21 09:02+0300\n"
 "Last-Translator: Matti Niemelä <matti.u.niemela@gmail.com>\n"
 "Language-Team: Matti Niemelä <matti.u.niemela@gmail.com>\n"
@@ -2042,7 +2042,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:168
-#, python-format
+#, fuzzy, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[E]} {year}"
 
@@ -2053,7 +2053,7 @@ msgstr "{long_month.f[E]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:176
-#, python-format
+#, fuzzy, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[IL]} {year}"
 
@@ -2066,7 +2066,7 @@ msgstr "{long_month.f[IL]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:184
-#, python-format
+#, fuzzy, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2077,7 +2077,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:192
-#, python-format
+#, fuzzy, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2087,7 +2087,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:199
-#, python-format
+#, fuzzy, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[P]} {year}"
 
@@ -2097,7 +2097,7 @@ msgstr "{long_month.f[P]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:206
-#, python-format
+#, fuzzy, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2107,7 +2107,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, python-format
+#, fuzzy, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2117,7 +2117,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, python-format
+#, fuzzy, python-brace-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2127,7 +2127,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, python-format
+#, fuzzy, python-brace-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -6240,7 +6240,8 @@ msgstr "Kasti"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
-#: ../gramps/gui/glade/rule.glade:934 ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:934
+#: ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:130 ../gramps/gui/plug/_windows.py:239
 #: ../gramps/gui/plug/_windows.py:607 ../gramps/gui/plug/_windows.py:1084
 #: ../gramps/gui/selectors/selectevent.py:74
@@ -6558,7 +6559,8 @@ msgstr "Elinkaaren tapahtumat"
 #: ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:91
+#: ../gramps/gui/editors/editfamily.py:499
+#: ../gramps/gui/editors/editlink.py:91
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267
 #: ../gramps/plugins/export/exportcsv.py:541
@@ -7206,7 +7208,8 @@ msgstr "Lainaukset"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 #: ../gramps/plugins/textreport/tagreport.py:484
-#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:95
+#: ../gramps/plugins/view/noteview.py:110
+#: ../gramps/plugins/view/view.gpr.py:95
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/webreport/narrativeweb.py:378
 #: ../gramps/plugins/webreport/narrativeweb.py:1039
@@ -7348,8 +7351,8 @@ msgstr "Tagit"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
-#: ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99
+#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Yksityinen"
@@ -7500,8 +7503,8 @@ msgstr "Nimike"
 #: ../gramps/plugins/tool/patchnames.py:402
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
-#: ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96
+#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:1350
 #: ../gramps/plugins/webreport/narrativeweb.py:1670
@@ -7784,7 +7787,8 @@ msgstr "Syntymien viiteindeksi"
 msgid "Event references"
 msgstr "Tapahtumaviitteet"
 
-#: ../gramps/gen/lib/person.py:253 ../gramps/plugins/graph/gvfamilylines.py:264
+#: ../gramps/gen/lib/person.py:253
+#: ../gramps/plugins/graph/gvfamilylines.py:264
 #: ../gramps/plugins/graph/gvrelgraph.py:794
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
@@ -8137,7 +8141,8 @@ msgstr "Sulauta perhe"
 msgid "Merge Media Objects"
 msgstr "Sulauta mediatiedostot"
 
-#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58
+#: ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Sulauta lisätiedot"
 
@@ -8634,7 +8639,8 @@ msgstr ""
 #. 3
 #: ../gramps/gen/plug/docgen/graphdoc.py:244 ../gramps/gui/clipboard.py:394
 #: ../gramps/gui/configure.py:545 ../gramps/gui/editors/editlink.py:93
-#: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:183
+#: ../gramps/gui/editors/editmedia.py:98
+#: ../gramps/gui/editors/editmedia.py:183
 #: ../gramps/gui/editors/editmediaref.py:145
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
@@ -8752,7 +8758,8 @@ msgstr "Kelvolliset arvot:"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:69 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:111
+#: ../gramps/gui/plug/report/_bookdialog.py:84
+#: ../gramps/gui/viewmanager.py:111
 msgid "Unsupported"
 msgstr "Ei tuettu"
 
@@ -8964,17 +8971,20 @@ msgstr "henkilön %s esivanhemmat"
 msgid "People with common ancestor with %s"
 msgstr "henkilön %s kanssa on yhteinen esivanhempi"
 
-#: ../gramps/gen/plug/report/utils.py:345 ../gramps/gui/plug/_guioptions.py:885
+#: ../gramps/gen/plug/report/utils.py:345
+#: ../gramps/gui/plug/_guioptions.py:885
 #: ../gramps/gui/plug/report/_bookdialog.py:176
 msgid "unknown father"
 msgstr "tuntematon isä"
 
-#: ../gramps/gen/plug/report/utils.py:351 ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:351
+#: ../gramps/gui/plug/_guioptions.py:891
 #: ../gramps/gui/plug/report/_bookdialog.py:182
 msgid "unknown mother"
 msgstr "tuntematon äiti"
 
-#: ../gramps/gen/plug/report/utils.py:353 ../gramps/gui/plug/_guioptions.py:893
+#: ../gramps/gen/plug/report/utils.py:353
+#: ../gramps/gui/plug/_guioptions.py:893
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s ja %(mother_name)s (%(family_id)s)"
@@ -9219,11 +9229,13 @@ msgid ""
 msgstr ""
 " '%s' kielelle ei löydy perhesuhteiden kääntäjää. Käytetään siksi 'english'."
 
-#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:199
+#: ../gramps/gen/utils/alive.py:148
+#: ../gramps/plugins/importer/importcsv.py:199
 msgid "death date"
 msgstr "kuolinaika"
 
-#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:167
+#: ../gramps/gen/utils/alive.py:153
+#: ../gramps/plugins/importer/importcsv.py:167
 msgid "birth date"
 msgstr "syntymäaika"
 
@@ -10176,8 +10188,9 @@ msgstr "Näytä nimimuokkain"
 #: ../gramps/gui/glade/displaystate.glade:25
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26
 #: ../gramps/gui/glade/rule.glade:1029 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:26 ../gramps/gui/plug/_windows.py:102
-#: ../gramps/gui/plug/_windows.py:676 ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/glade/updateaddons.glade:26
+#: ../gramps/gui/plug/_windows.py:102 ../gramps/gui/plug/_windows.py:676
+#: ../gramps/gui/plug/_windows.py:732
 #: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:1222 ../gramps/gui/views/bookmarks.py:236
 #: ../gramps/gui/views/tags.py:419 ../gramps/gui/widgets/grampletbar.py:633
@@ -10426,8 +10439,8 @@ msgstr "Esimerkki"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:149
-#: ../gramps/gui/plug/report/_bookdialog.py:694 ../gramps/gui/views/tags.py:411
-#: ../gramps/gui/widgets/fanchart.py:1777
+#: ../gramps/gui/plug/report/_bookdialog.py:694
+#: ../gramps/gui/views/tags.py:411 ../gramps/gui/widgets/fanchart.py:1777
 #: ../gramps/plugins/view/pedigreeview.py:1597
 msgid "_Add"
 msgstr "_Lisää..."
@@ -10829,7 +10842,8 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:43
-#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69
+#: ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:41
@@ -10845,7 +10859,8 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:22
+#: ../gramps/gui/glade/editsource.glade:23
+#: ../gramps/gui/glade/editurl.glade:22
 #: ../gramps/gui/glade/mergecitation.glade:22
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11027,13 +11042,15 @@ msgstr "Tietokannan tiedot"
 
 #: ../gramps/gui/dbman.py:118 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:40
-#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:485
-#: ../gramps/gui/glade/book.glade:559 ../gramps/gui/glade/configure.glade:39
-#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40
+#: ../gramps/gui/glade/book.glade:485 ../gramps/gui/glade/book.glade:559
+#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
+#: ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:58
-#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85
+#: ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:57
@@ -11049,7 +11066,8 @@ msgstr "Tietokannan tiedot"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:38
+#: ../gramps/gui/glade/editsource.glade:40
+#: ../gramps/gui/glade/editurl.glade:38
 #: ../gramps/gui/glade/mergecitation.glade:38
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11063,12 +11081,14 @@ msgstr "Tietokannan tiedot"
 #: ../gramps/gui/glade/mergerepository.glade:38
 #: ../gramps/gui/glade/mergesource.glade:38
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336
-#: ../gramps/gui/glade/rule.glade:767 ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:767
+#: ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1736
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:164 ../gramps/gui/utils.py:186
 #: ../gramps/gui/viewmanager.py:1220 ../gramps/gui/views/tags.py:628
-#: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
+#: ../gramps/plugins/tool/check.py:695
+#: ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:297
 msgid "_OK"
@@ -11589,13 +11609,15 @@ msgstr "_Ominaisuudet"
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:399
 #: ../gramps/plugins/tool/removeunused.py:191
-#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:535
+#: ../gramps/plugins/tool/sortevents.py:56
+#: ../gramps/plugins/tool/verify.py:535
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
-#: ../gramps/plugins/view/relview.py:591 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95
+#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:591
+#: ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -11624,7 +11646,8 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/rule.glade:432
 #: ../gramps/gui/glade/styleeditor.glade:1830
 #: ../gramps/gui/glade/styleeditor.glade:1837
-#: ../gramps/gui/widgets/fanchart.py:1823 ../gramps/plugins/view/relview.py:408
+#: ../gramps/gui/widgets/fanchart.py:1823
+#: ../gramps/plugins/view/relview.py:408
 msgid "Add"
 msgstr "Lisää"
 
@@ -13129,7 +13152,8 @@ msgid "manual|Place_Editor_dialog"
 msgstr "Paikkamuokkain_ikkuna"
 
 #: ../gramps/gui/editors/editplace.py:93
-#: ../gramps/gui/glade/editplace.glade:288 ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:288
+#: ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Paikan nimi:"
 
@@ -13363,9 +13387,9 @@ msgid "Tag selection"
 msgstr "Tagin valinta"
 
 #. pylint: disable-msg=E1101
-#: ../gramps/gui/editors/edittaglist.py:99 ../gramps/gui/views/bookmarks.py:205
-#: ../gramps/gui/views/tags.py:382 ../gramps/gui/views/tags.py:605
-#: ../gramps/gui/views/tags.py:621
+#: ../gramps/gui/editors/edittaglist.py:99
+#: ../gramps/gui/views/bookmarks.py:205 ../gramps/gui/views/tags.py:382
+#: ../gramps/gui/views/tags.py:605 ../gramps/gui/views/tags.py:621
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
@@ -13398,7 +13422,8 @@ msgstr "Tagi"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:28
-#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53
+#: ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:77
@@ -13414,7 +13439,8 @@ msgstr "Tagi"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:58
+#: ../gramps/gui/glade/editsource.glade:58
+#: ../gramps/gui/glade/editurl.glade:58
 #: ../gramps/gui/glade/mergecitation.glade:54
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -13592,7 +13618,8 @@ msgid "Rule Name"
 msgstr "Säännön nimi"
 
 #: ../gramps/gui/editors/filtereditor.py:757
-#: ../gramps/gui/editors/filtereditor.py:761 ../gramps/gui/glade/rule.glade:917
+#: ../gramps/gui/editors/filtereditor.py:761
+#: ../gramps/gui/glade/rule.glade:917
 msgid "No rule selected"
 msgstr "Ei valittua sääntöä"
 
@@ -13600,7 +13627,8 @@ msgstr "Ei valittua sääntöä"
 msgid "Define filter"
 msgstr "Määrittele suodin"
 
-#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:970
+#: ../gramps/gui/editors/filtereditor.py:820
+#: ../gramps/gui/glade/rule.glade:970
 msgid "Values"
 msgstr "Arvot"
 
@@ -13779,7 +13807,8 @@ msgstr "_Etsi"
 
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:56
-#: ../gramps/gui/plug/report/_bookdialog.py:663 ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/plug/report/_bookdialog.py:663
+#: ../gramps/gui/undohistory.py:88
 msgid "_Clear"
 msgstr "_Tyhjennä"
 
@@ -13803,8 +13832,8 @@ msgstr "Näppäin %s ei ole sidottu mihinkään"
 msgid "%s does not contain"
 msgstr "%s ei sisällä"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1140
-#: ../gramps/gui/views/listview.py:1160
+#: ../gramps/gui/filters/_searchbar.py:168
+#: ../gramps/gui/views/listview.py:1140 ../gramps/gui/views/listview.py:1160
 msgid "Updating display..."
 msgstr "Päivitetään näyttöä..."
 
@@ -14162,7 +14191,8 @@ msgstr "Älä kysy uudelleen"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:47
+#: ../gramps/gui/glade/editsource.glade:46
+#: ../gramps/gui/glade/editurl.glade:47
 msgid "Accept changes and close window"
 msgstr "Hyväksy muutokset ja sulje ikkuna"
 
@@ -15566,7 +15596,8 @@ msgid "Note 2"
 msgstr "Lisätieto 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
-#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1007
+#: ../gramps/gui/glade/mergenote.glade:295
+#: ../gramps/gui/views/listview.py:1007
 msgid "Format:"
 msgstr "Muotoiltu:"
 
@@ -15821,7 +15852,8 @@ msgstr "Muokkaa valittua sääntöä"
 msgid "Delete the selected rule"
 msgstr "Poista valittu sääntö"
 
-#: ../gramps/gui/glade/rule.glade:524 ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:524
+#: ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/export/exportcsv.glade:113
 #: ../gramps/plugins/export/exportftree.glade:120
 #: ../gramps/plugins/export/exportgeneweb.glade:121
@@ -18306,7 +18338,8 @@ msgstr ""
 "Tämä tietue on käytössä. Sen hävittäminen poistaa tietueen tietokannasta ja "
 "kaikkialta, mistä siihen on viitattu."
 
-#: ../gramps/gui/views/listview.py:558 ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:558
+#: ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Tietueen hävittäminen poistaa sen tietokannasta."
 
@@ -18574,11 +18607,13 @@ msgstr "Supista tätä osaa"
 msgid "People Menu"
 msgstr "Henkilöt-valikko"
 
-#: ../gramps/gui/widgets/fanchart.py:1589 ../gramps/plugins/view/relview.py:800
+#: ../gramps/gui/widgets/fanchart.py:1589
+#: ../gramps/plugins/view/relview.py:800
 msgid "Edit family"
 msgstr "Muokkaa perhettä"
 
-#: ../gramps/gui/widgets/fanchart.py:1608 ../gramps/plugins/view/relview.py:801
+#: ../gramps/gui/widgets/fanchart.py:1608
+#: ../gramps/plugins/view/relview.py:801
 msgid "Reorder families"
 msgstr "Uudelleen järjestä perheet"
 
@@ -32821,7 +32856,8 @@ msgstr "Suurin mahdollinen määrä _vuosia lasten välillä"
 msgid "Maximum _span of years for all children"
 msgstr "Suurin mahdollinen vuosiväli kaikille lapsille"
 
-#: ../gramps/plugins/tool/verify.glade:987 ../gramps/plugins/tool/verify.py:632
+#: ../gramps/plugins/tool/verify.glade:987
+#: ../gramps/plugins/tool/verify.py:632
 msgid "_Hide marked"
 msgstr "_Piilota merkityt"
 
@@ -34075,11 +34111,13 @@ msgstr " (1 sisarus)"
 msgid " (only child)"
 msgstr " (ainoa lapsi)"
 
-#: ../gramps/plugins/view/relview.py:945 ../gramps/plugins/view/relview.py:1442
+#: ../gramps/plugins/view/relview.py:945
+#: ../gramps/plugins/view/relview.py:1442
 msgid "Add new child to family"
 msgstr "Lisää perheeseen uusi lapsi"
 
-#: ../gramps/plugins/view/relview.py:949 ../gramps/plugins/view/relview.py:1446
+#: ../gramps/plugins/view/relview.py:949
+#: ../gramps/plugins/view/relview.py:1446
 msgid "Add existing child to family"
 msgstr "Lisää perheeseen kannassa jo oleva lapsi"
 
