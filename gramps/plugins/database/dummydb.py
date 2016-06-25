@@ -549,15 +549,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warn("database is closed")
         return []
 
-    def get_from_handle(self, handle, class_type, data_map):
-        """
-        Return unserialized data from database given handle and object class
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        LOG.warn("handle %s does not exist in the dummy database" % handle)
-        raise HandleError('Handle %s not found' % handle.decode('utf-8'))
-
     def get_gramps_ids(self, obj_key):
         """
         Returns all the keys from a table given a table name

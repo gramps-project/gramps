@@ -723,7 +723,7 @@ class DbBsddbRead(DbReadBase, Callback):
                                           self.nmap_index, self.nid_trans)
         return gid
 
-    def get_from_handle(self, handle, class_type, data_map):
+    def _get_from_handle(self, handle, class_type, data_map):
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
         data = data_map.get(handle)
@@ -768,7 +768,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Person exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Person, self.person_map)
+        return self._get_from_handle(handle, Person, self.person_map)
 
     def get_source_from_handle(self, handle):
         """
@@ -776,7 +776,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Source exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Source, self.source_map)
+        return self._get_from_handle(handle, Source, self.source_map)
 
     def get_citation_from_handle(self, handle):
         """
@@ -784,7 +784,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Citation exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Citation, self.citation_map)
+        return self._get_from_handle(handle, Citation, self.citation_map)
 
     def get_media_from_handle(self, handle):
         """
@@ -792,7 +792,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Object exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Media, self.media_map)
+        return self._get_from_handle(handle, Media, self.media_map)
 
     def get_place_from_handle(self, handle):
         """
@@ -800,7 +800,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Place exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Place, self.place_map)
+        return self._get_from_handle(handle, Place, self.place_map)
 
     def get_event_from_handle(self, handle):
         """
@@ -808,7 +808,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Event exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Event, self.event_map)
+        return self._get_from_handle(handle, Event, self.event_map)
 
     def get_family_from_handle(self, handle):
         """
@@ -816,7 +816,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Family exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Family, self.family_map)
+        return self._get_from_handle(handle, Family, self.family_map)
 
     def get_repository_from_handle(self, handle):
         """
@@ -824,7 +824,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Repository exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Repository, self.repository_map)
+        return self._get_from_handle(handle, Repository, self.repository_map)
 
     def get_note_from_handle(self, handle):
         """
@@ -832,7 +832,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Note exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Note, self.note_map)
+        return self._get_from_handle(handle, Note, self.note_map)
 
     def get_tag_from_handle(self, handle):
         """
@@ -840,7 +840,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
         If no such Tag exists, a HandleError is raised.
         """
-        return self.get_from_handle(handle, Tag, self.tag_map)
+        return self._get_from_handle(handle, Tag, self.tag_map)
 
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         if isinstance(tbl, dict):

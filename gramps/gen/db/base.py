@@ -358,12 +358,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_from_handle(self, handle, class_type, data_map):
-        """
-        Return unserialized data from database given handle and object class
-        """
-        raise NotImplementedError
-
     def get_gramps_ids(self, obj_key):
         """
         Returns all the keys from a table given a table name

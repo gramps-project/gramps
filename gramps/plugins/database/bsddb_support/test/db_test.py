@@ -57,7 +57,6 @@ class DbTest(unittest.TestCase):
         "get_family_from_handle",
         "get_family_handles",
         "get_family_relation_types",
-        "get_from_handle",
         "get_gramps_ids",
         "get_media_attribute_types",
         "get_media_bookmarks",
