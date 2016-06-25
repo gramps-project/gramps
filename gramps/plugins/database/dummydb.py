@@ -1008,14 +1008,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         LOG.warn("handle %s does not exist in the dummy database" % handle)
         raise HandleError('Handle %s not found' % handle.decode('utf-8'))
 
-    def get_reference_map_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        return []
-
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
@@ -1666,17 +1658,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warn("database is closed")
 
-    def set_redo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an redo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-
     def set_researcher(self, owner):
         """
         Set the information about the owner of the database.
@@ -1687,17 +1668,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
     def set_save_path(self, path):
         """
         Set the save path for the database.
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-
-    def set_undo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an undo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
         """
         if not self.db_is_open:
             LOG.warn("database is closed")

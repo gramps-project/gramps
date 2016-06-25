@@ -486,13 +486,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     # the main index is unique, the others allow duplicate entries.
 
     @catch_db_error
-    def get_reference_map_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map
-        """
-        return DbBsddbAssocCursor(self.reference_map, self.txn)
-
-    @catch_db_error
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
@@ -1843,9 +1836,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             else:
                 grouppar = group
             self.emit('person-groupname-rebuild', (name, grouppar))
-
-    def sort_surname_list(self):
-        self.surname_list.sort(key=glocale.sort_key)
 
     @catch_db_error
     def build_surname_list(self):

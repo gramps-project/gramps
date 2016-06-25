@@ -1488,26 +1488,6 @@ class DbBsddbRead(DbReadBase, Callback):
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
-    def set_undo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an undo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
-        """
-        self.undo_callback = callback
-
-    def set_redo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an redo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
-        """
-        self.redo_callback = callback
-
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.

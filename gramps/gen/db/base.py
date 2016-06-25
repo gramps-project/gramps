@@ -700,12 +700,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_reference_map_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map
-        """
-        raise NotImplementedError
-
     def get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
@@ -1226,16 +1220,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_redo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an redo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
-        """
-        raise NotImplementedError
-
     def set_researcher(self, owner):
         """
         Set the information about the owner of the database.
@@ -1245,16 +1229,6 @@ class DbReadBase:
     def set_save_path(self, path):
         """
         Set the save path for the database.
-        """
-        raise NotImplementedError
-
-    def set_undo_callback(self, callback):
-        """
-        Define the callback function that is called whenever an undo operation
-        is executed.
-
-        The callback function receives a single argument that is a text string
-        that defines the operation.
         """
         raise NotImplementedError
 
@@ -1774,12 +1748,6 @@ class DbWriteBase(DbReadBase):
         Set the default grouping name for a surname.
 
         Needs to be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def sort_surname_list(self):
-        """
-        Sort the list of surnames contained in the database by locale ordering.
         """
         raise NotImplementedError
 

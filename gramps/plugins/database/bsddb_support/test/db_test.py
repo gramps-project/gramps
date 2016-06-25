@@ -104,7 +104,6 @@ class DbTest(unittest.TestCase):
         "get_raw_repository_data",
         "get_raw_source_data",
         "get_raw_tag_data",
-        "get_reference_map_cursor",
         "get_reference_map_primary_cursor",
         "get_reference_map_referenced_cursor",
         "get_repo_bookmarks",
@@ -173,10 +172,8 @@ class DbTest(unittest.TestCase):
         "set_source_id_prefix",
         # Other set methods:
         "set_mediapath",
-        "set_redo_callback",
         "set_researcher",
         "set_save_path",
-        "set_undo_callback",
         "version_supported",
         ]
 
@@ -219,7 +216,6 @@ class DbTest(unittest.TestCase):
         "set_auto_remove",
         "set_default_person_handle",
         "set_name_group_mapping",
-        "sort_surname_list",
         "transaction_begin",
         "transaction_commit",
         "update_reference_map",
