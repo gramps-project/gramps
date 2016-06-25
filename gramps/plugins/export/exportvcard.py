@@ -148,7 +148,8 @@ class VCardWriter:
 
     def export_data(self):
         """Open the file and loop over everyone too write their VCards."""
-        with OpenFileOrStdout(self.filename) as self.filehandle:
+        with OpenFileOrStdout(self.filename, encoding='utf-8',
+                              errors='strict', newline='') as self.filehandle:
             if self.filehandle:
                 self.count = 0
                 self.oldval = 0

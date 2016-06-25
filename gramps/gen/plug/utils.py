@@ -397,18 +397,19 @@ def load_addon_file(path, callback=None):
 #-------------------------------------------------------------------------
 class OpenFileOrStdout:
     """Context manager to open a file or stdout for writing."""
-    def __init__(self, filename, encoding=None):
+    def __init__(self, filename, encoding=None, errors=None, newline=None):
         self.filename = filename
         self.filehandle = None
         self.encoding = encoding
+        self.errors = errors
+        self.newline = newline
 
     def __enter__(self):
         if self.filename == '-':
             self.filehandle = sys.stdout
-        elif self.encoding:
-            self.filehandle = open(self.filename, 'w', encoding=self.encoding)
         else:
-            self.filehandle = open(self.filename, 'w')
+            self.filehandle = open(self.filename, 'w', encoding=self.encoding,
+                                   errors=self.errors, newline=self.newline)
         return self.filehandle
 
     def __exit__(self, exc_type, exc_value, traceback):
