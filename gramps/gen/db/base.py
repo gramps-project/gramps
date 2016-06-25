@@ -121,12 +121,6 @@ class DbReadBase:
         """
         self.__feature[feature] = value
 
-    def all_handles(self, table):
-        """
-        Return all handles from the specified table as a list
-        """
-        raise NotImplementedError
-
     def close(self):
         """
         Close the specified database.
@@ -1537,13 +1531,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def commit_base(self, obj, data_map, key, transaction, change_time):
-        """
-        Commit the specified object to the database, storing the changes as
-        part of the transaction.
-        """
-        raise NotImplementedError
-
     def commit_event(self, event, transaction, change_time=None):
         """
         Commit the specified Event to the database, storing the changes as
@@ -1728,12 +1715,6 @@ class DbWriteBase(DbReadBase):
         database, preserving the change in the passed transaction.
 
         This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def set_auto_remove(self):
-        """
-        BSDDB change log settings using new method with renamed attributes
         """
         raise NotImplementedError
 

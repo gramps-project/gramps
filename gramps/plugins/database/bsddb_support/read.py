@@ -1064,7 +1064,7 @@ class DbBsddbRead(DbReadBase, Callback):
                 return False
             return True
 
-    def all_handles(self, table):
+    def _all_handles(self, table):
         """ return all the keys of a database table
 
         .. warning:: For speed the keys are directly returned, so on python3
@@ -1083,7 +1083,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.person_map)
+            handle_list = self._all_handles(self.person_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbyperson_key)
             return handle_list
@@ -1101,7 +1101,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
 
         if self.db_is_open:
-            handle_list = self.all_handles(self.place_map)
+            handle_list = self._all_handles(self.place_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbyplace_key)
             return handle_list
@@ -1118,7 +1118,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.source_map)
+            handle_list = self._all_handles(self.source_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbysource_key)
             return handle_list
@@ -1135,7 +1135,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.citation_map)
+            handle_list = self._all_handles(self.citation_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbycitation_key)
             return handle_list
@@ -1152,7 +1152,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.media_map)
+            handle_list = self._all_handles(self.media_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbymedia_key)
             return handle_list
@@ -1167,7 +1167,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            return self.all_handles(self.event_map)
+            return self._all_handles(self.event_map)
         return []
 
     def get_family_handles(self, sort_handles=False):
@@ -1181,7 +1181,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.family_map)
+            handle_list = self._all_handles(self.family_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbyfamily_key)
             return handle_list
@@ -1196,7 +1196,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            return self.all_handles(self.repository_map)
+            return self._all_handles(self.repository_map)
         return []
 
     def get_note_handles(self):
@@ -1208,7 +1208,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            return self.all_handles(self.note_map)
+            return self._all_handles(self.note_map)
         return []
 
     def get_tag_handles(self, sort_handles=False):
@@ -1222,7 +1222,7 @@ class DbBsddbRead(DbReadBase, Callback):
                      bytestrings are returned!
         """
         if self.db_is_open:
-            handle_list = self.all_handles(self.tag_map)
+            handle_list = self._all_handles(self.tag_map)
             if sort_handles:
                 handle_list.sort(key=self.__sortbytag_key)
             return handle_list

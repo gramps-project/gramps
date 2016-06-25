@@ -453,9 +453,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             dbmap.open(fname, table_name, dbtype, DBFLAGS_O, DBMODE)
         return dbmap
 
-    def __all_handles(self, table):
-        return table.keys(self.txn)
-
     def __log_error(self):
         mypath = os.path.join(self.get_save_path(),DBRECOVFN)
         with open(mypath, "w") as ofile:
@@ -781,7 +778,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.set_lk_max_objects(DBOBJECTS)
 
         # Set to auto remove stale logs
-        self.set_auto_remove()
+        self._set_auto_remove()
 
         # Set not to flush to disk synchronous, this greatly speeds up
         # database changes, but comes at the cause of loss of durability, so
@@ -1896,7 +1893,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             if 'cursor' in locals():
                 cursor.close()
 
-    def commit_base(self, obj, data_map, key, transaction, change_time):
+    def _commit_base(self, obj, data_map, key, transaction, change_time):
         """
         Commit the specified object to the database, storing the changes as
         part of the transaction.
@@ -1925,7 +1922,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
         """
-        old_data = self.commit_base(
+        old_data = self._commit_base(
             person, self.person_map, PERSON_KEY, transaction, change_time)
 
         if old_data:
@@ -1984,7 +1981,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
-        self.commit_base(obj, self.media_map, MEDIA_KEY,
+        self._commit_base(obj, self.media_map, MEDIA_KEY,
                             transaction, change_time)
 
         self.media_attributes.update(
@@ -1996,7 +1993,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Source to the database, storing the changes as
         part of the transaction.
         """
-        self.commit_base(source, self.source_map, SOURCE_KEY,
+        self._commit_base(source, self.source_map, SOURCE_KEY,
                           transaction, change_time)
 
         self.source_media_types.update(
@@ -2018,7 +2015,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Citation to the database, storing the changes as
         part of the transaction.
         """
-        self.commit_base(citation, self.citation_map, CITATION_KEY,
+        self._commit_base(citation, self.citation_map, CITATION_KEY,
                           transaction, change_time)
 
         attr_list = []
@@ -2036,7 +2033,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Place to the database, storing the changes as
         part of the transaction.
         """
-        self.commit_base(place, self.place_map, PLACE_KEY,
+        self._commit_base(place, self.place_map, PLACE_KEY,
                           transaction, change_time)
 
         if place.get_type().is_custom():
@@ -2056,7 +2053,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
-        self.commit_base(event, self.event_map, EVENT_KEY,
+        self._commit_base(event, self.event_map, EVENT_KEY,
                   transaction, change_time)
 
         self.event_attributes.update(
@@ -2077,7 +2074,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Family to the database, storing the changes as
         part of the transaction.
         """
-        self.commit_base(family, self.family_map, FAMILY_KEY,
+        self._commit_base(family, self.family_map, FAMILY_KEY,
                           transaction, change_time)
 
         self.family_attributes.update(
@@ -2110,7 +2107,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-        self.commit_base(repository, self.repository_map, REPOSITORY_KEY,
+        self._commit_base(repository, self.repository_map, REPOSITORY_KEY,
                           transaction, change_time)
 
         if repository.type.is_custom():
@@ -2124,7 +2121,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Note to the database, storing the changes as part
         of the transaction.
         """
-        self.commit_base(note, self.note_map, NOTE_KEY,
+        self._commit_base(note, self.note_map, NOTE_KEY,
                           transaction, change_time)
 
         if note.type.is_custom():
@@ -2135,7 +2132,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Tag to the database, storing the changes as part
         of the transaction.
         """
-        self.commit_base(tag, self.tag_map, TAG_KEY,
+        self._commit_base(tag, self.tag_map, TAG_KEY,
                           transaction, change_time)
 
     def get_from_handle(self, handle, class_type, data_map):
@@ -2373,7 +2370,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         _LOG.debug("Upgrade time: %d seconds" % int(time.time()-t))
 
-    def set_auto_remove(self):
+    def _set_auto_remove(self):
         """
         BSDDB change log settings using new method with renamed attributes
         """
@@ -2404,7 +2401,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.set_lk_max_objects(DBOBJECTS)
 
         # clean up unused logs
-        self.set_auto_remove()
+        self._set_auto_remove()
 
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\

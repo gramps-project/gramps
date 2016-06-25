@@ -26,7 +26,6 @@ from gramps.gen.proxy import LivingProxyDb
 
 class DbTest(unittest.TestCase):
     READ_METHODS = [
-        "all_handles",
         "close",
         "db_has_bm_changes",
         "find_backlink_handles",
@@ -189,7 +188,6 @@ class DbTest(unittest.TestCase):
         "add_tag",
         "add_to_surname_list",
         "build_surname_list",
-        "commit_base",
         "commit_event",
         "commit_family",
         "commit_media",
@@ -213,7 +211,6 @@ class DbTest(unittest.TestCase):
         "remove_repository",
         "remove_source",
         "remove_tag",
-        "set_auto_remove",
         "set_default_person_handle",
         "set_name_group_mapping",
         "transaction_begin",

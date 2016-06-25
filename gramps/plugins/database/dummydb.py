@@ -242,14 +242,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         """
         self.__feature[feature] = value
 
-    def all_handles(self, table):
-        """
-        Return all handles from the specified table as a list
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        return []
-
     def close(self, update=True, user=None):
         """
         Close the specified database.
