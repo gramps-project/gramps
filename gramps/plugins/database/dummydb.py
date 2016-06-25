@@ -991,22 +991,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         LOG.warn("handle %s does not exist in the dummy database" % handle)
         raise HandleError('Handle %s not found' % handle.decode('utf-8'))
 
-    def get_reference_map_primary_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map primary map
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        return []
-
-    def get_reference_map_referenced_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map referenced map
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        return []
-
     def get_repo_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.

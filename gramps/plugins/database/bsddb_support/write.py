@@ -483,7 +483,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     # the main index is unique, the others allow duplicate entries.
 
     @catch_db_error
-    def get_reference_map_primary_cursor(self):
+    def _get_reference_map_primary_cursor(self):
         """
         Returns a reference to a cursor over the reference map primary map
         """
@@ -491,7 +491,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                         self.txn)
 
     @catch_db_error
-    def get_reference_map_referenced_cursor(self):
+    def _get_reference_map_referenced_cursor(self):
         """
         Returns a reference to a cursor over the reference map referenced map
         """
@@ -1188,7 +1188,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             handle = handle.encode('utf-8')
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
-        referenced_cur = self.get_reference_map_referenced_cursor()
+        referenced_cur = self._get_reference_map_referenced_cursor()
 
         try:
             ret = referenced_cur.set(handle)
@@ -1224,12 +1224,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         referenced_cur.close()
 
-    def delete_primary_from_reference_map(self, handle, transaction, txn=None):
+    def _delete_primary_from_reference_map(self, handle, transaction, txn=None):
         """
         Remove all references to the primary object from the reference_map.
         handle should be utf-8
         """
-        primary_cur = self.get_reference_map_primary_cursor()
+        primary_cur = self._get_reference_map_primary_cursor()
 
         try:
             ret = primary_cur.set(handle)
@@ -1260,7 +1260,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         for main_key in remove_list:
             self.__remove_reference(main_key, transaction, txn)
 
-    def update_reference_map(self, obj, transaction, txn=None):
+    def _update_reference_map(self, obj, transaction, txn=None):
         """
         If txn is given, then changes are written right away using txn.
         """
@@ -1269,7 +1269,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # from the primary object 'obj' or any of its secondary objects.
         handle = obj.handle
         existing_references = set()
-        primary_cur = self.get_reference_map_primary_cursor()
+        primary_cur = self._get_reference_map_primary_cursor()
         try:
             if isinstance(handle, str):
                 key = handle.encode('utf-8')
@@ -1424,7 +1424,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                         obj = class_func()
                         obj.unserialize(val)
                         with BSDDBTxn(self.env) as txn:
-                            self.update_reference_map(obj, transaction, txn.txn)
+                            self._update_reference_map(obj,
+                                                       transaction, txn.txn)
 
             callback(5)
 
@@ -1711,12 +1712,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, data_map) as txn:
-                self.delete_primary_from_reference_map(handle, transaction,
+                self._delete_primary_from_reference_map(handle, transaction,
                                                         txn=txn.txn)
                 txn.delete(handle)
         else:
-            self.delete_primary_from_reference_map(handle, transaction,
-                                                   txn=self.txn)
+            self._delete_primary_from_reference_map(handle, transaction,
+                                                    txn=self.txn)
             old_data = data_map.get(handle, txn=self.txn)
             data_map.delete(handle, txn=self.txn)
             transaction.add(key, TXNDEL, handle, old_data, None)
@@ -1736,12 +1737,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:
-                self.delete_primary_from_reference_map(handle, transaction,
-                                                       txn=txn.txn)
+                self._delete_primary_from_reference_map(handle, transaction,
+                                                        txn=txn.txn)
                 txn.delete(handle)
         else:
-            self.delete_primary_from_reference_map(handle, transaction,
-                                                   txn=self.txn)
+            self._delete_primary_from_reference_map(handle, transaction,
+                                                    txn=self.txn)
             self.person_map.delete(handle, txn=self.txn)
             transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
 
@@ -1906,7 +1907,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
 
-        self.update_reference_map(obj, transaction, self.txn)
+        self._update_reference_map(obj, transaction, self.txn)
 
         new_data = obj.serialize()
         old_data = None

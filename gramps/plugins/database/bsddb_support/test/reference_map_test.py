@@ -126,8 +126,8 @@ class ReferenceMapTest(GrampsDbBaseTest):
 
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
-        update_method = self._db.update_reference_map
-        self._db.update_reference_map = lambda x,y,z: 1
+        update_method = self._db._update_reference_map
+        self._db._update_reference_map = lambda x,y,z: 1
 
         # Insert a person/source pair.
         citation = self._add_source()
@@ -140,7 +140,7 @@ class ReferenceMapTest(GrampsDbBaseTest):
                          "len(references) == %s " % str(len(references)))
 
         # Reinstate the reference_map method and reindex the database
-        self._db.update_reference_map = update_method
+        self._db._update_reference_map = update_method
         self._db.reindex_reference_map(cb)
 
         # Check that the reference now appears in the reference_map

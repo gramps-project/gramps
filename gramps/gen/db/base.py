@@ -688,18 +688,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_reference_map_primary_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map primary map
-        """
-        raise NotImplementedError
-
-    def get_reference_map_referenced_cursor(self):
-        """
-        Returns a reference to a cursor over the reference map referenced map
-        """
-        raise NotImplementedError
-
     def get_repo_bookmarks(self):
         """
         Return the list of Repository handles in the bookmarks.
@@ -1588,15 +1576,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def delete_primary_from_reference_map(self, handle, transaction):
-        """
-        Called each time an object is removed from the database.
-
-        This can be used by subclasses to update any additional index tables
-        that might need to be changed.
-        """
-        raise NotImplementedError
-
     def get_undodb(self):
         """
         Return the database that keeps track of Undo/Redo operations.
@@ -1755,15 +1734,6 @@ class DbWriteBase(DbReadBase):
     def transaction_abort(self, transaction):
         """
         Revert the changes made to the database so far during the transaction.
-        """
-        raise NotImplementedError
-
-    def update_reference_map(self, obj, transaction):
-        """
-        Called each time an object is writen to the database.
-
-        This can be used by subclasses to update any additional index tables
-        that might need to be changed.
         """
         raise NotImplementedError
 

@@ -102,8 +102,6 @@ class DbTest(unittest.TestCase):
         "get_raw_repository_data",
         "get_raw_source_data",
         "get_raw_tag_data",
-        "get_reference_map_primary_cursor",
-        "get_reference_map_referenced_cursor",
         "get_repo_bookmarks",
         "get_repository_cursor",
         "get_repository_from_gramps_id",
@@ -196,7 +194,6 @@ class DbTest(unittest.TestCase):
         "commit_repository",
         "commit_source",
         "commit_tag",
-        "delete_primary_from_reference_map",
         "need_schema_upgrade",
         "rebuild_secondary",
         "reindex_reference_map",
@@ -214,7 +211,6 @@ class DbTest(unittest.TestCase):
         "set_name_group_mapping",
         "transaction_begin",
         "transaction_commit",
-        "update_reference_map",
         "write_version",
         ]
 
