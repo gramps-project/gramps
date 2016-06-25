@@ -684,7 +684,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
 
     @catch_db_error
-    def need_schema_upgrade(self):
+    def _need_schema_upgrade(self):
         dbversion = self.metadata.get(b'version', default=0)
         return not self.readonly and dbversion < _DBVERSION
 
@@ -901,13 +901,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         self.__load_metadata()
 
-        if self.need_schema_upgrade():
+        if self._need_schema_upgrade():
             oldschema = self.metadata.get(b'version', default=0)
             newschema = _DBVERSION
             _LOG.debug("Schema upgrade required from %s to %s" %
                        (oldschema, newschema))
             if force_schema_upgrade == True:
-                self.gramps_upgrade(callback)
+                self._gramps_upgrade(callback)
                 versionpath = os.path.join(name, str(SCHVERSFN))
                 with open(versionpath, "w") as version_file:
                     version = str(_DBVERSION)
@@ -2335,7 +2335,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def redo(self, update_history=True):
         return self.undodb.redo(update_history)
 
-    def gramps_upgrade(self, callback=None):
+    def _gramps_upgrade(self, callback=None):
         UpdateCallback.__init__(self, callback)
 
         version = self.metadata.get(b'version', default=_MINVERSION)

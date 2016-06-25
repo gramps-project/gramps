@@ -879,12 +879,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def gramps_upgrade(self):
-        """
-        Return True if database is upgraded
-        """
-        raise NotImplementedError
-
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
@@ -1579,12 +1573,6 @@ class DbWriteBase(DbReadBase):
     def get_undodb(self):
         """
         Return the database that keeps track of Undo/Redo operations.
-        """
-        raise NotImplementedError
-
-    def need_schema_upgrade(self):
-        """
-        Return True if database needs to be upgraded
         """
         raise NotImplementedError
 

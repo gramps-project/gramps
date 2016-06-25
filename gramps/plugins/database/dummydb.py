@@ -1236,14 +1236,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warn("database is closed")
         return []
 
-    def gramps_upgrade(self):
-        """
-        Return True if database is upgraded
-        """
-        if not self.db_is_open:
-            LOG.warn("database is closed")
-        return True
-
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
