@@ -67,7 +67,7 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db = self.make_database("inmemorydb")
+        self.db = self.make_database("dummydb")
         self.db.load(None)
         self.db.db_is_open = False
         self.open = False
@@ -112,7 +112,7 @@ class DbState(Callback):
         """
         self.emit('no-database', ())
         self.db.close()
-        self.db = self.make_database("inmemorydb")
+        self.db = self.make_database("dummydb")
         self.db.load(None)
         self.db.db_is_open = False
         self.open = False
