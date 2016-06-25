@@ -1490,12 +1490,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_family_event(self, event, transaction):
-        """
-        Deprecated:  Use add_event
-        """
-        raise NotImplementedError
-
     def add_note(self, obj, transaction, set_gid=True):
         """
         Add a Note to the database, assigning internal IDs if they have
@@ -1520,12 +1514,6 @@ class DbWriteBase(DbReadBase):
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
-        """
-        raise NotImplementedError
-
-    def add_person_event(self, event, transaction):
-        """
-        Deprecated:  Use add_event
         """
         raise NotImplementedError
 
@@ -1596,12 +1584,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def commit_family_event(self, event, transaction, change_time=None):
-        """
-        Deprecated:  Use commit_event
-        """
-        raise NotImplementedError
-
     def commit_media(self, obj, transaction, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
@@ -1620,12 +1602,6 @@ class DbWriteBase(DbReadBase):
         """
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
-        """
-        raise NotImplementedError
-
-    def commit_personal_event(self, event, transaction, change_time=None):
-        """
-        Deprecated:  Use commit_event
         """
         raise NotImplementedError
 

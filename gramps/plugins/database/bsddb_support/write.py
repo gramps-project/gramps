@@ -1662,18 +1662,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     self.find_next_event_gramps_id if set_gid else None,
                     self.commit_event)
 
-    def add_person_event(self, event, transaction):
-        """
-        Deprecated:  Use add_event
-        """
-        return self.add_event(event, transaction)
-
-    def add_family_event(self, event, transaction):
-        """
-        Deprecated:  Use add_event
-        """
-        return self.add_event(event, transaction)
-
     def add_place(self, place, transaction, set_gid=True):
         """
         Add a Place to the database, assigning internal IDs if they have
@@ -2072,18 +2060,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
-
-    def commit_personal_event(self, event, transaction, change_time=None):
-        """
-        Deprecated:  Use commit_event
-        """
-        self.commit_event(event, transaction, change_time)
-
-    def commit_family_event(self, event, transaction, change_time=None):
-        """
-        Deprecated:  Use commit_event
-        """
-        self.commit_event(event, transaction, change_time)
 
     def commit_event(self, event, transaction, change_time=None):
         """
