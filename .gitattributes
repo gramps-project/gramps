@@ -8,8 +8,8 @@
 # https://github.com/gramps-project/gramps/tree/master/data/javascript
 #data/javascript/*.js linguist-vendored
 
-# don't mess with line endings for Gedcom files
-*.ged binary
-*.GED binary
-
+# don't mess with line endings for test files
+*.vcs -text
+*.ged -text
+*.GED -text
 *.csv -text
