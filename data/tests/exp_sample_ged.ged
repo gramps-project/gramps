@@ -1,9 +1,9 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS GrampsAIO64-4.2.1-2
+2 VERS 5.0.0-alpha1
 2 NAME Gramps
-1 DATE 20 JUN 2016
-2 TIME 16:47:18
+1 DATE 26 JUN 2016
+2 TIME 08:49:54
 1 SUBM @SUBM@
 1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
 1 COPR Copyright (c) 2016 Alex Roitman,,,.
@@ -740,10 +740,6 @@
 2 FAMC @F0005@
 3 ADOP BOTH
 1 FAMC @F0005@
-1 OBJE
-2 FORM jpeg
-2 TITL Michael O'Toole 2015-11
-2 FILE D:/Users/prc/Downloads/Michael O'Toole 2015-11.jpg
 1 NOTE @N0007@
 1 CHAN
 2 DATE 18 JUN 2016
