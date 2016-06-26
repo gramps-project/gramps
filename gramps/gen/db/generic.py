@@ -1209,9 +1209,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         return Media.create(self._get_raw_media_data(handle))
 
-    def get_media_from_gramps_id(self, gramps_id):
-        return Media.create(self.media_id_map[gramps_id])
-
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
