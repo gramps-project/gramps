@@ -148,7 +148,16 @@ def vcffilt(line):
     The differences are not functional, but are related to changes in Gramps
     version.
     """
-    return False if line.startswith('PRODID:') else True
+    diftyp = line[0]
+    if diftyp == '@':
+        retval = False
+    elif diftyp == ' ':
+        retval = False
+    elif 'PRODID:' in line:  # Gramps version is on these lines
+        retval = False
+    else:
+        retval = True
+    return retval
 
 
 class ExportControl(unittest.TestCase):
