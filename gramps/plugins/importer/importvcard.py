@@ -289,7 +289,7 @@ class VCardParser:
                 # Included cause VCards made by Gramps have this prop.
                 pass
             else:
-                LOG.warn("Token >%s< unknown. line skipped: %s" %
+                LOG.warning("Token >%s< unknown. line skipped: %s" %
                         (fields[0],line))
 
     def finish_person(self):
@@ -303,8 +303,8 @@ class VCardParser:
         """A VCard for another person is started."""
         if self.person is not None:
             self.finish_person()
-            LOG.warn("BEGIN property not properly closed by END property, "
-                     "Gramps can't cope with nested VCards.")
+            LOG.warning("BEGIN property not properly closed by END property, "
+                        "Gramps can't cope with nested VCards.")
         self.person = Person()
         self.formatted_name = ''
         self.name_parts = ''
@@ -333,15 +333,15 @@ class VCardParser:
         Returns True on success, False on failure.
         """
         if not self.name_parts.strip():
-            LOG.warn("VCard is malformed missing the compulsory N property, "
-                    "so there is no name; skip it.")
+            LOG.warning("VCard is malformed missing the compulsory N property,"
+                        " so there is no name; skip it.")
             return False
         if not self.formatted_name:
-            LOG.warn("VCard is malformed missing the compulsory FN property, "
-                    "get name from N alone.")
+            LOG.warning("VCard is malformed missing the compulsory FN property"
+                        ", get name from N alone.")
         data_fields = self.split_unescaped(self.name_parts, ';')
         if len(data_fields) != 5:
-            LOG.warn("VCard is malformed wrong number of name components.")
+            LOG.warning("VCard is malformed wrong number of name components.")
 
         name = Name()
         name.set_type(NameType(NameType.BIRTH))

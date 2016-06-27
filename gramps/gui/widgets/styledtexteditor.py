@@ -71,8 +71,9 @@ from ..actiongroup import ActionGroup
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
-    REGULAR_CURSOR = Gdk.Cursor.new(Gdk.CursorType.XTERM)
+    display = Gdk.Display.get_default()
+    HAND_CURSOR = Gdk.Cursor.new_for_display(display, Gdk.CursorType.HAND2)
+    REGULAR_CURSOR = Gdk.Cursor.new_for_display(display, Gdk.CursorType.XTERM)
 
 FORMAT_TOOLBAR = '''
 <ui>
