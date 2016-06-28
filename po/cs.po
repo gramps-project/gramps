@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 13:00-0700\n"
-"PO-Revision-Date: 2016-05-10 10:26+0100\n"
+"PO-Revision-Date: 2016-06-28 12:01+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -484,7 +484,6 @@ msgstr ""
 "osob a společné předky."
 
 #: ../data/tips.xml.in.h:14
-#, fuzzy
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
 "standing problem in genealogy, how to handle spelling variations. The "
@@ -605,7 +604,6 @@ msgstr ""
 "nabídky &quot;Zobrazit&quot;."
 
 #: ../data/tips.xml.in.h:23
-#, fuzzy
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
 "active objects such as People and Events. You can move forward and backward "
@@ -755,7 +753,6 @@ msgstr ""
 "kombinaci Ctrl+D. Záložky můžete vytvořit také pro většinu ostatních objektů."
 
 #: ../data/tips.xml.in.h:34
-#, fuzzy
 msgid ""
 "<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
 "invalid format. Incorrect date formats will show up in Gramps with a either "
@@ -769,7 +766,7 @@ msgstr ""
 "pravé části pole. Opravit je můžete prostřednictvím dialogu Datum můžete "
 "opravit prostřednictvím dialogu výběru data. Ten se objeví po stisknutí "
 "tlačítka datum. Formát data lze nastavit v &quot;Úpravy &gt; Předvolby &gt; "
-"Datum&quot;."
+"Zobrazení&quot;."
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -785,7 +782,6 @@ msgstr ""
 "nebudou překládány."
 
 #: ../data/tips.xml.in.h:36
-#, fuzzy
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
@@ -1021,7 +1017,6 @@ msgstr ""
 "vaše rodinná historie ožije."
 
 #: ../data/tips.xml.in.h:56
-#, fuzzy
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 40 languages. If Gramps supports your language and it is not being "
@@ -4385,14 +4380,12 @@ msgid "Inclusive:"
 msgstr "Zahrnout:"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:45
-#, fuzzy
 msgid "Ancestor families of <family>"
-msgstr "Předkové osob vyhovujících <filtru>"
+msgstr "Rodiny předků rodiny <family>"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:47
-#, fuzzy
 msgid "Matches ancestor families of the specified family"
-msgstr "Vyhovují rodiny odpovídající uvedenému filtru"
+msgstr "Vyhovují rodiny předků zadané rodiny"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:44
 msgid "Bookmarked families"
@@ -4403,14 +4396,12 @@ msgid "Matches the families on the bookmark list"
 msgstr "Vyhovují rodiny v seznamu záložek"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:45
-#, fuzzy
 msgid "Descendant families of <family>"
-msgstr "Rodiny potomků %s"
+msgstr "Rodiny potomků rodiny <family>"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:47
-#, fuzzy
 msgid "Matches descendant families of the specified family"
-msgstr "Vyhovují všichni potomci určené osoby"
+msgstr "Vyhovují rodiny potomků zadané rodiny"
 
 #: ../gramps/gen/filters/rules/family/_matchesfilter.py:44
 msgid "Families matching the <filter>"
@@ -6970,8 +6961,9 @@ msgid "<No Status>"
 msgstr "<Žádný stav>"
 
 #: ../gramps/gen/lib/ldsord.py:103
+#, fuzzy
 msgid "Born in Covenant"
-msgstr ""
+msgstr "Narozen(a): %(birth_place)s."
 
 #: ../gramps/gen/lib/ldsord.py:104
 msgid "Canceled"
@@ -6998,9 +6990,8 @@ msgid "Completed"
 msgstr "Vykonáno"
 
 #: ../gramps/gen/lib/ldsord.py:108
-#, fuzzy
 msgid "Do not seal"
-msgstr "Nepřizpůsobovat strom"
+msgstr "Neuzavírat"
 
 #: ../gramps/gen/lib/ldsord.py:109
 msgid "Infant"
@@ -7015,9 +7006,8 @@ msgid "Qualified"
 msgstr "Splňující kritéria"
 
 #: ../gramps/gen/lib/ldsord.py:112
-#, fuzzy
 msgid "Do not seal/Cancel"
-msgstr "Příště se již neptat"
+msgstr "Neuzavírat/Zrušit"
 
 #: ../gramps/gen/lib/ldsord.py:113
 msgid "Stillborn"
@@ -8925,7 +8915,7 @@ msgstr "RODINA"
 #: ../gramps/gen/plug/report/utils.py:377
 #, fuzzy, python-format
 msgid "Ancestor Families of %s"
-msgstr "%s předci"
+msgstr "Rodiny předků rodiny <family>"
 
 #: ../gramps/gen/plug/utils.py:250
 msgid "Updated"
@@ -10481,12 +10471,12 @@ msgstr "Celý názav místa"
 #: ../gramps/gui/configure.py:1138
 #, fuzzy
 msgid "-> Hamlet/Village/Town/City"
-msgstr "-> Osada/Obec/Město"
+msgstr "Město z adresy:"
 
 #: ../gramps/gui/configure.py:1139
 #, fuzzy
 msgid "Hamlet/Village/Town/City ->"
-msgstr "Osada/Obec/Město ->"
+msgstr "Město z adresy:"
 
 #: ../gramps/gui/configure.py:1144
 msgid "Restrict"
@@ -16049,7 +16039,6 @@ msgstr ""
 "Gramps bude nyní ukončeno."
 
 #: ../gramps/gui/grampsgui.py:90
-#, fuzzy
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.12 or later.\n"
@@ -16178,7 +16167,6 @@ msgid "Report a bug"
 msgstr "Nahlásit chybu"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:259
-#, fuzzy
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report "
 "to the Gramps developers that will be as detailed as possible.\n"
@@ -16195,9 +16183,9 @@ msgstr ""
 "\n"
 "Pomocník vám položí několik otázek a získá informace o chybě a prostředí, v "
 "kterém aplikaci provozujete. Na konci budete vyzván k odeslání zprávy do "
-"webové aplikace určené k hlášení chyb. Pomocník umístí report do schránky. "
-"Můžete jej snadno vložit do aplikace pro hlášení chyb. Před odesláním "
-"zkontrolujte jaké informace budou odeslány."
+"aplikace určené k hlášení chyb. Pomocník umístí report do schránky. Můžete "
+"jej snadno vložit do aplikace pro hlášení chyb. Před odesláním zkontrolujte "
+"jaké informace budou odeslány."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:276
 msgid ""
@@ -18989,18 +18977,17 @@ msgstr "Nelze vytvořit jpeg verzi obrázku %(name)s"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
-msgstr ""
+msgstr "PIL (Python Imaging Library) nebyla nahrána."
 
 #: ../gramps/plugins/docgen/latexdoc.py:1241
-#, fuzzy
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
-"PIL (Python Imaging Library) nebyla nahrána. Vytváření jpg obrázků z ne jpg "
-"zdrojů v LaTeX dokumentech nebude k dispozici. Použijte správce balíčků a "
-"nainstalujte python-imaging, python-pillow nebo python3-pillow"
+"Vytváření jpg obrázků z ne jpg zdrojů v LaTeX dokumentech nebude k "
+"dispozici. Použijte správce balíčků a nainstalujte python-imaging, python-"
+"pillow nebo python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1164
 #, python-format
@@ -22425,7 +22412,6 @@ msgid "Dashboard View"
 msgstr "Pohled ovládacího panelu"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:131
-#, fuzzy
 msgid ""
 "You are currently reading from the \"Dashboard\" view, where you can add "
 "your own gramplets. You can also add gramplets to any view by adding a "
@@ -22868,38 +22854,32 @@ msgid "You did not specify anybody"
 msgstr "Nikdo nebyl vybrán"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:424
-#, fuzzy
 msgid "Number of people in database:"
-msgstr "Počet osob"
+msgstr "Počet osob v databázi:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:427
-#, fuzzy
 msgid "Number of people of interest:"
-msgstr "Osoby zájmu"
+msgstr "Počet osob zájmu:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:430
-#, fuzzy
 msgid "Number of families in database:"
-msgstr "Počet rodin: %d"
+msgstr "Počet rodin v databázi:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:433
-#, fuzzy
 msgid "Number of families of interest:"
-msgstr "Počet rodin"
+msgstr "Počet rodin zájmu:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:437
 msgid "Additional people removed:"
-msgstr ""
+msgstr "Další odstraněné osoby:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:440
-#, fuzzy
 msgid "Additional families removed:"
-msgstr "všechny rodiny"
+msgstr "Další odstraněné rodiny:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:443
-#, fuzzy
 msgid "Initial list of people of interest:"
-msgstr "Osoby zájmu"
+msgstr "Výchozí seznam osob zájmu:"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:929
@@ -22911,19 +22891,19 @@ msgstr[1] "{number_of} děti"
 msgstr[2] "{number_of}dětí"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1004
-#, fuzzy, python-format
+#, python-format
 msgid "father: %s"
-msgstr "otec"
+msgstr "otec %s"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1013
-#, fuzzy, python-format
+#, python-format
 msgid "mother: %s"
-msgstr "Poznámka %s"
+msgstr "matka: %s"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:1025
-#, fuzzy, python-format
+#, python-format
 msgid "child: %s"
-msgstr "dítě"
+msgstr "dítě: %s"
 
 #: ../gramps/plugins/graph/gvhourglass.py:309
 msgid "The Center person for the graph"
@@ -23063,9 +23043,8 @@ msgid "Do not include any occupation"
 msgstr "Nezahrnovat žádné zaměstnání"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:752
-#, fuzzy
 msgid "Include description of most recent occupation"
-msgstr "Zahrnout příbuzné ústřední osoby"
+msgstr "Zahrnout popis aktuálního zaměstnání"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:754
 msgid "Include date, description and place of all occupations"
@@ -29380,7 +29359,7 @@ msgid "sp. %(spouse)s"
 msgstr "pí. %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:252
-#, fuzzy, python-format
+#, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
 msgstr "sp.  %(reference)s : %(spouse)s"
 
@@ -29517,9 +29496,9 @@ msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s, %(str2)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:464
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
-msgstr "%(event_name)s: %(event_text)s"
+msgstr "%(event_role)s v %(event_name)s %(primary_person)s: %(event_text)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:480
@@ -29940,9 +29919,8 @@ msgid "Center Family"
 msgstr "Ústřední rodina"
 
 #: ../gramps/plugins/textreport/familygroup.py:711
-#, fuzzy
 msgid "The center family for the filter"
-msgstr "Ústřední rodina pro sestavu"
+msgstr "Výchozí osoba filtru"
 
 #: ../gramps/plugins/textreport/familygroup.py:724
 msgid "Recursive (down)"
@@ -30113,39 +30091,34 @@ msgid "Whether to cite sources."
 msgstr "Zda citovat prameny."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1041
-#, fuzzy
 msgid "Include Attributes"
 msgstr "Zahrnout atributy"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1045
 #, fuzzy
 msgid "Include Census Events"
-msgstr "Zahrnout události"
+msgstr "Zahrnout rodinných události"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1046
 #, fuzzy
 msgid "Whether to include Census Events."
-msgstr "Zda zahrnout události."
+msgstr "Zda u rodičů zahrnout události."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1053
-#, fuzzy
 msgid "Include Notes"
 msgstr "Zahrnout poznámky"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1054
-#, fuzzy
 msgid "Whether to include Person and Family Notes."
-msgstr "Zda zahrnout další jména."
+msgstr "Zda zahrnout poznámky osob a rodin."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1057
-#, fuzzy
 msgid "Include Tags"
-msgstr "Zahrnout data"
+msgstr "Zahrnout štítky"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1058
-#, fuzzy
 msgid "Whether to include tags."
-msgstr "Zda zahrnout obrázky."
+msgstr "Zda zahrnout štítky."
 
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
@@ -32085,9 +32058,8 @@ msgid "Search for sources"
 msgstr "Hledat prameny"
 
 #: ../gramps/plugins/tool/removeunused.glade:130
-#, fuzzy
 msgid "Search for citations"
-msgstr "Pramen nebo citace"
+msgstr "Hledat citace"
 
 #: ../gramps/plugins/tool/removeunused.glade:145
 msgid "Search for places"
@@ -34402,9 +34374,8 @@ msgid "Mime Type"
 msgstr "Mime typ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5130
-#, fuzzy
 msgid "Below unused media objects"
-msgstr "Počet unikátních objektů"
+msgstr "Pod nepoužitými mediálními objekty"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5247
 msgid "Previous"
@@ -34547,7 +34518,6 @@ msgid "Not siblings"
 msgstr "Nejsou sourozenci"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7454
-#, fuzzy
 msgid "Relation to the center person"
 msgstr "Vztah k výchozí osobě"
 
@@ -34867,14 +34837,12 @@ msgid "Whether to include a gallery of media objects"
 msgstr "Zda zahrnout galerii mediálních objektů"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9499
-#, fuzzy
 msgid "Include unused images and media objects"
-msgstr "Zahrnout obrázky a mediální objekty"
+msgstr "Zahrnout nepoužité obrázky a mediální objekty"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9500
-#, fuzzy
 msgid "Whether to include unused or unreferenced media objects"
-msgstr "Zda zahrnout galerii mediálních objektů"
+msgstr "Zda zahrnout nepoužité a neodkazované mediální objekty a objekty"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9505
 msgid "Create and only use thumbnail- sized images"
@@ -35143,7 +35111,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9722
 msgid "Other inclusion (CMS, Web Calendar, Php)"
-msgstr ""
+msgstr "Další zahrnuté (CMS, Web kalendář, Php)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9726
 msgid "Do we include these pages in a cms web ?"
@@ -35159,14 +35127,12 @@ msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Kde bude výchozí umístění na webu? default = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9743
-#, fuzzy
 msgid "Do we include the web calendar ?"
-msgstr "Budou tyto stránky vloženy do CMS webu?"
+msgstr "Bude zahrnut webový kalendář?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9753
-#, fuzzy
 msgid "Where do you place your web site ? default = /WEBCAL"
-msgstr "Kde bude výchozí umístění na webu? default = /NAVWEB"
+msgstr "Kde bude výchozí umístění na webu? default = /WEBCAL"
 
 #. adding title to hyperlink menu for screen readers and
 #. braille writers
