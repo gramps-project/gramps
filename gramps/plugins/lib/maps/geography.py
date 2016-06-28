@@ -845,7 +845,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
-                _("You can't use the print functionality"), 
+                _("You can't use the print functionality"),
                 _("Your Gtk version is too old."))
             return
 
