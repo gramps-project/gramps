@@ -197,14 +197,30 @@ GRABBERS_SWITCH = [
 
 # cursors
 try:
-    CURSOR_UPPER = Gdk.Cursor.new(Gdk.CursorType.TOP_SIDE)
-    CURSOR_LOWER = Gdk.Cursor.new(Gdk.CursorType.BOTTOM_SIDE)
-    CURSOR_LEFT = Gdk.Cursor.new(Gdk.CursorType.LEFT_SIDE)
-    CURSOR_RIGHT = Gdk.Cursor.new(Gdk.CursorType.RIGHT_SIDE)
-    CURSOR_UPPER_LEFT = Gdk.Cursor.new(Gdk.CursorType.TOP_LEFT_CORNER)
-    CURSOR_UPPER_RIGHT = Gdk.Cursor.new(Gdk.CursorType.TOP_RIGHT_CORNER)
-    CURSOR_LOWER_LEFT = Gdk.Cursor.new(Gdk.CursorType.BOTTOM_LEFT_CORNER)
-    CURSOR_LOWER_RIGHT = Gdk.Cursor.new(Gdk.CursorType.BOTTOM_RIGHT_CORNER)
+    CURSOR_UPPER = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.TOP_SIDE)
+    CURSOR_LOWER = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.BOTTOM_SIDE)
+    CURSOR_LEFT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.LEFT_SIDE)
+    CURSOR_RIGHT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.RIGHT_SIDE)
+    CURSOR_UPPER_LEFT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.TOP_LEFT_CORNER)
+    CURSOR_UPPER_RIGHT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.TOP_RIGHT_CORNER)
+    CURSOR_LOWER_LEFT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.BOTTOM_LEFT_CORNER)
+    CURSOR_LOWER_RIGHT = \
+        Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                   Gdk.CursorType.BOTTOM_RIGHT_CORNER)
 except:
     CURSOR_UPPER = None
     CURSOR_LOWER = None

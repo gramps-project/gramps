@@ -372,8 +372,12 @@ class GuiGramplet:
         self.pui = None # user code
         self.tooltips_text = None
 
-        self.link_cursor = Gdk.Cursor.new(Gdk.CursorType.LEFT_PTR)
-        self.standard_cursor = Gdk.Cursor.new(Gdk.CursorType.XTERM)
+        self.link_cursor = \
+            Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                       Gdk.CursorType.LEFT_PTR)
+        self.standard_cursor = \
+            Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                       Gdk.CursorType.XTERM)
 
         self.scrolledwindow = None
         self.textview = None

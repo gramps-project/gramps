@@ -625,8 +625,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                    a part of ManagedWindow
 
         """
+        BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                                 Gdk.CursorType.WATCH)
+
         if value:
-            self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+            self.get_window().set_cursor(BUSY_CURSOR)
             #self.set_sensitive(0)
         else:
             self.get_window().set_cursor(None)

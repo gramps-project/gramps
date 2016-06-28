@@ -61,6 +61,9 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     OBJ_TYPE_COL = 3
     OBJ_HANDLE_COL = 4
 
+    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                             Gdk.CursorType.WATCH)
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.title = _('Unused Objects')
@@ -236,7 +239,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
-        self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.window.get_window().set_cursor(self.BUSY_CURSOR)
 
         self.real_model.clear()
         self.collect_unused()

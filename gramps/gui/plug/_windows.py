@@ -759,8 +759,12 @@ class ToolManagedWindowBase(ManagedWindow):
         self.results_text.connect('motion-notify-event',
                                   self.on_motion)
         self.tags = []
-        self.link_cursor = Gdk.Cursor.new(Gdk.CursorType.LEFT_PTR)
-        self.standard_cursor = Gdk.Cursor.new(Gdk.CursorType.XTERM)
+        self.link_cursor = \
+            Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                       Gdk.CursorType.LEFT_PTR)
+        self.standard_cursor = \
+            Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                       Gdk.CursorType.XTERM)
 
         self.setup_other_frames()
         self.set_current_frame(self.initial_frame())

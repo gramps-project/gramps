@@ -349,9 +349,11 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
-        self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                                 Gdk.CursorType.WATCH)
+        self.window.get_window().set_cursor(BUSY_CURSOR)
         try:
-            self.vr.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+            self.vr.window.get_window().set_cursor(BUSY_CURSOR)
         except AttributeError:
             pass
 

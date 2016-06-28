@@ -508,6 +508,10 @@ class PedigreeView(NavigationView):
         ('interface.pedview-show-unknown-people', True),
         )
 
+    FLEUR_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                              Gdk.CursorType.FLEUR)
+
+
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate,
                                 PersonBookmarks, nav_group)
@@ -1325,7 +1329,7 @@ class PedigreeView(NavigationView):
         or call option menu.
         """
         if event.button == 1 and event.type == Gdk.EventType.BUTTON_PRESS:
-            widget.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.FLEUR))
+            widget.get_window().set_cursor(self.FLEUR_CURSOR)
             self._last_x = event.x
             self._last_y = event.y
             self._in_move = True
