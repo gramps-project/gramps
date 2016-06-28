@@ -34,7 +34,6 @@ from io import StringIO
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".Bookmarks")
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +59,7 @@ _ = glocale.translation.sgettext
 # Constants
 #
 #-------------------------------------------------------------------------
+LOG = logging.getLogger(".Bookmarks")
 WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Bookmarks')
 
@@ -74,7 +74,7 @@ BTM = '''</menu></menubar></ui>'''
 
 DISABLED = -1
 
-class Bookmarks :
+class Bookmarks:
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, callback=None):
@@ -93,6 +93,14 @@ class Bookmarks :
         self.action_group = Gtk.ActionGroup(name='Bookmarks')
         self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
+
+        # initialise attributes
+        self.namemodel = None
+        self.namemodel_cols = None
+        self.top = None
+        self.modified = None
+        self.response = None
+        self.namelist = None
 
     def db_changed(self, data):
         """
@@ -155,7 +163,7 @@ class Bookmarks :
             text.write('<placeholder name="GoToBook">')
             for item in self.bookmarks.get():
                 try:
-                    label, obj = self.make_label(item)
+                    label, dummy_obj = self.make_label(item)
                     func = self.callback(item)
                     action_id = "BM:%s" % item
                     actions.append((action_id, None, label, None, None, func))
@@ -173,9 +181,18 @@ class Bookmarks :
         text.close()
 
     def make_label(self, handle):
+        """
+        Returns a  (label, object) tuple appropriate to the type of the object
+        that the handle refers to. The label is a text for the object, e.g. the
+        object name.
+        """
         raise NotImplementedError
 
     def callback(self, handle):
+        """
+        Returns a unique call to a function with the associated handle. The
+        function that will be called is defined in the derived class
+        """
         raise NotImplementedError
 
     def add(self, person_handle):
@@ -276,7 +293,7 @@ class Bookmarks :
 
     def delete_clicked(self, obj):
         """Remove the current selection from the list."""
-        store, the_iter = self.namemodel.get_selected()
+        dummy_store, the_iter = self.namemodel.get_selected()
         if not the_iter:
             return
         row = self.namemodel.get_selected_row()
@@ -308,6 +325,8 @@ class Bookmarks :
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 class ListBookmarks(Bookmarks):
+    """ Derived class from which all the specific type bookmark handlers are in
+    turn derived"""
 
     def __init__(self, dbstate, uistate, change_active):
         self.change_active = change_active
@@ -317,9 +336,10 @@ class ListBookmarks(Bookmarks):
         return make_callback(handle, self.do_callback)
 
     def do_callback(self, handle):
+        """Callback routine"""
         self.change_active(handle)
 
-class PersonBookmarks(ListBookmarks) :
+class PersonBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -334,7 +354,7 @@ class PersonBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_bookmarks()
 
-class FamilyBookmarks(ListBookmarks) :
+class FamilyBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -349,7 +369,7 @@ class FamilyBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_family_bookmarks()
 
-class EventBookmarks(ListBookmarks) :
+class EventBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -364,7 +384,7 @@ class EventBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_event_bookmarks()
 
-class SourceBookmarks(ListBookmarks) :
+class SourceBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -379,7 +399,7 @@ class SourceBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_source_bookmarks()
 
-class CitationBookmarks(ListBookmarks) :
+class CitationBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -417,7 +437,7 @@ class CitationBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_citation_bookmarks()
 
-class MediaBookmarks(ListBookmarks) :
+class MediaBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -432,7 +452,7 @@ class MediaBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_media_bookmarks()
 
-class RepoBookmarks(ListBookmarks) :
+class RepoBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -447,7 +467,7 @@ class RepoBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
 
-class PlaceBookmarks(ListBookmarks) :
+class PlaceBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
@@ -462,7 +482,7 @@ class PlaceBookmarks(ListBookmarks) :
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
 
-class NoteBookmarks(ListBookmarks) :
+class NoteBookmarks(ListBookmarks):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, change_active):
