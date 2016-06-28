@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2014  Paul Franklin
+# Copyright (C) 2011-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -412,6 +412,7 @@ class BookList:
         """
         self.dbase = dbase
         self.bookmap = {}
+        self._needs_saving = None
         self.file = os.path.join(HOME_DIR, filename)
         self.parse()
 
@@ -448,9 +449,27 @@ class BookList:
         Add or replaces a Book in the BookList.
 
         name:   name associated with the Book to add or replace.
-        book:   definition of the Book
+        book:   definition of the book -- a :class:`.Book` instance
         """
         self.bookmap[name] = book
+
+    def set_needs_saving(self, needs_saving):
+        """
+        Set the needs_saving flag for the BookList.
+
+        @param needs_saving: whether the current BookList needs saving
+        @type needs_saving: boolean
+        """
+        self._needs_saving = needs_saving
+
+    def get_needs_saving(self):
+        """
+        Return the needs_saving flag of the BookList.
+
+        @returns: returns whether the current BookList needs saving to a file
+        @rtype: boolean
+        """
+        return self._needs_saving
 
     def save(self):
         """

@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
-# Copyright (C) 2011-2014  Paul Franklin
+# Copyright (C) 2011-2016  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ _ = glocale.translation.gettext
 from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
 from ...pluginmanager import GuiPluginManager
-from ...dialog import WarningDialog, ErrorDialog
+from ...dialog import WarningDialog, ErrorDialog, QuestionDialog2
 from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
 from gramps.gen.plug.docgen import StyleSheet
 from ...managedwindow import ManagedWindow, set_titles
@@ -203,13 +203,13 @@ class BookListDisplay:
     Allows the user to select and/or delete a book from the list.
     """
 
-    def __init__(self, booklist, nodelete=0, dosave=0):
+    def __init__(self, booklist, nodelete=False, dosave=False):
         """
         Create a BookListDisplay object that displays the books in BookList.
 
-        booklist:   books that are displayed
-        nodelete:   if not 0 then the Delete button is hidden
-        dosave:     if 1 then the book list is saved on hitting OK
+        booklist:   books that are displayed -- a :class:`.BookList` instance
+        nodelete:   if True then the Delete button is hidden
+        dosave:     if True then the book list is flagged to be saved if needed
         """
 
         self.booklist = booklist
@@ -262,13 +262,16 @@ class BookListDisplay:
             self.blist.selection.select_iter(the_iter)
 
     def on_booklist_ok_clicked(self, obj):
-        """Return selected book. Saves the current list into xml file."""
+        """
+        Return selected book.
+        Also marks the current list to be saved into the xml file, if needed.
+        """
         store, the_iter = self.blist.get_selected()
         if the_iter:
             data = self.blist.get_data(the_iter, [0])
             self.selection = self.booklist.get_book(str(data[0]))
-        if self.dosave:
-            self.booklist.save()
+        if self.dosave and self.unsaved_changes:
+            self.booklist.set_needs_saving(True)
 
     def on_booklist_delete_clicked(self, obj):
         """
@@ -288,15 +291,12 @@ class BookListDisplay:
     def on_booklist_cancel_clicked(self, obj):
         """ cancel the booklist dialog """
         if self.unsaved_changes:
-            from ...dialog import QuestionDialog2
             qqq = QuestionDialog2(
                 _('Discard Unsaved Changes'),
                 _('You have made changes which have not been saved.'),
                 _('Proceed'),
                 _('Cancel'))
-            if qqq.run():
-                return
-            else:
+            if not qqq.run():
                 self.top.run()
 
     def on_button_press(self, obj, event):
@@ -394,7 +394,7 @@ class BookSelector(ManagedWindow):
             "on_open_clicked"       : self.on_open_clicked,
             "on_edit_clicked"       : self.on_edit_clicked,
             "on_book_ok_clicked"    : self.on_book_ok_clicked,
-            "destroy_passed_object" : self.close,
+            "destroy_passed_object" : self.on_close_clicked,
 
             # Insert dummy handlers for second top level in the glade file
             "on_booklist_ok_clicked"     : lambda _: None,
@@ -438,6 +438,8 @@ class BookSelector(ManagedWindow):
         self.draw_avail_list()
 
         self.book = Book()
+        self.book_list = BookList(self.file, self._db)
+        self.book_list.set_needs_saving(False) # just read in: no need to save
 
     def build_menu_names(self, obj):
         return (_("Book selection list"), self.title)
@@ -716,11 +718,21 @@ class BookSelector(ManagedWindow):
             self.menu2.append(item)
         self.menu2.popup(None, None, None, None, event.button, event.time)
 
+    def on_close_clicked(self, obj):
+        """
+        close the BookSelector dialog, saving any changes if needed
+        """
+        if self.book_list.get_needs_saving():
+            self.book_list.save()
+        ManagedWindow.close(self, *obj)
+
     def on_book_ok_clicked(self, obj):
         """
         Run final BookDialog with the current book.
         """
         if self.book.item_list:
+            if self.book_list.get_needs_saving():
+                self.book_list.save()
             BookDialog(self.dbstate, self.uistate, self.book, BookOptions)
         else:
             WarningDialog(_('No items'), _('This book has no items.'),
@@ -732,7 +744,6 @@ class BookSelector(ManagedWindow):
         """
         Save the current book in the xml booklist file.
         """
-        self.book_list = BookList(self.file, self._db)
         name = str(self.name_entry.get_text())
         if not name:
             WarningDialog(
@@ -742,7 +753,6 @@ class BookSelector(ManagedWindow):
                 parent=self.window)
             return
         if name in self.book_list.get_book_names():
-            from ...dialog import QuestionDialog2
             qqq = QuestionDialog2(
                 _('Book name already exists'),
                 _('You are about to save away a '
@@ -750,22 +760,19 @@ class BookSelector(ManagedWindow):
                 _('Proceed'),
                 _('Cancel'),
                 parent=self.window)
-            if qqq.run():
-                self.book.set_name(name)
-            else:
+            if not qqq.run():
                 return
-        else:
-            self.book.set_name(name)
+        self.book.set_name(name)
         self.book.set_dbname(self._db.get_save_path())
         self.book_list.set_book(name, self.book)
-        self.book_list.save()
+        self.book_list.set_needs_saving(True) # user clicked on save
 
     def on_open_clicked(self, obj):
         """
         Run the BookListDisplay dialog to present the choice of books to open.
         """
-        self.book_list = BookList(self.file, self._db)
-        booklistdisplay = BookListDisplay(self.book_list, 1, 0)
+        booklistdisplay = BookListDisplay(self.book_list,
+                                          nodelete=True, dosave=False)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
@@ -777,8 +784,8 @@ class BookSelector(ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to delete.
         """
-        self.book_list = BookList(self.file, self._db)
-        booklistdisplay = BookListDisplay(self.book_list, 0, 1)
+        booklistdisplay = BookListDisplay(self.book_list,
+                                          nodelete=False, dosave=True)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
