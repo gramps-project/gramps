@@ -110,6 +110,7 @@ BACKEND_COL = 7
 RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
 
 class Information(ManagedWindow):
+
     def __init__(self, uistate, data, parent):
         super().__init__(uistate, [], self)
         self.window = Gtk.Dialog()
@@ -153,6 +154,9 @@ class DbManager(CLIDbManager):
         }
 
     ERROR = ErrorDialog
+
+    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                             Gdk.CursorType.WATCH)
 
     def __init__(self, uistate, dbstate, parent=None):
         """
@@ -936,7 +940,7 @@ class DbManager(CLIDbManager):
         message
         """
         self.msg.set_label(msg)
-        self.top.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.top.get_window().set_cursor(self.BUSY_CURSOR)
         while Gtk.events_pending():
             Gtk.main_iteration()
 

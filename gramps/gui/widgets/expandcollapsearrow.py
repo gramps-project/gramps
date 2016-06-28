@@ -46,7 +46,8 @@ from gramps.gen.constfunc import has_display
 #
 #-------------------------------------------------------------------------
 if has_display():
-    HAND_CURSOR = Gdk.Cursor.new(Gdk.CursorType.HAND2)
+    HAND_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                             Gdk.CursorType.HAND2)
 
 #-------------------------------------------------------------------------
 #

@@ -258,6 +258,10 @@ def get_marriage_date(db, family):
 #-------------------------------------------------------------------------
 class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
+    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                             Gdk.CursorType.WATCH)
+
+
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
         self.label = _('Data Verify tool')
@@ -349,9 +353,9 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
-        self.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.window.get_window().set_cursor(self.BUSY_CURSOR)
         try:
-            self.vr.window.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+            self.vr.window.get_window().set_cursor(self.BUSY_CURSOR)
         except AttributeError:
             pass
 
