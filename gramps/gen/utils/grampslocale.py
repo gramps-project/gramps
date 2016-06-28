@@ -530,8 +530,8 @@ class GrampsLocale:
               os.path.exists(os.path.abspath(_first.localedir))):
             self.localedir = _first.localedir
         else:
-            LOG.warn('Missing or invalid localedir %s; no translations will be available.', repr(localedir))
-
+            LOG.warning('Missing or invalid localedir %s; no translations'
+                        ' will be available.', repr(localedir))
         self.lang = lang
         self.localedomain = domain or 'gramps'
         if languages:
@@ -864,7 +864,7 @@ class GrampsLocale:
             try:
                 key = locale.strxfrm(string)
             except Exception as err:
-                LOG.warn("Failed to obtain key for %s because %s",
+                LOG.warning("Failed to obtain key for %s because %s",
                          self.collation, str(err))
                 return string
             return key

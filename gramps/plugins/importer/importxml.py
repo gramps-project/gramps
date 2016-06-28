@@ -750,8 +750,8 @@ class GrampsParser(UpdateCallback):
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
             return handle
         elif handle in self.import_handles:
-            LOG.warn("The file you import contains duplicate handles "
-                    "which is illegal and being fixed now.")
+            LOG.warning("The file you import contains duplicate handles "
+                        "which is illegal and being fixed now.")
             handle = create_id()
             while handle in self.import_handles:
                 handle = create_id()
@@ -3205,7 +3205,7 @@ class GrampsParser(UpdateCallback):
                                            {'family' : family.gramps_id,
                                             'father' : father.gramps_id})
                             self.info.add('unlinked-family', txt, None)
-                            LOG.warn(txt)
+                            LOG.warning(txt)
 
                     if mother_handle:
                         mother = self.db.get_person_from_handle(mother_handle)
@@ -3221,7 +3221,7 @@ class GrampsParser(UpdateCallback):
                                            {'family' : family.gramps_id,
                                             'mother' : mother.gramps_id})
                             self.info.add('unlinked-family', txt, None)
-                            LOG.warn(txt)
+                            LOG.warning(txt)
 
                     for child_ref in family.get_child_ref_list():
                         child_handle = child_ref.ref
@@ -3243,7 +3243,7 @@ class GrampsParser(UpdateCallback):
                                                {'family' : family.gramps_id,
                                                 'child' : child.gramps_id})
                                 self.info.add('unlinked-family', txt, None)
-                                LOG.warn(txt)
+                                LOG.warning(txt)
 
 def append_value(orig, val):
     if orig:

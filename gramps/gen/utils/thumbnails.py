@@ -217,7 +217,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None,
             pixbuf.savev(filename, "png", "", "")
             return True
         except Exception as err:
-            LOG.warn("Error scaling image down: %s", str(err))
+            LOG.warning("Error scaling image down: %s", str(err))
             return False
 
 #-------------------------------------------------------------------------

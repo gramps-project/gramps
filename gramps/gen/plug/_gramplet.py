@@ -335,7 +335,7 @@ class Gramplet:
             return False
         except Exception as e:
             import traceback
-            LOG.warn("Gramplet gave an error: %s" % self.gui.title)
+            LOG.warning("Gramplet gave an error: %s" % self.gui.title)
             traceback.print_exc()
             print("Continuing after gramplet error...")
             self._idle_id = 0

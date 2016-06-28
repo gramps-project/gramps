@@ -146,9 +146,12 @@ class Spell:
                     # the language does not exist
                     # and presumably if there is no dictionary
                     if not self.gtkspell_spell.get_language_list():
-                        LOG.warn(_("You have no installed dictionaries. Either install one or disable spell checking"))
+                        LOG.warning(_("You have no installed dictionaries. "
+                                      "Either install one or disable spell "
+                                      "checking"))
                     else:
-                        LOG.warn(_("Spelling checker initialization failed: %s"), err)
+                        LOG.warning(_("Spelling checker initialization "
+                                      "failed: %s"), err)
         else:
             if spellcheck_code == 'on':
                 return

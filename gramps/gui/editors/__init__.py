@@ -75,21 +75,21 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
             try:
                 EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
             except Exception as msg:
-                LOG.warn(str(msg))
+                LOG.warning(str(msg))
         elif prop in ("gramps_id", "handle"):
             obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
             if obj:
                 try:
                     EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
                 except Exception as msg:
-                    LOG.warn(str(msg))
+                    LOG.warning(str(msg))
             else:
-                LOG.warn("gramps://%s/%s/%s not found" %
+                LOG.warning("gramps://%s/%s/%s not found" %
                          (obj_class, prop, value))
         else:
-            LOG.warn("unknown property to edit '%s'; "
+            LOG.warning("unknown property to edit '%s'; "
                      "should be 'gramps_id' or 'handle'" % prop)
     else:
-        LOG.warn("unknown object to edit '%s'; "
+        LOG.warning("unknown object to edit '%s'; "
                  "should be one of %s" % (obj_class, list(EDITORS.keys())))
 

@@ -175,7 +175,7 @@ class PackageWriter:
         try:
             archive = tarfile.open(self.filename,'w:gz')
         except EnvironmentError as msg:
-            log.warn(str(msg))
+            LOG.warning(str(msg))
             self.user.notify_error(_('Failure writing %s') % self.filename, str(msg))
             return 0
 
