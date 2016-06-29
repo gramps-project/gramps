@@ -113,6 +113,7 @@ class Tags(DbGUIElement):
         self.__tag_list = []
 
         dbstate.connect('database-changed', self._db_changed)
+        dbstate.connect('no-database', self.tag_disable)
 
         self._build_tag_menu()
 
@@ -128,10 +129,11 @@ class Tags(DbGUIElement):
         """
         Remove the UI and action groups for the tag menu.
         """
-        self.uistate.uimanager.remove_ui(self.tag_id)
-        self.uistate.uimanager.remove_action_group(self.tag_action)
-        self.uistate.uimanager.ensure_update()
-        self.tag_id = None
+        if self.tag_id is not None:
+            self.uistate.uimanager.remove_ui(self.tag_id)
+            self.uistate.uimanager.remove_action_group(self.tag_action)
+            self.uistate.uimanager.ensure_update()
+            self.tag_id = None
 
     def _db_changed(self, db):
         """
@@ -181,9 +183,10 @@ class Tags(DbGUIElement):
         Called when the tag list needs to be rebuilt.
         """
         self.__tag_list = []
-        for handle in self.db.get_tag_handles(sort_handles=True):
-            tag = self.db.get_tag_from_handle(handle)
-            self.__tag_list.append((tag.get_name(), tag.get_handle()))
+        if self.db is not None and self.db.is_open():
+            for handle in self.db.get_tag_handles(sort_handles=True):
+                tag = self.db.get_tag_from_handle(handle)
+                self.__tag_list.append((tag.get_name(), tag.get_handle()))
         self.update_tag_menu()
 
     def update_tag_menu(self):
@@ -203,7 +206,7 @@ class Tags(DbGUIElement):
         """
         actions = []
 
-        if self.db is None:
+        if self.db is None or not self.db.is_open():
             self.tag_ui = ''
             self.tag_action = ActionGroup(name='Tag')
             return
