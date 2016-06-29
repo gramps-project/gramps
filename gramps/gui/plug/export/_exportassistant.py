@@ -95,9 +95,6 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
     __gsignals__ = {"apply": "override", "cancel": "override",
                     "close": "override", "prepare": "override"}
 
-    BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
-                                             Gdk.CursorType.WATCH)
-
     def __init__(self,dbstate,uistate):
         """
         Set up the assistant, and build all the possible assistant pages.
@@ -628,8 +625,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
                    a part of ManagedWindow
 
         """
+        BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+                                                 Gdk.CursorType.WATCH)
+
         if value:
-            self.get_window().set_cursor(self.BUSY_CURSOR)
+            self.get_window().set_cursor(BUSY_CURSOR)
             #self.set_sensitive(0)
         else:
             self.get_window().set_cursor(None)
