@@ -201,8 +201,8 @@ class GeoGraphyView(OsmGps, NavigationView):
             WarningDialog(
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
-                  "no one was selected."))
-
+                  "no one was selected."),
+                parent=self.uistate.window)
 
     def add_bookmark_from_popup(self, menu, handle):
         """
@@ -217,7 +217,8 @@ class GeoGraphyView(OsmGps, NavigationView):
             WarningDialog(
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
-                  "no one was selected."))
+                  "no one was selected."),
+                parent=self.uistate.window)
 
     def change_page(self):
         """
@@ -846,7 +847,8 @@ class GeoGraphyView(OsmGps, NavigationView):
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
                 _("You can't use the print functionality"),
-                _("Your Gtk version is too old."))
+                _("Your Gtk version is too old."),
+                parent=self.uistate.window)
             return
 
         req = self.osm.get_allocation()
@@ -1040,7 +1042,8 @@ class GeoGraphyView(OsmGps, NavigationView):
                             'bold_start' : '<b>',
                             'bold_end'   : '</b>',
                             'title': '<b>' + place_title + '</b>',
-                            'gid': gids}
+                            'gid': gids},
+                       parent=self.uistate.window
                       )
             else:
                 self.mark = [None, None, None, None, None, None, None,
