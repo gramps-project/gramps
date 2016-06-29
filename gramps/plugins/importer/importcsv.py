@@ -88,7 +88,7 @@ def rd(line_number, row, col, key, default = None):
     """ Return Row data by column name """
     if key in col:
         if col[key] >= len(row):
-            LOG.warn("missing '%s, on line %d" % (key, line_number))
+            LOG.warning("missing '%s, on line %d" % (key, line_number))
             return default
         retval = row[col[key]].strip()
         if retval == "":
@@ -302,7 +302,7 @@ class CSVParser:
             else:
                 return None
         else:
-            LOG.warn("invalid lookup type in CSV import: '%s'" % type_)
+            LOG.warning("invalid lookup type in CSV import: '%s'" % type_)
             return None
 
     def storeup(self, type_, id_, object_):
@@ -320,7 +320,7 @@ class CSVParser:
             id_ = self.db.pid2user_format(id_)
             self.placeref[id_.lower()] = object_
         else:
-            LOG.warn("invalid storeup type in CSV import: '%s'" % type_)
+            LOG.warning("invalid storeup type in CSV import: '%s'" % type_)
 
     def parse(self, filehandle):
         """
@@ -391,7 +391,7 @@ class CSVParser:
             elif "place" in header:
                 self._parse_place(line_number, row, col)
             else:
-                LOG.warn("ignoring line %d" % line_number)
+                LOG.warning("ignoring line %d" % line_number)
         return None
 
     def _parse_marriage(self, line_number, row, col):
@@ -408,8 +408,8 @@ class CSVParser:
         husband = self.lookup("person", husband)
         if husband is None and wife is None:
             # might have children, so go ahead and add
-            LOG.warn("no parents on line %d; adding family anyway" %
-                     line_number)
+            LOG.warning("no parents on line %d; adding family anyway" %
+                        line_number)
         family = self.get_or_create_family(marriage_ref, husband, wife)
         # adjust gender, if not already provided
         if husband:
@@ -479,8 +479,8 @@ class CSVParser:
         "Parse the content of a family line"
         family_ref   = rd(line_number, row, col, "family")
         if family_ref is None:
-            LOG.warn("no family reference found for family on line %d" %
-                     line_number)
+            LOG.warning("no family reference found for family on line %d" %
+                        line_number)
             return # required
         child   = rd(line_number, row, col, "child")
         source  = rd(line_number, row, col, "source")
@@ -489,12 +489,12 @@ class CSVParser:
         child = self.lookup("person", child)
         family = self.lookup("family", family_ref)
         if family is None:
-            LOG.warn("no matching family reference found for family "
-                     "on line %d" % line_number)
+            LOG.warning("no matching family reference found for family "
+                        "on line %d" % line_number)
             return
         if child is None:
-            LOG.warn("no matching child reference found for family "
-                     "on line %d" % line_number)
+            LOG.warning("no matching child reference found for family "
+                        "on line %d" % line_number)
             return
         # is this child already in this family? If so, don't add
         LOG.debug("children: %s", [ref.ref for ref in
@@ -586,8 +586,8 @@ class CSVParser:
         person = self.lookup("person", person_ref)
         if person is None:
             if surname is None:
-                LOG.warn("empty surname for new person on line %d" %
-                         line_number)
+                LOG.warning("empty surname for new person on line %d" %
+                            line_number)
                 surname = ""
             # new person
             person = self.create_person()

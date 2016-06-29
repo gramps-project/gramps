@@ -936,7 +936,7 @@ class ViewManager(CLIManager):
             page = page_def(pdata, self.dbstate, self.uistate)
         except:
             import traceback
-            LOG.warn("View '%s' failed to load." % pdata.id)
+            LOG.warning("View '%s' failed to load." % pdata.id)
             traceback.print_exc()
             page = self.__create_dummy_page(pdata, traceback.format_exc())
 

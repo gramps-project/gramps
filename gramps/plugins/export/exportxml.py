@@ -166,7 +166,7 @@ class GrampsXmlWriter(UpdateCallback):
                 else:
                     g = open(filename,"wb")
             except IOError as msg:
-                LOG.warn(str(msg))
+                LOG.warning(str(msg))
                 raise DbWriteFailure(_('Failure writing %s') % filename,
                                         str(msg))
                 return 0

@@ -852,13 +852,13 @@ class EditFamily(EditPrimary):
                 self.obj.set_father_handle(person.get_handle())
                 self.update_father(person.get_handle())
             except:
-                log.warn("Failed to update father: \n"
-                         "obj returned from selector was: %s\n"
-                         % (repr(obj),))
+                log.warning("Failed to update father: \n"
+                            "obj returned from selector was: %s\n"
+                            % (repr(obj),))
                 raise
 
         else:
-            log.warn(
+            log.warning(
                 "Object selector returned obj.__class__ = %s, it should "
                 "have been of type %s." % (obj.__class__.__name__,
                                            Person.__name__))
