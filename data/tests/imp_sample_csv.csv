@@ -1,0 +1,123 @@
+﻿Place,Title,Name,Type,Latitude,Longitude,Code,Enclosed_by,Date
+[P0000],"Löderup, Malmöhus Län, Sweden","Löderup, Malmöhus Län, Sweden",Unknown,,,,,
+[P0001],"Sparks, Washoe Co., NV","Sparks, Washoe Co., NV",Unknown,,,,,
+[P0002],"San Francisco, San Francisco Co., CA","San Francisco, San Francisco Co., CA",Unknown,,,,,
+[P0003],"Rønne, Bornholm, Denmark","Rønne, Bornholm, Denmark",Unknown,,,,,
+[P0004],"Gladsax, Kristianstad Län, Sweden","Gladsax, Kristianstad Län, Sweden",Unknown,,,,,
+[P0005],"Reno, Washoe Co., NV","Reno, Washoe Co., NV",Unknown,,,,,
+[P0006],"Hayward, Alameda Co., CA","Hayward, Alameda Co., CA",Unknown,,,,,
+[P0007],"Community Presbyterian Church, Danville, CA","Community Presbyterian Church, Danville, CA",Unknown,,,,,
+[P0008],Sweden,Sweden,Unknown,,,,,
+[P0009],"Grostorp, Kristianstad Län, Sweden","Grostorp, Kristianstad Län, Sweden",Unknown,,,,,
+[P0010],"Copenhagen, Denmark","Copenhagen, Denmark",Unknown,,,,,
+[P0011],"Hoya/Jona/Hoia, Sweden","Hoya/Jona/Hoia, Sweden",Unknown,,,,,
+[P0012],"Simrishamn, Kristianstad Län, Sweden","Simrishamn, Kristianstad Län, Sweden",Unknown,,,,,
+[P0013],"Fremont, Alameda Co., CA","Fremont, Alameda Co., CA",Unknown,,,,,
+[P0016],"Santa Rosa, Sonoma Co., CA","Santa Rosa, Sonoma Co., CA",Unknown,,,,,
+[P0017],"San Jose, Santa Clara Co., CA","San Jose, Santa Clara Co., CA",Unknown,,,,,
+[P0018],UC Berkeley,UC Berkeley,Unknown,,,,,
+[P0019],"Smestorp, Kristianstad Län, Sweden","Smestorp, Kristianstad Län, Sweden",Unknown,,,,,
+[P0020],"Tommarp, Kristianstad Län, Sweden","Tommarp, Kristianstad Län, Sweden",Unknown,,,,,
+[P0021],"Rønne Bornholm, Denmark","Rønne Bornholm, Denmark",Unknown,,,,,
+[P0022],"Woodland, Yolo Co., CA","Woodland, Yolo Co., CA",Unknown,,,,,
+[P0023],"San Ramon, Conta Costa Co., CA","San Ramon, Conta Costa Co., CA",Unknown,,,,,
+[P0026],United States of America,USA,Country,,,,,
+[P0028],"California, USA",California,State,,,,[P0026],2016-06-04
+[P0025],"Colorado, USA",Colorado,State,,,,[P0026],
+[P0027],"Sacramento Co., California, USA",Sacramento Co.,County,,,,[P0028],2016-06-01
+[P0015],"Sacramento, Sacramento Co., CA","Sacramento, Sacramento Co., CA",City,,,,[P0027],2016-06-04
+[P0024],"Denver Co., Colorado, USA",Denver Co.,County,,,,[P0025],
+[P0014],"Denver, Denver Co., CO","Denver, Denver Co., CO",City,39.7392,104.9903 W,,[P0024],
+
+Person,Surname,Given,Call,Suffix,Prefix,Title,Gender,Birth date,Birth place,Birth source,Baptism date,Baptism place,Baptism source,Death date,Death place,Death source,Burial date,Burial place,Burial source,Note
+[I0030],Adams,Janice Ann,,,,,female,26 Aug 1965,"Fremont, Alameda Co., CA",,,,,,,,,,,
+[I0016],Anderson,Jennifer,,,,,female,5 Nov 1907,"Rønne, Bornholm, Denmark",,,,,29 May 1985,"San Francisco, San Francisco Co., CA",,,,,
+[I0025],Ericsdotter,Marta,,,,,female,about 1775,Sweden,,,,,,,,,,,
+[I0041],Green,Janis Elaine,,,,,female,2 Dec 1935,,,,,,,,,,,,
+[I0000],Hansdotter,Anna,,,,,female,2 Oct 1864,"Löderup, Malmöhus Län, Sweden",,,,,29 Sep 1945,"Sparks, Washoe Co., NV",,,,,
+[I0038],Hansdotter,Kerstina,,,,,female,29 Nov 1832,"Smestorp, Kristianstad Län, Sweden",,,,,before 1908,Sweden,,,,,
+[I0032],Horne,Darcy,,,,,female,2 Jul 1966,"Sacramento, Sacramento Co., CA",,,,,,,,,,,
+[I0036],Jefferson,Elna,,,,,female,14 Sep 1800,"Gladsax, Kristianstad Län, Sweden",,,,,,Sweden,,,,,
+[I0017],Jones,Lillie Harriet,,,,,female,2 May 1910,"Rønne, Bornholm, Denmark",,,,,26 Jun 1990,,,,,,
+[I0042],Ke 柯,雪,,,,,male,,,,,,,,,,,,,
+[I0013],Michaels,Evelyn,,,,,female,about 1897,,,,,,,,,,,,
+[I0012],Nielsen,Herman Julius,,,,,male,31 Aug 1889,"Rønne, Bornholm, Denmark",,,,,1945,,,,,,
+[I0031],Ohman,Marjorie,,,,,female,3 Jun 1903,"Denver, Denver Co., CO, Denver Co., Colorado, USA",,,,,22 Jun 1980,"Reno, Washoe Co., NV",,,,,
+[I0034],Perkins,Alice Paula,,,,,female,22 Nov 1933,"Sparks, Washoe Co., NV",,,,,,,,,,,
+[I0002],Smith,Amber Marie,,,,,female,12 Apr 1998,"Hayward, Alameda Co., CA",,,,,,,,,,,
+[I0023],Smith,Astrid Shermanna Augusta,,,,,female,31 Jan 1889,"Rønne, Bornholm, Denmark",,,,,21 Dec 1963,"San Francisco, San Francisco Co., CA",,,,,
+[I0020],Smith,Carl Emil,,,,,male,20 Dec 1899,"Rønne, Bornholm, Denmark",,,,,28 Jan 1959,"Reno, Washoe Co., NV",,,,,
+[I0029],Smith,Craig Peter,,,,,male,after 1966,"San Francisco, San Francisco Co., CA",,,,,,,,,,,
+[I0037],Smith,Edwin Michael,,,,,male,24 May 1961,"San Jose, Santa Clara Co., CA","Birth, Death and Marriage Records",,,,,,,,,,
+[I0009],Smith,Emil,,,,,male,27 Sep 1860,"Simrishamn, Kristianstad Län, Sweden",,,,,,,,,,,
+[I0019],Smith,Eric Lloyd,,,,Dr.,male,28 Aug 1963,"San Francisco, San Francisco Co., CA",,,,,,,,,,,
+[I0015],Smith,Gus,,,,,male,11 Sep 1897,"Rønne, Bornholm, Denmark",,,,,21 Oct 1963,"San Francisco, San Francisco Co., CA",,,,,
+[I0024],Smith,Gustaf,,Sr.,,,male,28 Nov 1862,"Grostorp, Kristianstad Län, Sweden",,,,,before 23 Jul 1930,"Sparks, Washoe Co., NV",,,,,
+[I0011],Smith,Hanna,,,,,female,29 Jan 1821,"Gladsax, Kristianstad Län, Sweden",,,,,,,,,,,
+[I0010],Smith,Hans Peter,,,,,male,17 Apr 1904,"Rønne, Bornholm, Denmark",Birth Records,,,,29 Jan 1977,"San Francisco, San Francisco Co., CA",,5 Feb 1977,"San Francisco, San Francisco Co., CA",findagrave.com,
+[I0021],Smith,Hjalmar,,,,,male,31 Jan 1893,"Rønne, Bornholm, Denmark",,,,,25 Sep 1894,"Rønne, Bornholm, Denmark",,,,,
+[I0008],Smith,Hjalmar,,,,,male,7 Apr 1895,"Rønne, Bornholm, Denmark",,3 Jun 1895,"Rønne Bornholm, Denmark",,26 Jun 1975,"Reno, Washoe Co., NV",,,,,
+[I0007],Smith,Ingar,,,,,female,after 1823,"Gladsax, Kristianstad Län, Sweden",,,,,,,,,,,
+[I0027],Smith,Ingeman,,,,,male,about 1770,Sweden,,,,,,,,,,,
+[I0004],Smith,Ingeman,,,,,male,29 Jan 1826,"Gladsax, Kristianstad Län, Sweden",,,,,,,,,,,
+[I0018],Smith,John Hjalmar,,,,,male,30 Jan 1932,"San Francisco, San Francisco Co., CA",,,,,,,,,,,
+[I0001],Smith,Keith Lloyd,,,,,male,11 Aug 1966,"San Francisco, San Francisco Co., CA",,,,,,,,,,,
+[I0026],Smith,Kirsti Marie,,,,,female,15 Dec 1886,"Rønne, Bornholm, Denmark",,,,,18 Jul 1966,"San Francisco, San Francisco Co., CA",,,,,
+[I0035],Smith,Lars Peter,,,,,male,16 Sep 1991,"Santa Rosa, Sonoma Co., CA",,,,,,,,,,,
+[I0033],Smith,Lloyd,,,,,male,13 Mar 1935,"San Francisco, San Francisco Co., CA",,,,,,,,,,,
+[I0003],Smith,Magnes,,,,,male,6 Oct 1858,"Simrishamn, Kristianstad Län, Sweden",,,,,20 Feb 1910,"Rønne, Bornholm, Denmark",,,,,
+[I0040],Smith,Marjorie Alice,,,,,female,5 Feb 1960,"San Jose, Santa Clara Co., CA",,,,,,,,,,,
+[I0014],Smith,Marjorie Lee,,,,,female,4 Nov 1934,"Reno, Washoe Co., NV",,,,,,,,,,,
+[I0022],Smith,Martin,,,,,male,19 Nov 1830,"Gladsax, Kristianstad Län, Sweden",,23 Nov 1830,"Gladsax, Kristianstad Län, Sweden",,between 1899 and 1905,Sweden,,,,,
+[I0039],Smith,Martin,,,,,male,between 1794 and 1796,"Tommarp, Kristianstad Län, Sweden",,,,,,Sweden,,,,,
+[I0005],Smith,Mason Michael,,,,,male,26 Jun 1996,"Hayward, Alameda Co., CA",,,,,,,,,,,
+[I0028],Streiffert,Anna,,,,,female,23 Sep 1860,"Hoya/Jona/Hoia, Sweden",,,,,2 Feb 1927,"Rønne, Bornholm, Denmark",,,,,
+[I0006],Willard,Edwin,,,,,male,about 1886,,,,,,,,,,,,
+[I0043],リチミシキスイミ,ピーター,,,,,male,,,,,,,,,,,,,
+
+Marriage,Husband,Wife,Date,Place,Source,Note
+[F0000],[I0039],[I0036],about 1816,"Gladsax, Kristianstad Län, Sweden",,
+[F0001],[I0027],[I0025],about 1790,Sweden,,
+[F0002],[I0022],[I0038],about 1856,,,
+[F0003],[I0024],[I0000],27 Nov 1885,"Rønne, Bornholm, Denmark",,
+[F0004],[I0006],[I0026],about 1910,,,
+[F0005],[I0012],[I0023],30 Nov 1912,"Rønne, Bornholm, Denmark",,
+[F0006],[I0008],[I0031],31 Oct 1927,"Reno, Washoe Co., NV",,
+[F0007],[I0015],[I0013],about 1920,,,
+[F0008],[I0033],[I0041],10 Aug 1958,"San Francisco, San Francisco Co., CA",,
+[F0009],[I0010],[I0017],,,,
+[F0010],[I0019],[I0032],12 Jul 1986,"Woodland, Yolo Co., CA",,
+[F0011],[I0003],[I0028],24 Aug 1884,"Rønne, Bornholm, Denmark",,
+[F0012],[I0018],[I0034],4 Jun 1954,"Sparks, Washoe Co., NV",Marriage Certificae,
+[F0013],[I0037],[I0030],27 May 1995,"San Ramon, Conta Costa Co., CA",,
+[F0014],[I0010],[I0016],,,,
+
+Family,Child
+[F0000],[I0011]
+[F0000],[I0007]
+[F0000],[I0004]
+[F0000],[I0022]
+[F0001],[I0039]
+[F0002],[I0003]
+[F0002],[I0009]
+[F0002],[I0024]
+[F0003],[I0026]
+[F0003],[I0023]
+[F0003],[I0021]
+[F0003],[I0008]
+[F0003],[I0015]
+[F0003],[I0020]
+[F0003],[I0010]
+[F0005],[I0042]
+[F0006],[I0018]
+[F0006],[I0014]
+[F0008],[I0019]
+[F0008],[I0001]
+[F0008],[I0029]
+[F0009],[I0033]
+[F0010],[I0035]
+[F0012],[I0040]
+[F0012],[I0037]
+[F0013],[I0005]
+[F0013],[I0002]
+
