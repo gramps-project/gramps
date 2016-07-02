@@ -250,11 +250,14 @@ class GeoFamClose(GeoGraphyView):
         if self.reffamily:
             color = self._config.get('geography.color1')
             self._createmap(self.reffamily, color, self.place_list_ref, True)
-            self.message_layer.add_message(_("Family reference : %s" % self.family_label(self.reffamily)))
+            self.message_layer.add_message(_("Family reference : %(ref)s") %
+                                   { 'ref' : self.family_label(self.reffamily)})
             if f1:
-                self.message_layer.add_message(_("The other family : %s" % self.family_label(f1)))
+                self.message_layer.add_message(_("The other family : %(fam)s") %
+                                   { 'fam' : self.family_label(self.reffamily)})
             else:
-                self.message_layer.add_message(_("The other family : %s" % _("Unknown")))
+                self.message_layer.add_message(_("The other family : %(fam)s") %
+                                   { 'fam' : self.family_label(self.reffamily)})
             if self.reffamily_bookmark is None:
                 self.reffamily_bookmark = self.reffamily.get_handle()
                 self.add_bookmark_from_popup(None, self.reffamily_bookmark)
