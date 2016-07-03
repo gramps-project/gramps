@@ -219,7 +219,7 @@ class CLIDbManager:
         Get the list of current names in the database dir
         """
         # make the default directory if it does not exist
-        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = os.path.expanduser(config.get('database.path'))
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -375,7 +375,7 @@ class CLIDbManager:
                 self.__start_cursor(_("Importing data..."))
 
                 ## Use bsddb, for now, because we assumed that above.
-                dbid = "bsddb" ## config.get('behavior.database-backend')
+                dbid = "bsddb" ## config.get('database.backend')
                 dbase = self.dbstate.make_database(dbid)
                 dbase.load(new_path, user.callback)
 
@@ -410,7 +410,7 @@ class CLIDbManager:
         Deletes a database folder given a pattenr that matches
         its proper name.
         """
-        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = os.path.expanduser(config.get('database.path'))
         match_list = []
         for dpath in os.listdir(dbdir):
             dirpath = os.path.join(dbdir, dpath)
@@ -511,7 +511,7 @@ def find_next_db_dir():
     """
     while True:
         base = "%x" % int(time.time())
-        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = os.path.expanduser(config.get('database.path'))
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break

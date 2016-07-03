@@ -138,9 +138,6 @@ register('behavior.check-for-update-types', ["new"])
 register('behavior.last-check-for-updates', "1970/01/01")
 register('behavior.previously-seen-updates', [])
 register('behavior.do-not-show-previously-seen-updates', True)
-register('behavior.database-path', os.path.join(HOME_DIR, 'grampsdb'))
-register('behavior.database-backend', 'bsddb')
-register('behavior.database-backup-use-compression', True)
 register('behavior.date-about-range', 50)
 register('behavior.date-after-range', 50)
 register('behavior.date-before-range', 50)
@@ -158,6 +155,10 @@ register('behavior.use-tips', False)
 register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
 register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps50")
+
+register('database.backend', 'bsddb')
+register('database.compress-backup', True)
+register('database.path', os.path.join(HOME_DIR, 'grampsdb'))
 
 register('export.proxy-order',
          [["privacy", 0],

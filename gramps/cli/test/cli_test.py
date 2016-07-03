@@ -135,8 +135,8 @@ class UnicodeTest(unittest.TestCase):
                                     '\u0393\u03c1\u03b1\u03bc\u03c3\u03c0')
         self.newtitle = 'Gr\u00e4mps T\u00e9st'
         os.makedirs(self.newpath)
-        self.old_path = getconfig('behavior.database-path')
-        setconfig('behavior.database-path', self.newpath)
+        self.old_path = getconfig('database.path')
+        setconfig('database.path', self.newpath)
         self.cli = CLIDbManager(DbState())
 
     def tearDown(self):
@@ -147,7 +147,7 @@ class UnicodeTest(unittest.TestCase):
             for adir in dirnames:
                 os.rmdir(os.path.join(dirpath, adir))
         os.rmdir(self.newpath)
-        setconfig('behavior.database-path', self.old_path)
+        setconfig('database.path', self.old_path)
 
     # Test that clidbman will open files in a path containing
     # arbitrary Unicode characters.

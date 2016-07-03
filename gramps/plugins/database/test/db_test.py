@@ -35,7 +35,7 @@ class BSDDB:
 
     def __init__(self):
         self.gramps = Gramps()
-        self.call("--config=behavior.database-backend:" + self.backend,
+        self.call("--config=database.backend:" + self.backend,
                   "-C", self.NAME, "--import", example)
         self.db = open_database(self.NAME, force_unlock=True)
 

@@ -229,7 +229,7 @@ class ArgHandler:
             return db_path
         elif create:
             # create the tree here, and continue
-            dbid = config.get('behavior.database-backend')
+            dbid = config.get('database.backend')
             db_path, title = self.dbman.create_new_db_cli(title=value, dbid=dbid)
             return db_path
         else:
@@ -483,11 +483,11 @@ class ArgHandler:
             if not self.open:
                 # Create empty dir for imported database(s)
                 if self.gui:
-                    dbid = config.get('behavior.database-backend')
+                    dbid = config.get('database.backend')
                     self.imp_db_path, title = self.dbman.create_new_db_cli(dbid=dbid)
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
-                    dbid = config.get('behavior.database-backend')
+                    dbid = config.get('database.backend')
                     newdb = self.dbstate.make_database(dbid)
                     newdb.write_version(self.imp_db_path)
 

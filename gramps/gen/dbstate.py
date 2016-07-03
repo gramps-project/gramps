@@ -211,7 +211,7 @@ class DbState(Callback):
         """
         Find a Family Tree given its name, and return properties.
         """
-        dbdir = os.path.expanduser(config.get('behavior.database-path'))
+        dbdir = os.path.expanduser(config.get('database.path'))
         for dpath in os.listdir(dbdir):
             dirpath = os.path.join(dbdir, dpath)
             path_name = os.path.join(dirpath, "name.txt")

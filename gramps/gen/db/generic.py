@@ -2129,7 +2129,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         from gramps.cli.user import User
         if user is None:
             user = User()
-        compress = config.get('behavior.database-backup-use-compression')
+        compress = config.get('database.compress-backup')
         writer = XmlWriter(self, user, strip_photos=0, compress=compress)
         timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
         filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)

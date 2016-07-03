@@ -351,7 +351,7 @@ class DbManager(CLIDbManager):
         The Backend Type column is a string based on database backend.
         """
         # Put some help on the buttons:
-        dbid = config.get('behavior.database-backend')
+        dbid = config.get('database.backend')
         backend_type = self.get_backend_name_from_dbid(dbid)
         self.new.set_tooltip_text(backend_type)
 
@@ -958,7 +958,7 @@ class DbManager(CLIDbManager):
         message.
         """
         self.new.set_sensitive(False)
-        dbid = config.get('behavior.database-backend')
+        dbid = config.get('database.backend')
         if dbid:
             try:
                 self._create_new_db(dbid=dbid)
