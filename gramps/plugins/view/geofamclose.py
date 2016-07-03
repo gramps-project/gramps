@@ -265,7 +265,7 @@ class GeoFamClose(GeoGraphyView):
                                            self.family_label(self.reffamily))
             if family:
                 self.message_layer.add_message(_("The other family : %s") %
-                                               self.family_label(f1))
+                                               self.family_label(family))
             else:
                 self.message_layer.add_message(_("The other family : %s") %
                                                _("Unknown"))
