@@ -18,8 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from dbapi import DBAPI
-from dbapi_support.sqlite import Sqlite
+from gramps.plugins.db.dbapi.dbapi import DBAPI
+from gramps.plugins.db.dbapi.sqlite import Sqlite
 from gramps.gen.db.generic import DbGeneric, DBBACKEND, LOG
 import os
 import glob

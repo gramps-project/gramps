@@ -38,7 +38,6 @@ from html import escape
 #------------------------------------------------------------------------
 from gramps.gen.db.generic import *
 from gramps.gen.db.dbconst import DBLOGNAME
-import dbapi_support
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -164,16 +163,16 @@ class DBAPI(DbGeneric):
         settings = self.__parse_settings(settings_file)
 
         if settings['dbtype'] == 'sqlite':
-            from dbapi_support.sqlite import Sqlite
+            from gramps.plugins.db.dbapi.sqlite import Sqlite
             path_to_db = os.path.join(directory, 'sqlite.db')
             self.dbapi = Sqlite(path_to_db)
         elif settings['dbtype'] == 'mysql':
-            from dbapi_support.mysql import MySQL
+            from gramps.plugins.db.dbapi.mysql import MySQL
             self.dbapi = MySQL(settings['host'], settings['user'],
                                settings['password'], settings['dbname'],
                                charset='utf8', use_unicode=True)
         elif settings['dbtype'] == 'postgres':
-            from dbapi_support.postgresql import Postgresql
+            from gramps.plugins.db.dbapi.postgresql import Postgresql
             self.dbapi = Postgresql(dbname=settings['dbname'],
                                     user=settings['user'],
                                     host=settings['host'],

@@ -19,5 +19,5 @@
 #
 
 
-from bsddb_support import DbBsddb
+from gramps.plugins.db.bsddb import DbBsddb
 
