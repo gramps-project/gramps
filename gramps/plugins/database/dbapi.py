@@ -27,6 +27,9 @@ import time
 import sys
 import pickle
 from operator import itemgetter
+import logging
+import xml.dom.minidom
+from html import escape
 
 #------------------------------------------------------------------------
 #
@@ -36,7 +39,7 @@ from operator import itemgetter
 from gramps.gen.db.generic import *
 from gramps.gen.db.dbconst import DBLOGNAME
 import dbapi_support
-import logging
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -123,28 +126,59 @@ class DBAPI(DbGeneric):
         _LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
             version_file.write("dbapi")
-        # Write default_settings, sqlite.db
-        defaults = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                "dbapi_support", "defaults")
-        LOG.debug("Copy defaults from: " + defaults)
-        for filename in os.listdir(defaults):
-            if filename in ["__init__.py"]: # skip these
-                continue
-            fullpath = os.path.abspath(os.path.join(defaults, filename))
-            if os.path.isfile(fullpath):
-                shutil.copy2(fullpath, directory)
+
+        # Write settings
+        settings_file = os.path.join(directory, "settings.xml")
+        with open(settings_file, "w") as f:
+            f.write("<settings>\n")
+            f.write("  <dbtype>%s</dbtype>\n" %
+                    escape(config.get('database.dbtype')))
+            f.write("  <dbname>%s</dbname>\n" %
+                    escape(config.get('database.dbname')))
+            f.write("  <host>%s</host>\n" %
+                    escape(config.get('database.host')))
+            f.write("  <user>%s</user>\n" %
+                    escape(config.get('database.user')))
+            f.write("  <password>%s</password>\n" %
+                    escape(config.get('database.password')))
+            f.write("</settings>\n")
+
+    def __parse_settings(self, settings_file):
+        """
+        Parse the database settings file and return a dictionary of settings.
+        """
+        settings = {}
+        dom = xml.dom.minidom.parse(settings_file)
+        top = dom.getElementsByTagName('settings')
+        if len(top) != 1:
+            return settings
+        for key in ('dbtype', 'dbname', 'host', 'user', 'password'):
+            elements = top[0].getElementsByTagName(key)
+            if len(elements) == 1:
+                settings[key] = elements[0].childNodes[0].data
+        return settings
 
     def initialize_backend(self, directory):
-        # Run code from directory
-        default_settings = {"__file__":
-                            os.path.join(directory, "default_settings.py"),
-                            "dbapi_support": dbapi_support}
-        settings_file = os.path.join(directory, "default_settings.py")
-        with open(settings_file) as f:
-            code = compile(f.read(), settings_file, 'exec')
-            exec(code, globals(), default_settings)
+        # Read settings
+        settings_file = os.path.join(directory, "settings.xml")
+        settings = self.__parse_settings(settings_file)
 
-        self.dbapi = default_settings["dbapi"]
+        if settings['dbtype'] == 'sqlite':
+            from dbapi_support.sqlite import Sqlite
+            path_to_db = os.path.join(directory, 'sqlite.db')
+            self.dbapi = Sqlite(path_to_db)
+        elif settings['dbtype'] == 'mysql':
+            from dbapi_support.mysql import MySQL
+            self.dbapi = MySQL(settings['host'], settings['user'],
+                               settings['password'], settings['dbname'],
+                               charset='utf8', use_unicode=True)
+        elif settings['dbtype'] == 'postgres':
+            from dbapi_support.postgresql import Postgresql
+            self.dbapi = Postgresql(dbname=settings['dbname'],
+                                    user=settings['user'],
+                                    host=settings['host'],
+                                    password=settings['password'])
+
         self.update_schema()
 
     def update_schema(self):

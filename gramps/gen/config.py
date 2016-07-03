@@ -159,6 +159,11 @@ register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-projec
 register('database.backend', 'bsddb')
 register('database.compress-backup', True)
 register('database.path', os.path.join(HOME_DIR, 'grampsdb'))
+register('database.dbtype', 'sqlite') # Used in dbapi backend only
+register('database.dbname', 'gramps')
+register('database.host', 'localhost')
+register('database.user', 'user')
+register('database.password', 'password')
 
 register('export.proxy-order',
          [["privacy", 0],
