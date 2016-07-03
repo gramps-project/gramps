@@ -47,7 +47,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER, PARA_ALIGN_RIGHT)
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                                   BooleanListOption)
 from gramps.gen.plug.report import Report
@@ -172,7 +172,7 @@ class IndivCompleteReport(Report):
         place_handle = event.get_place_handle()
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
-            place_name = place_displayer.display_event(self._db, event)
+            place_name = _pd.display_event(self._db, event)
             place_endnote = self._cite_endnote(place)
         # make sure it's translated, so it can be used below, in "combine"
         ignore = _('%(str1)s in %(str2)s. ') % {'str1':'', 'str2':''}
@@ -471,7 +471,7 @@ class IndivCompleteReport(Report):
             place_handle = lds_ord.get_place_handle()
             if place_handle:
                 place = self._db.get_place_from_handle(place_handle)
-                place_name = place_displayer.display_event(self._db, lds_ord)
+                place_name = _pd.display_event(self._db, lds_ord)
                 place_endnote = self._cite_endnote(place)
             endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
             self.doc.start_row()
@@ -666,8 +666,7 @@ class IndivCompleteReport(Report):
                     place_handle = lds_ord.get_place_handle()
                     if place_handle:
                         place = self._db.get_place_from_handle(place_handle)
-                        place_name = place_displayer.display_event(self._db,
-                                                                   lds_ord)
+                        place_name = _pd.display_event(self._db, lds_ord)
                         place_endnote = self._cite_endnote(place)
                     endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
                     self.doc.start_row()

@@ -50,7 +50,7 @@ from gramps.gen.lib import NoteType, UrlType
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.errors import ReportError
 from gramps.gen.utils.db import get_participant_from_event
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -437,7 +437,7 @@ class TagReport(Report):
 
         for place_handle in place_list:
             place = self.database.get_place_from_handle(place_handle)
-            place_title = place_displayer.display(self.database, place)
+            place_title = _pd.display(self.database, place)
 
             self.doc.start_row()
 

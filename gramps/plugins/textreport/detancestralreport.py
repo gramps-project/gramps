@@ -58,7 +58,7 @@ from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -431,7 +431,7 @@ class DetAncestorReport(Report):
         else:
             date = event.get_date_object().get_year()
 
-        place = place_displayer.display_event(self._db, event)
+        place = _pd.display_event(self._db, event)
 
         self.doc.start_paragraph('DAR-MoreDetails')
         if date and place:

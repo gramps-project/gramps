@@ -41,7 +41,7 @@ Mary Smith was born on 3/28/1923.
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.utils.location import get_main_location
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 
@@ -347,7 +347,7 @@ class PlaceFormat(GenericFormat):
         return None
 
     def _default_format(self, place):
-        return place_displayer.display(self.database, place)
+        return _pd.display(self.database, place)
 
     def parse_format(self, database, place):
         """ Parse the place """

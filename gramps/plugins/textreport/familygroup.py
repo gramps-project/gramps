@@ -48,7 +48,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, FONT_SERIF,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -120,7 +120,7 @@ class FamilyGroup(Report):
         descr = ""
         if event:
             date = self._get_date(event.get_date_object())
-            place = place_displayer.display_event(self.db, event)
+            place = _pd.display_event(self.db, event)
             if place is None:
                 place = ''
             descr = event.get_description()
@@ -435,7 +435,7 @@ class FamilyGroup(Report):
             date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
-                place = place_displayer.display_event(self.db, event)
+                place = _pd.display_event(self.db, event)
                 if place is None:
                     place = ''
 

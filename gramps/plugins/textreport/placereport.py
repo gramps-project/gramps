@@ -47,7 +47,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_location_list
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.errors import ReportError
 from gramps.gen.proxy import LivingProxyDb, CacheProxyDb
 
@@ -193,7 +193,7 @@ class PlaceReport(Report):
                     place_names += ' (%s)' % place_name.get_language()
             place_details += [self._("places|All Names: %s") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
-        place_title = place_displayer.display(self._db, place)
+        place_title = _pd.display(self._db, place)
         self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,
                                                       'place' : place_title})
         self.doc.end_paragraph()

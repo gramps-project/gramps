@@ -58,7 +58,7 @@ from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import parser
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -437,7 +437,7 @@ class Extract:
         "return place for given event"
         place_handle = event.get_place_handle()
         if place_handle:
-            place = place_displayer.display_event(self.db, event)
+            place = _pd.display_event(self.db, event)
             if place:
                 return [place]
         return [_T_("Place missing")]
@@ -450,7 +450,7 @@ class Extract:
             event = self.db.get_event_from_handle(event_handle)
             place_handle = event.get_place_handle()
             if place_handle:
-                place = place_displayer.display_event(self.db, event)
+                place = _pd.display_event(self.db, event)
                 if place:
                     places.append(place)
             else:

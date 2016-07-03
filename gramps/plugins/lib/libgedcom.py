@@ -133,7 +133,7 @@ from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.plugins.lib.libplaceimport import PlaceImport
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 
 #-------------------------------------------------------------------------
 #
@@ -2964,7 +2964,7 @@ class GedcomParser(UpdateCallback):
                                       sub_state.place.get_placeref_list())
             if place is None:
                 place = sub_state.place
-                place_title = place_displayer.display(self.dbase, place)
+                place_title = _pd.display(self.dbase, place)
                 location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.add_place(place, self.trans)
                 # if 'location was created, then store it, now that we have a handle.
@@ -2974,7 +2974,7 @@ class GedcomParser(UpdateCallback):
                 event.set_place_handle(place.get_handle())
             else:
                 place.merge(sub_state.place)
-                place_title = place_displayer.display(self.dbase, place)
+                place_title = _pd.display(self.dbase, place)
                 location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.commit_place(place, self.trans)
                 if location:
@@ -4502,7 +4502,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            place_title = place_displayer.display(self.dbase, sub_state.place)
+            place_title = _pd.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place,
                                               place_title)
@@ -5077,7 +5077,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            place_title = place_displayer.display(self.dbase, sub_state.place)
+            place_title = _pd.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place,
                                               place_title)
@@ -5570,7 +5570,7 @@ class GedcomParser(UpdateCallback):
             else:
                 place.merge(state.place)
                 self.dbase.commit_place(place, self.trans)
-            place_title = place_displayer.display(self.dbase, place)
+            place_title = _pd.display(self.dbase, place)
             state.pf.load_place(self.place_import, place, place_title)
 
             # Create the Place Details (it is committed with the event)

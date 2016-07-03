@@ -54,7 +54,7 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.location import get_main_location
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 
 #-------------------------------------------------------------------------
 #
@@ -1386,7 +1386,7 @@ class GedcomWriter(UpdateCallback):
             +1 <<NOTE_STRUCTURE>> {0:M}
         """
         if place is None: return
-        place_name = place_displayer.display(self.dbase, place, dateobj)
+        place_name = _pd.display(self.dbase, place, dateobj)
         self._writeln(level, "PLAC", place_name.replace('\r', ' '), limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()

@@ -59,7 +59,7 @@ from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 
 #------------------------------------------------------------------------
@@ -633,7 +633,7 @@ class RelGraphReport(Report):
             empty string
         """
         if event and self.event_choice in [2, 3, 5, 6, 7]:
-            return place_displayer.display_event(self._db, event)
+            return _pd.display_event(self._db, event)
         return ''
 
 #------------------------------------------------------------------------

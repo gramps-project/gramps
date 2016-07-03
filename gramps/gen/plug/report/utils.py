@@ -41,7 +41,7 @@ import os
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...datehandler import get_date
-from ...display.place import displayer as place_displayer
+from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
@@ -120,7 +120,7 @@ def roman(num):
 def place_name(db, place_handle):
     if place_handle:
         place = db.get_place_from_handle(place_handle)
-        name = place_displayer.display(db, place)
+        name = _pd.display(db, place)
     else:
         name = ""
     return str(name)
