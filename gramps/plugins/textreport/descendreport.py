@@ -55,6 +55,7 @@ from gramps.gen.sort import Sort
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                                  get_marriage_or_fallback,
                                  get_divorce_or_fallback)
+from gramps.gen.display.place import displayer as _pd
 
 #------------------------------------------------------------------------
 #
@@ -161,8 +162,7 @@ class Printinfo():
             date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.database.get_place_from_handle(
-                    place_handle).get_title()
+                place = _pd.display_event(self.database, event)
                 return("%(event_abbrev)s %(date)s - %(place)s" % {
                     'event_abbrev': event.type.get_abbreviation(self._),
                     'date' : date,
