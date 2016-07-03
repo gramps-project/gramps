@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-06-17" version="5.0.0"/>
+    <created date="2016-06-29" version="5.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -17902,6 +17902,81 @@
       <type>Death</type>
       <dateval val="1850" type="about" quality="estimated"/>
     </event>
+    <event handle="_d583a5b672908d7f672" change="1467134452" id="E3416">
+      <type>Birth</type>
+      <dateval val="1940-03-01"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b85f01638dd55" change="1467134586" id="E3417">
+      <type>Birth</type>
+      <dateval val="1950-06-18"/>
+      <place hlink="_d583a5b8614206a939d"/>
+    </event>
+    <event handle="_d583a5b86bd789d3e05" change="1467134680" id="E3418">
+      <type>Marriage</type>
+      <dateval val="1970-09-09"/>
+    </event>
+    <event handle="_d583a5b879148ab75f7" change="1467134840" id="E3419">
+      <type>Birth</type>
+      <dateval val="1971-11-05"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b88403b5a824a" change="1467136321" id="E3420">
+      <type>Birth</type>
+      <dateval val="1973-04-11"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b8904116c34d3" change="1467135146" id="E3421">
+      <type>Birth</type>
+      <dateval val="1974-12-03"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b89b831343389" change="1467135233" id="E3422">
+      <type>Birth</type>
+      <dateval val="1976-09-29"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b8a694a781120" change="1467135764" id="E3423">
+      <type>Birth</type>
+      <dateval val="1910-06-29"/>
+      <place hlink="_d583a5b8a8c1474357d"/>
+    </event>
+    <event handle="_d583a5b8b332fde7538" change="1467135789" id="E3424">
+      <type>Birth</type>
+      <dateval val="1920-04-07"/>
+      <place hlink="_d583a5b8b586fb992c8"/>
+    </event>
+    <event handle="_d583a5b8c141abfbc46" change="1467136006" id="E3425">
+      <type>Birth</type>
+      <dateval val="1915-03-10"/>
+      <place hlink="_d583a5b8c380fb024c9"/>
+    </event>
+    <event handle="_d583a5b8ced2d8929f9" change="1467136080" id="E3426">
+      <type>Birth</type>
+      <dateval val="1925-07-15"/>
+      <place hlink="_d583a5b8d1106cda712"/>
+    </event>
+    <event handle="_d583a5b8de520210f77" change="1467136226" id="E3427">
+      <type>Birth</type>
+      <dateval val="1978-11-30"/>
+      <place hlink="_d583a5b7ab21971300a"/>
+    </event>
+    <event handle="_d583a5b8e960ad443de" change="1467136416" id="E3428">
+      <type>Death</type>
+      <dateval val="1990-02-02"/>
+    </event>
+    <event handle="_d583a5b8edc2aa78850" change="1467136449" id="E3429">
+      <type>Death</type>
+      <dateval val="1995-03-02"/>
+    </event>
+    <event handle="_d583a5b8f8727b426aa" change="1467136571" id="E3430">
+      <type>Death</type>
+      <dateval val="2005-06-28"/>
+    </event>
+    <event handle="_d583a5b8fcd3f653b21" change="1467136997" id="E3431">
+      <type>Death</type>
+      <dateval val="2006-01-11"/>
+    </event>
   </events>
   <people home="_GNUJQCL9MD64AM56OH">
     <person handle="_004KQCGYT27EEPQHK" change="1185438865" id="I0552">
@@ -23274,7 +23349,7 @@
       <childof hlink="_0UHKQCNK5KVG7984XX"/>
       <citationref hlink="_c140d2531b54ba088dd"/>
     </person>
-    <person handle="_8UYJQC42DZNTY8C58P" change="1185438865" id="I0261">
+    <person handle="_8UYJQC42DZNTY8C58P" change="1467258158" id="I0261">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Sarah</first>
@@ -23282,6 +23357,7 @@
       </name>
       <eventref hlink="_a5af0ec5c4228c3d703" role="Primary"/>
       <childof hlink="_TXVJQC6KVZPENSVQW8"/>
+      <parentin hlink="_d5839f3cc59107df67f"/>
       <citationref hlink="_c140d25320710a7b572"/>
     </person>
     <person handle="_8WMKQCWTB13CW9SQOW" change="1185438865" id="I1478">
@@ -24760,7 +24836,7 @@
       <childof hlink="_76XJQCEI9MJXHXEKLH"/>
       <citationref hlink="_c140d256c923bdd5f57"/>
     </person>
-    <person handle="_B2BKQCFJFL0RHZ8NCN" change="1185438865" id="I0879">
+    <person handle="_B2BKQCFJFL0RHZ8NCN" change="1467258158" id="I0879">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Milton</first>
@@ -24768,6 +24844,7 @@
       </name>
       <eventref hlink="_a5af0ed2c716af4f046" role="Primary"/>
       <childof hlink="_1BVJQCNTFAGS8273LJ"/>
+      <parentin hlink="_d5839f3cc59107df67f"/>
       <citationref hlink="_c140d256ce61d8c8986"/>
     </person>
     <person handle="_B2GKQCPG5WOVS9B4UL" change="1185438865" id="I1132">
@@ -26052,7 +26129,7 @@
       <parentin hlink="_4VOKQCKKGP6NL9FLMK"/>
       <citationref hlink="_c140d259efd29742643"/>
     </person>
-    <person handle="_CX0KQCWWAAMD52KQR9" change="1185438865" id="I0394">
+    <person handle="_CX0KQCWWAAMD52KQR9" change="1467258353" id="I0394">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Bridget</first>
@@ -26061,6 +26138,7 @@
       <eventref hlink="_a5af0ec817577457c30" role="Primary"/>
       <eventref hlink="_a5af0ec817f6f37bc25" role="Primary"/>
       <childof hlink="_ZUUJQC4XMPRASQVVJ"/>
+      <parentin hlink="_d583a148af101ade419"/>
       <citationref hlink="_c140d259f394610f755"/>
     </person>
     <person handle="_CXGKQCLC7KWP5GZUKX" change="1185438865" id="I1178">
@@ -28160,7 +28238,7 @@
       <childof hlink="_F2MKQC5B6JHXFNSN7A"/>
       <citationref hlink="_c140d25ec926bfdc6e0"/>
     </person>
-    <person handle="_GIPKQCT1LE84MLFWXA" change="1185438865" id="I1663">
+    <person handle="_GIPKQCT1LE84MLFWXA" change="1467258353" id="I1663">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Joseph LeRoy</first>
@@ -28168,6 +28246,7 @@
       </name>
       <eventref hlink="_a5af0ebed7d1f2523db" role="Primary"/>
       <childof hlink="_3AVJQCBQQBKAO8BX39"/>
+      <parentin hlink="_d583a148af101ade419"/>
       <citationref hlink="_c140d25ecda79e068eb"/>
     </person>
     <person handle="_GJ7KQC7APJSAMHEK5Q" change="1185438865" id="I0743">
@@ -40233,6 +40312,231 @@
       </name>
       <eventref hlink="_cccc047c40841a5993c" role="Primary"/>
     </person>
+    <person handle="_d5839c1237765987724" change="1467252696" id="I0000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>The First</first>
+        <surname>Person</surname>
+      </name>
+      <parentin hlink="_d5839c123c034ef82ab"/>
+    </person>
+    <person handle="_d5839c126d11a754f46" change="1467252696" id="I0556">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>B</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c123c034ef82ab"/>
+    </person>
+    <person handle="_d5839c12ac91650a72b" change="1467252750" id="I0839">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>C</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c12c8f6f664d4b"/>
+    </person>
+    <person handle="_d5839c12d3b4d5e619b" change="1467252750" id="I0952">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>D</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c12c8f6f664d4b"/>
+    </person>
+    <person handle="_d5839c12e9e08301ce2" change="1467252805" id="I1038">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>E</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c12f41558e7c83"/>
+    </person>
+    <person handle="_d5839c12fec09785f6a" change="1467252805" id="I1236">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>F</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c12f41558e7c83"/>
+    </person>
+    <person handle="_d5839c131d560e06bac" change="1467252852" id="I1237">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>G</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c1320401d4b919"/>
+    </person>
+    <person handle="_d5839c132b11d9e3632" change="1467252852" id="I1244">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>H</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c1320401d4b919"/>
+    </person>
+    <person handle="_d5839c13380462b246f" change="1467252898" id="I1388">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>I</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c134786c7bdc8e"/>
+    </person>
+    <person handle="_d5839c1352c64b924d9" change="1467252898" id="I1461">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>J</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c134786c7bdc8e"/>
+    </person>
+    <person handle="_d5839c1366b21411fb4" change="1467252950" id="I1540">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>K</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c13704694ad705"/>
+    </person>
+    <person handle="_d5839c137b3640ad776" change="1467252950" id="I1555">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>L</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c13704694ad705"/>
+    </person>
+    <person handle="_d5839c1388e3ab6c87c" change="1467252995" id="I1691">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>M</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c139773b4fed5b"/>
+    </person>
+    <person handle="_d5839c13a282b51dd0d" change="1467252995" id="I1693">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>N</first>
+        <surname>Fillin</surname>
+      </name>
+      <parentin hlink="_d5839c139773b4fed5b"/>
+    </person>
+    <person handle="_d5839c13b0541b7b8e6" change="1467246730" id="I1696">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>O</first>
+        <surname>Fillin</surname>
+      </name>
+    </person>
+    <person handle="_d583a5b90777391ea9a" change="1467135708" id="I2117">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Αγαμέμνων</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b672908d7f672" role="Primary"/>
+      <eventref hlink="_d583a5b86bd789d3e05" role="Primary"/>
+      <childof hlink="_d583a5b9c074a235600"/>
+      <parentin hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5b9ced473a7e6a" change="1467136100" id="I2118">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Ευτέρπη</first>
+        <surname derivation="Patrilineal">Ιωάννου</surname>
+      </name>
+      <eventref hlink="_d583a5b85f01638dd55" role="Primary"/>
+      <childof hlink="_d583a5b9d2c7620c04b"/>
+      <parentin hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5b9df71bceb48c" change="1467134858" id="I2119">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Όμηρος</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b879148ab75f7" role="Primary"/>
+      <childof hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5b9edf6cb5d8d5" change="1467136322" id="I2120">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Μυρσίνη</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b88403b5a824a" role="Primary"/>
+      <childof hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5b9fc864e3bf4e" change="1467135151" id="I2121">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Νεφέλη</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b8904116c34d3" role="Primary"/>
+      <childof hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5ba0d50afbbaaf" change="1467135234" id="I2122">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Νέστορας</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b89b831343389" role="Primary"/>
+      <childof hlink="_d583a5b9c2011be735e"/>
+    </person>
+    <person handle="_d583a5ba1bd083ce4c2" change="1467136418" id="I2123">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Ιάσων</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b8a694a781120" role="Primary"/>
+      <eventref hlink="_d583a5b8e960ad443de" role="Primary"/>
+      <parentin hlink="_d583a5b9c074a235600"/>
+    </person>
+    <person handle="_d583a5ba2bc7b9d1388" change="1467136457" id="I2124">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Βενετία</first>
+        <surname>Αναγνωστοπούλου</surname>
+      </name>
+      <eventref hlink="_d583a5b8b332fde7538" role="Primary"/>
+      <eventref hlink="_d583a5b8edc2aa78850" role="Primary"/>
+      <parentin hlink="_d583a5b9c074a235600"/>
+    </person>
+    <person handle="_d583a5ba3bc48c2002c" change="1467136958" id="I2125">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Επαμεινώνδας</first>
+        <surname derivation="Patrilineal">Ιωάννου</surname>
+      </name>
+      <eventref hlink="_d583a5b8c141abfbc46" role="Primary"/>
+      <eventref hlink="_d583a5b8f8727b426aa" role="Primary"/>
+      <parentin hlink="_d583a5b9d2c7620c04b"/>
+    </person>
+    <person handle="_d583a5ba4be3acdd312" change="1467136999" id="I2126">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Ιουλία</first>
+        <surname>Καλέργη</surname>
+      </name>
+      <eventref hlink="_d583a5b8ced2d8929f9" role="Primary"/>
+      <eventref hlink="_d583a5b8fcd3f653b21" role="Primary"/>
+      <parentin hlink="_d583a5b9d2c7620c04b"/>
+    </person>
+    <person handle="_d583a5ba5ca6b698463" change="1467136230" id="I2127">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Άγης</first>
+        <surname derivation="Patrilineal">Δεληπέτρου</surname>
+      </name>
+      <eventref hlink="_d583a5b8de520210f77" role="Primary"/>
+      <childof hlink="_d583a5b9c2011be735e"/>
+    </person>
   </people>
   <families>
     <family handle="_03GKQCH37C1SL9C5B3" change="1185438865" id="F0372">
@@ -46628,6 +46932,73 @@
       <father hlink="_cc82060504445ab6deb"/>
       <mother hlink="_cc8206050e541f79f92"/>
       <childref hlink="_cc82060512042f67e2c"/>
+    </family>
+    <family handle="_d5839c123c034ef82ab" change="1467252696" id="F0000">
+      <rel type="Married"/>
+      <father hlink="_d5839c1237765987724"/>
+      <mother hlink="_d5839c126d11a754f46"/>
+    </family>
+    <family handle="_d5839c12c8f6f664d4b" change="1467252750" id="F0141">
+      <rel type="Married"/>
+      <father hlink="_d5839c12ac91650a72b"/>
+      <mother hlink="_d5839c12d3b4d5e619b"/>
+    </family>
+    <family handle="_d5839c12f41558e7c83" change="1467252805" id="F0174">
+      <rel type="Married"/>
+      <father hlink="_d5839c12e9e08301ce2"/>
+      <mother hlink="_d5839c12fec09785f6a"/>
+    </family>
+    <family handle="_d5839c1320401d4b919" change="1467252906" id="F0365">
+      <rel type="Married"/>
+      <father hlink="_d5839c131d560e06bac"/>
+      <mother hlink="_d5839c132b11d9e3632"/>
+    </family>
+    <family handle="_d5839c134786c7bdc8e" change="1467252898" id="F0447">
+      <rel type="Married"/>
+      <father hlink="_d5839c13380462b246f"/>
+      <mother hlink="_d5839c1352c64b924d9"/>
+    </family>
+    <family handle="_d5839c13704694ad705" change="1467252950" id="F0448">
+      <rel type="Married"/>
+      <father hlink="_d5839c1366b21411fb4"/>
+      <mother hlink="_d5839c137b3640ad776"/>
+    </family>
+    <family handle="_d5839c139773b4fed5b" change="1467252995" id="F0480">
+      <rel type="Married"/>
+      <father hlink="_d5839c1388e3ab6c87c"/>
+      <mother hlink="_d5839c13a282b51dd0d"/>
+    </family>
+    <family handle="_d5839f3cc59107df67f" change="1467258158" id="F0502">
+      <rel type="Married"/>
+      <father hlink="_B2BKQCFJFL0RHZ8NCN"/>
+      <mother hlink="_8UYJQC42DZNTY8C58P"/>
+    </family>
+    <family handle="_d583a148af101ade419" change="1467258353" id="F0551">
+      <rel type="Married"/>
+      <father hlink="_GIPKQCT1LE84MLFWXA"/>
+      <mother hlink="_CX0KQCWWAAMD52KQR9"/>
+    </family>
+    <family handle="_d583a5b9c074a235600" change="1467135708" id="F0748">
+      <rel type="Married"/>
+      <father hlink="_d583a5ba1bd083ce4c2"/>
+      <mother hlink="_d583a5ba2bc7b9d1388"/>
+      <childref hlink="_d583a5b90777391ea9a"/>
+    </family>
+    <family handle="_d583a5b9c2011be735e" change="1467136230" id="F0747">
+      <rel type="Married"/>
+      <father hlink="_d583a5b90777391ea9a"/>
+      <mother hlink="_d583a5b9ced473a7e6a"/>
+      <childref hlink="_d583a5b9df71bceb48c"/>
+      <childref hlink="_d583a5b9edf6cb5d8d5"/>
+      <childref hlink="_d583a5b9fc864e3bf4e"/>
+      <childref hlink="_d583a5ba0d50afbbaaf"/>
+      <childref hlink="_d583a5ba5ca6b698463"/>
+    </family>
+    <family handle="_d583a5b9d2c7620c04b" change="1467136100" id="F0749">
+      <rel type="Married"/>
+      <father hlink="_d583a5ba3bc48c2002c"/>
+      <mother hlink="_d583a5ba4be3acdd312"/>
+      <childref hlink="_d583a5b9ced473a7e6a"/>
     </family>
   </families>
   <citations>
@@ -64931,6 +65302,30 @@
       <ptitle>St. Lawrence, NY, USA</ptitle>
       <pname value="St. Lawrence"/>
       <placeref hlink="_c96587263cc11e217c35cc9003f"/>
+    </placeobj>
+    <placeobj handle="_d583a5b7ab21971300a" change="1467134436" id="P0435" type="Unknown">
+      <ptitle>Δράμα</ptitle>
+      <pname value="Δράμα"/>
+    </placeobj>
+    <placeobj handle="_d583a5b8614206a939d" change="1467134581" id="P0436" type="Unknown">
+      <ptitle>Θεσσαλονίκη</ptitle>
+      <pname value="Θεσσαλονίκη"/>
+    </placeobj>
+    <placeobj handle="_d583a5b8a8c1474357d" change="1467135440" id="P0437" type="Unknown">
+      <ptitle>Ιωάννινα</ptitle>
+      <pname value="Ιωάννινα"/>
+    </placeobj>
+    <placeobj handle="_d583a5b8b586fb992c8" change="1467135553" id="P0438" type="Unknown">
+      <ptitle>Σιάτιστα</ptitle>
+      <pname value="Σιάτιστα"/>
+    </placeobj>
+    <placeobj handle="_d583a5b8c380fb024c9" change="1467136002" id="P0439" type="Unknown">
+      <ptitle>Άργος</ptitle>
+      <pname value="Άργος"/>
+    </placeobj>
+    <placeobj handle="_d583a5b8d1106cda712" change="1467136077" id="P0440" type="Unknown">
+      <ptitle>Μεσολόγγι</ptitle>
+      <pname value="Μεσολόγγι"/>
     </placeobj>
   </places>
   <objects>
