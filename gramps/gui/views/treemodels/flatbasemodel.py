@@ -578,7 +578,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         self.clear_cache()
         self._in_build = True
-        if self.db.is_open():
+        if (self.db is not None) and self.db.is_open():
             allkeys = self.node_map.full_srtkey_hndl_map()
             if not allkeys:
                 allkeys = self.sort_keys()
@@ -607,7 +607,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         self.clear_cache()
         self._in_build = True
-        if self.db.is_open():
+        if (self.db is not None) and self.db.is_open():
             allkeys = self.node_map.full_srtkey_hndl_map()
             if not allkeys:
                 allkeys = self.sort_keys()

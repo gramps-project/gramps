@@ -118,7 +118,7 @@ class CLIDbManager:
         self.dbstate = dbstate
         self.msg = None
 
-        if dbstate:
+        if dbstate and dbstate.is_open():
             self.active = dbstate.db.get_save_path()
         else:
             self.active = None
@@ -247,7 +247,7 @@ class CLIDbManager:
 
                     (tval, last) = time_val(dirpath)
                     (enable, stock_id) = self.icon_values(
-                        dirpath, self.active, self.dbstate.db.is_open())
+                        dirpath, self.active, self.dbstate.is_open())
 
                     if stock_id == 'gramps-lock':
                         last = find_locker_name(dirpath)

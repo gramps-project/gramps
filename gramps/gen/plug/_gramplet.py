@@ -293,7 +293,7 @@ class Gramplet:
         if ((not self.active) and
             not self.gui.force_update):
             self.dirty = True
-            if self.dbstate.open:
+            if self.dbstate.is_open():
                 #print "  %s is not active" % self.gui.gname
                 self.update_has_data()
             else:

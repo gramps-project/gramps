@@ -60,16 +60,20 @@ class RepoSidebarFilter(SidebarFilter):
         self.filter_title = widgets.BasicEntry()
         self.filter_address = widgets.BasicEntry()
         self.filter_url = widgets.BasicEntry()
-
         self.repo = Repository()
         self.repo.set_type((RepositoryType.CUSTOM,''))
         self.rtype = Gtk.ComboBox(has_entry=True)
+        if dbstate.is_open():
+            self.custom_types = dbstate.db.get_event_types()
+        else:
+            self.custom_types = []
+
         self.event_menu = widgets.MonitoredDataType(
             self.rtype,
             self.repo.set_type,
             self.repo.get_type,
             False, # read-only?
-            dbstate.db.get_repository_types())
+            self.custom_types)
 
         self.filter_note = widgets.BasicEntry()
 

@@ -31,6 +31,7 @@ Provide the database state class
 import sys
 import os
 import logging
+import inspect
 
 #------------------------------------------------------------------------
 #
@@ -63,15 +64,34 @@ class DbState(Callback):
 
     def __init__(self):
         """
-        Initalize the state with an empty (and useless) DbBsddbRead. This is
-        just a place holder until a real DB is assigned.
+        Initalize the state with an empty (and useless) DummyDb. This is just a
+        place holder until a real DB is assigned.
         """
         Callback.__init__(self)
         self.db = self.make_database("dummydb")
-        self.db.load(None)
-        self.db.db_is_open = False
-        self.open = False
+        self.open = False  #  Deprecated - use DbState.is_open()
         self.stack = []
+
+    def is_open(self):
+        """
+        Returns True if DbState.db refers to a database object instance, AND the
+        database is open.
+    
+        This tests both for the existence of the database and its being open, so
+        that for the time being, the use of the dummy database on closure can
+        continue, but at some future time, this could be altered to just set the
+        database to none.
+
+        This replaces tests on DbState.open, DbState.db, DbState.db.is_open()
+        and DbState.db.db_is_open all of which are deprecated.
+        """
+        class_name = self.__class__.__name__
+        func_name = "is_open"
+        caller_frame = inspect.stack()[1]
+        _LOG.debug('calling %s.%s()... from file %s, line %s in %s',
+                  class_name, func_name, os.path.split(caller_frame[1])[1],
+                  caller_frame[2], caller_frame[3])
+        return (self.db is not None) and self.db.is_open()
 
     def change_database(self, database):
         """
@@ -80,7 +100,8 @@ class DbState(Callback):
         """
         if database:
             self.emit('no-database', ())
-            self.db.close()
+            if self.is_open():
+                self.db.close()
             self.change_database_noclose(database)
 
     def change_database_noclose(self, database):
@@ -108,13 +129,12 @@ class DbState(Callback):
 
     def no_database(self):
         """
-        Closes the database without a new database
+        Closes the database without a new database (except for the DummyDb)
         """
         self.emit('no-database', ())
-        self.db.close()
+        if self.is_open():
+            self.db.close()
         self.db = self.make_database("dummydb")
-        self.db.load(None)
-        self.db.db_is_open = False
         self.open = False
         self.emit('database-changed', (self.db, ))
 

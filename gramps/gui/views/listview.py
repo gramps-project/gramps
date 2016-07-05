@@ -805,7 +805,7 @@ class ListView(NavigationView):
         """
         Called when a mouse is clicked.
         """
-        if not self.dbstate.open:
+        if not self.dbstate.is_open():
             return False
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
@@ -869,7 +869,7 @@ class ListView(NavigationView):
         """
         Called when a key is pressed on a listview
         """
-        if not self.dbstate.open:
+        if not self.dbstate.is_open():
             return False
         if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
             # Flat list

@@ -695,7 +695,7 @@ class ViewManager(CLIManager):
         ArgHandler can work without it always shown
         """
         self.window.show()
-        if not self.dbstate.db.is_open() and show_manager:
+        if not self.dbstate.is_open() and show_manager:
             self.__open_activate(None)
 
     def do_load_plugins(self):
@@ -736,7 +736,8 @@ class ViewManager(CLIManager):
         self.uistate.set_sensitive(False)
 
         # backup data, and close the database
-        self.dbstate.db.close(user=self.user)
+        if self.dbstate.is_open():
+            self.dbstate.db.close(user=self.user)
 
         # have each page save anything, if they need to:
         self.__delete_pages()
@@ -997,7 +998,7 @@ class ViewManager(CLIManager):
         """
         Perform necessary actions when a page is changed.
         """
-        if not self.dbstate.open:
+        if not self.dbstate.is_open():
             return
 
         self.__disconnect_previous_page()
@@ -1061,7 +1062,7 @@ class ViewManager(CLIManager):
         """
         Imports a file
         """
-        if self.dbstate.db.is_open():
+        if self.dbstate.is_open():
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
@@ -1077,7 +1078,7 @@ class ViewManager(CLIManager):
         dialog = DbManager(self.uistate, self.dbstate, self.window)
         value = dialog.run()
         if value:
-            if self.dbstate.db.is_open():
+            if self.dbstate.is_open():
                 self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
@@ -1429,7 +1430,7 @@ class ViewManager(CLIManager):
         """
         Calls the ExportAssistant to export data
         """
-        if self.dbstate.db.db_is_open:
+        if self.dbstate.is_open():
             from .plug.export import ExportAssistant
             try:
                 ExportAssistant(self.dbstate, self.uistate)

@@ -370,6 +370,6 @@ def startcli(errors, argparser):
     # create a manager to manage the database
 
     handler.handle_args_cli()
-    if handler.dbstate.db.is_open():
+    if handler.dbstate.is_open():
         handler.dbstate.db.close()
     sys.exit(0)

@@ -209,7 +209,7 @@ class SidebarFilter(DbGUIElement):
         Called when the tag list needs to be rebuilt.
         """
         self.__tag_list = []
-        if self.dbstate.db is not None and self.dbstate.db.is_open():
+        if self.dbstate.is_open():
             for handle in self.dbstate.db.get_tag_handles(sort_handles=True):
                 tag = self.dbstate.db.get_tag_from_handle(handle)
                 # for python3 this returns a byte object, so conversion needed

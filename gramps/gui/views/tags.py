@@ -104,6 +104,7 @@ class Tags(DbGUIElement):
             }
         DbGUIElement.__init__(self, dbstate.db)
 
+        self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
 
@@ -183,7 +184,7 @@ class Tags(DbGUIElement):
         Called when the tag list needs to be rebuilt.
         """
         self.__tag_list = []
-        if self.db is not None and self.db.is_open():
+        if self.dbstate.is_open():
             for handle in self.db.get_tag_handles(sort_handles=True):
                 tag = self.db.get_tag_from_handle(handle)
                 self.__tag_list.append((tag.get_name(), tag.get_handle()))
@@ -206,7 +207,7 @@ class Tags(DbGUIElement):
         """
         actions = []
 
-        if self.db is None or not self.db.is_open():
+        if not self.dbstate.is_open():
             self.tag_ui = ''
             self.tag_action = ActionGroup(name='Tag')
             return

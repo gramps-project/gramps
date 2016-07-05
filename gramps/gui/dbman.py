@@ -418,7 +418,8 @@ class DbManager(CLIDbManager):
             node = self.model.append(None, data[:-1] + [backend_type + ", "
                                                         + version])
             # For already loaded database, set current_node:
-            if self.dbstate.db and self.dbstate.db.get_save_path() == data[1]:
+            if self.dbstate.is_open() and \
+                self.dbstate.db.get_save_path() == data[1]:
                 self._current_node = node
             if data[DSORT_COL] > last_accessed:
                 last_accessed = data[DSORT_COL]

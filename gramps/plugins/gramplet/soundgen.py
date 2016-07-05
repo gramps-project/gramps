@@ -78,7 +78,7 @@ class SoundGen(Gramplet):
         return grid
 
     def db_changed(self):
-        if not self.dbstate.open:
+        if not self.dbstate.is_open():
             return
 
         names = []

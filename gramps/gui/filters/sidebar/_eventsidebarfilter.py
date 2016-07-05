@@ -61,7 +61,10 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
-        self.custom_types = dbstate.db.get_event_types()
+        if dbstate.is_open():
+            self.custom_types = dbstate.db.get_event_types()
+        else:
+            self.custom_types = []
 
         self.event_menu = widgets.MonitoredDataType(
             self.etype,

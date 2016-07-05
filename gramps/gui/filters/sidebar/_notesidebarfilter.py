@@ -59,16 +59,20 @@ class NoteSidebarFilter(SidebarFilter):
         self.clicked_func = clicked
         self.filter_id = widgets.BasicEntry()
         self.filter_text = widgets.BasicEntry()
-
         self.note = Note()
         self.note.set_type((NoteType.CUSTOM,''))
         self.ntype = Gtk.ComboBox(has_entry=True)
+        if dbstate.is_open():
+            self.custom_types = dbstate.db.get_event_types()
+        else:
+            self.custom_types = []
+
         self.event_menu = widgets.MonitoredDataType(
             self.ntype,
             self.note.set_type,
             self.note.get_type,
             False, # read-only?
-            dbstate.db.get_note_types())
+            self.custom_types)
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 

@@ -88,11 +88,11 @@ class Bookmarks:
         self.dbstate = dbstate
         self.uistate = uistate
         self.bookmarks = None
-        if self.dbstate.open:
+        if self.dbstate.is_open():
             self.update_bookmarks()
         self.active = DISABLED
         self.action_group = Gtk.ActionGroup(name='Bookmarks')
-        if self.dbstate.open:
+        if self.dbstate.is_open():
             self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
         self.dbstate.connect("no-database", self.undisplay)
@@ -109,7 +109,7 @@ class Bookmarks:
         """
         Reconnect the signals on a database changed.
         """
-        if self.dbstate.open:
+        if self.dbstate.is_open():
             self.connect_signals()
             self.update_bookmarks()
 
@@ -163,7 +163,7 @@ class Bookmarks:
         actions = []
         count = 0
 
-        if self.dbstate.open and len(self.bookmarks.get()) > 0:
+        if self.dbstate.is_open() and len(self.bookmarks.get()) > 0:
             text.write('<placeholder name="GoToBook">')
             for item in self.bookmarks.get():
                 try:

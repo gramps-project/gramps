@@ -110,7 +110,7 @@ class History(Callback):
         self.index = -1
         self.lock = False
 
-        if self.dbstate.open and self.nav_type == 'Person':
+        if self.dbstate.is_open() and self.nav_type == 'Person':
             initial_person = self.dbstate.db.find_initial_person()
             if initial_person:
                 self.push(initial_person.get_handle())

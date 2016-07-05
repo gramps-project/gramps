@@ -487,7 +487,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.clear_cache()
         self._in_build = True
 
-        if not self.db.is_open():
+        if not ((self.db is not None) and self.db.is_open()):
             return
 
         self.clear()

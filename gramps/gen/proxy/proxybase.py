@@ -241,9 +241,9 @@ class ProxyDbBase(DbReadBase):
 
     def is_open(self):
         """
-        Return 1 if the database has been opened.
+        Return True if the database has been opened.
         """
-        return self.db.is_open
+        return self.db.is_open()
 
     def get_researcher(self):
         """returns the Researcher instance, providing information about
@@ -320,7 +320,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             proxied = set(self.iter_person_handles())
             all = self.basedb.get_person_handles(sort_handles=sort_handles)
             return [hdl for hdl in all if str(hdl, 'utf-8') in proxied]
@@ -332,7 +332,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Family in
         the database. If sort_handles is True, the list is sorted by surnames
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             proxied = set(self.iter_family_handles())
             all = self.basedb.get_family_handles(sort_handles=sort_handles)
             return [hdl for hdl in all if str(hdl, 'utf-8') in proxied]
@@ -344,7 +344,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Event in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_event_handles())
         else:
             return []
@@ -354,7 +354,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Source in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_source_handles())
         else:
             return []
@@ -364,7 +364,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Citation in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_citation_handles())
         else:
             return []
@@ -374,7 +374,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Place in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_place_handles())
         else:
             return []
@@ -384,7 +384,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Media in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_media_handles())
         else:
             return []
@@ -394,7 +394,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Repository in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_repository_handles())
         else:
             return []
@@ -404,7 +404,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Note in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_note_handles())
         else:
             return []
@@ -414,7 +414,7 @@ class ProxyDbBase(DbReadBase):
         Return a list of database handles, one handle for each Tag in
         the database.
         """
-        if self.db.is_open:
+        if (self.db is not None) and self.db.is_open():
             return list(self.iter_tag_handles())
         else:
             return []
