@@ -169,7 +169,7 @@ class BaseTest(unittest.TestCase):
         Test HasNoLatOrLon rule.
         """
         rule = HasNoLatOrLon([])
-        self.assertEqual(len(self.filter_with_rule(rule)), 915)
+        self.assertEqual(len(self.filter_with_rule(rule)), 921)
 
     def test_inlatlonneighborhood(self):
         """
