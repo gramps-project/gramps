@@ -71,7 +71,7 @@ class BaseTest(unittest.TestCase):
         Test HasRelType rule.
         """
         rule = HasRelType(['Married'])
-        self.assertEqual(len(self.filter_with_rule(rule)), 738)
+        self.assertEqual(len(self.filter_with_rule(rule)), 750)
 
     def test_hasgallery(self):
         """
@@ -111,9 +111,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['F000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'LOTJQC78O5B4WQGJRP', b'UPTJQC4VPCABZUDB75', b'NBTJQCIX49EKOCIHBP',
-            b'C9UJQCF6ETBTV2MRRV', b'74UJQCKV8R4NBNHCB', b'4BTJQCL4CHNA5OUTKF',
-            b'48TJQCGNNIR5SJRCAK', b'4YTJQCTEH7PQUU4AD', b'MTTJQC05LKVFFLN01A',
+            b'LOTJQC78O5B4WQGJRP', b'UPTJQC4VPCABZUDB75',
+            b'NBTJQCIX49EKOCIHBP', b'C9UJQCF6ETBTV2MRRV',
+            b'74UJQCKV8R4NBNHCB', b'4BTJQCL4CHNA5OUTKF',
+            b'48TJQCGNNIR5SJRCAK', b'4YTJQCTEH7PQUU4AD',
+            b'MTTJQC05LKVFFLN01A', b'd5839c123c034ef82ab',
             ]))
 
     def test_hasnoteregexp(self):

@@ -193,7 +193,7 @@ class BaseTest(unittest.TestCase):
         Test HasDayOfWeek rule.
         """
         rule = HasDayOfWeek(['2'])
-        self.assertEqual(len(self.filter_with_rule(rule)), 177)
+        self.assertEqual(len(self.filter_with_rule(rule)), 185)
 
 
 if __name__ == "__main__":

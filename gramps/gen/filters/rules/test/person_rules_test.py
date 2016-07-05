@@ -87,7 +87,7 @@ class BaseTest(unittest.TestCase):
             b'8HKKQCTEJAOBVH410L', b'IO6KQC70PMBQUDNB3L', b'1YBKQCWRBNB433NEMH',
             b'M01KQCF7KUWCDY67JD', b'CR0KQCOMV2QPPC90IF', b'85ZJQCMG38N7Q2WKIK',
             b'I9GKQCERACL8UZF2PY', b'BY0KQCOZUK47R2JZDE', b'7W0KQCYDMD4LTSY5JL',
-            b'A0YJQC3HONEKD1JCPK',
+            b'A0YJQC3HONEKD1JCPK', b'd5839c13b0541b7b8e6',
             ]))
 
     def test_everyone(self):
@@ -129,6 +129,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasCommonAncestorWith(['I0000'])
         self.assertEqual(self.filter_with_rule(rule), set([
+            b'd5839c1237765987724'
             ]))
 
     def test_commonancestor_irregular(self):
@@ -218,6 +219,19 @@ class BaseTest(unittest.TestCase):
             b'cccbffffd3e69819cd8', b'cc8205d87c20350420b',
             b'cc8206050e541f79f92', b'cc8205d883763f02abd',
             b'cc8206050980ea622d0', b'cc8205d872f532ab14e',
+            b'd5839c132b11d9e3632', b'd583a5ba0d50afbbaaf',
+            b'd5839c1352c64b924d9', b'd583a5b9fc864e3bf4e',
+            b'd583a5ba1bd083ce4c2', b'd583a5b9df71bceb48c',
+            b'd583a5b9ced473a7e6a', b'd583a5ba2bc7b9d1388',
+            b'd5839c12fec09785f6a', b'd5839c1237765987724',
+            b'd5839c137b3640ad776', b'd5839c126d11a754f46',
+            b'd5839c12d3b4d5e619b', b'd5839c13380462b246f',
+            b'd5839c12e9e08301ce2', b'd5839c1366b21411fb4',
+            b'd5839c13a282b51dd0d', b'd5839c12ac91650a72b',
+            b'd583a5b9edf6cb5d8d5', b'd583a5ba4be3acdd312',
+            b'd5839c131d560e06bac', b'd5839c13b0541b7b8e6',
+            b'd5839c1388e3ab6c87c', b'd583a5ba5ca6b698463',
+            b'd583a5ba3bc48c2002c', b'd583a5b90777391ea9a',
             ]))
 
     def test_hassourceof_nonmatching(self):
@@ -261,7 +275,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HaveChildren([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 895)
+        self.assertEqual(len(self.filter_with_rule(rule)), 901)
 
     def test_incompletenames(self):
         """
@@ -357,6 +371,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsRelatedWith(['I0000'])
         self.assertEqual(self.filter_with_rule(rule), set([
+            b'd5839c1237765987724', b'd5839c126d11a754f46',
             ]))
 
     def test_isrelatedwith_irregular(self):
@@ -407,6 +422,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['I0000'])
         self.assertEqual(self.filter_with_rule(rule), set([
+            b'd5839c1237765987724'
             ]))
 
     def test_hasidof_irregular(self):
@@ -441,7 +457,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsFemale([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 928)
+        self.assertEqual(len(self.filter_with_rule(rule)), 940)
 
     def test_ismale(self):
         """
@@ -449,7 +465,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsMale([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 1154)
+        self.assertEqual(len(self.filter_with_rule(rule)), 1168)
 
     def test_missingparent(self):
         """
@@ -457,7 +473,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MissingParent([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 849)
+        self.assertEqual(len(self.filter_with_rule(rule)), 868)
 
     def test_multiplemarriages(self):
         """
@@ -491,7 +507,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = NeverMarried([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 749)
+        self.assertEqual(len(self.filter_with_rule(rule)), 751)
 
     def test_nobirthdate(self):
         """
@@ -499,7 +515,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = NoBirthdate([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 966)
+        self.assertEqual(len(self.filter_with_rule(rule)), 981)
 
     def test_nodeathdate(self):
         """
@@ -507,7 +523,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = NoDeathdate([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 1581)
+        self.assertEqual(len(self.filter_with_rule(rule)), 1603)
 
     def test_peopleprivate(self):
         """
@@ -523,7 +539,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = PeoplePublic([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 2102)
+        self.assertEqual(len(self.filter_with_rule(rule)), 2128)
 
     def test_personwithincompleteevent(self):
         """
@@ -531,7 +547,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = PersonWithIncompleteEvent([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 740)
+        self.assertEqual(len(self.filter_with_rule(rule)), 745)
 
     def test_relationshipbookmarks(self):
         """
