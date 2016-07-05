@@ -76,7 +76,7 @@ class DbState(Callback):
         """
         Returns True if DbState.db refers to a database object instance, AND the
         database is open.
-    
+
         This tests both for the existence of the database and its being open, so
         that for the time being, the use of the dummy database on closure can
         continue, but at some future time, this could be altered to just set the
