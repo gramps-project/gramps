@@ -78,7 +78,7 @@ class GuiPluginManager(Callback):
         Callback.__init__(self)
         self.basemgr = BasePluginManager.get_instance()
         self.__hidden_plugins = set(config.get('plugin.hiddenplugins'))
-        self.__hidden_changed()
+        # self.__hidden_changed() # See bug 9561
 
     def load_plugin(self, pdata):
         if not self.is_loaded(pdata.id):
