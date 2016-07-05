@@ -1,4 +1,4 @@
-Mismatch on file: test_FTM_CONC.ged
+Mismatch on file: imp_test_FTM_CONC.ged
 Source: S0029  handle=0000000500000005
   Diff on: Source, pubinfo
     <class 'str'>73: Name: Ancestry.com Operations, Inc.; Location: Provo, UT, USA; Date:2009;
