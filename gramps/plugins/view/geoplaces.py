@@ -295,8 +295,8 @@ class GeoPlaces(GeoGraphyView):
         if self.nbplaces >= self._config.get("geography.max_places") :
             self.message_layer.set_font_attributes(None,None,"red")
             self.message_layer.add_message(
-                 _("The maximum number of places is reached (%d)." %
-                   self._config.get("geography.max_places")))
+                 _("The maximum number of places is reached (%d).") %
+                   self._config.get("geography.max_places"))
             self.message_layer.add_message(
                  _("Some information are missing."))
             self.message_layer.add_message(
