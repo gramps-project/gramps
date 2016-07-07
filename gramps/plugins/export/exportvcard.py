@@ -154,7 +154,7 @@ class VCardWriter:
                 self.count = 0
                 self.oldval = 0
                 self.total = self.db.get_number_of_people()
-                for key in self.db.iter_person_handles():
+                for key in sorted(list(self.db.iter_person_handles())):
                     self.write_person(key)
                     self.update()
         return True
