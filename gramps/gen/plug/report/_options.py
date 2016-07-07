@@ -946,7 +946,7 @@ class MenuReportOptions(MenuOptions, ReportOptions):
     def get_subject(self):
         """
         Return a string that describes the subject of the report.
-        
+
         This method MUST be overridden by subclasses.
         """
         LOG.warning("get_subject not implemented for %s" % self.name)

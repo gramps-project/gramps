@@ -405,7 +405,7 @@ class BirthdayOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def get_subject(self):
         """ Return a string that describes the subject of the report. """
         return self.__filter.get_filter().get_name()
