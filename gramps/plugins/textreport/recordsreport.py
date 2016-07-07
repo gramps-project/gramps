@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
+# Copyright (C) 2012      Brian G. Matherly
 # Copyright (C) 2013-2016 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
@@ -205,6 +206,10 @@ class RecordsReportOptions(MenuReportOptions):
         self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__filter.get_filter().get_name()
 
     def add_menu_options(self, menu):
 

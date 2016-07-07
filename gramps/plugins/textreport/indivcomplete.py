@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2009      Nick Hall
 # Copyright (C) 2009      Benny Malengier
 # Copyright (C) 2010      Jakim Friant
@@ -979,6 +979,10 @@ class IndivCompleteOptions(MenuReportOptions):
         self.__incsrcnotes = None
         self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__filter.get_filter().get_name()
 
     def add_menu_options(self, menu):
         ################################

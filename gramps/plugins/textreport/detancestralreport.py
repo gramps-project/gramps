@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007-2009 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
@@ -60,6 +60,7 @@ from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -761,7 +762,15 @@ class DetAncestorOptions(MenuReportOptions):
     """
 
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__pid = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        return _nd.display(person)
 
     def add_menu_options(self, menu):
         from functools import partial
@@ -770,9 +779,9 @@ class DetAncestorOptions(MenuReportOptions):
         category = _("Report Options")
         addopt = partial(menu.add_option, category)
 
-        pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the report"))
-        addopt("pid", pid)
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
+        addopt("pid", self.__pid)
 
         start_number = NumberOption(_("Sosa-Stradonitz number"), 1, 1, 16384)
         start_number.set_help(

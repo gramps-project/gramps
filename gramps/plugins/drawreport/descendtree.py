@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2009-2010  Craig J. Anderson
 # Copyright (C) 2014       Paul Franklin
@@ -44,6 +44,8 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.db import family_name
 
 PT2CM = utils.pt2cm
 
@@ -1496,6 +1498,19 @@ class DescendTreeOptions(MenuReportOptions):
         self.box_Y_sf = None
         self.box_shadow_sf = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        gid = self.__pid.get_value()
+        if self.name.split(",")[0] == _RPT_NAME:
+            person = self.__db.get_person_from_gramps_id(gid)
+            if person:
+                return _nd.display(person)
+        else:
+            family = self.__db.get_family_from_gramps_id(gid)
+            if family:
+                return family_name(family, self.__db)
+        return ""
 
     def add_menu_options(self, menu):
         """

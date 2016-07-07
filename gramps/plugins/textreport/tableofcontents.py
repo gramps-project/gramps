@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012       Nick Hall
+# Copyright (C) 2012       Brian G. Matherly
 # Copyright (C) 2012-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
@@ -81,6 +82,10 @@ class TableOfContentsOptions(MenuReportOptions):
     def __init__(self, name, dbase):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return _('Entire Book')
 
     def add_menu_options(self, menu):
         """ Add the options for this report """

@@ -5,6 +5,7 @@
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2012       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,10 +35,6 @@ Report option handling, including saving and parsing.
 #-------------------------------------------------------------------------
 import os
 import copy
-from xml.sax.saxutils import escape
-
-def escxml(word):
-    return escape(word, {'"' : '&quot;'})
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +42,15 @@ def escxml(word):
 #
 #-------------------------------------------------------------------------
 from xml.sax import make_parser, SAXParseException
+from xml.sax.saxutils import escape
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".plug.report.options")
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +65,9 @@ from ..docgen import PAPER_PORTRAIT
 from .. import _options
 from .. import MenuOptions
 from gramps.gen.utils.cast import get_type_converter
+
+def escxml(word):
+    return escape(word, {'"' : '&quot;'})
 
 #-------------------------------------------------------------------------
 #
@@ -933,6 +942,15 @@ class MenuReportOptions(MenuOptions, ReportOptions):
             menu_option = self.menu.get_option_by_name(optname)
             if menu_option:
                 menu_option.set_value(self.options_dict[optname])
+
+    def get_subject(self):
+        """
+        Return a string that describes the subject of the report.
+        
+        This method MUST be overridden by subclasses.
+        """
+        LOG.warning("get_subject not implemented for %s" % self.name)
+        return ""
 
 #-------------------------------------------------------------------------
 #

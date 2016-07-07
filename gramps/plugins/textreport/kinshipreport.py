@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
 # Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at>
 # Copyright (C) 2010      Jakim Friant
@@ -49,6 +49,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -337,7 +338,15 @@ class KinshipOptions(MenuReportOptions):
     """
 
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__pid = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        return _nd.display(person)
 
     def add_menu_options(self, menu):
         """
@@ -345,9 +354,9 @@ class KinshipOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
 
-        pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", self.__pid)
 
         stdoptions.add_name_format_option(menu, category_name)
 

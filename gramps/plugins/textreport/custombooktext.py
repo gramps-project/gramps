@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008,2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Paul Franklin
 #
@@ -122,23 +122,36 @@ class CustomTextOptions(MenuReportOptions):
     """
 
     def __init__(self, name, dbase):
+        self.__top = None
+        self.__mid = None
+        self.__bot = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
 
         category_name = _("Text")
 
-        top = TextOption(_("Initial Text"), [""])
-        top.set_help(_("Text to display at the top."))
-        menu.add_option(category_name, "top", top)
+        self.__top = TextOption(_("Initial Text"), [""])
+        self.__top.set_help(_("Text to display at the top."))
+        menu.add_option(category_name, "top", self.__top)
 
-        mid = TextOption(_("Middle Text"), [""])
-        mid.set_help(_("Text to display in the middle"))
-        menu.add_option(category_name, "mid", mid)
+        self.__mid = TextOption(_("Middle Text"), [""])
+        self.__mid.set_help(_("Text to display in the middle"))
+        menu.add_option(category_name, "mid", self.__mid)
 
-        bot = TextOption(_("Final Text"), [""])
-        bot.set_help(_("Text to display last."))
-        menu.add_option(category_name, "bot", bot)
+        self.__bot = TextOption(_("Final Text"), [""])
+        self.__bot.set_help(_("Text to display last."))
+        menu.add_option(category_name, "bot", self.__bot)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        if len(self.__top.get_value()[0]) > 0:
+            return self.__top.get_value()[0]
+        if len(self.__mid.get_value()[0]) > 0:
+            return self.__mid.get_value()[0]
+        if len(self.__bot.get_value()[0]) > 0:
+            return self.__bot.get_value()[0]
+        return ""
 
     def make_default_style(self, default_style):
         """Make the default output style for the Custom Text report."""

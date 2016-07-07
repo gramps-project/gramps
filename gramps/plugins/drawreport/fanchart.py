@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2012-2014 Paul Franklin
 # Copyright (C) 2012      Nicolas Adenis-Lamarre
@@ -59,6 +59,7 @@ from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.lib import EventType
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -667,9 +668,16 @@ class FanChartOptions(MenuReportOptions):
     """ options for fanchart report """
 
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__pid = None
         self.max_generations = 11
-
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        return _nd.display(person)
 
     def add_menu_options(self, menu):
         """
@@ -677,9 +685,9 @@ class FanChartOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
 
-        pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", self.__pid)
 
         stdoptions.add_private_data_option(menu, category_name)
 

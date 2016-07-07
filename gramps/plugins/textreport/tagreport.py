@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Nick Hall
@@ -883,6 +883,10 @@ class TagOptions(MenuReportOptions):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
 
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__tag_option.get_value()
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the tag report.
@@ -895,15 +899,15 @@ class TagOptions(MenuReportOptions):
             all_tags.append(tag.get_name())
 
         if len(all_tags) > 0:
-            tag_option = EnumeratedListOption(_('Tag'), all_tags[0])
+            self.__tag_option = EnumeratedListOption(_('Tag'), all_tags[0])
             for tag_name in all_tags:
-                tag_option.add_item(tag_name, tag_name)
+                self.__tag_option.add_item(tag_name, tag_name)
         else:
-            tag_option = EnumeratedListOption(_('Tag'), '')
-            tag_option.add_item('', '')
+            self.__tag_option = EnumeratedListOption(_('Tag'), '')
+            self.__tag_option.add_item('', '')
 
-        tag_option.set_help(_("The tag to use for the report"))
-        menu.add_option(category_name, "tag", tag_option)
+        self.__tag_option.set_help(_("The tag to use for the report"))
+        menu.add_option(category_name, "tag", self.__tag_option)
 
         stdoptions.add_name_format_option(menu, category_name)
 

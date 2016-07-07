@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2004-2005 Eero Tamminen
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2012 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2012-2016 Paul Franklin
@@ -970,6 +970,10 @@ class StatisticsChartOptions(MenuReportOptions):
         self.__db = dbase
         self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__filter.get_filter().get_name()
 
     def add_menu_options(self, menu):
         """

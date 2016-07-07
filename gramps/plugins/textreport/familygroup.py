@@ -694,6 +694,10 @@ class FamilyGroupOptions(MenuReportOptions):
         self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__filter.get_filter().get_name()
+
     def add_menu_options(self, menu):
 
         ##########################

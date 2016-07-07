@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2008-2009  Brian G. Matherly
+# Copyright (C) 2008-2012  Brian G. Matherly
 # Copyright (C) 2009       Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012-2014  Paul Franklin
@@ -405,6 +405,10 @@ class BirthdayOptions(MenuReportOptions):
         self.__pid = None
         self.__filter = None
         MenuReportOptions.__init__(self, name, dbase)
+        
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__filter.get_filter().get_name()
 
     def add_menu_options(self, menu):
         """ Add the options for the text birthday report """

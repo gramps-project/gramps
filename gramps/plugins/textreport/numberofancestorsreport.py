@@ -4,7 +4,7 @@
 # Copyright (C) 2001       Jesper Zedlitz
 # Copyright (C) 2004-2006  Donald Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
-# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008,2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2013-2014  Paul Franklin
 #
@@ -48,6 +48,7 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
+from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
@@ -185,7 +186,15 @@ class NumberOfAncestorsOptions(MenuReportOptions):
     Defines options for the NumberOfAncestorsReport.
     """
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__pid = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        return _nd.display(person)
 
     def add_menu_options(self, menu):
         """
@@ -193,9 +202,9 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
 
-        pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name, "pid", pid)
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", self.__pid)
 
         stdoptions.add_name_format_option(menu, category_name)
 

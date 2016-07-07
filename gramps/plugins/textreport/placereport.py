@@ -405,7 +405,25 @@ class PlaceOptions(MenuReportOptions):
     """
 
     def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__filter = None
+        self.__places = None
         MenuReportOptions.__init__(self, name, dbase)
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        subject = ""
+        if self.__filter.get_filter().get_name():
+            # Use the selected filter's name, if any
+            subject += self.__filter.get_filter().get_name()
+        if self.__places.get_value():
+            # Add places selected individually, if any
+            for place_id in self.__places.get_value().split():
+                if subject:
+                    subject += " + "
+                place = self.__db.get_place_from_gramps_id(place_id)
+                subject += _pd.display(self.__db, place)
+        return subject
 
     def add_menu_options(self, menu):
         """
@@ -417,17 +435,17 @@ class PlaceOptions(MenuReportOptions):
         CustomFilters = None
         from gramps.gen.filters import CustomFilters, GenericFilter
 
-        opt = FilterOption(_("Select using filter"), 0)
-        opt.set_help(_("Select places using a filter"))
+        self.__filter = FilterOption(_("Select using filter"), 0)
+        self.__filter.set_help(_("Select places using a filter"))
         filter_list = []
         filter_list.append(GenericFilter())
         filter_list.extend(CustomFilters.get_filters('Place'))
-        opt.set_filters(filter_list)
-        menu.add_option(category_name, "filter", opt)
+        self.__filter.set_filters(filter_list)
+        menu.add_option(category_name, "filter", self.__filter)
 
-        places = PlaceListOption(_("Select places individually"))
-        places.set_help(_("List of places to report on"))
-        menu.add_option(category_name, "places", places)
+        self.__places = PlaceListOption(_("Select places individually"))
+        self.__places.set_help(_("List of places to report on"))
+        menu.add_option(category_name, "places", self.__places)
 
         stdoptions.add_private_data_option(menu, category_name)
 

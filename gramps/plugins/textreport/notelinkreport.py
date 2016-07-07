@@ -150,6 +150,11 @@ class NoteLinkReport(Report):
 #
 #------------------------------------------------------------------------
 class NoteLinkOptions(MenuReportOptions):
+
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return _('Entire Database')
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the tag report.

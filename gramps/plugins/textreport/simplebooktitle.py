@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008,2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Paul Franklin
 #
@@ -125,13 +125,17 @@ class SimpleBookTitleOptions(MenuReportOptions):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
 
+    def get_subject(self):
+        """ Return a string that describes the subject of the report. """
+        return self.__title.get_value()
+
     def add_menu_options(self, menu):
         """ Add the options for this report """
         category_name = _("Report Options")
 
-        title = StringOption(_('book|Title'), _('Title of the Book'))
-        title.set_help(_("Title string for the book."))
-        menu.add_option(category_name, "title", title)
+        self.__title = StringOption(_('book|Title'), _('Title of the Book'))
+        self.__title.set_help(_("Title string for the book."))
+        menu.add_option(category_name, "title", self.__title)
 
         subtitle = StringOption(_('Subtitle'), _('Subtitle of the Book'))
         subtitle.set_help(_("Subtitle string for the book."))

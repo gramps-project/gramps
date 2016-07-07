@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2007  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2012  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
 # Copyright (C) 2011-2016  Paul Franklin
@@ -61,7 +61,7 @@ from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
 from ...pluginmanager import GuiPluginManager
 from ...dialog import WarningDialog, ErrorDialog, QuestionDialog2
-from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
+from gramps.gen.plug.menu import PersonOption, FamilyOption
 from gramps.gen.plug.docgen import StyleSheet
 from ...managedwindow import ManagedWindow, set_titles
 from ...glade import Glade
@@ -134,62 +134,6 @@ def _initialize_options(options, dbstate, uistate):
                     option.set_value(family.get_gramps_id())
                 else:
                     print("No family specified for ", name)
-
-def _get_subject(options, dbase):
-    """
-    Attempts to determine the subject of a set of options. The subject would
-    likely be a person (using a PersonOption) or a filter (using a
-    FilterOption)
-
-    options: The ReportOptions class
-    dbase: the database for which it corresponds
-    """
-    if not hasattr(options, "menu"):
-        return ""
-    menu = options.menu
-
-    option_names = menu.get_all_option_names()
-    if not option_names:
-        return _("Entire Database")
-
-    for name in option_names:
-        option = menu.get_option_by_name(name)
-
-        if isinstance(option, FilterOption):
-            return option.get_filter().get_name()
-
-        elif isinstance(option, PersonOption):
-            gid = option.get_value()
-            person = dbase.get_person_from_gramps_id(gid)
-            return _nd.display(person)
-
-        elif isinstance(option, FamilyOption):
-            family = dbase.get_family_from_gramps_id(option.get_value())
-            if not family:
-                return ""
-            family_id = family.get_gramps_id()
-            fhandle = family.get_father_handle()
-            mhandle = family.get_mother_handle()
-
-            if fhandle:
-                father = dbase.get_person_from_handle(fhandle)
-                father_name = _nd.display(father)
-            else:
-                father_name = _("unknown father")
-
-            if mhandle:
-                mother = dbase.get_person_from_handle(mhandle)
-                mother_name = _nd.display(mother)
-            else:
-                mother_name = _("unknown mother")
-
-            name = _("%(father_name)s and %(mother_name)s (%(family_id)s)"
-                    ) % {'father_name' : father_name,
-                         'mother_name' : mother_name,
-                         'family_id'   : family_id}
-            return name
-
-    return ""
 
 #------------------------------------------------------------------------
 #
@@ -526,7 +470,7 @@ class BookSelector(ManagedWindow):
             data = [item.get_translated_name(),
                     item.get_category(), item.get_name()]
 
-            data[2] = _get_subject(item.option_class, self._db)
+            data[2] = item.option_class.get_subject()
             self.book_model.add(data)
 
     def on_add_clicked(self, obj):
@@ -542,7 +486,7 @@ class BookSelector(ManagedWindow):
                                          list(range(self.avail_nr_cols)))
         item = BookItem(self._db, data[2])
         _initialize_options(item.option_class, self.dbstate, self.uistate)
-        data[2] = _get_subject(item.option_class, self._db)
+        data[2] = item.option_class.get_subject()
         self.book_model.add(data)
         self.book.append_item(item)
 
@@ -621,7 +565,7 @@ class BookSelector(ManagedWindow):
                 # rest of dialog is unresponsive, release when finished
                 style = option_class.handler.get_default_stylesheet_name()
                 item.set_style_name(style)
-                subject = _get_subject(option_class, self._db)
+                subject = option_class.get_subject()
                 self.book_model.model.set_value(the_iter, 2, subject)
                 self.book.set_item(row, item)
                 item_dialog.close()
