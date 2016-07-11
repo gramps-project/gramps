@@ -710,6 +710,7 @@ gramps/plugins/tool/reorderids.py
 gramps/plugins/tool/sortevents.py
 gramps/plugins/tool/testcasegenerator.py
 gramps/plugins/tool/tools.gpr.py
+gramps/plugins/tool/toolsdebug.gpr.py
 gramps/plugins/tool/verify.glade
 gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py
