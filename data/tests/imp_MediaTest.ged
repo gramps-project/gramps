@@ -1,0 +1,176 @@
+0 HEAD
+1 SOUR Tester
+2 VERS 1.0
+2 NAME The Tester
+1 DATE 4 JUN 2016
+2 TIME 10:19:42
+1 FILE D:\Users\PRC\Documents\Family Tree Maker\Gramps Export raw.ged
+1 COPR Copyright (c) 2016 The Tester.
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG English
+0 @I1@ INDI
+1 NAME The /Tester/
+2 GIVN The
+2 SURN Tester
+1 OBJE
+2 FORM jpeg
+2 TITL Multimedia link embedded form v5.5
+2 FILE test_emb_55.jpg
+2 NOTE @N0010@
+1 OBJE @M1@
+1 OBJE @M3@
+1 OBJE @M4@
+1 OBJE
+2 FILE test_emb_551.jpg
+3 FORM jpeg
+4 MEDI photo
+2 TITL Multimedia link embedded form v5.5.1
+2 NOTE @N0014@
+1 OBJE @M5@
+1 OBJE @M6@
+1 OBJE
+2 FORM jpeg
+2 TITL Multimedia link embedded form v5.5 2nd copy
+2 FILE test_emb_55.jpg
+2 NOTE @N0018@
+0 @M1@ OBJE
+1 FORM jpeg
+1 TITL Multimedia link to linked form v5.5 blob
+1 BLOB
+2 CONT .HM.......k.1..F.jwA.Dzzzzw............A....1.........0U.66..E.8
+2 CONT .......A..k.a6.A.......A..k.........../6....G.......0../..U.....
+2 CONT .w1/m........HC0..../...zzzzzzzz..5zzk..AnA..U..W6U....2rRrRrRrR
+2 CONT .Dw...............k.1.......1..A...5ykE/zzzx/.g//.Hxzk6/.Tzy/.k1
+2 CONT /Dw/.Tvz.E5zzUE9/kHz.Tw2/DzzzEEA.kE2zk5yzk2/zzs21.U2/Dw/.Tw/.Tzy
+2 CONT /.fy/.HzzkHzzzo21Ds00.E2.UE2.U62/.k./Ds0.UE0/Do0..E8/UE2.U62.U9w
+2 CONT /.Tx/.20.jg2/jo2..9u/.0U.6A.zk
+1 OBJE @M2@
+1 REFN Ref12345M1
+2 TYPE SOMETEXT
+1 NOTE @N0011@
+1 RIN ID09876M1
+1 CHAN
+2 DATE 22 MAY 1987
+3 TIME 13:58:11
+0 @M2@ OBJE
+1 FORM jpeg
+1 TITL 2nd blob Multimedia link to linked form v5.5 blob
+1 BLOB
+2 CONT 67890gramps doesn't do this anyway, so don't bother doing it right.
+0 @M3@ OBJE
+1 FORM jpeg
+1 TITL Multimedia link to linked form Gramps style v5.5ish file
+1 FILE test.jpg
+1 NOTE @N0012@
+1 CHAN
+2 DATE 23 MAY 1987
+3 TIME 14:48:01
+0 @M4@ OBJE
+1 FILE test.jpg
+2 FORM jpeg
+3 TYPE photo
+2 TITL Multimedia link to linked form v5.5.1 file
+1 REFN Ref1234567M4
+2 TYPE SOMETEXT
+1 NOTE @N0013@
+1 SOUR A Great Photographer
+2 TEXT who shall remain un-named
+2 QUAY 0
+1 RIN ID098765M4
+1 CHAN
+2 DATE 24 MAY 1987
+3 TIME 14:38:01
+0 @M5@ OBJE
+1 FILE test.jpg
+2 TITL Multimedia link to linked form FTM style file
+2 DATE 6/4/2016 9:33:57 AM
+2 TEXT A fine gentelman was he, upstanding in his community and a great
+3 CONC  believer in the testing of open source software.
+1 NOTE @N0015@
+1 NOTE @N0016@
+0 @M6@ OBJE
+1 FILE test.jpg
+2 FORM jpeg
+3 TYPE photo
+2 TITL Multimedia link to linked form v5.5.1 with two files(1)
+1 FILE test1.jpg
+2 FORM jpeg
+3 TYPE photo
+2 TITL Multimedia link to linked form v5.5.1 with two files(2)
+1 REFN Ref1234567M4
+2 TYPE SOMETEXT
+1 NOTE @N0017@
+1 SOUR @S1@
+2 PAGE 77, 78 discussion of multimedia link with two files
+2 DATA
+3 DATE 7 JUN 2014
+3 TEXT A source who shall remain un-named
+2 QUAY 0
+1 RIN ID098765M4
+1 CHAN
+2 DATE 24 MAY 1987
+3 TIME 14:38:01
+0 @S1@ SOUR
+1 AUTH The Tester
+1 TITL The Testers personal files
+1 PUBL Name: Tester Publishing Operations, Inc.; Location: OSF world
+0 @N0010@ NOTE Media note test: Multimedia link embedded form v5.5
+1 CONT n OBJE {1:1} p.55
+1 CONT +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.48
+1 CONT +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.43
+1 CONT +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1} p.47
+1 CONT +1 <<NOTE_STRUCTURE>> {0:M} p.33
+0 @N0011@ NOTE Media note test: Multimedia link to linked form v5.5 blob
+1 CONT n @XREF:OBJE@ OBJE {1:1}
+1 CONT +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.48  
+1 CONT +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.43
+1 CONT +1 <<NOTE_STRUCTURE>> {0:M} p.33
+1 CONT +1 BLOB {1:1}
+1 CONT +2 CONT <ENCODED_MULTIMEDIA_LINE> {1:M} p.43
+1 CONT +1 OBJE @<XREF:OBJE>@ /* chain to continued object */ {0:1} p.26
+1 CONT +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.55
+1 CONT +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.55
+1 CONT +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.38
+1 CONT +1 <<CHANGE_DATE>> {0:1} p.29
+0 @N0012@ NOTE Media note test: Multimedia link to linked form Gramps style v5.5ish file
+1 CONT n @XREF:OBJE@ OBJE {1:1}
+1 CONT +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.48  
+1 CONT +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.43
+1 CONT +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1} p.47
+1 CONT +1 <<NOTE_STRUCTURE>> {0:M} p.33
+0 @N0013@ NOTE Media note test: Multimedia link to linked form v5.5.1 file
+1 CONT n @XREF:OBJE@ OBJE {1:1}
+1 CONT +1 FILE <MULTIMEDIA_FILE_REFN> {1:M} p.54
+1 CONT +2 FORM <MULTIMEDIA_FORMAT> {1:1} p.54
+1 CONT +3 TYPE <SOURCE_MEDIA_TYPE> {0:1} p.62 
+1 CONT +2 TITL <DESCRIPTIVE_TITLE> {0:1} p.48
+1 CONT +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.63, 64  >> note?
+1 CONT +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.64
+1 CONT +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.43 >> Attribute ID?
+1 CONT +1 <<NOTE_STRUCTURE>> {0:M} p.37
+1 CONT +1 <<SOURCE_CITATION>> {0:M} p.39
+1 CONT +1 <<CHANGE_DATE>> {0:1} p.31
+0 @N0014@ NOTE Media note test: Multimedia link embedded form v5.5.1
+1 CONT This note is not in the 5.5.1 spec, but is an obvious extrapolation from 5.5.
+1 CONT n OBJE
+1 CONT +1 FILE <MULTIMEDIA_FILE_REFN> {1:M} p.54
+1 CONT +2 FORM <MULTIMEDIA_FORMAT> {1:1} p.54
+1 CONT +3 MEDI <SOURCE_MEDIA_TYPE> {0:1} p.62
+1 CONT +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.48
+0 @N0015@ NOTE
+1 CONC A note on the FTM media, to see how this integrates...  The DATE line 
+1 CONC is bad; it doesnt follow Gedcom standard at all, and includes the time.
+1 CONT The TEXT line comes from the FTM media description.  This is the media Note.
+0 @N0016@ NOTE Multimedia link to linked form FTM style
+1 CONT n @XREF:OBJE@ OBJE {1:1}
+1 CONT +1 FILE <MULTIMEDIA_FILE_REFN> {1:M} p.54
+1 CONT +2 TITL <DESCRIPTIVE_TITLE> {0:1} p.43
+1 CONT +2 DATE text string from media page, sometimes populated from exif "mm/dd/yyyy hh:mn:ss AM"
+1 CONT +2 TEXT text string from FTM media description sometimes populated from exif comments
+1 CONT +1 <<NOTE_STRUCTURE>> {0:M} p.33
+0 @N0017@ NOTE Multimedia link to linked form v5.5.1 with two files
+0 @N0018@ NOTE Multimedia embedded 2nd copy v5.5
+0 TRLR

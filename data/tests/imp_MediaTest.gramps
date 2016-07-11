@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-07-11" version="GrampsAIO64-4.2.1-2"/>
+    <researcher>
+      <resname>Paul Culley</resname>
+      <resaddr>11210 Olde Mint House Ln</resaddr>
+      <rescity>Tomball</rescity>
+      <resstate>Tx</resstate>
+      <rescountry>USA</rescountry>
+      <respostal>77375</respostal>
+      <resemail>paulr2787@gmail.com</resemail>
+    </researcher>
+  </header>
+  <people>
+    <person handle="_0000000100000001" change="1468254344" id="I0001">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>The</first>
+        <surname>Tester</surname>
+      </name>
+      <objref hlink="_0000000300000003"/>
+      <objref hlink="_0000000400000004"/>
+      <objref hlink="_0000000500000005"/>
+      <objref hlink="_0000000600000006"/>
+      <objref hlink="_0000000800000008"/>
+      <objref hlink="_0000000900000009"/>
+      <objref hlink="_0000000a0000000a"/>
+      <objref hlink="_0000000300000003"/>
+      <noteref hlink="_0000000c0000000c"/>
+    </person>
+  </people>
+  <citations>
+    <citation handle="_0000001800000018" change="1468254344" id="C0000">
+      <confidence>0</confidence>
+      <noteref hlink="_0000001700000017"/>
+      <sourceref hlink="_0000001600000016"/>
+    </citation>
+    <citation handle="_0000002200000022" change="1468254344" id="C0001">
+      <dateval val="2014-06-07"/>
+      <page>77, 78 discussion of multimedia link with two files</page>
+      <confidence>0</confidence>
+      <noteref hlink="_0000002100000021"/>
+      <sourceref hlink="_0000002000000020"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000001600000016" change="1468254344" id="S0002">
+      <stitle>A Great Photographer</stitle>
+    </source>
+    <source handle="_0000002000000020" change="1468254344" id="S0001">
+      <stitle>The Testers personal files</stitle>
+      <sauthor>The Tester</sauthor>
+      <spubinfo>Name: Tester Publishing Operations, Inc.; Location: OSF world</spubinfo>
+    </source>
+  </sources>
+  <objects>
+    <object handle="_0000000300000003" change="1468254344" id="O0000">
+      <file src="test_emb_55.jpg" mime="image/jpeg" description="Multimedia link embedded form v5.5"/>
+      <noteref hlink="_0000000200000002"/>
+    </object>
+    <object handle="_0000000400000004" change="548708291" id="M1">
+      <file src="" mime="" description="Multimedia link to linked form v5.5 blob"/>
+      <attribute type="REFN" value="Ref12345M1">
+        <noteref hlink="_0000000d0000000d"/>
+      </attribute>
+      <attribute type="RIN" value="ID09876M1"/>
+      <noteref hlink="_0000000e0000000e"/>
+      <noteref hlink="_0000000f0000000f"/>
+    </object>
+    <object handle="_0000000500000005" change="548797681" id="M3">
+      <file src="test.jpg" mime="image/jpeg" description="Multimedia link to linked form Gramps style v5.5ish file"/>
+      <noteref hlink="_0000001200000012"/>
+      <noteref hlink="_0000001300000013"/>
+    </object>
+    <object handle="_0000000600000006" change="548883481" id="M4">
+      <file src="test.jpg" mime="image/jpeg" description="test.jpg"/>
+      <attribute type="REFN" value="Ref1234567M4">
+        <noteref hlink="_0000001400000014"/>
+      </attribute>
+      <attribute type="RIN" value="ID098765M4"/>
+      <noteref hlink="_0000001500000015"/>
+      <noteref hlink="_0000001900000019"/>
+      <citationref hlink="_0000001800000018"/>
+    </object>
+    <object handle="_0000000800000008" change="1468254344" id="O0001">
+      <file src="test_emb_551.jpg" mime="image/jpeg" description="Multimedia link embedded form v5.5.1"/>
+      <noteref hlink="_0000000700000007"/>
+    </object>
+    <object handle="_0000000900000009" change="1468254344" id="M5">
+      <file src="test.jpg" mime="image/jpeg" description="Multimedia link to linked form FTM style file"/>
+      <noteref hlink="_0000001a0000001a"/>
+      <noteref hlink="_0000001b0000001b"/>
+      <noteref hlink="_0000001c0000001c"/>
+      <noteref hlink="_0000001d0000001d"/>
+    </object>
+    <object handle="_0000000a0000000a" change="548883481" id="M6">
+      <file src="test.jpg" mime="image/jpeg" description="test.jpg"/>
+      <attribute type="REFN" value="Ref1234567M4">
+        <noteref hlink="_0000001e0000001e"/>
+      </attribute>
+      <attribute type="RIN" value="ID098765M4"/>
+      <noteref hlink="_0000001f0000001f"/>
+      <noteref hlink="_0000002300000023"/>
+      <citationref hlink="_0000002200000022"/>
+    </object>
+    <object handle="_0000001000000010" change="1468254344" id="M2">
+      <file src="" mime="" description="2nd blob Multimedia link to linked form v5.5 blob"/>
+      <noteref hlink="_0000001100000011"/>
+    </object>
+  </objects>
+  <notes>
+    <note handle="_0000000200000002" change="1468254344" id="N0010" type="General">
+      <text>Media note test: Multimedia link embedded form v5.5
+n OBJE {1:1} p.55
++1 FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1} p.48
++1 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.43
++1 FILE &lt;MULTIMEDIA_FILE_REFERENCE&gt; {1:1} p.47
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M} p.33</text>
+    </note>
+    <note handle="_0000000700000007" change="1468254344" id="N0014" type="General">
+      <text>Media note test: Multimedia link embedded form v5.5.1
+This note is not in the 5.5.1 spec, but is an obvious extrapolation from 5.5.
+n OBJE
++1 FILE &lt;MULTIMEDIA_FILE_REFN&gt; {1:M} p.54
++2 FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1} p.54
++3 MEDI &lt;SOURCE_MEDIA_TYPE&gt; {0:1} p.62
++1 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.48</text>
+    </note>
+    <note handle="_0000000b0000000b" change="1468254344" id="N0018" type="General">
+      <text>Multimedia embedded 2nd copy v5.5</text>
+    </note>
+    <note handle="_0000000c0000000c" change="1468254344" id="N0000" type="GEDCOM import">
+      <text>Records not imported into INDI (individual) Gramps ID I0001:
+
+Tag recognized but not supported                                    Line    29: 4 MEDI photo</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="155"/>
+      </style>
+    </note>
+    <note handle="_0000000d0000000d" change="1468254344" id="N0001" type="REFN-TYPE">
+      <text>SOMETEXT</text>
+    </note>
+    <note handle="_0000000e0000000e" change="1468254344" id="N0011" type="General">
+      <text>Media note test: Multimedia link to linked form v5.5 blob
+n @XREF:OBJE@ OBJE {1:1}
++1 FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1} p.48  
++1 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.43
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M} p.33
++1 BLOB {1:1}
++2 CONT &lt;ENCODED_MULTIMEDIA_LINE&gt; {1:M} p.43
++1 OBJE @&lt;XREF:OBJE&gt;@ /* chain to continued object */ {0:1} p.26
++1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M} p.55
++2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1} p.55
++1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1} p.38
++1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1} p.29</text>
+    </note>
+    <note handle="_0000000f0000000f" change="1468254344" id="N0002" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
+
+BLOB ignored                                                        Line    42: 1 BLOB 
+                                                                                       .HM.......k.1..F.jwA.Dzzzzw............A....1.........0U.66..E.8
+                                                                                       .......A..k.a6.A.......A..k.........../6....G.......0../..U.....
+                                                                                       .w1/m........HC0..../...zzzzzzzz..5zzk..AnA..U..W6U....2rRrRrRrR
+                                                                                       .Dw...............k.1.......1..A...5ykE/zzzx/.g//.Hxzk6/.Tzy/.k1
+                                                                                       /Dw/.Tvz.E5zzUE9/kHz.Tw2/DzzzEEA.kE2zk5yzk2/zzs21.U2/Dw/.Tw/.Tzy
+                                                                                       /.fy/.HzzkHzzzo21Ds00.E2.UE2.U62/.k./Ds0.UE0/Do0..E8/UE2.U62.U9w
+                                                                                       /.Tx/.20.jg2/jo2..9u/.0U.6A.zk
+Line ignored as not understood                                      Line    50: 1 OBJE @M2@</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="1277"/>
+      </style>
+    </note>
+    <note handle="_0000001100000011" change="1468254344" id="N0003" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M2:
+
+BLOB ignored                                                        Line    61: 1 BLOB 
+                                                                                       67890gramps doesn't do this anyway, so don't bother doing it right.</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="310"/>
+      </style>
+    </note>
+    <note handle="_0000001200000012" change="1468254344" id="N0012" type="General">
+      <text>Media note test: Multimedia link to linked form Gramps style v5.5ish file
+n @XREF:OBJE@ OBJE {1:1}
++1 FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1} p.48  
++1 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.43
++1 FILE &lt;MULTIMEDIA_FILE_REFERENCE&gt; {1:1} p.47
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M} p.33</text>
+    </note>
+    <note handle="_0000001300000013" change="1468254344" id="N0004" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M3:
+
+Could not import test.jpg                                           Line    66: 1 FILE test.jpg</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="163"/>
+      </style>
+    </note>
+    <note handle="_0000001400000014" change="1468254344" id="N0005" type="REFN-TYPE">
+      <text>SOMETEXT</text>
+    </note>
+    <note handle="_0000001500000015" change="1468254344" id="N0013" type="General">
+      <text>Media note test: Multimedia link to linked form v5.5.1 file
+n @XREF:OBJE@ OBJE {1:1}
++1 FILE &lt;MULTIMEDIA_FILE_REFN&gt; {1:M} p.54
++2 FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1} p.54
++3 TYPE &lt;SOURCE_MEDIA_TYPE&gt; {0:1} p.62 
++2 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.48
++1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M} p.63, 64  &gt;&gt; note?
++2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1} p.64
++1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1} p.43 &gt;&gt; Attribute ID?
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M} p.37
++1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M} p.39
++1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1} p.31</text>
+    </note>
+    <note handle="_0000001700000017" change="1468254344" id="N0006" type="Source text">
+      <text>who shall remain un-named</text>
+    </note>
+    <note handle="_0000001900000019" change="1468254344" id="N0007" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M4:
+
+Could not import test.jpg                                           Line    72: 1 FILE test.jpg
+Skipped subordinate line                                            Line    74: 3 TYPE photo
+Skipped subordinate line                                            Line    75: 2 TITL Multimedia link to linked form v5.5.1 file</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="386"/>
+      </style>
+    </note>
+    <note handle="_0000001a0000001a" change="1468254344" id="N0008" type="Media Note">
+      <text>A fine gentelman was he, upstanding in his community and a great believer in the testing of open source software.</text>
+    </note>
+    <note handle="_0000001b0000001b" change="1468254344" id="N0015" type="General">
+      <text>A note on the FTM media, to see how this integrates...  The DATE line is bad; it doesnt follow Gedcom standard at all, and includes the time.
+The TEXT line comes from the FTM media description.  This is the media Note.</text>
+    </note>
+    <note handle="_0000001c0000001c" change="1468254344" id="N0016" type="General">
+      <text>Multimedia link to linked form FTM style
+n @XREF:OBJE@ OBJE {1:1}
++1 FILE &lt;MULTIMEDIA_FILE_REFN&gt; {1:M} p.54
++2 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1} p.43
++2 DATE text string from media page, sometimes populated from exif &quot;mm/dd/yyyy hh:mn:ss AM&quot;
++2 TEXT text string from FTM media description sometimes populated from exif comments
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M} p.33</text>
+    </note>
+    <note handle="_0000001d0000001d" change="1468254344" id="N0009" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M5:
+
+Could not import test.jpg                                           Line    87: 1 FILE test.jpg</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="163"/>
+      </style>
+    </note>
+    <note handle="_0000001e0000001e" change="1468254344" id="N0017" type="REFN-TYPE">
+      <text>SOMETEXT</text>
+    </note>
+    <note handle="_0000001f0000001f" change="1468254344" id="N0019" type="General">
+      <text>Multimedia link to linked form v5.5.1 with two files</text>
+    </note>
+    <note handle="_0000002100000021" change="1468254344" id="N0020" type="Source text">
+      <text>A source who shall remain un-named</text>
+    </note>
+    <note handle="_0000002300000023" change="1468254344" id="N0021" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M6:
+
+Could not import test.jpg                                           Line    95: 1 FILE test.jpg
+Skipped subordinate line                                            Line    97: 3 TYPE photo
+Skipped subordinate line                                            Line    98: 2 TITL Multimedia link to linked form v5.5.1 with two files(1)
+Multiple FILE in a single OBJE ignored                              Line    99: 1 FILE test1.jpg
+Skipped subordinate line                                            Line   100: 2 FORM jpeg
+Skipped subordinate line                                            Line   101: 3 TYPE photo
+Skipped subordinate line                                            Line   102: 2 TITL Multimedia link to linked form v5.5.1 with two files(2)</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="824"/>
+      </style>
+    </note>
+  </notes>
+</database>
