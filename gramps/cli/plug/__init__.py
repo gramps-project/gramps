@@ -752,8 +752,9 @@ def cl_book(database, name, book, options_str_dict):
 
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
-        obj = write_book_item(database,
-                              report_class, item.option_class, user)
+        obj = (write_book_item(database,
+                               report_class, item.option_class, user),
+               item.get_translated_name())
         if obj:
             append_styles(selected_style, item)
             rptlist.append(obj)
@@ -762,13 +763,21 @@ def cl_book(database, name, book, options_str_dict):
     doc.open(clr.option_class.get_output())
     doc.init()
     newpage = 0
-    for rpt in rptlist:
-        if newpage:
-            doc.page_break()
-        newpage = 1
-        rpt.begin_report()
-        rpt.write_report()
-    doc.close()
+    err_msg = _("Failed to make '%s' report.")
+    try:
+        for (rpt, name) in rptlist:
+            if newpage:
+                doc.page_break()
+            newpage = 1
+            rpt.begin_report()
+            rpt.write_report()
+        doc.close()
+    except ReportError as msg:
+        (m1, m2) = msg.messages()
+        print(err_msg % name, file=sys.stderr) # which report has the error?
+        print(m1, file=sys.stderr)
+        if m2:
+            print(m2, file=sys.stderr)
 
 #------------------------------------------------------------------------
 #

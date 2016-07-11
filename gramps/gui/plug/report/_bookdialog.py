@@ -52,7 +52,7 @@ from gi.repository import GObject
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -137,7 +137,7 @@ def _initialize_options(options, dbstate, uistate):
 
 #------------------------------------------------------------------------
 #
-# BookList Display class
+# BookListDisplay class
 #
 #------------------------------------------------------------------------
 class BookListDisplay:
@@ -239,7 +239,8 @@ class BookListDisplay:
                 _('Discard Unsaved Changes'),
                 _('You have made changes which have not been saved.'),
                 _('Proceed'),
-                _('Cancel'))
+                _('Cancel'),
+                parent=self.top)
             if not qqq.run():
                 self.top.run()
 
@@ -548,8 +549,6 @@ class BookSelector(ManagedWindow):
                           _('Please select a book item to configure.'),
                           parent=self.window)
             return
-        ## data = self.book_model.get_data(the_iter,
-        ##                                 list(range(self.book_nr_cols)))
         row = self.book_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
@@ -577,6 +576,11 @@ class BookSelector(ManagedWindow):
                 #just stop, in ManagedWindow, delete-event is already coupled to
                 #correct action.
                 break
+        opt_dict = option_class.handler.options_dict
+        for optname in opt_dict:
+            menu_option = option_class.menu.get_option_by_name(optname)
+            if menu_option:
+                menu_option.set_value(opt_dict[optname])
 
     def book_button_press(self, obj, event):
         """
@@ -675,9 +679,35 @@ class BookSelector(ManagedWindow):
         Run final BookDialog with the current book.
         """
         if self.book.item_list:
+            old_paper_name = self.book.get_paper_name() # from books.xml
+            old_orientation = self.book.get_orientation()
+            old_paper_metric = self.book.get_paper_metric()
+            old_custom_paper_size = self.book.get_custom_paper_size()
+            old_margins = self.book.get_margins()
+            old_format_name = self.book.get_format_name()
+            old_output = self.book.get_output()
+            BookDialog(self.dbstate, self.uistate, self.book, BookOptions)
+            new_paper_name = self.book.get_paper_name()
+            new_orientation = self.book.get_orientation()
+            new_paper_metric = self.book.get_paper_metric()
+            new_custom_paper_size = self.book.get_custom_paper_size()
+            new_margins = self.book.get_margins()
+            new_format_name = self.book.get_format_name()
+            new_output = self.book.get_output()
+            # only books in the booklist have a name (not "ad hoc" ones)
+            if (self.book.get_name() and
+                    (old_paper_name != new_paper_name or
+                     old_orientation != new_orientation or
+                     old_paper_metric != new_paper_metric or
+                     old_custom_paper_size != new_custom_paper_size or
+                     old_margins != new_margins or
+                     old_format_name != new_format_name or
+                     old_output != new_output)):
+                self.book.set_dbname(self._db.get_save_path())
+                self.book_list.set_book(self.book.get_name(), self.book)
+                self.book_list.set_needs_saving(True)
             if self.book_list.get_needs_saving():
                 self.book_list.save()
-            BookDialog(self.dbstate, self.uistate, self.book, BookOptions)
         else:
             WarningDialog(_('No items'), _('This book has no items.'),
                           parent=self.window)
@@ -706,10 +736,26 @@ class BookSelector(ManagedWindow):
                 parent=self.window)
             if not qqq.run():
                 return
+
+        # previously, the same book could be added to the booklist
+        # under multiple names, which became different books once the
+        # booklist was saved into a file so everything was fine, but
+        # this created a problem once the paper settings were added
+        # to the Book object in the BookDialog, since those settings
+        # were retrieved from the Book object in Book.save, so mutiple
+        # books (differentiated by their names) were assigned the
+        # same paper values, so the solution is to make each Book be
+        # unique in the booklist, so if multiple copies are saved away
+        # only the last one will get the paper values assigned to it
+        # (although when the earlier books are then eventually run,
+        # they'll be assigned paper values also)
         self.book.set_name(name)
         self.book.set_dbname(self._db.get_save_path())
         self.book_list.set_book(name, self.book)
         self.book_list.set_needs_saving(True) # user clicked on save
+        self.book = Book(self.book, exact_copy=False) # regenerate old items
+        self.book.set_name(name)
+        self.book.set_dbname(self._db.get_save_path())
 
     def on_open_clicked(self, obj):
         """
@@ -937,8 +983,9 @@ class BookDialog(DocReportDialog):
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
-            obj = write_book_item(self.database, report_class,
-                                  item.option_class, user)
+            obj = (write_book_item(self.database, report_class,
+                                   item.option_class, user),
+                   item.get_translated_name())
             self.rptlist.append(obj)
             append_styles(selected_style, item)
 
@@ -946,19 +993,32 @@ class BookDialog(DocReportDialog):
         self.doc.open(self.target_path)
 
     def make_book(self):
-        """The actual book. Start it out, then go through the item list
-        and call each item's write_book_item method."""
+        """
+        The actual book. Start it out, then go through the item list
+        and call each item's write_book_item method (which were loaded
+        by the previous make_document method).
+        """
 
-        self.doc.init()
-        newpage = 0
-        for rpt in self.rptlist:
-            if newpage:
-                self.doc.page_break()
-            newpage = 1
-            if rpt:
-                rpt.begin_report()
-                rpt.write_report()
-        self.doc.close()
+        try:
+            self.doc.init()
+            newpage = 0
+            for (rpt, name) in self.rptlist:
+                if newpage:
+                    self.doc.page_break()
+                newpage = 1
+                if rpt:
+                    rpt.begin_report()
+                    rpt.write_report()
+            self.doc.close()
+        except ReportError as msg:
+            (msg1, msg2) = msg.messages()
+            msg2 += ' (%s)' % name # which report has the error?
+            ErrorDialog(msg1, msg2, parent=self.uistate.window)
+        except FilterError as msg:
+            (msg1, msg2) = msg.messages()
+            ErrorDialog(msg1, msg2, parent=self.uistate.window)
+        finally:
+            return
 
         if self.open_with_app.get_active():
             open_file_with_default_application(self.target_path)
@@ -993,16 +1053,18 @@ class BookDialog(DocReportDialog):
 #
 #------------------------------------------------------------------------
 def write_book_item(database, report_class, options, user):
-    """Write the report using options set.
-    All user dialog has already been handled and the output file opened."""
+    """
+    Write the report using options set.
+    All user dialog has already been handled and the output file opened.
+    """
     try:
         return report_class(database, options, user)
     except ReportError as msg:
         (msg1, msg2) = msg.messages()
-        ErrorDialog(msg1, msg2)
+        ErrorDialog(msg1, msg2, parent=user.uistate.window)
     except FilterError as msg:
         (msg1, msg2) = msg.messages()
-        ErrorDialog(msg1, msg2)
+        ErrorDialog(msg1, msg2, parent=user.uistate.window)
     except:
         LOG.error("Failed to write book item.", exc_info=True)
     return None
