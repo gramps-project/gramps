@@ -211,6 +211,7 @@ dropmarkers = """
 
   var tracelife = %s
   var map;
+  var myLatLng = new google.maps.LatLng(%s, %s);
 
   function initialize() {
     var mapOptions = {
@@ -218,7 +219,7 @@ dropmarkers = """
       zoomControl:  true, 
       zoom:         %d,
       mapTypeId:    google.maps.MapTypeId.ROADMAP,
-      center:       new google.maps.LatLng(0, 0)
+      center:       myLatLng,
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
@@ -249,6 +250,7 @@ dropmarkers = """
 markers = """
   var tracelife = %s
   var map;
+  var myLatLng = new google.maps.LatLng(%s, %s);
 
   function initialize() {
     var mapOptions = {
@@ -256,7 +258,7 @@ markers = """
       panControl:      true,
       backgroundColor: '#000000',
       zoom:            %d,
-      center:          new google.maps.LatLng(0, 0),
+      center:          myLatLng,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -5854,11 +5856,11 @@ class PersonPages(BasePage):
 
                             # are we creating Drop Markers?
                             elif self.googleopts == "Drop":
-                                jsc += dropmarkers  % (tracelife, zoomlevel)
+                                jsc += dropmarkers % (tracelife, midX_, midY_, zoomlevel)
 
                             # we are creating Markers only...
                             else:
-                                jsc += markers % (tracelife, zoomlevel)
+                                jsc += markers % (tracelife, midX_, midY_, zoomlevel)
 
                         # we are using OpenStreetMap...
                         else:
