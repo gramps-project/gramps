@@ -8815,7 +8815,7 @@ class NavWebReport(Report):
             self.copy_file(from_path, fname, "images")
 
         # copy GRAMPS marker icon for openstreetmap
-        fname = CSS["marker"]["filename"] 
+        fname = CSS["marker"]["filename"]
         self.copy_file(fname, "marker.png", "images")
 
     def build_gendex(self, ind_list):
