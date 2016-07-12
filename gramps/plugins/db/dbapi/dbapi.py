@@ -28,8 +28,6 @@ import sys
 import pickle
 from operator import itemgetter
 import logging
-import xml.dom.minidom
-from html import escape
 
 #------------------------------------------------------------------------
 #
@@ -125,59 +123,38 @@ class DBAPI(DbGeneric):
         _LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
             version_file.write("dbapi")
-
-        # Write settings
-        settings_file = os.path.join(directory, "settings.xml")
-        with open(settings_file, "w") as f:
-            f.write("<settings>\n")
-            f.write("  <dbtype>%s</dbtype>\n" %
-                    escape(config.get('database.dbtype')))
-            f.write("  <dbname>%s</dbname>\n" %
-                    escape(config.get('database.dbname')))
-            f.write("  <host>%s</host>\n" %
-                    escape(config.get('database.host')))
-            f.write("  <user>%s</user>\n" %
-                    escape(config.get('database.user')))
-            f.write("  <password>%s</password>\n" %
-                    escape(config.get('database.password')))
-            f.write("</settings>\n")
-
-    def __parse_settings(self, settings_file):
-        """
-        Parse the database settings file and return a dictionary of settings.
-        """
-        settings = {}
-        dom = xml.dom.minidom.parse(settings_file)
-        top = dom.getElementsByTagName('settings')
-        if len(top) != 1:
-            return settings
-        for key in ('dbtype', 'dbname', 'host', 'user', 'password'):
-            elements = top[0].getElementsByTagName(key)
-            if len(elements) == 1:
-                settings[key] = elements[0].childNodes[0].data
-        return settings
+        # Write settings.py and settings.ini:
+        settings_py = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                   "settings.py")
+        settings_ini = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "settings.ini")
+        LOG.debug("Copy settings.py from: " + settings_py)
+        LOG.debug("Copy settings.ini from: " + settings_py)
+        shutil.copy2(settings_py, directory)
+        shutil.copy2(settings_ini, directory)
 
     def initialize_backend(self, directory):
-        # Read settings
-        settings_file = os.path.join(directory, "settings.xml")
-        settings = self.__parse_settings(settings_file)
-
-        if settings['dbtype'] == 'sqlite':
-            from gramps.plugins.db.dbapi.sqlite import Sqlite
-            path_to_db = os.path.join(directory, 'sqlite.db')
-            self.dbapi = Sqlite(path_to_db)
-        elif settings['dbtype'] == 'mysql':
-            from gramps.plugins.db.dbapi.mysql import MySQL
-            self.dbapi = MySQL(settings['host'], settings['user'],
-                               settings['password'], settings['dbname'],
-                               charset='utf8', use_unicode=True)
-        elif settings['dbtype'] == 'postgres':
-            from gramps.plugins.db.dbapi.postgresql import Postgresql
-            self.dbapi = Postgresql(dbname=settings['dbname'],
-                                    user=settings['user'],
-                                    host=settings['host'],
-                                    password=settings['password'])
-
+        # Run code from directory
+        from gramps.gen.utils.configmanager import ConfigManager
+        config_file = os.path.join(directory, 'settings.ini')
+        config = ConfigManager(config_file)
+        config.register('database.dbtype', 'sqlite')
+        config.register('database.dbname', 'gramps')
+        config.register('database.host', 'localhost')
+        config.register('database.user', 'user')
+        config.register('database.password', 'password')
+        config.register('database.port', 'port')
+        config.load() # load from settings.ini
+        settings = {
+            "__file__":
+            os.path.join(directory, "settings.py"),
+            "config": config
+        }
+        settings_file = os.path.join(directory, "settings.py")
+        with open(settings_file) as f:
+            code = compile(f.read(), settings_file, 'exec')
+            exec(code, globals(), settings)
+        self.dbapi = settings["dbapi"]
         self.update_schema()
 
     def update_schema(self):
