@@ -171,6 +171,10 @@ def load_on_reg(dbstate, uistate, plugin):
         # copyright image
         ['Copyright', 0, 'Copyright',
          path_img("somerights20.gif"), None, [], [] ],
+
+        # marker icon for openstreetmap
+        ['marker', 0, 'marker',
+         path_img("gramps-geo-mainmap.png"), None, [], [] ],
         ]
     return CSS_FILES
 

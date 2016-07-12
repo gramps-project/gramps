@@ -152,30 +152,10 @@ SORT_KEY = glocale.sort_key
 # constants
 #------------------------------------------------
 GOOGLE_MAPS = 'http://maps.googleapis.com/maps/'
-# javascript code for Google single Marker...
-GOOGLE_JSC = """
-  var myLatLng = new google.maps.LatLng(%s, %s);
-
-  function initialize() {
-    var mapOptions = {
-      scaleControl:    true,
-      panControl:      true,
-      backgroundColor: '#000000',
-      draggable:       true,
-      zoom:            10,
-      center:          myLatLng,
-      mapTypeId:       google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById("place_canvas"), mapOptions);
-
-    var marker = new google.maps.Marker({
-      position:  myLatLng,
-      draggable: true,
-      title:     "%s",
-      map:       map
-    });
-  }"""
-
+# javascript code for marker path
+MARKER_PATH = """
+  var marker_png = '%s'
+"""
 # javascript code for Google's FamilyLinks...
 FAMILYLINKS = """
   var tracelife = %s
@@ -210,6 +190,7 @@ DROPMASTERS = """
 
   var tracelife = %s
   var map;
+  var myLatLng = new google.maps.LatLng(%s, %s);
 
   function initialize() {
     var mapOptions = {
@@ -217,7 +198,7 @@ DROPMASTERS = """
       zoomControl:  true,
       zoom:         %d,
       mapTypeId:    google.maps.MapTypeId.ROADMAP,
-      center:       new google.maps.LatLng(0, 0)
+      center:       myLatLng,
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   }
@@ -248,6 +229,7 @@ DROPMASTERS = """
 MARKERS = """
   var tracelife = %s
   var map;
+  var myLatLng = new google.maps.LatLng(%s, %s);
 
   function initialize() {
     var mapOptions = {
@@ -255,7 +237,7 @@ MARKERS = """
       panControl:      true,
       backgroundColor: '#000000',
       zoom:            %d,
-      center:          new google.maps.LatLng(0, 0),
+      center:          myLatLng,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -277,7 +259,7 @@ MARKERS = """
         zIndex:    location[3]
       });
       bounds.extend(myLatLng);
-      map.fitBounds(bounds);
+      if ( i > 1 ) { map.fitBounds(bounds); };
     }
   }"""
 
@@ -293,67 +275,45 @@ CANADA_MAP = """
      map.addLayers([wms, dm_wms]);
 """
 
-# javascript code for OpenStreetMap single marker
-OPENSTREETMAP_JSC = """
-  OpenLayers.Lang.setCode("%s");
-
-  function initialize(){
-    var map = new OpenLayers.Map('place_canvas');
-
-    var osm = new OpenLayers.Layer.OSM()
-    map.addLayer(osm);
-
-    var lonLat = new OpenLayers.LonLat(%s, %s)
-        .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-        );
-    var zoom =16;
-
-    map.setCenter(lonLat, zoom);
-
-    var markers = new OpenLayers.Layer.Markers("Markers");
-    markers.addMarker(new OpenLayers.Marker(lonLat));
-    map.addLayer(markers);
-
-    // add overview control
-    map.addControl(new OpenLayers.Control.OverviewMap());
-
-    // add a layer switcher
-    map.addControl(new OpenLayers.Control.LayerSwitcher());
-  }"""
-
 # javascript for OpenStreetMap's markers...
 OSM_MARKERS = """
   OpenLayers.Lang.setCode("%s");
   var map;
-
   var tracelife = %s
 
   function initialize(){
     map = new OpenLayers.Map('map_canvas');
-
     var wms = new OpenLayers.Layer.WMS(
       "OpenLayers WMS",
       "http://vmap0.tiles.osgeo.org/wms/vmap0",
       {'layers':'basic'});
     map.addLayer(wms);
-
     map.setCenter(new OpenLayers.LonLat(%s, %s), %d);
-
-    var markers = new OpenLayers.Layer.Markers("Markers");
-    map.addLayer(markers);
-
-    addMarkers(markers, map);
+    var vectorLayer = new OpenLayers.Layer.Vector('vectorLayer', {
+        styleMap: new OpenLayers.StyleMap({
+            externalGraphic: marker_png,
+            graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24,
+            title: '${tooltip}'
+        })
+    });
+    map.addLayer(vectorLayer);
+    var selectControlHover = new OpenLayers.Control.SelectFeature(vectorLayer, {
+        hover: true,
+        highlightOnly: true,
+        box: false
+    });
+    map.addControl(selectControlHover);
+    selectControlHover.activate();
+    addMarkers(vectorLayer);
   }
 
-  function addMarkers(markers, map) {
+  function addMarkers(markers) {
     for (var i = 0; i < tracelife.length; i++) {
       var location = tracelife[i];
-
-      marker = new OpenLayers.Marker(new OpenLayers.LonLat(location[0], location[1]));
-      markers.addMarker(marker);
-      map.addControl(new OpenLayers.Control.LayerSwitcher());
+      var myLocation = new OpenLayers.Geometry.Point(location[0], location[1]);
+      markers.addFeatures([
+          new OpenLayers.Feature.Vector(myLocation, {tooltip: location[2]})
+      ]);
     }
   }"""
 # there is no need to add an ending "</script>",
@@ -3981,6 +3941,11 @@ class PlacePages(BasePage):
                 placedetail += urllinks
 
             # add place map here
+            # Link to GRAMPS marker
+            fname = "/".join(['images', 'marker.png'])
+            marker_path = self.report.build_url_image("marker.png",
+                                                      "images", self.uplink)
+
             if self.placemappages:
                 if place and (place.lat and place.long):
                     latitude, longitude = conv_lat_lon(place.get_latitude(),
@@ -4008,7 +3973,7 @@ class PlacePages(BasePage):
                     placedetail += Html("h4", _("Place Map"), inline=True)
 
                     # begin map_canvas division
-                    with Html("div", id="place_canvas", inline=True) as canvas:
+                    with Html("div", id="map_canvas", inline=True) as canvas:
                         placedetail += canvas
 
                         # Begin inline javascript code because jsc is a
@@ -4020,7 +3985,13 @@ class PlacePages(BasePage):
 
                                 # Google adds Latitude/ Longitude to its maps...
                                 plce = placetitle.replace("'", "\\'")
-                                jsc += GOOGLE_JSC % (latitude, longitude, plce)
+                                jsc += MARKER_PATH % marker_path
+                                jsc += MARKERS % ([[plce,
+                                                    latitude,
+                                                    longitude,
+                                                    1]],
+                                                  latitude, longitude,
+                                                  10)
 
                         else:
                             # OpenStreetMap (OSM) adds Longitude/ Latitude
@@ -4029,8 +4000,10 @@ class PlacePages(BasePage):
                             with Html("script", type="text/javascript") as jsc:
                                 canvas += jsc
                                 param1 = xml_lang()[3:5].lower()
-                                jsc += OPENSTREETMAP_JSC % (param1, longitude,
-                                                            latitude)
+                                jsc += MARKER_PATH % marker_path
+                                jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
+                                                     [[longitude, latitude, placetitle]],
+                                                     longitude, latitude, 10)
 
             # add javascript function call to body element
             body.attr += ' onload = "initialize();" '
@@ -6543,7 +6516,7 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
 
-        if number_markers > 1:
+        if number_markers > 0:
             tracelife = "["
             seq_ = 1
 
@@ -6568,7 +6541,8 @@ class PersonPages(BasePage):
                 # are we using OpenStreetMap?
                 else:
                     tracelife += """
-    [%s, %s],""" % (longitude, latitude)
+    [%s, %s, \'%s\'],""" % (longitude, latitude, placetitle.replace("'", "\\'"))
+
                 seq_ += 1
             # FIXME: The last element in the place_lat_long list is treated
             # specially, and the code above is apparently repeated so as to
@@ -6595,8 +6569,8 @@ class PersonPages(BasePage):
             # are we using OpenStreetMap?
             elif self.mapservice == "OpenStreetMap":
                 tracelife += """
-    [%s, %s]
-  ];""" % (longitude, latitude)
+    [%s, %s, \'%s\']
+  ];""" % (longitude, latitude, placetitle.replace("'", "\\'"))
 
         # begin MapDetail division...
         with Html("div", class_="content", id="FamilyMapDetail") as mapdetail:
@@ -6630,53 +6604,50 @@ class PersonPages(BasePage):
                           type="text/javascript", indent=False) as jsc:
                     head += jsc
 
-                    # if there is only one marker?
-                    if number_markers == 1:
-                        (latitude, longitude,
-                         placetitle, handle, date, etype) = place_lat_long[0]
+                    # Link to GRAMPS marker
+                    fname = "/".join(['images', 'marker.png'])
+                    marker_path = self.report.build_url_image("marker.png",
+                                                              "images",
+                                                              self.uplink)
 
-                        # are we using Google?
-                        if self.mapservice == "Google":
-                            # FIXME: Horrible hack, because when there is only a
-                            # single marker, the javascript for place is used,
-                            # which has a 'place_canvas' division, instead of a
-                            # 'map_canvas' division.
-                            jsc += GOOGLE_JSC.replace(
-                                "place_canvas", "map_canvas") % (
-                                    latitude, longitude,
-                                    placetitle.replace("'", "\\'"))
+                    jsc += MARKER_PATH % marker_path
+                    # are we using Google?
+                    if self.mapservice == "Google":
 
-                        # we are using OpenStreetMap?
-                        else:
-                            # FIXME: Horrible hack, because when there is only a
-                            # single marker, the javascript for place is used,
-                            # which has a 'place_canvas' division, instead of a
-                            # 'map_canvas' division.
-                            jsc += OPENSTREETMAP_JSC.replace(
-                                "place_canvas", "map_canvas") % (
-                                    xml_lang()[3:5].lower(),
-                                    longitude, latitude)
-
-                    # there is more than one marker...
-                    else:
-
-                        # are we using Google?
-                        if self.mapservice == "Google":
-
-                            # are we creating Family Links?
-                            if self.googleopts == "FamilyLinks":
+                        # are we creating Family Links?
+                        if self.googleopts == "FamilyLinks":
+                            if midy_ == None:
+                                jsc += FAMILYLINKS % (tracelife, latitude,
+                                                      longitude, int(10))
+                            else:
                                 jsc += FAMILYLINKS % (tracelife, midx_, midy_,
                                                       zoomlevel)
 
-                            # are we creating Drop Markers?
-                            elif self.googleopts == "Drop":
-                                jsc += DROPMASTERS  % (tracelife, zoomlevel)
-
-                            # we are creating Markers only...
+                        # are we creating Drop Markers?
+                        elif self.googleopts == "Drop":
+                            if midy_ == None:
+                                jsc += DROPMASTERS % (tracelife, latitude,
+                                                      longitude, int(10))
                             else:
-                                jsc += MARKERS % (tracelife, zoomlevel)
+                                jsc += DROPMASTERS % (tracelife, midx_, midy_,
+                                                      zoomlevel)
 
-                        # we are using OpenStreetMap...
+                        # we are creating Markers only...
+                        else:
+                            if midy_ == None:
+                                jsc += MARKERS % (tracelife, latitude,
+                                                  longitude, int(10))
+                            else:
+                                jsc += MARKERS % (tracelife, midx_, midy_,
+                                                  zoomlevel)
+
+                    # we are using OpenStreetMap...
+                    else:
+                        if midy_ == None:
+                            jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
+                                                  tracelife,
+                                                  longitude,
+                                                  latitude, 10)
                         else:
                             jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
                                                   tracelife, midy_, midx_,
@@ -8842,6 +8813,10 @@ class NavWebReport(Report):
         for from_path in imgs:
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
+
+        # copy GRAMPS marker icon for openstreetmap
+        fname = CSS["marker"]["filename"] 
+        self.copy_file(fname, "marker.png", "images")
 
     def build_gendex(self, ind_list):
         """
