@@ -32,12 +32,12 @@ MODULE_VERSION="5.0"
 
 register(TOOL,
 id    = 'test_for_date_parser_and_displayer',
-name  = _("Check Localized Date Displayer and Parser"),
-description =  _("This test tool will create many people showing all"
-                 " different date variants as birth. The death date is"
-                 " created by parsing the result of the date displayer for"
-                 " the birth date. This way you can ensure that dates"
-                 " printed can be parsed back in correctly."),
+name  = "Check Localized Date Displayer and Parser",
+description =  ("This test tool will create many people showing all"
+                " different date variants as birth. The death date is"
+                " created by parsing the result of the date displayer for"
+                " the birth date. This way you can ensure that dates"
+                " printed can be parsed back in correctly."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
@@ -58,9 +58,9 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 register(TOOL,
 id    = 'dgenstats',
-name  = _("Dump Gender Statistics"),
-description =  _("Will dump the statistics for the gender guessing "
-                 "from the first name."),
+name  = "Dump Gender Statistics",
+description =  ("Will dump the statistics for the gender guessing "
+                "from the first name."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -81,10 +81,10 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 register(TOOL,
 id    = 'testcasegenerator',
-name  = _("Generate Testcases for Persons and Families"),
-description =  _("The testcase generator will generate some persons "
-                 "and families that have broken links in the database "
-                 "or data that is in conflict to a relation."),
+name  = "Generate Testcases for Persons and Families",
+description =  ("The testcase generator will generate some persons "
+                "and families that have broken links in the database "
+                "or data that is in conflict to a relation."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
@@ -105,10 +105,10 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 register(TOOL,
 id    = 'populatesources',
-name  = _("Populate Sources and Citations"),
-description =  _("This tool generates sources and citations for each source in "
-                 "order to populate the database for testing with significant "
-                 "numbers of sources and citations."),
+name  = "Populate Sources and Citations",
+description =  ("This tool generates sources and citations for each source in "
+                "order to populate the database for testing with significant "
+                "numbers of sources and citations."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
