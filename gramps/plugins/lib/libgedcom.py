@@ -5448,8 +5448,8 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
             if sub_state.pf:                # if we found local PLAC:FORM
                 state.pf = sub_state.pf     # save to override global value
-        # merge notes etc into place
-        state.place.merge(sub_state.place)
+            # merge notes etc into place
+            state.place.merge(sub_state.place)
 
     def __event_place_note(self, line, state):
         """
