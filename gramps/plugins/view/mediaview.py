@@ -317,7 +317,7 @@ class MediaView(ListView):
     def remove(self, obj):
         self.remove_selected_objects()
 
-    def remove_media_from_handle(self, handle):
+    def remove_object_from_handle(self, handle):
         """
         Remove the selected objects from the database after getting
         user verification.
