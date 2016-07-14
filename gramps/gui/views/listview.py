@@ -29,6 +29,7 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
+from abc import abstractmethod
 import pickle
 import time
 import logging
@@ -1095,42 +1096,35 @@ class ListView(NavigationView):
     ####################################################################
     # Template functions
     ####################################################################
-    def get_bookmarks(self):
-        """
-        Template function to get bookmarks.
-        We could implement this in the NavigationView
-        """
-        raise NotImplementedError
-
+    @abstractmethod
     def edit(self, obj, data=None):
         """
         Template function to allow the editing of the selected object
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove(self, handle, data=None):
         """
         Template function to allow the removal of an object by its handle
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add(self, obj, data=None):
         """
         Template function to allow the adding of a new object
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def merge(self, obj, data=None):
         """
         Template function to allow the merger of two objects.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def remove_object_from_handle(self, handle):
         """
         Template function to allow the removal of an object by its handle
         """
-        raise NotImplementedError
 
     def open_all_nodes(self, obj):
         """

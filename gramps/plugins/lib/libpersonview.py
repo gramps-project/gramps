@@ -346,6 +346,12 @@ class BasePersonView(ListView):
 
         self.uistate.set_busy_cursor(False)
 
+    def remove_object_from_handle(self, handle):
+        """
+        The remove_selected_objects method is not called in this view.
+        """
+        pass
+
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action

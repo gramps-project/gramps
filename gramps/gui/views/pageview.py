@@ -27,6 +27,7 @@ Provide the base class for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 import logging
 _LOG = logging.getLogger('.pageview')
 
@@ -57,7 +58,7 @@ from ..actiongroup import ActionGroup
 # PageView
 #
 #------------------------------------------------------------------------------
-class PageView(DbGUIElement):
+class PageView(DbGUIElement, metaclass=ABCMeta):
     """
     The PageView class is the base class for all Data Views in GRAMPS.  All
     Views should derive from this class. The ViewManager understands the public
@@ -312,12 +313,12 @@ class PageView(DbGUIElement):
         self.bottombar.set_inactive()
         self.active = False
 
+    @abstractmethod
     def build_tree(self):
         """
         Rebuilds the current display. This must be overridden by the derived
         class.
         """
-        raise NotImplementedError
 
     def ui_definition(self):
         """
@@ -389,12 +390,12 @@ class PageView(DbGUIElement):
             self.top = self.build_interface()
         return self.top
 
+    @abstractmethod
     def build_widget(self):
         """
         Builds the container widget for the main view pane. Must be overridden
         by the base class. Returns a gtk container widget.
         """
-        raise NotImplementedError
 
     def define_actions(self):
         """
@@ -473,40 +474,6 @@ class PageView(DbGUIElement):
         """
         self.uistate.clear_filter_results()
 
-    def edit(self, obj):
-        """
-        Template function to allow the editing of the selected object
-        """
-        raise NotImplementedError
-
-    def remove(self, handle):
-        """
-        Template function to allow the removal of an object by its handle
-        """
-        raise NotImplementedError
-
-    def remove_object_from_handle(self, handle):
-        """
-        Template function to allow the removal of an object by its handle
-        """
-        raise NotImplementedError
-
-    def add(self, obj):
-        """
-        Template function to allow the adding of a new object
-        """
-        raise NotImplementedError
-
-    def _key_press(self, obj, event):
-        """
-        Define the action for a key press event
-        """
-        # TODO: This is never used? (replaced in ListView)
-        if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
-            self.edit(obj)
-            return True
-        return False
-
     def on_delete(self):
         """
         Method called on shutdown. Data views should put code here
@@ -569,7 +536,7 @@ class PageView(DbGUIElement):
 
         :return: list of functions
         """
-        raise NotImplementedError
+        return []
 
     def configure(self):
         """

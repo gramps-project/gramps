@@ -26,6 +26,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from abc import ABCMeta, abstractmethod
 from io import StringIO
 
 #-------------------------------------------------------------------------
@@ -74,7 +75,7 @@ BTM = '''</menu></menubar></ui>'''
 
 DISABLED = -1
 
-class Bookmarks:
+class Bookmarks(metaclass=ABCMeta):
     "Handle the bookmarks interface for Gramps."
 
     def __init__(self, dbstate, uistate, callback=None):
@@ -113,17 +114,17 @@ class Bookmarks:
             self.connect_signals()
             self.update_bookmarks()
 
+    @abstractmethod
     def connect_signals(self):
         """
         Connect the person-delete signal
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_bookmarks(self):
         """
         Retrieve bookmarks from the database.
         """
-        raise NotImplementedError
 
     def update_bookmarks(self):
         """
@@ -184,20 +185,20 @@ class Bookmarks:
         self.uistate.uimanager.ensure_update()
         text.close()
 
+    @abstractmethod
     def make_label(self, handle):
         """
         Returns a  (label, object) tuple appropriate to the type of the object
         that the handle refers to. The label is a text for the object, e.g. the
         object name.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def callback(self, handle):
         """
         Returns a unique call to a function with the associated handle. The
         function that will be called is defined in the derived class
         """
-        raise NotImplementedError
 
     def add(self, person_handle):
         """Append the person to the bottom of the bookmarks."""

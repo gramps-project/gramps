@@ -281,6 +281,12 @@ class FamilyView(ListView):
             trans.set_description(_("Family [%s]") % gramps_id)
         self.uistate.set_busy_cursor(False)
 
+    def remove_object_from_handle(self, handle):
+        """
+        The remove_selected_objects method is not called in this view.
+        """
+        pass
+
     def edit(self, obj):
         for handle in self.selected_handles():
             family = self.dbstate.db.get_family_from_handle(handle)

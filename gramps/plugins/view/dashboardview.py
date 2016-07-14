@@ -75,6 +75,12 @@ class DashboardView(PageView):
                             self.dbstate, self.uistate)
         return self.widget
 
+    def build_tree(self):
+        """
+        Rebuilds the current display.
+        """
+        pass
+
     def get_stock(self):
         """
         Return image associated with the view, which is used for the
