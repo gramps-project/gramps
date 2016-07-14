@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-07-14" version="5.0.0-alpha1"/>
+    <researcher>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000200000002" change="1468508301" id="E0000">
+      <type>Occupation</type>
+      <dateval val="1946-10-16"/>
+      <place hlink="_0000000300000003"/>
+      <description>Working at Halle's Department Store</description>
+    </event>
+    <event handle="_0000000400000004" change="1468508301" id="E0001">
+      <type>Occupation</type>
+      <dateval val="1950-07-06"/>
+      <description>Shoemaker</description>
+    </event>
+    <event handle="_0000000500000005" change="1468508301" id="E0002">
+      <type>Religion</type>
+      <dateval val="1940-07-06"/>
+      <description>Methodist</description>
+    </event>
+    <event handle="_0000000600000006" change="1468508301" id="E0003">
+      <type>Religion</type>
+      <dateval val="1950-07-06"/>
+      <description>Lutherin</description>
+    </event>
+    <event handle="_0000000700000007" change="1468508301" id="E0004">
+      <type>Degree</type>
+      <dateval val="1935-07-06"/>
+      <place hlink="_0000000800000008"/>
+      <description>High School</description>
+    </event>
+    <event handle="_0000000900000009" change="1468508301" id="E0005">
+      <type>Degree</type>
+      <dateval val="1939-07-06"/>
+      <description>Case Western University</description>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1468508301" id="I0001">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>The</first>
+        <surname>Tester</surname>
+      </name>
+      <eventref hlink="_0000000200000002" role="Primary"/>
+      <eventref hlink="_0000000400000004" role="Primary"/>
+      <eventref hlink="_0000000500000005" role="Primary"/>
+      <eventref hlink="_0000000600000006" role="Primary"/>
+      <eventref hlink="_0000000700000007" role="Primary"/>
+      <eventref hlink="_0000000900000009" role="Primary"/>
+    </person>
+  </people>
+  <places>
+    <placeobj handle="_0000000300000003" change="1468508301" id="P0000" type="Unknown">
+      <ptitle>Cleveland, Cuyahoga, Ohio, United States of America</ptitle>
+      <pname value="Cleveland, Cuyahoga, Ohio, United States of America"/>
+    </placeobj>
+    <placeobj handle="_0000000800000008" change="1468508301" id="P0001" type="Unknown">
+      <ptitle>Norwalk, Ohio, USA</ptitle>
+      <pname value="Norwalk, Ohio, USA"/>
+    </placeobj>
+  </places>
+</database>
