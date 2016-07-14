@@ -20,7 +20,6 @@ gramps/gen/__init__.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
 gramps/gen/updatecallback.py
-gramps/gen/user.py
 gramps/gen/ggettext.py
 #
 # gen.datehandler package

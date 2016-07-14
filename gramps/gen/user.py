@@ -23,9 +23,10 @@ The User class provides basic interaction with the user.
 """
 
 import sys
+from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager
 
-class User:
+class User(metaclass=ABCMeta):
     """
     This class provides a means to interact with the user in an abstract way.
     This class should be overridden by each respective user interface to
@@ -39,6 +40,7 @@ class User:
         self.uistate = uistate
         self.dbstate = dbstate
 
+    @abstractmethod
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
@@ -55,15 +57,14 @@ class User:
         :type steps: int
         :returns: none
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def step_progress(self):
         """
         Advance the progress meter.
 
         Don't use this method directly, use progress instead.
         """
-        raise NotImplementedError
 
     def callback(self, percentage, text=None):
         """
@@ -83,13 +84,13 @@ class User:
         else:
             self._fileout.write("\r%02d%% %s" % (percentage, text))
 
+    @abstractmethod
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
 
         Don't use this method directly, use progress instead.
         """
-        raise NotImplementedError
 
     # Context-manager wrapper of the begin/step/end_progress above
     @contextmanager
@@ -115,6 +116,7 @@ class User:
         finally:
             self.end_progress()
 
+    @abstractmethod
     def prompt(self, title, message, accept_label, reject_label, parent=None,
                default_label=None):
         """
@@ -135,8 +137,8 @@ class User:
         :returns: the user's answer to the question
         :rtype: bool
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def warn(self, title, warning=""):
         """
         Warn the user.
@@ -147,8 +149,8 @@ class User:
         :type warning: str
         :returns: none
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def notify_error(self, title, error=""):
         """
         Notify the user of an error.
@@ -159,8 +161,8 @@ class User:
         :type error: str
         :returns: none
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def notify_db_error(self, error):
         """
         Notify the user of a DB error.
@@ -169,10 +171,9 @@ class User:
         :type error: str
         :returns: none
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """
         Displays information to the user
         """
-        raise NotImplementedError
