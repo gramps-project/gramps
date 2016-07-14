@@ -5417,8 +5417,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        if self.is_ftw and state.event.type in FTW_BAD_PLACE:
-            state.event.set_description(line.data)
+        if self.is_ftw and (state.event.type in FTW_BAD_PLACE) \
+                and not state.event.get_description():
+             state.event.set_description(line.data)
         else:
             title = line.data
             place = state.place
