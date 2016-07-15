@@ -103,6 +103,8 @@ def _initialize_options(options, dbstate, uistate):
     if not hasattr(options, "menu"):
         return
     dbase = dbstate.get_database()
+    if dbase.get_total() == 0:
+        return
     menu = options.menu
 
     for name in menu.get_all_option_names():
