@@ -119,9 +119,10 @@ THUMB_DIR = os.path.join(HOME_DIR, "thumb")
 THUMB_NORMAL = os.path.join(THUMB_DIR, "normal")
 THUMB_LARGE = os.path.join(THUMB_DIR, "large")
 USER_PLUGINS = os.path.join(VERSION_DIR, "plugins")
+USER_CSS = os.path.join(HOME_DIR, "css")
 # dirs checked/made for each Gramps session
 USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
-                THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
+                THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS, USER_CSS)
 
 
 #-------------------------------------------------------------------------

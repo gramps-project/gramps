@@ -23,7 +23,7 @@
 #    python modules
 #------------------------------------------------
 import os
-from gramps.gen.const import VERSION_DIR, IMAGE_DIR, DATA_DIR
+from gramps.gen.const import VERSION_DIR, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -176,6 +176,12 @@ def load_on_reg(dbstate, uistate, plugin):
         ['marker', 0, 'marker',
          path_img("gramps-geo-mainmap.png"), None, [], [] ],
         ]
+    # If we add css user files, we must restart gramps to use them.
+    list_files = os.listdir(USER_CSS)
+    for cssfile in list_files:
+        CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
+                          os.path.join(USER_CSS,cssfile),
+                          None, [], [] ])
     return CSS_FILES
 
 def process_list(data):
