@@ -101,6 +101,8 @@ def _initialize_options(options, dbstate, uistate):
     if not hasattr(options, "menu"):
         return
     dbase = dbstate.get_database()
+    if dbase.get_total() == 0:
+        return
     menu = options.menu
     
     for name in menu.get_all_option_names():
@@ -142,6 +144,8 @@ def _get_subject(options, dbase):
     options: The ReportOptions class
     dbase: the database for which it corresponds
     """
+    if dbase.get_total() == 0:
+        return
     if not hasattr(options, "menu"):
         return ""
     menu = options.menu
@@ -366,6 +370,9 @@ class BookSelector(ManagedWindow):
 
     def __init__(self, dbstate, uistate):
         self.db = dbstate.db
+        if self.db.get_total() == 0:
+            WarningDialog(_("Your database is empty."), parent=uistate.window)
+            return
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = _('Book')
