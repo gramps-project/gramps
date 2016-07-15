@@ -1,0 +1,41 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (22.0.0.1410)
+2 NAME Family Tree Maker for Windows
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST GED55
+1 DATE 01 MAR 2016
+1 CHAR UTF-8
+1 FILE D:\Family Tree Maker\imp_FTM_LINK.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+0 @I937@ INDI
+1 NAME François Joseph /Raffath/
+2 SOUR @S241@
+3 _LINK http://gw.geneanet.org/danynogue2?lang=en&pz=anny+lise+marie&nz=le+vaillant&ocz=0&p=francois+joseph&n=raffath&oc=6
+0 @I1@ INDI
+1 NAME Michael /Sullivan/
+2 SOUR @S118@
+3 PAGE GS Film number: 2342492  Frame Number:   Digital Folder Number: 
+4 CONC 4208243  Image Number:  339  Reference ID:  p 493 rn 9850
+3 DATA
+4 TEXT Name: Michael Sullivan  Race (Original):   Age (Expanded):  25 years  
+5 CONC Birth Year:  1866  Birthplace:  Ireland  Spouse's Name:  Nellie 
+5 CONC Moynahan  Spouse's Race (Original):   Spouse's Age 
+5 CONC (Expanded):  25 years  Spouse's Birth Year:  1866  Spouse's 
+5 CONC Birthplace:  Ireland  Event Date:  04 Nov 1891  Event Place:  Wayne, 
+5 CONC Michigan  Father's Name: Michael Sullivan  Mother's Name: 
+5 CONC Julia Brosnahan  Spouse's Father's Name: Mich. Moynahan  
+5 CONC Spouse's Mother's Name: Ellen Quinlan
+3 _LINK https://familysearch.org/pal:/MM9.1.1/N3XS-1BL
+0 @S118@ SOUR
+1 TITL Michigan, Marriages, 1868-1925
+0 @S241@ SOUR
+1 TITL Daniel NOGUE family tree
+0 TRLR
