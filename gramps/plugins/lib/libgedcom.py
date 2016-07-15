@@ -1626,6 +1626,7 @@ class CurrentState(object):
         self.repo_ref = None
         self.place = None
         self.media = None
+        self.photo = ""             # Person primary photo
 
     def __getattr__(self, name):
         """
