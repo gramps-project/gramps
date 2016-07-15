@@ -268,6 +268,7 @@ TOKEN__MAR = 128
 TOKEN__MARN = 129
 TOKEN__ADPN = 130
 TOKEN__FSFTID = 131
+TOKEN__PHOTO = 132
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -374,6 +375,7 @@ TOKENS = {
     "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
     "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
+    "_PHOTO"        : TOKEN__PHOTO,
 }
 
 ADOPT_NONE         = 0
@@ -2089,6 +2091,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_URL   : self.__person_url, 
             TOKEN__TODO : self.__skip_record, 
             TOKEN_TITL  : self.__person_titl, 
+            TOKEN__PHOTO: self.__person_photo,
             }
         self.func_list.append(self.indi_parse_tbl)
 
@@ -3597,6 +3600,9 @@ class GedcomParser(UpdateCallback):
         # Add a default tag if provided
         self.__add_default_tag(person)
 
+        # Set up primary photo if present
+        self.__do_photo(state)
+
         self.__check_msgs(_("INDI (individual) Gramps ID %s") % 
                           person.get_gramps_id(), state, person)
         # commit the person to the database
@@ -3798,6 +3804,13 @@ class GedcomParser(UpdateCallback):
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
             self.build_media_object(state.person, form, filename, title, note)
+
+    def __person_photo(self, line, state):
+        """
+        This handles the FTM _PHOTO feature, which identifies an OBJE to use
+        as the person's primary photo.
+        """
+        state.photo = line.data     # Just save it for now.
 
     def __person_name(self, line, state):
         """
@@ -7650,6 +7663,30 @@ class GedcomParser(UpdateCallback):
         self.dbase.commit_event(event, self.trans)
         event_ref.set_reference_handle(event.handle)
         return event_ref
+
+    def __do_photo(self, state):
+        """
+        Choose the primary photo from the list of media present for this
+        person.  Supports FTM _PHOTO feature.
+          0 INDI
+          +1 _PHOTO @<XREF:OBJE>@ {1:1}
+        Since Gramps currently uses the first media in the list as the
+        primary, find the primary photo if already in the list, if present,
+        move to beginning.  If not present, add at the beginning.
+        This is run after all of the person processing is complete but before
+        committing the person.
+        """
+        if state.photo:
+            gramps_id = self.oid_map[state.photo]
+            handle = self.__find_object_handle(gramps_id)
+            for mref in state.person.media_list:
+                if handle == mref.ref:
+                    state.person.media_list.remove(mref)
+                    state.person.media_list.insert(0, mref)
+                    return
+            mref = MediaRef()
+            mref.set_reference_handle(handle)
+            state.person.media_list.insert(0, mref)
 
     def __extract_temple(self, line):
         def get_code(code):
