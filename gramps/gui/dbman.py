@@ -280,6 +280,9 @@ class DbManager(CLIDbManager):
         # Get the current selection
         store, node = selection.get_selected()
 
+        if not __debug__:
+            self.convert.set_visible(False)
+
         # if nothing is selected
         if not node:
             self.connect.set_sensitive(False)

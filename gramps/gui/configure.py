@@ -1429,6 +1429,35 @@ class GrampsPreferences(ConfigureDialog):
         grid.set_row_spacing(6)
 
         current_line = 0
+
+        if __debug__:
+            lwidget = BasicLabel("%s: " % _('Database backend'))
+            grid.attach(lwidget, 1, current_line, 1, 1)
+            obox = self.__create_backend_combo()
+            grid.attach(obox, 2, current_line, 1, 1)
+            current_line += 1
+
+        self.dbpath_entry = Gtk.Entry()
+        self.add_path_box(grid,
+                _('Family Tree Database path'),
+                current_line, self.dbpath_entry, config.get('database.path'),
+                self.set_dbpath, self.select_dbpath)
+        current_line += 1
+
+        #self.add_entry(grid,
+        #        _('Family Tree Database path'),
+        #        0, 'database.path')
+        self.add_checkbox(grid,
+                _('Automatically load last Family Tree'),
+                current_line, 'behavior.autoload')
+        current_line += 1
+
+        return _('Family Tree'), grid
+
+    def __create_backend_combo(self):
+        """
+        Create backend selection widget.
+        """
         backend_plugins = self.uistate.viewmanager._pmgr.get_reg_databases()
         obox = Gtk.ComboBox()
         cell = Gtk.CellRendererText()
@@ -1450,27 +1479,7 @@ class GrampsPreferences(ConfigureDialog):
         # set the default value as active in the combo
         obox.set_active(active)
         obox.connect('changed', self.database_backend_changed)
-        lwidget = BasicLabel("%s: " % _('Database backend'))
-        grid.attach(lwidget, 1, current_line, 1, 1)
-        grid.attach(obox, 2, current_line, 1, 1)
-        current_line += 1
-
-        self.dbpath_entry = Gtk.Entry()
-        self.add_path_box(grid,
-                _('Family Tree Database path'),
-                current_line, self.dbpath_entry, config.get('database.path'),
-                self.set_dbpath, self.select_dbpath)
-        current_line += 1
-
-        #self.add_entry(grid,
-        #        _('Family Tree Database path'),
-        #        0, 'database.path')
-        self.add_checkbox(grid,
-                _('Automatically load last Family Tree'),
-                current_line, 'behavior.autoload')
-        current_line += 1
-
-        return _('Family Tree'), grid
+        return obox
 
     def set_mediapath(self, *obj):
         if self.path_entry.get_text().strip():
