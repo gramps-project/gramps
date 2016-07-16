@@ -121,7 +121,7 @@ class FtreeWriter:
                 id_map[key] = n
             id_name[key] = get_name(pn, sn, count)
 
-        with open(self.filename,"w") as f:
+        with open(self.filename, "w", encoding='utf_8') as f:
 
             for key in self.plist:
                 self.update()
