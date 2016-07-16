@@ -784,7 +784,10 @@ class Lexer(object):
                 # There will normally only be one space between tag and
                 # line_value, but in case there is more then one, remove extra
                 # spaces after CONC/CONT processing
-                data = data[:2] + (data[2].strip(),) + data[3:]
+                # Also, Gedcom spec says there should be no spaces at end of
+                # line, however some programs put them there (FTM), so let's
+                # leave them in place.
+                data = data[:2] + (data[2].lstrip(),) + data[3:]
                 self.current_list.insert(0, data)
 
     def clean_up(self):
