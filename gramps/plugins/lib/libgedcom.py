@@ -269,6 +269,7 @@ TOKEN__MARN = 129
 TOKEN__ADPN = 130
 TOKEN__FSFTID = 131
 TOKEN__PHOTO = 132
+TOKEN__LINK = 133
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -375,7 +376,7 @@ TOKENS = {
     "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
     "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
-    "_PHOTO"        : TOKEN__PHOTO,
+    "_LINK"          : TOKEN__LINK, "_PHOTO"        : TOKEN__PHOTO,
 }
 
 ADOPT_NONE         = 0
@@ -2315,6 +2316,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__citation_note, 
             TOKEN_RNOTE  : self.__citation_note, 
             TOKEN_TEXT   : self.__citation_data_text, 
+            TOKEN__LINK  : self.__citation_link,
             }
         self.func_list.append(self.citation_parse_tbl)
 
@@ -6151,6 +6153,21 @@ class GedcomParser(UpdateCallback):
         note.set_type(NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
 
+        state.citation.add_note(note.get_handle())
+
+    def __citation_link(self, line, state):
+        """
+        Not legal GEDCOM - added to support FTM, converts the _LINK tag to a
+        note with styled text so link can be followed in reports etc.
+        """
+        note = Note()
+        tags = StyledTextTag(StyledTextTagType.LINK, line.data,
+                             [(0, len(line.data))])
+        note.set_styledtext(StyledText(line.data, [tags]))
+        gramps_id = self.dbase.find_next_note_gramps_id()
+        note.set_gramps_id(gramps_id)
+        note.set_type(NoteType.CITATION)
+        self.dbase.add_note(note, self.trans)
         state.citation.add_note(note.get_handle())
 
     def __citation_data_note(self, line, state):
