@@ -243,7 +243,7 @@ else:
     _tstfiles = []
     for _tstfile in os.listdir(TEST_DIR):
         (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
-        if ext == ".gramps" or ext == ".difs" or ext == ".bak" \
+        if ext in (".gramps", ".difs", ".bak") \
                 or not fname.startswith("imp_"):
             continue
         test_func = make_tst_function(_tstfile, fname)
