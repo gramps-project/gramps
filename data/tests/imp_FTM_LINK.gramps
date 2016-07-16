@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-07-16" version="5.0.0-alpha1"/>
+    <researcher>
+    </researcher>
+  </header>
+  <people>
+    <person handle="_0000000100000001" change="1468687774" id="I0937">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>François Joseph</first>
+        <surname>Raffath</surname>
+        <citationref hlink="_0000000400000004"/>
+      </name>
+    </person>
+    <person handle="_0000000500000005" change="1468687774" id="I0001">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>Michael</first>
+        <surname>Sullivan</surname>
+        <citationref hlink="_0000000900000009"/>
+      </name>
+    </person>
+  </people>
+  <citations>
+    <citation handle="_0000000400000004" change="1468687774" id="C0000">
+      <confidence>2</confidence>
+      <noteref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000200000002"/>
+    </citation>
+    <citation handle="_0000000900000009" change="1468687774" id="C0001">
+      <page>GS Film number: 2342492  Frame Number:   Digital Folder Number: 4208243  Image Number:  339  Reference ID:  p 493 rn 9850</page>
+      <confidence>2</confidence>
+      <noteref hlink="_0000000700000007"/>
+      <noteref hlink="_0000000800000008"/>
+      <sourceref hlink="_0000000600000006"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000000200000002" change="1468687774" id="S0241">
+      <stitle>Daniel NOGUE family tree</stitle>
+    </source>
+    <source handle="_0000000600000006" change="1468687774" id="S0118">
+      <stitle>Michigan, Marriages, 1868-1925</stitle>
+    </source>
+  </sources>
+  <notes>
+    <note handle="_0000000300000003" change="1468687774" id="N0000" type="Citation">
+      <text>http://gw.geneanet.org/danynogue2?lang=en&amp;pz=anny+lise+marie&amp;nz=le+vaillant&amp;ocz=0&amp;p=francois+joseph&amp;n=raffath&amp;oc=6</text>
+      <style name="link" value="http://gw.geneanet.org/danynogue2?lang=en&amp;pz=anny+lise+marie&amp;nz=le+vaillant&amp;ocz=0&amp;p=francois+joseph&amp;n=raffath&amp;oc=6">
+        <range start="0" end="114"/>
+      </style>
+    </note>
+    <note handle="_0000000700000007" change="1468687774" id="N0001" type="Source text">
+      <text>Name: Michael Sullivan  Race (Original):   Age (Expanded):  25 years  Birth Year:  1866  Birthplace:  Ireland  Spouse's Name:  Nellie Moynahan  Spouse's Race (Original):   Spouse's Age (Expanded):  25 years  Spouse's Birth Year:  1866  Spouse's Birthplace:  Ireland  Event Date:  04 Nov 1891  Event Place:  Wayne, Michigan  Father's Name: Michael Sullivan  Mother's Name: Julia Brosnahan  Spouse's Father's Name: Mich. Moynahan  Spouse's Mother's Name: Ellen Quinlan</text>
+    </note>
+    <note handle="_0000000800000008" change="1468687774" id="N0002" type="Citation">
+      <text>https://familysearch.org/pal:/MM9.1.1/N3XS-1BL</text>
+      <style name="link" value="https://familysearch.org/pal:/MM9.1.1/N3XS-1BL">
+        <range start="0" end="46"/>
+      </style>
+    </note>
+  </notes>
+</database>
