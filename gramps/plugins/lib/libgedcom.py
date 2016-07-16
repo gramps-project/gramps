@@ -376,7 +376,7 @@ TOKENS = {
     "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
     "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
-    "_LINK"          : TOKEN__LINK, "_PHOTO"        : TOKEN__PHOTO, 
+    "_LINK"          : TOKEN__LINK, "_PHOTO"        : TOKEN__PHOTO,
 }
 
 ADOPT_NONE         = 0
