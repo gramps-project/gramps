@@ -1,0 +1,43 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (21.0.0.723)
+2 NAME Family Tree Maker for Windows
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST GED55
+1 DATE 11 DEC 2013
+1 CHAR UTF-8
+1 FILE D:\Family Tree Maker\imp_FTM_OCCU_bug.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+0 @I1@ INDI
+1 NAME The /Tester/
+1 NOTE The primary photo should be a male Sourpuss in a Hat 03.jpg or Gid:M3
+1 _PHOTO @M3@
+1 OBJE @M1@
+1 OBJE @M2@
+1 OBJE @M3@
+1 OBJE @M4@
+1 OBJE @M5@
+0 @M1@ OBJE
+1 FILE O1.jpg
+2 TITL Ferry Arriving 1910
+0 @M2@ OBJE
+1 FILE O2.jpg
+2 TITL B&W Kids
+0 @M3@ OBJE
+1 FILE O3.jpg
+2 TITL Sourpuss in Hat
+1 NOTE Should be the selected primary photo
+0 @M4@ OBJE
+1 FILE O4.jpg
+2 TITL Girl Eating
+0 @M5@ OBJE
+1 FILE O5.jpg
+2 TITL Edwin & Janice Smith
+0 TRLR
