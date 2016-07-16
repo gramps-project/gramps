@@ -178,7 +178,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  <metamodule id="meta-python3-modules">
    <dependencies>
      <dep package="python3"/>
-     <dep package="pycairo-python3"/>
+     <dep package="pycairo"/>
      <dep package="pygobject3"/>
      <dep package='pyicu'/>
      <dep package='pybsddb'/>
