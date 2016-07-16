@@ -783,7 +783,7 @@ class Lexer(object):
                 # line_value, but in case there is more then one, remove extra
                 # spaces after CONC/CONT processing
                 # Also, Gedcom spec says there should be no spaces at end of
-                # line, however some programs put them there (FTM), so lets
+                # line, however some programs put them there (FTM), so let's
                 # leave them in place.
                 data = data[:2] + (data[2].lstrip(),) + data[3:]
                 self.current_list.insert(0, data)
