@@ -176,16 +176,14 @@ class ExportControl(unittest.TestCase):
     def tearDown(self):
         call("-y -q", "--remove", TREE_NAME)
 
-    #===========================================================================
-    # def test_csv(self):
-    #     """ Run a csv export test """
-    #     set_format(0)   # Use ISO date for test
-    #     src_file = 'exp_sample_csv.gramps'
-    #     tst_file = 'exp_sample_csv.csv'
-    #     msg = do_it(src_file, tst_file)
-    #     if msg:
-    #         self.fail(tst_file + ': ' + msg)
-    #===========================================================================
+    def test_csv(self):
+        """ Run a csv export test """
+        set_format(0)   # Use ISO date for test
+        src_file = 'exp_sample_csv.gramps'
+        tst_file = 'exp_sample_csv.csv'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
 
     def test_ged(self):
         """ Run a Gedcom export test """

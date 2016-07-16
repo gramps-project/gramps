@@ -784,7 +784,10 @@ class CSVParser:
         if place is None:
             # new place
             place = self.create_place()
-            self.storeup("place", place_id.lower(), place)
+            if place_id is not None:
+                if place_id.startswith("[") and place_id.endswith("]"):
+                    place.gramps_id = self.db.id2user_format(place_id[1:-1])
+                self.storeup("place", place_id.lower(), place)
         if place_title is not None:
             place.title = place_title
         if place_name is not None:

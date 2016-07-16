@@ -279,6 +279,44 @@ class CSVWriter:
         LOG.debug("Possible people to export: %s", len(self.plist))
         LOG.debug("Possible families to export: %s", len(self.flist))
         LOG.debug("Possible places to export: %s", len(self.place_list))
+        ###########################
+        if self.include_places:
+            if self.translate_headers:
+                self.write_csv(_("Place"), _("Title"), _("Name"),
+                               _("Type"), _("Latitude"), _("Longitude"),
+                               _("Code"), _("Enclosed_by"), _("Date"))
+            else:
+                self.write_csv("Place", "Title", "Name",
+                               "Type", "Latitude", "Longitude",
+                               "Code", "Enclosed_by", "Date")
+            for key in self.place_list:
+                place = self.db.get_place_from_handle(key)
+                if place:
+                    place_id = place.gramps_id
+                    place_title = place.title
+                    place_name = place.name.value
+                    place_type = str(place.place_type)
+                    place_latitude = place.lat
+                    place_longitude = place.long
+                    place_code = place.code
+                    if place.placeref_list:
+                        for placeref in place.placeref_list:
+                            placeref_obj = self.db.get_place_from_handle(placeref.ref)
+                            placeref_date = ""
+                            if not placeref.date.is_empty():
+                                placeref_date = placeref.date
+                            placeref_id = ""
+                            if placeref_obj:
+                                placeref_id = "[%s]" % placeref_obj.gramps_id
+                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                           place_latitude, place_longitude, place_code, placeref_id,
+                                           placeref_date)
+                    else:
+                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                       place_latitude, place_longitude, place_code, "",
+                                       "")
+                self.update()
+            self.writeln()
         ########################### sort:
         sortorder = []
         dropped_surnames = set()
@@ -492,43 +530,6 @@ class CSVWriter:
                             grampsid_ref = "[" + grampsid + "]"
                         self.write_csv(family_id, grampsid_ref)
                 self.update()
-            self.writeln()
-        ###########################
-        if self.include_places:
-            if self.translate_headers:
-                self.write_csv(_("Place"), _("Title"), _("Name"),
-                               _("Type"), _("Latitude"), _("Longitude"),
-                               _("Code"), _("Enclosed_by"), _("Date"))
-            else:
-                self.write_csv("Place", "Title", "Name",
-                               "Type", "Latitude", "Longitude",
-                               "Code", "Enclosed_by", "Date")
-            for key in self.place_list:
-                place = self.db.get_place_from_handle(key)
-                if place:
-                    place_id = place.gramps_id
-                    place_title = place.title
-                    place_name = place.name.value
-                    place_type = str(place.place_type)
-                    place_latitude = place.lat
-                    place_longitude = place.long
-                    place_code = place.code
-                    if place.placeref_list:
-                        for placeref in place.placeref_list:
-                            placeref_obj = self.db.get_place_from_handle(placeref.ref)
-                            placeref_date = ""
-                            if not placeref.date.is_empty():
-                                placeref_date = placeref.date
-                            placeref_id = ""
-                            if placeref_obj:
-                                placeref_id = "[%s]" % placeref_obj.gramps_id
-                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                           place_latitude, place_longitude, place_code, placeref_id,
-                                           placeref_date)
-                    else:
-                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                       place_latitude, place_longitude, place_code, "",
-                                       "")
             self.writeln()
         self.fp.close()
         return True
