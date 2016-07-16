@@ -32,8 +32,6 @@ from gi.repository import Gtk
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from collections import defaultdict
 
 #-------------------------------------------------------------------------
@@ -41,6 +39,8 @@ from collections import defaultdict
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.const import PLUGINS_GLADE
 from gramps.gen.plug.report._constants import standalone_categories
 from . import tool
@@ -88,6 +88,7 @@ class PluginDialog(ManagedWindow):
         self.uistate = uistate
 
         self.dialog = Gtk.Builder()
+        self.dialog.set_translation_domain(glocale.get_localedomain())
         self.dialog.add_from_file(PLUGINS_GLADE)
         self.dialog.connect_signals({
             "on_report_apply_clicked" : self.on_apply_clicked,
