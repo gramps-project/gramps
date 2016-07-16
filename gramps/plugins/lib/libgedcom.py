@@ -2469,27 +2469,45 @@ class GedcomParser(UpdateCallback):
         #
         # Parse table for <<MULTIMEDIA_RECORD>> below the level 0 OBJE tag
         # 
-        # n @<XREF:OBJE>@ OBJE                            {1:1}
-        #   +1 FORM <MULTIMEDIA_FORMAT>                   {1:1}
-        #   +1 TITL <DESCRIPTIVE_TITLE>                   {0:1}
-        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
-        #   +1 <<SOURCE_CITATION>>                        {0:M}
-        #   +1 BLOB                                       {1:1}
-        #     +2 CONT <ENCODED_MULTIMEDIA_LINE>           {1:M}
-        #   +1 OBJE @<XREF:OBJE>@     /* chain to continued object */  {0:1}
-        #   +1 REFN <USER_REFERENCE_NUMBER>               {0:M}
-        #     +2 TYPE <USER_REFERENCE_TYPE>               {0:1}
-        #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
+        # n  @XREF:OBJE@ OBJE {1:1}                 # v5.5 layout
+        #   +1 FILE <MULTIMEDIA_FILE_REFN>    {1:1} # de-facto extension
+        #   +1 FORM <MULTIMEDIA_FORMAT>       {1:1}
+        #   +1 TITL <DESCRIPTIVE_TITLE>       {0:1}
+        #   +1 <<NOTE_STRUCTURE>>             {0:M}
+        #   +1 BLOB                           {1:1} # Deprecated, no support
+        #     +2 CONT <ENCODED_MULTIMEDIA_LINE> {1:M}
+        #   +1 OBJE @<XREF:OBJE>@ /* chain */ {0:1} # Deprecated, no support
+        #   +1 REFN <USER_REFERENCE_NUMBER>   {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>   {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>      {0:1}
+        #   +1 <<CHANGE_DATE>>                {0:1}
+        #
+        # n @XREF:OBJE@ OBJE {1:1}                  # v5.5.1 layout
+        #   +1 FILE <MULTIMEDIA_FILE_REFN>    {1:M} # multi files, no support
+        #     +2 FORM <MULTIMEDIA_FORMAT>     {1:1}
+        #       +3 TYPE <SOURCE_MEDIA_TYPE>   {0:1}
+        #     +2 TITL <DESCRIPTIVE_TITLE>     {0:1}
+        #     +2 DATE <mm/dd/yyy hh:mn:ss AM> {0:1}    # FTM extension
+        #     +2 TEXT <COMMENT, by user or exif> {0:1} # FTM extension
+        #   +1 REFN <USER_REFERENCE_NUMBER>   {0:M}
+        #     +2 TYPE <USER_REFERENCE_TYPE>   {0:1}
+        #   +1 RIN <AUTOMATED_RECORD_ID>      {0:1}
+        #   +1 <<NOTE_STRUCTURE>>             {0:M}
+        #   +1 <<SOURCE_CITATION>>            {0:M}
+        #   +1 <<CHANGE_DATE>>                {0:1}
 
         self.obje_func = {
             TOKEN_FORM   : self.__obje_form, 
+            TOKEN_TYPE   : self.__obje_type,    # v5.5.1
             TOKEN_TITL   : self.__obje_title, 
-            TOKEN_FILE   : self.__obje_file, 
+            TOKEN_FILE   : self.__obje_file,    # de-facto extension
+            TOKEN_TEXT   : self.__obje_text,    # FTM extension
+            TOKEN_DATE   : self.__obje_date,    # FTM extension
             TOKEN_NOTE   : self.__obje_note, 
             TOKEN_RNOTE  : self.__obje_note, 
+            TOKEN_SOUR   : self.__obje_sour,
             TOKEN_BLOB   : self.__obje_blob, 
             TOKEN_REFN   : self.__obje_refn, 
-            TOKEN_TYPE   : self.__obje_type, 
             TOKEN_RIN    : self.__obje_rin, 
             TOKEN_CHAN   : self.__obje_chan, 
             }
@@ -6540,17 +6558,32 @@ class GedcomParser(UpdateCallback):
 
     def __parse_obje(self, line):
         """
-        n  @XREF:OBJE@ OBJE {1:1}
-           +1 FORM <MULTIMEDIA_FORMAT> {1:1} p.*
-           +1 TITL <DESCRIPTIVE_TITLE> {0:1} p.*
-           +1 <<NOTE_STRUCTURE>> {0:M} p.*
-           +1 BLOB {1:1}
-           +2 CONT <ENCODED_MULTIMEDIA_LINE> {1:M} p.*
-           +1 OBJE @<XREF:OBJE>@ /* chain to continued object */ {0:1} p.*
-           +1 REFN <USER_REFERENCE_NUMBER> {0:M} p.*
-           +2 TYPE <USER_REFERENCE_TYPE> {0:1} p.*
-           +1 RIN <AUTOMATED_RECORD_ID> {0:1} p.*
-           +1 <<CHANGE_DATE>> {0:1} p.*
+        n  @XREF:OBJE@ OBJE {1:1}                   # v5.5 layout
+          +1 FILE <MULTIMEDIA_FILE_REFN> {1:1}      # de-facto extension
+          +1 FORM <MULTIMEDIA_FORMAT> {1:1}
+          +1 TITL <DESCRIPTIVE_TITLE> {0:1}
+          +1 <<NOTE_STRUCTURE>> {0:M} p.*
+          +1 BLOB {1:1}                             # Deprecated, no support
+            +2 CONT <ENCODED_MULTIMEDIA_LINE> {1:M}
+          +1 OBJE @<XREF:OBJE>@ /* chain */ {0:1}   # Deprecated, no support
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+            +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 <<CHANGE_DATE>> {0:1}
+
+        n @XREF:OBJE@ OBJE {1:1}                    # v5.5.1 layout
+          +1 FILE <MULTIMEDIA_FILE_REFN> {1:M}      # multi files, no support
+            +2 FORM <MULTIMEDIA_FORMAT> {1:1}
+              +3 TYPE <SOURCE_MEDIA_TYPE> {0:1}
+            +2 TITL <DESCRIPTIVE_TITLE> {0:1}
+            +2 DATE <mm/dd/yyy hh:mn:ss AM> {0:1}   # FTM extension
+            +2 TEXT <COMMENT, by user or exif>      # FTM extension
+          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+            +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+          +1 <<NOTE_STRUCTURE>> {0:M}
+          +1 <<SOURCE_CITATION>> {0:M}
+          +1 <<CHANGE_DATE>> {0:1}
         """
         gid = line.token_text.strip()
         media = self.__find_or_create_object(self.oid_map[gid])
@@ -6590,6 +6623,13 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        # The following checks for the odd "feature" of GEDCOM 5.5.1 that
+        # allows multiple files to be attached to a single OBJE; not supported
+        if state.media.get_path() != "":
+            self.__add_msg(_("Multiple FILE in a single OBJE ignored"),
+                           line, state)
+            self.__skip_subordinate_levels(state.level+1, state)
+            return
         res = urlparse(line.data)
         if line.data != '' and (res.scheme == '' or res.scheme == 'file'):
             (file_ok, filename) = self.__find_file(line.data, self.dir_path)
@@ -6616,6 +6656,31 @@ class GedcomParser(UpdateCallback):
         """
         state.media.set_description(line.data)
 
+# FTM non-standard TEXT in OBJE, treat as note.
+    def __obje_text(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        new_note = Note(line.data)
+        new_note.set_gramps_id(self.nid_map[""])
+        new_note.set_handle(create_id())
+        new_note.set_type(NoteType.MEDIA)
+        self.dbase.commit_note(new_note, self.trans, new_note.change)
+        state.media.add_note(new_note.get_handle())
+
+# FTM non-standard DATE in OBJE, treat as Media Date.
+    def __obje_date(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.media.set_date_object(line.data)
+
     def __obje_note(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6624,6 +6689,15 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__parse_note(line, state.media, state.level+1, state)
+
+    def __obje_sour(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.media.add_citation(self.handle_source(line, state.level, state))
 
     def __obje_blob(self, line, state):
         """
@@ -6642,8 +6716,22 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__add_msg(_("REFN ignored"), line, state)
-        self.__skip_subordinate_levels(state.level+1, state)
+        attr = Attribute()
+        attr.set_type(line.token_text)          # Atrribute : REFN
+        attr.set_value(line.data)
+        # if there is a subsequent TYPE, we add it as a note to the attribute
+        while True:
+            line = self.__get_next_line()
+            if self.__level_is_finished(line, state.level+1):
+                break
+            elif line.token == TOKEN_TYPE:
+                new_note = Note(line.data)
+                new_note.set_gramps_id(self.nid_map[""])
+                new_note.set_handle(create_id())
+                new_note.set_type('REFN-TYPE')
+                self.dbase.commit_note(new_note, self.trans, new_note.change)
+                attr.add_note(new_note.get_handle())
+        state.media.attribute_list.append(attr)
 
     def __obje_type(self, line, state):
         """
@@ -6652,8 +6740,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__add_msg(_("Multimedia REFN:TYPE ignored"), line, state)
-        self.__skip_subordinate_levels(state.level+1, state)
+        attr = Attribute()
+        attr.set_type(_('Media-Type'))
+        attr.set_value(line.data)       # (Photo, Audio, Book, etc.)
+        state.media.attribute_list.append(attr)
 
     def __obje_rin(self, line, state):
         """
@@ -6662,8 +6752,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__add_msg(_("Mutimedia RIN ignored"), line, state)
-        self.__skip_subordinate_levels(state.level+1, state)
+        attr = Attribute()
+        attr.set_type(line.token_text)  # Attribute: RIN
+        attr.set_value(line.data)
+        state.media.attribute_list.append(attr)
 
     def __obje_chan(self, line, state):
         """
@@ -7600,6 +7692,8 @@ class GedcomParser(UpdateCallback):
                     self.__add_msg(_("Could not import %s") % filename)
             else:
                 path = filename
+            # Multiple references to the same media silently drops the later
+            # ones, even if title, notes etc.  are different
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
                 photo = MediaObject()
@@ -7610,14 +7704,14 @@ class GedcomParser(UpdateCallback):
                     photo.set_mime_type(get_type(full_path))
                 else:
                     photo.set_mime_type(MIME_MAP.get(form.lower(), 'unknown'))
+                if note:
+                    photo.add_note(note)
                 self.dbase.add_object(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
                 photo = self.dbase.get_object_from_handle(photo_handle)
             oref = MediaRef()
             oref.set_reference_handle(photo.handle)
-            if note:
-                oref.add_note(note)
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
