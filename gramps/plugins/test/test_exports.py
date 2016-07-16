@@ -223,5 +223,15 @@ class ExportControl(unittest.TestCase):
         if msg:
             self.fail(tst_file + ': ' + msg)
 
+    def test_wft(self):
+        """ Run a Web Family Tree export test """
+        set_format(0)   # Use ISO date for test
+        config.set('preferences.place-auto', True)
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample.wft'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
 if __name__ == "__main__":
     unittest.main()
