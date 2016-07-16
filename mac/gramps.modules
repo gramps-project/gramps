@@ -191,7 +191,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <dependencies>
      <dep package="python3"/>
      <dep package="berkeleydb"/>
-     <dep package="pycairo-python3"/>
+     <dep package="pycairo"/>
      <dep package="pygobject3"/>
      <dep package='pyicu'/>
      <dep package='pybsddb'/>
