@@ -5434,7 +5434,8 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        if self.is_ftw and state.event.type in FTW_BAD_PLACE:
+        if self.is_ftw and (state.event.type in FTW_BAD_PLACE) \
+                and not state.event.get_description():
             state.event.set_description(line.data)
         else:
             title = line.data
@@ -5465,8 +5466,8 @@ class GedcomParser(UpdateCallback):
             state.msg += sub_state.msg
             if sub_state.pf:                # if we found local PLAC:FORM
                 state.pf = sub_state.pf     # save to override global value
-        # merge notes etc into place
-        state.place.merge(sub_state.place)
+            # merge notes etc into place
+            state.place.merge(sub_state.place)
 
     def __event_place_note(self, line, state):
         """

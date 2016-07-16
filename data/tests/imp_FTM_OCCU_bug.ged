@@ -1,0 +1,37 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (21.0.0.723)
+2 NAME Family Tree Maker for Windows
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST GED55
+1 DATE 11 DEC 2013
+1 CHAR UTF-8
+1 FILE D:\Family Tree Maker\imp_FTM_OCCU_bug.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+0 @I1@ INDI
+1 NAME The /Tester/
+1 OCCU Working at Halle's Department Store
+2 DATE 16 OCT 1946
+2 PLAC Cleveland, Cuyahoga, Ohio, United States of America
+1 OCCU
+2 DATE 06 JUL 1950
+2 PLAC Shoemaker
+1 RELI Methodist
+2 DATE 06 JUL 1940
+1 RELI 
+2 PLAC Lutherin
+2 DATE 06 JUL 1950
+1 _DEG High School
+2 PLAC Norwalk, Ohio, USA
+2 DATE 06 JUL 1935
+1 _DEG 
+2 PLAC Case Western University
+2 DATE 06 JUL 1939
+0 TRLR
