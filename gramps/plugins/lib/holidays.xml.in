@@ -169,40 +169,98 @@
     <date name="Remembrance Sunday" value="*/2/sun/nov" type="secular" />
   </country>
   <country _name="Finland">
-    <date name="Loppiainen" value="*/1/6" type="religious" />
-    <date name="Pyhäinpäivä" value="*/oct/30" offset="sat" type="religious" if="(y>=1954)" />
+    <date name="Loppiainen" value="*/1/6" type="religious" if="not(y>=1973)" />
+    <date name="Loppiainen" value="*/1/6" offset="sat" type="religious" if="(y>=1973) and not(y>=1992)" />
+    <date name="Loppiainen" value="*/1/6" type="religious" if="(y>=1992)" />
+    <date name="Knud" value="*/1/7" type="religious" if="not(y>=1708)" />
+    <date name="Knud" value="*/1/13" type="religious" if="(y>=1708) and not(y>=1885)" />
+    <date name="Nuutti" value="*/1/13" type="religious" if="(y>=1885)" />
+    <date name="Pyhän Henrikin muistopäivä" value="*/1/20" type="religious" if="not(y>=1699)" />
+    <date name="Pyhän Henrikin muistopäivä" value="*/1/19" type="religious" if="(y>=1699)" />
+    <date name="Laskiaissunnuntai" type="religious" value="> easter(y)" offset="-49"/>
+    <date name="Laskiaistiistai" type="religious" value="> easter(y)" offset="-47"/>
+    <date name="Tuhkakeskiviikko" type="religious" value="> easter(y)" offset="-46" />
+<!--
+# Candlemas Day was February 2, before the year 1774.
+# From 1774 Candlemas Day was February 2, if it is Sunday, otherwise the next Sunday.
+# If this day is Shrove Sunday, Candlemas Day is the week before.
+-->
+    <date name="Kynttilänpäivä" value="*/2/2" type="religious" if="not(y>=1774)" />
+<!--
+# Before the year 1955, Annunciation day was 25 March.
+# If the day is a week before Passover, the holy day was Palm Sunday preceding Saturday.
+# If it occurred on Easter Sunday, Annunciation day was Easter the following Tuesday.
+#
+# From 1955 has been the Annunciation on Sunday, no earlier than March 22 and no later than March 28,
+# if this Sunday is Palm Sunday or Easter, Annunciation day is the Sunday before Palm Sunday.
+-->
+    <date name="Palmusunnuntai" type="religious" value="> easter(y)" offset="-7" />
+    <date name="Kiirastorstai" type="religious" value="> easter(y)" offset="-3" />
+    <date name="Pitkäperjantai" type="religious" value="> easter(y)" offset="-2" />
+    <date name="Lankalauantai" type="religious" value="> easter(y)" offset="-1" />
+    <date name="Pääsiäispäivä" type="religious" value="> easter(y)" />
+    <date name="2. Pääsiäispäivä" type="religious" value="> easter(y)" offset="1" />
+    <date name="Helatorstai" type="religious" value="> easter(y)" offset="39" if="not(y>=1973)" />
+    <date name="Kristuksen taivaaseenastumisen päivä." type="religious" value="> easter(y)" offset="34" if="(y>=1973) and not(y>=1992)" />
+    <date name="Helatorstai" type="religious" value="> easter(y)" offset="39" if="(y>=1992)" />
+    <date name="Helluntaipäivä" value="easter(y)" offset="49" type="religious" />
+    <date name="Pyhän Kolminaisuuden päivä" value="easter(y)" offset="56" type="religious" />
+    <date name="Apostolienpäivä" value="easter(y)" offset="91" type="religious" />
+    <date name="Kirkastussunnuntai." value="easter(y)" offset="105" type="religious" />
+    <date name="Juhannusaatto" value="*/jun/19" offset="fri" type="religious" if="(y>=1955)" />
+    <date name="Juhannusaatto" value="*/jun/23" type="religious" if="not(y>=1955)"  />
+    <date name="Juhannuspäivä" value="*/jun/20" offset="sat" type="religious" if="(y>=1955)" />
+    <date name="Juhannuspäivä" value="*/jun/24" type="religious" if="not(y>=1955)"  />
+    <date name="Pyhäinmiestenpäivä" value="*/nov/1" type="religious" if="not(y>=1774)" />
+    <date name="Pyhäinmiestenpäivä" value="*/nov/1" offset="sun" type="religious" if="(y>=1774) and not(y>=1955)" />
+    <date name="Pyhäinpäivä" value="*/oct/31" offset="sat" type="religious" if="(y>=1955)" />
+    <date name="1. Adventti" value="*/nov/27" offset="sun" type="religious" />
+    <date name="2. Adventti" value="*/dec/4" offset="sun" type="religious" />
+    <date name="3. Adventti" value="*/dec/11" offset="sun" type="religious" />
+    <date name="4. Adventti" value="*/dec/18" offset="sun" type="religious" />
+    <date name="Lucian päivä" value="*/12/13" type="religious" />
+    <date name="Tuomaan päivä" value="*/12/21" type="religious" />
+    <date name="Jouluaatto" value="*/12/24" type="religious" />
     <date name="Joulupäivä" value="*/12/25" type="religious" />
     <date name="Tapaninpäivä" value="*/12/26" type="religious" />
+    <date name="Johannes Evankelistan päivä" value="*/dec/27" type="religious" if="not(y>=1774)" />
+    <date name="Apostoli Johanneksen päivä." value="*/dec/27" type="religious" if="dow(y, m, d) == 7 and (y>=2000)" />
     <date name="Viattomien lasten päivä" value="*/12/28" type="religious" />
-    <date name="Pitkäperjantai" type="religious" value="> easter(y)" offset="-2" />
-    <date name="Pääsiäispäivä" type="religious" value="> easter(y)"  />
-    <date name="2. Pääsiäispäivä" type="religious" value="> easter(y)" offset="1" />
-    <date name="Helatorstai" type="religious" value="> easter(y)" offset="39" />
-    <date name="Helluntaipäivä" value="easter(y)" offset="49" type="secular" />
     <date name="Uudenvuodenpäivä" value="*/1/1" type="national" />
-    <date name="Vainojen uhrien muistopäivä" value="*/1/27" type="national" />
-    <date name="J. L. Runebergin päivä" value="*/2/5" type="national" />
-    <date name="Ystävänpäivä" value="*/2/14" type="national" />
-    <date name="Kalevalan päivä" value="*/2/28" type="national" />
-    <date name="Minna Canthin päivä" value="*/3/19" type="national" />
-    <date name="Mikael Agricolan päivä" value="*/4/9" type="national" />
-    <date name="Veteraanipäivä" value="*/4/27" type="national" />
+    <date name="Vainojen uhrien muistopäivä" value="*/1/27" type="national" if="(y>=2002)" />
+    <date name="J.L. Runebergin päivä" value="*/2/5" type="national" if="(y>=1854)" />
+    <date name="Saamelaisten kansallis päivä" value="*/2/6" type="religious" if="(y>=2004)" />
+    <date name="Ystävänpäivä" value="*/2/14" type="national" if="(y>=1987)" />
+    <date name="Kalevalan päivä" value="*/2/28" type="national" if="(y>=1978)" />
+    <date name="Naistenpäivä" value="*/3/8" type="national" if="(y>=1975)" />
+    <date name="Minna Canthin päivä" value="*/3/19" type="national" if="(y>=2003)" />
+    <date name="Kesäaika alkaa" value="*/-1/sun/mar" type="informational" if="(y>=1981)" />
+    <date name="Romanien kansallispäivä" value="*/4/8" type="national" if="(y>=2014)" />
+    <date name="Mikael Agricolan päivä" value="*/4/9" type="national" if="(y>=1960)" />
+    <date name="Veteraanipäivä" value="*/4/27" type="national" if="(y>=1987)" />
+    <date name="Vappuaatto" value="*/4/30" type="national" />
     <date name="Vappu" value="*/5/1" type="national" />
-    <date name="Eurooppa-päivä" value="*/5/9" type="national" />
-    <date name="J. V. Snelmannin päivä" value="*/5/12" type="national" />
-    <date name="Puolustusvoimain lippujuhlan päivä" value="*/6/4" type="national" />
-    <date name="Eino Leinon päivä" value="*/7/6" type="national" />
-    <date name="Aleksis Kiven päivä" value="*/10/10" type="national" />
-    <date name="YK:n päivä" value="*/10/24" type="national" />
-    <date name="Ruotsalaisuuden päivä" value="*/11/6" type="national" />
-    <date name="Lasten oikeuksien päivä" value="*/11/20" type="national" />
-    <date name="Itsenäisyyspäivä" value="*/12/6" type="national" />
-    <date name="Äitienpäivä" value="*/2/sun/may" type="national" />
-    <date name="Juhannuspäivä" value="*/jun/20" offset="sat" type="religious" if="(y>=1954)" />
-    <date name="Juhannuspäivä" value="*/jun/24" type="religious" if="not(y>=1954)"  />
-    <date name="Isänpäivä" value="*/2/sun/nov" type="national" />
-    <date name="Jean Sibeliuksen päivä" value="*/12/8" type="national" />
-    <date name="Kaatuneiden muistopäivä" value="*/3/sun/may" type="national" />
+    <date name="Eurooppa-päivä" value="*/5/9" type="national" if="(y>=1950)" />
+    <date name="J.V. Snelmannin päivä" value="*/5/12" type="national" if="(y>=1952)" />
+    <date name="Äitienpäivä" value="*/2/sun/may" type="national" if="(y>=1927)" />
+    <date name="Kaatuneiden muistopäivä" value="*/3/sun/may" type="national" if="(y>=1947)" />
+    <date name="Puolustusvoimien lippujuhla" value="*/6/4" type="national" if="(y>=1951)" />
+    <date name="Eino Leinon päivä" value="*/7/6" type="national" if="(y>=1998)" />
+    <date name="Unikeonpäivä" value="*/6/27" type="national" if="not(y>=1720)" />
+    <date name="Unikeonpäivä" value="*/7/27" type="national" if="(y>=1720)" />
+    <date name="Yrittäjänpäivä" value="*/9/5" type="national" if="(y>=2010)" />
+    <date name="Mikkelinpäivä" value="*/9/29" type="national" if="not(y>=1774)" />
+    <date name="Mikkelinpäivä" value="*/9/29" offset="sun" type="national" if="(y>=1774)" />
+    <date name="Aleksis Kiven päivä" value="*/10/10" type="national" if="(y>=1950)" />
+    <date name="YK:n päivä" value="*/10/24" type="national" if="(y>=1968)" />
+    <date name="Halloween" value="*/10/31" type="secular" if="(y>=1950)" />
+    <date name="Talviaika alkaa" value="*/-1/sun/oct" type="informational" if="(y>=1981)" />
+    <date name="Ruotsalaisuuden päivä" value="*/11/6" type="national" if="(y>=1979)" />
+    <date name="Isänpäivä" value="*/2/sun/nov" type="national" if="(y>=1987)" />
+    <date name="Lapsen oikeukeuksien päivä" value="*/11/20" type="national" if="(y>=2002)" />
+    <date name="Itsenäisyyspäivä" value="*/12/6" type="national" if="(y>=1917)" />
+    <date name="Jean Sibeliuksen päivä" value="*/12/8" type="national" if="(y>=2011)" />
+    <date name="Uudenvuodenaatto" value="*/12/31" type="national" if="(y>=1846)" />
   </country>
   <country _name="France">
     <date name="Jour de l'an" value="*/1/1" type="national" />
@@ -298,20 +356,31 @@
     <date name="Druhý sviatok vianočný" value="*/12/26" type="national" />
   </country>
   <country _name="Sweden">
-    <date name="Nyårsdagen" value="*/1/1" type="religious" />
-    <date name="Trettondagen" value="*/1/6" type="religious" />
-    <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
-    <date name="Påskdagen" type="religious" value="> easter(y)"  />
-    <date name="Annandag Påsk" type="religious" value="> easter(y)" offset="2" />
-    <date name="Första Maj" value="*/5/1" type="secular" />
-    <date name="Kristi Himmelfärdsdag" type="religious" value="> easter(y)" offset="+39" />
-    <date name="Annandag Pingst" value="easter(y)" offset="50" type="secular" if="not(y>=2006)" />
-    <date name="Nationaldagen" value="*/6/6" type="secular" if="(y>=2006)" />
-    <date name="Midsommardagen" value="*/jun/20" offset="sat" type="religious" if="(y>=1953)" />
-    <date name="Midsommardagen" value="*/jun/24" type="religious" if="not(y>=1953)"  />
-    <date name="Allahelgonadagen" value="*/1/sat/nov" type="religious" />
+    <date name="Nyårsafton" value="*/12/31" type="national" />
+    <date name="Trettondedag jul" value="*/1/6" type="religious" />
+    <date name="Alla helgons dag" value="*/oct/31" offset="sat" type="religious" if="(y>=1953)" />
+    <date name="Lucia" value="*/12/13" type="religious" />
+    <date name="Julafton" value="*/12/24" type="religious" />
     <date name="Juldagen" value="*/12/25" type="religious" />
     <date name="Annandag Jul" value="*/12/26" type="religious" />
+    <date name="Skärtorsdagen" type="religious" value="> easter(y)" offset="-3" />
+    <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
+    <date name="Påsk" type="religious" value="> easter(y)"  />
+    <date name="Annandag Påsk" type="religious" value="> easter(y)" offset="1" />
+    <date name="Kristi Himmelsfärdsdag" type="religious" value="> easter(y)" offset="39" />
+    <date name="Pingstdagen" value="easter(y)" offset="49" type="secular" />
+    <date name="Annandag pingst" value="easter(y)" offset="50" type="secular" />
+    <date name="Nyårsdagen" value="*/1/1" type="national" />
+    <date name="Alla hjärtans dag" value="*/2/14" type="national" />
+    <date name="1. april" value="*/4/1" type="national" />
+    <date name="Första Maj" value="*/5/1" type="national" />
+    <date name="Nationaldagen" value="*/6/6" type="national" />
+    <date name="Mors dag" value="*/may/25" offset="sun" type="religious" />
+    <date name="Midsommarafton" value="*/jun/19" offset="fri" type="religious" if="(y>=1953)" />
+    <date name="Midsommarafton" value="*/jun/23" type="religious" if="not(y>=1953)"  />
+    <date name="Midsommardagen" value="*/jun/20" offset="sat" type="religious" if="(y>=1953)" />
+    <date name="Midsommardagen" value="*/jun/24" type="religious" if="not(y>=1953)"  />
+    <date name="Fars dag" value="*/2/sun/nov" type="national" />
   </country>
   <country _name="United States of America">
     <date name="New Year's Eve" value="*/12/31" type="national" />
