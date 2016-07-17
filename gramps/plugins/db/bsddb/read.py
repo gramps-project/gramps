@@ -966,7 +966,9 @@ class DbBsddbRead(DbReadBase, Callback):
             key = surname.encode('utf-8')
         else:
             key = surname
-        return self.name_group.get(key, surname)
+        name_group = self.name_group.get(key, surname)
+        if name_group:
+            return name_group.decode("utf-8")
 
     def get_name_group_keys(self):
         """
