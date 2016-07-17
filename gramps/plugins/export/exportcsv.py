@@ -58,6 +58,7 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as _pd
 from gramps.gui.glade import Glade
+from gramps.gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -101,72 +102,6 @@ def get_primary_source_title(db, obj):
         if source:
             return source.get_title()
     return ""
-
-#-------------------------------------------------------------------------
-#
-# Encoding support for CSV, from http://docs.python.org/lib/csv-examples.html
-#
-#-------------------------------------------------------------------------
-class UTF8Recoder(object):
-    """Iterator that reads an encoded stream and reencodes the input to UTF-8."""
-    def __init__(self, f, encoding):
-        self.reader = codecs.getreader(encoding)(f)
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        return self.reader.next().encode("utf-8")
-
-class UnicodeReader(object):
-    """
-    A CSV reader which will iterate over lines in the CSV file "f", which is 
-    encoded in the given encoding.
-    
-    """
-
-    def __init__(self, f, encoding="utf-8", **kwds):
-        f = UTF8Recoder(f, encoding)
-        self.reader = csv.reader(f, **kwds)
-
-    def __next__(self):
-        row = next(self.reader)
-        return [str(s, "utf-8") for s in row]
-
-    def __iter__(self):
-        return self
-
-class UnicodeWriter(object):
-    """
-    A CSV writer which will write rows to CSV file "f", which is encoded in 
-    the given encoding.
-    
-    """
-
-    def __init__(self, f, encoding="utf-8", **kwds):
-        # Redirect output to a queue
-        self.queue = StringIO()
-        self.writer = csv.writer(self.queue, **kwds)
-        self.stream = f
-        self.encoder = codecs.getencoder(encoding)
-
-    def writerow(self, row):
-        self.writer.writerow(row)
-        data = self.queue.getvalue()
-        #data now contains the csv data in unicode
-        # ... and reencode it into the target encoding
-        data, length = self.encoder(data)
-        # write to the target stream
-        self.stream.write(data)
-        # empty queue, go to start position, then truncate
-        self.queue.seek(0)
-        self.queue.truncate(0)
-
-    def writerows(self, rows):
-        list(map(self.writerow, rows))
-
-    def close(self):
-        self.stream.close()
 
 #-------------------------------------------------------------------------
 #
@@ -270,7 +205,7 @@ class CSVWriter(object):
 
         # make place list so that dependencies are first:
         self.place_list = []
-        place_list = [x for x in self.db.iter_place_handles()]
+        place_list = sorted([x for x in self.db.iter_place_handles()])
         while place_list:
             handle = place_list[0]
             place = self.db.get_place_from_handle(handle)
@@ -317,9 +252,10 @@ class CSVWriter(object):
     def export_data(self):
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(self.filename,"w")
-            self.fp = open(self.filename, "wb")
-            self.g = UnicodeWriter(self.fp)
+            self.fp = open(self.filename, "w",
+                           encoding='utf_8_sig' if win() else 'utf_8',
+                           newline='')
+            self.g = csv.writer(self.fp)
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2,str(msg))
@@ -343,6 +279,44 @@ class CSVWriter(object):
         LOG.debug("Possible people to export: %s", len(self.plist))
         LOG.debug("Possible families to export: %s", len(self.flist))
         LOG.debug("Possible places to export: %s", len(self.place_list))
+        ###########################
+        if self.include_places:
+            if self.translate_headers:
+                self.write_csv(_("Place"), _("Title"), _("Name"),
+                               _("Type"), _("Latitude"), _("Longitude"),
+                               _("Code"), _("Enclosed_by"), _("Date"))
+            else:
+                self.write_csv("Place", "Title", "Name",
+                               "Type", "Latitude", "Longitude",
+                               "Code", "Enclosed_by", "Date")
+            for key in self.place_list:
+                place = self.db.get_place_from_handle(key)
+                if place:
+                    place_id = place.gramps_id
+                    place_title = place.title
+                    place_name = place.name.value
+                    place_type = str(place.place_type)
+                    place_latitude = place.lat
+                    place_longitude = place.long
+                    place_code = place.code
+                    if place.placeref_list:
+                        for placeref in place.placeref_list:
+                            placeref_obj = self.db.get_place_from_handle(placeref.ref)
+                            placeref_date = ""
+                            if not placeref.date.is_empty():
+                                placeref_date = placeref.date
+                            placeref_id = ""
+                            if placeref_obj:
+                                placeref_id = "[%s]" % placeref_obj.gramps_id
+                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                           place_latitude, place_longitude, place_code, placeref_id,
+                                           placeref_date)
+                    else:
+                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
+                                       place_latitude, place_longitude, place_code, "",
+                                       "")
+                self.update()
+            self.writeln()
         ########################### sort:
         sortorder = []
         dropped_surnames = set()
@@ -557,44 +531,7 @@ class CSVWriter(object):
                         self.write_csv(family_id, grampsid_ref)
                 self.update()
             self.writeln()
-        ########################### 
-        if self.include_places:
-            if self.translate_headers:
-                self.write_csv(_("Place"), _("Title"), _("Name"), 
-                               _("Type"), _("Latitude"), _("Longitude"), 
-                               _("Code"), _("Enclosed_by"), _("Date"))
-            else:
-                self.write_csv("Place", "Title", "Name", 
-                               "Type", "Latitude", "Longitude", 
-                               "Code", "Enclosed_by", "Date")
-            for key in self.place_list:
-                place = self.db.get_place_from_handle(key)
-                if place:
-                    place_id = place.gramps_id
-                    place_title = place.title
-                    place_name = place.name.value
-                    place_type = str(place.place_type)
-                    place_latitude = place.lat
-                    place_longitude = place.long
-                    place_code = place.code
-                    if place.placeref_list:
-                        for placeref in place.placeref_list:
-                            placeref_obj = self.db.get_place_from_handle(placeref.ref)
-                            placeref_date = ""
-                            if not placeref.date.is_empty():
-                                placeref_date = placeref.date
-                            placeref_id = ""
-                            if placeref_obj:
-                                placeref_id = "[%s]" % placeref_obj.gramps_id
-                            self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                           place_latitude, place_longitude, place_code, placeref_id,
-                                           placeref_date)
-                    else:
-                        self.write_csv("[%s]" % place_id, place_title, place_name, place_type,
-                                       place_latitude, place_longitude, place_code, "",
-                                       "")
-            self.writeln()
-        self.g.close()
+        self.fp.close()
         return True 
     
     def format_date(self, date):

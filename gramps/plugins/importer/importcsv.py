@@ -32,6 +32,7 @@
 import time
 import csv
 import codecs
+from io import TextIOWrapper
 
 #------------------------------------------------------------------------
 #
@@ -59,7 +60,6 @@ from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.location import located_in
 from gramps.gen.lib.eventroletype import EventRoleType
-from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.libformatting import ImportInfo
@@ -108,6 +108,15 @@ def importData(dbase, filename, user):
                                          config.get('preferences.tag-on-import') else None))
     try:
         with open(filename, 'r') as filehandle:
+            line = filehandle.read(3)
+            if line == codecs.BOM_UTF8:
+                filehandle.seek(0)
+                filehandle = TextIOWrapper(filehandle, encoding='utf_8_sig',
+                                           errors='replace', newline='')
+            else:                       # just open with OS encoding
+                filehandle.seek(0)
+                filehandle = TextIOWrapper(filehandle,
+                                           errors='replace', newline='')
             parser.parse(filehandle)
     except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))
@@ -775,6 +784,9 @@ class CSVParser(object):
         if place is None:
             # new place
             place = self.create_place()
+            if place_id is not None:
+                if place_id.startswith("[") and place_id.endswith("]"):
+                    place.gramps_id = self.db.id2user_format(place_id[1:-1])
             self.storeup("place", place_id.lower(), place)
         if place_title is not None:
             place.title = place_title
