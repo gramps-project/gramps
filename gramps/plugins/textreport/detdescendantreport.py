@@ -202,6 +202,7 @@ class DetDescendantReport(Report):
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
 
     def apply_henry_filter(self, person_handle, index, pid, cur_gen=1):
+        """ Filter for Henry numbering """
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         if person_handle in self.dnumber:
@@ -273,8 +274,8 @@ class DetDescendantReport(Report):
                                             pid+"."+str(index), cur_gen+1)
                 index += 1
 
-    # Filter for Record-style (Modified Register) numbering
     def apply_mod_reg_filter_aux(self, person_handle, index, cur_gen=1):
+        """ Filter for Record-style (Modified Register) numbering """
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         self.map[index] = person_handle
@@ -293,6 +294,7 @@ class DetDescendantReport(Report):
                 self.apply_mod_reg_filter_aux(child_ref.ref, _ix+1, cur_gen+1)
 
     def apply_mod_reg_filter(self, person_handle):
+        """ Entry Filter for Record-style (Modified Register) numbering """
         self.apply_mod_reg_filter_aux(person_handle, 1, 1)
         mod_reg_number = 1
         for generation in range(len(self.gen_keys)):
@@ -360,6 +362,7 @@ class DetDescendantReport(Report):
                                     elocale=self._locale)
 
     def write_path(self, person):
+        """ determine the path of the person """
         path = []
         while True:
             #person changes in the loop
@@ -461,6 +464,7 @@ class DetDescendantReport(Report):
                     self.__write_family_attrs(family, first)
 
     def write_event(self, event_ref):
+        """ write out the details of an event """
         text = ""
         event = self._db.get_event_from_handle(event_ref.ref)
 
@@ -531,6 +535,7 @@ class DetDescendantReport(Report):
                     contains_html=(note.get_type() == NoteType.HTML_CODE))
 
     def __write_parents(self, person):
+        """ write out the main parents of a person """
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self._db.get_family_from_handle(family_handle)
@@ -628,6 +633,7 @@ class DetDescendantReport(Report):
                     self.write_person_info(mate)
 
     def __get_mate_names(self, family):
+        """ get the names of the parents in a family """
         mother_handle = family.get_mother_handle()
         if mother_handle:
             mother = self._db.get_person_from_handle(mother_handle)
@@ -791,6 +797,7 @@ class DetDescendantReport(Report):
 
 
     def write_person_info(self, person):
+        """ write out all the person's information """
         name = self._name_display.display(person)
         if not name:
             name = self._("Unknown")
@@ -920,6 +927,7 @@ class DetDescendantReport(Report):
                 self.doc.end_paragraph()
 
     def endnotes(self, obj):
+        """ write out any endnotes/footnotes """
         if not obj or not self.inc_sources:
             return ""
 
