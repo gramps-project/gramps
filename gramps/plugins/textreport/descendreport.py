@@ -4,10 +4,10 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2012  Brian G. Matherly
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2010       Craig J. Anderson
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
 # Copyright (C) 2013-2014  Paul Franklin
+# Copyright (C) 2010,2015  Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,8 +60,72 @@ from gramps.gen.display.name import displayer as _nd
 
 #------------------------------------------------------------------------
 #
+# PrintDAboville
+#
+#------------------------------------------------------------------------
+class PrintDAboville():
+    """ D'Aboville numbering system """
+
+    def __init__(self):
+        self.num = [0]
+
+    def number(self, level):
+        """ Make the current number based upon the current level """
+        # Set up the array based on the current level
+        while len(self.num) > level:  # We can go from a level 8 to level 2
+            self.num.pop()
+        if len(self.num) < level:
+            self.num.append(0)
+
+        # Increment the current level - initalized with 0
+        self.num[-1] += 1
+
+        # Display
+        return ".".join(map(str, self.num))
+
+
+#------------------------------------------------------------------------
+#
+# PrintHenry
+#
+#------------------------------------------------------------------------
+class PrintHenry():
+    """ Henry numbering system """
+
+    def __init__(self, modified=False):
+        self.henry = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.modified = modified
+        self.num = [0]
+
+    def number(self, level):
+        """ Make the current number based upon the current level """
+        # Set up the array based on the current level
+        while len(self.num) > level:  # We can go from a level 8 to level 2
+            self.num.pop()
+        if len(self.num) < level:
+            self.num.append(0)
+
+        # Incriment the current level - initalized with 0
+        self.num[-1] += 1
+
+        def strd(inti):
+            """ no change needed """
+            return "(" + str(inti) + ")"
+
+        # Display
+        if self.modified is False:
+            return "".join(map(
+                lambda x: self.henry[x-1] if x <= len(self.henry) else strd(x)
+                , self.num))
+        else:
+            return "".join(map(
+                lambda x: str(x) if x < 10 else strd(x)
+                , self.num))
+
+
+#------------------------------------------------------------------------
+#
 # PrintSimple
-#   Simple numbering system
 #
 #------------------------------------------------------------------------
 class PrintSimple:
@@ -373,6 +437,12 @@ class DescendantReport(Report):
         numbering = menu.get_option_by_name('numbering').get_value()
         if numbering == "Simple":
             obj = PrintSimple(self._showdups)
+        elif numbering == "Henry":
+            obj = PrintHenry()
+        elif numbering == "Modified Henry":
+            obj = PrintHenry(modified=True)
+        elif numbering == "D'Aboville":
+            obj = PrintDAboville()
         elif numbering == "de Villiers/Pama":
             obj = PrintVilliers()
         elif numbering == "Meurgey de Tupigny":
@@ -439,6 +509,9 @@ class DescendantOptions(MenuReportOptions):
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
             ("Simple", _("Simple numbering")),
+            ("D'Aboville", _("D'Aboville numbering")),
+            ("Henry", _("Henry numbering")),
+            ("Modified Henry", _("Modified Henry numbering")),
             ("de Villiers/Pama", _("de Villiers/Pama numbering")),
             ("Meurgey de Tupigny", _("Meurgey de Tupigny numbering"))])
         numbering.set_help(_("The numbering system to be used"))

@@ -13,6 +13,7 @@
 # Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2015      Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -225,8 +226,33 @@ class DetDescendantReport(Report):
                                         pid+HENRY[index], cur_gen+1)
                 index += 1
 
-    # Filter for d'Aboville numbering
+    def apply_mhenry_filter(self, person_handle, index, pid, cur_gen=1):
+        """ Filter for Modified Henry numbering """
+        def mhenry():
+            """ convenience finction """
+            return str(index) if index < 10 else "(" + str(index) + ")"
+        if (not person_handle) or (cur_gen > self.max_generations):
+            return
+        self.dnumber[person_handle] = pid
+        self.map[index] = person_handle
+
+        if len(self.gen_keys) < cur_gen:
+            self.gen_keys.append([index])
+        else:
+            self.gen_keys[cur_gen-1].append(index)
+
+        person = self._db.get_person_from_handle(person_handle)
+        index = 1
+        for family_handle in person.get_family_handle_list():
+            family = self._db.get_family_from_handle(family_handle)
+            for child_ref in family.get_child_ref_list():
+                _ix = max(self.map)
+                self.apply_henry_filter(child_ref.ref, _ix+1,
+                                        pid+mhenry(), cur_gen+1)
+                index += 1
+
     def apply_daboville_filter(self, person_handle, index, pid, cur_gen=1):
+        """ Filter for d'Aboville numbering """
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         self.dnumber[person_handle] = pid
@@ -282,6 +308,8 @@ class DetDescendantReport(Report):
         """
         if self.numbering == "Henry":
             self.apply_henry_filter(self.center_person.get_handle(), 1, "1")
+        elif self.numbering == "Modified Henry":
+            self.apply_mhenry_filter(self.center_person.get_handle(), 1, "1")
         elif self.numbering == "d'Aboville":
             self.apply_daboville_filter(self.center_person.get_handle(), 1, "1")
         elif self.numbering == "Record (Modified Register)":
@@ -944,6 +972,7 @@ class DetDescendantOptions(MenuReportOptions):
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([
             ("Henry", _("Henry numbering")),
+            ("Modified Henry", _("Modified Henry numbering")),
             ("d'Aboville", _("d'Aboville numbering")),
             ("Record (Modified Register)",
              _("Record (Modified Register) numbering"))])
