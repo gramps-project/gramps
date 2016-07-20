@@ -967,8 +967,10 @@ class DbBsddbRead(DbReadBase, Callback):
         else:
             key = surname
         name_group = self.name_group.get(key, surname)
-        if name_group:
+        if isinstance(name_group, bytes):
             return name_group.decode("utf-8")
+        else:
+            return name_group
 
     def get_name_group_keys(self):
         """
