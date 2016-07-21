@@ -64,7 +64,14 @@ from gramps.gen.display.name import displayer as _nd
 #
 #------------------------------------------------------------------------
 class PrintDAboville():
-    """ D'Aboville numbering system """
+    """
+    d'Aboville numbering system
+
+    (according to en.wikipedia.org/Genealogical_numbering_systems
+    his name is spelled "d'Aboville" and not "D'Aboville" but I will
+    leave this class name alone, mainly fixing the translated string,
+    so that it is both accurate and also agrees with the DDR string)
+    """
 
     def __init__(self):
         self.num = [0]
@@ -441,7 +448,7 @@ class DescendantReport(Report):
             obj = PrintHenry()
         elif numbering == "Modified Henry":
             obj = PrintHenry(modified=True)
-        elif numbering == "D'Aboville":
+        elif numbering == "d'Aboville":
             obj = PrintDAboville()
         elif numbering == "de Villiers/Pama":
             obj = PrintVilliers()
@@ -509,7 +516,7 @@ class DescendantOptions(MenuReportOptions):
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
             ("Simple", _("Simple numbering")),
-            ("D'Aboville", _("D'Aboville numbering")),
+            ("d'Aboville", _("d'Aboville numbering")),
             ("Henry", _("Henry numbering")),
             ("Modified Henry", _("Modified Henry numbering")),
             ("de Villiers/Pama", _("de Villiers/Pama numbering")),
