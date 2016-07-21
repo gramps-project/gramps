@@ -1763,6 +1763,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 filename = os.path.join(self._directory, "meta_data.db")
                 touch(filename)
                 # Save metadata
+                self.transaction_backend_begin()
                 self.set_metadata('name_formats', self.name_formats)
                 self.set_metadata('researcher', self.owner)
 
@@ -1811,6 +1812,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.set_metadata('omap_index', self.omap_index)
                 self.set_metadata('rmap_index', self.rmap_index)
                 self.set_metadata('nmap_index', self.nmap_index)
+                self.transaction_backend_commit()
 
             self.close_backend()
         self.db_is_open = False
