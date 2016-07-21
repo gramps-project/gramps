@@ -335,13 +335,6 @@ class DBAPI(DbGeneric):
         """)
 
         self.dbapi.try_execute("""CREATE INDEX
-                                  place_order_by ON place(order_by);
-        """)
-        self.dbapi.try_execute("""CREATE INDEX
-                                  tag_order_by ON tag(order_by);
-        """)
-
-        self.dbapi.try_execute("""CREATE INDEX
                                   family_gramps_id ON family(gramps_id);
         """)
         self.dbapi.try_execute("""CREATE INDEX
@@ -356,9 +349,6 @@ class DBAPI(DbGeneric):
 
         self.dbapi.try_execute("""CREATE INDEX
                                   reference_obj_handle ON reference(obj_handle);
-        """)
-        self.dbapi.try_execute("""CREATE INDEX
-                                  person_surname ON person(surname);
         """)
         self.rebuild_secondary_fields()
 
