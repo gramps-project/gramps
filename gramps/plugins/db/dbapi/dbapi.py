@@ -1850,32 +1850,6 @@ class DBAPI(DbGeneric):
         if row:
             return pickle.loads(row[0])
 
-    def rebuild_gender_stats(self):
-        """
-        Returns a dictionary of
-        {given_name: (male_count, female_count, unknown_count)}
-        Not called: this is a database-efficient version
-        """
-        self.dbapi.execute("""SELECT given_name, gender_type FROM person;""")
-        gstats = {}
-        for row in self.dbapi.fetchall():
-            first_name = row[0]
-            if first_name not in gstats:
-                gstats[first_name] = (0, 0, 0)
-            if gender_type == Person.MALE:
-                gstats[first_name] = (gstats[first_name][0] + 1,
-                                      gstats[first_name][1],
-                                      gstats[first_name][2])
-            elif gender_type == Person.FEMALE:
-                gstats[first_name] = (gstats[first_name][0],
-                                      gstats[first_name][1] + 1,
-                                      gstats[first_name][2])
-            else:
-                gstats[first_name] = (gstats[first_name][0],
-                                      gstats[first_name][1],
-                                      gstats[first_name][2] + 1)
-        return gstats
-
     def get_gender_stats(self):
         """
         Returns a dictionary of
