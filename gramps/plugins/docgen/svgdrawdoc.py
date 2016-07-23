@@ -334,7 +334,9 @@ class SvgDrawDocOptions(DocOptions):
         """
         Add options to the document menu for the docgen.
         """
-        category_name = 'Document Options' # internal name: don't translate
+
+        # next line for internal use only, never will be in UI: don't translate
+        category_name = 'Document Options'
 
         background = EnumeratedListOption(_('SVG background color'),
                                           'transparent')

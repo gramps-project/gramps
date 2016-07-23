@@ -457,7 +457,9 @@ class AsciiDocOptions(DocOptions):
         """
         Add options to the document menu for the AsciiDoc docgen.
         """
-        category_name = 'Document Options' # internal name: don't translate
+
+        # next line for internal use only, never will be in UI: don't translate
+        category_name = 'Document Options'
 
         linechars = NumberOption(_('Characters per line'), 72, 20, 9999)
         linechars.set_help(_("The number of characters per line"))
