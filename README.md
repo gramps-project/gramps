@@ -65,12 +65,6 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  (These are Python bindings for the ICU package. 
  https://pypi.python.org/pypi/PyICU/)
 
-* **Meta**
-
- Required for experimental "where"  clause creation. This functionality
- is not yet in main-line code but the package is needed to support further
- development. Install with pypi: https://pypi.python.org/pypi/meta.
-
 The following packages are optional:
 ------------------------------------
 * **gtkspell** 
@@ -103,6 +97,13 @@ The following packages are optional:
 * **ttf-freefont**
 
  More font support in the reports
+
+* **Meta**
+
+ Required for experimental "where" clause creation. This functionality
+ is not yet in main-line code so it is not needed by users.  If the package
+ will be used by gramps developers, to support further development, then
+ it may be included.  Install with pypi: https://pypi.python.org/pypi/meta.
 
 Optional packages required by Third-party Addons
 ------------------------------------------------
