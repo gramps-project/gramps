@@ -120,7 +120,7 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 
-def _display_welcome_message():
+def _display_welcome_message(parent=None):
     """
     Display a welcome message to the user.
     """
@@ -145,10 +145,36 @@ def _display_welcome_message():
               "them with this version, and make sure to export your "
               "data to XML every now and then.")
                   % { 'bold_start' : '<b>',
-                      'bold_end'   : '</b>' } )
+                      'bold_end'   : '</b>' },
+            parent=parent)
         config.set('behavior.autoload', False)
         config.set('behavior.betawarn', True)
         config.set('behavior.betawarn', config.get('behavior.betawarn'))
+
+def _display_gtk_gettext_message(parent=None):
+    """
+    Display a GTK-translations-missing message to the user.
+    """
+    LOG.warning("GTK translations missing, GUI will be broken, "
+                "especially for RTL languages!")
+    from .dialog import WarningDialog
+    # Note: the warning dialog below will likely have wrong stock icons!
+    # Translators: the current language will be the one you translate into.
+    WarningDialog(_("Gramps detected an incomplete GTK installation"),
+                  _("GTK translations for the current language (%(language)s) "
+                    "are missing.\n"
+                    "%(bold_start)sGramps%(bold_end)s will "
+                    "proceed nevertheless.\n"
+                    "The GUI will likely be broken "
+                    "as a result, especially for RTL languages!\n\n"
+                    "See the Gramps README documentation for installation "
+                    "prerequisites,\n"
+                    "typically located in "
+                    "/usr/share/doc/gramps.\n"
+                   ) % {'language'   : glocale.lang,
+                        'bold_start' : '<b>',
+                        'bold_end'   : '</b>'},
+                  parent=parent)
 
 #-------------------------------------------------------------------------
 #
@@ -172,33 +198,21 @@ class Gramps:
         from .dialog import WarningDialog
         import gettext
 
-        _display_welcome_message()
-
         # Append image directory to the theme search path
         theme = Gtk.IconTheme.get_default()
         theme.append_search_path(IMAGE_DIR)
 
-        if lin() and glocale.lang != 'C' and not gettext.find(GTK_GETTEXT_DOMAIN):
-            LOG.warning("GTK translations missing, GUI will be broken, "
-                        "especially for RTL languages!")
-            # Note: the warning dialog below will likely have wrong stock icons!
-            # Translators: the current language will be the one you translate into.
-            WarningDialog(
-               _("Gramps detected an incomplete GTK installation"),
-               _("GTK translations for the current language (%(language)s) "
-                 "are missing.\n%(bold_start)sGramps%(bold_end)s will "
-                 "proceed nevertheless.\nThe GUI will likely be broken "
-                 "as a result, especially for RTL languages!\n\n"
-                 "See the Gramps README documentation for installation "
-                 "prerequisites,\ntypically located in "
-                 "/usr/share/doc/gramps.\n") % {
-                     'language'   : glocale.lang ,
-                     'bold_start' : '<b>' ,
-                     'bold_end'   : '</b>' } )
-
         dbstate = DbState()
         self.vm = ViewManager(dbstate,
-                config.get("interface.view-categories"))
+                              config.get("interface.view-categories"))
+
+        if (lin()
+                and glocale.lang != 'C'
+                and not gettext.find(GTK_GETTEXT_DOMAIN)):
+            _display_gtk_gettext_message(parent=self.vm.window)
+
+        _display_welcome_message(parent=self.vm.window)
+
         self.vm.init_interface()
 
         #act based on the given arguments
@@ -226,9 +240,14 @@ class Gramps:
             TipOfDay(self.vm.uistate)
 
     def argerrorfunc(self, string):
-        from .dialog import ErrorDialog
         """ Show basic errors in argument handling in GUI fashion"""
-        ErrorDialog(_("Error parsing arguments"), string)
+        from .dialog import ErrorDialog
+        parent = None
+        if hasattr(self, 'vm'):
+            if hasattr(self.vm, 'uistate'):
+                if hasattr(self.vm.uistate, 'window'):
+                    parent = self.vm.uistate.window
+        ErrorDialog(_("Error parsing arguments"), string, parent=parent)
 
 #-------------------------------------------------------------------------
 #
