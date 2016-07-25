@@ -172,7 +172,7 @@ class ArgParser:
     If both input (-O or -i) and processing (-e or -a) options are given,
     interactive session will not be launched.
 
-    When using import ot export options (-i or -e), the -f option may be
+    When using import or export options (-i or -e), the -f option may be
     specified to indicate the family tree format.
 
     Possible values for ``ACTION`` are:  'report', 'book' and 'tool'.
@@ -226,11 +226,13 @@ class ArgParser:
         """
         try:
             options, leftargs = getopt.getopt(self.args[1:],
-                                             SHORTOPTS, LONGOPTS)
+                                              SHORTOPTS, LONGOPTS)
         except getopt.GetoptError as msg:
             # Extract the arguments in the list.
-            # The % operator replaces the list elements with repr() of the list elemements
-            # which is OK for latin characters, but not for non latin characters in list elements
+            # The % operator replaces the list elements
+            # with repr() of the list elements
+            # which is OK for latin characters,
+            # but not for non latin characters in list elements
             cliargs = "[ "
             for arg in range(len(self.args) - 1):
                 cliargs += self.args[arg + 1] + " "
@@ -238,10 +240,11 @@ class ArgParser:
             # Must first do str() of the msg object.
             msg = str(msg)
             self.errors += [(_('Error parsing the arguments'),
-                        msg + '\n' +
-                        _("Error parsing the arguments: %s \n"
-                        "Type gramps --help for an overview of commands, or "
-                        "read the manual pages.") % cliargs)]
+                             msg + '\n' +
+                             _("Error parsing the arguments: %s \n"
+                               "Type gramps --help for an overview of "
+                               "commands, or read the manual pages."
+                              ) % cliargs)]
             return
 
         # Some args can work on a list of databases:
@@ -256,8 +259,9 @@ class ArgParser:
             # if there were an argument without option,
             # use it as a file to open and return
             self.open_gui = leftargs[0]
-            print(_("Trying to open: %s ...") % leftargs[0],
-                          file=sys.stderr)
+            print(_("Trying to open: %s ..."
+                   ) % leftargs[0],
+                  file=sys.stderr)
             #see if force open is on
             for opt_ix in range(len(options)):
                 option, value = options[opt_ix]
@@ -277,27 +281,28 @@ class ArgParser:
                 self.create = value
             elif option in ['-i', '--import']:
                 family_tree_format = None
-                if opt_ix < len(options) - 1 \
-                   and options[opt_ix + 1][0] in ( '-f', '--format'):
+                if (opt_ix < len(options) - 1
+                        and options[opt_ix + 1][0] in ('-f', '--format')):
                     family_tree_format = options[opt_ix + 1][1]
                 self.imports.append((value, family_tree_format))
             elif option in ['-r', '--remove']:
                 self.removes.append(value)
             elif option in ['-e', '--export']:
                 family_tree_format = None
-                if opt_ix < len(options) - 1 \
-                   and options[opt_ix + 1][0] in ( '-f', '--format'):
+                if (opt_ix < len(options) - 1
+                        and options[opt_ix + 1][0] in ('-f', '--format')):
                     family_tree_format = options[opt_ix + 1][1]
                 self.exports.append((value, family_tree_format))
             elif option in ['-a', '--action']:
                 action = value
                 if action not in ('report', 'tool', 'book'):
-                    print(_("Unknown action: %s. Ignoring.") % action,
-                                  file=sys.stderr)
+                    print(_("Unknown action: %s. Ignoring."
+                           ) % action,
+                          file=sys.stderr)
                     continue
                 options_str = ""
-                if opt_ix < len(options)-1 \
-                            and options[opt_ix+1][0] in ( '-p', '--options' ):
+                if (opt_ix < len(options)-1
+                        and options[opt_ix+1][0] in ('-p', '--options')):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ['-d', '--debug']:
@@ -311,17 +316,16 @@ class ArgParser:
                 self.list_more = True
             elif option in ['-t']:
                 self.list_table = True
-            elif option in ['-s','--show']:
-                print(_("Gramps config settings from %s:")
-                              % config.filename)
-                for section in config.data:
-                    for setting in config.data[section]:
-                        print("%s.%s=%s"
-                               % (section, setting,
-                                  repr(config.data[section][setting])))
+            elif option in ['-s', '--show']:
+                print(_("Gramps config settings from %s:"
+                       ) % config.filename)
+                for sect in config.data:
+                    for setting in config.data[sect]:
+                        print("%s.%s=%s" % (sect, setting,
+                                            repr(config.data[sect][setting])))
                     print()
                 sys.exit(0)
-            elif option in ['-b','--databases']:
+            elif option in ['-b', '--databases']:
                 default = config.data["behavior"]["database-backend"]
                 pmgr = BasePluginManager.get_instance()
                 pmgr.reg_plugins(PLUGINS_DIR, self, None)
@@ -332,44 +336,46 @@ class ArgParser:
                     if mod:
                         database = getattr(mod, pdata.databaseclass)
                         summary = database.get_class_summary()
-                        print("Database backend ID:", pdata.id, "(default)" if pdata.id == default else "")
+                        print("Database backend ID:",
+                              pdata.id,
+                              "(default)" if pdata.id == default else "")
                         for key in sorted(summary.keys()):
-                            print("   ", "%s:" % key, summary[key])
+                            print("   ", _("%s:") % key, summary[key])
                 sys.exit(0)
             elif option in ['-c', '--config']:
-                setting_name = value
+                cfg_name = value
                 set_value = False
-                if setting_name:
-                    if ":" in setting_name:
-                        setting_name, new_value = setting_name.split(":", 1)
+                if cfg_name:
+                    if ":" in cfg_name:
+                        cfg_name, new_value = cfg_name.split(":", 1)
                         set_value = True
-                    if config.has_default(setting_name):
-                        setting_value = config.get(setting_name)
+                    if config.has_default(cfg_name):
+                        setting_value = config.get(cfg_name)
                         print(_("Current Gramps config setting: "
-                                "%(name)s:%(value)s")
-                                    % {'name' : setting_name,
-                                       'value' : repr(setting_value)},
+                                "%(name)s:%(value)s"
+                               ) % {'name'  : cfg_name,
+                                    'value' : repr(setting_value)},
                               file=sys.stderr)
                         if set_value:
                             # does a user want the default config value?
                             if new_value in ("DEFAULT", _("DEFAULT")):
-                                new_value = config.get_default(setting_name)
+                                new_value = config.get_default(cfg_name)
                             else:
                                 converter = get_type_converter(setting_value)
                                 new_value = converter(new_value)
-                            config.set(setting_name, new_value)
+                            config.set(cfg_name, new_value)
                             # translators: indent "New" to match "Current"
                             print(_("    New Gramps config setting: "
-                                    "%(name)s:%(value)s") %
-                                        {'name' : setting_name,
-                                         'value' : repr(
-                                                 config.get(setting_name))},
+                                    "%(name)s:%(value)s"
+                                   ) % {'name'  : cfg_name,
+                                        'value' : repr(config.get(cfg_name))},
                                   file=sys.stderr)
                         else:
                             need_to_quit = True
                     else:
-                        print(_("Gramps: no such config setting: '%s'")
-                                      % setting_name, file=sys.stderr)
+                        print(_("Gramps: no such config setting: '%s'"
+                               ) % cfg_name,
+                              file=sys.stderr)
                         need_to_quit = True
                 cleandbg += [opt_ix]
             elif option in ['-h', '-?', '--help']:
@@ -388,10 +394,14 @@ class ArgParser:
         for ind in cleandbg:
             del options[ind]
 
-        if (len(options) > 0 and self.open is None and self.imports == []
-            and self.removes == []
-            and not (self.list or self.list_more or self.list_table or
-                     self.help)):
+        if (len(options) > 0
+                and self.open is None
+                and self.imports == []
+                and self.removes == []
+                and not (self.list
+                         or self.list_more
+                         or self.list_table
+                         or self.help)):
             # Extract and convert to unicode the arguments in the list.
             # The % operator replaces the list elements with repr() of
             # the list elements, which is OK for latin characters
@@ -403,7 +413,8 @@ class ArgParser:
             self.errors += [(_('Error parsing the arguments'),
                              _("Error parsing the arguments: %s \n"
                                "To use in the command-line mode, supply at "
-                               "least one input file to process.") % cliargs)]
+                               "least one input file to process."
+                              ) % cliargs)]
         if need_to_quit:
             sys.exit(0)
 
@@ -429,8 +440,8 @@ class ArgParser:
             return True
 
         # If we have data to work with:
-        if (self.open or self.imports):
-            if (self.exports or self.actions):
+        if self.open or self.imports:
+            if self.exports or self.actions:
                 # have both data and what to do with it => no GUI
                 return False
             elif self.create:

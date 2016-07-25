@@ -26,6 +26,7 @@
 # cli.plug.__init__
 #
 
+""" Enable report generation from the command line interface (CLI) """
 
 #-------------------------------------------------------------------------
 #
@@ -37,7 +38,7 @@ import os
 import sys
 
 import logging
-log = logging.getLogger(".")
+LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
@@ -46,11 +47,12 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
-                             PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
+                                    PAPER_PORTRAIT, PAPER_LANDSCAPE, graphdoc)
 from gramps.gen.plug.menu import (FamilyOption, PersonOption, NoteOption,
-                           MediaOption, PersonListOption, NumberOption,
-                           BooleanOption, DestinationOption, StringOption,
-                           TextOption, EnumeratedListOption, Option)
+                                  MediaOption, PersonListOption, NumberOption,
+                                  BooleanOption, DestinationOption, Option,
+                                  TextOption, EnumeratedListOption,
+                                  StringOption)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import ReportError, FilterError
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
@@ -77,8 +79,8 @@ def _convert_str_to_match_type(str_val, type_val):
     ret_type = type(type_val)
 
     if isinstance(type_val, str):
-        if ( str_val.startswith("'") and str_val.endswith("'") ) or \
-           ( str_val.startswith('"') and str_val.endswith('"') ):
+        if ((str_val.startswith("'") and str_val.endswith("'"))
+                or (str_val.startswith('"') and str_val.endswith('"'))):
             # Remove enclosing quotes
             return str(str_val[1:-1])
         else:
@@ -109,7 +111,7 @@ def _convert_str_to_match_type(str_val, type_val):
 
     elif ret_type == list:
         ret_val = []
-        if not ( str_val.startswith("[") and str_val.endswith("]") ):
+        if not (str_val.startswith("[") and str_val.endswith("]")):
             print("'%s' is not a list-- try: [%s]" % (str_val, str_val))
             return ret_val
 
@@ -166,7 +168,7 @@ def _validate_options(options, dbase):
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
                         print(_("ERROR: Please specify a person"),
-                                  file=sys.stderr)
+                              file=sys.stderr)
             if person:
                 option.set_value(person.get_gramps_id())
 
@@ -214,15 +216,30 @@ class CommandLineReport:
                 self.__textdoc_plugins.append(plugin)
             if plugin.get_draw_support() and plugin.get_extension():
                 self.__drawdoc_plugins.append(plugin)
-            if plugin.get_text_support() and \
-               plugin.get_draw_support() and \
-               plugin.get_extension():
+            if (plugin.get_extension()
+                    and plugin.get_text_support()
+                    and plugin.get_draw_support()):
                 self.__bookdoc_plugins.append(plugin)
 
         self.database = database
         self.category = category
+
+        self.options_dict = None # keep pylint happy
+        self.options_help = None
+        self.paper = None
+        self.orien = None
+        self.marginl = None
+        self.marginr = None
+        self.margint = None
+        self.marginb = None
+        self.doc_options = None
+        self.doc_option_class = None
+        self.selected_style = None
+        self.style_list = None
+        self.css_filename = None
         self.format = None
         self.raw_name = name
+
         self.option_class = option_class(name, database)
         if category == CATEGORY_GRAPHVIZ:
             # Need to include Graphviz options
@@ -231,11 +248,12 @@ class CommandLineReport:
             self.__gvoptions.add_menu_options(menu)
             for name in menu.get_all_option_names():
                 if name not in self.option_class.options_dict:
-                    self.option_class.options_dict[name] = \
-                      menu.get_option_by_name(name).get_value()
+                    self.option_class.options_dict[
+                        name] = menu.get_option_by_name(name).get_value()
         self.option_class.load_previous_values()
         _validate_options(self.option_class, database)
         self.show = options_str_dict.pop('show', None)
+
         self.options_str_dict = options_str_dict
         self.init_standard_options(noopt)
         self.init_report_options()
@@ -250,8 +268,8 @@ class CommandLineReport:
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
-            'style'     : \
-                    self.option_class.handler.get_default_stylesheet_name(),
+            'style'     :
+                self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
             'paperml'   : self.option_class.handler.get_margins()[0],
@@ -262,21 +280,22 @@ class CommandLineReport:
             }
 
         self.options_help = {
-            'of'        : [_("=filename"), _("Output file name. MANDATORY"),""],
+            'of'        : [_("=filename"),
+                           _("Output file name. MANDATORY"), ""],
             'off'       : [_("=format"), _("Output file format."), []],
             'style'     : [_("=name"), _("Style name."), ""],
             'papers'    : [_("=name"), _("Paper size name."), ""],
             'papero'    : [_("=number"), _("Paper orientation number."), ""],
-            'paperml'   : [_("=number"), _("Left paper margin"),
-                                             _("Size in cm")],
-            'papermr'   : [_("=number"), _("Right paper margin"),
-                                             _("Size in cm")],
-            'papermt'   : [_("=number"), _("Top paper margin"),
-                                             _("Size in cm")],
-            'papermb'   : [_("=number"), _("Bottom paper margin"),
-                                             _("Size in cm")],
-            'css'       : [_("=css filename"), _("CSS filename to use, "
-                                                 "html format only"), ""],
+            'paperml'   : [_("=number"),
+                           _("Left paper margin"), _("Size in cm")],
+            'papermr'   : [_("=number"),
+                           _("Right paper margin"), _("Size in cm")],
+            'papermt'   : [_("=number"),
+                           _("Top paper margin"), _("Size in cm")],
+            'papermb'   : [_("=number"),
+                           _("Bottom paper margin"), _("Size in cm")],
+            'css'       : [_("=css filename"),
+                           _("CSS filename to use, html format only"), ""],
             }
 
         if noopt:
@@ -288,29 +307,28 @@ class CommandLineReport:
         if self.category == CATEGORY_TEXT:
             for plugin in self.__textdoc_plugins:
                 self.options_help['off'][2].append(
-                    plugin.get_extension() + "\t" + plugin.get_description() )
+                    plugin.get_extension() + "\t" + plugin.get_description())
         elif self.category == CATEGORY_DRAW:
             for plugin in self.__drawdoc_plugins:
                 self.options_help['off'][2].append(
-                    plugin.get_extension() + "\t" + plugin.get_description() )
+                    plugin.get_extension() + "\t" + plugin.get_description())
         elif self.category == CATEGORY_BOOK:
             for plugin in self.__bookdoc_plugins:
                 self.options_help['off'][2].append(
-                    plugin.get_extension() + "\t" + plugin.get_description() )
+                    plugin.get_extension() + "\t" + plugin.get_description())
         elif self.category == CATEGORY_GRAPHVIZ:
             for graph_format in graphdoc.FORMATS:
                 self.options_help['off'][2].append(
-                    graph_format["type"] + "\t" + graph_format["descr"] )
+                    graph_format["type"] + "\t" + graph_format["descr"])
         else:
             self.options_help['off'][2] = "NA"
 
-        self.options_help['papers'][2] = \
-            [ paper.get_name() for paper in paper_sizes
-                        if paper.get_name() != 'Custom Size' ]
+        self.options_help['papers'][2] = [
+            paper.get_name() for paper in paper_sizes
+            if paper.get_name() != 'Custom Size']
 
-        self.options_help['papero'][2] = [
-            "%d\tPortrait" % PAPER_PORTRAIT,
-            "%d\tLandscape" % PAPER_LANDSCAPE ]
+        self.options_help['papero'][2] = ["%d\tPortrait" % PAPER_PORTRAIT,
+                                          "%d\tLandscape" % PAPER_LANDSCAPE]
 
         self.options_help['css'][2] = os.path.join(USER_HOME,
                                                    "whatever_name.css")
@@ -333,8 +351,8 @@ class CommandLineReport:
         if self.category == CATEGORY_BOOK: # a Book Report has no "menu"
             for key in self.option_class.options_dict:
                 self.options_dict[key] = self.option_class.options_dict[key]
-                self.options_help[key] = \
-                    self.option_class.options_help[key][:3]
+                self.options_help[
+                    key] = self.option_class.options_help[key][:3]
             # a Book Report can't have HTML output so "css" is meaningless
             self.options_dict.pop('css')
 
@@ -355,15 +373,15 @@ class CommandLineReport:
         menu = self.option_class.menu
         for name in menu.get_all_option_names():
             option = menu.get_option_by_name(name)
-            self.options_help[name] = [ "", option.get_help() ]
+            self.options_help[name] = ["", option.get_help()]
 
             if isinstance(option, PersonOption):
                 id_list = []
                 for person_handle in self.database.get_person_handles(True):
                     person = self.database.get_person_from_handle(person_handle)
-                    id_list.append("%s\t%s" % (
-                        person.get_gramps_id(),
-                        name_displayer.display(person)))
+                    id_list.append("%s\t%s"
+                                   % (person.get_gramps_id(),
+                                      name_displayer.display(person)))
                 self.options_help[name].append(id_list)
             elif isinstance(option, FamilyOption):
                 id_list = []
@@ -380,8 +398,8 @@ class CommandLineReport:
                         father = self.database.get_person_from_handle(fhandle)
                         if father:
                             fname = name_displayer.display(father)
-                    text = "%s:\t%s, %s" % \
-                        (family.get_gramps_id(), fname, mname)
+                    text = "%s:\t%s, %s" % (family.get_gramps_id(),
+                                            fname, mname)
                     id_list.append(text)
                 self.options_help[name].append(id_list)
             elif isinstance(option, NoteOption):
@@ -409,7 +427,7 @@ class CommandLineReport:
             elif isinstance(option, TextOption):
                 self.options_help[name].append(
                     "A list of text values. Each entry in the list "
-                    "represents one line of text." )
+                    "represents one line of text.")
             elif isinstance(option, EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
@@ -427,11 +445,11 @@ class CommandLineReport:
                 print(_("Unknown option: %s") % option, file=sys.stderr)
                 print(_("   Valid options are:") +
                       ", ".join(list(self.options_dict.keys())),
-                                                        file=sys.stderr)
+                      file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
-                        "and acceptable values")
-                               % {'donottranslate' : "show=option"},
-                                                        file=sys.stderr)
+                        "and acceptable values"
+                       ) % {'donottranslate' : "show=option"},
+                      file=sys.stderr)
 
     def parse_options(self):
         """
@@ -460,9 +478,9 @@ class CommandLineReport:
             elif self.category == CATEGORY_BOOK:
                 plugins = self.__bookdoc_plugins
             for plugin in plugins:
-                 if plugin.get_extension() == self.options_dict['off']:
-                     self.format = plugin.get_basedoc()
-                     self.doc_option_class = plugin.get_doc_option_class()
+                if plugin.get_extension() == self.options_dict['off']:
+                    self.format = plugin.get_basedoc()
+                    self.doc_option_class = plugin.get_doc_option_class()
             if self.format is None:
                 # Pick the first one as the default.
                 plugin = plugins[0]
@@ -482,24 +500,23 @@ class CommandLineReport:
             self.format = None
         if _chosen_format and _format_str:
             print(_("Ignoring '%(notranslate1)s=%(notranslate2)s' "
-                    "and using '%(notranslate1)s=%(notranslate3)s'.")
-                           % {'notranslate1' : "off",
-                              'notranslate2' : self.options_dict['off'],
-                              'notranslate3' : _chosen_format},
-                                                           file=sys.stderr)
-            print(_("Use '%(notranslate)s' to see valid values.")
-                           % {'notranslate' : "show=off"}, file=sys.stderr)
+                    "and using '%(notranslate1)s=%(notranslate3)s'."
+                   ) % {'notranslate1' : "off",
+                        'notranslate2' : self.options_dict['off'],
+                        'notranslate3' : _chosen_format},
+                  file=sys.stderr)
+            print(_("Use '%(notranslate)s' to see valid values."
+                   ) % {'notranslate' : "show=off"}, file=sys.stderr)
 
         self.do_doc_options()
 
         for opt in self.options_str_dict:
             if opt in self.options_dict:
-                self.options_dict[opt] = \
-                    _convert_str_to_match_type(self.options_str_dict[opt],
-                                               self.options_dict[opt])
+                self.options_dict[opt] = _convert_str_to_match_type(
+                    self.options_str_dict[opt], self.options_dict[opt])
 
-                self.option_class.handler.options_dict[opt] = \
-                                                      self.options_dict[opt]
+                self.option_class.handler.options_dict[
+                    opt] = self.options_dict[opt]
 
                 if menu and opt in menu_opt_names:
                     option = menu.get_option_by_name(opt)
@@ -509,10 +526,11 @@ class CommandLineReport:
                 print(_("Ignoring unknown option: %s") % opt, file=sys.stderr)
                 print(_("   Valid options are:"),
                       ", ".join(list(self.options_dict.keys())),
-                                                              file=sys.stderr)
+                      file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
-                         "and acceptable values") %
-                       {'donottranslate' : "show=option"}, file=sys.stderr)
+                        "and acceptable values"
+                       ) % {'donottranslate' : "show=option"},
+                      file=sys.stderr)
 
         self.option_class.handler.output = self.options_dict['of']
 
@@ -542,6 +560,9 @@ class CommandLineReport:
             self.selected_style = self.style_list.get_style_sheet(style_name)
 
     def do_doc_options(self):
+        """
+        Process docgen options, if any (options for the backend, e.g. AsciiDoc)
+        """
         self.doc_options = None
         if not self.doc_option_class:
             return # this docgen type has no options
@@ -558,9 +579,8 @@ class CommandLineReport:
         for oname in docgen_menu.get_option_names('Document Options'):
             docgen_opt = docgen_menu.get_option('Document Options', oname)
             if oname in self.options_str_dict and oname in doc_options_dict:
-                doc_options_dict[oname] = \
-                    _convert_str_to_match_type(self.options_str_dict[oname],
-                                               doc_options_dict[oname])
+                doc_options_dict[oname] = _convert_str_to_match_type(
+                    self.options_str_dict[oname], doc_options_dict[oname])
                 self.options_str_dict.pop(oname)
             if oname in doc_options_dict:
                 docgen_opt.set_value(doc_options_dict[oname])
@@ -588,8 +608,8 @@ class CommandLineReport:
                                                _('(no help available)'))
                 print(optmsg)
             print(_("   Use '%(donottranslate)s' to see description "
-                    "and acceptable values")
-                           % {'donottranslate' : "show=option"})
+                    "and acceptable values"
+                   ) % {'donottranslate' : "show=option"})
         elif self.show in self.options_help:
             opt = self.options_help[self.show]
             tabs = '\t\t' if len(self.show) < 10 else '\t'
@@ -605,10 +625,10 @@ class CommandLineReport:
         else:
             #there was a show option given, but the option is invalid
             print(_("option '%(optionname)s' not valid. "
-                    "Use '%(donottranslate)s' to see all valid options.")
-                                  % {'optionname' : self.show,
-                                     'donottranslate' : "show=all"},
-                                                           file=sys.stderr)
+                    "Use '%(donottranslate)s' to see all valid options."
+                   ) % {'optionname'     : self.show,
+                        'donottranslate' : "show=all"},
+                  file=sys.stderr)
 
 #------------------------------------------------------------------------
 #
@@ -617,6 +637,9 @@ class CommandLineReport:
 #------------------------------------------------------------------------
 def cl_report(database, name, category, report_class, options_class,
               options_str_dict):
+    """
+    function to actually run the selected report
+    """
 
     err_msg = _("Failed to write report. ")
     clr = CommandLineReport(database, name, category, options_class,
@@ -631,38 +654,38 @@ def cl_report(database, name, category, report_class, options_class,
         if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK]:
             if clr.doc_options:
                 clr.option_class.handler.doc = clr.format(
-                            clr.selected_style,
-                            PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                       clr.marginr,clr.margint,clr.marginb),
-                            clr.doc_options)
+                    clr.selected_style,
+                    PaperStyle(clr.paper, clr.orien, clr.marginl,
+                               clr.marginr, clr.margint, clr.marginb),
+                    clr.doc_options)
             else:
                 clr.option_class.handler.doc = clr.format(
-                            clr.selected_style,
-                            PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                       clr.marginr,clr.margint,clr.marginb))
+                    clr.selected_style,
+                    PaperStyle(clr.paper, clr.orien, clr.marginl,
+                               clr.marginr, clr.margint, clr.marginb))
         elif category == CATEGORY_GRAPHVIZ:
             clr.option_class.handler.doc = clr.format(
-                        clr.option_class,
-                        PaperStyle(clr.paper,clr.orien,clr.marginl,
-                                   clr.marginr,clr.margint,clr.marginb))
-        if clr.css_filename is not None and \
-           hasattr(clr.option_class.handler.doc, 'set_css_filename'):
+                clr.option_class,
+                PaperStyle(clr.paper, clr.orien, clr.marginl,
+                           clr.marginr, clr.margint, clr.marginb))
+        if (clr.css_filename is not None
+                and hasattr(clr.option_class.handler.doc, 'set_css_filename')):
             clr.option_class.handler.doc.set_css_filename(clr.css_filename)
-        MyReport = report_class(database, clr.option_class, User())
-        MyReport.doc.init()
-        MyReport.begin_report()
-        MyReport.write_report()
-        MyReport.end_report()
+        my_report = report_class(database, clr.option_class, User())
+        my_report.doc.init()
+        my_report.begin_report()
+        my_report.write_report()
+        my_report.end_report()
         return clr
     except ReportError as msg:
-        (m1, m2) = msg.messages()
+        (msg1, msg2) = msg.messages()
         print(err_msg, file=sys.stderr)
-        print(m1, file=sys.stderr)
-        if m2:
-            print(m2, file=sys.stderr)
+        print(msg1, file=sys.stderr)
+        if msg2:
+            print(msg2, file=sys.stderr)
     except:
-        if len(log.handlers) > 0:
-            log.error(err_msg, exc_info=True)
+        if len(LOG.handlers) > 0:
+            LOG.error(err_msg, exc_info=True)
         else:
             print(err_msg, file=sys.stderr)
             ## Something seems to eat the exception above.
@@ -694,7 +717,7 @@ def run_report(db, name, **options_str_dict):
        filename in clr.option_class.get_output()
     """
     dbstate = DbState()
-    climanager = CLIManager(dbstate, setloader=False, user=User()) # don't load db
+    climanager = CLIManager(dbstate, False, User()) # don't load db
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     cl_list = pmgr.get_reg_reports()
@@ -724,6 +747,10 @@ def run_report(db, name, **options_str_dict):
 #
 #------------------------------------------------------------------------
 def cl_book(database, name, book, options_str_dict):
+    """
+    function to actually run the selected book,
+    which in turn runs whatever reports the book has in it
+    """
 
     clr = CommandLineReport(database, name, CATEGORY_BOOK,
                             ReportOptions, options_str_dict)
@@ -773,11 +800,11 @@ def cl_book(database, name, book, options_str_dict):
             rpt.write_report()
         doc.close()
     except ReportError as msg:
-        (m1, m2) = msg.messages()
+        (msg1, msg2) = msg.messages()
         print(err_msg % name, file=sys.stderr) # which report has the error?
-        print(m1, file=sys.stderr)
-        if m2:
-            print(m2, file=sys.stderr)
+        print(msg1, file=sys.stderr)
+        if msg2:
+            print(msg2, file=sys.stderr)
 
 #------------------------------------------------------------------------
 #
@@ -790,11 +817,11 @@ def write_book_item(database, report_class, options, user):
     try:
         return report_class(database, options, user)
     except ReportError as msg:
-        (m1, m2) = msg.messages()
-        print("ReportError", m1, m2, file=sys.stderr)
+        (msg1, msg2) = msg.messages()
+        print("ReportError", msg1, msg2, file=sys.stderr)
     except FilterError as msg:
-        (m1, m2) = msg.messages()
-        print("FilterError", m1, m2, file=sys.stderr)
+        (msg1, msg2) = msg.messages()
+        print("FilterError", msg1, msg2, file=sys.stderr)
     except:
-        log.error("Failed to write book item.", exc_info=True)
+        LOG.error("Failed to write book item.", exc_info=True)
     return None

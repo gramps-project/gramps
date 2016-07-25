@@ -117,7 +117,7 @@ def _split_options(options_str):
                 #print char, "This character ends the list"
                 in_list = False
                 value += char
-            elif not in_quotes and ( char == '"' or char == "'"):
+            elif not in_quotes and (char == '"' or char == "'"):
                 #print char, "This character starts a quoted string"
                 in_quotes = True
                 quote_type = char
@@ -155,9 +155,9 @@ class ArgHandler:
     """
 
     def __init__(self, dbstate, parser, sessionmanager,
-                        errorfunc=None, gui=False):
+                 errorfunc=None, gui=False):
         self.dbstate = dbstate
-        self.sm = sessionmanager
+        self.smgr = sessionmanager
         self.errorfunc = errorfunc
         self.gui = gui
         self.user = sessionmanager.user
@@ -176,7 +176,7 @@ class ArgHandler:
         self.imp_db_path = None
         self.dbman = CLIDbManager(self.dbstate)
         self.force_unlock = parser.force_unlock
-        self.cl = 0
+        self.cl_bool = False
         self.imports = []
         self.exports = []
         self.removes = parser.removes
@@ -221,22 +221,25 @@ class ArgHandler:
             # We have a potential database path.
             # Check if it is good.
             if not self.check_db(db_path, self.force_unlock):
-                sys.exit(0)
+                sys.exit(1)
             if create:
-                self.__error( _("Error: Family Tree '%s' already exists.\n"
-                                "The '-C' option cannot be used.") % value)
-                sys.exit(0)
+                self.__error(_("Error: Family Tree '%s' already exists.\n"
+                               "The '-C' option cannot be used."
+                              ) % value)
+                sys.exit(1)
             return db_path
         elif create:
             # create the tree here, and continue
             dbid = config.get('database.backend')
-            db_path, title = self.dbman.create_new_db_cli(title=value, dbid=dbid)
+            db_path, title = self.dbman.create_new_db_cli(title=value,
+                                                          dbid=dbid)
             return db_path
         else:
-            self.__error( _('Error: Input Family Tree "%s" does not exist.\n'
-                            "If GEDCOM, Gramps-xml or grdb, use the -i option "
-                            "to import into a Family Tree instead.") % value)
-            sys.exit(0)
+            self.__error(_('Error: Input Family Tree "%s" does not exist.\n'
+                           "If GEDCOM, Gramps-xml or grdb, use the -i option "
+                           "to import into a Family Tree instead."
+                          ) % value)
+            sys.exit(1)
 
     def __handle_import_option(self, value, family_tree_format):
         """
@@ -247,7 +250,7 @@ class ArgHandler:
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if fname != '-' and not os.path.exists(fullpath):
             self.__error(_('Error: Import file %s not found.') % fname)
-            sys.exit(0)
+            sys.exit(1)
 
         if family_tree_format is None:
             # Guess the file format based on the file extension.
@@ -265,10 +268,10 @@ class ArgHandler:
             self.imports.append((fname, family_tree_format))
         else:
             self.__error(_('Error: Unrecognized type: "%(format)s" for '
-                           'import file: %(filename)s') %
-                           {'format' : family_tree_format,
-                            'filename' : fname})
-            sys.exit(0)
+                           'import file: %(filename)s'
+                          ) % {'format'   : family_tree_format,
+                               'filename' : fname})
+            sys.exit(1)
 
     def __handle_export_option(self, value, family_tree_format):
         """
@@ -286,14 +289,15 @@ class ArgHandler:
             if os.path.exists(fullpath):
                 message = _("WARNING: Output file already exists!\n"
                             "WARNING: It will be overwritten:\n   %s"
-                            ) % fullpath
+                           ) % fullpath
                 accepted = self.user.prompt(_('OK to overwrite?'), message,
-                                            _('yes'), _('no'), default_label=_('yes'))
+                                            _('yes'), _('no'),
+                                            default_label=_('yes'))
                 if accepted:
-                    self.__error(_("Will overwrite the existing file: %s")
-                                   % fullpath)
+                    self.__error(_("Will overwrite the existing file: %s"
+                                  ) % fullpath)
                 else:
-                    sys.exit(0)
+                    sys.exit(1)
 
         if family_tree_format is None:
             # Guess the file format based on the file extension.
@@ -310,9 +314,9 @@ class ArgHandler:
         if plugin_found:
             self.exports.append((fullpath, family_tree_format))
         else:
-            self.__error(_("ERROR: Unrecognized format for export file %s")
-                            % fname)
-            sys.exit(0)
+            self.__error(_("ERROR: Unrecognized format for export file %s"
+                          ) % fname)
+            sys.exit(1)
 
     def __deduce_db_path(self, db_name_or_path):
         """
@@ -361,12 +365,13 @@ class ArgHandler:
             if not db_path:
                 # Apparently it is not a database. See if it is a file that
                 # can be imported.
-                db_path, title = self.dbman.import_new_db(self.open_gui, self.user)
+                db_path, title = self.dbman.import_new_db(self.open_gui,
+                                                          self.user)
 
             if db_path:
                 # Test if not locked or problematic
                 if not self.check_db(db_path, self.force_unlock):
-                    sys.exit(0)
+                    sys.exit(1)
                 # Add the file to the recent items
                 title = self.dbstate.db.get_dbname()
                 if not title:
@@ -375,7 +380,7 @@ class ArgHandler:
                 self.open = db_path
                 self.__open_action()
             else:
-                sys.exit(0)
+                sys.exit(1)
             return db_path
 
         # if not open_gui, parse any command line args. We can only have one
@@ -398,12 +403,13 @@ class ArgHandler:
 
             for name, dirname in sorted(self.dbman.family_tree_list(),
                                         key=lambda pair: pair[0].lower()):
-                if (self.database_names is None or
-                    any([(re.match("^" + dbname + "$", name) or
-                          dbname == name)
-                         for dbname in self.database_names])):
-                    print(_("%(full_DB_path)s with name \"%(f_t_name)s\"")
-                          % {'full_DB_path' : dirname, 'f_t_name' : name})
+                if (self.database_names is None
+                        or any([(re.match("^" + dbname + "$", name)
+                                 or dbname == name)
+                                for dbname in self.database_names])):
+                    print(_('%(full_DB_path)s with name "%(f_t_name)s"'
+                           ) % {'full_DB_path' : dirname,
+                                'f_t_name'     : name})
             return
 
         # Handle the "--remove" Family Tree
@@ -427,11 +433,12 @@ class ArgHandler:
             # insertion of blank spaces when print on the same line is used
             line_list = [_("Family Tree")]
             for key in sorted(summary_list[0]):
-                if key !=  _("Family Tree"):
+                if key != _("Family Tree"):
                     line_list += [key]
             print("\t".join(line_list))
             for summary in sorted(summary_list,
-                                  key=lambda sum: sum[_("Family Tree")].lower()):
+                                  key=lambda
+                                      sum: sum[_("Family Tree")].lower()):
                 line_list = [(_('"%s"') % summary[_("Family Tree")])]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
@@ -444,22 +451,27 @@ class ArgHandler:
         self.__import_action()
 
         for (action, op_string) in self.actions:
-            print(_("Performing action: %s.") % action, file=sys.stderr)
+            print(_("Performing action: %s."
+                   ) % action,
+                  file=sys.stderr)
             if op_string:
-                print(_("Using options string: %s")
-                        % op_string, file=sys.stderr)
+                print(_("Using options string: %s"
+                       ) % op_string,
+                      file=sys.stderr)
             self.cl_action(action, op_string)
 
         for expt in self.exports:
-            print(_("Exporting: file %(filename)s, format %(format)s.")
-                    % {'filename' : expt[0],
-                       'format' : expt[1]}, file=sys.stderr)
+            print(_("Exporting: file %(filename)s, format %(format)s."
+                   ) % {'filename' : expt[0],
+                        'format'   : expt[1]},
+                  file=sys.stderr)
             self.cl_export(expt[0], expt[1])
 
         if cleanup:
             self.cleanup()
 
     def cleanup(self):
+        """ clean up any remaining files """
         print(_("Cleaning up."), file=sys.stderr)
         # remove files in import db subdir after use
         self.dbstate.db.close()
@@ -478,13 +490,14 @@ class ArgHandler:
         have happened that is now finished), if this is GUI, it is opened.
         """
         if self.imports:
-            self.cl = bool(self.exports or self.actions or self.cl)
+            self.cl_bool = bool(self.exports or self.actions or self.cl_bool)
 
             if not self.open:
                 # Create empty dir for imported database(s)
                 if self.gui:
                     dbid = config.get('database.backend')
-                    self.imp_db_path, title = self.dbman.create_new_db_cli(dbid=dbid)
+                    self.imp_db_path, title = self.dbman.create_new_db_cli(
+                        dbid=dbid)
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
                     dbid = config.get('database.backend')
@@ -492,17 +505,18 @@ class ArgHandler:
                     newdb.write_version(self.imp_db_path)
 
                 try:
-                    self.sm.open_activate(self.imp_db_path)
+                    self.smgr.open_activate(self.imp_db_path)
                     msg = _("Created empty Family Tree successfully")
                     print(msg, file=sys.stderr)
                 except:
                     print(_("Error opening the file."), file=sys.stderr)
                     print(_("Exiting..."), file=sys.stderr)
-                    sys.exit(0)
+                    sys.exit(1)
 
             for imp in self.imports:
-                msg = _("Importing: file %(filename)s, format %(format)s.") % \
-                        {'filename' : imp[0], 'format' : imp[1]}
+                msg = _("Importing: file %(filename)s, format %(format)s."
+                       ) % {'filename' : imp[0],
+                            'format'   : imp[1]}
                 print(msg, file=sys.stderr)
                 self.cl_import(imp[0], imp[1])
 
@@ -514,18 +528,18 @@ class ArgHandler:
         if self.open:
             # Family Tree to open was given. Open it
             # Then go on and process the rest of the command line arguments.
-            self.cl = bool(self.exports or self.actions)
+            self.cl_bool = bool(self.exports or self.actions)
 
             # we load this file for use
             try:
-                self.sm.open_activate(self.open)
+                self.smgr.open_activate(self.open)
                 print(_("Opened successfully!"), file=sys.stderr)
             except:
                 print(_("Error opening the file."), file=sys.stderr)
                 print(_("Exiting..."), file=sys.stderr)
-                sys.exit(0)
+                sys.exit(1)
 
-    def check_db(self, dbpath, force_unlock = False):
+    def check_db(self, dbpath, force_unlock=False):
         """
         Test a given family tree path if it can be opened.
         """
@@ -537,7 +551,7 @@ class ArgHandler:
                           _("  Info: %s")) % find_locker_name(dbpath))
             return False
         if self.dbman.needs_recovery(dbpath):
-            self.__error( _("Database needs recovery, cannot open it!"))
+            self.__error(_("Database needs recovery, cannot open it!"))
             return False
         return True
 
@@ -589,7 +603,7 @@ class ArgHandler:
             except:
                 options_str_dict = {}
                 print(_("Ignoring invalid options string."),
-                              file=sys.stderr)
+                      file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cl_list = pmgr.get_reg_reports(gui=False)
@@ -615,29 +629,30 @@ class ArgHandler:
                 msg = _("Unknown report name.")
             else:
                 msg = _("Report name not given. "
-                        "Please use one of %(donottranslate)s=reportname") % \
-                        {'donottranslate' : '[-p|--options] name'}
+                        "Please use one of %(donottranslate)s=reportname"
+                       ) % {'donottranslate' : '[-p|--options] name'}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
-            for pdata in sorted(_cl_list, key= lambda pdata: pdata.id.lower()):
+            for pdata in sorted(_cl_list, key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s"
-                                 % ( pdata.id, " " * (26 - len(pdata.id)),
-                                     pdata.name), file=sys.stderr)
+                    print("   %s%s- %s" % (pdata.id,
+                                           " " * (26 - len(pdata.id)),
+                                           pdata.name),
+                          file=sys.stderr)
                 else:
-                    print("   %s\t- %s"
-                                  % (pdata.id, pdata.name), file=sys.stderr)
+                    print("   %s\t- %s" % (pdata.id, pdata.name),
+                          file=sys.stderr)
 
         elif action == "tool":
             from gramps.gui.plug import tool
             try:
-                options_str_dict = dict( [ tuple(chunk.split('=')) for
-                                           chunk in options_str.split(',') ] )
+                options_str_dict = dict([tuple(chunk.split('='))
+                                         for chunk in options_str.split(',')])
             except:
                 options_str_dict = {}
                 print(_("Ignoring invalid options string."),
-                              file=sys.stderr)
+                      file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             _cli_tool_list = pmgr.get_reg_tools(gui=False)
@@ -651,32 +666,32 @@ class ArgHandler:
                         category = pdata.category
                         tool_class = eval('mod.' + pdata.toolclass)
                         options_class = eval('mod.' + pdata.optionclass)
-                        tool.cli_tool(
-                                dbstate=self.dbstate,
-                                name=name,
-                                category=category,
-                                tool_class=tool_class,
-                                options_class=options_class,
-                                options_str_dict=options_str_dict,
-                                user=self.user)
+                        tool.cli_tool(dbstate=self.dbstate,
+                                      name=name,
+                                      category=category,
+                                      tool_class=tool_class,
+                                      options_class=options_class,
+                                      options_str_dict=options_str_dict,
+                                      user=self.user)
                         return
                 msg = _("Unknown tool name.")
             else:
                 msg = _("Tool name not given. "
-                        "Please use one of %(donottranslate)s=toolname.") % \
-                        {'donottranslate' : '[-p|--options] name'}
+                        "Please use one of %(donottranslate)s=toolname."
+                       ) % {'donottranslate' : '[-p|--options] name'}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for pdata in sorted(_cli_tool_list,
                                 key=lambda pdata: pdata.id.lower()):
                 # Print cli report name ([item[0]), GUI report name (item[4])
                 if len(pdata.id) <= 25:
-                    print("   %s%s- %s"
-                                  % ( pdata.id, " " * (26 - len(pdata.id)),
-                                      pdata.name), file=sys.stderr)
+                    print("   %s%s- %s" % (pdata.id,
+                                           " " * (26 - len(pdata.id)),
+                                           pdata.name),
+                          file=sys.stderr)
                 else:
-                    print("   %s\t- %s"
-                                  % (pdata.id, pdata.name), file=sys.stderr)
+                    print("   %s\t- %s" % (pdata.id, pdata.name),
+                          file=sys.stderr)
 
         elif action == "book":
             try:
@@ -684,7 +699,7 @@ class ArgHandler:
             except:
                 options_str_dict = {}
                 print(_("Ignoring invalid options string."),
-                              file=sys.stderr)
+                      file=sys.stderr)
 
             name = options_str_dict.pop('name', None)
             book_list = BookList('books.xml', self.dbstate.db)
@@ -696,8 +711,8 @@ class ArgHandler:
                 msg = _("Unknown book name.")
             else:
                 msg = _("Book name not given. "
-                        "Please use one of %(donottranslate)s=bookname.") % \
-                        {'donottranslate' : '[-p|--options] name'}
+                        "Please use one of %(donottranslate)s=bookname."
+                       ) % {'donottranslate' : '[-p|--options] name'}
 
             print(_("%s\n Available names are:") % msg, file=sys.stderr)
             for name in sorted(book_list.get_book_names()):
@@ -705,4 +720,4 @@ class ArgHandler:
 
         else:
             print(_("Unknown action: %s.") % action, file=sys.stderr)
-            sys.exit(0)
+            sys.exit(1)

@@ -99,12 +99,15 @@ class CLIDbLoader:
 
         .. note:: Inherit for GUI action
         """
-        self._errordialog( '', _("Low level database corruption detected")
+        self._errordialog(
+            '',
+            _("Low level database corruption detected")
             + '\n' +
             _("Gramps has detected a problem in the underlying "
               "Berkeley database. This can be repaired from "
               "the Family Tree Manager. Select the database and "
-              'click on the Repair button') + '\n\n' + str(msg))
+              'click on the Repair button'
+             ) + '\n\n' + str(msg))
 
     def _begin_progress(self):
         """
@@ -146,8 +149,8 @@ class CLIDbLoader:
             if not os.access(filename, os.W_OK):
                 mode = "r"
                 self._warn(_('Read only database'),
-                                             _('You do not have write access '
-                                               'to the selected file.'))
+                           _('You do not have write access '
+                             'to the selected file.'))
             else:
                 mode = "w"
         else:
@@ -155,8 +158,8 @@ class CLIDbLoader:
 
         dbid_path = os.path.join(filename, DBBACKEND)
         if os.path.isfile(dbid_path):
-            with open(dbid_path) as fp:
-                dbid = fp.read().strip()
+            with open(dbid_path) as file:
+                dbid = file.read().strip()
         else:
             dbid = "bsddb"
 
@@ -172,31 +175,31 @@ class CLIDbLoader:
             self.dbstate.db.set_save_path(filename)
         except DbEnvironmentError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except BsddbUpgradeRequiredError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except BsddbDowngradeRequiredError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except BsddbDowngradeError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except DbUpgradeRequiredError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except PythonDowngradeError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except PythonUpgradeRequiredError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except DbVersionError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except DbPythonError as msg:
             self.dbstate.no_database()
-            self._errordialog( _("Cannot open database"), str(msg))
+            self._errordialog(_("Cannot open database"), str(msg))
         except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(
@@ -217,8 +220,9 @@ class CLIDbLoader:
 
 class CLIManager:
     """
-    Sessionmanager for Gramps. This is in effect a reduced :class:`.ViewManager`
-    instance (see gui/viewmanager), suitable for CLI actions.
+    Sessionmanager for Gramps.
+    This is in effect a reduced :class:`.ViewManager` instance
+    (see gui/viewmanager), suitable for CLI actions.
     Aim is to manage a dbstate on which to work (load, unload), and interact
     with the plugin session
     """
@@ -249,20 +253,21 @@ class CLIManager:
         """
         Called when a file needs to be loaded
         """
-        # A recent database should already have a directory If not, do nothing,
-        #  just return. This can be handled better if family tree delete/rename
-        #  also updated the recent file menu info in displaystate.py
+        # A recent database should already have a directory.
+        # If not, do nothing, just return.
+        # This can be handled better if family tree delete/rename
+        # also updated the recent file menu info in displaystate.py
         if not  os.path.isdir(filename):
             self._errordialog(
-                    _("Could not load a recent Family Tree."),
-                    _("Family Tree does not exist, as it has been deleted."))
+                _("Could not load a recent Family Tree."),
+                _("Family Tree does not exist, as it has been deleted."))
             return
 
         if os.path.isfile(os.path.join(filename, "lock")):
             self._errordialog(
-                    _("The database is locked."),
-                    _("Use the --force-unlock option if you are sure "
-                      "that the database is not in use."))
+                _("The database is locked."),
+                _("Use the --force-unlock option if you are sure "
+                  "that the database is not in use."))
             return
 
         if self.db_loader.read_file(filename):
@@ -308,7 +313,9 @@ class CLIManager:
         # If the DB Owner Info is empty and
         # [default] Researcher is not empty and
         # database is empty, then copy default researcher to DB owner
-        if res.is_empty() and not owner.is_empty() and self.dbstate.db.is_empty():
+        if (res.is_empty()
+                and not owner.is_empty()
+                and self.dbstate.db.is_empty()):
             self.dbstate.db.set_researcher(owner)
 
         name_displayer.set_name_format(self.dbstate.db.name_formats)
@@ -346,8 +353,8 @@ def startcli(errors, argparser):
         sys.exit(1)
 
     if argparser.errors:
-        errmsg = _('Error encountered in argument parsing: %s') \
-                                                    % argparser.errors[0][0]
+        errmsg = _('Error encountered in argument parsing: %s'
+                  ) % argparser.errors[0][0]
         print(errmsg, file=sys.stderr)
         errmsg = _('  Details: %s') % argparser.errors[0][1]
         print(errmsg, file=sys.stderr)
@@ -358,9 +365,8 @@ def startcli(errors, argparser):
 
     #we need a manager for the CLI session
     from .user import User
-    user=User(auto_accept=argparser.auto_accept,
-            quiet=argparser.quiet)
-    climanager = CLIManager(dbstate, setloader=True, user=user)
+    user = User(auto_accept=argparser.auto_accept, quiet=argparser.quiet)
+    climanager = CLIManager(dbstate, True, user)
 
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
