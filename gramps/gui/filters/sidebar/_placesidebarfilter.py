@@ -143,7 +143,7 @@ class PlaceSidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             if enclosed:
-                rule = IsEnclosedBy([enclosed])
+                rule = IsEnclosedBy([enclosed, '0'])
                 generic_filter.add_rule(rule)
 
             rule = HasData([name, ptype, code], use_regex=regex)
