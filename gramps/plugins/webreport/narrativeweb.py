@@ -3450,8 +3450,7 @@ class PlacePages(BasePage):
 
                 # bug 9495 : incomplete display of place hierarchy labels
                 def sort_by_place_name(obj):
-                    place = self.dbase_.get_place_from_handle(obj)
-                    name = _pd.display(self.dbase_, place)
+                    name = self.report.obj_dict[Place][obj][1]
                     return (name.lower())
 
                 handle_list = sorted(place_handles,
@@ -3467,7 +3466,7 @@ class PlacePages(BasePage):
                     place = self.dbase_.get_place_from_handle(place_handle_key)
                     if place: 
                         if place.get_change_time() > ldatec: ldatec = place.get_change_time()
-                        place_title = _pd.display(self.dbase_, place)
+                        place_title = self.report.obj_dict[Place][place_handle_key][1]
                         ml = get_main_location(self.dbase_, place)
 
                         if place_title and place_title != " ":
@@ -3540,7 +3539,7 @@ class PlacePages(BasePage):
 
         of, sio = self.report.create_file(place_handle, "plc")
         self.up = True
-        self.page_title = _pd.display(self.dbase_, place)
+        self.page_title = place_name
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
@@ -3557,7 +3556,7 @@ class PlacePages(BasePage):
                     placedetail += thumbnail
 
             # add section title
-            placedetail += Html("h3", html_escape(place.get_name().get_value()), inline =True)
+            placedetail += Html("h3", html_escape(place_name), inline =True)
 
             # begin summaryarea division and places table
             with Html("div", id ='summaryarea') as summaryarea:
@@ -7554,7 +7553,10 @@ class NavWebReport(Report):
         place = self.database.get_place_from_handle(place_handle)
         if place is None:
             return
-        place_name = _pd.display_event(self.database, event)
+        if config.get('preferences.place-auto'):
+            place_name = _pd.display_event(self.database, event)
+        else:
+            place_name = place.get_title()
         place_fname = self.build_url_fname(place_handle, "plc",
                                                    False) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name, place.gramps_id, event)
