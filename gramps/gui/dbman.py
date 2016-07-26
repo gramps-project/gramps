@@ -158,7 +158,7 @@ class DbManager(CLIDbManager):
     BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
                                              Gdk.CursorType.WATCH)
 
-    def __init__(self, uistate, dbstate, parent=None):
+    def __init__(self, uistate, dbstate, viewmanager, parent=None):
         """
         Create the top level window from the glade description, and extracts
         the GTK widgets that are needed.
@@ -167,6 +167,7 @@ class DbManager(CLIDbManager):
         CLIDbManager.__init__(self, dbstate)
         self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
+        self.viewmanager = viewmanager
         self.parent = parent
         if parent:
             self.top.set_transient_for(parent)
@@ -833,8 +834,9 @@ class DbManager(CLIDbManager):
 
     def __close_db(self, obj):
         """
-        Start the rename process by calling the start_editing option on
-        the line with the cursor.
+        Close the database. Set the displayed line correctly, set the dbstate to
+        no_database, update the sensitivity of the buttons in this dialogue box
+        and get viewmanager to manage the main window and plugable views.
         """
         store, node = self.selection.get_selected()
         dbpath = store.get_value(node, PATH_COL)
@@ -845,8 +847,7 @@ class DbManager(CLIDbManager):
         store.set_value(node, DSORT_COL, tval)
         self.dbstate.no_database()
         self.__update_buttons(self.selection)
-        if self.parent:
-            self.parent.set_title("Gramps")
+        self.viewmanager.post_close_db()
 
     def __info_db(self, obj):
         """

@@ -116,6 +116,7 @@ UIDEFAULT = '''<ui>
     <menuitem action="Open"/>
     <menu action="OpenRecent">
     </menu>
+    <menuitem action="Close"/>
     <separator/>
     <menuitem action="Import"/>
     <menuitem action="Export"/>
@@ -426,6 +427,7 @@ class ViewManager(CLIManager):
         if self.fullscreen:
             self.window.fullscreen()
 
+        self.window.set_title("%s - Gramps" % _('No Family Tree'))
         self.window.show()
 
     def __setup_navigator(self):
@@ -498,6 +500,8 @@ class ViewManager(CLIManager):
             ]
 
         self._readonly_action_list = [
+            ('Close', None, _('_Close'), "<control>w",
+             _("Close the current database"), self.close_database),
             ('Export', 'gramps-export', _('_Export...'), "<PRIMARY>e", None,
              self.export_data),
             ('Backup', None, _("Make Backup..."), None,
@@ -668,12 +672,6 @@ class ViewManager(CLIManager):
 
         self.goto_page(defaults[0], defaults[1])
 
-        if not self.file_loaded:
-            self.actiongroup.set_visible(False)
-            self.readonlygroup.set_visible(False)
-            self.undoactions.set_visible(False)
-            self.redoactions.set_visible(False)
-            self.undohistoryactions.set_visible(False)
         self.fileactions.set_sensitive(False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
         self.__build_report_menu(self._pmgr.get_reg_reports())
@@ -681,6 +679,18 @@ class ViewManager(CLIManager):
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
+        if not self.file_loaded:
+            self.actiongroup.set_sensitive(False)
+            self.readonlygroup.set_sensitive(False)
+            self.undoactions.set_sensitive(False)
+            self.redoactions.set_sensitive(False)
+            self.undohistoryactions.set_sensitive(False)
+            self.actiongroup.set_visible(False)
+            self.readonlygroup.set_visible(False)
+            self.undoactions.set_visible(False)
+            self.redoactions.set_visible(False)
+            self.undohistoryactions.set_visible(False)
+        self.uimanager.ensure_update()
         config.connect("interface.statusbar", self.__statusbar_key_update)
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
@@ -727,6 +737,13 @@ class ViewManager(CLIManager):
             self.__plugin_status()
 
         self.uistate.push_message(self.dbstate, _('Ready'))
+
+    def close_database(self, action=None, make_backup=True):
+        """
+        Close the database
+        """
+        self.dbstate.no_database()
+        self.post_close_db()
 
     def quit(self, *obj):
         """
@@ -963,6 +980,18 @@ class ViewManager(CLIManager):
         hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
+        if not self.file_loaded:
+            self.actiongroup.set_sensitive(False)
+            self.readonlygroup.set_sensitive(False)
+            self.undoactions.set_sensitive(False)
+            self.redoactions.set_sensitive(False)
+            self.undohistoryactions.set_sensitive(False)
+            self.actiongroup.set_visible(False)
+            self.readonlygroup.set_visible(False)
+            self.undoactions.set_visible(False)
+            self.redoactions.set_visible(False)
+            self.undohistoryactions.set_visible(False)
+        self.uimanager.ensure_update()
         return page
 
     def view_changed(self, notebook, page, page_num):
@@ -1030,12 +1059,13 @@ class ViewManager(CLIManager):
         """
         list(map(self.uimanager.remove_ui, self.merge_ids))
 
-        if self.active_page:
+        if self.active_page is not None:
             self.active_page.set_inactive()
             groups = self.active_page.get_actions()
             for grp in groups:
                 if grp in self.uimanager.get_action_groups():
                     self.uimanager.remove_action_group(grp)
+            self.active_page = None
 
     def __connect_active_page(self, page_num):
         """
@@ -1075,7 +1105,7 @@ class ViewManager(CLIManager):
         Called when the Open button is clicked, opens the DbManager
         """
         from .dbman import DbManager
-        dialog = DbManager(self.uistate, self.dbstate, self.window)
+        dialog = DbManager(self.uistate, self.dbstate, self, self.window)
         value = dialog.run()
         if value:
             if self.dbstate.is_open():
@@ -1146,11 +1176,36 @@ class ViewManager(CLIManager):
         self.undoactions.set_visible(True)
         self.redoactions.set_visible(True)
         self.undohistoryactions.set_visible(True)
+        self.actiongroup.set_sensitive(True)
+        self.readonlygroup.set_sensitive(True)
+        self.undoactions.set_sensitive(True)
+        self.redoactions.set_sensitive(True)
+        self.undohistoryactions.set_sensitive(True)
 
         self.recent_manager.build()
 
         # Call common __post_load method for GUI update after a change
         self.__post_load()
+
+    def post_close_db(self):
+        """
+        Called after a database is closed to do GUI stuff.
+        """
+        self.undo_history_close()
+        self.uistate.window.set_title("%s - Gramps" % _('No Family Tree'))
+        self.actiongroup.set_sensitive(False)
+        self.readonlygroup.set_sensitive(False)
+        self.undohistoryactions.set_sensitive(False)
+        self.uistate.clear_filter_results()
+        self.__disconnect_previous_page()
+        self.actiongroup.set_visible(False)
+        self.readonlygroup.set_visible(False)
+        self.undoactions.set_visible(False)
+        self.redoactions.set_visible(False)
+        self.undohistoryactions.set_visible(False)
+        self.uimanager.ensure_update()
+        config.set('paths.recent-file', '')
+        config.save()
 
     def __change_undo_label(self, label):
         """
