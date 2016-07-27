@@ -4,7 +4,7 @@
 2 NAME The Tester
 1 DATE 4 JUN 2016
 2 TIME 10:19:42
-1 FILE D:\Users\PRC\Documents\Family Tree Maker\Gramps Export raw.ged
+1 FILE D:\Users\PRC\Documents\imp_MediaTest.ged
 1 COPR Copyright (c) 2016 The Tester.
 1 GEDC
 2 VERS 5.5.1
@@ -36,6 +36,13 @@
 2 TITL Multimedia link embedded form v5.5 2nd copy
 2 FILE test_emb_55.jpg
 2 NOTE @N0018@
+1 OBJE
+2 FORM text/html
+2 TITL Multimedia link embedded form v5.5 URL
+2 FILE  http://www.geni.com/photo/view?photo_id=6000000001341319061
+2 NOTE @N0018@
+1 OBJE @M7@
+1 OBJE @M8@
 0 @M1@ OBJE
 1 FORM jpeg
 1 TITL Multimedia link to linked form v5.5 blob
@@ -100,7 +107,7 @@
 2 FORM jpeg
 3 TYPE photo
 2 TITL Multimedia link to linked form v5.5.1 with two files(2)
-1 REFN Ref1234567M4
+1 REFN Ref1234567M6
 2 TYPE SOMETEXT
 1 NOTE @N0017@
 1 SOUR @S1@
@@ -108,11 +115,18 @@
 2 DATA
 3 DATE 7 JUN 2014
 3 TEXT A source who shall remain un-named
-2 QUAY 0
-1 RIN ID098765M4
+2 QUAY 3
+1 RIN ID098765M6
 1 CHAN
-2 DATE 24 MAY 1987
-3 TIME 14:38:01
+2 DATE 26 MAY 1987
+3 TIME 14:40:01
+0 @M7@ OBJE
+1 FILE  http://s6.postimg.org/8i2erq27l/Preserve_Record_Numbers_Option.png
+2 FORM png
+3 TYPE photo
+2 TITL Multimedia link to linked form v5.5.1 with URL
+0 @M8@ OBJE
+1 FILE No_path_No_Title_NoForm.jpg
 0 @S1@ SOUR
 1 AUTH The Tester
 1 TITL The Testers personal files
