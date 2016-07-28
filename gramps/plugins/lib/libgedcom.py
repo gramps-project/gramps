@@ -92,7 +92,7 @@ import re
 import time
 import codecs
 from xml.parsers.expat import ParserCreate
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import string
 from io import StringIO, TextIOWrapper
 from urllib.parse import urlparse
@@ -107,7 +107,7 @@ LOG = logging.getLogger(".libgedcom")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -134,7 +134,7 @@ from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.constfunc import conv_to_unicode, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
-from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.display.place import displayer as _pd
 
 #-------------------------------------------------------------------------
 #
@@ -680,7 +680,7 @@ class GedcomDateParser(DateParser):
 # Lexer - serves as the lexical analysis engine
 #
 #-------------------------------------------------------------------------
-class Lexer(object):
+class Lexer:
 
     def __init__(self, ifile, __add_msg):
         self.ifile = ifile
@@ -805,7 +805,7 @@ class Lexer(object):
 # GedLine - represents a tokenized version of a GEDCOM line
 #
 #-----------------------------------------------------------------------
-class GedLine(object):
+class GedLine:
     """
     GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line
     is:
@@ -1032,7 +1032,7 @@ _MAP_DATA = {
 # GedcomDescription
 #
 #-------------------------------------------------------------------------
-class GedcomDescription(object):
+class GedcomDescription:
     def __init__(self, name):
         self.name = name
         self.dest = ""
@@ -1127,22 +1127,20 @@ class GedcomDescription(object):
 # GedcomInfoDB
 #
 #-------------------------------------------------------------------------
-class GedcomInfoDB(object):
+class GedcomInfoDB:
     def __init__(self):
         self.map = {}
 
         self.standard = GedcomDescription("GEDCOM 5.5 standard")
         self.standard.set_dest("GEDCOM 5.5")
 
-        try:
-            filepath = os.path.join(DATA_DIR, "gedcom.xml")
-            ged_file = open(filepath, "rb")
-        except:
+        filepath = os.path.join(DATA_DIR, "gedcom.xml")
+        if not os.path.exists(filepath):
             return
 
-        parser = GedInfoParser(self)
-        parser.parse(ged_file)
-        ged_file.close()
+        with open(filepath, "rb") as ged_file:
+            parser = GedInfoParser(self)
+            parser.parse(ged_file)
 
     def add_description(self, name, obj):
         self.map[name] = obj
@@ -1166,7 +1164,7 @@ class GedcomInfoDB(object):
 # GedInfoParser
 #
 #-------------------------------------------------------------------------
-class GedInfoParser(object):
+class GedInfoParser:
     def __init__(self, parent):
         self.parent = parent
         self.current = None
@@ -1235,7 +1233,7 @@ class GedInfoParser(object):
 # File Readers
 #
 #-------------------------------------------------------------------------
-class BaseReader(object):
+class BaseReader:
     def __init__(self, ifile, encoding, __add_msg):
         self.ifile = ifile
         self.enc = encoding
@@ -1245,7 +1243,7 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        raise NotImplemented
+        raise NotImplementedError()
 
     def report_error(self, problem, line):
         line = line.rstrip('\n\r')
@@ -1588,7 +1586,7 @@ class AnselReader(BaseReader):
 # CurrentState
 #
 #-------------------------------------------------------------------------
-class CurrentState(object):
+class CurrentState:
     """
     Keep track of the current state variables.
     """
@@ -1649,7 +1647,7 @@ class CurrentState(object):
 # PlaceParser
 #
 #-------------------------------------------------------------------------
-class PlaceParser(object):
+class PlaceParser:
     """
     Provide the ability to parse GEDCOM FORM statements for places, and
     the parse the line of text, mapping the text components to Location
@@ -1745,7 +1743,7 @@ class PlaceParser(object):
 # IdFinder
 #
 #-------------------------------------------------------------------------
-class IdFinder(object):
+class IdFinder:
     """
     Provide method of finding the next available ID.
     """
@@ -1779,7 +1777,7 @@ class IdFinder(object):
 # IdMapper
 #
 #-------------------------------------------------------------------------
-class IdMapper(object):
+class IdMapper:
 
     def __init__(self, trans, find_next, id2user_format):
         self.trans = trans
@@ -1913,7 +1911,7 @@ class GedcomParser(UpdateCallback):
         self.fams_map = stage_one.get_fams_map()
 
         self.place_parser = PlaceParser()
-        self.inline_srcs = {}
+        self.inline_srcs = OrderedDict()
         self.media_map = {}
         self.genby = ""
         self.genvers = ""
@@ -2320,15 +2318,15 @@ class GedcomParser(UpdateCallback):
             }
         self.func_list.append(self.citation_parse_tbl)
 
-        self.object_parse_tbl = {
-            TOKEN_FORM   : self.__object_ref_form,
-            TOKEN_TITL   : self.__object_ref_titl,
-            TOKEN_FILE   : self.__object_ref_file,
-            TOKEN_NOTE   : self.__object_ref_note,
-            TOKEN_RNOTE  : self.__object_ref_note,
+        self.media_parse_tbl = {
+            TOKEN_FORM   : self.__media_ref_form,
+            TOKEN_TITL   : self.__media_ref_titl,
+            TOKEN_FILE   : self.__media_ref_file,
+            TOKEN_NOTE   : self.__media_ref_note,
+            TOKEN_RNOTE  : self.__media_ref_note,
             TOKEN_IGNORE : self.__ignore,
         }
-        self.func_list.append(self.object_parse_tbl)
+        self.func_list.append(self.media_parse_tbl)
 
         self.parse_loc_tbl = {
             TOKEN_ADR1   : self.__location_adr1,
@@ -2809,7 +2807,7 @@ class GedcomParser(UpdateCallback):
         """
         return self.__find_from_handle(gramps_id, self.fid2id)
 
-    def __find_object_handle(self, gramps_id):
+    def __find_media_handle(self, gramps_id):
         """
         Return the database handle associated with the media object's GRAMPS ID
         """
@@ -2855,7 +2853,7 @@ class GedcomParser(UpdateCallback):
             family.set_gramps_id(gramps_id)
         return family
 
-    def __find_or_create_object(self, gramps_id):
+    def __find_or_create_media(self, gramps_id):
         """
         Finds or creates a media object based on the GRAMPS ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
@@ -2993,7 +2991,7 @@ class GedcomParser(UpdateCallback):
                                       sub_state.place.get_placeref_list())
             if place is None:
                 place = sub_state.place
-                place_title = place_displayer.display(self.dbase, place)
+                place_title = _pd.display(self.dbase, place)
                 location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.add_place(place, self.trans)
                 # if 'location was created, then store it, now that we have a handle.
@@ -3003,7 +3001,7 @@ class GedcomParser(UpdateCallback):
                 event.set_place_handle(place.get_handle())
             else:
                 place.merge(sub_state.place)
-                place_title = place_displayer.display(self.dbase, place)
+                place_title = _pd.display(self.dbase, place)
                 location = sub_state.pf.load_place(self.place_import, place, place_title)
                 self.dbase.commit_place(place, self.trans)
                 if location:
@@ -3013,6 +3011,7 @@ class GedcomParser(UpdateCallback):
     def __find_file(self, fullname, altpath):
         # try to find the media file
         fullname = fullname.replace('\\', os.path.sep)
+
         try:
             if os.path.isfile(fullname):
                 return (1, fullname)
@@ -3213,7 +3212,7 @@ class GedcomParser(UpdateCallback):
                 self.dbase.commit_family, self.fid2id, "FAM")
         __check(self.sid_map, self.dbase.sid_trans, self.__find_or_create_source,
                 self.dbase.commit_source, self.sid2id, "SOUR")
-        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_object,
+        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_media,
                 self.dbase.commit_media_object, self.oid2id, "OBJE")
         __check(self.rid_map, self.dbase.rid_trans, self.__find_or_create_repository,
                 self.dbase.commit_repository, self.rid2id, "REPO")
@@ -3817,7 +3816,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.person.add_media_reference(ref)
@@ -3827,7 +3826,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.person, form, filename, title, note)
+            self.build_media(state.person, form, filename, title, note)
 
     def __person_photo(self, line, state):
         """
@@ -4540,7 +4539,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            place_title = place_displayer.display(self.dbase, sub_state.place)
+            place_title = _pd.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place,
                                               place_title)
@@ -5115,7 +5114,7 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            place_title = place_displayer.display(self.dbase, sub_state.place)
+            place_title = _pd.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place,
                                               place_title)
@@ -5157,7 +5156,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.family.add_media_reference(ref)
@@ -5167,7 +5166,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.family, form, filename, title, note)
+            self.build_media(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
         """
@@ -5243,12 +5242,12 @@ class GedcomParser(UpdateCallback):
         sub_state.note = ""
         sub_state.level = level
 
-        self.__parse_level(sub_state, self.object_parse_tbl, self.__ignore)
+        self.__parse_level(sub_state, self.media_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
         return (sub_state.form, sub_state.filename, sub_state.title,
                 sub_state.note)
 
-    def __object_ref_form(self, line, state):
+    def __media_ref_form(self, line, state):
         """
           +1 FORM <MULTIMEDIA_FORMAT> {1:1}
 
@@ -5259,7 +5258,7 @@ class GedcomParser(UpdateCallback):
         """
         state.form = line.data
 
-    def __object_ref_titl(self, line, state):
+    def __media_ref_titl(self, line, state):
         """
           +1 TITL <DESCRIPTIVE_TITLE> {0:1}
 
@@ -5270,7 +5269,7 @@ class GedcomParser(UpdateCallback):
         """
         state.title = line.data
 
-    def __object_ref_file(self, line, state):
+    def __media_ref_file(self, line, state):
         """
           +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
 
@@ -5281,7 +5280,7 @@ class GedcomParser(UpdateCallback):
         """
         state.filename = line.data
 
-    def __object_ref_note(self, line, state):
+    def __media_ref_note(self, line, state):
         """
           +1 <<NOTE_STRUCTURE>> {0:M}
 
@@ -5385,7 +5384,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.event.add_media_reference(ref)
@@ -5395,7 +5394,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.event, form, filename, title, note)
+            self.build_media(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
         """
@@ -5456,7 +5455,7 @@ class GedcomParser(UpdateCallback):
 
         if self.is_ftw and (state.event.type in FTW_BAD_PLACE) \
                 and not state.event.get_description():
-             state.event.set_description(line.data)
+            state.event.set_description(line.data)
         else:
             title = line.data
             place = state.place
@@ -5518,7 +5517,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.place.add_media_reference(ref)
@@ -5529,7 +5528,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.place, form, filename, title, note)
+            self.build_media(state.place, form, filename, title, note)
 
     def __event_place_sour(self, line, state):
         """
@@ -5609,7 +5608,7 @@ class GedcomParser(UpdateCallback):
             else:
                 place.merge(state.place)
                 self.dbase.commit_place(place, self.trans)
-            place_title = place_displayer.display(self.dbase, place)
+            place_title = _pd.display(self.dbase, place)
             state.pf.load_place(self.place_import, place, place_title)
 
             # Create the Place Details (it is committed with the event)
@@ -6179,7 +6178,8 @@ class GedcomParser(UpdateCallback):
         note with styled text so link can be followed in reports etc.
         """
         note = Note()
-        tags = StyledTextTag(StyledTextTagType.LINK, line.data,
+        tags = StyledTextTag(StyledTextTagType.LINK,
+                             line.data,
                              [(0, len(line.data))])
         note.set_styledtext(StyledText(line.data, [tags]))
         gramps_id = self.dbase.find_next_note_gramps_id()
@@ -6204,7 +6204,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.citation.add_media_reference(ref)
@@ -6214,7 +6214,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.citation, form, filename, title, note)
+            self.build_media(state.citation, form, filename, title, note)
 
     def __citation_refn(self, line, state):
         """
@@ -6357,7 +6357,7 @@ class GedcomParser(UpdateCallback):
             # Reference to a named multimedia object defined elsewhere
             gramps_id = self.oid_map[line.data]
 
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             ref = MediaRef()
             ref.set_reference_handle(handle)
             state.source.add_media_reference(ref)
@@ -6367,7 +6367,7 @@ class GedcomParser(UpdateCallback):
                 self.__add_msg(_("Filename omitted"), line, state)
             if form == "":
                 self.__add_msg(_("Form omitted"), line, state)
-            self.build_media_object(state.source, form, filename, title, note)
+            self.build_media(state.source, form, filename, title, note)
 
     def __source_chan(self, line, state):
         """
@@ -6586,7 +6586,7 @@ class GedcomParser(UpdateCallback):
           +1 <<CHANGE_DATE>> {0:1}
         """
         gid = line.token_text.strip()
-        media = self.__find_or_create_object(self.oid_map[gid])
+        media = self.__find_or_create_media(self.oid_map[gid])
 
         state = CurrentState()
         state.media = media
@@ -7675,7 +7675,7 @@ class GedcomParser(UpdateCallback):
                 # too far in the future, this gives OverflowError.
                 pass
 
-    def build_media_object(self, obj, form, filename, title, note):
+    def build_media(self, obj, form, filename, title, note):
         if isinstance(form, str) and form.lower() == "url":
             url = Url()
             url.set_path(filename)
@@ -7794,7 +7794,7 @@ class GedcomParser(UpdateCallback):
         """
         if state.photo:
             gramps_id = self.oid_map[state.photo]
-            handle = self.__find_object_handle(gramps_id)
+            handle = self.__find_media_handle(gramps_id)
             for mref in state.person.media_list:
                 if handle == mref.ref:
                     state.person.media_list.remove(mref)
@@ -7900,7 +7900,7 @@ class GedcomParser(UpdateCallback):
 # GedcomStageOne
 #
 #-------------------------------------------------------------------------
-class GedcomStageOne(object):
+class GedcomStageOne:
     """
     The GedcomStageOne parser scans the file quickly, looking for a few things.
      This includes:
@@ -7953,7 +7953,7 @@ class GedcomStageOne(object):
             input_file.seek(0)
             return TextIOWrapper(input_file, encoding='utf_16',
                                  errors='replace', newline=None)
-        elif not line :
+        elif not line:
             raise GedcomError(self.__EMPTY_GED)
         elif line == b"\x30\x00" or line == b"\x00\x30":
             raise GedcomError(self.__BAD_UTF16)
@@ -8003,7 +8003,7 @@ class GedcomStageOne(object):
         LOG.debug("parse pcnt %d" % self.pcnt)
         LOG.debug("parse famc %s" % dict(self.famc))
         LOG.debug("parse fams %s" % dict(self.fams))
-        self.ifile = reader # need this to keep python from autoclosing file
+        self.ifile = reader  # need this to keep python from autoclosing file
 
     def get_famc_map(self):
         """
@@ -8074,7 +8074,7 @@ def make_gedcom_date(subdate, calendar, mode, quality):
         retval = retval + " (swedish)"
         # Skip prefix @#DUNKNOWN@ as it seems
         # not used in all other genealogy applications.
-        # GRAMPS can handle it on import, but not with (swedish) appended
+        # Gramps can handle it on import, but not with (swedish) appended
         # to explain what calendar, the unknown refer to
         prefix = ""
     if prefix:
