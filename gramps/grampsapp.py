@@ -449,6 +449,8 @@ def run():
         startcli(error, argpars)
 
 def main():
+    if win() and ('PANGOCAIRO_BACKEND' not in os.environ):
+        os.environ['PANGOCAIRO_BACKEND'] = "fontconfig"
     errors = run()
     if errors and isinstance(errors, list):
         for error in errors:
