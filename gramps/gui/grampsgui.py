@@ -125,13 +125,27 @@ except ImportError:
 def _display_welcome_message(parent=None):
     """
     Display a welcome message to the user.
+    (This docstring seems very legacy/historical, not accurate.)
     """
-    if not config.get('behavior.betawarn'):
+    _display_generic_message("master", 'behavior.betawarn', parent)
+
+def _display_generic_message(warning_type, config_key, parent=None):
+    """
+    Display a generic warning message to the user, with the
+    warning_type in it -- if the config_key key is not set
+
+    :param warning_type: the general name of the warning, e.g. "master"
+    :type warning_type: str
+    :param config_key: name of gramps.ini config key, e.g. "behavior.betawarn"
+    :type config_key: str
+    """
+    if not config.get(config_key):
         from .dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
-            _("This Gramps ('master') is a development release. "
-              "This version is not meant for normal usage. Use "
+            _("This Gramps ('%s') is a development release.\n"
+             ) % warning_type +
+            _("This version is not meant for normal usage. Use "
               "at your own risk.\n"
               "\n"
               "This version may:\n"
@@ -150,17 +164,17 @@ def _display_welcome_message(parent=None):
                   'bold_end'   : '</b>'},
             parent=parent)
         config.set('behavior.autoload', False)
-        config.set('behavior.betawarn', True)
+        config.set(config_key, True)
 
 def _display_gtk_gettext_message(parent=None):
     """
     Display a GTK-translations-missing message to the user.
+
+    Note: the warning dialog below will likely have wrong stock icons!
     """
     LOG.warning("GTK translations missing, GUI will be broken, "
                 "especially for RTL languages!")
     from .dialog import WarningDialog
-    # Note: the warning dialog below will likely have wrong stock icons!
-    # Translators: the current language will be the one you translate into.
     WarningDialog(_("Gramps detected an incomplete GTK installation"),
                   _("GTK translations for the current language (%(language)s) "
                     "are missing.\n"
