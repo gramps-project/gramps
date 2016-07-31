@@ -240,7 +240,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                   'have made will be lost'),
                 self._do_close,
                 self.save,
-                self.window)
+                parent=self.window)
             return True
         else:
             self._do_close()

@@ -238,7 +238,8 @@ class EditEvent(EditPrimary):
         if self.object_is_empty():
             ErrorDialog(_("Cannot save event"),
                         _("No data exists for this event. Please "
-                          "enter data or cancel the edit."))
+                          "enter data or cancel the edit."),
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -252,7 +253,7 @@ class EditEvent(EditPrimary):
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -260,7 +261,8 @@ class EditEvent(EditPrimary):
         if t.is_custom() and str(t) == '':
             ErrorDialog(
                 _("Cannot save event"),
-                _("The event type cannot be empty"))
+                _("The event type cannot be empty"),
+                parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

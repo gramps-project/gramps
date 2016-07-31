@@ -1184,7 +1184,7 @@ class FilterEditor(ManagedWindow):
                                   'other filters that depend on it.'),
                                 _('Delete Filter'),
                                 self._do_delete_selected_filter,
-                                self.window)
+                                parent=self.window)
             else:
                 self._do_delete_selected_filter()
 

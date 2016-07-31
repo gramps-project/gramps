@@ -276,7 +276,7 @@ class EditPlaceRef(EditReference):
         if self.source.get_name().get_value().strip() == '':
             msg1 = _("Cannot save place. Name not entered.")
             msg2 = _("You must enter a name before saving.")
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

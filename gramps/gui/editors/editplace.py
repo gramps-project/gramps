@@ -285,7 +285,7 @@ class EditPlace(EditPrimary):
         if self.obj.get_name().get_value().strip() == '':
             msg1 = _("Cannot save place. Name not entered.")
             msg2 = _("You must enter a name before saving.")
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -299,7 +299,7 @@ class EditPlace(EditPrimary):
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

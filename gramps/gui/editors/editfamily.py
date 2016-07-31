@@ -371,7 +371,8 @@ class EditFamily(EditPrimary):
                       "are available when you create a new family. The "
                       "remaining fields will become available after you "
                       "attempt to select a parent."),
-                    'preferences.family-warn')
+                    'preferences.family-warn',
+                    parent=self.window)
         else:
             self.add_parent = False
 
@@ -1062,7 +1063,8 @@ class EditFamily(EditPrimary):
                                 father.gramps_id)
             ErrorDialog(_("A father cannot be his own child"),
                                        _("%s is listed as both the father and child "
-                                         "of the family.") % name)
+                                         "of the family.") % name,
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
         elif self.obj.get_mother_handle() in child_list:
@@ -1072,7 +1074,8 @@ class EditFamily(EditPrimary):
                                 mother.gramps_id)
             ErrorDialog(_("A mother cannot be her own child"),
                                        _("%s is listed as both the mother and child "
-                                         "of the family.") % name)
+                                         "of the family.") % name,
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -1080,7 +1083,8 @@ class EditFamily(EditPrimary):
             ErrorDialog(
                 _("Cannot save family"),
                 _("No data exists for this family. "
-                  "Please enter data or cancel the edit."))
+                  "Please enter data or cancel the edit."),
+                parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -1092,7 +1096,7 @@ class EditFamily(EditPrimary):
                          "enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id}
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

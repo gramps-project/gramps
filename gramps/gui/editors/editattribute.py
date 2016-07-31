@@ -147,7 +147,8 @@ class EditAttributeRoot(EditSecondary):
             from ..dialog import ErrorDialog
             ErrorDialog(
                 _("Cannot save attribute"),
-                _("The attribute type cannot be empty"))
+                _("The attribute type cannot be empty"),
+                parent=self.window)
             return
         if self.callback:
             self.callback(self.obj)

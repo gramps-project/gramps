@@ -383,7 +383,8 @@ class EditName(EditSecondary):
                       ) % { 'surname' : surname,
                             'group_name':group_as},
                     _("Continue"),
-                    _("Return to Name Editor"))
+                    _("Return to Name Editor"),
+                    parent=self.window)
                 val = q.run()
                 if val:
                     #delete the grouping link on database
@@ -415,7 +416,8 @@ class EditName(EditSecondary):
                                        ) % { 'surname' : surname,
                                              'group_name':group_as},
                     _("Group all"),
-                    _("Group this name only"))
+                    _("Group this name only"),
+                    parent=self.window)
                     val = q.run()
                     if val:
                         if group_as == surname :

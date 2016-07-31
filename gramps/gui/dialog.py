@@ -431,6 +431,8 @@ class MessageHideDialog:
         self.xml.get_object('message').set_text(message)
 
         dont_show.connect('toggled', self.update_checkbox, key)
+        if parent:
+            self.top.set_transient_for(parent)
         self.top.run()
         self.top.destroy()
 

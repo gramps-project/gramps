@@ -291,7 +291,7 @@ class EditCitation(EditPrimary):
                           "derived. To create a citation, first select the "
                           "required source, and then record the location of "
                           "the information referenced within the source in the "
-                          "'Volume/Page' field."))
+                          "'Volume/Page' field."), parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -305,7 +305,7 @@ class EditCitation(EditPrimary):
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
                          'id' : gramps_id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

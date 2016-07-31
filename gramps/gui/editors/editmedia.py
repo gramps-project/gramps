@@ -287,7 +287,8 @@ class EditMedia(EditPrimary):
         if self.object_is_empty():
             ErrorDialog(_("Cannot save media object"),
                         _("No data exists for this media object. Please "
-                          "enter data or cancel the edit."))
+                          "enter data or cancel the edit."),
+                        parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -301,7 +302,7 @@ class EditMedia(EditPrimary):
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -315,7 +316,7 @@ class EditMedia(EditPrimary):
                             "value '%(path)s'. This path does not exist!"
                             " Please enter a different path") % {
                             'path' : path }
-            ErrorDialog(msg1, msg2)
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
