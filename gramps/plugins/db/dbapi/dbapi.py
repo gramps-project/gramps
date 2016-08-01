@@ -167,14 +167,18 @@ class DBAPI(DbGeneric):
             code = compile(file.read(), settings_file, 'exec')
             exec(code, globals(), settings)
         self.dbapi = settings["dbapi"]
-        self.update_schema()
+
+        # We use the existence of the person table as a proxy for the database
+        # being new
+        if not self.dbapi.table_exists("person"):
+            self.update_schema()
 
     def update_schema(self):
         """
         Create and update schema.
         """
         # make sure schema is up to date:
-        self.dbapi.try_execute("""CREATE TABLE person (
+        self.dbapi.execute("""CREATE TABLE person (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     given_name     TEXT        ,
                                     surname        TEXT        ,
@@ -183,171 +187,171 @@ class DBAPI(DbGeneric):
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE family (
+        self.dbapi.execute("""CREATE TABLE family (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     father_handle VARCHAR(50),
                                     mother_handle VARCHAR(50),
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE source (
+        self.dbapi.execute("""CREATE TABLE source (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE citation (
+        self.dbapi.execute("""CREATE TABLE citation (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE event (
+        self.dbapi.execute("""CREATE TABLE event (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE media (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.try_execute("""CREATE TABLE place (
+        self.dbapi.execute("""CREATE TABLE media (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE repository (
+        self.dbapi.execute("""CREATE TABLE place (
+                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
+                                    gramps_id TEXT             ,
+                                    blob_data      BLOB
+        );""")
+        self.dbapi.execute("""CREATE TABLE repository (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE note (
+        self.dbapi.execute("""CREATE TABLE note (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     gramps_id TEXT             ,
                                     blob_data      BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE tag (
+        self.dbapi.execute("""CREATE TABLE tag (
                                     handle    VARCHAR(50) PRIMARY KEY NOT NULL,
                                     order_by  TEXT             ,
                                     blob_data      BLOB
         );""")
         # Secondary:
-        self.dbapi.try_execute("""CREATE TABLE reference (
+        self.dbapi.execute("""CREATE TABLE reference (
                                     obj_handle    VARCHAR(50),
                                     obj_class     TEXT,
                                     ref_handle    VARCHAR(50),
                                     ref_class     TEXT
         );""")
-        self.dbapi.try_execute("""CREATE TABLE name_group (
+        self.dbapi.execute("""CREATE TABLE name_group (
                                     name     VARCHAR(50) PRIMARY KEY NOT NULL,
                                     grouping TEXT
         );""")
-        self.dbapi.try_execute("""CREATE TABLE metadata (
+        self.dbapi.execute("""CREATE TABLE metadata (
                                     setting  VARCHAR(50) PRIMARY KEY NOT NULL,
                                     value    BLOB
         );""")
-        self.dbapi.try_execute("""CREATE TABLE gender_stats (
+        self.dbapi.execute("""CREATE TABLE gender_stats (
                                     given_name TEXT,
                                     female     INTEGER,
                                     male       INTEGER,
                                     unknown    INTEGER
         );""")
         ## Indices:
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   person_order_by ON person(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   person_gramps_id ON person(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   person_surname ON person(surname);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   person_given_name ON person(given_name);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   source_order_by ON source(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   source_gramps_id ON source(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   citation_order_by ON citation(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   citation_gramps_id ON citation(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   media_order_by ON media(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   media_gramps_id ON media(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   place_order_by ON place(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   place_gramps_id ON place(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   tag_order_by ON tag(order_by);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   reference_ref_handle ON reference(ref_handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   name_group_name ON name_group(name);
         """)
 
         # Fixes:
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   place_handle ON place(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   citation_handle ON citation(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   media_handle ON media(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   person_handle ON person(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   family_handle ON family(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   event_handle ON event(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   repository_handle ON repository(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   tag_handle ON tag(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   note_handle ON note(handle);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   source_handle ON source(handle);
         """)
 
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   family_gramps_id ON family(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   event_gramps_id ON event(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   repository_gramps_id ON repository(gramps_id);
         """)
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   note_gramps_id ON note(gramps_id);
         """)
 
-        self.dbapi.try_execute("""CREATE INDEX
+        self.dbapi.execute("""CREATE INDEX
                                   reference_obj_handle ON reference(obj_handle);
         """)
         self.rebuild_secondary_fields()
@@ -1898,23 +1902,25 @@ class DBAPI(DbGeneric):
 
     def drop_tables(self):
         """
-        Useful in testing, reseting.
+        Useful in testing, reseting. If the test is unsure whether the tables
+        already exist, then the caller will need to catch the appropriate
+        exception
         """
-        self.dbapi.try_execute("""DROP TABLE  person;""")
-        self.dbapi.try_execute("""DROP TABLE  family;""")
-        self.dbapi.try_execute("""DROP TABLE  source;""")
-        self.dbapi.try_execute("""DROP TABLE  citation""")
-        self.dbapi.try_execute("""DROP TABLE  event;""")
-        self.dbapi.try_execute("""DROP TABLE  media;""")
-        self.dbapi.try_execute("""DROP TABLE  place;""")
-        self.dbapi.try_execute("""DROP TABLE  repository;""")
-        self.dbapi.try_execute("""DROP TABLE  note;""")
-        self.dbapi.try_execute("""DROP TABLE  tag;""")
+        self.dbapi.execute("""DROP TABLE  person;""")
+        self.dbapi.execute("""DROP TABLE  family;""")
+        self.dbapi.execute("""DROP TABLE  source;""")
+        self.dbapi.execute("""DROP TABLE  citation""")
+        self.dbapi.execute("""DROP TABLE  event;""")
+        self.dbapi.execute("""DROP TABLE  media;""")
+        self.dbapi.execute("""DROP TABLE  place;""")
+        self.dbapi.execute("""DROP TABLE  repository;""")
+        self.dbapi.execute("""DROP TABLE  note;""")
+        self.dbapi.execute("""DROP TABLE  tag;""")
         # Secondary:
-        self.dbapi.try_execute("""DROP TABLE  reference;""")
-        self.dbapi.try_execute("""DROP TABLE  name_group;""")
-        self.dbapi.try_execute("""DROP TABLE  metadata;""")
-        self.dbapi.try_execute("""DROP TABLE  gender_stats;""")
+        self.dbapi.execute("""DROP TABLE  reference;""")
+        self.dbapi.execute("""DROP TABLE  name_group;""")
+        self.dbapi.execute("""DROP TABLE  metadata;""")
+        self.dbapi.execute("""DROP TABLE  gender_stats;""")
 
     def _sql_type(self, python_type):
         """
@@ -2002,7 +2008,7 @@ class DBAPI(DbGeneric):
         for field in self.get_table_func(
                 table, "class_func").get_index_fields():
             field = self._hash_name(table, field)
-            self.dbapi.try_execute("CREATE INDEX %s_%s ON %s(%s);"
+            self.dbapi.execute("CREATE INDEX %s_%s ON %s(%s);"
                                    % (table, field, table_name, field))
 
     def update_secondary_values_all(self):

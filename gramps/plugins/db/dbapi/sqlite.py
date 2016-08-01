@@ -60,6 +60,7 @@ class Sqlite:
         return self.cursor.fetchall()
 
     def begin(self):
+        self.log.debug("BEGIN TRANSACTION;")
         self.execute("BEGIN TRANSACTION;")
 
     def commit(self):
@@ -70,12 +71,10 @@ class Sqlite:
         self.log.debug("ROLLBACK;")
         self.connection.rollback()
 
-    def try_execute(self, sql):
-        try:
-            self.cursor.execute(sql)
-        except Exception as exc:
-            #print(str(exc))
-            pass
+    def table_exists(self, table):
+        self.execute("SELECT COUNT(*) FROM sqlite_master "
+                     "WHERE type='table' AND name='%s';" % table)
+        return self.fetchone()[0] != 0
 
     def close(self):
         self.log.debug("closing database...")
