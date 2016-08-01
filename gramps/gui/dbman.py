@@ -153,8 +153,6 @@ class DbManager(CLIDbManager):
         CLIDbManager.ICON_OPEN : 'document-open',
         }
 
-    ERROR = ErrorDialog
-
     BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
                                              Gdk.CursorType.WATCH)
 
@@ -490,7 +488,7 @@ class DbManager(CLIDbManager):
         path = store.get_path(node)
         self.lock_file = store[path][PATH_COL]
 
-        QuestionDialog(
+        QuestionDialog( # parent-OK
             _("Break the lock on the '%s' database?") % store[path][0],
             _("Gramps believes that someone else is actively editing "
               "this database. You cannot edit this database while it "
@@ -499,7 +497,7 @@ class DbManager(CLIDbManager):
               "the database and you break the lock, you may corrupt the "
               "database."),
             _("Break lock"),
-            self.__really_break_lock, self.top)
+            self.__really_break_lock, parent=self.top)
 
     def __really_break_lock(self):
         """
@@ -588,11 +586,10 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            DbManager.ERROR(
-                _("Rename failed"),
-                _("An attempt to rename a version failed "
-                  "with the following message:\n\n%s") % message
-                )
+            ErrorDialog(_("Rename failed"), # parent-OK
+                        _("An attempt to rename a version failed "
+                          "with the following message:\n\n%s") % message,
+                        parent=self.top)
         else:
             self.model.set_value(node, NAME_COL, new_text)
             #scroll to new position
@@ -608,9 +605,9 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            DbManager.ERROR(
-                _("Could not rename the Family Tree."),
-                _("Family Tree already exists, choose a unique name."))
+            ErrorDialog(_("Could not rename the Family Tree."), # parent-OK
+                        _("Family Tree already exists, choose a unique name."),
+                        parent=self.top)
             return
         old_text, new_text = self.rename_database(filename, new_text)
         if old_text is not None:
@@ -673,7 +670,7 @@ class DbManager(CLIDbManager):
         self.data_to_delete = store[path]
 
         if len(path.get_indices()) == 1:
-            QuestionDialog(
+            QuestionDialog( # parent-OK
                 _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
                 _("Removing this Family Tree will permanently destroy "
                   "the data."),
@@ -682,15 +679,14 @@ class DbManager(CLIDbManager):
         else:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
-            QuestionDialog(
-                _("Remove the '%(revision)s' version of '%(database)s'") % {
-                    'revision' : rev,
-                    'database' : parent
-                    },
-                _("Removing this version will prevent you from "
-                  "extracting it in the future."),
-                _("Remove version"),
-                self.__really_delete_version, parent=self.top)
+            QuestionDialog(_("Remove the '%(revision)s' version " # parent-OK
+                             "of '%(database)s'"
+                            ) % {'revision' : rev,
+                                 'database' : parent},
+                           _("Removing this version will prevent you from "
+                             "extracting it in the future."),
+                           _("Remove version"),
+                           self.__really_delete_version, parent=self.top)
 
     def __really_delete_db(self):
         """
@@ -718,8 +714,9 @@ class DbManager(CLIDbManager):
                     os.unlink(os.path.join(top, filename))
             os.rmdir(directory)
         except (IOError, OSError) as msg:
-            DbManager.ERROR(_("Could not delete Family Tree"),
-                            str(msg))
+            ErrorDialog(_("Could not delete Family Tree"), # parent-OK
+                        str(msg),
+                        parent=self.top)
         # rebuild the display
         self.__populate()
         self._select_default()
@@ -743,11 +740,10 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            DbManager.ERROR(
-                _("Deletion failed"),
-                _("An attempt to delete a version failed "
-                  "with the following message:\n\n%s") % message
-                )
+            ErrorDialog(_("Deletion failed"), # parent-OK
+                        _("An attempt to delete a version failed "
+                          "with the following message:\n\n%s") % message,
+                        parent=self.top)
 
         # rebuild the display
         self.__populate()
@@ -761,11 +757,11 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         name = store[node][0]
         dirname = store[node][1]
-        QuestionDialog(
+        QuestionDialog( # parent-OK
             _("Convert the '%s' database?") % name,
             _("You wish to convert this database into the new DB-API format?"),
             _("Convert"),
-            lambda: self.__convert_db(name, dirname), self.top)
+            lambda: self.__convert_db(name, dirname), parent=self.top)
 
     def __convert_db(self, name, dirname):
         """
@@ -774,10 +770,9 @@ class DbManager(CLIDbManager):
         try:
             db = self.dbstate.open_database(name)
         except:
-            ErrorDialog(
-                _("Opening the '%s' database") % name,
-                _("An attempt to convert the database failed. "
-                  "Perhaps it needs updating."))
+            ErrorDialog(_("Opening the '%s' database") % name, # parent-OK
+                        _("An attempt to convert the database failed. "
+                          "Perhaps it needs updating."), parent=self.top)
             return
         plugin_manager = GuiPluginManager.get_instance()
         export_function = None
@@ -787,9 +782,9 @@ class DbManager(CLIDbManager):
                 break
         ## Next, get an XML dump:
         if export_function is None:
-            ErrorDialog(
-                _("Converting the '%s' database") % name,
-                _("An attempt to export the database failed."))
+            ErrorDialog(_("Converting the '%s' database") % name, # parent-OK
+                        _("An attempt to export the database failed."),
+                        parent=self.top)
             db.close(user=self.user)
             return
         self.__start_cursor(_("Converting data..."))
@@ -812,9 +807,9 @@ class DbManager(CLIDbManager):
             if plugin.get_extension() == "gramps":
                 import_function = plugin.get_import_function()
         if import_function is None:
-            ErrorDialog(
-                _("Converting the '%s' database") % name,
-                _("An attempt to import into the database failed."))
+            ErrorDialog(_("Converting the '%s' database") % name, # parent-OK
+                        _("An attempt to import into the database failed."),
+                        parent=self.top)
         else:
             import_function(dbase, xml_file, self.user)
         self.__end_cursor()
@@ -869,7 +864,7 @@ class DbManager(CLIDbManager):
         dirname = store[node][1]
 
         #First ask user if he is really sure :-)
-        yes_no = QuestionDialog2(
+        yes_no = QuestionDialog2( # parent-OK
             _("Repair Family Tree?"),
             _("If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
               "attempt to recover your Family Tree from the last good "
@@ -903,7 +898,8 @@ class DbManager(CLIDbManager):
                       URL_WIKISTRING + 'Recover_corrupted_family_tree',
                   'dirname': dirname},
             _("Proceed, I have taken a backup"),
-            _("Stop"))
+            _("Stop"),
+            parent=self.top)
         prompt = yes_no.run()
         if not prompt:
             return
@@ -930,7 +926,8 @@ class DbManager(CLIDbManager):
         try:
             dbase.restore()
         except DbException as msg:
-            DbManager.ERROR(_("Error restoring backup data"), msg)
+            ErrorDialog(_("Error restoring backup data"), msg, # parent-OK
+                        parent=self.top)
 
         self.__end_cursor()
 
@@ -968,8 +965,9 @@ class DbManager(CLIDbManager):
             try:
                 self._create_new_db(dbid=dbid)
             except (OSError, IOError) as msg:
-                DbManager.ERROR(_("Could not create Family Tree"),
-                                str(msg))
+                ErrorDialog(_("Could not create Family Tree"), # parent-OK
+                            str(msg),
+                            parent=self.top)
         self.new.set_sensitive(True)
 
     def get_backend_name_from_dbid(self, dbid):
@@ -1134,11 +1132,10 @@ def check_in(dbase, filename, user, cursor_func=None):
         del proc
 
         if status != 0:
-            ErrorDialog(
-                _("Archiving failed"),
-                _("An attempt to create the archive failed "
-                  "with the following message:\n\n%s") % message
-                )
+            ErrorDialog(_("Archiving failed"), # parent-OK
+                        _("An attempt to create the archive failed "
+                          "with the following message:\n\n%s") % message,
+                        parent=self.top)
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
@@ -1161,11 +1158,10 @@ def check_in(dbase, filename, user, cursor_func=None):
     del proc
 
     if status != 0:
-        ErrorDialog(
-            _("Archiving failed"),
-            _("An attempt to archive the data failed "
-              "with the following message:\n\n%s") % message
-            )
+        ErrorDialog(_("Archiving failed"), # parent-OK
+                    _("An attempt to archive the data failed "
+                      "with the following message:\n\n%s") % message,
+                    parent=self.top)
 
 def bug_fix(column, renderer, model, iter_, data):
     """
