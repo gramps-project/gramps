@@ -198,18 +198,21 @@ class ErrorDialog(Gtk.MessageDialog): # parent-OK
 class RunDatabaseRepair(ErrorDialog): # parent-OK
     def __init__(self, msg, parent=None):
         ErrorDialog.__init__(
+            # These exact strings are also in cli/user.py -- keep them in sync
             self,
             _('Error detected in database'),
             _('Gramps has detected an error in the database. This can '
               'usually be resolved by running the "Check and Repair Database" '
               'tool.\n\nIf this problem continues to exist after running this '
               'tool, please file a bug report at '
-              '%(gramps_bugtracker_url)s\n\n')
-                      % {'gramps_bugtracker_url' : URL_BUGHOME} + msg, parent)
+              '%(gramps_bugtracker_url)s\n\n'
+             ) % {'gramps_bugtracker_url' : URL_BUGHOME}
+            + msg, parent)
 
 class DBErrorDialog(ErrorDialog): # parent-OK
     def __init__(self, msg, parent=None):
         ErrorDialog.__init__(
+            # These exact strings are also in cli/user.py -- keep them in sync
             self,
             _("Low level database corruption detected"),
             _("Gramps has detected a problem in the underlying "

@@ -37,7 +37,7 @@ import sys
 from gramps.gen import user
 from .utils import ProgressMeter
 from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
-                            InfoDialog, QuestionDialog2)
+                     RunDatabaseRepair, InfoDialog, QuestionDialog2)
 #-------------------------------------------------------------------------
 #
 # User class
@@ -161,6 +161,19 @@ class User(user.User):
             DBErrorDialog(error, parent=self.uistate.window) # parent-OK
         else:
             DBErrorDialog(error, parent=None) # parent-OK
+
+    def notify_db_repair(self, error):
+        """
+        Notify the user their DB might need repair.
+
+        :param error: the DB error message
+        :type error: str
+        :returns: none
+        """
+        if self.uistate:
+            RunDatabaseRepair(error, parent=self.uistate.window) # parent-OK
+        else:
+            RunDatabaseRepair(error, parent=None) # parent-OK
 
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """

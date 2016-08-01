@@ -29,6 +29,7 @@ The User class provides basic interaction with the user.
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.const import URL_BUGHOME
 from gramps.gen import user
 
 #------------------------------------------------------------------------
@@ -182,7 +183,7 @@ class User(user.User):
         if self.error_function:
             self.error_function(title, error)
         else:
-            self._fileout.write("%s %s" % (title, error))
+            self._fileout.write("%s\n%s\n" % (title, error))
 
     def notify_db_error(self, error):
         """
@@ -191,6 +192,8 @@ class User(user.User):
         :param error: the error message
         :type error: str
         :returns: none
+
+        These exact strings are also in gui/dialog.py -- keep them in sync
         """
         self.notify_error(
             _("Low level database corruption detected"),
@@ -198,6 +201,26 @@ class User(user.User):
               "Berkeley database. This can be repaired from "
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + error)
+
+    def notify_db_repair(self, error):
+        """
+        Notify the user their DB might need repair.
+
+        :param error: the error message
+        :type error: str
+        :returns: none
+
+        These exact strings are also in gui/dialog.py -- keep them in sync
+        """
+        self.notify_error(
+            _('Error detected in database'),
+            _('Gramps has detected an error in the database. This can '
+              'usually be resolved by running the "Check and Repair Database" '
+              'tool.\n\nIf this problem continues to exist after running this '
+              'tool, please file a bug report at '
+              '%(gramps_bugtracker_url)s\n\n'
+             ) % {'gramps_bugtracker_url' : URL_BUGHOME}
+            + error + '\n\n')
 
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """
