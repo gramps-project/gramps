@@ -96,7 +96,7 @@ class Postgresql:
 
     def table_exists(self, table):
         self.cursor.execute("SELECT COUNT(*) FROM information_schema.tables "
-                            "WHERE table_name='%s';" % table)
+                            "WHERE table_name=?;", [table])
         return self.fetchone()[0] != 0
 
     def close(self):
