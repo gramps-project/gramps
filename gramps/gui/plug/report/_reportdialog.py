@@ -496,7 +496,7 @@ class ReportDialog(ManagedWindow):
 
                 # check whether the dir has rwx permissions
                 if not os.access(self.target_path, os.R_OK|os.W_OK|os.X_OK):
-                    ErrorDialog(_('Permission problem'),
+                    ErrorDialog(_('Permission problem'), # parent-OK
                                 _("You do not have permission to write "
                                   "under the directory %s\n\n"
                                   "Please select another directory or correct "
@@ -506,7 +506,7 @@ class ReportDialog(ManagedWindow):
 
             # selected path is an existing file and we need a file
             if os.path.isfile(self.target_path):
-                aaa = OptionDialog(_('File already exists'),
+                aaa = OptionDialog(_('File already exists'), # parent-OK
                                    _('You can choose to either overwrite the '
                                      'file, or change the selected filename.'),
                                    _('_Overwrite'), None,
@@ -523,7 +523,7 @@ class ReportDialog(ManagedWindow):
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
             if os.path.isdir(parent_dir):
                 if not os.access(parent_dir, os.W_OK):
-                    ErrorDialog(_('Permission problem'),
+                    ErrorDialog(_('Permission problem'), # parent-OK
                                 _("You do not have permission to create "
                                   "%s\n\n"
                                   "Please select another path or correct "
@@ -531,7 +531,7 @@ class ReportDialog(ManagedWindow):
                                 parent=self.window)
                     return None
             else:
-                ErrorDialog(_('No directory'),
+                ErrorDialog(_('No directory'), # parent-OK
                             _('There is no directory %s.\n\n'
                               'Please select another directory '
                               'or create it.') % parent_dir,
@@ -657,7 +657,7 @@ def report(dbstate, uistate, person, report_class, options_class,
     its arguments.
     """
     if require_active and not person:
-        ErrorDialog(
+        ErrorDialog( # parent-OK
             _('Active person has not been set'),
             _('You must select an active person for this report to work '
               'properly.'),
@@ -709,15 +709,17 @@ def report(dbstate, uistate, person, report_class, options_class,
 
             except FilterError as msg:
                 (msg1, msg2) = msg.messages()
-                ErrorDialog(msg1, msg2, parent=uistate.window)
+                ErrorDialog(msg1, msg2, parent=uistate.window) # parent-OK
             except IOError as msg:
-                ErrorDialog(_("Report could not be created"), str(msg),
+                ErrorDialog(_("Report could not be created"), # parent-OK
+                            str(msg),
                             parent=uistate.window)
             except ReportError as msg:
                 (msg1, msg2) = msg.messages()
-                ErrorDialog(msg1, msg2, parent=uistate.window)
+                ErrorDialog(msg1, msg2, parent=uistate.window) # parent-OK
             except DatabaseError as msg:
-                ErrorDialog(_("Report could not be created"), str(msg),
+                ErrorDialog(_("Report could not be created"), # parent-OK
+                            str(msg),
                             parent=uistate.window)
 #           The following except statement will catch all "NoneType" exceptions.
 #           This is useful for released code where the exception is most likely
@@ -727,7 +729,7 @@ def report(dbstate, uistate, person, report_class, options_class,
 #                if str(msg).startswith("'NoneType' object has no attribute"):
 #                    # "'NoneType' object has no attribute ..." usually means
 #                    # database corruption
-#                    RunDatabaseRepair(str(msg))
+#                    RunDatabaseRepair(str(msg)) # no-parent
 #                else:
 #                    raise
                 raise

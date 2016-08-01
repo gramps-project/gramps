@@ -190,7 +190,7 @@ class PackageWriter:
 #             else:
 #                 # File is lost => ask what to do
 #                 if missmedia_action == 0:
-#                     mmd = MissingMediaDialog(
+#                     mmd = MissingMediaDialog( # no-parent
 #                         _("Media object could not be found"),
 #                         _("%(file_name)s is referenced in the database, "
 #                           "but no longer exists. The file may have been "

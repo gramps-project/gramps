@@ -146,7 +146,7 @@ class RelCalc(tool.Tool, ManagedWindow):
 
         if not self.person:
             self.window.hide()
-            ErrorDialog(_('Active person has not been set'),
+            ErrorDialog(_('Active person has not been set'), # no-parent
                         _('You must select an active person for this '
                           'tool to work properly.'))
             self.close()

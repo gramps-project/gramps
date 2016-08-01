@@ -133,7 +133,7 @@ class ActivePersonTool(Tool):
             # TODO: should we replace this with a callback?
             from ..dialog import ErrorDialog
 
-            ErrorDialog(_('Active person has not been set'),
+            ErrorDialog(_('Active person has not been set'), # no-parent
                         _('You must select an active person for this '
                           'tool to work properly.'))
             self.fail = True

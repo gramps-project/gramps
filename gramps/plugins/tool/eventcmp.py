@@ -191,7 +191,8 @@ class EventComparison(tool.Tool,ManagedWindow):
         self.options.handler.save_options()
 
         if len(plist) == 0:
-            WarningDialog(_("No matches were found"), parent=self.window)
+            WarningDialog(_("No matches were found"), # parent-OK
+                          parent=self.window)
         else:
             DisplayChart(self.dbstate,self.uistate,plist,self.track)
 

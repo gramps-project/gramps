@@ -662,7 +662,7 @@ class WriterOptionBox:
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
             from ...dialog import ErrorDialog
-            ErrorDialog(_("Cannot edit a system filter"),
+            ErrorDialog(_("Cannot edit a system filter"), # no-parent
                         _("Please select a different filter to edit"))
 
     def edit_filter_save(self, filterdb, namespace):

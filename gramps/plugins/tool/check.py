@@ -722,7 +722,7 @@ class CheckIntegrity:
                                         'found' %
                                          {'desc' : photo_desc,
                                           'name' : photo_name})
-                        mmd = MissingMediaDialog(
+                        mmd = MissingMediaDialog( # parent-OK
                             _("Media object could not be found"),
                             _("The file:\n%(file_name)s\nis referenced in "
                               "the database, but no longer exists.\n"
@@ -2107,7 +2107,7 @@ class CheckIntegrity:
 
         if errors == 0:
             if uistate:
-                OkDialog(_("No errors were found"),
+                OkDialog(_("No errors were found"), # parent-OK
                          _('The database has passed internal checks'),
                          parent=uistate.window)
             else:

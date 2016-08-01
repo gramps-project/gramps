@@ -264,7 +264,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref, self.object_added)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
+                WarningDialog(_("Cannot share this reference"), # no-parent
                               self.__blocked_text())
 
     def edit_button_clicked(self, obj):
@@ -277,7 +277,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref[1], self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"),
+                WarningDialog(_("Cannot edit this reference"), # no-parent
                               self.__blocked_text())
         elif ref and ref[0] != self._WORKGROUP:
             #bring up family editor
@@ -318,10 +318,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         handle change request of non native data
         """
         from ...dialog import WarningDialog
-        WarningDialog(
-                    _("Cannot change Person"),
-                    _("You cannot change Person events in the Family Editor")
-                    )
+        WarningDialog(_("Cannot change Person"), # no-parent
+                      _("You cannot change Person events in the Family Editor")
+                     )
 
     def _handle_drag(self, row, obj):
         """
@@ -341,7 +340,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                                       event, obj, self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(
+                WarningDialog( # no-parent
                     _("Cannot edit this reference"),
                     _("This event reference cannot be edited at this time. "
                       "Either the associated event is already being edited "

@@ -164,7 +164,7 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                     ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(
+                WarningDialog( # no-parent
                     _("Cannot edit this reference"),
                     _("This repository reference cannot be edited at this "
                       "time. Either the associated repository is already "

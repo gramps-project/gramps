@@ -245,7 +245,8 @@ class Tags(DbGUIElement):
         """
         Display the Organize Tags dialog.
         """
-        organize_dialog = OrganizeTagsDialog(self.db, self.uistate.window)
+        organize_dialog = OrganizeTagsDialog(self.db, # parent-OK
+                                             self.uistate.window)
         organize_dialog.run()
 
     def cb_new_tag(self, action):
@@ -485,7 +486,7 @@ class OrganizeTagsDialog:
         tag_handle = store.get_value(iter_, 1)
         tag_name = store.get_value(iter_, 2)
 
-        yes_no = QuestionDialog2(
+        yes_no = QuestionDialog2( # no-parent
             _("Remove tag '%s'?") % tag_name,
             _("The tag definition will be removed.  "
               "The tag will be also removed from all objects in the database."),
@@ -581,7 +582,7 @@ class EditTag:
         self.tag.set_color(hexval)
 
         if not self.tag.get_name():
-            ErrorDialog(
+            ErrorDialog( # no-parent
                 _("Cannot save tag"),
                 _("The tag name cannot be empty"))
             return

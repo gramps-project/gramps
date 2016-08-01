@@ -229,7 +229,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         db.enable_signals()
         db.request_rebuild()
         self.progress.close()
-        OkDialog(_("Number of merges done"),
+        OkDialog(_("Number of merges done"), # parent-OK
                  # translators: leave all/any {...} untranslated
                  ngettext("{number_of} citation merged",
                           "{number_of} citations merged", num_merges

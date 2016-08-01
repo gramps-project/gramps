@@ -422,7 +422,8 @@ else:
             message = _("Image metadata functionality will not be available.\n"
                         "To build it for Gramps see "
                         "%(gramps_wiki_build_gexiv2_url)s" % gexiv2_dict )
-            MessageHideDialog(title, message, 'interface.ignore-gexiv2')
+            MessageHideDialog(title, message, # no-parent
+                              'interface.ignore-gexiv2')
 
 register(GRAMPLET,
          id="Person Residence",

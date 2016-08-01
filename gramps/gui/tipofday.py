@@ -82,7 +82,7 @@ class TipOfDay(ManagedWindow):
             tparser = TipParser()
         except (IOError,ExpatError) as e:
             self.close()
-            ErrorDialog(
+            ErrorDialog( # no-parent
                 _("Failed to display tip of the day"),
                 _("Unable to read the tips from external file.\n\n%s")%e)
             return

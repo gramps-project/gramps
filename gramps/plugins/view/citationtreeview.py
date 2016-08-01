@@ -427,7 +427,7 @@ class CitationTreeView(ListView):
                              Citation(), source)
             except WindowActiveError:
                 from gramps.gui.dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
+                WarningDialog(_("Cannot share this reference"), # parent-OK
                               self.__blocked_text(),
                               parent=self.uistate.window)
 #
@@ -478,7 +478,7 @@ class CitationTreeView(ListView):
                     EditSource(self.dbstate, self.uistate, [], source)
                 except WindowActiveError:
                     from gramps.gui.dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
+                    WarningDialog(_("Cannot share this reference"), # parent-OK
                                   self.__blocked_text2(),
                                   parent=self.uistate.window)
 
@@ -514,7 +514,7 @@ class CitationTreeView(ListView):
                      "merge. A second citation can be selected by holding "
                      "down the control key while clicking on the desired "
                      "citation.")
-            ErrorDialog(msg, msg2, parent=self.uistate.window)
+            ErrorDialog(msg, msg2, parent=self.uistate.window) # parent-OK
         else:
             source1 = self.dbstate.db.get_source_from_handle(mlist[0])
             citation1 = self.dbstate.db.get_citation_from_handle(mlist[0])
@@ -534,7 +534,8 @@ class CitationTreeView(ListView):
                              "source to perform a merge. If you want to merge "
                              "these two citations, then you must merge the "
                              "sources first.")
-                    ErrorDialog(msg, msg2, parent=self.uistate.window)
+                    ErrorDialog(msg, msg2, # parent-OK
+                                parent=self.uistate.window)
                 else:
                     MergeCitation(self.dbstate, self.uistate,  mlist[0],
                                   mlist[1])
@@ -545,7 +546,7 @@ class CitationTreeView(ListView):
                 msg2 = _("Both objects must be of the same type, either "
                          "both must be sources, or both must be "
                          "citations.")
-                ErrorDialog(msg, msg2, parent=self.uistate.window)
+                ErrorDialog(msg, msg2, parent=self.uistate.window) # parent-OK
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_citation_from_gramps_id(gid)

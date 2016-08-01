@@ -144,7 +144,7 @@ class EniroSVMapService(MapService):
             else:
                 msg2 = _("Latitude not within '54.55' to '69.05'\n") + \
                        _("Longitude not within '8.05' to '24.15'")
-                WarningDialog(_("Eniro map not available"), msg2 )
+                WarningDialog(_("Eniro map not available"), msg2) # no-parent
                 return
 
         if coord_ok:
@@ -171,13 +171,13 @@ class EniroSVMapService(MapService):
                 self.url = path.replace(" ","%20")
                 return
             else:
-                WarningDialog(_("Eniro map not available"), \
-                              _("Coordinates needed in Denmark") )
+                WarningDialog(_("Eniro map not available"), # no-parent
+                              _("Coordinates needed in Denmark"))
                 self.url = ""
                 return
 
-        WarningDialog(_("Eniro map not available"),
-                      _("Latitude and longitude,\n" \
-                    "or street and city needed") )
+        WarningDialog(_("Eniro map not available"), # no-parent
+                      _("Latitude and longitude,\n"
+                        "or street and city needed"))
         return
 

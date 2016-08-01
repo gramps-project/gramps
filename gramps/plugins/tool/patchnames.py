@@ -360,7 +360,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         else:
             self.progress.close()
             self.close()
-            OkDialog(_('No modifications made'),
+            OkDialog(_('No modifications made'), # parent-OK
                      _("No titles, nicknames or prefixes were found"),
                      parent=self.uistate.window)
 

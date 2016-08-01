@@ -259,7 +259,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             if obj is None :
                 #notify user of error
                 from ...dialog import RunDatabaseRepair
-                RunDatabaseRepair(
+                RunDatabaseRepair( # no-parent
                             _('Non existing media found in the Gallery'))
             else :
                 pixbuf = get_thumbnail_image(
@@ -334,7 +334,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                              src, sref, self.add_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"),
+                WarningDialog(_("Cannot share this reference"), # no-parent
                               self.__blocked_text())
 
     def del_button_clicked(self, obj):
@@ -354,7 +354,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                              obj, ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"),
+                WarningDialog(_("Cannot edit this reference"), # no-parent
                               self.__blocked_text())
 
     def edit_callback(self, media_ref, media):

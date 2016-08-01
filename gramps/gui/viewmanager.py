@@ -347,7 +347,8 @@ class ViewManager(CLIManager):
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage, parent=self.uistate.window)
+        ErrorDialog(title, errormessage, # parent-OK
+                    parent=self.uistate.window)
         return 1
 
     def __build_main_window(self):
@@ -772,7 +773,7 @@ class ViewManager(CLIManager):
         """
         if self.dbstate.db.abort_possible:
 
-            dialog = QuestionDialog2(
+            dialog = QuestionDialog2( # parent-OK
                 _("Abort changes?"),
                 _("Aborting changes will return the database to the state "
                   "it was before you started this editing session."),
@@ -786,7 +787,7 @@ class ViewManager(CLIManager):
                     pass
                 self.quit()
         else:
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _("Cannot abandon session's changes"),
                 _('Changes cannot be completely abandoned because the '
                   'number of changes made in the session exceeded the '
@@ -1096,7 +1097,7 @@ class ViewManager(CLIManager):
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
-                InfoDialog(_('Import Statistics'), infotxt,
+                InfoDialog(_('Import Statistics'), infotxt, # parent-OK
                            parent=self.window)
             self.__post_load()
 
@@ -1353,7 +1354,7 @@ class ViewManager(CLIManager):
             basefile = basefile.replace("/", r"-")
             filename = os.path.join(path_entry.get_text(), basefile)
             if os.path.exists(filename):
-                question = QuestionDialog2(
+                question = QuestionDialog2( # parent-OK
                         _("Backup file already exists! Overwrite?"),
                         _("The file '%s' exists.") % filename,
                         _("Proceed and overwrite"),
@@ -1591,7 +1592,7 @@ class ViewManager(CLIManager):
 
     def display_about_box(self, obj):
         """Display the About box."""
-        about = GrampsAboutDialog(self.uistate.window)
+        about = GrampsAboutDialog(self.uistate.window) # parent-OK
         about.run()
         about.destroy()
 
@@ -1652,7 +1653,7 @@ def run_plugin(pdata, dbstate, uistate):
             error_msg = failed[-1][1][1]
         else:
             error_msg = "(no error message)"
-        ErrorDialog(
+        ErrorDialog( # parent-OK
             _('Failed Loading Plugin'),
             _('The plugin %(name)s did not load and reported an error.\n\n'
               '%(error_msg)s\n\n'

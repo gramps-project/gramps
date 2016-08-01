@@ -198,7 +198,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.bookmarks.add(mlist[0])
         else:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."),
@@ -214,7 +214,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.bookmarks.redraw()
         else:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."),
@@ -845,7 +845,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _("You can't use the print functionality"),
                 _("Your Gtk version is too old."),
                 parent=self.uistate.window)
@@ -1031,7 +1031,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                         gids = gids + ", " + plce.gramps_id
             if nb_places > 1:
                 from gramps.gui.dialog import WarningDialog
-                WarningDialog(
+                WarningDialog( # parent-OK
                       _('You have at least two places with the same title.'),
                       _("The title of the places is:\n%(title)s\n"
                         "The following places are similar: %(gid)s\n"

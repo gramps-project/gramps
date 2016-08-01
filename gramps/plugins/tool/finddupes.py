@@ -163,7 +163,7 @@ class Merge(tool.Tool,ManagedWindow):
         try:
             self.find_potentials(threshold)
         except AttributeError as msg:
-            RunDatabaseRepair(str(msg), parent=self.window)
+            RunDatabaseRepair(str(msg), parent=self.window) # parent-OK
             return
 
         self.options.handler.options_dict['threshold'] = threshold
@@ -172,7 +172,7 @@ class Merge(tool.Tool,ManagedWindow):
         self.options.handler.save_options()
 
         if len(self.map) == 0:
-            OkDialog(
+            OkDialog( # parent-OK
                 _("No matches found"),
                 _("No potential duplicate people were found"),
                 parent=self.window)

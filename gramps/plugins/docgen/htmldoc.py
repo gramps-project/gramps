@@ -269,7 +269,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(
+            WarningDialog( # no-parent
                 _("Possible destination error") + "\n" +
                 _("You appear to have set your target directory "
                   "to a directory used for data storage. This "

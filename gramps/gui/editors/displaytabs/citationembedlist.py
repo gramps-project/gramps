@@ -168,7 +168,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
+                    WarningDialog(_("Cannot share this reference"), # no-parent
                                   self.__blocked_text())
             elif isinstance(object, Citation):
                 try:
@@ -178,7 +178,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
+                    WarningDialog(_("Cannot share this reference"), # no-parent
                                   self.__blocked_text())
             else:
                 raise ValueError("selection must be either source or citation")
@@ -251,7 +251,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
+                    WarningDialog(_("Cannot share this reference"), # no-parent
                                   self.__blocked_text())
             else:
                 raise ValueError("selection must be either source or citation")
@@ -271,7 +271,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"),
+                    WarningDialog(_("Cannot share this reference"), # no-parent
                                   self.__blocked_text())
             else:
                 raise ValueError("selection must be either source or citation")

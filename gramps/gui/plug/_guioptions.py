@@ -1240,7 +1240,7 @@ class GuiPersonListOption(Gtk.Box):
                     spouse_name = _nd.display(spouse)
                     text = _('Also include %s?') % spouse_name
 
-                    prompt = OptionDialog(_('Select Person'),
+                    prompt = OptionDialog(_('Select Person'), # parent-OK
                                           text,
                                           _('No'), None,
                                           _('Yes'), None,

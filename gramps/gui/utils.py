@@ -297,10 +297,10 @@ class ProgressMeter:
         Don't let the user close the progress dialog.
         """
         from .dialog import WarningDialog
-        WarningDialog(
+        WarningDialog( # parent-OK
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog."),
-            self.__dialog)
+            parent=self.__dialog)
         return True
 
     def close(self, widget=None):
@@ -372,7 +372,7 @@ def display_error_dialog (index, errorstrings):
         else:
             error = errorstrings
 
-    ErrorDialog(_("Error from external program"), error)
+    ErrorDialog(_("Error from external program"), error) # no-parent
 
 def poll_external (args):
     """
@@ -586,7 +586,7 @@ def edit_object(dbstate, uistate, reftype, ref):
                              "alone")
 
             from .dialog import WarningDialog
-            WarningDialog(_("Cannot open new citation editor"),
+            WarningDialog(_("Cannot open new citation editor"), # no-parent
                           blocked_text)
     elif reftype == 'Place':
         try:

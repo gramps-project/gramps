@@ -293,7 +293,7 @@ class BasePersonView(ListView):
             msg2 = self._message2_format(person)
             msg2 = "%s %s" % (msg2, data_recover_msg)
             # This gets person to delete self.active_person:
-            QuestionDialog(msg1,
+            QuestionDialog(msg1, # parent-OK
                            msg2,
                            _('_Delete Person'),
                            self.delete_person_response,
@@ -301,7 +301,7 @@ class BasePersonView(ListView):
         else:
             # Ask to delete; option to cancel, delete rest
             # This gets person to delete from parameter
-            MultiSelectDialog(self._message1_format,
+            MultiSelectDialog(self._message1_format, # parent-OK
                               self._message2_format,
                               handles,
                               self._lookup_person,
@@ -421,7 +421,7 @@ class BasePersonView(ListView):
         mlist = self.selected_handles()
 
         if len(mlist) != 2:
-            ErrorDialog(_("Cannot merge people"),
+            ErrorDialog(_("Cannot merge people"), # parent-OK
                         _("Exactly two people must be selected to perform "
                         "a merge. A second person can be selected by "
                         "holding down the control key while clicking on "

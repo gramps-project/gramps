@@ -141,7 +141,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         else:
             self.progress.close()
             self.close()
-            OkDialog(_('No modifications made'),
+            OkDialog(_('No modifications made'), # parent-OK
                      _("No capitalization changes were detected."),
                      parent=uistate.window)
 

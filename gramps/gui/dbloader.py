@@ -83,24 +83,28 @@ class DbLoader(CLIDbLoader):
         self.import_info = None
 
     def _warn(self, title, warnmessage):
-        WarningDialog(title, warnmessage, parent=self.uistate.window)
+        WarningDialog(title, warnmessage, # parent-OK
+                      parent=self.uistate.window)
 
     def _errordialog(self, title, errormessage):
         """
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage, parent=self.uistate.window)
+        ErrorDialog(title, errormessage, # parent-OK
+                    parent=self.uistate.window)
         return 1
 
     def _dberrordialog(self, msg):
         import traceback
         exc = traceback.format_exc()
         try:
-            DBErrorDialog(str(msg.value), parent=self.uistate.window)
+            DBErrorDialog(str(msg.value), # parent-OK
+                          parent=self.uistate.window)
             _LOG.error(str(msg.value))
         except:
-            DBErrorDialog(str(msg), parent=self.uistate.window)
+            DBErrorDialog(str(msg), # parent-OK
+                          parent=self.uistate.window)
             _LOG.error(str(msg) +"\n" + exc)
 
     def _begin_progress(self):
@@ -121,7 +125,7 @@ class DbLoader(CLIDbLoader):
         # so we will lose the undo history. Warn the user.
 
         if self.dbstate.db.get_number_of_people() > 0:
-            warn_dialog = QuestionDialog2(
+            warn_dialog = QuestionDialog2( # parent-OK
                 _('Undo history warning'),
                 _('Proceeding with import will erase the undo history '
                   'for this session. In particular, you will not be able '
@@ -129,7 +133,7 @@ class DbLoader(CLIDbLoader):
                   'If you think you may want to revert the import, '
                   'please stop here and backup your database.'),
                 _('_Proceed with import'), _('_Stop'),
-                self.uistate.window)
+                parent=self.uistate.window)
             if not warn_dialog.run():
                 return False
 
@@ -194,7 +198,7 @@ class DbLoader(CLIDbLoader):
                         return True
 
                 # Finally, we give up and declare this an unknown format
-                ErrorDialog(
+                ErrorDialog( # parent-OK
                     _("Could not open file: %s") % filename,
                     _('File type "%s" is unknown to Gramps.\n\n'
                       'Valid types are: Gramps database, Gramps XML, '
@@ -219,14 +223,14 @@ class DbLoader(CLIDbLoader):
         if len(filename) == 0:
             return True
         elif os.path.isdir(filename):
-            ErrorDialog(
+            ErrorDialog( # parent-OK
                 _('Cannot open file'),
                 _('The selected file is a directory, not a file.\n'),
                 parent=self.uistate.window)
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
-                ErrorDialog(
+                ErrorDialog( # parent-OK
                     _('Cannot open file'),
                     _('You do not have read access to the selected file.'),
                     parent=self.uistate.window)
@@ -237,7 +241,7 @@ class DbLoader(CLIDbLoader):
                 f.close()
                 os.remove(filename)
             except IOError:
-                ErrorDialog(
+                ErrorDialog( # parent-OK
                     _('Cannot create file'),
                     _('You do not have write access to the selected file.'),
                     parent=self.uistate.window)
@@ -260,7 +264,7 @@ class DbLoader(CLIDbLoader):
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError as msg:
-            ErrorDialog(
+            ErrorDialog( # parent-OK
                 _("Could not import file: %s") % filename,
                 _("This file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "
@@ -340,12 +344,13 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.change_database(db)
                     break
                 except DbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"),
+                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                                         "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"),
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = True
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False
@@ -354,12 +359,13 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"),
+                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                                         "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"),
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = True
                         force_bsddb_downgrade = False
@@ -368,12 +374,13 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except BsddbDowngradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want to downgrade "
-                                         "this Family Tree?"),
+                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                                         "to downgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
                                          "please downgrade my Family Tree"),
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = True
@@ -382,12 +389,13 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except PythonUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want to upgrade "
-                                         "this Family Tree?"),
+                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                                         "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
                                          "please upgrade my Family Tree"),
-                                       _("Cancel"), self.uistate.window).run():
+                                       _("Cancel"),
+                                       parent=self.uistate.window).run():
                         force_schema_upgrade = False
                         force_bsddb_upgrade = False
                         force_bsddb_downgrade = False

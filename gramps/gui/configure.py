@@ -226,13 +226,15 @@ class ConfigureDialog(ManagedWindow):
             obj.get_text() % 'test_markup'
         except TypeError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
-            ErrorDialog(_("Invalid or incomplete format definition."),
-                        obj.get_text(), parent=self.window)
+            ErrorDialog( # parent-OK
+                _("Invalid or incomplete format definition."),
+                obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
         except ValueError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
-            ErrorDialog(_("Invalid or incomplete format definition."),
-                        obj.get_text(), parent=self.window)
+            ErrorDialog( # parent-OK
+                _("Invalid or incomplete format definition."),
+                obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
 
         self.__config.set(constant, obj.get_text())
@@ -774,7 +776,7 @@ class GrampsPreferences(ConfigureDialog):
             oldname = self.fmt_model.get_value(node, COL_NAME)
             # check to see if this pattern already exists
             if self.__check_for_name(translation, node):
-                ErrorDialog(_("This format exists already."),
+                ErrorDialog(_("This format exists already."), # parent-OK
                             translation, parent=self.window)
                 self.edit_button.emit('clicked')
                 return
@@ -1227,7 +1229,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
-        OkDialog(_('Change is not immediate'),
+        OkDialog(_('Change is not immediate'), # parent-OK
                  _('Changing the date format will not take '
                    'effect until the next time Gramps is started.'),
                  parent=self.window)
@@ -1395,20 +1397,21 @@ class GrampsPreferences(ConfigureDialog):
         try:
             addon_update_list = available_updates()
         except:
-            OkDialog(_("Checking Addons Failed"),
+            OkDialog(_("Checking Addons Failed"), # parent-OK
                      _("The addon repository appears to be unavailable. "
                        "Please try again later."),
-                     self.window)
+                     parent=self.window)
             return
 
         if len(addon_update_list) > 0:
             PluginWindows.UpdateAddons(addon_update_list, self.window)
         else:
             check_types = config.get('behavior.check-for-update-types')
-            OkDialog(_("There are no available addons of this type"),
-                     _("Checked for '%s'") %
-                     _("' and '").join([_(t) for t in check_types]),
-                     self.window)
+            OkDialog( # parent-OK
+                _("There are no available addons of this type"),
+                _("Checked for '%s'") %
+                      _("' and '").join([_(t) for t in check_types]),
+                parent=self.window)
 
         # List of translated strings used here
         # Dead code for l10n

@@ -611,7 +611,8 @@ class PluginStatus(ManagedWindow):
             'plugfil': _("Filename"),
             'plugpat': _("Location"),
             }
-            InfoDialog(_('Detailed Info'), infotxt, parent=self.window)
+            InfoDialog(_('Detailed Info'), infotxt, # parent-OK
+                       parent=self.window)
 
     def __hide(self, obj, list_obj, id_col, hide_col):
         """ Callback function from the "Hide" button
@@ -1191,22 +1192,22 @@ class UpdateAddons:
         if not longop.was_cancelled():
             longop.end()
         if errors:
-            OkDialog(_("Installation Errors"),
+            OkDialog(_("Installation Errors"), # parent-OK
                      _("The following addons had errors: ") +
                      ", ".join(errors),
-                     self.window)
+                     parent=self.window)
         if count:
-            OkDialog(_("Done downloading and installing addons"),
+            OkDialog(_("Done downloading and installing addons"), # parent-OK
                      # translators: leave all/any {...} untranslated
                      "%s %s" % (ngettext("{number_of} addon was installed.",
                                          "{number_of} addons were installed.",
                                          count).format(number_of=count),
                                 _("You need to restart Gramps to see new views.")),
-                     self.window)
+                     parent=self.window)
         else:
-            OkDialog(_("Done downloading and installing addons"),
+            OkDialog(_("Done downloading and installing addons"), # parent-OK
                      _("No addons were installed."),
-                     self.window)
+                     parent=self.window)
         self.window.destroy()
 
 #-------------------------------------------------------------------------

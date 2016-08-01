@@ -237,7 +237,7 @@ class BookListDisplay:
     def on_booklist_cancel_clicked(self, obj):
         """ cancel the booklist dialog """
         if self.unsaved_changes:
-            qqq = QuestionDialog2(
+            qqq = QuestionDialog2( # parent-OK
                 _('Discard Unsaved Changes'),
                 _('You have made changes which have not been saved.'),
                 _('Proceed'),
@@ -440,7 +440,7 @@ class BookSelector(ManagedWindow):
         if book.get_output():
             self.book.set_output(book.get_output())
         if book.get_dbname() != self._db.get_save_path():
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _('Different database'),
                 _('This book was created with the references to database '
                   '%s.\n\n This makes references to the central person '
@@ -547,7 +547,7 @@ class BookSelector(ManagedWindow):
         """
         store, the_iter = self.book_model.get_selected()
         if not the_iter:
-            WarningDialog(_('No selected book item'),
+            WarningDialog(_('No selected book item'), # parent-OK
                           _('Please select a book item to configure.'),
                           parent=self.window)
             return
@@ -711,7 +711,8 @@ class BookSelector(ManagedWindow):
             if self.book_list.get_needs_saving():
                 self.book_list.save()
         else:
-            WarningDialog(_('No items'), _('This book has no items.'),
+            WarningDialog(_('No items'), # parent-OK
+                          _('This book has no items.'),
                           parent=self.window)
             return
         self.close()
@@ -722,14 +723,14 @@ class BookSelector(ManagedWindow):
         """
         name = str(self.name_entry.get_text())
         if not name:
-            WarningDialog(
+            WarningDialog( # parent-OK
                 _('No book name'),
                 _('You are about to save away a book with no name.\n\n'
                   'Please give it a name before saving it away.'),
                 parent=self.window)
             return
         if name in self.book_list.get_book_names():
-            qqq = QuestionDialog2(
+            qqq = QuestionDialog2( # parent-OK
                 _('Book name already exists'),
                 _('You are about to save away a '
                   'book with a name which already exists.'),
@@ -949,7 +950,7 @@ class BookDialog(DocReportDialog):
             try:
                 self.make_book()
             except (IOError, OSError) as msg:
-                ErrorDialog(str(msg), parent=self.window)
+                ErrorDialog(str(msg), parent=self.window) # parent-OK
         self.close()
 
     def setup_style_frame(self):
@@ -1015,10 +1016,10 @@ class BookDialog(DocReportDialog):
         except ReportError as msg:
             (msg1, msg2) = msg.messages()
             msg2 += ' (%s)' % name # which report has the error?
-            ErrorDialog(msg1, msg2, parent=self.uistate.window)
+            ErrorDialog(msg1, msg2, parent=self.uistate.window) # parent-OK
         except FilterError as msg:
             (msg1, msg2) = msg.messages()
-            ErrorDialog(msg1, msg2, parent=self.uistate.window)
+            ErrorDialog(msg1, msg2, parent=self.uistate.window) # parent-OK
         finally:
             return
 
@@ -1063,10 +1064,10 @@ def write_book_item(database, report_class, options, user):
         return report_class(database, options, user)
     except ReportError as msg:
         (msg1, msg2) = msg.messages()
-        ErrorDialog(msg1, msg2, parent=user.uistate.window)
+        ErrorDialog(msg1, msg2, parent=user.uistate.window) # parent-OK
     except FilterError as msg:
         (msg1, msg2) = msg.messages()
-        ErrorDialog(msg1, msg2, parent=user.uistate.window)
+        ErrorDialog(msg1, msg2, parent=user.uistate.window) # parent-OK
     except:
         LOG.error("Failed to write book item.", exc_info=True)
     return None

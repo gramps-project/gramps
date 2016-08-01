@@ -138,7 +138,7 @@ class PlaceRefEmbedList(EmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         if obj in self.get_skip_list(self.handle):
-            ErrorDialog(_("Place cycle detected"),
+            ErrorDialog(_("Place cycle detected"), # no-parent
                         _("The place you are adding is already enclosed by "
                           "this place"))
             return

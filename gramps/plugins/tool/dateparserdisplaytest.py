@@ -64,7 +64,7 @@ class DateParserDisplayTest(tool.Tool):
         if uistate:
             # Running with gui -> Show message
             self.parent_window = uistate.window
-            QuestionDialog(_("Start date test?"),
+            QuestionDialog(_("Start date test?"), # parent-OK
                 _("This test will create many persons and events " \
                     "in the current database. Do you really want to " \
                     "run this test?"),

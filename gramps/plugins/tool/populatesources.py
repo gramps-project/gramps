@@ -67,7 +67,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
         if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
-            OkDialog('Data generated',
+            OkDialog('Data generated', # no-parent
                      "The requested sources and citations were generated")
 
         self.close()

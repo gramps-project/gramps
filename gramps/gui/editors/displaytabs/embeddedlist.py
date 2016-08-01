@@ -576,7 +576,7 @@ class EmbeddedList(ButtonTab):
             from ...dialog import RunDatabaseRepair
             import traceback
             traceback.print_exc()
-            RunDatabaseRepair(str(msg))
+            RunDatabaseRepair(str(msg)) # no-parent
             return
 
         self.tree.set_model(self.model)

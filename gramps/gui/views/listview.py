@@ -445,7 +445,7 @@ class ListView(NavigationView):
             self.bookmarks.add(mlist[0])
         else:
             from ..dialog import WarningDialog
-            WarningDialog(
+            WarningDialog( # no-parent
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "nothing was selected."))
@@ -537,7 +537,7 @@ class ListView(NavigationView):
         """
         prompt = True
         if len(self.selected_handles()) > 1:
-            q = QuestionDialog2(
+            q = QuestionDialog2( # no-parent
                 _("Multiple Selection Delete"),
                 _("More than one item has been selected for deletion. "
                   "Select the option indicating how to delete the items:"),
@@ -563,7 +563,7 @@ class ListView(NavigationView):
                 #if descr == "":
                 descr = object.get_gramps_id()
                 self.uistate.set_busy_cursor(True)
-                QuestionDialog(_('Delete %s?') % descr, msg,
+                QuestionDialog(_('Delete %s?') % descr, msg, # no-parent
                                _('_Delete Item'), query.query_response)
                 self.uistate.set_busy_cursor(False)
             else:

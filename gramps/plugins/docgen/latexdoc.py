@@ -1243,7 +1243,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
                                 "Use your package manager to install "
                                 "python-imaging or python-pillow or "
                                 "python3-pillow")
-                    MessageHideDialog(title, message, 'interface.ignore-pil')
+                    MessageHideDialog(title, message, # no-parent
+                                      'interface.ignore-pil')
             self.emit(''.join(('%\n *** Error: cannot convert ', infile,
                                '\n ***                    to ', outfile,
                                '\n *** PIL not installed %\n')))

@@ -1177,7 +1177,7 @@ class FilterEditor(ManagedWindow):
             gfilter = self.clist.get_object(node)
             name = gfilter.get_name()
             if self.check_recursive_filters(self.namespace, name):
-                QuestionDialog( _('Delete Filter?'),
+                QuestionDialog( _('Delete Filter?'), # parent-OK
                                 _('This filter is currently being used '
                                   'as the base for other filters. Deleting'
                                   'this filter will result in removing all '

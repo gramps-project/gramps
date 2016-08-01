@@ -116,8 +116,8 @@ class OsmGps:
             try:
                 os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create tiles cache directory %s") %
-                             cache_path)
+                ErrorDialog(_("Can't create " # no-parent
+                              "tiles cache directory %s") % cache_path)
                 return self.vbox
 
         self.change_map(None, config.get("geography.map_service"))
@@ -138,7 +138,8 @@ class OsmGps:
             try:
                 os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create tiles cache directory for '%s'.") %
+                ErrorDialog(_("Can't create " # no-parent
+                              "tiles cache directory for '%s'.") %
                              constants.MAP_TITLE[map_type])
         config.set("geography.map_service", map_type)
         self.current_map = map_type

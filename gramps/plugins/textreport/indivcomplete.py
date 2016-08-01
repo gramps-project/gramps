@@ -549,7 +549,8 @@ class IndivCompleteReport(Report):
             media = self._db.get_media_from_handle(media_handle)
             if media is None:
                 from gramps.gui.dialog import RunDatabaseRepair
-                RunDatabaseRepair(_('Non existing media found in the Gallery'))
+                RunDatabaseRepair( # no-parent
+                    _('Non existing media found in the Gallery'))
                 return
             mime_type = media.get_mime_type()
             if not mime_type or not mime_type.startswith("image"):

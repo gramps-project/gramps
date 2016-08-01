@@ -7301,7 +7301,7 @@ class GedcomParser(UpdateCallback):
         # coding is now wrong.
         if self.genby.upper() == "LEGACY":
             fname = os.path.basename(self.filename)
-            WarningDialog(
+            WarningDialog( # no-parent
                _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
                  "could cause errors in the resulting database!")
                    % {'filename': fname, 'by': self.genby},

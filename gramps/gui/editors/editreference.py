@@ -297,6 +297,6 @@ class EditReference(ManagedWindow, DbGUIElement):
                              "different ID or leave blank to get the next "
                              "available ID value.") % {
                                  'id' : new_id}
-                ErrorDialog(msg1, msg2, parent=self.window)
+                ErrorDialog(msg1, msg2, parent=self.window) # parent-OK
                 return True
         return False

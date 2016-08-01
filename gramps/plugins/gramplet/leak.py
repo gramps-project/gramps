@@ -130,7 +130,7 @@ class Leak(Gramplet):
                     text += str(referrer) + '\n'
                 except ReferenceError:
                     pass
-            InfoDialog(_('Referrers of %d') % count, text,
+            InfoDialog(_('Referrers of %d') % count, text, # parent-OK
                        parent=self.uistate.window)
 
     def refers_to(self):
@@ -144,7 +144,7 @@ class Leak(Gramplet):
                     text += str(referent) + '\n'
                 except ReferenceError:
                     pass
-            InfoDialog(_('%d refers to') % count, text,
+            InfoDialog(_('%d refers to') % count, text, # parent-OK
                        parent=self.uistate.window)
 
     def display(self):

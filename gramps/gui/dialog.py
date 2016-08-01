@@ -52,7 +52,7 @@ try:
 except:
     ICON = None
 
-class SaveDialog:
+class SaveDialog: # parent-OK
     def __init__(self, msg1, msg2, task1, task2, parent=None):
         self.xml = Glade(toplevel='savedialog')
 
@@ -83,7 +83,7 @@ class SaveDialog:
         config.set('interface.dont-ask', self.dontask.get_active())
         self.top.destroy()
 
-class QuestionDialog:
+class QuestionDialog: # parent-OK
     def __init__(self, msg1, msg2, label, task, parent=None):
         self.xml = Glade(toplevel='questiondialog')
 
@@ -115,7 +115,7 @@ def on_activate_link(label, uri):
     display_url(uri)
     return True
 
-class QuestionDialog2:
+class QuestionDialog2: # parent-OK
     def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
 
@@ -147,7 +147,7 @@ class QuestionDialog2:
         self.top.destroy()
         return (response == Gtk.ResponseType.ACCEPT)
 
-class OptionDialog:
+class OptionDialog: # parent-OK
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel='optiondialog')
 
@@ -180,7 +180,7 @@ class OptionDialog:
     def get_response(self):
         return self.response
 
-class ErrorDialog(Gtk.MessageDialog):
+class ErrorDialog(Gtk.MessageDialog): # parent-OK
     def __init__(self, msg1, msg2="", parent=None):
 
         Gtk.MessageDialog.__init__(self, parent,
@@ -195,7 +195,7 @@ class ErrorDialog(Gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class RunDatabaseRepair(ErrorDialog):
+class RunDatabaseRepair(ErrorDialog): # parent-OK
     def __init__(self, msg, parent=None):
         ErrorDialog.__init__(
             self,
@@ -207,7 +207,7 @@ class RunDatabaseRepair(ErrorDialog):
               '%(gramps_bugtracker_url)s\n\n')
                       % {'gramps_bugtracker_url' : URL_BUGHOME} + msg, parent)
 
-class DBErrorDialog(ErrorDialog):
+class DBErrorDialog(ErrorDialog): # parent-OK
     def __init__(self, msg, parent=None):
         ErrorDialog.__init__(
             self,
@@ -217,7 +217,7 @@ class DBErrorDialog(ErrorDialog):
               "the Family Tree Manager. Select the database and "
               'click on the Repair button') + '\n\n' + msg, parent)
 
-class WarningDialog(Gtk.MessageDialog):
+class WarningDialog(Gtk.MessageDialog): # parent-OK
     def __init__(self, msg1, msg2="", parent=None):
 
         Gtk.MessageDialog.__init__(self, parent,
@@ -237,7 +237,7 @@ class WarningDialog(Gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class OkDialog(Gtk.MessageDialog):
+class OkDialog(Gtk.MessageDialog): # parent-OK
     def __init__(self, msg1, msg2="", parent=None):
 
         Gtk.MessageDialog.__init__(self, parent,
@@ -252,7 +252,7 @@ class OkDialog(Gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class InfoDialog:
+class InfoDialog: # parent-OK
     """
     Non modal dialog to show selectable info in a scrolled window
     """
@@ -285,7 +285,7 @@ class InfoDialog:
         #no matter how it finishes, destroy dialog
         dialog.destroy()
 
-class MissingMediaDialog:
+class MissingMediaDialog: # parent-OK
     def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
         self.xml = Glade(toplevel='missmediadialog')
 
@@ -332,14 +332,14 @@ class MissingMediaDialog:
         self.top.destroy()
 
     def warn(self, obj, obj2):
-        WarningDialog(
+        WarningDialog( # parent-OK
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog.\n"
               "Instead select one of the available options"),
             parent=self.top)
         return True
 
-class MultiSelectDialog:
+class MultiSelectDialog: # parent-OK
     def __init__(self, msg1_func, msg2_func, items, lookup,
                  cancel_func=None, no_func=None, yes_func=None,
                  parent=None):
@@ -405,14 +405,14 @@ class MultiSelectDialog:
         self.top.destroy()
 
     def warn(self, obj, obj2):
-        WarningDialog(
+        WarningDialog( # parent-OK
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog.\n"
               "Instead select one of the available options"),
             parent=self.top)
         return True
 
-class MessageHideDialog:
+class MessageHideDialog: # parent-OK
 
     def __init__(self, title, message, key, parent=None):
         self.xml = Glade(toplevel='hidedialog')
@@ -452,7 +452,7 @@ def main(args):
 
 
     def test_info(obj):
-        InfoDialog('The title',
+        InfoDialog('The title', # parent-OK
                    'This is a lot of info\n to show to all!',
                    parent=win)
 

@@ -78,7 +78,7 @@ class ChangedSinceBase(Rule):
             time_sec = time.mktime(time_tup)
         except ValueError:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(_("Wrong format of date-time"),
+            WarningDialog(_("Wrong format of date-time"), # no-parent
                 _("Only date-times in the iso format of yyyy-mm-dd "
                   "hh:mm:ss, where the time part is optional, are "
                   "accepted. %s does not satisfy.") % iso_date_time)
