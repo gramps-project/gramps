@@ -98,6 +98,7 @@ def importData(database, filename, user):
         code = top.get_object('codeset')
         code.set_active(0)
         dialog = top.toplevel
+        dialog.set_transient_for(user.uistate.window)
         dialog.run()
         enc = ['ANSEL', 'ANSEL', 'ANSI', 'ASCII', 'UTF-8']
         code_set = enc[ code.get_active()]
