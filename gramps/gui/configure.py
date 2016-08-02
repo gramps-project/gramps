@@ -66,6 +66,7 @@ from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
 from gramps.gen.errors import WindowActiveError
 from .spell import HAVE_GTKSPELL
+from gramps.gen.constfunc import win
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -1286,8 +1287,15 @@ class GrampsPreferences(ConfigureDialog):
         grid.set_row_spacing(6)
 
         current_line = 0
-        self.add_checkbox(grid, 
-                _('Add default source on GEDCOM import'), 
+        if win():
+            self.add_checkbox(grid,
+                    _('Use alternate Font handler for GUI and Reports '
+                      '(requires restart)'),
+                    current_line, 'preferences.alternate-fonthandler')
+
+            current_line += 1
+        self.add_checkbox(grid,
+                _('Add default source on GEDCOM import'),
                 current_line, 'preferences.default-source')
 
         current_line += 1

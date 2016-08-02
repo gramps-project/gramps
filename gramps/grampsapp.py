@@ -46,6 +46,7 @@ from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -449,7 +450,8 @@ def run():
         startcli(error, argpars)
 
 def main():
-    if win() and ('PANGOCAIRO_BACKEND' not in os.environ):
+    if win() and ('PANGOCAIRO_BACKEND' not in os.environ) and \
+            config.get('preferences.alternate-fonthandler'):
         os.environ['PANGOCAIRO_BACKEND'] = "fontconfig"
     errors = run()
     if errors and isinstance(errors, list):
