@@ -1294,7 +1294,8 @@ class GrampsPreferences(ConfigureDialog):
         current_line = 0
         if win():
             self.add_checkbox(grid,
-                    _('Use alternate Font handler for GUI and Reports (requires restart)'),
+                    _('Use alternate Font handler for GUI and Reports '
+                      '(requires restart)'),
                     current_line, 'preferences.alternate-fonthandler')
 
             current_line += 1
