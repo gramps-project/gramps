@@ -1,0 +1,82 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (22.0.0.1410)
+2 NAME Family Tree Maker for Windows
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+1 DEST GED55
+1 DATE 01 MAR 2016
+1 CHAR UTF-8
+1 FILE D:\Family Tree Maker\imp_FTM_LINK.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+1 NAME The Subm /Tester/
+1 ADDR 123 Main St., Winslow, PA, 12345
+2 ADR1 123 Main St.
+2 CITY Winslow
+2 STAE PA
+2 POST 12345
+0 @I0@ INDI
+1 NAME The /Tester/
+2 SOUR @S6@
+3 PAGE 777, record for The Tester
+3 _JUST Because it’s good
+1 BIRT
+2 DATE 29 DEC 1954
+2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140
+3 FORM Street, City, County, State, Country, Zip code
+1 _CIRC
+2 DATE 11 JAN 1955
+2 PLAC 456 Main St, Cleveland, Cuyahoga, Ohio, USA, 44140
+3 FORM Street, City, County, State, Country, Zip code
+1 _ELEC Mayor
+2 TYPE Small town
+2 DATE 1980
+2 PLAC Littetown, Smallcounty, Ohio, USA
+1 FAMS @F4211@
+1 _XYZ He should keep his zipper closed
+2 DATE 1979
+1 EVEN Celebration
+2 TYPE Independence Day
+2 DATE 4 JUL 1981
+0 @I1@ INDI
+1 NAME Mrs /Tester/
+1 RESI
+2 DATE 30 DEC 1954
+2 ADDR 123 Main St., Winslow, PA, 12345
+3 ADR1 123 Main St.
+3 CITY Winslow
+3 STAE PA
+3 POST 12345
+2 NOTE Address as event is legal, with PHON,FAX,EMAIL,WWW
+1 FAMS @F4211@
+0 @I2@ INDI
+1 NAME Tom /Tester/
+1 FAMC @F4211@
+0 @F4211@ FAM
+1 HUSB @I0@
+1 WIFE @I1@
+1 CHIL @I2@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1970
+2 PLAC St Rafaels Church, Bay Village, Cuyahoga, Ohio, USA
+1 _INFIDELITY
+2 DATE 1979
+2 PLAC Of Ill Repute, Shaker Heights, Ohio, USA
+1 _SEPR
+2 DATE 1980
+2 PLAC Cuyahoga, OHIO, USA
+0 @S6@ SOUR
+1 TITL Ohio Births, 1958-2002
+1 REPO @R1@
+0 @R1@ REPO
+1 NAME Testers Repository
+1 ADDR 123 High St., OSF village, CA, USA
+1 NOTE Testers Repository Record
+0 TRLR

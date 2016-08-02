@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2016-08-02" version="5.0.0-alpha1"/>
+    <researcher>
+      <resname>The Subm /Tester/</resname>
+      <resaddr>123 Main St.</resaddr>
+      <rescity>Winslow</rescity>
+      <resstate>PA</resstate>
+      <respostal>12345</respostal>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000500000005" change="1470145667" id="E0000">
+      <type>Birth</type>
+      <dateval val="1954-12-29"/>
+      <place hlink="_0000000600000006"/>
+    </event>
+    <event handle="_0000000700000007" change="1470145667" id="E0001">
+      <type>Circumcision</type>
+      <dateval val="1955-01-11"/>
+      <place hlink="_0000000800000008"/>
+    </event>
+    <event handle="_0000000900000009" change="1470145667" id="E0002">
+      <type>Elected</type>
+      <dateval val="1980"/>
+      <place hlink="_0000000a0000000a"/>
+      <description>Small town</description>
+    </event>
+    <event handle="_0000000c0000000c" change="1470145667" id="E0003">
+      <type>_XYZ</type>
+      <dateval val="1979"/>
+      <description>He should keep his zipper closed</description>
+    </event>
+    <event handle="_0000000d0000000d" change="1470145667" id="E0004">
+      <type>Independence Day</type>
+      <dateval val="1981-07-04"/>
+      <description>Celebration</description>
+    </event>
+    <event handle="_0000000f0000000f" change="1470145667" id="E0005">
+      <type>Residence</type>
+      <dateval val="1954-12-30"/>
+      <place hlink="_0000001100000011"/>
+      <noteref hlink="_0000001000000010"/>
+    </event>
+    <event handle="_0000001300000013" change="1470145667" id="E0006">
+      <type>Marriage</type>
+      <dateval val="1970"/>
+      <place hlink="_0000001400000014"/>
+    </event>
+    <event handle="_0000001500000015" change="1470145667" id="E0007">
+      <type>_INFIDELITY</type>
+      <dateval val="1979"/>
+      <place hlink="_0000001600000016"/>
+    </event>
+    <event handle="_0000001700000017" change="1470145667" id="E0008">
+      <type>Separation</type>
+      <dateval val="1980"/>
+      <place hlink="_0000001800000018"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000100000001" change="1470145667" id="I0000">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>The</first>
+        <surname>Tester</surname>
+        <citationref hlink="_0000000400000004"/>
+      </name>
+      <eventref hlink="_0000000500000005" role="Primary"/>
+      <eventref hlink="_0000000700000007" role="Primary"/>
+      <eventref hlink="_0000000900000009" role="Primary"/>
+      <eventref hlink="_0000000c0000000c" role="Primary"/>
+      <eventref hlink="_0000000d0000000d" role="Primary"/>
+      <parentin hlink="_0000000b0000000b"/>
+    </person>
+    <person handle="_0000000e0000000e" change="1470145667" id="I0001">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>Mrs</first>
+        <surname>Tester</surname>
+      </name>
+      <eventref hlink="_0000000f0000000f" role="Primary"/>
+      <parentin hlink="_0000000b0000000b"/>
+    </person>
+    <person handle="_0000001200000012" change="1470145667" id="I0002">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>Tom</first>
+        <surname>Tester</surname>
+      </name>
+      <childof hlink="_0000000b0000000b"/>
+    </person>
+  </people>
+  <families>
+    <family handle="_0000000b0000000b" change="1470145667" id="F4211">
+      <rel type="Married"/>
+      <father hlink="_0000000100000001"/>
+      <mother hlink="_0000000e0000000e"/>
+      <eventref hlink="_0000001300000013" role="Family"/>
+      <eventref hlink="_0000001500000015" role="Family"/>
+      <eventref hlink="_0000001700000017" role="Family"/>
+      <childref hlink="_0000001200000012"/>
+    </family>
+  </families>
+  <citations>
+    <citation handle="_0000000400000004" change="1470145667" id="C0000">
+      <page>777, record for The Tester</page>
+      <confidence>2</confidence>
+      <noteref hlink="_0000000300000003"/>
+      <sourceref hlink="_0000000200000002"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000000200000002" change="1470145667" id="S0006">
+      <stitle>Ohio Births, 1958-2002</stitle>
+      <reporef hlink="_0000001900000019" medium="Book"/>
+    </source>
+  </sources>
+  <places>
+    <placeobj handle="_0000000600000006" change="1470145667" id="P0000" type="Street">
+      <ptitle>123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140</ptitle>
+      <code>44140</code>
+      <pname value="123 High St"/>
+      <placeref hlink="_0000001e0000001e"/>
+    </placeobj>
+    <placeobj handle="_0000000800000008" change="1470145667" id="P0001" type="Street">
+      <ptitle>456 Main St, Cleveland, Cuyahoga, Ohio, USA, 44140</ptitle>
+      <code>44140</code>
+      <pname value="456 Main St"/>
+      <placeref hlink="_0000001e0000001e"/>
+    </placeobj>
+    <placeobj handle="_0000000a0000000a" change="1470145667" id="P0002" type="Unknown">
+      <ptitle>Littetown, Smallcounty, Ohio, USA</ptitle>
+      <pname value="Littetown, Smallcounty, Ohio, USA"/>
+    </placeobj>
+    <placeobj handle="_0000001100000011" change="1470145667" id="P0003" type="Address">
+      <ptitle>123 Main St., Winslow, PA, 12345</ptitle>
+      <pname value="123 Main St., Winslow, PA, 12345"/>
+      <location street="123 Main St." city="Winslow" state="PA" postal="12345"/>
+    </placeobj>
+    <placeobj handle="_0000001400000014" change="1470145667" id="P0004" type="Unknown">
+      <ptitle>St Rafaels Church, Bay Village, Cuyahoga, Ohio, USA</ptitle>
+      <pname value="St Rafaels Church, Bay Village, Cuyahoga, Ohio, USA"/>
+    </placeobj>
+    <placeobj handle="_0000001600000016" change="1470145667" id="P0005" type="Unknown">
+      <ptitle>Of Ill Repute, Shaker Heights, Ohio, USA</ptitle>
+      <pname value="Of Ill Repute, Shaker Heights, Ohio, USA"/>
+    </placeobj>
+    <placeobj handle="_0000001800000018" change="1470145667" id="P0006" type="Unknown">
+      <ptitle>Cuyahoga, OHIO, USA</ptitle>
+      <pname value="Cuyahoga, OHIO, USA"/>
+    </placeobj>
+    <placeobj handle="_0000001b0000001b" change="1470145667" id="P0007" type="Country">
+      <ptitle>USA</ptitle>
+      <pname value="USA"/>
+    </placeobj>
+    <placeobj handle="_0000001c0000001c" change="1470145667" id="P0008" type="State">
+      <ptitle>Ohio, USA</ptitle>
+      <pname value="Ohio"/>
+      <placeref hlink="_0000001b0000001b"/>
+    </placeobj>
+    <placeobj handle="_0000001d0000001d" change="1470145667" id="P0009" type="County">
+      <ptitle>Cuyahoga, Ohio, USA</ptitle>
+      <pname value="Cuyahoga"/>
+      <placeref hlink="_0000001c0000001c"/>
+    </placeobj>
+    <placeobj handle="_0000001e0000001e" change="1470145667" id="P0010" type="City">
+      <ptitle>Cleveland, Cuyahoga, Ohio, USA</ptitle>
+      <pname value="Cleveland"/>
+      <placeref hlink="_0000001d0000001d"/>
+    </placeobj>
+  </places>
+  <repositories>
+    <repository handle="_0000001900000019" change="1470145667" id="R0001">
+      <rname>Testers Repository</rname>
+      <type>Library</type>
+      <address>
+        <street>123 High St., OSF village, CA, USA</street>
+      </address>
+      <noteref hlink="_0000001a0000001a"/>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_0000000300000003" change="1470145667" id="N0000" type="Citation Justification">
+      <text>Because it’s good</text>
+    </note>
+    <note handle="_0000001000000010" change="1470145667" id="N0001" type="General">
+      <text>Address as event is legal, with PHON,FAX,EMAIL,WWW</text>
+    </note>
+    <note handle="_0000001a0000001a" change="1470145667" id="N0002" type="General">
+      <text>Testers Repository Record</text>
+    </note>
+  </notes>
+</database>
