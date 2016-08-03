@@ -282,7 +282,7 @@ class PlaceBaseView(ListView):
         mod = pmgr.load_plugin(serv)
         if mod:
             servfunc = eval('mod.' +  serv.mapservice)
-            servfunc()(self.dbstate.db, places)
+            servfunc()(self.dbstate.db, places, self.uistate)
         else:
             print('Failed to load map plugin, see Plugin Manager')
 

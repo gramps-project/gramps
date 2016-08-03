@@ -46,16 +46,18 @@ class MapService:
         self.items = None
         self.url = ''
 
-    def __call__(self, database, items):
+    def __call__(self, database, items, uistate):
         """Callable class, usable as a function. This guarantees the class is
            instantiated once when a service is registered. Afterward only calls
            occur
            database: Database to work on
            items: list of tuples (place_handle, description), where description
                   is None or a string to use for marker (eg 'birth John Doe')
+           uistate: This is only used for transient windows if needed
         """
         self.database = database
         self.items = items
+        self.uistate = uistate
         self.url = ''
         #An instance is called, we display the result
         self.calc_url()
