@@ -133,7 +133,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         NavigationView.__init__(self, title, pdata, dbstate, uistate,
                                 bm_type, nav_group)
 
-        OsmGps.__init__(self)
+        OsmGps.__init__(self, uistate)
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
         self.default_text = "Enter location here!"

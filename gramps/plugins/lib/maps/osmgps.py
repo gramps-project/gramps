@@ -85,7 +85,7 @@ class OsmGps:
     """
     This class is used to create a map
     """
-    def __init__(self):
+    def __init__(self, uistate):
         """
         Initialize the map
         """
@@ -105,6 +105,7 @@ class OsmGps:
         self.end_selection = None
         self.current_map = None
         self.places_found = None
+        self.uistate = uistate
 
     def build_widget(self):
         """
@@ -116,8 +117,9 @@ class OsmGps:
             try:
                 os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create " # no-parent
-                              "tiles cache directory %s") % cache_path)
+                ErrorDialog(_("Can't create " # parent-OK
+                              "tiles cache directory %s") % cache_path,
+                            parent=self.uistate.window)
                 return self.vbox
 
         self.change_map(None, config.get("geography.map_service"))
@@ -138,9 +140,10 @@ class OsmGps:
             try:
                 os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create " # no-parent
+                ErrorDialog(_("Can't create " # parent-OK
                               "tiles cache directory for '%s'.") %
-                             constants.MAP_TITLE[map_type])
+                              constants.MAP_TITLE[map_type],
+                            parent=self.uistate.window)
         config.set("geography.map_service", map_type)
         self.current_map = map_type
         http_proxy = get_env_var('http_proxy')
