@@ -227,8 +227,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
         self.end_selection = None
-        self.osm.grab_focus()
-        self.set_crosshair(config.get("geography.show_cross"))
+        if self.osm:
+            self.osm.grab_focus()
+            self.set_crosshair(config.get("geography.show_cross"))
 
     def do_size_request(self, requisition):
         """
@@ -271,8 +272,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()
-        self.osm.grab_focus()
-        self.set_crosshair(config.get("geography.show_cross"))
+        if self.osm:
+            self.osm.grab_focus()
+            self.set_crosshair(config.get("geography.show_cross"))
 
     def can_configure(self):
         """
@@ -610,6 +612,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Create all markers for the specified person.
         """
+        if self.marker_layer is None:
+            return
         self.remove_all_markers()
         self.remove_all_gps()
         self.remove_all_tracks()
