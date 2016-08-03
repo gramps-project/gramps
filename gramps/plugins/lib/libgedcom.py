@@ -7301,13 +7301,12 @@ class GedcomParser(UpdateCallback):
         # coding is now wrong.
         if self.genby.upper() == "LEGACY":
             fname = os.path.basename(self.filename)
-            WarningDialog( # parent-OK
-               _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
-                 "could cause errors in the resulting database!")
-                   % {'filename': fname, 'by': self.genby},
-               _("Look for nameless events."),
-               parent=self.user.uistate.window
-               )
+            self.user.warn(
+                _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
+                  "%(by)s, could cause errors in the resulting database!") %
+                {'filename': fname, 'by': self.genby},
+                _("Look for nameless events.")
+                )
 
     def __header_char(self, line, state):
         """
