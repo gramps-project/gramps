@@ -128,12 +128,12 @@ class DeepRelationshipPathBetween(Rule):
                     "  Each path is not necessarily the shortest path.")
 
     def prepare(self, db):
-        # FIXME: this should user the User class
+        # FIXME: this should use the User class
         from gramps.gui.utils import ProgressMeter
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 
-        progress = ProgressMeter(_('Finding relationship paths'))
+        progress = ProgressMeter(_('Finding relationship paths')) # no-parent
         progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
 
         filter_name = self.list[1]

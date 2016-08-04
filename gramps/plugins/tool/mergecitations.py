@@ -181,7 +181,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         # Save options
         self.options.handler.save_options()
 
-        self.progress = ProgressMeter(_('Checking Sources'), '',
+        self.progress = ProgressMeter(_('Checking Sources'), '', # parent-OK
                                       parent=self.user.uistate.window)
         self.progress.set_pass(_('Looking for citation fields'),
                                self.db.get_number_of_citations())

@@ -184,9 +184,9 @@ class Merge(tool.Tool,ManagedWindow):
                 pass
 
     def find_potentials(self, thresh):
-        self.progress = ProgressMeter(_('Find Duplicates'),
+        self.progress = ProgressMeter(_('Find Duplicates'), # parent-OK
                                       _('Looking for duplicate people'),
-                                     parent=self.window)
+                                      parent=self.window)
 
         index = 0
         males = {}

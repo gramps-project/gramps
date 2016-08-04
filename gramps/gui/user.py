@@ -68,9 +68,10 @@ class User(user.User):
         :returns: none
         """
         if self.uistate:
-            self._progress = ProgressMeter(title, parent=self.uistate.window)
+            self._progress = ProgressMeter(title, # parent-OK
+                                           parent=self.uistate.window)
         else:
-            self._progress = ProgressMeter(title)
+            self._progress = ProgressMeter(title) # parent-OK
         if steps > 0:
             self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:

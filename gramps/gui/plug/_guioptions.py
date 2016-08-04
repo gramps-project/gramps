@@ -114,7 +114,7 @@ class LastNameDialog(ManagedWindow):
             # build up the list of surnames, keeping track of the count for each
             # name (this can be a lengthy process, so by passing in the
             # dictionary we can be certain we only do this once)
-            progress = ProgressMeter(_('Finding Surnames'))
+            progress = ProgressMeter(_('Finding Surnames')) # no-parent
             progress.set_pass(_('Finding surnames'),
                               database.get_number_of_people())
             for person in database.iter_people():

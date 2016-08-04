@@ -64,7 +64,8 @@ class Progress:
     """
     def __init__(self, uistate):
         from gi.repository import Gtk
-        self.pm = ProgressMeter(_("Selecting Preview Data"), _('Selecting...'),
+        self.pm = ProgressMeter(_("Selecting Preview Data"), # parent-OK
+                                _('Selecting...'),
                                 parent=uistate.window)
         self.progress_cnt = 0
         self.title = _("Selecting...")

@@ -167,7 +167,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         self.cb = callback
         self.handle_to_action = {}
 
-        self.progress = ProgressMeter(
+        self.progress = ProgressMeter( # no-parent
             _('Extracting Information from Names'), '')
         self.progress.set_pass(_('Analyzing names'),
                                self.db.get_number_of_people())

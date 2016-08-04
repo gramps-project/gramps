@@ -77,8 +77,8 @@ class DateParserDisplayTest(tool.Tool):
 
 
     def run_tool(self):
-        self.progress = ProgressMeter(_('Running Date Test'),'',
-                                        parent=self.parent_window)
+        self.progress = ProgressMeter(_('Running Date Test'), '', # parent-OK
+                                      parent=self.parent_window)
         self.progress.set_pass(_('Generating dates'),
                                4)
         dates = []

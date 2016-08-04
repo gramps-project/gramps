@@ -103,7 +103,7 @@ def cross_table_duplicates(db, uistate):
         parent = uistate.window
     else:
         parent = None
-    progress = ProgressMeter(_('Checking Database'),'', parent)
+    progress = ProgressMeter(_('Checking Database'), '', parent) # parent-OK
     progress.set_pass(_('Looking for cross table duplicates'), 9)
     logging.info('Looking for cross table duplicates')
     total_nr_handles = 0
@@ -246,8 +246,8 @@ class CheckIntegrity:
         self.empty_objects = defaultdict(list)
         self.replaced_sourceref = []
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
-        self.progress = ProgressMeter(_('Checking Database'),'',
-                                    parent=self.parent_window)
+        self.progress = ProgressMeter(_('Checking Database'), '', # parent-OK
+                                      parent=self.parent_window)
         self.explanation = Note(_('Objects referenced by this note '
             'were referenced but missing so that is why they have been created '
             'when you ran Check and Repair on %s.') %

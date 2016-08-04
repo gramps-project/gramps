@@ -103,7 +103,7 @@ class CLIDialog:
 #
 #-------------------------------------------------------------------------
 
-class ProgressMeter:
+class ProgressMeter: # parent-OK
     """
     Progress meter class for Gramps.
 

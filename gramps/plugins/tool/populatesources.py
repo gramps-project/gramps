@@ -134,7 +134,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
 
-        self.progress = ProgressMeter(
+        self.progress = ProgressMeter( # no-parent
             'Generating data', '')
         self.progress.set_pass('Generating data',
                                num_sources*num_citations)

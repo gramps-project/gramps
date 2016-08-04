@@ -338,8 +338,8 @@ class TestcaseGenerator(tool.BatchTool):
         else:
             self.window = None
 
-        self.progress = ProgressMeter(_('Generating testcases'),'',
-                                        parent=self.window)
+        self.progress = ProgressMeter( # parent-OK
+            _('Generating testcases'), '', parent=self.window)
         self.transaction_count = 0;
 
         if self.options.handler.options_dict['lowlevel']:

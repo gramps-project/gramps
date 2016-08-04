@@ -82,7 +82,7 @@ class StyleListDisplay:
         self.sheetlist = stylesheetlist
 
         self.parent_window = parent_window
-        
+
         self.top = Glade(toplevel='styles')
         self.window = self.top.toplevel
 

@@ -305,7 +305,7 @@ class PluginStatus(ManagedWindow):
         except:
             print("Error: cannot open %s" % URL)
             return
-        pm = ProgressMeter(_("Refreshing Addon List"))
+        pm = ProgressMeter(_("Refreshing Addon List")) # no-parent
         pm.set_pass(header=_("Reading gramps-project.org..."))
         state = "read"
         rows = []
@@ -383,7 +383,8 @@ class PluginStatus(ManagedWindow):
         Get all addons from the wiki and install them.
         """
         from ..utils import ProgressMeter
-        pm = ProgressMeter(_("Install all Addons"), _("Installing..."), message_area=True)
+        pm = ProgressMeter( # no-parent
+            _("Install all Addons"), _("Installing..."), message_area=True)
         pm.set_pass(total=len(self.addon_model))
         errors = []
         for row in self.addon_model:
@@ -401,7 +402,8 @@ class PluginStatus(ManagedWindow):
         Toplevel method to get an addon.
         """
         from ..utils import ProgressMeter
-        pm = ProgressMeter(_("Installing Addon"), message_area=True)
+        pm = ProgressMeter( # no-parent
+            _("Installing Addon"), message_area=True)
         pm.set_pass(total=2, header=_("Reading gramps-project.org..."))
         pm.step()
         self.__get_addon(obj, callback=pm.append_message)
@@ -877,7 +879,7 @@ class ToolManagedWindowBase(ManagedWindow):
 
     def pre_run(self):
         from ..utils import ProgressMeter
-        self.progress = ProgressMeter(self.get_title())
+        self.progress = ProgressMeter(self.get_title()) # no-parent
 
     def run(self):
         raise NotImplementedError("tool needs to define a run() method")

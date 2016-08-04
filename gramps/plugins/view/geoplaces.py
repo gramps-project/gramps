@@ -268,7 +268,8 @@ class GeoPlaces(GeoGraphyView):
                 places_handle = dbstate.db.get_place_handles()
             except:
                 return
-            progress = ProgressMeter(self.window_name, can_cancel=False,
+            progress = ProgressMeter(self.window_name, # parent-OK
+                                     can_cancel=False,
                                      parent=self.uistate.window)
             length = len(places_handle)
             progress.set_pass(_('Selecting all places'), length)
@@ -279,7 +280,8 @@ class GeoPlaces(GeoGraphyView):
             progress.close()
         elif self.generic_filter:
             place_list = self.generic_filter.apply(dbstate.db)
-            progress = ProgressMeter(self.window_name, can_cancel=False,
+            progress = ProgressMeter(self.window_name, # parent-OK
+                                     can_cancel=False,
                                      parent=self.uistate.window)
             length = len(place_list)
             progress.set_pass(_('Selecting all places'), length)
