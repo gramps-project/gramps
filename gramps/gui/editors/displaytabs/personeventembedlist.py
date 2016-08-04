@@ -24,8 +24,6 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gi.repository import GObject
 from gi.repository import GLib
 
@@ -34,6 +32,8 @@ from gi.repository import GLib
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.display.name import displayer as name_displayer
 from .eventembedlist import EventEmbedList
@@ -126,10 +126,11 @@ class PersonEventEmbedList(EventEmbedList):
         handle change request of non native data
         """
         from ...dialog import WarningDialog
-        WarningDialog( # no-parent
-                    _("Cannot change Family"),
-                    _("You cannot change Family events in the Person Editor")
-                    )
+        WarningDialog( # parent-OK
+            _("Cannot change Family"),
+            _("You cannot change Family events in the Person Editor"),
+            parent=self.uistate.window)
+
     def _move_up_group(self, groupindex):
         """
         move up pressed on the group

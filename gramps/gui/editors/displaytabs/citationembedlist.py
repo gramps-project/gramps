@@ -24,8 +24,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 LOG = logging.getLogger(".citation")
 
@@ -41,6 +39,8 @@ from gi.repository import GObject, GLib
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import Citation, Source
 from ...dbguielement import DbGUIElement
@@ -168,8 +168,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # no-parent
-                                  self.__blocked_text())
+                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                                  self.__blocked_text(),
+                                  parent=self.uistate.window)
             elif isinstance(object, Citation):
                 try:
                     from .. import EditCitation
@@ -178,8 +179,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # no-parent
-                                  self.__blocked_text())
+                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                                  self.__blocked_text(),
+                                  parent=self.uistate.window)
             else:
                 raise ValueError("selection must be either source or citation")
 
@@ -251,8 +253,9 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # no-parent
-                                  self.__blocked_text())
+                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                                  self.__blocked_text(),
+                                  parent=self.uistate.window)
             else:
                 raise ValueError("selection must be either source or citation")
 
@@ -271,7 +274,8 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # no-parent
-                                  self.__blocked_text())
+                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                                  self.__blocked_text(),
+                                  parent=self.uistate.window)
             else:
                 raise ValueError("selection must be either source or citation")

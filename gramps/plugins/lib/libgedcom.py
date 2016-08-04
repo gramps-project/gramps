@@ -2779,7 +2779,7 @@ class GedcomParser(UpdateCallback):
             parent_window = self.user.uistate.window
         else:
             parent_window = None
-        self.user.info(message, "".join(self.errors),
+        self.user.info(message, "".join(self.errors), # parent-OK
                        parent=parent_window, monospaced=True)
 
     def __clean_up(self):

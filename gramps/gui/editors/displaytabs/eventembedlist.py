@@ -24,8 +24,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GLib
@@ -35,6 +33,8 @@ from gi.repository import GLib
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
@@ -264,8 +264,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref, self.object_added)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"), # no-parent
-                              self.__blocked_text())
+                WarningDialog(_("Cannot share this reference"), # parent-OK
+                              self.__blocked_text(),
+                              parent=self.uistate.window)
 
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
@@ -277,8 +278,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref[1], self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"), # no-parent
-                              self.__blocked_text())
+                WarningDialog(_("Cannot edit this reference"), # parent-OK
+                              self.__blocked_text(),
+                              parent=self.uistate.window)
         elif ref and ref[0] != self._WORKGROUP:
             #bring up family editor
             key = self._groups[ref[0]][0]
@@ -318,9 +320,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         handle change request of non native data
         """
         from ...dialog import WarningDialog
-        WarningDialog(_("Cannot change Person"), # no-parent
-                      _("You cannot change Person events in the Family Editor")
-                     )
+        WarningDialog( # parent-OK
+            _("Cannot change Person"),
+            _("You cannot change Person events in the Family Editor"),
+            parent=self.uistate.window)
 
     def _handle_drag(self, row, obj):
         """
@@ -340,14 +343,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                                       event, obj, self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog( # no-parent
+                WarningDialog( # parent-OK
                     _("Cannot edit this reference"),
                     _("This event reference cannot be edited at this time. "
                       "Either the associated event is already being edited "
                       "or another event reference that is associated with "
                       "the same event is being edited.\n\nTo edit this event "
-                      "reference, you need to close the event.")
-                    )
+                      "reference, you need to close the event."),
+                    parent=self.uistate.window)
         else:
             self.dropnotworkgroup(row, obj)
 

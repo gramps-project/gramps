@@ -957,8 +957,9 @@ class EditPerson(EditPrimary):
             if obj is None :
                 #notify user of error
                 from ..dialog import RunDatabaseRepair
-                RunDatabaseRepair( # no-parent
-                            _('Non existing media found in the Gallery'))
+                RunDatabaseRepair( # parent-OK
+                    _('Non existing media found in the Gallery'),
+                    parent=self.window)
             else :
                 self.load_photo(ref, obj)
         else:
@@ -1083,7 +1084,7 @@ class EditPerson(EditPrimary):
         #config.save()
 
 
-class GenderDialog(Gtk.MessageDialog):
+class GenderDialog(Gtk.MessageDialog): # parent-OK
     def __init__(self, parent=None):
         Gtk.MessageDialog.__init__(self,
                                 parent,

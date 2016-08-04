@@ -23,8 +23,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gi.repository import GObject, GLib
 
 #-------------------------------------------------------------------------
@@ -32,6 +30,8 @@ from gi.repository import GObject, GLib
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import RepoRef, Repository
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
@@ -164,15 +164,15 @@ class RepoEmbedList(EmbeddedList, DbGUIElement):
                     ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog( # no-parent
+                WarningDialog( # parent-OK
                     _("Cannot edit this reference"),
                     _("This repository reference cannot be edited at this "
                       "time. Either the associated repository is already "
                       "being edited or another repository reference that is "
                       "associated with the same repository is being edited."
                       "\n\nTo edit this repository reference, you need to "
-                      "close the repository.")
-                    )
+                      "close the repository."),
+                    parent=self.uistate.window)
 
 
     def edit_callback(self, name):

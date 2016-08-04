@@ -46,10 +46,10 @@ from gi.repository import Gtk
 # Gramps
 #
 #----------------------------------------------------------------
-from .pageview import PageView
-from ..actiongroup import ActionGroup
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from .pageview import PageView
+from ..actiongroup import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
 
@@ -252,10 +252,11 @@ class NavigationView(PageView):
                                       _("%s has been bookmarked") % name)
         else:
             from ..dialog import WarningDialog
-            WarningDialog( # no-parent
+            WarningDialog( # parent-OK
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
-                  "no one was selected."))
+                  "no one was selected."),
+                parent=self.uistate.window)
 
     def edit_bookmarks(self, obj):
         """

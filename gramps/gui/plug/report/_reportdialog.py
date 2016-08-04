@@ -446,7 +446,8 @@ class ReportDialog(ManagedWindow):
         hid = self.style_name
         if hid[-4:] == ".xml":
             hid = hid[0:-4]
-        self.target_fileentry = FileEntry(hid, _("Save As"), parent=self.window)
+        self.target_fileentry = FileEntry(hid, _("Save As"), # parent-OK
+                                          parent=self.window)
         spath = self.get_default_directory()
         self.target_fileentry.set_filename(spath)
         # need any labels at top:
@@ -729,7 +730,8 @@ def report(dbstate, uistate, person, report_class, options_class,
 #                if str(msg).startswith("'NoneType' object has no attribute"):
 #                    # "'NoneType' object has no attribute ..." usually means
 #                    # database corruption
-#                    RunDatabaseRepair(str(msg)) # no-parent
+#                    RunDatabaseRepair(str(msg),
+#                                      parent=self.window) # parent-OK
 #                else:
 #                    raise
                 raise

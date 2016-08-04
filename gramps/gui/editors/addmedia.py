@@ -167,7 +167,10 @@ class AddMedia(ManagedWindow):
             pname = str(media_path(self.dbase))
             if not os.path.exists(pname):
                 msgstr = _("Cannot import %s")
-                msgstr2 = _("Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing")
+                msgstr2 = _("Directory specified in preferences: "
+                            "Base path for relative media paths: "
+                            "%s does not exist. Change preferences "
+                            "or do not use relative path when importing")
                 ErrorDialog(msgstr % filename, msgstr2 % pname, # parent-OK
                             parent=self.window)
                 return

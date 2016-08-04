@@ -23,8 +23,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gi.repository import GObject
 from gi.repository import GLib
 
@@ -33,6 +31,8 @@ from gi.repository import GLib
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import Place, PlaceRef
 from gramps.gen.errors import WindowActiveError
 from ...dialog import ErrorDialog
@@ -138,9 +138,10 @@ class PlaceRefEmbedList(EmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         if obj in self.get_skip_list(self.handle):
-            ErrorDialog(_("Place cycle detected"), # no-parent
+            ErrorDialog(_("Place cycle detected"), # parent-OK
                         _("The place you are adding is already enclosed by "
-                          "this place"))
+                          "this place"),
+                        parent=self.uistate.window)
             return
         place = self.dbstate.db.get_place_from_handle(obj)
         placeref = PlaceRef()

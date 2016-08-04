@@ -31,8 +31,6 @@ import os
 import sys
 import subprocess
 import threading
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 # gtk is not included here, because this file is currently imported
 # by code that needs to run without the DISPLAY variable (eg, in
 # the cli only).
@@ -52,6 +50,8 @@ from gi.repository import GLib
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib.person import Person
 from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
@@ -586,8 +586,9 @@ def edit_object(dbstate, uistate, reftype, ref):
                              "alone")
 
             from .dialog import WarningDialog
-            WarningDialog(_("Cannot open new citation editor"), # no-parent
-                          blocked_text)
+            WarningDialog(_("Cannot open new citation editor"), # parent-OK
+                          blocked_text,
+                          parent=uistate.window)
     elif reftype == 'Place':
         try:
             place = dbstate.db.get_place_from_handle(ref)

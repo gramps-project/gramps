@@ -27,8 +27,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 log = logging.getLogger(".")
 
@@ -37,6 +35,8 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.const import TOOL_OPTIONS
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
@@ -132,10 +132,10 @@ class ActivePersonTool(Tool):
         if not uistate.get_active('Person'):
             # TODO: should we replace this with a callback?
             from ..dialog import ErrorDialog
-
-            ErrorDialog(_('Active person has not been set'), # no-parent
+            ErrorDialog(_('Active person has not been set'), # parent-OK
                         _('You must select an active person for this '
-                          'tool to work properly.'))
+                          'tool to work properly.'),
+                        parent=uistate.window)
             self.fail = True
             return
 

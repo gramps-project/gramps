@@ -689,7 +689,8 @@ class PedigreeView(NavigationView):
             else:
                 self.rebuild_trees(None)
         except AttributeError as msg:
-            RunDatabaseRepair(str(msg)) # no-parent
+            RunDatabaseRepair(str(msg), # parent-OK
+                              parent=self.uistate.window)
 
     def _connect_db_signals(self):
         """
@@ -1496,8 +1497,9 @@ class PedigreeView(NavigationView):
         try:
             alive = probably_alive(person, self.dbstate.db)
         except RuntimeError:
-            ErrorDialog(_('Relationship loop detected'), # no-parent
-                        _('A person was found to be his/her own ancestor.'))
+            ErrorDialog(_('Relationship loop detected'), # parent-OK
+                        _('A person was found to be his/her own ancestor.'),
+                        parent=self.uistate.window)
             alive = False
         lst[index] = [person, val, None, alive, None]
 

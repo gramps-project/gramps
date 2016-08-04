@@ -1043,7 +1043,7 @@ class EditFamily(EditPrimary):
         #try:
         self.__do_save()
         #except bsddb_db.DBRunRecoveryError as msg:
-        #    RunDatabaseRepair(msg[1]) # no-parent
+        #    RunDatabaseRepair(msg[1], parent=self.window) # parent-OK
 
     def __do_save(self):
         self.ok_button.set_sensitive(False)

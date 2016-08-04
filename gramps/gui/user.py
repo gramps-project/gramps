@@ -38,6 +38,7 @@ from gramps.gen import user
 from .utils import ProgressMeter
 from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
                      RunDatabaseRepair, InfoDialog, QuestionDialog2)
+
 #-------------------------------------------------------------------------
 #
 # User class
@@ -175,7 +176,7 @@ class User(user.User):
         else:
             RunDatabaseRepair(error, parent=None) # parent-OK
 
-    def info(self, msg1, infotext, parent=None, monospaced=False):
+    def info(self, msg1, infotext, parent=None, monospaced=False): # parent-OK
         """
         Calls the GUI InfoDialog
         """

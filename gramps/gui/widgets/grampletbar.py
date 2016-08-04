@@ -37,8 +37,6 @@ LOG = logging.getLogger('.grampletbar')
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import time
 import os
 import configparser
@@ -55,6 +53,8 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
@@ -541,11 +541,13 @@ class GrampletBar(Gtk.Notebook):
         """
         Called when restore defaults is clicked from the context menu.
         """
-        QuestionDialog(_("Restore to defaults?"), # no-parent
+        QuestionDialog(
+            _("Restore to defaults?"), # parent-OK
             _("The gramplet bar will be restored to contain its default "
               "gramplets.  This action cannot be undone."),
             _("OK"),
-            self.restore)
+            self.restore,
+            parent=self.uistate.window)
 
     def get_config_funcs(self):
         """

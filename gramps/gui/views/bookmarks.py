@@ -429,12 +429,15 @@ class CitationBookmarks(ListBookmarks):
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
             from gramps.gui.dialog import WarningDialog
-            WarningDialog(_("Cannot bookmark this reference"), # no-parent
-                          "Only Citations can be bookmarked in this view. "
-                          "You are probably trying to bookmark a Source in the "
-                          "Citation Tree View. In this view, only Citations "
-                          "can be bookmarked. To bookmark a Source, switch to "
-                          "the Source View")
+            WarningDialog( # parent-OK
+                _("Cannot bookmark this reference"),
+                # FIXME should this next string be translated?
+                "Only Citations can be bookmarked in this view. "
+                "You are probably trying to bookmark a Source in the "
+                "Citation Tree View. In this view, only Citations "
+                "can be bookmarked. To bookmark a Source, switch to "
+                "the Source View",
+                parent=self.uistate.window)
 
     def connect_signals(self):
         self.dbstate.db.connect('citation-delete', self.remove_handles)

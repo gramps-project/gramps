@@ -24,8 +24,6 @@
 # python
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import pickle
 
 #-------------------------------------------------------------------------
@@ -44,6 +42,8 @@ from gi.repository import Pango
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ...utils import is_right_click
 from .buttontab import ButtonTab
 
@@ -576,7 +576,7 @@ class EmbeddedList(ButtonTab):
             from ...dialog import RunDatabaseRepair
             import traceback
             traceback.print_exc()
-            RunDatabaseRepair(str(msg)) # no-parent
+            RunDatabaseRepair(str(msg), parent=self.uistate.window) # parent-OK
             return
 
         self.tree.set_model(self.model)

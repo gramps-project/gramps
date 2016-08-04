@@ -222,7 +222,7 @@ class User(user.User):
              ) % {'gramps_bugtracker_url' : URL_BUGHOME}
             + error + '\n\n')
 
-    def info(self, msg1, infotext, parent=None, monospaced=False):
+    def info(self, msg1, infotext, parent=None, monospaced=False): # parent-OK
         """
         Displays information to the CLI
         """

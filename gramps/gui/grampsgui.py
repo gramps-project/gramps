@@ -127,7 +127,7 @@ def _display_welcome_message(parent=None):
     Display a welcome message to the user.
     (This docstring seems very legacy/historical, not accurate.)
     """
-    _display_generic_message("master", 'behavior.betawarn', parent)
+    _display_generic_message("master", 'behavior.betawarn', parent=parent)
 
 def _display_generic_message(warning_type, config_key, parent=None):
     """
@@ -224,9 +224,9 @@ class Gramps:
         if (lin()
                 and glocale.lang != 'C'
                 and not gettext.find(GTK_GETTEXT_DOMAIN)):
-            _display_gtk_gettext_message(parent=self._vm.window)
+            _display_gtk_gettext_message(parent=self._vm.window) # parent-OK
 
-        _display_welcome_message(parent=self._vm.window)
+        _display_welcome_message(parent=self._vm.window) # parent-OK
 
         self._vm.init_interface()
 

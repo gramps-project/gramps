@@ -237,7 +237,7 @@ class EditPersonRef(EditSecondary):
         else:
             from ..dialog import ErrorDialog
 
-            ErrorDialog( # no-parent
+            ErrorDialog( # parent-OK
                 _('No person selected'),
-                _('You must either select a person or Cancel '
-                  'the edit'))
+                _('You must either select a person or Cancel the edit'),
+                parent=self.uistate.window)

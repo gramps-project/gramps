@@ -27,9 +27,6 @@ Relationship View
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from html import escape
 import pickle
 
@@ -55,6 +52,9 @@ from gi.repository import Pango
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import (ChildRef, EventRoleType, EventType, Family,
                             FamilyRelType, Name, Person, Surname)
 from gramps.gen.lib.date import Today
@@ -473,7 +473,8 @@ class RelationshipView(NavigationView):
             exc = traceback.format_exc()
             _LOG.error(str(msg) +"\n" + exc)
             from gramps.gui.dialog import RunDatabaseRepair
-            RunDatabaseRepair(str(msg)) # no-parent
+            RunDatabaseRepair(str(msg), # parent-OK
+                              parent=self.uistate.window)
             self.redrawing = False
             return True
 
@@ -1350,9 +1351,10 @@ class RelationshipView(NavigationView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family is None:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog( # no-parent
+            WarningDialog( # parent-OK
                 _('Broken family detected'),
-                _('Please run the Check and Repair Database tool'))
+                _('Please run the Check and Repair Database tool'),
+                parent=self.uistate.window)
             return
 
         father_handle = family.get_father_handle()

@@ -32,8 +32,6 @@ Paragraph/Font style editor
 # Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import logging
 log = logging.getLogger(".")
 import re
@@ -50,6 +48,8 @@ from gi.repository import Gtk, Gdk
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
             PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
@@ -81,6 +81,8 @@ class StyleListDisplay:
 
         self.sheetlist = stylesheetlist
 
+        self.parent_window = parent_window
+        
         self.top = Glade(toplevel='styles')
         self.window = self.top.toplevel
 
@@ -136,7 +138,8 @@ class StyleListDisplay:
             self.sheetlist.save()
         except IOError as msg:
             from ...dialog import ErrorDialog
-            ErrorDialog(_("Error saving stylesheet"), str(msg)) # no-parent
+            ErrorDialog(_("Error saving stylesheet"), str(msg), # parent-OK
+                        parent=self.parent_window)
         except:
             log.error("Failed to save stylesheet", exc_info=True)
 
