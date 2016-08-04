@@ -4104,9 +4104,6 @@ class GedcomParser(UpdateCallback):
         state.person.add_address(addr)
         self.__skip_subordinate_levels(state.level+1, state)
 
-
-
-
     def __person_email(self, line, state):
         """
         O INDI
