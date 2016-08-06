@@ -664,7 +664,7 @@ class ViewManager(CLIManager):
         """
         Initialize the interface.
         """
-        self.views = get_available_views()
+        self.views = self.get_available_views()
         defaults = views_to_show(self.views,
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
@@ -1596,6 +1596,60 @@ class ViewManager(CLIManager):
         about.run()
         about.destroy()
 
+    def get_available_views(self):
+        """
+        Query the views and determine what views to show and in which order
+
+        :Returns: a list of lists containing tuples (view_id, viewclass)
+        """
+        pmgr = GuiPluginManager.get_instance()
+        view_list = pmgr.get_reg_views()
+        viewstoshow = defaultdict(list)
+        for pdata in view_list:
+            mod = pmgr.load_plugin(pdata)
+            if not mod or not hasattr(mod, pdata.viewclass):
+                #import of plugin failed
+                try:
+                    lasterror = pmgr.get_fail_list()[-1][1][1]
+                except:
+                    lasterror = '*** No error found, '
+                    lasterror += 'probably error in gpr.py file ***'
+                ErrorDialog( # parent-OK
+                    _('Failed Loading View'),
+                    _('The view %(name)s did not load and reported an error.'
+                      '\n\n%(error_msg)s\n\n'
+                      'If you are unable to fix the fault yourself then you '
+                      'can submit a bug at %(gramps_bugtracker_url)s '
+                      'or contact the view author (%(firstauthoremail)s).\n\n'
+                      'If you do not want Gramps to try and load this view '
+                      'again, you can hide it by using the Plugin Manager '
+                      'on the Help menu.'
+                     ) % {'name': pdata.name,
+                          'gramps_bugtracker_url' : URL_BUGHOME,
+                          'firstauthoremail'      : pdata.authors_email[0]
+                              if pdata.authors_email else '...',
+                          'error_msg': lasterror},
+                    parent=self.uistate.window)
+                continue
+            viewclass = getattr(mod, pdata.viewclass)
+
+            # pdata.category is (string, trans-string):
+            if pdata.order == START:
+                viewstoshow[pdata.category[0]].insert(0, (pdata, viewclass) )
+            else:
+                viewstoshow[pdata.category[0]].append( (pdata, viewclass) )
+
+        # First, get those in order defined, if exists:
+        resultorder = [viewstoshow[cat]
+                        for cat in config.get("interface.view-categories")
+                            if cat in viewstoshow]
+
+        # Next, get the rest in some order:
+        resultorder.extend(viewstoshow[cat]
+            for cat in sorted(viewstoshow.keys())
+                if viewstoshow[cat] not in resultorder)
+        return resultorder
+
 def key_bindings(obj):
     """
     Display key bindings
@@ -1692,59 +1746,6 @@ def make_plugin_callback(pdata, dbstate, uistate):
     Makes a callback for a report/tool menu item
     """
     return lambda x: run_plugin(pdata, dbstate, uistate)
-
-def get_available_views():
-    """
-    Query the views and determine what views to show and in which order
-
-    :Returns: a list of lists containing tuples (view_id, viewclass)
-    """
-    pmgr = GuiPluginManager.get_instance()
-    view_list = pmgr.get_reg_views()
-    viewstoshow = defaultdict(list)
-    for pdata in view_list:
-        mod = pmgr.load_plugin(pdata)
-        if not mod or not hasattr(mod, pdata.viewclass):
-            #import of plugin failed
-            try:
-                lasterror = pmgr.get_fail_list()[-1][1][1]
-            except:
-                lasterror = '*** No error found, probably error in gpr.py file ***'
-            ErrorDialog(
-                _('Failed Loading View'),
-                _('The view %(name)s did not load and reported an error.\n\n'
-                  '%(error_msg)s\n\n'
-                  'If you are unable to fix the fault yourself then you can '
-                  'submit a bug at %(gramps_bugtracker_url)s or contact '
-                  'the view author (%(firstauthoremail)s).\n\n'
-                  'If you do not want Gramps to try and load this view again, '
-                  'you can hide it by using the Plugin Manager on the '
-                  'Help menu.') % {
-                    'name': pdata.name,
-                    'gramps_bugtracker_url' : URL_BUGHOME,
-                    'firstauthoremail': pdata.authors_email[0] if
-                            pdata.authors_email else '...',
-                    'error_msg': lasterror},
-                parent=None)
-            continue
-        viewclass = getattr(mod, pdata.viewclass)
-
-        # pdata.category is (string, trans-string):
-        if pdata.order == START:
-            viewstoshow[pdata.category[0]].insert(0, (pdata, viewclass) )
-        else:
-            viewstoshow[pdata.category[0]].append( (pdata, viewclass) )
-
-    # First, get those in order defined, if exists:
-    resultorder = [viewstoshow[cat]
-                    for cat in config.get("interface.view-categories")
-                        if cat in viewstoshow]
-
-    # Next, get the rest in some order:
-    resultorder.extend(viewstoshow[cat]
-        for cat in sorted(viewstoshow.keys())
-            if viewstoshow[cat] not in resultorder)
-    return resultorder
 
 def views_to_show(views, use_last=True):
     """

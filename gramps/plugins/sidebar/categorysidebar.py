@@ -36,7 +36,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gui.basesidebar import BaseSidebar
-from gramps.gui.viewmanager import get_available_views, views_to_show
 
 #-------------------------------------------------------------------------
 #
