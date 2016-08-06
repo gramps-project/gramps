@@ -153,7 +153,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.window.vbox.pack_start(self.scroll, True, True, 0)
         self.label2 = Gtk.Label()
         self.label2.set_markup('<span background="green" foreground="black"'
-                               '>%s</span>' % 
+                               '>%s</span>' %
              _('The green values in the row correspond '
                'to the current place values.'))
         self.label2.set_valign(Gtk.Align.END)
@@ -194,9 +194,6 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                self.oldvalue)
                              )
         for place in self.places:
-            if place[0] == '':
-                _LOG.info('No hierarchy yet: %s' % place)
-                continue
             p = (place[0].value, place[1], place[2], place[3])
             self.plist.append(p)
         # here, we could add value from geography names services ...
