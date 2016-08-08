@@ -1067,10 +1067,12 @@ class BasePage(object):
         if place_lat_long is None:
             return
         place_handle = place.get_handle()
+        event_date = event.get_date_object()
 
         # 0 = latitude, 1 = longitude, 2 - placetitle,
         # 3 = place handle, 4 = event date, 5 = event type
-        found = any(data[3] == place_handle for data in place_lat_long)
+        found = any(data[3] == place_handle and data[4] == event_date
+                        for data in place_lat_long)
         if not found:
             placetitle = _pd.display(self.dbase_, place)
             latitude  =  place.get_latitude()
@@ -1078,7 +1080,6 @@ class BasePage(object):
             if (latitude and longitude):
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
-                    event_date = event.get_date_object()
                     etype = event.get_type()
 
                     # only allow Birth, Death, Census, Marriage, and Divorce events...
