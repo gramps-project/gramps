@@ -12,6 +12,7 @@
 # Copyright (C) 2010      Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
 # Copyright (C) 2011      Tim G L Lyons
+# Copyright (C) 2012      lcc <lcc@6zap.com>
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2015      Craig J. Anderson
 #
@@ -126,6 +127,7 @@ class DetDescendantReport(Report):
         incl_private  - Whether to include private data
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
+        structure     - How to structure the report
         """
         Report.__init__(self, database, options, user)
 
@@ -159,6 +161,7 @@ class DetDescendantReport(Report):
         self.numbering = get_value('numbering')
         self.childref = get_value('desref')
         self.addimages = get_value('incphotos')
+        self.structure = get_value('structure')
         self.inc_names = get_value('incnames')
         self.inc_events = get_value('incevents')
         self.inc_addr = get_value('incaddresses')
@@ -169,6 +172,7 @@ class DetDescendantReport(Report):
         self.inc_paths = get_value('incpaths')
         self.inc_ssign = get_value('incssign')
         self.inc_materef = get_value('incmateref')
+
         pid = get_value('pid')
         self.center_person = self._db.get_person_from_gramps_id(pid)
         if self.center_person is None:
@@ -333,25 +337,29 @@ class DetDescendantReport(Report):
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
-        generation = 0
-
         self.numbers_printed = list()
-        for generation in range(len(self.gen_keys)):
-            if self.pgbrk and generation > 0:
-                self.doc.page_break()
-            self.doc.start_paragraph("DDR-Generation")
-            text = self._("Generation %d") % (generation+1)
-            mark = IndexMark(text, INDEX_TYPE_TOC, 2)
-            self.doc.write_text(text, mark)
-            self.doc.end_paragraph()
-            if self.childref:
-                self.prev_gen_handles = self.gen_handles.copy()
-                self.gen_handles.clear()
 
-            for key in self.gen_keys[generation]:
-                person_handle = self.map[key]
-                self.gen_handles[person_handle] = key
+        if self.structure == "by generation":
+            for generation in range(len(self.gen_keys)):
+                if self.pgbrk and generation > 0:
+                    self.doc.page_break()
+                self.doc.start_paragraph("DDR-Generation")
+                text = self._("Generation %d") % (generation+1)
+                mark = IndexMark(text, INDEX_TYPE_TOC, 2)
+                self.doc.write_text(text, mark)
+                self.doc.end_paragraph()
+                if self.childref:
+                    self.prev_gen_handles = self.gen_handles.copy()
+                    self.gen_handles.clear()
+                for key in self.gen_keys[generation]:
+                    person_handle = self.map[key]
+                    self.gen_handles[person_handle] = key
+                    self.write_person(key)
+        elif self.structure == "by lineage":
+            for key in sorted(self.map):
                 self.write_person(key)
+        else:
+            raise AttributeError("no such structure: '%s'" % self.structure)
 
         if self.inc_sources:
             if self.pgbrkenotes:
@@ -987,20 +995,18 @@ class DetDescendantOptions(MenuReportOptions):
         numbering.set_help(_("The numbering system to be used"))
         add_option("numbering", numbering)
 
+        structure = EnumeratedListOption(_("Report structure"),
+                                         "by generation")
+        structure.set_items([
+            ("by generation", _("show people by generations")),
+            ("by lineage", _("show people by lineage"))])
+        structure.set_help(_("How people are organized in the report"))
+        add_option("structure", structure)
+
         generations = NumberOption(_("Generations"), 10, 1, 100)
         generations.set_help(
             _("The number of generations to include in the report"))
         add_option("gen", generations)
-
-        pagebbg = BooleanOption(_("Page break between generations"), False)
-        pagebbg.set_help(
-            _("Whether to start a new page after each generation."))
-        add_option("pagebbg", pagebbg)
-
-        pageben = BooleanOption(_("Page break before end notes"), False)
-        pageben.set_help(
-            _("Whether to start a new page before the end notes."))
-        add_option("pageben", pageben)
 
         stdoptions.add_localization_option(menu, category)
 
@@ -1042,32 +1048,53 @@ class DetDescendantOptions(MenuReportOptions):
             _("Whether to add descendant references in child list."))
         add_option("desref", desref)
 
-        add_option = partial(menu.add_option, _("Include"))
+        pagebbg = BooleanOption(_("Page break between generations"), False)
+        pagebbg.set_help(
+            _("Whether to start a new page after each generation."))
+        add_option("pagebbg", pagebbg)
 
-        incnotes = BooleanOption(_("Include notes"), True)
-        incnotes.set_help(_("Whether to include notes."))
-        add_option("incnotes", incnotes)
+        pageben = BooleanOption(_("Page break before end notes"), False)
+        pageben.set_help(
+            _("Whether to start a new page before the end notes."))
+        add_option("pageben", pageben)
 
-        incattrs = BooleanOption(_("Include attributes"), False)
-        incattrs.set_help(_("Whether to include attributes."))
-        add_option("incattrs", incattrs)
+        add_option = partial(menu.add_option, _("Include") + " 1")
 
         incphotos = BooleanOption(
             _("Include Photo/Images from Gallery"), False)
         incphotos.set_help(_("Whether to include images."))
         add_option("incphotos", incphotos)
 
-        incnames = BooleanOption(_("Include alternative names"), False)
-        incnames.set_help(_("Whether to include other names."))
-        add_option("incnames", incnames)
-
         incevents = BooleanOption(_("Include events"), False)
         incevents.set_help(_("Whether to include events."))
         add_option("incevents", incevents)
 
+        incnotes = BooleanOption(_("Include notes"), True)
+        incnotes.set_help(_("Whether to include notes."))
+        add_option("incnotes", incnotes)
+
+        incmates = BooleanOption(_("Include spouses"), False)
+        incmates.set_help(
+            _("Whether to include detailed spouse information."))
+        add_option("incmates", incmates)
+
+        incmateref = BooleanOption(_("Include spouse reference"), False)
+        incmateref.set_help(_("Whether to include reference to spouse."))
+        add_option("incmateref", incmateref)
+
+        add_option = partial(menu.add_option, _("Include") + " 2")
+
         incaddresses = BooleanOption(_("Include addresses"), False)
         incaddresses.set_help(_("Whether to include addresses."))
         add_option("incaddresses", incaddresses)
+
+        incattrs = BooleanOption(_("Include attributes"), False)
+        incattrs.set_help(_("Whether to include attributes."))
+        add_option("incattrs", incattrs)
+
+        incnames = BooleanOption(_("Include alternative names"), False)
+        incnames.set_help(_("Whether to include other names."))
+        add_option("incnames", incnames)
 
         incsources = BooleanOption(_("Include sources"), False)
         incsources.set_help(_("Whether to include source references."))
@@ -1078,15 +1105,6 @@ class DetDescendantOptions(MenuReportOptions):
             _("Whether to include source notes in the "
               "Endnotes section. Only works if Include sources is selected."))
         add_option("incsrcnotes", incsrcnotes)
-
-        incmates = BooleanOption(_("Include spouses"), False)
-        incmates.set_help(
-            _("Whether to include detailed spouse information."))
-        add_option("incmates", incmates)
-
-        incmateref = BooleanOption(_("Include spouse reference"), False)
-        incmateref.set_help(_("Whether to include reference to spouse."))
-        add_option("incmateref", incmateref)
 
         incssign = BooleanOption(
             _("Include sign of succession ('+') in child-list"), True)
