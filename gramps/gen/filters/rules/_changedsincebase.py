@@ -25,8 +25,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import re
 import time
 
@@ -35,7 +33,10 @@ import time
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from . import Rule
+from gramps.gen.errors import FilterError
 
 #-------------------------------------------------------------------------
 #
@@ -77,8 +78,8 @@ class ChangedSinceBase(Rule):
             time_tup = time.strptime(iso_date_time, "%Y-%m-%d %H:%M:%S")
             time_sec = time.mktime(time_tup)
         except ValueError:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(_("Wrong format of date-time"), # no-parent
+            raise FilterError(
+                _("Wrong format of date-time"),
                 _("Only date-times in the iso format of yyyy-mm-dd "
                   "hh:mm:ss, where the time part is optional, are "
                   "accepted. %s does not satisfy.") % iso_date_time)

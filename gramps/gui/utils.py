@@ -412,7 +412,7 @@ def open_file_with_default_application(path):
 
     norm_path = os.path.normpath(path)
     if not os.path.exists(norm_path):
-        display_error_dialog(0, _("File does not exist"))
+        display_error_dialog(0, _("File %s does not exist") % norm_path)
         return
 
     if win():

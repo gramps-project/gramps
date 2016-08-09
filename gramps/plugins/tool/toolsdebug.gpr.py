@@ -118,5 +118,5 @@ authors_email = [""],
 category = TOOL_DEBUG,
 toolclass = 'PopulateSources',
 optionclass = 'PopulateSourcesOptions',
-tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+tool_modes = [TOOL_MODE_GUI]
   )

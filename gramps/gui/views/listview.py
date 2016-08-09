@@ -57,13 +57,13 @@ from .navigationview import NavigationView
 from ..actiongroup import ActionGroup
 from ..columnorder import ColumnOrder
 from gramps.gen.config import config
-from gramps.gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError, FilterError
 from ..filters import SearchBar
 from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
-from ..dialog import QuestionDialog, QuestionDialog2
+from ..dialog import QuestionDialog, QuestionDialog2, ErrorDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
@@ -328,7 +328,12 @@ class ListView(NavigationView):
                 #run only the part that determines what to show
                 self.list.set_model(None)
                 self.model.set_search(filter_info)
-                self.model.rebuild_data()
+                try:
+                    self.model.rebuild_data()
+                except FilterError as msg:
+                    (msg1, msg2) = msg.messages()
+                    ErrorDialog(msg1, msg2, # parent-OK
+                                parent=self.uistate.window)
 
             cput1 = time.clock()
             self.build_columns()
