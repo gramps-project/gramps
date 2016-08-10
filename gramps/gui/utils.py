@@ -373,7 +373,7 @@ def display_error_dialog (index, errorstrings, uistate=None):
             error = errorstrings
 
     ErrorDialog(_("Error from external program"), # parent-OK
-                error, parent=uistate.window) 
+                error, parent=uistate.window)
 
 def poll_external (args):
     """
