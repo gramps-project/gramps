@@ -128,7 +128,7 @@ class BasePluginManager:
             # if the path has not already been loaded, save it in the
             # registereddir_list list for use on reloading.
             self.__registereddir_set.add(dirpath)
-            self.__pgr.scan_dir(dirpath)
+            self.__pgr.scan_dir(dirpath, uistate=uistate)
 
         if load_on_reg:
             # Run plugins that request to be loaded on startup and

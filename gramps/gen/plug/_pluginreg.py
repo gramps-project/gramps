@@ -1108,7 +1108,7 @@ class PluginRegister:
     def add_plugindata(self, plugindata):
         self.__plugindata.append(plugindata)
 
-    def scan_dir(self, dir):
+    def scan_dir(self, dir, uistate=None):
         """
         The dir name will be scanned for plugin registration code, which will
         be loaded in :class:`PluginData` objects if they satisfy some checks.
@@ -1152,7 +1152,7 @@ class PluginRegister:
             try:
                 #execfile(full_filename,
                 exec (compile(stream, filename, 'exec'),
-                      make_environment(_=local_gettext), {})
+                      make_environment(_=local_gettext), {'uistate': uistate})
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename})
