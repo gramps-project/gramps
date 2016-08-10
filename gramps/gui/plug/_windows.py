@@ -661,8 +661,8 @@ class PluginStatus(ManagedWindow):
         pdata = self.__preg.get_plugin(id)
         if pdata.fpath and pdata.fname:
             open_file_with_default_application(
-                os.path.join(pdata.fpath, pdata.fname)
-                )
+                os.path.join(pdata.fpath, pdata.fname),
+                self.uistate)
 
 #-------------------------------------------------------------------------
 #

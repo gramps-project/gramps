@@ -67,8 +67,8 @@ _ = glocale.translation.gettext
 #
 #
 #-------------------------------------------------------------------------
-def make_launcher(path):
-    return lambda x: open_file_with_default_application(path)
+def make_launcher(path, uistate):
+    return lambda x: open_file_with_default_application(path, uistate)
 
 #-------------------------------------------------------------------------
 #
@@ -140,12 +140,12 @@ class GalleryTab(ButtonTab, DbGUIElement):
             img = Gtk.Image()
             img.set_from_icon_name("gramps-viewmedia", Gtk.IconSize.MENU)
             item.set_image(img)
-            item.connect('activate', make_launcher(media_path))
+            item.connect('activate', make_launcher(media_path, self.uistate))
             item.show()
             self.menu.append(item)
             mfolder, mfile = os.path.split(media_path)
             item = Gtk.MenuItem(label=_('Open Containing _Folder'))
-            item.connect('activate', make_launcher(mfolder))
+            item.connect('activate', make_launcher(mfolder, self.uistate))
             item.show()
             self.menu.append(item)
             item = Gtk.SeparatorMenuItem()

@@ -86,3 +86,4 @@ class MediaPreview(Gramplet):
         self.full_path = media_path_full(self.dbstate.db, media.get_path())
         mime_type = media.get_mime_type()
         self.photo.set_image(self.full_path, mime_type)
+        self.photo.set_uistate(self.uistate, None)

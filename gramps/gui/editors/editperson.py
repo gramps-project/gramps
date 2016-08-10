@@ -663,7 +663,7 @@ class EditPerson(EditPrimary):
             object_handle = photo.get_reference_handle()
             ref_obj = self.db.get_media_from_handle(object_handle)
             photo_path = media_path_full(self.db, ref_obj.get_path())
-            open_file_with_default_application(photo_path)
+            open_file_with_default_application(photo_path, self.uistate)
 
     def _popup_change_description(self, obj):
         """

@@ -139,6 +139,7 @@ class MediaView(ListView):
             })
 
         self.additional_uis.append(self.additional_ui())
+        self.uistate = uistate
 
     def navigation_type(self):
         return 'Media'
@@ -224,7 +225,7 @@ class MediaView(ListView):
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_media_from_handle(handle)
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
-            open_file_with_default_application(mpath)
+            open_file_with_default_application(mpath, self.uistate)
 
     def open_containing_folder(self, obj):
         """
@@ -235,7 +236,7 @@ class MediaView(ListView):
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             if mpath:
                 mfolder, mfile = os.path.split(mpath)
-                open_file_with_default_application(mfolder)
+                open_file_with_default_application(mfolder, self.uistate)
 
     def get_stock(self):
         """

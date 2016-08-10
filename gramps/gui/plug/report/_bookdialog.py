@@ -1024,7 +1024,7 @@ class BookDialog(DocReportDialog):
             return
 
         if self.open_with_app.get_active():
-            open_file_with_default_application(self.target_path)
+            open_file_with_default_application(self.target_path, self.uistate)
 
     def init_options(self, option_class):
         try:

@@ -706,7 +706,7 @@ def report(dbstate, uistate, person, report_class, options_class,
                         dialog.open_with_app.get_property('sensitive') == True
                         and dialog.open_with_app.get_active()):
                     out_file = dialog.options.get_output()
-                    open_file_with_default_application(out_file)
+                    open_file_with_default_application(out_file, self.uistate)
 
             except FilterError as msg:
                 (msg1, msg2) = msg.messages()

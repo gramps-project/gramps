@@ -673,7 +673,7 @@ class RelationshipView(NavigationView):
         Open this picture in the default picture viewer.
         """
         photo_path = media_path_full(self.dbstate.db, photo.get_path())
-        open_file_with_default_application(photo_path)
+        open_file_with_default_application(photo_path, self.uistate)
 
     def write_person_event(self, ename, event):
         if event:
