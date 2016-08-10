@@ -372,7 +372,7 @@ def display_error_dialog (index, errorstrings):
         else:
             error = errorstrings
 
-    ErrorDialog(_("Error from external program"), error) # no-parent
+    ErrorDialog(_("Error from external program"), error) # TODO no-parent
 
 def poll_external (args):
     """

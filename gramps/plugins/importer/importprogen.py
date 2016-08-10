@@ -511,7 +511,8 @@ class ProgenParser:
     def parse_progen_file(self):
         self.def_ = PG30_Def(self.fname)
         #print self.def_.diag()
-        self.progress = ProgressMeter(_("Import from Pro-Gen"), '') # no-parent
+        self.progress = ProgressMeter( # TODO no-parent
+                                      _("Import from Pro-Gen"), '')
 
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname)

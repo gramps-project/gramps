@@ -133,7 +133,8 @@ class DeepRelationshipPathBetween(Rule):
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 
-        progress = ProgressMeter(_('Finding relationship paths')) # no-parent
+        progress = ProgressMeter( # TODO no-parent
+                                 _('Finding relationship paths'))
         progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
 
         filter_name = self.list[1]

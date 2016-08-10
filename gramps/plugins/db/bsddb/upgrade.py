@@ -799,7 +799,7 @@ def gramps_upgrade_16(self):
              "Tools -> Family Tree Processing -> Merge\n"
              "in order to merge citations that contain similar\n"
              "information")
-    InfoDialog(_('Upgrade Statistics'), txt, monospaced=True) # no-parent
+    InfoDialog(_('Upgrade Statistics'), txt, monospaced=True) # TODO no-parent
 
 def upgrade_media_list_16(self, media_list):
     new_media_list = []

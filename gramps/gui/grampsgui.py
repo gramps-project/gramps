@@ -281,13 +281,13 @@ def __startgramps(errors, argparser):
         #handle first existing errors in GUI fashion
         if errors:
             for error in errors:
-                ErrorDialog(error[0], error[1]) # no-parent
+                ErrorDialog(error[0], error[1]) # TODO no-parent
             Gtk.main_quit()
             sys.exit(1)
 
         if argparser.errors:
             for error in argparser.errors:
-                ErrorDialog(error[0], error[1]) # no-parent
+                ErrorDialog(error[0], error[1]) # TODO no-parent
             Gtk.main_quit()
             sys.exit(1)
 

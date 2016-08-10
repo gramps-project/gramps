@@ -45,6 +45,7 @@ import logging
 #------------------------------------------------------------------------
 from gramps.gen.utils.image import resize_to_jpeg
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, PROGRAM_NAME, URL_HOMEPAGE
+from gramps.gen.errors import ReportError
 from gramps.version import VERSION
 from gramps.gen.plug.docgen import BaseDoc, TextDoc, URL_PATTERN
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
@@ -268,9 +269,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         if from_fname != dest:
             shutil.copyfile(from_fname, dest)
         elif self.warn_dir:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog( # no-parent
-                _("Possible destination error") + "\n" +
+            raise ReportError(
+                _("Possible destination error"),
                 _("You appear to have set your target directory "
                   "to a directory used for data storage. This "
                   "could create problems with file management. "
