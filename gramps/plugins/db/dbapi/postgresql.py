@@ -94,15 +94,10 @@ class Postgresql:
     def rollback(self):
         self.connection.rollback()
 
-    def try_execute(self, sql):
-        sql = self._hack_query(sql)
-        sql = sql.replace("BLOB", "bytea")
-        try:
-            self.cursor.execute(sql)
-        except Exception as exc:
-            self.cursor.execute("rollback")
-            #print("ERROR:", sql)
-            #print(str(exc))
+    def table_exists(self, table):
+        self.cursor.execute("SELECT COUNT(*) FROM information_schema.tables "
+                            "WHERE table_name=?;", [table])
+        return self.fetchone()[0] != 0
 
     def close(self):
         self.connection.close()
