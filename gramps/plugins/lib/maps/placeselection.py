@@ -88,7 +88,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
             ManagedWindow.__init__(self, uistate, [], PlaceSelection)
         except WindowActiveError:
             return
-        OsmGps.__init__(self)
+        OsmGps.__init__(self, uistate)
         self.uistate = uistate
         self.dbstate = dbstate
         self.places = []
