@@ -55,6 +55,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from .osmgps import OsmGps
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
+from gramps.gen.utils.place import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
@@ -261,6 +262,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
             latn = place.get_latitude()
             lonn = place.get_longitude()
             if latn and lonn:
+                latn, lonn = conv_lat_lon(latn, lonn, "D.D8")
                 if (math.hypot(lat-float(latn),
                                lon-float(lonn)) <= rds) == True:
                     (country, state, county,
