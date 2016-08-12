@@ -260,6 +260,7 @@ class DocReportDialog(ReportDialog):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
         docgen_plugin = self.format_menu.get_active_plugin()
+        self.basedocname = docgen_plugin.get_basedocname()
         self.format = docgen_plugin.get_basedoc()
         format_name = docgen_plugin.get_extension()
         self.options.handler.set_format_name(format_name)

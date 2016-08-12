@@ -172,8 +172,7 @@ class AsciiDoc(BaseDoc, TextDoc):
         try:
             self.file = open(self.filename, "w", errors='backslashreplace')
         except Exception as msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise ReportError(errmsg)
+            raise ReportError(_("Could not create %s") % self.filename, msg)
 
         self.in_cell = 0
         self.text = ""
