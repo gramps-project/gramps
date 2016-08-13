@@ -5,22 +5,22 @@
     <prefix name="default">${env:JHBUILD_PREFIX}</prefix>
     <destination overwrite="yes">${env:HOME}/Desktop</destination>
     <run-install-name-tool/>
-    <launcher-script>${project}/gramps.launcher</launcher-script >
+
     <!-- Indicate the active gtk version to use. This is needed only
 	 for gtk+-3.0 projects. -->
     <gtk>gtk+-3.0</gtk>
   </meta>
 
   <plist>${project}/Info.plist</plist>
-  <!-- We have to have this, but the result is ignored. -->
+  <!-- Build gramps-launcher with:
+          gcc -L$PREFIX `python-config --cflags --ldflags` \
+              -o $PREFIX/bin/gramps-launcher \
+	      path/to/gtk-mac-bundler/examples/python-launcher.c
+       with the obvious substitution.
+  -->
  <main-binary>
-     ${prefix}/bin/gramps
+     ${prefix}/bin/gramps-launcher
   </main-binary>
-
-  <!-- We need to pack our own Python to avoid compatibility problems. -->
-  <binary dest="${bundle}/Contents/MacOS">
-    ${prefix}/bin/python
-  </binary>
 
   <!-- Copy in GTK+ modules. Note the use of the
        "${pkg:module:variable}" macro, which evaluates to a pkg-config
@@ -128,6 +128,10 @@
     ${prefix}/share/locale
   </translations>
 
+  <!-- Our launcher script isn't a shell script any more, and our binary really is a binary. -->
+  <data dest="${bundle}/Contents/Resources">
+    ${project}/gramps_launcher.py
+  </data>
 
   <!-- We have to pull in the python modules, which are mixed python
        and loadable modules.  -->

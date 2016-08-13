@@ -26,5 +26,7 @@
     <string>Copyright 1997 - 2016 The Gramps Team, GNU General Public License.</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.5</string>
+    <key>GtkOSXLaunchScriptFile</key>
+    <string>gramps_launcher.py</string>
 </dict>
 </plist>
