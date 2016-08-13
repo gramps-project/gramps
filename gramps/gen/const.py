@@ -252,6 +252,7 @@ NO_SURNAME = "(%s)" % _("surname|none")
 NO_GIVEN = "(%s)" % _("given-name|none")
 ARABIC_COMMA = "،"
 ARABIC_SEMICOLON = "؛"
+DOCGEN_OPTIONS = 'Docgen Options'
 
 #-------------------------------------------------------------------------
 #

@@ -45,9 +45,8 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale, URL_MANUAL_PAGE
-_ = glocale.translation.gettext
 from gramps.gen.config import config
+from gramps.gen.const import URL_MANUAL_PAGE, DOCGEN_OPTIONS
 from gramps.gen.errors import (DatabaseError, FilterError, ReportError,
                                WindowActiveError)
 from ...utils import open_file_with_default_application
@@ -62,6 +61,8 @@ from ...managedwindow import ManagedWindow
 from ._stylecombobox import StyleComboBox
 from ._styleeditor import StyleListDisplay
 from ._fileentry import FileEntry
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
 # Private Constants
@@ -606,8 +607,8 @@ class ReportDialog(ManagedWindow):
 
         self.init_doc_options(self.doc_option_class)
         menu = self.doc_options.menu
-        for name in menu.get_option_names('Document Options'):
-            option = menu.get_option('Document Options', name)
+        for name in menu.get_option_names(DOCGEN_OPTIONS):
+            option = menu.get_option(DOCGEN_OPTIONS, name)
             # override option default with xml-saved value:
             if name in self.doc_options.options_dict:
                 option.set_value(self.doc_options.options_dict[name])

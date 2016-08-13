@@ -59,7 +59,7 @@ from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
                                     CATEGORY_GRAPHVIZ, CATEGORY_CODE,
                                     ReportOptions, append_styles)
 from gramps.gen.plug.report._paper import paper_sizes
-from gramps.gen.const import USER_HOME
+from gramps.gen.const import USER_HOME, DOCGEN_OPTIONS
 from gramps.gen.dbstate import DbState
 from ..grampscli import CLIManager
 from ..user import User
@@ -576,15 +576,15 @@ class CommandLineReport:
         self.doc_options.load_previous_values()
         docgen_menu = self.doc_options.menu
         report_menu = self.option_class.menu # "help" checks the option type
-        for oname in docgen_menu.get_option_names('Document Options'):
-            docgen_opt = docgen_menu.get_option('Document Options', oname)
+        for oname in docgen_menu.get_option_names(DOCGEN_OPTIONS):
+            docgen_opt = docgen_menu.get_option(DOCGEN_OPTIONS, oname)
             if oname in self.options_str_dict and oname in doc_options_dict:
                 doc_options_dict[oname] = _convert_str_to_match_type(
                     self.options_str_dict[oname], doc_options_dict[oname])
                 self.options_str_dict.pop(oname)
             if oname in doc_options_dict:
                 docgen_opt.set_value(doc_options_dict[oname])
-            report_menu.add_option('Document Options', oname, docgen_opt)
+            report_menu.add_option(DOCGEN_OPTIONS, oname, docgen_opt)
         for oname in doc_options_dict: # enable "help"
             self.options_dict[oname] = doc_options_dict[oname]
             self.options_help[oname] = self.doc_options.options_help[oname][:3]

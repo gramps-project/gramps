@@ -37,8 +37,9 @@ from io import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
+from gramps.gen.const import DOCGEN_OPTIONS
 from gramps.gen.errors import ReportError
+from gramps.gen.plug.docgen import BaseDoc, DrawDoc, SOLID, FONT_SANS_SERIF
 from gramps.gen.plug.menu import EnumeratedListOption
 from gramps.gen.plug.report import DocOptions
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -335,8 +336,7 @@ class SvgDrawDocOptions(DocOptions):
         Add options to the document menu for the docgen.
         """
 
-        # next line for internal use only, never will be in UI: don't translate
-        category_name = 'Document Options'
+        category_name = DOCGEN_OPTIONS
 
         background = EnumeratedListOption(_('SVG background color'),
                                           'transparent')

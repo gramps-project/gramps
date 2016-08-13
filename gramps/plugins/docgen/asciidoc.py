@@ -32,9 +32,10 @@ ACSII document generator.
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import DOCGEN_OPTIONS
+from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc,
                                     PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
-from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import NumberOption
 from gramps.gen.plug.report import DocOptions
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -457,8 +458,7 @@ class AsciiDocOptions(DocOptions):
         Add options to the document menu for the AsciiDoc docgen.
         """
 
-        # next line for internal use only, never will be in UI: don't translate
-        category_name = 'Document Options'
+        category_name = DOCGEN_OPTIONS
 
         linechars = NumberOption(_('Characters per line'), 72, 20, 9999)
         linechars.set_help(_("The number of characters per line"))
