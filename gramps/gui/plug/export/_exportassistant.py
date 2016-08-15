@@ -120,6 +120,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         ManagedWindow.set_window(self, self, None,
             self.top_title, isWindow=True)
         self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+        self.set_modal(True)
 
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
