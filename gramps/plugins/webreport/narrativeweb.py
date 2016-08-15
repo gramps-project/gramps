@@ -6285,7 +6285,7 @@ class PersonPages(BasePage):
         # graph is being created?
         if self.report.options["ancestortree"]:
             if self.usecms:
-                fname = "".join([self.target_uri, "css", "ancestortree.css"])
+                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
             else:
                 fname = "/".join(["css", "ancestortree.css"])
             url = self.report.build_url_fname(fname, None, self.uplink)
