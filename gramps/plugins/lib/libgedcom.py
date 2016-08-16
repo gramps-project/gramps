@@ -7352,7 +7352,7 @@ class GedcomParser(UpdateCallback):
             fname = os.path.basename(self.filename)
             self.user.warn(
                 _("Import of GEDCOM file %(filename)s with DEST=%(by)s, "
-                  "%(by)s, could cause errors in the resulting database!") %
+                  "could cause errors in the resulting database!") %
                 {'filename': fname, 'by': self.genby},
                 _("Look for nameless events.")
                 )
