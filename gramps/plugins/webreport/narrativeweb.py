@@ -8000,7 +8000,7 @@ class NavWebReport(Report):
             of.flush()
             tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(string_io.getvalue())
-            tarinfo.mtime = date if date is not None else time.time()
+            tarinfo.mtime = date if date != 0 else time.time()
             if not win():
                 tarinfo.uid = os.getuid()
                 tarinfo.gid = os.getgid()
