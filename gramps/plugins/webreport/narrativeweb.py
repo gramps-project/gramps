@@ -9989,7 +9989,7 @@ CONTRACTIONS_DICT = {
     # ca Catalan validSubLocales="ca_AD ca_ES"
     "ca" : [(("l·", "L·"), "L")],
     # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
-    "cs" : [(("ch", "cH", "Ch", "CH"), "Ch")],
+    "cs" : [(("ch", "cH", "Ch", "CH"), "CH")],
     # Danish validSubLocales="da_DK" Danish_Denmark
     "da" : [(("aa", "Aa", "AA"), "Å")],
     # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
