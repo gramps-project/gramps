@@ -6499,7 +6499,7 @@ class PersonPages(BasePage):
 
         # add narrative-maps style sheet
         if self.usecms:
-            fname = "".join([self.target_uri, "css", "narrative-maps.css"])
+            fname = "/".join([self.target_uri, "css", "narrative-maps.css"])
         else:
             fname = "/".join(["css", "narrative-maps.css"])
         url = self.report.build_url_fname(fname, None, self.uplink)
