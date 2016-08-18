@@ -13,7 +13,7 @@
 
   <plist>${project}/Info.plist</plist>
   <!-- Build gramps-launcher with:
-          gcc -L$PREFIX `python-config --cflags --ldflags` \
+          gcc -L$PREFIX `python-config -\-cflags -\-ldflags` \
               -o $PREFIX/bin/gramps-launcher \
 	      path/to/gtk-mac-bundler/examples/python-launcher.c
        with the obvious substitution.
