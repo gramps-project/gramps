@@ -68,8 +68,8 @@ def get_family_handle_people(db, exclude_handle, family_handle):
 
     def possibly_add_handle(h):
         if h != None and h != exclude_handle:
-            people.add(db.get_person_from_handle(h))
-            
+            people.add(h)
+
     possibly_add_handle(family.get_father_handle())
     possibly_add_handle(family.get_mother_handle())
 
@@ -109,7 +109,8 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
 
     family_people = get_person_family_people(db, person, handle)
     for family_person in family_people:
-        return_paths += find_deep_relations(db, progress, family_person, person_path, seen, target_people)
+        pers = db.get_person_from_handle(family_person)
+        return_paths += find_deep_relations(db, progress, pers, person_path, seen, target_people)
         if progress: progress.step()
 
     return return_paths
