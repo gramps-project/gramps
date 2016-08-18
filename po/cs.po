@@ -12032,7 +12032,7 @@ msgstr "Další jména"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:108
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1276
 msgid "Enclosed By"
-msgstr "Uzavřel"
+msgstr "Ohraničeno"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:141
 msgid "Place cycle detected"
@@ -15120,7 +15120,7 @@ msgid ""
 "reflected in the place itself, for places that it encloses."
 msgstr ""
 "<b>Poznámka:</b> Jakákoli změna informací ohraničujícího místa se projeví u "
-"místa samotného a také u všech míst, která zahrnuje."
+"místa samotného a také u všech míst, která ohraničuje."
 
 #: ../gramps/gui/glade/editreporef.glade:127
 msgid "_Media Type:"
@@ -20662,7 +20662,7 @@ msgstr "Zeměpisná délka"
 #: ../gramps/plugins/export/exportcsv.py:287
 #: ../gramps/plugins/importer/importcsv.py:238
 msgid "Enclosed_by"
-msgstr "Uzavřel"
+msgstr "Ohraničeno"
 
 #: ../gramps/plugins/export/exportcsv.py:339
 #, python-brace-format
@@ -21936,7 +21936,7 @@ msgstr "Gramplet pro generování kódů SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1268
 msgid "Place Enclosed By"
-msgstr "Vyhovují místa ohraničená konkrétním místem"
+msgstr "Misto ohraničeno"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
 msgid "Gramplet showing the places enclosed by the active place"
@@ -21944,7 +21944,7 @@ msgstr "Gramplet zobrazující místa ohraničená aktivním místem"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
 msgid "Place Encloses"
-msgstr "Ohraničení místa"
+msgstr "Místo ohraničuje"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1283
 msgid "Gramplet showing the places that the active place encloses"
@@ -21952,7 +21952,7 @@ msgstr "Gramplet zobrazující místa, která ohraničuje aktivní místo"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1290
 msgid "Encloses"
-msgstr "Ohraničení"
+msgstr "Ohraničuje"
 
 #: ../gramps/plugins/gramplet/leak.py:93
 msgid "Uncollected object"
@@ -23340,15 +23340,15 @@ msgstr "kód"
 
 #: ../gramps/plugins/importer/importcsv.py:237
 msgid "Enclosed by"
-msgstr "Uzavřel"
+msgstr "Ohraničeno"
 
 #: ../gramps/plugins/importer/importcsv.py:237
 msgid "enclosed by"
-msgstr "uzavřel"
+msgstr "ohraničeno"
 
 #: ../gramps/plugins/importer/importcsv.py:238
 msgid "enclosed_by"
-msgstr "uzavřel"
+msgstr "ohraničeno"
 
 #: ../gramps/plugins/importer/importcsv.py:266
 #, python-format
@@ -34999,15 +34999,15 @@ msgstr "Zda zahrnout sloupec úmrtí"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9600
 msgid "Include a column for partners on the index pages"
-msgstr "Zahrnout sloupec s rodiči na indexových stránkách"
+msgstr "Zahrnout sloupec s partnery na indexových stránkách"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9602
 msgid "Whether to include a partners column"
-msgstr "Zda zahrnout sloupec rodičů"
+msgstr "Zda zahrnout sloupec partnerů"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9605
 msgid "Include a column for parents on the index pages"
-msgstr "Zahrnout sloupec s daty úmrtí na indexových stránkách"
+msgstr "Zahrnout sloupec s rodiči na indexových stránkách"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9607
 msgid "Whether to include a parents column"
