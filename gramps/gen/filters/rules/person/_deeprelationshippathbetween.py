@@ -94,7 +94,9 @@ def get_person_family_people(db, person, person_handle):
 def find_deep_relations(db, progress, person, path, seen, target_people):
     if len(target_people) < 1:
         return []
-    
+
+    if person is None:
+        return []
     handle = person.get_handle()
     if handle in seen:
         return []
