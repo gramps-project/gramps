@@ -61,7 +61,7 @@ class GtkHandlerTest(unittest.TestCase):
 #             wibble
 #         except:
 #             l.error(log_message,exc_info=True)
-# 
+#
 #         while Gtk.events_pending():
 #             Gtk.main_iteration()
 
