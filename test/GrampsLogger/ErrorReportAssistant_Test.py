@@ -58,7 +58,7 @@ class ErrorReportAssistantTest(TestCaseBase):
 #         error_detail="Test error"
 #         ass = _errorreportassistant.ErrorReportAssistant(error_detail=error_detail,
 #                                                                rotate_handler=rh)
-# 
+#
 #         assert ass._error_detail == error_detail
 
         l.removeHandler(rh)
