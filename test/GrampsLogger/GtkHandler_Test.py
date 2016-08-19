@@ -56,13 +56,14 @@ class GtkHandlerTest(unittest.TestCase):
         l.warn("A warn message")
         l.debug("A debug message")
         log_message = "Debug message"
-        try:
-            wibble
-        except:
-            l.error(log_message,exc_info=True)
-
-        while Gtk.events_pending():
-            Gtk.main_iteration()
+# Comment this out because there is noone to close the dialogue
+#         try:
+#             wibble
+#         except:
+#             l.error(log_message,exc_info=True)
+# 
+#         while Gtk.events_pending():
+#             Gtk.main_iteration()
 
 
 
