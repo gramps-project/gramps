@@ -271,6 +271,7 @@ TOKEN__FSFTID = 131
 TOKEN__PHOTO = 132
 TOKEN__LINK = 133
 TOKEN__PRIM = 134
+TOKEN__JUST = 135
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -378,6 +379,7 @@ TOKENS = {
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
     "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
     "_LINK"          : TOKEN__LINK, "_PHOTO"        : TOKEN__PHOTO,
+    "_JUST"          : TOKEN__JUST,  # FTM Citation Quality Justification
 }
 
 ADOPT_NONE         = 0
@@ -512,7 +514,7 @@ PERSONALCONSTANTEVENTS = {
     EventType.DEGREE           : "_DEG",
     EventType.DIV_FILING       : "DIVF",
     EventType.EDUCATION        : "EDUC",
-    EventType.ELECTED          : "",
+    EventType.ELECTED          : "_ELEC",  # FTM custom tag
     EventType.EMIGRATION       : "EMIG",
     EventType.FIRST_COMMUN     : "FCOM",
     EventType.GRADUATION       : "GRAD",
@@ -564,7 +566,40 @@ LDS_STATUS = {
     "SUBMITTED": LdsOrd.STATUS_SUBMITTED,
     "UNCLEARED": LdsOrd.STATUS_UNCLEARED,
     }
-
+# -------------------------------------------------------------------------
+#
+# Custom event friendly names.  These are non-standard GEDCOM "NEW_TAG"
+# tags that start with an '_' i.e. "_DNA".  FTM has several of these, other
+# programs may have more.  If a tag with this format is encountered it is
+# checked in this table for a "friendly" name translation and thereafter is
+# displayed and exported as such.  If the tag is NOT in this table and not
+# otherwise handled by the code, the tag itself is used for display and
+# export.  For example "_XYZ" is not in the table and will be displayed as
+# "_XYZ" and exported as an EVEN.TYPE=_XYZ
+# As Custom entries, they do not appear in GRAMPS Events add choice unless
+# already imported via GEDCOM.
+#
+# -------------------------------------------------------------------------
+CUSTOMEVENTTAGS = {
+    "_CIRC"     : _("Circumcision"),
+    "_COML"     : _("Common Law Marriage"),
+    "_DEST"     : _("Destination"),
+    "_DNA"      : _("DNA"),
+    "_DCAUSE"   : _("Cause of Death"),
+    "_EMPLOY"   : _("Employment"),
+    "_EXCM"     : _("Excommunication"),
+    "_EYC"      : _("Eye Color"),
+    "_FUN"      : _("Funeral"),
+    "_HEIG"     : _("Height"),
+    "_INIT"     : _("Initiatory (LDS)"),
+    "_MILTID"   : _("Military ID"),
+    "_MISN"     : _("Mission (LDS)"),
+    "_NAMS"     : _("Namesake"),
+    "_ORDI"     : _("Ordinance"),
+    "_ORIG"     : _("Origin"),
+    "_SEPR"     : _("Separation"),         # Applies to Families
+    "_WEIG"     : _("Weight"),
+    }
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
 STRIP_DICT = dict.fromkeys(list(range(9))+list(range(11, 13))+list(range(14, 32)))
@@ -2316,6 +2351,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__citation_note,
             TOKEN_TEXT   : self.__citation_data_text,
             TOKEN__LINK  : self.__citation_link,
+            TOKEN__JUST  : self.__citation__just,
             }
         self.func_list.append(self.citation_parse_tbl)
 
@@ -3692,10 +3728,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         # We can get here when a tag that is not valid in the indi_parse_tbl
-        # parse table is encountered. It is remotely possible that this is
-        # actally a DATE tag, in which case line.data will be a date object, so
-        # we need to convert it back to a string here.
-        event_ref = self.__build_event_pair(state, EventType.CUSTOM,
+        # parse table is encountered. The tag may be of the form "_XXX".  We
+        # try to convert to a friendly name, if fails use the tag itself as
+        # the TYPE in a custom event
+        cust_tag = CUSTOMEVENTTAGS.get(line.token_text, line.token_text)
+        cust_type = EventType((EventType.CUSTOM, cust_tag))
+        event_ref = self.__build_event_pair(state, cust_type,
                                             self.event_parse_tbl,
                                             str(line.data))
         state.person.add_event_ref(event_ref)
@@ -4103,6 +4141,7 @@ class GedcomParser(UpdateCallback):
         addr.set_phone(line.data)
         state.person.add_address(addr)
         self.__skip_subordinate_levels(state.level+1, state)
+
 
     def __person_email(self, line, state):
         """
@@ -5015,11 +5054,20 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        # We can get here when a tag that is not valid in the family_func
+        # parse table is encountered. The tag may be of the form "_XXX".  We
+        # try to convert to a friendly name, if fails use the tag itself as
+        # the TYPE in a custom event
+        cust_tag = CUSTOMEVENTTAGS.get(line.token_text,line.token_text)
+        cust_type = EventType((EventType.CUSTOM, cust_tag))
         event = Event()
         event_ref = EventRef()
         event_ref.set_role(EventRoleType.FAMILY)
         event.set_gramps_id(self.emapper.find_next())
-        event.set_type(line.data)
+        event.set_type(cust_type)
+        # in case a description ever shows up
+        if line.data and line.data != 'Y':
+            event.set_description(line.data)
         self.dbase.add_event(event, self.trans)
 
         sub_state = CurrentState()
@@ -6267,6 +6315,19 @@ class GedcomParser(UpdateCallback):
         gramps_id = self.dbase.find_next_note_gramps_id()
         note.set_gramps_id(gramps_id)
         note.set_type(NoteType.CITATION)
+        self.dbase.add_note(note, self.trans)
+        state.citation.add_note(note.get_handle())
+
+    def __citation__just(self, line, state):
+        """
+        Not legal GEDCOM - added to support FTM, converts the _JUST tag to a
+        note.  This tag represents the Justification for a source.
+        """
+        note = Note()
+        note.set(line.data)
+        gramps_id = self.dbase.find_next_note_gramps_id()
+        note.set_gramps_id(gramps_id)
+        note.set_type(_("Citation Justification"))
         self.dbase.add_note(note, self.trans)
         state.citation.add_note(note.get_handle())
 
