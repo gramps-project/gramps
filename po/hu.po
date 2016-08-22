@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.2.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 13:00-0700\n"
-"PO-Revision-Date: 2016-07-02 11:36+0200\n"
+"PO-Revision-Date: 2016-08-20 11:44+0200\n"
 "Last-Translator: Lajos Nemeséri <nemeseril@gmail.com>\n"
 "Language-Team: magyar <>\n"
 "Language: hu\n"
@@ -352,7 +352,7 @@ msgstr ""
 "<b>Beszéljünk a rokonokkal, mielőtt túl késő lenne</b><br/> Az ön legidősebb "
 "rokonai lehetnek a legfontosabb információforrásai. Gyakran tudnak olyan "
 "dolgokat, amelyeket még senki sem írt le. Lehet, hogy olyan kincset fednek "
-"fel személyekről, melyek egy nap teljesen új irányba terelik a kutatást. "
+"fel emberekről, melyek egy nap teljesen új irányba terelik a kutatást. "
 "Legrosszabb esetben is hallani fog pár remek történetet. Ne felejtse el "
 "felvenni a beszélgetést!"
 
@@ -367,8 +367,8 @@ msgid ""
 "select it at the bottom of the Filter Sidebar, then click Apply. If the "
 "Filter Sidebar is not visible, select View &gt; Filter."
 msgstr ""
-"<b>Személyek szűrése</b><br/>A Személyek nézetben sokféle szempont alapján "
-"tudja szűrni az embereket. Új szűrő létrehozásához menjen a &quot;"
+"<b>Emberek szűrése</b><br/>Az Emberek nézetben sokféle szempont alapján "
+"tudja szűrni a személyeket. Új szűrő létrehozásához menjen a &quot;"
 "Szerkesztés &gt; Személyszűrő szerkesztő&quot; menüponthoz. Itt adhat nevet "
 "a szűrőjének, hozzáadhat összetett szabályokat a számos előre beállított "
 "szabályok közül választva. Például meghatározhat egy szűrőt, amivel "
@@ -385,7 +385,7 @@ msgid ""
 "filter you can select all people without children."
 msgstr ""
 "<b>Ellentett szűrés</b><br/>A szűrőket könnyedén megfordíthatjuk az "
-"'ellentett' opcióval. Például a 'Gyermekes személyek' szűrő ellentettjével a "
+"'ellentett' opcióval. Például a 'Gyermekes emberek' szűrő ellentettjével a "
 "gyermektelen embereket választhatjuk ki."
 
 #: ../data/tips.xml.in.h:8
@@ -397,7 +397,7 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Személyek megtalálása</b><br/>Alaphelyzetben a Személyek nézetben minden "
+"<b>Emberek megtalálása</b><br/>Alaphelyzetben az Emberek nézetben minden "
 "vezetéknév egyszer szerepel. A név baloldalán található nyílra kattintva "
 "tekinthetjük meg az összes személyt az adott családnévvel. Hosszú listában "
 "családnév kereséséhez válassza a Családnevet (nem egy személyt) és kezdjen "
@@ -555,7 +555,7 @@ msgid ""
 "of the same person entered more than once in the database."
 msgstr ""
 "<b>Kettőzött bejegyzések</b><br/>Az &quot;Eszközök &gt; Adatbázis "
-"feldolgozás &gt; Lehetséges kettőzött személyek keresése...&quot; lehetővé "
+"feldolgozás &gt; Lehetséges kettőzött emberek keresése...&quot; lehetővé "
 "teszi önnek, hogy megkeresse (és egyesítse) az adatbázisban többször "
 "szereplő személy bejegyzéseit."
 
@@ -594,10 +594,10 @@ msgid ""
 "through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
 "Back&quot; or the arrow buttons."
 msgstr ""
-"<b>Mozgás előre és vissza</b><br/>A GRAMPS megjegyzi az előző aktív "
-"személyek, események listáját. Ön előre és hátra tud mozogni a listában az "
-"&quot;Ugrás &gt; Előre&quot; és az &quot;Ugrás &gt; Vissza&quot; "
-"menüpontokkal, vagy a nyíl gombokkal."
+"<b>Mozgás előre és vissza</b><br/>A GRAMPS megjegyzi az előző aktív emberek, "
+"események listáját. Ön előre és hátra tud mozogni a listában az &quot;Ugrás "
+"&gt; Előre&quot; és az &quot;Ugrás &gt; Vissza&quot; menüpontokkal, vagy a "
+"nyíl gombokkal."
 
 #: ../data/tips.xml.in.h:24
 msgid ""
@@ -836,7 +836,7 @@ msgid ""
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"<b>Szűrők</b><br/>A szűrők lehetővé teszik önnek szűkíteni a Személyek "
+"<b>Szűrők</b><br/>A szűrők lehetővé teszik önnek szűkíteni az Emberek "
 "nézetben megjelenő emberek körét. Az előre elkészített szűrőkön túl olyan "
 "további felhasználói szűrőket hozhat létre, amilyeneket csak akar. "
 "Felhasználói szűrőket a &quot;Szerkesztés &gt; Személyszűrő szerkesztő&quot; "
@@ -1009,8 +1009,8 @@ msgid ""
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
 "<b>Az ön származástanának 'hogyan és miért'-je</b><br/>A származástan nem "
-"csak a dátumokról és nevekről szól, hanem az emberekről. Legyen leíró. Írja "
-"le azt is, hogy miért és hogyan történtek a dolgok, hogyan hatottak az "
+"csak a dátumokról és nevekről szól, hanem az emberekről. és leíró. Leírja "
+"azt is, hogy miért és hogyan történtek a dolgok, hogyan hatottak az "
 "emberekre az események, amiken keresztül mentek. A leírások jó lehetőséget "
 "adnak arra, hogy a család története élővé váljon."
 
@@ -3079,7 +3079,7 @@ msgstr "%s _ismétlése"
 #: ../gramps/plugins/database/bsddb_support/read.py:2086
 #: ../gramps/plugins/database/bsddb_support/write.py:2559
 msgid "Number of people"
-msgstr "Személyek száma"
+msgstr "Emberek száma"
 
 #: ../gramps/gen/db/generic.py:2068
 #: ../gramps/plugins/database/bsddb_support/read.py:2087
@@ -4852,18 +4852,18 @@ msgstr "Kapcsolati útvonalak keresése"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:137
 msgid "Evaluating people"
-msgstr "Személyek értékelése"
+msgstr "Emberek értékelése"
 
 #: ../gramps/gen/filters/rules/person/_disconnected.py:44
 msgid "Disconnected people"
-msgstr "Nem kapcsolt személyek"
+msgstr "Nem kapcsolt emberek"
 
 #: ../gramps/gen/filters/rules/person/_disconnected.py:46
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Olyan személyek találatai, akiknek nincs családi kapcsolata az adatbázis "
+"Olyan emberek találatai, akiknek nincs családi kapcsolata az adatbázis "
 "egyetlen más személyével sem"
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:44
@@ -4880,31 +4880,31 @@ msgstr "Hiányos eseményű családok"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event of the family"
-msgstr "Találatok hiányzó családi eseménydátumú, vagy eseményhelyű személyekre"
+msgstr "Találatok hiányzó családi eseménydátumú, vagy eseményhelyű emberekre"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:49
 msgid "People with <count> addresses"
-msgstr "Személyek <count> címmel"
+msgstr "Emberek <count> címmel"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 msgid "Matches people with a certain number of personal addresses"
-msgstr "Egy meghatározott számú személyes címnek megfelelő személyek"
+msgstr "Egy meghatározott számú személyes címnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
-msgstr "Személyek alternatív névvel"
+msgstr "Emberek alternatív névvel"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:46
 msgid "Matches people with an alternate name"
-msgstr "Egy alternatív névnek megfelelő személyek"
+msgstr "Egy alternatív névnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:49
 msgid "People with <count> associations"
-msgstr "Személyek <count> társítással"
+msgstr "Emberek <count> társítással"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 msgid "Matches people with a certain number of associations"
-msgstr "Egy meghatározott számú társításnak megfelelő személyek"
+msgstr "Egy meghatározott számú társításnak megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:104
@@ -4914,7 +4914,7 @@ msgstr "Személyes jellemző:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 msgid "People with the personal <attribute>"
-msgstr "Személyek ezzel: személyes <attribute>"
+msgstr "Emberek ezzel: személyes <attribute>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 msgid "Matches people with the personal attribute of a particular value"
@@ -4922,7 +4922,7 @@ msgstr "Egy meghatározott értékű személyes jellemzőnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:49
 msgid "People with the <birth data>"
-msgstr "Személyek ezzel: <birth data>"
+msgstr "Emberek ezzel: <birth data>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:50
 msgid "Matches people with birth data of a particular value"
@@ -4930,7 +4930,7 @@ msgstr "Egy meghatározott értékű születési adatnak megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
-msgstr "Személyek ezzel: <citation>"
+msgstr "Emberek ezzel: <citation>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
@@ -4938,7 +4938,7 @@ msgstr "Egy meghatározott értékű idézetnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:46
 msgid "People with a common ancestor with <person>"
-msgstr "Személyek közös őse vele: <person>"
+msgstr "Emberek közös őse vele: <person>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:47
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:51
@@ -4954,7 +4954,8 @@ msgstr "Ős-szűrő"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Olyan személyek találatai, akiknek közös őse egy meghatározott személy"
+msgstr ""
+"Olyan emberek találatai, akiknek közös az őse egy meghatározott személy"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:48
 msgid "People with a common ancestor with <filter> match"
@@ -4964,12 +4965,12 @@ msgstr "A <filter> találatnak megfelelő közös ősű emberek"
 msgid ""
 "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
-"Olyan személyek találatai, akiknek közös őse bárkinek megfelel a szűrő "
+"Olyan emberek találatai, akiknek közös őse bárkinek megfelel a szűrő "
 "feltételében"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 msgid "People with the <death data>"
-msgstr "Személyek ezzel: <death data>"
+msgstr "Emberek ezzel: <death data>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:50
 msgid "Matches people with death data of a particular value"
@@ -4992,7 +4993,7 @@ msgstr "Elsődleges szerep:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:54
 msgid "People with the personal <event>"
-msgstr "Személyek ezzel: személyes <event>"
+msgstr "Emberek ezzel: személyes <event>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
 msgid "Matches people with a personal event of a particular value"
@@ -5000,7 +5001,7 @@ msgstr "Egy meghatározott értékű személyes eseménynek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
-msgstr "Személyek ezzel: családi <attribute>"
+msgstr "Emberek ezzel: családi <attribute>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
@@ -5008,7 +5009,7 @@ msgstr "Egy meghatározott értékű családi jellemzőnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "People with the family <event>"
-msgstr "Személyek ezzel: családi <event>"
+msgstr "Emberek ezzel: családi <event>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:53
 msgid "Matches people with a family event of a particular value"
@@ -5016,7 +5017,7 @@ msgstr "Egy meghatározott értékű családi eseménynek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:42
 msgid "People with <count> media"
-msgstr "Személyek <count> médiával"
+msgstr "Emberek <count> médiával"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "Matches people with a certain number of items in the gallery"
@@ -5034,7 +5035,7 @@ msgstr "Személy találatok meghatározott GRAMPS-azonosítóval"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Személyek <count> mormon eseménnyel"
+msgstr "Emberek <count> mormon eseménnyel"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
@@ -5087,7 +5088,7 @@ msgstr "Családi becenév:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:57
 msgid "People with the <name>"
-msgstr "Személyek ezzel: <name>"
+msgstr "Emberek ezzel: <name>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 #: ../gramps/gen/filters/rules/person/_searchname.py:47
@@ -5102,7 +5103,7 @@ msgstr "Vezetéknév eredeti típusa:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 msgid "People with the <Surname origin type>"
-msgstr "Személyek ezzel: <Surname origin type>"
+msgstr "Emberek ezzel: <Surname origin type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
 msgid "Matches people with a surname origin"
@@ -5116,7 +5117,7 @@ msgstr "Név típus:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 msgid "People with the <Name type>"
-msgstr "Személyek ezzel: <Name type>"
+msgstr "Emberek ezzel: <Name type>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
@@ -5124,7 +5125,7 @@ msgstr "Egy névtípusnak megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:45
 msgid "People with a nickname"
-msgstr "Személyek becenévvel"
+msgstr "Emberek becenévvel"
 
 #: ../gramps/gen/filters/rules/person/_hasnickname.py:46
 msgid "Matches people with a nickname"
@@ -5132,7 +5133,7 @@ msgstr "Egy becenévnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:45
 msgid "People having <count> notes"
-msgstr "Személyek <count> jegyzettel"
+msgstr "Emberek <count> jegyzettel"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:46
 msgid "Matches people having a certain number of notes"
@@ -5140,12 +5141,11 @@ msgstr "Meghatározott számú jegyzettel rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:42
 msgid "People having notes containing <substring>"
-msgstr "Személyek <substring> tartalmú jegyzettel"
+msgstr "Emberek <substring> tartalmú jegyzettel"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:43
 msgid "Matches people whose notes contain text matching a substring"
-msgstr ""
-"Személyek, akiknek jegyzetében egy karakterláncrésszel egyező szöveg van"
+msgstr "Emberek, akiknek jegyzetében egy karakterláncrésszel egyező szöveg van"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:41
 msgid "People having notes containing <text>"
@@ -5154,7 +5154,7 @@ msgstr "Személyek <text> tartalmú jegyzetekkel"
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Személyek, akiknek jegyzetében egy szabványos kifejezéssel egyező szöveg van"
+"Emberek, akiknek jegyzetében egy szabványos kifejezéssel egyező szöveg van"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -5166,7 +5166,7 @@ msgstr "Gyermekek száma:"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "People with the <relationships>"
-msgstr "Személyek ezzel: <relationships>"
+msgstr "Emberek ezzel: <relationships>"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:49
 msgid "Matches people with a particular relationship"
@@ -5187,7 +5187,7 @@ msgstr "Családszűrők"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
-msgstr "Személyek <count> forrással"
+msgstr "Emberek <count> forrással"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "Matches people with a certain number of sources connected to it"
@@ -5195,7 +5195,7 @@ msgstr "Meghatározott számú forráskapcsolattal rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:46
 msgid "People with the <source>"
-msgstr "Személyek ezzel: <source>"
+msgstr "Emberek ezzel: <source>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "Matches people who have a particular source"
@@ -5203,7 +5203,7 @@ msgstr "Meghatározott forrással rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
 msgid "People with the <tag>"
-msgstr "Személyek ezzel: <tag>"
+msgstr "Emberek ezzel: <tag>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:50
 msgid "Matches people with the particular tag"
@@ -5216,15 +5216,15 @@ msgstr "Nagybetű érzékeny:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:48
 msgid "People with records containing <substring>"
-msgstr "Személyek <substring> adattartalommal"
+msgstr "Emberek <substring> adattartalommal"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Személyek, akiknek adataiban egy karakterláncrésszel egyező szöveg van"
+msgstr "Emberek, akiknek adataiban egy karakterláncrésszel egyező szöveg van"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:45
 msgid "People with unknown gender"
-msgstr "Személyek ismeretlen nemmel"
+msgstr "Emberek ismeretlen nemmel"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
 msgid "Matches all people with unknown gender"
@@ -5232,15 +5232,15 @@ msgstr "Minden, ismeretlen nemmel rendelkező ember"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:43
 msgid "Adopted people"
-msgstr "Örökbefogadott személyek"
+msgstr "Örökbefogadott emberek"
 
 #: ../gramps/gen/filters/rules/person/_havealtfamilies.py:44
 msgid "Matches people who were adopted"
-msgstr "Örökbefogadott személyek találatai"
+msgstr "Örökbefogadott emberek találatai"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:42
 msgid "People with children"
-msgstr "Személyek gyermekekkel"
+msgstr "Emberek gyermekekkel"
 
 #: ../gramps/gen/filters/rules/person/_havechildren.py:43
 msgid "Matches people who have children"
@@ -5248,11 +5248,11 @@ msgstr "Gyermekekkel rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:44
 msgid "People with incomplete names"
-msgstr "Hiányos nevű személyek"
+msgstr "Hiányos nevű emberek"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:45
 msgid "Matches people with firstname or lastname missing"
-msgstr "Személyek hiányzó vezeték-, vagy utónévvel"
+msgstr "Emberek hiányzó vezeték-, vagy utónévvel"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:45
 msgid "Ancestors of <person>"
@@ -5269,15 +5269,15 @@ msgstr "A <filter> találatnak megfelelő ősök"
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:49
 msgid "Matches people that are ancestors of anybody matched by a filter"
 msgstr ""
-"Személyek találatai, akik ősei bárkinek, aki megfelel a szűrő feltételeinek"
+"Emberek találatai, akik ősei bárkinek, aki megfelel a szűrő feltételeinek"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:45
 msgid "Bookmarked people"
-msgstr "Könyvjelzőzött személyek"
+msgstr "Könyvjelzőzött emberek"
 
 #: ../gramps/gen/filters/rules/person/_isbookmarked.py:47
 msgid "Matches the people on the bookmark list"
-msgstr "A könyvjelzőlistának megfelelő személyek"
+msgstr "A könyvjelzőlistának megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:47
 msgid "Children of <filter> match"
@@ -5325,7 +5325,7 @@ msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Személyek találatai, akik leszármazottai, vagy házastársai bárkinek, aki "
+"Emberek találatai, akik leszármazottai, vagy házastársai bárkinek, aki "
 "megfelel a szűrő feltételeinek"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
@@ -5334,7 +5334,7 @@ msgstr "<person> leszármazottai"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Matches all descendants for the specified person"
-msgstr "Személyek, akik egy meghatározott személy összes leszármazottjai"
+msgstr "Emberek, akik egy meghatározott személy összes leszármazottjai"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:47
 msgid "Descendants of <filter> match"
@@ -5343,7 +5343,7 @@ msgstr "A <filter> szűrőnek megfelelő leszármazottak"
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
-"Személyek találatai, akik leszármazottai bárkinek, aki megfelel a szűrő "
+"Emberek találatai, akik leszármazottai bárkinek, aki megfelel a szűrő "
 "feltételeinek"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:47
@@ -5353,7 +5353,7 @@ msgstr "<person> kettőzött ősei"
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Matches people that are ancestors twice or more of a specified person"
 msgstr ""
-"Személyek, akik egy meghatározott személynek kétszeres, vagy többszörös ősei"
+"Emberek, akik egy meghatározott személynek kétszeres, vagy többszörös ősei"
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:107
@@ -5389,25 +5389,24 @@ msgstr "Meghatározott személy ősei, akik N-nél nem távolibb generációjúa
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:52
 msgid "Ancestors of bookmarked people not more than <N> generations away"
 msgstr ""
-"Könyvjelzőzött személyek ősei, akik nem több, mint <N> generációval "
-"távoliabbak"
+"Könyvjelzőzött emberek ősei, akik nem több, mint <N> generációval távoliabbak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofbookmarked.py:55
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
-msgstr "Könyvjelzőlistás személyek ősei, akik N-nél nem távolibb generációjúak"
+msgstr "Könyvjelzőlistás emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
 msgstr ""
-"Alapértelmezett személyek ősei, akik nem több, mint <N> generációval "
+"Alapértelmezett emberek ősei, akik nem több, mint <N> generációval "
 "távoliabbak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
-msgstr "Alapértelmezett személyek ősei, akik N-nél nem távolibb generációjúak"
+msgstr "Alapértelmezett emberek ősei, akik N-nél nem távolibb generációjúak"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
@@ -5465,11 +5464,11 @@ msgstr "Bárki szülő találatai, akik megfelelnek a szűrő feltételeinek"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:45
 msgid "People related to <Person>"
-msgstr "<Person>-ho(e)z köthető személyek"
+msgstr "<Person>-hoz köthető emberek"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "Matches people related to a specified person"
-msgstr "Személyek, akik egy meghatározott emberhez köthetőek"
+msgstr "Emberek, akik egy meghatározott személyhez köthetőek"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:46
 msgid "Siblings of <filter> match"
@@ -5485,7 +5484,7 @@ msgstr "<filter> szűrőnek megfelelő házastársak"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
 msgid "Matches people married to anybody matching a filter"
-msgstr "Személyek, akik bárkivel házasodtak a szűrő feltételeinek megfelelően"
+msgstr "Emberek, akik bárkivel házasodtak a szűrő feltételeinek megfelelően"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:45
 msgid "Witnesses"
@@ -5493,7 +5492,7 @@ msgstr "Tanúk"
 
 #: ../gramps/gen/filters/rules/person/_iswitness.py:46
 msgid "Matches people who are witnesses in any event"
-msgstr "Személyek találatai, akik egy esemény tanúi"
+msgstr "Emberek találatai, akik egy esemény tanúi"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:49
@@ -5503,100 +5502,100 @@ msgstr "Esemény szűrő neve:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "<event filter> eseményszűrőnek megfelelő személyek"
+msgstr "<event filter> eseményszűrőnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Meghatározott eseményszűrő eseményeknek megfelelő személyek"
+msgstr "Meghatározott eseményszűrő eseményeknek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
 msgid "People matching the <filter>"
-msgstr "<filter> szűrőnek megfelelő személyek"
+msgstr "<filter> szűrőnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:45
 msgid "Matches people matched by the specified filter name"
-msgstr "Meghatározott szűrőnévnek megfelelő személyek találatai"
+msgstr "Meghatározott szűrőnévnek megfelelő emberek találatai"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 msgid "Persons with at least one direct source >= <confidence level>"
 msgstr ""
 "Legalább egy, >= <confidence level> szintű direkt forrással rendelkező "
-"személyek"
+"emberek"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
-"Legalább egy direkt forrás (s) megbízhatósági szinttel rendelkező személyek "
+"Legalább egy direkt forrás (s) megbízhatósági szinttel rendelkező emberek "
 "találatai"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:43
 msgid "People missing parents"
-msgstr "Szüleiket vesztett személyek"
+msgstr "Szüleiket vesztett emberek"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:44
 msgid ""
 "Matches people that are children in a family with less than two parents or "
 "are not children in any family."
 msgstr ""
-"Személyek, akik gyermekek egy kevesebb, mint két szülős családban, vagy nem "
+"Emberek, akik gyermekek egy kevesebb, mint két szülős családban, vagy nem "
 "gyermekei egy családnak sem."
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:42
 msgid "People with multiple marriage records"
-msgstr "Személyek több házassági bejegyzéssel"
+msgstr "Emberek több házassági bejegyzéssel"
 
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
-msgstr "Több mint egy feleséggel rendelkező személyek találatai"
+msgstr "Több mint egy feleséggel rendelkező emberek találatai"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:42
 msgid "People with no marriage records"
-msgstr "Személyek házasság bejegyzés nélkül"
+msgstr "Emberek házasság bejegyzés nélkül"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:43
 msgid "Matches people who have no spouse"
-msgstr "Házastárs nélküli személyek találatai"
+msgstr "Házastárs nélküli emberek találatai"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:42
 msgid "People without a known birth date"
-msgstr "Személyek ismert születési dátum nélkül"
+msgstr "Emberek ismert születési dátum nélkül"
 
 #: ../gramps/gen/filters/rules/person/_nobirthdate.py:43
 msgid "Matches people without a known birthdate"
-msgstr "Nem ismert születési dátummal rendelkező személyek"
+msgstr "Nem ismert születési dátummal rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:42
 msgid "People without a known death date"
-msgstr "Személyek ismert halálozási dátum nélkül"
+msgstr "Emberek ismert halálozási dátum nélkül"
 
 #: ../gramps/gen/filters/rules/person/_nodeathdate.py:43
 msgid "Matches people without a known deathdate"
-msgstr "Nem ismert halálozási dátummal rendelkező személyek"
+msgstr "Nem ismert halálozási dátummal rendelkező emberek"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:42
 msgid "People marked private"
-msgstr "Bizalmas jelölésű személyek"
+msgstr "Bizalmas jelölésű emberek"
 
 #: ../gramps/gen/filters/rules/person/_peopleprivate.py:43
 msgid "Matches people that are indicated as private"
-msgstr "Bizalmas jelölésnek megfelelő személyek"
+msgstr "Bizalmas jelölésnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:43
 msgid "People not marked private"
-msgstr "Bizalmasnak nem jelölt személyek"
+msgstr "Bizalmasnak nem jelölt emberek"
 
 #: ../gramps/gen/filters/rules/person/_peoplepublic.py:44
 msgid "Matches people that are not indicated as private"
-msgstr "Nem bizalmasnak jelölt személyek találatai"
+msgstr "Nem bizalmasnak jelölt emberek találatai"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:42
 msgid "People with incomplete events"
-msgstr "Személyek hiányos eseményekkel"
+msgstr "Emberek hiányos eseményekkel"
 
 #: ../gramps/gen/filters/rules/person/_personwithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event"
-msgstr "Személyek hiányzó dátummal, vagy hellyel valamelyik eseményüknél"
+msgstr "Emberek hiányzó dátummal, vagy hellyel valamelyik eseményüknél"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:44
 msgid "On date:"
@@ -5604,15 +5603,15 @@ msgstr "Ekkor:"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:45
 msgid "People probably alive"
-msgstr "Feltehetően élő személyek"
+msgstr "Feltehetően élő emberek"
 
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:46
 msgid "Matches people without indications of death that are not too old"
-msgstr "Személyek, akiknek a halálára nem utal semmi, és nem túl idősek"
+msgstr "Emberek, akiknek a halálára nem utal semmi, és nem túl idősek"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
-msgstr "Személyek <text> tartalmú azonosítóval"
+msgstr "Emberek <text> tartalmú azonosítóval"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -5620,14 +5619,14 @@ msgstr "Reguláris kifejezéssel egyező GRAMPS azonosítónak megfelelő embere
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
-msgstr "Személyek <text> szöveggel egyező névvel"
+msgstr "Emberek <text> szöveggel egyező névvel"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:47
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Megfelelő személyek, akiknek neve karakterláncot, vagy egy szabványos "
+"Megfelelő emberek, akiknek neve karakterláncot, vagy egy szabványos "
 "kifejezést tartalmaz"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
@@ -5656,7 +5655,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
 msgid "People matching the <name>"
-msgstr "<name> névnek megfelelő személyek"
+msgstr "<name> névnek megfelelő emberek"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:44
 msgid "Every place"
@@ -8846,7 +8845,7 @@ msgstr "Legyenek-e bizalmas adatok benne"
 
 #: ../gramps/gen/plug/report/stdoptions.py:167
 msgid "Living People"
-msgstr "Élő személyek"
+msgstr "Élő emberek"
 
 #: ../gramps/gen/plug/report/stdoptions.py:169
 msgid "'living people'|Included, and all data"
@@ -8871,7 +8870,7 @@ msgstr "'living people'|Nincs benne"
 #. for deferred translation
 #: ../gramps/gen/plug/report/stdoptions.py:181
 msgid "How to handle living people"
-msgstr "Hogyan kezelje az élő személyeket"
+msgstr "Hogyan kezelje az élő embereket"
 
 #: ../gramps/gen/plug/report/stdoptions.py:184
 msgid "Years from death to consider living"
@@ -8882,7 +8881,7 @@ msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
 msgstr ""
-"Lehetővé teszi nagyon régóta nem meghalt személyek információjának tiltását"
+"Lehetővé teszi nagyon régóta nem meghalt emberek információjának  kizárását"
 
 #: ../gramps/gen/plug/report/utils.py:155
 #: ../gramps/plugins/textreport/indivcomplete.py:848
@@ -10284,7 +10283,7 @@ msgstr "Élő férfi"
 
 #: ../gramps/gui/configure.py:561
 msgid "Border Male Alive"
-msgstr "Élő férfi kerete"
+msgstr "Élő férfi határa"
 
 #: ../gramps/gui/configure.py:563
 msgid "Gender Male Death"
@@ -10292,7 +10291,7 @@ msgstr "Halott férfi"
 
 #: ../gramps/gui/configure.py:565
 msgid "Border Male Death"
-msgstr "Halott férfi kerete"
+msgstr "Halott férfi határa"
 
 #: ../gramps/gui/configure.py:567
 msgid "Gender Female Alive"
@@ -10300,7 +10299,7 @@ msgstr "Élő nő"
 
 #: ../gramps/gui/configure.py:569
 msgid "Border Female Alive"
-msgstr "Élő nő kerete"
+msgstr "Élő nő határa"
 
 #: ../gramps/gui/configure.py:571
 msgid "Gender Female Death"
@@ -10308,7 +10307,7 @@ msgstr "Halott nő"
 
 #: ../gramps/gui/configure.py:573
 msgid "Border Female Death"
-msgstr "Halott nő kerete"
+msgstr "Halott nő határa"
 
 #. #        self.add_color(grid, _('Gender Other Alive'), 5,
 #. #                        'preferences.color-gender-other-alive')
@@ -10324,7 +10323,7 @@ msgstr "Élő ismeretlen nemű"
 
 #: ../gramps/gui/configure.py:585
 msgid "Border Unknown Alive"
-msgstr "Élő ismeretlen kerete"
+msgstr "Élő ismeretlen határa"
 
 #: ../gramps/gui/configure.py:587
 msgid "Gender Unknown Death"
@@ -10332,7 +10331,7 @@ msgstr "Ismeretlen nemű halott"
 
 #: ../gramps/gui/configure.py:589
 msgid "Border Unknown Death"
-msgstr "Ismeretlen halott kerete"
+msgstr "Ismeretlen halott határa"
 
 #: ../gramps/gui/configure.py:591
 msgid "Colors"
@@ -12986,7 +12985,7 @@ msgstr "Új személy"
 
 #: ../gramps/gui/editors/editperson.py:246
 msgid "manual|Editing_information_about_people"
-msgstr "manual|Információ_szerkesztés_személyekről"
+msgstr "manual|Információ_szerkesztés_emberekről"
 
 #: ../gramps/gui/editors/editperson.py:607
 #: ../gramps/plugins/view/geofamily.py:426
@@ -14272,9 +14271,9 @@ msgid ""
 msgstr ""
 "Egy tulajdonság neve, amit használni szeretne. Például: magasság "
 "(személynél), nap időjárása (eseménynél), ...\n"
-"Használja összegyűjtött információ töredékek mentésére, továbbá helyesen "
-"akar hivatkozni a forrásra. A tulajdonságokat használhatja személyekre, "
-"családokra, eseményekre és médiára.\n"
+"Használja összegyűjtött információ töredékek mentésére, és helyesen akar "
+"hivatkozni a forrásra. A tulajdonságokat használhatja emberekre, családokra, "
+"eseményekre és médiára.\n"
 "\n"
 "Figyelem: sok előre meghatározott tulajdonság a GEDCOM szabvány értékeinek "
 "felel meg."
@@ -14907,7 +14906,7 @@ msgid ""
 "Here you can make sure this person is displayed according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"A személyek a Beállításokban megadott (alapértelmezett) névformátum szerint "
+"Az emberek a Beállításokban megadott (alapértelmezett) névformátum szerint "
 "válogatottak.\n"
 "Itt bizonyosodhat meg arról, ez a személy az egyéni névformátum szerint "
 "válogatott-e (az extra névformátumokat a Beállításokban állíthatja)."
@@ -14923,7 +14922,7 @@ msgid ""
 "Here you can make sure this person is sorted according to a custom name "
 "format (extra formats can be set in the Preferences)."
 msgstr ""
-"A személyek a Beállításokban megadott (alapértelmezett) névformátum szerint "
+"Az emberek a Beállításokban megadott (alapértelmezett) névformátum szerint "
 "válogatottak.\n"
 "Itt bizonyosodhat meg arról, ez a személy az egyéni névformátum szerint "
 "válogatott-e (az extra névformátumokat a Beállításokban állíthatja)."
@@ -14935,7 +14934,7 @@ msgid ""
 "You will be asked if you want to group this person only, or all people with "
 "this specific primary surname."
 msgstr ""
-"A Személy-fa nézet az személyeket az elsődleges vezetéknév szerint "
+"A Személyfa nézet az embereket az elsődleges vezetéknév szerint "
 "csoportosítja. Ezt felülbírálhatja itt a csoport érték beállításával.\n"
 "Kérdezni fogják, vajon csak ezt a személyt, vagy minden ilyen meghatározott "
 "elsődleges vezetéknévvel rendelkező embert csoportosítani kíván-e."
@@ -16453,7 +16452,7 @@ msgstr "Családok összefűzése"
 #: ../gramps/gui/merge/mergeperson.py:328
 #: ../gramps/plugins/lib/libpersonview.py:418
 msgid "Cannot merge people"
-msgstr "Nem összefűzhető személyek"
+msgstr "Nem összefűzhető emberek"
 
 #: ../gramps/gui/merge/mergemedia.py:44
 msgid "manual|Merge_Media_Objects"
@@ -16473,11 +16472,11 @@ msgstr "előformázott"
 
 #: ../gramps/gui/merge/mergeperson.py:58
 msgid "manual|Merge_People"
-msgstr "Személyek_összefűzése"
+msgstr "Emberek_összefűzése"
 
 #: ../gramps/gui/merge/mergeperson.py:89
 msgid "Merge People"
-msgstr "Személyek összefűzése"
+msgstr "Emberek összefűzése"
 
 #: ../gramps/gui/merge/mergeperson.py:193
 #: ../gramps/plugins/textreport/indivcomplete.py:343
@@ -17132,15 +17131,15 @@ msgstr "Minden kiválasztott jegyzettel bezárólag"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:720
 msgid "Replace given names of living people"
-msgstr "Élő személyek keresztnevének cseréje"
+msgstr "Élő emberek keresztnevének cseréje"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:721
 msgid "Replace complete name of living people"
-msgstr "Élő személyek teljes nevének cseréje"
+msgstr "Élő emberek teljes nevének cseréje"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:722
 msgid "Do not include living people"
-msgstr "Élő személyek kizárása"
+msgstr "Élő emberek kizárása"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:731
 msgid "Include all selected records"
@@ -17887,7 +17886,7 @@ msgstr "_GYIK"
 
 #: ../gramps/gui/viewmanager.py:493
 msgid "_Key Bindings"
-msgstr "_Kötött billentyűk"
+msgstr "_Kulcs kötések"
 
 #: ../gramps/gui/viewmanager.py:494
 msgid "_User Manual"
@@ -18078,7 +18077,7 @@ msgstr "Kizárva"
 
 #: ../gramps/gui/viewmanager.py:1301
 msgid "Backup file already exists! Overwrite?"
-msgstr "A mentési fájl már létezik! Felülírja?"
+msgstr "A mentési fájl már létezik. Felülírja?"
 
 #: ../gramps/gui/viewmanager.py:1302
 #, python-format
@@ -18509,7 +18508,7 @@ msgstr "A szakasz összecsukása"
 #: ../gramps/plugins/view/pedigreeview.py:1595
 #: ../gramps/plugins/view/pedigreeview.py:1624
 msgid "People Menu"
-msgstr "Személyek menü"
+msgstr "Emberek menü"
 
 #: ../gramps/gui/widgets/fanchart.py:1589 ../gramps/plugins/view/relview.py:800
 msgid "Edit family"
@@ -19056,7 +19055,8 @@ msgstr "Nem hozható létre a %(name)s kép jpeg változata"
 
 #: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
-msgstr "A PIL (Python Imaging Library) nincs betöltve."
+msgstr ""
+"A PIL (Python Imaging Library - Python Képkezelő Könyvtár) nincs betöltve."
 
 #: ../gramps/plugins/docgen/latexdoc.py:1241
 msgid ""
@@ -19064,9 +19064,9 @@ msgid ""
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
-"LaTeX dokumentumokban jpg képek létrehozása nem-jpg képekből nem lehetséges. "
-"Használja a csomagkezelőjét a python-imaging, vagy a python-pillow, vagy a "
-"python3-pillow telepítéséhez"
+"Nem lesz lehetséges nem-jpg képekből jpg képeket létrehozni a LaTeX "
+"dokumentumokban. Használja csomagkezelőjét a python-imaging, vagy python-"
+"pillow, vagy python3-pillow telepítéséhez"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1164
 #, python-format
@@ -19232,8 +19232,7 @@ msgstr "Fa tömörítése"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are "
 "unknown"
-msgstr ""
-"Ismeretlen személyek mellől bármennyi plusz szóközt el kell-e távolítani"
+msgstr "Ismeretlen emberek mellől bármennyi plusz szóközt el kell-e távolítani"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:829
 #: ../gramps/plugins/drawreport/descendtree.py:1655
@@ -19629,7 +19628,7 @@ msgstr[1] ""
 #: ../gramps/plugins/drawreport/calendarreport.py:470
 #: ../gramps/plugins/webreport/webcal.py:1608
 msgid "Select filter to restrict people that appear on calendar"
-msgstr "Válasszon szűrőt személyek megjelenésének tiltásához a naptárban"
+msgstr "Válasszon szűrőt emberek megjelenésének kizárásához a naptárban"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:681
@@ -19649,12 +19648,12 @@ msgstr "Az összesítő központi személye"
 #: ../gramps/plugins/textreport/birthdayreport.py:435
 #: ../gramps/plugins/webreport/webcal.py:1637
 msgid "Include only living people"
-msgstr "Csak élő személyek"
+msgstr "Csak élő emberek"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:487
 #: ../gramps/plugins/webreport/webcal.py:1638
 msgid "Include only living people in the calendar"
-msgstr "Csak élő személyek a naptárban"
+msgstr "Csak élő emberek a naptárban"
 
 #. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:493
@@ -19901,7 +19900,7 @@ msgstr "0= nincs házastárs, 1=házastársak is, 2=házastárs házastársai is
 #: ../gramps/plugins/drawreport/descendtree.py:1541
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
-"Legyenek-e felfelé mozgatva a személyek, ahol lehetséges, ha az kisebb fát "
+"Legyenek-e emberek mozgatva felfelé, ahol lehetséges, ha az kisebb fát "
 "eredményez"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1550
@@ -20324,7 +20323,7 @@ msgstr "Személyes információ hiányzik"
 #: ../gramps/plugins/textreport/tagreport.py:98
 #, python-format
 msgid "(Living people: %(option_name)s)"
-msgstr "(Élő személyek: %(option_name)s)"
+msgstr "(Élő emberek: %(option_name)s)"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:790
 #, python-format
@@ -20357,7 +20356,7 @@ msgstr "%s (személyek):"
 #: ../gramps/plugins/drawreport/statisticschart.py:985
 #: ../gramps/plugins/textreport/recordsreport.py:215
 msgid "Determines what people are included in the report."
-msgstr "Meghatározza, milyen személyek kerülnek az összegzőbe."
+msgstr "Meghatározza, milyen emberek kerülnek az összegzőbe."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:990
 #: ../gramps/plugins/drawreport/timeline.py:419
@@ -20398,27 +20397,27 @@ msgstr "Jelölje be az ellentétes sorrendbe rendezéshez."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1024
 msgid "People Born After"
-msgstr "Utána született személyek"
+msgstr "Utána született emberek"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1026
 msgid "Birth year from which to include people."
-msgstr "E születési évtől legyenek benne a személyek."
+msgstr "E születési évtől legyenek benne az emberek."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1029
 msgid "People Born Before"
-msgstr "Előtte született személyek"
+msgstr "Előtte született emberek"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1031
 msgid "Birth year until which to include people"
-msgstr "E születési évig legyenek benne a személyek"
+msgstr "E születési évig legyenek benne az emberek"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1034
 msgid "Include people without known birth years"
-msgstr "Ismert születési év nélküli személyekkel együtt"
+msgstr "Ismert születési év nélküli emberekkel együtt"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1036
 msgid "Whether to include people without known birth years."
-msgstr "Legyenek-e benne ismert születési év nélküli személyek."
+msgstr "Legyenek-e benne ismert születési év nélküli emberek."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1040
 msgid "Genders included"
@@ -20517,7 +20516,7 @@ msgstr "Dátum intervallum keresése..."
 
 #: ../gramps/plugins/drawreport/timeline.py:415
 msgid "Determines what people are included in the report"
-msgstr "Meghatározza, mely személyek legyenek az összesítőben"
+msgstr "Meghatározza, mely emberek legyenek az összesítőben"
 
 #: ../gramps/plugins/drawreport/timeline.py:420
 #: ../gramps/plugins/textreport/recordsreport.py:220
@@ -20705,7 +20704,7 @@ msgstr "Exportálás:"
 
 #: ../gramps/plugins/export/exportcsv.py:200
 msgid "Include people"
-msgstr "Személyekkel együtt"
+msgstr "Emberekkel együtt"
 
 #: ../gramps/plugins/export/exportcsv.py:201
 msgid "Include marriages"
@@ -20809,7 +20808,7 @@ msgstr "_Mellékelte"
 #: ../gramps/plugins/export/exportftree.glade:150
 #: ../gramps/plugins/export/exportgeneweb.glade:151
 msgid "_Restrict data on living people"
-msgstr "_Csak élő személyek adatai"
+msgstr "_Csak élő emberek adatai"
 
 #: ../gramps/plugins/export/exportgedcom.py:388
 msgid "Writing individuals"
@@ -21294,7 +21293,7 @@ msgstr "Kor az adott dátumon"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:43
 msgid "Gramplet showing ages of living people on a specific date"
-msgstr "Élő személyek meghatározott dátumú korát mutató gramplet"
+msgstr "Élő emberek meghatározott dátumkori korát mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:55
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:62
@@ -21428,7 +21427,7 @@ msgstr "Teendő listát mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:285
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
 msgid "Top Surnames"
-msgstr "Leggyakoribb vezetéknevek"
+msgstr "Legygakoribb vezetéknevek"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:286
 msgid "Gramplet showing most frequent surnames in this tree"
@@ -21940,7 +21939,7 @@ msgstr "Felvételek"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1102
 #: ../gramps/plugins/textreport/textplugins.gpr.py:413
 msgid "Shows some interesting records about people and families"
-msgstr "Néhány érdekes felvételt mutat személyekről és családokról"
+msgstr "Néhány érdekes felvételt mutat emberekről és családokról"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1117
 msgid "Person To Do"
@@ -22134,7 +22133,7 @@ msgstr "1. generáció"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:262
 msgid "Double-click to see people in generation"
-msgstr "Generációbeli személyek nézéséhez kettős kattintás"
+msgstr "Generációbeli emberek nézéséhez kettős kattintás"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:264
 #, python-format
@@ -22154,7 +22153,7 @@ msgstr "%d generáció"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 #, python-format
 msgid "Double-click to see people in generation %d"
-msgstr "%d generációbeli személyek nézéséhez kettős kattintás"
+msgstr "%d generációbeli emberek nézéséhez kettős kattintás"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:272
@@ -22478,10 +22477,10 @@ msgid ""
 "\n"
 msgstr ""
 "Az első dolog, amit tennie kell: létrehozni egy új Családfát. Egy új "
-"Családfa létrehozásához (néha 'adatbázisnak' hívják) kattintson a \"Családfák"
-"\"-ra a menüből, válassza a \"Családfák kezelése...\" sort, nyomja meg az "
-"\"Új\" gombot és adjon nevet Családfájának. További részletekért olvassa el "
-"a fenti hivatkozáson levő információkat\n"
+"Családfa létrehozásához (néha 'adatbázisnak' hívják) válassza a \"Családfa\"-"
+"t a menüből, vegye a \"Családfa kezelése\" pontot, nyomja meg: \"Új\" és "
+"adjon nevet Családfájának. További részletekért olvassa el a fenti "
+"hivatkozáson levő információkat\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
@@ -22499,14 +22498,14 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"Most a \"Műszerfal\" nézet oldalt olvassa, ahová saját grampleteket is "
-"hozzáadhat. Bármelyik más nézethez is adhat grampleteket egy oldal- és/vagy "
-"alsó sáv hozzáadásával, majd a fül jobb oldalán jobb-kattintással.\n"
+"Most a \"Műszerfal\" nézet oldalt olvassa, ahová saját grampleteket adhat "
+"hozzá. Bármelyik más nézethez is adhat grampleteket egy oldal- és/vagy alsó "
+"sáv hozzáadásával, majd ezen a fül jobb oldalán jobb-kattintással.\n"
 "\n"
-"További oszlopok hozzáadása az eszköztár konfiguráló ikonra kattintva, míg a "
-"háttéren való jobb-kattintással grampletek hozzáadása lehetséges. A "
-"Tulajdonságok gombot megfogva áthelyezheti a grampletet ezen az oldalon és "
-"leválasztva a grampletet úsztathatja a GRAMPS felett."
+"További oszlopokat az eszköztár konfiguráló ikonra kattintva, míg a háttéren "
+"való jobb-kattintással grampleteket adhat hozzá. A Tulajdonságok gombot "
+"megfogva áthelyezheti a grampletet az oldalon és leválaszthatja a "
+"grampletet, úsztatva a GRAMPS felett."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -22715,14 +22714,14 @@ msgstr "Gyermekek lesznek figyelembe véve \"családvonalak\" meghatározásakor
 
 #: ../gramps/plugins/graph/gvfamilylines.py:128
 msgid "Try to remove extra people and families"
-msgstr "Plusz személyek és családok eltávolításának kísérlete"
+msgstr "Plusz emberek és családok eltávolításának kísérlete"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:130
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
-"Az érdekelt személyekhez nem közvetlenül kapcsolódó emberek és családok "
+"A célszemélyekhez nem közvetlenül kapcsolódó személyek és családok "
 "eltávolításra kerülnek a \"családvonalak\" meghatározásakor."
 
 #. see bug report #2180
@@ -22757,20 +22756,20 @@ msgstr ""
 #. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:153
 msgid "People of Interest"
-msgstr "Érdekelt személyek"
+msgstr "Célszemélyek"
 
 #. --------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:156
 msgid "People of interest"
-msgstr "Érdekelt személyek"
+msgstr "Célszemélyek"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:157
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Az érdekelt személyeket mint kiindulási pont használjuk, amikor "
-"\"családvonalakat\" határozunk meg."
+"A célszemélyeket mint kiindulási pont használjuk, amikor \"családvonalakat\" "
+"határozunk meg."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:161
 msgid "Limit the number of ancestors"
@@ -22833,7 +22832,7 @@ msgstr "Dátumokkal együtt"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:201
 msgid "Whether to include dates for people and families."
-msgstr "Benne legyenek-e dátumok a személyeknél és a családoknál."
+msgstr "Benne legyenek-e dátumok az embereknél és a családoknál."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:206
 msgid "Limit dates to years only"
@@ -22849,7 +22848,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
 msgid "Whether to include placenames for people and families."
-msgstr "Benne legyenek-e a helynevek a személyeknél és családoknál."
+msgstr "Benne legyenek-e a helynevek az embereknél és családoknál."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:217
 msgid "Include the number of children"
@@ -22865,11 +22864,11 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:224
 #: ../gramps/plugins/graph/gvrelgraph.py:736
 msgid "Include thumbnail images of people"
-msgstr "A személyek bélyegképeivel együtt"
+msgstr "Az emberek bélyegképeivel együtt"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:227
 msgid "Whether to include thumbnail images of people."
-msgstr "Legyenek-e benne a személyek bélyegképei."
+msgstr "Legyenek-e benne az emberek bélyegképei."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:232
 msgid "Thumbnail location"
@@ -22938,7 +22937,7 @@ msgstr "Személyek száma az adatbázisban:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:427
 msgid "Number of people of interest:"
-msgstr "Az érdekelt személyek száma:"
+msgstr "Célszemélyek száma:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:430
 msgid "Number of families in database:"
@@ -22946,7 +22945,7 @@ msgstr "Családok száma az adatbázisban:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:433
 msgid "Number of families of interest:"
-msgstr "Az érdekelt családok száma:"
+msgstr "Cél családok száma:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:437
 msgid "Additional people removed:"
@@ -22958,7 +22957,7 @@ msgstr "További eltávolított családok:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:443
 msgid "Initial list of people of interest:"
-msgstr "Az érdekelt személyek alap-listája:"
+msgstr "Célszemélyek kezdő listája:"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:929
@@ -23109,7 +23108,7 @@ msgstr "Mutassa-e minden személy kapcsolatát a központi személlyel"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:738
 msgid "Whether to include thumbnails of people."
-msgstr "Legyenek-e benne a személyek bélyegképei."
+msgstr "Legyenek-e benne az emberek bélyegképei."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:742
 msgid "Thumbnail Location"
@@ -23515,7 +23514,7 @@ msgstr "Létrehozta:"
 
 #: ../gramps/plugins/importer/importgedcom.glade:321
 msgid "People:"
-msgstr "Személyek:"
+msgstr "Emberek:"
 
 #: ../gramps/plugins/importer/importgedcom.glade:378
 msgid "Encoding:"
@@ -23890,7 +23889,7 @@ msgstr "  %(id)s idézet %(id2)s-al\n"
 #: ../gramps/plugins/importer/importxml.py:282
 #, python-format
 msgid "  People: %d\n"
-msgstr "  Személyek: %d\n"
+msgstr "  Emberek: %d\n"
 
 #: ../gramps/plugins/importer/importxml.py:283
 #, python-format
@@ -23969,7 +23968,7 @@ msgid ""
 "or, if not set, relative to the user's directory.\n"
 msgstr ""
 "\n"
-"Relatív útvonallal rendelkező médiaobjektumokat\n"
+"Realtív útvonallal rendelkező médiaobjektumokat\n"
 "importált. Ezek az útvonalak a beállításokban\n"
 "meghatározott média könyvtárhoz, vagy ha nincs\n"
 "ilyen, akkor a felhasználó könyvtárához viszonyítva\n"
@@ -28685,7 +28684,7 @@ msgstr "A következő problémákat észleltem:"
 #: ../gramps/plugins/quickview/attributematch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "'%s' jellemzővel rendelkező személyek"
+msgstr "'%s' jellemzővel rendelkező emberek"
 
 #: ../gramps/plugins/quickview/attributematch.py:46
 #, python-format
@@ -28771,7 +28770,7 @@ msgstr "nők"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgid "Filtering_on|people with unknown gender"
-msgstr "ismeretlen nemű személyek"
+msgstr "ismeretlen nemű emberek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgid "Filtering_on|incomplete names"
@@ -28779,11 +28778,11 @@ msgstr "nem teljes nevek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgid "Filtering_on|people with missing birth dates"
-msgstr "hiányzó születési dátumú személyek"
+msgstr "hiányzó születési dátumú emberek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|disconnected people"
-msgstr "nem kapcsolt személyek"
+msgstr "nem kapcsolt emberek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgid "Filtering_on|unique surnames"
@@ -28791,7 +28790,7 @@ msgstr "egyedi vezetéknevek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgid "Filtering_on|people with media"
-msgstr "személyek médiával"
+msgstr "emberek médiával"
 
 #: ../gramps/plugins/quickview/filterbyname.py:69
 msgid "Filtering_on|media references"
@@ -28811,7 +28810,7 @@ msgstr "média méret szerint"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgid "Filtering_on|list of people"
-msgstr "személyek listája"
+msgstr "emberek listája"
 
 #: ../gramps/plugins/quickview/filterbyname.py:85
 msgid "Summary counts of current selection"
@@ -28837,7 +28836,7 @@ msgstr "Objektum"
 #: ../gramps/plugins/view/view.gpr.py:188
 #: ../gramps/plugins/view/view.gpr.py:197
 msgid "People"
-msgstr "Személyek"
+msgstr "Emberek"
 
 #: ../gramps/plugins/quickview/filterbyname.py:103
 #: ../gramps/plugins/quickview/filterbyname.py:128
@@ -29059,7 +29058,7 @@ msgstr "Nincs más esemény %(year)d évben"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:33
 msgid "Display people and ages on a particular date"
-msgstr "Személyek és korok mutatása egy meghatározott dátumon"
+msgstr "Emberek és korok mutatása egy meghatározott dátumon"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:52
 msgid "Attribute Match"
@@ -29067,7 +29066,7 @@ msgstr "Jellemző egyezés"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:53
 msgid "Display people with same attribute."
-msgstr "Azonos jellemzőjű személyek mutatása."
+msgstr "Azonos jellemzőjű emberek mutatása."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:72
 msgid "All Events"
@@ -29155,7 +29154,7 @@ msgstr "Azonos vezetéknevek"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:270
 msgid "Display people with the same surname as a person."
-msgstr "Személyek mutatása azonos személyi vezetéknévvel."
+msgstr "Emberek mutatása azonos személyi vezetéknévvel."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:283
 msgid "Same Given Names"
@@ -29164,7 +29163,7 @@ msgstr "Azonos utónevek"
 #: ../gramps/plugins/quickview/quickview.gpr.py:284
 #: ../gramps/plugins/quickview/quickview.gpr.py:298
 msgid "Display people with the same given name as a person."
-msgstr "Személyek mutatása azonos személyi utónévvel."
+msgstr "Emberek mutatása azonos személyi utónévvel."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:297
 msgid "Same Given Names - stand-alone"
@@ -29196,41 +29195,41 @@ msgstr "Médiatípus"
 
 #: ../gramps/plugins/quickview/samesurnames.py:39
 msgid "People with incomplete surnames"
-msgstr "Személyek nem teljes vezetéknévvel"
+msgstr "Emberek nem teljes vezetéknévvel"
 
 #: ../gramps/plugins/quickview/samesurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr "Hiányzó családnevű személyek találatai"
+msgstr "Hiányzó családnevű emberek találatai"
 
 #: ../gramps/plugins/quickview/samesurnames.py:51
 msgid "People matching the <surname>"
-msgstr "Személyek <surname> találatra"
+msgstr "Emberek <surname> találatra"
 
 #: ../gramps/plugins/quickview/samesurnames.py:52
 msgid "Matches people with same lastname"
-msgstr "Azonos családnevű személyek találatai"
+msgstr "Azonos családnevű emberek találatai"
 
 #: ../gramps/plugins/quickview/samesurnames.py:64
 msgid "People matching the <given>"
-msgstr "Személyek <given> találatra"
+msgstr "Emberek <given> találatra"
 
 #: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "Matches people with same given name"
-msgstr "Azonos keresztnevű személyek találatai"
+msgstr "Azonos keresztnevű emberek találatai"
 
 #: ../gramps/plugins/quickview/samesurnames.py:88
 msgid "People with incomplete given names"
-msgstr "Nem teljes keresztnevű személyek"
+msgstr "Nem teljes keresztnevű emberek"
 
 #: ../gramps/plugins/quickview/samesurnames.py:89
 msgid "Matches people with firstname missing"
-msgstr "Hiányzó keresztnevű személyek találatai"
+msgstr "Hiányzó keresztnevű emberek találatai"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:113
 #, python-format
 msgid "People sharing the surname '%s'"
-msgstr "'%s' vezetéknéven osztozó személyek"
+msgstr "'%s' vezetéknéven osztozó emberek"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
@@ -29246,7 +29245,7 @@ msgstr[1] "{number_of} személy van egyező, vagy helyettesítő névvel.\n"
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
-msgstr "Személyek '%s' keresztnévvel"
+msgstr "Emberek '%s' keresztnévvel"
 
 #. display the title
 #. feature request 2356: avoid genitive form
@@ -29288,7 +29287,7 @@ msgstr "Katalán rokonság számoló"
 #: ../gramps/plugins/rel/relplugins.gpr.py:300
 #: ../gramps/plugins/rel/relplugins.gpr.py:314
 msgid "Calculates relationships between people"
-msgstr "Személyek közötti rokonságot számol"
+msgstr "Emberek közötti rokonságot számol"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:45
 msgid "Czech Relationship Calculator"
@@ -29483,11 +29482,11 @@ msgstr "A jelentés éve"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 msgid "Select filter to restrict people that appear on report"
-msgstr "Válasszon szűrőt személyek megjelenésének tiltásához a jelentésben"
+msgstr "Válasszon szűrőt emberek megjelenésének kizárásához a jelentésben"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:436
 msgid "Include only living people in the report"
-msgstr "Csak élő személyek legyenek a jelentésben"
+msgstr "Csak élő emberek legyenek a jelentésben"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:458
 msgid "Select the first day of the week for the report"
@@ -30873,7 +30872,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:212
 msgid "Produces a complete report on the selected people"
-msgstr "Egy teljes összesítőt készít a kijelölt személyekről"
+msgstr "Egy teljes összesítőt készít a kijelölt emberekről"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:233
 msgid "Kinship Report"
@@ -30885,7 +30884,7 @@ msgstr "Szöveges kinship összesítőt hoz létre egy megadott személyről"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:256
 msgid "Produces a list of people with a specified tag"
-msgstr "Megadott címkéjű személyek listáját hozza létre"
+msgstr "Megadott címkéjű emberek listáját hozza létre"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:278
 msgid "Number of Ancestors Report"
@@ -31115,7 +31114,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/check.py:809
 msgid "Looking for empty people records"
-msgstr "Üres személy-rekord keresése"
+msgstr "Üres emberek rekord keresése"
 
 #: ../gramps/plugins/tool/check.py:817
 msgid "Looking for empty family records"
@@ -31580,7 +31579,7 @@ msgstr "Események összehasonlítása"
 
 #: ../gramps/plugins/tool/eventcmp.py:182
 msgid "Selecting people"
-msgstr "Személyek kiválasztása"
+msgstr "Emberek kiválasztása"
 
 #: ../gramps/plugins/tool/eventcmp.py:194
 msgid "No matches were found"
@@ -31663,12 +31662,12 @@ msgstr "Közepes"
 
 #: ../gramps/plugins/tool/finddupes.py:66
 msgid "manual|Find_Possible_Duplicate_People"
-msgstr "manual|Személyek_lehetséges_kettőződésének_keresése"
+msgstr "manual|Emberek_lehetséges_kettőződésének_keresése"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:150
 msgid "Find Possible Duplicate People"
-msgstr "Személyek lehetséges kettőződések megkeresése"
+msgstr "Emberek lehetséges kettőződések megkeresése"
 
 #: ../gramps/plugins/tool/finddupes.py:142
 msgid "Find Duplicates tool"
@@ -31686,7 +31685,7 @@ msgstr "Nincsenek találatok"
 
 #: ../gramps/plugins/tool/finddupes.py:177
 msgid "No potential duplicate people were found"
-msgstr "Lehetséges kettőződött személyek nem találhatóak"
+msgstr "Lehetséges kettőződött emberek nem találhatóak"
 
 #: ../gramps/plugins/tool/finddupes.py:187
 msgid "Find Duplicates"
@@ -31694,7 +31693,7 @@ msgstr "Kettőződések keresése"
 
 #: ../gramps/plugins/tool/finddupes.py:188
 msgid "Looking for duplicate people"
-msgstr "Kettőzött személyek keresése"
+msgstr "Kettőzött emberek keresése"
 
 #: ../gramps/plugins/tool/finddupes.py:197
 msgid "Pass 1: Building preliminary lists"
@@ -32468,7 +32467,7 @@ msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
-"Személyek számának generálása\n"
+"Emberek számának generálása\n"
 "(A szám csak becsült, mert családokat generálunk)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:341
@@ -33624,7 +33623,7 @@ msgid ""
 "have these two people been able to meet?"
 msgstr ""
 "A nézet minden családtag teljes élete alatt felkeresett helyszíneket "
-"mutatja: találkozhattak ezek a személyek?"
+"mutatja: találkozhattak ezek az emberek?"
 
 #: ../gramps/plugins/view/geography.gpr.py:154
 msgid ""
@@ -33906,7 +33905,7 @@ msgstr "Házassági adatok mutatása"
 
 #: ../gramps/plugins/view/pedigreeview.py:2018
 msgid "Show unknown people"
-msgstr "Ismeretlen személyek mutatása"
+msgstr "Ismeretlen emberek mutatása"
 
 #: ../gramps/plugins/view/pedigreeview.py:2021
 msgid "Tree style"
@@ -33934,11 +33933,11 @@ msgstr "A fa mérete"
 
 #: ../gramps/plugins/view/personlistview.py:54
 msgid "Person View"
-msgstr "Személy-nézet"
+msgstr "Személynézet"
 
 #: ../gramps/plugins/view/persontreeview.py:66
 msgid "People Tree View"
-msgstr "Ember fa-nézet"
+msgstr "Emberfa nézet"
 
 #: ../gramps/plugins/view/placelistview.py:51
 msgid "Place View"
@@ -33946,7 +33945,7 @@ msgstr "Hely nézet"
 
 #: ../gramps/plugins/view/placetreeview.py:55
 msgid "Place Tree View"
-msgstr "Hely fa-nézet"
+msgstr "Helyfa nézet"
 
 #: ../gramps/plugins/view/placetreeview.py:70
 msgid "Expand this Entire Group"
@@ -33958,7 +33957,7 @@ msgstr "A teljes csoport bezárása"
 
 #: ../gramps/plugins/view/relview.py:396
 msgid "_Reorder"
-msgstr "_Átrendezés"
+msgstr "_átrendezés"
 
 #: ../gramps/plugins/view/relview.py:397
 msgid "Change order of parents and families"
@@ -33975,7 +33974,7 @@ msgstr "Aktív személy szerkesztése"
 #: ../gramps/plugins/view/relview.py:405 ../gramps/plugins/view/relview.py:407
 #: ../gramps/plugins/view/relview.py:798
 msgid "Add a new family with person as parent"
-msgstr "Új család hozzáadása személlyel, aki szülő"
+msgstr "Új család hozzáadása szülőszeméllyel"
 
 #: ../gramps/plugins/view/relview.py:406
 msgid "Add Partner..."
@@ -34237,7 +34236,7 @@ msgstr "A leszármazottakat legyezőgrafikonban mutató nézet"
 
 #: ../gramps/plugins/view/view.gpr.py:171
 msgid "Grouped People"
-msgstr "Csoportosított személyek"
+msgstr "Csoportosított emberek"
 
 #: ../gramps/plugins/view/view.gpr.py:172
 msgid "The view showing all people in the Family Tree grouped per family name"
@@ -34540,7 +34539,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4510
 msgid "Number of People"
-msgstr "Személyek száma"
+msgstr "Emberek száma"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4555
 #, python-format
