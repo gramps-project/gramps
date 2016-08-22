@@ -48,15 +48,15 @@ explain_safe = '''    **********************************************************
 
 def RunExeCommand( app, args ):
     cmd = app + ' ' + args
-    #print "Running: ", cmd
+    #print("Running: ", cmd)
     stdin, stdout, stderr = os.popen3( cmd )
     output = string.strip(stdout.read())
-    #print output
+    #print(output)
     err = stderr.read()
     if err:
-        print err
+        print(err)
     return output
-        
+
 def CheckGtkInReg():
     global gtkPathInRegistry, gtkVersionInRegistry, dllPathInRegistry, dllPathShort
     log.info( '\n==== Checking Registry for GTK =====' )
@@ -68,8 +68,8 @@ def CheckGtkInReg():
             log.info( '  Version   : %s'% gtkVersionInRegistry )
             log.info( '  Path      : %s'% gtkPathInRegistry )
             log.info( '  DllPath   : %s'% dllPathInRegistry )
-            
-    except WindowsError, e:
+
+    except WindowsError as e:
         log.info( '\n  GTK registry key not found in registry' )
         log.info( '''    ********************************************************************
     * This might not be an error, but means I don't know the directory to 
@@ -78,7 +78,7 @@ def CheckGtkInReg():
         log.info( '-' * 60 )
         log.info( usage )
         sys.exit(0)
-    
+
 def WorkOutShortDosPath():
     global dllPathShort
     log.info( '\n==== Use win32Api to query short path name for GTK =====' )
@@ -99,11 +99,11 @@ def FindLibsWithCtypes():
         dllpathvalid = False
         cpath = find_library(dll)
         if cpath:
-        #print cpath
+        #print(cpath)
             if cpath == os.path.join(dllPathInRegistry, dll) \
             or cpath == os.path.join(dllPathShort, dll):
                 dllpathvalid = True
-                
+
             if not dllpathvalid:
                 pp = os.path.dirname(cpath)
                 if pp not in other_paths:
@@ -140,17 +140,17 @@ def ScanDependencyFileForErrors(fname):
             if dirname.startswith(os.path.join(sysroot, 'winsxs').lower()) \
             or dirname.startswith(os.path.join(sys.prefix, 'lib\site-packages\gtk-2.0').lower()):
                 OK = True
-                
+
             for pth in acceptablePaths:
                 if dirname == pth.lower():
                     OK = True
-                    
+
             if 'MSVCR90.DLL' in filename:
                 if parts[0] == 'Error':
                     runtimedlls[filename] = "Error dll not found"
                 else:
                     runtimedlls[filename] = parts[16]
-                
+
             if OK == False:
                 if parts[0] == 'Error':
                     log.info( "    %s \tError dll not found" %( filename))
@@ -163,7 +163,7 @@ def ScanDependencyFileForErrors(fname):
             log.info( '\n    MS runtime Version %s loaded from' % runtimedlls[rtdll] )
             log.info( "    %s" %rtdll )
     log.info( '') 
-    
+
 def CheckWithDependencyWalker():
     log.info( '\n==== Checking with Dependency Walker ====' )
     log.info( '      Please be patient takes some time' )
@@ -180,7 +180,7 @@ def CheckWithDependencyWalker():
                 #delete the output file before running command
                 try:
                     os.remove(fout)
-                except WindowsError, e:
+                except WindowsError as e:
                     pass
                 log.info( '  Testing file %s' % ftest )
                 out = RunExeCommand(exe, '/c /f1 /ot "%s" "%s"' % (fout, ftest) )
@@ -192,7 +192,7 @@ def CheckWithDependencyWalker():
         log.info( '  Cannot check with dependency walker, not installed in local directory' )
         log.info( '  get dependency walker from http://www.dependencywalker.com/' )
         log.info( '  and unzip into this directory for it to work.' )
-    
+
 def CheckPathForOtherGtkInstalls():     
     log.info( '\n====Checking environment path for other gtk installations====' )
     ePath = os.environ['path']
@@ -201,7 +201,7 @@ def CheckPathForOtherGtkInstalls():
     other_paths = []
     explain_level = 0
     for i, d in enumerate(dirs):
-        #print '==%s==' %d
+        #print('==%s==' %d)
         if d == gtkPathInRegistry or d == dllPathInRegistry\
         or d == dllPathShort:
             gtkpth_idx = i
@@ -209,7 +209,7 @@ def CheckPathForOtherGtkInstalls():
         for fname in testdlls:
             f = os.path.join(d, fname)
             if os.path.isfile( f ):
-                #print '   Found Erronous gtk DLL %s' % f
+                #print('   Found Erronous gtk DLL %s' % f)
                 if d not in other_paths:
                     other_paths.append(d)
                     if i < gtkpth_idx: # path appears BEFORE runtime path
@@ -228,7 +228,7 @@ def CheckPathForOtherGtkInstalls():
         log.info( explain_safe )
     if len(other_paths) == 0:
         log.info( '  No other gtk installatons found\n' )
-                
+
 # ==== report what python thinks it's using =====
 MIN_PYTHON_VER   = (2,5,1)
 UNTESTED_PYTHON_VER = (3,0,0)
@@ -258,7 +258,7 @@ def PrintVersionResult(appl, minVersion, actualVersion, untestedVersion):
     else:
         result = '...FAILED'
     log.info( '%s version %s or above.....\tfound %s %s' % (appl, minStr , actStr, result) )
-            
+
 def Import_pyGtkIntoPython():
     log.info( '\n==== Test import into python ====' )
     #py_str = 'found %d.%d.%d' %  sys.version_info[:3]
@@ -267,22 +267,22 @@ def Import_pyGtkIntoPython():
     # Test the GTK version
     try:
         import gtk
-        
+
         PrintVersionResult('  GTK+   ', MIN_GTK_VER, Gtk.gtk_version, UNTESTED_GTK_VER )
-        
+
         #test the pyGTK version (which is in the gtk namespace)
         PrintVersionResult('  pyGTK  ', MIN_PYGTK_VER, Gtk.pygtk_version, UNTESTED_PYGTK_VER )
-        
+
     except ImportError:
         PrintFailedImport('  GTK+   ', MIN_GTK_VER, NOT_FOUND_STR)
         PrintFailedImport('  pyGTK  ', MIN_PYGTK_VER, 'Cannot test, ...GTK+ missing')
 
-        
+
     #test the gobject version
     try:
         import gobject
         PrintVersionResult('  gobject', MIN_GOBJECT_VER, GObject.pygobject_version, UNTESTED_GOBJECT_VER) 
-        
+
     except ImportError:
         PrintFailedImport('  gobject', MIN_GOBJECT_VER, NOT_FOUND_STR)
 
@@ -291,7 +291,7 @@ def Import_pyGtkIntoPython():
     try:
         import cairo
         PrintVersionResult('  cairo  ', MIN_CAIRO_VER, cairo.version_info, UNTESTED_CAIRO_VER ) 
-        
+
     except ImportError:
         PrintFailedImport('  cairo  ', MIN_CAIRO_VER, NOT_FOUND_STR)
 
@@ -301,7 +301,7 @@ def Import_pyGtkIntoPython():
     try:
         import Gtk.glade
         log.info( '  Glade   tesing import of libglade .......\tOK\n' )
-    except ImportError, e:
+    except ImportError as e:
         log.info( '  Glade   importError: %s\n' % e )
 
 if __name__ == '__main__':
@@ -311,7 +311,7 @@ Usage:
 
 Arguments:
     gtkPath                    Path to your GTK installation directory (not the bin dir)
-    
+
 Options:
     None
     ''' %(os.path.basename(__file__) )
@@ -332,14 +332,14 @@ Options:
                 sys.exit(0)
 
         if len(args) > 1:
-            raise getopt.GetoptError, '\nERROR: Too many arguments'
+            raise getopt.GetoptError('\nERROR: Too many arguments')
         for arg in args:
             if os.path.isdir(arg):
                 gtkPath = arg
             else:
-                raise  getopt.GetoptError, '\nERROR: Not a valid GTK path %s' % arg
-                
-    except getopt.GetoptError, msg:
+                raise  getopt.GetoptError('\nERROR: Not a valid GTK path %s' % arg)
+
+    except getopt.GetoptError as msg:
         log.info( msg )
         log.info( '\n %s' % usage )
         sys.exit(2)
@@ -354,7 +354,7 @@ Options:
   OS type         : %s''' %  winver)
     else:
         os.info( winver )
-        
+
     if gtkPath:
         gtkPathInRegistry = gtkPath
         dllPathInRegistry = os.path.join(gtkPath, 'bin')
@@ -367,6 +367,6 @@ Options:
     FindLibsWithCtypes()
     CheckPathForOtherGtkInstalls()
     Import_pyGtkIntoPython()
-    
+
     CheckWithDependencyWalker()
-    
+

@@ -86,28 +86,28 @@ def GetGtkPath():
         with _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\\GTK\\2.0') as key:
             dllPathInRegistry = _winreg.QueryValueEx(key, 'DllPath')[0]
             # check a few key files exist at this location
-            gtkfiles = ['libgdk-win32-2.0-0.dll', 'libglib-2.0-0.dll', 'libgobject-2.0-0.dll', 'libcairo-2.dll'] 
+            gtkfiles = ['libgdk-win32-2.0-0.dll', 'libglib-2.0-0.dll', 'libgobject-2.0-0.dll', 'libcairo-2.dll']
             for file in gtkfiles:
                 if not os.path.isfile(os.path.join(dllPathInRegistry, file)):
                     dllPathInRegistry = None # one of the files not present, so assume path is wrong
                     break
-    except WindowsError, e:
+    except WindowsError as e:
         dllPathInRegistry = None
     log.debug(' DLLPATH=%s'%dllPathInRegistry)
     return dllPathInRegistry
 
 def GetGrampsPath():
     GrampsPathInRegistry = None
-    try:  
+    try:
         with _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\\GRAMPS') as key:
             GrampsPathInRegistry = _winreg.QueryValue(key, '')
             # check a few key files exist at this location
-    except WindowsError, e:
+    except WindowsError as e:
         GrampsPathInRegistry = None
-        
+
     log.debug(' GRAMPSPATH=%s'%GrampsPathInRegistry)
     return GrampsPathInRegistry
-    
+
 def GetLanguageFromLocale():
     lang = ' '
     try:
@@ -124,18 +124,18 @@ def GetLanguageFromLocale():
 def writeLauncher(language, langcode, runtimepath, grampspath):
     lines = []
     lines.append('''@rem Setting the working language
-@rem ============================    
+@rem ============================
 @rem GRAMPS looks during the start-up-phase for an environment variable (called LANG) 
 @rem to switch to a special language. It's better to use a ".CMD" or ".BAT" file to 
 @rem control this environment variable instead a permanent setting in the windows registry,
 @rem to have the possibility to go back to the GRAMPS standard language (English) in the 
 @rem case you want to report about a problem or a bug.
-''')    
+''')
     lines.append('\n@rem Set GRAMPS environment settings to %s \n' % language)
     lines.append('SET LANG=$LANG$ \nSET LANGUAGE=$LANG$\n'.replace("$LANG$", langcode) )
-    
+
     lines.append('''\n\n@rem Setting the configuration path
-@rem ==============================    
+@rem ==============================
 @rem During the boot process of GRAMPS there is a check for an environment variable
 @rem called GRAMPSHOME. Without this environment variable GRAMPS uses the default 
 @rem windows path as the location to save all configuration files:
@@ -158,7 +158,7 @@ def writeLauncher(language, langcode, runtimepath, grampspath):
     lines.append(path)
     lines.append('''\n\n@rem Start GRAMPS application
 @rem =========================
-@rem Start GRAMPS with pythonw.exe (Python interpreter that runs without a command line console) 
+@rem Start GRAMPS with pythonw.exe (Python interpreter that runs without a command line console)
 ''')
     lines.append('\n@rem start Gramps')
     lines.append('\n"%s" "%s"\n' % (os.path.join(sys.prefix, 'pythonw.exe') , os.path.join(grampspath, 'gramps.py' ) ))
@@ -166,7 +166,7 @@ def writeLauncher(language, langcode, runtimepath, grampspath):
     fout.writelines(lines)
     fout.close()
     for line in lines:
-        print line
+        print(line)
 
 gtkpath = GetGtkPath()
 grampspath = GetGrampsPath()
@@ -174,10 +174,10 @@ lang = GetLanguageFromLocale()
 if lang:
     try:
         lang_text = langLookup[lang.split('_', 1)[0]]
-    except KeyError, e:
+    except KeyError as e:
         try:
             lang_text = langLookup[lang]
-        except KeyError, e:
+        except KeyError as e:
             lang_text = "Unknown"
-        
-    writeLauncher(lang_text, "%s.utf-8"%lang, gtkpath, grampspath)    
+
+    writeLauncher(lang_text, "%s.utf-8"%lang, gtkpath, grampspath)

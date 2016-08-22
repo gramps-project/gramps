@@ -82,7 +82,7 @@ class buildbase(GObject.GObject):
         self.repository_path = '.' #where the source comes from, either SVN root or a tarball
         self.bBuildInstaller = True
         self.tarbase3 = '.'
-        
+
     def getbuild_src(self):
         return os.path.join(self.build_root, 'src')
 
@@ -100,7 +100,7 @@ class buildbase(GObject.GObject):
         log.debug('========== getSVNRevision(%s)' % dir)
         cmd = 'svnversion -n %s' % dir
         log.debug( "Running: %s" % cmd )
-        
+
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
         (out, err) = proc.communicate()
         output = string.strip(out)
@@ -123,9 +123,9 @@ class buildbase(GObject.GObject):
         log.debug('========== exportSVN(%s, %s)' % (svn_dir, destdir) )
 #        cmd = '"%s" export %s %s' % (SVN_exe ,svn_dir, destdir)
         cmd = [SVN_exe, 'export' ,svn_dir, destdir] #'"%s" export %s %s' % (SVN_exe ,svn_dir, destdir)
-        
+
         log.info( "Running: %s" % cmd)
-        
+
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
         (out, err) = proc.communicate()
         output = string.strip(out)
@@ -171,13 +171,13 @@ class buildbase(GObject.GObject):
         elif sys.platform == 'linux2':
             #assumption makensis is installed and on the path
             cmd = '%s -V3 %s' % (MAKENSIS_exe, pth2nsis_script)
-        
+
         log.info( "Running: %s" % cmd)
         # Need to define the following enviroment variables for NSIS script
         os.environ['GRAMPS_VER'] = self.gramps_version
         os.environ['GRAMPS_BUILD_DIR'] = os.path.abspath(self.build_src)
         os.environ['GRAMPS_OUT_DIR'] = os.path.abspath(self.out_dir)
-        
+
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
         (out, err) = proc.communicate()
         output = string.strip(out)
@@ -191,7 +191,7 @@ class buildbase(GObject.GObject):
         conf_lines = fin.readlines()
         fin.close()
         return self.getVersionFromLines(conf_lines)
-        
+
     def getVersionFromLines(self, conf_lines):
         log.debug('========== getVersionFromLines()')
         for line in conf_lines:
@@ -225,11 +225,11 @@ class buildbase(GObject.GObject):
             po_files = glob.glob(po_dir + "\*.po")
             # no longer using python msgfmt as it doesn't handle plurals (april 2010)
             # msgfmtCmd = path.normpath(path.join(sys.prefix, "Tools/i18n/msgfmt.py") )
-            
+
             # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
             # ....\gettext\bin\msgfmt.exe needs to be on the path
             msgfmtCmd = 'msgfmt.exe'
-            #print 'msgfmtCmd = %s' % msgfmtCmd
+            #print('msgfmtCmd = %s' % msgfmtCmd)
         elif sys.platform == 'linux2':
             po_files = glob.glob(po_dir + "/*.po")
             msgfmtCmd = "%s/bin/msgfmt" % sys.prefix
@@ -304,7 +304,7 @@ class buildbase(GObject.GObject):
             try:
                 log.info('removing directory: %s' % self.build_root )
                 shutil.rmtree(self.build_root)
-            except MY_EXCEPTION, e:
+            except MY_EXCEPTION as e:
                 log.error( e )
 
         for file in ['gramps-%s.exe'%self.gramps_version ]: #, 'build.log']:
@@ -313,7 +313,7 @@ class buildbase(GObject.GObject):
                 try:
                     log.info('removing file:      %s' % fname )
                     os.remove(fname)
-                except MY_EXCEPTION, e:
+                except MY_EXCEPTION as e:
                     log.error( e )
 
     def getNSISVersionNumber(self):
@@ -322,7 +322,7 @@ class buildbase(GObject.GObject):
           # v2.42
         cmd = '"%s" -VERSION' % (MAKENSIS_exe)
         log.debug(cmd)
-        
+
         proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
         (out, err) = proc.communicate()
         output = string.strip(out)
@@ -333,15 +333,15 @@ class buildbase(GObject.GObject):
                 minor =0
                 major =0
                 return (major, minor)
-            
+
         #parse the output to get version number into tuple
         ver =  output[1:].split('.') 
         major = int(ver[0])
         try:
             minor = int(ver[1]) 
-        except ValueError, e:
+        except ValueError as e:
             m = ver[1]
-            minor = int(m[:2])        
+            minor = int(m[:2])
         return (major, minor)
 
     def checkForBuildTools(self):
@@ -356,12 +356,12 @@ class buildbase(GObject.GObject):
                     makensisexe = path.join( nsispath, 'makensis.exe')
                     if path.isfile( makensisexe ):
                         MAKENSIS_exe = makensisexe
-            except WindowsError, e:
+            except WindowsError as e:
                 log.warning('NSIS not found, in registory')
                 log.warning('..Testing if makensis is on the path')
                 MAKENSIS_exe = 'makensis'
                 #cmd = os.path.join(nsis_dir, MAKENSIS_exe)
-                
+
                 cmd = '%s /VERSION' % MAKENSIS_exe
                 proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
                 (out, err) = proc.communicate()
@@ -376,7 +376,7 @@ class buildbase(GObject.GObject):
 
             # Find msgfmt on system
             cmd = os.path.join(msg_dir, 'msgfmt.exe')
-            
+
             proc = subprocess.Popen( cmd, shell = True, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
             (out, err) = proc.communicate()
             output = string.strip(out)
@@ -386,7 +386,7 @@ class buildbase(GObject.GObject):
                 log.error('msgfmt.exe not found on path')
                 log.error('    try the -m DIR , --msgdir=DIR option to specify the directory or put it on the path')
                 sys.exit(0)
-            
+
             # Find SVN on system  -  optional,  if building from tarball
             if not bTarball:
                 try:
@@ -394,11 +394,11 @@ class buildbase(GObject.GObject):
                         svnpath = winreg.QueryValue(key, '')
                     if path.isfile(svnpath):
                         SVN_exe = svnpath
-                except WindowsError, e:
+                except WindowsError as e:
                     log.warning('SVN not found, in registory')
                     log.warning('... Hoping svn is on the path')
                     SVN_exe = 'svn'
-            
+
         elif sys.platform == 'linux2':
             #ASSUMPTION: these tools are on the path
             #TODO: check for svn on Linux
@@ -407,7 +407,7 @@ class buildbase(GObject.GObject):
             #TODO: check for nsis on Linux
             log.info( 'TODO: Check for nsis' )
             MAKENSIS_exe = 'makensis'
-            
+
         # Check if we are running a compatible vesion of NSIS
         vers = self.getNSISVersionNumber()
         if vers < MIN_NSIS_VERSION:
@@ -417,7 +417,7 @@ class buildbase(GObject.GObject):
         else:
             self.bBuildInstaller = True
             log.info( "NSIS version %d.%d" % vers )
-            
+
     def expandTarBall(self, tarball, expand_dir):
         # gramps-3.1.0.tar.gz
         log.info( 'expandTarBall(%s, %s)' % (tarball, expand_dir) )
@@ -429,15 +429,15 @@ class buildbase(GObject.GObject):
             extractDir =  os.path.join(self.out_dir, self.tarbase3  )
             try:
                 os.rename( extractDir, self.build_root)
-            except WindowsError, e:
+            except WindowsError as e:
                 log.error("FAILED: \n\t extractDir=%s \n\t build_root=%s" % (extractDir, self.build_root))
-                raise WindowsError, e
+                raise WindowsError(e)
         else:
             log.error( "Sorry %s is not a tar file" % self.repository_path )
 
     def getVersionFromTarBall(self, tarball):
         log.debug( 'getVersionFromTarBall(%s)' % (tarball))
-        
+
         if tarfile.is_tarfile(self.repository_path):
             tar = tarfile.open(self.repository_path)
             members = tar.getnames()
@@ -449,11 +449,11 @@ class buildbase(GObject.GObject):
                     vers = self.getVersionFromLines(lines)
                 if 'TODO' in member: #need to get path this will extract too, grab it of one of the files
                     self.tarbase3, rest = member.split('/', 1)
-                    print '==ExtractPath', self.tarbase3
+                    print('==ExtractPath', self.tarbase3)
             tar.close()
         log.debug( 'Version (%s)' % (vers) )
         return vers
-        
+
     def copyPatchTreeToDest(self, src, dst):
         '''Patch a tarball build with alternate files as required.
         At this stage do not allow new directories to be made or
@@ -474,15 +474,15 @@ class buildbase(GObject.GObject):
                     self.copyPatchTreeToDest(srcname, dstname)
                 else:
                     log.error('UNDEFINED: %s -> %s' % (srcname, dstname))
-            except (IOError, os.error), why:
+            except (IOError, os.error) as why:
                 errors.append((srcname, dstname, str(why)))
             # catch the Error from the recursive copytree so that we can
             # continue with other files
-            except Error, err:
+            except Error as err:
                 errors.extend(err.args[0])
         if errors:
             raise Error(errors)
-                
+
 def buildGRAMPS( base, out_dir, bTarball):
     bo = buildbase()
 
@@ -490,7 +490,7 @@ def buildGRAMPS( base, out_dir, bTarball):
     bo.out_dir = out_dir
     bo.bTarball = bTarball
     bo.bBuildInstaller = bBuildInstaller
-    
+
     if not bo.bTarball and not bo.isGrampsRoot(bo.repository_path):
         log.error( '$$$$ BAD Gramps Root specified $$$$')
     else:
@@ -513,7 +513,7 @@ def buildGRAMPS( base, out_dir, bTarball):
                 bo.exportSVN(os.path.join(base, 'example'), os.path.join(bo.build_root, 'examples') )
             bo.generateConstPy( ) 
             bo.copyExtraFilesToBuildDir(base)
-        
+
         if bPatchBuild:
             bo.copyPatchTreeToDest( patch_dir, bo.build_root )
         if bBuildAll:
@@ -568,7 +568,7 @@ Options:
 
         for o, a in opts:
             if o in ("-h", "--help"):
-                print usage
+                print(usage)
                 sys.exit(0)
 
             if o in ("-o", "--out"):
@@ -576,20 +576,20 @@ Options:
             if o in ("--nsis_only"):
                 bBuildAll = False
             if o in ('-t', "--tarball"):
-                print 'This is a tarball build'
+                print('This is a tarball build')
                 bTarball = True
             if o in ("-m", "--msgdir"):
                 if os.path.isdir( a ):
                     msg_dir =  a
                 else:
-                    raise getopt.GetoptError, '\nERROR: msgfmt dir does not exist'
+                    raise getopt.GetoptError('\nERROR: msgfmt dir does not exist')
             if o in ("-p", "--patch"):
                 if os.path.isdir( a ):
                     patch_dir =  a
                     bPatchBuild = True
                 else:
-                    raise getopt.GetoptError, '\nERROR: Patch directory does not exist'
-                
+                    raise getopt.GetoptError('\nERROR: Patch directory does not exist')
+
         if args: #got args use first one as base dir
             repository_path = path.normpath(args[0])
         else:   # no base dir passed in, work out one from current working dir
@@ -601,21 +601,21 @@ Options:
     #        raise getopt.GetoptError, '\nERROR: No base directory specified'
 
         if len(args) > 1:
-            raise getopt.GetoptError, '\nERROR: Too many arguments'
+            raise getopt.GetoptError('\nERROR: Too many arguments')
 
-    except getopt.GetoptError, msg:
-        print msg
-        print '\n %s' % usage
+    except getopt.GetoptError as msg:
+        print(msg)
+        print('\n %s' % usage)
         sys.exit(2)
 
     if bTarball:
         if not tarfile.is_tarfile(repository_path):
-            print "Tarball %s not a valid Tarball" % repository_path
+            print("Tarball %s not a valid Tarball" % repository_path)
             sys.exit(1)
-            
-    else:    
+
+    else:
         if not os.path.isdir(repository_path):
-            print "WC root directory not found; %s " % repository_path
+            print("WC root directory not found; %s " % repository_path)
             sys.exit(1)
 
     if out_dir == None: 
@@ -624,13 +624,13 @@ Options:
         else:
             out_dir = path.normpath(os.path.join(repository_path, 'windows'))
         log.info("Setting outdir to %s", out_dir)
-        
+
 
     s_args = ''
     for value in sys.argv[1:]:
         s_args = s_args + ' %s'%value
 
-    print "======= build_GrampsWin32.py %s ========"  % s_args
+    print("======= build_GrampsWin32.py %s ========"  % s_args)
     log.debug('Using %s to find python tools' % sys.prefix)
     log.info('Platform: %s' % sys.platform)
     #==========================
