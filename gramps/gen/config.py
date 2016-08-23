@@ -283,6 +283,7 @@ register('paths.quick-backup-filename',
 register('preferences.date-format', 0)
 register('preferences.calendar-format-report', 0)
 register('preferences.cprefix', 'C%04d')
+register('preferences.alternate-fonthandler', False)
 register('preferences.default-source', False)
 register('preferences.tag-on-import', False)
 register('preferences.tag-on-import-format', _("Imported %Y/%m/%d %H:%M:%S"))
