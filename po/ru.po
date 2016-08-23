@@ -24400,7 +24400,7 @@ msgstr "Гражданский брак"
 #: ../gramps/plugins/webreport/narrativeweb.py:9341
 #: ../gramps/plugins/webreport/webcal.py:1595
 msgid "Destination"
-msgstr "Пункт назначения"
+msgstr "Расположение"
 
 # LDS
 #: ../gramps/plugins/lib/libgedcom.py:586
@@ -35582,7 +35582,7 @@ msgstr "Включать ли колонку с данными о партнёр
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9606
 msgid "Include a column for parents on the index pages"
-msgstr "Включить колонку с данными о партнёре на индексных страницах"
+msgstr "Включить колонку с данными о родителях на индексных страницах"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9608
 msgid "Whether to include a parents column"
