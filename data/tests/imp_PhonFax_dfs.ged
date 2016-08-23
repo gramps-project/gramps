@@ -1,0 +1,90 @@
+0 HEAD
+1 SOUR FTM
+2 VERS Family Tree Maker (22.0.0.1410)
+2 NAME Family Tree Maker for Windows
+2 CORP Ancestry.com
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+3 PHON (800) 705-7000
+3 FAX (801) 705-7001
+3 EMAIL help@ancestry.com
+3 WWW http://www.ancestry.com
+1 DEST GED55
+1 DATE 01 MAR 2016
+1 CHAR UTF-8
+1 FILE D:\Family Tree Maker\imp_FTM_LINK.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+0 @SUBM@ SUBM
+1 NAME The Subm /Tester/
+1 ADDR 123 Main St., Winslow, PA, 12345
+2 ADR1 123 Main St.
+2 CITY Winslow
+2 STAE PA
+2 POST 12345
+1 PHON 440-871-3401
+1 PHON 800-871-3401
+1 EMAIL mrstester@gmail.com
+1 FAX 440-321-4568
+1 WWW http://mrstester.com
+0 @I0@ INDI
+1 NAME The /Tester/
+1 BIRT
+2 DATE 29 DEC 1954
+2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140
+3 FORM Street, City, County, State, Country, Zip code
+2 PHON 440-871-3400
+2 PHON 800-871-3400
+2 EMAIL thetester@gmail.com
+2 FAX 440-123-4567
+2 WWW http://thetester.com
+0 @I1@ INDI
+1 NAME Mrs /Tester/
+1 ADDR 123 Main St., Winslow, PA, 12345
+2 ADR1 123 Main St.
+2 CITY Winslow
+2 STAE PA
+2 POST 12345
+1 PHON 440-871-3401
+1 PHON 800-871-3401
+1 EMAIL mrstester@gmail.com
+1 FAX 440-321-4568
+1 WWW http://mrstester.com
+1 NOTE Address with PHON,FAX,EMAIL,WWW. attached directly to person 
+2 CONC is not legal Gedcom, but allowed here.
+1 RESI
+2 DATE 30 DEC 1954
+2 ADDR 123 Main St., Winslow, PA, 12345
+3 ADR1 123 Main St.
+3 CITY Winslow
+3 STAE PA
+3 POST 12345
+2 NOTE Address as event is legal, with PHON,FAX,EMAIL,WWW
+2 PHON 440-871-3401
+2 EMAIL mrstester@gmail.com
+2 FAX 440-321-4568
+2 WWW http://mrstester.com
+0 @I2@ INDI
+1 NAME Tom /Tester/
+1 RESI
+2 DATE 1964
+2 PHON 440-871-3402
+2 EMAIL tomtester@gmail.com
+2 FAX 440-321-4569
+2 WWW http://tomtester.com
+0 @S6@ SOUR
+1 TITL Ohio Births, 1958-2002
+1 REPO @R1@
+0 @R1@ REPO
+1 NAME Testers Repository
+1 ADDR 123 High St., OSF village, CA, USA
+1 EMAIL tester_repo@osf.com
+1 FAX 987-654-3210
+1 PHON 988-765-4321
+1 PHON 800-765-4321
+1 WWW http://www.tester_repo.com
+1 NOTE The repository record
+0 TRLR
