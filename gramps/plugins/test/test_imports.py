@@ -32,6 +32,8 @@ from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
+from gramps.gen.utils.config import config
+from gramps.plugins.export.exportxml import XmlWriter
 
 logger = logging.getLogger(__name__)
 
@@ -179,13 +181,21 @@ def make_tst_function(tstfile, file_name):
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
+        fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
+        if "_dfs" in tstfile:
+            config.set('preferences.default-source', True)
+            skp_imp_adds = False
+        else:
+            skp_imp_adds = True
         try:
             os.remove(fres)
+            os.remove(fout)
         except OSError:
             pass
         logging.info("\n**** %s ****", tstfile)
         set_det_id(True)
-        self.database1 = import_as_dict(fn1, self.user)
+        self.database1 = import_as_dict(fn1, self.user,
+                                        skp_imp_adds=skp_imp_adds)
         set_det_id(True)
         self.database2 = import_as_dict(fn2, self.user)
         self.assertIsNotNone(self.database1,
@@ -200,7 +210,12 @@ def make_tst_function(tstfile, file_name):
         deltas = self.prepare_result(diffs, added, missing)
         # We save a copy of any issues in the users Gramps TEMP_DIR in a file
         # with a '.difs' extension, as well as usual unittest report
+        # Also we save the .gramps file from the import so user can perform
+        # Diff himself for better context.
         if deltas:
+            writer = XmlWriter(self.database1, self.user,
+                               strip_photos=0, compress=0)
+            writer.write(fout)
             hres = open(fres, mode='w', encoding='utf-8',
                         errors='replace')
             hres.write(self.msg)

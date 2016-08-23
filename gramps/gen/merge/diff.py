@@ -82,7 +82,7 @@ def parse(string):
         retval.append(current)
     return retval
 
-def import_as_dict(filename, user=None):
+def import_as_dict(filename, user=None, skp_imp_adds=True):
     """
     Import the filename into a InMemoryDB and return it.
     """
@@ -90,7 +90,7 @@ def import_as_dict(filename, user=None):
         user = User()
     db = make_database("inmemorydb")
     db.load(None)
-    db.set_feature("skip-import-additions", True)
+    db.set_feature("skip-import-additions", skp_imp_adds)
     dbstate = DbState()
     climanager = CLIManager(dbstate, setloader=False, user=user)
     climanager.do_reg_plugins(dbstate, None)
