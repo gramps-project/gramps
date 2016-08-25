@@ -261,7 +261,7 @@ TOKEN_LONG = 122
 TOKEN_FACT = 123
 TOKEN_EMAIL = 124
 TOKEN_WWW = 125
-TOKEN_URL = 126
+TOKEN_FAX = 126
 TOKEN_ROLE = 127
 TOKEN__MAR = 128
 TOKEN__MARN = 129
@@ -373,12 +373,14 @@ TOKENS = {
     "LONG"           : TOKEN_LONG,  "_ITALIC"       : TOKEN_IGNORE,
     "_PLACE"         : TOKEN_IGNORE,
     "FACT"           : TOKEN_FACT,  "EMAIL"         : TOKEN_EMAIL,
+    "_E-MAIL"        : TOKEN_EMAIL, "_EMAIL"        : TOKEN_EMAIL,
     "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
-    "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
+    "_URL"           : TOKEN_WWW,   "URL"           : TOKEN_WWW,
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
     "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
     "_LINK"          : TOKEN__LINK, "_PHOTO"        : TOKEN__PHOTO,
     "_JUST"          : TOKEN__JUST,  # FTM Citation Quality Justification
+    "FAX"            : TOKEN_FAX,
 }
 
 ADOPT_NONE         = 0
@@ -2031,6 +2033,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_ADDR  : self.__subm_addr,
             TOKEN_PHON  : self.__subm_phon,
             TOKEN_EMAIL : self.__subm_email,
+            TOKEN_WWW   : self.__repo_www,
+            TOKEN_FAX   : self.__repo_fax,
             # +1 <<MULTIMEDIA_LINK>>
             # +1 LANG <LANGUAGE_PREFERENCE>
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
@@ -2123,11 +2127,13 @@ class GedcomParser(UpdateCallback):
             TOKEN_RIN   : self.__person_attr,
             # +1 <<CHANGE_DATE>> {0:1}
             TOKEN_CHAN  : self.__person_chan,
-
+            # The following tags are not part of Gedcom spec but are commonly
+            # found here anyway
             TOKEN_ADDR  : self.__person_addr,
             TOKEN_PHON  : self.__person_phon,
+            TOKEN_FAX   : self.__person_fax,
             TOKEN_EMAIL : self.__person_email,
-            TOKEN_URL   : self.__person_url,
+            TOKEN_WWW   : self.__person_www,
             TOKEN__TODO : self.__skip_record,
             TOKEN_TITL  : self.__person_titl,
             TOKEN__PHOTO: self.__person_photo,
@@ -2192,6 +2198,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_PHON   : self.__repo_phon,
             TOKEN_EMAIL  : self.__repo_email,
             TOKEN_WWW    : self.__repo_www,
+            TOKEN_FAX    : self.__repo_fax,
             }
         self.func_list.append(self.repo_parse_tbl)
 
@@ -2242,6 +2249,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_ATTR   : self.__event_attr,   # FTB for _UID
             TOKEN_EMAIL  : self.__event_email,  # FTB for RESI events
             TOKEN_WWW    : self.__event_www,    # FTB for RESI events
+            TOKEN_FAX    : self.__event_fax,    # legal...
             }
         self.func_list.append(self.event_parse_tbl)
 
@@ -2701,6 +2709,9 @@ class GedcomParser(UpdateCallback):
         self.header_corp_addr = {
             TOKEN_ADDR   : self.__repo_addr,
             TOKEN_PHON   : self.__repo_phon,
+            TOKEN_FAX    : self.__repo_fax,
+            TOKEN_WWW    : self.__repo_www,
+            TOKEN_EMAIL  : self.__repo_email,
             }
         self.func_list.append(self.header_corp_addr)
 
@@ -3523,13 +3534,6 @@ class GedcomParser(UpdateCallback):
             addr.set_county(state.res.get_county())
             addr.set_phone(state.res.get_phone())
             repo.add_address(addr)
-
-            if state.res.get_email():
-                url = Url()
-                url.set_path(state.res.get_email())
-                url.set_type(UrlType(UrlType.EMAIL))
-                repo.add_url(url)
-
             rtype = RepositoryType()
             rtype.set((RepositoryType.CUSTOM, _('GEDCOM data')))
             repo.set_type(rtype)
@@ -3870,6 +3874,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.person)
 
+
     def __person_photo(self, line, state):
         """
         This handles the FTM _PHOTO feature, which identifies an OBJE to use
@@ -4136,12 +4141,25 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        addr = Address()
-        addr.set_street("Unknown")
-        addr.set_phone(line.data)
-        state.person.add_address(addr)
-        self.__skip_subordinate_levels(state.level+1, state)
+        url = Url()
+        url.set_path(line.data)
+        url.set_type(UrlType(_('Phone')))
+        state.person.add_url(url)
 
+    def __person_fax(self, line, state):
+        """
+        O INDI
+        1 FAX <PHONE_NUMBER> {0:3}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = Url()
+        url.set_path(line.data)
+        url.set_type(UrlType(_('FAX')))
+        state.person.add_url(url)
 
     def __person_email(self, line, state):
         """
@@ -4158,10 +4176,10 @@ class GedcomParser(UpdateCallback):
         url.set_type(UrlType(UrlType.EMAIL))
         state.person.add_url(url)
 
-    def __person_url(self, line, state):
+    def __person_www(self, line, state):
         """
         O INDI
-        1 URL <URL> {0:3}
+        1 WWW <URL> {0:3}
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -5206,6 +5224,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.family)
 
+
     def __family_comm(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5541,6 +5560,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.event)
 
+
     def __event_type(self, line, state):
         """
         Parses the TYPE line for an event.
@@ -5659,6 +5679,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.place)
+
 
     def __event_place_sour(self, line, state):
         """
@@ -5801,18 +5822,6 @@ class GedcomParser(UpdateCallback):
         else:
             return place.get_alternate_locations()[0]
 
-    def __event_phon(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        place = state.place
-        if place:
-            codes = [place.get_code(), line.data]
-            place.set_code(' '.join(code for code in codes if code))
-
     def __event_privacy(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5883,6 +5892,30 @@ class GedcomParser(UpdateCallback):
         """
         state.event.add_attribute(line.data)
 
+    def __event_phon(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = Attribute()
+        attr.set_type(_("Phone"))
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
+
+    def __event_fax(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        attr = Attribute()
+        attr.set_type(_("FAX"))
+        attr.set_value(line.data)
+        state.event.add_attribute(attr)
+
     def __event_email(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5891,7 +5924,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         attr = Attribute()
-        attr.set_type(line.token_text)
+        attr.set_type(_("EMAIL"))
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
@@ -5903,7 +5936,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         attr = Attribute()
-        attr.set_type(line.token_text)
+        attr.set_type(_("WWW"))
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
@@ -6345,6 +6378,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.citation)
 
+
     def __citation_refn(self, line, state):
         """
         Parses the REFN line of an SOUR instance tag
@@ -6483,6 +6517,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.source)
+
 
     def __source_chan(self, line, state):
         """
@@ -7011,7 +7046,22 @@ class GedcomParser(UpdateCallback):
         """
         address_list = state.repo.get_address_list()
         if address_list:
-            address_list[0].set_phone(line.data)
+            if address_list[0].get_phone():
+                self.__add_msg(_("Only one phone number supported"), line, state)
+            else:
+                address_list[0].set_phone(line.data)
+
+    def __repo_fax(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        url = Url()
+        url.set_path(line.data)
+        url.set_type(UrlType(_('FAX')))
+        state.repo.add_url(url)
 
     def __repo_www(self, line, state):
         """
@@ -7969,7 +8019,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.res.set_phone(line.data)
+        if state.res.get_phone():
+            self.__add_msg(_("Only one phone number supported"), line, state)
+        else:
+            state.res.set_phone(line.data)
 
     def __subm_email(self, line, state):
         """
@@ -7980,7 +8033,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.res.set_email(line.data)
+        # only record the first multiple emails for researcher
+        if not state.res.get_email():
+            state.res.set_email(line.data)
+        self.__repo_email(line, state)
 
 #-------------------------------------------------------------------------
 #
