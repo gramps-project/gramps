@@ -640,9 +640,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             }
         }
         self.set_save_path(directory)
-        # skip GEDCOM cross-ref check for now:
-        self.set_feature("skip-check-xref", True)
-        self.set_feature("skip-import-additions", True)
         self.readonly = False
         self.db_is_open = False
         self.name_formats = []
