@@ -136,6 +136,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         OsmGps.__init__(self, uistate)
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
+        self.dbstate.connect('no-database', self.clear_view)
         self.default_text = "Enter location here!"
         self.centerlon = config.get("geography.center-lon")
         self.centerlat = config.get("geography.center-lat")
@@ -260,6 +261,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         NavigationView.on_delete(self)
         self._config.save()
+
+    def clear_view(self):
+        self.place_list = []
+        self.remove_all_markers()
+        self.remove_all_gps()
+        self.remove_all_tracks()
+        self.message_layer.clear_messages()
 
     def change_db(self, dbse):
         """
