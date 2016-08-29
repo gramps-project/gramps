@@ -4049,7 +4049,7 @@ class PlacePages(BasePage):
 
             # add div for popups.
             with Html("div", id="popup", inline=True) as popup:
-                placedetail += popup 
+                placedetail += popup
 
             # source references
             srcrefs = self.display_ind_sources(place)
@@ -6714,7 +6714,7 @@ class PersonPages(BasePage):
 
             # add div for popups.
             with Html("div", id="popup", inline=True) as popup:
-                mapdetail += popup 
+                mapdetail += popup
 
             # begin place reference section and its table...
             with Html("div", class_="subsection", id="references") as section:
