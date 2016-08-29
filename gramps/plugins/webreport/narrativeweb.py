@@ -170,8 +170,9 @@ FAMILYLINKS = """
       zoom:            %d,
       center:          myLatLng,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+                                  mapOptions);
 
     var flightPath = new google.maps.Polyline({
       path:          tracelife,
@@ -199,9 +200,10 @@ DROPMASTERS = """
       zoom:         %d,
       mapTypeId:    google.maps.MapTypeId.ROADMAP,
       center:       myLatLng,
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  }
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+                              mapOptions);
+  };
 
   function drop() {
     for (var i = 0; i < tracelife.length; i++) {
@@ -239,8 +241,9 @@ MARKERS = """
       zoom:            %d,
       center:          myLatLng,
       mapTypeId:       google.maps.MapTypeId.ROADMAP
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+                              mapOptions);
     addMarkers();
   }
 
@@ -263,59 +266,82 @@ MARKERS = """
     }
   }"""
 
-CANADA_MAP = """
-    var dm_wms = new OpenLayers.Layer.WMS(
-      "Canadian Data",
-      "http://www2.dmsolutions.ca/cgi-bin/mswms_gmap",
-      {layers: "bathymetry,land_fn,park,drain_fn,drainage," +
-         "prov_bound,fedlimit,rail,road,popplace",
-         transparent: "true",
-         format: "image/png"},
-       {isBaseLayer: false});
-     map.addLayers([wms, dm_wms]);
-"""
-
 # javascript for OpenStreetMap's markers...
 OSM_MARKERS = """
-  OpenLayers.Lang.setCode("%s");
-  var map;
-  var tracelife = %s
-
   function initialize(){
-    map = new OpenLayers.Map('map_canvas');
-    var wms = new OpenLayers.Layer.WMS(
-      "OpenLayers WMS",
-      "http://vmap0.tiles.osgeo.org/wms/vmap0",
-      {'layers':'basic'});
-    map.addLayer(wms);
-    map.setCenter(new OpenLayers.LonLat(%s, %s), %d);
-    var vectorLayer = new OpenLayers.Layer.Vector('vectorLayer', {
-        styleMap: new OpenLayers.StyleMap({
-            externalGraphic: marker_png,
-            graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24,
-            title: '${tooltip}'
-        })
+    var map;
+    var tracelife = %s;
+    var iconStyle = new ol.style.Style({
+      image: new ol.style.Icon(({
+        opacity: 1.0,
+        src: marker_png
+      }))
     });
-    map.addLayer(vectorLayer);
-    var selectControlHover = new OpenLayers.Control.SelectFeature(vectorLayer, {
-        hover: true,
-        highlightOnly: true,
-        box: false
+    var markerSource = new ol.source.Vector({
     });
-    map.addControl(selectControlHover);
-    selectControlHover.activate();
-    addMarkers(vectorLayer);
-  }
-
-  function addMarkers(markers) {
     for (var i = 0; i < tracelife.length; i++) {
-      var location = tracelife[i];
-      var myLocation = new OpenLayers.Geometry.Point(location[0], location[1]);
-      markers.addFeatures([
-          new OpenLayers.Feature.Vector(myLocation, {tooltip: location[2]})
-      ]);
+      var loc = tracelife[i];
+      var iconFeature = new ol.Feature({
+       geometry: new ol.geom.Point(ol.proj.transform([loc[0], loc[1]],
+                                                     'EPSG:4326', 'EPSG:3857')),
+       name: loc[2],
+      });
+      iconFeature.setStyle(iconStyle);
+      markerSource.addFeature(iconFeature);
     }
-  }"""
+    markerLayer = new ol.layer.Vector({
+      source: markerSource,
+      style: iconStyle
+    });
+    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
+    map= new ol.Map({
+                 target: 'map_canvas',
+                 layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
+                          markerLayer],
+                 view: new ol.View({ center: centerCoord, zoom: %d })
+                 });
+    var element = document.getElementById('popup');
+    var tooltip = new ol.Overlay({
+      element: element,
+      positioning: 'bottom-center',
+      stopEvent: false
+    });
+    map.addOverlay(tooltip);
+    var displayFeatureInfo = function(pixel) {
+      var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+        return feature;
+      });
+      var info = document.getElementById('popup');
+      if (feature) {
+        var geometry = feature.getGeometry();
+        var coord = geometry.getCoordinates();
+        tooltip.setPosition(coord);
+        $(element).siblings('.popover').css({ width: '250px' });
+        $(element).siblings('.popover').css({ background: '#aaa' });
+        $(info).popover({
+          'placement': 'auto',
+          'html': true,
+          'content': feature.get('name')
+        });
+        $(info).popover('show');
+      } else {
+        // TODO : some warning with firebug here
+        $(info).popover('destroy');
+        $('.popover').remove();
+      }
+    };
+    map.on('pointermove', function(evt) {
+      if (evt.dragging) {
+        return;
+      }
+      var pixel = map.getEventPixel(evt.originalEvent);
+      displayFeatureInfo(pixel);
+    });
+    map.on('click', function(evt) {
+      displayFeatureInfo(evt.pixel);
+    });
+  };
+"""
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()
 
@@ -3965,7 +3991,19 @@ class PlacePages(BasePage):
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else:
-                        src_js = "http://www.openlayers.org/api/OpenLayers.js"
+                        url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                        head += Html("link", href=url, type="text/javascript",
+                                     rel="stylesheet")
+                        src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+                        head += Html("script", type="text/javascript",
+                                     src=src_js, inline=True)
+                        src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+                        head += Html("script", type="text/javascript",
+                                     src=src_js, inline=True)
+                        url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+                        head += Html("link", href=url, type="text/javascript",
+                                     rel="stylesheet")
+                        src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
 
@@ -4001,12 +4039,17 @@ class PlacePages(BasePage):
                                 canvas += jsc
                                 param1 = xml_lang()[3:5].lower()
                                 jsc += MARKER_PATH % marker_path
-                                jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
-                                                     [[longitude, latitude, placetitle]],
+                                jsc += OSM_MARKERS % ([[float(longitude),
+                                                        float(latitude),
+                                                        placetitle]],
                                                      longitude, latitude, 10)
 
             # add javascript function call to body element
             body.attr += ' onload = "initialize();" '
+
+            # add div for popups.
+            with Html("div", id="popup", inline=True) as popup:
+                placedetail += popup 
 
             # source references
             srcrefs = self.display_ind_sources(place)
@@ -6512,7 +6555,19 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else:
-            src_js = "http://www.openlayers.org/api/OpenLayers.js"
+            url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            head += Html("link", href=url, type="text/javascript",
+                         rel="stylesheet")
+            src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+            head += Html("script", type="text/javascript",
+                         src=src_js, inline=True)
+            src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+            head += Html("script", type="text/javascript",
+                         src=src_js, inline=True)
+            url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+            head += Html("link", href=url, type="text/javascript",
+                         rel="stylesheet")
+            src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
 
@@ -6541,7 +6596,7 @@ class PersonPages(BasePage):
                 # are we using OpenStreetMap?
                 else:
                     tracelife += """
-    [%s, %s, \'%s\'],""" % (longitude, latitude, placetitle.replace("'", "\\'"))
+    [%f, %f, \'%s\'],""" % (float(longitude), float(latitude), placetitle.replace("'", "\\'"))
 
                 seq_ += 1
             # FIXME: The last element in the place_lat_long list is treated
@@ -6569,8 +6624,8 @@ class PersonPages(BasePage):
             # are we using OpenStreetMap?
             elif self.mapservice == "OpenStreetMap":
                 tracelife += """
-    [%s, %s, \'%s\']
-  ];""" % (longitude, latitude, placetitle.replace("'", "\\'"))
+    [%f, %f, \'%s\']
+  ];""" % (float(longitude), float(latitude), placetitle.replace("'", "\\'"))
 
         # begin MapDetail division...
         with Html("div", class_="content", id="FamilyMapDetail") as mapdetail:
@@ -6644,13 +6699,11 @@ class PersonPages(BasePage):
                     # we are using OpenStreetMap...
                     else:
                         if midy_ == None:
-                            jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
-                                                  tracelife,
+                            jsc += OSM_MARKERS % (tracelife,
                                                   longitude,
                                                   latitude, 10)
                         else:
-                            jsc += OSM_MARKERS % (xml_lang()[3:5].lower(),
-                                                  tracelife, midy_, midx_,
+                            jsc += OSM_MARKERS % (tracelife, midy_, midx_,
                                                   zoomlevel)
 
             # if Google and Drop Markers are selected,
@@ -6658,6 +6711,10 @@ class PersonPages(BasePage):
             if self.mapservice == "Google" and self.googleopts == "Drop":
                 mapdetail += Html("button", _("Drop Markers"),
                                   id="drop", onclick="drop()", inline=True)
+
+            # add div for popups.
+            with Html("div", id="popup", inline=True) as popup:
+                mapdetail += popup 
 
             # begin place reference section and its table...
             with Html("div", class_="subsection", id="references") as section:
