@@ -3147,21 +3147,26 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__not_recognized(line, state.level+1, state)
+        self.__not_recognized(line, state)
 
     def __ignore(self, line, state):
         """
-        Ignores an unsupported tag
+        Prints a message when an unexpected token is found.  If the token is
+        known, then the line is considered "not supported", otherwise the line
+        is "not understood".
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
-        self.__add_msg(_("Tag recognized but not supported"), line, state)
-        self.__skip_subordinate_levels(state.level+1, state)
+        if line.token == TOKEN_UNKNOWN:
+            self.__add_msg(_("Line ignored as not understood"), line, state)
+        else:
+            self.__add_msg(_("Tag recognized but not supported"), line, state)
+        self.__skip_subordinate_levels(line.level+1, state)
 
-    def __not_recognized(self, line, level, state):
+    def __not_recognized(self, line, state):
         """
         Prints a message when an undefined token is found. All subordinate items
         to the current item are ignored.
@@ -3170,7 +3175,7 @@ class GedcomParser(UpdateCallback):
         @type level: int
         """
         self.__add_msg(_("Line ignored as not understood"), line, state)
-        self.__skip_subordinate_levels(level, state)
+        self.__skip_subordinate_levels(line.level+1, state)
 
     def __skip_record(self, line, state):
         """
@@ -3481,7 +3486,7 @@ class GedcomParser(UpdateCallback):
             line = self.__get_next_line()
             if line and line.token != TOKEN_TRLR:
                 state = CurrentState()
-                self.__not_recognized(line, 0, state)
+                self.__not_recognized(line, state)
                 self.__check_msgs(_("TRLR (trailer)"), state, None)
         except TypeError:
             return
@@ -3621,7 +3626,7 @@ class GedcomParser(UpdateCallback):
                 self.__parse_inline_note(line, 1)
             else:
                 state = CurrentState()
-                self.__not_recognized(line, 1, state)
+                self.__not_recognized(line, state)
                 self.__check_msgs(_("Top Level"), state, None)
 
     def __parse_level(self, state, __map, default):
@@ -5854,12 +5859,12 @@ class GedcomParser(UpdateCallback):
                 # empty: discard, with warning and skip subs
                 # Note: level+2
                 self.__add_msg(_("Empty event note ignored"), line, state)
-                self.__skip_subordinate_levels(state.level+2, state)
+                self.__skip_subordinate_levels(line.level+1, state)
             else:
                 new_note = Note(line.data)
                 new_note.set_handle(create_id())
                 self.dbase.add_note(new_note, self.trans)
-                self.__skip_subordinate_levels(state.level+2, state)
+                self.__skip_subordinate_levels(line.level+1, state)
                 state.event.add_note(new_note.get_handle())
 
     def __event_source(self, line, state):
@@ -6528,15 +6533,6 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_change(line, state.source, state.level+1, state)
 
-    def __source_undef(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__not_recognized(line, state.level+1, state)
-
     def __source_repo(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -7177,7 +7173,7 @@ class GedcomParser(UpdateCallback):
             self.__parse_note(line, state.place, state.level, state)
         else:
             # This causes notes below SUBMitter to be ignored
-            self.__not_recognized(line, state.level, state)
+            self.__not_recognized(line, state)
 
     def __optional_note(self, line, state):
         """
@@ -7621,7 +7617,7 @@ class GedcomParser(UpdateCallback):
             #    +1 SOUR @<XREF:SOUR>@  {0:M}
             if not line.data:
                 self.__add_msg(_("Empty note ignored"), line, state)
-                self.__skip_subordinate_levels(level+1, state)
+                self.__skip_subordinate_levels(line.level+1, state)
             else:
                 new_note = Note(line.data)
                 new_note.set_gramps_id(self.nid_map[""])
@@ -7737,7 +7733,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_UNKNOWN and line.token_text == "ORDI":
                 msg = _("Submission: Ordinance process flag")
             else:
-                self.__not_recognized(line, state.level+1, state)
+                self.__not_recognized(line, state)
                 continue
 
             if self.use_def_src and msg != "":
@@ -7807,7 +7803,7 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_NOTE:
                 self.__skip_subordinate_levels(level+1, state)
             else:
-                self.__not_recognized(line, level+1, state)
+                self.__not_recognized(line, state)
 
         # Attempt to convert the values to a valid change time
         if dobj:
