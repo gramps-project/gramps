@@ -5,6 +5,7 @@
 # Copyright (C) 2009-2010  Gary Burton
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2016       Paul R. Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -460,6 +461,23 @@ MEDIA_MAP = {
     'grave'      : SourceMediaType.TOMBSTONE,
     'video'      : SourceMediaType.VIDEO,
 }
+
+OBJ_NOTETYPE = {
+    "Attribute":    NoteType.ATTRIBUTE,
+    "Address":      NoteType.ADDRESS,
+    "Citation":     NoteType.CITATION,
+    "Event":        NoteType.EVENT,
+    "Family":       NoteType.FAMILY,
+    "LdsOrd":       NoteType.LDS,
+    "Media":        NoteType.MEDIA,
+    "Name":         NoteType.GENERAL,
+    "Place":        NoteType.PLACE,
+    "Person":       NoteType.PERSON,
+    "Repository":   NoteType.REPO,
+    "RepoRef":      NoteType.REPOREF,
+    "Source":       NoteType.SOURCE,
+    "PersonRef":    NoteType.ASSOCIATION,
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -1750,6 +1768,7 @@ class GedcomParser(UpdateCallback):
         self.place_parser = PlaceParser()
         self.inline_srcs = OrderedDict()
         self.media_map = {}
+        self.note_type_map = {}
         self.genby = ""
         self.genvers = ""
         self.subm = ""
@@ -1818,6 +1837,7 @@ class GedcomParser(UpdateCallback):
         #   +1 <<ADDRESS_STRUCTURE>>                      {0:1}
         #   +1 <<MULTIMEDIA_LINK>>                        {0:M}
         #   +1 LANG <LANGUAGE_PREFERENCE>                 {0:3}
+        #   +1 <<NOTE_STRUCTURE>>                         {0:M}
         #   +1 RFN <SUBMITTER_REGISTERED_RFN>             {0:1}
         #   +1 RIN <AUTOMATED_RECORD_ID>                  {0:1}
         #   +1 <<CHANGE_DATE>>                            {0:1}
@@ -1834,6 +1854,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_FAX   : self.__repo_fax,
             # +1 <<MULTIMEDIA_LINK>>
             # +1 LANG <LANGUAGE_PREFERENCE>
+            # +1 <<NOTE_STRUCTURE>>
+            TOKEN_NOTE:   self.__repo_note,
+            TOKEN_RNOTE:  self.__repo_note,
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
             # +1 RIN <AUTOMATED_RECORD_ID>
             # +1 <<CHANGE_DATE>>
@@ -3397,7 +3420,7 @@ class GedcomParser(UpdateCallback):
             elif key in ("SUBM", "SUBMITTER"):
                 self.__parse_submitter(line)
             elif key in ("SUBN"):
-                state = CurrentState()
+                state = CurrentState(level=1)
                 self.__parse_submission(line, state)
                 self.__check_msgs(_("Top Level"), state, None)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
@@ -3676,7 +3699,6 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.person)
 
-
     def __person_photo(self, line, state):
         """
         This handles the FTM _PHOTO feature, which identifies an OBJE to use
@@ -3891,7 +3913,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, 1, state)
+        self.__parse_note(line, state.person, state)
 
     def __person_rnote(self, line, state):
         """
@@ -3902,7 +3924,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, 1, state)
+        self.__parse_note(line, state.person, state)
 
     def __person_addr(self, line, state):
         """
@@ -4063,7 +4085,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.name, state.level+1, state)
+        self.__parse_note(line, state.name, state)
 
     def __name_alia(self, line, state):
         """
@@ -4501,7 +4523,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.lds_ord, state.level+1, state)
+        self.__parse_note(line, state.lds_ord, state)
 
     def __lds_stat(self, line, state):
         """
@@ -4598,7 +4620,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.person, state.level+1, state)
+        self.__parse_note(line, state.person, state)
 
     def __person_famc_primary(self, line, state):
         """
@@ -4721,7 +4743,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.ref, state.level, state)
+        self.__parse_note(line, state.ref, state)
 
     #-------------------------------------------------------------------
     #
@@ -5026,7 +5048,6 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.family)
 
-
     def __family_comm(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5047,7 +5068,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.family, state.level, state)
+        self.__parse_note(line, state.family, state)
 
     def __family_chan(self, line, state):
         """
@@ -5256,39 +5277,11 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        # This code pretty much duplicates the code in __parse_note. In
-        # __parse_note, we already know the object to which the note is to be
-        # attached, so we can directly add the note to the object. however, in
-        # the case of a media object, the media object is not constructed till
-        # the end of processing, so we just remember the handle of the note.
-        if line.token == TOKEN_RNOTE:
-            # reference to a named note defined elsewhere
-            #NOTE_STRUCTURE: =
-            #  n  NOTE @<XREF:NOTE>@  {1:1}
-            #    +1 SOUR @<XREF:SOUR>@  {0:M}
-            state.note = self.__find_note_handle(self.nid_map[line.data])
-        else:
-            # Embedded note
-            #NOTE_STRUCTURE: =
-            #  n  NOTE [<SUBMITTER_TEXT> | <NULL>]  {1:1}
-            #    +1 [ CONC | CONT ] <SUBMITTER_TEXT>  {0:M}
-            #    +1 SOUR @<XREF:SOUR>@  {0:M}
-            if not line.data:
-                self.__add_msg(_("Empty note ignored"), line, state)
-                self.__skip_subordinate_levels(state.level+1, state)
-            else:
-                new_note = Note(line.data)
-                new_note.set_gramps_id(self.nid_map[""])
-                new_note.set_handle(create_id())
-
-                sub_state = CurrentState(level=state.level+1)
-                sub_state.note = new_note
-                self.__parse_level(sub_state, self.note_parse_tbl,
-                                   self.__undefined)
-                state.msg += sub_state.msg
-
-                self.dbase.commit_note(new_note, self.trans, new_note.change)
-                state.note = new_note.get_handle()
+        obj = Media()
+        self.__parse_note(line, obj, state)
+        nlist = obj.get_note_list()
+        if nlist:
+            state.note = nlist[0]
 
     def __media_ref_prim(self, line, state):
         """
@@ -5361,7 +5354,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.event)
-
 
     def __event_type(self, line, state):
         """
@@ -5457,7 +5449,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.place, state.level+1, state)
+        self.__parse_note(line, state.place, state)
 
     def __event_place_form(self, line, state):
         """
@@ -5476,7 +5468,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.place)
-
 
     def __event_place_sour(self, line, state):
         """
@@ -5635,7 +5626,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.event, state.level+1, state)
+        self.__parse_note(line, state.event, state)
 
     def __event_inline_note(self, line, state):
         """
@@ -5647,17 +5638,7 @@ class GedcomParser(UpdateCallback):
         if line.data[0:13] == "Description: ":
             state.event.set_description(line.data[13:])
         else:
-            if not line.data:
-                # empty: discard, with warning and skip subs
-                # Note: level+2
-                self.__add_msg(_("Empty event note ignored"), line, state)
-                self.__skip_subordinate_levels(line.level+1, state)
-            else:
-                new_note = Note(line.data)
-                new_note.set_handle(create_id())
-                self.dbase.add_note(new_note, self.trans)
-                self.__skip_subordinate_levels(line.level+1, state)
-                state.event.add_note(new_note.get_handle())
+            self.__parse_note(line, state.event, state)
 
     def __event_source(self, line, state):
         """
@@ -6070,7 +6051,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.addr, state.level+1, state)
+        self.__parse_note(line, state.addr, state)
 
     def __citation_page(self, line, state):
         """
@@ -6162,7 +6143,7 @@ class GedcomParser(UpdateCallback):
         state.citation.add_note(note.get_handle())
 
     def __citation_data_note(self, line, state):
-        self.__parse_note(line, state.citation, state.level, state)
+        self.__parse_note(line, state.citation, state)
 
     def __citation_obje(self, line, state):
         """
@@ -6174,7 +6155,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.citation)
-
 
     def __citation_refn(self, line, state):
         """
@@ -6250,7 +6230,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.citation, state.level+1, state)
+        self.__parse_note(line, state.citation, state)
 
     #----------------------------------------------------------------------
     #
@@ -6314,7 +6294,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         self.__obje(line, state, state.source)
-
 
     def __source_chan(self, line, state):
         """
@@ -6409,7 +6388,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.repo_ref, state.level+1, state)
+        self.__parse_note(line, state.repo_ref, state)
 
     def __repo_chan(self, line, state):
         """
@@ -6448,7 +6427,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.source, state.level+1, state)
+        self.__parse_note(line, state.source, state)
 
     def __source_auth(self, line, state):
         """
@@ -6626,7 +6605,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.media, state.level+1, state)
+        self.__parse_note(line, state.media, state)
 
     def __obje_sour(self, line, state):
         """
@@ -6745,7 +6724,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.attr, state.level+1, state)
+        self.__parse_note(line, state.attr, state)
 
     #----------------------------------------------------------------------
     #
@@ -6790,7 +6769,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.repo, state.level+1, state)
+        self.__parse_note(line, state.repo, state)
 
     def __repo_addr(self, line, state):
         """
@@ -6958,7 +6937,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.event:
-            self.__parse_note(line, state.place, state.level, state)
+            self.__parse_note(line, state.place, state)
         else:
             # This causes notes below SUBMitter to be ignored
             self.__not_recognized(line, state)
@@ -6970,7 +6949,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.obj, state.level, state)
+        self.__parse_note(line, state.obj, state)
 
     #----------------------------------------------------------------------
     #
@@ -7372,7 +7351,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if self.use_def_src:
-            self.__parse_note(line, self.def_src, 2, state)
+            self.__parse_note(line, self.def_src, state)
 
     def __header_subm_name(self, line, state):
         """
@@ -7384,13 +7363,16 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             self.def_src.set_author(line.data)
 
-    def __parse_note(self, line, obj, level, state):
+    def __parse_note(self, line, obj, state):
         if line.token == TOKEN_RNOTE:
             # reference to a named note defined elsewhere
             #NOTE_STRUCTURE: =
             #  n  NOTE @<XREF:NOTE>@  {1:1}
-            #    +1 SOUR @<XREF:SOUR>@  {0:M}
-            obj.add_note(self.__find_note_handle(self.nid_map[line.data]))
+            #    +1 SOUR @<XREF:SOUR>@  {0:M}  # 5.5 only, not in 5.5.1
+            handle = self.__find_note_handle(self.nid_map[line.data])
+            obj.add_note(handle)
+            self.note_type_map[handle] = OBJ_NOTETYPE.get(type(obj).__name__,
+                                                          NoteType.GENERAL)
         else:
             # Embedded note
             #NOTE_STRUCTURE: =
@@ -7413,7 +7395,9 @@ class GedcomParser(UpdateCallback):
 
                 # Add a default tag if provided
                 self.__add_default_tag(new_note)
-
+                # Set the type of the note
+                new_note.set_type(OBJ_NOTETYPE.get(type(obj).__name__,
+                                                   NoteType.GENERAL))
                 self.dbase.commit_note(new_note, self.trans, new_note.change)
                 obj.add_note(new_note.get_handle())
 
@@ -7446,7 +7430,8 @@ class GedcomParser(UpdateCallback):
             new_note = Note(line.data)
             new_note.set_handle(handle)
             new_note.set_gramps_id(gid)
-
+            if handle in self.note_type_map:
+                new_note.set_type(self.note_type_map[handle])
             sub_state = CurrentState(level=state.level)
             sub_state.note = new_note
             self.__parse_level(sub_state, self.note_parse_tbl, self.__undefined)
@@ -7496,11 +7481,12 @@ class GedcomParser(UpdateCallback):
             +1 DESC <GENERATIONS_OF_DESCENDANTS>  {0:1}
             +1 ORDI <ORDINANCE_PROCESS_FLAG>  {0:1}
             +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
+            +1 NOTE <NOTE_STRUCTURE> {0:m}
         """
         while True:
             line = self.__get_next_line()
             msg = ""
-            if self.__level_is_finished(line, state.level+1):
+            if self.__level_is_finished(line, state.level):
                 break
             elif line.token == TOKEN_SUBM:
                 msg = _("Submission: Submitter")
@@ -7514,6 +7500,8 @@ class GedcomParser(UpdateCallback):
                 msg = _("Submission: Generations of descendants")
             elif line.token == TOKEN_UNKNOWN and line.token_text == "ORDI":
                 msg = _("Submission: Ordinance process flag")
+            elif line.token == TOKEN_NOTE or line.token == TOKEN_RNOTE:
+                self.__parse_note(line, self.def_src, state)
             else:
                 self.__not_recognized(line, state)
                 continue
@@ -7582,8 +7570,8 @@ class GedcomParser(UpdateCallback):
             elif line.token == TOKEN_DATE:
                 #Lexer converted already to Date object
                 dobj = line.data
-            elif line.token == TOKEN_NOTE:
-                self.__skip_subordinate_levels(level+1, state)
+            elif line.token == TOKEN_NOTE or line.token == TOKEN_RNOTE:
+                self.__ignore(line, state)
             else:
                 self.__not_recognized(line, state)
 
