@@ -22,10 +22,12 @@
 Unittest that tests family-specific filter rules
 """
 import unittest
+import os
 
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.filters import GenericFilterFactory
+from gramps.gen.const import DATA_DIR
 
 from gramps.gen.filters.rules.family import (
     AllFamilies, HasRelType, HasGallery, HasIdOf, HasLDS, HasNote, RegExpIdOf,
@@ -35,6 +37,8 @@ from gramps.gen.filters.rules.family import (
     MotherHasIdOf, ChildHasNameOf, ChildHasIdOf, ChangedSince, HasTag,
     HasTwins, IsAncestorOf, IsDescendantOf)
 
+TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericFamilyFilter = GenericFilterFactory('Family')
 
 class BaseTest(unittest.TestCase):
@@ -47,7 +51,7 @@ class BaseTest(unittest.TestCase):
         """
         Import example database.
         """
-        cls.db = import_as_dict("example/gramps/example.gramps", User())
+        cls.db = import_as_dict(EXAMPLE, User())
 
     def filter_with_rule(self, rule):
         """
