@@ -124,8 +124,10 @@ class FilterList:
             for namespace in self.filter_namespaces:
                 f.write('<object type="%s">\n' % namespace)
                 filter_list = self.filter_namespaces[namespace]
-                for the_filter in filter_list:
-                    f.write('  <filter name="%s"' %self.fix(the_filter.get_name()))
+                sorted_filters = sorted([(filter.get_name(), filter)
+                                         for filter in filter_list])
+                for (name, the_filter) in sorted_filters: # enable a diff
+                    f.write('  <filter name="%s"' % self.fix(name))
                     f.write(' function="%s"' % the_filter.get_logical_op())
                     if the_filter.invert:
                         f.write(' invert="1"')
