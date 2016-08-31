@@ -21,6 +21,7 @@
 """ Unittest for to_struct, from_struct """
 
 import unittest
+import os
 
 from  .. import (Person, Family, Event, Source, Place, Citation,
                  Repository, Media, Note, Tag)
@@ -28,6 +29,10 @@ from gramps.gen.lib.struct import Struct
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.merge.diff import *
+from gramps.gen.const import DATA_DIR
+
+TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 class BaseCheck:
     def test_from_struct(self):
@@ -108,7 +113,7 @@ def generate_case(obj):
     #name = "test_create_%s_%s" % (obj.__class__.__name__, obj.handle)
     #setattr(DatabaseCheck, name, test2)
 
-db = import_as_dict("example/gramps/example.gramps", User())
+db = import_as_dict(EXAMPLE, User())
 for table in db.get_table_func():
     for handle in db.get_table_func(table,"handles_func")():
         obj = db.get_table_func(table,"handle_func")(handle)

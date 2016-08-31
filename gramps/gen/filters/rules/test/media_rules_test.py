@@ -22,10 +22,12 @@
 Unittest that tests media-specific filter rules
 """
 import unittest
+import os
 
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.filters import GenericFilterFactory
+from gramps.gen.const import DATA_DIR
 
 from gramps.gen.filters.rules.media import (
     AllMedia, HasIdOf, RegExpIdOf, HasCitation, HasNoteRegexp,
@@ -33,6 +35,8 @@ from gramps.gen.filters.rules.media import (
     HasSourceOf, MediaPrivate, MatchesSourceConfidence, HasMedia,
     HasAttribute, ChangedSince, HasTag)
 
+TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 GenericMediaFilter = GenericFilterFactory('Media')
 
 class BaseTest(unittest.TestCase):
@@ -45,7 +49,7 @@ class BaseTest(unittest.TestCase):
         """
         Import example database.
         """
-        cls.db = import_as_dict("example/gramps/example.gramps", User())
+        cls.db = import_as_dict(EXAMPLE, User())
 
     def filter_with_rule(self, rule):
         """
