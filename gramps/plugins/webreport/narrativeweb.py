@@ -1893,6 +1893,7 @@ class BasePage:
             ('download', _("Download"), self.report.inc_download),
             ("addressbook", _("Address Book"), self.report.inc_addressbook),
             ('contact', _("Contact"), self.report.use_contact),
+            ("stats", _("Statistics"), True),
             (self.target_cal_uri, _("Web Calendar"), self.usecal)
         ]
 
@@ -8006,6 +8007,161 @@ class AddressBookPage(BasePage):
         # and close the file
         self.xhtml_writer(addressbookpage, output_file, sio, 0)
 
+class StatisticsPage(BasePage):
+    """
+    Create one page for statistics
+    """
+    def __init__(self, report, title, step):
+        """
+        @param: report        -- The instance of the main report class
+                                 for this report
+        @param: title         -- Is the title of the web page
+        """
+        import posixpath
+        BasePage.__init__(self, report, title)
+        self.bibli = Bibliography()
+        self.uplink = True
+        self.report = report
+        # set the file name and open file
+        output_file, sio = self.report.create_file("stats")
+        addressbookpage, head, body = self.write_header(_("Statistics"))
+        (males,
+         females,
+         unknown) = self.get_gender(report.database.iter_person_handles())
+
+        mobjects = report.database.get_number_of_media()
+        npersons = report.database.get_number_of_people()
+        nfamilies = report.database.get_number_of_families()
+        nsurnames = len(set(report.database.surname_list))
+        notfound = []
+        total_media = 0
+        mbytes = "0"
+        bytes = 0
+        for media in report.database.iter_media():
+            total_media += 1
+            fullname = media_path_full(report.database, media.get_path())
+            try:
+                bytes += posixpath.getsize(fullname)
+                length = len(str(bytes))
+                if bytes <= 999999:
+                    mbytes = _("less than 1")
+                else:
+                    mbytes = str(bytes)[:(length-6)]
+            except OSError:
+                notfound.append(media.get_path())
+
+
+        with Html("div", class_="content", id='IndividualDetail') as section:
+            section += Html("h1", _("Database overview"), inline=True)
+            section += Html("h2", _("Individuals"), inline=True)
+            section += Html("br", _("Number of individuals") + ":" +
+                         "%d" % npersons, inline=True)
+            section += Html("br", _("Males") + ":" +
+                         "%d" % males, inline=True)
+            section += Html("br", _("Females") + ":" +
+                         "%d" % females, inline=True)
+            section += Html("br", _("Individuals with unknown gender") + ":" +
+                         "%d" % unknown, inline=True)
+            section += FULLCLEAR
+            section += Html("h2", _("Family Information"), inline=True)
+            section += Html("br", _("Number of families") + ":" +
+                         "%d" % nfamilies, inline=True)
+            section += Html("br", _("Unique surnames") + ":" +
+                         "%d" % nsurnames, inline=True)
+            section += FULLCLEAR
+            section += Html("h2", _("Media Objects"), inline=True)
+            section += Html("br", _("Total number of media object references") +
+                            ":" + "%d" % total_media, inline=True)
+            section += Html("br", _("Number of unique media objects") +
+                            ":" + "%d" % mobjects, inline=True)
+            section += Html("br", _("Total size of media objects") +
+                            ":" + "%8s %s" % (mbytes, _("Megabyte|MB")),
+                            inline=True)
+            section += Html("br", _("Missing Media Objects") +
+                            ":" + "%d" % len(notfound), inline=True)
+            section += FULLCLEAR
+            section += Html("h2", _("Miscellaneous"), inline=True)
+            section += Html("br", _("Number of events") +
+                            ":" + "%d" % report.database.get_number_of_events(),
+                            inline=True)
+            section += Html("br", _("Number of places") +
+                            ":" + "%d" % report.database.get_number_of_places(),
+                            inline=True)
+            nsources = report.database.get_number_of_sources()
+            section += Html("br", _("Number of sources") +
+                            ":" + "%d" % nsources,
+                            inline=True)
+            ncitations = report.database.get_number_of_citations()
+            section += Html("br", _("Number of citations") +
+                            ":" + "%d" % ncitations,
+                            inline=True)
+            nrepo = report.database.get_number_of_repositories()
+            section += Html("br", _("Number of repositories") +
+                            ":" + "%d" % nrepo,
+                            inline=True)
+
+            (males,
+             females,
+             unknown) = self.get_gender(self.report.bkref_dict[Person].keys())
+            section += Html("h1", _("Narrative web content"), inline=True)
+            section += Html("h2", _("Individuals"), inline=True)
+            section += Html("br", _("Number of individuals") + ":" +
+                            "%d" % len(self.report.bkref_dict[Person]),
+                            inline=True)
+            section += Html("br", _("Males") + ":" +
+                         "%d" % males, inline=True)
+            section += Html("br", _("Females") + ":" +
+                         "%d" % females, inline=True)
+            section += Html("br", _("Individuals with unknown gender") + ":" +
+                         "%d" % unknown, inline=True)
+            section += FULLCLEAR
+            section += Html("h2", _("Family Information"), inline=True)
+            section += Html("br", _("Number of families") + ":" +
+                            "%d" % len(self.report.bkref_dict[Family]),
+                            inline=True)
+            section += FULLCLEAR
+            section += Html("h2", _("Miscellaneous"), inline=True)
+            section += Html("br", _("Number of events") +
+                            ":" + "%d" % len(self.report.bkref_dict[Event]),
+                            inline=True)
+            section += Html("br", _("Number of places") +
+                            ":" + "%d" % len(self.report.bkref_dict[Place]),
+                            inline=True)
+            section += Html("br", _("Number of sources") +
+                            ":" + "%d" % len(self.report.bkref_dict[Source]),
+                            inline=True)
+            section += Html("br", _("Number of citations") +
+                            ":" + "%d" % len(self.report.bkref_dict[Citation]),
+                            inline=True)
+            section += Html("br", _("Number of repositories") +
+                           ":" + "%d" % len(self.report.bkref_dict[Repository]),
+                            inline=True)
+
+        body += section
+        # add fullclear for proper styling
+        # and footer section to page
+        footer = self.write_footer(None)
+        body += (FULLCLEAR, footer)
+
+        # send page out for processing
+        # and close the file
+        self.xhtml_writer(addressbookpage, output_file, sio, 0)
+
+    def get_gender(self, person_list):
+        males = 0
+        females = 0
+        unknown = 0
+        for person_handle in person_list:
+            person = self.report.database.get_person_from_handle(person_handle)
+            gender = person.get_gender()
+            if gender == Person.MALE:
+                males += 1
+            elif gender == Person.FEMALE:
+                females += 1
+            else:
+                unknown += 1
+        return (males, females, unknown)
+
 class NavWebReport(Report):
     """
     Create WebReport object that produces the report.
@@ -8305,6 +8461,9 @@ class NavWebReport(Report):
 
         # build classes SourceListPage and SourcePage
         self.tab["Source"].display_pages(self.title)
+
+        # build classes StatisticsPage
+        self.statistics_preview_page(self.title)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -8962,6 +9121,15 @@ class NavWebReport(Report):
                                 _("Creating thumbnail preview page..."),
                                 len(self.obj_dict[Media])) as step:
             ThumbnailPreviewPage(self, self.title, step)
+
+    def statistics_preview_page(self, title):
+        """
+        creates the statistics preview page
+        """
+        with self.user.progress(_("Narrated Web Site Report"),
+                                _("Creating statistics page..."),
+                                len(self.obj_dict[Media])) as step:
+            StatisticsPage(self, title, step)
 
     def addressbook_pages(self, ind_list):
         """
