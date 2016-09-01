@@ -8020,7 +8020,7 @@ class StatisticsPage(BasePage):
         import posixpath
         BasePage.__init__(self, report, title)
         self.bibli = Bibliography()
-        self.uplink = True
+        self.uplink = False
         self.report = report
         # set the file name and open file
         output_file, sio = self.report.create_file("stats")
@@ -8051,93 +8051,112 @@ class StatisticsPage(BasePage):
                 notfound.append(media.get_path())
 
 
-        with Html("div", class_="content", id='IndividualDetail') as section:
-            section += Html("h1", _("Database overview"), inline=True)
-            section += Html("h2", _("Individuals"), inline=True)
-            section += Html("br", _("Number of individuals") + ":" +
+        with Html("div", class_="content", id='EventDetail') as section:
+                section += Html("h3", _("Database overview"), inline=True)
+        body += section
+        with Html("div", class_="content", id='subsection narrative') as sec11:
+            sec11 += Html("h4", _("Individuals"), inline=True)
+        body += sec11
+        with Html("div", class_="content", id='subsection narrative') as sec1:
+            sec1 += Html("br", _("Number of individuals") + ":" +
                          "%d" % npersons, inline=True)
-            section += Html("br", _("Males") + ":" +
+            sec1 += Html("br", _("Males") + ":" +
                          "%d" % males, inline=True)
-            section += Html("br", _("Females") + ":" +
+            sec1 += Html("br", _("Females") + ":" +
                          "%d" % females, inline=True)
-            section += Html("br", _("Individuals with unknown gender") + ":" +
+            sec1 += Html("br", _("Individuals with unknown gender") + ":" +
                          "%d" % unknown, inline=True)
-            section += FULLCLEAR
-            section += Html("h2", _("Family Information"), inline=True)
-            section += Html("br", _("Number of families") + ":" +
+        body += sec1
+        with Html("div", class_="content", id='subsection narrative') as sec2:
+            sec2 += Html("h4", _("Family Information"), inline=True)
+            sec2 += Html("br", _("Number of families") + ":" +
                          "%d" % nfamilies, inline=True)
-            section += Html("br", _("Unique surnames") + ":" +
+            sec2 += Html("br", _("Unique surnames") + ":" +
                          "%d" % nsurnames, inline=True)
-            section += FULLCLEAR
-            section += Html("h2", _("Media Objects"), inline=True)
-            section += Html("br", _("Total number of media object references") +
+        body += sec2
+        with Html("div", class_="content", id='subsection narrative') as sec3:
+            sec3 += Html("h4", _("Media Objects"), inline=True)
+            sec3 += Html("br", _("Total number of media object references") +
                             ":" + "%d" % total_media, inline=True)
-            section += Html("br", _("Number of unique media objects") +
+            sec3 += Html("br", _("Number of unique media objects") +
                             ":" + "%d" % mobjects, inline=True)
-            section += Html("br", _("Total size of media objects") +
+            sec3 += Html("br", _("Total size of media objects") +
                             ":" + "%8s %s" % (mbytes, _("Megabyte|MB")),
                             inline=True)
-            section += Html("br", _("Missing Media Objects") +
+            sec3 += Html("br", _("Missing Media Objects") +
                             ":" + "%d" % len(notfound), inline=True)
-            section += FULLCLEAR
-            section += Html("h2", _("Miscellaneous"), inline=True)
-            section += Html("br", _("Number of events") +
+        body += sec3
+        with Html("div", class_="content", id='subsection narrative') as sec4:
+            sec4 += Html("h4", _("Miscellaneous"), inline=True)
+            sec4 += Html("br", _("Number of events") +
                             ":" + "%d" % report.database.get_number_of_events(),
                             inline=True)
-            section += Html("br", _("Number of places") +
+            sec4 += Html("br", _("Number of places") +
                             ":" + "%d" % report.database.get_number_of_places(),
                             inline=True)
             nsources = report.database.get_number_of_sources()
-            section += Html("br", _("Number of sources") +
+            sec4 += Html("br", _("Number of sources") +
                             ":" + "%d" % nsources,
                             inline=True)
             ncitations = report.database.get_number_of_citations()
-            section += Html("br", _("Number of citations") +
+            sec4 += Html("br", _("Number of citations") +
                             ":" + "%d" % ncitations,
                             inline=True)
             nrepo = report.database.get_number_of_repositories()
-            section += Html("br", _("Number of repositories") +
+            sec4 += Html("br", _("Number of repositories") +
                             ":" + "%d" % nrepo,
                             inline=True)
+        body += sec4
 
-            (males,
-             females,
-             unknown) = self.get_gender(self.report.bkref_dict[Person].keys())
-            section += Html("h1", _("Narrative web content"), inline=True)
-            section += Html("h2", _("Individuals"), inline=True)
-            section += Html("br", _("Number of individuals") + ":" +
+        (males,
+         females,
+         unknown) = self.get_gender(self.report.bkref_dict[Person].keys())
+        center_person = self.report.database.get_person_from_gramps_id(
+                    self.report.options['pid'])
+
+        origin = " :<br/>" + report.filter.get_name()
+        with Html("div", class_="content", id='EventDetail') as section:
+                section += Html("h3", _("Narrative web content report for") +
+                                origin,
+                                inline=True)
+        body += section
+        with Html("div", class_="content", id='subsection narrative') as sec5:
+            sec5 += Html("h4", _("Individuals"), inline=True)
+            sec5 += Html("br", _("Number of individuals") + ":" +
                             "%d" % len(self.report.bkref_dict[Person]),
                             inline=True)
-            section += Html("br", _("Males") + ":" +
+            sec5 += Html("br", _("Males") + ":" +
                          "%d" % males, inline=True)
-            section += Html("br", _("Females") + ":" +
+            sec5 += Html("br", _("Females") + ":" +
                          "%d" % females, inline=True)
-            section += Html("br", _("Individuals with unknown gender") + ":" +
+            sec5 += Html("br", _("Individuals with unknown gender") + ":" +
                          "%d" % unknown, inline=True)
-            section += FULLCLEAR
-            section += Html("h2", _("Family Information"), inline=True)
-            section += Html("br", _("Number of families") + ":" +
+        body += sec5
+        with Html("div", class_="content", id='subsection narrative') as sec6:
+            sec6 += Html("h4", _("Family Information"), inline=True)
+            sec6 += Html("br", _("Number of families") + ":" +
                             "%d" % len(self.report.bkref_dict[Family]),
                             inline=True)
-            section += FULLCLEAR
-            section += Html("h2", _("Miscellaneous"), inline=True)
-            section += Html("br", _("Number of events") +
+        body += sec6
+        with Html("div", class_="content", id='subsection narrative') as sec7:
+            sec7 += Html("h4", _("Miscellaneous"), inline=True)
+            sec7 += Html("br", _("Number of events") +
                             ":" + "%d" % len(self.report.bkref_dict[Event]),
                             inline=True)
-            section += Html("br", _("Number of places") +
+            sec7 += Html("br", _("Number of places") +
                             ":" + "%d" % len(self.report.bkref_dict[Place]),
                             inline=True)
-            section += Html("br", _("Number of sources") +
+            sec7 += Html("br", _("Number of sources") +
                             ":" + "%d" % len(self.report.bkref_dict[Source]),
                             inline=True)
-            section += Html("br", _("Number of citations") +
+            sec7 += Html("br", _("Number of citations") +
                             ":" + "%d" % len(self.report.bkref_dict[Citation]),
                             inline=True)
-            section += Html("br", _("Number of repositories") +
+            sec7 += Html("br", _("Number of repositories") +
                            ":" + "%d" % len(self.report.bkref_dict[Repository]),
                             inline=True)
+        body += sec7
 
-        body += section
         # add fullclear for proper styling
         # and footer section to page
         footer = self.write_footer(None)
