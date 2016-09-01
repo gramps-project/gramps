@@ -1711,6 +1711,8 @@ class BasePage:
             else:
                 msg += _(' on %(date)s') % {'date' : _dd.display(Today())}
 
+            origin1 = self.report.filter.get_name()
+            filt_number = self.report.options['filter']
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
                 center_person = self.r_db.get_person_from_gramps_id(
@@ -1721,12 +1723,20 @@ class BasePage:
                         center_person.handle, "ppl", self.uplink)
 
                     person_name = self.get_name(center_person)
-                    subject_url = '<a href="' + center_person_url + '">'
-                    subject_url += person_name + '</a>'
+                    if filt_number > 0 and  filt_number < 5:
+                        subject_url = '<a href="' + center_person_url + '">'
+                        subject_url += origin1 + '</a>'
+                    else:
+                        subject_url = origin1
                     msg += _(
                         '%(http_break)sCreated for %(subject_url)s') % {
                             'http_break'  : '<br />',
                             'subject_url' : subject_url}
+                else:
+                    msg += _(
+                        '%(http_break)sCreated for %(subject_url)s') % {
+                            'http_break'  : '<br />',
+                            'subject_url' : origin1}
 
             # creation author
             footer += Html("p", msg, id='createdate')
