@@ -26,7 +26,7 @@ py_str = 'found %d.%d.%d' %  sys.version_info[:3]
 try:
     import gtk
     try:
-        gtkver_str = 'found %d.%d.%d' % Gtk.gtk_version 
+        gtkver_str = 'found %d.%d.%d' % Gtk.gtk_version
     except : # any failure to 'get' the version
         gtkver_str = 'unknown version'
     try:
@@ -52,7 +52,7 @@ except ImportError:
 try:
     import cairo
     try:
-        cairover_str = 'found %d.%d.%d' % cairo.version_info 
+        cairover_str = 'found %d.%d.%d' % cairo.version_info
     except :# any failure to 'get' the version
         cairover_str = 'unknown version'
 

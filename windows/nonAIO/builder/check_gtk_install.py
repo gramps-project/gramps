@@ -37,14 +37,14 @@ testdlls = ['libgdk-win32-2.0-0.dll', 'libglib-2.0-0.dll', 'libgobject-2.0-0.dll
 explain_exposed = '''    ***********************************************************
     * It seems that other installations are exposing GTK DLL's
     * to the operating system as they are in the environment
-    * path variable BEFORE the runtime directory. 
+    * path variable BEFORE the runtime directory.
     * You should reorder the path variable to put your GTK
-    * runtime path before these other installations on the path'''        
+    * runtime path before these other installations on the path'''
 
 explain_safe = '''    ***************************************************************
     * While there are other installations of GTK DLL's on the path,
     * it should be safe as they are on the path AFTER the runtime
-    * directory. '''        
+    * directory. '''
 
 def RunExeCommand( app, args ):
     cmd = app + ' ' + args
@@ -72,8 +72,8 @@ def CheckGtkInReg():
     except WindowsError as e:
         log.info( '\n  GTK registry key not found in registry' )
         log.info( '''    ********************************************************************
-    * This might not be an error, but means I don't know the directory to 
-    * your preferred GTK installation. 
+    * This might not be an error, but means I don't know the directory to
+    * your preferred GTK installation.
     *  - try passing in your GTK installation path.\n''' )
         log.info( '-' * 60 )
         log.info( usage )
@@ -92,7 +92,7 @@ def WorkOutShortDosPath():
         log.info( '    if you want this function to work' )
 
 def FindLibsWithCtypes():    
-    # use ctypes to check where windows finds it's DLL's    
+    # use ctypes to check where windows finds it's DLL's
     log.info( '\n==== Use ctypes to find dlls ====' )
     other_paths = []
     for dll in testdlls:
@@ -193,7 +193,7 @@ def CheckWithDependencyWalker():
         log.info( '  get dependency walker from http://www.dependencywalker.com/' )
         log.info( '  and unzip into this directory for it to work.' )
 
-def CheckPathForOtherGtkInstalls():     
+def CheckPathForOtherGtkInstalls():
     log.info( '\n====Checking environment path for other gtk installations====' )
     ePath = os.environ['path']
     dirs = ePath.split(';')
@@ -281,7 +281,7 @@ def Import_pyGtkIntoPython():
     #test the gobject version
     try:
         import gobject
-        PrintVersionResult('  gobject', MIN_GOBJECT_VER, GObject.pygobject_version, UNTESTED_GOBJECT_VER) 
+        PrintVersionResult('  gobject', MIN_GOBJECT_VER, GObject.pygobject_version, UNTESTED_GOBJECT_VER)
 
     except ImportError:
         PrintFailedImport('  gobject', MIN_GOBJECT_VER, NOT_FOUND_STR)
@@ -290,7 +290,7 @@ def Import_pyGtkIntoPython():
     #test the cairo version
     try:
         import cairo
-        PrintVersionResult('  cairo  ', MIN_CAIRO_VER, cairo.version_info, UNTESTED_CAIRO_VER ) 
+        PrintVersionResult('  cairo  ', MIN_CAIRO_VER, cairo.version_info, UNTESTED_CAIRO_VER )
 
     except ImportError:
         PrintFailedImport('  cairo  ', MIN_CAIRO_VER, NOT_FOUND_STR)

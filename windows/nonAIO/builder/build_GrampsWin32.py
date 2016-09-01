@@ -142,7 +142,7 @@ class buildbase(GObject.GObject):
             outfile = file
             if file == 'NEWS':
                 #Jump through hoops tomake sure the end of line charactors are windows format (wont work on linux!!)
-                outfile = 'NEWS.TXT' #Lets add .TXT suffix to filename so installer knows to call notepad 
+                outfile = 'NEWS.TXT' #Lets add .TXT suffix to filename so installer knows to call notepad
                 fnews = open(os.path.join(source_path,file), 'r')
                 newslines = fnews.readlines()
                 newsout = open(os.path.join(self.build_src,outfile), 'w')
@@ -162,7 +162,7 @@ class buildbase(GObject.GObject):
         # need to ensure __file__ has full path, under linux it does not.
         thisfilepath = os.path.abspath(__file__)
         pth = os.path.relpath(os.path.dirname( thisfilepath ), os.getcwd())
-        pth2nsis_script = os.path.join(pth, 'gramps2.nsi') 
+        pth2nsis_script = os.path.join(pth, 'gramps2.nsi')
 
         #should tests be more along lines of os.name which returns 'posix', 'nt', 'mac', 'os2', 'ce', 'java', 'riscos'
         if sys.platform == 'win32':
@@ -241,9 +241,9 @@ class buildbase(GObject.GObject):
         #    log.error( "msgfmt not found - unable to generate mo files")
         #    return
         log.info( "Generating mo files" )
-        global po_errs, po_oks 
+        global po_errs, po_oks
         po_total = len(po_files)
-        po_count = 0 
+        po_count = 0
         for po_file in po_files:
             po_count = po_count + 1
             #This will be interesting
@@ -317,7 +317,7 @@ class buildbase(GObject.GObject):
                     log.error( e )
 
     def getNSISVersionNumber(self):
-        #Check version of NSIS, to ensure NSIS is compatible with script features 
+        #Check version of NSIS, to ensure NSIS is compatible with script features
           # >"c:\Program Files\NSIS\makensis.exe" /version
           # v2.42
         cmd = '"%s" -VERSION' % (MAKENSIS_exe)
@@ -338,7 +338,7 @@ class buildbase(GObject.GObject):
         ver =  output[1:].split('.') 
         major = int(ver[0])
         try:
-            minor = int(ver[1]) 
+            minor = int(ver[1])
         except ValueError as e:
             m = ver[1]
             minor = int(m[:2])
@@ -511,7 +511,7 @@ def buildGRAMPS( base, out_dir, bTarball):
                 bo.exportSVN(os.path.join(base, 'src'), os.path.join(bo.build_root, 'src') )
                 bo.exportSVN(os.path.join(base, 'po'), os.path.join(bo.build_root, 'po') )
                 bo.exportSVN(os.path.join(base, 'example'), os.path.join(bo.build_root, 'examples') )
-            bo.generateConstPy( ) 
+            bo.generateConstPy( )
             bo.copyExtraFilesToBuildDir(base)
 
         if bPatchBuild:
@@ -545,9 +545,9 @@ Options:
     -mDIR, --msgdir=DIR           Directory to msgfmt.exe
     -pDIR, --patch=DIR            Specify a directory to patch files into the build.
                                   only valid for a tarball build.
-                                  This directory will allow you to patch the release after expanding 
+                                  This directory will allow you to patch the release after expanding
                                   from tarball and before creating installer.
-                                  (n.b. each file to be replaced needs to be specified with full path 
+                                  (n.b. each file to be replaced needs to be specified with full path
                                         to exactly mimic the paths in the expanded tarball)
     '''
 # TODO: nsis_dir option - a path to nsismake (for occasions script cannot work it out)
