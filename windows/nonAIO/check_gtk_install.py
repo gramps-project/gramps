@@ -32,7 +32,7 @@ testdlls = ['libgdk-win32-2.0-0.dll', 'libglib-2.0-0.dll', 'libgobject-2.0-0.dll
 explain_exposed = '''    ***********************************************************
     * It seems that other installations are exposing GTK DLL's
     * to the operating system as they are in the environment
-    * path variable BEFORE the runtime directory. 
+    * path variable BEFORE the runtime directory.
     * You should reorder the path variable to put your GTK
     * runtime path before these other installations on the path'''
 
@@ -67,7 +67,7 @@ def CheckGtkInReg():
     except WindowsError as e:
         print('\n  GTK registry key not found in registry')
         print('''    ********************************************************************
-    * This might not be an error, but means I don't know the directory to 
+    * This might not be an error, but means I don't know the directory to
     * your preferred GTK installation.
     *  - try passing in your GTK installation path.\n''')
         print('-' * 60)
@@ -121,7 +121,7 @@ def ScanDependencyFileForErrors(fname):
     for line in lines:
         if line.startswith("       Module"): # work out were paths end
             pthend_idx = line.find("File Time Stamp")
-        acceptablePaths = [ dllPathShort.lower(), 
+        acceptablePaths = [ dllPathShort.lower(),
                             dllPathInRegistry.lower(),
                             os.path.join(sysroot, 'system32').lower()
                           ]
@@ -249,7 +249,7 @@ def PrintVersionResult(appl, minVersion, actualVersion, untestedVersion):
     print(appl,)
     print('version %d.%d.%d or above.....\t' % minVersion ,)
     print('found %d.%d.%d' % actualVersion ,)
-    if minVersion <= actualVersion < untestedVersion: 
+    if minVersion <= actualVersion < untestedVersion:
         print('...OK')
     elif  actualVersion >= untestedVersion:
         print('...UNTESTED VERSION')
@@ -287,7 +287,7 @@ def Import_pyGtkIntoPython():
     #test the cairo version
     try:
         import cairo
-        PrintVersionResult('  cairo  ', MIN_CAIRO_VER, cairo.version_info, UNTESTED_CAIRO_VER ) 
+        PrintVersionResult('  cairo  ', MIN_CAIRO_VER, cairo.version_info, UNTESTED_CAIRO_VER )
 
     except ImportError:
         PrintFailedImport('  cairo  ', MIN_CAIRO_VER, NOT_FOUND_STR)

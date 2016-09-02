@@ -49,10 +49,6 @@ class MockEditReference(EditReference):
         self.window = MockWindow()
         super().__init__(dbstate, uistate, track, source, source_ref, update)
 
-example = os.path.abspath(
-    os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                 "../../../..",
-                 "example/gramps/example.gramps"))
 
 class TestEditReference(unittest.TestCase):
 

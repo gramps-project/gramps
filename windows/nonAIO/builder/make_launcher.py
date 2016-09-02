@@ -118,17 +118,17 @@ def GetLanguageFromLocale():
         lang = locale.getlocale()[0]
         if not lang:
             # if lang is empty/None
-            lang = locale.getdefaultlocale()[0] 
+            lang = locale.getdefaultlocale()[0]
     return lang
 
 def writeLauncher(language, langcode, runtimepath, grampspath):
     lines = []
     lines.append('''@rem Setting the working language
 @rem ============================
-@rem GRAMPS looks during the start-up-phase for an environment variable (called LANG) 
+@rem GRAMPS looks during the start-up-phase for an environment variable (called LANG)
 @rem to switch to a special language. It's better to use a ".CMD" or ".BAT" file to 
 @rem control this environment variable instead a permanent setting in the windows registry,
-@rem to have the possibility to go back to the GRAMPS standard language (English) in the 
+@rem to have the possibility to go back to the GRAMPS standard language (English) in the
 @rem case you want to report about a problem or a bug.
 ''')
     lines.append('\n@rem Set GRAMPS environment settings to %s \n' % language)
@@ -137,9 +137,9 @@ def writeLauncher(language, langcode, runtimepath, grampspath):
     lines.append('''\n\n@rem Setting the configuration path
 @rem ==============================
 @rem During the boot process of GRAMPS there is a check for an environment variable
-@rem called GRAMPSHOME. Without this environment variable GRAMPS uses the default 
+@rem called GRAMPSHOME. Without this environment variable GRAMPS uses the default
 @rem windows path as the location to save all configuration files:
-@rem <system drive>\<userpath>\<application data>\gramps 
+@rem <system drive>\<userpath>\<application data>\gramps
 @rem If required, uncomment GRAMPSHOME line and edit to suit your use.
  ''')
     lines.append('\n@rem set the path for GRAMPS configuration files')
@@ -154,7 +154,7 @@ def writeLauncher(language, langcode, runtimepath, grampspath):
         path = '\npath="%s";%%PATH%%' % runtimepath
     else:
         lines.append('\n@rem Uncommnet following line, and edit path to your GTK runtime')
-        path = "\n@rem path=PATH_TO_YOUR_GTK_RUNTIME;%%PATH%%\n" 
+        path = "\n@rem path=PATH_TO_YOUR_GTK_RUNTIME;%%PATH%%\n"
     lines.append(path)
     lines.append('''\n\n@rem Start GRAMPS application
 @rem =========================

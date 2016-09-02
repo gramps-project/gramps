@@ -24,10 +24,10 @@ import os
 from gramps.test.test_util import Gramps
 from gramps.gen.db import open_database
 from gramps.gen.lib import *
+from gramps.gen.const import DATA_DIR
 
-ddir = os.path.dirname(__file__)
-example = os.path.join(ddir, "..", "..", "..", "..",
-                       "example", "gramps", "data.gramps")
+TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+example = os.path.join(TEST_DIR, "data.gramps")
 
 class BSDDB:
     NAME = "Example BSDDB Test"
