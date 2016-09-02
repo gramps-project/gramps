@@ -36,6 +36,7 @@ import collections
 #-------------------------------------------------------------------------
 from ._filterparser import FilterParser
 from ..plug import BasePluginManager
+from ..const import GRAMPS_LOCALE as glocale
 
 PLUGMAN = BasePluginManager.get_instance()
 #-------------------------------------------------------------------------
@@ -129,7 +130,8 @@ class FilterList:
                 file.write('  <object type="%s">\n' % namespace)
                 filter_list = self.filter_namespaces[namespace]
                 sorted_filters = sorted([(filter.get_name(), filter)
-                                         for filter in filter_list])
+                                         for filter in filter_list],
+                                        key=lambda x: glocale.sort_key(x[0]))
                 for (name, the_filter) in sorted_filters: # enable a diff
                     file.write('    <filter name="%s"' % self.fix(name))
                     file.write(' function="%s"' % the_filter.get_logical_op())
