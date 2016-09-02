@@ -21,7 +21,7 @@
 """
 Helper class for importing places.
 """
-from _collections import OrderedDict
+from collections import OrderedDict
 
 #-------------------------------------------------------------------------
 #
