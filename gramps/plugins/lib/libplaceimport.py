@@ -21,6 +21,7 @@
 """
 Helper class for importing places.
 """
+from collections import OrderedDict
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +42,7 @@ class PlaceImport:
     def __init__(self, db):
         self.db = db
         self.loc2handle = {}
-        self.handle2loc = {}
+        self.handle2loc = OrderedDict()
 
     def store_location(self, location, handle):
         """
