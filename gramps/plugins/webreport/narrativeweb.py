@@ -1903,7 +1903,7 @@ class BasePage:
             ('download', _("Download"), self.report.inc_download),
             ("addressbook", _("Address Book"), self.report.inc_addressbook),
             ('contact', _("Contact"), self.report.use_contact),
-            ("stats", _("Statistics"), True),
+            ("statistics", _("Statistics"), True),
             (self.target_cal_uri, _("Web Calendar"), self.usecal)
         ]
 
@@ -8040,7 +8040,7 @@ class StatisticsPage(BasePage):
         self.uplink = False
         self.report = report
         # set the file name and open file
-        output_file, sio = self.report.create_file("stats")
+        output_file, sio = self.report.create_file("statistics")
         addressbookpage, head, body = self.write_header(_("Statistics"))
         (males,
          females,
