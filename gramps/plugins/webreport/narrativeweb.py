@@ -1982,6 +1982,13 @@ class BasePage:
                         index += 1
                         cols += 1
 
+                    if rows == num_rows - 1:
+                        prv = Html('<a onclick="history.go(-1);">%s</a>' %
+                                               _("Previous"))
+                        nxt = Html('<a onclick="history.go(+1);">%s</a>' %
+                                               _("Next"))
+                        unordered.extend(Html("li", prv, inline=True))
+                        unordered.extend(Html("li", nxt, inline=True))
                     container += unordered
                 navigation += container
         return navigation
