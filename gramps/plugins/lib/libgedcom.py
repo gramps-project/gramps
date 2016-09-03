@@ -5372,8 +5372,7 @@ class GedcomParser(UpdateCallback):
                 name = EventType(GED_TO_GRAMPS_EVENT[line.data])
             else:
                 try:
-                    name = EventType((EventType.CUSTOM,
-                                             line.data))
+                    name = EventType((EventType.CUSTOM, line.data))
                 except AttributeError:
                     name = EventType(EventType.UNKNOWN)
             state.event.set_type(name)
