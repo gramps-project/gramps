@@ -387,7 +387,7 @@ class Span:
             return True
         return int(self) > int(other)
 
-    def format(self, precision=2, as_age=True):
+    def format(self, precision=2, as_age=True, dlocale=glocale):
         """
         Force a string representation at a level of precision.
 
@@ -396,9 +396,15 @@ class Span:
         2   only most two significant levels (year, month, day)
         3   at most three items of signifance (year, month, day)
         ==  ====================================================
+
+        If dlocale is passed in (a :class:`.GrampsLocale`) then
+        the translated value will be returned instead.
+
+        :param dlocale: allow deferred translation of strings
+        :type dlocale: a :class:`.GrampsLocale` instance
         """
         self.precision = precision
-        return self.get_repr(as_age)
+        return self.get_repr(as_age, dlocale=dlocale)
 
     def _format(self, diff_tuple, dlocale=glocale):
         """
