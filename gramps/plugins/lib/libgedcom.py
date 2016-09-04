@@ -1066,207 +1066,6 @@ _MAP_DATA = {
 
 #-------------------------------------------------------------------------
 #
-# GedcomDescription
-#
-#-------------------------------------------------------------------------
-class GedcomDescription:
-    def __init__(self, name):
-        self.name = name
-        self.dest = ""
-        self.adopt = ADOPT_STD
-        self.conc = CONC_OK
-        self.altname = ALT_NAME_STD
-        self.cal = CALENDAR_YES
-        self.obje = OBJE_YES
-        self.resi = RESIDENCE_ADDR
-        self.source_refs = SOURCE_REFS_YES
-        self.gramps2tag_map = {}
-        self.tag2gramps_map = {}
-        self.prefix = PREFIX_YES
-        self.endl = "\n"
-
-    def set_dest(self, val):
-        self.dest = val
-
-    def get_dest(self):
-        return self.dest
-
-    def set_endl(self, val):
-        self.endl = val.replace('\\r','\r').replace('\\n','\n')
-
-    def get_endl(self):
-        return self.endl
-
-    def set_adopt(self, val):
-        self.adopt = val
-
-    def get_adopt(self):
-        return self.adopt
-
-    def set_prefix(self, val):
-        self.prefix = val
-
-    def get_prefix(self):
-        return self.prefix
-
-    def set_conc(self, val):
-        self.conc = val
-
-    def get_conc(self):
-        return self.conc
-
-    def set_alt_name(self, val):
-        self.altname = val
-
-    def get_alt_name(self):
-        return self.altname
-
-    def set_alt_calendar(self, val):
-        self.cal = val
-
-    def get_alt_calendar(self):
-        return self.cal
-
-    def set_obje(self, val):
-        self.obje = val
-
-    def get_obje(self):
-        return self.obje
-
-    def set_resi(self, val):
-        self.resi = val
-
-    def get_resi(self):
-        return self.resi
-
-    def set_source_refs(self, val):
-        self.source_refs = val
-
-    def get_source_refs(self):
-        return self.source_refs
-
-    def add_tag_value(self, tag, value):
-        self.gramps2tag_map[value] = tag
-        self.tag2gramps_map[tag] = value
-
-    def gramps2tag(self, key):
-        if key in self.gramps2tag_map:
-            return self.gramps2tag_map[key]
-        return ""
-
-    def tag2gramps(self, key):
-        if key in self.tag2gramps_map:
-            return self.tag2gramps_map[key]
-        return key
-
-#-------------------------------------------------------------------------
-#
-# GedcomInfoDB
-#
-#-------------------------------------------------------------------------
-class GedcomInfoDB:
-    def __init__(self):
-        self.map = {}
-
-        self.standard = GedcomDescription("GEDCOM 5.5 standard")
-        self.standard.set_dest("GEDCOM 5.5")
-
-        filepath = os.path.join(DATA_DIR, "gedcom.xml")
-        if not os.path.exists(filepath):
-            return
-
-        with open(filepath, "rb") as ged_file:
-            parser = GedInfoParser(self)
-            parser.parse(ged_file)
-
-    def add_description(self, name, obj):
-        self.map[name] = obj
-
-    def get_description(self, name):
-        if name in self.map:
-            return self.map[name]
-        return self.standard
-
-    def get_from_source_tag(self, name):
-        for k, val in self.map.items():
-            if val.get_dest() == name:
-                return val
-        return self.standard
-
-    def get_name_list(self):
-        return ["GEDCOM 5.5 standard"] + sorted(self.map)
-
-#-------------------------------------------------------------------------
-#
-# GedInfoParser
-#
-#-------------------------------------------------------------------------
-class GedInfoParser:
-    def __init__(self, parent):
-        self.parent = parent
-        self.current = None
-
-    def parse(self, ged_file):
-        p = ParserCreate()
-        p.StartElementHandler = self.startElement
-        p.ParseFile(ged_file)
-
-    def startElement(self, tag, attrs):
-        if tag == "target":
-            name = attrs['name']
-            self.current = GedcomDescription(name)
-            self.parent.add_description(name, self.current)
-        elif tag == "dest":
-            self.current.set_dest(attrs['val'])
-        elif tag == "endl":
-            self.current.set_endl(attrs['val'])
-        elif tag == "adopt":
-            val = attrs['val']
-            if val == 'none':
-                self.current.set_adopt(ADOPT_NONE)
-            elif val == 'event':
-                self.current.set_adopt(ADOPT_EVENT)
-            elif val == 'ftw':
-                self.current.set_adopt(ADOPT_FTW)
-            elif val == 'legacy':
-                self.current.set_adopt(ADOPT_LEGACY)
-            elif val == 'pedigree':
-                self.current.set_adopt(ADOPT_PEDI)
-        elif tag == "conc":
-            if attrs['val'] == 'broken':
-                self.current.set_conc(CONC_BROKEN)
-        elif tag == "alternate_names":
-            val = attrs['val']
-            if val == 'none':
-                self.current.set_alt_name(ALT_NAME_NONE)
-            elif val == 'event_aka':
-                self.current.set_alt_name(ALT_NAME_EVENT_AKA)
-            elif val == 'alias':
-                self.current.set_alt_name(ALT_NAME_ALIAS)
-            elif val == 'aka':
-                self.current.set_alt_name(ALT_NAME_AKA)
-            elif val == '_alias':
-                self.current.set_alt_name(ALT_NAME_UALIAS)
-        elif tag == "calendars":
-            if attrs['val'] == 'no':
-                self.current.set_alt_calendar(CALENDAR_NO)
-        elif tag == "event":
-            self.current.add_tag_value(attrs['tag'], attrs['value'])
-        elif tag == "object_support":
-            if attrs['val'] == 'no':
-                self.current.set_obje(OBJE_NO)
-        elif tag == "prefix":
-            if attrs['val'] == 'no':
-                self.current.set_obje(PREFIX_NO)
-        elif tag == "residence":
-            if attrs['val'] == 'place':
-                self.current.set_resi(RESIDENCE_PLAC)
-        elif tag == "source_refs":
-            if attrs['val'] == 'no':
-                self.current.set_source_refs(SOURCE_REFS_NO)
-
-#-------------------------------------------------------------------------
-#
 # File Readers
 #
 #-------------------------------------------------------------------------
@@ -1954,8 +1753,6 @@ class GedcomParser(UpdateCallback):
         self.genby = ""
         self.genvers = ""
         self.subm = ""
-        self.gedmap = GedcomInfoDB()
-        self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.use_def_src = default_source
         self.func_list = []
         if self.use_def_src:
@@ -5574,15 +5371,10 @@ class GedcomParser(UpdateCallback):
             if line.data in GED_TO_GRAMPS_EVENT:
                 name = EventType(GED_TO_GRAMPS_EVENT[line.data])
             else:
-                val = self.gedsource.tag2gramps(line.data)
-                if val:
-                    name = EventType((EventType.CUSTOM, val))
-                else:
-                    try:
-                        name = EventType((EventType.CUSTOM,
-                                                 line.data))
-                    except AttributeError:
-                        name = EventType(EventType.UNKNOWN)
+                try:
+                    name = EventType((EventType.CUSTOM, line.data))
+                except AttributeError:
+                    name = EventType(EventType.UNKNOWN)
             state.event.set_type(name)
         else:
             try:
@@ -6922,11 +6714,7 @@ class GedcomParser(UpdateCallback):
             if line.data in GED_TO_GRAMPS_EVENT:
                 name = GED_TO_GRAMPS_EVENT[line.data]
             else:
-                val = self.gedsource.tag2gramps(line.data)
-                if val:
-                    name = val
-                else:
-                    name = line.data
+                name = line.data
             state.attr.set_type(name)
         else:
             self.__ignore(line, state)
@@ -7241,7 +7029,6 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.gedsource = self.gedmap.get_from_source_tag(line.data)
         if line.data.strip() in ["FTW", "FTM"]:
             self.is_ftw = True
         # Some software (e.g. RootsMagic (http://files.rootsmagic.com/PAF-
@@ -7447,11 +7234,6 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        # FIXME: Gramps does not seem to produce a DEST line, so this processing
-        # seems to be useless
-        if self.genby == "GRAMPS":
-            self.gedsource = self.gedmap.get_from_source_tag(line.data)
-
         # FIXME: This processing does not depend on DEST, so there seems to be
         # no reason for it to be placed here. Perhaps it is supposed to be after
         # all the SOUR levels have been processed, but self.genby was only
