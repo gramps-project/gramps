@@ -87,6 +87,10 @@ _RATIO = [ { 'name' : _("Compress to minimal size"),    'value': "compress" },
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
+_SPLINE = [ { 'name' : _("Lines"), 'value' : "false" },
+            { 'name' : _("Curves"), 'value' : "true", },
+            { 'name' : _("Ortho"), 'value' : 'ortho'} ]
+
 if win():
     _DOT_FOUND = search_for("dot.exe")
 
@@ -174,6 +178,13 @@ class GVOptions:
                             "This option only applies if the horizontal pages "
                             "or vertical pages are greater than 1."))
         menu.add_option(category, "page_dir", page_dir)
+
+        spline = EnumeratedListOption(_("Spline mode"), "true")
+        for item in _SPLINE:
+            spline.add_item(item["value"], item["name"])
+        spline.set_help(_("Sets type of lines to be straight, no curves or "
+                            "angles(ortho)."))
+        menu.add_option(category, "spline", spline)
 
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1,
@@ -399,6 +410,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self.ratio         = get_value('ratio')
         self.vpages        = get_value('v_pages')
         self.usesubgraphs  = get_value('usesubgraphs')
+        self.spline        = get_value('spline')
 
         paper_size          = paper_style.get_size()
 
@@ -443,7 +455,7 @@ class GVDocBase(BaseDoc, GVDoc):
             '  ratio="%s";\n'               % self.ratio +
             '  searchsize="100";\n'         +
             '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh) +
-            '  splines="true";\n'           +
+            '  splines="%s";\n'               % self.spline +
             '\n'                            +
             '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize
             )
