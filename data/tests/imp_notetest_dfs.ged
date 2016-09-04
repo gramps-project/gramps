@@ -1,0 +1,227 @@
+0 HEAD
+1 SOUR GEDitCOM
+2 NAME GEDitCOM
+2 VERS 2.9.4
+2 CORP RSAC Software
+1 SUBM @SUBMITTER@
+1 SUBN @SUBMISSION@
+1 DEST ANSTFILE
+1 DATE 1 JAN 1998
+2 TIME 13:57:24.80
+1 FILE imp_notetest.ged
+1 COPR Tom Tester 2016
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 LANG English
+1 NOTE Header note
+2 TEST Header Note
+1 NOTE
+2 TEST Empty Note
+1 CHAR UTF8
+0 @SUBMISSION@ SUBN
+1 SUBM @SUBMITTER@
+1 FAMF NameOfFamilyFile
+1 NOTE Submission Note
+2 TEST Submission Note
+1 NOTE
+2 TEST Empty Note
+1 TEST submission
+1 NOTE @N2@
+0 @N2@ NOTE Submission xref note
+1 RIN Submission Note RIN
+1 REFN Submission Note REFN
+2 TYPE Submission Note REFN TYPE
+1 SOUR Submission note source
+1 CHAN
+2 DATE 11 Jan 2001
+3 TIME 16:00:06
+1 TEST on XREF Note
+0 @SUBMITTER@ SUBM
+1 NAME John A. Tester
+1 NOTE Submitter Note
+2 TEST Submitter Note
+1 NOTE
+2 TEST Empty Note
+1 TEST Submitter
+1 NOTE @N3@
+0 @N3@ NOTE Submitter xref note
+0 @I1@ INDI
+1 NAME Tom /Tester/
+1 TEST person
+1 SEX M
+1 BIRT
+2 NOTE
+3 NOTE Empty note subordinate (Should be skipped)
+3 TEST Empty Note
+2 NOTE Birth Event note
+3 TEST 123456 Event Note
+2 DATE 15 JUN 1900
+2 ADDR 123 main, Norwalk, Ohio, USA
+3 NOTE Location Note
+4 TEST Location Note
+3 TEST Location
+3 NOTE Location Note 2
+1 DEAT
+2 NOTE
+3 TEST Empty Note
+2 NOTE
+3 TEST Empty Note
+2 NOTE @N5@
+1 FAMS @F1@
+2 NOTE FAMS Note
+3 TEST FAMS Note
+4 TEST skip on FAMS Note
+2 TEST FAMS
+2 NOTE FAMS Note 2
+1 NOTE @N4@
+1 NOTE Tom Tester Note
+2 TEST Person Note
+1 OBJE
+2 FORM URL
+2 TEST media
+2 TITL GEDCOM 5.5 documentation web site
+2 FILE http://homepages.rootsweb.com/~pmcbride/gedcom/55gctoc.htm
+2 NOTE
+3 TEST Empty Note
+2 NOTE Media Note
+3 TEST 123456 Note
+1 RIN 123456 Person
+1 REFN 98765 for PERSON
+2 TEST REFN
+2 TYPE Who knows OBJE REFN TYPE
+1 CHAN
+2 DATE 11 Jan 2001
+3 TIME 16:00:06
+2 NOTE @N6@
+2 NOTE
+3 TEST Empty Note
+1 OBJE @M1@
+0 @N4@ NOTE Tom Tester xref note
+0 @N5@ NOTE Death Event xref note
+0 @N6@ NOTE Media xref note
+1 RIN 123456
+1 REFN 98765
+2 TYPE Who knows REFN TYPE
+1 CHAN
+2 DATE 11 Jan 2001
+3 TIME 16:00:06
+2 NOTE Note on a change on a note!!!
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+0 @M1@ OBJE
+1 FILE photo.jpg
+2 FORM jpeg
+3 TYPE Film
+2 TITL Tom Tester's photo
+1 RIN 123456
+1 REFN 98765
+2 TYPE Who knows REFN TYPE
+1 CHAN
+2 DATE 11 Jan 2001
+3 TIME 16:00:06
+0 @I2@ INDI
+1 NAME Mrs /Tester/
+1 SEX F
+1 BIRT
+2 DATE 15 JUN 1901
+1 DEAT
+2 DATE 5 JUL 1975
+1 FAMS @F1@
+2 NOTE
+3 TEST Empty Note
+2 NOTE Family Spouse reference Note
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+0 @I3@ INDI
+1 NAME Ed /Tester/
+2 NICK Eddie
+2 NOTE
+3 TEST Empty Note
+2 NOTE Name note
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+1 SEX M
+1 BIRT
+2 DATE 15 JUN 1922
+1 DEAT
+2 DATE 5 JUL 1994
+1 FAMC @F1@
+1 BAPL
+2 DATE 5 MAY 0005 B.C.
+2 PLAC Salt Lake City
+3 NOTE Place note
+2 STAT Cleared
+2 TEMP SLAKE
+2 SOUR @SOURCE1@
+2 NOTE @N8@
+1 ASSO @I4@
+2 NOTE Association link note
+3 TEST Accociation note
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+2 NOTE
+3 TEST Empty Note
+0 @I4@ INDI
+1 NAME George /Testee/
+2 NOTE Just for association
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+0 @F1@ FAM
+1 HUSB @I1@
+1 TEST family
+1 WIFE @I2@
+1 CHIL @I3@
+1 SOUR @S1@
+1 NOTE @N7@
+1 NOTE Family note
+2 TEST Family Note
+2 CHAN
+3 DATE 11 Jan 2001
+4 TIME 16:00:06
+1 NOTE
+2 TEST Empty Note
+1 SOUR @S1@
+2 TEST citation
+2 PAGE 42
+2 DATA
+3 DATE 31 DEC 1900
+3 TEST Citation Data
+3 NOTE Citation Data Note
+4 TEST Citation Data Note
+3 TEXT A sample text from a source of this family
+2 QUAY 0
+2 NOTE A note this citation is on the FAMILY record.
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+0 @N7@ NOTE Family xref note
+0 @S1@ SOUR
+1 TITL Note Test file Source: Tester
+1 TEST source
+1 REPO @R1@
+2 NOTE
+3 TEST Empty Note
+2 NOTE A short note about the repository link.
+3 CHAN
+4 DATE 11 Jan 2001
+5 TIME 16:00:06
+1 NOTE
+2 TEST Empty Note
+1 NOTE note embedded in the SOURCE Record
+2 CHAN
+3 DATE 11 Jan 2001
+4 TIME 16:00:06
+0 @N8@ NOTE LDS xref note
+0 @R1@ REPO
+1 NAME The Testers repository
+1 TEST Repo
+1 NOTE
+2 TEST Empty Note
+1 NOTE Repository Note
+0 TRLR
