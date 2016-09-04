@@ -1,3 +1,90 @@
+2016-09-04
+Version 4.2.4
+* fixes for the PHON, FAX, EMAIL and WWW Gedcom tags to support Gedcom v5.5.1
+* use more relative import
+* Support for FTM and others Custom Gedcom Event Tags on import
+* fix '_deeprelationshippath' filter rule
+* Narrativeweb: some dates are incorrect in tar archive.
+* MacOS: Update graphviz to 2.38 and change to a binary launcher in app bundles.
+* Gramps crashes when closed while exporting
+* Some events are not shown in familymaps page.
+* Remove old debug bloc on place selection.
+* Add GUI and CLI config option to allow easy setting
+* Chinese characters are not rendered properly in pdf reports
+* Support v5.5.1 OBJE/FORM/MEDI tag on embedded OBJE
+* Sorting of Sources on gedcom
+* Change "class xxx(object)" to "class xxx"
+* Use "with open" instead of "try: except:"
+* Change "raise NotImplemented" to "raise NotImplementedError()"
+* Add new argument to IsEnclosedByRule
+* Narrativeweb: place title must agree the references.place-auto configuration
+* Improvements on CSV file format support
+* update Finnish holidays
+* Some strings in tools and report dialogs will not translate
+* Gedcom import improvements in media area to support v5.5.1 and FTM
+* Trailing whitespace
+* Gedcom import of FTM .ged file containing _LINK tags not supported
+* Change pycairo-python3 to pycairo.
+* pycairo for python2 is now py2cairo.
+* Remove pango modules from bundle, pango no longer uses them.
+* Gedcom import loses spaces in text fields from FTM
+* Gedcom import of FTM file containing _PHOTO tags
+* Missed self.photo initializer
+* Attempting to select an "Available item" for the Book Report gives an error
+* Fix for either valid or invalid FTM Gedcom
+* Gedcom import of FTM file with OCCU record crashes import
+* crash - 'NoneType' object has no attribute 'get_child_ref_list'
+* Family Page maps are non-functional in Narrative Web report
+* Gedcom import loses spaces in text fields from FTM
+* String not translated in geoplaces
+* Descendant Report does not recognise auto. place title generation
+* Translated text will not be printed in the program
+* Geography: Attempting to print crashes (add parent to dialog)
+* GEDCOM doesn't accept CR as a line terminator
+* Wrong Numeric date format for cs_CZ locale
+* Narrativeweb: inconsistent & incomplete display of place hierarchy labels
+* Narratedweb: surname listing errors for people with multiple partners
+* In "Verify" people w/ death event w/o date are not thought dead
+* While starting gramps, it fails to pop up "tips of the day"
+* GEDCOM import in CLI mode with .ged file containing ANSEL encoding tries to pop up gui
+* fix merge conflict
+* Use first matching name when generating place titles
+* GEDCOM import with media files that have no path fails
+* [Geography] Geoclose and mother handle
+* place names empty if Gedcom ADDR record contains no street
+* Tidy up place configuration options
+* Use CSS to fade background colour in ValidatableMaskedEntry
+* crash on GEDCOM import with empty _AKA lines
+* Add inclusive option to IsEnclosedBy rule
+* Saving/closing new person window with Alt-o does not find gender
+* Fix to allow deferred translation of place type
+* Include all place types in place report
+* Allow place selection both individually and by filter on textual report
+* Expand tree in selectors automatically
+* Fix Encloses gramplet to display correct place references
+* Update for appdata stuff
+* UnboundLocalError on ODF doc backend
+* Media Preview: wrong frame
+* fix signals
+* GEDCOM import PLAC:FORM in local mode doesn't work
+* fix empty Place Alternate Names on import
+* Merge unit test for PlaceCheck not working correctly
+* GEDCOM import some Place Names & Titles are blank
+* GEDCOM import PLAC or ADDR attached Notes etc. are lost
+* Gramps not appearing in Gnome Software
+* fix broken GEDCOM import PLAC:FORM handling
+* Place Alt Names gets duplicated entries
+* Multiple GEDCOM imports creates duplicate event IDs
+* The place page in webreport is complete mess
+* Gallery tab of Source view does not display .ods files
+* Narrated Web report - Individual sort order not correct on the Surnames tab
+* Specify required GtkSpell and GExiv2 version
+* Narrated web report link to thumbnails is broken on certain pages
+* Narrated Web report - Individual page sort order has changed
+* Gramps reports that it can't find dictionaries.
+* Turns out it was really that enchant couldn't find its backend because an environment variable wasn't set.
+* Update translations: cs, da, de, fi, fr, hu, pt_BR, ru, sl
+
 2016-04-10
 Version 4.2.3
 * Creation of the "graphic calendar report" failed
@@ -520,8 +607,8 @@ Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
 * fix annoying errors on navigation related to citations gramplet and tag object.
 * listing the Family Trees can corrupt them.
 * various fix around handling Gedcom file format
-* fix citations and sources import on ProGen format 
-* better date handling and better alternate translation support on some textual reports according to locale under windows 
+* fix citations and sources import on ProGen format
+* better date handling and better alternate translation support on some textual reports according to locale under windows
 * avoid Errors when setting wrong value as markup for invalid dates (Preferences)
 * fix paragraph layout on PDF format or print output
 * New: New-Zealand holidays
@@ -539,7 +626,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Sorting (both in the main display window, and particularly in Narrative Web output) now uses PyICU (if that module is available). Inclusion of PyICU is 'strongly recommended'. This resolves a number of bugs particularly related to sorting of non-Latin characters, and sorting on MS Windows and Mac OS X. Some changes have been made in Narrative Web to support contractions for alphabetic indices.
 * The automatic Addon checking and download now works once again (the location used in Gramps 3.4.2 and before had been changed, so the the automatic process was no longer working).
 * Import from Pro-Gen has been updated (at last) to take account of the change to Citations (in 3.4.0)
-* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly. 
+* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly.
 * GEDCOM Repositories not imported correctly from FTM for Windows and Heredis.
 * Fixes to a number of errors in filtering notes.
 * Fix some errors in determining whether someone is alive (e.g. for filtering out alive people).
@@ -548,7 +635,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Fixed update problems with citation bottombar gramplet (bug #6336)
 * Fixed Open Document Text output in Book report (bug #6457)
 * A number of changes to Narrative Web:
-** Media objects attached to Marriage events and Sources are not included in Narrative Web Site 
+** Media objects attached to Marriage events and Sources are not included in Narrative Web Site
 ** restructure the families index so families are indexed under both spouses, and the family name is normalised
 ** separate out Families section in individual and families pages so individual page links to the family page and family page links to both people
 ** normalise links to families so the link is only displayed if the family page is present, and the gid is included when appropriate
@@ -566,7 +653,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Implemented a generalised back reference function to display the 'References' section of all pages. This recursively displays references till one is found for which a page exists.
 ** Removed list of people and families from heading of the event pages as these are now in the 'References' section.
 ** Fixed bug "0005968: Narrated Web Site not copying Source Citations files such as jpg or pdf docs to web site
-** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page) 
+** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page)
 ** Tidy up media pages - remove unused parameters, use list of media items generated in first pass. Should fix bugs 2365, 5905 and 6009.
 ** Tidy up sources pages - fix numbering of repositories, remove unused parameters, fix title of individual source pages
 ** Bug: reset NarrWeb navigation menu layout when style sheet doesn't support it
@@ -574,7 +661,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Fix option to suppress Gramps ID (bug #6237)
 * a number of technical changes to Narrative Web
 ** Removed a lot of redundant code and parameters (mainly connected with the old way of determining the objects to be included in the report).
-** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged. 
+** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged.
 ** Moved routines for calculating objects to be output so they can be part of default list building classes.
 * Various updated translations: da, de, es, fr, it, nb, nl, pt_BR, pt_PT, sv, uk
 
@@ -766,7 +853,7 @@ Version 3.1.3 -- the "What name?" release.
 2009-06-06
 Version 3.1.2 -- the "Skip the impersonations" release.
 * Contains translation updates and small bug fixes.  No new features.
-* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
+* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv,
 * fixes a failure in 'Check & Repair Database'
 * fixes to Gramplets
 * fixes to CLI regressions
@@ -879,7 +966,7 @@ Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
 
 Version 2.2.4 -- the "When you're chewing on life's gristle, Don't grumble, give a whistle" release
 * Improved handling of readonly files
-* Enhanced parsing of longitute and latitude and mapping 
+* Enhanced parsing of longitute and latitude and mapping
   (Benny Malengier/Zsolt Foldvari)
 * Check and repair improvements
 * Reference map rebuild tool
