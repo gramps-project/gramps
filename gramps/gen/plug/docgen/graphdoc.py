@@ -87,9 +87,9 @@ _RATIO = [ { 'name' : _("Compress to minimal size"),    'value': "compress" },
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
-_SPLINE = [ { 'name' : _("Lines"), 'value' : "false" },
-            { 'name' : _("Curves"), 'value' : "true", },
-            { 'name' : _("Ortho"), 'value' : 'ortho'} ]
+_SPLINE = [ { 'name' : _("Straight"), 'value' : "false" },
+            { 'name' : _("Curved"), 'value' : "true", },
+            { 'name' : _("Orthogonal"), 'value' : 'ortho'} ]
 
 if win():
     _DOT_FOUND = search_for("dot.exe")
@@ -179,11 +179,10 @@ class GVOptions:
                             "or vertical pages are greater than 1."))
         menu.add_option(category, "page_dir", page_dir)
 
-        spline = EnumeratedListOption(_("Spline mode"), "true")
+        spline = EnumeratedListOption(_("Connecting lines"), "true")
         for item in _SPLINE:
             spline.add_item(item["value"], item["name"])
-        spline.set_help(_("Sets type of lines to be straight, no curves or "
-                            "angles(ortho)."))
+        spline.set_help(_("How the lines between objects will be drawn."))
         menu.add_option(category, "spline", spline)
 
         # the page direction option only makes sense when the
