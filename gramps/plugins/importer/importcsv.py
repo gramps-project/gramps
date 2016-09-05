@@ -154,94 +154,79 @@ class CSVParser:
             self.place_types[custom_type] = 0
             self.place_types[custom_type.lower()] = 0
         column2label = {
-            "surname": ("Lastname", "Surname", _("Surname"), "lastname",
-                "last_name", "surname", _("surname")),
-            "firstname": ("Firstname", "Given name", _("Given name"), "Given",
-                _("Given"), "firstname", "first_name", "given_name",
-                "given name", _("given name"), "given", _("given")),
-            "callname": ("Callname", "Call name", _("Call name"), "Call",
-                _("Call"), "callname", "call_name", "call name", "call",
-                _("call")),
-            "title": ("Title", _("Person or Place|Title"), "title", _("Person or Place|title")),
-            "prefix": ("Prefix", _("Prefix"), "prefix", _("prefix")),
-            "suffix": ("Suffix", _("Suffix"), "suffix", _("suffix")),
-            "gender": ("Gender", _("Gender"), "gender", _("gender")),
-            "source": ("Source", _("Source"), "source", _("source")),
-            "note": ("Note", _("Note"), "note", _("note")),
-            "birthplace": ("Birthplace", "Birth place", _("Birth place"),
-                "birthplace", "birth_place", "birth place", _("birth place")),
-            "birthplace_id": ("Birthplaceid", "Birth place id", _("Birth place id"),
-                              "birthplaceid", "birth_place_id", "birth place id", _("birth place id"),
+            "surname": ("lastname", "last_name", "surname", _("surname")),
+            "firstname": ("firstname", "first_name", "given_name", "given",
+                          "given name", _("given name"), _("given")),
+            "callname": ("call name", _("Call name"), "callname", "call_name",
+                         "call", _("call")),
+            "title": ("title", _("title"), _("Person or Place|title")),
+            "prefix": ("prefix", _("prefix")),
+            "suffix": ("suffix", _("suffix")),
+            "gender": ("gender", _("gender")),
+            "source": ("source", _("source")),
+            "note": ("note", _("note")),
+            "birthplace": ("birthplace", "birth_place", "birth place",
+                           _("birth place")),
+            "birthplace_id": ("birthplaceid", "birth_place_id",
+                              "birth place id", _("birth place id"),
                               "birthplace_id"),
-            "birthdate": ("Birthdate", "Birth date", _("Birth date"),
-                "birthdate", "birth_date", "birth date", _("birth date")),
-            "birthsource": ("Birthsource", "Birth source", _("Birth source"),
-                "birthsource", "birth_source", "birth source",
-                _("birth source")),
-            "baptismplace": ("Baptismplace", "Baptism place",
-                _("Baptism place"), "baptismplace", "baptism place",
-                _("baptism place")),
-            "baptismplace_id": ("Baptismplaceid", "Baptism place id",
-                                _("Baptism place id"), "baptismplaceid", "baptism place id",
+            "birthdate": ("birthdate", "birth_date", "birth date",
+                          _("birth date")),
+            "birthsource": ("birthsource", "birth_source", "birth source",
+                            _("birth source")),
+            "baptismplace": ("baptismplace", "baptism place",
+                             _("baptism place")),
+            "baptismplace_id": ("baptismplaceid", "baptism place id",
                                 _("baptism place id"), "baptism_place_id",
                                 "baptismplace_id"),
-            "baptismdate": ("Baptismdate", "Baptism date", _("Baptism date"),
-                "baptismdate", "baptism date", _("baptism date")),
-            "baptismsource": ("Baptismsource", "Baptism source",
-                _("Baptism source"), "baptismsource", "baptism source",
-                _("baptism source")),
-            "burialplace": ("Burialplace", "Burial place", _("Burial place"),
-                "burialplace", "burial place", _("burial place")),
-            "burialplace_id": ("Burialplaceid", "Burial place id", _("Burial place id"),
-                               "burialplaceid", "burial place id", _("burial place id"),
-                               "burial_place_id", "burialplace_id"),
-            "burialdate": ("Burialdate", "Burial date", _("Burial date"),
-                "burialdate", "burial date", _("burial date")),
-            "burialsource": ("Burialsource", "Burial source",
-                _("Burial source"), "burialsource", "burial source",
-                _("burial source")),
-            "deathplace": ("Deathplace", "Death place", _("Death place"),
-                "deathplace", "death_place", "death place", _("death place")),
-            "deathplace_id": ("Deathplaceid", "Death place id", _("Death place id"),
-                              "deathplaceid", "death_place_id", "death place id", _("death place id"),
-                              "death_place_id", "deathplace_id"),
-            "deathdate": ("Deathdate", "Death date", _("Death date"),
-                "deathdate", "death_date", "death date", _("death date")),
-            "deathsource": ("Deathsource", "Death source", _("Death source"),
-                "deathsource", "death_source", "death source",
-                _("death source")),
-            "deathcause": ("Deathcause", "Death cause", _("Death cause"),
-                "deathcause", "death_cause", "death cause", _("death cause")),
-            "grampsid": ("Grampsid", "ID", "Gramps id", _("Gramps ID"),
-                "grampsid", "id", "gramps_id", "gramps id", _("Gramps id")),
-            "person": ("Person", _("Person"), "person", _("person")),
+            "baptismdate": ("baptismdate", "baptism date", _("baptism date")),
+            "baptismsource": ("baptismsource", "baptism source",
+                              _("baptism source")),
+            "burialplace": ("burialplace", "burial place", _("burial place")),
+            "burialplace_id": ("burialplaceid", "burial place id",
+                               _("burial place id"), "burial_place_id",
+                               "burialplace_id"),
+            "burialdate": ("burialdate", "burial date", _("burial date")),
+            "burialsource": ("burialsource", "burial source",
+                             _("burial source")),
+            "deathplace": ("deathplace", "death_place", "death place",
+                           _("death place")),
+            "deathplace_id": ("deathplaceid", "death place id",
+                              _("death place id"), "death_place_id",
+                              "deathplace_id"),
+            "deathdate": ("deathdate", "death_date", "death date",
+                          _("death date")),
+            "deathsource": ("deathsource", "death_source", "death source",
+                            _("death source")),
+            "deathcause": ("deathcause", "death_cause", "death cause",
+                           _("death cause")),
+            "grampsid": (_("Gramps ID"), "grampsid", "id", "gramps_id",
+                         "gramps id"),
+            "person": ("person", _("person")),
             # ----------------------------------
-            "child": ("Child", _("Child"), "child", _("child")),
-            "family": ("Family", _("Family"), "family", _("family")),
+            "child": ("child", _("child")),
+            "family": ("family", _("family")),
             # ----------------------------------
-            "wife": ("Mother", _("Mother"), "Wife", _("Wife"), "Parent2",
-                _("Parent2"), "mother", _("mother"), "wife", _("wife"),
-                "parent2", _("parent2")),
-            "husband": ("Father", _("Father"), "Husband", _("Husband"),
-                "Parent1", _("Parent1"), "father", _("father"), "husband",
-                _("husband"), "parent1", _("parent1")),
-            "marriage": ("Marriage", _("Marriage"), "marriage", _("marriage")),
-            "date": ("Date", _("Date"), "date", _("date")),
-            "place": ("Place", _("Place"), "place", _("place")),
-            "place_id": ("Placeid", "place id", "Place id", "place_id", "placeid"),
-            "name": ("Name", _("Name"), "name", _("name")),
-            "type": ("Type", _("Type"), "type", _("type")),
-            "latitude": ("Latitude", _("latitude"), "latitude", _("latitude")),
-            "longitude": ("Longitude", _("Longitude"), "longitude", _("longitude")),
-            "code": ("Code", _("Code"), "code", _("code")),
-            "enclosed_by": ("Enclosed by", _("Enclosed by"), "enclosed by", _("enclosed by"),
-                            "enclosed_by", _("enclosed_by"), "Enclosed_by", _("Enclosed_by"),
-                            "enclosedby")
+            "wife": ("mother", _("mother"), "wife", _("wife"),
+                     "parent2", _("parent2")),
+            "husband": ("father", _("father"), "husband", _("husband"),
+                        "parent1", _("parent1")),
+            "marriage": ("marriage", _("marriage")),
+            "date": ("date", _("date")),
+            "place": ("place", _("place")),
+            "place_id": ("place id", "place_id", "placeid", _("place id")),
+            "name": ("name", _("name")),
+            "type": ("type", _("type")),
+            "latitude": ("latitude", _("latitude")),
+            "longitude": ("longitude", _("longitude")),
+            "code": ("code", _("code")),
+            "enclosed_by": ("enclosed by", _("enclosed by"),
+                            "enclosed_by", _("enclosed_by"), "enclosedby")
         }
         lab2col_dict = []
         for key in list(column2label.keys()):
             for val in column2label[key]:
-                lab2col_dict.append((val, key))
+                lab2col_dict.append((val.lower(), key))
         self.label2column = dict(lab2col_dict)
         if default_tag_format:
             name = time.strftime(default_tag_format)
@@ -283,10 +268,12 @@ class CSVParser:
                     return self.lookup(type_, id_)
                 else:
                     return db_lookup
-            elif id_.lower() in self.fref:
-                return self.fref[id_.lower()]
             else:
-                return None
+                id_ = self.db.fid2user_format(id_)
+                if id_.lower() in self.fref:
+                    return self.fref[id_.lower()]
+                else:
+                    return None
         elif type_ == "person":
             if id_.startswith("[") and id_.endswith("]"):
                 id_ = self.db.id2user_format(id_[1:-1])
@@ -295,22 +282,26 @@ class CSVParser:
                     return self.lookup(type_, id_)
                 else:
                     return db_lookup
-            elif id_.lower() in self.pref:
-                return self.pref[id_.lower()]
             else:
-                return None
+                id_ = self.db.id2user_format(id_)
+                if id_.lower() in self.pref:
+                    return self.pref[id_.lower()]
+                else:
+                    return None
         elif type_ == "place":
             if id_.startswith("[") and id_.endswith("]"):
-                id_ = self.db.id2user_format(id_[1:-1])
+                id_ = self.db.pid2user_format(id_[1:-1])
                 db_lookup = self.db.get_place_from_gramps_id(id_)
                 if db_lookup is None:
                     return self.lookup(type_, id_)
                 else:
                     return db_lookup
-            elif id_.lower() in self.placeref:
-                return self.placeref[id_.lower()]
             else:
-                return None
+                id_ = self.db.pid2user_format(id_)
+                if id_.lower() in self.placeref:
+                    return self.placeref[id_.lower()]
+                else:
+                    return None
         else:
             LOG.warning("invalid lookup type in CSV import: '%s'" % type_)
             return None
@@ -382,7 +373,7 @@ class CSVParser:
                 continue
             ######################################
             if header is None:
-                header = [self.cleanup_column_name(r) for r in row]
+                header = [self.cleanup_column_name(r.lower()) for r in row]
                 col = {}
                 count = 0
                 for key in header:
@@ -433,7 +424,7 @@ class CSVParser:
                 wife.set_gender(Person.FEMALE)
                 self.db.commit_person(wife, self.trans)
         if marriage_ref:
-            self.storeup("family", marriage_ref.lower(), family)
+            self.storeup("family", marriage_ref, family)
         if marriagesource:
             # add, if new
             new, marriagesource = self.get_or_create_source(marriagesource)
@@ -786,8 +777,8 @@ class CSVParser:
             place = self.create_place()
             if place_id is not None:
                 if place_id.startswith("[") and place_id.endswith("]"):
-                    place.gramps_id = self.db.id2user_format(place_id[1:-1])
-                self.storeup("place", place_id.lower(), place)
+                    place.gramps_id = self.db.pid2user_format(place_id[1:-1])
+                self.storeup("place", place_id, place)
         if place_title is not None:
             place.title = place_title
         if place_name is not None:
