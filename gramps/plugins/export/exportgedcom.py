@@ -736,8 +736,11 @@ class GedcomWriter(UpdateCallback):
     def _url_list(self, obj, level):
         """
         For Person's FAX, PHON, EMAIL, WWW lines;
-        n EMAIL <emailaddress>
-        
+        n PHON <PHONE_NUMBER> {0:3}
+        n EMAIL <ADDRESS_EMAIL> {0:3}
+        n FAX <ADDRESS_FAX> {0:3}
+        n WWW <ADDRESS_WEB_PAGE> {0:3}
+
         n OBJE {1:1}
         +1 FORM <MULTIMEDIA_FORMAT> {1:1}
         +1 TITL <DESCRIPTIVE_TITLE> {0:1}
