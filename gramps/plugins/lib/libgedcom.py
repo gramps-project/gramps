@@ -7900,7 +7900,7 @@ class GedcomStageOne:
             self.lcnt += 1
 
             try:
-                data = line.split(None, 2) + ['']
+                data = line.split(None, 3) + ['']
                 (level, key, value) = data[:3]
                 level = int(level)
                 key = key.strip()
