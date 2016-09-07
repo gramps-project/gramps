@@ -57,6 +57,7 @@ from gramps.gen.lib.addressbase import AddressBase
 from gramps.gen.lib.attrbase import AttributeBase
 from gramps.gen.lib.primaryobj import BasicPrimaryObject
 from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.lib.date import Today
 from gramps.gen.lib.datebase import DateBase
 from gramps.gen.lib.ldsordbase import LdsOrdBase
 from gramps.gen.lib.locationbase import LocationBase
@@ -354,7 +355,7 @@ class TestcaseGenerator(tool.BatchTool):
         if self.options.handler.options_dict['bugs']:
             with self.progress(_('Generating testcases'),
                                _('Generating database errors'),
-                               18) as step:
+                               19) as step:
                 self.generate_data_errors(step)
 
         if self.options.handler.options_dict['persons']:
@@ -397,7 +398,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         self.test_fix_encoding(); step()
         self.test_fix_ctrlchars_in_notes(); step()
-        self.test_cleanup_missing_photos(); step()
+        self.test_fix_alt_place_names(); step()
         self.test_cleanup_deleted_name_formats(); step()
         self.test_cleanup_empty_objects(); step()
         self.test_check_for_broken_family_links(); step()
@@ -505,6 +506,33 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_format(choice( (Note.FLOWED,Note.FORMATTED)))
             o.set_type(self.rand_type(NoteType()))
             self.db.add_note(o, self.trans)
+
+    def test_fix_alt_place_names(self):
+        """
+        Creates a place with a duplicate of primary in alt_names,
+        a blank alt_name, and a duplicate of one of the alt_names. This tests
+        Check.fix_fix_alt_place_names()
+        """
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            plac = Place()
+            pri_name = PlaceName()
+            pri_name.set_value("Primary name")
+            alt_name1 = PlaceName()
+            alt_name1.set_value("Alt name 1")
+            alt_name2 = PlaceName()
+            alt_name2.set_value("Alt name 1")
+            alt_name2.set_language("testish")
+            alt_name3 = PlaceName()
+            alt_name3.set_value("Alt name 1")
+            alt_name3.set_date_object(Today())
+            alt_names = [pri_name, alt_name1, alt_name1, PlaceName(),
+                         alt_name2, alt_name3]
+            plac.set_name(pri_name)
+            plac.set_alternative_names(alt_names)
+            self.db.add_place(plac, self.trans)
 
     def test_cleanup_missing_photos(self):
         pass
