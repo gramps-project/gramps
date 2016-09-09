@@ -62,7 +62,7 @@ from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
                                   PersonOption, DestinationOption, NoteOption)
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as date_displayer
+from gramps.gen.datehandler import displayer as _dd
 
 from gramps.gen.display.name import displayer as _nd
 
@@ -757,7 +757,6 @@ class WebCalReport(Report):
                     my_title += Html("a", _escape(">"), href=dest,
                                      title=date_displayer.display(nexty))
                 my_title += Html("</a>")
-                #print(my_title)
                 trow = Html("tr") + (
                     Html("th", my_title, class_='monthName',
                          colspan=7, inline=True)
@@ -967,7 +966,7 @@ class WebCalReport(Report):
 
             for month in range(1, 13):
                 cal_fname = self.rlocale.date_displayer.long_months[int(month)]
-                of = self.create_file(cal_fname, str(year))
+                open_file = self.create_file(cal_fname, str(year))
 
                 # Add xml, doctype, meta and stylesheets
                 # body has already been added to webcal  already once
@@ -979,7 +978,7 @@ class WebCalReport(Report):
 
                 # Create Month Navigation Menu
                 # identify currentsection for proper highlighting
-                currentsection = date_displayer.long_months[month]
+                currentsection = _dd.long_months[month]
                 body += self.month_navigation(nr_up, year, currentsection, True)
 
                 # build the calendar
@@ -1012,7 +1011,7 @@ class WebCalReport(Report):
 
                 # send calendar page to web output
                 # and close the file
-                self.XHTMLWriter(webcal, of)
+                self.XHTMLWriter(webcal, open_file)
 
                 step()
 
@@ -1050,7 +1049,7 @@ class WebCalReport(Report):
         with self._user.progress(_("Web Calendar Report"),
                 _('Creating Year At A Glance calendar'), 12) as step:
 
-            of = self.create_file('fullyearlinked', str(year))
+            open_file = self.create_file('fullyearlinked', str(year))
 
             # page title
             title = self._("%(year)d, At A Glance") % {'year' : year}
@@ -1096,7 +1095,7 @@ class WebCalReport(Report):
 
             # send calendar page to web output
             # and close the file
-            self.XHTMLWriter(yearglance, of)
+            self.XHTMLWriter(yearglance, open_file)
 
     def one_day(self, event_date, fname_date, day_list):
         """
@@ -1132,7 +1131,7 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        currentsection = date_displayer.long_months[month]
+        currentsection = _dd.long_months[month]
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences
@@ -1188,6 +1187,9 @@ class WebCalReport(Report):
         self.XHTMLWriter(oneday, one_day_file)
 
     def build_url_fname_html(self, fname, subdir=None, prefix=None):
+        """
+        build the url for the file name with sub directories and extension
+        """
         return self.build_url_fname(fname, subdir, prefix) + self.ext
 
     def build_url_fname(self, fname, subdir, prefix=None):
@@ -1324,7 +1326,7 @@ class WebCalReport(Report):
                                         father = db.get_person_from_handle(
                                                                   father_handle)
                                         if father is not None:
-                                            father_surname = _get_regular_surname(
+                                            father_surname = _regular_surname(
                                                       person.gender,
                                                       father.get_primary_name())
                     short_name = self.get_name(person, father_surname)
@@ -1397,7 +1399,8 @@ class WebCalReport(Report):
                                     day = event_date.get_day()
 
                                     # date to figure if someone is still alive
-                                    prob_alive_date = Date(this_year, month, day)
+                                    prob_alive_date = Date(this_year,
+                                                           month, day)
                                     wedding_age = None
                                     if first_died != Date():
                                         wedding_age = first_died - event_date
@@ -1469,7 +1472,7 @@ class WebCalReport(Report):
         # return footer to its callers
         return footer
 
-    def XHTMLWriter(self, page, of):
+    def XHTMLWriter(self, page, open_file):
         """
         This function is simply to make the web page look pretty and readable
         It is not for the browser, but for us, humans
@@ -1478,9 +1481,9 @@ class WebCalReport(Report):
         # writes the file out from the page variable; Html instance
         # This didn't work for some reason, but it does in NarWeb:
         #page.write(partial(print, file=of.write))
-        page.write(lambda line: of.write(line + '\n'))
+        page.write(lambda line: open_file.write(line + '\n'))
         # close the file now...
-        self.close_file(of)
+        self.close_file(open_file)
 
     def write_report(self):
         """
@@ -1721,8 +1724,7 @@ class WebCalOptions(MenuReportOptions):
         # Default selection ????
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
-            start_dow.add_item(count,
-                               date_displayer.long_days[count].capitalize())
+            start_dow.add_item(count, _dd.long_days[count].capitalize())
         start_dow.set_help(_("Select the first day of the week "
                              "for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow)
@@ -1883,7 +1885,7 @@ class WebCalOptions(MenuReportOptions):
         else:
             self.__prefix.set_available(False)
 
-def _get_regular_surname(sex, name):
+def _regular_surname(sex, name):
     """
     Returns a name string built from the components of the Name instance.
     """
