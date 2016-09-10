@@ -1424,10 +1424,9 @@ class WebCalReport(Report):
                                     if ((self.alive and alive1
                                          and alive2) or not self.alive):
 
-                                        msg = '%(spouse)s and %(person)s'
-                                        text = self._(msg) % {
-                                            'spouse' : spouse_name,
-                                            'person' : short_name}
+                                        mg = self._('%(spouse)s and %(person)s')
+                                        text = mg % {'spouse' : spouse_name,
+                                                     'person' : short_name}
 
                                         self.add_day_item(text, year, month,
                                                           day, 'Anniversary',
