@@ -344,11 +344,6 @@ OSM_MARKERS = """
 # there is no need to add an ending "</script>",
 # as it will be added automatically by libhtml()
 
-
-# Translatable strings for variables within this plugin
-# gettext carries a huge footprint with it.
-GRAMPSID = "Gramps&nbsp;ID"
-
 # Events that are usually a family event
 _EVENTMAP = set([EventType.MARRIAGE, EventType.MARR_ALT,
                  EventType.MARR_SETTL, EventType.MARR_LIC,
@@ -2473,7 +2468,7 @@ class BasePage:
                     trow = Html("tr")
                     tbody += trow
 
-                    _type = url.get_type()
+                    _type = self._(url.get_type().xml_str())
                     uri = url.get_path()
                     descr = url.get_description()
 
@@ -2495,7 +2490,7 @@ class BasePage:
                             uri = "ftp://%(ftpsite)s" % {"ftpsite" : uri}
 
                     descr = Html("p", html_escape(descr)) + (
-                        Html("a", _(" [Click to Go]"), href=uri, title=uri)
+                        Html("a", self._(" [Click to Go]"), href=uri, title=uri)
                     )
 
                     trow.extend(
@@ -2911,7 +2906,7 @@ class BasePage:
         gid = place.gramps_id
         if not self.noid and gid:
             trow = Html("tr") + (
-                Html("td", self._(GRAMPSID), class_="ColumnAttribute",
+                Html("td", self._("Gramps ID"), class_="ColumnAttribute",
                      inline=True),
                 Html("td", gid, class_="ColumnValue", inline=True)
             )
@@ -3062,7 +3057,8 @@ class BasePage:
                                                       repo.get_name(),
                                                       repo.get_gramps_id(),
                                                       self.uplink)),
-                            Html("td", repo_ref.get_media_type(),
+                            Html("td",
+                                 self._(repo_ref.get_media_type().xml_str()),
                                  class_="ColumnName"),
                             Html("td", repo_ref.get_call_number(),
                                  class_="ColumnName")
@@ -3527,7 +3523,8 @@ class FamilyPages(BasePage):
 
                     if surname and not surname.isspace():
                         letter = get_index_letter(first_letter(surname),
-                                                  index_list)
+                                                  index_list,
+                                                  self.rlocale)
                     else:
                         letter = '&nbsp;'
 
@@ -3548,7 +3545,8 @@ class FamilyPages(BasePage):
                                 trow += tcell
 
                                 if first or primary_difference(letter,
-                                                               prev_letter):
+                                                               prev_letter,
+                                                               self.rlocale):
                                     first = False
                                     prev_letter = letter
                                     trow.attr = 'class="BeginLetter"'
@@ -3834,8 +3832,9 @@ class PlacePages(BasePage):
 
                 # bug 9495 : incomplete display of place hierarchy labels
                 def sort_by_place_name(obj):
+                    """ sort by lower case place name. """
                     name = self.report.obj_dict[Place][obj][1]
-                    return (name.lower())
+                    return name.lower()
 
                 handle_list = sorted(place_handles,
                                      key=lambda x: sort_by_place_name(x))
@@ -3855,7 +3854,8 @@ class PlacePages(BasePage):
 
                         if place_title and place_title != " ":
                             letter = get_index_letter(first_letter(place_title),
-                                                      index_list)
+                                                      index_list,
+                                                      self.rlocale)
                         else:
                             letter = '&nbsp;'
 
@@ -3864,7 +3864,8 @@ class PlacePages(BasePage):
 
                         tcell = Html("td", class_="ColumnLetter", inline=True)
                         trow += tcell
-                        if first or primary_difference(letter, prev_letter):
+                        if first or primary_difference(letter, prev_letter,
+                                                       self.rlocale):
                             first = False
                             prev_letter = letter
                             trow.attr = 'class = "BeginLetter"'
@@ -4192,7 +4193,7 @@ class EventPages(BasePage):
                             (self._("Letter"), "ColumnRowLabel"),
                             (self._("Type"), "ColumnType"),
                             (self._("Date"), "ColumnDate"),
-                            (self._(GRAMPSID), "ColumnGRAMPSID"),
+                            (self._("Gramps ID"), "ColumnGRAMPSID"),
                             (self._("Person"), "ColumnPerson")
                         ]
                 )
@@ -4204,7 +4205,8 @@ class EventPages(BasePage):
                 for (evt_type,
                      data_list) in sort_event_types(self.r_db,
                                                     event_types,
-                                                    event_handle_list, self.rlocale):
+                                                    event_handle_list,
+                                                    self.rlocale):
                     first = True
                     _event_displayed = []
 
@@ -4247,12 +4249,13 @@ class EventPages(BasePage):
                                 if evt_type and not evt_type.isspace():
                                     letter = get_index_letter(
                                         self._(str(evt_type)[0].capitalize()),
-                                        index_list)
+                                        index_list, self.rlocale)
                                 else:
                                     letter = "&nbsp;"
 
                                 if first or primary_difference(letter,
-                                                               prev_letter):
+                                                               prev_letter,
+                                                               self.rlocale):
                                     first = False
                                     prev_letter = letter
                                     t_a = 'class = "BeginLetter BeginType"'
@@ -4581,7 +4584,8 @@ class SurnameListPage(BasePage):
                             if order_by == self.ORDER_BY_NAME:
                                 # There will only be an alphabetic index list if
                                 # the ORDER_BY_NAME page is being generated
-                                letter = get_index_letter(letter, index_list)
+                                letter = get_index_letter(letter, index_list,
+                                                          self.rlocale)
                         else:
                             letter = '&nbsp;'
                             surname = self._("<absent>")
@@ -4592,7 +4596,8 @@ class SurnameListPage(BasePage):
                         tcell = Html("td", class_="ColumnLetter", inline=True)
                         trow += tcell
 
-                        if first or primary_difference(letter, prev_letter):
+                        if first or primary_difference(letter, prev_letter,
+                                                       self.rlocale):
                             first = False
                             prev_letter = letter
                             trow.attr = 'class = "BeginLetter"'
@@ -5452,7 +5457,7 @@ class MediaPages(BasePage):
                     media_gid = media.gramps_id
                     if not self.noid and media_gid:
                         trow = Html("tr") + (
-                            Html("td", self._(GRAMPSID),
+                            Html("td", self._("Gramps ID"),
                                  class_="ColumnAttribute",
                                  inline=True),
                             Html("td", media_gid, class_="ColumnValue",
@@ -6146,7 +6151,8 @@ class PersonPages(BasePage):
             for (surname, handle_list) in ppl_handle_list:
 
                 if surname and not surname.isspace():
-                    letter = get_index_letter(first_letter(surname), index_list)
+                    letter = get_index_letter(first_letter(surname), index_list,
+                                              self.rlocale)
                 else:
                     letter = '&nbsp'
                     surname = self._("<absent>")
@@ -6164,7 +6170,8 @@ class PersonPages(BasePage):
                     tcell = Html("td", class_="ColumnSurname", inline=True)
                     trow += tcell
 
-                    if first or primary_difference(letter, prev_letter):
+                    if first or primary_difference(letter, prev_letter,
+                                                   self.rlocale):
                         first = False
                         first_surname = False
                         prev_letter = letter
@@ -6627,7 +6634,8 @@ class PersonPages(BasePage):
                 # are we using OpenStreetMap?
                 else:
                     tracelife += """
-    [%f, %f, \'%s\'],""" % (float(longitude), float(latitude), placetitle.replace("'", "\\'"))
+    [%f, %f, \'%s\'],""" % (float(longitude), float(latitude),
+                            placetitle.replace("'", "\\'"))
 
                 seq_ += 1
             # FIXME: The last element in the place_lat_long list is treated
@@ -6665,7 +6673,7 @@ class PersonPages(BasePage):
             # add page title
             mapdetail += Html("h3",
                               html_escape(
-                                  self._("Tracking %s") % self.get_name(person)),
+                                 self._("Tracking %s") % self.get_name(person)),
                               inline=True)
 
             # page description
@@ -7049,10 +7057,10 @@ class PersonPages(BasePage):
                 thead += trow
 
                 assoc_row = [
-                    (_("Person"), 'Person'),
-                    (_('Relationship'), 'Relationship'),
-                    ("Notes", 'Notes'),
-                    ("Sources", 'Sources'),
+                    (self._("Person"), 'Person'),
+                    (self._('Relationship'), 'Relationship'),
+                    (self._("Notes"), 'Notes'),
+                    (self._("Sources"), 'Sources'),
                     ]
 
                 trow.extend(
@@ -7220,7 +7228,7 @@ class PersonPages(BasePage):
                         if datetext:
                             pname = datetext + ': ' + pname
 
-                    type_ =  self._(name.get_type().xml_str())
+                    type_ = self._(name.get_type().xml_str())
 
                     trow = Html("tr") + (
                         Html("td", type_, class_="ColumnAttribute",
@@ -7278,7 +7286,8 @@ class PersonPages(BasePage):
                 person_gid = self.person.get_gramps_id()
                 if not self.noid and person_gid:
                     trow = Html("tr") + (
-                        Html("td", GRAMPSID, class_="ColumnAttribute",
+                        Html("td", self._("Gramps ID"),
+                             class_="ColumnAttribute",
                              inline=True),
                         Html("td", person_gid, class_="ColumnValue",
                              inline=True)
@@ -7637,26 +7646,6 @@ class PersonPages(BasePage):
                                        )
         return ped
 
-    def display_event_header(self):
-        """
-        will print the event header row for display_event_row() and
-            format_family_events()
-        """
-        trow = Html("tr")
-
-        trow.extend(
-            Html("th", label, class_="Column" + colclass, inline=True)
-            for (label, colclass) in  [
-                ("Event", "Event"),
-                ("Date", "Date"),
-                ("Place", "Place"),
-                ("Description", "Description"),
-                ("Notes", "Notes"),
-                ("Sources", "Sources")
-            ]
-        )
-        return trow
-
 #################################################
 #
 #    creates the Repository List Page and Repository Pages
@@ -7775,7 +7764,7 @@ class RepositoryPages(BasePage):
                                  inline=True)
 
                     # repository type
-                    rtype = str(repo.type)
+                    rtype = self._(repo.type.xml_str())
                     trow += Html("td", rtype, class_="ColumnType", inline=True)
 
                     # repository name and hyperlink
@@ -7833,16 +7822,18 @@ class RepositoryPages(BasePage):
 
                 if not self.noid and gid:
                     trow = Html("tr") + (
-                        Html("td", _("Gramps ID"), class_="ColumnAttribute",
+                        Html("td", self._("Gramps ID"),
+                             class_="ColumnAttribute",
                              inline=True),
                         Html("td", gid, class_="ColumnValue", inline=True)
                     )
                     tbody += trow
 
                 trow = Html("tr") + (
-                    Html("td", _("Type"), class_="ColumnAttribute",
+                    Html("td", self._("Type"), class_="ColumnAttribute",
                          inline=True),
-                    Html("td", str(repo.get_type()), class_="ColumnValue",
+                    Html("td", self._(repo.get_type().xml_str()),
+                         class_="ColumnValue",
                          inline=True)
                 )
                 tbody += trow
@@ -8074,17 +8065,17 @@ class StatisticsPage(BasePage):
         notfound = []
         total_media = 0
         mbytes = "0"
-        bytes = 0
+        chars = 0
         for media in report.database.iter_media():
             total_media += 1
             fullname = media_path_full(report.database, media.get_path())
             try:
-                bytes += posixpath.getsize(fullname)
-                length = len(str(bytes))
-                if bytes <= 999999:
+                chars += posixpath.getsize(fullname)
+                length = len(str(chars))
+                if chars <= 999999:
                     mbytes = _("less than 1")
                 else:
-                    mbytes = str(bytes)[:(length-6)]
+                    mbytes = str(chars)[:(length-6)]
             except OSError:
                 notfound.append(media.get_path())
 
@@ -8206,6 +8197,10 @@ class StatisticsPage(BasePage):
         self.xhtml_writer(addressbookpage, output_file, sio, 0)
 
     def get_gender(self, person_list):
+        """
+        This function return the number of males, females and unknown gender
+        from a person list.
+        """
         males = 0
         females = 0
         unknown = 0
@@ -9591,6 +9586,7 @@ class NavWebOptions(MenuReportOptions):
         self.__unused = None
         self.__down_fname1 = None
         self.__navigation = None
+        self.__target_cal_uri = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -10352,7 +10348,7 @@ CONTRACTIONS_DICT = {
 # difference that is primary in other languages is secondary, and those are not
 # specially handled.
 
-def first_letter(string):
+def first_letter(string, rlocale=glocale):
     """
     Receives a string and returns the first letter
     """
@@ -10379,7 +10375,7 @@ try:
     PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
     PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
 
-    def primary_difference(prev_key, new_key):
+    def primary_difference(prev_key, new_key, rlocale=glocale):
         """
         Try to use the PyICU collation.
         """
@@ -10387,7 +10383,7 @@ try:
         return PRIM_COLL.compare(prev_key, new_key) != 0
 
 except:
-    def primary_difference(prev_key, new_key):
+    def primary_difference(prev_key, new_key, rlocale=glocale):
         """
         The PyICU collation is not available.
 
@@ -10399,8 +10395,10 @@ except:
         The test characters here must not be any that are used in contractions.
         """
 
-        return self.rlocale.sort_key(prev_key + "e") >= self.rlocale.sort_key(new_key + "f") or \
-            self.rlocale.sort_key(new_key + "e") >= self.rlocale.sort_key(prev_key + "f")
+        return rlocale.sort_key(prev_key + "e") >= \
+                   rlocale.sort_key(new_key + "f") or \
+                   rlocale.sort_key(new_key + "e") >= \
+                   rlocale.sort_key(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     """
@@ -10445,7 +10443,7 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     first = True
     prev_index = None
     for key in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, key):
+        if first or primary_difference(prev_index, key, rlocale):
             first = False
             prev_index = key
         else:
@@ -10454,7 +10452,7 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     # return menu set letters for alphabet_navigation
     return index_list
 
-def get_index_letter(letter, index_list):
+def get_index_letter(letter, index_list, rlocale=glocale):
     """
     This finds the letter in the index_list that has no primary difference from
     the letter provided. See the discussion in get_first_letters above.
@@ -10462,7 +10460,7 @@ def get_index_letter(letter, index_list):
     return A.
     """
     for index in index_list:
-        if not primary_difference(letter, index):
+        if not primary_difference(letter, index, rlocale):
             return index
 
     LOG.warning("Initial letter '%s' not found in alphabetic navigation list",
