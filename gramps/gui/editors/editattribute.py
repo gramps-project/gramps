@@ -145,7 +145,7 @@ class EditAttributeRoot(EditSecondary):
 
         if t.is_custom() and str(t) == '':
             from ..dialog import ErrorDialog
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _("Cannot save attribute"),
                 _("The attribute type cannot be empty"),
                 parent=self.window)

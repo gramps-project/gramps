@@ -82,7 +82,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         if self.fail:
             return
 
-        self.progress = ProgressMeter( # parent-OK
+        self.progress = ProgressMeter(
             _('Checking Family Names'), '', parent=uistate.window)
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
@@ -141,7 +141,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
         else:
             self.progress.close()
             self.close()
-            OkDialog(_('No modifications made'), # parent-OK
+            OkDialog(_('No modifications made'),
                      _("No capitalization changes were detected."),
                      parent=uistate.window)
 

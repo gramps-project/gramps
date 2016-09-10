@@ -447,7 +447,7 @@ class ReportDialog(ManagedWindow):
         hid = self.style_name
         if hid[-4:] == ".xml":
             hid = hid[0:-4]
-        self.target_fileentry = FileEntry(hid, _("Save As"), # parent-OK
+        self.target_fileentry = FileEntry(hid, _("Save As"),
                                           parent=self.window)
         spath = self.get_default_directory()
         self.target_fileentry.set_filename(spath)
@@ -498,7 +498,7 @@ class ReportDialog(ManagedWindow):
 
                 # check whether the dir has rwx permissions
                 if not os.access(self.target_path, os.R_OK|os.W_OK|os.X_OK):
-                    ErrorDialog(_('Permission problem'), # parent-OK
+                    ErrorDialog(_('Permission problem'),
                                 _("You do not have permission to write "
                                   "under the directory %s\n\n"
                                   "Please select another directory or correct "
@@ -508,7 +508,7 @@ class ReportDialog(ManagedWindow):
 
             # selected path is an existing file and we need a file
             if os.path.isfile(self.target_path):
-                aaa = OptionDialog(_('File already exists'), # parent-OK
+                aaa = OptionDialog(_('File already exists'),
                                    _('You can choose to either overwrite the '
                                      'file, or change the selected filename.'),
                                    _('_Overwrite'), None,
@@ -525,7 +525,7 @@ class ReportDialog(ManagedWindow):
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
             if os.path.isdir(parent_dir):
                 if not os.access(parent_dir, os.W_OK):
-                    ErrorDialog(_('Permission problem'), # parent-OK
+                    ErrorDialog(_('Permission problem'),
                                 _("You do not have permission to create "
                                   "%s\n\n"
                                   "Please select another path or correct "
@@ -533,7 +533,7 @@ class ReportDialog(ManagedWindow):
                                 parent=self.window)
                     return None
             else:
-                ErrorDialog(_('No directory'), # parent-OK
+                ErrorDialog(_('No directory'),
                             _('There is no directory %s.\n\n'
                               'Please select another directory '
                               'or create it.') % parent_dir,
@@ -659,7 +659,7 @@ def report(dbstate, uistate, person, report_class, options_class,
     its arguments.
     """
     if require_active and not person:
-        ErrorDialog( # parent-OK
+        ErrorDialog(
             _('Active person has not been set'),
             _('You must select an active person for this report to work '
               'properly.'),
@@ -711,16 +711,16 @@ def report(dbstate, uistate, person, report_class, options_class,
 
             except FilterError as msg:
                 (msg1, msg2) = msg.messages()
-                ErrorDialog(msg1, msg2, parent=uistate.window) # parent-OK
+                ErrorDialog(msg1, msg2, parent=uistate.window)
             except IOError as msg:
-                ErrorDialog(_("Report could not be created"), # parent-OK
+                ErrorDialog(_("Report could not be created"),
                             str(msg),
                             parent=uistate.window)
             except ReportError as msg:
                 (msg1, msg2) = msg.messages()
-                ErrorDialog(msg1, msg2, parent=uistate.window) # parent-OK
+                ErrorDialog(msg1, msg2, parent=uistate.window)
             except DatabaseError as msg:
-                ErrorDialog(_("Report could not be created"), # parent-OK
+                ErrorDialog(_("Report could not be created"),
                             str(msg),
                             parent=uistate.window)
 #           The following except statement will catch all "NoneType" exceptions.
@@ -732,7 +732,7 @@ def report(dbstate, uistate, person, report_class, options_class,
 #                    # "'NoneType' object has no attribute ..." usually means
 #                    # database corruption
 #                    RunDatabaseRepair(str(msg),
-#                                      parent=self.window) # parent-OK
+#                                      parent=self.window)
 #                else:
 #                    raise
                 raise

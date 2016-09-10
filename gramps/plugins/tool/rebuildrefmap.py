@@ -88,7 +88,7 @@ class RebuildRefMap(tool.Tool, UpdateCallback):
         if uistate:
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Reference maps rebuilt"), # parent-OK
+            OkDialog(_("Reference maps rebuilt"),
                      _('All reference maps have been rebuilt.'),
                      parent=uistate.window)
         else:

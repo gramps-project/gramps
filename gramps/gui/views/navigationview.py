@@ -252,7 +252,7 @@ class NavigationView(PageView):
                                       _("%s has been bookmarked") % name)
         else:
             from ..dialog import WarningDialog
-            WarningDialog( # parent-OK
+            WarningDialog(
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."),
@@ -334,7 +334,7 @@ class NavigationView(PageView):
             self.change_active(defperson.get_handle())
         else:
             from ..dialog import WarningDialog
-            WarningDialog(_("No Home Person"), # parent-OK
+            WarningDialog(_("No Home Person"),
                 _("You need to set a 'default person' to go to. "
                   "Select the People View, select the person you want as "
                   "'Home Person', then confirm your choice "

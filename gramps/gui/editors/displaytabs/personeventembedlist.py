@@ -126,7 +126,7 @@ class PersonEventEmbedList(EventEmbedList):
         handle change request of non native data
         """
         from ...dialog import WarningDialog
-        WarningDialog( # parent-OK
+        WarningDialog(
             _("Cannot change Family"),
             _("You cannot change Family events in the Person Editor"),
             parent=self.uistate.window)

@@ -260,7 +260,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             if obj is None :
                 #notify user of error
                 from ...dialog import RunDatabaseRepair
-                RunDatabaseRepair( # parent-OK
+                RunDatabaseRepair(
                     _('Non existing media found in the Gallery'),
                     parent=self.uistate.window)
             else :
@@ -336,7 +336,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                              src, sref, self.add_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"), # parent-OK
+                WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text(),
                               parent=self.uistate.window)
 
@@ -357,7 +357,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                              obj, ref, self.edit_callback)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"), # parent-OK
+                WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text(),
                               parent=self.uistate.window)
 

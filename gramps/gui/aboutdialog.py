@@ -82,7 +82,7 @@ except:
 # GrampsAboutDialog
 #
 #-------------------------------------------------------------------------
-class GrampsAboutDialog(Gtk.AboutDialog): # parent-OK
+class GrampsAboutDialog(Gtk.AboutDialog):
     """Create an About dialog with all fields set."""
     def __init__(self, parent):
         """Setup all the fields shown in the About dialog."""

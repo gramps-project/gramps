@@ -234,7 +234,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if not config.get('interface.dont-ask') and self.data_has_changed():
-            SaveDialog( # parent-OK
+            SaveDialog(
                 _('Save Changes?'),
                 _('If you close without saving, the changes you '
                   'have made will be lost'),

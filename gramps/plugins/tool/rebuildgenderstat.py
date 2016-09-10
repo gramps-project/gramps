@@ -92,7 +92,7 @@ class RebuildGenderStat(tool.Tool, UpdateCallback):
         if uistate:
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Gender statistics rebuilt"), # parent-OK
+            OkDialog(_("Gender statistics rebuilt"),
                      _('Gender statistics for name gender guessing have been rebuilt.'),
                      parent=uistate.window)
         else:

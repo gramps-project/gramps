@@ -157,7 +157,7 @@ class AddMedia(ManagedWindow):
         if self.file_text.get_filename() is None:
             msgstr = _("Import failed")
             msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr, msgstr2, parent=self.window) # parent-OK
+            ErrorDialog(msgstr, msgstr2, parent=self.window)
             return
 
         filename = self.file_text.get_filename()
@@ -171,7 +171,7 @@ class AddMedia(ManagedWindow):
                             "Base path for relative media paths: "
                             "%s does not exist. Change preferences "
                             "or do not use relative path when importing")
-                ErrorDialog(msgstr % filename, msgstr2 % pname, # parent-OK
+                ErrorDialog(msgstr % filename, msgstr2 % pname,
                             parent=self.window)
                 return
             filename = relative_path(filename, pname)
@@ -247,5 +247,5 @@ class AddMedia(ManagedWindow):
                                        GdkPixbuf.InterpType.BILINEAR)
         except:
             WarningDialog(title_msg, detail_msg,
-                          parent=self.window) # parent-OK
+                          parent=self.window)
             return GdkPixbuf.Pixbuf.new_from_file(ICON)

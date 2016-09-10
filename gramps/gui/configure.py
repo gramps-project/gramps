@@ -227,13 +227,13 @@ class ConfigureDialog(ManagedWindow):
             obj.get_text() % 'test_markup'
         except TypeError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _("Invalid or incomplete format definition."),
                 obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
         except ValueError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _("Invalid or incomplete format definition."),
                 obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
@@ -777,7 +777,7 @@ class GrampsPreferences(ConfigureDialog):
             oldname = self.fmt_model.get_value(node, COL_NAME)
             # check to see if this pattern already exists
             if self.__check_for_name(translation, node):
-                ErrorDialog(_("This format exists already."), # parent-OK
+                ErrorDialog(_("This format exists already."),
                             translation, parent=self.window)
                 self.edit_button.emit('clicked')
                 return
@@ -1230,7 +1230,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
-        OkDialog(_('Change is not immediate'), # parent-OK
+        OkDialog(_('Change is not immediate'),
                  _('Changing the date format will not take '
                    'effect until the next time Gramps is started.'),
                  parent=self.window)
@@ -1405,7 +1405,7 @@ class GrampsPreferences(ConfigureDialog):
         try:
             addon_update_list = available_updates()
         except:
-            OkDialog(_("Checking Addons Failed"), # parent-OK
+            OkDialog(_("Checking Addons Failed"),
                      _("The addon repository appears to be unavailable. "
                        "Please try again later."),
                      parent=self.window)
@@ -1415,7 +1415,7 @@ class GrampsPreferences(ConfigureDialog):
             PluginWindows.UpdateAddons(addon_update_list, self.window)
         else:
             check_types = config.get('behavior.check-for-update-types')
-            OkDialog( # parent-OK
+            OkDialog(
                 _("There are no available addons of this type"),
                 _("Checked for '%s'") %
                       _("' and '").join([_(t) for t in check_types]),

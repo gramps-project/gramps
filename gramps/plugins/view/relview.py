@@ -473,7 +473,7 @@ class RelationshipView(NavigationView):
             exc = traceback.format_exc()
             _LOG.error(str(msg) +"\n" + exc)
             from gramps.gui.dialog import RunDatabaseRepair
-            RunDatabaseRepair(str(msg), # parent-OK
+            RunDatabaseRepair(str(msg),
                               parent=self.uistate.window)
             self.redrawing = False
             return True
@@ -1351,7 +1351,7 @@ class RelationshipView(NavigationView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family is None:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog( # parent-OK
+            WarningDialog(
                 _('Broken family detected'),
                 _('Please run the Check and Repair Database tool'),
                 parent=self.uistate.window)

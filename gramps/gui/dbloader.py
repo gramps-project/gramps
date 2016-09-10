@@ -83,7 +83,7 @@ class DbLoader(CLIDbLoader):
         self.import_info = None
 
     def _warn(self, title, warnmessage):
-        WarningDialog(title, warnmessage, # parent-OK
+        WarningDialog(title, warnmessage,
                       parent=self.uistate.window)
 
     def _errordialog(self, title, errormessage):
@@ -91,7 +91,7 @@ class DbLoader(CLIDbLoader):
         Show the error.
         In the GUI, the error is shown, and a return happens
         """
-        ErrorDialog(title, errormessage, # parent-OK
+        ErrorDialog(title, errormessage,
                     parent=self.uistate.window)
         return 1
 
@@ -99,11 +99,11 @@ class DbLoader(CLIDbLoader):
         import traceback
         exc = traceback.format_exc()
         try:
-            DBErrorDialog(str(msg.value), # parent-OK
+            DBErrorDialog(str(msg.value),
                           parent=self.uistate.window)
             _LOG.error(str(msg.value))
         except:
-            DBErrorDialog(str(msg), # parent-OK
+            DBErrorDialog(str(msg),
                           parent=self.uistate.window)
             _LOG.error(str(msg) +"\n" + exc)
 
@@ -125,7 +125,7 @@ class DbLoader(CLIDbLoader):
         # so we will lose the undo history. Warn the user.
 
         if self.dbstate.db.get_number_of_people() > 0:
-            warn_dialog = QuestionDialog2( # parent-OK
+            warn_dialog = QuestionDialog2(
                 _('Undo history warning'),
                 _('Proceeding with import will erase the undo history '
                   'for this session. In particular, you will not be able '
@@ -198,7 +198,7 @@ class DbLoader(CLIDbLoader):
                         return True
 
                 # Finally, we give up and declare this an unknown format
-                ErrorDialog( # parent-OK
+                ErrorDialog(
                     _("Could not open file: %s") % filename,
                     _('File type "%s" is unknown to Gramps.\n\n'
                       'Valid types are: Gramps database, Gramps XML, '
@@ -223,14 +223,14 @@ class DbLoader(CLIDbLoader):
         if len(filename) == 0:
             return True
         elif os.path.isdir(filename):
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _('Cannot open file'),
                 _('The selected file is a directory, not a file.\n'),
                 parent=self.uistate.window)
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
-                ErrorDialog( # parent-OK
+                ErrorDialog(
                     _('Cannot open file'),
                     _('You do not have read access to the selected file.'),
                     parent=self.uistate.window)
@@ -241,7 +241,7 @@ class DbLoader(CLIDbLoader):
                 f.close()
                 os.remove(filename)
             except IOError:
-                ErrorDialog( # parent-OK
+                ErrorDialog(
                     _('Cannot create file'),
                     _('You do not have write access to the selected file.'),
                     parent=self.uistate.window)
@@ -264,7 +264,7 @@ class DbLoader(CLIDbLoader):
             dirname = os.path.dirname(filename) + os.path.sep
             config.set('paths.recent-import-dir', dirname)
         except UnicodeError as msg:
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _("Could not import file: %s") % filename,
                 _("This file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "
@@ -344,7 +344,7 @@ class DbLoader(CLIDbLoader):
                     self.dbstate.change_database(db)
                     break
                 except DbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                    if QuestionDialog2(_("Are you sure you want "
                                          "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
@@ -359,7 +359,7 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except BsddbUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                    if QuestionDialog2(_("Are you sure you want "
                                          "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
@@ -374,7 +374,7 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except BsddbDowngradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                    if QuestionDialog2(_("Are you sure you want "
                                          "to downgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"
@@ -389,7 +389,7 @@ class DbLoader(CLIDbLoader):
                         self.dbstate.no_database()
                         break
                 except PythonUpgradeRequiredError as msg:
-                    if QuestionDialog2(_("Are you sure you want " # parent-OK
+                    if QuestionDialog2(_("Are you sure you want "
                                          "to upgrade this Family Tree?"),
                                        str(msg),
                                        _("I have made a backup,\n"

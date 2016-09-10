@@ -168,7 +168,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                    WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text(),
                                   parent=self.uistate.window)
             elif isinstance(object, Citation):
@@ -179,7 +179,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                    WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text(),
                                   parent=self.uistate.window)
             else:
@@ -253,7 +253,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                    WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text(),
                                   parent=self.uistate.window)
             else:
@@ -274,7 +274,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
                                  callertitle=self.callertitle)
                 except WindowActiveError:
                     from ...dialog import WarningDialog
-                    WarningDialog(_("Cannot share this reference"), # parent-OK
+                    WarningDialog(_("Cannot share this reference"),
                                   self.__blocked_text(),
                                   parent=self.uistate.window)
             else:

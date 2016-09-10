@@ -288,7 +288,7 @@ class GeoEvents(GeoGraphyView):
         if self.show_all:
             self.show_all = False
             events_handle = dbstate.db.get_event_handles()
-            progress = ProgressMeter(self.window_name, # parent-OK
+            progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
                                      parent=self.uistate.window)
             length = len(events_handle)
@@ -300,7 +300,7 @@ class GeoEvents(GeoGraphyView):
             progress.close()
         elif self.generic_filter:
             events_list = self.generic_filter.apply(dbstate.db)
-            progress = ProgressMeter(self.window_name, # parent-OK
+            progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
                                      parent=self.uistate.window)
             length = len(events_list)

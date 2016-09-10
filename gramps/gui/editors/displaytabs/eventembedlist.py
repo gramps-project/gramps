@@ -264,7 +264,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref, self.object_added)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot share this reference"), # parent-OK
+                WarningDialog(_("Cannot share this reference"),
                               self.__blocked_text(),
                               parent=self.uistate.window)
 
@@ -278,7 +278,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref[1], self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog(_("Cannot edit this reference"), # parent-OK
+                WarningDialog(_("Cannot edit this reference"),
                               self.__blocked_text(),
                               parent=self.uistate.window)
         elif ref and ref[0] != self._WORKGROUP:
@@ -320,7 +320,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         handle change request of non native data
         """
         from ...dialog import WarningDialog
-        WarningDialog( # parent-OK
+        WarningDialog(
             _("Cannot change Person"),
             _("You cannot change Person events in the Family Editor"),
             parent=self.uistate.window)
@@ -343,7 +343,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                                       event, obj, self.object_edited)
             except WindowActiveError:
                 from ...dialog import WarningDialog
-                WarningDialog( # parent-OK
+                WarningDialog(
                     _("Cannot edit this reference"),
                     _("This event reference cannot be edited at this time. "
                       "Either the associated event is already being edited "

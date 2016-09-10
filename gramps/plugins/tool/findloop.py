@@ -86,7 +86,7 @@ class FindLoop(ManagedWindow):
         self.set_window(window, title, self.title)
 
         # start the progress indicator
-        self.progress = ProgressMeter(self.title, _('Starting'), # parent-OK
+        self.progress = ProgressMeter(self.title, _('Starting'),
                                       parent=self.window)
         self.progress.set_pass(_('Looking for possible loop for each person'),
                                self.db.get_number_of_people())

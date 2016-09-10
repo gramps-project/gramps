@@ -181,7 +181,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         # Save options
         self.options.handler.save_options()
 
-        self.progress = ProgressMeter(_('Checking Sources'), '', # parent-OK
+        self.progress = ProgressMeter(_('Checking Sources'), '',
                                       parent=self.user.uistate.window)
         self.progress.set_pass(_('Looking for citation fields'),
                                self.db.get_number_of_citations())
@@ -229,7 +229,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         db.enable_signals()
         db.request_rebuild()
         self.progress.close()
-        OkDialog(_("Number of merges done"), # parent-OK
+        OkDialog(_("Number of merges done"),
                  # translators: leave all/any {...} untranslated
                  ngettext("{number_of} citation merged",
                           "{number_of} citations merged", num_merges

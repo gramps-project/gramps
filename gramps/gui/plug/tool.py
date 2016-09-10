@@ -132,7 +132,7 @@ class ActivePersonTool(Tool):
         if not uistate.get_active('Person'):
             # TODO: should we replace this with a callback?
             from ..dialog import ErrorDialog
-            ErrorDialog(_('Active person has not been set'), # parent-OK
+            ErrorDialog(_('Active person has not been set'),
                         _('You must select an active person for this '
                           'tool to work properly.'),
                         parent=uistate.window)

@@ -216,7 +216,7 @@ class FamilyView(ListView):
             self.bookmarks.add(mlist[0])
         else:
             from gramps.gui.dialog import WarningDialog
-            WarningDialog( # parent-OK
+            WarningDialog(
                 _("Could Not Set a Bookmark"),
                 _("A bookmark could not be set because "
                   "no one was selected."), parent=self.uistate.window)
@@ -240,13 +240,13 @@ class FamilyView(ListView):
             msg1 = self._message1_format(family)
             msg2 = self._message2_format(family)
             msg2 = "%s %s" % (msg2, data_recover_msg)
-            QuestionDialog(msg1, # parent-OK
+            QuestionDialog(msg1,
                            msg2,
                            _('_Delete Family'),
                            lambda: self.delete_family_response(family),
                            parent=self.uistate.window)
         else:
-            MultiSelectDialog(self._message1_format, # parent-OK
+            MultiSelectDialog(self._message1_format,
                               self._message2_format,
                               handles,
                               self.dbstate.db.get_family_from_handle,
@@ -306,7 +306,7 @@ class FamilyView(ListView):
             msg2 = _("Exactly two families must be selected to perform a merge."
                      " A second family can be selected by holding down the "
                      "control key while clicking on the desired family.")
-            ErrorDialog(msg, msg2, parent=self.uistate.window) # parent-OK
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
             MergeFamily(self.dbstate, self.uistate, mlist[0], mlist[1])
 

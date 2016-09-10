@@ -83,7 +83,7 @@ class Rebuild(tool.Tool, UpdateCallback):
 
             uistate.set_busy_cursor(False)
             uistate.progress.hide()
-            OkDialog(_("Secondary indexes rebuilt"), # parent-OK
+            OkDialog(_("Secondary indexes rebuilt"),
                      _('All secondary indexes have been rebuilt.'),
                      parent=uistate.window)
         else:

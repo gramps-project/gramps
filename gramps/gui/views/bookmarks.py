@@ -429,7 +429,7 @@ class CitationBookmarks(ListBookmarks):
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
             from gramps.gui.dialog import WarningDialog
-            WarningDialog( # parent-OK
+            WarningDialog(
                 _("Cannot bookmark this reference"),
                 # FIXME should this next string be translated?
                 "Only Citations can be bookmarked in this view. "

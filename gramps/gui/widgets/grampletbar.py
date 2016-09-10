@@ -541,7 +541,7 @@ class GrampletBar(Gtk.Notebook):
         """
         Called when restore defaults is clicked from the context menu.
         """
-        QuestionDialog( # parent-OK
+        QuestionDialog(
             _("Restore to defaults?"),
             _("The gramplet bar will be restored to contain its default "
               "gramplets.  This action cannot be undone."),

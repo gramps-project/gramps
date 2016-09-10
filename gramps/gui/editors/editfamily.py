@@ -363,7 +363,7 @@ class EditFamily(EditPrimary):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
-                MessageHideDialog( # parent-OK
+                MessageHideDialog(
                     _("Adding parents to a person"),
                     _("It is possible to accidentally create multiple "
                       "families with the same parents. To help avoid "
@@ -459,7 +459,7 @@ class EditFamily(EditPrimary):
 
             # No matter why the family changed (eg delete of a source), we notify
             # the user
-            WarningDialog( # parent-OK
+            WarningDialog(
             _("Family has changed"),
             _("The %(object)s you are editing has changed outside this editor."
               " This can be due to a change in one of the main views, for "
@@ -903,7 +903,7 @@ class EditFamily(EditPrimary):
                 common = list(mfam.intersection(ffam))
                 if len(common) > 0:
                     if self.add_parent or self.obj.handle not in common:
-                        WarningDialog( # parent-OK
+                        WarningDialog(
                             _('Duplicate Family'),
                             _('A family with these parents already exists '
                               'in the database. If you save, you will create '
@@ -1043,7 +1043,7 @@ class EditFamily(EditPrimary):
         #try:
         self.__do_save()
         #except bsddb_db.DBRunRecoveryError as msg:
-        #    RunDatabaseRepair(msg[1], parent=self.window) # parent-OK
+        #    RunDatabaseRepair(msg[1], parent=self.window)
 
     def __do_save(self):
         self.ok_button.set_sensitive(False)
@@ -1062,7 +1062,7 @@ class EditFamily(EditPrimary):
             father = self.db.get_person_from_handle(self.obj.get_father_handle())
             name = "%s [%s]" % (name_displayer.display(father),
                                 father.gramps_id)
-            ErrorDialog(_("A father cannot be his own child"), # parent-OK
+            ErrorDialog(_("A father cannot be his own child"),
                         _("%s is listed as both the father and child "
                           "of the family.") % name,
                         parent=self.window)
@@ -1073,7 +1073,7 @@ class EditFamily(EditPrimary):
             mother = self.db.get_person_from_handle(self.obj.get_mother_handle())
             name = "%s [%s]" % (name_displayer.display(mother),
                                 mother.gramps_id)
-            ErrorDialog(_("A mother cannot be her own child"), # parent-OK
+            ErrorDialog(_("A mother cannot be her own child"),
                         _("%s is listed as both the mother and child "
                           "of the family.") % name,
                         parent=self.window)
@@ -1081,7 +1081,7 @@ class EditFamily(EditPrimary):
             return
 
         if not original and self.object_is_empty():
-            ErrorDialog( # parent-OK
+            ErrorDialog(
                 _("Cannot save family"),
                 _("No data exists for this family. "
                   "Please enter data or cancel the edit."),
@@ -1097,7 +1097,7 @@ class EditFamily(EditPrimary):
                          "enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id}
-            ErrorDialog(msg1, msg2, parent=self.window) # parent-OK
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

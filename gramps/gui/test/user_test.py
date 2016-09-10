@@ -43,7 +43,7 @@ class TestUser_prompt(unittest.TestCase):
         self.user = user.User()
 
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
-    def test_prompt_runs_QuestionDialog2(self): # parent-OK
+    def test_prompt_runs_QuestionDialog2(self):
         with patch('gramps.gui.user.QuestionDialog2') as MockQD:
             self.user.prompt(TestUser.TITLE, TestUser.MSG,
                              TestUser.ACCEPT, TestUser.REJECT, None)

@@ -72,7 +72,7 @@ if not OSMGPSMAP:
             MESSAGE = _("Geography functionality will not be available.\n"
                        "To build it for Gramps see "
                        "%(gramps_wiki_build_osmgps_url)s") % OSMGPS_DICT
-            MessageHideDialog(TITLE, MESSAGE, # parent-OK
+            MessageHideDialog(TITLE, MESSAGE,
                               'interface.ignore-osmgpsmap',
                               parent=uistate.window)
 else:

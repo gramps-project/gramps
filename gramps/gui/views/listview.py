@@ -332,7 +332,7 @@ class ListView(NavigationView):
                     self.model.rebuild_data()
                 except FilterError as msg:
                     (msg1, msg2) = msg.messages()
-                    ErrorDialog(msg1, msg2, # parent-OK
+                    ErrorDialog(msg1, msg2,
                                 parent=self.uistate.window)
 
             cput1 = time.clock()
@@ -450,7 +450,7 @@ class ListView(NavigationView):
             self.bookmarks.add(mlist[0])
         else:
             from ..dialog import WarningDialog
-            WarningDialog(_("Could Not Set a Bookmark"), # parent-OK
+            WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because "
                             "nothing was selected."),
                           parent=self.uistate.window)
@@ -542,7 +542,7 @@ class ListView(NavigationView):
         """
         prompt = True
         if len(self.selected_handles()) > 1:
-            q = QuestionDialog2( # parent-OK
+            q = QuestionDialog2(
                 _("Multiple Selection Delete"),
                 _("More than one item has been selected for deletion. "
                   "Select the option indicating how to delete the items:"),
@@ -569,7 +569,7 @@ class ListView(NavigationView):
                 #if descr == "":
                 descr = object.get_gramps_id()
                 self.uistate.set_busy_cursor(True)
-                QuestionDialog(_('Delete %s?') % descr, msg, # parent-OK
+                QuestionDialog(_('Delete %s?') % descr, msg,
                                _('_Delete Item'), query.query_response,
                                parent=self.uistate.window)
                 self.uistate.set_busy_cursor(False)

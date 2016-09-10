@@ -747,7 +747,7 @@ class EditPerson(EditPrimary):
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == Person.UNKNOWN:
-            d = GenderDialog(parent=self.window) # parent-OK
+            d = GenderDialog(parent=self.window)
             gender = d.run()
             d.destroy()
             if gender >= 0:
@@ -810,7 +810,7 @@ class EditPerson(EditPrimary):
                 msg = _("Changing the gender caused problems "
                         "with marriage information.\nPlease check "
                         "the person's marriages.")
-                ErrorDialog(msg2, msg, parent=self.window) # parent-OK
+                ErrorDialog(msg2, msg, parent=self.window)
 
     def save(self, *obj):
         """
@@ -818,7 +818,7 @@ class EditPerson(EditPrimary):
         """
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
-            ErrorDialog(_("Cannot save person"), # parent-OK
+            ErrorDialog(_("Cannot save person"),
                         _("No data exists for this person. Please "
                           "enter data or cancel the edit."),
                         parent=self.window)
@@ -849,7 +849,7 @@ class EditPerson(EditPrimary):
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2, parent=self.window) # parent-OK
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
@@ -957,7 +957,7 @@ class EditPerson(EditPrimary):
             if obj is None :
                 #notify user of error
                 from ..dialog import RunDatabaseRepair
-                RunDatabaseRepair( # parent-OK
+                RunDatabaseRepair(
                     _('Non existing media found in the Gallery'),
                     parent=self.window)
             else :
@@ -1084,7 +1084,7 @@ class EditPerson(EditPrimary):
         #config.save()
 
 
-class GenderDialog(Gtk.MessageDialog): # parent-OK
+class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
         Gtk.MessageDialog.__init__(self,
                                 parent,

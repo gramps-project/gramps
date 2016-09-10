@@ -196,7 +196,7 @@ class EditSource(EditPrimary):
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
-            ErrorDialog(_("Cannot save source"), # parent-OK
+            ErrorDialog(_("Cannot save source"),
                         _("No data exists for this source. Please "
                           "enter data or cancel the edit."),
                         parent=self.window)
@@ -213,7 +213,7 @@ class EditSource(EditPrimary):
                          "%(prim_object)s'. Please enter a different ID or leave "
                          "blank to get the next available ID value.") % {
                          'id' : id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2, parent=self.window) # parent-OK
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

@@ -67,7 +67,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
 
         if response == Gtk.ResponseType.ACCEPT:
             self.on_ok_clicked()
-            OkDialog('Data generated', # parent-OK
+            OkDialog('Data generated',
                      "The requested sources and citations were generated",
                      parent=uistate.window)
 
@@ -134,7 +134,7 @@ class PopulateSources(tool.Tool, ManagedWindow):
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
 
-        self.progress = ProgressMeter( # parent-OK
+        self.progress = ProgressMeter(
             'Generating data', '', parent=self.uistate.window)
         self.progress.set_pass('Generating data',
                                num_sources*num_citations)

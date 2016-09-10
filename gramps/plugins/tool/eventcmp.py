@@ -176,7 +176,7 @@ class EventComparison(tool.Tool,ManagedWindow):
     def on_apply_clicked(self, obj):
         cfilter = self.filter_model[self.filters.get_active()][1]
 
-        progress_bar = ProgressMeter(_('Comparing events'), '', # parent-OK
+        progress_bar = ProgressMeter(_('Comparing events'), '',
                                      parent=self.window)
         progress_bar.set_pass(_('Selecting people'),1)
 
@@ -190,7 +190,7 @@ class EventComparison(tool.Tool,ManagedWindow):
         self.options.handler.save_options()
 
         if len(plist) == 0:
-            WarningDialog(_("No matches were found"), # parent-OK
+            WarningDialog(_("No matches were found"),
                           parent=self.window)
         else:
             DisplayChart(self.dbstate,self.uistate,plist,self.track)
@@ -306,7 +306,7 @@ class DisplayChart(ManagedWindow):
         self.progress_bar.close()
 
     def build_row_data(self):
-        self.progress_bar = ProgressMeter( # parent-OK
+        self.progress_bar = ProgressMeter(
             _('Comparing Events'), '', parent=self.window)
         self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:

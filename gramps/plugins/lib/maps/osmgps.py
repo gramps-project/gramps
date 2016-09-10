@@ -117,7 +117,7 @@ class OsmGps:
             try:
                 os.makedirs(cache_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create " # parent-OK
+                ErrorDialog(_("Can't create "
                               "tiles cache directory %s") % cache_path,
                             parent=self.uistate.window)
                 return self.vbox
@@ -140,7 +140,7 @@ class OsmGps:
             try:
                 os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
             except:
-                ErrorDialog(_("Can't create " # parent-OK
+                ErrorDialog(_("Can't create "
                               "tiles cache directory for '%s'.") %
                               constants.MAP_TITLE[map_type],
                             parent=self.uistate.window)

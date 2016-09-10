@@ -183,7 +183,7 @@ class User(metaclass=ABCMeta):
         """
 
     @abstractmethod
-    def info(self, msg1, infotext, parent=None, monospaced=False): # parent-OK
+    def info(self, msg1, infotext, parent=None, monospaced=False):
         """
         Displays information to the user
         """

@@ -103,7 +103,7 @@ class CLIDialog:
 #
 #-------------------------------------------------------------------------
 
-class ProgressMeter: # parent-OK
+class ProgressMeter:
     """
     Progress meter class for Gramps.
 
@@ -297,7 +297,7 @@ class ProgressMeter: # parent-OK
         Don't let the user close the progress dialog.
         """
         from .dialog import WarningDialog
-        WarningDialog( # parent-OK
+        WarningDialog(
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog."),
             parent=self.__dialog)
@@ -372,7 +372,7 @@ def display_error_dialog (index, errorstrings, uistate=None):
         else:
             error = errorstrings
 
-    ErrorDialog(_("Error from external program"), # parent-OK
+    ErrorDialog(_("Error from external program"),
                 error, parent=uistate.window)
 
 def poll_external (args):
@@ -589,7 +589,7 @@ def edit_object(dbstate, uistate, reftype, ref):
                              "alone")
 
             from .dialog import WarningDialog
-            WarningDialog(_("Cannot open new citation editor"), # parent-OK
+            WarningDialog(_("Cannot open new citation editor"),
                           blocked_text,
                           parent=uistate.window)
     elif reftype == 'Place':

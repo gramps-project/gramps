@@ -65,7 +65,7 @@ class ReorderIds(tool.BatchTool):
         db = dbstate.db
         self.uistate = uistate
         if uistate:
-            self.progress = ProgressMeter( # parent-OK
+            self.progress = ProgressMeter(
                 _('Reordering Gramps IDs'), '', parent=uistate.window)
         else:
             print(_("Reordering Gramps IDs..."))

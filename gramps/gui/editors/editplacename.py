@@ -135,7 +135,7 @@ class EditPlaceName(EditSecondary):
 
     def save(self, *obj):
         if not self.obj.get_value():
-            ErrorDialog(_("Cannot save place name"), # parent-OK
+            ErrorDialog(_("Cannot save place name"),
                         _("The place name cannot be empty"),
                         parent=self.window)
             return

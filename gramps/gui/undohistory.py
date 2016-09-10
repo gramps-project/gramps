@@ -194,7 +194,7 @@ class UndoHistory(ManagedWindow):
         return (self.title, None)
 
     def _clear_clicked(self, obj=None):
-        QuestionDialog(_("Delete confirmation"), # parent-OK
+        QuestionDialog(_("Delete confirmation"),
                        _("Are you sure you want to clear the Undo history?"),
                        _("Clear"),
                        self.clear,

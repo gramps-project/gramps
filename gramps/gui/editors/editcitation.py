@@ -284,7 +284,7 @@ class EditCitation(EditPrimary):
         """
         self.ok_button.set_sensitive(False)
         if not self.obj.get_reference_handle():
-            ErrorDialog(_("No source selected"), # parent-OK
+            ErrorDialog(_("No source selected"),
                         _("A source is anything (personal testimony, "
                           "video recording, photograph, newspaper column, "
                           "gravestone...) from which information can be "
@@ -305,7 +305,7 @@ class EditCitation(EditPrimary):
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
                          'id' : gramps_id, 'prim_object' : name }
-            ErrorDialog(msg1, msg2, parent=self.window) # parent-OK
+            ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 

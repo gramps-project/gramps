@@ -64,7 +64,7 @@ class DateParserDisplayTest(tool.Tool):
         if uistate:
             # Running with gui -> Show message
             self.parent_window = uistate.window
-            QuestionDialog(_("Start date test?"), # parent-OK
+            QuestionDialog(_("Start date test?"),
                 _("This test will create many persons and events " \
                     "in the current database. Do you really want to " \
                     "run this test?"),
@@ -77,7 +77,7 @@ class DateParserDisplayTest(tool.Tool):
 
 
     def run_tool(self):
-        self.progress = ProgressMeter(_('Running Date Test'), '', # parent-OK
+        self.progress = ProgressMeter(_('Running Date Test'), '',
                                       parent=self.parent_window)
         self.progress.set_pass(_('Generating dates'),
                                4)
