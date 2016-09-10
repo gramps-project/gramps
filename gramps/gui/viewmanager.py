@@ -718,21 +718,6 @@ class ViewManager(CLIManager):
         if not self.dbstate.is_open() and show_manager:
             self.__open_activate(None)
 
-    def do_load_plugins(self):
-        """
-        Loads the plugins at initialization time. The plugin status window is
-        opened on an error if the user has requested.
-        """
-        # load plugins
-        self.uistate.status_text(_('Loading plugins...'))
-        error = CLIManager.do_load_plugins(self)
-
-        #  get to see if we need to open the plugin status window
-        if error and config.get('behavior.pop-plugin-status'):
-            self.__plugin_status()
-
-        self.uistate.push_message(self.dbstate, _('Ready'))
-
     def do_reg_plugins(self, dbstate, uistate):
         """
         Register the plugins at initialization time. The plugin status window
