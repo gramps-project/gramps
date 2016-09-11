@@ -90,9 +90,10 @@ class StatsGramplet(Gramplet):
             except OSError:
                 notfound.append(media.get_path())
 
-        males = sum([v[0] for v in database.genderStats.stats.values()])
-        females = sum([v[1] for v in database.genderStats.stats.values()])
-        unknown = sum([v[2] for v in database.genderStats.stats.values()])
+        if hasattr(database, 'genderStats'):
+            males = sum([v[0] for v in database.genderStats.stats.values()])
+            females = sum([v[1] for v in database.genderStats.stats.values()])
+            unknowns = sum([v[2] for v in database.genderStats.stats.values()])
 
         self.clear_text()
         self.append_text(_("Individuals") + "\n")
@@ -117,10 +118,11 @@ class StatsGramplet(Gramplet):
                   'Filter', 'all families')
         self.append_text(" %s" % database.get_number_of_families())
         self.append_text("\n")
-        self.link("%s:" % _("Unique surnames"),
-                  'Filter', 'unique surnames')
-        self.append_text(" %s" % len(set(database.surname_list)))
-        self.append_text("\n")
+        if hasattr(database, 'surname_list'):
+            self.link("%s:" % _("Unique surnames"),
+                      'Filter', 'unique surnames')
+            self.append_text(" %s" % len(set(database.surname_list)))
+            self.append_text("\n")
         self.append_text("\n%s\n" % _("Media Objects"))
         self.append_text("----------------------------\n")
         self.link("%s:" % _("Total number of media object references"),
