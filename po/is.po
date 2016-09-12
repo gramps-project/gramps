@@ -29876,7 +29876,7 @@ msgstr "Skyldleikatal fyrir %s"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:368
 msgid "The maximum number of descendant generations"
-msgstr "Hámarksfjöldi afleiddra kynslóða.\n"
+msgstr "Hámarksfjöldi afleiddra kynslóða"
 
 #: ../gramps/plugins/textreport/kinshipreport.py:372
 msgid "The maximum number of ancestor generations"
