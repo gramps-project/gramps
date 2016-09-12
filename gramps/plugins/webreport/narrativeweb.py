@@ -150,7 +150,7 @@ SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # constants
 #------------------------------------------------
-GOOGLE_MAPS = 'http://maps.googleapis.com/maps/'
+GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
 # javascript code for marker path
 MARKER_PATH = """
   var marker_png = '%s'
@@ -3941,6 +3941,7 @@ class PlacePages(BasePage):
 
         self.placemappages = self.report.options['placemappages']
         self.mapservice = self.report.options['mapservice']
+        self.googlemapkey = self.report.options['googlemapkey']
 
         # begin PlaceDetail Division
         with Html("div", class_="content", id="PlaceDetail") as placedetail:
@@ -4006,6 +4007,8 @@ class PlacePages(BasePage):
                     # add MapService specific javascript code
                     src_js = GOOGLE_MAPS + "api/js?sensor=false"
                     if self.mapservice == "Google":
+                        if self.googlemapkey:
+                            src_js += "&key=" + self.googlemapkey
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else:
@@ -6033,6 +6036,7 @@ class PersonPages(BasePage):
         self.mapservice = None
         self.sort_name = None
         self.googleopts = None
+        self.googlemapkey = None
         self.birthorder = None
         self.person = None
         self.familymappages = None
@@ -6350,6 +6354,7 @@ class PersonPages(BasePage):
         self.placemappages = self.report.options['placemappages']
         self.mapservice = self.report.options['mapservice']
         self.googleopts = self.report.options['googleopts']
+        self.googlemapkey = self.report.options['googlemapkey']
 
         # decide if we will sort the birth order of siblings...
         self.birthorder = self.report.options['birthorder']
@@ -6589,7 +6594,9 @@ class PersonPages(BasePage):
 
         # add MapService specific javascript code
         if self.mapservice == "Google":
-            src_js = "http://maps.googleapis.com/maps/api/js?sensor=false"
+            src_js = GOOGLE_MAPS + "api/js?sensor=false"
+            if self.googlemapkey:
+                src_js += "&key=" + self.googlemapkey
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else:
@@ -8313,6 +8320,7 @@ class NavWebReport(Report):
         self.familymappages = self.options['familymappages']
         self.mapservice = self.options['mapservice']
         self.googleopts = self.options['googleopts']
+        self.googlemapkey = self.options['googlemapkey']
 
         if self.use_home:
             self.index_fname = "index"
@@ -9577,6 +9585,7 @@ class NavWebOptions(MenuReportOptions):
         self.__placemappages = None
         self.__familymappages = None
         self.__googleopts = None
+        self.__googlemapkey = None
         self.__ancestortree = None
         self.__css = None
         self.__dl_descr1 = None
@@ -9940,8 +9949,8 @@ class NavWebOptions(MenuReportOptions):
         addopt = partial(menu.add_option, category_name)
 
         mapopts = [
-            [_("Google"), "Google"],
-            [_("OpenStreetMap"), "OpenStreetMap"]]
+            [_("OpenStreetMap"), "OpenStreetMap"],
+            [_("Google"), "Google"]]
         self.__mapservice = EnumeratedListOption(_("Map Service"),
                                                  mapopts[0][1])
         for trans, opt in mapopts:
@@ -9982,6 +9991,10 @@ class NavWebOptions(MenuReportOptions):
             _("Select which option that you would like "
               "to have for the Google Maps Family Map pages..."))
         addopt("googleopts", self.__googleopts)
+
+        self.__googlemapkey = StringOption(_("Google maps API key"),"")
+        self.__googlemapkey.set_help(_("The API key used for the Google maps"))
+        addopt("googlemapkey", self.__googlemapkey)
 
         self.__placemap_options()
 
@@ -10156,6 +10169,11 @@ class NavWebOptions(MenuReportOptions):
             self.__googleopts.set_available(True)
         else:
             self.__googleopts.set_available(False)
+
+        if (place_active or family_active) and mapservice_opts == "Google":
+            self.__googlemapkey.set_available(True)
+        else:
+            self.__googlemapkey.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort?
 def sort_people(dbase, handle_list, rlocale=glocale):
