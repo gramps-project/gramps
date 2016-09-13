@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-06-19" version="GrampsAIO64-4.2.1-2"/>
+    <created date="2016-09-04" version="5.0.0-alpha1"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -546,6 +546,34 @@
       <description>In cemetary</description>
       <citationref hlink="_d532532861ff0f69347f5e232"/>
     </event>
+    <event handle="_d65a44813a618a10a0abaa1ed6a" change="1472500308" id="E0092">
+      <type>Birth</type>
+      <dateval val="1954-12-29"/>
+      <place hlink="_d65a44813b0735f73085f380547"/>
+      <attribute type="Phone" value="440-871-3400"/>
+      <attribute type="Phone" value="800-871-3400"/>
+      <attribute type="EMAIL" value="thetester@gmail.com"/>
+      <attribute type="FAX" value="440-123-4567"/>
+      <attribute type="WWW" value="http://thetester.com"/>
+    </event>
+    <event handle="_d65a448166f785be4744a4ed427" change="1472500308" id="E0093">
+      <type>Residence</type>
+      <dateval val="1954-12-30"/>
+      <place hlink="_d65a448166f44db953c2fc173cf"/>
+      <attribute type="Phone" value="440-871-3401"/>
+      <attribute type="EMAIL" value="mrstester@gmail.com"/>
+      <attribute type="FAX" value="440-321-4568"/>
+      <attribute type="WWW" value="http://mrstester.com"/>
+      <noteref hlink="_d65a448167a6b06a71840a1953b"/>
+    </event>
+    <event handle="_d65a448167a70779a5ea555fb99" change="1472500308" id="E0094">
+      <type>Residence</type>
+      <dateval val="1964"/>
+      <attribute type="Phone" value="440-871-3402"/>
+      <attribute type="EMAIL" value="tomtester@gmail.com"/>
+      <attribute type="FAX" value="440-321-4569"/>
+      <attribute type="WWW" value="http://tomtester.com"/>
+    </event>
   </events>
   <people>
     <person handle="_0000000100000001" change="1198222526" id="I0000">
@@ -828,7 +856,7 @@
       <eventref hlink="_0000006d0000006d" role="Primary"/>
       <parentin hlink="_0000002f0000002f"/>
     </person>
-    <person handle="_0000006f0000006f" change="1198222526" id="I0033">
+    <person handle="_0000006f0000006f" change="1473020233" id="I0033">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Lloyd</first>
@@ -1004,6 +1032,49 @@
         <surname>リチミシキスイミ</surname>
       </name>
     </person>
+    <person handle="_d65a448167a2736b3dfc08c11d8" change="1473020199" id="I0044">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>The</first>
+        <surname>Tester</surname>
+      </name>
+      <eventref hlink="_d65a44813a618a10a0abaa1ed6a" role="Primary"/>
+      <childof hlink="_0000000a0000000a"/>
+      <parentin hlink="_d65a46d6c0034a50640d7a84213"/>
+      <citationref hlink="_d65a448168445feea89cc1499fb"/>
+    </person>
+    <person handle="_d65a4481684319731c24a1e105a" change="1473020199" id="I0045">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Mrs</first>
+        <surname>Tester</surname>
+      </name>
+      <eventref hlink="_d65a448166f785be4744a4ed427" role="Primary"/>
+      <address>
+        <street>123 Main St.</street>
+        <city>Winslow</city>
+        <state>PA</state>
+        <postal>12345</postal>
+      </address>
+      <url  href="440-871-3401" type="Phone"/>
+      <url  href="800-871-3401" type="Phone"/>
+      <url  href="mrstester@gmail.com" type="E-mail"/>
+      <url  href="440-321-4568" type="FAX"/>
+      <url  href="http://mrstester.com" type="Web Home"/>
+      <parentin hlink="_d65a46d6c0034a50640d7a84213"/>
+      <noteref hlink="_d65a448168e1061fc46719b5efa"/>
+      <citationref hlink="_d65a448168e27ed358658e331d9"/>
+    </person>
+    <person handle="_d65a448168e2615f26e025aa37c" change="1473020269" id="I0046">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Tom</first>
+        <surname>Tester</surname>
+      </name>
+      <eventref hlink="_d65a448167a70779a5ea555fb99" role="Primary"/>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+      <citationref hlink="_d65a448169813b50e0fdc0eea70"/>
+    </person>
   </people>
   <families>
     <family handle="_0000000600000006" change="1198222526" id="F0003">
@@ -1019,7 +1090,7 @@
       <childref hlink="_0000003600000036"/>
       <childref hlink="_0000000b0000000b"/>
     </family>
-    <family handle="_0000000a0000000a" change="1198222526" id="F0008">
+    <family handle="_0000000a0000000a" change="1473020073" id="F0008">
       <rel type="Married"/>
       <father hlink="_0000006f0000006f"/>
       <mother hlink="_0000009300000093"/>
@@ -1027,6 +1098,7 @@
       <childref hlink="_0000002c0000002c" mrel="Adopted" frel="Adopted"/>
       <childref hlink="_0000000700000007"/>
       <childref hlink="_0000005b0000005b"/>
+      <childref hlink="_d65a448167a2736b3dfc08c11d8"/>
     </family>
     <family handle="_0000000f0000000f" change="1198222526" id="F0009">
       <rel type="Unknown"/>
@@ -1122,6 +1194,12 @@
       <mother hlink="_0000005600000056"/>
       <eventref hlink="_000000a9000000a9" role="Family"/>
     </family>
+    <family handle="_d65a46d6c0034a50640d7a84213" change="1473020211" id="F0016">
+      <rel type="Married"/>
+      <father hlink="_d65a448167a2736b3dfc08c11d8"/>
+      <mother hlink="_d65a4481684319731c24a1e105a"/>
+      <childref hlink="_d65a448168e2615f26e025aa37c"/>
+    </family>
   </families>
   <citations>
     <citation handle="_0000007d0000007d" change="1463929997" id="C0000">
@@ -1147,6 +1225,18 @@
       <confidence>2</confidence>
       <sourceref hlink="_000000b9000000b9"/>
     </citation>
+    <citation handle="_d65a448168445feea89cc1499fb" change="1472500308" id="C0005">
+      <confidence>2</confidence>
+      <sourceref hlink="_d65a448169824195df7cdb2236c"/>
+    </citation>
+    <citation handle="_d65a448168e27ed358658e331d9" change="1472500308" id="C0006">
+      <confidence>2</confidence>
+      <sourceref hlink="_d65a448169824195df7cdb2236c"/>
+    </citation>
+    <citation handle="_d65a448169813b50e0fdc0eea70" change="1472500308" id="C0007">
+      <confidence>2</confidence>
+      <sourceref hlink="_d65a448169824195df7cdb2236c"/>
+    </citation>
   </citations>
   <sources>
     <source handle="_0000007c0000007c" change="1198222526" id="S0001">
@@ -1167,6 +1257,22 @@
     </source>
     <source handle="_d53252d41b370ebe65ebd50c34f" change="1465075716" id="S0004">
       <stitle>findagrave.com</stitle>
+    </source>
+    <source handle="_d65a448169824195df7cdb2236c" change="1472500308" id="S0005">
+      <stitle>Import from imp_FTM_LINK.ged</stitle>
+      <srcattribute type="Approved system identification" value="FTM"/>
+      <srcattribute type="Version number of software product" value="Family Tree Maker (22.0.0.1410)"/>
+      <srcattribute type="Name of software product" value="Family Tree Maker for Windows"/>
+      <srcattribute type="Generated By" value="Family Tree Maker for Windows Family Tree Maker (22.0.0.1410)"/>
+      <srcattribute type="Creation date of GEDCOM" value="2016-03-01"/>
+      <srcattribute type="GEDCOM version" value="5.5"/>
+      <srcattribute type="GEDCOM form" value="LINEAGE-LINKED"/>
+      <reporef hlink="_d65a44816a22b90d71e2ac918d0" medium="Unknown"/>
+      <reporef hlink="_d65a44816a2513a75b086711505" medium="Unknown"/>
+    </source>
+    <source handle="_d65a44816a276351a03ec3442bf" change="1472500308" id="S0006">
+      <stitle>Ohio Births, 1958-2002</stitle>
+      <reporef hlink="_d65a44816ac165956f5723df07d" medium="Book"/>
     </source>
   </sources>
   <places>
@@ -1304,6 +1410,36 @@
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
+    <placeobj handle="_d65a44813b0735f73085f380547" change="1472500308" id="P0029" type="Street">
+      <ptitle>123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140</ptitle>
+      <code>44140</code>
+      <pname value="123 High St"/>
+      <placeref hlink="_d65a44816ac17876c5904523a6f"/>
+    </placeobj>
+    <placeobj handle="_d65a448166f44db953c2fc173cf" change="1472500308" id="P0030" type="Address">
+      <ptitle>123 Main St., Winslow, PA, 12345</ptitle>
+      <pname value="123 Main St., Winslow, PA, 12345"/>
+      <location street="123 Main St." city="Winslow" state="PA" postal="12345"/>
+    </placeobj>
+    <placeobj handle="_d65a44816ac17876c5904523a6f" change="1472500308" id="P0034" type="City">
+      <ptitle>Cleveland, Cuyahoga, Ohio, USA</ptitle>
+      <pname value="Cleveland"/>
+      <placeref hlink="_d65a44816b65ed679ad0a8edbc4"/>
+    </placeobj>
+    <placeobj handle="_d65a44816b644bf4d11d3a0a5" change="1472500308" id="P0031" type="Country">
+      <ptitle>USA</ptitle>
+      <pname value="USA"/>
+    </placeobj>
+    <placeobj handle="_d65a44816b65ed679ad0a8edbc4" change="1472500308" id="P0033" type="County">
+      <ptitle>Cuyahoga, Ohio, USA</ptitle>
+      <pname value="Cuyahoga"/>
+      <placeref hlink="_d65a44816b6da4fc40e3b078d8"/>
+    </placeobj>
+    <placeobj handle="_d65a44816b6da4fc40e3b078d8" change="1472500308" id="P0032" type="State">
+      <ptitle>Ohio, USA</ptitle>
+      <pname value="Ohio"/>
+      <placeref hlink="_d65a44816b644bf4d11d3a0a5"/>
+    </placeobj>
   </places>
   <objects>
     <object handle="_d54c1b52c8636648123580900ca" change="1465767829" id="O0000">
@@ -1333,6 +1469,45 @@
       </address>
       <url  href="http://library.gramps-project.org" type="Web Home"/>
       <noteref hlink="_000000bc000000bc"/>
+    </repository>
+    <repository handle="_d65a44816a22b90d71e2ac918d0" change="1472500308" id="R0000">
+      <rname>Business that produced the product: Ancestry.com</rname>
+      <type>GEDCOM data</type>
+      <address>
+        <street>360 W 4800 N, Provo, UT 84604</street>
+        <phone>(801) 705-7000</phone>
+      </address>
+      <url  href="(801) 705-7001" type="FAX"/>
+      <url  href="help@ancestry.com" type="E-mail"/>
+      <url  href="http://www.ancestry.com" type="Web Home"/>
+    </repository>
+    <repository handle="_d65a44816a2513a75b086711505" change="1472500308" id="R0001">
+      <rname>SUBM (Submitter): (@SUBM@) The Subm /Tester/</rname>
+      <type>GEDCOM data</type>
+      <address>
+        <street>123 Main St.</street>
+        <city>Winslow</city>
+        <state>PA</state>
+        <postal>12345</postal>
+        <phone>440-871-3401</phone>
+      </address>
+      <url  href="mrstester@gmail.com" type="E-mail"/>
+      <url  href="440-321-4568" type="FAX"/>
+      <url  href="http://mrstester.com" type="Web Home"/>
+      <noteref hlink="_d65a44816c03bb623c96e839fbb"/>
+    </repository>
+    <repository handle="_d65a44816ac165956f5723df07d" change="1472500308" id="R0004">
+      <rname>Testers Repository</rname>
+      <type>Library</type>
+      <address>
+        <street>123 High St., OSF village, CA, USA</street>
+        <phone>988-765-4321</phone>
+      </address>
+      <url  href="tester_repo@osf.com" type="E-mail"/>
+      <url  href="987-654-3210" type="FAX"/>
+      <url  href="http://www.tester_repo.com" type="Web Home"/>
+      <noteref hlink="_d65a44816cafa196ba741ab38d"/>
+      <noteref hlink="_d65a44816ca32ac25b0b586e61c"/>
     </repository>
   </repositories>
   <notes>
@@ -1383,6 +1558,39 @@ Some Italic Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈</t
       </style>
       <style name="fontface" value="Serif">
         <range start="135" end="269"/>
+      </style>
+    </note>
+    <note handle="_d65a448167a6b06a71840a1953b" change="1472500308" id="N0011" type="Event Note">
+      <text>Address as event is legal, with PHON,FAX,EMAIL,WWW</text>
+    </note>
+    <note handle="_d65a448168e1061fc46719b5efa" change="1472500308" id="N0010" type="Person Note">
+      <text>Address with PHON,FAX,EMAIL,WWW. attached directly to person is not legal Gedcom, but allowed here.</text>
+    </note>
+    <note handle="_d65a44816c03bb623c96e839fbb" change="1472500308" id="N0009" type="GEDCOM import">
+      <text>Records not imported into SUBM (Submitter): (@SUBM@) The Subm /Tester/:
+
+Only one phone number supported                                     Line    29: 1 PHON 800-871-3401</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="173"/>
+      </style>
+    </note>
+    <note handle="_d65a44816ca32ac25b0b586e61c" change="1472500308" id="N0013" type="GEDCOM import">
+      <text>Records not imported into REPO (repository) Gramps ID R0002:
+
+Only one phone number supported                                     Line    87: 1 PHON 800-765-4321</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="162"/>
+      </style>
+    </note>
+    <note handle="_d65a44816cafa196ba741ab38d" change="1472500308" id="N0012" type="Repository Note">
+      <text>The repository record</text>
+    </note>
+    <note handle="_d65a448170377d2c11a0a15d08d" change="1472500308" id="N0008" type="GEDCOM import">
+      <text>Records not imported into HEAD (header):
+
+Only one phone number supported                                     Line     9: 3 PHON (800) 705-7000</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="144"/>
       </style>
     </note>
   </notes>

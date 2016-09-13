@@ -735,6 +735,12 @@ class GedcomWriter(UpdateCallback):
 
     def _url_list(self, obj, level):
         """
+        For Person's FAX, PHON, EMAIL, WWW lines;
+        n PHON <PHONE_NUMBER> {0:3}
+        n EMAIL <ADDRESS_EMAIL> {0:3}
+        n FAX <ADDRESS_FAX> {0:3}
+        n WWW <ADDRESS_WEB_PAGE> {0:3}
+
         n OBJE {1:1}
         +1 FORM <MULTIMEDIA_FORMAT> {1:1}
         +1 TITL <DESCRIPTIVE_TITLE> {0:1}
@@ -742,12 +748,21 @@ class GedcomWriter(UpdateCallback):
         +1 <<NOTE_STRUCTURE>> {0:M}
         """
         for url in obj.get_url_list():
-            self._writeln(level, 'OBJE')
-            self._writeln(level+1, 'FORM', 'URL')
-            if url.get_description():
-                self._writeln(level+1, 'TITL', url.get_description())
-            if url.get_path():
-                self._writeln(level+1, 'FILE', url.get_path(), limit=255)
+            if url.get_type() == UrlType.EMAIL:
+                self._writeln(level, 'EMAIL', url.get_path())
+            elif url.get_type() == UrlType.WEB_HOME:
+                self._writeln(level, 'WWW', url.get_path())
+            elif url.get_type() == _('Phone'):
+                self._writeln(level, 'PHON', url.get_path())
+            elif url.get_type() == _('FAX'):
+                self._writeln(level, 'PHON', url.get_path())
+            else:
+                self._writeln(level, 'OBJE')
+                self._writeln(level+1, 'FORM', 'URL')
+                if url.get_description():
+                    self._writeln(level+1, 'TITL', url.get_description())
+                if url.get_path():
+                    self._writeln(level+1, 'FILE', url.get_path(), limit=255)
 
     def _families(self):
         """
@@ -945,7 +960,7 @@ class GedcomWriter(UpdateCallback):
 
             for reporef in source.get_reporef_list():
                 self._reporef(reporef, 1)
-                break
+                # break
 
             self._note_references(source.get_note_list(), 1)
             self._change(source.get_change_time(), 1)
@@ -1011,10 +1026,12 @@ class GedcomWriter(UpdateCallback):
                 if addr.get_phone():
                     self._writeln(1, 'PHON', addr.get_phone())
             for url in repo.get_url_list():
-                if int(url.get_type()) == UrlType.EMAIL:
+                if url.get_type() == UrlType.EMAIL:
                     self._writeln(1, 'EMAIL', url.get_path())
-                elif int(url.get_type()) == UrlType.WEB_HOME:
+                elif url.get_type() == UrlType.WEB_HOME:
                     self._writeln(1, 'WWW', url.get_path())
+                elif url.get_type() == _('FAX'):
+                    self._writeln(1, 'FAX', url.get_path())
             self._note_references(repo.get_note_list(), 1)
 
     def _reporef(self, reporef, level):
@@ -1103,6 +1120,14 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(2, 'CAUS', attr.get_value())
             elif attr_type == AttributeType.AGENCY:
                 self._writeln(2, 'AGNC', attr.get_value())
+            elif attr_type == _("Phone"):
+                self._writeln(2, 'PHON', attr.get_value())
+            elif attr_type == _("FAX"):
+                self._writeln(2, 'FAX', attr.get_value())
+            elif attr_type == _("EMAIL"):
+                self._writeln(2, 'EMAIL', attr.get_value())
+            elif attr_type == _("WWW"):
+                self._writeln(2, 'WWW', attr.get_value())
 
         for attr in event_ref.get_attribute_list():
             attr_type = attr.get_type()

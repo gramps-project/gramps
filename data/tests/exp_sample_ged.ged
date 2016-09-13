@@ -2,10 +2,10 @@
 1 SOUR Gramps
 2 VERS 5.0.0-alpha1
 2 NAME Gramps
-1 DATE 26 JUN 2016
-2 TIME 08:49:54
+1 DATE 4 SEP 2016
+2 TIME 15:21:50
 1 SUBM @SUBM@
-1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
+1 FILE D:\Users\prc\Downloads\exp_sample_ged.ged
 1 COPR Copyright (c) 2016 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5.1
@@ -592,8 +592,8 @@
 1 FAMC @F0009@
 1 FAMS @F0008@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
+2 DATE 4 SEP 2016
+3 TIME 15:17:13
 0 @I0034@ INDI
 1 NAME Alice Paula /Perkins/
 2 GIVN Alice Paula
@@ -752,6 +752,80 @@
 1 CHAN
 2 DATE 18 JUN 2016
 3 TIME 11:42:08
+0 @I0044@ INDI
+1 NAME The /Tester/
+2 GIVN The
+2 SURN Tester
+1 SEX M
+1 BIRT
+2 DATE 29 DEC 1954
+2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, USA
+2 ADDR 123 High St
+3 ADR1 123 High St
+3 CITY Cleveland
+3 STAE Ohio
+3 POST 44140
+3 CTRY USA
+2 PHON 440-871-3400
+2 PHON 800-871-3400
+2 EMAIL thetester@gmail.com
+2 FAX 440-123-4567
+2 WWW http://thetester.com
+1 FAMC @F0008@
+1 FAMS @F0016@
+1 SOUR @S0005@
+1 CHAN
+2 DATE 4 SEP 2016
+3 TIME 15:16:39
+0 @I0045@ INDI
+1 NAME Mrs /Tester/
+2 GIVN Mrs
+2 SURN Tester
+1 SEX F
+1 RESI
+2 DATE 30 DEC 1954
+2 PLAC 123 Main St., Winslow, PA, 12345
+2 PHON 440-871-3401
+2 EMAIL mrstester@gmail.com
+2 FAX 440-321-4568
+2 WWW http://mrstester.com
+2 NOTE @N0011@
+1 FAMS @F0016@
+1 SOUR @S0005@
+1 RESI
+2 ADDR 123 Main St.
+3 CONT Winslow
+3 CONT PA
+3 CONT 12345
+3 ADR1 123 Main St.
+3 CITY Winslow
+3 STAE PA
+3 POST 12345
+1 PHON 440-871-3401
+1 PHON 800-871-3401
+1 EMAIL mrstester@gmail.com
+1 PHON 440-321-4568
+1 WWW http://mrstester.com
+1 NOTE @N0010@
+1 CHAN
+2 DATE 4 SEP 2016
+3 TIME 15:16:39
+0 @I0046@ INDI
+1 NAME Tom /Tester/
+2 GIVN Tom
+2 SURN Tester
+1 SEX M
+1 RESI
+2 DATE 1964
+2 PHON 440-871-3402
+2 EMAIL tomtester@gmail.com
+2 FAX 440-321-4569
+2 WWW http://tomtester.com
+1 FAMC @F0016@
+1 SOUR @S0005@
+1 CHAN
+2 DATE 4 SEP 2016
+3 TIME 15:17:49
 0 @F0000@ FAM
 1 HUSB @I0039@
 1 WIFE @I0036@
@@ -857,9 +931,10 @@
 1 CHIL @I0019@
 1 CHIL @I0001@
 1 CHIL @I0029@
+1 CHIL @I0044@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
+2 DATE 4 SEP 2016
+3 TIME 15:14:33
 0 @F0009@ FAM
 1 HUSB @I0010@
 1 WIFE @I0017@
@@ -923,6 +998,13 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+0 @F0016@ FAM
+1 HUSB @I0044@
+1 WIFE @I0045@
+1 CHIL @I0046@
+1 CHAN
+2 DATE 4 SEP 2016
+3 TIME 15:16:51
 0 @S0000@ SOUR
 1 TITL Marriage Certificae
 1 REPO @R0002@
@@ -956,6 +1038,42 @@
 1 CHAN
 2 DATE 4 JUN 2016
 3 TIME 16:28:36
+0 @S0005@ SOUR
+1 TITL Import from imp_FTM_LINK.ged
+1 REPO @R0000@
+1 REPO @R0001@
+1 CHAN
+2 DATE 29 AUG 2016
+3 TIME 14:51:48
+0 @S0006@ SOUR
+1 TITL Ohio Births, 1958-2002
+1 REPO @R0004@
+1 CHAN
+2 DATE 29 AUG 2016
+3 TIME 14:51:48
+0 @R0000@ REPO
+1 NAME Business that produced the product: Ancestry.com
+1 ADDR 360 W 4800 N, Provo, UT 84604
+2 ADR1 360 W 4800 N, Provo, UT 84604
+1 PHON (801) 705-7000
+1 FAX (801) 705-7001
+1 EMAIL help@ancestry.com
+1 WWW http://www.ancestry.com
+0 @R0001@ REPO
+1 NAME SUBM (Submitter): (@SUBM@) The Subm /Tester/
+1 ADDR 123 Main St.
+2 CONT Winslow
+2 CONT PA
+2 CONT 12345
+2 ADR1 123 Main St.
+2 CITY Winslow
+2 STAE PA
+2 POST 12345
+1 PHON 440-871-3401
+1 EMAIL mrstester@gmail.com
+1 FAX 440-321-4568
+1 WWW http://mrstester.com
+1 NOTE @N0009@
 0 @R0002@ REPO
 1 NAME New York Public Library
 1 ADDR 5th Ave at 42 street
@@ -980,6 +1098,16 @@
 2 CTRY USA
 1 WWW http://library.gramps-project.org
 1 NOTE @N0006@
+0 @R0004@ REPO
+1 NAME Testers Repository
+1 ADDR 123 High St., OSF village, CA, USA
+2 ADR1 123 High St., OSF village, CA, USA
+1 PHON 988-765-4321
+1 EMAIL tester_repo@osf.com
+1 FAX 987-654-3210
+1 WWW http://www.tester_repo.com
+1 NOTE @N0012@
+1 NOTE @N0013@
 0 @N0000@ NOTE Witness name: John Doe
 1 CONT Witness comment: This is a simple test.
 0 @N0001@ NOTE Witness name: No Name
@@ -1008,4 +1136,21 @@
 1 CONT Some Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Bold Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
 1 CONT Some Italic Unicode Characters: ࣶǼЀج⿄㑝㵋圛墉幵聟聦𐅉🚶🛈
+0 @N0008@ NOTE Records not imported into HEAD (header):
+1 CONT 
+1 CONT Only one phone number supported                                     Lin
+1 CONC e     9: 3 PHON (800) 705-7000
+0 @N0009@ NOTE Records not imported into SUBM (Submitter): (@SUBM@) The Subm /Test
+1 CONC er/:
+1 CONT 
+1 CONT Only one phone number supported                                     Lin
+1 CONC e    29: 1 PHON 800-871-3401
+0 @N0010@ NOTE Address with PHON,FAX,EMAIL,WWW. attached directly to person is no
+1 CONC t legal Gedcom, but allowed here.
+0 @N0011@ NOTE Address as event is legal, with PHON,FAX,EMAIL,WWW
+0 @N0012@ NOTE The repository record
+0 @N0013@ NOTE Records not imported into REPO (repository) Gramps ID R0002:
+1 CONT 
+1 CONT Only one phone number supported                                     Lin
+1 CONC e    87: 1 PHON 800-765-4321
 0 TRLR

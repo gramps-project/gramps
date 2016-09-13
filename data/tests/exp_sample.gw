@@ -22,35 +22,36 @@ beg
 - h Eric_Lloyd.11 28/8/1963 #bp San_Francisco,_San_Francisco_Co.,_CA  
 - h Keith_Lloyd.12 11/8/1966 #bp San_Francisco,_San_Francisco_Co.,_CA  
 - h Craig_Peter.13 >1966 #bp San_Francisco,_San_Francisco_Co.,_CA  
+- h The.14 Tester 29/12/1954 #bp 123_High_St,_Cleveland,_Cuyahoga,_Ohio,_USA  
 end
 
-fam Smith Hans_Peter.8 + #nm Jones Lillie_Harriet.14 2/5/1910 #bp Rønne,_Bornholm,_Denmark 26/6/1990 
+fam Smith Hans_Peter.8 + #nm Jones Lillie_Harriet.15 2/5/1910 #bp Rønne,_Bornholm,_Denmark 26/6/1990 
 beg
 - h Lloyd.9 13/3/1935 #bp San_Francisco,_San_Francisco_Co.,_CA  
 end
 
-fam Smith Hans_Peter.8 + #nm Anderson Jennifer.15 5/11/1907 #bp Rønne,_Bornholm,_Denmark 29/5/1985 #dp San_Francisco,_San_Francisco_Co.,_CA 
+fam Smith Hans_Peter.8 + #nm Anderson Jennifer.16 5/11/1907 #bp Rønne,_Bornholm,_Denmark 29/5/1985 #dp San_Francisco,_San_Francisco_Co.,_CA 
 
-fam Smith Martin.16 +~1816 #mp Gladsax,_Kristianstad_Län,_Sweden Jefferson Elna.17 14/9/1800 #bp Gladsax,_Kristianstad_Län,_Sweden  #dp Sweden 
+fam Smith Martin.17 +~1816 #mp Gladsax,_Kristianstad_Län,_Sweden Jefferson Elna.18 14/9/1800 #bp Gladsax,_Kristianstad_Län,_Sweden  #dp Sweden 
 beg
-- f Hanna.18 29/1/1821 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
-- f Ingar.19 >1823 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
-- h Ingeman.20 29/1/1826 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
-- h Martin.21 19/11/1830 #bp Gladsax,_Kristianstad_Län,_Sweden 1899..1905 #dp Sweden 
+- f Hanna.19 29/1/1821 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
+- f Ingar.20 >1823 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
+- h Ingeman.21 29/1/1826 #bp Gladsax,_Kristianstad_Län,_Sweden 0 
+- h Martin.22 19/11/1830 #bp Gladsax,_Kristianstad_Län,_Sweden 1899..1905 #dp Sweden 
 end
 
-notes Smith Martin.21
+notes Smith Martin.22
 beg
 BIOGRAPHY
 Martin was listed as being a Husman, (owning a house as opposed to a farm) in the house records of Gladsax. 
 end notes
 
-fam Nielsen Herman_Julius.22 31/8/1889 #bp Rønne,_Bornholm,_Denmark 1945 +30/11/1912 #mp Rønne,_Bornholm,_Denmark Smith Astrid_Shermanna_Augusta.3 
+fam Nielsen Herman_Julius.23 31/8/1889 #bp Rønne,_Bornholm,_Denmark 1945 +30/11/1912 #mp Rønne,_Bornholm,_Denmark Smith Astrid_Shermanna_Augusta.3 
 beg
-- h &#38634;.23 Ke_&#26607; 0  
+- h &#38634;.24 Ke_&#26607; 0  
 end
 
-notes Ke_&#26607; &#38634;.23
+notes Ke_&#26607; &#38634;.24
 beg
 Some Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691;&#22299;&#22665;&#24181;&#32863;&#32870;&#65865;&#128694;&#128712;
 Some Bold Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691;&#22299;&#22665;&#24181;&#32863;&#32870;&#65865;&#128694;&#128712;
@@ -60,44 +61,54 @@ Some Bold Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691
 Some Italic Unicode Characters: &#2294;&#508;&#1024;&#1580;&#12228;&#13405;&#15691;&#22299;&#22665;&#24181;&#32863;&#32870;&#65865;&#128694;&#128712; 
 end notes
 
-fam Smith Gus.6 +~1920 Michaels Evelyn.24 ~1897  
+fam Smith Gus.6 +~1920 Michaels Evelyn.25 ~1897  
 
-fam Smith Hjalmar.5 +31/10/1927 #mp Reno,_Washoe_Co.,_NV Ohman Marjorie.25 3/6/1903 #bp Denver,_Denver_Co.,_CO,_Denver_Co.,_Colorado,_USA 22/6/1980 #dp Reno,_Washoe_Co.,_NV 
+fam Smith Hjalmar.5 +31/10/1927 #mp Reno,_Washoe_Co.,_NV Ohman Marjorie.26 3/6/1903 #bp Denver,_Denver_Co.,_CO,_Denver_Co.,_Colorado,_USA 22/6/1980 #dp Reno,_Washoe_Co.,_NV 
 beg
-- h John_Hjalmar.26 30/1/1932 #bp San_Francisco,_San_Francisco_Co.,_CA  
-- f Marjorie_Lee.27 4/11/1934 #bp Reno,_Washoe_Co.,_NV  
+- h John_Hjalmar.27 30/1/1932 #bp San_Francisco,_San_Francisco_Co.,_CA  
+- f Marjorie_Lee.28 4/11/1934 #bp Reno,_Washoe_Co.,_NV  
 end
 
-fam Smith John_Hjalmar.26 +4/6/1954 #mp Sparks,_Washoe_Co.,_NV Perkins Alice_Paula.28 22/11/1933 #bp Sparks,_Washoe_Co.,_NV  
+fam Smith John_Hjalmar.27 +4/6/1954 #mp Sparks,_Washoe_Co.,_NV Perkins Alice_Paula.29 22/11/1933 #bp Sparks,_Washoe_Co.,_NV  
 beg
-- f Marjorie_Alice.29 5/2/1960 #bp San_Jose,_Santa_Clara_Co.,_CA  
-- h Edwin_Michael.30 24/5/1961 #bp San_Jose,_Santa_Clara_Co.,_CA  
+- f Marjorie_Alice.30 5/2/1960 #bp San_Jose,_Santa_Clara_Co.,_CA  
+- h Edwin_Michael.31 24/5/1961 #bp San_Jose,_Santa_Clara_Co.,_CA  
 end
 
-fam Smith Eric_Lloyd.11 +12/7/1986 #mp Woodland,_Yolo_Co.,_CA Horne Darcy.31 2/7/1966 #bp Sacramento,_Sacramento_Co.,_CA  
+fam Smith Eric_Lloyd.11 +12/7/1986 #mp Woodland,_Yolo_Co.,_CA Horne Darcy.32 2/7/1966 #bp Sacramento,_Sacramento_Co.,_CA  
 beg
-- h Lars_Peter.32 16/9/1991 #bp Santa_Rosa,_Sonoma_Co.,_CA  
+- h Lars_Peter.33 16/9/1991 #bp Santa_Rosa,_Sonoma_Co.,_CA  
 end
 
-fam Smith Edwin_Michael.30 +27/5/1995 #mp San_Ramon,_Conta_Costa_Co.,_CA Adams Janice_Ann.33 26/8/1965 #bp Fremont,_Alameda_Co.,_CA  
+fam Smith Edwin_Michael.31 +27/5/1995 #mp San_Ramon,_Conta_Costa_Co.,_CA Adams Janice_Ann.34 26/8/1965 #bp Fremont,_Alameda_Co.,_CA  
 beg
-- h Mason_Michael.34 26/6/1996 #bp Hayward,_Alameda_Co.,_CA  
-- f Amber_Marie.35 12/4/1998 #bp Hayward,_Alameda_Co.,_CA  
+- h Mason_Michael.35 26/6/1996 #bp Hayward,_Alameda_Co.,_CA  
+- f Amber_Marie.36 12/4/1998 #bp Hayward,_Alameda_Co.,_CA  
 end
 
-fam Smith Martin.21 +~1856 Hansdotter Kerstina.36 29/11/1832 #bp Smestorp,_Kristianstad_Län,_Sweden <1908 #dp Sweden 
+fam Smith Martin.22 +~1856 Hansdotter Kerstina.37 29/11/1832 #bp Smestorp,_Kristianstad_Län,_Sweden <1908 #dp Sweden 
 beg
-- h Magnes.37 6/10/1858 #bp Simrishamn,_Kristianstad_Län,_Sweden 20/2/1910 #dp Rønne,_Bornholm,_Denmark 
-- h Emil.38 27/9/1860 #bp Simrishamn,_Kristianstad_Län,_Sweden 0 
+- h Magnes.38 6/10/1858 #bp Simrishamn,_Kristianstad_Län,_Sweden 20/2/1910 #dp Rønne,_Bornholm,_Denmark 
+- h Emil.39 27/9/1860 #bp Simrishamn,_Kristianstad_Län,_Sweden 0 
 - h Gustaf.0 28/11/1862 #bp Grostorp,_Kristianstad_Län,_Sweden <23/7/1930 #dp Sparks,_Washoe_Co.,_NV 
 end
 
-fam Smith Ingeman.39 ~1770 #bp Sweden 0 +~1790 #mp Sweden Ericsdotter Marta.40 ~1775 #bp Sweden 0 
+fam Smith Ingeman.40 ~1770 #bp Sweden 0 +~1790 #mp Sweden Ericsdotter Marta.41 ~1775 #bp Sweden 0 
 beg
-- h Martin.16 1794..1796 #bp Tommarp,_Kristianstad_Län,_Sweden  #dp Sweden 
+- h Martin.17 1794..1796 #bp Tommarp,_Kristianstad_Län,_Sweden  #dp Sweden 
 end
 
-fam Willard Edwin.41 ~1886  +~1910 Smith Kirsti_Marie.2 
+fam Willard Edwin.42 ~1886  +~1910 Smith Kirsti_Marie.2 
 
-fam Smith Magnes.37 +24/8/1884 #mp Rønne,_Bornholm,_Denmark Streiffert Anna.42 23/9/1860 #bp Hoya/Jona/Hoia,_Sweden 2/2/1927 #dp Rønne,_Bornholm,_Denmark 
+fam Smith Magnes.38 +24/8/1884 #mp Rønne,_Bornholm,_Denmark Streiffert Anna.43 23/9/1860 #bp Hoya/Jona/Hoia,_Sweden 2/2/1927 #dp Rønne,_Bornholm,_Denmark 
+
+fam Tester The.14 + Tester Mrs.44 0  
+beg
+- h Tom.45 0  
+end
+
+notes Tester Mrs.44
+beg
+Address with PHON,FAX,EMAIL,WWW. attached directly to person is not legal Gedcom, but allowed here. 
+end notes
 
