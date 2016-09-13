@@ -86,6 +86,9 @@
 3 TEST Empty Note
 2 NOTE Media Note
 3 TEST 123456 Note
+2 NOTE @N6@
+2 NOTE
+3 TEST Empty Note
 1 RIN 123456 Person
 1 REFN 98765 for PERSON
 2 TEST REFN
@@ -93,9 +96,6 @@
 1 CHAN
 2 DATE 11 Jan 2001
 3 TIME 16:00:06
-2 NOTE @N6@
-2 NOTE
-3 TEST Empty Note
 1 OBJE @M1@
 0 @N4@ NOTE Tom Tester xref note
 0 @N5@ NOTE Death Event xref note

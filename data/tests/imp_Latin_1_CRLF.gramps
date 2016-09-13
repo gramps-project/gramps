@@ -3,29 +3,22 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-05-24" version="GrampsAIO64-4.2.1-2"/>
+    <created date="2016-08-29" version="5.0.0-alpha1"/>
     <researcher>
-      <resname>Paul Culley</resname>
-      <resaddr>11210 Olde Mint House Ln</resaddr>
-      <rescity>Tomball</rescity>
-      <resstate>Tx</resstate>
-      <rescountry>USA</rescountry>
-      <respostal>77375</respostal>
-      <resemail>paulr2787@gmail.com</resemail>
     </researcher>
   </header>
   <events>
-    <event handle="_0000000200000002" change="1464119858" id="E0000">
+    <event handle="_0000000200000002" change="1472500306" id="E0000">
       <type>Birth</type>
       <dateval val="1955"/>
     </event>
-    <event handle="_0000000300000003" change="1464119858" id="E0001">
+    <event handle="_0000000300000003" change="1472500306" id="E0001">
       <type>Death</type>
       <dateval val="2017"/>
     </event>
   </events>
   <people>
-    <person handle="_0000000100000001" change="1464119858" id="I0001">
+    <person handle="_0000000100000001" change="1472500306" id="I0001">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Paul</first>
@@ -37,7 +30,7 @@
     </person>
   </people>
   <notes>
-    <note handle="_0000000400000004" change="1464119858" id="N0000" type="General">
+    <note handle="_0000000400000004" change="1472500306" id="N0000" type="Person Note">
       <text>Table of Latin_1, ISO-8859-1 characters
 32 [ ]
 33 [!]
