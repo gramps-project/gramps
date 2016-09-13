@@ -71,6 +71,7 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
+from gramps.gen.errors import HandleError
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -425,8 +426,9 @@ class CheckIntegrity:
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if father_handle:
-                father = self.db.get_person_from_handle(father_handle)
-                if not father:
+                try:
+                    father = self.db.get_person_from_handle(father_handle)
+                except HandleError:
                     # The person referenced by the father handle does not exist
                     # in the database
                     # This is tested by TestcaseGenerator where the mother is
@@ -440,8 +442,9 @@ class CheckIntegrity:
                                      'hand' : father_handle})
                     father_handle = None
             if mother_handle:
-                mother = self.db.get_person_from_handle(mother_handle)
-                if not mother:
+                try:
+                    mother = self.db.get_person_from_handle(mother_handle)
+                except HandleError:
                     # The person referenced by the mother handle does not exist
                     # in the database
                     # This is tested by TestcaseGenerator where the mother is
@@ -483,8 +486,21 @@ class CheckIntegrity:
 
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
-                child = self.db.get_person_from_handle(child_handle)
-                if child:
+                try:
+                    child = self.db.get_person_from_handle(child_handle)
+                except HandleError:
+                    # The person referenced by the child handle
+                    # does not exist in the database
+                    # This is tested by TestcaseGenerator where the father
+                    # is "Broken20"
+                    logging.warning("    FAIL: family '%(fam_gid)s' child "
+                                    "'%(hand)s' does not exist in the database" %
+                                    {'fam_gid' : family.gramps_id,
+                                     'hand' : child_handle})
+                    family.remove_child_ref(child_ref)
+                    self.db.commit_family(family, self.trans)
+                    self.broken_links.append((child_handle, family_handle))
+                else:
                     if child_handle in [father_handle, mother_handle]:
                         # The child is one of the parents: impossible Remove
                         # such child from the family
@@ -513,18 +529,6 @@ class CheckIntegrity:
                                          'child_gid' : child.gramps_id})
                         child.add_parent_family_handle(family_handle)
                         self.db.commit_person(child, self.trans)
-                else:
-                    # The person referenced by the child handle
-                    # does not exist in the database
-                    # This is tested by TestcaseGenerator where the father
-                    # is "Broken20"
-                    logging.warning("    FAIL: family '%(fam_gid)s' child "
-                                    "'%(hand)s' does not exist in the database" %
-                                    {'fam_gid' : family.gramps_id,
-                                     'hand' : child_handle})
-                    family.remove_child_ref(child_ref)
-                    self.db.commit_family(family, self.trans)
-                    self.broken_links.append((child_handle, family_handle))
 
             new_ref_list = []
             new_ref_handles = []
@@ -555,8 +559,9 @@ class CheckIntegrity:
                 self.db.commit_person(person, self.trans)
 
             for par_family_handle in person.get_parent_family_handle_list():
-                family = self.db.get_family_from_handle(par_family_handle)
-                if not family:
+                try:
+                    family = self.db.get_family_from_handle(par_family_handle)
+                except HandleError:
                     person.remove_parent_family_handle(par_family_handle)
                     self.db.commit_person(person, self.trans)
                     continue
@@ -577,8 +582,9 @@ class CheckIntegrity:
                     self.db.commit_person(person, self.trans)
                     self.broken_links.append((person_handle, family_handle))
             for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
-                if not family:
+                try:
+                    family = self.db.get_family_from_handle(family_handle)
+                except HandleError:
                     # The referenced family does not exist in database
                     # This is tested by TestcaseGenerator where the father
                     # is "Broken20"
@@ -1008,8 +1014,9 @@ class CheckIntegrity:
                     none_handle = True
                     birth_ref.ref = create_id()
                 birth_handle = birth_ref.ref
-                birth = self.db.get_event_from_handle(birth_handle)
-                if not birth:
+                try:
+                    birth = self.db.get_event_from_handle(birth_handle)
+                except HandleError:
                     # The birth event referenced by the birth handle
                     # does not exist in the database
                     # This is tested by TestcaseGenerator person "Broken11"
@@ -1046,8 +1053,9 @@ class CheckIntegrity:
                     none_handle = True
                     death_ref.ref = create_id()
                 death_handle = death_ref.ref
-                death = self.db.get_event_from_handle(death_handle)
-                if not death:
+                try:
+                    death = self.db.get_event_from_handle(death_handle)
+                except HandleError:
                     # The death event referenced by the death handle
                     # does not exist in the database
                     # This is tested by TestcaseGenerator person "Broken12"
@@ -1085,8 +1093,9 @@ class CheckIntegrity:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
-                    event = self.db.get_event_from_handle(event_handle)
-                    if not event:
+                    try:
+                        event = self.db.get_event_from_handle(event_handle)
+                    except HandleError:
                         # The event referenced by the person
                         # does not exist in the database
                         #TODO: There is no better way?
@@ -1126,8 +1135,9 @@ class CheckIntegrity:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
-                    event = self.db.get_event_from_handle(event_handle)
-                    if not event:
+                    try:
+                        event = self.db.get_event_from_handle(event_handle)
+                    except HandleError:
                         # The event referenced by the family
                         # does not exist in the database
                         logging.warning('    FAIL: the family "%(gid)s" refers '
@@ -1171,8 +1181,9 @@ class CheckIntegrity:
                 if pref.ref is None:
                     none_handle = True
                     pref.ref = create_id()
-                p = self.db.get_person_from_handle( pref.ref)
-                if not p:
+                try:
+                    p = self.db.get_person_from_handle( pref.ref)
+                except HandleError:
                     # The referenced person does not exist in the database
                     make_unknown(pref.ref, self.explanation.handle,
                             self.class_person, self.commit_person, self.trans)
@@ -1198,8 +1209,9 @@ class CheckIntegrity:
             for ordinance in person.get_lds_ord_list():
                 family_handle = ordinance.get_family_handle()
                 if family_handle:
-                    family = self.db.get_family_from_handle(family_handle)
-                    if not family:
+                    try:
+                        family = self.db.get_family_from_handle(family_handle)
+                    except HandleError:
                         # The referenced family does not exist in the database
                         make_unknown(family_handle,
                                 self.explanation.handle, self.class_family,
@@ -1227,8 +1239,9 @@ class CheckIntegrity:
                 if reporef.ref is None:
                     none_handle = True
                     reporef.ref = create_id()
-                r = self.db.get_repository_from_handle(reporef.ref)
-                if not r:
+                try:
+                    r = self.db.get_repository_from_handle(reporef.ref)
+                except HandleError:
                     # The referenced repository does not exist in the database
                     make_unknown(reporef.ref, self.explanation.handle,
                             self.class_repo, self.commit_repo, self.trans)
@@ -1260,8 +1273,9 @@ class CheckIntegrity:
                 if placeref.ref is None:
                     none_handle = True
                     placeref.ref = create_id()
-                parent_place = self.db.get_place_from_handle(placeref.ref)
-                if not parent_place:
+                try:
+                    parent_place = self.db.get_place_from_handle(placeref.ref)
+                except HandleError:
                     # The referenced place does not exist in the database
                     make_unknown(placeref.ref,
                             self.explanation.handle, self.class_place,
@@ -1284,8 +1298,9 @@ class CheckIntegrity:
             for ordinance in person.lds_ord_list:
                 place_handle = ordinance.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    if not place:
+                    try:
+                        place = self.db.get_place_from_handle(place_handle)
+                    except HandleError:
                         # The referenced place does not exist in the database
                         # This is tested by TestcaseGenerator person "Broken17"
                         # This is tested by TestcaseGenerator person "Broken18"
@@ -1306,8 +1321,9 @@ class CheckIntegrity:
             for ordinance in family.lds_ord_list:
                 place_handle = ordinance.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    if not place:
+                    try:
+                        place = self.db.get_place_from_handle(place_handle)
+                    except HandleError:
                         # The referenced place does not exist in the database
                         make_unknown(place_handle,
                                 self.explanation.handle, self.class_place,
@@ -1325,8 +1341,9 @@ class CheckIntegrity:
             event = self.db.get_event_from_handle(key)
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.db.get_place_from_handle(place_handle)
-                if not place:
+                try:
+                    place = self.db.get_place_from_handle(place_handle)
+                except HandleError:
                     # The referenced place does not exist in the database
                     make_unknown(place_handle,
                             self.explanation.handle, self.class_place,
@@ -1506,8 +1523,9 @@ class CheckIntegrity:
                 citation.set_reference_handle(source_handle)
                 self.db.commit_citation(citation, self.trans)
             if source_handle:
-                source = self.db.get_source_from_handle(source_handle)
-                if not source:
+                try:
+                    source = self.db.get_source_from_handle(source_handle)
+                except HandleError:
                     # The referenced source does not exist in the database
                     make_unknown(source_handle, self.explanation.handle,
                             self.class_source, self.commit_source, self.trans)
@@ -2123,16 +2141,18 @@ class CheckIntegrity:
                          blink).format(quantity=blink)
                 )
             for (person_handle, family_handle) in self.broken_links:
-                person = self.db.get_person_from_handle(person_handle)
-                if person:
-                    cn = person.get_primary_name().get_name()
-                else:
+                try:
+                    person = self.db.get_person_from_handle(person_handle)
+                except HandleError:
                     cn = _("Non existing child")
+                else:
+                    cn = person.get_primary_name().get_name()
                 try:
                     family = self.db.get_family_from_handle(family_handle)
-                    pn = family_name(family, self.db)
-                except:
+                except HandleError:
                     pn = _("Unknown")
+                else:
+                    pn = family_name(family, self.db)
                 self.text.write('\t')
                 self.text.write(
                     _("%(person)s was removed from the family of %(family)s\n")
@@ -2147,16 +2167,18 @@ class CheckIntegrity:
                          plink).format(quantity=plink)
                 )
             for (person_handle, family_handle) in self.broken_parent_links:
-                person = self.db.get_person_from_handle(person_handle)
-                if person:
-                    cn = person.get_primary_name().get_name()
-                else:
+                try:
+                    person = self.db.get_person_from_handle(person_handle)
+                except HandleError:
                     cn = _("Non existing person")
-                family = self.db.get_family_from_handle(family_handle)
-                if family:
-                    pn = family_name(family, self.db)
                 else:
-                    pn = family_handle
+                    cn = person.get_primary_name().get_name()
+                try:
+                    family = self.db.get_family_from_handle(family_handle)
+                except HandleError:
+                    pn = _("Unknown")
+                else:
+                    pn = family_name(family, self.db)
                 self.text.write('\t')
                 self.text.write(
                     _("%(person)s was restored to the family of %(family)s\n")
@@ -2173,16 +2195,18 @@ class CheckIntegrity:
                          slink).format(quantity=slink)
                 )
             for (person_handle, family_handle) in self.broken_parent_links:
-                person = self.db.get_person_from_handle(person_handle)
-                if person:
-                    cn = person.get_primary_name().get_name()
-                else:
+                try:
+                    person = self.db.get_person_from_handle(person_handle)
+                except HandleError:
                     cn = _("Non existing person")
-                family = self.db.get_family_from_handle(family_handle)
-                if family:
-                    pn = family_name(family, self.db)
                 else:
+                    cn = person.get_primary_name().get_name()
+                try:
+                    family = self.db.get_family_from_handle(family_handle)
+                except HandleError:
                     pn = _("None")
+                else:
+                    pn = family_name(family, self.db)
                 self.text.write('\t')
                 self.text.write(
                     _("%(person)s was restored to the family of %(family)s\n")
