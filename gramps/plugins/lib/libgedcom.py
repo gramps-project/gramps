@@ -524,7 +524,7 @@ PERSONALCONSTANTEVENTS = {
     EventType.BAS_MITZVAH      : "BASM",
     EventType.BLESS            : "BLES",
     EventType.BURIAL           : "BURI",
-    EventType.CAUSE_DEATH      : "CAUS",
+    # EventType.CAUSE_DEATH      : "CAUS",  Not legal Gedcom since v5.0
     EventType.ORDINATION       : "ORDN",
     EventType.CENSUS           : "CENS",
     EventType.CHRISTEN         : "CHR" ,
