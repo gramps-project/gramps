@@ -1292,6 +1292,7 @@ class WebCalReport(Report):
                     if (birth_date != Date() and birth_date.is_valid()
                                              and death_date):
                         age_at_death = death_date - birth_date
+                        age_at_death = age_at_death.format(dlocale=self.rlocale)
 
                 # determine birthday information???
                 if (self.birthday and birth_date is not Date()
@@ -1404,6 +1405,8 @@ class WebCalReport(Report):
                                     wedding_age = None
                                     if first_died != Date():
                                         wedding_age = first_died - event_date
+                                        wedding_age = wedding_age.format(
+                                            dlocale=self.rlocale)
 
                                     if self.link_to_narweb:
                                         spouse_name = str(Html("a", spouse_name,
@@ -1997,7 +2000,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
             if age_at_death is not None:
                 death_symbol = "&#10014;" # latin cross for html code
-                mess = _("Died %(death_date)s.") % {
+                mess = trans_text("Died %(death_date)s.") % {
                                   'death_date' : dead_event_date}
                 age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (
                                                death_symbol, mess, age_at_death)
