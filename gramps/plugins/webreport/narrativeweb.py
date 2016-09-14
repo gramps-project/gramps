@@ -1688,7 +1688,7 @@ class BasePage:
                 msg += self._(' on %(date)s') % {
                               'date' : self.rlocale.get_date(Today())}
 
-            origin1 = self.report.filter.get_name()
+            origin1 = self.report.filter.get_name(self.rlocale)
             filt_number = self.report.options['filter']
             # optional "link-home" feature; see bug report #2736
             if self.report.options['linkhome']:
@@ -8151,7 +8151,7 @@ class StatisticsPage(BasePage):
         center_person = self.report.database.get_person_from_gramps_id(
                     self.report.options['pid'])
 
-        origin = " :<br/>" + report.filter.get_name()
+        origin = " :<br/>" + report.filter.get_name(self.rlocale)
         with Html("div", class_="content", id='EventDetail') as section:
             section += Html("h3",
                             self._("Narrative web content report for") + origin,
