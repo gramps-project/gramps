@@ -326,7 +326,7 @@ class ArgParser:
                     print()
                 sys.exit(0)
             elif option in ['-b', '--databases']:
-                default = config.data["behavior"]["database-backend"]
+                default = config.data["database"]["backend"]
                 pmgr = BasePluginManager.get_instance()
                 pmgr.reg_plugins(PLUGINS_DIR, self, None)
                 pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
