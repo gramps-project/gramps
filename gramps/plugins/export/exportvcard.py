@@ -52,6 +52,7 @@ from gramps.gen.const import PROGRAM_NAME
 from gramps.version import VERSION
 from gramps.gen.lib import Date, Person
 from gramps.gen.lib.urltype import UrlType
+from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.utils import OpenFileOrStdout
