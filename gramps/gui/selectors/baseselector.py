@@ -53,13 +53,14 @@ class BaseSelector(ManagedWindow):
     IMAGE  =  2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True, default=None):
+                 show_search_bar = True, default=None, expand=True):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the 
             SearchBar at the top or not. 
         """
         self.filter = (2, filter, False)
+        self.expand = expand
 
         # Set window title, some selectors may set self.title in their __init__
         if not hasattr(self, 'title'):
@@ -293,8 +294,9 @@ class BaseSelector(ManagedWindow):
         
         self.setupcols = False
 
-        if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
-            self.tree.expand_all()
+        if self.expand:
+            if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
+                self.tree.expand_all()
 
     def column_clicked(self, obj, data):
         if self.sort_col != data:
