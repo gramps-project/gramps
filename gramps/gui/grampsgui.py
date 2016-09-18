@@ -192,6 +192,36 @@ def _display_gtk_gettext_message(parent=None):
                         'bold_end'   : '</b>'},
                   parent=parent)
 
+def _display_translator_message(parent=None):
+    """
+    Display a translator-wanted message to the user.
+    """
+    if config.get('behavior.translator-needed'):
+        config.set('behavior.translator-needed', False)
+        from gramps.gen.utils.grampslocale import INCOMPLETE_TRANSLATIONS
+        language = None
+        if glocale.lang in INCOMPLETE_TRANSLATIONS:
+            language = glocale.lang
+        elif glocale.lang[:2] in INCOMPLETE_TRANSLATIONS:
+            language = glocale.lang[:2]
+        if language:
+            from .dialog import WarningDialog
+            from gramps.gen.const import URL_MAILINGLIST
+            # we are looking for a translator so leave this in English
+            WarningDialog("This Gramps has an incomplete translation",
+                          "The translation for the "
+                          "current language (%(language)s) is incomplete.\n"
+                          "%(bold_start)sGramps%(bold_end)s "
+                          "will start anyway, but if you would like "
+                          "to improve\nGramps by doing some translating, "
+                          "please contact us!\n\n"
+                          "Subscribe to gramps-devel at\n%(mailing_list_url)s"
+                          "\n" % {'language'         : language,
+                                  'bold_start'       : '<b>',
+                                  'bold_end'         : '</b>',
+                                  'mailing_list_url' : URL_MAILINGLIST},
+                          parent=parent)
+
 #-------------------------------------------------------------------------
 #
 # Main Gramps class
@@ -227,6 +257,8 @@ class Gramps:
             _display_gtk_gettext_message(parent=self._vm.window)
 
         _display_welcome_message(parent=self._vm.window)
+
+        _display_translator_message(parent=self._vm.window)
 
         self._vm.init_interface()
 

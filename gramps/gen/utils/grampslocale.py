@@ -110,6 +110,9 @@ _LOCALE_NAMES = {
     'zh_TW': ('Chinese_Taiwan', '950', _("Chinese (Traditional)")),
     }
 
+# locales with less than 70% currently translated
+INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'he', 'ja', 'sq', 'tr')
+
 def _check_mswin_locale(locale):
     msloc = None
     try:
