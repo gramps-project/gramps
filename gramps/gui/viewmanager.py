@@ -356,10 +356,13 @@ class ViewManager(CLIManager):
         """
         width = config.get('interface.main-window-width')
         height = config.get('interface.main-window-height')
+        horiz_position = config.get('interface.main-window-horiz-position')
+        vert_position = config.get('interface.main-window-vert-position')
 
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
+        self.window.move(horiz_position, vert_position)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
@@ -758,6 +761,10 @@ class ViewManager(CLIManager):
         (width, height) = self.window.get_size()
         config.set('interface.main-window-width', width)
         config.set('interface.main-window-height', height)
+        # save the current window position
+        (horiz_position, vert_position) = self.window.get_position()
+        config.set('interface.main-window-horiz-position', horiz_position)
+        config.set('interface.main-window-vert-position', vert_position)
         config.save()
         Gtk.main_quit()
 

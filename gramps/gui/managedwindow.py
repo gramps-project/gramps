@@ -527,6 +527,7 @@ class ManagedWindow:
         """
         Set the dimensions of the window
         """
+        # self.width_key is set in the subclass, typically in its _local_init
         if self.width_key is not None:
             width = config.get(self.width_key)
             height = config.get(self.height_key)
@@ -536,6 +537,7 @@ class ManagedWindow:
         """
         Save the dimensions of the window to the config file
         """
+        # self.width_key is set in the subclass, typically in its _local_init
         if self.width_key is not None:
             (width, height) = self.window.get_size()
             config.set(self.width_key, width)
