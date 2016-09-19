@@ -272,9 +272,12 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         # get the todo list (from get_note_list method of the todo gramplet )
         all_notes = self.dbstate.db.get_note_handles()
         FilterClass = GenericFilterFactory('Note')
-        filter = FilterClass()
-        filter.add_rule(rules.note.HasType(["To Do"]))
-        todo_list = filter.apply(self.dbstate.db, all_notes)
+        filter1 = FilterClass()
+        filter1.add_rule(rules.note.HasType(["To Do"]))
+        todo_list = filter1.apply(self.dbstate.db, all_notes)
+        filter2 = FilterClass()
+        filter2.add_rule(rules.note.HasType(["Link"]))
+        link_list = filter2.apply(self.dbstate.db, all_notes)
 
         for (the_type, cursor_func, total_func) in tables:
             if not self.options.handler.options_dict[the_type]:
@@ -286,7 +289,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 fbh = db.find_backlink_handles
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
-                        if handle not in todo_list:
+                        if handle not in todo_list and handle not in link_list:
                             self.add_results((the_type, handle.decode('utf-8'),
                                               data))
                     self.update()

@@ -63,6 +63,8 @@ class NoteType(GrampsType):
     # indicate a note is html code
     HTML_CODE = 24
     TODO = 25
+    # indicate a note used as link in another note
+    LINK = 26
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
@@ -78,6 +80,7 @@ class NoteType(GrampsType):
         (REPORT_TEXT, _("Report"), "Report"),
         (HTML_CODE, _("Html code"), "Html code"),
         (TODO, _("notetype|To Do"), "To Do"),
+        (LINK, _("notetype|Link"), "Link"),
         ]
 
     _DATAMAPIGNORE = [
