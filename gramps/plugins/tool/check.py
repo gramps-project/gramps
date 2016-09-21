@@ -751,9 +751,8 @@ class CheckIntegrity:
             photo_desc = obj.get_description()
             if photo_name is not None and photo_name != "" and not find_file(photo_name):
                 if cl:
-                    fn = os.path.basename(photo_name)
                     logging.warning("    FAIL: media file %s was not found." %
-                                    fn)
+                                    photo_name)
                     self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
