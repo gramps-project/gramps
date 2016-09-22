@@ -66,14 +66,15 @@ class IsDuplicatedAncestorOf(Rule):
 
     def init_ancestor_list(self, db, person):
         fam_id = person.get_main_parents_family_handle()
-        fam = db.get_family_from_handle(fam_id)
-        if fam:
-            f_id = fam.get_father_handle()
-            m_id = fam.get_mother_handle()
-            if m_id:
-                self.mother_side(db, db.get_person_from_handle(m_id))
-            if f_id:
-                self.father_side(db, db.get_person_from_handle(f_id))
+        if fam_id:
+            fam = db.get_family_from_handle(fam_id)
+            if fam:
+                f_id = fam.get_father_handle()
+                m_id = fam.get_mother_handle()
+                if m_id:
+                    self.mother_side(db, db.get_person_from_handle(m_id))
+                if f_id:
+                    self.father_side(db, db.get_person_from_handle(f_id))
 
     def mother_side(self, db, person):
         if person and person.handle in self.map:
