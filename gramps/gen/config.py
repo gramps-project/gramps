@@ -34,6 +34,7 @@ This package implements access to GRAMPS configuration.
 import os
 import re
 import logging
+import copy
 
 #---------------------------------------------------------------
 #
@@ -119,6 +120,11 @@ def load(filename=None, oldstyle=False):
 def emit(key):
     """ Module shortcut to call all callbacks associated with key """
     return CONFIGMAN.emit(key)
+
+def reset():
+    """ Module shortcut to call all callbacks associated with key """
+    global CONFIGMAN
+    CONFIGMAN = copy.deepcopy(FACTORY_SETTINGS)
 
 #---------------------------------------------------------------
 #
@@ -362,6 +368,8 @@ register('researcher.researcher-state', '')
 
 register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
+
+FACTORY_SETTINGS = copy.deepcopy(CONFIGMAN)
 
 #---------------------------------------------------------------
 #
