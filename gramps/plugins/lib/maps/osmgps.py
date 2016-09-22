@@ -185,6 +185,67 @@ class OsmGps:
         self.vbox.pack_start(self.osm, True, True, 0)
         self.goto_handle(handle=None)
 
+    def change_new_map(self, name, map_source):
+        """
+        Change the current map with a new provider
+        This map is not supported by osm-gps-map
+
+        name       : the name of the provider
+        map_source : the url to search for tiles
+        """
+        try:
+            self.osm.layer_remove_all()
+            self.osm.image_remove_all()
+            self.vbox.remove(self.osm)
+            self.osm.destroy()
+        except:
+            pass
+        tiles_path = os.path.join(config.get('geography.path'), name)
+        if not os.path.isdir(tiles_path):
+            try:
+                os.makedirs(tiles_path, 0o755) # create dir like mkdir -p
+            except:
+                ErrorDialog(_("Can't create "
+                              "tiles cache directory for '%s'.") %
+                              constants.MAP_TITLE[map_type],
+                            parent=self.uistate.window)
+        http_proxy = get_env_var('http_proxy')
+        if 0:
+            self.osm = DummyMapNoGpsPoint()
+        else:
+            if http_proxy:
+                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
+                                         proxy_uri=http_proxy,
+                                         repo_uri=map_source)
+            else:
+                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
+                                         repo_uri=map_source)
+        self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
+        current_map = osmgpsmap.MapOsd(show_dpad=False, show_zoom=True)
+        self.end_selection = None
+        self.osm.layer_add(current_map)
+        self.osm.layer_add(DummyLayer())
+        self.selection_layer = self.add_selection_layer()
+        self.kml_layer = self.add_kml_layer()
+        self.lifeway_layer = self.add_lifeway_layer()
+        self.marker_layer = self.add_marker_layer()
+        self.date_layer = self.add_date_layer()
+        self.message_layer = self.add_message_layer()
+        self.cross_map = osmgpsmap.MapOsd(show_crosshair=False)
+        self.set_crosshair(config.get("geography.show_cross"))
+        self.osm.set_center_and_zoom(config.get("geography.center-lat"),
+                                     config.get("geography.center-lon"),
+                                     config.get("geography.zoom"))
+
+        self.osm.connect('button_release_event', self.map_clicked)
+        self.osm.connect('button_press_event', self.map_clicked)
+        self.osm.connect("motion-notify-event", self.motion_event)
+        self.osm.connect('changed', self.zoom_changed)
+        self.update_shortcuts(True)
+        self.osm.show()
+        self.vbox.pack_start(self.osm, True, True, 0)
+        self.goto_handle(handle=None)
+
     def update_shortcuts(self, arg):
         """
         connect the keyboard or the keypad for shortcuts
