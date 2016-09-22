@@ -33,6 +33,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .. import Rule
+from gramps.gen.errors import HandleError
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +67,11 @@ class IsDuplicatedAncestorOf(Rule):
 
     def init_ancestor_list(self, db, person):
         fam_id = person.get_main_parents_family_handle()
-        fam = db.get_family_from_handle(fam_id)
+        try:
+            fam = db.get_family_from_handle(fam_id)
+        except HandleError:
+            # no such family; ignore
+            fam = None
         if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
