@@ -52,6 +52,7 @@ from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
                            PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
                            TAG_KEY, eval_order_by)
+from gramps.gen.errors import HandleError
 from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
@@ -1164,52 +1165,92 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_event_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Event.create(self._get_raw_event_data(handle))
+        data = self._get_raw_event_data(handle)
+        if data:
+            return Event.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_family_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Family.create(self._get_raw_family_data(handle))
+        data = self._get_raw_family_data(handle)
+        if data:
+            return Family.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_repository_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Repository.create(self._get_raw_repository_data(handle))
+        data = self._get_raw_repository_data(handle)
+        if data:
+            return Repository.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_person_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Person.create(self._get_raw_person_data(handle))
+        data = self._get_raw_person_data(handle)
+        if data:
+            return Person.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_place_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Place.create(self._get_raw_place_data(handle))
+        data = self._get_raw_place_data(handle)
+        if data:
+            return Place.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_citation_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Citation.create(self._get_raw_citation_data(handle))
+        data = self._get_raw_citation_data(handle)
+        if data:
+            return Citation.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_source_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Source.create(self._get_raw_source_data(handle))
+        data = self._get_raw_source_data(handle)
+        if data:
+            return Source.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_note_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Note.create(self._get_raw_note_data(handle))
+        data = self._get_raw_note_data(handle)
+        if data:
+            return Note.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_media_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Media.create(self._get_raw_media_data(handle))
+        data = self._get_raw_media_data(handle)
+        if data:
+            return Media.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        return Tag.create(self._get_raw_tag_data(handle))
+        data = self._get_raw_tag_data(handle)
+        if data:
+            return Tag.create(data)
+        else:
+            raise HandleError('Handle %s not found' % handle)
 
     def get_default_person(self):
         handle = self.get_default_handle()
