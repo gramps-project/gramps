@@ -25,7 +25,7 @@ import unittest
 import os
 import sys
 import re
-import logging
+#import logging
 
 from gramps.gen.merge.diff import diff_dbs, import_as_dict
 from gramps.gen.simple import SimpleAccess
@@ -33,9 +33,10 @@ from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.gen.utils.config import config
+from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter
 
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
 
 # the following defines where to find the test import and result files
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
@@ -177,7 +178,6 @@ def make_tst_function(tstfile, file_name):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
-        self.user = User(quiet=True)
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
@@ -192,12 +192,14 @@ def make_tst_function(tstfile, file_name):
             os.remove(fout)
         except OSError:
             pass
-        logging.info("\n**** %s ****", tstfile)
+        #logger.info("\n**** %s ****", tstfile)
         set_det_id(True)
-        self.database1 = import_as_dict(fn1, self.user,
-                                        skp_imp_adds=skp_imp_adds)
-        set_det_id(True)
-        self.database2 = import_as_dict(fn2, self.user)
+        with capture(None) as output:
+            self.user = User(quiet=True)
+            self.database1 = import_as_dict(fn1, self.user,
+                                            skp_imp_adds=skp_imp_adds)
+            set_det_id(True)
+            self.database2 = import_as_dict(fn2, self.user)
         self.assertIsNotNone(self.database1,
                              "Unable to import file: %s" % fn1)
         self.assertIsNotNone(self.database2,
@@ -230,6 +232,9 @@ def make_tst_function(tstfile, file_name):
                 msg = ""
             # if exception file matches exactly, we are done.
             if self.msg != msg:
+                self.msg = "\n****Captured Output****\n" + output[0] + \
+                    "\n****Captured Err****\n" + output[1] + \
+                    "\n****End Capture Err****\n" + self.msg
                 self.fail(self.msg)
     return tst
 
