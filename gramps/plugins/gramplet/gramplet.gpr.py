@@ -1307,7 +1307,7 @@ register(GRAMPLET,
          fname="coordinates.py",
          height=200,
          gramplet = 'GeoPersonEvents',
-         gramplet_title=_("Coordinates"),
+         gramplet_title=_("Events Coordinates"),
          navtypes=["Person"],
          )
 
@@ -1321,6 +1321,6 @@ register(GRAMPLET,
          fname="coordinates.py",
          height=200,
          gramplet = 'GeoFamilyEvents',
-         gramplet_title=_("Coordinates"),
+         gramplet_title=_("Events Coordinates"),
          navtypes=["Family"],
          )

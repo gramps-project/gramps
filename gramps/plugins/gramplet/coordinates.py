@@ -88,8 +88,9 @@ class GeoEvents(Gramplet, DbGUIElement):
                   (_('Date'), 3, 160),
                   ('', NOSORT, 50),
                   (_('Place'), 4, 300),
-                  (_('Latitude'), 5, 130),
-                  (_('Longitude'), 6, 130)
+                  (_('Id'), 5, 80),
+                  (_('Latitude'), 6, 130),
+                  (_('Longitude'), 7, 130),
                   ]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
@@ -104,10 +105,11 @@ class GeoEvents(Gramplet, DbGUIElement):
         event_sort = '%012d' % event.get_date_object().get_sort_value()
         place_name = place_displayer.display_event(self.dbstate.db, event)
         place_handle = event.get_place_handle()
-        latitude = longitude = ""
+        place_id = latitude = longitude = ""
         if place_handle:
             plc = self.dbstate.db.get_place_from_handle(place_handle)
             if plc:
+                place_id = plc.get_gramps_id()
                 latitude = plc.get_latitude()
                 longitude = plc.get_longitude()
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
@@ -122,6 +124,7 @@ class GeoEvents(Gramplet, DbGUIElement):
                         event_date,
                         event_sort,
                         place_name,
+                        place_id,
                         latitude,
                         longitude
                         ))
