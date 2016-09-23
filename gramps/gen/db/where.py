@@ -24,6 +24,69 @@ from meta.decompiler import _ast, decompile_func
 import copy
 
 class ParseFilter(Visitor):
+    """
+    This class is used to turn Python lambda expressions into AST
+    which is used as a SELECT statements in databases via the .where()
+    method. This is used by both BSDDB and SQL-based databases.
+
+    Not all Python is allowed as a where-clause, and some functions
+    used here are not real Python functions.
+
+    Examples:
+
+    db.Person.where(
+        lambda person: person.gramps_id == "I0001"
+    ).select()
+
+    Some uses look (and evaluate) like regular Python.
+
+    db.Person.where(
+        lambda person: LIKE(person.gramps_id, "I000%")
+    ).select()
+
+    LIKE is not a real Python function, but the syntax is used to
+    indicate a fuzzy match.
+
+    db.Family.where(
+        lambda family: LIKE(family.mother_handle.gramps_id, "I003%")
+    ).select()
+
+    LIKE uses % as a wildcard matching character, like ".*" in re.
+
+    db.Family.where(
+        lambda family: family.mother_handle.event_ref_list.ref.gramps_id == 'E0156'
+    ).select()
+
+    Here, property chaining is shown without having to check to see if
+    values actually exist. The checking for valid/existing properties
+    is done by the select system.
+
+    db.Family.where(
+        lambda family: family.mother_handle.event_ref_list[0] != None
+    ).select()
+
+    Indexing and use of None is allowed.
+
+    db.Person.where(
+        lambda person: person.private == True
+    ).select()
+
+    One current limitiation is that it cannot detect a boolean value,
+    so we must use the "== True" to make sure the proper code is
+    generated.
+
+    The following method names are dictated by meta's Visitor. Additional
+    methods can be added if an error is received such as:
+
+    AttributeError: visitXXX does not exist
+
+    The method must be added, return the proper value for that
+    syntax. May require recursive calls to process_ITEM().
+
+    Please see meta for more information:
+    http://srossross.github.io/Meta/html/index.html
+    """
+
     def visitName(self, node):
         return node.id
 
@@ -149,10 +212,11 @@ def eval_where(closure):
     """
     Given a closure, parse and evaluate it.
     Return a WHERE expression.
+
+    See ParseFilter.__doc__ for more information and examples.
     """
     parser = ParseFilter()
     parser.env = make_env(closure)
     ast_top = decompile_func(closure)
     result = parser.visit(ast_top)
     return result
-
