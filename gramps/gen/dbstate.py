@@ -203,16 +203,21 @@ class DbState(Callback):
                 else:
                     self.save_modules()
             mod = pmgr.load_plugin(pdata)
-            database = getattr(mod, pdata.databaseclass)
-            db = database()
-            import inspect
-            caller_frame = inspect.stack()[1]
-            _LOG.debug("Database class instance created Class:%s instance:%s. "
-                       "Called from File %s, line %s, in %s"
-                       % ((db.__class__.__name__, hex(id(db)))
-                         + (os.path.split(caller_frame[1])[1],)
-                         + tuple(caller_frame[i] for i in range(2, 4))))
-            return db
+            if mod:
+                database = getattr(mod, pdata.databaseclass)
+                db = database()
+                import inspect
+                caller_frame = inspect.stack()[1]
+                _LOG.debug("Database class instance created Class:%s instance:%s. "
+                           "Called from File %s, line %s, in %s"
+                           % ((db.__class__.__name__, hex(id(db)))
+                             + (os.path.split(caller_frame[1])[1],)
+                             + tuple(caller_frame[i] for i in range(2, 4))))
+                return db
+            else:
+                raise Exception("can't load database backend: '%s'" % plugin_id)
+        else:
+            raise Exception("no such database backend: '%s'" % plugin_id)
 
     def open_database(self, dbname, force_unlock=False, callback=None):
         """
