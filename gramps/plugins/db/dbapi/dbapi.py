@@ -443,16 +443,22 @@ class DBAPI(DbGeneric):
         txn.last = None
         self._after_commit(txn)
 
-    def get_metadata(self, key, default=None):
+    def get_metadata(self, key, default=[]):
         """
         Get an item from the database.
+
+        Default is an empty list, which is a mutable and
+        thus a bad default (pylint will complain).
+
+        However, it is just used as a value, and not altered, so
+        its use here is ok.
         """
         self.dbapi.execute(
             "SELECT value FROM metadata WHERE setting = ?;", [key])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
-        elif default == None:
+        elif default == []:
             return []
         else:
             return default
