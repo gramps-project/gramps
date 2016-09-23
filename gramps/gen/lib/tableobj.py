@@ -37,6 +37,7 @@ import time
 #
 #-------------------------------------------------------------------------
 from .baseobj import BaseObject
+from gramps.gen.errors import HandleError
 
 #-------------------------------------------------------------------------
 #
@@ -353,7 +354,13 @@ class TableObject(BaseObject):
                                 # start over here:
                                 obj = None
                                 if current:
-                                    obj = ptype.join(db, current)
+                                    try:
+                                        obj = ptype.join(db, current)
+                                    except HandleError:
+                                        if ignore_errors:
+                                            obj = None
+                                        else:
+                                            raise
                                 if part == "self":
                                     current = obj
                                     path_to = []
