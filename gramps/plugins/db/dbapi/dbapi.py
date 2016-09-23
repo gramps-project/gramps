@@ -163,8 +163,8 @@ class DBAPI(DbGeneric):
             "config": config_mgr
         }
         settings_file = os.path.join(directory, "settings.py")
-        with open(settings_file) as file:
-            code = compile(file.read(), settings_file, 'exec')
+        with open(settings_file) as fp:
+            code = compile(fp.read(), settings_file, 'exec')
             exec(code, globals(), settings)
         self.dbapi = settings["dbapi"]
 
@@ -443,7 +443,7 @@ class DBAPI(DbGeneric):
         txn.last = None
         self._after_commit(txn)
 
-    def get_metadata(self, key, default=[]):
+    def get_metadata(self, key, default=None):
         """
         Get an item from the database.
         """
@@ -452,7 +452,7 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
-        elif default == []:
+        elif default == None:
             return []
         else:
             return default
@@ -2059,7 +2059,7 @@ class DBAPI(DbGeneric):
         Given a list of field names and values, return the values
         in the appropriate type.
         """
-        return [v if type(v) is not bool else int(v) for v in values]
+        return [v if not isinstance(v, bool) else int(v) for v in values]
 
     def _sql_repr(self, value):
         """
