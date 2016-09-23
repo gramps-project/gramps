@@ -31,6 +31,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gui.editors import EditEvent
+from gramps.gui.editors import EditPlace
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
 from gramps.gen.plug.report.utils import find_spouse
@@ -79,9 +80,11 @@ class GeoEvents(Gramplet, DbGUIElement):
         """
         Build the GUI interface.
         """
-        tip = _('Double-click on a row to edit the selected event.')
+        tip = _('Right-click on a row to edit the selected event'
+                ' or the related place.')
         self.set_tooltip(tip)
         top = Gtk.TreeView()
+        top.set_hover_selection(True)
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
                   (_('Description'), 2, 250),
@@ -92,7 +95,7 @@ class GeoEvents(Gramplet, DbGUIElement):
                   (_('Latitude'), 6, 130),
                   (_('Longitude'), 7, 130),
                   ]
-        self.model = ListModel(top, titles, event_func=self.edit_event)
+        self.model = ListModel(top, titles, right_click=self.menu_edit)
         return top
 
     def add_event_ref(self, event_ref, spouse=None, name=""):
@@ -129,7 +132,45 @@ class GeoEvents(Gramplet, DbGUIElement):
                         longitude
                         ))
 
-    def edit_event(self, treeview):
+    def menu_edit(self, treeview, event):
+        """
+        Show a menu to select either Edit the selected event or
+        the Place related to this event.
+        """
+        self.menu = Gtk.Menu()
+        menu = self.menu
+        menu.set_title(_('Edit'))
+        title = _('Edit the event')
+        add_item = Gtk.MenuItem(label=title)
+        add_item.connect("activate", self.edit_event, treeview)
+        add_item.show()
+        menu.append(add_item)
+        title = _('Edit the place')
+        add_item = Gtk.MenuItem(label=title)
+        add_item.connect("activate", self.edit_place, treeview)
+        add_item.show()
+        menu.append(add_item)
+        menu.show()
+        menu.popup(None, None, None, None, event.button, event.time)
+
+    def edit_place(self, menuitem, treeview):
+        """
+        Edit the place related to the selected event.
+        """
+        model, iter_ = treeview.get_selection().get_selected()
+        if iter_:
+            handle = model.get_value(iter_, 0)
+            try:
+                event = self.dbstate.db.get_event_from_handle(handle)
+                place_handle = event.get_place_handle()
+                place_id = latitude = longitude = ""
+                if place_handle:
+                    plc = self.dbstate.db.get_place_from_handle(place_handle)
+                    EditPlace(self.dbstate, self.uistate, [], plc)
+            except WindowActiveError:
+                pass
+
+    def edit_event(self, menuitem, treeview):
         """
         Edit the selected event.
         """
