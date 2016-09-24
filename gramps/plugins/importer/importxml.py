@@ -361,9 +361,10 @@ class LineParser:
                 #           will not work properly, going immediately to
                 #           100%.
                 #           It should work correctly from version 3.3.
-                ofile = io.TextIOWrapper(gzip.open(filename, "rb"))
+                ofile = io.TextIOWrapper(gzip.open(filename, "rb"),
+                                         encoding='utf8', errors='replace')
             else:
-                ofile = open(filename, "r")
+                ofile = open(filename, "r", encoding='utf8', errors='replace')
 
             for line in ofile:
                 self.count += 1
