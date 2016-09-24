@@ -401,10 +401,6 @@ Validated Combo Entry
 Validated Masked Entry
 *****************************
 .. automodule:: gramps.gui.widgets.validatedmaskedentry
-.. autoclass:: FadeOut
-   :members:
-   :undoc-members:
-   :show-inheritance:
 .. autoclass:: MaskedEntry
    :members:
    :undoc-members:
