@@ -42,7 +42,7 @@ SPHINXBUILD   = 'sphinx-build'
 if sys.platform == 'win32':
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python.exe')
     sphinxCmd = os.path.join(sys.prefix, 'bin', 'sphinx-build.exe')
-elif sys.platform in ['linux2', 'darwin', 'cygwin']:
+elif sys.platform in ['linux', 'linux2', 'darwin', 'cygwin']:
     pythonCmd = os.path.join(sys.prefix, 'bin', 'python')
     sphinxCmd = SPHINXBUILD
 else:
@@ -62,7 +62,7 @@ def tests():
         print ('Please, install python')
 
     try:
-        print("\n=================='Shpinx-build'=============================\n")
+        print("\n=================='sphinx-build'=============================\n")
         os.system('''%(program)s''' % {'program': sphinxCmd})
     except:
         print ('Please, install sphinx')
