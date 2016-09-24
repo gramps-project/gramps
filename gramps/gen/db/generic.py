@@ -1795,7 +1795,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if self._directory:
             if update:
-                self.autobackup(user)
+                if config.get('database.autobackup'):
+                    self.autobackup(user)
                 # This is just a dummy file to indicate last modified time of the
                 # database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")

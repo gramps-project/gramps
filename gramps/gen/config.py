@@ -159,6 +159,7 @@ register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-projec
 
 register('database.backend', 'bsddb')
 register('database.compress-backup', True)
+register('database.autobackup', True) ## make backup when exiting, if there are changes
 register('database.path', os.path.join(HOME_DIR, 'grampsdb'))
 
 register('export.proxy-order',
