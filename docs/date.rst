@@ -257,7 +257,7 @@ DateHandler (Serbian)
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gramps.gen.datehandler._date_sr.DateDisplaySR_latin
+.. autoclass:: gramps.gen.datehandler._date_sr.DateDisplaySR_Latin
    :members:
    :undoc-members:
    :show-inheritance:

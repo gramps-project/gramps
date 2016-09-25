@@ -218,7 +218,7 @@ Citation
 
 Media Object
 ====================================
-.. automodule:: gramps.gen.lib.mediaobj
+.. automodule:: gramps.gen.lib.media
 .. autoclass:: Media
    :members:
    :undoc-members:
@@ -565,15 +565,3 @@ UrlType
    :undoc-members:
    :show-inheritance:
 
-*****************************
-Privacy
-*****************************
-
-PrivateSourceNote
-=================
-
-.. automodule:: gramps.gen.lib.privsrcnote
-.. autoclass:: PrivateSourceNote
-   :members:
-   :undoc-members:
-   :show-inheritance:
