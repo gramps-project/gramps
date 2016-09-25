@@ -64,7 +64,7 @@ def importData(database, filename, user):
     parser = VCardParser(database)
     try:
         with OpenFileOrStdin(filename) as filehandle:
-            parser.parse(filehandle)
+            parser.parse(filehandle, user)
     except EnvironmentError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
@@ -193,6 +193,8 @@ class VCardParser:
         self.trans = None
         self.version = None
         self.person = None
+        self.errors = []
+        self.number_of_errors = 0
 
     def __get_next_line(self, filehandle):
         """
@@ -202,6 +204,7 @@ class VCardParser:
         """
         line = self.next_line
         self.next_line = filehandle.readline()
+        self.line_num = self.line_num + 1
         while self.next_line and self.next_line[0] in self.LINE_CONTINUATION:
             line = line.rstrip("\n")
             #TODO perhaps next lines superflous because of rU open parameter?
@@ -209,13 +212,23 @@ class VCardParser:
                 line = line[:-1]
             line += self.next_line[1:]
             self.next_line = filehandle.readline()
+            self.line_num = self.line_num + 1
         if line:
             line = line.strip()
         else:
             line = None
         return line
 
-    def parse(self, filehandle):
+    def __add_msg(self, problem, line=None):
+        if problem != "":
+            self.number_of_errors += 1
+        if line:
+            message = "Line %5d: %s\n" % (line, problem, )
+        else:
+            message = problem + "\n"
+        self.errors.append(message)
+
+    def parse(self, filehandle, user):
         """
         Prepare the database and parse the input file.
 
@@ -234,10 +247,23 @@ class VCardParser:
                        'Import Complete: {number_of} seconds', tym
                       ).format(number_of=tym)
         LOG.debug(msg)
+        if self.number_of_errors == 0:
+            message  = _("VCARD import report: No errors detected")
+        else:
+            message = _("VCARD import report: %s errors detected\n") % \
+                self.number_of_errors
+        if hasattr(user.uistate, 'window'):
+            parent_window = user.uistate.window
+        else:
+            parent_window = None
+        user.info(message, "".join(self.errors),
+                  parent=parent_window, monospaced=True)
 
     def _parse_vCard_file(self, filehandle):
         """Read each line of the input file and act accordingly."""
         self.next_line = filehandle.readline()
+        self.line_num = 1
+
         while True:
             line = self.__get_next_line(filehandle)
             if line is None:
@@ -289,8 +315,8 @@ class VCardParser:
                 # Included cause VCards made by Gramps have this prop.
                 pass
             else:
-                LOG.warning("Token >%s< unknown. line skipped: %s" %
-                        (fields[0],line))
+                self.__add_msg("Token >%s< unknown. line skipped: %s" %
+                               (fields[0], line), self.line_num-1)
 
     def finish_person(self):
         """All info has been collected, write to database."""
@@ -303,8 +329,9 @@ class VCardParser:
         """A VCard for another person is started."""
         if self.person is not None:
             self.finish_person()
-            LOG.warning("BEGIN property not properly closed by END property, "
-                        "Gramps can't cope with nested VCards.")
+            self.__add_msg("BEGIN property not properly closed by END "
+                           "property, Gramps can't cope with nested VCards.",
+                           self.line_num-1)
         self.person = Person()
         self.formatted_name = ''
         self.name_parts = ''
@@ -333,15 +360,17 @@ class VCardParser:
         Returns True on success, False on failure.
         """
         if not self.name_parts.strip():
-            LOG.warning("VCard is malformed missing the compulsory N property,"
-                        " so there is no name; skip it.")
+            self.__add_msg("VCard is malformed missing the compulsory N "
+                           "property, so there is no name; skip it.",
+                           self.line_num-1)
             return False
         if not self.formatted_name:
-            LOG.warning("VCard is malformed missing the compulsory FN property"
-                        ", get name from N alone.")
+            self.__add_msg("VCard is malformed missing the compulsory FN "
+                           "property, get name from N alone.", self.line_num-1)
         data_fields = self.split_unescaped(self.name_parts, ';')
         if len(data_fields) != 5:
-            LOG.warning("VCard is malformed wrong number of name components.")
+            self.__add_msg("VCard is malformed wrong number of name "
+                           "components.", self.line_num-1)
 
         name = Name()
         name.set_type(NameType(NameType.BIRTH))
@@ -477,23 +506,23 @@ class VCardParser:
             y, m, d = [int(x, 10) for x in date_str.split('-')]
             try:
                 date.set(value=(d, m, y, False))
-            except DateError as e:
-                # TRANSLATORS: leave the {date} and {vcard_snippet} untranslated
-                # in the format string, but you may re-order them if needed.
-                LOG.warning(_(
-                    "Invalid date {date} in BDAY {vcard_snippet}, "
+            except DateError:
+                # TRANSLATORS: leave the {vcard_snippet} untranslated
+                # in the format string, but you may re-order it if needed.
+                self.__add_msg(_(
+                    "Invalid date in BDAY {vcard_snippet}, "
                     "preserving date as text."
-                    ).format(date=e.date.to_struct(), vcard_snippet=data))
+                    ).format(vcard_snippet=data), self.line_num-1)
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
         else:
             if date_str:
                 # TRANSLATORS: leave the {vcard_snippet} untranslated.
-                LOG.warning(_(
-                    "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, "
-                    "preserving date as text."
-                    ).format(vcard_snippet=date_str))
+                self.__add_msg(_(
+                    "Date {vcard_snippet} not in appropriate format "
+                    "yyyy-mm-dd, preserving date as text."
+                    ).format(vcard_snippet=date_str), self.line_num-1)
                 date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
-            else: # silently ignore an empty BDAY record
+            else:  # silently ignore an empty BDAY record
                 return
         event = Event()
         event.set_type(EventType(EventType.BIRTH))
