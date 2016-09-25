@@ -565,15 +565,3 @@ UrlType
    :undoc-members:
    :show-inheritance:
 
-*****************************
-Privacy
-*****************************
-
-PrivateSourceNote
-=================
-
-.. automodule:: gramps.gen.lib.privsrcnote
-.. autoclass:: PrivateSourceNote
-   :members:
-   :undoc-members:
-   :show-inheritance:
