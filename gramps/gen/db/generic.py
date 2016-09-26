@@ -1165,6 +1165,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_event_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_event_data(handle)
         if data:
             return Event.create(data)
@@ -1174,6 +1178,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_family_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_family_data(handle)
         if data:
             return Family.create(data)
@@ -1183,6 +1191,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_repository_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_repository_data(handle)
         if data:
             return Repository.create(data)
@@ -1192,6 +1204,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_person_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_person_data(handle)
         if data:
             return Person.create(data)
@@ -1201,6 +1217,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_place_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_place_data(handle)
         if data:
             return Place.create(data)
@@ -1210,6 +1230,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_citation_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_citation_data(handle)
         if data:
             return Citation.create(data)
@@ -1219,6 +1243,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_source_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_source_data(handle)
         if data:
             return Source.create(data)
@@ -1228,6 +1256,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_note_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_note_data(handle)
         if data:
             return Note.create(data)
@@ -1237,6 +1269,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_media_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_media_data(handle)
         if data:
             return Media.create(data)
@@ -1246,6 +1282,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_tag_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
+        if handle is None:
+            raise HandleError('Handle is None')
+        if not handle:
+            raise HandleError('Handle is empty')
         data = self._get_raw_tag_data(handle)
         if data:
             return Tag.create(data)
