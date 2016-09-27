@@ -29,10 +29,11 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from random import randint,choice,random
+import sys
+import os
+import random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-import time
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +58,7 @@ from gramps.gen.lib.addressbase import AddressBase
 from gramps.gen.lib.attrbase import AttributeBase
 from gramps.gen.lib.primaryobj import BasicPrimaryObject
 from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.lib.date import Today
 from gramps.gen.lib.datebase import DateBase
 from gramps.gen.lib.ldsordbase import LdsOrdBase
 from gramps.gen.lib.locationbase import LocationBase
@@ -84,6 +86,21 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('Generate_Testcases_for_Persons_and_Families')
+
+# the following allows test code to access a private copy of the random
+# number generator.  The access is typically used for seeding the generator
+# to make it repeatable across runs.  The private copy is unaffected by other
+# uses of the global random() functions.
+try:
+    from gramps.gen.const import myrand
+except (NameError, ImportError):
+    myrand = random.Random()
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+_random = myrand.random
+_choice = myrand.choice
+_randint = myrand.randint
+
 
 LDS_ORD_BAPT_STATUS = (
         LdsOrd.STATUS_NONE,
@@ -227,11 +244,11 @@ class TestcaseGenerator(tool.BatchTool):
             except AttributeError:
                 death = None
             if not birth and not death:
-                birth = randint(1700,1900)
+                birth = _randint(1700, 1900)
             if birth and not death:
-                death = birth + randint(20,90)
+                death = birth + _randint(20, 90)
             if death and not birth:
-                birth = death - randint(20,90)
+                birth = death - _randint(20, 90)
             self.person_dates[self.person.get_handle()] = (birth,death)
 
             self.persons_todo.append(self.person.get_handle())
@@ -354,7 +371,7 @@ class TestcaseGenerator(tool.BatchTool):
         if self.options.handler.options_dict['bugs']:
             with self.progress(_('Generating testcases'),
                                _('Generating database errors'),
-                               18) as step:
+                               19) as step:
                 self.generate_data_errors(step)
 
         if self.options.handler.options_dict['persons']:
@@ -371,9 +388,9 @@ class TestcaseGenerator(tool.BatchTool):
                         self.parents_todo.append( ph)
                     person_h = self.persons_todo.pop(0)
                     self.generate_family(person_h)
-                    if randint(0,3) == 0:
+                    if _randint(0, 3) == 0:
                         self.generate_family(person_h)
-                    if randint(0,7) == 0:
+                    if _randint(0, 7) == 0:
                         self.generate_family(person_h)
                     if self.person_count > self.options.handler.options_dict['person_count']:
                         break
@@ -397,7 +414,7 @@ class TestcaseGenerator(tool.BatchTool):
 
         self.test_fix_encoding(); step()
         self.test_fix_ctrlchars_in_notes(); step()
-        self.test_cleanup_missing_photos(); step()
+        self.test_fix_alt_place_names(); step()
         self.test_cleanup_deleted_name_formats(); step()
         self.test_cleanup_empty_objects(); step()
         self.test_check_for_broken_family_links(); step()
@@ -421,7 +438,7 @@ class TestcaseGenerator(tool.BatchTool):
 
             o = Note()
             o.set("dup 1" + self.rand_text(self.NOTE))
-            o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
+            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
             o.set_type( self.rand_type(NoteType()))
             h = self.db.add_note(o, self.trans)
             print("object %s, handle %s, Gramps_Id %s" % (o, o.handle,
@@ -431,13 +448,13 @@ class TestcaseGenerator(tool.BatchTool):
 
             o = Source()
             o.set_title("dup 2" + self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_author( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_publication_info( self.rand_text(self.LONG))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 sattr = SrcAttribute()
                 sattr.set_type(self.rand_text(self.SHORT))
                 sattr.set_value(self.rand_text(self.SHORT))
@@ -502,9 +519,37 @@ class TestcaseGenerator(tool.BatchTool):
 
             o = Note()
             o.set("This is a text note with a \x03 control character")
-            o.set_format(choice( (Note.FLOWED,Note.FORMATTED)))
+            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
             o.set_type(self.rand_type(NoteType()))
             self.db.add_note(o, self.trans)
+
+    def test_fix_alt_place_names(self):
+        """
+        Creates a place with a duplicate of primary in alt_names,
+        a blank alt_name, and a duplicate of one of the alt_names. Also
+        include two alt names that are almost duplicates, but not quite.
+        This tests Check.fix_alt_place_names()
+        """
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+
+            plac = Place()
+            pri_name = PlaceName()
+            pri_name.set_value("Primary name")
+            alt_name1 = PlaceName()
+            alt_name1.set_value("Alt name 1")
+            alt_name2 = PlaceName()
+            alt_name2.set_value("Alt name 1")
+            alt_name2.set_language("testish")
+            alt_name3 = PlaceName()
+            alt_name3.set_value("Alt name 1")
+            alt_name3.set_date_object(Today())
+            alt_names = [pri_name, alt_name1, alt_name1, PlaceName(),
+                         alt_name2, alt_name3]
+            plac.set_name(pri_name)
+            plac.set_alternative_names(alt_names)
+            self.db.add_place(plac, self.trans)
 
     def test_cleanup_missing_photos(self):
         pass
@@ -987,14 +1032,14 @@ class TestcaseGenerator(tool.BatchTool):
         #         Address
         m = Media()
         m.set_description(message)
-        m.set_path(str(ICON))
+        m.set_path(os.path.abspath(str(ICON)))
         m.set_mime_type(get_type(m.get_path()))
-        m.add_citation(choice(c_h_list))
+        m.add_citation(_choice(c_h_list))
         # Media : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         m.add_attribute(a)
         self.db.add_media(m, self.trans)
 
@@ -1006,28 +1051,28 @@ class TestcaseGenerator(tool.BatchTool):
         fam.set_mother_handle(person2_h)
         fam.set_relationship((FamilyRelType.MARRIED,''))
         # Family
-        fam.add_citation(choice(c_h_list))
+        fam.add_citation(_choice(c_h_list))
         # Family : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         fam.add_attribute(a)
         # Family : ChildRef
         child_ref = ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
-        child_ref.add_citation(choice(c_h_list))
+        child_ref.add_citation(_choice(c_h_list))
         fam.add_child_ref(child_ref)
         # Family : MediaRef
         mr = MediaRef()
         mr.set_reference_handle(m.handle)
-        mr.add_citation(choice(c_h_list))
+        mr.add_citation(_choice(c_h_list))
         # Family : MediaRef : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         mr.add_attribute(a)
         fam.add_media_reference(mr)
         # Family : LDSORD
@@ -1036,10 +1081,9 @@ class TestcaseGenerator(tool.BatchTool):
         # TODO: adapt type and status to family/person
         #if isinstance(o,Person):
         #if isinstance(o,Family):
-        ldsord.set_type( choice(
-            [item[0] for item in LdsOrd._TYPE_MAP] ))
-        ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
-        ldsord.add_citation(choice(c_h_list))
+        ldsord.set_type(_choice([item[0] for item in LdsOrd._TYPE_MAP]))
+        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP)-1))
+        ldsord.add_citation(_choice(c_h_list))
         fam.add_lds_ord(ldsord)
         # Family : EventRef
         e = Event()
@@ -1055,29 +1099,29 @@ class TestcaseGenerator(tool.BatchTool):
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         er.add_attribute(a)
         fam.add_event_ref(er)
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
         # Person
-        person1.add_citation(choice(c_h_list))
+        person1.add_citation(_choice(c_h_list))
         # Person : Name
         alt_name = Name(person1.get_primary_name())
         alt_name.set_first_name(message)
-        alt_name.add_citation(choice(c_h_list))
+        alt_name.add_citation(_choice(c_h_list))
         person1.add_alternate_name(alt_name)
         # Person : Address
         a = Address()
         a.set_street(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         person1.add_address(a)
         # Person : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         person1.add_attribute(a)
         # Person : PersonRef
         asso_h = self.generate_person()
@@ -1085,17 +1129,17 @@ class TestcaseGenerator(tool.BatchTool):
         asso.set_reference_handle(asso_h)
         asso.set_relation(self.rand_text(self.SHORT))
         self.fill_object(asso)
-        asso.add_citation(choice(c_h_list))
+        asso.add_citation(_choice(c_h_list))
         person1.add_person_ref(asso)
         # Person : MediaRef
         mr = MediaRef()
         mr.set_reference_handle(m.handle)
-        mr.add_citation(choice(c_h_list))
+        mr.add_citation(_choice(c_h_list))
         # Person : MediaRef : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         mr.add_attribute(a)
         person1.add_media_reference(mr)
         # Person : LDSORD
@@ -1104,10 +1148,10 @@ class TestcaseGenerator(tool.BatchTool):
         # TODO: adapt type and status to family/person
         #if isinstance(o,Person):
         #if isinstance(o,Family):
-        ldsord.set_type( choice(
+        ldsord.set_type(_choice(
             [item[0] for item in LdsOrd._TYPE_MAP] ))
-        ldsord.set_status( randint(0,len(LdsOrd._STATUS_MAP)-1))
-        ldsord.add_citation(choice(c_h_list))
+        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP)-1))
+        ldsord.add_citation(_choice(c_h_list))
         person1.add_lds_ord(ldsord)
         # Person : EventRef
         e = Event()
@@ -1123,7 +1167,7 @@ class TestcaseGenerator(tool.BatchTool):
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         er.add_attribute(a)
         person1.add_event_ref(er)
         self.db.commit_person(person1,self.trans)
@@ -1135,38 +1179,38 @@ class TestcaseGenerator(tool.BatchTool):
         e.set_description(message)
         e.set_type(EventType.MARRIAGE)
         # Event
-        e.add_citation(choice(c_h_list))
+        e.add_citation(_choice(c_h_list))
         # Event : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         e.add_attribute(a)
         # Event : MediaRef
         mr = MediaRef()
         mr.set_reference_handle(m.handle)
-        mr.add_citation(choice(c_h_list))
+        mr.add_citation(_choice(c_h_list))
         # Event : MediaRef : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         mr.add_attribute(a)
         e.add_media_reference(mr)
         self.db.add_event(e, self.trans)
 
         p = Place()
         p.set_title(message)
-        p.add_citation(choice(c_h_list))
+        p.add_citation(_choice(c_h_list))
         # Place : MediaRef
         mr = MediaRef()
         mr.set_reference_handle(m.handle)
-        mr.add_citation(choice(c_h_list))
+        mr.add_citation(_choice(c_h_list))
         # Place : MediaRef : Attribute
         a = Attribute()
         a.set_type(self.rand_type(AttributeType()))
         a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         mr.add_attribute(a)
         p.add_media_reference(mr)
         self.db.add_place(p, self.trans)
@@ -1177,7 +1221,7 @@ class TestcaseGenerator(tool.BatchTool):
         # Repository : Address
         a = Address()
         a.set_street(message)
-        a.add_citation(choice(c_h_list))
+        a.add_citation(_choice(c_h_list))
         r.add_address(a)
         self.db.add_repository(r, self.trans)
 
@@ -1202,8 +1246,8 @@ class TestcaseGenerator(tool.BatchTool):
 
         # Gender
         if gender is None:
-            gender = randint(0,1)
-        if randint(0,10) == 1:  # Set some persons to unknown gender
+            gender = _randint(0, 1)
+        if _randint(0, 10) == 1:  # Set some persons to unknown gender
             np.set_gender(Person.UNKNOWN)
         else:
             np.set_gender(gender)
@@ -1223,105 +1267,105 @@ class TestcaseGenerator(tool.BatchTool):
         if firstname2 != firstname:
             alt_name = Name(name)
             self.fill_object( alt_name)
-            if randint(0,2) == 1:
+            if _randint(0, 2) == 1:
                 surname = Surname()
                 surname.set_surname(self.rand_text(self.LASTNAME))
                 alt_name.add_surname(surname)
-            elif randint(0,2) == 1:
+            elif _randint(0, 2) == 1:
                 surname = Surname()
                 surname.set_surname(lastname)
                 alt_name.add_surname(surname)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_first_name( firstname2)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 patronymic = Surname()
                 patronymic.set_surname( self.rand_text(self.FIRSTNAME_MALE))
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_suffix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
             np.add_alternate_name( alt_name)
         firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
             alt_name = Name(name)
             self.fill_object( alt_name)
-            if randint(0,2) == 1:
+            if _randint(0, 2) == 1:
                 surname = Surname()
                 surname.set_surname(self.rand_text(self.LASTNAME))
                 alt_name.add_surname(surname)
-            elif randint(0,2) == 1:
+            elif _randint(0, 2) == 1:
                 surname = Surname()
                 surname.set_surname(lastname)
                 alt_name.add_surname(surname)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_first_name( firstname2)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_suffix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
             np.add_alternate_name( alt_name)
 
         if not alive_in_year:
-            alive_in_year = randint(1700,2000)
+            alive_in_year = _randint(1700, 2000)
 
-        by = alive_in_year - randint(0,60)
-        dy = alive_in_year + randint(0,60)
+        by = alive_in_year - _randint(0, 60)
+        dy = alive_in_year + _randint(0, 60)
 
         # birth
-        if randint(0,1) == 1:
+        if _randint(0, 1) == 1:
             (birth_year, eref) = self.rand_personal_event( EventType.BIRTH, by,by)
             np.set_birth_ref(eref)
 
         # baptism
-        if randint(0,1) == 1:
+        if _randint(0, 1) == 1:
             (bapt_year, eref) = self.rand_personal_event(
-                choice( (EventType.BAPTISM, EventType.CHRISTEN)), by, by+2)
+                _choice((EventType.BAPTISM, EventType.CHRISTEN)), by, by+2)
             np.add_event_ref(eref)
 
         # death
         death_year = None
-        if randint(0,1) == 1:
+        if _randint(0, 1) == 1:
             (death_year, eref) = self.rand_personal_event( EventType.DEATH, dy,dy)
             np.set_death_ref(eref)
 
         # burial
-        if randint(0,1) == 1:
+        if _randint(0, 1) == 1:
             (bur_year, eref) = self.rand_personal_event(
-                choice( (EventType.BURIAL, EventType.CREMATION)), dy, dy+2)
+                _choice((EventType.BURIAL, EventType.CREMATION)), dy, dy+2)
             np.add_event_ref(eref)
 
         # some other events
-        while randint(0,5) == 1:
+        while _randint(0, 5) == 1:
             (birth_year, eref) = self.rand_personal_event( None, by,dy)
             np.add_event_ref(eref)
 
         # some shared events
         if self.generated_events:
-            while randint(0,5) == 1:
-                e_h = choice(self.generated_events)
+            while _randint(0, 5) == 1:
+                e_h = _choice(self.generated_events)
                 eref = EventRef()
                 self.fill_object( eref)
                 eref.set_reference_handle(e_h)
                 np.add_event_ref(eref)
 
         # PersonRef
-        if randint(0,3) == 1:
-            for i in range(0,randint(1,2)):
+        if _randint(0, 3) == 1:
+            for i in range(0, _randint(1, 2)):
                 if self.person_count > self.options.handler.options_dict['person_count']:
                     break
                 if alive_in_year:
@@ -1333,7 +1377,7 @@ class TestcaseGenerator(tool.BatchTool):
                 asso.set_relation(self.rand_text(self.SHORT))
                 self.fill_object(asso)
                 np.add_person_ref(asso)
-                if randint(0,2) == 0:
+                if _randint(0, 2) == 0:
                     self.persons_todo.append(asso_h)
 
         person_handle = self.db.add_person(np,self.trans)
@@ -1353,10 +1397,10 @@ class TestcaseGenerator(tool.BatchTool):
         alive_in_year = None
         if person1_h in self.person_dates:
             (born, died) = self.person_dates[person1_h]
-            alive_in_year = min( born+randint(10,50), died + randint(-10,10))
+            alive_in_year = min(born+_randint(10, 50), died+_randint(-10, 10))
 
         if person1.get_gender() == 1:
-            if randint(0,7)==1:
+            if _randint(0, 7) == 1:
                 person2_h = None
             else:
                 if alive_in_year:
@@ -1365,7 +1409,7 @@ class TestcaseGenerator(tool.BatchTool):
                     person2_h = self.generate_person(0)
         else:
             person2_h = person1_h
-            if randint(0,7)==1:
+            if _randint(0, 7) == 1:
                 person1_h = None
             else:
                 if alive_in_year:
@@ -1373,9 +1417,9 @@ class TestcaseGenerator(tool.BatchTool):
                 else:
                     person1_h = self.generate_person(1)
 
-        if person1_h and randint(0,2) > 0:
+        if person1_h and _randint(0, 2) > 0:
             self.parents_todo.append(person1_h)
-        if person2_h and randint(0,2) > 0:
+        if person2_h and _randint(0, 2) > 0:
             self.parents_todo.append(person2_h)
 
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
@@ -1392,13 +1436,13 @@ class TestcaseGenerator(tool.BatchTool):
             event_set = set()
 
             # Generate at least one family event with a probability of 75%
-            if randint(0, 3) > 0:
+            if _randint(0, 3) > 0:
                 (birth_year, eref) = self.rand_family_event(None)
                 fam.add_event_ref(eref)
                 event_set.add(eref.get_reference_handle())
 
             # generate some more events with a lower probability
-            while randint(0, 3) == 1:
+            while _randint(0, 3) == 1:
                 (birth_year, eref) = self.rand_family_event(None)
                 if eref.get_reference_handle() in event_set:
                     continue
@@ -1407,10 +1451,10 @@ class TestcaseGenerator(tool.BatchTool):
 
             # some shared events
             if self.generated_events:
-                while randint(0, 5) == 1:
+                while _randint(0, 5) == 1:
                     typeval = EventType.UNKNOWN
                     while int(typeval) not in self.FAMILY_EVENTS:
-                        e_h = choice(self.generated_events)
+                        e_h = _choice(self.generated_events)
                         typeval = self.db.get_event_from_handle(e_h).get_type()
                     if e_h in event_set:
                         break
@@ -1434,11 +1478,12 @@ class TestcaseGenerator(tool.BatchTool):
 
             lastname = person1.get_primary_name().get_surname()
 
-            for i in range(0,randint(1,10)):
+            for i in range(0, _randint(1, 10)):
                 if self.person_count > self.options.handler.options_dict['person_count']:
                     break
                 if alive_in_year:
-                    child_h = self.generate_person(None, lastname, alive_in_year = alive_in_year + randint( 16+2*i, 30 + 2*i))
+                    child_h = self.generate_person(None, lastname,
+                        alive_in_year=alive_in_year + _randint(16+2*i, 30+2*i))
                 else:
                     child_h = self.generate_person(None, lastname)
                     (born,died) = self.person_dates[child_h]
@@ -1452,7 +1497,7 @@ class TestcaseGenerator(tool.BatchTool):
                 child = self.db.get_person_from_handle(child_h)
                 child.add_parent_family_handle(fam_h)
                 self.db.commit_person(child,self.trans)
-                if randint(0,3) > 0:
+                if _randint(0, 3) > 0:
                     self.persons_todo.append(child_h)
 
     def generate_parents(self,child_h):
@@ -1474,9 +1519,9 @@ class TestcaseGenerator(tool.BatchTool):
             person1_h = self.generate_person(1,lastname)
             person2_h = self.generate_person(0)
 
-        if randint(0,2) > 1:
+        if _randint(0, 2) > 1:
             self.parents_todo.append(person1_h)
-        if randint(0,2) > 1:
+        if _randint(0, 2) > 1:
             self.parents_todo.append(person2_h)
 
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
@@ -1533,46 +1578,47 @@ class TestcaseGenerator(tool.BatchTool):
         Generates a random date object between the given years start and end
         """
         if not start and not end:
-            start = randint(1700,2000)
+            start = _randint(1700, 2000)
         if start and not end:
-            end = start + randint(0,100)
+            end = start + _randint(0, 100)
         if end and not start:
-            start = end - randint(0,100)
-        year = randint(start,end)
+            start = end - _randint(0, 100)
+        year = _randint(start, end)
 
         ndate = Date()
-        if randint(0,10) == 1:
+        if _randint(0, 10) == 1:
             # Some get a textual date
-            ndate.set_as_text( choice((self.rand_text(self.SHORT),"Unknown","??","Don't know","TODO!")))
+            ndate.set_as_text(_choice((self.rand_text(self.SHORT), "Unknown",
+                                       "??", "Don't know", "TODO!")))
         else:
-            if randint(0,10) == 1:
+            if _randint(0, 10) == 1:
                 # some get an empty date
                 pass
             else:
                 # regular dates
                 calendar = Date.CAL_GREGORIAN
-                quality = choice( (Date.QUAL_NONE,
+                quality = _choice((Date.QUAL_NONE,
                                    Date.QUAL_ESTIMATED,
                                    Date.QUAL_CALCULATED))
-                modifier = choice( (Date.MOD_NONE,
+                modifier = _choice((Date.MOD_NONE,
                                     Date.MOD_BEFORE,
                                     Date.MOD_AFTER,\
                                     Date.MOD_ABOUT,
                                     Date.MOD_RANGE,
                                     Date.MOD_SPAN))
-                day = randint(0,28)
+                day = _randint(0, 28)
                 if day > 0: # avoid days without month
-                    month = randint(1,12)
+                    month = _randint(1, 12)
                 else:
-                    month = randint(0,12)
+                    month = _randint(0, 12)
 
                 if modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
-                    day2 = randint(0,28)
+                    day2 = _randint(0, 28)
                     if day2 > 0:
-                        month2 = randint(1,12)
+                        month2 = _randint(1, 12)
                     else:
-                        month2 = randint(0,12)
-                    year2 = year + randint(1,5)
+                        month2 = _randint(0, 12)
+                    year2 = year + _randint(1, 5)
                     ndate.set(quality,modifier,calendar,(day,month,year,False,day2,month2,year2,False),"")
                 else:
                     ndate.set(quality,modifier,calendar,(day,month,year,False),"")
@@ -1583,7 +1629,7 @@ class TestcaseGenerator(tool.BatchTool):
 
 
         if issubclass(o.__class__, AddressBase):
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 a = Address()
                 self.fill_object(a)
                 o.add_address( a)
@@ -1593,119 +1639,120 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_value( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__, AttributeBase):
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 a = Attribute()
                 self.fill_object(a)
                 o.add_attribute( a)
 
         if isinstance(o,ChildRef):
-            if randint(0,3) == 1:
+            if _randint(0, 3) == 1:
                 o.set_mother_relation( self.rand_type( ChildRefType()))
-            if randint(0,3) == 1:
+            if _randint(0, 3) == 1:
                 o.set_father_relation( self.rand_type( ChildRefType()))
 
         if issubclass(o.__class__, DateBase):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
 
         if isinstance(o,Event):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_description( self.rand_text(self.LONG))
 
         if issubclass(o.__class__, EventRef):
             o.set_role( self.rand_type(EventRoleType()))
 
         if isinstance(o,Family):
-            if randint(0,2) == 1:
+            if _randint(0, 2) == 1:
                 o.set_relationship( self.rand_type(FamilyRelType()))
             else:
                 o.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
 
         if isinstance(o,LdsOrd):
-            if randint(0,1) == 1:
-                o.set_temple( choice(TEMPLES.name_code_data())[1])
+            if _randint(0, 1) == 1:
+                o.set_temple(_choice(TEMPLES.name_code_data())[1])
 
         if issubclass(o.__class__, LdsOrdBase):
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 ldsord = LdsOrd()
                 self.fill_object( ldsord)
                 if isinstance(o,Person):
-                    lds_type = choice([item for item in LDS_INDIVIDUAL_ORD] )
+                    lds_type = _choice([item for item in LDS_INDIVIDUAL_ORD])
                 if isinstance(o,Family):
                     lds_type = LDS_SPOUSE_SEALING[0]
                     if self.generated_families:
                         ldsord.set_family_handle(
-                                        choice(self.generated_families))
+                            _choice(self.generated_families))
                 ldsord.set_type(lds_type[0])
-                status = choice(lds_type[1])
+                status = _choice(lds_type[1])
                 if status != LdsOrd.STATUS_NONE:
                     ldsord.set_status(status)
                 o.add_lds_ord( ldsord)
 
         if isinstance(o,Location):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_parish( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__, LocationBase):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_street( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_city( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_postal_code( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_phone( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_state( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_country( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_county( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__, MediaBase):
             # FIXME: frequency changed to prevent recursion
-            while randint(0,10) == 1:
+            while _randint(0, 10) == 1:
                 o.add_media_reference( self.fill_object( MediaRef()))
 
         if isinstance(o,Media):
-            if randint(0,3) == 1:
+            if _randint(0, 3) == 1:
                 o.set_description(str(self.rand_text(self.LONG)))
-                path = choice((ICON, LOGO, SPLASH))
+                path = os.path.abspath(_choice((ICON, LOGO, SPLASH)))
                 o.set_path(str(path))
                 mime = get_type(path)
                 o.set_mime_type(mime)
             else:
                 o.set_description(str(self.rand_text(self.SHORT)))
-                o.set_path(str(ICON))
+                o.set_path(os.path.abspath(str(ICON)))
                 o.set_mime_type("image/png")
 
         if isinstance(o,MediaRef):
-            if not self.generated_media or randint(0,10) == 1:
+            if not self.generated_media or _randint(0, 10) == 1:
                 m = Media()
                 self.fill_object(m)
                 self.db.add_media( m, self.trans)
                 self.generated_media.append( m.get_handle())
-            o.set_reference_handle( choice( self.generated_media))
-            if randint(0,1) == 1:
-                o.set_rectangle( (randint(0,200),randint(0,200),randint(0,200),randint(0,200)))
+            o.set_reference_handle(_choice(self.generated_media))
+            if _randint(0, 1) == 1:
+                o.set_rectangle((_randint(0, 200), _randint(0, 200),
+                                 _randint(0, 200), _randint(0, 200)))
 
         if isinstance(o,Name):
             o.set_type( self.rand_type( NameType()))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 o.add_surname(patronymic)
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_suffix( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_call_name( self.rand_text(self.FIRSTNAME))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_group_as( o.get_surname()[:1])
             # o.set_display_as()
             # o.set_sort_as()
@@ -1716,55 +1763,55 @@ class TestcaseGenerator(tool.BatchTool):
                 o.set( self.rand_text(self.NOTE))
             else:
                 o.set_styledtext(self.rand_text(self.STYLED_TEXT))
-            o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
+            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
             o.set_type(type)
 
         if issubclass(o.__class__, NoteBase):
-            while randint(0,1) == 1:
-                if not self.generated_notes or randint(0,10) == 1:
+            while _randint(0, 1) == 1:
+                if not self.generated_notes or _randint(0, 10) == 1:
                     n = Note()
                     self.fill_object(n)
                     self.db.add_note( n, self.trans)
                     self.generated_notes.append( n.get_handle())
-                n_h = choice(self.generated_notes)
+                n_h = _choice(self.generated_notes)
                 o.add_note(n_h)
 
         if isinstance(o, Place):
             o.set_title(self.rand_text(self.LONG))
             o.set_name(PlaceName(value=self.rand_text(self.SHORT)))
             o.set_code(self.rand_text(self.SHORT))
-            if randint(0, 1) == 1:
-                if randint(0, 4) == 1:
+            if _randint(0, 1) == 1:
+                if _randint(0, 4) == 1:
                     o.set_longitude(self.rand_text(self.SHORT))
                 else:
-                    o.set_longitude(str(random() * 360.0 - 180.0))
-            if randint(0, 1) == 1:
-                if randint(0, 4) == 1:
+                    o.set_longitude(str(_random() * 360.0 - 180.0))
+            if _randint(0, 1) == 1:
+                if _randint(0, 4) == 1:
                     o.set_latitude( self.rand_text(self.SHORT))
                 else:
-                    o.set_latitude(str(random() * 180.0 - 90.0))
-            while randint(0, 1) == 1:
+                    o.set_latitude(str(_random() * 180.0 - 90.0))
+            while _randint(0, 1) == 1:
                 o.add_alternate_locations(self.fill_object(Location()))
 
         if issubclass(o.__class__, PlaceBase):
-            if randint(0, 1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_place_handle(self.rand_place())
 
         if issubclass(o.__class__, BasicPrimaryObject):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_gramps_id( self.rand_text(self.SHORT))
 
         if issubclass(o.__class__, PrivacyBase):
-            o.set_privacy( randint(0,5) == 1)
+            o.set_privacy( _randint(0, 5) == 1)
 
         if isinstance(o,RepoRef):
-            if not self.generated_repos or randint(0,10) == 1:
+            if not self.generated_repos or _randint(0, 10) == 1:
                 r = Repository()
                 self.fill_object(r)
                 self.db.add_repository( r, self.trans)
                 self.generated_repos.append(r.get_handle())
-            o.set_reference_handle( choice( self.generated_repos))
-            if randint(0,1) == 1:
+            o.set_reference_handle(_choice(self.generated_repos))
+            if _randint(0, 1) == 1:
                 o.set_call_number( self.rand_text(self.SHORT))
             o.set_media_type( self.rand_type(SourceMediaType()))
 
@@ -1774,54 +1821,54 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(o,Source):
             o.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_author( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_publication_info( self.rand_text(self.LONG))
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_abbreviation( self.rand_text(self.SHORT))
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 sattr = SrcAttribute()
                 sattr.set_type(self.rand_text(self.SHORT))
                 sattr.set_value(self.rand_text(self.SHORT))
                 o.add_attribute(sattr)
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 r = RepoRef()
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
         if issubclass(o.__class__, CitationBase):
-            while randint(0,1) == 1:
-                if not self.generated_citations or randint(1,10) == 1:
+            while _randint(0, 1) == 1:
+                if not self.generated_citations or _randint(1, 10) == 1:
                     s = Citation()
                     self.fill_object(s)
                     self.db.add_citation( s, self.trans)
                     self.generated_citations.append(s.get_handle())
-                s_h = choice(self.generated_citations)
+                s_h = _choice(self.generated_citations)
                 o.add_citation(s_h)
 
         if isinstance(o,Citation):
-            if not self.generated_sources or randint(0,10) == 1:
+            if not self.generated_sources or _randint(0, 10) == 1:
                 s = Source()
                 self.fill_object(s)
                 self.db.add_source( s, self.trans)
                 self.generated_sources.append( s.get_handle())
-            o.set_reference_handle( choice( self.generated_sources))
-            if randint(0,1) == 1:
+            o.set_reference_handle(_choice(self.generated_sources))
+            if _randint(0, 1) == 1:
                 o.set_page( self.rand_text(self.NUMERIC))
-            #if randint(0,1) == 1:
+            #if _randint(0, 1) == 1:
             #    o.set_text( self.rand_text(self.SHORT))
-            #if randint(0,1) == 1:
+            #if _randint(0, 1) == 1:
             #    (year, d) = self.rand_date( )
             #    o.set_date_object( d)
-            o.set_confidence_level(choice(list(conf_strings.keys())))
+            o.set_confidence_level(_choice(list(conf_strings.keys())))
 
         if issubclass(o.__class__, TagBase):
-            if randint(0,1) == 1:
+            if _randint(0, 1) == 1:
                 o.set_tag_list(self.rand_tags())
 
         if issubclass(o.__class__, UrlBase):
-            while randint(0,1) == 1:
+            while _randint(0, 1) == 1:
                 u = Url()
                 self.fill_object(u)
                 o.add_url(u)
@@ -1865,7 +1912,7 @@ class TestcaseGenerator(tool.BatchTool):
     def rand_type(self, gtype):
         if issubclass(gtype.__class__, GrampsType):
             map = gtype.get_map()
-            key = choice(list(map.keys()))
+            key = _choice(list(map.keys()))
             if key == gtype.get_custom():
                 value = self.rand_text(self.SHORT)
             else:
@@ -1874,21 +1921,21 @@ class TestcaseGenerator(tool.BatchTool):
             return gtype
 
     def rand_place(self):
-        if not self.generated_places or randint(0, 10) == 1:
+        if not self.generated_places or _randint(0, 10) == 1:
             self.generate_place()
-        return choice(self.generated_places)
+        return _choice(self.generated_places)
 
     def generate_place(self):
         parent_handle = None
         for type_num in range(1, 8):
-            if type_num > 1 and randint(1, 3) == 1:
+            if type_num > 1 and _randint(1, 3) == 1:
                 # skip some levels in the place hierarchy
                 continue
             place = Place()
             place.set_type(PlaceType(type_num))
             if parent_handle is not None:
                 self.add_parent_place(place, parent_handle)
-            if type_num > 1 and randint(1, 3) == 1:
+            if type_num > 1 and _randint(1, 3) == 1:
                 # add additional parent place
                 parent_handle = self.find_parent_place(type_num - 1)
                 if parent_handle is not None:
@@ -1901,7 +1948,7 @@ class TestcaseGenerator(tool.BatchTool):
 
     def find_parent_place(self, type_num):
         if len(self.parent_places[type_num]) > 0:
-            return choice(self.parent_places[type_num])
+            return _choice(self.parent_places[type_num])
         else:
             return None
 
@@ -1954,7 +2001,7 @@ class TestcaseGenerator(tool.BatchTool):
             maxsyllables = 5
 
         if type == self.FIRSTNAME:
-            type = choice( (self.FIRSTNAME_MALE,self.FIRSTNAME_FEMALE))
+            type = _choice((self.FIRSTNAME_MALE, self.FIRSTNAME_FEMALE))
 
         if type == self.FIRSTNAME_MALE or type == self.FIRSTNAME_FEMALE:
             syllables = syllables2
@@ -1981,49 +2028,50 @@ class TestcaseGenerator(tool.BatchTool):
             maxwords = 100
 
         if type == self.NUMERIC:
-            if randint(0,1) == 1:
-                return "%d %s" % (randint(1,100), result)
-            if randint(0,1) == 1:
-                return "%d, %d %s" % (randint(1,100), randint(100,1000), result)
-            m = randint(100,1000)
-            return "%d - %d %s" % (m, m+randint(1,5), result)
+            if _randint(0, 1) == 1:
+                return "%d %s" % (_randint(1, 100), result)
+            if _randint(0, 1) == 1:
+                return "%d, %d %s" % (_randint(1, 100), _randint(100, 1000),
+                                      result)
+            m = _randint(100, 1000)
+            return "%d - %d %s" % (m, m+_randint(1, 5), result)
 
-        for i in range(0,randint(minwords,maxwords)):
+        for i in range(0, _randint(minwords, maxwords)):
             if result:
                 result = result + " "
             word = ""
-            for j in range(0,randint(minsyllables,maxsyllables)):
-                word = word + choice(syllables)
+            for j in range(0, _randint(minsyllables, maxsyllables)):
+                word = word + _choice(syllables)
             if type == self.FIRSTNAME_MALE:
-                word = word + choice(("a","e","i","o","u"))
-            if randint(0,3) == 1:
+                word = word + _choice(("a", "e", "i", "o", "u"))
+            if _randint(0, 3) == 1:
                 word = word.title()
             if type == self.NOTE:
-                if randint(0,10) == 1:
+                if _randint(0, 10) == 1:
                     word = "<b>%s</b>" % word
-                elif randint(0,10) == 1:
+                elif _randint(0, 10) == 1:
                     word = "<i>%s</i>" % word
-                elif randint(0,10) == 1:
+                elif _randint(0, 10) == 1:
                     word = "<i>%s</i>" % word
-                if randint(0,20) == 1:
+                if _randint(0, 20) == 1:
                     word = word + "."
-                elif randint(0,30) == 1:
+                elif _randint(0, 30) == 1:
                     word = word + ".\n"
             if type == self.STYLED_TEXT:
                 tags = []
-                if randint(0,10) == 1:
+                if _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.BOLD, True,
                                                 [(0, len(word))])]
-                elif randint(0,10) == 1:
+                elif _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.ITALIC, True,
                                                 [(0, len(word))])]
-                elif randint(0,10) == 1:
+                elif _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.UNDERLINE, True,
                                                 [(0, len(word))])]
                 word = StyledText(word, tags)
-                if randint(0,20) == 1:
+                if _randint(0, 20) == 1:
                     word = word + "."
-                elif randint(0,30) == 1:
+                elif _randint(0, 30) == 1:
                     word = word + ".\n"
             if type == self.STYLED_TEXT:
                 result = StyledText("").join((result, word))
@@ -2031,7 +2079,7 @@ class TestcaseGenerator(tool.BatchTool):
                 result += word
 
         if type == self.LASTNAME:
-            n = randint(0,2)
+            n = _randint(0, 2)
             if n == 0:
                 result = result.title()
             elif n == 1:
@@ -2044,13 +2092,13 @@ class TestcaseGenerator(tool.BatchTool):
         return result
 
     def rand_color(self):
-        return '#%012X' % randint(0, 281474976710655)
+        return '#%012X' % _randint(0, 281474976710655)
 
     def rand_tags(self):
         maxtags = 5
         taglist = []
-        for counter in range(0, randint(1, maxtags)):
-            tag = choice(self.generated_tags)
+        for counter in range(0, _randint(1, maxtags)):
+            tag = _choice(self.generated_tags)
             if tag not in taglist:
                 taglist.append(tag)
         return taglist

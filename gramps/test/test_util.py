@@ -260,6 +260,8 @@ class Gramps:
             args = [sys.executable] + list(args)
             argparser = ArgParser(args)
             argparser.need_gui() # initializes some variables
+            if argparser.errors:
+                print(argparser.errors, file=sys.stderr)
             argparser.print_help()
             argparser.print_usage()
             handler = ArgHandler(self.dbstate, argparser, self.climanager)

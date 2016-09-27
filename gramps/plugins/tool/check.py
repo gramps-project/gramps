@@ -171,6 +171,7 @@ class Check(tool.BatchTool):
             # then going to be deleted.
             checker.cleanup_empty_objects()
             checker.fix_encoding()
+            checker.fix_alt_place_names()
             checker.fix_ctrlchars_in_notes()
             checker.cleanup_missing_photos(cli)
             checker.cleanup_deleted_name_formats()
@@ -246,6 +247,7 @@ class CheckIntegrity:
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
         self.replaced_sourceref = []
+        self.place_errors = 0
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
                                       parent=self.parent_window)
@@ -409,6 +411,38 @@ class CheckIntegrity:
             self.progress.step()
         if error_count == 0:
             logging.info('    OK: no ctrl characters in notes found')
+
+    def fix_alt_place_names(self):
+        """
+        This scans all places and cleans up alternative names.  It removes
+        Blank names, names that are duplicates of the primary name, and
+        duplicates in the alt_names list.
+        """
+        self.progress.set_pass(_('Looking for bad alternate place names'),
+                               self.db.get_number_of_places())
+        logging.info('Looking for bad alternate place names')
+        for bhandle in self.db.place_map.keys():
+            handle = bhandle.decode('utf-8')
+            place = self.db.get_place_from_handle(handle)
+            fixed_alt_names = []
+            fixup = False
+            for name in place.get_alternative_names():
+                if not name.value or \
+                        name == place.name or \
+                        name in fixed_alt_names:
+                    fixup = True
+                    continue
+                fixed_alt_names.append(name)
+            if fixup:
+                place.set_alternative_names(fixed_alt_names)
+                self.db.commit_place(place, self.trans)
+                self.place_errors += 1
+            self.progress.step()
+        if self.place_errors == 0:
+            logging.info('    OK: no bad alternate places found')
+        else:
+            logging.info('    %d bad alternate places found and fixed',
+                         self.place_errors)
 
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
@@ -717,9 +751,8 @@ class CheckIntegrity:
             photo_desc = obj.get_description()
             if photo_name is not None and photo_name != "" and not find_file(photo_name):
                 if cl:
-                    fn = os.path.basename(photo_name)
                     logging.warning("    FAIL: media file %s was not found." %
-                                    fn)
+                                    photo_name)
                     self.bad_photo.append(ObjectId)
                 else:
                     if missmedia_action == 0:
@@ -2116,7 +2149,7 @@ class CheckIntegrity:
         empty_objs = sum(len(obj) for obj in self.empty_objects.values())
 
         errors = (photos + efam + blink + plink + slink + rel +
-                  event_invalid + person +
+                  event_invalid + person + self.place_errors +
                   person_references  + family_references + place_references +
                   citation_references + repo_references + media_references  +
                   note_references + tag_references + name_format + empty_objs +
@@ -2231,6 +2264,14 @@ class CheckIntegrity:
                 ngettext("{quantity} corrupted family relationship fixed\n",
                          "{quantity} corrupted family relationships fixed\n",
                          rel).format(quantity=rel)
+                )
+
+        if self.place_errors:
+            self.text.write(
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} place alternate name fixed\n",
+                         "{quantity} place alternate names fixed\n",
+                         rel).format(quantity=self.place_errors)
                 )
 
         if person_references:
