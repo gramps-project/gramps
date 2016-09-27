@@ -223,7 +223,7 @@ class VCardParser:
         if problem != "":
             self.number_of_errors += 1
         if line:
-            message = "Line %5d: %s\n" % (line, problem, )
+            message = _("Line") + " %5d: %s\n" % (line, problem, )
         else:
             message = problem + "\n"
         self.errors.append(message)
@@ -315,7 +315,7 @@ class VCardParser:
                 # Included cause VCards made by Gramps have this prop.
                 pass
             else:
-                self.__add_msg("Token >%s< unknown. line skipped: %s" %
+                self.__add_msg(_("Token >%s< unknown. line skipped: %s") %
                                (fields[0], line), self.line_num-1)
 
     def finish_person(self):
@@ -329,8 +329,8 @@ class VCardParser:
         """A VCard for another person is started."""
         if self.person is not None:
             self.finish_person()
-            self.__add_msg("BEGIN property not properly closed by END "
-                           "property, Gramps can't cope with nested VCards.",
+            self.__add_msg(_("BEGIN property not properly closed by END "
+                           "property, Gramps can't cope with nested VCards."),
                            self.line_num-1)
         self.person = Person()
         self.formatted_name = ''
@@ -360,17 +360,17 @@ class VCardParser:
         Returns True on success, False on failure.
         """
         if not self.name_parts.strip():
-            self.__add_msg("VCard is malformed missing the compulsory N "
-                           "property, so there is no name; skip it.",
+            self.__add_msg(_("VCard is malformed missing the compulsory N "
+                           "property, so there is no name; skip it."),
                            self.line_num-1)
             return False
         if not self.formatted_name:
-            self.__add_msg("VCard is malformed missing the compulsory FN "
-                           "property, get name from N alone.", self.line_num-1)
+            self.__add_msg(_("VCard is malformed missing the compulsory FN "
+                           "property, get name from N alone."), self.line_num-1)
         data_fields = self.split_unescaped(self.name_parts, ';')
         if len(data_fields) != 5:
-            self.__add_msg("VCard is malformed wrong number of name "
-                           "components.", self.line_num-1)
+            self.__add_msg(_("VCard is malformed wrong number of name "
+                           "components."), self.line_num-1)
 
         name = Name()
         name.set_type(NameType(NameType.BIRTH))
