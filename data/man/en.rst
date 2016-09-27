@@ -92,7 +92,7 @@ gramps(1)                @VERSION@               gramps(1)
           might produce different gramps IDs in the resulting database.
 
 
-       **-e** , **--export=** *FICHIER*
+       **-e** , **--export=** *FILE*
           Export data into *FILE* . For **gramps-xml** , **gedcom**
           , **wft** , **gramps-pkg** , et **geneweb** , the *FILE* is the
           name of the resulting file.
