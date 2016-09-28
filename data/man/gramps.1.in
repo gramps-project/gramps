@@ -113,9 +113,9 @@ by \fB\-i\fP flag. The files are imported in the specified order, i.e.
 \fB\-i\fP \fIFILE1\fP \fB\-i\fP \fIFILE2\fP and \fB\-i\fP \fIFILE2\fP \fB\-i\fP \fIFILE1\fP
 might produce different gramps IDs in the resulting database.
 .TP
-.B \fB\-e\fP , \fB\-\-export=\fP \fIFICHIER\fP
+.B \fB\-e\fP , \fB\-\-export=\fP \fIFILE\fP
 Export data into \fIFILE\fP . For \fBgramps\-xml\fP , \fBgedcom\fP
-, \fBwft\fP , \fBgramps\-pkg\fP , et \fBgeneweb\fP , the \fIFILE\fP is the
+, \fBwft\fP , \fBgramps\-pkg\fP , and \fBgeneweb\fP , the \fIFILE\fP is the
 name of the resulting file.
 .sp
 When more than one output file is given, each has to be preceded
