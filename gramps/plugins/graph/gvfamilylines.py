@@ -51,7 +51,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType
 from gramps.gen.utils.file import media_path_full
-from gramps.gen.utils.thumbnails import get_thumbnail_path
+from gramps.gen.utils.thumbnails import (get_thumbnail_path, SIZE_NORMAL,
+                                         SIZE_LARGE)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
@@ -236,6 +237,12 @@ class FamilyLinesOptions(MenuReportOptions):
                                        'should appear relative to the name'))
         add_option('imageonside', self.image_location)
 
+        self.image_size = EnumeratedListOption(_('Thumbnail size'), SIZE_NORMAL)
+        self.image_size.add_item(SIZE_NORMAL, _('Normal'))
+        self.image_size.add_item(SIZE_LARGE, _('Large'))
+        self.image_size.set_help(_('Size of the thumbnail image'))
+        add_option('imagesize', self.image_size)
+
         # ----------------------------
         add_option = partial(menu.add_option, _('Family Colors'))
         # ----------------------------
@@ -280,6 +287,7 @@ class FamilyLinesOptions(MenuReportOptions):
         Handle the change of including images.
         """
         self.image_location.set_available(self.include_images.get_value())
+        self.image_size.set_available(self.include_images.get_value())
 
     def include_dates_changed(self):
         """
@@ -348,6 +356,7 @@ class FamilyLinesReport(Report):
         self._maxchildren = get_value('maxchildren')
         self._incimages = get_value('incimages')
         self._imageonside = get_value('imageonside')
+        self._imagesize = get_value('imagesize')
         self._useroundedcorners = get_value('useroundedcorners')
         self._usesubgraphs = get_value('usesubgraphs')
         self._incdates = get_value('incdates')
@@ -810,8 +819,9 @@ class FamilyLinesReport(Report):
                     media_mime_type = media.get_mime_type()
                     if media_mime_type[0:5] == "image":
                         image_path = get_thumbnail_path(
-                            media_path_full(self._db, media.get_path()),
-                            rectangle=media_list[0].get_rectangle())
+                             media_path_full(self._db, media.get_path()),
+                             rectangle=media_list[0].get_rectangle(),
+                             size=self._imagesize)
 
             # put the label together and output this person
             label = ""
