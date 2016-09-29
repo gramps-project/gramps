@@ -46,7 +46,7 @@ LOG = logging.getLogger(".ImportVCard")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.lib import (Address, Date, DateError, Event, EventRef,
         EventType, Name, NameType, Person, Surname, Url, UrlType)
@@ -132,9 +132,9 @@ def fitin(prototype, receiver, element):
 class VCardParser:
     """Class to read data in VCard format from a file."""
     DATE_RE = re.compile(r'^(\d{4}-\d{1,2}-\d{1,2})|(?:(\d{4})-?(\d\d)-?(\d\d))')
-    GROUP_RE = re.compile(r'^(?:[-0-9A-Za-z]+\.)?(.+)$') # see RFC 2425 sec5.8.2
+    GROUP_RE = re.compile(r'^(?:[-0-9A-Za-z]+\.)?(.+)$')  # see RFC 2425 sec5.8.2
     ESCAPE_CHAR = '\\'
-    TOBE_ESCAPED = ['\\', ',', ';'] # order is important
+    TOBE_ESCAPED = ['\\', ',', ';']  # order is important
     LINE_CONTINUATION = [' ', '\t']
 
     @staticmethod
@@ -147,7 +147,7 @@ class VCardParser:
         while quote_count % 2 == 1:
             colon_idx = data.find(':', colon_idx + 1)
             quote_count = data.count('"', 0, colon_idx)
-        group_name, value = data[:colon_idx], data[colon_idx+1:]
+        group_name, value = data[:colon_idx], data[colon_idx + 1:]
         name_parts = VCardParser.GROUP_RE.match(group_name)
         return (name_parts.group(1), value)
 
@@ -181,7 +181,7 @@ class VCardParser:
         for i in reversed(range(len(strng_parts[:]))):
             if VCardParser.count_escapes(strng_parts[i]) % 2 == 1:
                 # the sep was escaped so undo split
-                appendix = strng_parts.pop(i+1)
+                appendix = strng_parts.pop(i + 1)
                 strng_parts[i] += sep + appendix
         return strng_parts
 
@@ -207,7 +207,7 @@ class VCardParser:
         self.line_num = self.line_num + 1
         while self.next_line and self.next_line[0] in self.LINE_CONTINUATION:
             line = line.rstrip("\n")
-            #TODO perhaps next lines superflous because of rU open parameter?
+            # TODO perhaps next lines superflous because of rU open parameter?
             if len(line) > 0 and line[-1] == "\r":
                 line = line[:-1]
             line += self.next_line[1:]
@@ -223,7 +223,8 @@ class VCardParser:
         if problem != "":
             self.number_of_errors += 1
         if line:
-            message = _("Line") + " %5d: %s\n" % (line, problem, )
+            message = _("Line %(line)5d: %(prob)s\n") % {"line": line,
+                                                         "prob": problem}
         else:
             message = problem + "\n"
         self.errors.append(message)
@@ -248,7 +249,7 @@ class VCardParser:
                       ).format(number_of=tym)
         LOG.debug(msg)
         if self.number_of_errors == 0:
-            message  = _("VCARD import report: No errors detected")
+            message = _("VCARD import report: No errors detected")
         else:
             message = _("VCARD import report: %s errors detected\n") % \
                 self.number_of_errors
@@ -316,7 +317,7 @@ class VCardParser:
                 pass
             else:
                 self.__add_msg(_("Token >%s< unknown. line skipped: %s") %
-                               (fields[0], line), self.line_num-1)
+                               (fields[0], line), self.line_num - 1)
 
     def finish_person(self):
         """All info has been collected, write to database."""
@@ -331,7 +332,7 @@ class VCardParser:
             self.finish_person()
             self.__add_msg(_("BEGIN property not properly closed by END "
                            "property, Gramps can't cope with nested VCards."),
-                           self.line_num-1)
+                           self.line_num - 1)
         self.person = Person()
         self.formatted_name = ''
         self.name_parts = ''
@@ -362,15 +363,15 @@ class VCardParser:
         if not self.name_parts.strip():
             self.__add_msg(_("VCard is malformed missing the compulsory N "
                            "property, so there is no name; skip it."),
-                           self.line_num-1)
+                           self.line_num - 1)
             return False
         if not self.formatted_name:
             self.__add_msg(_("VCard is malformed missing the compulsory FN "
-                           "property, get name from N alone."), self.line_num-1)
+                           "property, get name from N alone."), self.line_num - 1)
         data_fields = self.split_unescaped(self.name_parts, ';')
         if len(data_fields) != 5:
             self.__add_msg(_("VCard is malformed wrong number of name "
-                           "components."), self.line_num-1)
+                           "components."), self.line_num - 1)
 
         name = Name()
         name.set_type(NameType(NameType.BIRTH))
@@ -459,7 +460,7 @@ class VCardParser:
 
     def add_sortas(self, fields, data):
         """Read the SORT-STRING property of a VCard."""
-        #TODO
+        # TODO
         pass
 
     def add_address(self, fields, data):
@@ -512,7 +513,7 @@ class VCardParser:
                 self.__add_msg(_(
                     "Invalid date in BDAY {vcard_snippet}, "
                     "preserving date as text."
-                    ).format(vcard_snippet=data), self.line_num-1)
+                    ).format(vcard_snippet=data), self.line_num - 1)
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
         else:
             if date_str:
@@ -520,7 +521,7 @@ class VCardParser:
                 self.__add_msg(_(
                     "Date {vcard_snippet} not in appropriate format "
                     "yyyy-mm-dd, preserving date as text."
-                    ).format(vcard_snippet=date_str), self.line_num-1)
+                    ).format(vcard_snippet=date_str), self.line_num - 1)
                 date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
             else:  # silently ignore an empty BDAY record
                 return
