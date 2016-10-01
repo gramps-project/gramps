@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 10:45-0700\n"
-"PO-Revision-Date: 2016-09-13 10:03+0100\n"
+"PO-Revision-Date: 2016-10-01 15:17+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -49,7 +49,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -1315,7 +1315,6 @@ msgid "Unknown action: %s."
 msgstr "Neznámá akce: %s."
 
 #: ../gramps/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1367,9 +1366,9 @@ msgstr ""
 "  -a, --action=AKCE                      Specifikovat akce\n"
 "  -p, --options=ŘETĚZEC_MOŽNOSTÍ         Specifikovat volby\n"
 "  -d, --debug=NÁZEV_LOGGERU              Povolit ladicí log\n"
-"  -l                                     Seznam rodokmenů\n"
-"  -L                                     Seznam rodokmenů s podrobnostmi\n"
-"  -t                                     Seznam rodokmenů oddělený "
+"  -l [FAMILY_TREE_PATTERN...]            Seznam rodokmenů\n"
+"  -L [FAMILY_TREE_PATTERN...]            Seznam rodokmenů s podrobnostmi\n"
+"  -t [FAMILY_TREE_PATTERN...]            Seznam rodokmenů oddělený "
 "tabelátory\n"
 "  -u, --force-unlock                     Rozlomit zámek na rodokmenu\n"
 "  -s, --show                             Zobrazit konfigurační parametry\n"
@@ -6225,8 +6224,7 @@ msgstr "Kasta"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
-#: ../gramps/gui/glade/rule.glade:934
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:934 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:130 ../gramps/gui/plug/_windows.py:239
 #: ../gramps/gui/plug/_windows.py:612 ../gramps/gui/plug/_windows.py:1095
 #: ../gramps/gui/selectors/selectevent.py:74
@@ -6547,8 +6545,7 @@ msgstr "Životní události"
 #: ../gramps/gui/configure.py:534
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:501
-#: ../gramps/gui/editors/editlink.py:91
+#: ../gramps/gui/editors/editfamily.py:501 ../gramps/gui/editors/editlink.py:91
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267
 #: ../gramps/plugins/export/exportcsv.py:515
@@ -7190,8 +7187,7 @@ msgstr "Citace"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 #: ../gramps/plugins/textreport/tagreport.py:484
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:95
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:95
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/webreport/narrativeweb.py:993
 #: ../gramps/plugins/webreport/narrativeweb.py:1634
@@ -7334,8 +7330,8 @@ msgstr "Štítky"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99
-#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Soukromý"
@@ -7486,8 +7482,8 @@ msgstr "Název"
 #: ../gramps/plugins/tool/patchnames.py:403
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:1306
 #: ../gramps/plugins/webreport/narrativeweb.py:1632
 #: ../gramps/plugins/webreport/narrativeweb.py:2458
@@ -7733,9 +7729,8 @@ msgid "Child Reference Note"
 msgstr "Poznámka k odkazu na potomka"
 
 #: ../gramps/gen/lib/person.py:245
-#, fuzzy
 msgid "Handle"
-msgstr "Velikost ovládacího panelu"
+msgstr "Ukazatel"
 
 #: ../gramps/gen/lib/person.py:247 ../gramps/gui/editors/editfamily.py:124
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:128
@@ -7771,8 +7766,7 @@ msgstr "Referenční index narození"
 msgid "Event references"
 msgstr "Odkazy na událost"
 
-#: ../gramps/gen/lib/person.py:253
-#: ../gramps/plugins/graph/gvfamilylines.py:264
+#: ../gramps/gen/lib/person.py:253 ../gramps/plugins/graph/gvfamilylines.py:264
 #: ../gramps/plugins/graph/gvrelgraph.py:794
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
@@ -8133,8 +8127,7 @@ msgstr "Sloučit rodinu"
 msgid "Merge Media Objects"
 msgstr "Sloučit objekty médií"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Sloučit poznámky"
 
@@ -8453,9 +8446,8 @@ msgid "Bottom"
 msgstr "Dole"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:90
-#, fuzzy
 msgid "Straight"
-msgstr "vpravo nahoře"
+msgstr "Přímé"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:91
 msgid "Curved"
@@ -8542,14 +8534,12 @@ msgstr ""
 "pokud je počet svislých nebo vodorovných stran větší než 1."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:182
-#, fuzzy
 msgid "Connecting lines"
-msgstr "Vytváří se rodiny"
+msgstr "Propojovací linky"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:185
-#, fuzzy
 msgid "How the lines between objects will be drawn."
-msgstr "Jak bude zobrazen titulek."
+msgstr "Jakým způsobe budou kresleny čáry propojující objekty."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:201
@@ -8646,8 +8636,7 @@ msgstr ""
 #. 3
 #: ../gramps/gen/plug/docgen/graphdoc.py:255 ../gramps/gui/clipboard.py:394
 #: ../gramps/gui/configure.py:548 ../gramps/gui/editors/editlink.py:93
-#: ../gramps/gui/editors/editmedia.py:98
-#: ../gramps/gui/editors/editmedia.py:183
+#: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:183
 #: ../gramps/gui/editors/editmediaref.py:145
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
@@ -8764,8 +8753,7 @@ msgstr "Platné hodnoty:"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:86
-#: ../gramps/gui/viewmanager.py:110
+#: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:110
 msgid "Unsupported"
 msgstr "Nepodporované"
 
@@ -8954,18 +8942,15 @@ msgstr "%s předci"
 msgid "People with common ancestor with %s"
 msgstr "Společným předkem je: %s"
 
-#: ../gramps/gen/plug/report/utils.py:345
-#: ../gramps/gui/plug/_guioptions.py:886
+#: ../gramps/gen/plug/report/utils.py:345 ../gramps/gui/plug/_guioptions.py:886
 msgid "unknown father"
 msgstr "neznámý otec"
 
-#: ../gramps/gen/plug/report/utils.py:351
-#: ../gramps/gui/plug/_guioptions.py:892
+#: ../gramps/gen/plug/report/utils.py:351 ../gramps/gui/plug/_guioptions.py:892
 msgid "unknown mother"
 msgstr "neznámá matka"
 
-#: ../gramps/gen/plug/report/utils.py:353
-#: ../gramps/gui/plug/_guioptions.py:894
+#: ../gramps/gen/plug/report/utils.py:353 ../gramps/gui/plug/_guioptions.py:894
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s a %(mother_name)s (%(family_id)s)"
@@ -9206,13 +9191,11 @@ msgstr ""
 "Kalkulátor vztahů rodin pro jazyk  '%s' není k dispozici. Použijte prosím "
 "'english'."
 
-#: ../gramps/gen/utils/alive.py:148
-#: ../gramps/plugins/importer/importcsv.py:209
+#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:209
 msgid "death date"
 msgstr "datum úmrtí"
 
-#: ../gramps/gen/utils/alive.py:153
-#: ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "datum narození"
 
@@ -10155,9 +10138,8 @@ msgstr "Zobrazit editor jmen"
 #: ../gramps/gui/glade/displaystate.glade:25
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26
 #: ../gramps/gui/glade/rule.glade:1029 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:26
-#: ../gramps/gui/plug/_windows.py:102 ../gramps/gui/plug/_windows.py:682
-#: ../gramps/gui/plug/_windows.py:738
+#: ../gramps/gui/glade/updateaddons.glade:26 ../gramps/gui/plug/_windows.py:102
+#: ../gramps/gui/plug/_windows.py:682 ../gramps/gui/plug/_windows.py:738
 #: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:503 ../gramps/gui/viewmanager.py:1294
 #: ../gramps/gui/views/bookmarks.py:258 ../gramps/gui/views/tags.py:424
@@ -10412,8 +10394,8 @@ msgstr "Příklad"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:149
-#: ../gramps/gui/plug/report/_bookdialog.py:652
-#: ../gramps/gui/views/tags.py:416 ../gramps/gui/widgets/fanchart.py:1777
+#: ../gramps/gui/plug/report/_bookdialog.py:652 ../gramps/gui/views/tags.py:416
+#: ../gramps/gui/widgets/fanchart.py:1777
 #: ../gramps/plugins/view/pedigreeview.py:1615
 msgid "_Add"
 msgstr "Přid_at"
@@ -10815,8 +10797,7 @@ msgstr "Vybrat adresář pro média"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:43
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:41
@@ -10832,8 +10813,7 @@ msgstr "Vybrat adresář pro média"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:22
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:22
 #: ../gramps/gui/glade/mergecitation.glade:22
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11020,15 +11000,13 @@ msgstr "Informace databáze"
 
 #: ../gramps/gui/dbman.py:119 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:40
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:485 ../gramps/gui/glade/book.glade:559
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:485
+#: ../gramps/gui/glade/book.glade:559 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:58
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:57
@@ -11044,8 +11022,7 @@ msgstr "Informace databáze"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:38
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:38
 #: ../gramps/gui/glade/mergecitation.glade:38
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11059,14 +11036,12 @@ msgstr "Informace databáze"
 #: ../gramps/gui/glade/mergerepository.glade:38
 #: ../gramps/gui/glade/mergesource.glade:38
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336
-#: ../gramps/gui/glade/rule.glade:767
-#: ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:767 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1736
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:186
 #: ../gramps/gui/viewmanager.py:1292 ../gramps/gui/views/tags.py:634
-#: ../gramps/plugins/tool/check.py:695
-#: ../gramps/plugins/tool/patchnames.py:117
+#: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:297
 msgid "_OK"
@@ -11567,15 +11542,13 @@ msgstr "_Atributy"
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:400
 #: ../gramps/plugins/tool/removeunused.py:194
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:540
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:540
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:592
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:592 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -11604,8 +11577,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/rule.glade:432
 #: ../gramps/gui/glade/styleeditor.glade:1830
 #: ../gramps/gui/glade/styleeditor.glade:1837
-#: ../gramps/gui/widgets/fanchart.py:1823
-#: ../gramps/plugins/view/relview.py:408
+#: ../gramps/gui/widgets/fanchart.py:1823 ../gramps/plugins/view/relview.py:408
 msgid "Add"
 msgstr "Přidat"
 
@@ -13128,8 +13100,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr "Place_Editor_dialog"
 
 #: ../gramps/gui/editors/editplace.py:93
-#: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:288 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Název:"
 
@@ -13366,9 +13337,9 @@ msgid "Tag selection"
 msgstr "Výběr štítků"
 
 #. pylint: disable-msg=E1101
-#: ../gramps/gui/editors/edittaglist.py:99
-#: ../gramps/gui/views/bookmarks.py:227 ../gramps/gui/views/tags.py:387
-#: ../gramps/gui/views/tags.py:611 ../gramps/gui/views/tags.py:627
+#: ../gramps/gui/editors/edittaglist.py:99 ../gramps/gui/views/bookmarks.py:227
+#: ../gramps/gui/views/tags.py:387 ../gramps/gui/views/tags.py:611
+#: ../gramps/gui/views/tags.py:627
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
@@ -13401,8 +13372,7 @@ msgstr "Štítek"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:28
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:77
@@ -13418,8 +13388,7 @@ msgstr "Štítek"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:58
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:58
 #: ../gramps/gui/glade/mergecitation.glade:54
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -13587,8 +13556,7 @@ msgid "Rule Name"
 msgstr "Název pravidla"
 
 #: ../gramps/gui/editors/filtereditor.py:757
-#: ../gramps/gui/editors/filtereditor.py:761
-#: ../gramps/gui/glade/rule.glade:917
+#: ../gramps/gui/editors/filtereditor.py:761 ../gramps/gui/glade/rule.glade:917
 msgid "No rule selected"
 msgstr "Žádné pravidlo nevybráno"
 
@@ -13596,8 +13564,7 @@ msgstr "Žádné pravidlo nevybráno"
 msgid "Define filter"
 msgstr "Definovat filtr"
 
-#: ../gramps/gui/editors/filtereditor.py:820
-#: ../gramps/gui/glade/rule.glade:970
+#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:970
 msgid "Values"
 msgstr "Hodnoty"
 
@@ -13779,8 +13746,7 @@ msgstr "_Najít"
 
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:56
-#: ../gramps/gui/plug/report/_bookdialog.py:621
-#: ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/plug/report/_bookdialog.py:621 ../gramps/gui/undohistory.py:88
 msgid "_Clear"
 msgstr "_Smazat"
 
@@ -13804,8 +13770,8 @@ msgstr "%s není"
 msgid "%s does not contain"
 msgstr "%s neobsahuje"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1141 ../gramps/gui/views/listview.py:1161
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1141
+#: ../gramps/gui/views/listview.py:1161
 msgid "Updating display..."
 msgstr "Aktualizace zobrazení..."
 
@@ -14162,8 +14128,7 @@ msgstr "Příště se již neptat"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:47
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:47
 msgid "Accept changes and close window"
 msgstr "Přijmout změny a zavřít okno"
 
@@ -15554,8 +15519,7 @@ msgid "Note 2"
 msgstr "Poznámka 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
-#: ../gramps/gui/glade/mergenote.glade:295
-#: ../gramps/gui/views/listview.py:1015
+#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1015
 msgid "Format:"
 msgstr "Formát:"
 
@@ -15811,8 +15775,7 @@ msgstr "Upravit vybrané pravidlo"
 msgid "Delete the selected rule"
 msgstr "Odstranit vybrané pravidlo"
 
-#: ../gramps/gui/glade/rule.glade:524
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:524 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/export/exportcsv.glade:113
 #: ../gramps/plugins/export/exportftree.glade:120
 #: ../gramps/plugins/export/exportgeneweb.glade:121
@@ -18313,8 +18276,7 @@ msgstr ""
 "Tato záznam je právě používán. Pokud jej odstraníte, bude vymazán z databáze "
 "a ze všech záznamů, z kterých je odkazován."
 
-#: ../gramps/gui/views/listview.py:565
-#: ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Smazáním bude záznam odstraněn z databáze."
 
@@ -18584,13 +18546,11 @@ msgstr "Sbalit tuto skupinu"
 msgid "People Menu"
 msgstr "Menu osob"
 
-#: ../gramps/gui/widgets/fanchart.py:1589
-#: ../gramps/plugins/view/relview.py:801
+#: ../gramps/gui/widgets/fanchart.py:1589 ../gramps/plugins/view/relview.py:801
 msgid "Edit family"
 msgstr "Změnit rodinu"
 
-#: ../gramps/gui/widgets/fanchart.py:1608
-#: ../gramps/plugins/view/relview.py:802
+#: ../gramps/gui/widgets/fanchart.py:1608 ../gramps/plugins/view/relview.py:802
 msgid "Reorder families"
 msgstr "Přeskupit rodiny"
 
@@ -24257,9 +24217,8 @@ msgstr ""
 "   Zapisuje se do souboru %(filename)s ve formátu %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:586
-#, fuzzy
 msgid "Common Law Marriage"
-msgstr "Pozdní sňatek"
+msgstr "Neformální sňatek"
 
 #: ../gramps/plugins/lib/libgedcom.py:587
 #: ../gramps/plugins/webreport/narrativeweb.py:9624
@@ -32850,8 +32809,7 @@ msgstr "Maximální _počet let mezi dětmi"
 msgid "Maximum _span of years for all children"
 msgstr "Maximální r_ozpětí let pro všechny děti"
 
-#: ../gramps/plugins/tool/verify.glade:987
-#: ../gramps/plugins/tool/verify.py:641
+#: ../gramps/plugins/tool/verify.glade:987 ../gramps/plugins/tool/verify.py:641
 msgid "_Hide marked"
 msgstr "_Skrýt označené"
 
@@ -34130,13 +34088,11 @@ msgstr " (1 sourozenec)"
 msgid " (only child)"
 msgstr " (jedináček)"
 
-#: ../gramps/plugins/view/relview.py:946
-#: ../gramps/plugins/view/relview.py:1444
+#: ../gramps/plugins/view/relview.py:946 ../gramps/plugins/view/relview.py:1444
 msgid "Add new child to family"
 msgstr "Přidat nové dítě do rodiny"
 
-#: ../gramps/plugins/view/relview.py:950
-#: ../gramps/plugins/view/relview.py:1448
+#: ../gramps/plugins/view/relview.py:950 ../gramps/plugins/view/relview.py:1448
 msgid "Add existing child to family"
 msgstr "Přidat dítě do rodiny"
 
