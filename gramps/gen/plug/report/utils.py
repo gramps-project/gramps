@@ -46,7 +46,8 @@ from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+def _T_(value):
+    """ enable deferred translations (see Python docs 22.1.3.4) """
     return value
 
 #-------------------------------------------------------------------------
@@ -54,29 +55,29 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 #  Convert points to cm and back
 #
 #-------------------------------------------------------------------------
-def pt2cm(pt):
+def pt2cm(pt_):
     """
     Convert points to centimeters. Fonts are typically specified in points,
     but the :class:`.BaseDoc` classes use centimeters.
 
-    :param pt: points
-    :type pt: float or int
+    :param pt_: points
+    :type pt_: float or int
     :returns: equivalent units in centimeters
     :rtype: float
     """
-    return pt/28.3465
+    return pt_ / 28.3465
 
-def cm2pt(cm):
+def cm2pt(cm_):
     """
     Convert centimeters to points. Fonts are typically specified in points,
     but the :class:`.BaseDoc` classes use centimeters.
 
-    :param cm: centimeters
-    :type cm: float or int
+    :param cm_: centimeters
+    :type cm_: float or int
     :returns: equivalent units in points
     :rtype: float
     """
-    return cm*28.3465
+    return cm_ * 28.3465
 
 def rgb_color(color):
     """
@@ -84,13 +85,13 @@ def rgb_color(color):
 
     :param color: list or tuple of integer values for red, green, and blue
     :type color: int
-    :returns: (r, g, b) tuple of floating point color values
+    :returns: (red, green, blue) tuple of floating point color values
     :rtype: 3-tuple
     """
-    r = float(color[0])/255.0
-    g = float(color[1])/255.0
-    b = float(color[2])/255.0
-    return (r, g, b)
+    red = float(color[0]) / 255.0
+    green = float(color[1]) / 255.0
+    blue = float(color[2]) / 255.0
+    return (red, green, blue)
 
 #-------------------------------------------------------------------------
 #
@@ -103,13 +104,14 @@ def roman(num):
         return "?"
     if not 0 < num < 4000:
         return "?"
-    vals = (1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,   1)
-    nums = ( 'M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
+    vals = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L',
+            'XL', 'X', 'IX', 'V', 'IV', 'I')
     retval = ""
     for i in range(len(vals)):
-        amount  = int(num / vals[i])
+        amount = int(num / vals[i])
         retval += nums[i] * amount
-        num    -= vals[i] * amount
+        num -= vals[i] * amount
     return retval
 
 #-------------------------------------------------------------------------
@@ -117,10 +119,11 @@ def roman(num):
 #
 #
 #-------------------------------------------------------------------------
-def place_name(db, place_handle):
+def place_name(dbase, place_handle):
+    """ returns a place string given a handle """
     if place_handle:
-        place = db.get_place_from_handle(place_handle)
-        name = _pd.display(db, place)
+        place = dbase.get_place_from_handle(place_handle)
+        name = _pd.display(dbase, place)
     else:
         name = ""
     return str(name)
@@ -149,8 +152,8 @@ def insert_image(database, doc, photo, user,
         filename = media_path_full(database, media.get_path())
         if os.path.exists(filename):
             doc.add_media(filename, align, w_cm, h_cm,
-                                 alt=alt, style_name=style_name,
-                                 crop=photo.get_rectangle())
+                          alt=alt, style_name=style_name,
+                          crop=photo.get_rectangle())
         else:
             user.warn(_("Could not add photo to page"),
                       "%s: %s" % (filename, _('File does not exist')))
@@ -161,6 +164,7 @@ def insert_image(database, doc, photo, user,
 #
 #-------------------------------------------------------------------------
 def find_spouse(person, family):
+    """ find the spouse of a person """
     spouse_handle = None
     if family:
         if person.get_handle() == family.get_father_handle():
@@ -175,10 +179,12 @@ def find_spouse(person, family):
 #
 #-------------------------------------------------------------------------
 def find_marriage(database, family):
+    """ find the marriage of a family """
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if (event and event.type.is_marriage() and
-            event_ref.role.is_family()):
+        if (event
+                and event.type.is_marriage()
+                and event_ref.role.is_family()):
             return event
     return None
 
@@ -187,11 +193,11 @@ def find_marriage(database, family):
 # Indexing function
 #
 #-------------------------------------------------------------------------
-def get_person_mark(db, person):
+def get_person_mark(dbase, person):
     """
     Return a IndexMark that can be used to index a person in a report
 
-    :param db: the Gramps database instance
+    :param dbase: the Gramps database instance
     :param person: the key is for
     """
     if not person:
@@ -204,20 +210,20 @@ def get_person_mark(db, person):
 
     birth_ref = person.get_birth_ref()
     if birth_ref:
-        birthEvt = db.get_event_from_handle(birth_ref.ref)
-        birth = get_date(birthEvt)
+        birth_event = dbase.get_event_from_handle(birth_ref.ref)
+        birth = get_date(birth_event)
 
     death_ref = person.get_death_ref()
     if death_ref:
-        deathEvt = db.get_event_from_handle(death_ref.ref)
-        death = get_date(deathEvt)
+        death_event = dbase.get_event_from_handle(death_ref.ref)
+        death = get_date(death_event)
 
     if birth == death == " ":
         key = name
     else:
         key = "%s (%s - %s)" % (name, birth, death)
 
-    return IndexMark( key, INDEX_TYPE_ALP )
+    return IndexMark(key, INDEX_TYPE_ALP)
 
 #-------------------------------------------------------------------------
 #
@@ -230,24 +236,25 @@ def get_address_str(addr):
 
     :param addr: the Gramps address instance
     """
-    str = ""
-    elems = [ addr.get_street(),
-              addr.get_locality(),
-              addr.get_city(),
-              addr.get_county(),
-              addr.get_state(),
-              addr.get_country(),
-              addr.get_postal_code(),
-              addr.get_phone()   ]
+    addr_str = ""
+    elems = [addr.get_street(),
+             addr.get_locality(),
+             addr.get_city(),
+             addr.get_county(),
+             addr.get_state(),
+             addr.get_country(),
+             addr.get_postal_code(),
+             addr.get_phone()]
 
     for info in elems:
         if info:
-            if str == "":
-                str = info
+            if addr_str == "":
+                addr_str = info
             else:
                 # translators: needed for Arabic, ignore otherwise
-                str = _("%(str1)s, %(str2)s") % {'str1':str, 'str2':info}
-    return str
+                addr_str = _("%(str1)s, %(str2)s"
+                            ) % {'str1' : addr_str, 'str2' : info}
+    return addr_str
 
 #-------------------------------------------------------------------------
 #
@@ -285,16 +292,16 @@ def get_person_filters(person, include_single=True, name_format=None):
         filt_id.set_name(name)
         filt_id.add_rule(rules.person.HasIdOf([gramps_id]))
 
-    all = DeferredFilter(_T_("Entire Database"), None)
-    all.add_rule(rules.person.Everyone([]))
+    all_people = DeferredFilter(_T_("Entire Database"), None)
+    all_people.add_rule(rules.person.Everyone([]))
 
     # feature request 2356: avoid genitive form
     des = DeferredFilter(_T_("Descendants of %s"), name)
     des.add_rule(rules.person.IsDescendantOf([gramps_id, 1]))
 
     # feature request 2356: avoid genitive form
-    df = DeferredFilter(_T_("Descendant Families of %s"), name)
-    df.add_rule(rules.person.IsDescendantFamilyOf([gramps_id, 1]))
+    d_fams = DeferredFilter(_T_("Descendant Families of %s"), name)
+    d_fams.add_rule(rules.person.IsDescendantFamilyOf([gramps_id, 1]))
 
     # feature request 2356: avoid genitive form
     ans = DeferredFilter(_T_("Ancestors of %s"), name)
@@ -304,9 +311,9 @@ def get_person_filters(person, include_single=True, name_format=None):
     com.add_rule(rules.person.HasCommonAncestorWith([gramps_id]))
 
     if include_single:
-        the_filters = [filt_id, all, des, df, ans, com]
+        the_filters = [filt_id, all_people, des, d_fams, ans, com]
     else:
-        the_filters = [all, des, df, ans, com]
+        the_filters = [all_people, des, d_fams, ans, com]
     the_filters.extend(CustomFilters.get_filters('Person'))
     return the_filters
 
@@ -350,10 +357,10 @@ def get_family_filters(database, family,
         else:
             mother_name = _("unknown mother")
         gramps_id = family.get_gramps_id()
-        name = _("%(father_name)s and %(mother_name)s (%(family_id)s)") % {
-                    'father_name': father_name,
-                    'mother_name': mother_name,
-                    'family_id': gramps_id}
+        name = _("%(father_name)s and %(mother_name)s (%(family_id)s)"
+                ) % {'father_name' : father_name,
+                     'mother_name' : mother_name,
+                     'family_id' : gramps_id}
         name_displayer.set_default_format(real_format)
     else:
         # Do this in case of command line options query (show=filter)
@@ -366,20 +373,20 @@ def get_family_filters(database, family,
         filt_id.set_name(name)
         filt_id.add_rule(rules.family.HasIdOf([gramps_id]))
 
-    all = DeferredFamilyFilter(_T_("Every family"), None)
-    all.add_rule(rules.family.AllFamilies([]))
+    all_families = DeferredFamilyFilter(_T_("Every family"), None)
+    all_families.add_rule(rules.family.AllFamilies([]))
 
     # feature request 2356: avoid genitive form
-    df = DeferredFamilyFilter(_T_("Descendant Families of %s"), name)
-    df.add_rule(rules.family.IsDescendantOf([gramps_id, 1]))
+    d_fams = DeferredFamilyFilter(_T_("Descendant Families of %s"), name)
+    d_fams.add_rule(rules.family.IsDescendantOf([gramps_id, 1]))
 
     # feature request 2356: avoid genitive form
     ans = DeferredFamilyFilter(_T_("Ancestor Families of %s"), name)
     ans.add_rule(rules.family.IsAncestorOf([gramps_id, 1]))
 
     if include_single:
-        the_filters = [filt_id, all, df, ans]
+        the_filters = [filt_id, all_families, d_fams, ans]
     else:
-        the_filters = [all, df, ans]
+        the_filters = [all_families, d_fams, ans]
     the_filters.extend(CustomFilters.get_filters('Family'))
     return the_filters
