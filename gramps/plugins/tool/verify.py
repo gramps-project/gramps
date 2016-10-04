@@ -24,7 +24,16 @@
 """
 A plugin to verify the data against user-adjusted tests.
 This is the research tool, not the low-level data ingerity check.
+
+Note that this tool has an old heritage (20-Oct-2002 at least) and
+so there are vestages of earlier ways of doing things which have not
+been converted to a more-modern way.  For instance the way the tool
+options are defined (and read in) is not done the way it would be now.
 """
+
+# pylint: disable=not-callable
+# pylint: disable=no-self-use
+# pylint: disable=undefined-variable
 
 #------------------------------------------------------------------------
 #
@@ -35,7 +44,6 @@ This is the research tool, not the low-level data ingerity check.
 import os
 import pickle
 from hashlib import md5
-from gramps.gen.errors import WindowActiveError
 
 #------------------------------------------------------------------------
 #
@@ -51,6 +59,9 @@ from gi.repository import GObject
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
 from gramps.gen.lib import (ChildRefType, EventRoleType, EventType,
                             FamilyRelType, NameType, Person)
@@ -61,8 +72,6 @@ from gramps.gui.display import display_help
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
@@ -83,31 +92,35 @@ _family_cache = {}
 _event_cache = {}
 _today = Today().get_sort_value()
 
-def find_event(db, handle):
+def find_event(dbase, handle):
+    """ find an event, given a handle """
     if handle in _event_cache:
         obj = _event_cache[handle]
     else:
-        obj = db.get_event_from_handle(handle)
+        obj = dbase.get_event_from_handle(handle)
         _event_cache[handle] = obj
     return obj
 
-def find_person(db, handle):
+def find_person(dbase, handle):
+    """ find a person, given a handle """
     if handle in _person_cache:
         obj = _person_cache[handle]
     else:
-        obj = db.get_person_from_handle(handle)
+        obj = dbase.get_person_from_handle(handle)
         _person_cache[handle] = obj
     return obj
 
-def find_family(db, handle):
+def find_family(dbase, handle):
+    """ find a family, given a handle """
     if handle in _family_cache:
         obj = _family_cache[handle]
     else:
-        obj = db.get_family_from_handle(handle)
+        obj = dbase.get_family_from_handle(handle)
         _family_cache[handle] = obj
     return obj
 
 def clear_cache():
+    """ clear the cache """
     _person_cache.clear()
     _family_cache.clear()
     _event_cache.clear()
@@ -117,63 +130,70 @@ def clear_cache():
 # helper functions
 #
 #-------------------------------------------------------------------------
-def get_date_from_event_handle(db, event_handle, estimate=False):
+def get_date_from_event_handle(dbase, event_handle, estimate=False):
+    """ get a date from an event handle """
     if not event_handle:
         return 0
-    event =  find_event(db,event_handle)
+    event = find_event(dbase, event_handle)
     if event:
         date_obj = event.get_date_object()
-        if not estimate and \
-           (date_obj.get_day() == 0 or date_obj.get_month() == 0):
+        if (not estimate
+                and (date_obj.get_day() == 0 or date_obj.get_month() == 0)):
             return 0
         return date_obj.get_sort_value()
     else:
         return 0
 
-def get_date_from_event_type(db, person, event_type, estimate=False):
+def get_date_from_event_type(dbase, person, event_type, estimate=False):
+    """ get a date from a person's specific event type """
     if not person:
         return 0
     for event_ref in person.get_event_ref_list():
-        event = find_event(db,event_ref.ref)
+        event = find_event(dbase, event_ref.ref)
         if event:
-            if event_ref.get_role() != EventRoleType.PRIMARY and \
-                event.get_type() == EventType.BURIAL:
+            if (event_ref.get_role() != EventRoleType.PRIMARY
+                    and event.get_type() == EventType.BURIAL):
                 continue
             if event.get_type() == event_type:
                 date_obj = event.get_date_object()
-                if not estimate and \
-                   (date_obj.get_day() == 0 or date_obj.get_month() == 0):
+                if (not estimate
+                        and (date_obj.get_day() == 0
+                             or date_obj.get_month() == 0)):
                     return 0
                 return date_obj.get_sort_value()
     return 0
 
-def get_bapt_date(db, person, estimate=False):
-    return get_date_from_event_type(db, person,
+def get_bapt_date(dbase, person, estimate=False):
+    """ get a person's baptism date """
+    return get_date_from_event_type(dbase, person,
                                     EventType.BAPTISM, estimate)
 
-def get_bury_date(db, person, estimate=False):
+def get_bury_date(dbase, person, estimate=False):
+    """ get a person's burial date """
     # check role on burial event
     for event_ref in person.get_event_ref_list():
-        event = find_event(db, event_ref.ref)
-        if event and event.get_type() == EventType.BURIAL and \
-        event_ref.get_role() == EventRoleType.PRIMARY:
-            return get_date_from_event_type(db, person,
+        event = find_event(dbase, event_ref.ref)
+        if (event
+                and event.get_type() == EventType.BURIAL
+                and event_ref.get_role() == EventRoleType.PRIMARY):
+            return get_date_from_event_type(dbase, person,
                                             EventType.BURIAL, estimate)
 
-def get_birth_date(db, person, estimate=False):
+def get_birth_date(dbase, person, estimate=False):
+    """ get a person's birth date (or baptism date if 'estimated') """
     if not person:
         return 0
     birth_ref = person.get_birth_ref()
     if not birth_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(db,birth_ref.ref,estimate)
+        ret = get_date_from_event_handle(dbase, birth_ref.ref, estimate)
     if estimate and (ret == 0):
-        ret = get_bapt_date(db,person,estimate)
+        ret = get_bapt_date(dbase, person, estimate)
         ret = 0 if ret is None else ret
     return ret
 
-def get_death(db, person):
+def get_death(dbase, person):
     """
     boolean whether there is a death event or not
     (if a user claims a person is dead, we will believe it even with no date)
@@ -186,67 +206,74 @@ def get_death(db, person):
     else:
         return False
 
-def get_death_date(db, person, estimate=False):
+def get_death_date(dbase, person, estimate=False):
+    """ get a person's death date (or burial date if 'estimated') """
     if not person:
         return 0
     death_ref = person.get_death_ref()
     if not death_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(db,death_ref.ref,estimate)
+        ret = get_date_from_event_handle(dbase, death_ref.ref, estimate)
     if estimate and (ret == 0):
-        ret = get_bury_date(db,person,estimate)
+        ret = get_bury_date(dbase, person, estimate)
         ret = 0 if ret is None else ret
     return ret
 
-def get_age_at_death(db, person, estimate):
-    birth_date = get_birth_date(db,person,estimate)
-    death_date = get_death_date(db,person,estimate)
+def get_age_at_death(dbase, person, estimate):
+    """ get a person's age at death """
+    birth_date = get_birth_date(dbase, person, estimate)
+    death_date = get_death_date(dbase, person, estimate)
     if (birth_date > 0) and (death_date > 0):
         return death_date - birth_date
     return 0
 
-def get_father(db, family):
+def get_father(dbase, family):
+    """ get a family's father """
     if not family:
         return None
     father_handle = family.get_father_handle()
     if father_handle:
-        return find_person(db,father_handle)
+        return find_person(dbase, father_handle)
     return None
 
-def get_mother(db, family):
+def get_mother(dbase, family):
+    """ get a family's mother """
     if not family:
         return None
     mother_handle = family.get_mother_handle()
     if mother_handle:
-        return find_person(db, mother_handle)
+        return find_person(dbase, mother_handle)
     return None
 
-def get_child_birth_dates(db, family, estimate):
+def get_child_birth_dates(dbase, family, estimate):
+    """ get a family's children's birth dates """
     dates = []
     for child_ref in family.get_child_ref_list():
-        child = find_person(db,child_ref.ref)
-        child_birth_date = get_birth_date(db, child, estimate)
+        child = find_person(dbase, child_ref.ref)
+        child_birth_date = get_birth_date(dbase, child, estimate)
         if child_birth_date > 0:
             dates.append(child_birth_date)
     return dates
 
-def get_n_children(db, person):
-    n = 0
+def get_n_children(dbase, person):
+    """ get the number of a family's children """
+    number = 0
     for family_handle in person.get_family_handle_list():
-        family = find_family(db,family_handle)
+        family = find_family(dbase, family_handle)
         if family:
-            n += len(family.get_child_ref_list())
-    return n
+            number += len(family.get_child_ref_list())
+    return number
 
-def get_marriage_date(db, family):
+def get_marriage_date(dbase, family):
+    """ get a family's marriage date """
     if not family:
         return 0
     for event_ref in family.get_event_ref_list():
-        event = find_event(db,event_ref.ref)
-        if event.get_type() == EventType.MARRIAGE and \
-        (event_ref.get_role() == EventRoleType.FAMILY or
-        event_ref.get_role() == EventRoleType.PRIMARY ):
+        event = find_event(dbase, event_ref.ref)
+        if (event.get_type() == EventType.MARRIAGE
+                and (event_ref.get_role() == EventRoleType.FAMILY
+                     or event_ref.get_role() == EventRoleType.PRIMARY)):
             date_obj = event.get_date_object()
             return date_obj.get_sort_value()
     return 0
@@ -257,13 +284,18 @@ def get_marriage_date(db, family):
 #
 #-------------------------------------------------------------------------
 class Verify(tool.Tool, ManagedWindow, UpdateCallback):
+    """
+    A plugin to verify the data against user-adjusted tests.
+    This is the research tool, not the low-level data ingerity check.
+    """
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
+        """ initialize things """
         uistate = user.uistate
         self.label = _('Data Verify tool')
-        self.vr = None
+        self.v_r = None
         tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.__init__(self, uistate,[], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         if uistate:
             UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
@@ -272,30 +304,24 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
             self.init_gui()
         else:
             self.add_results = self.add_results_cli
-            self.run_tool(cli=True)
+            self.run_the_tool(cli=True)
 
     def add_results_cli(self, results):
-        # print data for the user, no GUI
-        (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
+        """ print data for the user, no GUI """
+        (msg, gramps_id, name, the_type, rule_id, severity, handle) = results
+        severity_str = 'S'
         if severity == Rule.WARNING:
-            # translators: needed for French+Arabic, ignore otherwise
-            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
-                       {'severity':'W', 'msg':msg, 'type':the_type,
-                        'gid':gramps_id, 'name':name})
+            severity_str = 'W'
         elif severity == Rule.ERROR:
-            # translators: needed for French+Arabic, ignore otherwise
-            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
-                       {'severity':'E', 'msg':msg, 'type':the_type,
-                        'gid':gramps_id, 'name':name})
-        else:
-            # translators: needed for French+Arabic, ignore otherwise
-            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
-                       {'severity':'S', 'msg':msg, 'type':the_type,
-                        'gid':gramps_id, 'name':name})
+            severity_str = 'E'
+        # translators: needed for French+Arabic, ignore otherwise
+        print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
+               ) % {'severity' : severity_str, 'msg' : msg, 'type' : the_type,
+                    'gid' : gramps_id, 'name' : name})
 
     def init_gui(self):
-        # Draw dialog and make it handle everything
-        self.vr = None
+        """ Draw dialog and make it handle everything """
+        self.v_r = None
         self.top = Glade()
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
@@ -305,65 +331,63 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         })
 
         window = self.top.toplevel
-        self.set_window(window,self.top.get_object('title'),self.label)
+        self.set_window(window, self.top.get_object('title'), self.label)
 
-        for option in self.options.handler.options_dict:
+        o_dict = self.options.handler.options_dict
+        for option in o_dict:
             if option in ['estimate_age', 'invdate']:
-                self.top.get_object(option).set_active(
-                    self.options.handler.options_dict[option]
-                    )
+                self.top.get_object(option).set_active(o_dict[option])
             else:
-                self.top.get_object(option).set_value(
-                    self.options.handler.options_dict[option]
-                    )
+                self.top.get_object(option).set_value(o_dict[option])
         self.show()
 
     def build_menu_names(self, obj):
-        return (_("Tool settings"),self.label)
+        """ build the menu names """
+        return (_("Tool settings"), self.label)
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """ Display the relevant portion of GRAMPS manual """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
+        """ event handler for user clicking the OK button: start things """
         run_button = self.top.get_object('button4')
         close_button = self.top.get_object('button5')
         run_button.set_sensitive(False)
         close_button.set_sensitive(False)
-        for option in self.options.handler.options_dict:
+        o_dict = self.options.handler.options_dict
+        for option in o_dict:
             if option in ['estimate_age', 'invdate']:
-                self.options.handler.options_dict[option] = \
-                self.top.get_object(option).get_active()
+                o_dict[option] = self.top.get_object(option).get_active()
             else:
-                self.options.handler.options_dict[option] = \
-                    self.top.get_object(option).get_value_as_int()
+                o_dict[option] = self.top.get_object(option).get_value_as_int()
 
         try:
-            self.vr = VerifyResults(self.dbstate, self.uistate, self.track)
-            self.add_results = self.vr.add_results
-            self.vr.load_ignored(self.db.full_name)
+            self.v_r = VerifyResults(self.dbstate, self.uistate, self.track)
+            self.add_results = self.v_r.add_results
+            self.v_r.load_ignored(self.db.full_name)
         except WindowActiveError:
             pass
         except AttributeError: # VerifyResults.load_ignored was not run
-            self.vr.ignores = {}
+            self.v_r.ignores = {}
 
         self.uistate.set_busy_cursor(True)
         self.uistate.progress.show()
-        BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
+        busy_cursor = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
                                                  Gdk.CursorType.WATCH)
-        self.window.get_window().set_cursor(BUSY_CURSOR)
+        self.window.get_window().set_cursor(busy_cursor)
         try:
-            self.vr.window.get_window().set_cursor(BUSY_CURSOR)
+            self.v_r.window.get_window().set_cursor(busy_cursor)
         except AttributeError:
             pass
 
-        self.run_tool(cli=False)
+        self.run_the_tool(cli=False)
 
         self.uistate.progress.hide()
         self.uistate.set_busy_cursor(False)
         try:
             self.window.get_window().set_cursor(None)
-            self.vr.window.get_window().set_cursor(None)
+            self.v_r.window.get_window().set_cursor(None)
         except AttributeError:
             pass
         run_button.set_sensitive(True)
@@ -373,16 +397,18 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         # Save options
         self.options.handler.save_options()
 
-    def run_tool(self,cli=False):
+    def run_the_tool(self, cli=False):
+        """ run the tool """
 
         person_handles = self.db.iter_person_handles()
 
-        for option, value in \
-          self.options.handler.options_dict.items():
+        for option, value in self.options.handler.options_dict.items():
             exec('%s = %s' % (option, value), globals())
+            # TODO my pylint doesn't seem to understand these variables really
+            # are defined here, so I have disabled the undefined-variable error
 
-        if self.vr:
-            self.vr.real_model.clear()
+        if self.v_r:
+            self.v_r.real_model.clear()
 
         self.set_total(self.db.get_number_of_people() +
                        self.db.get_number_of_families())
@@ -419,25 +445,25 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         # Family-based rules
         for family_handle in self.db.iter_family_handles():
-            family = find_family(self.db,family_handle)
+            family = find_family(self.db, family_handle)
 
             rule_list = [
-                SameSexFamily(self.db,family),
-                FemaleHusband(self.db,family),
-                MaleWife(self.db,family),
-                SameSurnameFamily(self.db,family),
-                LargeAgeGapFamily(self.db,family, hwdif,estimate_age),
-                MarriageBeforeBirth(self.db,family,estimate_age),
-                MarriageAfterDeath(self.db,family,estimate_age),
-                EarlyMarriage(self.db,family,yngmar,estimate_age),
-                LateMarriage(self.db,family, oldmar,estimate_age),
-                OldParent(self.db,family, oldmom, olddad,estimate_age),
-                YoungParent(self.db,family,yngmom,yngdad,estimate_age),
-                UnbornParent(self.db,family,estimate_age),
-                DeadParent(self.db,family,estimate_age),
-                LargeChildrenSpan(self.db,family,cbspan,estimate_age),
-                LargeChildrenAgeDiff(self.db,family,cspace,estimate_age),
-                MarriedRelation(self.db,family),
+                SameSexFamily(self.db, family),
+                FemaleHusband(self.db, family),
+                MaleWife(self.db, family),
+                SameSurnameFamily(self.db, family),
+                LargeAgeGapFamily(self.db, family, hwdif, estimate_age),
+                MarriageBeforeBirth(self.db, family, estimate_age),
+                MarriageAfterDeath(self.db, family, estimate_age),
+                EarlyMarriage(self.db, family, yngmar, estimate_age),
+                LateMarriage(self.db, family, oldmar, estimate_age),
+                OldParent(self.db, family, oldmom, olddad, estimate_age),
+                YoungParent(self.db, family, yngmom, yngdad, estimate_age),
+                UnbornParent(self.db, family, estimate_age),
+                DeadParent(self.db, family, estimate_age),
+                LargeChildrenSpan(self.db, family, cbspan, estimate_age),
+                LargeChildrenAgeDiff(self.db, family, cspace, estimate_age),
+                MarriedRelation(self.db, family),
                 ]
 
             for rule in rule_list:
@@ -454,27 +480,29 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 #
 #-------------------------------------------------------------------------
 class VerifyResults(ManagedWindow):
-    IGNORE_COL     = 0
-    WARNING_COL    = 1
-    OBJ_ID_COL     = 2
-    OBJ_NAME_COL   = 3
-    OBJ_TYPE_COL   = 4
-    RULE_ID_COL    = 5
+    """ GUI class to show the results in another dialog """
+    IGNORE_COL = 0
+    WARNING_COL = 1
+    OBJ_ID_COL = 2
+    OBJ_NAME_COL = 3
+    OBJ_TYPE_COL = 4
+    RULE_ID_COL = 5
     OBJ_HANDLE_COL = 6
-    FG_COLOR_COL   = 7
-    TRUE_COL       = 8
-    SHOW_COL       = 9
+    FG_COLOR_COL = 7
+    TRUE_COL = 8
+    SHOW_COL = 9
 
-    def __init__(self,dbstate,uistate,track):
+    def __init__(self, dbstate, uistate, track):
+        """ initialize things """
         self.title = _('Data Verification Results')
 
-        ManagedWindow.__init__(self,uistate,track,self.__class__)
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         self.dbstate = dbstate
         self._set_filename()
         self.top = Glade(toplevel="verify_result")
         window = self.top.toplevel
-        self.set_window(window,self.top.get_object('title2'),self.title)
+        self.set_window(window, self.top.get_object('title2'), self.title)
 
         self.top.connect_signals({
             "destroy_passed_object"  : self.close,
@@ -488,16 +516,16 @@ class VerifyResults(ManagedWindow):
         self.selection = self.warn_tree.get_selection()
 
         self.hide_button = self.top.get_object('hide_button')
-        self.hide_button.connect('toggled',self.hide_toggled)
+        self.hide_button.connect('toggled', self.hide_toggled)
 
         self.mark_button = self.top.get_object('mark_all')
-        self.mark_button.connect('clicked',self.mark_clicked)
+        self.mark_button.connect('clicked', self.mark_clicked)
 
         self.unmark_button = self.top.get_object('unmark_all')
-        self.unmark_button.connect('clicked',self.unmark_clicked)
+        self.unmark_button.connect('clicked', self.unmark_clicked)
 
         self.invert_button = self.top.get_object('invert_all')
-        self.invert_button.connect('clicked',self.invert_clicked)
+        self.invert_button.connect('clicked', self.invert_clicked)
 
         self.real_model = Gtk.ListStore(GObject.TYPE_BOOLEAN,
                                         GObject.TYPE_STRING,
@@ -525,8 +553,8 @@ class VerifyResults(ManagedWindow):
         self.warn_tree.append_column(ignore_column)
 
         # Add image column
-        img_column = Gtk.TreeViewColumn(None, self.img_renderer )
-        img_column.set_cell_data_func(self.img_renderer,self.get_image)
+        img_column = Gtk.TreeViewColumn(None, self.img_renderer)
+        img_column.set_cell_data_func(self.img_renderer, self.get_image)
         self.warn_tree.append_column(img_column)
 
         # Add column with the warning text
@@ -569,6 +597,7 @@ class VerifyResults(ManagedWindow):
             VERSION_DIR, md5sum.hexdigest() + os.path.extsep + 'vfm')
 
     def load_ignored(self, db_filename):
+        """ get ready to load the file with the previously-ignored people """
         ## a new Gramps major version means recreating the .vfm file.
         ## User can copy over old one, with name of new one, but no guarantee
         ## that will work.
@@ -576,33 +605,36 @@ class VerifyResults(ManagedWindow):
             self.ignores = {}
 
     def _load_ignored(self, filename):
+        """ load the file with the people who were previously ignored """
         try:
             try:
-                f = open(filename, 'rb')
+                file = open(filename, 'rb')
             except IOError:
                 return False
-            self.ignores = pickle.load(f)
-            f.close()
+            self.ignores = pickle.load(file)
+            file.close()
             return True
         except (IOError, EOFError):
-            f.close()
+            file.close()
             return False
 
     def save_ignored(self, new_ignores):
+        """ get ready to save the file with the ignored people """
         self.ignores = new_ignores
         self._save_ignored(self.ignores_filename)
 
-    def _save_ignored(self,filename):
+    def _save_ignored(self, filename):
+        """ save the file with the people the user wants to ignore """
         try:
-            with open(filename,'wb') as f:
-                pickle.dump(self.ignores, f, 1)
+            with open(filename, 'wb') as file:
+                pickle.dump(self.ignores, file, 1)
             return True
         except IOError:
             return False
 
-    def get_marking(self, handle,rule_id):
+    def get_marking(self, handle, rule_id):
         if handle in self.ignores:
-            return (rule_id in self.ignores[handle])
+            return rule_id in self.ignores[handle]
         else:
             return False
 
@@ -621,10 +653,11 @@ class VerifyResults(ManagedWindow):
         return new_ignores
 
     def close(self, *obj):
+        """ close the dialog and write out the file """
         new_ignores = self.get_new_marking()
         self.save_ignored(new_ignores)
 
-        ManagedWindow.close(self,*obj)
+        ManagedWindow.close(self, *obj)
 
     def hide_toggled(self, button):
         if button.get_active():
@@ -642,12 +675,13 @@ class VerifyResults(ManagedWindow):
 
     def selection_toggled(self, cell, path_string):
         sort_path = tuple(map(int, path_string.split(':')))
-        filt_path = self.sort_model.convert_path_to_child_path(Gtk.TreePath(sort_path))
+        filt_path = self.sort_model.convert_path_to_child_path(
+            Gtk.TreePath(sort_path))
         real_path = self.filt_model.convert_path_to_child_path(filt_path)
         row = self.real_model[real_path]
         row[VerifyResults.IGNORE_COL] = not row[VerifyResults.IGNORE_COL]
         row[VerifyResults.SHOW_COL] = not row[VerifyResults.IGNORE_COL]
-        self.real_model.row_changed(real_path,row.iter)
+        self.real_model.row_changed(real_path, row.iter)
 
     def mark_clicked(self, mark_button):
         for row_num in range(len(self.real_model)):
@@ -674,6 +708,7 @@ class VerifyResults(ManagedWindow):
         self.filt_model.refilter()
 
     def double_click(self, obj, event):
+        """ the user wants to edit the selected person or family """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
@@ -697,25 +732,23 @@ class VerifyResults(ManagedWindow):
                 except WindowActiveError:
                     pass
 
-    def get_image(self, column, cell, model, iter, user_data=None):
-        the_type = model.get_value(iter, VerifyResults.OBJ_TYPE_COL)
+    def get_image(self, column, cell, model, iter_, user_data=None):
+        """ flag whether each line is a person or family """
+        the_type = model.get_value(iter_, VerifyResults.OBJ_TYPE_COL)
         if the_type == 'Person':
-            cell.set_property('icon-name', 'gramps-person' )
-        elif  the_type == 'Family':
-            cell.set_property('icon-name', 'gramps-family' )
+            cell.set_property('icon-name', 'gramps-person')
+        elif the_type == 'Family':
+            cell.set_property('icon-name', 'gramps-family')
 
-    def add_results(self,results):
-        (msg,gramps_id, name,the_type,rule_id,severity, handle) = results
-        ignore = self.get_marking(handle,rule_id)
+    def add_results(self, results):
+        (msg, gramps_id, name, the_type, rule_id, severity, handle) = results
+        ignore = self.get_marking(handle, rule_id)
         if severity == Rule.ERROR:
-            fg = 'red'
-            #     fg = '#8b008b' # purple
-            # elif severity == Rule.WARNING:
-            #     fg = '#008b00' # green
+            line_color = 'red'
         else:
-            fg = None
-        self.real_model.append(row=[ignore,msg,gramps_id, name,
-                                    the_type,rule_id, handle,fg,
+            line_color = None
+        self.real_model.append(row=[ignore, msg, gramps_id, name,
+                                    the_type, rule_id, handle, line_color,
                                     True, not ignore])
 
         if not self.window_shown:
@@ -723,7 +756,8 @@ class VerifyResults(ManagedWindow):
             self.window_shown = True
 
     def build_menu_names(self, obj):
-        return (self.title,None)
+        """ build the menu names """
+        return (self.title, None)
 
 #------------------------------------------------------------------------
 #
@@ -736,12 +770,13 @@ class VerifyOptions(tool.ToolOptions):
     """
 
     def __init__(self, name, person_id=None):
+        """ initialize the options """
         tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
             'oldage'       : 90,
-            'hwdif'       : 30,
+            'hwdif'        : 30,
             'cspace'       : 8,
             'cbspan'       : 25,
             'yngmar'       : 17,
@@ -758,9 +793,15 @@ class VerifyOptions(tool.ToolOptions):
             'estimate_age' : 0,
             'invdate'      : 1,
         }
+        # TODO these strings are defined in the glade file (more or less, since
+        # those have accelerators), and so are not translated here, but that
+        # means that a CLI user who runs gramps in a non-English language and
+        # says (for instance) "show=oldage" will see "Maximum age" in English
+        # (but I think such a CLI use is very unlikely and so is low priority,
+        # especially since the tool's normal CLI output will be translated)
         self.options_help = {
-            'oldage'       : ("=num","Maximum age","Age in years"),
-            'hwdif'       : ("=num","Maximum husband-wife age difference",
+            'oldage'       : ("=num", "Maximum age", "Age in years"),
+            'hwdif'        : ("=num", "Maximum husband-wife age difference",
                               "Age difference in years"),
             'cspace'       : ("=num",
                               "Maximum number of years between children",
@@ -768,31 +809,32 @@ class VerifyOptions(tool.ToolOptions):
             'cbspan'       : ("=num",
                               "Maximum span of years for all children",
                               "Span in years"),
-            'yngmar'       : ("=num","Minimum age to marry","Age in years"),
-            'oldmar'       : ("=num","Maximum age to marry","Age in years"),
-            'oldmom'       : ("=num","Maximum age to bear a child",
+            'yngmar'       : ("=num", "Minimum age to marry", "Age in years"),
+            'oldmar'       : ("=num", "Maximum age to marry", "Age in years"),
+            'oldmom'       : ("=num", "Maximum age to bear a child",
                               "Age in years"),
-            'yngmom'       : ("=num","Minimum age to bear a child",
+            'yngmom'       : ("=num", "Minimum age to bear a child",
                               "Age in years"),
-            'yngdad'       : ("=num","Minimum age to father a child",
+            'yngdad'       : ("=num", "Minimum age to father a child",
                               "Age in years"),
-            'olddad'       : ("=num","Maximum age to father a child",
+            'olddad'       : ("=num", "Maximum age to father a child",
                               "Age in years"),
-            'wedder'       : ("=num","Maximum number of spouses for a person",
+            'wedder'       : ("=num", "Maximum number of spouses for a person",
                               "Number of spouses"),
-            'mxchildmom'   : ("=num","Maximum number of children for a woman",
+            'mxchildmom'   : ("=num", "Maximum number of children for a woman",
                               "Number of children"),
-            'mxchilddad'   : ("=num","Maximum  number of children for a man",
+            'mxchilddad'   : ("=num", "Maximum  number of children for a man",
                               "Number of chidlren"),
-            'lngwdw'       : ("=num","Maximum number of consecutive years "
+            'lngwdw'       : ("=num", "Maximum number of consecutive years "
                               "of widowhood before next marriage",
                               "Number of years"),
-            'oldunm'       : ("=num","Maximum age for an unmarried person"
+            'oldunm'       : ("=num", "Maximum age for an unmarried person"
                               "Number of years"),
-            'estimate_age' : ("=0/1","Whether to estimate missing or inexact dates",
-                              ["Do not estimate","Estimate dates"],
+            'estimate_age' : ("=0/1",
+                              "Whether to estimate missing or inexact dates",
+                              ["Do not estimate", "Estimate dates"],
                               True),
-            'invdate'      : ("=0/1","Whether to check for invalid dates"
+            'invdate'      : ("=0/1", "Whether to check for invalid dates"
                               "Do not identify invalid dates",
                               "Identify invalid dates", True),
         }
@@ -811,13 +853,14 @@ class Rule:
     ID = 0
     TYPE = ''
 
-    ERROR   = 1
+    ERROR = 1
     WARNING = 2
 
     SEVERITY = WARNING
 
-    def __init__(self,db, obj):
-        self.db = db
+    def __init__(self, dbase, obj):
+        """ initialize the rule """
+        self._db = dbase
         self.obj = obj
 
     def broken(self):
@@ -827,28 +870,32 @@ class Rule:
         return False
 
     def get_message(self):
+        """ return the rule's error message """
         assert False, "Need to be overriden in the derived class"
 
     def get_name(self):
+        """ return the person's primary name or the name of the family """
         assert False, "Need to be overriden in the derived class"
 
     def get_handle(self):
+        """ return the object's handle """
         return self.obj.handle
 
     def get_id(self):
+        """ return the object's gramps_id """
         return self.obj.gramps_id
 
-    def get_level(self):
-        return Rule.WARNING
-
     def get_rule_id(self):
+        """ return the rule's identification number, and parameters """
         params = self._get_params()
-        return (self.ID,params)
+        return (self.ID, params)
 
     def _get_params(self):
+        """ return the rule's parameters """
         return tuple()
 
     def report_itself(self):
+        """ return the details about a rule """
         handle = self.get_handle()
         the_type = self.TYPE
         rule_id = self.get_rule_id()
@@ -856,7 +903,7 @@ class Rule:
         name = self.get_name()
         gramps_id = self.get_id()
         msg = self.get_message()
-        return (msg,gramps_id, name,the_type,rule_id,severity, handle)
+        return (msg, gramps_id, name, the_type, rule_id, severity, handle)
 
 class PersonRule(Rule):
     """
@@ -864,6 +911,7 @@ class PersonRule(Rule):
     """
     TYPE = 'Person'
     def get_name(self):
+        """ return the person's primary name """
         return self.obj.get_primary_name().get_name()
 
 class FamilyRule(Rule):
@@ -872,7 +920,8 @@ class FamilyRule(Rule):
     """
     TYPE = 'Family'
     def get_name(self):
-        return family_name(self.obj,self.db)
+        """ return the name of the family """
+        return family_name(self.obj, self._db)
 
 #-------------------------------------------------------------------------
 #
@@ -880,226 +929,281 @@ class FamilyRule(Rule):
 #
 #-------------------------------------------------------------------------
 class BirthAfterBapt(PersonRule):
+    """ test if a person was baptised before their birth """
     ID = 1
     SEVERITY = Rule.ERROR
     def broken(self):
-        birth_date = get_birth_date(self.db,self.obj)
-        bapt_date = get_bapt_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self._db, self.obj)
+        bapt_date = get_bapt_date(self._db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
-        return (birth_ok and bapt_ok and birth_date > bapt_date)
+        return birth_ok and bapt_ok and birth_date > bapt_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Baptism before birth")
 
 class DeathBeforeBapt(PersonRule):
+    """ test if a person died before their baptism """
     ID = 2
     SEVERITY = Rule.ERROR
     def broken(self):
-        death_date = get_death_date(self.db,self.obj)
-        bapt_date = get_bapt_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        death_date = get_death_date(self._db, self.obj)
+        bapt_date = get_bapt_date(self._db, self.obj)
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
         death_ok = death_date > 0 if death_date is not None else False
-        return (death_ok and bapt_ok and bapt_date > death_date)
+        return death_ok and bapt_ok and bapt_date > death_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Death before baptism")
 
 class BirthAfterBury(PersonRule):
+    """ test if a person was buried before their birth """
     ID = 3
     SEVERITY = Rule.ERROR
     def broken(self):
-        birth_date = get_birth_date(self.db, self.obj)
-        bury_date = get_bury_date(self.db, self.obj)
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self._db, self.obj)
+        bury_date = get_bury_date(self._db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
-        return (birth_ok and bury_ok and birth_date > bury_date)
+        return birth_ok and bury_ok and birth_date > bury_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Burial before birth")
 
 class DeathAfterBury(PersonRule):
+    """ test if a person was buried before their death """
     ID = 4
     SEVERITY = Rule.ERROR
     def broken(self):
-        death_date = get_death_date(self.db,self.obj)
-        bury_date = get_bury_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        death_date = get_death_date(self._db, self.obj)
+        bury_date = get_bury_date(self._db, self.obj)
         death_ok = death_date > 0 if death_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
-        return (death_ok and bury_ok and death_date > bury_date)
+        return death_ok and bury_ok and death_date > bury_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Burial before death")
 
 class BirthAfterDeath(PersonRule):
+    """ test if a person died before their birth """
     ID = 5
     SEVERITY = Rule.ERROR
     def broken(self):
-        birth_date = get_birth_date(self.db,self.obj)
-        death_date = get_death_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self._db, self.obj)
+        death_date = get_death_date(self._db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         death_ok = death_date > 0 if death_date is not None else False
-        return (birth_ok and death_ok and birth_date > death_date)
+        return birth_ok and death_ok and birth_date > death_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Death before birth")
 
 class BaptAfterBury(PersonRule):
+    """ test if a person was buried before their baptism """
     ID = 6
     SEVERITY = Rule.ERROR
     def broken(self):
-        bapt_date = get_bapt_date(self.db,self.obj)
-        bury_date = get_bury_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        bapt_date = get_bapt_date(self._db, self.obj)
+        bury_date = get_bury_date(self._db, self.obj)
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
-        return (bapt_ok and bury_ok and bapt_date > bury_date)
+        return bapt_ok and bury_ok and bapt_date > bury_date
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Burial before baptism")
 
 class OldAge(PersonRule):
+    """ test if a person died beyond the age the user has set """
     ID = 7
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person, old_age,est):
-        PersonRule.__init__(self,db,person)
+    def __init__(self, db, person, old_age, est):
+        """ initialize the rule """
+        PersonRule.__init__(self, db, person)
         self.old_age = old_age
         self.est = est
 
     def _get_params(self):
-        return (self.old_age,self.est)
+        """ return the rule's parameters """
+        return (self.old_age, self.est)
 
     def broken(self):
-        age_at_death = get_age_at_death(self.db, self.obj, self.est)
-        return (age_at_death/365 > self.old_age)
+        """ return boolean indicating whether this rule is violated """
+        age_at_death = get_age_at_death(self._db, self.obj, self.est)
+        return age_at_death / 365 > self.old_age
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Old age at death")
 
 class UnknownGender(PersonRule):
+    """ test if a person is neither a male nor a female """
     ID = 8
     SEVERITY = Rule.WARNING
     def broken(self):
+        """ return boolean indicating whether this rule is violated """
         female = self.obj.get_gender() == Person.FEMALE
         male = self.obj.get_gender() == Person.MALE
         return not (male or female)
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Unknown gender")
 
 class MultipleParents(PersonRule):
+    """ test if a person belongs to multiple families """
     ID = 9
     SEVERITY = Rule.WARNING
     def broken(self):
+        """ return boolean indicating whether this rule is violated """
         n_parent_sets = len(self.obj.get_parent_family_handle_list())
-        return (n_parent_sets>1)
+        return n_parent_sets > 1
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Multiple parents")
 
 class MarriedOften(PersonRule):
+    """ test if a person was married 'often' """
     ID = 10
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person,wedder):
-        PersonRule.__init__(self,db,person)
+    def __init__(self, db, person, wedder):
+        """ initialize the rule """
+        PersonRule.__init__(self, db, person)
         self.wedder = wedder
 
     def _get_params(self):
+        """ return the rule's parameters """
         return (self.wedder,)
 
     def broken(self):
+        """ return boolean indicating whether this rule is violated """
         n_spouses = len(self.obj.get_family_handle_list())
-        return (n_spouses>self.wedder)
+        return n_spouses > self.wedder
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Married often")
 
 class OldUnmarried(PersonRule):
+    """ test if a person was married when they died """
     ID = 11
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person, old_unm,est):
-        PersonRule.__init__(self,db,person)
+    def __init__(self, db, person, old_unm, est):
+        """ initialize the rule """
+        PersonRule.__init__(self, db, person)
         self.old_unm = old_unm
         self.est = est
 
     def _get_params(self):
-        return (self.old_unm,self.est)
+        """ return the rule's parameters """
+        return (self.old_unm, self.est)
 
     def broken(self):
-        age_at_death = get_age_at_death(self.db,self.obj,self.est)
+        """ return boolean indicating whether this rule is violated """
+        age_at_death = get_age_at_death(self._db, self.obj, self.est)
         n_spouses = len(self.obj.get_family_handle_list())
-        return (age_at_death/365 > self.old_unm and n_spouses==0)
+        return age_at_death / 365 > self.old_unm and n_spouses == 0
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Old and unmarried")
 
 class TooManyChildren(PersonRule):
+    """ test if a person had 'too many' children """
     ID = 12
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj,mx_child_dad,mx_child_mom):
-        PersonRule.__init__(self,db, obj)
+    def __init__(self, db, obj, mx_child_dad, mx_child_mom):
+        """ initialize the rule """
+        PersonRule.__init__(self, db, obj)
         self.mx_child_dad = mx_child_dad
         self.mx_child_mom = mx_child_mom
 
     def _get_params(self):
-        return (self.mx_child_dad,self.mx_child_mom)
+        """ return the rule's parameters """
+        return (self.mx_child_dad, self.mx_child_mom)
 
     def broken(self):
-        n_child = get_n_children(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        n_child = get_n_children(self._db, self.obj)
 
         if (self.obj.get_gender == Person.MALE
-               and n_child > self.mx_child_dad):
+                and n_child > self.mx_child_dad):
             return True
 
         if (self.obj.get_gender == Person.FEMALE
-               and n_child > self.mx_child_mom):
+                and n_child > self.mx_child_mom):
             return True
 
         return False
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Too many children")
 
 class SameSexFamily(FamilyRule):
+    """ test if a family's parents are both male or both female """
     ID = 13
     SEVERITY = Rule.WARNING
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
         same_sex = (mother and father and
                     (mother.get_gender() == father.get_gender()))
         unknown_sex = (mother and
                        (mother.get_gender() == Person.UNKNOWN))
-        return (same_sex and not unknown_sex)
+        return same_sex and not unknown_sex
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Same sex marriage")
 
 class FemaleHusband(FamilyRule):
+    """ test if a family's 'husband' is female """
     ID = 14
     SEVERITY = Rule.WARNING
     def broken(self):
-        father = get_father(self.db,self.obj)
-        return (father and (father.get_gender() == Person.FEMALE))
+        """ return boolean indicating whether this rule is violated """
+        father = get_father(self._db, self.obj)
+        return father and (father.get_gender() == Person.FEMALE)
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Female husband")
 
 class MaleWife(FamilyRule):
+    """ test if a family's 'wife' is male """
     ID = 15
     SEVERITY = Rule.WARNING
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        return (mother and (mother.get_gender() == Person.MALE))
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        return mother and (mother.get_gender() == Person.MALE)
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Male wife")
 
 class SameSurnameFamily(FamilyRule):
+    """ test if a family's parents were born with the same surname """
     ID = 16
     SEVERITY = Rule.WARNING
     def broken(self):
-        mother = get_mother(self.db, self.obj)
-        father = get_father(self.db, self.obj)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
         _broken = False
 
         # Make sure both mother and father exist.
@@ -1107,11 +1211,11 @@ class SameSurnameFamily(FamilyRule):
             mname = mother.get_primary_name()
             fname = father.get_primary_name()
             # Only compare birth names (not married names).
-            if mname.get_type() == NameType.BIRTH and \
-               fname.get_type() == NameType.BIRTH:
+            if (mname.get_type() == NameType.BIRTH
+                    and fname.get_type() == NameType.BIRTH):
                 # Empty names don't count.
-                if len(mname.get_surname()) != 0 and \
-                   len(fname.get_surname()) != 0:
+                if (len(mname.get_surname()) != 0
+                        and len(fname.get_surname()) != 0):
                     # Finally, check if the names are the same.
                     if mname.get_surname() == fname.get_surname():
                         _broken = True
@@ -1119,51 +1223,61 @@ class SameSurnameFamily(FamilyRule):
         return _broken
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Husband and wife with the same surname")
 
 class LargeAgeGapFamily(FamilyRule):
+    """ test if a family's parents were born far apart """
     ID = 17
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj, hw_diff,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, hw_diff, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.hw_diff = hw_diff
         self.est = est
 
     def _get_params(self):
-        return (self.hw_diff,self.est)
+        """ return the rule's parameters """
+        return (self.hw_diff, self.est)
 
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
-        large_diff = \
-                   abs(father_birth_date-mother_birth_date)/365 > self.hw_diff
-        return (mother_birth_date_ok and father_birth_date_ok and large_diff)
+        large_diff = abs(
+            father_birth_date-mother_birth_date) / 365 > self.hw_diff
+        return mother_birth_date_ok and father_birth_date_ok and large_diff
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Large age difference between spouses")
 
 class MarriageBeforeBirth(FamilyRule):
+    """ test if each family's parent was born before the marriage """
     ID = 18
     SEVERITY = Rule.ERROR
-    def __init__(self,db, obj,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.est = est
 
     def _get_params(self):
+        """ return the rule's parameters """
         return (self.est,)
 
     def broken(self):
-        marr_date = get_marriage_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        marr_date = get_marriage_date(self._db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1172,29 +1286,34 @@ class MarriageBeforeBirth(FamilyRule):
         mother_broken = (mother_birth_date_ok and marr_date_ok
                          and (mother_birth_date > marr_date))
 
-        return (father_broken or mother_broken)
+        return father_broken or mother_broken
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Marriage before birth")
 
 class MarriageAfterDeath(FamilyRule):
+    """ test if each family's parent died before the marriage """
     ID = 19
     SEVERITY = Rule.ERROR
-    def __init__(self,db, obj,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.est = est
 
     def _get_params(self):
+        """ return the rule's parameters """
         return (self.est,)
 
     def broken(self):
-        marr_date = get_marriage_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        marr_date = get_marriage_date(self._db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_death_date = get_death_date(self.db,mother,self.est)
-        father_death_date = get_death_date(self.db,father,self.est)
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_death_date = get_death_date(self._db, mother, self.est)
+        father_death_date = get_death_date(self._db, father, self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
@@ -1203,207 +1322,223 @@ class MarriageAfterDeath(FamilyRule):
         mother_broken = (mother_death_date_ok and marr_date_ok
                          and (mother_death_date < marr_date))
 
-        return (father_broken or mother_broken)
+        return father_broken or mother_broken
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Marriage after death")
 
 class EarlyMarriage(FamilyRule):
+    """ test if each family's parent was 'too young' at the marriage """
     ID = 20
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj,yng_mar,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, yng_mar, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.yng_mar = yng_mar
         self.est = est
 
     def _get_params(self):
-        return (self.yng_mar,self.est,)
+        """ return the rule's parameters """
+        return (self.yng_mar, self.est,)
 
     def broken(self):
-        marr_date = get_marriage_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        marr_date = get_marriage_date(self._db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
-        father_broken = (father_birth_date_ok and marr_date_ok and
-                         father_birth_date < marr_date and
-                         ((marr_date - father_birth_date)/365 < self.yng_mar))
-        mother_broken = (mother_birth_date_ok and marr_date_ok and
-                         mother_birth_date < marr_date and
-                         ((marr_date - mother_birth_date)/365 < self.yng_mar))
+        father_broken = (
+            father_birth_date_ok and marr_date_ok and
+            father_birth_date < marr_date and
+            ((marr_date - father_birth_date) / 365 < self.yng_mar))
+        mother_broken = (
+            mother_birth_date_ok and marr_date_ok and
+            mother_birth_date < marr_date and
+            ((marr_date - mother_birth_date) / 365 < self.yng_mar))
 
-        return (father_broken or mother_broken)
+        return father_broken or mother_broken
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Early marriage")
 
 class LateMarriage(FamilyRule):
+    """ test if each family's parent was 'too old' at the marriage """
     ID = 21
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj, old_mar,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, old_mar, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.old_mar = old_mar
         self.est = est
 
     def _get_params(self):
-        return (self.old_mar,self.est)
+        """ return the rule's parameters """
+        return (self.old_mar, self.est)
 
     def broken(self):
-        marr_date = get_marriage_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        marr_date = get_marriage_date(self._db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
-        father_broken = (father_birth_date_ok and marr_date_ok and
-                         ((marr_date - father_birth_date)/365 > self.old_mar))
-        mother_broken = (mother_birth_date_ok and marr_date_ok and
-                         ((marr_date - mother_birth_date)/365 > self.old_mar))
+        father_broken = (
+            father_birth_date_ok and marr_date_ok and
+            ((marr_date - father_birth_date) / 365 > self.old_mar))
+        mother_broken = (
+            mother_birth_date_ok and marr_date_ok and
+            ((marr_date - mother_birth_date) / 365 > self.old_mar))
 
-        return (father_broken or mother_broken)
+        return father_broken or mother_broken
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Late marriage")
 
-## class MarriageBeforePrefiousMarrChild(PersonRule):
-##     def broken(self):
-##         marr_date = get_marriage_date(self.obj)
-##         prev_marr_child_date = get_prev_marr_child_date(self.obj)
-##         return (prev_marr_child_date>marr_date)
-
-##     def get_message(self):
-##         return _("Marriage before having a child from previous marriage")
-
-## class LongWidowhood(FamilyRule):
-##     def broken(self):
-##         marr_date = get_marriage_date(self.obj)
-##         prev_marr_spouse_death_date = get_prev_marr_spouse_death_date(self.obj)
-##         birth_date = get_birth_date(self.obj)
-##         return (marr_date-prev_marr_spouse_death_date>lngwdw)
-
-##     def get_message(self):
-##         return _("Long Windowhood")
-
 class OldParent(FamilyRule):
+    """ test if each family's parent was 'too old' at a child's birth """
     ID = 22
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj, old_mom, old_dad,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, old_mom, old_dad, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.old_mom = old_mom
         self.old_dad = old_dad
         self.est = est
 
     def _get_params(self):
-        return (self.old_mom,self.old_dad,self.est)
+        """ return the rule's parameters """
+        return (self.old_mom, self.old_dad, self.est)
 
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child,self.est)
+            child = find_person(self._db, child_ref.ref)
+            child_birth_date = get_birth_date(self._db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = (father_birth_date_ok and
-                ((child_birth_date - father_birth_date)/365 > self.old_dad))
+            father_broken = (
+                father_birth_date_ok and
+                ((child_birth_date - father_birth_date) / 365 > self.old_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (mother_birth_date_ok and
-                ((child_birth_date - mother_birth_date)/365 > self.old_mom))
+            mother_broken = (
+                mother_birth_date_ok and
+                ((child_birth_date - mother_birth_date) / 365 > self.old_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
         return False
 
     def father_message(self):
+        """ return the rule's error message """
         return _("Old father")
 
     def mother_message(self):
+        """ return the rule's error message """
         return _("Old mother")
 
 class YoungParent(FamilyRule):
+    """ test if each family's parent was 'too young' at a child's birth """
     ID = 23
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj,yng_mom,yng_dad,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, yng_mom, yng_dad, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.yng_dad = yng_dad
         self.yng_mom = yng_mom
         self.est = est
 
     def _get_params(self):
-        return (self.yng_mom,self.yng_dad,self.est)
+        """ return the rule's parameters """
+        return (self.yng_mom, self.yng_dad, self.est)
 
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child,self.est)
+            child = find_person(self._db, child_ref.ref)
+            child_birth_date = get_birth_date(self._db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = (father_birth_date_ok and
-                ((child_birth_date - father_birth_date)/365 < self.yng_dad))
+            father_broken = (
+                father_birth_date_ok and
+                ((child_birth_date - father_birth_date) / 365 < self.yng_dad))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (mother_birth_date_ok and
-                ((child_birth_date - mother_birth_date)/365 < self.yng_mom))
+            mother_broken = (
+                mother_birth_date_ok and
+                ((child_birth_date - mother_birth_date) / 365 < self.yng_mom))
             if mother_broken:
                 self.get_message = self.mother_message
                 return True
         return False
 
     def father_message(self):
+        """ return the rule's error message """
         return _("Young father")
 
     def mother_message(self):
+        """ return the rule's error message """
         return _("Young mother")
 
 class UnbornParent(FamilyRule):
+    """ test if each family's parent was not yet born at a child's birth """
     ID = 24
     SEVERITY = Rule.ERROR
-    def __init__(self,db, obj,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.est = est
 
     def _get_params(self):
+        """ return the rule's parameters """
         return (self.est,)
 
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_birth_date = get_birth_date(self.db,mother,self.est)
-        father_birth_date = get_birth_date(self.db,father,self.est)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_birth_date = get_birth_date(self._db, mother, self.est)
+        father_birth_date = get_birth_date(self._db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child,self.est)
+            child = find_person(self._db, child_ref.ref)
+            child_birth_date = get_birth_date(self._db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1420,47 +1555,54 @@ class UnbornParent(FamilyRule):
                 return True
 
     def father_message(self):
+        """ return the rule's error message """
         return _("Unborn father")
 
     def mother_message(self):
+        """ return the rule's error message """
         return _("Unborn mother")
 
 class DeadParent(FamilyRule):
+    """ test if each family's parent was dead at a child's birth """
     ID = 25
     SEVERITY = Rule.ERROR
-    def __init__(self,db, obj,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.est = est
 
     def _get_params(self):
+        """ return the rule's parameters """
         return (self.est,)
 
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        mother_death_date = get_death_date(self.db,mother,self.est)
-        father_death_date = get_death_date(self.db,father,self.est)
+        """ return boolean indicating whether this rule is violated """
+        mother = get_mother(self._db, self.obj)
+        father = get_father(self._db, self.obj)
+        mother_death_date = get_death_date(self._db, mother, self.est)
+        father_death_date = get_death_date(self._db, father, self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self.db,child_ref.ref)
-            child_birth_date = get_birth_date(self.db,child,self.est)
+            child = find_person(self._db, child_ref.ref)
+            child_birth_date = get_birth_date(self._db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
 
-            hasBirthRelToMother = child_ref.mrel == ChildRefType.BIRTH
-            hasBirthRelToFather = child_ref.frel == ChildRefType.BIRTH
+            has_birth_rel_to_mother = child_ref.mrel == ChildRefType.BIRTH
+            has_birth_rel_to_father = child_ref.frel == ChildRefType.BIRTH
 
-            father_broken = (hasBirthRelToFather
-                             and father_death_date_ok
-                             and ((father_death_date + 294) < child_birth_date))
+            father_broken = (
+                has_birth_rel_to_father
+                and father_death_date_ok
+                and ((father_death_date + 294) < child_birth_date))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (hasBirthRelToMother
+            mother_broken = (has_birth_rel_to_mother
                              and mother_death_date_ok
                              and (mother_death_date < child_birth_date))
             if mother_broken:
@@ -1468,145 +1610,178 @@ class DeadParent(FamilyRule):
                 return True
 
     def father_message(self):
+        """ return the rule's error message """
         return _("Dead father")
 
     def mother_message(self):
+        """ return the rule's error message """
         return _("Dead mother")
 
 class LargeChildrenSpan(FamilyRule):
+    """ test if a family's first and last children were born far apart """
     ID = 26
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj,cb_span,est):
-        FamilyRule.__init__(self,db, obj)
-        self.cb_span = cb_span
+    def __init__(self, db, obj, cb_span, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
+        self.cbs = cb_span
         self.est = est
 
     def _get_params(self):
-        return (self.cb_span,self.est)
+        """ return the rule's parameters """
+        return (self.cbs, self.est)
 
     def broken(self):
-        child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
+        """ return boolean indicating whether this rule is violated """
+        child_birh_dates = get_child_birth_dates(self._db, self.obj, self.est)
         child_birh_dates.sort()
 
-        return (child_birh_dates and ((child_birh_dates[-1]
-                                       - child_birh_dates[0])/365
-                                      > self.cb_span))
+        return (child_birh_dates and
+                ((child_birh_dates[-1] - child_birh_dates[0]) / 365 > self.cbs))
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Large year span for all children")
 
 class LargeChildrenAgeDiff(FamilyRule):
+    """ test if any of a family's children were born far apart """
     ID = 27
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj,c_space,est):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj, c_space, est):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
         self.c_space = c_space
         self.est = est
 
     def _get_params(self):
-        return (self.c_space,self.est)
+        """ return the rule's parameters """
+        return (self.c_space, self.est)
 
     def broken(self):
-        child_birh_dates = get_child_birth_dates(self.db,self.obj,self.est)
+        """ return boolean indicating whether this rule is violated """
+        child_birh_dates = get_child_birth_dates(self._db, self.obj, self.est)
         child_birh_dates_diff = [child_birh_dates[i+1] - child_birh_dates[i]
-                                 for i in range(len(child_birh_dates)-1) ]
+                                 for i in range(len(child_birh_dates)-1)]
 
         return (child_birh_dates_diff and
-                max(child_birh_dates_diff)/365 > self.c_space)
+                max(child_birh_dates_diff) / 365 > self.c_space)
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Large age differences between children")
 
 class Disconnected(PersonRule):
+    """ test if a person has no children and no parents """
     ID = 28
     SEVERITY = Rule.WARNING
     def broken(self):
+        """ return boolean indicating whether this rule is violated """
         return (len(self.obj.get_parent_family_handle_list())
                 + len(self.obj.get_family_handle_list()) == 0)
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Disconnected individual")
 
 class InvalidBirthDate(PersonRule):
+    """ test if a person has an 'invalid' birth date """
     ID = 29
     SEVERITY = Rule.ERROR
     def __init__(self, db, person, invdate):
+        """ initialize the rule """
         PersonRule.__init__(self, db, person)
         self._invdate = invdate
 
     def broken(self):
-        if not self._invdate: return False # should we check?
+        """ return boolean indicating whether this rule is violated """
+        if not self._invdate: # should we check?
+            return False
         # if so, let's get the birth date
         person = self.obj
         birth_ref = person.get_birth_ref()
         if birth_ref:
-            birth_event = self.db.get_event_from_handle(birth_ref.ref)
+            birth_event = self._db.get_event_from_handle(birth_ref.ref)
             birth_date = birth_event.get_date_object()
             if birth_date and not birth_date.get_valid():
                 return True
         return False
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Invalid birth date")
 
 class InvalidDeathDate(PersonRule):
+    """ test if a person has an 'invalid' death date """
     ID = 30
     SEVERITY = Rule.ERROR
     def __init__(self, db, person, invdate):
+        """ initialize the rule """
         PersonRule.__init__(self, db, person)
         self._invdate = invdate
 
     def broken(self):
-        if not self._invdate: return False # should we check?
+        """ return boolean indicating whether this rule is violated """
+        if not self._invdate: # should we check?
+            return False
         # if so, let's get the death date
         person = self.obj
         death_ref = person.get_death_ref()
         if death_ref:
-            death_event = self.db.get_event_from_handle(death_ref.ref)
+            death_event = self._db.get_event_from_handle(death_ref.ref)
             death_date = death_event.get_date_object()
             if death_date and not death_date.get_valid():
                 return True
         return False
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Invalid death date")
 
 class MarriedRelation(FamilyRule):
+    """ test if a family has a marriage date but is not marked 'married' """
     ID = 31
     SEVERITY = Rule.WARNING
-    def __init__(self,db, obj):
-        FamilyRule.__init__(self,db, obj)
+    def __init__(self, db, obj):
+        """ initialize the rule """
+        FamilyRule.__init__(self, db, obj)
 
     def broken(self):
-        marr_date = get_marriage_date(self.db,self.obj)
+        """ return boolean indicating whether this rule is violated """
+        marr_date = get_marriage_date(self._db, self.obj)
         marr_date_ok = marr_date > 0
         married = self.obj.get_relationship() == FamilyRelType.MARRIED
         if not married and marr_date_ok:
             return self.get_message
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Marriage date but not married")
 
 class OldAgeButNoDeath(PersonRule):
+    """ test if a person is 'too old' but is not shown as dead """
     ID = 32
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person, old_age,est):
-        PersonRule.__init__(self,db,person)
+    def __init__(self, db, person, old_age, est):
+        """ initialize the rule """
+        PersonRule.__init__(self, db, person)
         self.old_age = old_age
         self.est = est
 
     def _get_params(self):
-        return (self.old_age,self.est)
+        """ return the rule's parameters """
+        return (self.old_age, self.est)
 
     def broken(self):
-        birth_date = get_birth_date(self.db,self.obj,self.est)
-        dead = get_death(self.db, self.obj)
-        death_date = get_death_date(self.db, self.obj, True) # use burial ...
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self._db, self.obj, self.est)
+        dead = get_death(self._db, self.obj)
+        death_date = get_death_date(self._db, self.obj, True) # or burial date
         if dead or death_date or not birth_date:
             return 0
-        age = ( _today - birth_date ) / 365
-        return ( age > self.old_age )
+        age = (_today - birth_date) / 365
+        return age > self.old_age
 
     def get_message(self):
+        """ return the rule's error message """
         return _("Old age but no death")
 
