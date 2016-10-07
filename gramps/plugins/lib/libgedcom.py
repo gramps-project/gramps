@@ -7267,7 +7267,7 @@ class GedcomParser(UpdateCallback):
             if self.__level_is_finished(line, state.level+1):
                 break
             elif line.token == TOKEN_VERS:
-                if line.data[0] != "5":
+                if (not line.data) or line.data[0] != "5":
                     self.__add_msg(_("GEDCOM version not supported"),
                                    line, state)
                 if self.use_def_src:
