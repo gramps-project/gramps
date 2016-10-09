@@ -92,30 +92,30 @@ _family_cache = {}
 _event_cache = {}
 _today = Today().get_sort_value()
 
-def find_event(dbase, handle):
+def find_event(db, handle):
     """ find an event, given a handle """
     if handle in _event_cache:
         obj = _event_cache[handle]
     else:
-        obj = dbase.get_event_from_handle(handle)
+        obj = db.get_event_from_handle(handle)
         _event_cache[handle] = obj
     return obj
 
-def find_person(dbase, handle):
+def find_person(db, handle):
     """ find a person, given a handle """
     if handle in _person_cache:
         obj = _person_cache[handle]
     else:
-        obj = dbase.get_person_from_handle(handle)
+        obj = db.get_person_from_handle(handle)
         _person_cache[handle] = obj
     return obj
 
-def find_family(dbase, handle):
+def find_family(db, handle):
     """ find a family, given a handle """
     if handle in _family_cache:
         obj = _family_cache[handle]
     else:
-        obj = dbase.get_family_from_handle(handle)
+        obj = db.get_family_from_handle(handle)
         _family_cache[handle] = obj
     return obj
 
@@ -130,11 +130,11 @@ def clear_cache():
 # helper functions
 #
 #-------------------------------------------------------------------------
-def get_date_from_event_handle(dbase, event_handle, estimate=False):
+def get_date_from_event_handle(db, event_handle, estimate=False):
     """ get a date from an event handle """
     if not event_handle:
         return 0
-    event = find_event(dbase, event_handle)
+    event = find_event(db, event_handle)
     if event:
         date_obj = event.get_date_object()
         if (not estimate
@@ -144,12 +144,12 @@ def get_date_from_event_handle(dbase, event_handle, estimate=False):
     else:
         return 0
 
-def get_date_from_event_type(dbase, person, event_type, estimate=False):
+def get_date_from_event_type(db, person, event_type, estimate=False):
     """ get a date from a person's specific event type """
     if not person:
         return 0
     for event_ref in person.get_event_ref_list():
-        event = find_event(dbase, event_ref.ref)
+        event = find_event(db, event_ref.ref)
         if event:
             if (event_ref.get_role() != EventRoleType.PRIMARY
                     and event.get_type() == EventType.BURIAL):
@@ -163,23 +163,23 @@ def get_date_from_event_type(dbase, person, event_type, estimate=False):
                 return date_obj.get_sort_value()
     return 0
 
-def get_bapt_date(dbase, person, estimate=False):
+def get_bapt_date(db, person, estimate=False):
     """ get a person's baptism date """
-    return get_date_from_event_type(dbase, person,
+    return get_date_from_event_type(db, person,
                                     EventType.BAPTISM, estimate)
 
-def get_bury_date(dbase, person, estimate=False):
+def get_bury_date(db, person, estimate=False):
     """ get a person's burial date """
     # check role on burial event
     for event_ref in person.get_event_ref_list():
-        event = find_event(dbase, event_ref.ref)
+        event = find_event(db, event_ref.ref)
         if (event
                 and event.get_type() == EventType.BURIAL
                 and event_ref.get_role() == EventRoleType.PRIMARY):
-            return get_date_from_event_type(dbase, person,
+            return get_date_from_event_type(db, person,
                                             EventType.BURIAL, estimate)
 
-def get_birth_date(dbase, person, estimate=False):
+def get_birth_date(db, person, estimate=False):
     """ get a person's birth date (or baptism date if 'estimated') """
     if not person:
         return 0
@@ -187,13 +187,13 @@ def get_birth_date(dbase, person, estimate=False):
     if not birth_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(dbase, birth_ref.ref, estimate)
+        ret = get_date_from_event_handle(db, birth_ref.ref, estimate)
     if estimate and (ret == 0):
-        ret = get_bapt_date(dbase, person, estimate)
+        ret = get_bapt_date(db, person, estimate)
         ret = 0 if ret is None else ret
     return ret
 
-def get_death(dbase, person):
+def get_death(db, person):
     """
     boolean whether there is a death event or not
     (if a user claims a person is dead, we will believe it even with no date)
@@ -206,7 +206,7 @@ def get_death(dbase, person):
     else:
         return False
 
-def get_death_date(dbase, person, estimate=False):
+def get_death_date(db, person, estimate=False):
     """ get a person's death date (or burial date if 'estimated') """
     if not person:
         return 0
@@ -214,63 +214,63 @@ def get_death_date(dbase, person, estimate=False):
     if not death_ref:
         ret = 0
     else:
-        ret = get_date_from_event_handle(dbase, death_ref.ref, estimate)
+        ret = get_date_from_event_handle(db, death_ref.ref, estimate)
     if estimate and (ret == 0):
-        ret = get_bury_date(dbase, person, estimate)
+        ret = get_bury_date(db, person, estimate)
         ret = 0 if ret is None else ret
     return ret
 
-def get_age_at_death(dbase, person, estimate):
+def get_age_at_death(db, person, estimate):
     """ get a person's age at death """
-    birth_date = get_birth_date(dbase, person, estimate)
-    death_date = get_death_date(dbase, person, estimate)
+    birth_date = get_birth_date(db, person, estimate)
+    death_date = get_death_date(db, person, estimate)
     if (birth_date > 0) and (death_date > 0):
         return death_date - birth_date
     return 0
 
-def get_father(dbase, family):
+def get_father(db, family):
     """ get a family's father """
     if not family:
         return None
     father_handle = family.get_father_handle()
     if father_handle:
-        return find_person(dbase, father_handle)
+        return find_person(db, father_handle)
     return None
 
-def get_mother(dbase, family):
+def get_mother(db, family):
     """ get a family's mother """
     if not family:
         return None
     mother_handle = family.get_mother_handle()
     if mother_handle:
-        return find_person(dbase, mother_handle)
+        return find_person(db, mother_handle)
     return None
 
-def get_child_birth_dates(dbase, family, estimate):
+def get_child_birth_dates(db, family, estimate):
     """ get a family's children's birth dates """
     dates = []
     for child_ref in family.get_child_ref_list():
-        child = find_person(dbase, child_ref.ref)
-        child_birth_date = get_birth_date(dbase, child, estimate)
+        child = find_person(db, child_ref.ref)
+        child_birth_date = get_birth_date(db, child, estimate)
         if child_birth_date > 0:
             dates.append(child_birth_date)
     return dates
 
-def get_n_children(dbase, person):
+def get_n_children(db, person):
     """ get the number of a family's children """
     number = 0
     for family_handle in person.get_family_handle_list():
-        family = find_family(dbase, family_handle)
+        family = find_family(db, family_handle)
         if family:
             number += len(family.get_child_ref_list())
     return number
 
-def get_marriage_date(dbase, family):
+def get_marriage_date(db, family):
     """ get a family's marriage date """
     if not family:
         return 0
     for event_ref in family.get_event_ref_list():
-        event = find_event(dbase, event_ref.ref)
+        event = find_event(db, event_ref.ref)
         if (event.get_type() == EventType.MARRIAGE
                 and (event_ref.get_role() == EventRoleType.FAMILY
                      or event_ref.get_role() == EventRoleType.PRIMARY)):
@@ -858,9 +858,9 @@ class Rule:
 
     SEVERITY = WARNING
 
-    def __init__(self, dbase, obj):
+    def __init__(self, db, obj):
         """ initialize the rule """
-        self._db = dbase
+        self.db = db
         self.obj = obj
 
     def broken(self):
@@ -921,7 +921,7 @@ class FamilyRule(Rule):
     TYPE = 'Family'
     def get_name(self):
         """ return the name of the family """
-        return family_name(self.obj, self._db)
+        return family_name(self.obj, self.db)
 
 #-------------------------------------------------------------------------
 #
@@ -934,8 +934,8 @@ class BirthAfterBapt(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        birth_date = get_birth_date(self._db, self.obj)
-        bapt_date = get_bapt_date(self._db, self.obj)
+        birth_date = get_birth_date(self.db, self.obj)
+        bapt_date = get_bapt_date(self.db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
         return birth_ok and bapt_ok and birth_date > bapt_date
@@ -950,8 +950,8 @@ class DeathBeforeBapt(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        death_date = get_death_date(self._db, self.obj)
-        bapt_date = get_bapt_date(self._db, self.obj)
+        death_date = get_death_date(self.db, self.obj)
+        bapt_date = get_bapt_date(self.db, self.obj)
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
         death_ok = death_date > 0 if death_date is not None else False
         return death_ok and bapt_ok and bapt_date > death_date
@@ -966,8 +966,8 @@ class BirthAfterBury(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        birth_date = get_birth_date(self._db, self.obj)
-        bury_date = get_bury_date(self._db, self.obj)
+        birth_date = get_birth_date(self.db, self.obj)
+        bury_date = get_bury_date(self.db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
         return birth_ok and bury_ok and birth_date > bury_date
@@ -982,8 +982,8 @@ class DeathAfterBury(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        death_date = get_death_date(self._db, self.obj)
-        bury_date = get_bury_date(self._db, self.obj)
+        death_date = get_death_date(self.db, self.obj)
+        bury_date = get_bury_date(self.db, self.obj)
         death_ok = death_date > 0 if death_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
         return death_ok and bury_ok and death_date > bury_date
@@ -998,8 +998,8 @@ class BirthAfterDeath(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        birth_date = get_birth_date(self._db, self.obj)
-        death_date = get_death_date(self._db, self.obj)
+        birth_date = get_birth_date(self.db, self.obj)
+        death_date = get_death_date(self.db, self.obj)
         birth_ok = birth_date > 0 if birth_date is not None else False
         death_ok = death_date > 0 if death_date is not None else False
         return birth_ok and death_ok and birth_date > death_date
@@ -1014,8 +1014,8 @@ class BaptAfterBury(PersonRule):
     SEVERITY = Rule.ERROR
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        bapt_date = get_bapt_date(self._db, self.obj)
-        bury_date = get_bury_date(self._db, self.obj)
+        bapt_date = get_bapt_date(self.db, self.obj)
+        bury_date = get_bury_date(self.db, self.obj)
         bapt_ok = bapt_date > 0 if bapt_date is not None else False
         bury_ok = bury_date > 0 if bury_date is not None else False
         return bapt_ok and bury_ok and bapt_date > bury_date
@@ -1040,7 +1040,7 @@ class OldAge(PersonRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        age_at_death = get_age_at_death(self._db, self.obj, self.est)
+        age_at_death = get_age_at_death(self.db, self.obj, self.est)
         return age_at_death / 365 > self.old_age
 
     def get_message(self):
@@ -1112,7 +1112,7 @@ class OldUnmarried(PersonRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        age_at_death = get_age_at_death(self._db, self.obj, self.est)
+        age_at_death = get_age_at_death(self.db, self.obj, self.est)
         n_spouses = len(self.obj.get_family_handle_list())
         return age_at_death / 365 > self.old_unm and n_spouses == 0
 
@@ -1136,7 +1136,7 @@ class TooManyChildren(PersonRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        n_child = get_n_children(self._db, self.obj)
+        n_child = get_n_children(self.db, self.obj)
 
         if (self.obj.get_gender == Person.MALE
                 and n_child > self.mx_child_dad):
@@ -1158,8 +1158,8 @@ class SameSexFamily(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
         same_sex = (mother and father and
                     (mother.get_gender() == father.get_gender()))
         unknown_sex = (mother and
@@ -1176,7 +1176,7 @@ class FemaleHusband(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        father = get_father(self._db, self.obj)
+        father = get_father(self.db, self.obj)
         return father and (father.get_gender() == Person.FEMALE)
 
     def get_message(self):
@@ -1189,7 +1189,7 @@ class MaleWife(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
+        mother = get_mother(self.db, self.obj)
         return mother and (mother.get_gender() == Person.MALE)
 
     def get_message(self):
@@ -1202,8 +1202,8 @@ class SameSurnameFamily(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
         _broken = False
 
         # Make sure both mother and father exist.
@@ -1242,10 +1242,10 @@ class LargeAgeGapFamily(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
         large_diff = abs(
@@ -1271,13 +1271,13 @@ class MarriageBeforeBirth(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        marr_date = get_marriage_date(self._db, self.obj)
+        marr_date = get_marriage_date(self.db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1307,13 +1307,13 @@ class MarriageAfterDeath(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        marr_date = get_marriage_date(self._db, self.obj)
+        marr_date = get_marriage_date(self.db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_death_date = get_death_date(self._db, mother, self.est)
-        father_death_date = get_death_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_death_date = get_death_date(self.db, mother, self.est)
+        father_death_date = get_death_date(self.db, father, self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
@@ -1344,13 +1344,13 @@ class EarlyMarriage(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        marr_date = get_marriage_date(self._db, self.obj)
+        marr_date = get_marriage_date(self.db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1385,13 +1385,13 @@ class LateMarriage(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        marr_date = get_marriage_date(self._db, self.obj)
+        marr_date = get_marriage_date(self.db, self.obj)
         marr_date_ok = marr_date > 0
 
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
@@ -1425,16 +1425,16 @@ class OldParent(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self._db, child_ref.ref)
-            child_birth_date = get_birth_date(self._db, child, self.est)
+            child = find_person(self.db, child_ref.ref)
+            child_birth_date = get_birth_date(self.db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1478,16 +1478,16 @@ class YoungParent(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self._db, child_ref.ref)
-            child_birth_date = get_birth_date(self._db, child, self.est)
+            child = find_person(self.db, child_ref.ref)
+            child_birth_date = get_birth_date(self.db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1529,16 +1529,16 @@ class UnbornParent(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_birth_date = get_birth_date(self._db, mother, self.est)
-        father_birth_date = get_birth_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_birth_date = get_birth_date(self.db, mother, self.est)
+        father_birth_date = get_birth_date(self.db, father, self.est)
         mother_birth_date_ok = mother_birth_date > 0
         father_birth_date_ok = father_birth_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self._db, child_ref.ref)
-            child_birth_date = get_birth_date(self._db, child, self.est)
+            child = find_person(self.db, child_ref.ref)
+            child_birth_date = get_birth_date(self.db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1577,16 +1577,16 @@ class DeadParent(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        mother = get_mother(self._db, self.obj)
-        father = get_father(self._db, self.obj)
-        mother_death_date = get_death_date(self._db, mother, self.est)
-        father_death_date = get_death_date(self._db, father, self.est)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        mother_death_date = get_death_date(self.db, mother, self.est)
+        father_death_date = get_death_date(self.db, father, self.est)
         mother_death_date_ok = mother_death_date > 0
         father_death_date_ok = father_death_date > 0
 
         for child_ref in self.obj.get_child_ref_list():
-            child = find_person(self._db, child_ref.ref)
-            child_birth_date = get_birth_date(self._db, child, self.est)
+            child = find_person(self.db, child_ref.ref)
+            child_birth_date = get_birth_date(self.db, child, self.est)
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
@@ -1633,7 +1633,7 @@ class LargeChildrenSpan(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        child_birh_dates = get_child_birth_dates(self._db, self.obj, self.est)
+        child_birh_dates = get_child_birth_dates(self.db, self.obj, self.est)
         child_birh_dates.sort()
 
         return (child_birh_dates and
@@ -1659,7 +1659,7 @@ class LargeChildrenAgeDiff(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        child_birh_dates = get_child_birth_dates(self._db, self.obj, self.est)
+        child_birh_dates = get_child_birth_dates(self.db, self.obj, self.est)
         child_birh_dates_diff = [child_birh_dates[i+1] - child_birh_dates[i]
                                  for i in range(len(child_birh_dates)-1)]
 
@@ -1700,7 +1700,7 @@ class InvalidBirthDate(PersonRule):
         person = self.obj
         birth_ref = person.get_birth_ref()
         if birth_ref:
-            birth_event = self._db.get_event_from_handle(birth_ref.ref)
+            birth_event = self.db.get_event_from_handle(birth_ref.ref)
             birth_date = birth_event.get_date_object()
             if birth_date and not birth_date.get_valid():
                 return True
@@ -1727,7 +1727,7 @@ class InvalidDeathDate(PersonRule):
         person = self.obj
         death_ref = person.get_death_ref()
         if death_ref:
-            death_event = self._db.get_event_from_handle(death_ref.ref)
+            death_event = self.db.get_event_from_handle(death_ref.ref)
             death_date = death_event.get_date_object()
             if death_date and not death_date.get_valid():
                 return True
@@ -1747,7 +1747,7 @@ class MarriedRelation(FamilyRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        marr_date = get_marriage_date(self._db, self.obj)
+        marr_date = get_marriage_date(self.db, self.obj)
         marr_date_ok = marr_date > 0
         married = self.obj.get_relationship() == FamilyRelType.MARRIED
         if not married and marr_date_ok:
@@ -1773,9 +1773,9 @@ class OldAgeButNoDeath(PersonRule):
 
     def broken(self):
         """ return boolean indicating whether this rule is violated """
-        birth_date = get_birth_date(self._db, self.obj, self.est)
-        dead = get_death(self._db, self.obj)
-        death_date = get_death_date(self._db, self.obj, True) # or burial date
+        birth_date = get_birth_date(self.db, self.obj, self.est)
+        dead = get_death(self.db, self.obj)
+        death_date = get_death_date(self.db, self.obj, True) # or burial date
         if dead or death_date or not birth_date:
             return 0
         age = (_today - birth_date) / 365
