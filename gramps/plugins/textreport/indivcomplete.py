@@ -59,6 +59,7 @@ from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.relationship import get_relationship_calculator
 
 #------------------------------------------------------------------------
 #
@@ -118,6 +119,7 @@ class IndivCompleteReport(Report):
         incl_census   - Whether to include census events
         incl_notes    - Whether to include person and family notes
         incl_tags     - Whether to include tags
+        incl_relname  - Whether to include relationship to home person
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
         """
@@ -153,6 +155,12 @@ class IndivCompleteReport(Report):
         self.section_list = menu.get_option_by_name('sections').get_selected()
 
         stdoptions.run_name_format_option(self, menu)
+
+        self.home_person = self._db.get_default_person() # might be None
+        self.increlname = menu.get_option_by_name('incl_relname')
+        if self.increlname and self.home_person:
+            self.rel_calc = get_relationship_calculator(reinit=True,
+                                                        clocale=self._locale)
 
         self.bibli = None
         self.family_notes_list = []
@@ -330,6 +338,32 @@ class IndivCompleteReport(Report):
                                            'gid': person.get_gramps_id()}
         else:
             return name
+
+    def write_home_relationship(self):
+        """ write the person's relationship to the home/default person """
+
+        if not (self.increlname
+                and self.home_person
+                and self.home_person != self.person):
+            return
+        home_relationship = self.rel_calc.get_one_relationship(
+            self._db, self.home_person, self.person, olocale=self._locale)
+        if not home_relationship:
+            return
+
+        self.doc.start_table("homerelation", "IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", 2)
+        self.write_paragraph(self._('Relationship to home person'),
+                             style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        self.doc.start_row()
+        self.write_cell(home_relationship, span=2)
+        self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
 
     def write_alt_names(self):
         """ write any alternate names of the person """
@@ -908,6 +942,7 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
 
+        self.write_home_relationship()
         self.write_alt_names()
         self.write_events()
         self.write_alt_parents()
@@ -981,6 +1016,7 @@ class IndivCompleteOptions(MenuReportOptions):
         self.__cites = None
         self.__incsrcnotes = None
         self._nf = None
+        self.__show_relships = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
@@ -1063,6 +1099,12 @@ class IndivCompleteOptions(MenuReportOptions):
         tags = BooleanOption(_("Include Tags"), True)
         tags.set_help(_("Whether to include tags."))
         menu.add_option(category_name, "incl_tags", tags)
+
+        self.__show_relships = BooleanOption(
+            _("Include relationship to center person"), False)
+        self.__show_relships.set_help(_("Whether to show every person's "
+                                        "relationship to the center person"))
+        menu.add_option(category_name, "incl_relname", self.__show_relships)
 
         ################################
         category_name = _("Sections")
