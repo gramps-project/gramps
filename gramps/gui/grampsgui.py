@@ -89,12 +89,12 @@ try:
     from gi.repository import Pango, PangoCairo
     from gi.repository import Gtk, Gdk
 except (ImportError, ValueError):
-    print((_("Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
-             "Install Gnome Introspection, and "
-             "pygobject version 3.12 or later.\n"
-             "Then install introspection data for Gdk, Gtk, Pango and "
-             "PangoCairo\n\n"
-             "Gramps will terminate now.")))
+    print(_("Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
+            "Install Gnome Introspection, and "
+            "pygobject version 3.12 or later.\n"
+            "Then install introspection data for Gdk, Gtk, Pango and "
+            "PangoCairo\n\n"
+            "Gramps will terminate now."))
     sys.exit(1)
 
 GTK_MAJOR = Gtk.get_major_version()
@@ -111,9 +111,9 @@ if (GTK_MAJOR, GTK_MINOR) < MIN_GTK_VERSION:
 try:
     import cairo
 except ImportError:
-    print((_("\ncairo python support not installed. "
-             "Install cairo for your version of python\n\n"
-             "Gramps will terminate now.")))
+    print(_("\ncairo python support not installed. "
+            "Install cairo for your version of python\n\n"
+            "Gramps will terminate now."))
     sys.exit(1)
 
 #-------------------------------------------------------------------------
@@ -362,9 +362,9 @@ def __startgramps(errors, argparser):
         if has_display():
             Gramps(argparser)
         else:
-            print("Gramps terminated because of no DISPLAY")
-            sys.exit(exit_code)
-
+            print(_("Gramps terminated because of no DISPLAY"))
+            quit_now = True
+            exit_code = 1
     except SystemExit as err:
         quit_now = True
         if err.code:
@@ -380,7 +380,6 @@ def __startgramps(errors, argparser):
             fname = ""
         LOG.error("Gramps terminated because of OS Error\n" +
                   "Error details: %s %s", repr(err), fname, exc_info=True)
-
     except:
         quit_now = True
         exit_code = 1
