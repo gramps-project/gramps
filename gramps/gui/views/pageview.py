@@ -157,6 +157,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
         hpane.pack1(vpane, resize=True, shrink=False)
         hpane.pack2(self.sidebar, resize=False, shrink=True)
+        self._setup_slider_config(hpane, 'hpane.slider-position')
         hpane.show()
         vpane.show()
 
@@ -164,10 +165,25 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         widget.show_all()
         vpane.pack1(widget, resize=True, shrink=False)
         vpane.pack2(self.bottombar, resize=False, shrink=True)
+        self._setup_slider_config(vpane, 'vpane.slider-position')
 
         self.sidebar_toggled(self.sidebar.get_property('visible'))
 
         return hpane
+
+    def _setup_slider_config(self, widget, setting):
+        """
+        Setup the slider configuration setting.
+        """
+        self._config.register(setting, -1)
+        widget.set_position(self._config.get(setting))
+        widget.connect('notify::position', self._position_changed, setting)
+
+    def _position_changed(self, widget, position, setting):
+        """
+        Called when the position property of the pane is changed.
+        """
+        self._config.set(setting, widget.get_position())
 
     def __sidebar_toggled(self, action):
         """
