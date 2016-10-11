@@ -26,7 +26,10 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
+from gi.repository import Gdk
 import time
+from math import pi as PI
+
 
 #------------------------------------------------------------------------
 #
@@ -90,14 +93,14 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.max_value = 0
         self.min_value = 9999
 
-    def add_marker(self, points, image, count):
+    def add_marker(self, points, image, count, color=None):
         """
         Add a marker.
         Set minimum value, maximum value for the markers
         Set the average value too.
         We calculate that here, to minimize the overhead at markers drawing
         """
-        self.markers.append((points, image, count))
+        self.markers.append((points, image, count, color))
         self.max_references += count
         self.max_places += 1
         if count > self.max_value:
@@ -121,7 +124,6 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
         _LOG.debug("%s", time.strftime("start drawing   : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for marker in self.markers:
-            ctx.save()
             # the icon size in 48, so the standard icon size is 0.6 * 48 = 28.8
             size = 0.6
             mark = float(marker[2])
@@ -137,18 +139,25 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             conv_pt = osmgpsmap.MapPoint.new_degrees(float(marker[0][0]),
                                                      float(marker[0][1]))
             coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-            ctx.translate(coord_x, coord_y)
-            ctx.scale(size, size)
-            # below, we try to place exactly the marker depending on its size.
-            # The left top corner of the image is set to the coordinates.
-            # The tip of the pin which should be at the marker position is at
-            # 3/18 of the width and to the height of the image.
-            # So we shift the image position.
-            pos_y = - int(48 * size + 0.5) - 10
-            pos_x = - int((48 * size) / 6 + 0.5) - 10
-            ctx.set_source_surface(marker[1], pos_x, pos_y)
-            ctx.paint()
-            ctx.restore()
+            if marker[3] == None:
+                # We use the standard icons.
+                ctx.save()
+                ctx.translate(coord_x, coord_y)
+                ctx.scale(size, size)
+                # below, we try to place exactly the marker depending on its
+                # size. The left top corner of the image is set to the
+                # coordinates. The tip of the pin which should be at the marker
+                # position is at 3/18 of the width and to the height of the
+                # image. So we shift the image position.
+                pos_y = - int(48 * size + 0.5) - 10
+                pos_x = - int((48 * size) / 6 + 0.5) - 10
+                ctx.set_source_surface(marker[1], pos_x, pos_y)
+                ctx.paint()
+                ctx.restore()
+            else:
+                # We use colored icons.
+                draw_marker(ctx, float(coord_x), float(coord_y),
+                            size, marker[3][1])
         _LOG.debug("%s", time.strftime("end drawing     : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
 
@@ -172,3 +181,47 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
 
 GObject.type_register(MarkerLayer)
 
+def draw_marker(ctx, x1, y1, size, color):
+    width = 48.0 * size
+    height = width / 2
+    color = Gdk.color_parse(color)
+    ctx.set_source_rgba(float(color.red / 65535.0),
+                        float(color.green / 65535.0),
+                        float(color.blue / 65535.0),
+                        1.0) # transparency
+    ctx.set_line_width (2.0);
+    ctx.move_to(x1, y1)
+    ctx.line_to((x1 + (height/3)), (y1 - height*2))
+    ctx.line_to((x1 - (height/3)), (y1 - height*2))
+    ctx.fill()
+    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
+    ctx.move_to(x1, y1)
+    ctx.line_to((x1 + (height/3)), (y1 - height*2))
+    ctx.line_to((x1 - (height/3)), (y1 - height*2))
+    ctx.line_to(x1, y1)
+    ctx.stroke()
+    ctx.save()
+    ctx.translate(x1 + width/4 - (width/4) , y1 - height*2 - (width/4))
+    ctx.scale(width / 2., height / 2.)
+    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.fill_preserve()
+    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
+    ctx.set_line_width (2.0);
+    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.restore()
+    ctx.stroke();
+    ctx.save()
+    ctx.set_source_rgba(float(color.red / 65535.0),
+                        float(color.green / 65535.0),
+                        float(color.blue / 65535.0),
+                        1.0) # transparency
+    #ctx.translate(x1 + width/4 - 12.0 , y1 - height*2 - 12.0)
+    ctx.translate(x1 + width/4 - (width/4) , y1 - height*2 - (width/4))
+    ctx.scale(width / 2., height / 2.)
+    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.fill_preserve()
+    ctx.set_source_rgba(1.0, 0.0, 0.0, 0.5)
+    ctx.set_line_width (2.0);
+    ctx.arc(0., 0., 1., 0., 2 * PI)
+    ctx.restore()
+    ctx.stroke();

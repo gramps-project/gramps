@@ -50,11 +50,13 @@ _LOG = logging.getLogger("GeoGraphy.geoplaces")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import EventType
+from gramps.gen.lib import PlaceType
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.bookmarks import PlaceBookmarks
 from gramps.plugins.lib.maps.geography import GeoGraphyView
+from gramps.plugins.lib.maps import constants
 from gramps.gui.utils import ProgressMeter
 
 #-------------------------------------------------------------------------
@@ -111,6 +113,45 @@ class GeoPlaces(GeoGraphyView):
     """
     The view used to render places map.
     """
+    CONFIGSETTINGS = (
+        ('geography.path', constants.GEOGRAPHY_PATH),
+
+        ('geography.zoom', 10),
+        ('geography.zoom_when_center', 12),
+        ('geography.show_cross', True),
+        ('geography.lock', False),
+        ('geography.center-lat', 0.0),
+        ('geography.center-lon', 0.0),
+
+        ('geography.map_service', constants.OPENSTREETMAP),
+        ('geography.max_places', 5000),
+        ('geography.use-keypad', True),
+
+        # specific to geoplaces :
+
+        ('geography.color.unknown', '#008b00'),
+        ('geography.color.custom', '#008b00'),
+        ('geography.color.country', '#008b00'),
+        ('geography.color.county', '#008b00'),
+        ('geography.color.state', '#008b00'),
+        ('geography.color.city', '#008b00'),
+        ('geography.color.parish', '#008b00'),
+        ('geography.color.locality', '#008b00'),
+        ('geography.color.street', '#008b00'),
+        ('geography.color.province', '#008b00'),
+        ('geography.color.region', '#008b00'),
+        ('geography.color.department', '#008b00'),
+        ('geography.color.neighborhood', '#008b00'),
+        ('geography.color.district', '#008b00'),
+        ('geography.color.borough', '#008b00'),
+        ('geography.color.municipality', '#008b00'),
+        ('geography.color.town', '#008b00'),
+        ('geography.color.village', '#008b00'),
+        ('geography.color.hamlet', '#008b00'),
+        ('geography.color.farm', '#008b00'),
+        ('geography.color.building', '#008b00'),
+        ('geography.color.number', '#008b00'),
+        )
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.window_name = _('Places map')
@@ -135,6 +176,7 @@ class GeoPlaces(GeoGraphyView):
         self.itemoption = None
         self.menu = None
         self.cal = config.get('preferences.calendar-format-report')
+        self.plc_color  = []
 
     def get_title(self):
         """
@@ -219,7 +261,8 @@ class GeoPlaces(GeoGraphyView):
                                         None, # person.gramps_id
                                         place.gramps_id,
                                         None, # event.gramps_id
-                                        None # family.gramps_id
+                                        None, # family.gramps_id
+                                        color=self.plc_color[int(place.get_type())+1]
                                        )
 
     def _createmap(self, place_x):
@@ -245,6 +288,31 @@ class GeoPlaces(GeoGraphyView):
         self.message_layer.clear_messages()
         self.message_layer.clear_font_attributes()
         self.no_show_places_in_status_bar = False
+        _col = self._config.get
+        self.plc_color  = [
+            (PlaceType.UNKNOWN, _col('geography.color.unknown')),
+            (PlaceType.CUSTOM, _col('geography.color.custom')),
+            (PlaceType.COUNTRY, _col('geography.color.country')),
+            (PlaceType.STATE, _col('geography.color.state')),
+            (PlaceType.COUNTY, _col('geography.color.county')),
+            (PlaceType.CITY, _col('geography.color.city')),
+            (PlaceType.PARISH, _col('geography.color.parish')),
+            (PlaceType.LOCALITY, _col('geography.color.locality')),
+            (PlaceType.STREET, _col('geography.color.street')),
+            (PlaceType.PROVINCE, _col('geography.color.province')),
+            (PlaceType.REGION, _col('geography.color.region')),
+            (PlaceType.DEPARTMENT, _col('geography.color.department')),
+            (PlaceType.NEIGHBORHOOD, _col('geography.color.neighborhood')),
+            (PlaceType.DISTRICT, _col('geography.color.district')),
+            (PlaceType.BOROUGH, _col('geography.color.borough')),
+            (PlaceType.MUNICIPALITY, _col('geography.color.municipality')),
+            (PlaceType.TOWN, _col('geography.color.town')),
+            (PlaceType.VILLAGE, _col('geography.color.village')),
+            (PlaceType.HAMLET, _col('geography.color.hamlet')),
+            (PlaceType.FARM, _col('geography.color.farm')),
+            (PlaceType.BUILDING, _col('geography.color.building')),
+            (PlaceType.NUMBER, _col('geography.color.number'))
+            ]
         # base "villes de france" : 38101 places :
         # createmap : 8'50"; create_markers : 1'23"
         # base "villes de france" : 38101 places :
@@ -439,3 +507,80 @@ class GeoPlaces(GeoGraphyView):
         """
         return (("Place Filter",),
                 ())
+
+    def specific_options(self, configdialog):
+        """
+        Add specific entry to the preference menu.
+        Must be done in the associated view.
+        """
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_color(grid,
+                _("Unknown"),
+                1, 'geography.color.unknown', col=1)
+        configdialog.add_color(grid,
+                _("Custom"),
+                2, 'geography.color.custom', col=1)
+        configdialog.add_color(grid,
+                _("Locality"),
+                3, 'geography.color.locality', col=1)
+        configdialog.add_color(grid,
+                _("Street"),
+                4, 'geography.color.street', col=1)
+        configdialog.add_color(grid,
+                _("Neighborhood"),
+                5, 'geography.color.neighborhood', col=1)
+        configdialog.add_color(grid,
+                _("Borough"),
+                6, 'geography.color.borough', col=1)
+        configdialog.add_color(grid,
+                _("Village"),
+                7, 'geography.color.village', col=1)
+        configdialog.add_color(grid,
+                _("Hamlet"),
+                8, 'geography.color.hamlet', col=1)
+        configdialog.add_color(grid,
+                _("Farm"),
+                9, 'geography.color.farm', col=1)
+        configdialog.add_color(grid,
+                _("Building"),
+                10, 'geography.color.building', col=1)
+        configdialog.add_color(grid,
+                _("Number"),
+                11, 'geography.color.number', col=1)
+        configdialog.add_color(grid,
+                _("Country"),
+                1, 'geography.color.country', col=4)
+        configdialog.add_color(grid,
+                _("State"),
+                2, 'geography.color.state', col=4)
+        configdialog.add_color(grid,
+                _("County"),
+                3, 'geography.color.county', col=4)
+        configdialog.add_color(grid,
+                _("Province"),
+                4, 'geography.color.province', col=4)
+        configdialog.add_color(grid,
+                _("Region"),
+                5, 'geography.color.region', col=4)
+        configdialog.add_color(grid,
+                _("Department"),
+                6, 'geography.color.department', col=4)
+        configdialog.add_color(grid,
+                _("District"),
+                7, 'geography.color.district', col=4)
+        configdialog.add_color(grid,
+                _("Parish"),
+                8, 'geography.color.parish', col=4)
+        configdialog.add_color(grid,
+                _("City"),
+                9, 'geography.color.city', col=4)
+        configdialog.add_color(grid,
+                _("Town"),
+                10, 'geography.color.town', col=4)
+        configdialog.add_color(grid,
+                _("Municipality"),
+                11, 'geography.color.municipality', col=4)
+        return _('The places marker color'), grid
