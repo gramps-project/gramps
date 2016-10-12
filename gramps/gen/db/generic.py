@@ -53,7 +53,6 @@ from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
                            TAG_KEY, eval_order_by)
 from gramps.gen.errors import HandleError
-from gramps.gen.db.base import QuerySet
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
@@ -2260,7 +2259,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Add a new table and funcs to the database.
         """
         self.__tables[table] = funcs
-        setattr(DbGeneric, table, property(lambda self: QuerySet(self, table)))
 
     def get_version(self):
         """

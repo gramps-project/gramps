@@ -98,13 +98,6 @@ The following packages are optional:
 
  More font support in the reports
 
-* **Meta**
-
- Required for experimental "where" clause creation. This functionality
- is not yet in main-line code so it is not needed by users.  If the package
- will be used by gramps developers, to support further development, then
- it may be included.  Install with pypi: https://pypi.python.org/pypi/meta.
-
 Optional packages required by Third-party Addons
 ------------------------------------------------
 

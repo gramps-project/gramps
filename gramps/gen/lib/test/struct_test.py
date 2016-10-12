@@ -25,7 +25,6 @@ import os
 
 from  .. import (Person, Family, Event, Source, Place, Citation,
                  Repository, Media, Note, Tag)
-from gramps.gen.lib.struct import Struct
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.merge.diff import *
@@ -118,19 +117,6 @@ for table in db.get_table_func():
     for handle in db.get_table_func(table,"handles_func")():
         obj = db.get_table_func(table,"handle_func")(handle)
         generate_case(obj)
-
-class StructTest(unittest.TestCase):
-    def test(self):
-        family = db.get_family_from_gramps_id("F0001")
-        s = Struct(family.to_struct(), db)
-        self.assertEqual(s["gramps_id"], "F0001")
-        s["gramps_id"] = "TEST"
-        self.assertEqual(s["gramps_id"], "TEST")
-        self.assertEqual(s.father_handle.primary_name.first_name,
-                         "Allen Carl")
-        s["father_handle.primary_name.first_name"] = "Edward"
-        self.assertEqual(s["father_handle.primary_name.first_name"],
-                         "Edward")
 
 if __name__ == "__main__":
     unittest.main()
