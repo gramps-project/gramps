@@ -194,6 +194,7 @@ class DateParser:
 
     _locale = GrampsLocale(lang='en', languages='en')
 
+    fmt = _grampslocale.tformat
     _fmt_parse = re.compile(".*%(\S).*%(\S).*%(\S).*")
 
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
@@ -343,8 +344,7 @@ class DateParser:
             Date.CAL_SWEDISH   : self._parse_swedish,
             }
 
-        fmt = _grampslocale.tformat
-        match = self._fmt_parse.match(fmt.lower())
+        match = self._fmt_parse.match(self.fmt.lower())
         if match:
             self.dmy = (match.groups() == ('d', 'm', 'y') or \
                        match.groups() == ('d', 'b', 'y'))

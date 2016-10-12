@@ -171,6 +171,9 @@ class DateParserCZ(DateParser):
         'vyp.'       : Date.QUAL_CALCULATED,
         }
 
+    # bug 9739 _grampslocale.py gets '%-d.%-m.%Y' and makes it be '%/d.%/m.%Y'
+    fmt = DateParser.fmt.replace('/', '') # so counteract that
+
     def init_strings(self):
         DateParser.init_strings(self)
         self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
