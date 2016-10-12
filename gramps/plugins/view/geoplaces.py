@@ -1,4 +1,4 @@
-# -*- python -*-
+								# -*- python -*-
 # -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
@@ -364,6 +364,7 @@ class GeoPlaces(GeoGraphyView):
             self.message_layer.add_message(
                  _("Right click on the map and select 'show all places'"
                    " to show all known places with coordinates. "
+                   "You can change the markers color depending on place type. "
                    "You can use filtering."))
             if place.get_latitude() != "" and place.get_longitude() != "":
                 latitude, longitude = conv_lat_lon(place.get_latitude(),
@@ -376,7 +377,8 @@ class GeoPlaces(GeoGraphyView):
             self.message_layer.add_message(
                  _("Right click on the map and select 'show all places'"
                    " to show all known places with coordinates. "
-                   " You can use the history to navigate on the map. "
+                   "You can use the history to navigate on the map. "
+                   "You can change the markers color depending on place type. "
                    "You can use filtering."))
         _LOG.debug(" stop createmap.")
         _LOG.debug("%s", time.strftime("begin sort : "
