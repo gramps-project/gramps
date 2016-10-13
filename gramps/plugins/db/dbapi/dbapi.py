@@ -302,41 +302,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("""CREATE INDEX
                                   reference_ref_handle ON reference(ref_handle);
         """)
-        self.dbapi.execute("""CREATE INDEX
-                                  name_group_name ON name_group(name);
-        """)
-
-        # Fixes:
-        self.dbapi.execute("""CREATE INDEX
-                                  place_handle ON place(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  citation_handle ON citation(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  media_handle ON media(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  person_handle ON person(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  family_handle ON family(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  event_handle ON event(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  repository_handle ON repository(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  tag_handle ON tag(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  note_handle ON note(handle);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  source_handle ON source(handle);
-        """)
 
         self.dbapi.execute("""CREATE INDEX
                                   family_gramps_id ON family(gramps_id);
