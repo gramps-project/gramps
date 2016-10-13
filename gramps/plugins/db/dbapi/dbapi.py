@@ -178,147 +178,141 @@ class DBAPI(DbGeneric):
         Create and update schema.
         """
         # make sure schema is up to date:
-        self.dbapi.execute("""CREATE TABLE person (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    given_name     TEXT        ,
-                                    surname        TEXT        ,
-                                    gender_type    INTEGER     ,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE family (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    father_handle VARCHAR(50),
-                                    mother_handle VARCHAR(50),
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE source (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE citation (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE event (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE media (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE place (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE repository (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE note (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    gramps_id TEXT             ,
-                                    blob_data      BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE tag (
-                                    handle    VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    order_by  TEXT             ,
-                                    blob_data      BLOB
-        );""")
+        self.dbapi.execute('CREATE TABLE person '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'given_name TEXT, '
+                           'surname TEXT, '
+                           'gender_type INTEGER, '
+                           'order_by TEXT, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE family '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'father_handle VARCHAR(50), '
+                           'mother_handle VARCHAR(50), '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE source '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'order_by TEXT, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE citation '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'order_by TEXT, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE event '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE media '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'order_by TEXT, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE place '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'order_by TEXT, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE repository '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE note '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'gramps_id TEXT, '
+                           'blob_data BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE tag '
+                           '('
+                           'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'order_by TEXT, '
+                           'blob_data BLOB'
+                           ');')
         # Secondary:
-        self.dbapi.execute("""CREATE TABLE reference (
-                                    obj_handle    VARCHAR(50),
-                                    obj_class     TEXT,
-                                    ref_handle    VARCHAR(50),
-                                    ref_class     TEXT
-        );""")
-        self.dbapi.execute("""CREATE TABLE name_group (
-                                    name     VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    grouping TEXT
-        );""")
-        self.dbapi.execute("""CREATE TABLE metadata (
-                                    setting  VARCHAR(50) PRIMARY KEY NOT NULL,
-                                    value    BLOB
-        );""")
-        self.dbapi.execute("""CREATE TABLE gender_stats (
-                                    given_name TEXT,
-                                    female     INTEGER,
-                                    male       INTEGER,
-                                    unknown    INTEGER
-        );""")
+        self.dbapi.execute('CREATE TABLE reference '
+                           '('
+                           'obj_handle VARCHAR(50), '
+                           'obj_class TEXT, '
+                           'ref_handle VARCHAR(50), '
+                           'ref_class TEXT'
+                           ');')
+        self.dbapi.execute('CREATE TABLE name_group '
+                           '('
+                           'name VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'grouping TEXT'
+                           ');')
+        self.dbapi.execute('CREATE TABLE metadata '
+                           '('
+                           'setting VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'value BLOB'
+                           ');')
+        self.dbapi.execute('CREATE TABLE gender_stats '
+                           '('
+                           'given_name TEXT, '
+                           'female INTEGER, '
+                           'male INTEGER, '
+                           'unknown INTEGER'
+                           ');')
         ## Indices:
-        self.dbapi.execute("""CREATE INDEX
-                                  person_order_by ON person(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  person_gramps_id ON person(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  person_surname ON person(surname);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  person_given_name ON person(given_name);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  source_order_by ON source(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  source_gramps_id ON source(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  citation_order_by ON citation(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  citation_gramps_id ON citation(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  media_order_by ON media(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  media_gramps_id ON media(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  place_order_by ON place(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  place_gramps_id ON place(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  tag_order_by ON tag(order_by);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  reference_ref_handle ON reference(ref_handle);
-        """)
+        self.dbapi.execute('CREATE INDEX person_order_by '
+                           'ON person(order_by);')
+        self.dbapi.execute('CREATE INDEX person_gramps_id '
+                           'ON person(gramps_id);')
+        self.dbapi.execute('CREATE INDEX person_surname '
+                           'ON person(surname);')
+        self.dbapi.execute('CREATE INDEX person_given_name '
+                           'ON person(given_name);')
+        self.dbapi.execute('CREATE INDEX source_order_by '
+                           'ON source(order_by);')
+        self.dbapi.execute('CREATE INDEX source_gramps_id '
+                           'ON source(gramps_id);')
+        self.dbapi.execute('CREATE INDEX citation_order_by '
+                           'ON citation(order_by);')
+        self.dbapi.execute('CREATE INDEX citation_gramps_id '
+                           'ON citation(gramps_id);')
+        self.dbapi.execute('CREATE INDEX media_order_by '
+                           'ON media(order_by);')
+        self.dbapi.execute('CREATE INDEX media_gramps_id '
+                           'ON media(gramps_id);')
+        self.dbapi.execute('CREATE INDEX place_order_by '
+                           'ON place(order_by);')
+        self.dbapi.execute('CREATE INDEX place_gramps_id '
+                           'ON place(gramps_id);')
+        self.dbapi.execute('CREATE INDEX tag_order_by '
+                           'ON tag(order_by);')
+        self.dbapi.execute('CREATE INDEX reference_ref_handle '
+                           'ON reference(ref_handle);')
+        self.dbapi.execute('CREATE INDEX family_gramps_id '
+                           'ON family(gramps_id);')
+        self.dbapi.execute('CREATE INDEX event_gramps_id '
+                           'ON event(gramps_id);')
+        self.dbapi.execute('CREATE INDEX repository_gramps_id '
+                           'ON repository(gramps_id);')
+        self.dbapi.execute('CREATE INDEX note_gramps_id '
+                           'ON note(gramps_id);')
+        self.dbapi.execute('CREATE INDEX reference_obj_handle '
+                           'ON reference(obj_handle);')
 
-        self.dbapi.execute("""CREATE INDEX
-                                  family_gramps_id ON family(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  event_gramps_id ON event(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  repository_gramps_id ON repository(gramps_id);
-        """)
-        self.dbapi.execute("""CREATE INDEX
-                                  note_gramps_id ON note(gramps_id);
-        """)
-
-        self.dbapi.execute("""CREATE INDEX
-                                  reference_obj_handle ON reference(obj_handle);
-        """)
         self.rebuild_secondary_fields()
 
     def close_backend(self):
