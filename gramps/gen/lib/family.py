@@ -244,41 +244,6 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             "private": _("Private"),
         }
 
-    @classmethod
-    def field_aliases(cls):
-        """
-        Return dictionary of alias to full field names
-        for this object class.
-        """
-        return {
-            "mother_surname": "mother_handle.primary_name.surname_list.0.surname",
-            "mother_given": "mother_handle.primary_name.first_name",
-            "father_surname": "father_handle.primary_name.surname_list.0.surname",
-            "father_given": "father_handle.primary_name.first_name",
-        }
-
-    @classmethod
-    def get_extra_secondary_fields(cls):
-        """
-        Return a list of full field names and types for secondary
-        fields that are not directly listed in the schema.
-        """
-        return [
-            ("father_handle.primary_name.surname_list.0.surname", str),
-            ("father_handle.primary_name.first_name", str),
-            ("mother_handle.primary_name.surname_list.0.surname", str),
-            ("mother_handle.primary_name.first_name", str),
-        ]
-
-    @classmethod
-    def get_index_fields(cls):
-        return [
-            "father_handle.primary_name.surname_list.0.surname",
-            "father_handle.primary_name.first_name",
-            "mother_handle.primary_name.surname_list.0.surname",
-            "mother_handle.primary_name.first_name",
-        ]
-
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
