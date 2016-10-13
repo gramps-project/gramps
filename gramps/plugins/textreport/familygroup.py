@@ -50,6 +50,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -671,9 +672,8 @@ class FamilyGroup(Report):
                     self.doc.page_break()
                     step()
         else:
-            self.doc.start_paragraph('FGR-Title')
-            self.doc.write_text(self._("Family Group Report"))
-            self.doc.end_paragraph()
+            raise ReportError(_('Empty report'),
+                              _('You did not specify anybody'))
 
 #------------------------------------------------------------------------
 #

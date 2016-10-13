@@ -61,6 +61,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -174,6 +175,8 @@ class RelGraphReport(Report):
 
         pid = get_value('pid')
         self.center_person = self._db.get_person_from_gramps_id(pid)
+        if self.center_person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         self.increlname = get_value('increlname')
         if self.increlname:

@@ -63,6 +63,7 @@ from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -370,8 +371,8 @@ class FamilyLinesReport(Report):
         # entire list right now and not have to deal with it ever again
         self._interest_set = set()
         if not self._gidlist:
-            self._user.warn(_('Empty report'),
-                            _('You did not specify anybody'))
+            raise ReportError(_('Empty report'),
+                              _('You did not specify anybody'))
         for gid in self._gidlist.split():
             person = self._db.get_person_from_gramps_id(gid)
             if person:

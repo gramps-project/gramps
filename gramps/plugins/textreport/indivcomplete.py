@@ -60,6 +60,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
 #
@@ -807,6 +808,9 @@ class IndivCompleteReport(Report):
             ind_list = self.filter.apply(self._db, plist)
         else:
             ind_list = plist
+        if not ind_list:
+            raise ReportError(_('Empty report'),
+                              _('You did not specify anybody'))
 
         for count, person_handle in enumerate(ind_list):
             self.person = self._db.get_person_from_handle(person_handle)
