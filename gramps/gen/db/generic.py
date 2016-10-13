@@ -2231,13 +2231,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self.brief_name
 
-    def get_person_data(self, person):
+    def _get_person_data(self, person):
         """
-        Given a Person, return primary_name.first_name, surname and gender.
+        Given a Person, return primary_name.first_name and surname.
         """
         given_name = ""
         surname = ""
-        gender_type = Person.UNKNOWN
         if person:
             primary_name = person.get_primary_name()
             if primary_name:
@@ -2247,8 +2246,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                     surname_obj = surname_list[0]
                     if surname_obj:
                         surname = surname_obj.surname
-            gender_type = person.gender
-        return (given_name, surname, gender_type)
+        return (given_name, surname)
 
     def set_default_person_handle(self, handle):
         self.set_metadata("default-person-handle", handle)

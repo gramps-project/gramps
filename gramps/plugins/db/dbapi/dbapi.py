@@ -183,7 +183,6 @@ class DBAPI(DbGeneric):
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'given_name TEXT, '
                            'surname TEXT, '
-                           'gender_type INTEGER, '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
@@ -488,12 +487,12 @@ class DBAPI(DbGeneric):
                                      person AS mother
                                      on family.mother_handle = mother.handle
                                      order by (case when father.handle is null
-                                                    then mother.primary_name__surname_list__0__surname
-                                                    else father.primary_name__surname_list__0__surname
+                                                    then mother.surname
+                                                    else father.surname
                                                end),
                                               (case when family.handle is null
-                                                    then mother.primary_name__first_name
-                                                    else father.primary_name__first_name
+                                                    then mother.given_name
+                                                    else father.given_name
                                                end)) AS f;""")
         else:
             self.dbapi.execute("SELECT handle FROM family;")
@@ -734,36 +733,34 @@ class DBAPI(DbGeneric):
                     self._order_by_person_key(old_person)):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, trans.batch)
-            given_name, surname, gender_type = self.get_person_data(person)
+            given_name, surname = self._get_person_data(person)
             # update the person:
             self.dbapi.execute("""UPDATE person SET gramps_id = ?,
                                                     order_by = ?,
                                                     blob_data = ?,
                                                     given_name = ?,
-                                                    surname = ?,
-                                                    gender_type = ?
+                                                    surname = ?
                                                 WHERE handle = ?;""",
                                [person.gramps_id,
                                 self._order_by_person_key(person),
                                 pickle.dumps(person.serialize()),
                                 given_name,
                                 surname,
-                                gender_type,
                                 person.handle])
         else:
             self.genderStats.count_person(person)
             self.add_to_surname_list(person, trans.batch)
-            given_name, surname, gender_type = self.get_person_data(person)
+            given_name, surname = self._get_person_data(person)
             # Insert the person:
             self.dbapi.execute(
                 """INSERT INTO person (handle, order_by, gramps_id, blob_data,
-                                       given_name, surname, gender_type)
-                                      VALUES(?, ?, ?, ?, ?, ?, ?);""",
+                                       given_name, surname)
+                                      VALUES(?, ?, ?, ?, ?, ?);""",
                 [person.handle,
                  self._order_by_person_key(person),
                  person.gramps_id,
                  pickle.dumps(person.serialize()),
-                 given_name, surname, gender_type])
+                 given_name, surname])
         self.update_secondary_values(person)
         if not trans.batch:
             self.update_backlinks(person)
