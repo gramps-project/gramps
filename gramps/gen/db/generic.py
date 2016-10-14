@@ -385,7 +385,7 @@ class TreeCursor(Cursor):
         """
         handles = self.db.get_place_handles(sort_handles=True)
         for handle in handles:
-            yield (handle, self.db._get_raw_place_data(handle))
+            yield (handle, self.db.get_raw_place_data(handle))
 
 class Bookmarks:
     def __init__(self, default=[]):
@@ -475,7 +475,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_person,
                 "has_gramps_id_func": self.has_gramps_id_for_person,
                 "count_func": self.get_number_of_people,
-                "raw_func": self._get_raw_person_data,
+                "raw_func": self.get_raw_person_data,
                 "raw_id_func": self._get_raw_person_from_id_data,
                 "del_func": self.remove_person,
             },
@@ -493,7 +493,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_family,
                 "has_gramps_id_func": self.has_gramps_id_for_family,
                 "count_func": self.get_number_of_families,
-                "raw_func": self._get_raw_family_data,
+                "raw_func": self.get_raw_family_data,
                 "raw_id_func": self._get_raw_family_from_id_data,
                 "del_func": self.remove_family,
             },
@@ -511,7 +511,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_source,
                 "has_gramps_id_func": self.has_gramps_id_for_source,
                 "count_func": self.get_number_of_sources,
-                "raw_func": self._get_raw_source_data,
+                "raw_func": self.get_raw_source_data,
                 "raw_id_func": self._get_raw_source_from_id_data,
                 "del_func": self.remove_source,
                 },
@@ -529,7 +529,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_citation,
                 "has_gramps_id_func": self.has_gramps_id_for_citation,
                 "count_func": self.get_number_of_citations,
-                "raw_func": self._get_raw_citation_data,
+                "raw_func": self.get_raw_citation_data,
                 "raw_id_func": self._get_raw_citation_from_id_data,
                 "del_func": self.remove_citation,
             },
@@ -547,7 +547,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_event,
                 "has_gramps_id_func": self.has_gramps_id_for_event,
                 "count_func": self.get_number_of_events,
-                "raw_func": self._get_raw_event_data,
+                "raw_func": self.get_raw_event_data,
                 "raw_id_func": self._get_raw_event_from_id_data,
                 "del_func": self.remove_event,
             },
@@ -565,7 +565,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_media,
                 "has_gramps_id_func": self.has_gramps_id_for_media,
                 "count_func": self.get_number_of_media,
-                "raw_func": self._get_raw_media_data,
+                "raw_func": self.get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
                 "del_func": self.remove_media,
             },
@@ -583,7 +583,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_place,
                 "has_gramps_id_func": self.has_gramps_id_for_place,
                 "count_func": self.get_number_of_places,
-                "raw_func": self._get_raw_place_data,
+                "raw_func": self.get_raw_place_data,
                 "raw_id_func": self._get_raw_place_from_id_data,
                 "del_func": self.remove_place,
             },
@@ -601,7 +601,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_repository,
                 "has_gramps_id_func": self.has_gramps_id_for_repository,
                 "count_func": self.get_number_of_repositories,
-                "raw_func": self._get_raw_repository_data,
+                "raw_func": self.get_raw_repository_data,
                 "raw_id_func": self._get_raw_repository_from_id_data,
                 "del_func": self.remove_repository,
             },
@@ -619,7 +619,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_note,
                 "has_gramps_id_func": self.has_gramps_id_for_note,
                 "count_func": self.get_number_of_notes,
-                "raw_func": self._get_raw_note_data,
+                "raw_func": self.get_raw_note_data,
                 "raw_id_func": self._get_raw_note_from_id_data,
                 "del_func": self.remove_note,
             },
@@ -635,7 +635,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "has_handle_func": self.has_handle_for_tag,
                 "iter_func": self.iter_tags,
                 "count_func": self.get_number_of_tags,
-                "raw_func": self._get_raw_tag_data,
+                "raw_func": self.get_raw_tag_data,
                 "del_func": self.remove_tag,
             }
         }
@@ -1168,7 +1168,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_event_data(handle)
+        data = self.get_raw_event_data(handle)
         if data:
             return Event.create(data)
         else:
@@ -1181,7 +1181,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_family_data(handle)
+        data = self.get_raw_family_data(handle)
         if data:
             return Family.create(data)
         else:
@@ -1194,7 +1194,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_repository_data(handle)
+        data = self.get_raw_repository_data(handle)
         if data:
             return Repository.create(data)
         else:
@@ -1207,7 +1207,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_person_data(handle)
+        data = self.get_raw_person_data(handle)
         if data:
             return Person.create(data)
         else:
@@ -1220,7 +1220,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_place_data(handle)
+        data = self.get_raw_place_data(handle)
         if data:
             return Place.create(data)
         else:
@@ -1233,7 +1233,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_citation_data(handle)
+        data = self.get_raw_citation_data(handle)
         if data:
             return Citation.create(data)
         else:
@@ -1246,7 +1246,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_source_data(handle)
+        data = self.get_raw_source_data(handle)
         if data:
             return Source.create(data)
         else:
@@ -1259,7 +1259,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_note_data(handle)
+        data = self.get_raw_note_data(handle)
         if data:
             return Note.create(data)
         else:
@@ -1272,7 +1272,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_media_data(handle)
+        data = self.get_raw_media_data(handle)
         if data:
             return Media.create(data)
         else:
@@ -1285,7 +1285,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self._get_raw_tag_data(handle)
+        data = self.get_raw_tag_data(handle)
         if data:
             return Tag.create(data)
         else:
@@ -1463,56 +1463,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         return handle in self.media_map
-
-    def get_raw_person_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.person_map[handle]
-
-    def get_raw_family_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.family_map[handle]
-
-    def get_raw_citation_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.citation_map[handle]
-
-    def get_raw_source_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.source_map[handle]
-
-    def get_raw_repository_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.repository_map[handle]
-
-    def get_raw_note_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.note_map[handle]
-
-    def get_raw_place_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.place_map[handle]
-
-    def get_raw_media_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.media_map[handle]
-
-    def get_raw_tag_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.tag_map[handle]
-
-    def get_raw_event_data(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return self.event_map[handle]
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
