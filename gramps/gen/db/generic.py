@@ -1341,31 +1341,40 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.iter_items(order_by, Family)
 
     def get_person_from_gramps_id(self, gramps_id):
-        return Person.create(self.person_id_map[gramps_id])
+        data = self._get_raw_person_from_id_data(gramps_id)
+        return Person.create(data)
 
     def get_family_from_gramps_id(self, gramps_id):
-        return Family.create(self.family_id_map[gramps_id])
+        data = self._get_raw_family_from_id_data(gramps_id)
+        return Family.create(data)
 
     def get_citation_from_gramps_id(self, gramps_id):
-        return Citation.create(self.citation_id_map[gramps_id])
+        data = self._get_raw_citation_from_id_data(gramps_id)
+        return Citation.create(data)
 
     def get_source_from_gramps_id(self, gramps_id):
-        return Source.create(self.source_id_map[gramps_id])
+        data = self._get_raw_source_from_id_data(gramps_id)
+        return Source.create(data)
 
     def get_event_from_gramps_id(self, gramps_id):
-        return Event.create(self.event_id_map[gramps_id])
+        data = self._get_raw_event_from_id_data(gramps_id)
+        return Event.create(data)
 
     def get_media_from_gramps_id(self, gramps_id):
-        return Media.create(self.media_id_map[gramps_id])
+        data = self._get_raw_media_from_id_data(gramps_id)
+        return Media.create(data)
 
     def get_place_from_gramps_id(self, gramps_id):
-        return Place.create(self.place_id_map[gramps_id])
+        data = self._get_raw_place_from_id_data(gramps_id)
+        return Place.create(data)
 
     def get_repository_from_gramps_id(self, gramps_id):
-        return Repository.create(self.repository_id_map[gramps_id])
+        data = self._get_raw_repository_from_id_data(gramps_id)
+        return Repository.create(data)
 
     def get_note_from_gramps_id(self, gramps_id):
-        return Note.create(self.note_id_map[gramps_id])
+        data = self._get_raw_note_from_id_data(gramps_id)
+        return Note.create(data)
 
     def get_place_cursor(self):
         return Cursor(self.place_map)
