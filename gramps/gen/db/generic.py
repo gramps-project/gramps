@@ -472,7 +472,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_person,
                 "iter_func": self.iter_people,
                 "ids_func": self.get_person_gramps_ids,
-                "has_handle_func": self.has_handle_for_person,
+                "has_handle_func": self.has_person_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_person,
                 "count_func": self.get_number_of_people,
                 "raw_func": self.get_raw_person_data,
@@ -490,7 +490,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_family,
                 "iter_func": self.iter_families,
                 "ids_func": self.get_family_gramps_ids,
-                "has_handle_func": self.has_handle_for_family,
+                "has_handle_func": self.has_family_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_family,
                 "count_func": self.get_number_of_families,
                 "raw_func": self.get_raw_family_data,
@@ -508,7 +508,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_source,
                 "iter_func": self.iter_sources,
                 "ids_func": self.get_source_gramps_ids,
-                "has_handle_func": self.has_handle_for_source,
+                "has_handle_func": self.has_source_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_source,
                 "count_func": self.get_number_of_sources,
                 "raw_func": self.get_raw_source_data,
@@ -526,7 +526,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_citation,
                 "iter_func": self.iter_citations,
                 "ids_func": self.get_citation_gramps_ids,
-                "has_handle_func": self.has_handle_for_citation,
+                "has_handle_func": self.has_citation_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_citation,
                 "count_func": self.get_number_of_citations,
                 "raw_func": self.get_raw_citation_data,
@@ -544,7 +544,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_event,
                 "iter_func": self.iter_events,
                 "ids_func": self.get_event_gramps_ids,
-                "has_handle_func": self.has_handle_for_event,
+                "has_handle_func": self.has_event_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_event,
                 "count_func": self.get_number_of_events,
                 "raw_func": self.get_raw_event_data,
@@ -562,7 +562,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_media,
                 "iter_func": self.iter_media,
                 "ids_func": self.get_media_gramps_ids,
-                "has_handle_func": self.has_handle_for_media,
+                "has_handle_func": self.has_media_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_media,
                 "count_func": self.get_number_of_media,
                 "raw_func": self.get_raw_media_data,
@@ -580,7 +580,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_place,
                 "iter_func": self.iter_places,
                 "ids_func": self.get_place_gramps_ids,
-                "has_handle_func": self.has_handle_for_place,
+                "has_handle_func": self.has_place_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_place,
                 "count_func": self.get_number_of_places,
                 "raw_func": self.get_raw_place_data,
@@ -598,7 +598,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_repository,
                 "iter_func": self.iter_repositories,
                 "ids_func": self.get_repository_gramps_ids,
-                "has_handle_func": self.has_handle_for_repository,
+                "has_handle_func": self.has_repository_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_repository,
                 "count_func": self.get_number_of_repositories,
                 "raw_func": self.get_raw_repository_data,
@@ -616,7 +616,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "commit_func": self.commit_note,
                 "iter_func": self.iter_notes,
                 "ids_func": self.get_note_gramps_ids,
-                "has_handle_func": self.has_handle_for_note,
+                "has_handle_func": self.has_note_handle,
                 "has_gramps_id_func": self.has_gramps_id_for_note,
                 "count_func": self.get_number_of_notes,
                 "raw_func": self.get_raw_note_data,
@@ -632,7 +632,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "handles_func": self.get_tag_handles,
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
-                "has_handle_func": self.has_handle_for_tag,
+                "has_handle_func": self.has_tag_handle,
                 "iter_func": self.iter_tags,
                 "count_func": self.get_number_of_tags,
                 "raw_func": self.get_raw_tag_data,
@@ -1413,56 +1413,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             NOTE_KEY:       self.note_id_map,
             }
         return gramps_id in key2table[obj_key]
-
-    def has_person_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.person_map
-
-    def has_family_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.family_map
-
-    def has_citation_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.citation_map
-
-    def has_source_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.source_map
-
-    def has_repository_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.repository_map
-
-    def has_note_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.note_map
-
-    def has_place_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.place_map
-
-    def has_event_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.event_map
-
-    def has_tag_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.tag_map
-
-    def has_media_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        return handle in self.media_map
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:

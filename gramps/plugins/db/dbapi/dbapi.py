@@ -1520,61 +1520,61 @@ class DBAPI(DbGeneric):
                 [order_by, media.handle])
             row = self.dbapi.fetchone()
 
-    def has_handle_for_person(self, key):
+    def has_person_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM person WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_family(self, key):
+    def has_family_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM family WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_source(self, key):
+    def has_source_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM source WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_citation(self, key):
+    def has_citation_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM citation WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_event(self, key):
+    def has_event_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM event WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_media(self, key):
+    def has_media_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM media WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_place(self, key):
+    def has_place_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM place WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_repository(self, key):
+    def has_repository_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM repository WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_note(self, key):
+    def has_note_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM note WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_handle_for_tag(self, key):
+    def has_tag_handle(self, key):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute("SELECT 1 FROM tag WHERE handle = ?", [key])
