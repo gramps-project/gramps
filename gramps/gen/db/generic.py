@@ -473,7 +473,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_people,
                 "ids_func": self.get_person_gramps_ids,
                 "has_handle_func": self.has_person_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_person,
+                "has_gramps_id_func": self.has_person_gramps_id,
                 "count_func": self.get_number_of_people,
                 "raw_func": self.get_raw_person_data,
                 "raw_id_func": self._get_raw_person_from_id_data,
@@ -491,7 +491,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_families,
                 "ids_func": self.get_family_gramps_ids,
                 "has_handle_func": self.has_family_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_family,
+                "has_gramps_id_func": self.has_family_gramps_id,
                 "count_func": self.get_number_of_families,
                 "raw_func": self.get_raw_family_data,
                 "raw_id_func": self._get_raw_family_from_id_data,
@@ -509,7 +509,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_sources,
                 "ids_func": self.get_source_gramps_ids,
                 "has_handle_func": self.has_source_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_source,
+                "has_gramps_id_func": self.has_source_gramps_id,
                 "count_func": self.get_number_of_sources,
                 "raw_func": self.get_raw_source_data,
                 "raw_id_func": self._get_raw_source_from_id_data,
@@ -527,7 +527,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_citations,
                 "ids_func": self.get_citation_gramps_ids,
                 "has_handle_func": self.has_citation_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_citation,
+                "has_gramps_id_func": self.has_citation_gramps_id,
                 "count_func": self.get_number_of_citations,
                 "raw_func": self.get_raw_citation_data,
                 "raw_id_func": self._get_raw_citation_from_id_data,
@@ -545,7 +545,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_events,
                 "ids_func": self.get_event_gramps_ids,
                 "has_handle_func": self.has_event_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_event,
+                "has_gramps_id_func": self.has_event_gramps_id,
                 "count_func": self.get_number_of_events,
                 "raw_func": self.get_raw_event_data,
                 "raw_id_func": self._get_raw_event_from_id_data,
@@ -563,7 +563,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_media,
                 "ids_func": self.get_media_gramps_ids,
                 "has_handle_func": self.has_media_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_media,
+                "has_gramps_id_func": self.has_media_gramps_id,
                 "count_func": self.get_number_of_media,
                 "raw_func": self.get_raw_media_data,
                 "raw_id_func": self._get_raw_media_from_id_data,
@@ -581,7 +581,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_places,
                 "ids_func": self.get_place_gramps_ids,
                 "has_handle_func": self.has_place_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_place,
+                "has_gramps_id_func": self.has_place_gramps_id,
                 "count_func": self.get_number_of_places,
                 "raw_func": self.get_raw_place_data,
                 "raw_id_func": self._get_raw_place_from_id_data,
@@ -599,7 +599,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_repositories,
                 "ids_func": self.get_repository_gramps_ids,
                 "has_handle_func": self.has_repository_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_repository,
+                "has_gramps_id_func": self.has_repository_gramps_id,
                 "count_func": self.get_number_of_repositories,
                 "raw_func": self.get_raw_repository_data,
                 "raw_id_func": self._get_raw_repository_from_id_data,
@@ -617,7 +617,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "iter_func": self.iter_notes,
                 "ids_func": self.get_note_gramps_ids,
                 "has_handle_func": self.has_note_handle,
-                "has_gramps_id_func": self.has_gramps_id_for_note,
+                "has_gramps_id_func": self.has_note_gramps_id,
                 "count_func": self.get_number_of_notes,
                 "raw_func": self.get_raw_note_data,
                 "raw_id_func": self._get_raw_note_from_id_data,
@@ -1408,20 +1408,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_source_cursor(self):
         return Cursor(self.source_map)
-
-    def has_gramps_id(self, obj_key, gramps_id):
-        key2table = {
-            PERSON_KEY:     self.person_id_map,
-            FAMILY_KEY:     self.family_id_map,
-            SOURCE_KEY:     self.source_id_map,
-            CITATION_KEY:   self.citation_id_map,
-            EVENT_KEY:      self.event_id_map,
-            MEDIA_KEY:      self.media_id_map,
-            PLACE_KEY:      self.place_id_map,
-            REPOSITORY_KEY: self.repository_id_map,
-            NOTE_KEY:       self.note_id_map,
-            }
-        return gramps_id in key2table[obj_key]
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:

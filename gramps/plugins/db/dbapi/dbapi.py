@@ -1580,42 +1580,48 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT 1 FROM tag WHERE handle = ?", [key])
         return self.dbapi.fetchone() != None
 
-    def has_gramps_id_for_person(self, key):
-        self.dbapi.execute("SELECT 1 FROM person WHERE gramps_id = ?", [key])
+    def has_gramps_id(self, obj_key, gramps_id):
+        key2table = {
+            PERSON_KEY: 'person',
+            FAMILY_KEY: 'family',
+            SOURCE_KEY: 'source',
+            CITATION_KEY: 'citation',
+            EVENT_KEY: 'event',
+            MEDIA_KEY: 'media',
+            PLACE_KEY: 'place',
+            REPOSITORY_KEY: 'repository',
+            NOTE_KEY: 'note',
+            }
+        sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % key2table[obj_key]
+        self.dbapi.execute(sql, [gramps_id])
         return self.dbapi.fetchone() != None
 
-    def has_gramps_id_for_family(self, key):
-        self.dbapi.execute("SELECT 1 FROM family WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_person_gramps_id(self, gramps_id):
+        return self.has_gramps_id(PERSON_KEY, gramps_id)
 
-    def has_gramps_id_for_source(self, key):
-        self.dbapi.execute("SELECT 1 FROM source WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_family_gramps_id(self, gramps_id):
+        return self.has_gramps_id(FAMILY_KEY, gramps_id)
 
-    def has_gramps_id_for_citation(self, key):
-        self.dbapi.execute("SELECT 1 FROM citation WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_source_gramps_id(self, gramps_id):
+        return self.has_gramps_id(SOURCE_KEY, gramps_id)
 
-    def has_gramps_id_for_event(self, key):
-        self.dbapi.execute("SELECT 1 FROM event WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_citation_gramps_id(self, gramps_id):
+        return self.has_gramps_id(CITATION_KEY, gramps_id)
 
-    def has_gramps_id_for_media(self, key):
-        self.dbapi.execute("SELECT 1 FROM media WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_event_gramps_id(self, gramps_id):
+        return self.has_gramps_id(EVENT_KEY, gramps_id)
 
-    def has_gramps_id_for_place(self, key):
-        self.dbapi.execute("SELECT 1 FROM place WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_media_gramps_id(self, gramps_id):
+        return self.has_gramps_id(MEDIA_KEY, gramps_id)
 
-    def has_gramps_id_for_repository(self, key):
-        self.dbapi.execute(
-            "SELECT 1 FROM repository WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_place_gramps_id(self, gramps_id):
+        return self.has_gramps_id(PLACE_KEY, gramps_id)
 
-    def has_gramps_id_for_note(self, key):
-        self.dbapi.execute("SELECT 1 FROM note WHERE gramps_id = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_repository_gramps_id(self, gramps_id):
+        return self.has_gramps_id(REPOSITORY_KEY, gramps_id)
+
+    def has_note_gramps_id(self, gramps_id):
+        return self.has_gramps_id(NOTE_KEY, gramps_id)
 
     def get_person_gramps_ids(self):
         self.dbapi.execute("SELECT gramps_id FROM person;")
