@@ -230,19 +230,6 @@ class DbGenericUndo(DbUndo):
             db.undo_history_callback()
         return True
 
-class Environment:
-    """
-    Implements the Environment API.
-    """
-    def __init__(self, db):
-        self.db = db
-
-    def txn_begin(self):
-        return DbGenericTxn("DbGenericDb Transaction", self.db)
-
-    def txn_checkpoint(self):
-        pass
-
 class Table:
     """
     Implements Table interface.
@@ -682,7 +669,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
-        self.env = Environment(self)
         self.person_map = Map(Table(self, "Person"))
         self.person_id_map = Map(Table(self, "Person"),
                                  keys_func="ids_func",
@@ -897,8 +883,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Post-transaction commit processing
         """
-        if transaction.batch:
-            self.env.txn_checkpoint()
         # Reset callbacks if necessary
         if transaction.batch or not len(transaction):
             return
