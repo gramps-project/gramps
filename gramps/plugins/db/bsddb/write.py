@@ -2463,12 +2463,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.brief_name
 
-    def get_transaction_class(self):
-        """
-        Get the transaction class associated with this database backend.
-        """
-        return DbTxn
-
     def backup(self, user=None):
         """
         Exports the database to a set of backup files. These files consist

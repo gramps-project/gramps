@@ -22,7 +22,7 @@
 
 import unittest
 
-from gramps.gen.db import make_database
+from gramps.gen.db import make_database, DbTxn
 
 from  ..import (Person, Surname, Name, NameType, Family, FamilyRelType,
                 Event, EventType, Source, Place, PlaceName, Citation, Date,
@@ -38,7 +38,7 @@ class FieldBaseTest(unittest.TestCase):
     def setUp(self):
         db = make_database("inmemorydb")
         db.load(None)
-        with db.get_transaction_class()("Test", db) as trans:
+        with DbTxn("Test", db) as trans:
             # Add some people:
             person1 = Person()
             person1.primary_name = Name()

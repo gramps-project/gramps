@@ -1590,12 +1590,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                     handle = str(handle, "utf-8")
                 map[handle] = class_.create(data)
 
-    def get_transaction_class(self):
-        """
-        Get the transaction class associated with this database backend.
-        """
-        return DbGenericTxn
-
     def get_from_name_and_handle(self, table_name, handle):
         """
         Returns a gen.lib object (or None) given table_name and
