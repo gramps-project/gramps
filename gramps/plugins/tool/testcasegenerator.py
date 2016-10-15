@@ -23,37 +23,40 @@
 #
 
 """Tools/Debug/Generate Testcases for Persons and Families"""
-
-#-------------------------------------------------------------------------
+# pylint: disable=too-many-statements,too-many-locals,too-many-branches
+# pylint: disable=wrong-import-position,too-many-public-methods,no-self-use
+# pylint: disable=too-many-arguments
+# ------------------------------------------------------------------------
 #
 # standard python modules
 #
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 import sys
 import os
 import random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # GNOME libraries
 #
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 from gi.repository import Gtk
 
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Gramps modules
 #
-#-------------------------------------------------------------------------
-from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
-                ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
-                EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location,
-                Media, MediaRef, Name, NameOriginType, NameType, Note,
-                NoteType, Person, PersonRef, Place, PlaceType, PlaceRef, PlaceName,
-                RepoRef, Repository, RepositoryType, Source, SourceMediaType,
-                SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
+# ------------------------------------------------------------------------
+from gramps.gen.lib import (
+    Address, Attribute, AttributeType, ChildRef,
+    ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
+    EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location,
+    Media, MediaRef, Name, NameOriginType, NameType, Note,
+    NoteType, Person, PersonRef, Place, PlaceType, PlaceRef, PlaceName,
+    RepoRef, Repository, RepositoryType, Source, SourceMediaType,
+    SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
 from gramps.gen.lib.addressbase import AddressBase
 from gramps.gen.lib.attrbase import AttributeBase
 from gramps.gen.lib.primaryobj import BasicPrimaryObject
@@ -79,11 +82,11 @@ from gramps.gen.const import ICON, LOGO, SPLASH
 from gramps.gui.display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 #
 # Constants
 #
-#-------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('Generate_Testcases_for_Persons_and_Families')
 
@@ -103,52 +106,53 @@ _randint = myrand.randint
 
 
 LDS_ORD_BAPT_STATUS = (
-        LdsOrd.STATUS_NONE,
-        LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
-        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
-        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-        LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_NONE,
+    LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
+    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED)
 
 LDS_ORD_CHILD_SEALING_STATUS = (
-        LdsOrd.STATUS_NONE,
-        LdsOrd.STATUS_BIC, LdsOrd.STATUS_CLEARED,
-        LdsOrd.STATUS_COMPLETED,LdsOrd.STATUS_DNS,
-        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-        LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_NONE,
+    LdsOrd.STATUS_BIC, LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
+    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED)
 
 LDS_ENDOWMENT_DATE_STATUS = (
-        LdsOrd.STATUS_NONE,
-        LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
-        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
-        LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
-        LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
-        LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_NONE,
+    LdsOrd.STATUS_CHILD, LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_INFANT,
+    LdsOrd.STATUS_PRE_1970, LdsOrd.STATUS_QUALIFIED,
+    LdsOrd.STATUS_STILLBORN, LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED)
 
 LDS_SPOUSE_SEALING_DATE_STATUS = (
-        LdsOrd.STATUS_NONE,
-        LdsOrd.STATUS_CANCELED, LdsOrd.STATUS_CLEARED,
-        LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
-        LdsOrd.STATUS_DNS_CAN, LdsOrd.STATUS_PRE_1970,
-        LdsOrd.STATUS_QUALIFIED, LdsOrd.STATUS_SUBMITTED,
-        LdsOrd.STATUS_UNCLEARED)
+    LdsOrd.STATUS_NONE,
+    LdsOrd.STATUS_CANCELED, LdsOrd.STATUS_CLEARED,
+    LdsOrd.STATUS_COMPLETED, LdsOrd.STATUS_DNS,
+    LdsOrd.STATUS_DNS_CAN, LdsOrd.STATUS_PRE_1970,
+    LdsOrd.STATUS_QUALIFIED, LdsOrd.STATUS_SUBMITTED,
+    LdsOrd.STATUS_UNCLEARED)
 
 LDS_INDIVIDUAL_ORD = [(LdsOrd.BAPTISM, LDS_ORD_BAPT_STATUS),
                       (LdsOrd.CONFIRMATION, LDS_ORD_BAPT_STATUS),
                       (LdsOrd.ENDOWMENT, LDS_ENDOWMENT_DATE_STATUS),
-                      (LdsOrd.SEAL_TO_PARENTS,
-                                        LDS_ORD_CHILD_SEALING_STATUS)]
+                      (LdsOrd.SEAL_TO_PARENTS, LDS_ORD_CHILD_SEALING_STATUS)]
 
 LDS_SPOUSE_SEALING = [(LdsOrd.SEAL_TO_SPOUSE,
-                                        LDS_SPOUSE_SEALING_DATE_STATUS)]
+                       LDS_SPOUSE_SEALING_DATE_STATUS)]
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
+
 class TestcaseGenerator(tool.BatchTool):
+    '''
+    This tool generates various test cases for problems that have occured.
+    The issues it generates can be corrected via the 'Check and Repair' tool.
+    '''
     NUMERIC = 0
     FIRSTNAME = 1
     FIRSTNAME_FEMALE = 2
@@ -178,17 +182,17 @@ class TestcaseGenerator(tool.BatchTool):
 #    ]
 
     FAMILY_EVENTS = set([
-            EventType.ANNULMENT,
-            EventType.CENSUS,
-            EventType.DIVORCE,
-            EventType.DIV_FILING,
-            EventType.ENGAGEMENT,
-            EventType.MARRIAGE,
-            EventType.MARR_BANNS,
-            EventType.MARR_CONTR,
-            EventType.MARR_LIC,
-            EventType.MARR_SETTL,
-            EventType.CUSTOM            ])
+        EventType.ANNULMENT,
+        EventType.CENSUS,
+        EventType.DIVORCE,
+        EventType.DIV_FILING,
+        EventType.ENGAGEMENT,
+        EventType.MARRIAGE,
+        EventType.MARR_BANNS,
+        EventType.MARR_CONTR,
+        EventType.MARR_LIC,
+        EventType.MARR_SETTL,
+        EventType.CUSTOM])
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -197,7 +201,10 @@ class TestcaseGenerator(tool.BatchTool):
         else:
             parent_window = None
         self.progress = user.progress
+
+# ******** This ensures that a chunk of code below never executes!!!!
         self.person = None
+
         if dbstate.db.readonly:
             return
 
@@ -207,7 +214,9 @@ class TestcaseGenerator(tool.BatchTool):
         if self.fail:
             return
 
+        self.options_dict = self.options.handler.options_dict
         self.person_count = 0
+        self.max_person_count = self.options_dict['person_count']
         self.persons_todo = []
         self.parents_todo = []
         self.person_dates = {}
@@ -221,26 +230,28 @@ class TestcaseGenerator(tool.BatchTool):
         self.generated_notes = []
         self.generated_tags = []
         self.text_serial_number = 1
+        self.trans = None
 
         self.parent_places = {}
         for type_num in range(1, 8):
             self.parent_places[type_num] = []
 
-        # If an active persons exists the generated tree is connected to that person
+        # If an active persons exists the generated tree is connected to that
+        # person
         if self.person:
             # try to get birth and death year
             try:
-                bh = self.person.get_birth_handle()
-                b = self.db.get_event_from_handle( bh)
-                do = b.get_date_object()
-                birth = do.get_year()
+                birth_h = self.person.get_birth_handle()
+                birth_e = self.db.get_event_from_handle(birth_h)
+                dat_o = birth_e.get_date_object()
+                birth = dat_o.get_year()
             except AttributeError:
                 birth = None
             try:
-                dh = self.person.get_death_handle()
-                b = self.db.get_event_from_handle( dh)
-                do = b.get_date_object()
-                death = do.get_year()
+                death_h = self.person.get_death_handle()
+                death_e = self.db.get_event_from_handle(death_h)
+                dat_o = death_e.get_date_object()
+                death = dat_o.get_year()
             except AttributeError:
                 death = None
             if not birth and not death:
@@ -249,7 +260,7 @@ class TestcaseGenerator(tool.BatchTool):
                 death = birth + _randint(20, 90)
             if death and not birth:
                 birth = death - _randint(20, 90)
-            self.person_dates[self.person.get_handle()] = (birth,death)
+            self.person_dates[self.person.get_handle()] = (birth, death)
 
             self.persons_todo.append(self.person.get_handle())
             self.parents_todo.append(self.person.get_handle())
@@ -259,56 +270,59 @@ class TestcaseGenerator(tool.BatchTool):
         else:
             self.run_tool(cli=True)
 
-    def init_gui(self,uistate):
+    def init_gui(self, uistate):
         title = "%s - Gramps" % _("Generate testcases")
         self.top = Gtk.Dialog(title, parent=uistate.window)
         self.window = uistate.window
-        self.top.set_default_size(400,150)
+        self.top.set_default_size(400, 150)
         self.top.vbox.set_spacing(5)
-        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
+        label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
+                          % _("Generate testcases"))
         label.set_use_markup(True)
-        self.top.vbox.pack_start(label,0,0,5)
+        self.top.vbox.pack_start(label, 0, 0, 5)
 
-        self.check_lowlevel = Gtk.CheckButton(label=_("Generate low level database "
-                                "errors\nCorrection needs database reload"))
-        self.check_lowlevel.set_active( self.options.handler.options_dict['lowlevel'])
-        self.top.vbox.pack_start(self.check_lowlevel,0,0,5)
+        self.check_lowlevel = Gtk.CheckButton(label=_(
+            "Generate low level database "
+            "errors\nCorrection needs database reload"))
+        self.check_lowlevel.set_active(self.options_dict['lowlevel'])
+        self.top.vbox.pack_start(self.check_lowlevel, 0, 0, 5)
 
         self.check_bugs = Gtk.CheckButton(label=_("Generate database errors"))
-        self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
-        self.top.vbox.pack_start(self.check_bugs,0,0,5)
+        self.check_bugs.set_active(self.options_dict['bugs'])
+        self.top.vbox.pack_start(self.check_bugs, 0, 0, 5)
 
         self.check_persons = Gtk.CheckButton(label=_("Generate dummy data"))
-        self.check_persons.set_active( self.options.handler.options_dict['persons'])
+        self.check_persons.set_active(self.options_dict['persons'])
         self.check_persons.connect('clicked', self.on_dummy_data_clicked)
-        self.top.vbox.pack_start(self.check_persons,0,0,5)
+        self.top.vbox.pack_start(self.check_persons, 0, 0, 5)
 
         self.check_longnames = Gtk.CheckButton(label=_("Generate long names"))
-        self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
-        self.top.vbox.pack_start(self.check_longnames,0,0,5)
+        self.check_longnames.set_active(self.options_dict['long_names'])
+        self.top.vbox.pack_start(self.check_longnames, 0, 0, 5)
 
-        self.check_specialchars = Gtk.CheckButton(label=_("Add special characters"))
-        self.check_specialchars.set_active( self.options.handler.options_dict['specialchars'])
-        self.top.vbox.pack_start(self.check_specialchars,0,0,5)
+        self.check_specialchars = Gtk.CheckButton(label=_(
+            "Add special characters"))
+        self.check_specialchars.set_active(self.options_dict['specialchars'])
+        self.top.vbox.pack_start(self.check_specialchars, 0, 0, 5)
 
         self.check_serial = Gtk.CheckButton(label=_("Add serial number"))
-        self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
-        self.top.vbox.pack_start(self.check_serial,0,0,5)
+        self.check_serial.set_active(self.options_dict['add_serial'])
+        self.top.vbox.pack_start(self.check_serial, 0, 0, 5)
 
         self.check_linebreak = Gtk.CheckButton(label=_("Add line break"))
-        self.check_linebreak.set_active( self.options.handler.options_dict['add_linebreak'])
-        self.top.vbox.pack_start(self.check_linebreak,0,0,5)
+        self.check_linebreak.set_active(self.options_dict['add_linebreak'])
+        self.top.vbox.pack_start(self.check_linebreak, 0, 0, 5)
 
-        self.label = Gtk.Label(label=_("Number of people to generate\n"
-                                 "(Number is approximate because families "
-                                 "are generated)"))
+        self.label = Gtk.Label(label=_(
+            "Number of people to generate\n"
+            "(Number is approximate because families are generated)"))
         self.label.set_halign(Gtk.Align.START)
-        self.top.vbox.pack_start(self.label,0,0,5)
+        self.top.vbox.pack_start(self.label, 0, 0, 5)
 
         self.entry_count = Gtk.Entry()
-        self.entry_count.set_text(str( self.options.handler.options_dict['person_count']))
+        self.entry_count.set_text(str(self.max_person_count))
         self.on_dummy_data_clicked(self.check_persons)
-        self.top.vbox.pack_start(self.entry_count,0,0,5)
+        self.top.vbox.pack_start(self.entry_count, 0, 0, 5)
 
         self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         self.top.add_button(_('_OK'), Gtk.ResponseType.OK)
@@ -316,30 +330,30 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.show_all()
 
         response = self.top.run()
-        self.options.handler.options_dict['lowlevel']  = int(
+        self.options_dict['lowlevel'] = int(
             self.check_lowlevel.get_active())
-        self.options.handler.options_dict['bugs']  = int(
+        self.options_dict['bugs'] = int(
             self.check_bugs.get_active())
-        self.options.handler.options_dict['persons']  = int(
+        self.options_dict['persons'] = int(
             self.check_persons.get_active())
-        self.options.handler.options_dict['long_names']  = int(
+        self.options_dict['long_names'] = int(
             self.check_longnames.get_active())
-        self.options.handler.options_dict['specialchars']  = int(
+        self.options_dict['specialchars'] = int(
             self.check_specialchars.get_active())
-        self.options.handler.options_dict['add_serial']  = int(
+        self.options_dict['add_serial'] = int(
             self.check_serial.get_active())
-        self.options.handler.options_dict['add_linebreak']  = int(
+        self.options_dict['add_linebreak'] = int(
             self.check_linebreak.get_active())
-        self.options.handler.options_dict['person_count']  = int(
+        self.options_dict['person_count'] = int(
             self.entry_count.get_text())
         self.top.destroy()
 
         if response == Gtk.ResponseType.HELP:
             display_help(webpage=WIKI_HELP_PAGE,
-                               section=WIKI_HELP_SEC)
+                         section=WIKI_HELP_SEC)
         else:
             if response == Gtk.ResponseType.OK:
-                self.run_tool( cli=False)
+                self.run_tool(cli=False)
                 # Save options
                 self.options.handler.save_options()
 
@@ -349,57 +363,56 @@ class TestcaseGenerator(tool.BatchTool):
 
     def run_tool(self, cli=False):
         self.cli = cli
-        if (not cli):
+        if not cli:
             while Gtk.events_pending():
                 Gtk.main_iteration()
         else:
             self.window = None
 
-        self.transaction_count = 0;
+        self.transaction_count = 0
 
-        if self.options.handler.options_dict['lowlevel']:
+        if self.options_dict['lowlevel']:
             with self.progress(_('Generating testcases'),
                                _('Generating low level database errors'),
                                1) as step:
                 self.test_low_level()
                 step()
 
-        if self.options.handler.options_dict['bugs'] or \
-            self.options.handler.options_dict['persons']:
+        if self.options_dict['bugs'] or self.options_dict['persons']:
             self.generate_tags()
 
-        if self.options.handler.options_dict['bugs']:
+        if self.options_dict['bugs']:
             with self.progress(_('Generating testcases'),
                                _('Generating database errors'),
                                19) as step:
                 self.generate_data_errors(step)
 
-        if self.options.handler.options_dict['persons']:
+        if self.options_dict['persons']:
             with self.progress(_('Generating testcases'),
                                _('Generating families'),
-                               self.options.handler.options_dict['person_count']) \
+                               self.max_person_count) \
                                as self.progress_step:
                 self.person_count = 0
 
                 while True:
                     if not self.persons_todo:
-                        ph = self.generate_person(0)
-                        self.persons_todo.append( ph)
-                        self.parents_todo.append( ph)
+                        pers_h = self.generate_person(0)
+                        self.persons_todo.append(pers_h)
+                        self.parents_todo.append(pers_h)
                     person_h = self.persons_todo.pop(0)
                     self.generate_family(person_h)
                     if _randint(0, 3) == 0:
                         self.generate_family(person_h)
                     if _randint(0, 7) == 0:
                         self.generate_family(person_h)
-                    if self.person_count > self.options.handler.options_dict['person_count']:
+                    if self.person_count > self.max_person_count:
                         break
                     for child_h in self.parents_todo:
                         self.generate_parents(child_h)
-                        if self.person_count > self.options.handler.options_dict['person_count']:
+                        if self.person_count > self.max_person_count:
                             break
 
-        if( not cli):
+        if not cli:
             self.top.destroy()
 
     def generate_data_errors(self, step):
@@ -407,121 +420,143 @@ class TestcaseGenerator(tool.BatchTool):
         The module names correspond to the checking methods in
         src/plugins/tool/Check.CheckIntegrity """
         # The progress meter is normally stepped every time a person is
-        # generated by generate_person. However in this case, generate_person is
-        # called by some of the constituent functions, but we only want the
+        # generated by generate_person. However in this case, generate_person
+        # is called by some of the constituent functions, but we only want the
         # meter to be stepped every time a test function has been completed.
         self.progress_step = lambda: None
 
-        self.test_fix_encoding(); step()
-        self.test_fix_ctrlchars_in_notes(); step()
-        self.test_fix_alt_place_names(); step()
-        self.test_cleanup_deleted_name_formats(); step()
-        self.test_cleanup_empty_objects(); step()
-        self.test_check_for_broken_family_links(); step()
-        self.test_check_parent_relationships(); step()
-        self.test_cleanup_empty_families(); step()
-        self.test_cleanup_duplicate_spouses(); step()
-        self.test_check_events(); step()
-        self.test_check_person_references(); step()
-        self.test_check_family_references(); step()
-        self.test_check_place_references(); step()
-        self.test_check_source_references(); step()
-        self.test_check_citation_references(); step()
-        self.test_check_media_references(); step()
-        self.test_check_repo_references(); step()
-        self.test_check_note_references(); step()
+        self.test_fix_encoding()
+        step()
+        self.test_fix_ctrlchars_in_notes()
+        step()
+        self.test_fix_alt_place_names()
+        step()
+        self.test_clean_deleted_name_format()
+        step()
+        self.test_cleanup_empty_objects()
+        step()
+        self.test_chk_for_broke_family_link()
+        step()
+        self.test_check_parent_relationships()
+        step()
+        self.test_cleanup_empty_families()
+        step()
+        self.test_cleanup_duplicate_spouses()
+        step()
+        self.test_check_events()
+        step()
+        self.test_check_person_references()
+        step()
+        self.test_check_family_references()
+        step()
+        self.test_check_place_references()
+        step()
+        self.test_check_source_references()
+        step()
+        self.test_check_citation_references()
+        step()
+        self.test_check_media_references()
+        step()
+        self.test_check_repo_references()
+        step()
+        self.test_check_note_references()
+        step()
 
     def test_low_level(self):
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            o = Note()
-            o.set("dup 1" + self.rand_text(self.NOTE))
-            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
-            o.set_type( self.rand_type(NoteType()))
-            h = self.db.add_note(o, self.trans)
-            print("object %s, handle %s, Gramps_Id %s" % (o, o.handle,
-                                                          o.gramps_id))
+            obj = Note()
+            obj.set("dup 1" + self.rand_text(self.NOTE))
+            obj.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
+            obj.set_type(self.rand_type(NoteType()))
+            self.db.add_note(obj, self.trans)
+            print("object %s, handle %s, Gramps_Id %s" % (obj, obj.handle,
+                                                          obj.gramps_id))
 
-            handle = o.get_handle()
+            handle = obj.get_handle()
 
-            o = Source()
-            o.set_title("dup 2" + self.rand_text(self.SHORT))
+            src = Source()
+            src.set_title("dup 2" + self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_author( self.rand_text(self.SHORT))
+                src.set_author(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_publication_info( self.rand_text(self.LONG))
+                src.set_publication_info(self.rand_text(self.LONG))
             if _randint(0, 1) == 1:
-                o.set_abbreviation( self.rand_text(self.SHORT))
+                src.set_abbreviation(self.rand_text(self.SHORT))
             while _randint(0, 1) == 1:
                 sattr = SrcAttribute()
                 sattr.set_type(self.rand_text(self.SHORT))
                 sattr.set_value(self.rand_text(self.SHORT))
-                o.add_attribute(sattr)
-            o.set_handle(handle)
-            self.db.add_source(o, self.trans)
-            print("object %s, handle %s, Gramps_Id %s" % (o, o.handle,
-                                                          o.gramps_id))
+                src.add_attribute(sattr)
+            src.set_handle(handle)
+            self.db.add_source(src, self.trans)
+            print("object %s, handle %s, Gramps_Id %s" % (src, src.handle,
+                                                          src.gramps_id))
 
     def test_fix_encoding(self):
-        # Creates a media object with character encoding errors. This tests
-        # Check.fix_encoding() and also cleanup_missing_photos
+        """ Creates a media object with character encoding errors. This tests
+        Check.fix_encoding() and also cleanup_missing_photos
+        """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            m = Media()
-            self.fill_object(m)
-            m.set_description("leave this media object invalid description\x9f")
-            m.set_path("/tmp/click_on_keep_reference.png\x9f")
-            m.set_mime_type("image/png\x9f")
-            self.db.add_media(m, self.trans)
+            med = Media()
+            self.fill_object(med)
+            med.set_description("leave this media object invalid description"
+                                "\x9f")
+            med.set_path("/tmp/click_on_keep_reference.png\x9f")
+            med.set_mime_type("image/png\x9f")
+            self.db.add_media(med, self.trans)
 
-            m = Media()
-            self.fill_object(m)
-            m.set_description("reselect this media object invalid description\x9f")
-            m.set_path("/tmp/click_on_select_file.png\x9f")
-            m.set_mime_type("image/png\x9f")
-            self.db.add_media(m, self.trans)
+            med = Media()
+            self.fill_object(med)
+            med.set_description("reselect this media object invalid "
+                                "description\x9f")
+            med.set_path("/tmp/click_on_select_file.png\x9f")
+            med.set_mime_type("image/png\x9f")
+            self.db.add_media(med, self.trans)
 
             # setup media attached to Source and Citation to be removed
 
-            m = Media()
-            self.fill_object(m)
-            m.set_description('remove this media object')
-            m.set_path("/tmp/click_on_remove_object.png")
-            m.set_mime_type("image/png")
-            self.db.add_media(m, self.trans)
+            med = Media()
+            self.fill_object(med)
+            med.set_description('remove this media object')
+            med.set_path("/tmp/click_on_remove_object.png")
+            med.set_mime_type("image/png")
+            self.db.add_media(med, self.trans)
 
-            s = Source()
-            s.set_title('media should be removed from this source')
-            r = MediaRef()
-            r.set_reference_handle(m.handle)
-            s.add_media_reference(r)
-            self.db.add_source( s, self.trans)
+            src = Source()
+            src.set_title('media should be removed from this source')
+            ref = MediaRef()
+            ref.set_reference_handle(med.handle)
+            src.add_media_reference(ref)
+            self.db.add_source(src, self.trans)
 
-            c = Citation()
-            self.fill_object(c)
-            c.set_reference_handle(s.handle)
-            c.set_page('media should be removed from this citation')
-            r = MediaRef()
-            r.set_reference_handle(m.handle)
-            c.add_media_reference(r)
-            self.db.add_citation(c, self.trans)
+            cit = Citation()
+            self.fill_object(cit)
+            cit.set_reference_handle(src.handle)
+            cit.set_page('media should be removed from this citation')
+            ref = MediaRef()
+            ref.set_reference_handle(med.handle)
+            cit.add_media_reference(ref)
+            self.db.add_citation(cit, self.trans)
 
     def test_fix_ctrlchars_in_notes(self):
-        # Creates a note with control characters. This tests
-        # Check.fix_ctrlchars_in_notes()
+        """ Creates a note with control characters. This tests
+        Check.fix_ctrlchars_in_notes()
+        """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            o = Note()
-            o.set("This is a text note with a \x03 control character")
-            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
-            o.set_type(self.rand_type(NoteType()))
-            self.db.add_note(o, self.trans)
+            obj = Note()
+            obj.set("This is a text note with a \x03 control character")
+            obj.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
+            obj.set_type(self.rand_type(NoteType()))
+            self.db.add_note(obj, self.trans)
 
     def test_fix_alt_place_names(self):
         """
@@ -554,275 +589,281 @@ class TestcaseGenerator(tool.BatchTool):
     def test_cleanup_missing_photos(self):
         pass
 
-    def test_cleanup_deleted_name_formats(self):
+    def test_clean_deleted_name_format(self):
         pass
 
     def test_cleanup_empty_objects(self):
-        # Generate empty objects to test their deletion
+        """ Generate empty objects to test their deletion """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            p = Person()
-            self.db.add_person( p, self.trans)
+            pers = Person()
+            self.db.add_person(pers, self.trans)
 
-            f = Family()
-            self.db.add_family( f, self.trans)
+            fam = Family()
+            self.db.add_family(fam, self.trans)
 
-            e = Event()
-            self.db.add_event( e, self.trans)
+            evt = Event()
+            self.db.add_event(evt, self.trans)
 
-            p = Place()
-            self.db.add_place( p, self.trans)
+            place = Place()
+            self.db.add_place(place, self.trans)
 
-            s = Source()
-            self.db.add_source( s, self.trans)
+            src = Source()
+            self.db.add_source(src, self.trans)
 
-            c = Citation()
-            self.db.add_citation( c, self.trans)
+            cit = Citation()
+            self.db.add_citation(cit, self.trans)
 
-            m = Media()
-            self.db.add_media( m, self.trans)
+            med = Media()
+            self.db.add_media(med, self.trans)
 
-            r = Repository()
-            self.db.add_repository( r, self.trans)
+            ref = Repository()
+            self.db.add_repository(ref, self.trans)
 
-            n = Note()
-            self.db.add_note( n, self.trans)
+            note = Note()
+            self.db.add_note(note, self.trans)
 
-    def test_check_for_broken_family_links(self):
+    def test_chk_for_broke_family_link(self):
+        """ Create various family related errors """
         # Create a family, that links to father and mother, but father does not
         # link back
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken1","Family links to this person, but person does not link back")
-            person2_h = self.generate_person(Person.FEMALE,"Broken1",None)
+            person1_h = self.generate_person(
+                Person.MALE, "Broken1",
+                "Family links to this person, but person does not link back")
+            person2_h = self.generate_person(Person.FEMALE, "Broken1", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
-            #person1 = self.db.get_person_from_handle(person1_h)
-            #person1.add_family_handle(fam_h)
-            #self.db.commit_person(person1,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
+            # person1 = self.db.get_person_from_handle(person1_h)
+            # person1.add_family_handle(fam_h)
+            # self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 
         # Create a family, that misses the link to the father
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken2",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken2",None)
+            person1_h = self.generate_person(Person.MALE, "Broken2", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken2", None)
             fam = Family()
-            #fam.set_father_handle(person1_h)
+            # fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 
         # Create a family, that misses the link to the mother
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken3",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken3",None)
+            person1_h = self.generate_person(Person.MALE, "Broken3", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken3", None)
             fam = Family()
             fam.set_father_handle(person1_h)
-            #fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
+            # fam.set_mother_handle(person2_h)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 
         # Create a family, that links to father and mother, but mother does not
         # link back
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken4",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
+            person1_h = self.generate_person(Person.MALE, "Broken4", None)
+            person2_h = self.generate_person(
+                Person.FEMALE, "Broken4",
+                "Family links to this person, but person does not link back")
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
-            #person2 = self.db.get_person_from_handle(person2_h)
-            #person2.add_family_handle(fam_h)
-            #self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person1, self.trans)
+            # person2 = self.db.get_person_from_handle(person2_h)
+            # person2.add_family_handle(fam_h)
+            # self.db.commit_person(person2, self.trans)
 
         # Create two married people of same sex.
         # This is NOT detected as an error by plugins/tool/Check.py
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken5",None)
-            person2_h = self.generate_person(Person.MALE,"Broken5",None)
+            person1_h = self.generate_person(Person.MALE, "Broken5", None)
+            person2_h = self.generate_person(Person.MALE, "Broken5", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 
         # Create a family, that contains an invalid handle to for the father
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            #person1_h = self.generate_person(Person.MALE,"Broken6",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken6",None)
+            # person1_h = self.generate_person(Person.MALE, "Broken6", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken6", None)
             fam = Family()
             fam.set_father_handle("InvalidHandle1")
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
-            #person1 = self.db.get_person_from_handle(person1_h)
-            #person1.add_family_handle(fam_h)
-            #self.db.commit_person(person1,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
+            # person1 = self.db.get_person_from_handle(person1_h)
+            # person1.add_family_handle(fam_h)
+            # self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 
         # Create a family, that contains an invalid handle to for the mother
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken7",None)
-            #person2_h = self.generate_person(Person.FEMALE,"Broken7",None)
+            person1_h = self.generate_person(Person.MALE, "Broken7", None)
+            # person2_h = self.generate_person(Person.FEMALE, "Broken7", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle("InvalidHandle2")
-            fam.set_relationship((FamilyRelType.MARRIED,''))
-            fam_h = self.db.add_family(fam,self.trans)
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
-            #person2 = self.db.get_person_from_handle(person2_h)
-            #person2.add_family_handle(fam_h)
-            #self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person1, self.trans)
+            # person2 = self.db.get_person_from_handle(person2_h)
+            # person2.add_family_handle(fam_h)
+            # self.db.commit_person(person2, self.trans)
 
         # Creates a family where the child does not link back to the family
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken8",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken8",None)
-            child_h = self.generate_person(None,"Broken8",None)
+            person1_h = self.generate_person(Person.MALE, "Broken8", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken8", None)
+            child_h = self.generate_person(None, "Broken8", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
             child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
-            fam_h = self.db.add_family(fam,self.trans)
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
-            #child = self.db.get_person_from_handle(child_h)
-            #person2.add_parent_family_handle(fam_h)
-            #self.db.commit_person(child,self.trans)
+            self.db.commit_person(person2, self.trans)
+            # child = self.db.get_person_from_handle(child_h)
+            # person2.add_parent_family_handle(fam_h)
+            # self.db.commit_person(child, self.trans)
 
-        # Creates a family where the child is not linked, but the child links to the family
+        # Creates a family where the child is not linked, but the child links
+        # to the family
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken9",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken9",None)
-            child_h = self.generate_person(None,"Broken9",None)
+            person1_h = self.generate_person(Person.MALE, "Broken9", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken9", None)
+            child_h = self.generate_person(None, "Broken9", None)
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
             # child_ref = ChildRef()
             # child_ref.set_reference_handle(child_h)
             # self.fill_object(child_ref)
             # fam.add_child_ref(child_ref)
-            fam_h = self.db.add_family(fam,self.trans)
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
             child = self.db.get_person_from_handle(child_h)
             child.add_parent_family_handle(fam_h)
-            self.db.commit_person(child,self.trans)
+            self.db.commit_person(child, self.trans)
 
         # Creates a family where the child is one of the parents
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken19",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken19",None)
+            person1_h = self.generate_person(Person.MALE, "Broken19", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken19", None)
             child_h = person2_h
             fam = Family()
             fam.set_father_handle(person1_h)
             fam.set_mother_handle(person2_h)
-            fam.set_relationship((FamilyRelType.MARRIED,''))
+            fam.set_relationship((FamilyRelType.MARRIED, ''))
             child_ref = ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
-            fam_h = self.db.add_family(fam,self.trans)
+            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
             child = self.db.get_person_from_handle(child_h)
             child.add_parent_family_handle(fam_h)
-            self.db.commit_person(child,self.trans)
+            self.db.commit_person(child, self.trans)
 
         # Creates a couple that refer to a family that does not exist in the
         # database.
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person1_h = self.generate_person(Person.MALE,"Broken20",None)
-            person2_h = self.generate_person(Person.FEMALE,"Broken20",None)
+            person1_h = self.generate_person(Person.MALE, "Broken20", None)
+            person2_h = self.generate_person(Person.FEMALE, "Broken20", None)
 #            fam = Family()
 #            fam.set_father_handle(person1_h)
 #            fam.set_mother_handle(person2_h)
-#            fam.set_relationship((FamilyRelType.MARRIED,''))
+#            fam.set_relationship((FamilyRelType.MARRIED, ''))
 #            child_ref = ChildRef()
 #            # child_ref.set_reference_handle(child_h)
 #            # self.fill_object(child_ref)
 #            # fam.add_child_ref(child_ref)
-#            fam_h = self.db.add_family(fam,self.trans)
+#            fam_h = self.db.add_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle("InvalidHandle3")
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle("InvalidHandle3")
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
 #            child = self.db.get_person_from_handle(child_h)
 #            child.add_parent_family_handle(fam_h)
-#            self.db.commit_person(child,self.trans)
+#            self.db.commit_person(child, self.trans)
 
     def test_check_parent_relationships(self):
         pass
@@ -834,87 +875,88 @@ class TestcaseGenerator(tool.BatchTool):
         pass
 
     def test_check_events(self):
+        """ Various event related tests """
         # Creates a person having a non existing birth event handle set
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken11",None)
+            person_h = self.generate_person(None, "Broken11", None)
             person = self.db.get_person_from_handle(person_h)
             event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle4")
             person.set_birth_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person having a non existing death event handle set
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken12",None)
+            person_h = self.generate_person(None, "Broken12", None)
             person = self.db.get_person_from_handle(person_h)
             event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle5")
             person.set_death_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person having a non existing event handle set
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken13",None)
+            person_h = self.generate_person(None, "Broken13", None)
             person = self.db.get_person_from_handle(person_h)
             event_ref = EventRef()
             event_ref.set_reference_handle("InvalidHandle6")
             person.add_event_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person with a birth event having an empty type
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken14",None)
+            person_h = self.generate_person(None, "Broken14", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken14")
-            event_h = self.db.add_event(event,self.trans)
+            event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person with a death event having an empty type
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken15",None)
+            person_h = self.generate_person(None, "Broken15", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken15")
-            event_h = self.db.add_event(event,self.trans)
+            event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_death_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person with an event having an empty type
         # This is NOT detected as an error by plugins/tool/Check.py
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken16",None)
+            person_h = self.generate_person(None, "Broken16", None)
             event = Event()
             # The default type _DEFAULT = BIRTH is set in eventtype
             event.set_type('')
             event.set_description("Test for Broken16")
-            event_h = self.db.add_event(event,self.trans)
+            event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.add_event_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
     def test_check_person_references(self):
         pass
@@ -923,73 +965,74 @@ class TestcaseGenerator(tool.BatchTool):
         pass
 
     def test_check_place_references(self):
+        """ Tests various place reference errors """
         # Creates a person with a birth event pointing to nonexisting place
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken17",None)
+            person_h = self.generate_person(None, "Broken17", None)
             event = Event()
             event.set_type(EventType.BIRTH)
             event.set_place_handle("InvalidHandle7")
             event.set_description("Test for Broken17")
-            event_h = self.db.add_event(event,self.trans)
+            event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.set_birth_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
         # Creates a person with an event pointing to nonexisting place
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            person_h = self.generate_person(None,"Broken18",None)
+            person_h = self.generate_person(None, "Broken18", None)
             event = Event()
             event.set_type(EventType.BIRTH)
             event.set_place_handle("InvalidHandle8")
             event.set_description("Test for Broken18")
-            event_h = self.db.add_event(event,self.trans)
+            event_h = self.db.add_event(event, self.trans)
             event_ref = EventRef()
             event_ref.set_reference_handle(event_h)
             person = self.db.get_person_from_handle(person_h)
             person.add_event_ref(event_ref)
-            self.db.commit_person(person,self.trans)
+            self.db.commit_person(person, self.trans)
 
     def test_check_source_references(self):
-
+        """ Tests various source reference errors """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
 
-            c = Citation()
-            self.fill_object(c)
-            c.set_reference_handle("unknownsourcehandle")
-            c.set_page('unreferenced citation with invalid source ref')
-            self.db.add_citation(c, self.trans)
+            cit = Citation()
+            self.fill_object(cit)
+            cit.set_reference_handle("unknownsourcehandle")
+            cit.set_page('unreferenced citation with invalid source ref')
+            self.db.add_citation(cit, self.trans)
 
-            c = Citation()
-            self.fill_object(c)
-            c.set_reference_handle(None)
-            c.set_page('unreferenced citation with invalid source ref')
-            self.db.add_citation(c, self.trans)
+            cit = Citation()
+            self.fill_object(cit)
+            cit.set_reference_handle(None)
+            cit.set_page('unreferenced citation with invalid source ref')
+            self.db.add_citation(cit, self.trans)
 
-            c = Citation()
-            self.fill_object(c)
-            c.set_reference_handle("unknownsourcehandle")
-            c.set_page('citation and references to it should be removed')
-            c_h1 = self.db.add_citation(c, self.trans)
+            cit = Citation()
+            self.fill_object(cit)
+            cit.set_reference_handle("unknownsourcehandle")
+            cit.set_page('citation and references to it should be removed')
+            c_h1 = self.db.add_citation(cit, self.trans)
 
-            c = Citation()
-            self.fill_object(c)
-            c.set_reference_handle(None)
-            c.set_page('citation and references to it should be removed')
-            c_h2 = self.db.add_citation(c, self.trans)
+            cit = Citation()
+            self.fill_object(cit)
+            cit.set_reference_handle(None)
+            cit.set_page('citation and references to it should be removed')
+            c_h2 = self.db.add_citation(cit, self.trans)
 
             self.create_all_possible_citations([c_h1, c_h2], "Broken21",
                                                'non-existent source')
 
     def test_check_citation_references(self):
-        # Generate objects that refer to non-existant citations
+        """ Generate objects that refer to non-existant citations """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
@@ -999,65 +1042,66 @@ class TestcaseGenerator(tool.BatchTool):
                                                'non-existent citation')
 
     def create_all_possible_citations(self, c_h_list, name, message):
-        # Create citations attached to each of the following objects:
-        #        Person
-        #         Name
-        #         Address
-        #         Attribute
-        #         PersonRef
-        #         MediaRef
-        #          Attribute
-        #         LdsOrd
-        #
-        #        Family
-        #         Attribute
-        #         ChildRef
-        #         MediaRef
-        #          Attribute
-        #         LdsOrd
-        #
-        #        Event
-        #         Attribute
-        #         MediaRef
-        #          Attribute
-        #
-        #        Media
-        #         Attribute
-        #
-        #        Place
-        #         MediaRef
-        #          Attribute
-        #
-        #        Repository (Repositories themselves do not have SourceRefs)
-        #         Address
-        m = Media()
-        m.set_description(message)
-        m.set_path(os.path.abspath(str(ICON)))
-        m.set_mime_type(get_type(m.get_path()))
-        m.add_citation(_choice(c_h_list))
-        # Media : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        m.add_attribute(a)
-        self.db.add_media(m, self.trans)
+        """ Create citations attached to each of the following objects:
+            Person
+             Name
+             Address
+             Attribute
+             PersonRef
+             MediaRef
+              Attribute
+             LdsOrd
 
-        person1_h = self.generate_person(Person.MALE,name,None)
-        person2_h = self.generate_person(Person.FEMALE,name,None)
-        child_h = self.generate_person(None,name,None)
+            Family
+             Attribute
+             ChildRef
+             MediaRef
+              Attribute
+             LdsOrd
+
+            Event
+             Attribute
+             MediaRef
+              Attribute
+
+            Media
+             Attribute
+
+            Place
+             MediaRef
+              Attribute
+
+            Repository (Repositories themselves do not have SourceRefs)
+             Address
+        """
+        med = Media()
+        med.set_description(message)
+        med.set_path(os.path.abspath(str(ICON)))
+        med.set_mime_type(get_type(med.get_path()))
+        med.add_citation(_choice(c_h_list))
+        # Media : Attribute
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        med.add_attribute(att)
+        self.db.add_media(med, self.trans)
+
+        person1_h = self.generate_person(Person.MALE, name, None)
+        person2_h = self.generate_person(Person.FEMALE, name, None)
+        child_h = self.generate_person(None, name, None)
         fam = Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((FamilyRelType.MARRIED,''))
+        fam.set_relationship((FamilyRelType.MARRIED, ''))
         # Family
         fam.add_citation(_choice(c_h_list))
         # Family : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        fam.add_attribute(a)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        fam.add_attribute(att)
         # Family : ChildRef
         child_ref = ChildRef()
         child_ref.set_reference_handle(child_h)
@@ -1065,44 +1109,45 @@ class TestcaseGenerator(tool.BatchTool):
         child_ref.add_citation(_choice(c_h_list))
         fam.add_child_ref(child_ref)
         # Family : MediaRef
-        mr = MediaRef()
-        mr.set_reference_handle(m.handle)
-        mr.add_citation(_choice(c_h_list))
+        mref = MediaRef()
+        mref.set_reference_handle(med.handle)
+        mref.add_citation(_choice(c_h_list))
         # Family : MediaRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        mr.add_attribute(a)
-        fam.add_media_reference(mr)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        mref.add_attribute(att)
+        fam.add_media_reference(mref)
         # Family : LDSORD
         ldsord = LdsOrd()
-        self.fill_object( ldsord)
+        self.fill_object(ldsord)
         # TODO: adapt type and status to family/person
-        #if isinstance(o,Person):
-        #if isinstance(o,Family):
+        # if isinstance(obj, Person):
+        # if isinstance(obj, Family):
+        # pylint: disable=protected-access
         ldsord.set_type(_choice([item[0] for item in LdsOrd._TYPE_MAP]))
-        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP)-1))
+        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP) - 1))
         ldsord.add_citation(_choice(c_h_list))
         fam.add_lds_ord(ldsord)
         # Family : EventRef
-        e = Event()
-        e.set_type(EventType.MARRIAGE)
-        (year, d) = self.rand_date()
-        e.set_date_object(d)
-        e.set_description(message)
-        event_h = self.db.add_event(e, self.trans)
-        er = EventRef()
-        er.set_reference_handle(event_h)
-        er.set_role(self.rand_type(EventRoleType()))
+        evt = Event()
+        evt.set_type(EventType.MARRIAGE)
+        (dummy, date) = self.rand_date()
+        evt.set_date_object(date)
+        evt.set_description(message)
+        event_h = self.db.add_event(evt, self.trans)
+        eref = EventRef()
+        eref.set_reference_handle(event_h)
+        eref.set_role(self.rand_type(EventRoleType()))
         # Family : EventRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        er.add_attribute(a)
-        fam.add_event_ref(er)
-        fam_h = self.db.add_family(fam,self.trans)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        eref.add_attribute(att)
+        fam.add_event_ref(eref)
+        fam_h = self.db.add_family(fam, self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
         # Person
@@ -1113,16 +1158,16 @@ class TestcaseGenerator(tool.BatchTool):
         alt_name.add_citation(_choice(c_h_list))
         person1.add_alternate_name(alt_name)
         # Person : Address
-        a = Address()
-        a.set_street(message)
-        a.add_citation(_choice(c_h_list))
-        person1.add_address(a)
+        add = Address()
+        add.set_street(message)
+        add.add_citation(_choice(c_h_list))
+        person1.add_address(add)
         # Person : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        person1.add_attribute(a)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        person1.add_attribute(att)
         # Person : PersonRef
         asso_h = self.generate_person()
         asso = PersonRef()
@@ -1132,98 +1177,98 @@ class TestcaseGenerator(tool.BatchTool):
         asso.add_citation(_choice(c_h_list))
         person1.add_person_ref(asso)
         # Person : MediaRef
-        mr = MediaRef()
-        mr.set_reference_handle(m.handle)
-        mr.add_citation(_choice(c_h_list))
+        mref = MediaRef()
+        mref.set_reference_handle(med.handle)
+        mref.add_citation(_choice(c_h_list))
         # Person : MediaRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(_choice(c_h_list))
-        mr.add_attribute(a)
-        person1.add_media_reference(mr)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(self.rand_text(self.SHORT))
+        att.add_citation(_choice(c_h_list))
+        mref.add_attribute(att)
+        person1.add_media_reference(mref)
         # Person : LDSORD
         ldsord = LdsOrd()
-        self.fill_object( ldsord)
+        self.fill_object(ldsord)
         # TODO: adapt type and status to family/person
-        #if isinstance(o,Person):
-        #if isinstance(o,Family):
+        # if isinstance(obj, Person):
+        # if isinstance(obj, Family):
         ldsord.set_type(_choice(
-            [item[0] for item in LdsOrd._TYPE_MAP] ))
-        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP)-1))
+            [item[0] for item in LdsOrd._TYPE_MAP]))
+        ldsord.set_status(_randint(0, len(LdsOrd._STATUS_MAP) - 1))
         ldsord.add_citation(_choice(c_h_list))
         person1.add_lds_ord(ldsord)
         # Person : EventRef
-        e = Event()
-        e.set_type(EventType.ELECTED)
-        (year, d) = self.rand_date()
-        e.set_date_object(d)
-        e.set_description(message)
-        event_h = self.db.add_event(e, self.trans)
-        er = EventRef()
-        er.set_reference_handle(event_h)
-        er.set_role(self.rand_type(EventRoleType()))
+        evt = Event()
+        evt.set_type(EventType.ELECTED)
+        (dummy, dat) = self.rand_date()
+        evt.set_date_object(dat)
+        evt.set_description(message)
+        event_h = self.db.add_event(evt, self.trans)
+        eref = EventRef()
+        eref.set_reference_handle(event_h)
+        eref.set_role(self.rand_type(EventRoleType()))
         # Person : EventRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        er.add_attribute(a)
-        person1.add_event_ref(er)
-        self.db.commit_person(person1,self.trans)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        eref.add_attribute(att)
+        person1.add_event_ref(eref)
+        self.db.commit_person(person1, self.trans)
         person2 = self.db.get_person_from_handle(person2_h)
         person2.add_family_handle(fam_h)
-        self.db.commit_person(person2,self.trans)
+        self.db.commit_person(person2, self.trans)
 
-        e = Event()
-        e.set_description(message)
-        e.set_type(EventType.MARRIAGE)
+        evt = Event()
+        evt.set_description(message)
+        evt.set_type(EventType.MARRIAGE)
         # Event
-        e.add_citation(_choice(c_h_list))
+        evt.add_citation(_choice(c_h_list))
         # Event : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(message)
-        a.add_citation(_choice(c_h_list))
-        e.add_attribute(a)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(message)
+        att.add_citation(_choice(c_h_list))
+        evt.add_attribute(att)
         # Event : MediaRef
-        mr = MediaRef()
-        mr.set_reference_handle(m.handle)
-        mr.add_citation(_choice(c_h_list))
+        mref = MediaRef()
+        mref.set_reference_handle(med.handle)
+        mref.add_citation(_choice(c_h_list))
         # Event : MediaRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(_choice(c_h_list))
-        mr.add_attribute(a)
-        e.add_media_reference(mr)
-        self.db.add_event(e, self.trans)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(self.rand_text(self.SHORT))
+        att.add_citation(_choice(c_h_list))
+        mref.add_attribute(att)
+        evt.add_media_reference(mref)
+        self.db.add_event(evt, self.trans)
 
-        p = Place()
-        p.set_title(message)
-        p.add_citation(_choice(c_h_list))
+        place = Place()
+        place.set_title(message)
+        place.add_citation(_choice(c_h_list))
         # Place : MediaRef
-        mr = MediaRef()
-        mr.set_reference_handle(m.handle)
-        mr.add_citation(_choice(c_h_list))
+        mref = MediaRef()
+        mref.set_reference_handle(med.handle)
+        mref.add_citation(_choice(c_h_list))
         # Place : MediaRef : Attribute
-        a = Attribute()
-        a.set_type(self.rand_type(AttributeType()))
-        a.set_value(self.rand_text(self.SHORT))
-        a.add_citation(_choice(c_h_list))
-        mr.add_attribute(a)
-        p.add_media_reference(mr)
-        self.db.add_place(p, self.trans)
+        att = Attribute()
+        att.set_type(self.rand_type(AttributeType()))
+        att.set_value(self.rand_text(self.SHORT))
+        att.add_citation(_choice(c_h_list))
+        mref.add_attribute(att)
+        place.add_media_reference(mref)
+        self.db.add_place(place, self.trans)
 
-        r = Repository()
-        r.set_name(message)
-        r.set_type(RepositoryType.LIBRARY)
+        ref = Repository()
+        ref.set_name(message)
+        ref.set_type(RepositoryType.LIBRARY)
         # Repository : Address
-        a = Address()
-        a.set_street(message)
-        a.add_citation(_choice(c_h_list))
-        r.add_address(a)
-        self.db.add_repository(r, self.trans)
+        add = Address()
+        add.set_street(message)
+        add.add_citation(_choice(c_h_list))
+        ref.add_address(add)
+        self.db.add_repository(ref, self.trans)
 
     def test_check_media_references(self):
         pass
@@ -1234,39 +1279,41 @@ class TestcaseGenerator(tool.BatchTool):
     def test_check_note_references(self):
         pass
 
-
-    def generate_person(self,gender=None,lastname=None, note=None, alive_in_year=None):
+    def generate_person(self, gender=None, lastname=None, note=None,
+                        alive_in_year=None):
+        """ This generates a person with lots of attachments """
         if not self.cli:
             if self.person_count % 10 == 0:
                 while Gtk.events_pending():
                     Gtk.main_iteration()
 
-        np = Person()
-        self.fill_object(np)
+        pers = Person()
+        self.fill_object(pers)
 
         # Gender
         if gender is None:
             gender = _randint(0, 1)
         if _randint(0, 10) == 1:  # Set some persons to unknown gender
-            np.set_gender(Person.UNKNOWN)
+            pers.set_gender(Person.UNKNOWN)
         else:
-            np.set_gender(gender)
+            pers.set_gender(gender)
 
         # Name
         name = Name()
-        (firstname,lastname) = self.rand_name(lastname, gender)
+        (firstname, lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         surname = Surname()
         surname.set_surname(lastname)
         name.add_surname(surname)
-        self.fill_object( name)
-        np.set_primary_name(name)
+        self.fill_object(name)
+        pers.set_primary_name(name)
 
         # generate some slightly different alternate name
-        firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
+        firstname2 = \
+            firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
             alt_name = Name(name)
-            self.fill_object( alt_name)
+            self.fill_object(alt_name)
             if _randint(0, 2) == 1:
                 surname = Surname()
                 surname.set_surname(self.rand_text(self.LASTNAME))
@@ -1276,135 +1323,145 @@ class TestcaseGenerator(tool.BatchTool):
                 surname.set_surname(lastname)
                 alt_name.add_surname(surname)
             if _randint(0, 1) == 1:
-                alt_name.set_first_name( firstname2)
+                alt_name.set_first_name(firstname2)
             if _randint(0, 1) == 1:
-                alt_name.set_title( self.rand_text(self.SHORT))
-            if _randint(0, 1) == 1:
-                patronymic = Surname()
-                patronymic.set_surname( self.rand_text(self.FIRSTNAME_MALE))
-                patronymic.set_origintype(NameOriginType.PATRONYMIC)
-                alt_name.add_surname(patronymic)
-            if _randint(0, 1) == 1:
-                alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
-            if _randint(0, 1) == 1:
-                alt_name.set_suffix( self.rand_text(self.SHORT))
-            if _randint(0, 1) == 1:
-                alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
-            np.add_alternate_name( alt_name)
-        firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
-        if firstname2 != firstname:
-            alt_name = Name(name)
-            self.fill_object( alt_name)
-            if _randint(0, 2) == 1:
-                surname = Surname()
-                surname.set_surname(self.rand_text(self.LASTNAME))
-                alt_name.add_surname(surname)
-            elif _randint(0, 2) == 1:
-                surname = Surname()
-                surname.set_surname(lastname)
-                alt_name.add_surname(surname)
-            if _randint(0, 1) == 1:
-                alt_name.set_first_name( firstname2)
-            if _randint(0, 1) == 1:
-                alt_name.set_title( self.rand_text(self.SHORT))
+                alt_name.set_title(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
                 alt_name.add_surname(patronymic)
             if _randint(0, 1) == 1:
-                alt_name.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
+                alt_name.get_primary_surname().set_prefix(
+                    self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                alt_name.set_suffix( self.rand_text(self.SHORT))
+                alt_name.set_suffix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                alt_name.set_call_name( self.rand_text(self.FIRSTNAME))
-            np.add_alternate_name( alt_name)
+                alt_name.set_call_name(self.rand_text(self.FIRSTNAME))
+            pers.add_alternate_name(alt_name)
+        firstname2 = \
+            firstname.replace("a", "e").replace("o", "u").replace("r", "p")
+        if firstname2 != firstname:
+            alt_name = Name(name)
+            self.fill_object(alt_name)
+            if _randint(0, 2) == 1:
+                surname = Surname()
+                surname.set_surname(self.rand_text(self.LASTNAME))
+                alt_name.add_surname(surname)
+            elif _randint(0, 2) == 1:
+                surname = Surname()
+                surname.set_surname(lastname)
+                alt_name.add_surname(surname)
+            if _randint(0, 1) == 1:
+                alt_name.set_first_name(firstname2)
+            if _randint(0, 1) == 1:
+                alt_name.set_title(self.rand_text(self.SHORT))
+            if _randint(0, 1) == 1:
+                patronymic = Surname()
+                patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
+                patronymic.set_origintype(NameOriginType.PATRONYMIC)
+                alt_name.add_surname(patronymic)
+            if _randint(0, 1) == 1:
+                alt_name.get_primary_surname().set_prefix(
+                    self.rand_text(self.SHORT))
+            if _randint(0, 1) == 1:
+                alt_name.set_suffix(self.rand_text(self.SHORT))
+            if _randint(0, 1) == 1:
+                alt_name.set_call_name(self.rand_text(self.FIRSTNAME))
+            pers.add_alternate_name(alt_name)
 
         if not alive_in_year:
             alive_in_year = _randint(1700, 2000)
 
-        by = alive_in_year - _randint(0, 60)
-        dy = alive_in_year + _randint(0, 60)
+        b_y = alive_in_year - _randint(0, 60)
+        d_y = alive_in_year + _randint(0, 60)
 
         # birth
         if _randint(0, 1) == 1:
-            (birth_year, eref) = self.rand_personal_event( EventType.BIRTH, by,by)
-            np.set_birth_ref(eref)
+            (dummy, eref) = self.rand_personal_event(EventType.BIRTH, b_y, b_y)
+            pers.set_birth_ref(eref)
 
         # baptism
         if _randint(0, 1) == 1:
-            (bapt_year, eref) = self.rand_personal_event(
-                _choice((EventType.BAPTISM, EventType.CHRISTEN)), by, by+2)
-            np.add_event_ref(eref)
+            (dummy, eref) = self.rand_personal_event(
+                _choice((EventType.BAPTISM, EventType.CHRISTEN)), b_y, b_y + 2)
+            pers.add_event_ref(eref)
 
         # death
-        death_year = None
         if _randint(0, 1) == 1:
-            (death_year, eref) = self.rand_personal_event( EventType.DEATH, dy,dy)
-            np.set_death_ref(eref)
+            (dummy, eref) = self.rand_personal_event(EventType.DEATH, d_y, d_y)
+            pers.set_death_ref(eref)
 
         # burial
         if _randint(0, 1) == 1:
-            (bur_year, eref) = self.rand_personal_event(
-                _choice((EventType.BURIAL, EventType.CREMATION)), dy, dy+2)
-            np.add_event_ref(eref)
+            (dummy, eref) = self.rand_personal_event(
+                _choice((EventType.BURIAL, EventType.CREMATION)), d_y, d_y + 2)
+            pers.add_event_ref(eref)
 
         # some other events
         while _randint(0, 5) == 1:
-            (birth_year, eref) = self.rand_personal_event( None, by,dy)
-            np.add_event_ref(eref)
+            (dummy, eref) = self.rand_personal_event(None, b_y, d_y)
+            pers.add_event_ref(eref)
 
         # some shared events
         if self.generated_events:
             while _randint(0, 5) == 1:
                 e_h = _choice(self.generated_events)
                 eref = EventRef()
-                self.fill_object( eref)
+                self.fill_object(eref)
                 eref.set_reference_handle(e_h)
-                np.add_event_ref(eref)
+                pers.add_event_ref(eref)
 
         # PersonRef
         if _randint(0, 3) == 1:
-            for i in range(0, _randint(1, 2)):
-                if self.person_count > self.options.handler.options_dict['person_count']:
+            for dummy in range(0, _randint(1, 2)):
+                if self.person_count > self.max_person_count:
                     break
                 if alive_in_year:
-                    asso_h = self.generate_person(None, None, alive_in_year = alive_in_year)
+                    asso_h = self.generate_person(None, None,
+                                                  alive_in_year=alive_in_year)
                 else:
                     asso_h = self.generate_person()
                 asso = PersonRef()
                 asso.set_reference_handle(asso_h)
                 asso.set_relation(self.rand_text(self.SHORT))
                 self.fill_object(asso)
-                np.add_person_ref(asso)
+                pers.add_person_ref(asso)
                 if _randint(0, 2) == 0:
                     self.persons_todo.append(asso_h)
 
-        person_handle = self.db.add_person(np,self.trans)
+        # Note
+        if note:
+            pass  # Add later?
 
-        self.person_count = self.person_count+1
+        person_handle = self.db.add_person(pers, self.trans)
+
+        self.person_count = self.person_count + 1
         self.progress_step()
         if self.person_count % 10 == 1:
             print("person count", self.person_count)
-        self.person_dates[person_handle] = (by,dy)
+        self.person_dates[person_handle] = (b_y, d_y)
 
-        return( person_handle)
+        return person_handle
 
-    def generate_family(self,person1_h):
+    def generate_family(self, person1_h):
+        """ Make up a family """
         person1 = self.db.get_person_from_handle(person1_h)
         if not person1:
             return
         alive_in_year = None
         if person1_h in self.person_dates:
             (born, died) = self.person_dates[person1_h]
-            alive_in_year = min(born+_randint(10, 50), died+_randint(-10, 10))
+            alive_in_year = min(born + _randint(10, 50),
+                                died + _randint(-10, 10))
 
         if person1.get_gender() == 1:
             if _randint(0, 7) == 1:
                 person2_h = None
             else:
                 if alive_in_year:
-                    person2_h = self.generate_person(0, alive_in_year = alive_in_year)
+                    person2_h = \
+                        self.generate_person(0, alive_in_year=alive_in_year)
                 else:
                     person2_h = self.generate_person(0)
         else:
@@ -1413,7 +1470,8 @@ class TestcaseGenerator(tool.BatchTool):
                 person1_h = None
             else:
                 if alive_in_year:
-                    person1_h = self.generate_person(1, alive_in_year = alive_in_year)
+                    person1_h = \
+                        self.generate_person(1, alive_in_year=alive_in_year)
                 else:
                     person1_h = self.generate_person(1)
 
@@ -1437,13 +1495,13 @@ class TestcaseGenerator(tool.BatchTool):
 
             # Generate at least one family event with a probability of 75%
             if _randint(0, 3) > 0:
-                (birth_year, eref) = self.rand_family_event(None)
+                (dummy, eref) = self.rand_family_event(None)
                 fam.add_event_ref(eref)
                 event_set.add(eref.get_reference_handle())
 
             # generate some more events with a lower probability
             while _randint(0, 3) == 1:
-                (birth_year, eref) = self.rand_family_event(None)
+                (dummy, eref) = self.rand_family_event(None)
                 if eref.get_reference_handle() in event_set:
                     continue
                 fam.add_event_ref(eref)
@@ -1459,64 +1517,68 @@ class TestcaseGenerator(tool.BatchTool):
                     if e_h in event_set:
                         break
                     eref = EventRef()
-                    self.fill_object( eref)
+                    self.fill_object(eref)
                     eref.set_reference_handle(e_h)
                     fam.add_event_ref(eref)
                     event_set.add(e_h)
 
-            fam_h = self.db.add_family(fam,self.trans)
+            fam_h = self.db.add_family(fam, self.trans)
             self.generated_families.append(fam_h)
-            fam = self.db.commit_family(fam,self.trans)
+            fam = self.db.commit_family(fam, self.trans)
             if person1_h:
                 person1 = self.db.get_person_from_handle(person1_h)
                 person1.add_family_handle(fam_h)
-                self.db.commit_person(person1,self.trans)
+                self.db.commit_person(person1, self.trans)
             if person2_h:
                 person2 = self.db.get_person_from_handle(person2_h)
                 person2.add_family_handle(fam_h)
-                self.db.commit_person(person2,self.trans)
+                self.db.commit_person(person2, self.trans)
 
             lastname = person1.get_primary_name().get_surname()
 
             for i in range(0, _randint(1, 10)):
-                if self.person_count > self.options.handler.options_dict['person_count']:
+                if self.person_count > self.max_person_count:
                     break
                 if alive_in_year:
-                    child_h = self.generate_person(None, lastname,
-                        alive_in_year=alive_in_year + _randint(16+2*i, 30+2*i))
+                    child_h = self.generate_person(
+                        None, lastname,
+                        alive_in_year=alive_in_year +
+                        _randint(16 + 2 * i, 30 + 2 * i))
                 else:
                     child_h = self.generate_person(None, lastname)
-                    (born,died) = self.person_dates[child_h]
+                    (born, died) = self.person_dates[child_h]
                     alive_in_year = born
                 fam = self.db.get_family_from_handle(fam_h)
                 child_ref = ChildRef()
                 child_ref.set_reference_handle(child_h)
                 self.fill_object(child_ref)
                 fam.add_child_ref(child_ref)
-                self.db.commit_family(fam,self.trans)
+                self.db.commit_family(fam, self.trans)
                 child = self.db.get_person_from_handle(child_h)
                 child.add_parent_family_handle(fam_h)
-                self.db.commit_person(child,self.trans)
+                self.db.commit_person(child, self.trans)
                 if _randint(0, 3) > 0:
                     self.persons_todo.append(child_h)
 
-    def generate_parents(self,child_h):
+    def generate_parents(self, child_h):
+        """ Add parents to a person, if not present already"""
         if not child_h:
             return
         child = self.db.get_person_from_handle(child_h)
         if not child:
-            print("ERROR: Person handle %s does not exist in database" % child_h)
+            print("ERROR: Person handle %s does not exist in database" %
+                  child_h)
             return
         if child.get_parent_family_handle_list():
             return
 
         lastname = child.get_primary_name().get_surname()
         if child_h in self.person_dates:
-            (born,died) = self.person_dates[child_h]
-            person1_h = self.generate_person(1,lastname, alive_in_year=born)
+            (born, dummy) = self.person_dates[child_h]
+            person1_h = self.generate_person(1, lastname, alive_in_year=born)
             person2_h = self.generate_person(0, alive_in_year=born)
         else:
-            person1_h = self.generate_person(1,lastname)
+            person1_h = self.generate_person(1, lastname)
             person2_h = self.generate_person(0)
 
         if _randint(0, 2) > 1:
@@ -1535,23 +1597,24 @@ class TestcaseGenerator(tool.BatchTool):
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
-            fam_h = self.db.add_family(fam,self.trans)
+            fam_h = self.db.add_family(fam, self.trans)
             self.generated_families.append(fam_h)
-            fam = self.db.commit_family(fam,self.trans)
+            fam = self.db.commit_family(fam, self.trans)
             person1 = self.db.get_person_from_handle(person1_h)
             person1.add_family_handle(fam_h)
-            self.db.commit_person(person1,self.trans)
+            self.db.commit_person(person1, self.trans)
             person2 = self.db.get_person_from_handle(person2_h)
             person2.add_family_handle(fam_h)
-            self.db.commit_person(person2,self.trans)
+            self.db.commit_person(person2, self.trans)
             child.add_parent_family_handle(fam_h)
-            self.db.commit_person(child,self.trans)
+            self.db.commit_person(child, self.trans)
 
     def generate_tags(self):
+        """ Make up some odd tags """
         with DbTxn(_("Testcase generator step %d") % self.transaction_count,
                    self.db) as self.trans:
             self.transaction_count += 1
-            for counter in range(10):
+            for dummy in range(10):
                 tag = Tag()
                 tag.set_name(self.rand_text(self.TAG))
                 tag.set_color(self.rand_color())
@@ -1559,21 +1622,22 @@ class TestcaseGenerator(tool.BatchTool):
                 tag_handle = self.db.add_tag(tag, self.trans)
                 self.generated_tags.append(tag_handle)
 
-    def add_defaults(self, object):
-        self.fill_object( object)
+    def add_defaults(self, obj):
+        self.fill_object(obj)
 
-    def rand_name( self, lastname=None, gender=None):
+    def rand_name(self, lastname=None, gender=None):
+        """ Create a name pair (first, last)"""
         if gender == Person.MALE:
-            firstname = self.rand_text( self.FIRSTNAME_MALE)
+            firstname = self.rand_text(self.FIRSTNAME_MALE)
         elif gender == Person.FEMALE:
-            firstname = self.rand_text( self.FIRSTNAME_FEMALE)
+            firstname = self.rand_text(self.FIRSTNAME_FEMALE)
         else:
-            firstname = self.rand_text( self.FIRSTNAME)
+            firstname = self.rand_text(self.FIRSTNAME)
         if not lastname:
-            lastname = self.rand_text( self.LASTNAME)
-        return (firstname,lastname)
+            lastname = self.rand_text(self.LASTNAME)
+        return (firstname, lastname)
 
-    def rand_date( self, start=None, end=None):
+    def rand_date(self, start=None, end=None):
         """
         Generates a random date object between the given years start and end
         """
@@ -1602,12 +1666,12 @@ class TestcaseGenerator(tool.BatchTool):
                                    Date.QUAL_CALCULATED))
                 modifier = _choice((Date.MOD_NONE,
                                     Date.MOD_BEFORE,
-                                    Date.MOD_AFTER,\
+                                    Date.MOD_AFTER,
                                     Date.MOD_ABOUT,
                                     Date.MOD_RANGE,
                                     Date.MOD_SPAN))
                 day = _randint(0, 28)
-                if day > 0: # avoid days without month
+                if day > 0:  # avoid days without month
                     month = _randint(1, 12)
                 else:
                     month = _randint(0, 12)
@@ -1619,66 +1683,69 @@ class TestcaseGenerator(tool.BatchTool):
                     else:
                         month2 = _randint(0, 12)
                     year2 = year + _randint(1, 5)
-                    ndate.set(quality,modifier,calendar,(day,month,year,False,day2,month2,year2,False),"")
+                    ndate.set(quality, modifier, calendar,
+                              (day, month, year, False, day2, month2, year2,
+                               False), "")
                 else:
-                    ndate.set(quality,modifier,calendar,(day,month,year,False),"")
+                    ndate.set(quality, modifier, calendar,
+                              (day, month, year, False), "")
 
         return (year, ndate)
 
-    def fill_object( self, o):
+    def fill_object(self, obj):
+        ''' Generic object fill routine '''
 
-
-        if issubclass(o.__class__, AddressBase):
+        if issubclass(obj.__class__, AddressBase):
             while _randint(0, 1) == 1:
-                a = Address()
-                self.fill_object(a)
-                o.add_address( a)
+                addr = Address()
+                self.fill_object(addr)
+                obj.add_address(addr)
 
-        if isinstance(o,Attribute):
-            o.set_type( self.rand_type(AttributeType()))
-            o.set_value( self.rand_text(self.SHORT))
+        if isinstance(obj, Attribute):
+            obj.set_type(self.rand_type(AttributeType()))
+            obj.set_value(self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__, AttributeBase):
+        if issubclass(obj.__class__, AttributeBase):
             while _randint(0, 1) == 1:
-                a = Attribute()
-                self.fill_object(a)
-                o.add_attribute( a)
+                att = Attribute()
+                self.fill_object(att)
+                obj.add_attribute(att)
 
-        if isinstance(o,ChildRef):
+        if isinstance(obj, ChildRef):
             if _randint(0, 3) == 1:
-                o.set_mother_relation( self.rand_type( ChildRefType()))
+                obj.set_mother_relation(self.rand_type(ChildRefType()))
             if _randint(0, 3) == 1:
-                o.set_father_relation( self.rand_type( ChildRefType()))
+                obj.set_father_relation(self.rand_type(ChildRefType()))
 
-        if issubclass(o.__class__, DateBase):
+        if issubclass(obj.__class__, DateBase):
             if _randint(0, 1) == 1:
-                (y,d) = self.rand_date()
-                o.set_date_object( d)
+                (dummy, dat) = self.rand_date()
+                obj.set_date_object(dat)
 
-        if isinstance(o,Event):
+        if isinstance(obj, Event):
             if _randint(0, 1) == 1:
-                o.set_description( self.rand_text(self.LONG))
+                obj.set_description(self.rand_text(self.LONG))
 
-        if issubclass(o.__class__, EventRef):
-            o.set_role( self.rand_type(EventRoleType()))
+        if issubclass(obj.__class__, EventRef):
+            obj.set_role(self.rand_type(EventRoleType()))
 
-        if isinstance(o,Family):
+        if isinstance(obj, Family):
             if _randint(0, 2) == 1:
-                o.set_relationship( self.rand_type(FamilyRelType()))
+                obj.set_relationship(self.rand_type(FamilyRelType()))
             else:
-                o.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
+                obj.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
 
-        if isinstance(o,LdsOrd):
+        if isinstance(obj, LdsOrd):
             if _randint(0, 1) == 1:
-                o.set_temple(_choice(TEMPLES.name_code_data())[1])
+                obj.set_temple(_choice(TEMPLES.name_code_data())[1])
 
-        if issubclass(o.__class__, LdsOrdBase):
+        if issubclass(obj.__class__, LdsOrdBase):
             while _randint(0, 1) == 1:
                 ldsord = LdsOrd()
-                self.fill_object( ldsord)
-                if isinstance(o,Person):
+                self.fill_object(ldsord)
+                if isinstance(obj, Person):
                     lds_type = _choice([item for item in LDS_INDIVIDUAL_ORD])
-                if isinstance(o,Family):
+                if isinstance(obj, Family):
                     lds_type = LDS_SPOUSE_SEALING[0]
                     if self.generated_families:
                         ldsord.set_family_handle(
@@ -1687,222 +1754,227 @@ class TestcaseGenerator(tool.BatchTool):
                 status = _choice(lds_type[1])
                 if status != LdsOrd.STATUS_NONE:
                     ldsord.set_status(status)
-                o.add_lds_ord( ldsord)
+                obj.add_lds_ord(ldsord)
 
-        if isinstance(o,Location):
+        if isinstance(obj, Location):
             if _randint(0, 1) == 1:
-                o.set_parish( self.rand_text(self.SHORT))
+                obj.set_parish(self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__, LocationBase):
+        if issubclass(obj.__class__, LocationBase):
             if _randint(0, 1) == 1:
-                o.set_street( self.rand_text(self.SHORT))
+                obj.set_street(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_city( self.rand_text(self.SHORT))
+                obj.set_city(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_postal_code( self.rand_text(self.SHORT))
+                obj.set_postal_code(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_phone( self.rand_text(self.SHORT))
+                obj.set_phone(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_state( self.rand_text(self.SHORT))
+                obj.set_state(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_country( self.rand_text(self.SHORT))
+                obj.set_country(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_county( self.rand_text(self.SHORT))
+                obj.set_county(self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__, MediaBase):
+        if issubclass(obj.__class__, MediaBase):
             # FIXME: frequency changed to prevent recursion
             while _randint(0, 10) == 1:
-                o.add_media_reference( self.fill_object( MediaRef()))
+                obj.add_media_reference(self.fill_object(MediaRef()))
 
-        if isinstance(o,Media):
+        if isinstance(obj, Media):
             if _randint(0, 3) == 1:
-                o.set_description(str(self.rand_text(self.LONG)))
+                obj.set_description(str(self.rand_text(self.LONG)))
                 path = os.path.abspath(_choice((ICON, LOGO, SPLASH)))
-                o.set_path(str(path))
+                obj.set_path(str(path))
                 mime = get_type(path)
-                o.set_mime_type(mime)
+                obj.set_mime_type(mime)
             else:
-                o.set_description(str(self.rand_text(self.SHORT)))
-                o.set_path(os.path.abspath(str(ICON)))
-                o.set_mime_type("image/png")
+                obj.set_description(str(self.rand_text(self.SHORT)))
+                obj.set_path(os.path.abspath(str(ICON)))
+                obj.set_mime_type("image/png")
 
-        if isinstance(o,MediaRef):
+        if isinstance(obj, MediaRef):
             if not self.generated_media or _randint(0, 10) == 1:
-                m = Media()
-                self.fill_object(m)
-                self.db.add_media( m, self.trans)
-                self.generated_media.append( m.get_handle())
-            o.set_reference_handle(_choice(self.generated_media))
+                med = Media()
+                self.fill_object(med)
+                self.db.add_media(med, self.trans)
+                self.generated_media.append(med.get_handle())
+            obj.set_reference_handle(_choice(self.generated_media))
             if _randint(0, 1) == 1:
-                o.set_rectangle((_randint(0, 200), _randint(0, 200),
-                                 _randint(0, 200), _randint(0, 200)))
+                obj.set_rectangle((_randint(0, 200), _randint(0, 200),
+                                   _randint(0, 200), _randint(0, 200)))
 
-        if isinstance(o,Name):
-            o.set_type( self.rand_type( NameType()))
+        if isinstance(obj, Name):
+            obj.set_type(self.rand_type(NameType()))
             if _randint(0, 1) == 1:
-                o.set_title( self.rand_text(self.SHORT))
+                obj.set_title(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 patronymic = Surname()
                 patronymic.set_surname(self.rand_text(self.FIRSTNAME_MALE))
                 patronymic.set_origintype(NameOriginType.PATRONYMIC)
-                o.add_surname(patronymic)
+                obj.add_surname(patronymic)
             if _randint(0, 1) == 1:
-                o.get_primary_surname().set_prefix( self.rand_text(self.SHORT))
+                obj.get_primary_surname().set_prefix(
+                    self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_suffix( self.rand_text(self.SHORT))
+                obj.set_suffix(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_call_name( self.rand_text(self.FIRSTNAME))
+                obj.set_call_name(self.rand_text(self.FIRSTNAME))
             if _randint(0, 1) == 1:
-                o.set_group_as( o.get_surname()[:1])
-            # o.set_display_as()
-            # o.set_sort_as()
+                obj.set_group_as(obj.get_surname()[:1])
+            # obj.set_display_as()
+            # obj.set_sort_as()
 
-        if isinstance(o,Note):
-            type = self.rand_type(NoteType())
-            if type == NoteType.HTML_CODE:
-                o.set( self.rand_text(self.NOTE))
+        if isinstance(obj, Note):
+            n_type = self.rand_type(NoteType())
+            if n_type == NoteType.HTML_CODE:
+                obj.set(self.rand_text(self.NOTE))
             else:
-                o.set_styledtext(self.rand_text(self.STYLED_TEXT))
-            o.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
-            o.set_type(type)
+                obj.set_styledtext(self.rand_text(self.STYLED_TEXT))
+            obj.set_format(_choice((Note.FLOWED, Note.FORMATTED)))
+            obj.set_type(n_type)
 
-        if issubclass(o.__class__, NoteBase):
+        if issubclass(obj.__class__, NoteBase):
             while _randint(0, 1) == 1:
                 if not self.generated_notes or _randint(0, 10) == 1:
-                    n = Note()
-                    self.fill_object(n)
-                    self.db.add_note( n, self.trans)
-                    self.generated_notes.append( n.get_handle())
+                    note = Note()
+                    self.fill_object(note)
+                    self.db.add_note(note, self.trans)
+                    self.generated_notes.append(note.get_handle())
                 n_h = _choice(self.generated_notes)
-                o.add_note(n_h)
+                obj.add_note(n_h)
 
-        if isinstance(o, Place):
-            o.set_title(self.rand_text(self.LONG))
-            o.set_name(PlaceName(value=self.rand_text(self.SHORT)))
-            o.set_code(self.rand_text(self.SHORT))
+        if isinstance(obj, Place):
+            obj.set_title(self.rand_text(self.LONG))
+            obj.set_name(PlaceName(value=self.rand_text(self.SHORT)))
+            obj.set_code(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 if _randint(0, 4) == 1:
-                    o.set_longitude(self.rand_text(self.SHORT))
+                    obj.set_longitude(self.rand_text(self.SHORT))
                 else:
-                    o.set_longitude(str(_random() * 360.0 - 180.0))
+                    obj.set_longitude(str(_random() * 360.0 - 180.0))
             if _randint(0, 1) == 1:
                 if _randint(0, 4) == 1:
-                    o.set_latitude( self.rand_text(self.SHORT))
+                    obj.set_latitude(self.rand_text(self.SHORT))
                 else:
-                    o.set_latitude(str(_random() * 180.0 - 90.0))
+                    obj.set_latitude(str(_random() * 180.0 - 90.0))
             while _randint(0, 1) == 1:
-                o.add_alternate_locations(self.fill_object(Location()))
+                obj.add_alternate_locations(self.fill_object(Location()))
 
-        if issubclass(o.__class__, PlaceBase):
+        if issubclass(obj.__class__, PlaceBase):
             if _randint(0, 1) == 1:
-                o.set_place_handle(self.rand_place())
+                obj.set_place_handle(self.rand_place())
 
-        if issubclass(o.__class__, BasicPrimaryObject):
+        if issubclass(obj.__class__, BasicPrimaryObject):
             if _randint(0, 1) == 1:
-                o.set_gramps_id( self.rand_text(self.SHORT))
+                obj.set_gramps_id(self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__, PrivacyBase):
-            o.set_privacy( _randint(0, 5) == 1)
+        if issubclass(obj.__class__, PrivacyBase):
+            obj.set_privacy(_randint(0, 5) == 1)
 
-        if isinstance(o,RepoRef):
+        if isinstance(obj, RepoRef):
             if not self.generated_repos or _randint(0, 10) == 1:
-                r = Repository()
-                self.fill_object(r)
-                self.db.add_repository( r, self.trans)
-                self.generated_repos.append(r.get_handle())
-            o.set_reference_handle(_choice(self.generated_repos))
+                rep = Repository()
+                self.fill_object(rep)
+                self.db.add_repository(rep, self.trans)
+                self.generated_repos.append(rep.get_handle())
+            obj.set_reference_handle(_choice(self.generated_repos))
             if _randint(0, 1) == 1:
-                o.set_call_number( self.rand_text(self.SHORT))
-            o.set_media_type( self.rand_type(SourceMediaType()))
+                obj.set_call_number(self.rand_text(self.SHORT))
+            obj.set_media_type(self.rand_type(SourceMediaType()))
 
-        if isinstance(o,Repository):
-            o.set_type( self.rand_type(RepositoryType()))
-            o.set_name( self.rand_text(self.SHORT))
+        if isinstance(obj, Repository):
+            obj.set_type(self.rand_type(RepositoryType()))
+            obj.set_name(self.rand_text(self.SHORT))
 
-        if isinstance(o,Source):
-            o.set_title( self.rand_text(self.SHORT))
+        if isinstance(obj, Source):
+            obj.set_title(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_author( self.rand_text(self.SHORT))
+                obj.set_author(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
-                o.set_publication_info( self.rand_text(self.LONG))
+                obj.set_publication_info(self.rand_text(self.LONG))
             if _randint(0, 1) == 1:
-                o.set_abbreviation( self.rand_text(self.SHORT))
+                obj.set_abbreviation(self.rand_text(self.SHORT))
             while _randint(0, 1) == 1:
                 sattr = SrcAttribute()
                 sattr.set_type(self.rand_text(self.SHORT))
                 sattr.set_value(self.rand_text(self.SHORT))
-                o.add_attribute(sattr)
+                obj.add_attribute(sattr)
             while _randint(0, 1) == 1:
-                r = RepoRef()
-                self.fill_object(r)
-                o.add_repo_reference( r)
+                rep_ref = RepoRef()
+                self.fill_object(rep_ref)
+                obj.add_repo_reference(rep_ref)
 
-        if issubclass(o.__class__, CitationBase):
+        if issubclass(obj.__class__, CitationBase):
             while _randint(0, 1) == 1:
                 if not self.generated_citations or _randint(1, 10) == 1:
-                    s = Citation()
-                    self.fill_object(s)
-                    self.db.add_citation( s, self.trans)
-                    self.generated_citations.append(s.get_handle())
+                    cit = Citation()
+                    self.fill_object(cit)
+                    self.db.add_citation(cit, self.trans)
+                    self.generated_citations.append(cit.get_handle())
                 s_h = _choice(self.generated_citations)
-                o.add_citation(s_h)
+                obj.add_citation(s_h)
 
-        if isinstance(o,Citation):
+        if isinstance(obj, Citation):
             if not self.generated_sources or _randint(0, 10) == 1:
-                s = Source()
-                self.fill_object(s)
-                self.db.add_source( s, self.trans)
-                self.generated_sources.append( s.get_handle())
-            o.set_reference_handle(_choice(self.generated_sources))
+                src = Source()
+                self.fill_object(src)
+                self.db.add_source(src, self.trans)
+                self.generated_sources.append(src.get_handle())
+            obj.set_reference_handle(_choice(self.generated_sources))
             if _randint(0, 1) == 1:
-                o.set_page( self.rand_text(self.NUMERIC))
-            #if _randint(0, 1) == 1:
-            #    o.set_text( self.rand_text(self.SHORT))
-            #if _randint(0, 1) == 1:
-            #    (year, d) = self.rand_date( )
-            #    o.set_date_object( d)
-            o.set_confidence_level(_choice(list(conf_strings.keys())))
+                obj.set_page(self.rand_text(self.NUMERIC))
+            # if _randint(0, 1) == 1:
+            #    obj.set_text( self.rand_text(self.SHORT))
+            # if _randint(0, 1) == 1:
+            #    (year, dat) = self.rand_date( )
+            #    obj.set_date_object( dat)
+            obj.set_confidence_level(_choice(list(conf_strings.keys())))
 
-        if issubclass(o.__class__, TagBase):
+        if issubclass(obj.__class__, TagBase):
             if _randint(0, 1) == 1:
-                o.set_tag_list(self.rand_tags())
+                obj.set_tag_list(self.rand_tags())
 
-        if issubclass(o.__class__, UrlBase):
+        if issubclass(obj.__class__, UrlBase):
             while _randint(0, 1) == 1:
-                u = Url()
-                self.fill_object(u)
-                o.add_url(u)
+                url = Url()
+                self.fill_object(url)
+                obj.add_url(url)
 
-        if isinstance(o,Url):
-            o.set_path("http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT))
-            o.set_description( self.rand_text(self.SHORT))
-            o.set_type( self.rand_type(UrlType()))
+        if isinstance(obj, Url):
+            obj.set_path("http://www.gramps-project.org/?test=%s" %
+                         self.rand_text(self.SHORT))
+            obj.set_description(self.rand_text(self.SHORT))
+            obj.set_type(self.rand_type(UrlType()))
 
-        return o
+        return obj
 
-    def rand_personal_event( self, type=None, start=None, end=None):
-        if type:
-            typeval = EventType(type)
+    def rand_personal_event(self, e_type=None, start=None, end=None):
+        """ Random personal event """
+        if e_type:
+            typeval = EventType(e_type)
         else:
             typeval = self.rand_type(EventType())
-        return self._rand_event( typeval, start, end)
+        return self._rand_event(typeval, start, end)
 
-    def rand_family_event( self, type=None, start=None, end=None):
-        if type:
-            typeval = EventType(type)
+    def rand_family_event(self, e_type=None, start=None, end=None):
+        """ Random family event """
+        if e_type:
+            EventType(e_type)
         else:
             typeval = EventType.UNKNOWN
             while int(typeval) not in self.FAMILY_EVENTS:
                 typeval = self.rand_type(EventType())
-        return self._rand_event( typeval, start, end)
+        return self._rand_event(typeval, start, end)
 
-    def _rand_event( self, type, start, end):
-        e = Event()
-        self.fill_object(e)
-        e.set_type( type)
-        (year, d) = self.rand_date( start, end)
-        e.set_date_object( d)
-        event_h = self.db.add_event(e, self.trans)
+    def _rand_event(self, e_type, start, end):
+        """ Random general event """
+        evt = Event()
+        self.fill_object(evt)
+        evt.set_type(e_type)
+        (year, dat) = self.rand_date(start, end)
+        evt.set_date_object(dat)
+        event_h = self.db.add_event(evt, self.trans)
         self.generated_events.append(event_h)
         event_ref = EventRef()
         self.fill_object(event_ref)
@@ -1911,8 +1983,8 @@ class TestcaseGenerator(tool.BatchTool):
 
     def rand_type(self, gtype):
         if issubclass(gtype.__class__, GrampsType):
-            map = gtype.get_map()
-            key = _choice(list(map.keys()))
+            gmap = gtype.get_map()
+            key = _choice(list(gmap.keys()))
             if key == gtype.get_custom():
                 value = self.rand_text(self.SHORT)
             else:
@@ -1955,98 +2027,103 @@ class TestcaseGenerator(tool.BatchTool):
     def add_parent_place(self, place, handle):
         place_ref = PlaceRef()
         place_ref.ref = handle
-        year, random_date = self.rand_date()
+        dummy, random_date = self.rand_date()
         place_ref.set_date_object(random_date)
         place.add_placeref(place_ref)
 
-    def rand_text(self, type=None):
+    def rand_text(self, t_type=None):
+        """ make random text strings according to desired type """
         # for lastnamesnames
-        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
+        syllables1 = ["sa", "li", "na", "ma", "no", "re", "mi",
+                      "cha", "ki", "du", "ba", "ku", "el"]
         # for firstnames
-        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
+        syllables2 = ["as", "il", "an", "am", "on", "er", "im",
+                      "ach", "ik", "ud", "ab", "ul", "le"]
         # others
-        syllables3 = ["ka", "po", "lo", "chi", "she", "di", "fa", "go", "ja", "ne", "pe"]
+        syllables3 = ["ka", "po", "lo", "chi", "she", "di", "fa",
+                      "go", "ja", "ne", "pe"]
 
-        syllables = syllables1 + syllables2 +syllables3
+        syllables = syllables1 + syllables2 + syllables3
         minwords = 5
         maxwords = 8
         minsyllables = 2
         maxsyllables = 5
 
-        if type == self.STYLED_TEXT:
+        # result = "" if t_type != self.STYLED_TEXT else StyledText("")
+        if t_type == self.STYLED_TEXT:
             result = StyledText("")
         else:
             result = ""
 
-        if self.options.handler.options_dict['specialchars']:
+        if self.options_dict['specialchars']:
             result = result + "ä<ö&ü%ß'\""
 
-        if self.options.handler.options_dict['add_serial'] and type != self.TAG:
+        if self.options_dict['add_serial'] and t_type != self.TAG:
             result = result + "#+#%06d#-#" % self.text_serial_number
             self.text_serial_number = self.text_serial_number + 1
 
-        if not type:
-            type = self.SHORT
+        if not t_type:
+            t_type = self.SHORT
 
-        if type == self.SHORT or type == self.TAG:
+        if t_type == self.SHORT or t_type == self.TAG:
             minwords = 1
             maxwords = 3
             minsyllables = 2
             maxsyllables = 4
 
-        if type == self.LONG:
+        if t_type == self.LONG:
             minwords = 5
             maxwords = 8
             minsyllables = 2
             maxsyllables = 5
 
-        if type == self.FIRSTNAME:
-            type = _choice((self.FIRSTNAME_MALE, self.FIRSTNAME_FEMALE))
+        if t_type == self.FIRSTNAME:
+            t_type = _choice((self.FIRSTNAME_MALE, self.FIRSTNAME_FEMALE))
 
-        if type == self.FIRSTNAME_MALE or type == self.FIRSTNAME_FEMALE:
+        if t_type == self.FIRSTNAME_MALE or t_type == self.FIRSTNAME_FEMALE:
             syllables = syllables2
             minwords = 1
             maxwords = 5
             minsyllables = 2
             maxsyllables = 5
-            if not self.options.handler.options_dict['long_names']:
+            if not self.options_dict['long_names']:
                 maxwords = 2
                 maxsyllables = 3
 
-        if type == self.LASTNAME:
+        if t_type == self.LASTNAME:
             syllables = syllables1
             minwords = 1
             maxwords = 1
             minsyllables = 2
             maxsyllables = 5
-            if not self.options.handler.options_dict['long_names']:
+            if not self.options_dict['long_names']:
                 maxsyllables = 3
 
-        if type == self.NOTE or type == self.STYLED_TEXT:
+        if t_type == self.NOTE or t_type == self.STYLED_TEXT:
             result = result + "Generated by TestcaseGenerator."
             minwords = 20
             maxwords = 100
 
-        if type == self.NUMERIC:
+        if t_type == self.NUMERIC:
             if _randint(0, 1) == 1:
                 return "%d %s" % (_randint(1, 100), result)
             if _randint(0, 1) == 1:
                 return "%d, %d %s" % (_randint(1, 100), _randint(100, 1000),
                                       result)
-            m = _randint(100, 1000)
-            return "%d - %d %s" % (m, m+_randint(1, 5), result)
+            med = _randint(100, 1000)
+            return "%d - %d %s" % (med, med + _randint(1, 5), result)
 
-        for i in range(0, _randint(minwords, maxwords)):
+        for dummy in range(0, _randint(minwords, maxwords)):
             if result:
                 result = result + " "
             word = ""
             for j in range(0, _randint(minsyllables, maxsyllables)):
                 word = word + _choice(syllables)
-            if type == self.FIRSTNAME_MALE:
+            if t_type == self.FIRSTNAME_MALE:
                 word = word + _choice(("a", "e", "i", "o", "u"))
             if _randint(0, 3) == 1:
                 word = word.title()
-            if type == self.NOTE:
+            if t_type == self.NOTE:
                 if _randint(0, 10) == 1:
                     word = "<b>%s</b>" % word
                 elif _randint(0, 10) == 1:
@@ -2057,36 +2134,35 @@ class TestcaseGenerator(tool.BatchTool):
                     word = word + "."
                 elif _randint(0, 30) == 1:
                     word = word + ".\n"
-            if type == self.STYLED_TEXT:
+            if t_type == self.STYLED_TEXT:
                 tags = []
                 if _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.BOLD, True,
-                                                [(0, len(word))])]
+                                           [(0, len(word))])]
                 elif _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.ITALIC, True,
-                                                [(0, len(word))])]
+                                           [(0, len(word))])]
                 elif _randint(0, 10) == 1:
                     tags += [StyledTextTag(StyledTextTagType.UNDERLINE, True,
-                                                [(0, len(word))])]
-                word = StyledText(word, tags)
+                                           [(0, len(word))])]
+                sword = StyledText(word, tags)
                 if _randint(0, 20) == 1:
-                    word = word + "."
+                    sword = sword + "."
                 elif _randint(0, 30) == 1:
-                    word = word + ".\n"
-            if type == self.STYLED_TEXT:
-                result = StyledText("").join((result, word))
+                    sword = sword + ".\n"
+                result = StyledText("").join((result, sword))
             else:
                 result += word
 
-        if type == self.LASTNAME:
-            n = _randint(0, 2)
-            if n == 0:
+        if t_type == self.LASTNAME:
+            case = _randint(0, 2)
+            if case == 0:
                 result = result.title()
-            elif n == 1:
+            elif case == 1:
                 result = result.upper()
 
-        if self.options.handler.options_dict['add_linebreak'] and \
-                type != self.TAG:
+        if self.options_dict['add_linebreak'] and \
+                t_type != self.TAG:
             result = result + "\nNEWLINE"
 
         return result
@@ -2097,66 +2173,73 @@ class TestcaseGenerator(tool.BatchTool):
     def rand_tags(self):
         maxtags = 5
         taglist = []
-        for counter in range(0, _randint(1, maxtags)):
+        for dummy in range(0, _randint(1, maxtags)):
             tag = _choice(self.generated_tags)
             if tag not in taglist:
                 taglist.append(tag)
         return taglist
 
-#------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------
 #
+# The options class for the tool
 #
-#
-#------------------------------------------------------------------------
+# -----------------------------------------------------------------------
 class TestcaseGeneratorOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
-            'lowlevel'      : 0,
-            'bugs'          : 0,
-            'persons'       : 1,
-            'person_count'  : 2000,
-            'long_names'    : 0,
-            'specialchars'  : 0,
-            'add_serial'    : 0,
-            'add_linebreak' : 0,
+            'lowlevel':       0,
+            'bugs':           0,
+            'persons':        1,
+            'person_count':   2000,
+            'long_names':     0,
+            'specialchars':   0,
+            'add_serial':     0,
+            'add_linebreak':  0,
         }
         self.options_help = {
-            'lowlevel'      : ("=0/1",
-                                "Whether to create low level database errors.",
-                                ["Skip test","Create low level database errors"],
-                                True),
-            'bugs'          : ("=0/1",
-                                "Whether to create invalid database references.",
-                                ["Skip test","Create invalid Database references"],
-                                True),
-            'persons'       : ("=0/1",
-                                "Whether to create a bunch of dummy persons",
-                                ["Dont create persons","Create dummy persons"],
-                                True),
-            'person_count'  : ("=int",
-                                "Number of dummy persons to generate",
-                                "Number of persons"),
-            'long_names'    : ("=0/1",
-                                "Whether to create short or long names",
-                                ["Short names","Long names"],
-                                True),
-            'specialchars'    : ("=0/1",
-                                "Whether to ass some special characters to every text field",
-                                ["No special characters","Add special characters"],
-                                True),
-            'add_serial'    : ("=0/1",
-                                "Whether to add a serial number to every text field",
-                                ["No serial","Add serial number"],
-                                True),
-            'add_linebreak' : ("=0/1",
-                                "Whether to add a line break to every text field",
-                                ["No linebreak","Add line break"],
-                                True),
+            'lowlevel':      ("=0/1",
+                              "Whether to create low level database errors.",
+                              ["Skip test",
+                               "Create low level database errors"],
+                              True),
+            'bugs':          ("=0/1",
+                              "Whether to create invalid database references.",
+                              ["Skip test",
+                               "Create invalid Database references"],
+                              True),
+            'persons':       ("=0/1",
+                              "Whether to create a bunch of dummy persons",
+                              ["Dont create persons", "Create dummy persons"],
+                              True),
+            'person_count':  ("=int",
+                              "Number of dummy persons to generate",
+                              "Number of persons"),
+            'long_names':    ("=0/1",
+                              "Whether to create short or long names",
+                              ["Short names", "Long names"],
+                              True),
+            'specialchars':  ("=0/1",
+                              "Whether to ass some special characters to every"
+                              " text field",
+                              ["No special characters",
+                               "Add special characters"],
+                              True),
+            'add_serial':    ("=0/1",
+                              "Whether to add a serial number to every text "
+                              "field",
+                              ["No serial", "Add serial number"],
+                              True),
+            'add_linebreak': ("=0/1",
+                              "Whether to add a line break to every text "
+                              "field",
+                              ["No linebreak", "Add line break"],
+                              True),
         }

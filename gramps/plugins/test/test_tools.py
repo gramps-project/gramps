@@ -124,10 +124,10 @@ class ToolControl(unittest.TestCase):
         self.assertEqual(out, "")
         out, err = call("-O", TREE_NAME,
                         "-y", "-q", "-a", "tool", "-p",
-                        "name=testcasegenerator,bugs=1,persons=0,"
-                        "add_linebreak=0,add_serial=0,"
-                        "long_names=0,lowlevel=0,person_count=20,"
-                        "specialchars=0")
+                        "name=testcasegenerator,bugs=1,persons=1,"
+                        "add_linebreak=1,add_serial=1,"
+                        "long_names=1,lowlevel=0,person_count=50,"
+                        "specialchars=1")
         expect = ["Opened successfully!",
                   "Performing action: tool.",
                   "Using options string: name=testcasegenerator,bugs=1",
@@ -146,8 +146,8 @@ class ToolControl(unittest.TestCase):
                   "1 invalid birth event name was fixed",
                   "1 invalid death event name was fixed",
                   "2 places were referenced, but not found",
-                  "13 citations were referenced, but not found",
-                  "16 sources were referenced, but not found",
+                  "11 citations were referenced, but not found",
+                  "14 sources were referenced, but not found",
                   "7 empty objects removed",
                   "1 person objects",
                   "1 family objects",
