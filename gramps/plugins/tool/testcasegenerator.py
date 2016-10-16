@@ -384,7 +384,7 @@ class TestcaseGenerator(tool.BatchTool):
         if self.options_dict['bugs']:
             with self.progress(_('Generating testcases'),
                                _('Generating database errors'),
-                               19) as step:
+                               20) as step:
                 self.generate_data_errors(step)
 
         if self.options_dict['persons']:
@@ -430,6 +430,8 @@ class TestcaseGenerator(tool.BatchTool):
         self.test_fix_ctrlchars_in_notes()
         step()
         self.test_fix_alt_place_names()
+        step()
+        self.test_fix_duplicated_grampsid()
         step()
         self.test_clean_deleted_name_format()
         step()
@@ -585,6 +587,73 @@ class TestcaseGenerator(tool.BatchTool):
             plac.set_name(pri_name)
             plac.set_alternative_names(alt_names)
             self.db.add_place(plac, self.trans)
+
+    def test_fix_duplicated_grampsid(self):
+        """
+        Create some duplicate Gramps IDs in various object types
+        This tests Check.fix_duplicated_grampsid()
+        """
+        with DbTxn(_("Testcase generator step %d") % self.transaction_count,
+                   self.db) as self.trans:
+            self.transaction_count += 1
+            for dummy in range(0, 2):
+                cit = Citation()
+                self.fill_object(cit)
+                cit.set_gramps_id("C1001")
+                self.db.add_citation(cit, self.trans)
+
+                evt = Event()
+                self.fill_object(evt)
+                evt.set_gramps_id("E1001")
+                self.db.add_event(evt, self.trans)
+
+                person1_h = self.generate_person(
+                    Person.MALE, "Smith",
+                    "Dup Gramps ID test F1001")
+                person2_h = self.generate_person(Person.FEMALE, "Jones", None)
+                fam = Family()
+                fam.set_father_handle(person1_h)
+                fam.set_mother_handle(person2_h)
+                fam.set_relationship((FamilyRelType.MARRIED, ''))
+                fam.set_gramps_id("F1001")
+                fam_h = self.db.add_family(fam, self.trans)
+                person1 = self.db.get_person_from_handle(person1_h)
+                person1.add_family_handle(fam_h)
+                self.db.commit_person(person1, self.trans)
+                person2 = self.db.get_person_from_handle(person2_h)
+                person2.add_family_handle(fam_h)
+                self.db.commit_person(person2, self.trans)
+
+                med = Media()
+                self.fill_object(med)
+                med.set_gramps_id("O1001")
+                self.db.add_media(med, self.trans)
+
+                note = Note()
+                self.fill_object(note)
+                note.set_gramps_id("N1001")
+                self.db.add_note(note, self.trans)
+
+                person1_h = self.generate_person(Person.MALE, "Smith",
+                                                 "Dup GID test GID I1001")
+                person1 = self.db.get_person_from_handle(person1_h)
+                person1.set_gramps_id("I1001")
+                self.db.commit_person(person1, self.trans)
+
+                place = Place()
+                self.fill_object(place)
+                place.set_gramps_id("P1001")
+                self.db.add_place(place, self.trans)
+
+                rep = Repository()
+                self.fill_object(rep)
+                rep.set_gramps_id("R1001")
+                self.db.add_repository(rep, self.trans)
+
+                src = Source()
+                self.fill_object(src)
+                src.set_gramps_id("S1001")
+                self.db.add_source(src, self.trans)
 
     def test_cleanup_missing_photos(self):
         pass
