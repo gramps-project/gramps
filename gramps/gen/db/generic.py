@@ -1544,20 +1544,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if name in self.surname_list:
             self.surname_list.remove(name)
 
-    def get_gramps_ids(self, obj_key):
-        key2table = {
-            PERSON_KEY:     self.person_id_map,
-            FAMILY_KEY:     self.family_id_map,
-            CITATION_KEY:   self.citation_id_map,
-            SOURCE_KEY:     self.source_id_map,
-            EVENT_KEY:      self.event_id_map,
-            MEDIA_KEY:      self.media_id_map,
-            PLACE_KEY:      self.place_id_map,
-            REPOSITORY_KEY: self.repository_id_map,
-            NOTE_KEY:       self.note_id_map,
-            }
-        return list(key2table[obj_key].keys())
-
     def set_researcher(self, owner):
         self.owner.set_from(owner)
 

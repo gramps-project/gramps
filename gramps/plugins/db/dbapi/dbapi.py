@@ -1623,50 +1623,49 @@ class DBAPI(DbGeneric):
     def has_note_gramps_id(self, gramps_id):
         return self.has_gramps_id(NOTE_KEY, gramps_id)
 
-    def get_person_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM person;")
+    def get_gramps_ids(self, obj_key):
+        key2table = {
+            PERSON_KEY: 'person',
+            FAMILY_KEY: 'family',
+            SOURCE_KEY: 'source',
+            CITATION_KEY: 'citation',
+            EVENT_KEY: 'event',
+            MEDIA_KEY: 'media',
+            PLACE_KEY: 'place',
+            REPOSITORY_KEY: 'repository',
+            NOTE_KEY: 'note',
+            }
+        sql = "SELECT gramps_id FROM %s;" % key2table[obj_key]
+        self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
+
+    def get_person_gramps_ids(self):
+        return self.get_gramps_ids(PERSON_KEY)
 
     def get_family_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM family;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(FAMILY_KEY)
 
     def get_source_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM source;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(SOURCE_KEY)
 
     def get_citation_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM citation;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(CITATION_KEY)
 
     def get_event_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM event;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(EVENT_KEY)
 
     def get_media_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM media;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(MEDIA_KEY)
 
     def get_place_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps FROM place;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(PLACE_KEY)
 
     def get_repository_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM repository;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(REPOSITORY_KEY)
 
     def get_note_gramps_ids(self):
-        self.dbapi.execute("SELECT gramps_id FROM note;")
-        rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        return self.get_gramps_ids(NOTE_KEY)
 
     def get_raw_person_data(self, key):
         if isinstance(key, bytes):
