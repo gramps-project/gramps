@@ -1038,12 +1038,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
-    def _find_next_gramps_id(self, prefix, map_index, map):
+    def _find_next_gramps_id(self, prefix, map_index, obj_key):
         """
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        while map.get(str(index)) is not None:
+        while self.has_gramps_id(obj_key, index):
             map_index += 1
             index = prefix % map_index
         map_index += 1
@@ -1056,7 +1056,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.pmap_index, gid = self._find_next_gramps_id(self.person_prefix,
                                                          self.pmap_index,
-                                                         self.person_id_map)
+                                                         PERSON_KEY)
         return gid
 
     def find_next_place_gramps_id(self):
@@ -1066,7 +1066,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.lmap_index, gid = self._find_next_gramps_id(self.place_prefix,
                                                          self.lmap_index,
-                                                         self.place_id_map)
+                                                         PLACE_KEY)
         return gid
 
     def find_next_event_gramps_id(self):
@@ -1076,7 +1076,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.emap_index, gid = self._find_next_gramps_id(self.event_prefix,
                                                          self.emap_index,
-                                                         self.event_id_map)
+                                                         EVENT_KEY)
         return gid
 
     def find_next_media_gramps_id(self):
@@ -1086,7 +1086,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.omap_index, gid = self._find_next_gramps_id(self.media_prefix,
                                                          self.omap_index,
-                                                         self.media_id_map)
+                                                         MEDIA_KEY)
         return gid
 
     def find_next_citation_gramps_id(self):
@@ -1096,7 +1096,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.cmap_index, gid = self._find_next_gramps_id(self.citation_prefix,
                                                          self.cmap_index,
-                                                         self.citation_id_map)
+                                                         CITATION_KEY)
         return gid
 
     def find_next_source_gramps_id(self):
@@ -1106,7 +1106,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.smap_index, gid = self._find_next_gramps_id(self.source_prefix,
                                                          self.smap_index,
-                                                         self.source_id_map)
+                                                         SOURCE_KEY)
         return gid
 
     def find_next_family_gramps_id(self):
@@ -1116,7 +1116,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.fmap_index, gid = self._find_next_gramps_id(self.family_prefix,
                                                          self.fmap_index,
-                                                         self.family_id_map)
+                                                         FAMILY_KEY)
         return gid
 
     def find_next_repository_gramps_id(self):
@@ -1126,7 +1126,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.rmap_index, gid = self._find_next_gramps_id(self.repository_prefix,
                                                          self.rmap_index,
-                                                         self.repository_id_map)
+                                                         REPOSITORY_KEY)
         return gid
 
     def find_next_note_gramps_id(self):
@@ -1136,7 +1136,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.nmap_index, gid = self._find_next_gramps_id(self.note_prefix,
                                                          self.nmap_index,
-                                                         self.note_id_map)
+                                                         NOTE_KEY)
         return gid
 
     def get_mediapath(self):
