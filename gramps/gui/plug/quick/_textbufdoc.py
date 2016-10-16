@@ -55,9 +55,11 @@ _WIDTH_IN_CHARS = 72
 class DisplayBuf(ManagedWindow):
     def __init__(self, title, document, modal=False):
         self.title = title
+        last_managed_window = document.uistate.gwm.window_tree[-1]
         ManagedWindow.__init__(self, document.uistate, [], 
                                              document)
-        self.set_window(Gtk.Dialog("",document.uistate.window,
+        # We set the parent to the last managed window (transient_for)
+        self.set_window(Gtk.Dialog("",last_managed_window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
