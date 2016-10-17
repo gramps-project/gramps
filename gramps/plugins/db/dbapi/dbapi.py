@@ -719,7 +719,7 @@ class DBAPI(DbGeneric):
         """
         old_person = None
         person.change = int(change_time or time.time())
-        if person.handle in self.person_map:
+        if self.has_person_handle(person.handle):
             old_person = self.get_person_from_handle(person.handle)
             # Update gender statistics if necessary
             if (old_person.gender != person.gender
@@ -807,7 +807,7 @@ class DBAPI(DbGeneric):
         """
         old_family = None
         family.change = int(change_time or time.time())
-        if family.handle in self.family_map:
+        if self.has_family_handle(family.handle):
             old_family = self.get_family_from_handle(family.handle).serialize()
             self.dbapi.execute("""UPDATE family SET gramps_id = ?,
                                                     father_handle = ?,
@@ -870,7 +870,7 @@ class DBAPI(DbGeneric):
         """
         old_citation = None
         citation.change = int(change_time or time.time())
-        if citation.handle in self.citation_map:
+        if self.has_citation_handle(citation.handle):
             old_citation = self.get_citation_from_handle(
                 citation.handle).serialize()
             self.dbapi.execute("""UPDATE citation SET gramps_id = ?,
@@ -914,7 +914,7 @@ class DBAPI(DbGeneric):
         """
         old_source = None
         source.change = int(change_time or time.time())
-        if source.handle in self.source_map:
+        if self.has_source_handle(source.handle):
             old_source = self.get_source_from_handle(source.handle).serialize()
             self.dbapi.execute("""UPDATE source SET gramps_id = ?,
                                                     order_by = ?,
@@ -960,7 +960,7 @@ class DBAPI(DbGeneric):
         """
         old_repository = None
         repository.change = int(change_time or time.time())
-        if repository.handle in self.repository_map:
+        if self.has_repository_handle(repository.handle):
             old_repository = self.get_repository_from_handle(
                 repository.handle).serialize()
             self.dbapi.execute("""UPDATE repository SET gramps_id = ?,
@@ -996,7 +996,7 @@ class DBAPI(DbGeneric):
         """
         old_note = None
         note.change = int(change_time or time.time())
-        if note.handle in self.note_map:
+        if self.has_note_handle(note.handle):
             old_note = self.get_note_from_handle(note.handle).serialize()
             self.dbapi.execute("""UPDATE note SET gramps_id = ?,
                                                     blob_data = ?
@@ -1027,7 +1027,7 @@ class DBAPI(DbGeneric):
         """
         old_place = None
         place.change = int(change_time or time.time())
-        if place.handle in self.place_map:
+        if self.has_place_handle(place.handle):
             old_place = self.get_place_from_handle(place.handle).serialize()
             self.dbapi.execute("""UPDATE place SET gramps_id = ?,
                                                    order_by = ?,
@@ -1072,7 +1072,7 @@ class DBAPI(DbGeneric):
         """
         old_event = None
         event.change = int(change_time or time.time())
-        if event.handle in self.event_map:
+        if self.has_event_handle(event.handle):
             old_event = self.get_event_from_handle(event.handle).serialize()
             self.dbapi.execute("""UPDATE event SET gramps_id = ?,
                                                     blob_data = ?
@@ -1112,7 +1112,7 @@ class DBAPI(DbGeneric):
         part of the transaction.
         """
         tag.change = int(change_time or time.time())
-        if tag.handle in self.tag_map:
+        if self.has_tag_handle(tag.handle):
             self.dbapi.execute("""UPDATE tag SET blob_data = ?,
                                                  order_by = ?
                                          WHERE handle = ?;""",
@@ -1135,7 +1135,7 @@ class DBAPI(DbGeneric):
         """
         old_media = None
         media.change = int(change_time or time.time())
-        if media.handle in self.media_map:
+        if self.has_media_handle(media.handle):
             old_media = self.get_media_from_handle(media.handle).serialize()
             self.dbapi.execute("""UPDATE media SET gramps_id = ?,
                                                    order_by = ?,
