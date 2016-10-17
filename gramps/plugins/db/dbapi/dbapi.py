@@ -1184,22 +1184,11 @@ class DBAPI(DbGeneric):
     def _do_remove(self, handle, transaction, obj_key):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        key2table = {
-            PERSON_KEY:     "person",
-            FAMILY_KEY:     "family",
-            SOURCE_KEY:     "source",
-            CITATION_KEY:   "citation",
-            EVENT_KEY:      "event",
-            MEDIA_KEY:      "media",
-            PLACE_KEY:      "place",
-            REPOSITORY_KEY: "repository",
-            NOTE_KEY:       "note",
-            TAG_KEY:        "tag",
-            }
         if self.readonly or not handle:
             return
         if self.has_handle(obj_key, handle):
-            sql = "DELETE FROM %s WHERE handle = ?;" % key2table[obj_key]
+            table = KEY_TO_NAME_MAP[obj_key]
+            sql = "DELETE FROM %s WHERE handle = ?;" % table
             self.dbapi.execute(sql, [handle])
             if not transaction.batch:
                 data = self.get_raw_data(obj_key, handle)
@@ -1504,21 +1493,10 @@ class DBAPI(DbGeneric):
             row = self.dbapi.fetchone()
 
     def has_handle(self, obj_key, handle):
-        key2table = {
-            PERSON_KEY: 'person',
-            FAMILY_KEY: 'family',
-            SOURCE_KEY: 'source',
-            CITATION_KEY: 'citation',
-            EVENT_KEY: 'event',
-            MEDIA_KEY: 'media',
-            PLACE_KEY: 'place',
-            REPOSITORY_KEY: 'repository',
-            NOTE_KEY: 'note',
-            TAG_KEY: 'tag'
-            }
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        sql = "SELECT 1 FROM %s WHERE handle = ?" % key2table[obj_key]
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT 1 FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])
         return self.dbapi.fetchone() is not None
 
@@ -1553,18 +1531,8 @@ class DBAPI(DbGeneric):
         return self.has_handle(TAG_KEY, handle)
 
     def has_gramps_id(self, obj_key, gramps_id):
-        key2table = {
-            PERSON_KEY: 'person',
-            FAMILY_KEY: 'family',
-            SOURCE_KEY: 'source',
-            CITATION_KEY: 'citation',
-            EVENT_KEY: 'event',
-            MEDIA_KEY: 'media',
-            PLACE_KEY: 'place',
-            REPOSITORY_KEY: 'repository',
-            NOTE_KEY: 'note',
-            }
-        sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % key2table[obj_key]
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % table
         self.dbapi.execute(sql, [gramps_id])
         return self.dbapi.fetchone() != None
 
@@ -1596,18 +1564,8 @@ class DBAPI(DbGeneric):
         return self.has_gramps_id(NOTE_KEY, gramps_id)
 
     def get_gramps_ids(self, obj_key):
-        key2table = {
-            PERSON_KEY: 'person',
-            FAMILY_KEY: 'family',
-            SOURCE_KEY: 'source',
-            CITATION_KEY: 'citation',
-            EVENT_KEY: 'event',
-            MEDIA_KEY: 'media',
-            PLACE_KEY: 'place',
-            REPOSITORY_KEY: 'repository',
-            NOTE_KEY: 'note',
-            }
-        sql = "SELECT gramps_id FROM %s;" % key2table[obj_key]
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT gramps_id FROM %s;" % table
         self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
@@ -1640,21 +1598,10 @@ class DBAPI(DbGeneric):
         return self.get_gramps_ids(NOTE_KEY)
 
     def get_raw_data(self, obj_key, handle):
-        key2table = {
-            PERSON_KEY: 'person',
-            FAMILY_KEY: 'family',
-            SOURCE_KEY: 'source',
-            CITATION_KEY: 'citation',
-            EVENT_KEY: 'event',
-            MEDIA_KEY: 'media',
-            PLACE_KEY: 'place',
-            REPOSITORY_KEY: 'repository',
-            NOTE_KEY: 'note',
-            TAG_KEY: 'tag'
-            }
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        sql = "SELECT blob_data FROM %s WHERE handle = ?" % key2table[obj_key]
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT blob_data FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])
         row = self.dbapi.fetchone()
         if row:
