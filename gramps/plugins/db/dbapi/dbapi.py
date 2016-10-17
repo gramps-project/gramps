@@ -1656,94 +1656,56 @@ class DBAPI(DbGeneric):
     def get_note_gramps_ids(self):
         return self.get_gramps_ids(NOTE_KEY)
 
-    def get_raw_person_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM person WHERE handle = ?", [key])
+    def get_raw_data(self, obj_key, handle):
+        key2table = {
+            PERSON_KEY: 'person',
+            FAMILY_KEY: 'family',
+            SOURCE_KEY: 'source',
+            CITATION_KEY: 'citation',
+            EVENT_KEY: 'event',
+            MEDIA_KEY: 'media',
+            PLACE_KEY: 'place',
+            REPOSITORY_KEY: 'repository',
+            NOTE_KEY: 'note',
+            TAG_KEY: 'tag'
+            }
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
+        sql = "SELECT blob_data FROM %s WHERE handle = ?" % key2table[obj_key]
+        self.dbapi.execute(sql, [handle])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
 
-    def get_raw_family_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM family WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_person_data(self, handle):
+        return self.get_raw_data(PERSON_KEY, handle)
 
-    def get_raw_source_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM source WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_family_data(self, handle):
+        return self.get_raw_data(FAMILY_KEY, handle)
 
-    def get_raw_citation_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM citation WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_source_data(self, handle):
+        return self.get_raw_data(SOURCE_KEY, handle)
 
-    def get_raw_event_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM event WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_citation_data(self, handle):
+        return self.get_raw_data(CITATION_KEY, handle)
 
-    def get_raw_media_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM media WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_event_data(self, handle):
+        return self.get_raw_data(EVENT_KEY, handle)
 
-    def get_raw_place_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM place WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_media_data(self, handle):
+        return self.get_raw_data(MEDIA_KEY, handle)
 
-    def get_raw_repository_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM repository WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_place_data(self, handle):
+        return self.get_raw_data(PLACE_KEY, handle)
 
-    def get_raw_note_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM note WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_repository_data(self, handle):
+        return self.get_raw_data(REPOSITORY_KEY, handle)
 
-    def get_raw_tag_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT blob_data FROM tag WHERE handle = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def get_raw_note_data(self, handle):
+        return self.get_raw_data(NOTE_KEY, handle)
+
+    def get_raw_tag_data(self, handle):
+        return self.get_raw_data(TAG_KEY, handle)
 
     def _get_raw_person_from_id_data(self, key):
         self.dbapi.execute(
