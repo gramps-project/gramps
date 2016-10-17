@@ -1181,23 +1181,7 @@ class DBAPI(DbGeneric):
                                 ref_class_name])
         # This function is followed by a commit.
 
-    def remove_person(self, handle, transaction):
-        """
-        Remove the Person specified by the database handle from the database,
-        preserving the change in the passed transaction.
-        """
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if self.readonly or not handle:
-            return
-        if handle in self.person_map:
-            person = Person.create(self.person_map[handle])
-            self.dbapi.execute("DELETE FROM person WHERE handle = ?;", [handle])
-            if not transaction.batch:
-                transaction.add(PERSON_KEY, TXNDEL, person.handle,
-                                person.serialize(), None)
-
-    def _do_remove(self, handle, transaction, data_map, data_id_map, key):
+    def _do_remove(self, handle, transaction, obj_key):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         key2table = {
@@ -1214,13 +1198,12 @@ class DBAPI(DbGeneric):
             }
         if self.readonly or not handle:
             return
-        if handle in data_map:
-            self.dbapi.execute(
-                "DELETE FROM %s WHERE handle = ?;" % key2table[key],
-                [handle])
+        if self.has_handle(obj_key, handle):
+            sql = "DELETE FROM %s WHERE handle = ?;" % key2table[obj_key]
+            self.dbapi.execute(sql, [handle])
             if not transaction.batch:
-                data = data_map[handle]
-                transaction.add(key, TXNDEL, handle, data, None)
+                data = self.get_raw_data(obj_key, handle)
+                transaction.add(obj_key, TXNDEL, handle, data, None)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
