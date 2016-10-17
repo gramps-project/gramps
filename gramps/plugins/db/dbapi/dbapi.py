@@ -1520,65 +1520,54 @@ class DBAPI(DbGeneric):
                 [order_by, media.handle])
             row = self.dbapi.fetchone()
 
-    def has_person_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM person WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_handle(self, obj_key, handle):
+        key2table = {
+            PERSON_KEY: 'person',
+            FAMILY_KEY: 'family',
+            SOURCE_KEY: 'source',
+            CITATION_KEY: 'citation',
+            EVENT_KEY: 'event',
+            MEDIA_KEY: 'media',
+            PLACE_KEY: 'place',
+            REPOSITORY_KEY: 'repository',
+            NOTE_KEY: 'note',
+            TAG_KEY: 'tag'
+            }
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
+        sql = "SELECT 1 FROM %s WHERE handle = ?" % key2table[obj_key]
+        self.dbapi.execute(sql, [handle])
+        return self.dbapi.fetchone() is not None
 
-    def has_family_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM family WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_person_handle(self, handle):
+        return self.has_handle(PERSON_KEY, handle)
 
-    def has_source_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM source WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_family_handle(self, handle):
+        return self.has_handle(FAMILY_KEY, handle)
 
-    def has_citation_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM citation WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_source_handle(self, handle):
+        return self.has_handle(SOURCE_KEY, handle)
 
-    def has_event_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM event WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_citation_handle(self, handle):
+        return self.has_handle(CITATION_KEY, handle)
 
-    def has_media_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM media WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_event_handle(self, handle):
+        return self.has_handle(EVENT_KEY, handle)
 
-    def has_place_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM place WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_media_handle(self, handle):
+        return self.has_handle(MEDIA_KEY, handle)
 
-    def has_repository_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM repository WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_place_handle(self, handle):
+        return self.has_handle(PLACE_KEY, handle)
 
-    def has_note_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM note WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_repository_handle(self, handle):
+        return self.has_handle(REPOSITORY_KEY, handle)
 
-    def has_tag_handle(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute("SELECT 1 FROM tag WHERE handle = ?", [key])
-        return self.dbapi.fetchone() != None
+    def has_note_handle(self, handle):
+        return self.has_handle(NOTE_KEY, handle)
+
+    def has_tag_handle(self, handle):
+        return self.has_handle(TAG_KEY, handle)
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
