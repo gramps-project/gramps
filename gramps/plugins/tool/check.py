@@ -121,10 +121,16 @@ def cross_table_duplicates(db, uistate):
     logging.info('Looking for cross table duplicates')
     total_nr_handles = 0
     all_handles = set([])
-    for the_map in [db.person_map, db.family_map, db.event_map, db.place_map,
-                    db.source_map, db.citation_map, db.media_map,
-                    db.repository_map, db.note_map]:
-        handle_list = list(the_map.keys())
+    for get_handles_func in [db.get_person_handles,
+                             db.get_family_handles,
+                             db.get_event_handles,
+                             db.get_place_handles,
+                             db.get_source_handles,
+                             db.get_citation_handles,
+                             db.get_media_handles,
+                             db.get_repository_handles,
+                             db.get_note_handles]:
+        handle_list = get_handles_func()
         total_nr_handles += len(handle_list)
         all_handles.update(handle_list)
         progress.step()
@@ -349,10 +355,9 @@ class CheckIntegrity:
         logging.info('Looking for duplicate spouses')
         previous_errors = len(self.duplicate_links)
 
-        for bhandle in self.db.person_map.keys():
+        for bhandle in self.db.get_person_handles():
             handle = bhandle.decode('utf-8')
-            value = self.db.person_map[bhandle]
-            pers = Person(value)
+            pers = self.db.get_person_from_handle(handle)
             splist = pers.get_family_handle_list()
             if len(splist) != len(set(splist)):
                 new_list = []
@@ -372,7 +377,7 @@ class CheckIntegrity:
                                self.db.get_number_of_media())
         logging.info('Looking for character encoding errors')
         error_count = 0
-        for bhandle in self.db.media_map.keys():
+        for bhandle in self.db.get_media_handles():
             handle = bhandle.decode('utf-8')
             data = self.db.media_map[bhandle]
             if not isinstance(data[2], str) or not isinstance(data[4], str):
@@ -413,7 +418,7 @@ class CheckIntegrity:
                                self.db.get_number_of_notes())
         logging.info('Looking for ctrl characters in notes')
         error_count = 0
-        for bhandle in self.db.note_map.keys():
+        for bhandle in self.db.get_note_handles():
             handle = bhandle.decode('utf-8')
             note = self.db.get_note_from_handle(handle)
             stext = note.get_styledtext()
@@ -421,7 +426,7 @@ class CheckIntegrity:
             new_text = old_text.translate(strip_dict)
             if old_text != new_text:
                 logging.warning('    FAIL: control characters found in note'
-                                ' "%s"', self.db.note_map[bhandle][1])
+                                ' "%s"', note.get_gramps_id())
                 error_count += 1
                 # Commit only if ctrl char found.
                 note.set_styledtext(StyledText(text=new_text,
@@ -440,7 +445,7 @@ class CheckIntegrity:
         self.progress.set_pass(_('Looking for bad alternate place names'),
                                self.db.get_number_of_places())
         logging.info('Looking for bad alternate place names')
-        for bhandle in self.db.place_map.keys():
+        for bhandle in self.db.get_place_handles():
             handle = bhandle.decode('utf-8')
             place = self.db.get_place_from_handle(handle)
             fixed_alt_names = []
@@ -1440,11 +1445,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for citation reference problems')
 
-        for bhandle in self.db.person_map.keys():
+        for bhandle in self.db.get_person_handles():
             self.progress.step()
-            info = self.db.person_map[bhandle]
-            person = Person()
-            person.unserialize(info)
+            person = self.db.get_person_from_handle(bhandle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1456,11 +1459,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.family_map.keys():
+        for bhandle in self.db.get_family_handles():
             self.progress.step()
-            info = self.db.family_map[bhandle]
-            family = Family()
-            family.unserialize(info)
+            family = self.db.get_family_from_handle(bhandle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1472,11 +1473,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.place_map.keys():
+        for bhandle in self.db.get_place_handles():
             self.progress.step()
-            info = self.db.place_map[bhandle]
-            place = Place()
-            place.unserialize(info)
+            place = self.db.get_place_from_handle(bhandle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1488,11 +1487,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.citation_map.keys():
+        for bhandle in self.db.get_citation_handles():
             self.progress.step()
-            info = self.db.citation_map[bhandle]
-            citation = Citation()
-            citation.unserialize(info)
+            citation = self.db.get_citation_from_handle(bhandle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1504,11 +1501,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.repository_map.keys():
+        for bhandle in self.db.get_repository_handles():
             self.progress.step()
-            info = self.db.repository_map[bhandle]
-            repository = Repository()
-            repository.unserialize(info)
+            repository = self.db.get_repository_from_handle(bhandle)
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1521,11 +1516,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.media_map.keys():
+        for bhandle in self.db.get_media_handles():
             self.progress.step()
-            info = self.db.media_map[bhandle]
-            obj = Media()
-            obj.unserialize(info)
+            obj = self.db.get_media_from_handle(bhandle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1537,11 +1530,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.event_map.keys():
+        for bhandle in self.db.get_event_handles():
             self.progress.step()
-            info = self.db.event_map[bhandle]
-            event = Event()
-            event.unserialize(info)
+            event = self.db.get_event_from_handle(bhandle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1616,11 +1607,9 @@ class CheckIntegrity:
                                  'problems'), total)
         logging.info('Looking for media object reference problems')
 
-        for bhandle in self.db.person_map.keys():
+        for bhandle in self.db.get_person_handles():
             self.progress.step()
-            info = self.db.person_map[bhandle]
-            person = Person()
-            person.unserialize(info)
+            person = self.db.get_person_from_handle(bhandle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1632,11 +1621,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.family_map.keys():
+        for bhandle in self.db.get_family_handles():
             self.progress.step()
-            info = self.db.family_map[bhandle]
-            family = Family()
-            family.unserialize(info)
+            family = self.db.get_family_from_handle(bhandle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1648,11 +1635,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.place_map.keys():
+        for bhandle in self.db.get_place_handles():
             self.progress.step()
-            info = self.db.place_map[bhandle]
-            place = Place()
-            place.unserialize(info)
+            place = self.db.get_place_from_handle(bhandle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1664,11 +1649,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.event_map.keys():
+        for bhandle in self.db.get_event_handles():
             self.progress.step()
-            info = self.db.event_map[bhandle]
-            event = Event()
-            event.unserialize(info)
+            event = self.db.get_event_from_handle(bhandle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1680,11 +1663,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.citation_map.keys():
+        for bhandle in self.db.get_citation_handles():
             self.progress.step()
-            info = self.db.citation_map[bhandle]
-            citation = Citation()
-            citation.unserialize(info)
+            citation = self.db.get_citation_from_handle(bhandle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1696,11 +1677,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.source_map.keys():
+        for bhandle in self.db.get_source_handles():
             self.progress.step()
-            info = self.db.source_map[bhandle]
-            source = Source()
-            source.unserialize(info)
+            source = self.db.get_source_from_handle(bhandle)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1751,11 +1730,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for note reference problems')
 
-        for bhandle in self.db.person_map.keys():
+        for bhandle in self.db.get_person_handles():
             self.progress.step()
-            info = self.db.person_map[bhandle]
-            person = Person()
-            person.unserialize(info)
+            person = self.db.get_person_from_handle(bhandle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1767,11 +1744,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.family_map.keys():
+        for bhandle in self.db.get_family_handles():
             self.progress.step()
-            info = self.db.family_map[bhandle]
-            family = Family()
-            family.unserialize(info)
+            family = self.db.get_family_from_handle(bhandle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1783,11 +1758,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.place_map.keys():
+        for bhandle in self.db.get_place_handles():
             self.progress.step()
-            info = self.db.place_map[bhandle]
-            place = Place()
-            place.unserialize(info)
+            place = self.db.get_place_from_handle(bhandle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1799,11 +1772,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.citation_map.keys():
+        for bhandle in self.db.get_citation_handles():
             self.progress.step()
-            info = self.db.citation_map[bhandle]
-            citation = Citation()
-            citation.unserialize(info)
+            citation = self.db.get_citation_from_handle(bhandle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1815,11 +1786,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.source_map.keys():
+        for bhandle in self.db.get_source_handles():
             self.progress.step()
-            info = self.db.source_map[bhandle]
-            source = Source()
-            source.unserialize(info)
+            source = self.db.get_source_from_handle(bhandle)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1831,11 +1800,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.media_map.keys():
+        for bhandle in self.db.get_media_handles():
             self.progress.step()
-            info = self.db.media_map[bhandle]
-            obj = Media()
-            obj.unserialize(info)
+            obj = self.db.get_media_from_handle(bhandle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1847,11 +1814,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.event_map.keys():
+        for bhandle in self.db.get_event_handles():
             self.progress.step()
-            info = self.db.event_map[bhandle]
-            event = Event()
-            event.unserialize(info)
+            event = self.db.get_event_from_handle(bhandle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1863,11 +1828,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.repository_map.keys():
+        for bhandle in self.db.get_repository_handles():
             self.progress.step()
-            info = self.db.repository_map[bhandle]
-            repo = Repository()
-            repo.unserialize(info)
+            repo = self.db.get_repository_from_handle(bhandle)
             handle_list = repo.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1918,11 +1881,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for tag reference problems')
 
-        for bhandle in self.db.person_map.keys():
+        for bhandle in self.db.get_person_handles():
             self.progress.step()
-            info = self.db.person_map[bhandle]
-            person = Person()
-            person.unserialize(info)
+            person = self.db.get_person_from_handle(bhandle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1934,11 +1895,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.family_map.keys():
+        for bhandle in self.db.get_family_handles():
             self.progress.step()
-            info = self.db.family_map[bhandle]
-            family = Family()
-            family.unserialize(info)
+            family = self.db.get_family_from_handle(bhandle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1950,11 +1909,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.media_map.keys():
+        for bhandle in self.db.get_media_handles():
             self.progress.step()
-            info = self.db.media_map[bhandle]
-            obj = Media()
-            obj.unserialize(info)
+            obj = self.db.get_media_from_handle(bhandle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1966,11 +1923,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.note_map.keys():
+        for bhandle in self.db.get_note_handles():
             self.progress.step()
-            info = self.db.note_map[bhandle]
-            note = Note()
-            note.unserialize(info)
+            note = self.db.get_note_from_handle(bhandle)
             handle_list = note.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -2001,11 +1956,9 @@ class CheckIntegrity:
                                  'problems'), total)
         logging.info('Looking for media source reference problems')
 
-        for handle in self.db.source_map.keys():
+        for handle in self.db.get_source_handles():
             self.progress.step()
-            info = self.db.source_map[handle]
-            source = Source()
-            source.unserialize(info)
+            source = self.db.get_source_from_handle(handle)
             new_media_ref_list = []
             for media_ref in source.get_media_list():
                 citation_list = media_ref.get_citation_list()

@@ -80,7 +80,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_person_from_gramps_id,
                          db.get_person_from_handle,
                          db.find_next_person_gramps_id,
-                         db.person_map,
+                         db.get_person_handles,
                          db.commit_person,
                          db.person_prefix)
 
@@ -91,7 +91,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_family_from_gramps_id,
                          db.get_family_from_handle,
                          db.find_next_family_gramps_id,
-                         db.family_map,
+                         db.get_family_handles,
                          db.commit_family,
                          db.family_prefix)
             if uistate:
@@ -101,7 +101,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_event_from_gramps_id,
                          db.get_event_from_handle,
                          db.find_next_event_gramps_id,
-                         db.event_map,
+                         db.get_event_handles,
                          db.commit_event,
                          db.event_prefix)
             if uistate:
@@ -111,7 +111,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_media_from_gramps_id,
                          db.get_media_from_handle,
                          db.find_next_media_gramps_id,
-                         db.media_map,
+                         db.get_media_handles,
                          db.commit_media,
                          db.media_prefix)
             if uistate:
@@ -121,7 +121,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_source_from_gramps_id,
                          db.get_source_from_handle,
                          db.find_next_source_gramps_id,
-                         db.source_map,
+                         db.get_source_handles,
                          db.commit_source,
                          db.source_prefix)
             if uistate:
@@ -131,7 +131,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_citation_from_gramps_id,
                          db.get_citation_from_handle,
                          db.find_next_citation_gramps_id,
-                         db.citation_map,
+                         db.get_citation_handles,
                          db.commit_citation,
                          db.citation_prefix)
             if uistate:
@@ -141,7 +141,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_place_from_gramps_id,
                          db.get_place_from_handle,
                          db.find_next_place_gramps_id,
-                         db.place_map,
+                         db.get_place_handles,
                          db.commit_place,
                          db.place_prefix)
             if uistate:
@@ -151,7 +151,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_repository_from_gramps_id,
                          db.get_repository_from_handle,
                          db.find_next_repository_gramps_id,
-                         db.repository_map,
+                         db.get_repository_handles,
                          db.commit_repository,
                          db.repository_prefix)
     #add reorder notes ID
@@ -162,7 +162,7 @@ class ReorderIds(tool.BatchTool):
                          db.get_note_from_gramps_id,
                          db.get_note_from_handle,
                          db.find_next_note_gramps_id,
-                         db.note_map,
+                         db.get_note_handles,
                          db.commit_note,
                          db.note_prefix)
             if uistate:
@@ -174,20 +174,18 @@ class ReorderIds(tool.BatchTool):
         db.request_rebuild()
 
     def reorder(self, class_type, find_from_id, find_from_handle,
-                find_next_id, table, commit, prefix):
+                find_next_id, find_handles, commit, prefix):
         dups = []
         newids = {}
 
         formatmatch = _parseformat.match(prefix)
 
-        for handle in list(table.keys()):
+        for handle in find_handles():
             if self.uistate:
                 self.progress.step()
 
-            sdata = table[handle]
+            obj = find_from_handle(handle)
 
-            obj = class_type()
-            obj.unserialize(sdata)
             gramps_id = obj.get_gramps_id()
             # attempt to extract integer, if we can't, treat it as a
             # duplicate
