@@ -81,27 +81,6 @@ def touch(fname, mode=0o666, dir_fd=None, **kwargs):
             os.utime(f.fileno() if os.utime in os.supports_fd else fname,
                      dir_fd=None if os.supports_fd else dir_fd, **kwargs)
 
-class IDMapTransaction:
-    """
-    Provide compatibility with BSDDB. A class to provide a lookup
-    to see if a gramps_id has been inserted.
-    """
-    def __init__(self, table_name, database):
-        """
-        Takes a table_name and database.
-        Provides .get(b"gramps_id")
-        """
-        self.table_name = table_name
-        self.database = database
-
-    def get(self, bkey, default=None, txn=None, **kwargs):
-        """
-        Returns True if bkey (binary gramps_id) is in database.
-        """
-        skey = bkey.decode("utf-8")
-        return self.database.get_table_func(self.table_name,
-                                            "has_gramps_id_func")(skey)
-
 class DbGenericUndo(DbUndo):
     def __init__(self, grampsdb, path):
         super(DbGenericUndo, self).__init__(grampsdb)
@@ -651,15 +630,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_note_id_prefix('N%04d')
         # ----------------------------------
         self.undodb = None
-        self.id_trans  = IDMapTransaction("Person", self)
-        self.fid_trans = IDMapTransaction("Family", self)
-        self.pid_trans = IDMapTransaction("Place", self)
-        self.cid_trans = IDMapTransaction("Citation", self)
-        self.sid_trans = IDMapTransaction("Source", self)
-        self.oid_trans = IDMapTransaction("Media", self)
-        self.rid_trans = IDMapTransaction("Repository", self)
-        self.nid_trans = IDMapTransaction("Note", self)
-        self.eid_trans = IDMapTransaction("Event", self)
         self.cmap_index = 0
         self.smap_index = 0
         self.emap_index = 0
