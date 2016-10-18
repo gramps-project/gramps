@@ -1814,6 +1814,72 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_handle(self.tag_map, handle)
 
+    def __has_gramps_id(self, id_map, gramps_id):
+        """
+        Helper function for has_<object>_gramps_id methods
+        """
+        if isinstance(gramps_id, str):
+            gramps_id = gramps_id.encode('utf-8')
+        try:
+            return id_map.get(gramps_id, txn=self.txn) is not None
+        except DBERRS as msg:
+            self.__log_error()
+            raise DbError(msg)
+
+    def has_person_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Person table.
+        """
+        return self.__has_gramps_id(self.id_trans, gramps_id)
+
+    def has_family_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Family table.
+        """
+        return self.__has_gramps_id(self.fid_trans, gramps_id)
+
+    def has_media_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Media table.
+        """
+        return self.__has_gramps_id(self.oid_trans, gramps_id)
+
+    def has_repository_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Repository table.
+        """
+        return self.__has_gramps_id(self.rid_trans, gramps_id)
+
+    def has_note_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Note table.
+        """
+        return self.__has_gramps_id(self.nid_trans, gramps_id)
+
+    def has_event_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Event table.
+        """
+        return self.__has_gramps_id(self.eid_trans, gramps_id)
+
+    def has_place_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Place table.
+        """
+        return self.__has_gramps_id(self.pid_trans, gramps_id)
+
+    def has_source_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Source table.
+        """
+        return self.__has_gramps_id(self.sid_trans, gramps_id)
+
+    def has_citation_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Citation table.
+        """
+        return self.__has_gramps_id(self.cid_trans, gramps_id)
+
     def __sortbyperson_key(self, handle):
         if isinstance(handle, str):
             handle = handle.encode('utf-8')

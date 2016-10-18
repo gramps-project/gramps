@@ -554,7 +554,7 @@ class ProgenParser:
             person.unserialize(self.db.get_raw_person_data(intid))
         else:
             gramps_id = self.db.id2user_format("I%d" % progen_id)
-            if self.db.id_trans.get(gramps_id):
+            if self.db.has_person_gramps_id(gramps_id):
                 gramps_id = self.db.find_next_person_gramps_id()
             intid = _find_from_handle(progen_id, self.gid2id)
             person.set_handle(intid)
@@ -573,7 +573,7 @@ class ProgenParser:
             family.unserialize(self.db.get_raw_family_data(intid))
         else:
             gramps_id = self.db.fid2user_format("F%d" % progen_id)
-            if self.db.id_trans.get(gramps_id):
+            if self.db.has_family_gramps_id(gramps_id):
                 gramps_id = self.db.find_next_family_gramps_id()
             intid = _find_from_handle(progen_id, self.fid2id)
             family.set_handle(intid)

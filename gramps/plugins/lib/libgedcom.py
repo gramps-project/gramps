@@ -1634,8 +1634,8 @@ class IdFinder:
 #-------------------------------------------------------------------------
 class IdMapper:
 
-    def __init__(self, trans, find_next, id2user_format):
-        self.trans = trans
+    def __init__(self, has_gid, find_next, id2user_format):
+        self.has_gid = has_gid
         self.find_next = find_next
         self.id2user_format = id2user_format
         self.swap = {}
@@ -1660,10 +1660,7 @@ class IdMapper:
                 # have found it. If we had already encountered I0001 and we are
                 # now looking for I1, it wouldn't be in self.swap, and we now
                 # find that I0001 is in use, so we have to create a new id.
-                bformatted_gid = formatted_gid
-                if isinstance(bformatted_gid, str):
-                    bformatted_gid = bformatted_gid.encode('utf-8')
-                if self.trans.get(bformatted_gid) or \
+                if self.has_gid(formatted_gid) or \
                         (formatted_gid in list(self.swap.values())):
                     new_val = self.find_next()
                     while new_val in list(self.swap.values()):
@@ -1795,27 +1792,27 @@ class GedcomParser(UpdateCallback):
         self.want_parse_warnings = True
 
         self.pid_map = IdMapper(
-            self.dbase.id_trans,
+            self.dbase.has_person_gramps_id,
             self.dbase.find_next_person_gramps_id,
             self.dbase.id2user_format)
         self.fid_map = IdMapper(
-            self.dbase.fid_trans,
+            self.dbase.has_family_gramps_id,
             self.dbase.find_next_family_gramps_id,
             self.dbase.fid2user_format)
         self.sid_map = IdMapper(
-            self.dbase.sid_trans,
+            self.dbase.has_source_gramps_id,
             self.dbase.find_next_source_gramps_id,
             self.dbase.sid2user_format)
         self.oid_map = IdMapper(
-            self.dbase.oid_trans,
+            self.dbase.has_media_gramps_id,
             self.dbase.find_next_media_gramps_id,
             self.dbase.oid2user_format)
         self.rid_map = IdMapper(
-            self.dbase.rid_trans,
+            self.dbase.has_repository_gramps_id,
             self.dbase.find_next_repository_gramps_id,
             self.dbase.rid2user_format)
         self.nid_map = IdMapper(
-            self.dbase.nid_trans,
+            self.dbase.has_note_gramps_id,
             self.dbase.find_next_note_gramps_id,
             self.dbase.nid2user_format)
 
@@ -3078,11 +3075,11 @@ class GedcomParser(UpdateCallback):
 
     def __check_xref(self):
 
-        def __check(map, trans, class_func, commit_func, gramps_id2handle, msg):
+        def __check(map, has_gid_func, class_func, commit_func,
+                    gramps_id2handle, msg):
             for input_id, gramps_id in map.map().items():
                 # Check whether an object exists for the mapped gramps_id
-                bgramps_id = gramps_id.encode('utf-8')
-                if not trans.get(bgramps_id):
+                if not has_gid_func(gramps_id):
                     handle = self.__find_from_handle(gramps_id,
                                                      gramps_id2handle)
                     if msg == "FAM":
@@ -3109,18 +3106,24 @@ class GedcomParser(UpdateCallback):
 
         self.missing_references = 0
         previous_errors = self.number_of_errors
-        __check(self.pid_map, self.dbase.id_trans, self.__find_or_create_person,
-                self.dbase.commit_person, self.gid2id, "INDI")
-        __check(self.fid_map, self.dbase.fid_trans, self.__find_or_create_family,
-                self.dbase.commit_family, self.fid2id, "FAM")
-        __check(self.sid_map, self.dbase.sid_trans, self.__find_or_create_source,
-                self.dbase.commit_source, self.sid2id, "SOUR")
-        __check(self.oid_map, self.dbase.oid_trans, self.__find_or_create_media,
-                self.dbase.commit_media, self.oid2id, "OBJE")
-        __check(self.rid_map, self.dbase.rid_trans, self.__find_or_create_repository,
-                self.dbase.commit_repository, self.rid2id, "REPO")
-        __check(self.nid_map, self.dbase.nid_trans, self.__find_or_create_note,
-                self.dbase.commit_note, self.nid2id, "NOTE")
+        __check(self.pid_map, self.dbase.has_person_gramps_id,
+                self.__find_or_create_person, self.dbase.commit_person,
+                self.gid2id, "INDI")
+        __check(self.fid_map, self.dbase.has_family_gramps_id,
+                self.__find_or_create_family, self.dbase.commit_family,
+                self.fid2id, "FAM")
+        __check(self.sid_map, self.dbase.has_source_gramps_id,
+                self.__find_or_create_source, self.dbase.commit_source,
+                self.sid2id, "SOUR")
+        __check(self.oid_map, self.dbase.has_media_gramps_id,
+                self.__find_or_create_media, self.dbase.commit_media,
+                self.oid2id, "OBJE")
+        __check(self.rid_map, self.dbase.has_repository_gramps_id,
+                self.__find_or_create_repository, self.dbase.commit_repository,
+                self.rid2id, "REPO")
+        __check(self.nid_map, self.dbase.has_note_gramps_id,
+                self.__find_or_create_note, self.dbase.commit_note,
+                self.nid2id, "NOTE")
 
         # Check persons membership in referenced families
         def __input_fid(gramps_id):
