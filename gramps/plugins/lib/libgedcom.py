@@ -2778,12 +2778,11 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_note(self, gramps_id):
         """
-        Finds or creates a repository based on the GRAMPS ID. If the ID is
+        Finds or creates a note based on the GRAMPS ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new repository, assign the handle and GRAMPS ID.
-
-        Some GEDCOM "flavors" destroy the specification, and declare the
-        repository inline instead of in a object.
+        we create a new note, assign the handle and GRAMPS ID.
+        If no GRAMPS ID is passed in, we not only make a Note with GID, we
+        commit it.
         """
         note = Note()
         if not gramps_id:
@@ -3347,7 +3346,7 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             repo.set_name(submitter_name)
             repo.set_handle(create_id())
-            repo.set_gramps_id(self.dbase.find_next_repository_gramps_id())
+            repo.set_gramps_id(self.rid_map[""])
 
             addr = Address()
             addr.set_street(state.res.get_address())
@@ -6096,7 +6095,7 @@ class GedcomParser(UpdateCallback):
     def __source_text(self, line, state):
         note = Note()
         note.set(line.data)
-        gramps_id = self.dbase.find_next_note_gramps_id()
+        gramps_id = self.nid_map[""]
         note.set_gramps_id(gramps_id)
         note.set_type(NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
@@ -6106,7 +6105,7 @@ class GedcomParser(UpdateCallback):
     def __citation_data_text(self, line, state):
         note = Note()
         note.set(line.data)
-        gramps_id = self.dbase.find_next_note_gramps_id()
+        gramps_id = self.nid_map[""]
         note.set_gramps_id(gramps_id)
         note.set_type(NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
@@ -6123,7 +6122,7 @@ class GedcomParser(UpdateCallback):
                              line.data,
                              [(0, len(line.data))])
         note.set_styledtext(StyledText(line.data, [tags]))
-        gramps_id = self.dbase.find_next_note_gramps_id()
+        gramps_id = self.nid_map[""]
         note.set_gramps_id(gramps_id)
         note.set_type(NoteType.CITATION)
         self.dbase.add_note(note, self.trans)
@@ -6136,7 +6135,7 @@ class GedcomParser(UpdateCallback):
         """
         note = Note()
         note.set(line.data)
-        gramps_id = self.dbase.find_next_note_gramps_id()
+        gramps_id = self.nid_map[""]
         note.set_gramps_id(gramps_id)
         note.set_type(_("Citation Justification"))
         self.dbase.add_note(note, self.trans)
@@ -6333,7 +6332,7 @@ class GedcomParser(UpdateCallback):
             # This format has no repository name. See http://west-
             # penwith.org.uk/misc/ftmged.htm which points out this is
             # incorrect
-            gid = self.dbase.find_next_repository_gramps_id()
+            gid = self.rid_map[""]
             repo = self.__find_or_create_repository(gid)
             self.dbase.commit_repository(repo, self.trans)
         else:
@@ -6347,7 +6346,7 @@ class GedcomParser(UpdateCallback):
             # non-standard GEDCOM.
             gid = self.repo2id.get(line.data)
             if gid is None:
-                gid = self.dbase.find_next_repository_gramps_id()
+                gid = self.rid_map[""]
             repo = self.__find_or_create_repository(gid)
             self.repo2id[line.data] = repo.get_gramps_id()
             repo.set_name(line.data)
@@ -7524,7 +7523,7 @@ class GedcomParser(UpdateCallback):
             handle = self.inline_srcs.get(title, create_id())
             src = Source()
             src.handle = handle
-            src.gramps_id = self.dbase.find_next_source_gramps_id()
+            src.gramps_id = self.sid_map[""]
             self.inline_srcs[title] = handle
         else:
             src = self.__find_or_create_source(self.sid_map[line.data])

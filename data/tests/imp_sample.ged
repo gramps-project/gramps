@@ -21,6 +21,7 @@
 1 NAME Anna /Hansdotter/
 2 GIVN Anna
 2 SURN Hansdotter
+2 NOTE Hans daughter? N0000
 1 SEX F
 1 BIRT
 2 TYPE Birth of Anna Hansdotter
@@ -30,14 +31,17 @@
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
 2 PLAC Sparks, Washoe Co., NV
+2 NOTE Her eulogy was great! N0001
 1 FAMS @F3@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Inline note should get ID N0002
 0 @I1@ INDI
 1 NAME Keith Lloyd /Smith/
 2 GIVN Keith Lloyd
 2 SURN Smith
+2 NOTE @N7@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Keith Lloyd Smith
@@ -47,6 +51,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Keith Lloyd Smith inline N0003
 0 @I10@ INDI
 1 NAME Hans Peter /Smith/
 2 GIVN Hans Peter
@@ -66,6 +71,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Hans Peter Smith inline N0004
 0 @I11@ INDI
 1 NAME Hanna /Smith/
 2 GIVN Hanna
@@ -79,6 +85,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Hanna Smith inline N0005
 0 @I12@ INDI
 1 NAME Herman Julius /Nielsen/
 2 GIVN Herman Julius
@@ -95,6 +102,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Herman Julius Nielsen N0006
 0 @I13@ INDI
 1 NAME Evelyn /Michaels/
 2 GIVN Evelyn
@@ -107,6 +115,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Evelyn Michaels N0007
 0 @I14@ INDI
 1 NAME Marjorie Lee /Smith/
 2 GIVN Marjorie Lee
@@ -246,18 +255,26 @@
 2 TYPE Birth of Hjalmar Smith
 2 DATE 31 JAN 1893
 2 PLAC Rønne, Bornholm, Denmark
+1 BIRT Y
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
 2 PLAC Rønne, Bornholm, Denmark
+1 DEAT Y
 1 FAMC @F3@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 ALIA @I22@
+1 ALIA James /Smith/
+1 NAME Jimmy Smith
+1 TITL Sir Jimmy Smith
+2 DATE 5 OCT 1874
+2 PLAC Rønne, Bornholm, Denmark
 0 @I22@ INDI
 1 NAME Martin /Smith/
-2 GIVN Martin
 2 SURN Smith
+2 GIVN Martin
 1 SEX M
 1 BIRT
 2 TYPE Birth of Martin Smith
@@ -275,17 +292,29 @@
 1 FAMS @F2@
 1 NOTE @N0002@
 1 CHAN
+1 RESN locked
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
 0 @I23@ INDI
+1 NAME Astrid Shermanna /Augusta/
+2 GIVN Astrid Shermanna
+2 SURN Augusta
+1 NAME Star /Augusta/
+2 GIVN Star
+2 SURN Augusta
+2 TYPE AKA
+2 DATE FROM 1889 TO 1898
 1 NAME Astrid Shermanna Augusta /Smith/
 2 GIVN Astrid Shermanna Augusta
 2 SURN Smith
+2 TYPE MARRIED
+2 NPFX Dr.
 1 SEX F
 1 BIRT
 2 TYPE Birth of Astrid Shermanna Augusta Smith
 2 DATE 31 JAN 1889
 2 PLAC Rønne, Bornholm, Denmark
+2 FAMC @F3@
 1 DEAT
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
@@ -318,6 +347,9 @@
 2 DATE 7 DEC 1862
 2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F2@
+2 NOTE A FAMC note
+2 PEDI birth
+2 SOUR @S2@
 1 FAMS @F3@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -326,6 +358,7 @@
 1 NAME Marta /Ericsdotter/
 2 GIVN Marta
 2 SURN Ericsdotter
+2 _MARN Smith
 1 SEX F
 1 BIRT
 2 TYPE Birth of Marta Ericsdotter
@@ -335,6 +368,17 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 FACT Housekeeper
+2 TYPE Skills
+1 CONL
+2 DATE 1790
+1 ENDL
+2 DATE 1795
+1 SLGC
+2 DATE 1796
+2 PLAC Sweden
+3 FORM Country
+2 FAMC @F1@
 0 @I26@ INDI
 1 NAME Kirsti Marie /Smith/
 2 GIVN Kirsti Marie
@@ -532,6 +576,8 @@
 2 GIVN Edwin Michael
 2 SURN Smith
 2 SOUR @S1@
+3 DATA
+4 TEXT Record for Edwin Michael Smith
 1 SEX M
 1 BIRT
 2 TYPE Birth of Edwin Michael Smith
@@ -742,6 +788,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 _STAT
 0 @F11@ FAM
 1 HUSB @I3@
 1 WIFE @I28@
@@ -749,9 +796,20 @@
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
 2 PLAC Rønne, Bornholm, Denmark
+3 MAP
+4 LATI N55.1010
+4 LONG E14.7083
+3 OBJE
+4 FILE Magnes&Anna_smiths_marr_cert.jpg
+3 SOUR @S0@
+2 OBJE
+3 FILE Magnes&Anna_smiths_marr_cert.jpg
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 EVEN Celebration
+2 TYPE MARB
+2 DATE 24 AUG 1883
 0 @F12@ FAM
 1 HUSB @I18@
 1 WIFE @I34@
@@ -765,6 +823,11 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 SLGS
+2 PLAC Sparks, Washoe Co., NV
+1 NCHI 2
+1 OBJE
+2 FILE John&Alice_smiths_marr_cert.jpg
 0 @F13@ FAM
 1 HUSB @I37@
 1 WIFE @I30@
@@ -772,10 +835,18 @@
 2 TYPE Marriage of Edwin Michael Smith and Janice Ann Adams
 2 DATE 27 MAY 1995
 2 PLAC San Ramon, Conta Costa Co., CA
+2 _WITN @I18@
+3 TYPE WITNESS_OF_MARRIAGE
 1 ENGA
 2 TYPE Engagement of Edwin Michael Smith and Janice Ann Adams
 2 DATE 5 OCT 1994
+2 TIME 2:00pm
+2 AGNC Lovely ring presentation
+2 _WITN George Smorge
+2 _PRIV
+2 NOTE Description: Engagement of Edwin Michael Smith and Janice Ann Adams
 2 PLAC San Francisco, San Francisco Co., CA
+2 _UID 123456
 1 CHIL @I5@
 1 CHIL @I2@
 1 CHAN
@@ -887,11 +958,16 @@
 3 TIME 01:35:26
 0 @S1@ SOUR
 1 TITL Birth Certificate
+1 REPO Invalid REPO Name
+2 NOTE Invalid REPO (Name instead of xref)
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 TEXT Source text of Birth cert
 0 @S2@ SOUR
 1 TITL Birth Records
+1 REPO
+2 NOTE Invalid REPO (no name)
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
@@ -943,4 +1019,5 @@
 0 @N0004@ NOTE But Aunt Martha still keeps the original!
 0 @N0005@ NOTE The repository reference from the source is important
 0 @N0006@ NOTE Some note on the repo
+0 @N7@ NOTE 'Smith': a very common name
 0 TRLR
