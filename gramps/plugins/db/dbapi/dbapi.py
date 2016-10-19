@@ -609,85 +609,72 @@ class DBAPI(DbGeneric):
             return self.get_tag_from_handle(row[0])
         return None
 
+    def get_number_of(self, obj_key):
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT count(1) FROM %s;" % table
+        self.dbapi.execute(sql)
+        row = self.dbapi.fetchone()
+        return row[0]
+
     def get_number_of_people(self):
         """
         Return the number of people currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM person;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(PERSON_KEY)
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM event;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(EVENT_KEY)
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM place;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(PLACE_KEY)
 
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM tag;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(TAG_KEY)
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM family;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(FAMILY_KEY)
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM note;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(NOTE_KEY)
 
     def get_number_of_citations(self):
         """
         Return the number of citations currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM citation;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(CITATION_KEY)
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM source;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(SOURCE_KEY)
 
     def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM media;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(MEDIA_KEY)
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
         """
-        self.dbapi.execute("SELECT count(1) FROM repository;")
-        row = self.dbapi.fetchone()
-        return row[0]
+        return self.get_number_of(REPOSITORY_KEY)
 
     def has_name_group_key(self, key):
         """
