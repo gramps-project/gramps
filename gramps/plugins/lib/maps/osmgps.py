@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from math import pi, sin, atanh, floor
 
 #------------------------------------------------------------------------
 #
@@ -80,6 +81,23 @@ except:
 # pylint: disable=unused-argument
 # pylint: disable=no-member
 # pylint: disable=maybe-no-member
+
+def lon2pixel(zoom, longitude, size):
+    """
+    pixel_x = (2^zoom * size * longitude) / 2PI + (2^zoom * size) / 2
+    """
+    value = ((longitude * size * (2**zoom)) / (2*pi)) + ((2**zoom) * size / 2)
+    return int(value)
+
+def lat2pixel(zoom, latitude, size):
+    """
+    http://manialabs.wordpress.com/2013/01/26/converting-latitude-and-longitude-to-map-tile-in-mercator-projection/
+
+    pixel_y = -(2^zoom * size * lat_m) / 2PI + (2^zoom * size) / 2
+    """
+    lat_m = atanh(sin(latitude))
+    value = -((lat_m * size * (2**zoom)) / (2*pi)) + ((2**zoom) * (size/2))
+    return int(value)
 
 class OsmGps:
     """
@@ -245,6 +263,40 @@ class OsmGps:
         self.osm.show()
         self.vbox.pack_start(self.osm, True, True, 0)
         self.goto_handle(handle=None)
+
+    def reload_tiles(self):
+        """
+        We need to reload all visible tiles for the current map
+        """
+        map_idx = config.get("geography.map_service")
+        map_name = constants.TILES_PATH[map_idx]
+        map_path = os.path.join(config.get('geography.path'), map_name)
+        # get the top left corner and bottom right corner
+        bbox = self.osm.get_bbox()
+        pt1 = bbox[0]
+        pt2 = bbox[1]
+        self.zoom = config.get("geography.zoom")
+        tile_size = float(256)
+        # get the file extension depending on the map provider
+        img_format = self.osm.source_get_image_format(map_idx)
+        # calculate the number of images to download in rows and columns
+        pt1_x = floor(lon2pixel(self.zoom, pt1.rlon, tile_size) / tile_size)
+        pt1_y = floor(lat2pixel(self.zoom, pt1.rlat, tile_size) / tile_size)
+        pt2_x = floor(lon2pixel(self.zoom, pt2.rlon, tile_size) / tile_size)
+        pt2_y = floor(lat2pixel(self.zoom, pt2.rlat, tile_size) / tile_size)
+        for ptx_i in range(pt1_x, pt2_x):
+            for pty_j in range(pt1_y, pt2_y):
+                tile_path = "%s%c%d%c%d%c%d.%s" % (map_path, os.sep, self.zoom,
+                                                   os.sep, ptx_i, os.sep, pty_j,
+                                                   img_format)
+                _LOG.debug("file removed : %s", tile_path)
+                try:
+                    os.unlink(tile_path)
+                except:
+                    # The tile doesn't exist because it is in the load queue.
+                    # That occurs when zooming.
+                    pass
+        self.osm.download_maps(pt1, pt2, self.zoom, self.zoom)
 
     def update_shortcuts(self, arg):
         """

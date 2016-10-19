@@ -412,6 +412,16 @@ class GeoGraphyView(OsmGps, NavigationView):
             changemapitem.connect("activate", self.change_map, my_map)
             changemap.append(changemapitem)
 
+        reload_text = _("Reload all visible tiles for '%(map)s'.") % {
+                   'map' : map_name
+                  }
+        self.reloadtiles = Gtk.MenuItem(label=reload_text)
+        reloadtiles = self.reloadtiles
+        reloadtiles.connect("activate", self.reload_visible_tiles)
+
+        reloadtiles.show()
+        menu.append(reloadtiles)
+
         clear_text = _("Clear the '%(map)s' tiles cache.") % {
                    'map' : map_name
                   }
@@ -428,6 +438,11 @@ class GeoGraphyView(OsmGps, NavigationView):
                    None, event.button, event.time)
         return 1
 
+    def reload_visible_tiles(self, menu):
+        """
+        We need to reload all visible tiles for the current map
+        """
+        self.reload_tiles()
 
     def clear_map(self, menu, the_map):
         """
