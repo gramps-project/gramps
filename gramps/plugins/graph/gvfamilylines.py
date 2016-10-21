@@ -135,10 +135,15 @@ class FamilyLinesOptions(MenuReportOptions):
                                        '"family lines".'))
         add_option('removeextra', remove_extra_people)
 
-        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
-        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
-                                      'between women and men.'))
-        add_option("useroundedcorners", use_roundedcorners)
+        self.use_roundedcorners = EnumeratedListOption(_('Use rounded corners'), 0)
+        self.use_roundedcorners.add_item(0, _('None'))
+        self.use_roundedcorners.add_item(1, _('Women'))
+        self.use_roundedcorners.add_item(2, _('Men'))
+        self.use_roundedcorners.add_item(3, _('Both'))
+        self.use_roundedcorners.set_help(_('Use rounded corners to differentiate '
+                                           'between women and men or when you like '
+                                           'it more.'))
+        add_option('useroundedcorners', self.use_roundedcorners)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
         for i in range(len(_COLORS)):
@@ -791,7 +796,8 @@ class FamilyLinesReport(Report):
                 else:
                     birth_str = self._get_date(date)
 
-            # get birth place (one of:  city, state, or country) we can use
+            # get birth place (one of:  hamlet, village, town, city, parish,
+            # county, province, region, state or country) we can use
             birthplace = None
             if bth_event and self._incplaces:
                 birthplace = self.get_event_place(bth_event)
@@ -805,7 +811,8 @@ class FamilyLinesReport(Report):
                 else:
                     death_str = self._get_date(date)
 
-            # get death place (one of:  city, state, or country) we can use
+            # get death place (one of:  hamlet, village, town, city, parish,
+            # county, province, region, state or country) we can use
             deathplace = None
             if dth_event and self._incplaces:
                 deathplace = self.get_event_place(dth_event)
@@ -820,9 +827,9 @@ class FamilyLinesReport(Report):
                     media_mime_type = media.get_mime_type()
                     if media_mime_type[0:5] == "image":
                         image_path = get_thumbnail_path(
-                             media_path_full(self._db, media.get_path()),
-                             rectangle=media_list[0].get_rectangle(),
-                             size=self._imagesize)
+                            media_path_full(self._db, media.get_path()),
+                            rectangle=media_list[0].get_rectangle(),
+                            size=self._imagesize)
 
             # put the label together and output this person
             label = ""
@@ -847,22 +854,20 @@ class FamilyLinesReport(Report):
             elif self.includeid == 2: # own line
                 label += "%s(%s)" % (line_delimiter, p_id)
 
-            if birth_str or death_str:
-                label += '%s(' % line_delimiter
+            if birth_str or birthplace:
+                label += '%s* ' % line_delimiter
                 if birth_str:
                     label += '%s' % birth_str
-                label += ' - '
-                if death_str:
-                    label += '%s' % death_str
-                label += ')'
-            if birthplace or deathplace:
-                if birthplace == deathplace:
-                    deathplace = None    # no need to print the same name twice
-                label += '%s' % line_delimiter
+                if birth_str and birthplace:
+                    label += ' - '
                 if birthplace:
                     label += '%s' % birthplace
-                if birthplace and deathplace:
-                    label += ' / '
+            if death_str or deathplace:
+                label += '%s† ' % line_delimiter
+                if death_str:
+                    label += '%s' % death_str
+                if death_str and deathplace:
+                    label += ' - '
                 if deathplace:
                     label += '%s' % deathplace
 
@@ -880,7 +885,9 @@ class FamilyLinesReport(Report):
                 border = ""
                 fill = ""
 
-            if gender == person.FEMALE and self._useroundedcorners:
+            if gender == person.MALE and self._useroundedcorners in (2, 3):
+                style = "rounded"
+            elif gender == person.FEMALE and self._useroundedcorners in (1, 3):
                 style = "rounded"
             elif gender == person.UNKNOWN:
                 shape = "hexagon"
@@ -1045,10 +1052,25 @@ class FamilyLinesReport(Report):
             place = self._db.get_place_from_handle(place_handle)
             if place:
                 location = get_main_location(self._db, place)
-                if location.get(PlaceType.CITY):
+                if location.get(PlaceType.HAMLET):
+                    place_text = location.get(PlaceType.HAMLET)
+                elif location.get(PlaceType.VILLAGE):
+                    place_text = location.get(PlaceType.VILLAGE)
+                elif location.get(PlaceType.TOWN):
+                    place_text = location.get(PlaceType.TOWN)
+                elif location.get(PlaceType.CITY):
                     place_text = location.get(PlaceType.CITY)
+                elif location.get(PlaceType.PARISH):
+                    place_text = location.get(PlaceType.PARISH)
+                elif location.get(PlaceType.COUNTY):
+                    place_text = location.get(PlaceType.COUNTY)
+                elif location.get(PlaceType.PROVINCE):
+                    place_text = location.get(PlaceType.PROVINCE)
+                elif location.get(PlaceType.REGION):
+                    place_text = location.get(PlaceType.REGION)
                 elif location.get(PlaceType.STATE):
                     place_text = location.get(PlaceType.STATE)
                 elif location.get(PlaceType.COUNTRY):
                     place_text = location.get(PlaceType.COUNTRY)
         return place_text
+
