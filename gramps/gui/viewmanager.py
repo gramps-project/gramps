@@ -740,6 +740,9 @@ class ViewManager(CLIManager):
         """
         Close the database
         """
+        # avoid to close the database if busy in operation
+        if self.uistate.busy:
+            return
         self.dbstate.no_database()
         self.post_close_db()
 
@@ -747,6 +750,9 @@ class ViewManager(CLIManager):
         """
         Closes out the program, backing up data
         """
+        # avoid to quit gramps if busy in operation
+        if self.uistate.busy:
+            return
         # mark interface insenstitive to prevent unexpected events
         self.uistate.set_sensitive(False)
 
