@@ -22114,7 +22114,7 @@ msgstr "Événements familiaux"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:456
 msgid "Gramplet showing the events for a family"
-msgstr "Gramplet affichant toutes les événements pour la famille"
+msgstr "Gramplet affichant tous les événements pour la famille"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:469
 msgid "Person Gallery"
