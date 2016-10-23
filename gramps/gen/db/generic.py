@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Gramps Development Team
+# Copyright (C) 2016      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -305,14 +306,14 @@ class MetaCursor:
         pass
 
 class Cursor:
-    def __init__(self, map):
-        self.map = map
+    def __init__(self, iterator):
+        self.iterator = iterator
         self._iter = self.__iter__()
     def __enter__(self):
         return self
     def __iter__(self):
-        for item in self.map.keys():
-            yield (item, self.map[item])
+        for handle, data in self.iterator():
+            yield (handle, data)
     def __next__(self):
         try:
             return self._iter.__next__()
@@ -321,8 +322,8 @@ class Cursor:
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
-        for item in self.map.keys():
-            yield (item, self.map[item])
+        for handle, data in self.iterator():
+            yield (handle, data)
     def first(self):
         self._iter = self.__iter__()
         try:
@@ -1295,37 +1296,37 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return Note.create(data)
 
     def get_place_cursor(self):
-        return Cursor(self.place_map)
+        return Cursor(self._iter_raw_place_data)
 
     def get_place_tree_cursor(self, *args, **kwargs):
         return TreeCursor(self, self.place_map)
 
     def get_person_cursor(self):
-        return Cursor(self.person_map)
+        return Cursor(self._iter_raw_person_data)
 
     def get_family_cursor(self):
-        return Cursor(self.family_map)
+        return Cursor(self._iter_raw_family_data)
 
     def get_event_cursor(self):
-        return Cursor(self.event_map)
+        return Cursor(self._iter_raw_event_data)
 
     def get_note_cursor(self):
-        return Cursor(self.note_map)
+        return Cursor(self._iter_raw_note_data)
 
     def get_tag_cursor(self):
-        return Cursor(self.tag_map)
+        return Cursor(self._iter_raw_tag_data)
 
     def get_repository_cursor(self):
-        return Cursor(self.repository_map)
+        return Cursor(self._iter_raw_repository_data)
 
     def get_media_cursor(self):
-        return Cursor(self.media_map)
+        return Cursor(self._iter_raw_media_data)
 
     def get_citation_cursor(self):
-        return Cursor(self.citation_map)
+        return Cursor(self._iter_raw_citation_data)
 
     def get_source_cursor(self):
-        return Cursor(self.source_map)
+        return Cursor(self._iter_raw_source_data)
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:

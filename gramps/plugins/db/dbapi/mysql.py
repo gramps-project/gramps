@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +19,20 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import MySQLdb
 import re
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.db.dbconst import ARRAYSIZE
 
 MySQLdb.paramstyle = 'qmark' ## Doesn't work
 
@@ -40,9 +53,9 @@ class MySQL:
         return summary
 
     def __init__(self, *args, **kwargs):
-        self.connection = MySQLdb.connect(*args, **kwargs)
-        self.connection.autocommit(True)
-        self.cursor = self.connection.cursor()
+        self.__connection = MySQLdb.connect(*args, **kwargs)
+        self.__connection.autocommit(True)
+        self.__cursor = self.__connection.cursor()
 
     def _hack_query(self, query):
         ## Workaround: no qmark support:
@@ -70,27 +83,61 @@ class MySQL:
 
     def execute(self, query, args=[]):
         query = self._hack_query(query)
-        self.cursor.execute(query, args)
+        self.__cursor.execute(query, args)
 
     def fetchone(self):
-        return self.cursor.fetchone()
+        return self.__cursor.fetchone()
 
     def fetchall(self):
-        return self.cursor.fetchall()
+        return self.__cursor.fetchall()
 
     def commit(self):
-        self.cursor.execute("COMMIT;");
+        self.__cursor.execute("COMMIT;");
 
     def begin(self):
-        self.cursor.execute("BEGIN;");
+        self.__cursor.execute("BEGIN;");
 
     def rollback(self):
-        self.connection.rollback()
+        self.__connection.rollback()
 
     def table_exists(self, table):
-        self.cursor.execute("SELECT COUNT(*) FROM information_schema.tables "
-                            "WHERE table_name='%s';" % table)
+        self.__cursor.execute("SELECT COUNT(*) "
+                              "FROM information_schema.tables "
+                              "WHERE table_name='%s';" % table)
         return self.fetchone()[0] != 0
 
     def close(self):
-        self.connection.close()
+        self.__connection.close()
+    def cursor(self):
+        return Cursor(self.__connection)
+
+
+class Cursor:
+    def __init__(self, connection):
+        self.__connection = connection
+
+    def __enter__(self):
+        self.__cursor = self.__connection.cursor()
+        self.__cursor.arraysize = ARRAYSIZE
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        self.__cursor.close()
+
+    def execute(self, *args, **kwargs):
+        """
+        Executes an SQL statement.
+
+        :param args: arguments to be passed to the sqlite3 execute statement
+        :type args: list
+        :param kwargs: arguments to be passed to the sqlite3 execute statement
+        :type kwargs: list
+        """
+        self.__cursor.execute(*args, **kwargs)
+
+    def fetchmany(self):
+        """
+        Fetches the next set of rows of a query result, returning a list. An
+        empty list is returned when no more rows are available.
+        """
+        return self.__cursor.fetchmany()

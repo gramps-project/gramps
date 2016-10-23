@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1369,6 +1370,80 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         for row in rows:
             yield row[0]
+
+    def _iter_raw_data(self, obj_key):
+        """
+        Return an iterator over raw data in the database.
+        """
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT handle, blob_data FROM %s" % table
+        with self.dbapi.cursor() as cursor:
+            cursor.execute(sql)
+            rows = cursor.fetchmany()
+            while rows:
+                for row in rows:
+                    yield (row[0].encode('utf8'), pickle.loads(row[1]))
+                rows = cursor.fetchmany()
+
+    def _iter_raw_person_data(self):
+        """
+        Return an iterator over raw Person data.
+        """
+        return self._iter_raw_data(PERSON_KEY)
+
+    def _iter_raw_family_data(self):
+        """
+        Return an iterator over raw Family data.
+        """
+        return self._iter_raw_data(FAMILY_KEY)
+
+    def _iter_raw_event_data(self):
+        """
+        Return an iterator over raw Event data.
+        """
+        return self._iter_raw_data(EVENT_KEY)
+
+    def _iter_raw_place_data(self):
+        """
+        Return an iterator over raw Place data.
+        """
+        return self._iter_raw_data(PLACE_KEY)
+
+    def _iter_raw_repository_data(self):
+        """
+        Return an iterator over raw Repository data.
+        """
+        return self._iter_raw_data(REPOSITORY_KEY)
+
+    def _iter_raw_source_data(self):
+        """
+        Return an iterator over raw Source data.
+        """
+        return self._iter_raw_data(SOURCE_KEY)
+
+    def _iter_raw_citation_data(self):
+        """
+        Return an iterator over raw Citation data.
+        """
+        return self._iter_raw_data(CITATION_KEY)
+
+    def _iter_raw_media_data(self):
+        """
+        Return an iterator over raw Media data.
+        """
+        return self._iter_raw_data(MEDIA_KEY)
+
+    def _iter_raw_note_data(self):
+        """
+        Return an iterator over raw Note data.
+        """
+        return self._iter_raw_data(NOTE_KEY)
+
+    def _iter_raw_tag_data(self):
+        """
+        Return an iterator over raw Tag data.
+        """
+        return self._iter_raw_data(TAG_KEY)
 
     def reindex_reference_map(self, callback):
         """

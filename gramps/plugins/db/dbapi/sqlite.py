@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2016      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,13 @@ Backend for sqlite database.
 import sqlite3
 import logging
 import re
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.db.dbconst import ARRAYSIZE
 
 sqlite3.paramstyle = 'qmark'
 
@@ -72,10 +80,9 @@ class Sqlite:
         :type kwargs: list
         """
         self.log = logging.getLogger(".sqlite")
-        self.connection = sqlite3.connect(*args, **kwargs)
-        self.cursor = self.connection.cursor()
-        self.queries = {}
-        self.connection.create_function("regexp", 2, regexp)
+        self.__connection = sqlite3.connect(*args, **kwargs)
+        self.__cursor = self.__connection.cursor()
+        self.__connection.create_function("regexp", 2, regexp)
 
     def execute(self, *args, **kwargs):
         """
@@ -87,21 +94,21 @@ class Sqlite:
         :type kwargs: list
         """
         self.log.debug(args)
-        self.cursor.execute(*args, **kwargs)
+        self.__cursor.execute(*args, **kwargs)
 
     def fetchone(self):
         """
         Fetches the next row of a query result set, returning a single sequence,
         or None when no more data is available.
         """
-        return self.cursor.fetchone()
+        return self.__cursor.fetchone()
 
     def fetchall(self):
         """
         Fetches the next set of rows of a query result, returning a list. An
         empty list is returned when no more rows are available.
         """
-        return self.cursor.fetchall()
+        return self.__cursor.fetchall()
 
     def begin(self):
         """
@@ -116,14 +123,14 @@ class Sqlite:
         Commit the current transaction.
         """
         self.log.debug("COMMIT;")
-        self.connection.commit()
+        self.__connection.commit()
 
     def rollback(self):
         """
         Roll back any changes to the database since the last call to commit().
         """
         self.log.debug("ROLLBACK;")
-        self.connection.rollback()
+        self.__connection.rollback()
 
     def table_exists(self, table):
         """
@@ -134,7 +141,8 @@ class Sqlite:
         :returns: True if the table exists, false otherwise.
         :rtype: bool
         """
-        self.execute("SELECT COUNT(*) FROM sqlite_master "
+        self.execute("SELECT COUNT(*) "
+                     "FROM sqlite_master "
                      "WHERE type='table' AND name='%s';" % table)
         return self.fetchone()[0] != 0
 
@@ -143,7 +151,50 @@ class Sqlite:
         Close the current database.
         """
         self.log.debug("closing database...")
-        self.connection.close()
+        self.__connection.close()
+
+    def cursor(self):
+        """
+        Return a new cursor.
+        """
+        return Cursor(self.__connection)
+
+
+#-------------------------------------------------------------------------
+#
+# Cursor class
+#
+#-------------------------------------------------------------------------
+class Cursor:
+    def __init__(self, connection):
+        self.__connection = connection
+
+    def __enter__(self):
+        self.__cursor = self.__connection.cursor()
+        self.__cursor.arraysize = ARRAYSIZE
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        self.__cursor.close()
+
+    def execute(self, *args, **kwargs):
+        """
+        Executes an SQL statement.
+
+        :param args: arguments to be passed to the sqlite3 execute statement
+        :type args: list
+        :param kwargs: arguments to be passed to the sqlite3 execute statement
+        :type kwargs: list
+        """
+        self.__cursor.execute(*args, **kwargs)
+
+    def fetchmany(self):
+        """
+        Fetches the next set of rows of a query result, returning a list. An
+        empty list is returned when no more rows are available.
+        """
+        return self.__cursor.fetchmany()
+
 
 def regexp(expr, value):
     """

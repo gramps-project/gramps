@@ -342,6 +342,57 @@ class DbTest(unittest.TestCase):
         for gramps_id in self.gids['Note']:
             self.assertTrue(self.db.has_note_gramps_id(gramps_id))
 
+    ################################################################
+    #
+    # Test get_*_cursor methods
+    #
+    ################################################################
+    def __get_cursor_test(self, cursor_func, raw_func):
+        with cursor_func() as cursor:
+            for handle, data1 in cursor:
+                data2 = raw_func(handle)
+                self.assertEqual(data1, data2)
+
+    def test_get_person_cursor(self):
+        self.__get_cursor_test(self.db.get_person_cursor,
+                               self.db.get_raw_person_data)
+
+    def test_get_family_cursor(self):
+        self.__get_cursor_test(self.db.get_family_cursor,
+                               self.db.get_raw_family_data)
+
+    def test_get_event_cursor(self):
+        self.__get_cursor_test(self.db.get_event_cursor,
+                               self.db.get_raw_event_data)
+
+    def test_get_place_cursor(self):
+        self.__get_cursor_test(self.db.get_place_cursor,
+                               self.db.get_raw_place_data)
+
+    def test_get_repository_cursor(self):
+        self.__get_cursor_test(self.db.get_repository_cursor,
+                               self.db.get_raw_repository_data)
+
+    def test_get_source_cursor(self):
+        self.__get_cursor_test(self.db.get_source_cursor,
+                               self.db.get_raw_source_data)
+
+    def test_get_citation_cursor(self):
+        self.__get_cursor_test(self.db.get_citation_cursor,
+                               self.db.get_raw_citation_data)
+
+    def test_get_media_cursor(self):
+        self.__get_cursor_test(self.db.get_media_cursor,
+                               self.db.get_raw_media_data)
+
+    def test_get_note_cursor(self):
+        self.__get_cursor_test(self.db.get_note_cursor,
+                               self.db.get_raw_note_data)
+
+    def test_get_tag_cursor(self):
+        self.__get_cursor_test(self.db.get_tag_cursor,
+                               self.db.get_raw_tag_data)
+
 
 if __name__ == "__main__":
     unittest.main()

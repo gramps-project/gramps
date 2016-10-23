@@ -56,6 +56,7 @@ DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
 DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
+ARRAYSIZE = 1000            # The arraysize for a SQL cursor
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1
