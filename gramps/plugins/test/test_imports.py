@@ -25,7 +25,7 @@ import unittest
 import os
 import sys
 import re
-from time import localtime
+from time import localtime, strptime
 from unittest.mock import patch
 #import logging
 
@@ -57,7 +57,7 @@ def mock_localtime(*args):
     """
     Mock up a dummy to replace the varying 'time string results'
     """
-    return localtime(946101600.)
+    return strptime("25 Dec 1999", "%d %b %Y")
 
 class CompleteCheck(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
