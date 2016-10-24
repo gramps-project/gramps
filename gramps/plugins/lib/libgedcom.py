@@ -5974,7 +5974,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         # The ADDR may already have been parsed by the level above
-        assert state.addr.get_street() == ""
+        # assert state.addr.get_street() == ""
         if state.addr.get_street() != "":
             self.__add_msg(_("Warn: ADDR overwritten"), line, state)
         state.addr.set_street(line.data)

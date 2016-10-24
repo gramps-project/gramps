@@ -29,7 +29,7 @@ Make an 'Unknown' primary object
 # Python modules
 #
 #-------------------------------------------------------------------------
-import time
+from time import strftime, localtime, time
 import os
 
 #-------------------------------------------------------------------------
@@ -124,14 +124,14 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
         obj2 = argv['source_class_func'](argv['source_class_arg'])
         obj2.set_title(_('Unknown'))
         obj2.add_note(explanation)
-        argv['source_commit_func'](obj2, transaction, time.time())
+        argv['source_commit_func'](obj2, transaction, time())
         retval.append(obj2)
         obj.set_reference_handle(obj2.handle)
     elif isinstance(obj, Repository):
         obj.set_name(_('Unknown'))
         obj.set_type(RepositoryType.UNKNOWN)
     elif isinstance(obj, Media):
-        obj.set_path(os.path.join(IMAGE_DIR, "image-missing.png"))
+        obj.set_path("image-missing.png")
         obj.set_mime_type('image/png')
         obj.set_description(_('Unknown'))
     elif isinstance(obj, Note):
@@ -147,7 +147,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
         if not hasattr(make_unknown, 'count'):
             make_unknown.count = 1 #primitive static variable
         obj.set_name(_("Unknown, was missing %(time)s (%(count)d)") % {
-                'time': time.strftime('%x %X', time.localtime()),
+                'time': strftime('%x %X', localtime()),
                 'count': make_unknown.count})
         make_unknown.count += 1
     else:
@@ -155,7 +155,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
 
     if hasattr(obj, 'add_note'):
         obj.add_note(explanation)
-    commit_func(obj, transaction, time.time())
+    commit_func(obj, transaction, time())
     retval.append(obj)
     return retval
 
@@ -167,7 +167,7 @@ def create_explanation_note(dbase):
     """
     note = Note( _('Objects referenced by this note '
                                     'were missing in a file imported on %s.') %
-                                    time.strftime('%x %X', time.localtime()))
+                                    strftime('%x %X', localtime()))
     note.set_handle(create_id())
     note.set_gramps_id(dbase.find_next_note_gramps_id())
     # Use defaults for privacy, format and type.
