@@ -1655,7 +1655,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
                 # Save misc items:
                 if self.has_changed:
-                    self.save_surname_list()
                     self.save_gender_stats(self.genderStats)
 
                 # Indexes:

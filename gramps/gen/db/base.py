@@ -1323,12 +1323,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def build_surname_list(self):
-        """
-        Build the list of locale-sorted surnames contained in the database.
-        """
-        raise NotImplementedError
-
     def commit_event(self, event, transaction, change_time=None):
         """
         Commit the specified Event to the database, storing the changes as

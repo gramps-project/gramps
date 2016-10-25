@@ -1836,7 +1836,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     @catch_db_error
-    def build_surname_list(self):
+    def __build_surname_list(self):
         """
         Build surname list for use in autocompletion
         This is a list of unicode objects, which are decoded from the utf-8 in
@@ -2317,7 +2317,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                              find_referenced_handle, DBFLAGS_O)
 
             # Only build surname list after surname index is surely back
-            self.build_surname_list()
+            self.__build_surname_list()
 
         # Reset callbacks if necessary
         if transaction.batch or not len(transaction):

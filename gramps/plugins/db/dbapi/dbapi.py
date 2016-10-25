@@ -365,7 +365,6 @@ class DBAPI(DbGeneric):
                   TXNDEL: "-delete",
                   None: "-delete"}
         if txn.batch:
-            self.build_surname_list()
             # FIXME: need a User GUI update callback here:
             self.reindex_reference_map(lambda percent: percent)
         self.dbapi.commit()
@@ -1795,20 +1794,6 @@ class DBAPI(DbGeneric):
         for row in self.dbapi.fetchall():
             surname_list.append(row[0])
         return surname_list
-
-    def save_surname_list(self):
-        """
-        Save the surname_list into persistant storage.
-        """
-        # Nothing for DB-API to do; saves in person table
-        pass
-
-    def build_surname_list(self):
-        """
-        Rebuild the surname_list.
-        """
-        # Nothing for DB-API to do; saves in person table
-        pass
 
     def drop_tables(self):
         """
