@@ -1497,20 +1497,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emit('note-rebuild')
         self.emit('tag-rebuild')
 
-    def copy_from_db(self, db):
-        """
-        A (possibily) implementation-specific method to get data from
-        db into this database.
-        """
-        for key in db.get_table_func():
-            cursor = db.get_table_func(key,"cursor_func")
-            class_ = db.get_table_func(key,"class_func")
-            for (handle, data) in cursor():
-                map = getattr(self, "%s_map" % key.lower())
-                if isinstance(handle, bytes):
-                    handle = str(handle, "utf-8")
-                map[handle] = class_.create(data)
-
     def get_from_name_and_handle(self, table_name, handle):
         """
         Returns a gen.lib object (or None) given table_name and
