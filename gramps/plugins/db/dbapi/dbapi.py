@@ -1751,7 +1751,7 @@ class DBAPI(DbGeneric):
         if isinstance(key, bytes):
             key = str(key, "utf-8")
         self.dbapi.execute(
-            "SELECT blob_data FROM repository WHERE handle = ?", [key])
+            "SELECT blob_data FROM repository WHERE gramps_id = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])

@@ -196,6 +196,62 @@ class DbTest(unittest.TestCase):
 
     ################################################################
     #
+    # Test get_*_gramps_ids methods
+    #
+    ################################################################
+    def __get_gids_test(self, obj_type, gids_func, number_func):
+        gids = gids_func()
+        self.assertEqual(len(gids), number_func())
+        for gid in gids:
+            self.assertIn(gid, self.gids[obj_type])
+
+    def test_get_person_gids(self):
+        self.__get_gids_test('Person',
+                             self.db.get_person_gramps_ids,
+                             self.db.get_number_of_people)
+
+    def test_get_family_gids(self):
+        self.__get_gids_test('Family',
+                             self.db.get_family_gramps_ids,
+                             self.db.get_number_of_families)
+
+    def test_get_event_gids(self):
+        self.__get_gids_test('Event',
+                             self.db.get_event_gramps_ids,
+                             self.db.get_number_of_events)
+
+    def test_get_place_gids(self):
+        self.__get_gids_test('Place',
+                             self.db.get_place_gramps_ids,
+                             self.db.get_number_of_places)
+
+    def test_get_repository_gids(self):
+        self.__get_gids_test('Repository',
+                             self.db.get_repository_gramps_ids,
+                             self.db.get_number_of_repositories)
+
+    def test_get_source_gids(self):
+        self.__get_gids_test('Source',
+                             self.db.get_source_gramps_ids,
+                             self.db.get_number_of_sources)
+
+    def test_get_citation_gids(self):
+        self.__get_gids_test('Citation',
+                             self.db.get_citation_gramps_ids,
+                             self.db.get_number_of_citations)
+
+    def test_get_media_gids(self):
+        self.__get_gids_test('Media',
+                             self.db.get_media_gramps_ids,
+                             self.db.get_number_of_media)
+
+    def test_get_note_gids(self):
+        self.__get_gids_test('Note',
+                             self.db.get_note_gramps_ids,
+                             self.db.get_number_of_notes)
+
+    ################################################################
+    #
     # Test get_*_from_handle methods
     #
     ################################################################
@@ -255,6 +311,63 @@ class DbTest(unittest.TestCase):
         self.__get_from_handle_test(Tag,
                                     self.db.get_tag_handles,
                                     self.db.get_tag_from_handle)
+
+    ################################################################
+    #
+    # Test get_*_from_gramps_id methods
+    #
+    ################################################################
+
+    def __get_from_gid_test(self, obj_class, gids_func, get_func):
+        for gid in gids_func():
+            person = get_func(gid)
+            self.assertIsInstance(person, obj_class)
+            self.assertEqual(person.gramps_id, gid)
+
+    def test_get_person_from_gid(self):
+        self.__get_from_gid_test(Person,
+                                 self.db.get_person_gramps_ids,
+                                 self.db.get_person_from_gramps_id)
+
+    def test_get_family_from_gid(self):
+        self.__get_from_gid_test(Family,
+                                 self.db.get_family_gramps_ids,
+                                 self.db.get_family_from_gramps_id)
+
+    def test_get_event_from_gid(self):
+        self.__get_from_gid_test(Event,
+                                 self.db.get_event_gramps_ids,
+                                 self.db.get_event_from_gramps_id)
+
+    def test_get_place_from_gid(self):
+        self.__get_from_gid_test(Place,
+                                 self.db.get_place_gramps_ids,
+                                 self.db.get_place_from_gramps_id)
+
+    def test_get_repository_from_gid(self):
+        self.__get_from_gid_test(Repository,
+                                 self.db.get_repository_gramps_ids,
+                                 self.db.get_repository_from_gramps_id)
+
+    def test_get_source_from_gid(self):
+        self.__get_from_gid_test(Source,
+                                 self.db.get_source_gramps_ids,
+                                 self.db.get_source_from_gramps_id)
+
+    def test_get_citation_from_gid(self):
+        self.__get_from_gid_test(Citation,
+                                 self.db.get_citation_gramps_ids,
+                                 self.db.get_citation_from_gramps_id)
+
+    def test_get_media_from_gid(self):
+        self.__get_from_gid_test(Media,
+                                 self.db.get_media_gramps_ids,
+                                 self.db.get_media_from_gramps_id)
+
+    def test_get_note_from_gid(self):
+        self.__get_from_gid_test(Note,
+                                 self.db.get_note_gramps_ids,
+                                 self.db.get_note_from_gramps_id)
 
     ################################################################
     #
