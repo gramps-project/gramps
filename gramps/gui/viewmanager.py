@@ -778,6 +778,9 @@ class ViewManager(CLIManager):
         """
         Abandon changes and quit.
         """
+        # avoid to abort changes to the database if busy in operation
+        if self.uistate.busy:
+            return
         if self.dbstate.db.abort_possible:
 
             dialog = QuestionDialog2(
@@ -1117,6 +1120,9 @@ class ViewManager(CLIManager):
         """
         Called when the Open button is clicked, opens the DbManager
         """
+        # avoid to open the database manager if we are in busy mode
+        if self.uistate.busy:
+            return
         from .dbman import DbManager
         dialog = DbManager(self.uistate, self.dbstate, self, self.window)
         value = dialog.run()
