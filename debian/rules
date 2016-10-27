@@ -18,12 +18,11 @@ override_dh_auto_build:
 override_dh_auto_install:
 	#dh_auto_install
 	python3 setup.py install --resourcepath=/usr/share --root=debian/python3-gramps --install-layout=deb
-	# Remove duplicate copyright information
+	# Remove duplicate license/copyright information
 	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
 	# Remove install file as it is not needed by package users
 	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/INSTALL
-	# Remove duplicate license information
-	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/LICENSE
+	# Link license/copyright information to debians
 	ln -s /usr/share/common-licenses/GPL-2 $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
 
 # Make css style sheets and png icons non-executable
