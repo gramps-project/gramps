@@ -211,6 +211,7 @@ class Check(tool.BatchTool):
 
                 total = checker.family_errors()
 
+            checker.fix_duplicated_grampsid()
             checker.check_events()
             checker.check_person_references()
             checker.check_family_references()
@@ -271,6 +272,7 @@ class CheckIntegrity:
         self.empty_objects = defaultdict(list)
         self.replaced_sourceref = []
         self.place_errors = 0
+        self.duplicated_gramps_ids = 0
         self.text = StringIO()
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
@@ -1999,6 +2001,135 @@ class CheckIntegrity:
             logging.info('    OK: no broken source citations on mediarefs '
                          'found')
 
+    def fix_duplicated_grampsid(self):
+        """
+        This searches for duplicated Gramps ID within each of the major
+        classes.  It does not check across classes.  If duplicates are
+        found, a new Gramps ID is assigned.
+        """
+        total = (
+            self.db.get_number_of_citations() +
+            self.db.get_number_of_events() +
+            self.db.get_number_of_families() +
+            self.db.get_number_of_media() +
+            self.db.get_number_of_notes() +
+            self.db.get_number_of_people() +
+            self.db.get_number_of_places() +
+            self.db.get_number_of_repositories() +
+            self.db.get_number_of_sources()
+            )
+
+        self.progress.set_pass(_('Looking for Duplicated Gramps ID '
+                                 'problems'), total)
+        logging.info('Looking for Duplicated Gramps ID problems')
+        gid_list = []
+        for citation in self.db.iter_citations():
+            self.progress.step()
+            ogid = gid = citation.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_citation_gramps_id()
+                citation.set_gramps_id(gid)
+                self.db.commit_citation(citation, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for event in self.db.iter_events():
+            self.progress.step()
+            ogid = gid = event.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_event_gramps_id()
+                event.set_gramps_id(gid)
+                self.db.commit_event(event, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for family in self.db.iter_families():
+            self.progress.step()
+            ogid = gid = family.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_family_gramps_id()
+                family.set_gramps_id(gid)
+                self.db.commit_family(family, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for media in self.db.iter_media():
+            self.progress.step()
+            ogid = gid = media.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_media_gramps_id()
+                media.set_gramps_id(gid)
+                self.db.commit_media(media, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for note in self.db.iter_notes():
+            ogid = gid = note.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_note_gramps_id()
+                note.set_gramps_id(gid)
+                self.db.commit_note(note, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for person in self.db.iter_people():
+            self.progress.step()
+            ogid = gid = person.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_person_gramps_id()
+                person.set_gramps_id(gid)
+                self.db.commit_person(person, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for place in self.db.iter_places():
+            self.progress.step()
+            ogid = gid = place.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_place_gramps_id()
+                place.set_gramps_id(gid)
+                self.db.commit_place(place, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for repository in self.db.iter_repositories():
+            self.progress.step()
+            ogid = gid = repository.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_repository_gramps_id()
+                repository.set_gramps_id(gid)
+                self.db.commit_repository(repository, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+        gid_list = []
+        for source in self.db.iter_sources():
+            self.progress.step()
+            ogid = gid = source.get_gramps_id()
+            if gid in gid_list:
+                gid = self.db.find_next_source_gramps_id()
+                source.set_gramps_id(gid)
+                self.db.commit_source(source, self.trans)
+                logging.warning('    FAIL: Duplicated Gramps ID found, '
+                                'Original: "%s" changed to: "%s"', ogid, gid)
+                self.duplicated_gramps_ids += 1
+            gid_list.append(gid)
+
     def class_person(self, handle):
         person = Person()
         person.set_handle(handle)
@@ -2107,6 +2238,7 @@ class CheckIntegrity:
         tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
         replaced_sourcerefs = len(self.replaced_sourceref)
+        dup_gramps_ids = self.duplicated_gramps_ids
         empty_objs = sum(len(obj) for obj in self.empty_objects.values())
 
         errors = (photos + efam + blink + plink + slink + rel +
@@ -2114,7 +2246,7 @@ class CheckIntegrity:
                   person_references + family_references + place_references +
                   citation_references + repo_references + media_references +
                   note_references + tag_references + name_format + empty_objs +
-                  invalid_dates + source_references)
+                  invalid_dates + source_references + dup_gramps_ids)
 
         if errors == 0:
             if uistate:
@@ -2231,7 +2363,7 @@ class CheckIntegrity:
                 # translators: leave all/any {...} untranslated
                 ngettext("{quantity} place alternate name fixed\n",
                          "{quantity} place alternate names fixed\n",
-                         rel).format(quantity=self.place_errors)
+                         self.place_errors).format(quantity=self.place_errors)
                 )
 
         if person_references:
@@ -2416,6 +2548,14 @@ class CheckIntegrity:
                     "{quantity} invalid source citations were fixed\n",
                     replaced_sourcerefs
                     ).format(quantity=replaced_sourcerefs)
+                )
+
+        if dup_gramps_ids > 0:
+            self.text.write(
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} Duplicated Gramps ID fixed\n",
+                         "{quantity} Duplicated Gramps IDs fixed\n",
+                         dup_gramps_ids).format(quantity=dup_gramps_ids)
                 )
 
         if empty_objs > 0:
