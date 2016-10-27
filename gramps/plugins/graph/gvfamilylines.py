@@ -820,9 +820,9 @@ class FamilyLinesReport(Report):
                     media_mime_type = media.get_mime_type()
                     if media_mime_type[0:5] == "image":
                         image_path = get_thumbnail_path(
-                             media_path_full(self._db, media.get_path()),
-                             rectangle=media_list[0].get_rectangle(),
-                             size=self._imagesize)
+                            media_path_full(self._db, media.get_path()),
+                            rectangle=media_list[0].get_rectangle(),
+                            size=self._imagesize)
 
             # put the label together and output this person
             label = ""
