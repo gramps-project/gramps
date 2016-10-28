@@ -1767,31 +1767,6 @@ class DbWriteBase(DbReadBase):
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
 
-    def remove_instance(self, instance, transaction):
-        """
-        Given the instance of an object, delete it from the database.
-        """
-        if instance.__class__.__name__ == "Person":
-            self.remove_person(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Place":
-            self.remove_place(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Event":
-            self.remove_event(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Repository":
-            self.remove_repository(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Citation":
-            self.remove_citation(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Source":
-            self.remove_source(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Media":
-            self.remove_media(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Note":
-            self.remove_note(instance.handle, transaction)
-        elif instance.__class__.__name__ == "Family":
-            self.remove_family(instance.handle, transaction)
-        else:
-            raise ValueError("invalid instance type: %s" % instance.__class__.__name__)
-
     def autobackup(self, user=None):
         """
         Backup the current file as a backup file.
