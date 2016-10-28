@@ -51,8 +51,7 @@ from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
                            PERSON_KEY, FAMILY_KEY, CITATION_KEY,
                            SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
-                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
-                           TAG_KEY, eval_order_by)
+                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
 from gramps.gen.errors import HandleError
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
@@ -1217,47 +1216,43 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return None
 
-    def iter_items(self, order_by, class_):
+    def _iter_objects(self, class_):
         """
-        Iterate over items in a class, possibly ordered by
-        a list of field names and direction ("ASC" or "DESC").
+        Iterate over items in a class.
         """
         cursor = self.get_table_func(class_.__name__,"cursor_func")
-        if order_by is None:
-            for data in cursor():
-                yield class_.create(data[1])
-        else:
-            # first build sort order:
-            sorted_items = []
-            for data in cursor():
-                obj = class_.create(data[1])
-                # just use values and handle to keep small:
-                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
-            # next we sort by fields and direction
-            def getitem(item, pos):
-                sort_items = item[0]
-                if isinstance(sort_items[pos], str):
-                    return sort_items[pos]
-                elif sort_items[pos] is None:
-                    return ""
-                else:
-                    # FIXME: should do something clever/recurive to
-                    # sort these meaningfully, and return a string:
-                    return str(sort_items[pos])
-            pos = len(order_by) - 1
-            for (field, order) in reversed(order_by): # sort the lasts parts first
-                sorted_items.sort(key=lambda item: getitem(item, pos),
-                                  reverse=(order=="DESC"))
-                pos -= 1
-            # now we will look them up again:
-            for (order_by_values, handle) in sorted_items:
-                yield self.get_table_func(class_.__name__,"handle_func")(handle)
+        for data in cursor():
+            yield class_.create(data[1])
 
-    def iter_people(self, order_by=None):
-        return self.iter_items(order_by, Person)
+    def iter_people(self):
+        return self._iter_objects(Person)
 
-    def iter_families(self, order_by=None):
-        return self.iter_items(order_by, Family)
+    def iter_families(self):
+        return self._iter_objects(Family)
+
+    def iter_citations(self):
+        return self._iter_objects(Citation)
+
+    def iter_events(self):
+        return self._iter_objects(Event)
+
+    def iter_media(self):
+        return self._iter_objects(Media)
+
+    def iter_notes(self):
+        return self._iter_objects(Note)
+
+    def iter_places(self):
+        return self._iter_objects(Place)
+
+    def iter_repositories(self):
+        return self._iter_objects(Repository)
+
+    def iter_sources(self):
+        return self._iter_objects(Source)
+
+    def iter_tags(self):
+        return self._iter_objects(Tag)
 
     def get_person_from_gramps_id(self, gramps_id):
         data = self._get_raw_person_from_id_data(gramps_id)
@@ -1837,30 +1832,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def is_open(self):
         return self.db_is_open
-
-    def iter_citations(self, order_by=None):
-        return self.iter_items(order_by, Citation)
-
-    def iter_events(self, order_by=None):
-        return self.iter_items(order_by, Event)
-
-    def iter_media(self, order_by=None):
-        return self.iter_items(order_by, Media)
-
-    def iter_notes(self, order_by=None):
-        return self.iter_items(order_by, Note)
-
-    def iter_places(self, order_by=None):
-        return self.iter_items(order_by, Place)
-
-    def iter_repositories(self, order_by=None):
-        return self.iter_items(order_by, Repository)
-
-    def iter_sources(self, order_by=None):
-        return self.iter_items(order_by, Source)
-
-    def iter_tags(self, order_by=None):
-        return self.iter_items(order_by, Tag)
 
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):

@@ -506,6 +506,106 @@ class DbTest(unittest.TestCase):
         self.__get_cursor_test(self.db.get_tag_cursor,
                                self.db.get_raw_tag_data)
 
+    ################################################################
+    #
+    # Test iter_*_handles methods
+    #
+    ################################################################
+
+    def __iter_handles_test(self, obj_type, iter_func):
+        for handle in iter_func():
+            self.assertIn(handle, self.handles[obj_type])
+
+    def test_iter_person_handles(self):
+        self.__iter_handles_test('Person',
+                                self.db.iter_person_handles)
+
+    def test_iter_family_handles(self):
+        self.__iter_handles_test('Family',
+                                self.db.iter_family_handles)
+
+    def test_iter_event_handles(self):
+        self.__iter_handles_test('Event',
+                                self.db.iter_event_handles)
+
+    def test_iter_place_handles(self):
+        self.__iter_handles_test('Place',
+                                self.db.iter_place_handles)
+
+    def test_iter_repository_handles(self):
+        self.__iter_handles_test('Repository',
+                                self.db.iter_repository_handles)
+
+    def test_iter_source_handles(self):
+        self.__iter_handles_test('Source',
+                                self.db.iter_source_handles)
+
+    def test_iter_citation_handles(self):
+        self.__iter_handles_test('Citation',
+                                self.db.iter_citation_handles)
+
+    def test_iter_media_handles(self):
+        self.__iter_handles_test('Media',
+                                self.db.iter_media_handles)
+
+    def test_iter_note_handles(self):
+        self.__iter_handles_test('Note',
+                                self.db.iter_note_handles)
+
+    def test_iter_tag_handles(self):
+        self.__iter_handles_test('Tag',
+                                self.db.iter_tag_handles)
+
+    ################################################################
+    #
+    # Test iter_* methods
+    #
+    ################################################################
+
+    def __iter_objects_test(self, obj_class, iter_func):
+        for obj in iter_func():
+            self.assertIsInstance(obj, obj_class)
+
+    def test_iter_people(self):
+        self.__iter_objects_test(Person,
+                                 self.db.iter_people)
+
+    def test_iter_families(self):
+        self.__iter_objects_test(Family,
+                                 self.db.iter_families)
+
+    def test_iter_events(self):
+        self.__iter_objects_test(Event,
+                                 self.db.iter_events)
+
+    def test_iter_places(self):
+        self.__iter_objects_test(Place,
+                                 self.db.iter_places)
+
+    def test_iter_repositories(self):
+        self.__iter_objects_test(Repository,
+                                 self.db.iter_repositories)
+
+    def test_iter_sources(self):
+        self.__iter_objects_test(Source,
+                                 self.db.iter_sources)
+
+    def test_iter_citations(self):
+        self.__iter_objects_test(Citation,
+                                 self.db.iter_citations)
+
+    def test_iter_media(self):
+        self.__iter_objects_test(Media,
+                                 self.db.iter_media)
+
+    def test_iter_notes(self):
+        self.__iter_objects_test(Note,
+                                 self.db.iter_notes)
+
+    def test_iter_tags(self):
+        self.__iter_objects_test(Tag,
+                                 self.db.iter_tags)
+
 
 if __name__ == "__main__":
     unittest.main()

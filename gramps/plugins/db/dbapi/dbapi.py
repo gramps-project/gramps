@@ -37,7 +37,6 @@ import logging
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.db.base import eval_order_by
 from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
                                    TXNADD, TXNUPD, TXNDEL,
                                    PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
@@ -1014,152 +1013,77 @@ class DBAPI(DbGeneric):
         if row:
             return self.get_person_from_handle(row[0])
 
-    def iter_items_order_by_python(self, order_by, class_):
+    def _iter_handles(self, obj_key):
         """
-        This method is for those iter_items with a order_by, but
-        can't be done with secondary fields.
+        Return an iterator over handles in the database
         """
-        # first build sort order:
-        sorted_items = []
-        query = "SELECT blob_data FROM %s;" % class_.__name__.lower()
-        self.dbapi.execute(query)
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT handle FROM %s" % table
+        self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         for row in rows:
-            obj = self.get_table_func(class_.__name__,
-                                      "class_func").create(pickle.loads(row[0]))
-            # just use values and handle to keep small:
-            sorted_items.append((eval_order_by(order_by, obj, self),
-                                 obj.handle))
-        # next we sort by fields and direction
-        pos = len(order_by) - 1
-        for (field, order) in reversed(order_by): # sort the lasts parts first
-            sorted_items.sort(key=itemgetter(pos), reverse=(order == "DESC"))
-            pos -= 1
-        # now we will look them up again:
-        for (order_by_values, handle) in sorted_items:
-            yield self.get_table_func(class_.__name__, "handle_func")(handle)
-
-    def iter_items(self, order_by, class_):
-        """
-        Iterate over items in a class, possibly ordered by
-        a list of field names and direction ("ASC" or "DESC").
-        """
-        # check if order_by fields are secondary
-        # if so, fine
-        # else, use Python sorts
-        if order_by:
-            secondary_fields = class_.get_secondary_fields()
-            if not self._check_order_by_fields(class_.__name__,
-                                               order_by, secondary_fields):
-                for item in self.iter_items_order_by_python(order_by, class_):
-                    yield item
-                return
-        ## Continue with dbapi select
-        if order_by is None:
-            query = "SELECT blob_data FROM %s;" % class_.__name__.lower()
-        else:
-            order_phrases = [
-                "%s %s" % (self._hash_name(class_.__name__,
-                                           class_.get_field_alias(field)),
-                           direction)
-                for (field, direction) in order_by]
-            query = "SELECT blob_data FROM %s ORDER BY %s;" % (
-                class_.__name__.lower(), ", ".join(order_phrases))
-        self.dbapi.execute(query)
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield class_.create(pickle.loads(row[0]))
+            yield row[0]
 
     def iter_person_handles(self):
         """
         Return an iterator over handles for Persons in the database
         """
-        self.dbapi.execute("SELECT handle FROM person;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(PERSON_KEY)
 
     def iter_family_handles(self):
         """
         Return an iterator over handles for Families in the database
         """
-        self.dbapi.execute("SELECT handle FROM family;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(FAMILY_KEY)
 
     def iter_citation_handles(self):
         """
         Return an iterator over database handles, one handle for each Citation
         in the database.
         """
-        self.dbapi.execute("SELECT handle FROM citation;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(CITATION_KEY)
 
     def iter_event_handles(self):
         """
         Return an iterator over handles for Events in the database
         """
-        self.dbapi.execute("SELECT handle FROM event;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(EVENT_KEY)
 
     def iter_media_handles(self):
         """
         Return an iterator over handles for Media in the database
         """
-        self.dbapi.execute("SELECT handle FROM media;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(MEDIA_KEY)
 
     def iter_note_handles(self):
         """
         Return an iterator over handles for Notes in the database
         """
-        self.dbapi.execute("SELECT handle FROM note;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(NOTE_KEY)
 
     def iter_place_handles(self):
         """
         Return an iterator over handles for Places in the database
         """
-        self.dbapi.execute("SELECT handle FROM place;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(PLACE_KEY)
 
     def iter_repository_handles(self):
         """
         Return an iterator over handles for Repositories in the database
         """
-        self.dbapi.execute("SELECT handle FROM repository;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(REPOSITORY_KEY)
 
     def iter_source_handles(self):
         """
         Return an iterator over handles for Sources in the database
         """
-        self.dbapi.execute("SELECT handle FROM source;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(SOURCE_KEY)
 
     def iter_tag_handles(self):
         """
         Return an iterator over handles for Tags in the database
         """
-        self.dbapi.execute("SELECT handle FROM tag;")
-        rows = self.dbapi.fetchall()
-        for row in rows:
-            yield row[0]
+        return self._iter_handles(TAG_KEY)
 
     def _iter_raw_data(self, obj_key):
         """
@@ -1724,19 +1648,6 @@ class DBAPI(DbGeneric):
             return repr(tuple(value))
         else:
             return repr(value)
-
-    def _check_order_by_fields(self, table, order_by, secondary_fields):
-        """
-        Check to make sure all order_by fields are defined. If not, then
-        we need to do the Python-based order.
-
-        secondary_fields are hashed.
-        """
-        if order_by:
-            for (field, directory) in order_by:
-                if self._hash_name(table, field) not in secondary_fields:
-                    return False
-        return True
 
     def get_summary(self):
         """

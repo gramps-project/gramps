@@ -71,7 +71,7 @@ from gramps.gen.lib.nameorigintype import NameOriginType
 
 from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
-from gramps.gen.db.base import DbReadBase, eval_order_by
+from gramps.gen.db.base import DbReadBase
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -1260,34 +1260,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Closure that returns an iterator over objects in the database.
         """
-        def g(self, order_by=None):
-            """
-            order_by - [[field, DIRECTION], ...]
-            DIRECTION is "ASC" or "DESC"
-            """
-            if order_by is None:
-                with curs_(self) as cursor:
-                    for key, data in cursor:
-                        obj = obj_()
-                        obj.unserialize(data)
-                        yield obj
-            else:
-                # first build sort order:
-                sorted_items = []
-                with curs_(self) as cursor:
-                    for key, data in cursor:
-                        obj = obj_()
-                        obj.unserialize(data)
-                        # just use values and handle to keep small:
-                        sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
-                # next we sort by fields and direction
-                pos = len(order_by) - 1
-                for (field, order) in reversed(order_by): # sort the lasts parts first
-                    sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
-                    pos -= 1
-                # now we will look them up again:
-                for (order_by_values, handle) in sorted_items:
-                    yield self.get_table_func(obj_.__name__,"handle_func")(handle)
+        def g(self):
+            with curs_(self) as cursor:
+                for key, data in cursor:
+                    obj = obj_()
+                    obj.unserialize(data)
+                    yield obj
         return g
 
     # Use closure to define iterators for each primary object type

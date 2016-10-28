@@ -50,35 +50,6 @@ from .exceptions import DbTransactionCancel
 
 _LOG = logging.getLogger(DBLOGNAME)
 
-def eval_order_by(order_by, obj, db):
-    """
-    Given a list of [[field, DIRECTION], ...]
-    return the list of values of the fields
-    """
-    values = []
-    for (field, direction) in order_by:
-        values.append(obj.get_field(field, db, ignore_errors=True))
-    return values
-
-def sort_objects(objects, order_by, db):
-    """
-    Python-based sorting.
-    """
-    # first build sort order:
-    sorted_items = []
-    map_items = {}
-    for obj in objects:
-        # just use values and handle to keep small:
-        sorted_items.append((eval_order_by(order_by, obj, db), obj.handle))
-        map_items[obj.handle] = obj
-    # next we sort by fields and direction
-    pos = len(order_by) - 1
-    for (field, order) in reversed(order_by): # sort the lasts parts first
-        sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
-        pos -= 1
-    for (order_by_values, handle) in sorted_items:
-        yield map_items[handle]
-
 #-------------------------------------------------------------------------
 #
 # Gramps libraries
@@ -953,7 +924,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_citations(self, order_by=None):
+    def iter_citations(self):
         """
         Return an iterator over objects for Citations in the database
         """
@@ -965,13 +936,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_events(self, order_by=None):
+    def iter_events(self):
         """
         Return an iterator over objects for Events in the database
         """
         raise NotImplementedError
 
-    def iter_families(self, order_by=None):
+    def iter_families(self):
         """
         Return an iterator over objects for Families in the database
         """
@@ -989,7 +960,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_media(self, order_by=None):
+    def iter_media(self):
         """
         Return an iterator over objects for Medias in the database
         """
@@ -1001,13 +972,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_notes(self, order_by=None):
+    def iter_notes(self):
         """
         Return an iterator over objects for Notes in the database
         """
         raise NotImplementedError
 
-    def iter_people(self, order_by=None):
+    def iter_people(self):
         """
         Return an iterator over objects for Persons in the database
         """
@@ -1025,13 +996,13 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_places(self, order_by=None):
+    def iter_places(self):
         """
         Return an iterator over objects for Places in the database
         """
         raise NotImplementedError
 
-    def iter_repositories(self, order_by=None):
+    def iter_repositories(self):
         """
         Return an iterator over objects for Repositories in the database
         """
@@ -1049,7 +1020,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_sources(self, order_by=None):
+    def iter_sources(self):
         """
         Return an iterator over objects for Sources in the database
         """
@@ -1061,7 +1032,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_tags(self, order_by=None):
+    def iter_tags(self):
         """
         Return an iterator over objects for Tags in the database
         """
