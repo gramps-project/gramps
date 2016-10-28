@@ -990,9 +990,10 @@ class DBAPI(DbGeneric):
         """
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
-        self.dbapi.execute(
-            "SELECT obj_class, obj_handle FROM reference WHERE ref_handle = ?;",
-            [handle])
+        self.dbapi.execute("SELECT obj_class, obj_handle "
+                           "FROM reference "
+                           "WHERE ref_handle = ?;",
+                           [handle])
         rows = self.dbapi.fetchall()
         for row in rows:
             if (include_classes is None) or (row[0] in include_classes):
@@ -1188,9 +1189,9 @@ class DBAPI(DbGeneric):
                     # handle addition of new references
                     for (ref_class_name, ref_handle) in references:
                         self.dbapi.execute(
-                            """INSERT INTO reference (obj_handle, obj_class,
-                                                      ref_handle, ref_class)
-                                                     VALUES(?, ?, ?, ?);""",
+                            "INSERT INTO reference "
+                            "(obj_handle, obj_class, ref_handle, ref_class) "
+                            "VALUES (?, ?, ?, ?);",
                             [obj.handle,
                              obj.__class__.__name__,
                              ref_handle,
@@ -1392,28 +1393,29 @@ class DBAPI(DbGeneric):
         Returns a dictionary of
         {given_name: (male_count, female_count, unknown_count)}
         """
-        self.dbapi.execute(
-            """SELECT given_name, female, male, unknown FROM gender_stats;""")
+        self.dbapi.execute("SELECT given_name, female, male, unknown "
+                           "FROM gender_stats;")
         gstats = {}
         for row in self.dbapi.fetchall():
             gstats[row[0]] = (row[1], row[2], row[3])
         return gstats
 
     def save_gender_stats(self, gstats):
-        self.dbapi.execute("""DELETE FROM gender_stats;""")
+        self.dbapi.execute("DELETE FROM gender_stats;")
         for key in gstats.stats:
             female, male, unknown = gstats.stats[key]
-            self.dbapi.execute(
-                """INSERT INTO gender_stats(given_name, female, male, unknown)
-                                           VALUES(?, ?, ?, ?);""",
-                [key, female, male, unknown])
+            self.dbapi.execute("INSERT INTO gender_stats "
+                               "(given_name, female, male, unknown) "
+                               "VALUES (?, ?, ?, ?);",
+                               [key, female, male, unknown])
 
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.
         """
-        self.dbapi.execute(
-            """SELECT DISTINCT surname FROM person ORDER BY surname;""")
+        self.dbapi.execute("SELECT DISTINCT surname "
+                           "FROM person "
+                           "ORDER BY surname;")
         surname_list = []
         for row in self.dbapi.fetchall():
             surname_list.append(row[0])
@@ -1425,21 +1427,21 @@ class DBAPI(DbGeneric):
         already exist, then the caller will need to catch the appropriate
         exception
         """
-        self.dbapi.execute("""DROP TABLE  person;""")
-        self.dbapi.execute("""DROP TABLE  family;""")
-        self.dbapi.execute("""DROP TABLE  source;""")
-        self.dbapi.execute("""DROP TABLE  citation""")
-        self.dbapi.execute("""DROP TABLE  event;""")
-        self.dbapi.execute("""DROP TABLE  media;""")
-        self.dbapi.execute("""DROP TABLE  place;""")
-        self.dbapi.execute("""DROP TABLE  repository;""")
-        self.dbapi.execute("""DROP TABLE  note;""")
-        self.dbapi.execute("""DROP TABLE  tag;""")
+        self.dbapi.execute("DROP TABLE  person;")
+        self.dbapi.execute("DROP TABLE  family;")
+        self.dbapi.execute("DROP TABLE  source;")
+        self.dbapi.execute("DROP TABLE  citation")
+        self.dbapi.execute("DROP TABLE  event;")
+        self.dbapi.execute("DROP TABLE  media;")
+        self.dbapi.execute("DROP TABLE  place;")
+        self.dbapi.execute("DROP TABLE  repository;")
+        self.dbapi.execute("DROP TABLE  note;")
+        self.dbapi.execute("DROP TABLE  tag;")
         # Secondary:
-        self.dbapi.execute("""DROP TABLE  reference;""")
-        self.dbapi.execute("""DROP TABLE  name_group;""")
-        self.dbapi.execute("""DROP TABLE  metadata;""")
-        self.dbapi.execute("""DROP TABLE  gender_stats;""")
+        self.dbapi.execute("DROP TABLE  reference;")
+        self.dbapi.execute("DROP TABLE  name_group;")
+        self.dbapi.execute("DROP TABLE  metadata;")
+        self.dbapi.execute("DROP TABLE  gender_stats;")
 
     def _sql_type(self, python_type):
         """
