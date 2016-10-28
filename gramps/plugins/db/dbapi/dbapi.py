@@ -699,15 +699,51 @@ class DBAPI(DbGeneric):
             "INSERT INTO name_group (name, grouping) VALUES(?, ?);",
             [name, grouping])
 
+    def _commit_base(self, obj, obj_key, trans, change_time):
+        """
+        Commit the specified object to the database, storing the changes as
+        part of the transaction.
+        """
+        old_data = None
+        obj.change = int(change_time or time.time())
+        table = KEY_TO_NAME_MAP[obj_key]
+
+        if self.has_handle(obj_key, obj.handle):
+            old_data = self.get_raw_data(obj_key, obj.handle)
+            # update the object:
+            sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
+            self.dbapi.execute(sql,
+                               [pickle.dumps(obj.serialize()),
+                                obj.handle])
+        else:
+            # Insert the object:
+            sql = ("INSERT INTO %s (handle, blob_data) VALUES (?, ?)") % table
+            self.dbapi.execute(sql,
+                               [obj.handle,
+                                pickle.dumps(obj.serialize())])
+        self.update_secondary_values(obj)
+        if not trans.batch:
+            self.update_backlinks(obj)
+            if old_data:
+                trans.add(obj_key, TXNUPD, obj.handle,
+                          old_data,
+                          obj.serialize())
+            else:
+                trans.add(obj_key, TXNADD, obj.handle,
+                          None,
+                          obj.serialize())
+
+        return old_data
+
     def commit_person(self, person, trans, change_time=None):
         """
         Commit the specified Person to the database, storing the changes as
         part of the transaction.
         """
-        old_person = None
-        person.change = int(change_time or time.time())
-        if self.has_person_handle(person.handle):
-            old_person = self.get_person_from_handle(person.handle)
+        old_data = self._commit_base(person, PERSON_KEY, trans, change_time)
+
+        if old_data:
+            old_person = Person(old_data)
             # Update gender statistics if necessary
             if (old_person.gender != person.gender
                     or (old_person.primary_name.first_name !=
@@ -720,45 +756,10 @@ class DBAPI(DbGeneric):
                     self._order_by_person_key(old_person)):
                 self.remove_from_surname_list(old_person)
                 self.add_to_surname_list(person, trans.batch)
-            given_name, surname = self._get_person_data(person)
-            # update the person:
-            self.dbapi.execute("""UPDATE person SET gramps_id = ?,
-                                                    order_by = ?,
-                                                    blob_data = ?,
-                                                    given_name = ?,
-                                                    surname = ?
-                                                WHERE handle = ?;""",
-                               [person.gramps_id,
-                                self._order_by_person_key(person),
-                                pickle.dumps(person.serialize()),
-                                given_name,
-                                surname,
-                                person.handle])
         else:
             self.genderStats.count_person(person)
             self.add_to_surname_list(person, trans.batch)
-            given_name, surname = self._get_person_data(person)
-            # Insert the person:
-            self.dbapi.execute(
-                """INSERT INTO person (handle, order_by, gramps_id, blob_data,
-                                       given_name, surname)
-                                      VALUES(?, ?, ?, ?, ?, ?);""",
-                [person.handle,
-                 self._order_by_person_key(person),
-                 person.gramps_id,
-                 pickle.dumps(person.serialize()),
-                 given_name, surname])
-        self.update_secondary_values(person)
-        if not trans.batch:
-            self.update_backlinks(person)
-            if old_person:
-                trans.add(PERSON_KEY, TXNUPD, person.handle,
-                          old_person.serialize(),
-                          person.serialize())
-            else:
-                trans.add(PERSON_KEY, TXNADD, person.handle,
-                          None,
-                          person.serialize())
+
         # Other misc update tasks:
         self.individual_attributes.update(
             [str(attr.type) for attr in person.attribute_list
@@ -792,37 +793,7 @@ class DBAPI(DbGeneric):
         Commit the specified Family to the database, storing the changes as
         part of the transaction.
         """
-        old_family = None
-        family.change = int(change_time or time.time())
-        if self.has_family_handle(family.handle):
-            old_family = self.get_family_from_handle(family.handle).serialize()
-            self.dbapi.execute("""UPDATE family SET gramps_id = ?,
-                                                    father_handle = ?,
-                                                    mother_handle = ?,
-                                                    blob_data = ?
-                                                WHERE handle = ?;""",
-                               [family.gramps_id,
-                                family.father_handle,
-                                family.mother_handle,
-                                pickle.dumps(family.serialize()),
-                                family.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO family (handle, gramps_id,
-                                       father_handle, mother_handle, blob_data)
-                                      VALUES(?, ?, ?, ?, ?);""",
-                [family.handle,
-                 family.gramps_id,
-                 family.father_handle,
-                 family.mother_handle,
-                 pickle.dumps(family.serialize())])
-        self.update_secondary_values(family)
-        if not trans.batch:
-            self.update_backlinks(family)
-            db_op = TXNUPD if old_family else TXNADD
-            trans.add(FAMILY_KEY, db_op, family.handle,
-                      old_family,
-                      family.serialize())
+        self._commit_base(family, FAMILY_KEY, trans, change_time)
 
         # Misc updates:
         self.family_attributes.update(
@@ -855,34 +826,8 @@ class DBAPI(DbGeneric):
         Commit the specified Citation to the database, storing the changes as
         part of the transaction.
         """
-        old_citation = None
-        citation.change = int(change_time or time.time())
-        if self.has_citation_handle(citation.handle):
-            old_citation = self.get_citation_from_handle(
-                citation.handle).serialize()
-            self.dbapi.execute("""UPDATE citation SET gramps_id = ?,
-                                                      order_by = ?,
-                                                      blob_data = ?
-                                                WHERE handle = ?;""",
-                               [citation.gramps_id,
-                                self._order_by_citation_key(citation),
-                                pickle.dumps(citation.serialize()),
-                                citation.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO citation (handle, order_by, gramps_id, blob_data)
-                                        VALUES(?, ?, ?, ?);""",
-                [citation.handle,
-                 self._order_by_citation_key(citation),
-                 citation.gramps_id,
-                 pickle.dumps(citation.serialize())])
-        self.update_secondary_values(citation)
-        if not trans.batch:
-            self.update_backlinks(citation)
-            db_op = TXNUPD if old_citation else TXNADD
-            trans.add(CITATION_KEY, db_op, citation.handle,
-                      old_citation,
-                      citation.serialize())
+        self._commit_base(citation, CITATION_KEY, trans, change_time)
+
         # Misc updates:
         attr_list = []
         for mref in citation.media_list:
@@ -899,33 +844,8 @@ class DBAPI(DbGeneric):
         Commit the specified Source to the database, storing the changes as
         part of the transaction.
         """
-        old_source = None
-        source.change = int(change_time or time.time())
-        if self.has_source_handle(source.handle):
-            old_source = self.get_source_from_handle(source.handle).serialize()
-            self.dbapi.execute("""UPDATE source SET gramps_id = ?,
-                                                    order_by = ?,
-                                                    blob_data = ?
-                                                WHERE handle = ?;""",
-                               [source.gramps_id,
-                                self._order_by_source_key(source),
-                                pickle.dumps(source.serialize()),
-                                source.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO source (handle, order_by, gramps_id, blob_data)
-                                      VALUES(?, ?, ?, ?);""",
-                [source.handle,
-                 self._order_by_source_key(source),
-                 source.gramps_id,
-                 pickle.dumps(source.serialize())])
-        self.update_secondary_values(source)
-        if not trans.batch:
-            self.update_backlinks(source)
-            db_op = TXNUPD if old_source else TXNADD
-            trans.add(SOURCE_KEY, db_op, source.handle,
-                      old_source,
-                      source.serialize())
+        self._commit_base(source, SOURCE_KEY, trans, change_time)
+
         # Misc updates:
         self.source_media_types.update(
             [str(ref.media_type) for ref in source.reporef_list
@@ -945,30 +865,8 @@ class DBAPI(DbGeneric):
         Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-        old_repository = None
-        repository.change = int(change_time or time.time())
-        if self.has_repository_handle(repository.handle):
-            old_repository = self.get_repository_from_handle(
-                repository.handle).serialize()
-            self.dbapi.execute("""UPDATE repository SET gramps_id = ?,
-                                                    blob_data = ?
-                                                WHERE handle = ?;""",
-                               [repository.gramps_id,
-                                pickle.dumps(repository.serialize()),
-                                repository.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO repository (handle, gramps_id, blob_data)
-                                          VALUES(?, ?, ?);""",
-                [repository.handle, repository.gramps_id,
-                 pickle.dumps(repository.serialize())])
-        self.update_secondary_values(repository)
-        if not trans.batch:
-            self.update_backlinks(repository)
-            db_op = TXNUPD if old_repository else TXNADD
-            trans.add(REPOSITORY_KEY, db_op, repository.handle,
-                      old_repository,
-                      repository.serialize())
+        self._commit_base(repository, REPOSITORY_KEY, trans, change_time)
+
         # Misc updates:
         if repository.type.is_custom():
             self.repository_types.add(str(repository.type))
@@ -981,28 +879,8 @@ class DBAPI(DbGeneric):
         Commit the specified Note to the database, storing the changes as part
         of the transaction.
         """
-        old_note = None
-        note.change = int(change_time or time.time())
-        if self.has_note_handle(note.handle):
-            old_note = self.get_note_from_handle(note.handle).serialize()
-            self.dbapi.execute("""UPDATE note SET gramps_id = ?,
-                                                    blob_data = ?
-                                                WHERE handle = ?;""",
-                               [note.gramps_id,
-                                pickle.dumps(note.serialize()),
-                                note.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO note (handle, gramps_id, blob_data)
-                                    VALUES(?, ?, ?);""",
-                [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
-        self.update_secondary_values(note)
-        if not trans.batch:
-            self.update_backlinks(note)
-            db_op = TXNUPD if old_note else TXNADD
-            trans.add(NOTE_KEY, db_op, note.handle,
-                      old_note,
-                      note.serialize())
+        self._commit_base(note, NOTE_KEY, trans, change_time)
+
         # Misc updates:
         if note.type.is_custom():
             self.note_types.add(str(note.type))
@@ -1012,33 +890,8 @@ class DBAPI(DbGeneric):
         Commit the specified Place to the database, storing the changes as
         part of the transaction.
         """
-        old_place = None
-        place.change = int(change_time or time.time())
-        if self.has_place_handle(place.handle):
-            old_place = self.get_place_from_handle(place.handle).serialize()
-            self.dbapi.execute("""UPDATE place SET gramps_id = ?,
-                                                   order_by = ?,
-                                                   blob_data = ?
-                                                WHERE handle = ?;""",
-                               [place.gramps_id,
-                                self._order_by_place_key(place),
-                                pickle.dumps(place.serialize()),
-                                place.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO place (handle, order_by, gramps_id, blob_data)
-                                     VALUES(?, ?, ?, ?);""",
-                [place.handle,
-                 self._order_by_place_key(place),
-                 place.gramps_id,
-                 pickle.dumps(place.serialize())])
-        self.update_secondary_values(place)
-        if not trans.batch:
-            self.update_backlinks(place)
-            db_op = TXNUPD if old_place else TXNADD
-            trans.add(PLACE_KEY, db_op, place.handle,
-                      old_place,
-                      place.serialize())
+        self._commit_base(place, PLACE_KEY, trans, change_time)
+
         # Misc updates:
         if place.get_type().is_custom():
             self.place_types.add(str(place.get_type()))
@@ -1057,30 +910,8 @@ class DBAPI(DbGeneric):
         Commit the specified Event to the database, storing the changes as
         part of the transaction.
         """
-        old_event = None
-        event.change = int(change_time or time.time())
-        if self.has_event_handle(event.handle):
-            old_event = self.get_event_from_handle(event.handle).serialize()
-            self.dbapi.execute("""UPDATE event SET gramps_id = ?,
-                                                    blob_data = ?
-                                                WHERE handle = ?;""",
-                               [event.gramps_id,
-                                pickle.dumps(event.serialize()),
-                                event.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO event (handle, gramps_id, blob_data)
-                                     VALUES(?, ?, ?);""",
-                [event.handle,
-                 event.gramps_id,
-                 pickle.dumps(event.serialize())])
-        self.update_secondary_values(event)
-        if not trans.batch:
-            self.update_backlinks(event)
-            db_op = TXNUPD if old_event else TXNADD
-            trans.add(EVENT_KEY, db_op, event.handle,
-                      old_event,
-                      event.serialize())
+        self._commit_base(event, EVENT_KEY, trans, change_time)
+
         # Misc updates:
         self.event_attributes.update(
             [str(attr.type) for attr in event.attribute_list
@@ -1098,55 +929,15 @@ class DBAPI(DbGeneric):
         Commit the specified Tag to the database, storing the changes as
         part of the transaction.
         """
-        tag.change = int(change_time or time.time())
-        if self.has_tag_handle(tag.handle):
-            self.dbapi.execute("""UPDATE tag SET blob_data = ?,
-                                                 order_by = ?
-                                         WHERE handle = ?;""",
-                               [pickle.dumps(tag.serialize()),
-                                self._order_by_tag_key(tag.name),
-                                tag.handle])
-        else:
-            self.dbapi.execute("""INSERT INTO tag (handle, order_by, blob_data)
-                                                  VALUES(?, ?, ?);""",
-                               [tag.handle,
-                                self._order_by_tag_key(tag.name),
-                                pickle.dumps(tag.serialize())])
-        if not trans.batch:
-            self.update_backlinks(tag)
+        self._commit_base(tag, TAG_KEY, trans, change_time)
 
     def commit_media(self, media, trans, change_time=None):
         """
         Commit the specified Media to the database, storing the changes
         as part of the transaction.
         """
-        old_media = None
-        media.change = int(change_time or time.time())
-        if self.has_media_handle(media.handle):
-            old_media = self.get_media_from_handle(media.handle).serialize()
-            self.dbapi.execute("""UPDATE media SET gramps_id = ?,
-                                                   order_by = ?,
-                                                   blob_data = ?
-                                                WHERE handle = ?;""",
-                               [media.gramps_id,
-                                self._order_by_media_key(media),
-                                pickle.dumps(media.serialize()),
-                                media.handle])
-        else:
-            self.dbapi.execute(
-                """INSERT INTO media (handle, order_by, gramps_id, blob_data)
-                                     VALUES(?, ?, ?, ?);""",
-                [media.handle,
-                 self._order_by_media_key(media),
-                 media.gramps_id,
-                 pickle.dumps(media.serialize())])
-        self.update_secondary_values(media)
-        if not trans.batch:
-            self.update_backlinks(media)
-            db_op = TXNUPD if old_media else TXNADD
-            trans.add(MEDIA_KEY, db_op, media.handle,
-                      old_media,
-                      media.serialize())
+        self._commit_base(media, MEDIA_KEY, trans, change_time)
+
         # Misc updates:
         self.media_attributes.update(
             [str(attr.type) for attr in media.attribute_list
@@ -1491,67 +1282,6 @@ class DBAPI(DbGeneric):
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
-        # Rebuild all order_by fields:
-        ## Rebuild place order_by:
-        self.dbapi.execute("""select blob_data from place;""")
-        row = self.dbapi.fetchone()
-        while row:
-            place = Place.create(pickle.loads(row[0]))
-            order_by = self._order_by_place_key(place)
-            cur2 = self.dbapi.execute(
-                """UPDATE place SET order_by = ? WHERE handle = ?;""",
-                [order_by, place.handle])
-            row = self.dbapi.fetchone()
-        ## Rebuild person order_by:
-        self.dbapi.execute("""select blob_data from person;""")
-        row = self.dbapi.fetchone()
-        while row:
-            person = Person.create(pickle.loads(row[0]))
-            order_by = self._order_by_person_key(person)
-            cur2 = self.dbapi.execute(
-                """UPDATE person SET order_by = ? WHERE handle = ?;""",
-                [order_by, person.handle])
-            row = self.dbapi.fetchone()
-        ## Rebuild citation order_by:
-        self.dbapi.execute("""select blob_data from citation;""")
-        row = self.dbapi.fetchone()
-        while row:
-            citation = Citation.create(pickle.loads(row[0]))
-            order_by = self._order_by_citation_key(citation)
-            cur2 = self.dbapi.execute(
-                """UPDATE citation SET order_by = ? WHERE handle = ?;""",
-                [order_by, citation.handle])
-            row = self.dbapi.fetchone()
-        ## Rebuild source order_by:
-        self.dbapi.execute("""select blob_data from source;""")
-        row = self.dbapi.fetchone()
-        while row:
-            source = Source.create(pickle.loads(row[0]))
-            order_by = self._order_by_source_key(source)
-            cur2 = self.dbapi.execute(
-                """UPDATE source SET order_by = ? WHERE handle = ?;""",
-                [order_by, source.handle])
-            row = self.dbapi.fetchone()
-        ## Rebuild tag order_by:
-        self.dbapi.execute("""select blob_data from tag;""")
-        row = self.dbapi.fetchone()
-        while row:
-            tag = Tag.create(pickle.loads(row[0]))
-            order_by = self._order_by_tag_key(tag.name)
-            cur2 = self.dbapi.execute(
-                """UPDATE tag SET order_by = ? WHERE handle = ?;""",
-                [order_by, tag.handle])
-            row = self.dbapi.fetchone()
-        ## Rebuild media order_by:
-        self.dbapi.execute("""select blob_data from media;""")
-        row = self.dbapi.fetchone()
-        while row:
-            media = Media.create(pickle.loads(row[0]))
-            order_by = self._order_by_media_key(media)
-            cur2 = self.dbapi.execute(
-                """UPDATE media SET order_by = ? WHERE handle = ?;""",
-                [order_by, media.handle])
-            row = self.dbapi.fetchone()
 
     def has_handle(self, obj_key, handle):
         if isinstance(handle, bytes):
@@ -1926,28 +1656,54 @@ class DBAPI(DbGeneric):
         for item in self.get_table_func(table, "iter_func")():
             self.update_secondary_values(item)
 
-    def update_secondary_values(self, item):
+    def update_secondary_values(self, obj):
         """
         Given a primary object update its secondary field values
         in the database.
         Does not commit.
         """
-        table = item.__class__.__name__
+        table = obj.__class__.__name__
         fields = self.get_table_func(table, "class_func").get_secondary_fields()
         fields = [field for (field, direction) in fields]
         sets = []
         values = []
         for field in fields:
-            value = item.get_field(field, self, ignore_errors=True)
-            field = self._hash_name(item.__class__.__name__, field)
+            value = obj.get_field(field, self, ignore_errors=True)
+            field = self._hash_name(obj.__class__.__name__, field)
             sets.append("%s = ?" % field)
             values.append(value)
+
+        # Derived fields
+        if table == 'Person':
+            given_name, surname = self._get_person_data(obj)
+            sets.append("given_name = ?")
+            values.append(given_name)
+            sets.append("surname = ?")
+            values.append(surname)
+            sets.append("order_by = ?")
+            values.append(self._order_by_person_key(obj))
+        if table == 'Place':
+            sets.append("order_by = ?")
+            values.append(self._order_by_place_key(obj))
+        if table == 'Source':
+            sets.append("order_by = ?")
+            values.append(self._order_by_source_key(obj))
+        if table == 'Citation':
+            sets.append("order_by = ?")
+            values.append(self._order_by_citation_key(obj))
+        if table == 'Media':
+            sets.append("order_by = ?")
+            values.append(self._order_by_media_key(obj))
+        if table == 'Tag':
+            sets.append("order_by = ?")
+            values.append(self._order_by_tag_key(obj.name))
+
         if len(values) > 0:
             table_name = table.lower()
             self.dbapi.execute("UPDATE %s SET %s where handle = ?;"
                                % (table_name, ", ".join(sets)),
                                self._sql_cast_list(table, sets, values)
-                               + [item.handle])
+                               + [obj.handle])
 
     def _sql_cast_list(self, table, fields, values):
         """
