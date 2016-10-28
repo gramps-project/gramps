@@ -1352,70 +1352,40 @@ class DBAPI(DbGeneric):
     def get_raw_tag_data(self, handle):
         return self.get_raw_data(TAG_KEY, handle)
 
-    def _get_raw_person_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM person WHERE gramps_id = ?", [key])
+    def _get_raw_from_id_data(self, obj_key, gramps_id):
+        table = KEY_TO_NAME_MAP[obj_key]
+        sql = "SELECT blob_data FROM %s WHERE gramps_id = ?" % table
+        self.dbapi.execute(sql, [gramps_id])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
 
-    def _get_raw_family_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM family WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_person_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
 
-    def _get_raw_source_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM source WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_family_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(FAMILY_KEY, gramps_id)
 
-    def _get_raw_citation_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM citation WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_source_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(SOURCE_KEY, gramps_id)
 
-    def _get_raw_event_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM event WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_citation_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(CITATION_KEY, gramps_id)
 
-    def _get_raw_media_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM media WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_event_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(EVENT_KEY, gramps_id)
 
-    def _get_raw_place_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM place WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_media_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(MEDIA_KEY, gramps_id)
 
-    def _get_raw_repository_from_id_data(self, key):
-        if isinstance(key, bytes):
-            key = str(key, "utf-8")
-        self.dbapi.execute(
-            "SELECT blob_data FROM repository WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_place_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(PLACE_KEY, gramps_id)
 
-    def _get_raw_note_from_id_data(self, key):
-        self.dbapi.execute(
-            "SELECT blob_data FROM note WHERE gramps_id = ?", [key])
-        row = self.dbapi.fetchone()
-        if row:
-            return pickle.loads(row[0])
+    def _get_raw_repository_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
+
+    def _get_raw_note_from_id_data(self, gramps_id):
+        return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
 
     def get_gender_stats(self):
         """
