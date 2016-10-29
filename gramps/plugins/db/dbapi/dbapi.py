@@ -601,11 +601,10 @@ class DBAPI(DbGeneric):
 
         If no such Tag exists, None is returned.
         """
-        self.dbapi.execute("""select handle from tag where order_by = ?;""",
-                           [self._order_by_tag_key(name)])
+        self.dbapi.execute("SELECT blob_data FROM tag WHERE name = ?", [name])
         row = self.dbapi.fetchone()
         if row:
-            return self.get_tag_from_handle(row[0])
+            return Tag.create(pickle.loads(row[0]))
         return None
 
     def get_number_of(self, obj_key):
