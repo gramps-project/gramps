@@ -81,6 +81,7 @@ class ResourcePath:
                 LOG.error("Unable to determine resource path")
                 sys.exit(1)
 
+        resource_path = os.path.abspath(resource_path)
         if installed:
             self.locale_dir = os.path.join(resource_path, 'locale')
             self.data_dir = os.path.join(resource_path, 'gramps')

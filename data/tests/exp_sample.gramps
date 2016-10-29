@@ -3,11 +3,14 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-09-04" version="5.0.0-alpha1"/>
+    <created date="2016-10-29" version="5.0.0-alpha1"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
+      <resphone>666-555-4444</resphone>
+      <resemail>an_email@gmail.com</resemail>
     </researcher>
+    <mediapath>{DATA_DIR}/tests</mediapath>
   </header>
   <tags>
     <tag handle="_d54b22fbfc721be9331fb706e3" change="1465741788" name="Unicode" color="#000000" priority="0"/>
@@ -566,25 +569,93 @@
       <attribute type="WWW" value="http://mrstester.com"/>
       <noteref hlink="_d65a448167a6b06a71840a1953b"/>
     </event>
-    <event handle="_d65a448167a70779a5ea555fb99" change="1472500308" id="E0094">
+    <event handle="_d65a448167a70779a5ea555fb99" change="1477749917" id="E0094">
       <type>Residence</type>
-      <dateval val="1964"/>
+      <datespan start="1964-01-01" stop="1970-03-03"/>
+      <place hlink="_0000006a0000006a"/>
       <attribute type="Phone" value="440-871-3402"/>
       <attribute type="EMAIL" value="tomtester@gmail.com"/>
       <attribute type="FAX" value="440-321-4569"/>
       <attribute type="WWW" value="http://tomtester.com"/>
     </event>
+    <event handle="_d70437393c02164585e75a1733c" change="1477581914" id="ID_Laborer">
+      <type>Occupation</type>
+      <dateval val="1972"/>
+    </event>
+    <event handle="_d7043782aa05af41571ec778c76" change="1477584625" id="E0095">
+      <type>Birth</type>
+      <dateval val="1954"/>
+      <place hlink="_0000006500000065"/>
+      <attribute type="Time" value="12:45 am"/>
+      <attribute type="Agency" value="A hosptial"/>
+      <attribute type="Unknown" value="Who knows"/>
+    </event>
+    <event handle="_d7044217b59dd082df3d9af68f" change="1477583054" id="E0096">
+      <type>Death</type>
+    </event>
+    <event handle="_d70443bf71c6340e05a9adc10ae" change="1477583227" id="E0097">
+      <type>Burial</type>
+      <dateval val="2017-01-01"/>
+      <description>Buried in a Cemetary</description>
+    </event>
+    <event handle="_d70443f345457255bed58a2c65b" change="1477758153" id="E0098">
+      <type>Marriage</type>
+      <attribute type="Father Age" value="45"/>
+      <attribute type="Mother Age" value="15"/>
+    </event>
+    <event handle="_d70444b050662d2c4b8ae028b26" change="1477583326" id="E0099">
+      <type>Engagement</type>
+      <description>They were engaged</description>
+    </event>
+    <event handle="_d70446576f35592a31604008bf6" change="1477583499" id="E0100">
+      <type>Alternate Marriage</type>
+      <description>Married by a clown in the buff</description>
+    </event>
+    <event handle="_d70446bff1e2c2e3c842d42b8cb" change="1477583668" id="E0101">
+      <type>Alternate Marriage</type>
+      <attribute type="Father Age" value="44"/>
+      <attribute type="Mother Age" value="15"/>
+    </event>
+    <event handle="_d7044d1d2c749802e8116b33f47" change="1477584209" id="E0102">
+      <type>Retirement</type>
+    </event>
+    <event handle="_d70a7933f8d7296231917a2cc14" change="1477749894" id="E0104">
+      <type>Residence</type>
+      <datestr val="I think 1970 to 1971"/>
+      <place hlink="_0000000900000009"/>
+    </event>
+    <event handle="_d70acccb2bdd725c3180c78f28" change="1477758659" id="E0105">
+      <type>Death</type>
+    </event>
+    <event handle="_d70ad043a9e669bb85bfe71deba" change="1477759023" id="E0106">
+      <type>LossOfMojo</type>
+      <dateval val="1973-07-07"/>
+      <description>A very bad day</description>
+    </event>
+    <event handle="_d70ad0ba90b766d0f8966fb0aba" change="1477759072" id="E0107">
+      <type>GainOfMojo</type>
+      <dateval val="1973-07-10"/>
+    </event>
   </events>
   <people>
-    <person handle="_0000000100000001" change="1198222526" id="I0000">
+    <person handle="_0000000100000001" change="1477581282" id="I0000">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna</first>
+        <surname>Hansdotter</surname>
+        <nick>Annanana</nick>
+      </name>
+      <name alt="1" type="Also Known As">
+        <first>Anna Nana</first>
         <surname>Hansdotter</surname>
       </name>
       <eventref hlink="_0000000200000002" role="Primary"/>
       <eventref hlink="_0000000400000004" role="Primary"/>
       <parentin hlink="_0000000600000006"/>
+      <personref hlink="_0000008700000087" rel="Friend">
+        <noteref hlink="_d7042e81dfd1dadee8ef6e5cac4"/>
+      </personref>
+      <noteref hlink="_d70429bc98a43469b08051816c7"/>
     </person>
     <person handle="_0000000700000007" change="1198222526" id="I0001">
       <gender>M</gender>
@@ -1032,20 +1103,36 @@
         <surname>リチミシキスイミ</surname>
       </name>
     </person>
-    <person handle="_d65a448167a2736b3dfc08c11d8" change="1473020199" id="I0044">
+    <person handle="_d65a448167a2736b3dfc08c11d8" change="1477759240" id="I0044">
       <gender>M</gender>
       <name type="Birth Name">
         <first>The</first>
         <surname>Tester</surname>
       </name>
       <eventref hlink="_d65a44813a618a10a0abaa1ed6a" role="Primary"/>
+      <eventref hlink="_d70acccb2bdd725c3180c78f28" role="Unknown"/>
+      <eventref hlink="_d70ad043a9e669bb85bfe71deba" role="Primary"/>
+      <eventref hlink="_d70ad0ba90b766d0f8966fb0aba" role="Primary"/>
+      <lds_ord type="baptism">
+        <dateval val="1955-01-02"/>
+        <status val="Infant"/>
+      </lds_ord>
+      <address>
+        <dateval val="2017-10-27"/>
+        <locality>test village</locality>
+        <city>Akron</city>
+        <state>OH</state>
+        <country>Cuyahoga</country>
+        <postal>44177</postal>
+      </address>
+      <attribute type="Nickname" value="Testy"/>
       <childof hlink="_0000000a0000000a"/>
       <parentin hlink="_d65a46d6c0034a50640d7a84213"/>
       <citationref hlink="_d65a448168445feea89cc1499fb"/>
     </person>
-    <person handle="_d65a4481684319731c24a1e105a" change="1473020199" id="I0045">
+    <person handle="_d65a4481684319731c24a1e105a" change="1477750978" id="I0045">
       <gender>F</gender>
-      <name type="Birth Name">
+      <name type="Married Name">
         <first>Mrs</first>
         <surname>Tester</surname>
       </name>
@@ -1065,15 +1152,102 @@
       <noteref hlink="_d65a448168e1061fc46719b5efa"/>
       <citationref hlink="_d65a448168e27ed358658e331d9"/>
     </person>
-    <person handle="_d65a448168e2615f26e025aa37c" change="1473020269" id="I0046">
+    <person handle="_d65a448168e2615f26e025aa37c" change="1477758479" id="I0046">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Tom</first>
-        <surname>Tester</surname>
+        <surname prefix="Von" connector="y">Tester</surname>
+        <surname prim="0">tested</surname>
+        <nick>TesterNickname</nick>
       </name>
       <eventref hlink="_d65a448167a70779a5ea555fb99" role="Primary"/>
+      <eventref hlink="_d70a7933f8d7296231917a2cc14" role="Primary"/>
+      <lds_ord type="sealed_to_parents">
+        <dateval val="1999" type="about" quality="estimated"/>
+        <temple val="DENVE"/>
+        <place hlink="_0000006a0000006a"/>
+        <sealed_to hlink="_d65a46d6c0034a50640d7a84213"/>
+      </lds_ord>
+      <url  href="" type="FTP"/>
       <childof hlink="_d65a46d6c0034a50640d7a84213"/>
       <citationref hlink="_d65a448169813b50e0fdc0eea70"/>
+    </person>
+    <person handle="_d70431c6959122e6b45d92a0f79" change="1477758479" id="I0047">
+      <gender>U</gender>
+      <name type="Birth Name">
+        <first>Fake</first>
+        <call>Person</call>
+        <surname prefix="von" derivation="Feudal">Person</surname>
+        <suffix>I</suffix>
+        <title>Fake person</title>
+        <nick>Fake</nick>
+      </name>
+      <eventref hlink="_d70437393c02164585e75a1733c" role="Primary"/>
+      <eventref hlink="_d7043782aa05af41571ec778c76" role="Primary">
+        <attribute type="Father Age" value="47"/>
+        <attribute type="Mother Age" value="16"/>
+        <attribute type="Description" value="An eventref description"/>
+      </eventref>
+      <eventref hlink="_d7044217b59dd082df3d9af68f" role="Primary"/>
+      <eventref hlink="_d70443bf71c6340e05a9adc10ae" role="Primary"/>
+      <eventref hlink="_d7044d1d2c749802e8116b33f47" role="Primary"/>
+      <lds_ord type="baptism">
+        <dateval val="1960-06-07"/>
+        <temple val="DENVE"/>
+        <place hlink="_0000006a0000006a"/>
+        <status val="Qualified"/>
+      </lds_ord>
+      <address>
+        <dateval val="1954"/>
+        <street>8888 Cliff Dr</street>
+        <city>Bay Village</city>
+        <state>Ohio</state>
+        <country>Cuyahoga</country>
+        <postal>44140</postal>
+        <phone>440-871-3400</phone>
+      </address>
+      <attribute type="Identification Number" value="ID99999"/>
+      <attribute type="RFN" value="RFN8888"/>
+      <attribute type="RESN" value="">
+        <noteref hlink="_d7043cbb41e378229bb7645880a"/>
+      </attribute>
+      <attribute type="Age" value="99"/>
+      <attribute type="Agency" value="a hospital"/>
+      <attribute type="Description" value="A fake description"/>
+      <url  href="ftp://whoknows.org" type="FTP" description="A test FTP URL"/>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+    </person>
+    <person handle="_d704394bd865d87c4e17e0ddb52" change="1477758479" id="I0048">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Mary</first>
+        <surname>Tester</surname>
+      </name>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+    </person>
+    <person handle="_d7043a0d88d6c229604fb03acd8" change="1477758479" id="I0049">
+      <gender>F</gender>
+      <name type="Unknown">
+        <first>Martha</first>
+        <surname>Tester</surname>
+      </name>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+    </person>
+    <person handle="_d7043e8a06054d316b49becaa9" change="1477758479" id="I0050">
+      <gender>M</gender>
+      <name type="Also Known As">
+        <first>John</first>
+        <surname>Tester</surname>
+      </name>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
+    </person>
+    <person handle="_d70ac994c26790fb000f95f0a31" change="1477758479" id="I0051">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Mark</first>
+        <surname>Tester</surname>
+      </name>
+      <childof hlink="_d65a46d6c0034a50640d7a84213"/>
     </person>
   </people>
   <families>
@@ -1194,11 +1368,30 @@
       <mother hlink="_0000005600000056"/>
       <eventref hlink="_000000a9000000a9" role="Family"/>
     </family>
-    <family handle="_d65a46d6c0034a50640d7a84213" change="1473020211" id="F0016">
+    <family handle="_d65a46d6c0034a50640d7a84213" change="1477758479" id="F0016">
       <rel type="Married"/>
       <father hlink="_d65a448167a2736b3dfc08c11d8"/>
       <mother hlink="_d65a4481684319731c24a1e105a"/>
+      <eventref hlink="_d70443f345457255bed58a2c65b" role="Family"/>
+      <eventref hlink="_d70444b050662d2c4b8ae028b26" role="Family"/>
+      <eventref hlink="_d70446576f35592a31604008bf6" role="Family"/>
+      <eventref hlink="_d70446bff1e2c2e3c842d42b8cb" role="Family"/>
+      <lds_ord type="sealed_to_spouse">
+        <dateval val="2000-02-22"/>
+        <temple val="DENVE"/>
+        <place hlink="_0000003400000034"/>
+        <status val="Cleared"/>
+      </lds_ord>
       <childref hlink="_d65a448168e2615f26e025aa37c"/>
+      <childref hlink="_d70431c6959122e6b45d92a0f79" mrel="Stepchild" frel="Adopted"/>
+      <childref hlink="_d704394bd865d87c4e17e0ddb52" mrel="Adopted"/>
+      <childref hlink="_d7043a0d88d6c229604fb03acd8" mrel="Foster" frel="Foster"/>
+      <childref hlink="_d7043e8a06054d316b49becaa9" mrel="Stepchild" frel="Stepchild"/>
+      <childref hlink="_d70ac994c26790fb000f95f0a31" mrel="Sponsored" frel="Sponsored"/>
+      <attribute type="Number of Children" value="4"/>
+      <attribute type="RFN" value="RFN3333"/>
+      <attribute type="License Number" value="7532951"/>
+      <attribute type="Unknown" value=""/>
     </family>
   </families>
   <citations>
@@ -1219,10 +1412,15 @@
       <confidence>3</confidence>
       <sourceref hlink="_d53252d41b370ebe65ebd50c34f"/>
     </citation>
-    <citation handle="_d53254b0c802fe24bdea26f3180" change="1465075912" id="C0004">
+    <citation handle="_d53254b0c802fe24bdea26f3180" change="1477757692" id="C0004">
       <dateval val="1955-05-05"/>
       <page>22 6</page>
       <confidence>2</confidence>
+      <noteref hlink="_d70a86ba52769996c5099561a3d"/>
+      <noteref hlink="_d70a873db52134a80abb82d9769"/>
+      <srcattribute type="EVEN" value="Citation Event?"/>
+      <srcattribute type="EVEN:ROLE" value="The Event type Role"/>
+      <srcattribute type="Unknown" value="I'ts unknown!"/>
       <sourceref hlink="_000000b9000000b9"/>
     </citation>
     <citation handle="_d65a448168445feea89cc1499fb" change="1472500308" id="C0005">
@@ -1233,8 +1431,9 @@
       <confidence>2</confidence>
       <sourceref hlink="_d65a448169824195df7cdb2236c"/>
     </citation>
-    <citation handle="_d65a448169813b50e0fdc0eea70" change="1472500308" id="C0007">
+    <citation handle="_d65a448169813b50e0fdc0eea70" change="1477757813" id="C0007">
       <confidence>2</confidence>
+      <noteref hlink="_d70a86ba52769996c5099561a3d"/>
       <sourceref hlink="_d65a448169824195df7cdb2236c"/>
     </citation>
   </citations>
@@ -1274,6 +1473,13 @@
       <stitle>Ohio Births, 1958-2002</stitle>
       <reporef hlink="_d65a44816ac165956f5723df07d" medium="Book"/>
     </source>
+    <source handle="_d7044abba5546284583fee1e21c" change="1477758039" id="S0007">
+      <stitle></stitle>
+      <sauthor>The tester</sauthor>
+      <spubinfo>Published when the test was written</spubinfo>
+      <sabbrev>TST</sabbrev>
+      <reporef hlink="_d7044c855b91ee04c40e98987e7"/>
+    </source>
   </sources>
   <places>
     <placeobj handle="_0000000300000003" change="1465741826" id="P0000" type="Unknown">
@@ -1306,7 +1512,7 @@
       <ptitle>Hayward, Alameda Co., CA</ptitle>
       <pname value="Hayward, Alameda Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000003400000034" change="1463929997" id="P0007" type="Unknown">
+    <placeobj handle="_0000003400000034" change="1477754702" id="P0007" type="Locality">
       <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
       <pname value="Community Presbyterian Church, Danville, CA"/>
     </placeobj>
@@ -1442,8 +1648,9 @@
     </placeobj>
   </places>
   <objects>
-    <object handle="_d54c1b52c8636648123580900ca" change="1465767829" id="O0000">
-      <file src="D:/Users/prc/Downloads/Michael O'Toole 2015-11.jpg" mime="image/jpeg" checksum="ed5423c128d9bc43dbc03a8311f185bd" description="Michael O'Toole 2015-11"/>
+    <object handle="_d54c1b52c8636648123580900ca" change="1477754617" id="O0000">
+      <file src="O0.jpg" mime="image/jpeg" checksum="887d22e5822c86bd3961d0d179fbc0a2" description="Michael O'Toole 2015-11"/>
+      <noteref hlink="_d70aa63baa15f9fee23b45f03b"/>
     </object>
   </objects>
   <repositories>
@@ -1508,6 +1715,13 @@
       <url  href="http://www.tester_repo.com" type="Web Home"/>
       <noteref hlink="_d65a44816cafa196ba741ab38d"/>
       <noteref hlink="_d65a44816ca32ac25b0b586e61c"/>
+    </repository>
+    <repository handle="_d7044c064202cdd982648bfce19" change="1477584095" id="R0005">
+      <type>Library</type>
+      <url  href="555-444-3333" type="Unknown"/>
+    </repository>
+    <repository handle="_d7044c855b91ee04c40e98987e7" change="1477758030" id="R0006">
+      <type>Library</type>
     </repository>
   </repositories>
   <notes>
@@ -1592,6 +1806,25 @@ Only one phone number supported                                     Line     9: 
       <style name="fontface" value="Monospace">
         <range start="0" end="144"/>
       </style>
+    </note>
+    <note handle="_d70429bc98a43469b08051816c7" change="1477580626" id="N0014" type="Person Note">
+      <text>******************************************************************890123456789
+******************************************************************89 123456789</text>
+    </note>
+    <note handle="_d7042e81dfd1dadee8ef6e5cac4" change="1477581000" id="N0015" type="Association Note">
+      <text>This should show up under the ASSO tag in Gedcom</text>
+    </note>
+    <note handle="_d7043cbb41e378229bb7645880a" change="1477582492" id="N0016" type="Attribute Note">
+      <text>??? What is RESN???</text>
+    </note>
+    <note handle="_d70a86ba52769996c5099561a3d" change="1477757590" id="N0017" type="Source text">
+      <text>A citation Note Source text</text>
+    </note>
+    <note handle="_d70a873db52134a80abb82d9769" change="1477751366" id="N0018" type="Citation">
+      <text>Another Citation Note</text>
+    </note>
+    <note handle="_d70aa63baa15f9fee23b45f03b" change="1477754616" id="N0019" type="Media Note">
+      <text>A bad photo for sure</text>
     </note>
   </notes>
 </database>
