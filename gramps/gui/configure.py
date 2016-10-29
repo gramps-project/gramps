@@ -238,7 +238,7 @@ class ConfigureDialog(ManagedWindow):
                         obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
         
-        self.__config.set(constant, unicode(obj.get_text()))
+        self.__config.set(constant, conv_to_unicode(obj.get_text()))
 
     def update_entry(self, obj, constant):
         """
