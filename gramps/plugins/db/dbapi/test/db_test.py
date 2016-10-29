@@ -32,14 +32,17 @@ import unittest
 #-------------------------------------------------------------------------
 from gramps.gen.db import make_database, DbTxn
 from gramps.gen.lib import (Person, Family, Event, Place, Repository, Source,
-                            Citation, Media, Note, Tag)
+                            Citation, Media, Note, Tag, Researcher, Surname)
 
 #-------------------------------------------------------------------------
 #
-# DbTest class
+# DbRandomTest class
 #
 #-------------------------------------------------------------------------
-class DbTest(unittest.TestCase):
+class DbRandomTest(unittest.TestCase):
+    '''
+    Tests with random objects.
+    '''
 
     @classmethod
     def setUpClass(cls):
@@ -91,6 +94,8 @@ class DbTest(unittest.TestCase):
 
     def __add_object(self, obj_class, add_func, trans):
         obj = obj_class()
+        if obj_class == Tag:
+            obj.name = 'Tag%s' % len(self.handles['Tag'])
         handle = add_func(obj, trans)
         self.handles[obj_class.__name__].append(handle)
         if obj_class != Tag:
@@ -369,6 +374,10 @@ class DbTest(unittest.TestCase):
                                  self.db.get_note_gramps_ids,
                                  self.db.get_note_from_gramps_id)
 
+    def test_get_tag_from_name(self):
+        tag = self.db.get_tag_from_name('Tag0')
+        self.assertEqual(tag.handle, self.handles['Tag'][0])
+
     ################################################################
     #
     # Test has_*_handle methods
@@ -605,6 +614,191 @@ class DbTest(unittest.TestCase):
     def test_iter_tags(self):
         self.__iter_objects_test(Tag,
                                  self.db.iter_tags)
+
+    ################################################################
+    #
+    # Test default and initial person methods
+    #
+    ################################################################
+
+    def test_no_default_handle(self):
+        self.db.set_default_person_handle(None)
+        handle = self.db.get_default_handle()
+        self.assertIsNone(handle)
+        person = self.db.get_default_person()
+        self.assertIsNone(person)
+        person = self.db.find_initial_person()
+        self.assertIsInstance(person, Person)
+
+    def test_default_handle(self):
+        default_handle = self.handles['Person'][0]
+        self.db.set_default_person_handle(default_handle)
+        handle = self.db.get_default_handle()
+        self.assertEqual(handle, default_handle)
+        person = self.db.get_default_person()
+        self.assertEqual(person.handle, default_handle)
+        person = self.db.find_initial_person()
+        self.assertEqual(person.handle, default_handle)
+
+#-------------------------------------------------------------------------
+#
+# DbEmptyTest class
+#
+#-------------------------------------------------------------------------
+class DbEmptyTest(unittest.TestCase):
+    '''
+    Tests with an empty database.
+    '''
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = make_database("inmemorydb")
+        cls.db.load(None)
+
+    ################################################################
+    #
+    # Test metadata methods
+    #
+    ################################################################
+
+    def test_metadata(self):
+        self.db.set_metadata('test-key', 'test-value')
+        value = self.db.get_metadata('test-key')
+        self.assertEqual(value, 'test-value')
+
+    def test_metadata_missing(self):
+        value = self.db.get_metadata('missing-key')
+        self.assertEqual(value, [])
+
+    def test_metadata_default(self):
+        value = self.db.get_metadata('missing-key', default='default-value')
+        self.assertEqual(value, 'default-value')
+
+    ################################################################
+    #
+    # Test default and initial person methods
+    #
+    ################################################################
+
+    def test_no_default_handle(self):
+        handle = self.db.get_default_handle()
+        self.assertIsNone(handle)
+        person = self.db.get_default_person()
+        self.assertIsNone(person)
+        person = self.db.find_initial_person()
+        self.assertIsNone(person)
+
+    ################################################################
+    #
+    # Test researcher methods
+    #
+    ################################################################
+
+    def test_researcher(self):
+        res1 = Researcher()
+        res1.street = 'street'
+        res1.locality = 'locality'
+        res1.city = 'city'
+        res1.county = 'county'
+        res1.state = 'state'
+        res1.country = 'country'
+        res1.postal = 'postal'
+        res1.phone = 'phone'
+        res1.name = 'name'
+        res1.addr = 'addr'
+        res1.email = 'email'
+        self.db.set_researcher(res1)
+        res2 = self.db.get_researcher()
+        self.assertEqual(res1.serialize(), res2.serialize())
+
+    ################################################################
+    #
+    # Test name group mapping
+    #
+    ################################################################
+
+    def test_name_group_mapping(self):
+        self.db.set_name_group_mapping('Clark', 'Clarke')
+
+        self.assertTrue(self.db.has_name_group_key('Clark'))
+        self.assertFalse(self.db.has_name_group_key('Baker'))
+
+        for key in self.db.get_name_group_keys():
+            self.assertTrue(self.db.has_name_group_key(key))
+
+        mapping = self.db.get_name_group_mapping('Clark')
+        self.assertEqual(mapping, 'Clarke')
+
+#-------------------------------------------------------------------------
+#
+# DbPersonTest class
+#
+#-------------------------------------------------------------------------
+class DbPersonTest(unittest.TestCase):
+    '''
+    Tests with some sample people.
+    '''
+
+    @classmethod
+    def setUpClass(cls):
+        cls.db = make_database("inmemorydb")
+        cls.db.load(None)
+
+    def __add_person(self, gender, first_name, surname, trans):
+        person = Person()
+        person.gender = gender
+        name = person.primary_name
+        name.first_name = first_name
+        surname1 = Surname()
+        surname1.surname = surname
+        name.set_surname_list([surname1])
+        self.all_surnames.append(surname)
+        self.db.add_person(person, trans)
+
+    def setUp(self):
+        self.all_surnames = []
+        with DbTxn('Add test objects', self.db) as trans:
+            self.__add_person(Person.MALE, 'John', 'Allen', trans)
+            self.__add_person(Person.MALE, 'John', 'Baker', trans)
+            self.__add_person(Person.MALE, 'John', 'Clark', trans)
+            self.__add_person(Person.FEMALE, 'John', 'Davis', trans)
+            self.__add_person(Person.UNKNOWN, 'John', 'Evans', trans)
+            self.__add_person(Person.FEMALE, 'Mary', 'Allen', trans)
+            self.__add_person(Person.FEMALE, 'Mary', 'Baker', trans)
+            self.__add_person(Person.FEMALE, 'Mary', 'Clark', trans)
+            self.__add_person(Person.MALE, 'Mary', 'Davis', trans)
+            self.__add_person(Person.FEMALE, 'Mary', 'Evans', trans)
+
+    def tearDown(self):
+        with DbTxn('Remove test objects', self.db) as trans:
+            for handle in self.db.get_person_handles():
+                self.db.remove_person(handle, trans)
+
+    ################################################################
+    #
+    # Test surname list
+    #
+    ################################################################
+
+    def test_surname_list(self):
+        surname_list = self.db.get_surname_list()
+        for surname in surname_list:
+            self.assertIn(surname, self.all_surnames)
+
+    ################################################################
+    #
+    # Test gender stats
+    #
+    ################################################################
+
+    def test_gender_stats(self):
+        stats = self.db.genderStats
+        self.assertEqual(stats.name_stats('John'), (3, 1, 1))
+        self.assertEqual(stats.name_stats('Mary'), (1, 4, 0))
+        self.db.save_gender_stats(stats)
+        saved = self.db.get_gender_stats()
+        self.assertEqual(saved['John'], (3, 1, 1))
+        self.assertEqual(saved['Mary'], (1, 4, 0))
 
 
 if __name__ == "__main__":
