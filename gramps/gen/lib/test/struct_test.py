@@ -27,7 +27,6 @@ from  .. import (Person, Family, Event, Source, Place, Citation,
                  Repository, Media, Note, Tag)
 from gramps.gen.merge.diff import import_as_dict
 from gramps.cli.user import User
-from gramps.gen.merge.diff import *
 from gramps.gen.const import DATA_DIR
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
