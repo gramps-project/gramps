@@ -197,11 +197,6 @@ class DbState(Callback):
             pdata = pmgr.get_plugin(plugin_id)
 
         if pdata:
-            if pdata.reset_system:
-                if self.modules_is_set():
-                    self.reset_modules()
-                else:
-                    self.save_modules()
             mod = pmgr.load_plugin(pdata)
             if mod:
                 database = getattr(mod, pdata.databaseclass)
@@ -295,26 +290,3 @@ class DbState(Callback):
                 results = import_function(db, filename, user)
                 return True
         return False
-
-    ## Work-around for databases that need sys refresh (django):
-    def modules_is_set(self):
-        LOG.info("modules_is_set?")
-        if hasattr(self, "_modules"):
-            return self._modules != None
-        else:
-            self._modules = None
-            return False
-
-    def reset_modules(self):
-        LOG.info("reset_modules!")
-        # First, clear out old modules:
-        for key in list(sys.modules.keys()):
-            del sys.modules[key]
-        # Next, restore previous:
-        for key in self._modules:
-            sys.modules[key] = self._modules[key]
-
-    def save_modules(self):
-        LOG.info("save_modules!")
-        self._modules = sys.modules.copy()
-
