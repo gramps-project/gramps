@@ -22,6 +22,7 @@
 
 import unittest
 import sys
+import os
 try:
     if sys.version_info < (3,3):
         from mock import Mock, patch
