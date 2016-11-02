@@ -65,6 +65,9 @@ class MergeRepository(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget('repository_title'),
                         _("Merge Repositories"))
+        self.height_key = 'interface.merge-repository-height'
+        self.width_key = 'interface.merge-repository-width'
+        self._set_size()
 
         # Detailed selection widgets
         name1 = self.rp1.get_name()

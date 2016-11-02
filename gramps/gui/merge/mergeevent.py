@@ -65,6 +65,9 @@ class MergeEvent(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget("event_title"),
                         _("Merge Events"))
+        self.height_key = 'interface.merge-event-height'
+        self.width_key = 'interface.merge-event-width'
+        self._set_size()
 
         # Detailed selection widgets
         type1 = str(self.ev1.get_type())

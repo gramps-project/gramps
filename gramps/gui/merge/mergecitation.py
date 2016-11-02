@@ -66,6 +66,9 @@ class MergeCitation(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget('citation_title'),
                         _("Merge Citations"))
+        self.height_key = 'interface.merge-citation-height'
+        self.width_key = 'interface.merge-citation-width'
+        self._set_size()
 
         # Detailed Selection widgets
         page1 = self.citation1.get_page()

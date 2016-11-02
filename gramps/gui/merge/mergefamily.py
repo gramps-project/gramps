@@ -66,6 +66,9 @@ class MergeFamily(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget("family_title"),
                         _("Merge Families"))
+        self.height_key = 'interface.merge-family-height'
+        self.width_key = 'interface.merge-family-width'
+        self._set_size()
 
         # Detailed selection widgets
         father1 = self.fy1.get_father_handle()
