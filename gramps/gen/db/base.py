@@ -25,21 +25,21 @@ Base class for the Gramps databases. All database interfaces should inherit
 from this class.
 """
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Python libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 import re
 import time
 from operator import itemgetter
 import logging
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 from ..db.dbconst import DBLOGNAME
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -50,11 +50,12 @@ from .exceptions import DbTransactionCancel
 
 _LOG = logging.getLogger(DBLOGNAME)
 
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 #
 # Gramps libraries
 #
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
 
 class DbReadBase:
     """
@@ -482,7 +483,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-     def get_event_from_handle(self, handle):
+    def get_event_from_handle(self, handle):
         """
         Return an Event in the database from the passed handle.
 
@@ -521,7 +522,7 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-   def get_note_from_handle(self, handle):
+    def get_note_from_handle(self, handle):
         """
         Return a Note in the database from the passed handle.
 
@@ -1304,7 +1305,7 @@ class DbReadBase:
     def set_family_id_prefix(self, val):
         """
         Set the naming template for Gramps Family ID values.
-        
+
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as F%d or F%04d.
@@ -1406,8 +1407,9 @@ class DbReadBase:
         Used in SQL functions to eval expressions involving selected
         data.
         """
-        name = self.get_table_func(table,"class_func").get_field_alias(name)
+        name = self.get_table_func(table, "class_func").get_field_alias(name)
         return name.replace(".", "__")
+
 
 class DbWriteBase(DbReadBase):
     """
@@ -1762,7 +1764,8 @@ class DbWriteBase(DbReadBase):
             self.commit_family(family, trans)
             self.commit_person(child, trans)
 
-    def remove_child_from_family(self, person_handle, family_handle, trans=None):
+    def remove_child_from_family(self, person_handle, family_handle,
+                                 trans=None):
         """
         Remove a person as a child of the family, deleting the family if
         it becomes empty.
@@ -1772,7 +1775,8 @@ class DbWriteBase(DbReadBase):
                 self.__remove_child_from_family(person_handle, family_handle,
                                                 trans)
         else:
-            self.__remove_child_from_family(person_handle, family_handle, trans)
+            self.__remove_child_from_family(person_handle, family_handle,
+                                            trans)
             trans.set_description(_("Remove child from family"))
 
     def __remove_child_from_family(self, person_handle, family_handle, trans):
@@ -1794,7 +1798,8 @@ class DbWriteBase(DbReadBase):
 
     def delete_person_from_database(self, person, trans):
         """
-        Deletes a person from the database, cleaning up all associated references.
+        Deletes a person from the database, cleaning up all associated
+        references.
         """
 
         # clear out the default person if the person is the default person
@@ -1835,7 +1840,7 @@ class DbWriteBase(DbReadBase):
 
         person_list = [
             item[1] for item in
-            self.find_backlink_handles(handle,['Person'])]
+            self.find_backlink_handles(handle, ['Person'])]
 
         for phandle in person_list:
             prsn = self.get_person_from_handle(phandle)
