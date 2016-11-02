@@ -179,9 +179,6 @@ class EditLdsOrd(EditSecondary):
         self.parents_label = self.top.get_object('parents_label')
         self.parents = self.top.get_object('parents')
         self.parents_select = self.top.get_object('parents_select')
-        image = self.parents_select.get_child()
-        image.set_from_icon_name('gtk-index', Gtk.IconSize.BUTTON)
-        self.parents_select.set_tooltip_text(_('Select Family'))
 
         self.priv = PrivacyButton(
             self.top.get_object("private"),
