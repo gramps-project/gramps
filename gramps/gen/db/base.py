@@ -111,7 +111,7 @@ class DbReadBase:
         Returns an iterator over a list of (class_name, handle) tuples.
 
         :param handle: handle of the object to search for.
-        :type handle: database handle
+        :type handle: str database handle
         :param include_classes: list of class names to include in the results.
             Default is None which includes all classes.
         :type include_classes: list of class names
@@ -134,6 +134,32 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_child_reference_types(self):
+        """
+        Return a list of all child reference types associated with Family
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_default_handle(self):
+        """
+        Return the default Person of the database.
+        """
+        raise NotImplementedError
+
+    def get_default_person(self):
+        """
+        Return the default Person of the database.
+        """
+        raise NotImplementedError
+
+    def find_next_citation_gramps_id(self):
+        """
+        Return the next available Gramps ID for a Event object based off the
+        event ID prefix.
+        """
+        raise NotImplementedError
+
     def find_next_event_gramps_id(self):
         """
         Return the next available Gramps ID for a Event object based off the
@@ -148,17 +174,17 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def find_next_note_gramps_id(self):
-        """
-        Return the next available Gramps ID for a Note object based off the
-        note ID prefix.
-        """
-        raise NotImplementedError
-
     def find_next_media_gramps_id(self):
         """
         Return the next available Gramps ID for a Media object based
         off the media object ID prefix.
+        """
+        raise NotImplementedError
+
+    def find_next_note_gramps_id(self):
+        """
+        Return the next available Gramps ID for a Note object based off the
+        note ID prefix.
         """
         raise NotImplementedError
 
@@ -196,22 +222,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_child_reference_types(self):
+    def get_citation_bookmarks(self):
         """
-        Return a list of all child reference types associated with Family
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_default_handle(self):
-        """
-        Return the default Person of the database.
-        """
-        raise NotImplementedError
-
-    def get_default_person(self):
-        """
-        Return the default Person of the database.
+        Return the list of Citation handles in the bookmarks.
         """
         raise NotImplementedError
 
@@ -221,9 +234,150 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_family_bookmarks(self):
+        """
+        Return the list of Family handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_media_bookmarks(self):
+        """
+        Return the list of Media handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_note_bookmarks(self):
+        """
+        Return the list of Note handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_place_bookmarks(self):
+        """
+        Return the list of Place handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_repo_bookmarks(self):
+        """
+        Return the list of Repository handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_source_bookmarks(self):
+        """
+        Return the list of Source handles in the bookmarks.
+        """
+        raise NotImplementedError
+
+    def get_citation_cursor(self):
+        """
+        Return a reference to a cursor over Citation objects.  Example use::
+
+            with get_citation_cursor() as cursor:
+                for handle, citation in cursor:
+                    # process citation object pointed to by the handle
+        """
+        raise NotImplementedError
+
     def get_event_cursor(self):
         """
-        Return a reference to a cursor over Family objects
+        Return a reference to a cursor over Family objects.  Example use::
+
+            with get_event_cursor() as cursor:
+                for handle, event in cursor:
+                    # process event object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_family_cursor(self):
+        """
+        Return a reference to a cursor over Family objects.  Example use::
+
+            with get_family_cursor() as cursor:
+                for handle, family in cursor:
+                    # process family object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_media_cursor(self):
+        """
+        Return a reference to a cursor over Media objects.  Example use::
+
+            with get_media_cursor() as cursor:
+                for handle, media in cursor:
+                    # process media object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_note_cursor(self):
+        """
+        Return a reference to a cursor over Note objects.  Example use::
+
+            with get_note_cursor() as cursor:
+                for handle, note in cursor:
+                    # process note object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_person_cursor(self):
+        """
+        Return a reference to a cursor over Person objects.  Example use::
+
+            with get_person_cursor() as cursor:
+                for handle, person in cursor:
+                    # process person object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_place_cursor(self):
+        """
+        Return a reference to a cursor over Place objects.  Example use::
+
+            with get_place_cursor() as cursor:
+                for handle, place in cursor:
+                    # process place object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_repository_cursor(self):
+        """
+        Return a reference to a cursor over Repository objects.  Example use::
+
+            with get_repository_cursor() as cursor:
+                for handle, repository in cursor:
+                    # process repository object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_source_cursor(self):
+        """
+        Return a reference to a cursor over Source objects.  Example use::
+
+            with get_source_cursor() as cursor:
+                for handle, source in cursor:
+                    # process source object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_tag_cursor(self):
+        """
+        Return a reference to a cursor over Tag objects.  Example use::
+
+            with get_tag_cursor() as cursor:
+                for handle, tag in cursor:
+                    # process tag object pointed to by the handle
+        """
+        raise NotImplementedError
+
+    def get_citation_from_gramps_id(self, val):
+        """
+        Find a Citation in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Citation exists, None is returned.
         """
         raise NotImplementedError
 
@@ -231,16 +385,226 @@ class DbReadBase:
         """
         Find an Event in the database from the passed Gramps ID.
 
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
         If no such Event exists, None is returned.
-        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
-    def get_event_from_handle(self, handle):
+    def get_family_from_gramps_id(self, val):
         """
-        Find a Event in the database from the passed Gramps ID.
+        Find a Family in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Family exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_media_from_gramps_id(self, val):
+        """
+        Find a Media in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Media exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_note_from_gramps_id(self, val):
+        """
+        Find a Note in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Note exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_person_from_gramps_id(self, val):
+        """
+        Find a Person in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Person exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_place_from_gramps_id(self, val):
+        """
+        Find a Place in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Place exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_repository_from_gramps_id(self, val):
+        """
+        Find a Repository in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Repository exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_source_from_gramps_id(self, val):
+        """
+        Find a Source in the database from the passed Gramps ID.
+
+        :param val: gramps_id of the object to search for.
+        :type val: str or bytes
+
+        If no such Source exists, None is returned.
+        """
+        raise NotImplementedError
+
+    def get_citation_from_handle(self, handle):
+        """
+        Return a Citation in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Citation exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Citation is filtered out.
+        """
+        raise NotImplementedError
+
+     def get_event_from_handle(self, handle):
+        """
+        Return an Event in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
 
         If no such Event exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Event is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_family_from_handle(self, handle):
+        """
+        Return a Family in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Family exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Family is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_media_from_handle(self, handle):
+        """
+        Return a Media in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Object exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Media is filtered out.
+        """
+        raise NotImplementedError
+
+   def get_note_from_handle(self, handle):
+        """
+        Return a Note in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Note exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Note is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_person_from_handle(self, handle):
+        """
+        Return a Person in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Person exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Person is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_place_from_handle(self, handle):
+        """
+        Return a Place in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Place exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Place is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_repository_from_handle(self, handle):
+        """
+        Return a Repository in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Repository exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Repository is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_source_from_handle(self, handle):
+        """
+        Return a Source in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Source exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Source is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_tag_from_handle(self, handle):
+        """
+        Return a Tag in the database from the passed handle.
+
+        :param handle: handle of the object to search for.
+        :type handle: str or bytes
+
+        If no such Tag exists, a HandleError is raised.
+        Note: if used through a proxy (Filter for reports etc.) a 'None' is
+        returned in cases where the Tag is filtered out.
+        """
+        raise NotImplementedError
+
+    def get_citation_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Citation in
+        the database.
+
+        If sort_handles is True, the list is sorted by Citation title.
         """
         raise NotImplementedError
 
@@ -248,6 +612,101 @@ class DbReadBase:
         """
         Return a list of database handles, one handle for each Event in the
         database.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_family_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Family in
+        the database.
+
+        If sort_handles is True, the list is sorted by surnames.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_media_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Media in
+        the database.
+
+        If sort_handles is True, the list is sorted by title.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_note_handles(self):
+        """
+        Return a list of database handles, one handle for each Note in the
+        database.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_person_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Person in
+        the database.
+
+        If sort_handles is True, the list is sorted by surnames.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_place_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Place in
+        the database.
+
+        If sort_handles is True, the list is sorted by Place title.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_repository_handles(self):
+        """
+        Return a list of database handles, one handle for each Repository in
+        the database.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_source_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Source in
+        the database.
+
+        If sort_handles is True, the list is sorted by Source title.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
+        """
+        raise NotImplementedError
+
+    def get_tag_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Tag in
+        the database.
+
+        If sort_handles is True, the list is sorted by Tag name.
+
+        .. warning:: For speed the keys are directly returned, so handles are
+                     bytes type
         """
         raise NotImplementedError
 
@@ -265,73 +724,10 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_event_types(self):
-        """
-        Return a list of all event types in the database.
-        """
-        raise NotImplementedError
-
     def get_family_attribute_types(self):
         """
         Return a list of all Attribute types associated with Family instances
         in the database.
-        """
-        raise NotImplementedError
-
-    def get_family_bookmarks(self):
-        """
-        Return the list of Family handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_family_cursor(self):
-        """
-        Return a reference to a cursor over Family objects
-        """
-        raise NotImplementedError
-
-    def get_family_event_types(self):
-        """
-        Deprecated:  Use get_event_types
-        """
-        raise NotImplementedError
-
-    def get_family_from_gramps_id(self, val):
-        """
-        Find a Family in the database from the passed Gramps ID.
-
-        If no such Family exists, None is returned.
-        Need to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_family_from_handle(self, handle):
-        """
-        Find a Family in the database from the passed Gramps ID.
-
-        If no such Family exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_family_handles(self, sort_handles=False):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-
-        If sort_handles is True, the list is sorted by surnames.
-        """
-        raise NotImplementedError
-
-    def get_family_relation_types(self):
-        """
-        Return a list of all relationship types associated with Family
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_gramps_ids(self, obj_key):
-        """
-        Returns all the keys from a table given a table name
         """
         raise NotImplementedError
 
@@ -342,24 +738,91 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_bookmarks(self):
+    def get_person_attribute_types(self):
         """
-        Return the list of Media handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_media_cursor(self):
-        """
-        Return a reference to a cursor over Media objects
+        Return a list of all Attribute types associated with Person instances
+        in the database.
         """
         raise NotImplementedError
 
-    def get_media_handles(self, sort_handles=False):
+    def get_source_attribute_types(self):
         """
-        Return a list of database handles, one handle for each Media in
-        the database.
+        Return a list of all Attribute types associated with Source/Citation
+        instances in the database.
+        """
+        raise NotImplementedError
 
-        If sort_handles is True, the list is sorted by title.
+    def get_event_types(self):
+        """
+        Return a list of all event types in the database.
+        """
+        raise NotImplementedError
+
+    def get_family_event_types(self):
+        """
+        Deprecated:  Use get_event_types
+        """
+        raise NotImplementedError
+
+    def get_family_relation_types(self):
+        """
+        Return a list of all relationship types associated with Family
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_name_types(self):
+        """
+        Return a list of all custom names types associated with Person
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_note_types(self):
+        """
+        Return a list of all custom note types associated with Note instances
+        in the database.
+        """
+        raise NotImplementedError
+
+    def get_origin_types(self):
+        """
+        Return a list of all custom origin types associated with Person/Surname
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_place_types(self):
+        """
+        Return a list of all custom place types assocated with Place instances
+        in the database.
+        """
+        raise NotImplementedError
+
+    def get_repository_types(self):
+        """
+        Return a list of all custom repository types associated with Repository
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_source_media_types(self):
+        """
+        Return a list of all custom source media types associated with Source
+        instances in the database.
+        """
+        raise NotImplementedError
+
+    def get_url_types(self):
+        """
+        Return a list of all custom names types associated with Url instances
+        in the database.
+        """
+        raise NotImplementedError
+
+    def get_gramps_ids(self, obj_key):
+        """
+        Returns all the keys from a table given a table name
         """
         raise NotImplementedError
 
@@ -381,60 +844,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_name_types(self):
+    def get_number_of_citations(self):
         """
-        Return a list of all custom names types associated with Person
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_origin_types(self):
-        """
-        Return a list of all custom origin types associated with Person/Surname
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_note_bookmarks(self):
-        """
-        Return the list of Note handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_note_cursor(self):
-        """
-        Return a reference to a cursor over Note objects
-        """
-        raise NotImplementedError
-
-    def get_note_from_gramps_id(self, val):
-        """
-        Find a Note in the database from the passed Gramps ID.
-
-        If no such Note exists, None is returned.
-        Needs to be overridden by the derived classderri.
-        """
-        raise NotImplementedError
-
-    def get_note_from_handle(self, handle):
-        """
-        Find a Note in the database from the passed Gramps ID.
-
-        If no such Note exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_note_handles(self):
-        """
-        Return a list of database handles, one handle for each Note in the
-        database.
-        """
-        raise NotImplementedError
-
-    def get_note_types(self):
-        """
-        Return a list of all custom note types associated with Note instances
-        in the database.
+        Return the number of citations currently in the database.
         """
         raise NotImplementedError
 
@@ -492,110 +904,15 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_media_from_gramps_id(self, val):
-        """
-        Find a Media in the database from the passed Gramps ID.
-
-        If no such Media exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_media_from_handle(self, handle):
-        """
-        Find an Object in the database from the passed Gramps ID.
-
-        If no such Object exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_person_attribute_types(self):
-        """
-        Return a list of all Attribute types associated with Person instances
-        in the database.
-        """
-        raise NotImplementedError
-
-    def get_person_cursor(self):
-        """
-        Return a reference to a cursor over Person objects
-        """
-        raise NotImplementedError
-
     def get_person_event_types(self):
         """
         Deprecated:  Use get_event_types
         """
         raise NotImplementedError
 
-    def get_person_from_gramps_id(self, val):
+    def get_raw_citation_data(self, handle):
         """
-        Find a Person in the database from the passed Gramps ID.
-
-        If no such Person exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_person_from_handle(self, handle):
-        """
-        Find a Person in the database from the passed Gramps ID.
-
-        If no such Person exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_person_handles(self, sort_handles=False):
-        """
-        Return a list of database handles, one handle for each Person in
-        the database.
-
-        If sort_handles is True, the list is sorted by surnames.
-        """
-        raise NotImplementedError
-
-    def get_source_attribute_types(self):
-        """
-        Return a list of all Attribute types associated with Source/Citation
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_place_bookmarks(self):
-        """
-        Return the list of Place handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_place_cursor(self):
-        """
-        Return a reference to a cursor over Place objects
-        """
-        raise NotImplementedError
-
-    def get_place_from_gramps_id(self, val):
-        """
-        Find a Place in the database from the passed Gramps ID.
-
-        If no such Place exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_place_from_handle(self, handle):
-        """
-        Find a Place in the database from the passed Gramps ID.
-
-        If no such Place exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_place_handles(self, sort_handles=False):
-        """
-        Return a list of database handles, one handle for each Place in
-        the database.
-
-        If sort_handles is True, the list is sorted by Place title.
+        Return raw (serialized and pickled) Citation object from handle
         """
         raise NotImplementedError
 
@@ -611,15 +928,15 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_raw_note_data(self, handle):
-        """
-        Return raw (serialized and pickled) Note object from handle
-        """
-        raise NotImplementedError
-
     def get_raw_media_data(self, handle):
         """
         Return raw (serialized and pickled) Family object from handle
+        """
+        raise NotImplementedError
+
+    def get_raw_note_data(self, handle):
+        """
+        Return raw (serialized and pickled) Note object from handle
         """
         raise NotImplementedError
 
@@ -647,58 +964,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_raw_citation_data(self, handle):
-        """
-        Return raw (serialized and pickled) Citation object from handle
-        """
-        raise NotImplementedError
-
     def get_raw_tag_data(self, handle):
         """
         Return raw (serialized and pickled) Tag object from handle
-        """
-        raise NotImplementedError
-
-    def get_repo_bookmarks(self):
-        """
-        Return the list of Repository handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_repository_cursor(self):
-        """
-        Return a reference to a cursor over Repository objects
-        """
-        raise NotImplementedError
-
-    def get_repository_from_gramps_id(self, val):
-        """
-        Find a Repository in the database from the passed Gramps ID.
-
-        If no such Repository exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_repository_from_handle(self, handle):
-        """
-        Find a Repository in the database from the passed Gramps ID.
-
-        If no such Repository exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository in
-        the database.
-        """
-        raise NotImplementedError
-
-    def get_repository_types(self):
-        """
-        Return a list of all custom repository types associated with Repository
-        instances in the database.
         """
         raise NotImplementedError
 
@@ -715,106 +983,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_source_bookmarks(self):
-        """
-        Return the list of Source handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_source_cursor(self):
-        """
-        Return a reference to a cursor over Source objects
-        """
-        raise NotImplementedError
-
-    def get_source_from_gramps_id(self, val):
-        """
-        Find a Source in the database from the passed Gramps ID.
-
-        If no such Source exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_source_from_handle(self, handle):
-        """
-        Find a Source in the database from the passed Gramps ID.
-
-        If no such Source exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_source_handles(self, sort_handles=False):
-        """
-        Return a list of database handles, one handle for each Source in
-        the database.
-
-        If sort_handles is True, the list is sorted by Source title.
-        """
-        raise NotImplementedError
-
-    def get_source_media_types(self):
-        """
-        Return a list of all custom source media types associated with Source
-        instances in the database.
-        """
-        raise NotImplementedError
-
-    def get_citation_bookmarks(self):
-        """
-        Return the list of Citation handles in the bookmarks.
-        """
-        raise NotImplementedError
-
-    def get_citation_cursor(self):
-        """
-        Return a reference to a cursor over Citation objects
-        """
-        raise NotImplementedError
-
-    def get_citation_from_gramps_id(self, val):
-        """
-        Find a Citation in the database from the passed Gramps ID.
-
-        If no such Citation exists, None is returned.
-        Needs to be overridden by the derived class.
-        """
-        raise NotImplementedError
-
-    def get_citation_from_handle(self, handle):
-        """
-        Find a Citation in the database from the passed Gramps ID.
-
-        If no such Citation exists, a HandleError is raised.
-        """
-        raise NotImplementedError
-
-    def get_citation_handles(self, sort_handles=False):
-        """
-        Return a list of database handles, one handle for each Citation in
-        the database.
-
-        If sort_handles is True, the list is sorted by Citation title.
-        """
-        raise NotImplementedError
-
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.
-        """
-        raise NotImplementedError
-
-    def get_tag_cursor(self):
-        """
-        Return a reference to a cursor over Tag objects
-        """
-        raise NotImplementedError
-
-    def get_tag_from_handle(self, handle):
-        """
-        Find a Tag in the database from the passed handle.
-
-        If no such Tag exists, a HandleError is raised.
         """
         raise NotImplementedError
 
@@ -823,30 +994,66 @@ class DbReadBase:
         Find a Tag in the database from the passed Tag name.
 
         If no such Tag exists, None is returned.
-        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
-    def get_tag_handles(self, sort_handles=False):
+    def has_gramps_id(self, obj_key, gramps_id):
         """
-        Return a list of database handles, one handle for each Tag in
-        the database.
-
-        If sort_handles is True, the list is sorted by Tag name.
+        Returns True if the key exists in table given a table name
         """
         raise NotImplementedError
 
-    def get_url_types(self):
+    def has_citation_gramps_id(self, gramps_id):
         """
-        Return a list of all custom names types associated with Url instances
-        in the database.
+        Return True if the Gramps ID exists in the Citation table.
         """
         raise NotImplementedError
 
-    def get_place_types(self):
+    def has_event_gramps_id(self, gramps_id):
         """
-        Return a list of all custom place types assocated with Place instances
-        in the database.
+        Return True if the Gramps ID exists in the Event table.
+        """
+        raise NotImplementedError
+
+    def has_family_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Family table.
+        """
+        raise NotImplementedError
+
+    def has_media_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Media table.
+        """
+        raise NotImplementedError
+
+    def has_note_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Note table.
+        """
+        raise NotImplementedError
+
+    def has_person_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Person table.
+        """
+        raise NotImplementedError
+
+    def has_place_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Place table.
+        """
+        raise NotImplementedError
+
+    def has_repository_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Repository table.
+        """
+        raise NotImplementedError
+
+    def has_source_gramps_id(self, gramps_id):
+        """
+        Return True if the Gramps ID exists in the Source table.
         """
         raise NotImplementedError
 
@@ -862,29 +1069,15 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def has_gramps_id(self, obj_key, gramps_id):
+    def has_media_handle(self, handle):
         """
-        Returns True if the key exists in table given a table name
-
-        Not used in current codebase
-        """
-        raise NotImplementedError
-
-    def has_name_group_key(self, name):
-        """
-        Return if a key exists in the name_group table.
+        Return True if the handle exists in the current Mediadatabase.
         """
         raise NotImplementedError
 
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
-        """
-        raise NotImplementedError
-
-    def has_media_handle(self, handle):
-        """
-        Return True if the handle exists in the current Mediadatabase.
         """
         raise NotImplementedError
 
@@ -918,6 +1111,12 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def has_name_group_key(self, name):
+        """
+        Return if a key exists in the name_group table.
+        """
+        raise NotImplementedError
+
     def is_open(self):
         """
         Return True if the database has been opened.
@@ -927,12 +1126,6 @@ class DbReadBase:
     def iter_citations(self):
         """
         Return an iterator over objects for Citations in the database
-        """
-        raise NotImplementedError
-
-    def iter_event_handles(self):
-        """
-        Return an iterator over handles for Events in the database
         """
         raise NotImplementedError
 
@@ -948,27 +1141,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_family_handles(self):
-        """
-        Return an iterator over handles for Families in the database
-        """
-        raise NotImplementedError
-
-    def iter_media_handles(self):
-        """
-        Return an iterator over handles for Media in the database
-        """
-        raise NotImplementedError
-
     def iter_media(self):
         """
         Return an iterator over objects for Medias in the database
-        """
-        raise NotImplementedError
-
-    def iter_note_handles(self):
-        """
-        Return an iterator over handles for Notes in the database
         """
         raise NotImplementedError
 
@@ -984,18 +1159,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_person_handles(self):
-        """
-        Return an iterator over handles for Persons in the database
-        """
-        raise NotImplementedError
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over handles for Places in the database
-        """
-        raise NotImplementedError
-
     def iter_places(self):
         """
         Return an iterator over objects for Places in the database
@@ -1005,6 +1168,60 @@ class DbReadBase:
     def iter_repositories(self):
         """
         Return an iterator over objects for Repositories in the database
+        """
+        raise NotImplementedError
+
+    def iter_sources(self):
+        """
+        Return an iterator over objects for Sources in the database
+        """
+        raise NotImplementedError
+
+    def iter_tags(self):
+        """
+        Return an iterator over objects for Tags in the database
+        """
+        raise NotImplementedError
+
+    def iter_citation_handles(self):
+        """
+        Return an iterator over handles for Citations in the database
+        """
+        raise NotImplementedError
+
+    def iter_event_handles(self):
+        """
+        Return an iterator over handles for Events in the database
+        """
+        raise NotImplementedError
+
+    def iter_family_handles(self):
+        """
+        Return an iterator over handles for Families in the database
+        """
+        raise NotImplementedError
+
+    def iter_media_handles(self):
+        """
+        Return an iterator over handles for Media in the database
+        """
+        raise NotImplementedError
+
+    def iter_note_handles(self):
+        """
+        Return an iterator over handles for Notes in the database
+        """
+        raise NotImplementedError
+
+    def iter_person_handles(self):
+        """
+        Return an iterator over handles for Persons in the database
+        """
+        raise NotImplementedError
+
+    def iter_place_handles(self):
+        """
+        Return an iterator over handles for Places in the database
         """
         raise NotImplementedError
 
@@ -1020,21 +1237,9 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def iter_sources(self):
-        """
-        Return an iterator over objects for Sources in the database
-        """
-        raise NotImplementedError
-
     def iter_tag_handles(self):
         """
         Return an iterator over handles for Tags in the database
-        """
-        raise NotImplementedError
-
-    def iter_tags(self):
-        """
-        Return an iterator over objects for Tags in the database
         """
         raise NotImplementedError
 
@@ -1069,6 +1274,23 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def set_prefixes(self, person, media, family, source, citation,
+                     place, event, repository, note):
+        """
+        Set the prefixes for the gramps ids for all gramps objects
+        """
+        raise NotImplementedError
+
+    def set_citation_id_prefix(self, val):
+        """
+        Set the naming template for Gramps Citation ID values.
+
+        The string is expected to be in the form of a simple text string, or
+        in a format that contains a C/Python style format string using %d,
+        such as C%d or C%04d.
+        """
+        raise NotImplementedError
+
     def set_event_id_prefix(self, val):
         """
         Set the naming template for Gramps Event ID values.
@@ -1081,10 +1303,11 @@ class DbReadBase:
 
     def set_family_id_prefix(self, val):
         """
-        Set the naming template for Gramps Family ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as F%d
-        or F%04d.
+        Set the naming template for Gramps Family ID values.
+        
+        The string is expected to be in the form of a simple text string, or
+        in a format that contains a C/Python style format string using %d,
+        such as F%d or F%04d.
         """
         raise NotImplementedError
 
@@ -1125,13 +1348,6 @@ class DbReadBase:
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
         such as P%d or P%04d.
-        """
-        raise NotImplementedError
-
-    def set_prefixes(self, person, media, family, source, citation,
-                     place, event, repository, note):
-        """
-        Set the prefixes for the gramps ids for all gramps objects
         """
         raise NotImplementedError
 
@@ -1209,6 +1425,15 @@ class DbWriteBase(DbReadBase):
         """
         DbReadBase.__init__(self)
 
+    def add_citation(self, event, transaction, set_gid=True):
+        """
+        Add an Citation to the database, assigning internal IDs if they have
+        not already been defined.
+
+        If not set_gid, then gramps_id is not set.
+        """
+        raise NotImplementedError
+
     def add_event(self, event, transaction, set_gid=True):
         """
         Add an Event to the database, assigning internal IDs if they have
@@ -1227,18 +1452,18 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def add_note(self, obj, transaction, set_gid=True):
+    def add_media(self, obj, transaction, set_gid=True):
         """
-        Add a Note to the database, assigning internal IDs if they have
+        Add a Media to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
         """
         raise NotImplementedError
 
-    def add_media(self, obj, transaction, set_gid=True):
+    def add_note(self, obj, transaction, set_gid=True):
         """
-        Add a Media to the database, assigning internal IDs if they have
+        Add a Note to the database, assigning internal IDs if they have
         not already been defined.
 
         If not set_gid, then gramps_id is not set.
@@ -1291,6 +1516,13 @@ class DbWriteBase(DbReadBase):
     def add_to_surname_list(self, person, batch_transaction, name):
         """
         Add surname from given person to list of surnames
+        """
+        raise NotImplementedError
+
+    def commit_citation(self, event, transaction, change_time=None):
+        """
+        Commit the specified Event to the database, storing the changes as
+        part of the transaction.
         """
         raise NotImplementedError
 
@@ -1375,12 +1607,17 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
+    def remove_citation(self, handle, transaction):
+        """
+        Remove the Event specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
     def remove_event(self, handle, transaction):
         """
         Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
         """
         raise NotImplementedError
 
@@ -1388,8 +1625,55 @@ class DbWriteBase(DbReadBase):
         """
         Remove the Family specified by the database handle from the
         database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
 
-        This method must be overridden in the derived class.
+    def remove_media(self, handle, transaction):
+        """
+        Remove the MediaPerson specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_note(self, handle, transaction):
+        """
+        Remove the Note specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_person(self, handle, transaction):
+        """
+        Remove the Person specified by the database handle from the database,
+        preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_place(self, handle, transaction):
+        """
+        Remove the Place specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_repository(self, handle, transaction):
+        """
+        Remove the Repository specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_source(self, handle, transaction):
+        """
+        Remove the Source specified by the database handle from the
+        database, preserving the change in the passed transaction.
+        """
+        raise NotImplementedError
+
+    def remove_tag(self, handle, transaction):
+        """
+        Remove the Tag specified by the database handle from the
+        database, preserving the change in the passed transaction.
         """
         raise NotImplementedError
 
@@ -1400,69 +1684,6 @@ class DbWriteBase(DbReadBase):
 
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_note(self, handle, transaction):
-        """
-        Remove the Note specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_media(self, handle, transaction):
-        """
-        Remove the MediaPerson specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_person(self, handle, transaction):
-        """
-        Remove the Person specified by the database handle from the database,
-        preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_place(self, handle, transaction):
-        """
-        Remove the Place specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_repository(self, handle, transaction):
-        """
-        Remove the Repository specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_source(self, handle, transaction):
-        """
-        Remove the Source specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
-        """
-        raise NotImplementedError
-
-    def remove_tag(self, handle, transaction):
-        """
-        Remove the Tag specified by the database handle from the
-        database, preserving the change in the passed transaction.
-
-        This method must be overridden in the derived class.
         """
         raise NotImplementedError
 
@@ -1705,6 +1926,7 @@ class DbWriteBase(DbReadBase):
         """
         Get the total of primary objects.
         """
+        # TODO: should this include tags and citations?
         person_len = self.get_number_of_people()
         family_len = self.get_number_of_families()
         event_len = self.get_number_of_events()
