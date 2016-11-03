@@ -103,7 +103,6 @@
                     <property name="can_focus">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Either use the two fields below to enter coordinates(latitude and longitude),</property>
-                    <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like google, openstreetmap, ... </property>
                     <property name="hexpand">True</property>
                   </object>
                   <packing>
