@@ -181,6 +181,8 @@ register('geography.show_cross', False)
 register('geography.path', "")
 register('geography.use-keypad', True)
 
+register('interface.addmedia-height', 500)
+register('interface.addmedia-width', 700)
 register('interface.address-height', 450)
 register('interface.address-width', 650)
 register('interface.attribute-height', 350)
