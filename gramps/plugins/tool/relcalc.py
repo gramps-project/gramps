@@ -111,6 +111,9 @@ class RelCalc(tool.Tool, ManagedWindow):
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name},
                         self.title)
+        self.height_key = 'interface.relcalc-height'
+        self.width_key = 'interface.relcalc-width'
+        self._set_size()
 
         self.tree = self.glade.get_object("peopleList")
         self.text = self.glade.get_object("text1")
