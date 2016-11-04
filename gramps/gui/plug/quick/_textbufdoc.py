@@ -53,11 +53,13 @@ LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
 
 class DisplayBuf(ManagedWindow):
-    def __init__(self, title, document):
+    def __init__(self, title, document, parent=None):
         self.title = title
         ManagedWindow.__init__(self, document.uistate, [],
                                              document)
-        self.set_window(Gtk.Dialog("", document.uistate.window,
+        if parent is None:
+            parent = document.uistate.window
+        self.set_window(Gtk.Dialog("", parent,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
@@ -70,6 +72,8 @@ class DisplayBuf(ManagedWindow):
         scrolled_window.add(document.text_view)
         self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
+        if parent is not None:
+            self.window.set_modal(True)
 
     def build_menu_names(self, obj):
         return ('View', _('Quick View'))
@@ -154,7 +158,7 @@ class TextBufDoc(BaseDoc, TextDoc):
         if container:
             return DocumentManager(_('Quick View'), self, container)
         else:
-            DisplayBuf(_('Quick View'), self)
+            DisplayBuf(_('Quick View'), self, parent=self.parent)
             return
 
     #--------------------------------------------------------------------

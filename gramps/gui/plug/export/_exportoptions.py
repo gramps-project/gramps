@@ -238,6 +238,8 @@ class WriterOptionBox:
     def show_preview_data(self, widget):
         from gramps.gen.dbstate import DbState
         from ..quick import run_quick_report_by_name
+        # origin is the latest managed window : ExportAssistant
+        origin = self.uistate.gwm.window_tree[-1]
         if widget.proxy_name == "unfiltered":
             dbstate = self.dbstate
         else:
@@ -247,7 +249,8 @@ class WriterOptionBox:
         run_quick_report_by_name(dbstate,
                                  self.uistate,
                                  'filterbyname',
-                                 'all')
+                                 'all',
+                                 parent=origin)
 
     def preview(self, widget):
         """
