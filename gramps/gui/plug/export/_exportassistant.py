@@ -109,12 +109,15 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.writestarted = False
         self.confirm = None
 
+        # set export mode and busy mode to avoid all other operations
+        self.uistate.set_export_mode(True)
+
         #set up Assistant
         Gtk.Assistant.__init__(self)
 
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
 
         #set_window is present in both parent classes
         ManagedWindow.set_window(self, self, None,
@@ -156,7 +159,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
 
     def build_menu_names(self, obj):
         """Override ManagedWindow method."""
-        return (self.top_title, None)
+        return (self.top_title, self.top_title)
 
     def create_page_intro(self):
         """Create the introduction page."""
@@ -272,7 +275,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         list(map(vbox.remove, vbox.get_children()))
         # add new content
         if config_box_class:
-            self.option_box_instance = config_box_class(self.person, self.dbstate, self.uistate)
+            self.option_box_instance = config_box_class(
+                self.person, self.dbstate, self.uistate, track=self.track)
             box = self.option_box_instance.get_option_box()
             vbox.add(box)
         else:
@@ -387,6 +391,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         pass
 
     def do_close(self):
+        self.uistate.set_export_mode(False)
         if self.writestarted :
             pass
         else :
@@ -609,11 +614,9 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         page.set_child_visible(True)
         self.show_all()
 
-        self.uistate.set_busy_cursor(True)
         self.set_busy_cursor(1)
 
     def post_save(self):
-        self.uistate.set_busy_cursor(False)
         self.set_busy_cursor(0)
         self.progressbar.hide()
         self.writestarted = False

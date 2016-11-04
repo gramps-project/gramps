@@ -408,6 +408,7 @@ class DisplayState(Callback):
         self.disprel_defpers = None
         self.disprel_active = None
         self.set_relationship_class()
+        self.export = False
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         warnbtn = status.get_warning_button()
@@ -526,6 +527,16 @@ class DisplayState(Callback):
             return name
         else:
             return ""
+
+    def set_export_mode(self, value):
+        self.set_busy_cursor(value)
+        if value == self.export:
+            return
+        else:
+            self.export = value
+
+    def get_export_mode(self):
+        return self.export
 
     def set_busy_cursor(self, value):
         if value == self.busy:
