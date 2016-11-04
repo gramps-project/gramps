@@ -351,6 +351,8 @@ class ManagedWindow:
         self.isWindow = None
         self.width_key = None
         self.height_key = None
+        self.horiz_position_key = None
+        self.vert_position_key = None
         self.__refs_for_deletion = []
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
@@ -507,6 +509,7 @@ class ManagedWindow:
         Takes care of closing children and removing itself from menu.
         """
         self._save_size()
+        self._save_position()
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
@@ -542,6 +545,26 @@ class ManagedWindow:
             (width, height) = self.window.get_size()
             config.set(self.width_key, width)
             config.set(self.height_key, height)
+            config.save()
+
+    def _set_position(self):
+        """
+        Set the position of the window
+        """
+        # self.horiz_position_key is set in the subclass
+        if self.horiz_position_key is not None:
+            horiz_position = config.get(self.horiz_position_key)
+            vert_position = config.get(self.vert_position_key)
+            self.window.move(horiz_position, vert_position)
+
+    def _save_position(self):
+        """
+        Save the window's position to the config file
+        """
+        if self.horiz_position_key is not None:
+            (horiz_position, vert_position) = self.window.get_position()
+            config.set(self.horiz_position_key, horiz_position)
+            config.set(self.vert_position_key, vert_position)
             config.save()
 
     def track_ref_for_deletion(self, ref):
