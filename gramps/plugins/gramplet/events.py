@@ -179,7 +179,6 @@ class PersonEvents(Events):
         Return True if the gramplet has data, else return False.
         """
         if active_person:
-            self.cached_start_date = self.get_start_date()
             if active_person.get_event_ref_list():
                 return True
             for family_handle in active_person.get_family_handle_list():
@@ -187,8 +186,6 @@ class PersonEvents(Events):
                 if family:
                     for event_ref in family.get_event_ref_list():
                         return True
-        else:
-            self.cached_start_date = None
         return False
 
     def main(self): # return false finishes
@@ -207,11 +204,14 @@ class PersonEvents(Events):
         """
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         if active_person:
+            self.cached_start_date = self.get_start_date()
             for event_ref in active_person.get_event_ref_list():
                 self.add_event_ref(event_ref)
             for family_handle in active_person.get_family_handle_list():
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 self.display_family(family, active_person)
+        else:
+            self.cached_start_date = None
         self.set_has_data(self.model.count > 0)
 
     def display_family(self, family, active_person):
@@ -276,6 +276,7 @@ class FamilyEvents(Events):
         Display the events for the active family.
         """
         active_family = self.dbstate.db.get_family_from_handle(active_handle)
+        self.cached_start_date = self.get_start_date()
         for event_ref in active_family.get_event_ref_list():
             self.add_event_ref(event_ref)
         self.set_has_data(self.model.count > 0)
