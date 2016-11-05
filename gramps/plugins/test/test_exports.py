@@ -124,6 +124,9 @@ def gedfilt(line):
         elif token == "FILE" and line.endswith('.ged\n'):
             # probably have a header with file name
             retval = False
+        elif token == "FILE" and "tests" in line:
+            # probably have a media with file name
+            retval = False
     else:   # this is an addition
         if token == "VERS" and gedfilt.prev[gedfilt.indx-1][0] == "VERS":
             # we must have a header with Gramps version
@@ -138,6 +141,9 @@ def gedfilt(line):
             retval = False
         elif token == "FILE" and line.endswith('.ged\n'):
             # probably have a header with file name
+            retval = False
+        elif token == "FILE" and "tests" in line:
+            # probably have a media with file name
             retval = False
     return retval
 
@@ -174,7 +180,7 @@ class ExportControl(unittest.TestCase):
 #                            "--import", example)
 
     def tearDown(self):
-        call("-y -q", "--remove", TREE_NAME)
+        call("-y", "-q", "--remove", TREE_NAME)
 
     def test_csv(self):
         """ Run a csv export test """
