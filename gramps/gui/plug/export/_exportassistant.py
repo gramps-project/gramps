@@ -109,8 +109,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.writestarted = False
         self.confirm = None
 
-        # set busy mode to avoid to quit gramps or close database.
-        self.uistate.set_busy_cursor(True)
+        # set export mode and busy mode to avoid all other operations
+        self.uistate.set_export_mode(True)
 
         #set up Assistant
         Gtk.Assistant.__init__(self)
@@ -391,7 +391,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         pass
 
     def do_close(self):
-        self.uistate.set_busy_cursor(False)
+        self.uistate.set_export_mode(False)
         if self.writestarted :
             pass
         else :

@@ -72,7 +72,7 @@ class DisplayBuf(ManagedWindow):
         scrolled_window.add(document.text_view)
         self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
-        if parent is not None:
+        if document.uistate.get_export_mode():
             self.window.set_modal(True)
 
     def build_menu_names(self, obj):
