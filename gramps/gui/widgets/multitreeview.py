@@ -40,7 +40,7 @@ class MultiTreeView(Gtk.TreeView):
         Gtk.TreeView.__init__(self)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
-        self.connect('grab_broken_event', self.on_grab_broken)
+        self.connect('drag-end', self.on_drag_end)
         self.connect('key_press_event', self.key_press_event)
         self.defer_select = False
 
@@ -83,7 +83,7 @@ class MultiTreeView(Gtk.TreeView):
 
         self.defer_select=False
 
-    def on_grab_broken(self, widget, event):
+    def on_drag_end(self, widget, event):
         # re-enable selection
         self.get_selection().set_select_function(lambda *ignore: True, None)
         self.defer_select=False
