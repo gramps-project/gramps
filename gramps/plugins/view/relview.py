@@ -567,7 +567,7 @@ class RelationshipView(NavigationView):
         if self._config.get('preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press,
                                         person.handle)
-            button.set_tooltip_text(_('Edit %s') % name)
+            button.set_tooltip_text(_('Edit Person (%s)') % name)
         else:
             button = None
         eventbox = Gtk.EventBox()
@@ -989,7 +989,7 @@ class RelationshipView(NavigationView):
                 if self._config.get('preferences.releditbtn'):
                     button = widgets.IconButton(self.edit_button_press,
                                                 handle)
-                    button.set_tooltip_text(_('Edit %s') % name[0])
+                    button.set_tooltip_text(_('Edit Person (%s)') % name[0])
                 else:
                     button = None
                 hbox.pack_start(widgets.LinkBox(link_label, button),
@@ -1046,7 +1046,7 @@ class RelationshipView(NavigationView):
                 link_label.override_background_color(Gtk.StateType.NORMAL, self.color)
             if self._config.get('preferences.releditbtn'):
                 button = widgets.IconButton(self.edit_button_press, handle)
-                button.set_tooltip_text(_('Edit %s') % name[0])
+                button.set_tooltip_text(_('Edit Person (%s)') % name[0])
             else:
                 button = None
             vbox.pack_start(widgets.LinkBox(link_label, button), True, True, 0)
@@ -1170,7 +1170,7 @@ class RelationshipView(NavigationView):
         if child_should_be_linked and self._config.get(
             'preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, handle)
-            button.set_tooltip_text(_('Edit %s') % name[0])
+            button.set_tooltip_text(_('Edit Person (%s)') % name[0])
         else:
             button = None
 
@@ -1265,22 +1265,20 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             self.change_active(handle)
         elif button_activated(event, _RIGHT_BUTTON):
-            self.myMenu = Gtk.Menu()
-            self.myMenu.append(self.build_menu_item(handle))
-            self.myMenu.popup(None, None, None, None, event.button, event.time)
+            self.my_menu = Gtk.Menu()
+            self.my_menu.set_reserve_toggle_size(False)
+            self.my_menu.append(self.build_menu_item(handle))
+            self.my_menu.popup(None, None, None, None, event.button, event.time)
 
     def build_menu_item(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
         name = name_displayer.display(person)
 
-        item = Gtk.ImageMenuItem(None)
-        image = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
-        image.show()
-        label = Gtk.Label(label=_("Edit %s") % name)
+        item = Gtk.MenuItem()
+        label = Gtk.Label(label=_("Edit Person (%s)") % name)
         label.show()
         label.set_halign(Gtk.Align.START)
 
-        item.set_image(image)
         item.add(label)
 
         item.connect('activate', self.edit_menu, handle)

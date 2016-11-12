@@ -1561,32 +1561,25 @@ class FanChartGrampsGUI:
         #store menu for GTK3 to avoid it being destroyed before showing
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title(_('People Menu'))
+        self.menu.set_reserve_toggle_size(False)
 
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if not person:
             return 0
 
-        go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-        go_image.show()
-        go_item = Gtk.ImageMenuItem(name_displayer.display(person))
-        go_item.set_image(go_image)
+        go_item = Gtk.MenuItem(label=name_displayer.display(person))
         go_item.connect("activate", self.on_childmenu_changed, person_handle)
         go_item.show()
         menu.append(go_item)
 
-        edit_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Edit'))
-        img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
-        edit_item.set_image(img)
+        edit_item = Gtk.MenuItem.new_with_mnemonic(_('_Edit'))
         edit_item.connect("activate", self.edit_person_cb, person_handle)
         edit_item.show()
         menu.append(edit_item)
         if family_handle:
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            edit_fam_item = Gtk.ImageMenuItem()
-            img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
-            edit_fam_item.set_image(img)
-            edit_fam_item.set_label(_("Edit family"))
+            edit_fam_item = Gtk.MenuItem()
+            edit_fam_item.set_label(label=_("Edit family"))
             edit_fam_item.connect("activate", self.edit_fam_cb, family_handle)
             edit_fam_item.show()
             menu.append(edit_fam_item)
@@ -1601,19 +1594,14 @@ class FanChartGrampsGUI:
                 lenfams = len(partner.get_family_handle_list())
                 if lenfams in [0, 1]:
                     lenfams = len(partner.get_parent_family_handle_list())
-            reord_fam_item = Gtk.ImageMenuItem()
-            img = Gtk.Image.new_from_icon_name('view-sort-ascending',
-                                               Gtk.IconSize.MENU)
-            reord_fam_item.set_image(img)
-            reord_fam_item.set_label(_("Reorder families"))
+            reord_fam_item = Gtk.MenuItem()
+            reord_fam_item.set_label(label=_("Reorder families"))
             reord_fam_item.connect("activate", self.reord_fam_cb, parth)
             reord_fam_item.set_sensitive(lenfams > 1)
             reord_fam_item.show()
             menu.append(reord_fam_item)
 
-        clipboard_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Copy'))
-        img = Gtk.Image.new_from_icon_name('edit-copy', Gtk.IconSize.MENU)
-        clipboard_item.set_image(img)
+        clipboard_item = Gtk.MenuItem.new_with_mnemonic(_('_Copy'))
         clipboard_item.connect("activate", self.copy_person_to_clipboard_cb,
                                person_handle)
         clipboard_item.show()
@@ -1642,11 +1630,9 @@ class FanChartGrampsGUI:
                 no_spouses = 0
                 item.set_submenu(Gtk.Menu())
                 sp_menu = item.get_submenu()
+                sp_menu.set_reserve_toggle_size(False)
 
-            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-            go_image.show()
-            sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
-            sp_item.set_image(go_image)
+            sp_item = Gtk.MenuItem(label=name_displayer.display(spouse))
             linked_persons.append(sp_id)
             sp_item.connect("activate", self.on_childmenu_changed, sp_id)
             sp_item.show()
@@ -1677,16 +1663,14 @@ class FanChartGrampsGUI:
                     no_siblings = 0
                     item.set_submenu(Gtk.Menu())
                     sib_menu = item.get_submenu()
+                    sib_menu.set_reserve_toggle_size(False)
 
                 if find_children(self.dbstate.db,sib):
                     label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
                 else:
                     label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
-                go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-                go_image.show()
-                sib_item = Gtk.ImageMenuItem()
-                sib_item.set_image(go_image)
+                sib_item = Gtk.MenuItem()
                 label.set_use_markup(True)
                 label.show()
                 label.set_halign(Gtk.Align.START)
@@ -1714,16 +1698,14 @@ class FanChartGrampsGUI:
                 no_children = 0
                 item.set_submenu(Gtk.Menu())
                 child_menu = item.get_submenu()
+                child_menu.set_reserve_toggle_size(False)
 
             if find_children(self.dbstate.db,child):
                 label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(child)))
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
-            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-            go_image.show()
-            child_item = Gtk.ImageMenuItem()
-            child_item.set_image(go_image)
+            child_item = Gtk.MenuItem()
             label.set_use_markup(True)
             label.show()
             label.set_halign(Gtk.Align.START)
@@ -1742,6 +1724,7 @@ class FanChartGrampsGUI:
         item = Gtk.MenuItem(label=_("Parents"))
         item.set_submenu(Gtk.Menu())
         par_menu = item.get_submenu()
+        par_menu.set_reserve_toggle_size(False)
         no_parents = 1
         par_list = find_parents(self.dbstate.db,person)
         for par_id in par_list:
@@ -1759,10 +1742,7 @@ class FanChartGrampsGUI:
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
-            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-            go_image.show()
-            par_item = Gtk.ImageMenuItem()
-            par_item.set_image(go_image)
+            par_item = Gtk.MenuItem()
             label.set_use_markup(True)
             label.show()
             label.set_halign(Gtk.Align.START)
@@ -1774,9 +1754,7 @@ class FanChartGrampsGUI:
 
         if no_parents:
             #show an add button
-            add_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Add'))
-            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
-            add_item.set_image(img)
+            add_item = Gtk.MenuItem.new_with_mnemonic(_('_Add'))
             add_item.connect("activate", self.on_add_parents, person_handle)
             add_item.show()
             par_menu.append(add_item)
@@ -1799,13 +1777,11 @@ class FanChartGrampsGUI:
                 no_related = 0
                 item.set_submenu(Gtk.Menu())
                 per_menu = item.get_submenu()
+                per_menu.set_reserve_toggle_size(False)
 
             label = Gtk.Label(label=escape(name_displayer.display(per)))
 
-            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
-            go_image.show()
-            per_item = Gtk.ImageMenuItem()
-            per_item.set_image(go_image)
+            per_item = Gtk.MenuItem()
             label.set_use_markup(True)
             label.show()
             label.set_halign(Gtk.Align.START)
@@ -1820,14 +1796,13 @@ class FanChartGrampsGUI:
         menu.append(item)
 
         #we now construct an add menu
-        item = Gtk.MenuItem(label=_("Add"))
+        item = Gtk.MenuItem.new_with_mnemonic(_("_Add"))
         item.set_submenu(Gtk.Menu())
         add_menu = item.get_submenu()
+        add_menu.set_reserve_toggle_size(False)
         if family_handle:
             # allow to add a child to this family
-            add_child_item = Gtk.ImageMenuItem()
-            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
-            add_child_item.set_image(img)
+            add_child_item = Gtk.MenuItem()
             add_child_item.set_label(_("Add child to family"))
             add_child_item.connect("activate", self.add_child_to_fam_cb,
                                    family_handle)
@@ -1835,18 +1810,14 @@ class FanChartGrampsGUI:
             add_menu.append(add_child_item)
         elif person_handle:
             #allow to add a partner to this person
-            add_partner_item = Gtk.ImageMenuItem()
-            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
-            add_partner_item.set_image(img)
+            add_partner_item = Gtk.MenuItem()
             add_partner_item.set_label(_("Add partner to person"))
             add_partner_item.connect("activate", self.add_partner_to_pers_cb,
                                    person_handle)
             add_partner_item.show()
             add_menu.append(add_partner_item)
 
-        add_pers_item = Gtk.ImageMenuItem()
-        img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
-        add_pers_item.set_image(img)
+        add_pers_item = Gtk.MenuItem()
         add_pers_item.set_label(_("Add a person"))
         add_pers_item.connect("activate", self.add_person_cb)
         add_pers_item.show()

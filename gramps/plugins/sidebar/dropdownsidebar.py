@@ -123,11 +123,16 @@ class DropdownSidebar(BaseSidebar):
         Called when a view drop-down arrow is clicked.
         """
         self.menu = Gtk.Menu()
+        self.menu.set_reserve_toggle_size(False)
         for item in self.views[cat_num]:
-            menuitem = Gtk.ImageMenuItem(label=item[1])
+            menuitem = Gtk.MenuItem()
+            hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+            label = Gtk.Label(label=item[1])
             image = Gtk.Image.new_from_icon_name(item[2], Gtk.IconSize.MENU)
-            image.show()
-            menuitem.set_image(image)
+            hbox.pack_start(image, False, False, 3)
+            hbox.pack_start(label, False, False, 3)
+            hbox.show_all()
+            menuitem.add(hbox)
             menuitem.connect("activate", self.cb_menu_clicked, cat_num, item[0])
             menuitem.show()
             self.menu.append(menuitem)

@@ -613,28 +613,26 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0
         entries = [
-            (_('_Up'), 'go-up', self.on_up_clicked, sensitivity),
-            (_('_Down'), 'go-down', self.on_down_clicked, sensitivity),
-            (_("Setup"), None, self.on_setup_clicked, sensitivity),
-            (_('_Remove'), 'list-remove', self.on_remove_clicked, sensitivity),
-            ('', None, None, 0),
-            (_('_Clear'), 'edit-clear', self.on_clear_clicked, 1),
-            (_('_Save'), 'document-save', self.on_save_clicked, 1),
-            (_('_Open'), 'document-open', self.on_open_clicked, 1),
-            (_("Edit"), None, self.on_edit_clicked, 1),
+            (_('_Up'), self.on_up_clicked, sensitivity),
+            (_('_Down'), self.on_down_clicked, sensitivity),
+            (_("Setup"), self.on_setup_clicked, sensitivity),
+            (_('_Remove'), self.on_remove_clicked, sensitivity),
+            ('', None, 0),
+            (_('Clear the book'), self.on_clear_clicked, 1),
+            (_('_Save'), self.on_save_clicked, 1),
+            (_('_Open'), self.on_open_clicked, 1),
+            (_("_Edit"), self.on_edit_clicked, 1),
         ]
 
         self.menu1 = Gtk.Menu() # TODO could this be just a local "menu ="?
-        self.menu1.set_title(_('Book Menu'))
-        for title, icon_name, callback, sensitivity in entries:
-            if icon_name:
-                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem.new_with_mnemonic(title)
+        self.menu1.set_reserve_toggle_size(False)
+        for title, callback, sensitivity in entries:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
+            Gtk.Label.new_with_mnemonic
             if callback:
                 item.connect("activate", callback)
+            else:
+                item = Gtk.SeparatorMenuItem()
             item.set_sensitive(sensitivity)
             item.show()
             self.menu1.append(item)
@@ -649,18 +647,13 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0
         entries = [
-            (_('_Add'), 'list-add', self.on_add_clicked, sensitivity),
+            (_('_Add'), self.on_add_clicked, sensitivity),
         ]
 
         self.menu2 = Gtk.Menu() # TODO could this be just a local "menu ="?
-        self.menu2.set_title(_('Available Items Menu'))
-        for title, icon_name, callback, sensitivity in entries:
-            if icon_name:
-                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem.new_with_mnemonic(title)
+        self.menu2.set_reserve_toggle_size(False)
+        for title, callback, sensitivity in entries:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)

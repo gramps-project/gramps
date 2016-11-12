@@ -437,7 +437,7 @@ class ConfigureDialog(ManagedWindow):
         return combo
 
     def add_slider(self, grid, label, index, constant, range, callback=None,
-                   config=None):
+                   config=None, width=1):
         """
         A slider allowing the selection of an integer within a specified range.
         :param range: A tuple containing the minimum and maximum allowed values.
@@ -455,7 +455,7 @@ class ConfigureDialog(ManagedWindow):
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', callback, constant)
         grid.attach(lwidget, 1, index, 1, 1)
-        grid.attach(slider, 2, index, 1, 1)
+        grid.attach(slider, 2, index, width, 1)
         return slider
 
     def add_spinner(self, grid, label, index, constant, range, callback=None,
