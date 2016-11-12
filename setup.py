@@ -401,6 +401,7 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.glade')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
+        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.ini')
 
 package_data_core.append('gen/utils/resource-path')
 
