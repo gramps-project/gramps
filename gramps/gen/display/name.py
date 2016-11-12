@@ -433,6 +433,9 @@ class NameDisplay:
         self.set_default_format(self.get_default_format())
 
     def add_name_format(self, name, fmt_str):
+        for num in self.name_formats:
+            if fmt_str in self.name_formats.get(num):
+                return num
         num = -1
         while num in self.name_formats:
             num -= 1
