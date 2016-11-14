@@ -509,6 +509,7 @@ class ManagedWindow:
         self._save_size()
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
+        self.uistate.set_modal_mode(self, False)
         self.opened = False
         self.parent_window.present()
 

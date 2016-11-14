@@ -53,12 +53,15 @@ LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
 
 class DisplayBuf(ManagedWindow):
-    def __init__(self, title, document, parent=None):
+    def __init__(self, title, document):
         self.title = title
         ManagedWindow.__init__(self, document.uistate, [],
                                              document)
-        if parent is None:
-            parent = document.uistate.window
+        parent = document.uistate.window
+        # If we already have a modal window, attach this new window to this
+        # modal window. This new window will be always on top.	
+        if document.uistate.get_modal_window():
+            parent = document.uistate.get_modal_window()
         self.set_window(Gtk.Dialog("", parent,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
@@ -73,7 +76,7 @@ class DisplayBuf(ManagedWindow):
         self.window.vbox.pack_start(scrolled_window, True, True, 0)
         self.window.show_all()
         if document.uistate.get_export_mode():
-            self.window.set_modal(True)
+            document.uistate.set_modal_mode(self.window, True)
 
     def build_menu_names(self, obj):
         return ('View', _('Quick View'))
@@ -158,7 +161,7 @@ class TextBufDoc(BaseDoc, TextDoc):
         if container:
             return DocumentManager(_('Quick View'), self, container)
         else:
-            DisplayBuf(_('Quick View'), self, parent=self.parent)
+            DisplayBuf(_('Quick View'), self)
             return
 
     #--------------------------------------------------------------------
