@@ -166,6 +166,7 @@ class EmbeddedList(ButtonTab):
         """
         self.__store_menu = Gtk.Menu() #need to keep reference or menu disappears
         menu = self.__store_menu
+        menu.set_reserve_toggle_size(False)
         for (need_write, title, func) in self.get_popup_menu_items():
             item = Gtk.MenuItem.new_with_mnemonic(title)
             item.connect('activate', func)
