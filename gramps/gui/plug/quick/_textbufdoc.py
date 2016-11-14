@@ -59,7 +59,7 @@ class DisplayBuf(ManagedWindow):
                                              document)
         parent = document.uistate.window
         # If we already have a modal window, attach this new window to this
-        # modal window. This new window will be always on top.	
+        # modal window. This new window will be always on top.
         if document.uistate.get_modal_window():
             parent = document.uistate.get_modal_window()
         self.set_window(Gtk.Dialog("", parent,
