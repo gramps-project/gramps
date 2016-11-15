@@ -60,7 +60,7 @@ from ...ddtargets import DdTargets
 from .buttontab import ButtonTab
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -136,7 +136,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         ref_obj = self.dbstate.db.get_media_from_handle(obj.ref)
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
-            item = Gtk.MenuItem.new_with_mnemonic(_('_View'))
+            # Translators: _View means "to look at this"
+            item = Gtk.MenuItem.new_with_mnemonic(_('verb:look at this|_View'))
             item.connect('activate', make_launcher(media_path, self.uistate))
             item.show()
             self.menu.append(item)
