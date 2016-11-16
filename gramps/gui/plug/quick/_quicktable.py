@@ -192,9 +192,6 @@ class QuickTable(SimpleTable):
             return True
         elif self._link[index]:
             objclass, handle = self._link[index]
-            # if (self.simpledoc.doc.uistate.get_export_mode() and
-                # objclass != 'Filter'):
-                # return False # avoid edition during export
             if isinstance(handle, list):
                 handle = handle[0]
             if objclass == 'Person':

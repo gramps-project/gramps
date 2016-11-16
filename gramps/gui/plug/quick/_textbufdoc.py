@@ -155,7 +155,7 @@ class TextBufDoc(BaseDoc, TextDoc):
             return DocumentManager(_('Quick View'), self, container)
         else:
             DisplayBuf(_('Quick View'), self, track=self.track)
-            return 
+            return
 
     #--------------------------------------------------------------------
     #
