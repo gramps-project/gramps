@@ -142,7 +142,7 @@ class GrampsWindowManager:
     def get_item_from_window(self, window):
         """ This finds a ManagedWindow from a Gtk top_level object (typicaly
         a window).
-        
+
         For example, to find my managedwindow track within a class of Gtk
         widget:
             mywindow = self.get_toplevel()  # finds top level Gtk object
@@ -153,7 +153,7 @@ class GrampsWindowManager:
             if item.window == window:
                 return self.id2item[key]
         return None
-        
+
     def close_track(self, track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
