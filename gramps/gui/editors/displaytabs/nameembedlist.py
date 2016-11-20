@@ -119,15 +119,15 @@ class NameEmbedList(GroupEmbeddedList):
     def get_popup_menu_items(self):
         if self._tmpgroup == self._WORKGROUP:
             return [
-                (True, _('_Add'), 'list-add', self.add_button_clicked),
-                (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
-                (True, _('_Remove'), 'list-remove', self.del_button_clicked),
-                (True, _('Set as default name'), None, self.name_button_clicked),
+                (True, _('_Add'), self.add_button_clicked),
+                (False, _('_Edit'), self.edit_button_clicked),
+                (True, _('_Remove'), self.del_button_clicked),
+                (True, _('Set as default name'), self.name_button_clicked),
                 ]
         else:
             return [
-                (True, _('_Add'), 'list-add', self.add_button_clicked),
-                (False,_('_Edit'), 'gtk-edit', self.edit_button_clicked),
+                (True, _('_Add'), self.add_button_clicked),
+                (False,_('_Edit'), self.edit_button_clicked),
                 ]
 
     def name_button_clicked(self, obj):
