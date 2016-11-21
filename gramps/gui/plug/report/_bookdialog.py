@@ -296,6 +296,8 @@ class BookOptions(ReportOptions):
         self.options_dict = {
             'bookname'    : '',
         }
+        # TODO since the CLI code for the "book" generates its own "help" now,
+        # the GUI code would be faster if it didn't list all the possible books
         self.options_help = {
             'bookname'    : ("=name", _("Name of the book. MANDATORY"),
                              BookList('books.xml', dbase).get_book_names(),
@@ -329,6 +331,9 @@ class BookSelector(ManagedWindow):
 
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
+        self.height_key = 'interface.book-selector-height'
+        self.width_key = 'interface.book-selector-width'
+        self._set_size()
         window.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
