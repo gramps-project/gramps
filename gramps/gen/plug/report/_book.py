@@ -183,8 +183,9 @@ class Book:
                 self.item_list = obj.item_list
             else:
                 for item in obj.get_item_list():
-                    self.item_list.append(BookItem(item.dbase,
-                                                   item.get_name()))
+                    regenerated_item = BookItem(item.dbase, item.get_name())
+                    regenerated_item.set_style_name(item.get_style_name())
+                    self.item_list.append(regenerated_item)
 
     def set_name(self, name):
         """
