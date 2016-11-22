@@ -53,6 +53,7 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.db.dbconst import DBBACKEND
+from gramps.gen.db.utils import make_database
 _ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
@@ -317,7 +318,7 @@ class DbLoader(CLIDbLoader):
         else:
             dbid = "bsddb"
 
-        db = self.dbstate.make_database(dbid)
+        db = make_database(dbid)
         db.disable_signals()
         self.dbstate.no_database()
 

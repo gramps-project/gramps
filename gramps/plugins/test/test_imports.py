@@ -29,7 +29,8 @@ from time import localtime, strptime
 from unittest.mock import patch
 #import logging
 
-from gramps.gen.merge.diff import diff_dbs, import_as_dict
+from gramps.gen.db.utils import import_as_dict
+from gramps.gen.merge.diff import diff_dbs
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User

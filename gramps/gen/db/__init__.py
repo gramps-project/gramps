@@ -69,38 +69,4 @@ from .dbconst import *
 from .txn import *
 from .exceptions import *
 from .undoredo import *
-
-def find_surname_name(key, data):
-    """
-    Creating a surname from raw name, to use for sort and index
-    returns a byte string
-    """
-    return __index_surname(data[5])
-
-def __index_surname(surn_list):
-    """
-    All non pa/matronymic surnames are used in indexing.
-    pa/matronymic not as they change for every generation!
-    returns a byte string
-    """
-    from gramps.gen.lib import NameOriginType
-    if surn_list:
-        surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
-                    NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
-    else:
-        surn = ""
-    return surn
-
-def open_database(database, force_unlock=False):
-    """
-    Shortcut for external uses of databases.
-    """
-    from ..dbstate import DbState
-    return DbState().open_database(database, force_unlock)
-
-def make_database(dbid):
-    """
-    Shortcut for external uses of databases.
-    """
-    from ..dbstate import DbState
-    return DbState().make_database(dbid)
+from .utils import *

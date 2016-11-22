@@ -22,13 +22,8 @@
 This package implements an object difference engine.
 """
 
-import os
-
 from gramps.cli.user import User
-from ..dbstate import DbState
-from gramps.cli.grampscli import CLIManager
-from ..plug import BasePluginManager
-from gramps.gen.db import make_database
+from ..db.utils import import_as_dict
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -81,39 +76,6 @@ def parse(string):
     if current:
         retval.append(current)
     return retval
-
-def import_as_dict(filename, user=None, skp_imp_adds=True):
-    """
-    Import the filename into a InMemoryDB and return it.
-    """
-    if user is None:
-        user = User()
-    db = make_database("inmemorydb")
-    db.load(None)
-    db.set_feature("skip-import-additions", skp_imp_adds)
-    dbstate = DbState()
-    climanager = CLIManager(dbstate, setloader=False, user=user)
-    climanager.do_reg_plugins(dbstate, None)
-    pmgr = BasePluginManager.get_instance()
-    (name, ext) = os.path.splitext(os.path.basename(filename))
-    format = ext[1:].lower()
-    import_list = pmgr.get_reg_importers()
-    for pdata in import_list:
-        if format == pdata.extension:
-            mod = pmgr.load_plugin(pdata)
-            if not mod:
-                for item in pmgr.get_fail_list():
-                    name, error_tuple, pdata = item
-                    # (filename, (exception-type, exception, traceback), pdata)
-                    etype, exception, traceback = error_tuple
-                    #print("ERROR:", name, exception)
-                return False
-            import_function = getattr(mod, pdata.import_function)
-            results = import_function(db, filename, user)
-            if results is None:
-                return None
-            return db
-    return None
 
 def diff_dates(json1, json2):
     """

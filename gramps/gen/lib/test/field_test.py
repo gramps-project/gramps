@@ -22,7 +22,8 @@
 
 import unittest
 
-from gramps.gen.db import make_database, DbTxn
+from gramps.gen.db import DbTxn
+from gramps.gen.db.utils import make_database
 
 from  ..import (Person, Surname, Name, NameType, Family, FamilyRelType,
                 Event, EventType, Source, Place, PlaceName, Citation, Date,

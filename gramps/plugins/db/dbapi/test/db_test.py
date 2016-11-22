@@ -30,7 +30,8 @@ import unittest
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.db import make_database, DbTxn
+from gramps.gen.db import DbTxn
+from gramps.gen.db.utils import make_database
 from gramps.gen.lib import (Person, Family, Event, Place, Repository, Source,
                             Citation, Media, Note, Tag, Researcher, Surname)
 

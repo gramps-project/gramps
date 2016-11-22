@@ -60,6 +60,7 @@ gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
+gramps/gen/db/utils.py
 #
 # gen.display package
 #

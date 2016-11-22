@@ -23,6 +23,7 @@ import unittest
 from .. import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.dbstate import DbState
+from gramps.gen.db.utils import make_database
 from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person,
                             Family, Event, Place, Media)
 
@@ -37,7 +38,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         self.dbstate = DbState()
         self.dbman = CLIDbManager(self.dbstate)
         dirpath, name = self.dbman.create_new_db_cli("Test: bsddb", dbid="bsddb")
-        self._db = self.dbstate.make_database("bsddb")
+        self._db = make_database("bsddb")
         self._db.load(dirpath, None)
 
     def tearDown(self):

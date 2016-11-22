@@ -40,7 +40,7 @@ import unittest
 #-------------------------------------------------------------------------
 from gramps.gen.const import TEMP_DIR, USER_HOME, USER_PLUGINS, VERSION
 from gramps.gen.utils.file import media_path, get_empty_tempdir
-from gramps.gen.dbstate import DbState
+from gramps.gen.db.utils import make_database
 
 #-------------------------------------------------------------------------
 #
@@ -58,12 +58,10 @@ class FileTest(unittest.TestCase):
         """
 
         # Create database
-        dbstate = DbState()
-        db = dbstate.make_database("bsddb")
+        db = make_database("bsddb")
         path = get_empty_tempdir("utils_file_test")
         db.write_version(path)
         db.load(path)
-        dbstate.change_database(db)
 
         # Test without db.mediapath set
         self.assertEqual(media_path(db), os.path.normcase(os.path.normpath(

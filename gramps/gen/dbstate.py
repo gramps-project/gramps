@@ -43,6 +43,7 @@ from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
 from gramps.gen.db.dbconst import DBLOGNAME
+from gramps.gen.db.utils import make_database
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +69,7 @@ class DbState(Callback):
         place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db = self.make_database("dummydb")
+        self.db = make_database("dummydb")
         self.open = False  #  Deprecated - use DbState.is_open()
         self.stack = []
 
@@ -134,7 +135,7 @@ class DbState(Callback):
         self.emit('no-database', ())
         if self.is_open():
             self.db.close()
-        self.db = self.make_database("dummydb")
+        self.db = make_database("dummydb")
         self.open = False
         self.emit('database-changed', (self.db, ))
 
@@ -178,82 +179,3 @@ class DbState(Callback):
         """
         self.db = self.stack.pop()
         self.emit('database-changed', (self.db, ))
-
-    def make_database(self, plugin_id):
-        """
-        Make a database, given a plugin id.
-        """
-        from .plug import BasePluginManager
-        from .const import PLUGINS_DIR, USER_PLUGINS
-
-        pmgr = BasePluginManager.get_instance()
-        pdata = pmgr.get_plugin(plugin_id)
-
-        if not pdata:
-            # This might happen if using gramps from outside, and
-            # we haven't loaded plugins yet
-            pmgr.reg_plugins(PLUGINS_DIR, self, None)
-            pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
-            pdata = pmgr.get_plugin(plugin_id)
-
-        if pdata:
-            mod = pmgr.load_plugin(pdata)
-            if mod:
-                database = getattr(mod, pdata.databaseclass)
-                db = database()
-                import inspect
-                caller_frame = inspect.stack()[1]
-                _LOG.debug("Database class instance created Class:%s instance:%s. "
-                           "Called from File %s, line %s, in %s"
-                           % ((db.__class__.__name__, hex(id(db)))
-                             + (os.path.split(caller_frame[1])[1],)
-                             + tuple(caller_frame[i] for i in range(2, 4))))
-                return db
-            else:
-                raise Exception("can't load database backend: '%s'" % plugin_id)
-        else:
-            raise Exception("no such database backend: '%s'" % plugin_id)
-
-    def open_database(self, dbname, force_unlock=False, callback=None):
-        """
-        Open a database by name and return the database.
-        """
-        data = self.lookup_family_tree(dbname)
-        database = None
-        if data:
-            dbpath, locked, locked_by, backend = data
-            if (not locked) or (locked and force_unlock):
-                database = self.make_database(backend)
-                database.load(dbpath, callback=callback)
-        return database
-
-    def lookup_family_tree(self, dbname):
-        """
-        Find a Family Tree given its name, and return properties.
-        """
-        dbdir = os.path.expanduser(config.get('database.path'))
-        for dpath in os.listdir(dbdir):
-            dirpath = os.path.join(dbdir, dpath)
-            path_name = os.path.join(dirpath, "name.txt")
-            if os.path.isfile(path_name):
-                with open(path_name, 'r', encoding='utf8') as file:
-                    name = file.readline().strip()
-                if dbname == name:
-                    locked = False
-                    locked_by = None
-                    backend = None
-                    fname = os.path.join(dirpath, "database.txt")
-                    if os.path.isfile(fname):
-                        with open(fname, 'r', encoding='utf8') as ifile:
-                            backend = ifile.read().strip()
-                    else:
-                        backend = "bsddb"
-                    try:
-                        fname = os.path.join(dirpath, "lock")
-                        with open(fname, 'r', encoding='utf8') as ifile:
-                            locked_by = ifile.read().strip()
-                            locked = True
-                    except (OSError, IOError):
-                        pass
-                    return (dirpath, locked, locked_by, backend)
-        return None

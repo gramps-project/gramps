@@ -62,6 +62,7 @@ from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
+from gramps.gen.db.utils import make_database, open_database
 from gramps.gen.config import config
 from gramps.gui.listmodel import ListModel
 from gramps.gen.constfunc import win
@@ -652,7 +653,7 @@ class DbManager(CLIDbManager):
 
         self.__start_cursor(_("Extracting archive..."))
 
-        dbase = self.dbstate.make_database("bsddb")
+        dbase = make_database("bsddb")
         dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
@@ -768,7 +769,7 @@ class DbManager(CLIDbManager):
         Actually convert the db from BSDDB to DB-API.
         """
         try:
-            db = self.dbstate.open_database(name)
+            db = open_database(name)
         except:
             ErrorDialog(_("Opening the '%s' database") % name,
                         _("An attempt to convert the database failed. "
@@ -798,7 +799,7 @@ class DbManager(CLIDbManager):
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
         new_path, newname = self._create_new_db(new_text, edit_entry=False)
         ## Create a new database of correct type:
-        dbase = self.dbstate.make_database("dbapi")
+        dbase = make_database("dbapi")
         dbase.write_version(new_path)
         dbase.load(new_path)
         ## import from XML
@@ -914,10 +915,10 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = self.dbstate.make_database("bsddb")
+        newdb = make_database("bsddb")
         newdb.write_version(dirname)
 
-        dbase = self.dbstate.make_database("bsddb")
+        dbase = make_database("bsddb")
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
