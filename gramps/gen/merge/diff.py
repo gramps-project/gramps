@@ -27,56 +27,6 @@ from ..db.utils import import_as_dict
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-def parse(string):
-    """
-    Break a string up into a struct-path. Used by get_schema() and setitem().
-
-    >>> parse("primary_name.first_name.startswith('Sarah')")
-    ["primary_name", "first_name", "startswith", "('Sarah')"]
-    >>> parse("primary_name.surname_list[0].surname.startswith('Smith')")
-    ["primary_name", "surname_list", "[0]", "surname", "startswith", "('Smith')"]
-    """
-    # FIXME: handle nested same-structures, (len(list) + 1)
-    retval = []
-    stack = []
-    current = ""
-    for p in range(len(string)):
-        c = string[p]
-        if c == "]":
-            if stack and stack[-1] == "[": # end
-                stack.pop(-1)
-            current += c
-            retval.append(current)
-            current = ""
-        elif c == "[":
-            stack.append(c)
-            retval.append(current)
-            current = ""
-            current += c
-        elif c in ["'", '"']:
-            if stack and stack[-1] == c: # end
-                stack.pop(-1)
-                current += c
-                if stack and stack[-1] in ["'", '"', '[']: # in quote or args
-                    pass
-                else:
-                    current += c
-                    retval.append(current)
-                    current = ""
-            else:                        # start
-                stack.append(c)
-                current += c
-        elif c == ".":
-            retval.append(current)
-            current = ""
-        elif stack and stack[-1] in ["'", '"', '[']: # in quote or args
-            current += c
-        else:
-            current += c
-    if current:
-        retval.append(current)
-    return retval
-
 def diff_dates(json1, json2):
     """
     Compare two json date objects. Returns True if different.
