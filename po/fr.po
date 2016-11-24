@@ -11578,7 +11578,7 @@ msgstr "Vérifier maintenant"
 # Substantif (GNOME fr)
 #: ../gramps/gui/configure.py:1408
 msgid "Checking Addons Failed"
-msgstr "La vérification des greffons a échouée"
+msgstr "La vérification des greffons a échoué"
 
 #: ../gramps/gui/configure.py:1409
 msgid "The addon repository appears to be unavailable. Please try again later."
@@ -19467,7 +19467,7 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"La vue %(name)s n'a pas été chargée et elle a rapportée une erreur.\n"
+"La vue %(name)s n'a pas été chargée et elle a rapporté une erreur.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
