@@ -132,26 +132,32 @@ def import_as_dict(filename, user, skp_imp_adds=True):
     db = make_database("inmemorydb")
     db.load(None)
     db.set_feature("skip-import-additions", skp_imp_adds)
+    status = import_from_filename(db, filename, user)
+    return db if status else None
+
+def import_from_filename(db, filename, user):
+    """
+    Import a file into a database.
+    """
     (name, ext) = os.path.splitext(os.path.basename(filename))
-    format = ext[1:].lower()
+    extension = ext[1:].lower()
     pmgr = BasePluginManager.get_instance()
     import_list = pmgr.get_reg_importers()
     for pdata in import_list:
-        if format == pdata.extension:
+        if extension == pdata.extension:
             mod = pmgr.load_plugin(pdata)
             if not mod:
                 for item in pmgr.get_fail_list():
                     name, error_tuple, pdata = item
-                    # (filename, (exception-type, exception, traceback), pdata)
                     etype, exception, traceback = error_tuple
-                    #print("ERROR:", name, exception)
                 return False
             import_function = getattr(mod, pdata.import_function)
             results = import_function(db, filename, user)
             if results is None:
-                return None
-            return db
-    return None
+                return False
+            else:
+                return True
+    return False
 
 def find_surname_name(key, data):
     """
