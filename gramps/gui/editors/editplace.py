@@ -186,6 +186,8 @@ class EditPlace(EditPrimary):
             self.latitude.set_text(value[:coma])
             self.top.get_object("lat_entry").validate(force=True)
             self.top.get_object("lon_entry").validate(force=True)
+            self.obj.set_latitude(self.latitude.get_value())
+            self.obj.set_longitude(self.longitude.get_value())
         except:
             pass
 
@@ -297,7 +299,6 @@ class EditPlace(EditPrimary):
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
-
         if self.obj.get_name().get_value().strip() == '':
             msg1 = _("Cannot save place. Name not entered.")
             msg2 = _("You must enter a name before saving.")
