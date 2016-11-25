@@ -167,6 +167,21 @@ stock_icon = 'gramps-fanchartdesc',
   )
 
 register(VIEW,
+id    = 'fanchart2wayview',
+name  = _("2-Way Fan"),
+category = ("Ancestry", _("Charts")),
+description =  _("Showing ascendants and descendants through a fanchart"),
+version = '1.0',
+gramps_target_version = MODULE_VERSION,
+status = STABLE,
+fname = 'fanchart2wayview.py',
+authors = ["B. Jacquet"],
+authors_email = ["bastien.jacquet_dev@m4x.org"],
+viewclass = 'FanChart2WayView',
+stock_icon = 'gramps-fanchart2way',
+  )
+
+register(VIEW,
 id    = 'personview',
 name  = _("Grouped People"),
 description =  _("The view showing all people in the Family Tree grouped per"

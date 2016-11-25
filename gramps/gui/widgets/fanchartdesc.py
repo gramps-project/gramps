@@ -68,14 +68,21 @@ from .fanchart import *
 #-------------------------------------------------------------------------
 pi = math.pi
 
-PIXELS_PER_GENPERSON = 30 # size of radius for generation of children
-PIXELS_PER_GENFAMILY = 20 # size of radius for family
+PIXELS_PER_GENPERSON_RATIO = 0.55 # ratio of generation radius for person (rest for partner)
+PIXELS_PER_GEN_SMALL = 80
+PIXELS_PER_GEN_LARGE = 160
+N_GEN_SMALL = 4
+PIXELS_PER_GENFAMILY = 25 # size of radius for family
 PIXELS_PER_RECLAIM = 4 # size of the radius of pixels taken from family to reclaim space
+PIXELS_PARTNER_GAP = 0 # Padding between someone and his partner
+PIXELS_CHILDREN_GAP = 5 # Padding between generations
 PARENTRING_WIDTH = 12      # width of the parent ring inside the person
 
 ANGLE_CHEQUI = 0   #Algorithm with homogeneous children distribution
 ANGLE_WEIGHT = 1   #Algorithm for angle computation based on nr of descendants
 
+TYPE_BOX_NORMAL = 0
+TYPE_BOX_FAMILY = 1
 
 #-------------------------------------------------------------------------
 #
@@ -87,18 +94,18 @@ class FanChartDescWidget(FanChartBaseWidget):
     """
     Interactive Fan Chart Widget.
     """
-    CENTER = 60    # we require a larger center
+    CENTER = 50    # we require a larger center as CENTER includes the 1st partner
 
     def __init__(self, dbstate, uistate, callback_popup=None):
         """
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        self.set_values(None, 9, BACKGROUND_GRAD_GEN, 'Sans', '#0000FF',
+        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans', '#0000FF',
                     '#FF0000', None, 0.5, FORM_CIRCLE, ANGLE_WEIGHT, '#888a85')
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
-    def set_values(self, root_person_handle, maxgen, background,
+    def set_values(self, root_person_handle, maxgen, flipupsidedownname, twolinename, background,
               fontdescr, grad_start, grad_end,
               filter, alpha_filter, form, angle_algo, dupcolor):
         """
@@ -106,6 +113,7 @@ class FanChartDescWidget(FanChartBaseWidget):
 
         :param root_person_handle: person to show
         :param maxgen: maximum generations to show
+        :param flipupsidedownname: flip name on the left of the fanchart for the display of person's name
         :param background: config setting of which background procedure to use
         :type background: int
         :param fontdescr: string describing the font to use
@@ -131,24 +139,28 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.anglealgo = angle_algo
         self.dupcolor = hex_to_rgb(dupcolor)
         self.childring = False
-
-    def gen_pixels(self):
-        """
-        how many pixels a generation takes up in the fanchart
-        """
-        return PIXELS_PER_GENPERSON + PIXELS_PER_GENFAMILY
+        self.flipupsidedownname = flipupsidedownname
+        self.twolinename = twolinename
 
     def set_generations(self):
         """
         Set the generations to max, and fill data structures with initial data.
         """
+
+        if self.form == FORM_CIRCLE:
+            self.rootangle_rad = [math.radians(0), math.radians(360)]
+        elif self.form == FORM_HALFCIRCLE:
+            self.rootangle_rad = [math.radians(90), math.radians(90 + 180)]
+        elif self.form == FORM_QUADRANT:
+            self.rootangle_rad = [math.radians(90), math.radians(90 + 90)]
+
         self.handle2desc = {}
         self.famhandle2desc = {}
         self.handle2fam = {}
         self.gen2people = {}
         self.gen2fam = {}
-        self.parentsroot = []
-        self.gen2people[0] = [(None, False, 0, 2*pi, '', 0, 0, [], NORMAL)] #no center person
+        self.innerring = []
+        self.gen2people[0] = [(None, False, 0, 2*pi, 0, 0, [], NORMAL)] #no center person
         self.gen2fam[0] = [] #no families
         self.angle = {}
         self.angle[-2] = []
@@ -156,14 +168,6 @@ class FanChartDescWidget(FanChartBaseWidget):
             self.gen2fam[i] = []
             self.gen2people[i] = []
         self.gen2people[self.generations] = [] #indication of more children
-        self.rotfactor = 1
-        self.rotstartangle = 0
-        if self.form == FORM_HALFCIRCLE:
-            self.rotfactor = 1/2
-            self.rotangle = 90
-        elif self.form == FORM_QUADRANT:
-            self.rotangle = 180
-            self.rotfactor = 1/4
 
     def _fill_data_structures(self):
         self.set_generations()
@@ -173,15 +177,13 @@ class FanChartDescWidget(FanChartBaseWidget):
         if not person:
             #nothing to do, just return
             return
-        else:
-            name = name_displayer.display(person)
 
         # person, duplicate or not, start angle, slice size,
         #                   text, parent pos in fam, nrfam, userdata, status
-        self.gen2people[0] = [[person, False, 0, 2*pi, name, 0, 0, [], NORMAL]]
+        self.gen2people[0] = [[person, False, 0, 2*pi, 0, 0, [], NORMAL]]
         self.handle2desc[self.rootpersonh] = 0
         # fill in data for the parents
-        self.parentsroot = []
+        self.innerring = []
         handleparents = []
         family_handle_list = person.get_parent_family_handle_list()
         if family_handle_list:
@@ -189,173 +191,145 @@ class FanChartDescWidget(FanChartBaseWidget):
                 family = self.dbstate.db.get_family_from_handle(family_handle)
                 if not family:
                     continue
-                hfather = family.get_father_handle()
-                if hfather and hfather not in handleparents:
-                    father = self.dbstate.db.get_person_from_handle(hfather)
-                    if father:
-                        self.parentsroot.append((father, []))
-                        handleparents.append(hfather)
-                hmother = family.get_mother_handle()
-                if hmother and hmother not in handleparents:
-                    mother = self.dbstate.db.get_person_from_handle(hmother)
-                    if mother:
-                        self.parentsroot.append((mother, []))
-                        handleparents.append(hmother)
+                for hparent in [family.get_father_handle(), family.get_mother_handle()]:
+                    if hparent and hparent not in handleparents:
+                        parent = self.dbstate.db.get_person_from_handle(hparent)
+                        if parent:
+                            self.innerring.append((parent, []))
+                            handleparents.append(hparent)
 
         #recursively fill in the datastructures:
-        nrdesc = self.__rec_fill_data(0, person, 0)
+        nrdesc = self._rec_fill_data(0, person, 0, self.generations)
         self.handle2desc[person.handle] += nrdesc
-        self.__compute_angles()
+        self._compute_angles(*self.rootangle_rad)
 
-    def __rec_fill_data(self, gen, person, pos):
+    def _rec_fill_data(self, gen, person, pos, maxgen):
         """
         Recursively fill in the data
         """
         totdesc = 0
-        nrfam = len(person.get_family_handle_list())
-        self.gen2people[gen][pos][6] = nrfam
-        for family_handle in person.get_family_handle_list():
+        marriage_handle_list = person.get_family_handle_list()
+        self.gen2people[gen][pos][5] = len(marriage_handle_list)
+        for family_handle in marriage_handle_list:
             totdescfam = 0
             family = self.dbstate.db.get_family_from_handle(family_handle)
 
             spouse_handle = find_spouse(person, family)
             if spouse_handle:
                 spouse = self.dbstate.db.get_person_from_handle(spouse_handle)
-                spname = name_displayer.display(spouse)
             else:
-                spname = ''
                 spouse = None
-            if family_handle in self.famhandle2desc:
-                #family occurs via father and via mother in the chart, only
-                #first to show and count.
-                famdup = True
-            else:
-                famdup = False
+            # family may occur via father and via mother in the chart, only
+            # first to show and count.
+            fam_duplicate = family_handle in self.famhandle2desc
             # family, duplicate or not, start angle, slice size,
-            #   text, spouse pos in gen, nrchildren, userdata, parnter, status
-            self.gen2fam[gen].append([family, famdup, 0, 0, spname, pos, 0, [],
-                                      spouse, NORMAL])
+            #   spouse pos in gen, nrchildren, userdata, parnter, status
+            self.gen2fam[gen].append([family, fam_duplicate, 0, 0, pos, 0, [], spouse, NORMAL])
             posfam = len(self.gen2fam[gen]) - 1
 
-            if not famdup:
+            if not fam_duplicate and gen < maxgen-1:
                 nrchild = len(family.get_child_ref_list())
-                self.gen2fam[gen][-1][6] = nrchild
+                self.gen2fam[gen][posfam][5] = nrchild
                 for child_ref in family.get_child_ref_list():
                     child = self.dbstate.db.get_person_from_handle(child_ref.ref)
-                    chname = name_displayer.display(child)
-                    if child_ref.ref in self.handle2desc:
-                        dup = True
-                    else:
-                        dup = False
-                        self.handle2desc[child_ref.ref] = 0
+                    child_dup = child_ref.ref in self.handle2desc
+                    if not child_dup:
+                        self.handle2desc[child_ref.ref] = 0  # mark this child as processed
                     # person, duplicate or not, start angle, slice size,
-                    #         text, parent pos in fam, nrfam, userdata, status
-                    self.gen2people[gen+1].append([child, dup, 0, 0, chname,
-                            posfam, 0, [], NORMAL])
+                    #         parent pos in fam, nrfam, userdata, status
+                    self.gen2people[gen+1].append([child, child_dup, 0, 0, posfam, 0, [], NORMAL])
                     totdescfam += 1 #add this person as descendant
                     pospers = len(self.gen2people[gen+1]) - 1
-                    if not dup and not(self.generations == gen+2):
-                        nrdesc = self.__rec_fill_data(gen+1, child, pospers)
+                    if not child_dup:
+                        nrdesc = self._rec_fill_data(gen+1, child, pospers, maxgen)
                         self.handle2desc[child_ref.ref] += nrdesc
                         totdescfam += nrdesc # add children of him as descendants
+            if not fam_duplicate:
                 self.famhandle2desc[family_handle] = totdescfam
             totdesc += totdescfam
         return totdesc
 
-    def __compute_angles(self):
+    def _compute_angles(self, start_rad, stop_rad):
         """
         Compute the angles of the boxes
         """
         #first we compute the size of the slice.
-        nrgen = self.nrgen()
         #set angles root person
-        if self.form == FORM_CIRCLE:
-            slice = 2*pi
-            start = 0.
-        elif self.form == FORM_HALFCIRCLE:
-            slice = pi
-            start = pi/2
-        elif self.form == FORM_QUADRANT:
-            slice = pi/2
-            start = pi
+        start, slice = start_rad, stop_rad - start_rad
+        nr_gen = len(self.gen2people)-1
+        # Fill in central person angles
         gen = 0
         data = self.gen2people[gen][0]
         data[2] = start
         data[3] = slice
-        for gen in range(1, nrgen):
-            nrpeople = len(self.gen2people[gen])
+        for gen in range(0, nr_gen):
             prevpartnerdatahandle = None
             offset = 0
-            for data in self.gen2fam[gen-1]:
-                #obtain start and stop of partner
-                partnerdata = self.gen2people[gen-1][data[5]]
-                dupfam = data[1]
+            for data_fam in self.gen2fam[gen]:  # for each partner/fam of gen-1
+                #obtain start and stop from the people of this partner
+                persondata = self.gen2people[gen][data_fam[4]]
+                dupfam = data_fam[1]
                 if dupfam:
-                    # we don't show the descendants here, but in the first
-                    # occurrence of the family
-                    nrdescfam = 0
-                    nrdescpartner = self.handle2desc[partnerdata[0].handle]
-                    nrfam = partnerdata[6]
+                    # we don't show again the descendants here
                     nrdescfam = 0
                 else:
-                    nrdescfam = self.famhandle2desc[data[0].handle]
-                    nrdescpartner = self.handle2desc[partnerdata[0].handle]
-                    nrfam = partnerdata[6]
-                partstart = partnerdata[2]
-                partslice = partnerdata[3]
-                if prevpartnerdatahandle != partnerdata[0].handle:
-                    #reset the offset
+                    nrdescfam = self.famhandle2desc[data_fam[0].handle]
+                nrdescperson = self.handle2desc[persondata[0].handle]
+                nrfam = persondata[5]
+                personstart, personslice = persondata[2:4]
+                if prevpartnerdatahandle != persondata[0].handle:
+                    #partner of a new person: reset the offset
                     offset = 0
-                    prevpartnerdatahandle = partnerdata[0].handle
-                slice = partslice/(nrdescpartner+nrfam)*(nrdescfam+1)
-                if data[9] == COLLAPSED:
+                    prevpartnerdatahandle = persondata[0].handle
+                slice = personslice/(nrdescperson+nrfam)*(nrdescfam+1)
+                if data_fam[8] == COLLAPSED:
                     slice = 0
-                elif data[9] == EXPANDED:
-                    slice = partslice
+                elif data_fam[8] == EXPANDED:
+                    slice = personslice
 
-                data[2] = partstart + offset
-                data[3] = slice
+                data_fam[2] = personstart + offset
+                data_fam[3] = slice
                 offset += slice
 
-##                if nrdescpartner == 0:
+##                if nrdescperson == 0:
 ##                    #no offspring, draw as large as fraction of
 ##                    #nr families
-##                    nrfam = partnerdata[6]
-##                    slice = partslice/nrfam
-##                    data[2] = partstart + offset
-##                    data[3] = slice
+##                    nrfam = persondata[6]
+##                    slice = personslice/nrfam
+##                    data_fam[2] = personstart + offset
+##                    data_fam[3] = slice
 ##                    offset += slice
 ##                elif nrdescfam == 0:
 ##                    #no offspring this family, but there is another
 ##                    #family. We draw this as a weight of 1
-##                    nrfam = partnerdata[6]
-##                    slice = partslice/(nrdescpartner + nrfam - 1)*(nrdescfam+1)
-##                    data[2] = partstart + offset
-##                    data[3] = slice
+##                    nrfam = persondata[6]
+##                    slice = personslice/(nrdescperson + nrfam - 1)*(nrdescfam+1)
+##                    data_fam[2] = personstart + offset
+##                    data_fam[3] = slice
 ##                    offset += slice
 ##                else:
 ##                    #this family has offspring. We give it space for it's
 ##                    #weight in offspring
-##                    nrfam = partnerdata[6]
-##                    slice = partslice/(nrdescpartner + nrfam - 1)*(nrdescfam+1)
-##                    data[2] = partstart + offset
-##                    data[3] = slice
+##                    nrfam = persondata[6]
+##                    slice = personslice/(nrdescperson + nrfam - 1)*(nrdescfam+1)
+##                    data_fam[2] = personstart + offset
+##                    data_fam[3] = slice
 ##                    offset += slice
 
             prevfamdatahandle = None
             offset = 0
-            for data in self.gen2people[gen]:
+            for persondata in self.gen2people[gen+1] if gen < nr_gen else []:
                 #obtain start and stop of family this is child of
-                parentfamdata = self.gen2fam[gen-1][data[5]]
+                parentfamdata = self.gen2fam[gen][persondata[4]]
                 nrdescfam = 0
                 if not parentfamdata[1]:
                     nrdescfam = self.famhandle2desc[parentfamdata[0].handle]
                 nrdesc = 0
-                if not data[1]:
-                    nrdesc = self.handle2desc[data[0].handle]
+                if not persondata[1]:
+                    nrdesc = self.handle2desc[persondata[0].handle]
                 famstart = parentfamdata[2]
                 famslice = parentfamdata[3]
-                nrchild = parentfamdata[6]
+                nrchild = parentfamdata[5]
                 #now we divide this slice to the weight of children,
                 #adding one for every child
                 if self.anglealgo == ANGLE_CHEQUI:
@@ -368,32 +342,48 @@ class FanChartDescWidget(FanChartBaseWidget):
                     #reset the offset
                     offset = 0
                     prevfamdatahandle = parentfamdata[0].handle
-                if data[8] == COLLAPSED:
+                if persondata[7] == COLLAPSED:
                     slice = 0
-                elif data[8] == EXPANDED:
+                elif persondata[7] == EXPANDED:
                     slice = famslice
-                data[2] = famstart + offset
-                data[3] = slice
+                persondata[2] = famstart + offset
+                persondata[3] = slice
                 offset += slice
 
     def nrgen(self):
         #compute the number of generations present
-        nrgen = None
         for gen in range(self.generations - 1, 0, -1):
             if len(self.gen2people[gen]) > 0:
-                nrgen = gen + 1
-                break
-        if nrgen is None:
-            nrgen = 1
-        return nrgen
+                return gen + 1
+        return 1
 
     def halfdist(self):
         """
         Compute the half radius of the circle
         """
-        nrgen = self.nrgen()
-        ringpxs = (PIXELS_PER_GENPERSON + PIXELS_PER_GENFAMILY) * (nrgen - 1)
-        return ringpxs + self.CENTER + BORDER_EDGE_WIDTH
+        radius = PIXELS_PER_GEN_SMALL * N_GEN_SMALL + PIXELS_PER_GEN_LARGE \
+                * ( self.nrgen() - N_GEN_SMALL ) + self.CENTER
+        return radius
+
+    def get_radiusinout_for_generation(self,generation):
+        radius_first_gen = self.CENTER - (1-PIXELS_PER_GENPERSON_RATIO) * PIXELS_PER_GEN_SMALL
+        if generation < N_GEN_SMALL:
+            radius_start = PIXELS_PER_GEN_SMALL * generation + radius_first_gen
+            return (radius_start,radius_start + PIXELS_PER_GEN_SMALL)
+        else:
+            radius_start = PIXELS_PER_GEN_SMALL * N_GEN_SMALL + PIXELS_PER_GEN_LARGE \
+                * ( generation - N_GEN_SMALL ) + radius_first_gen
+            return (radius_start,radius_start + PIXELS_PER_GEN_LARGE)
+
+    def get_radiusinout_for_generation_pair(self,generation):
+        radiusin, radiusout = self.get_radiusinout_for_generation(generation)
+        radius_spread = radiusout - radiusin - PIXELS_CHILDREN_GAP - PIXELS_PARTNER_GAP
+
+        radiusin_pers = radiusin + PIXELS_CHILDREN_GAP
+        radiusout_pers = radiusin_pers + PIXELS_PER_GENPERSON_RATIO * radius_spread
+        radiusin_partner = radiusout_pers + PIXELS_PARTNER_GAP
+        radiusout_partner = radiusout
+        return (radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner)
 
     def people_generator(self):
         """
@@ -401,16 +391,16 @@ class FanChartDescWidget(FanChartBaseWidget):
         """
         for generation in range(self.generations):
             for data in self.gen2people[generation]:
-                yield (data[0], data[7])
-        for generation in range(self.generations-1):
+                yield (data[0], data[6])
+        for generation in range(self.generations):
             for data in self.gen2fam[generation]:
-                yield (data[8], data[7])
+                yield (data[7], data[6])
 
     def innerpeople_generator(self):
         """
         a generator over all people inside of the core person
         """
-        for parentdata in self.parentsroot:
+        for parentdata in self.innerring:
             parent, userdata = parentdata
             yield (parent, userdata)
 
@@ -432,184 +422,112 @@ class FanChartDescWidget(FanChartBaseWidget):
                 self.set_size_request(halfdist + self.CENTER + PAD_PX,
                                       halfdist + self.CENTER + PAD_PX)
 
-            #obtain the allocation
-            alloc = self.get_allocation()
-            x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-
         cr.scale(scale, scale)
         # when printing, we need not recalculate
         if widget:
-            if self.form == FORM_CIRCLE:
-                self.center_x = w/2 - self.center_xy[0]
-                self.center_y = h/2 - self.center_xy[1]
-            elif self.form == FORM_HALFCIRCLE:
-                self.center_x = w/2. - self.center_xy[0]
-                self.center_y = h - self.CENTER - PAD_PX- self.center_xy[1]
-            elif self.form == FORM_QUADRANT:
-                self.center_x = self.CENTER + PAD_PX - self.center_xy[0]
-                self.center_y = h - self.CENTER - PAD_PX - self.center_xy[1]
-        cr.translate(self.center_x, self.center_y)
+            self.center_xy = self.center_xy_from_delta()
+        cr.translate(*self.center_xy)
 
         cr.save()
-        #draw center
-        cr.set_source_rgb(1, 1, 1) # white
-        cr.move_to(0,0)
-        cr.arc(0, 0, self.CENTER-PIXELS_PER_GENFAMILY, 0, 2 * math.pi)
-        cr.fill()
-        cr.set_source_rgb(0, 0, 0) # black
-        cr.arc(0, 0, self.CENTER-PIXELS_PER_GENFAMILY, 0, 2 * math.pi)
-        cr.stroke()
-        cr.restore()
         # Draw center person:
-        (person, dup, start, slice, text, parentfampos, nrfam, userdata, status) \
+        (person, dup, start, slice, parentfampos, nrfam, userdata, status) \
                 = self.gen2people[0][0]
         if person:
             r, g, b, a = self.background_box(person, 0, userdata)
-            cr.arc(0, 0, self.CENTER-PIXELS_PER_GENFAMILY, 0, 2 * math.pi)
-            if self.parentsroot:
-                cr.arc_negative(0, 0, TRANSLATE_PX + CHILDRING_WIDTH,
-                                2 * math.pi, 0)
-                cr.close_path()
-            cr.set_source_rgba(r/255, g/255, b/255, a)
-            cr.fill()
-            cr.save()
-            name = name_displayer.display(person)
-            self.draw_text(cr, name, self.CENTER - PIXELS_PER_GENFAMILY
-                        - (self.CENTER - PIXELS_PER_GENFAMILY
-                           - (CHILDRING_WIDTH + TRANSLATE_PX))/2,
-                        95, 455, 10, False,
-                        self.fontcolor(r, g, b, a), self.fontbold(a))
-            cr.restore()
+            radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner = \
+                self.get_radiusinout_for_generation_pair(0)
+            if not self.innerring: radiusin_pers = TRANSLATE_PX
+            self.draw_person(cr, person, radiusin_pers, radiusout_pers, math.pi/2, math.pi/2 + 2*math.pi,
+                             0, False, userdata, is_central_person =True)
             #draw center to move chart
             cr.set_source_rgb(0, 0, 0) # black
             cr.move_to(TRANSLATE_PX, 0)
             cr.arc(0, 0, TRANSLATE_PX, 0, 2 * math.pi)
-            if self.parentsroot: # has at least one parent
+            if self.innerring: # has at least one parent
                 cr.fill()
-                self.draw_parentring(cr)
+                self.draw_innerring_people(cr)
             else:
                 cr.stroke()
         #now write all the families and children
-        cr.save()
         cr.rotate(self.rotate_value * math.pi/180)
-        radstart = self.CENTER - PIXELS_PER_GENFAMILY - PIXELS_PER_GENPERSON
-        for gen in range(self.generations-1):
-            radstart += PIXELS_PER_GENPERSON
+        for gen in range(self.generations):
+            radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner = \
+                self.get_radiusinout_for_generation_pair(gen)
+            if gen > 0:
+                for pdata in self.gen2people[gen]:
+                    # person, duplicate or not, start angle, slice size,
+                    #             parent pos in fam, nrfam, userdata, status
+                    pers, dup, start, slice, pospar, nrfam, userdata, status = \
+                        pdata
+                    if status != COLLAPSED:
+                        self.draw_person(cr, pers, radiusin_pers, radiusout_pers,
+                                         start, start + slice, gen, dup, userdata,
+                                         thick=status != NORMAL)
+            #if gen < self.generations-1:
             for famdata in self.gen2fam[gen]:
                 # family, duplicate or not, start angle, slice size,
-                #       text, spouse pos in gen, nrchildren, userdata, status
-                fam, dup, start, slice, text, posfam, nrchild, userdata,\
+                #       spouse pos in gen, nrchildren, userdata, status
+                fam, dup, start, slice, posfam, nrchild, userdata,\
                     partner, status = famdata
                 if status != COLLAPSED:
-                    self.draw_person(cr, text, start, slice, radstart,
-                                     radstart + PIXELS_PER_GENFAMILY, gen, dup,
-                                     partner, userdata, family=True, thick=status != NORMAL)
-            radstart += PIXELS_PER_GENFAMILY
-            for pdata in self.gen2people[gen+1]:
-                # person, duplicate or not, start angle, slice size,
-                #             text, parent pos in fam, nrfam, userdata, status
-                pers, dup, start, slice, text, pospar, nrfam, userdata, status = \
-                    pdata
-                if status != COLLAPSED:
-                    self.draw_person(cr, text, start, slice, radstart,
-                                     radstart + PIXELS_PER_GENPERSON, gen+1, dup,
-                                     pers, userdata, thick=status != NORMAL)
+                    more_pers_flag = (gen == self.generations - 1
+                                    and len(fam.get_child_ref_list()) > 0)
+                    self.draw_person(cr, partner, radiusin_partner, radiusout_partner, start, start + slice,
+                                     gen, dup, userdata, thick = (status != NORMAL), has_moregen_indicator = more_pers_flag )
         cr.restore()
 
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
-            self.draw_gradient(cr, widget, halfdist)
+            self.draw_gradient_legend(cr, widget, halfdist)
 
-    def draw_person(self, cr, name, start_rad, slice, radius, radiusend,
-                generation, dup, person, userdata, family=False, thick=False):
+    def cell_address_under_cursor(self, curx, cury):
         """
-        Display the piece of pie for a given person. start_rad and slice
-        are in radial.
+        Determine the cell address in the fan under the cursor
+        position x and y.
+        None if outside of diagram
         """
-        if slice == 0:
-            return
-        cr.save()
-        full = False
-        if abs(slice - 2*pi) < 1e-6:
-            full = True
-        stop_rad = start_rad + slice
-        if not person:
-            #an family with partner not set. Don't have a color for this,
-            # let's make it transparent
-            r, g, b, a = (255, 255, 255, 0)
-        elif not dup:
-            r, g, b, a = self.background_box(person, generation, userdata)
+        radius, rads, raw_rads = self.cursor_to_polar(curx, cury, get_raw_rads=True)
+
+        btype = TYPE_BOX_NORMAL
+        if radius < TRANSLATE_PX:
+            return None
+        elif (self.innerring and self.angle[-2] and
+                    radius < CHILDRING_WIDTH + TRANSLATE_PX):
+            generation = -2  # indication of one of the children
+        elif radius < self.CENTER:
+            generation = 0
         else:
-            #duplicate color
-            a = 1
-            r, g, b = self.dupcolor #(136, 138, 133)
-        # If max generation, and they have children:
-        if (not family and generation == self.generations - 1
-                and self._have_children(person)):
-            # draw an indicator
-            radmax = radiusend + BORDER_EDGE_WIDTH
-            cr.move_to(radmax*math.cos(start_rad), radmax*math.sin(start_rad))
-            cr.arc(0, 0, radmax, start_rad, stop_rad)
-            cr.line_to(radiusend*math.cos(stop_rad), radiusend*math.sin(stop_rad))
-            cr.arc_negative(0, 0, radiusend, stop_rad, start_rad)
-            cr.close_path()
-            ##path = cr.copy_path() # not working correct
-            cr.set_source_rgb(1, 1, 1) # white
-            cr.fill()
-            #and again for the border
-            cr.move_to(radmax*math.cos(start_rad), radmax*math.sin(start_rad))
-            cr.arc(0, 0, radmax, start_rad, stop_rad)
-            cr.line_to(radiusend*math.cos(stop_rad), radiusend*math.sin(stop_rad))
-            cr.arc_negative(0, 0, radiusend, stop_rad, start_rad)
-            cr.close_path()
-            ##cr.append_path(path) # not working correct
-            cr.set_source_rgb(0, 0, 0) # black
-            cr.stroke()
-        # now draw the person
-        self.draw_radbox(cr, radius, radiusend, start_rad, stop_rad,
-                         (r/255, g/255, b/255, a), thick)
-        if self.last_x is None or self.last_y is None:
-            #we are not in a move, so draw text
-            radial = False
-            width = radiusend-radius
-            radstart = radius + width/2
-            spacepolartext = radstart * (stop_rad-start_rad)
-            if spacepolartext < width * 1.1:
-                # more space to print it radial
-                radial = True
-                radstart = radius
-            self.draw_text(cr, name, radstart, start_rad/ math.pi*180,
-                           stop_rad/ math.pi*180, width, radial,
-                           self.fontcolor(r, g, b, a), self.fontbold(a))
-        cr.restore()
+            generation = None
+            for gen in range(self.generations):
+                radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner \
+                    = self.get_radiusinout_for_generation_pair(gen)
+                if radiusin_pers <= radius <= radiusout_pers:
+                    generation, btype = gen, TYPE_BOX_NORMAL
+                    break
+                if radiusin_partner <= radius <= radiusout_partner:
+                    generation, btype = gen, TYPE_BOX_FAMILY
+                    break
 
-    def boxtype(self, radius):
-        """
-        default is only one type of box type
-        """
-        if radius <= self.CENTER:
-            if radius >= self.CENTER - PIXELS_PER_GENFAMILY:
-                return TYPE_BOX_FAMILY
-            else:
-                return TYPE_BOX_NORMAL
-        else:
-            gen = int((radius - self.CENTER)/self.gen_pixels()) + 1
-            radius = (radius - self.CENTER) % PIXELS_PER_GENERATION
-            if radius >= PIXELS_PER_GENPERSON:
-                if gen < self.generations - 1:
-                    return TYPE_BOX_FAMILY
-                else:
-                    # the last generation has no family boxes
-                    None
-            else:
-                return TYPE_BOX_NORMAL
+        # find what person is in this position:
+        selected = None
+        if not (generation is None) and 0 <= generation:
+            selected = self.personpos_at_angle(generation, rads, btype)
+        elif generation == -2:
+            for p in range(len(self.angle[generation])):
+                start, stop, state = self.angle[generation][p]
+                if self.radian_in_bounds(start, raw_rads, stop):
+                    selected = p
+                    break
+        if (generation is None or selected is None):
+            return None
+        return generation, selected, btype
 
-    def draw_parentring(self, cr):
+    def draw_innerring_people(self, cr):
         cr.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
         cr.set_source_rgb(0, 0, 0) # black
         cr.set_line_width(1)
         cr.arc(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 0, 2 * math.pi)
         cr.stroke()
-        nrparent = len(self.parentsroot)
+        nrparent = len(self.innerring)
         #Y axis is downward. positve angles are hence clockwise
         startangle = math.pi
         if nrparent <= 2:
@@ -618,104 +536,100 @@ class FanChartDescWidget(FanChartBaseWidget):
             angleinc = math.pi/2
         else:
             angleinc = 2 * math.pi / nrchild
-        for data in self.parentsroot:
+        for data in self.innerring:
             self.draw_innerring(cr, data[0], data[1], startangle, angleinc)
             startangle += angleinc
 
-    def personpos_at_angle(self, generation, angledeg, btype):
+    def personpos_at_angle(self, generation, rads, btype):
         """
         returns the person in generation generation at angle.
         """
-        angle = angledeg / 360 * 2 * pi
         selected = None
+        datas = None
         if btype == TYPE_BOX_NORMAL:
-            for p, pdata in enumerate(self.gen2people[generation]):
-                # person, duplicate or not, start angle, slice size,
-                #             text, parent pos in fam, nrfam, userdata, status
-                start = pdata[2]
-                stop = start + pdata[3]
-                if start <= angle <= stop:
-                    selected = p
-                    break
+            if generation==0:
+                return 0  # central person is always ok !
+            datas = self.gen2people[generation]
         elif btype == TYPE_BOX_FAMILY:
-            for p, pdata in enumerate(self.gen2fam[generation]):
-                # person, duplicate or not, start angle, slice size,
-                #             text, parent pos in fam, nrfam, userdata, status
-                start = pdata[2]
-                stop = start + pdata[3]
-                if start <= angle <= stop:
-                    selected = p
-                    break
+            datas = self.gen2fam[generation]
+        else:
+            return None
+        for p, pdata in enumerate(datas):
+            # person, duplicate or not, start angle, slice size,
+            #             parent pos in fam, nrfam, userdata, status
+            start, stop = pdata[2], pdata[2] + pdata[3]
+            if self.radian_in_bounds(start, rads, stop):
+                selected = p
+                break
         return selected
 
-    def person_at(self, generation, pos, btype):
+    def person_at(self, cell_address):
         """
         returns the person at generation, pos, btype
         """
-        if pos is None:
-            return None
+        generation, pos, btype = cell_address
         if generation == -2:
-            person, userdata = self.parentsroot[pos]
+            person, userdata = self.innerring[pos]
         elif btype == TYPE_BOX_NORMAL:
             # person, duplicate or not, start angle, slice size,
-            #                   text, parent pos in fam, nrfam, userdata, status
+            #                   parent pos in fam, nrfam, userdata, status
             person = self.gen2people[generation][pos][0]
         elif btype == TYPE_BOX_FAMILY:
             # family, duplicate or not, start angle, slice size,
-            #       text, spouse pos in gen, nrchildren, userdata, person, status
-            person = self.gen2fam[generation][pos][8]
+            #       spouse pos in gen, nrchildren, userdata, person, status
+            person = self.gen2fam[generation][pos][7]
         return person
 
-    def family_at(self, generation, pos, btype):
+    def family_at(self, cell_address):
         """
         returns the family at generation, pos, btype
         """
+        generation, pos, btype = cell_address
         if pos is None or btype == TYPE_BOX_NORMAL or generation < 0:
             return None
         return self.gen2fam[generation][pos][0]
 
     def do_mouse_click(self):
         # no drag occured, expand or collapse the section
-        self.change_slice(self._mouse_click_gen, self._mouse_click_sel,
-                          self._mouse_click_btype)
+        self.toggle_cell_state(self._mouse_click_cell_address)
+        self._compute_angles(*self.rootangle_rad)
         self._mouse_click = False
         self.queue_draw()
 
-    def change_slice(self, generation, selected, btype):
+    def toggle_cell_state(self, cell_address):
+        generation, selected, btype = cell_address
         if generation < 1:
             return
         if btype == TYPE_BOX_NORMAL:
             data = self.gen2people[generation][selected]
-            parpos = data[5]
-            status = data[8]
+            parpos = data[4]
+            status = data[7]
             if status == NORMAL:
                 #should be expanded, rest collapsed
                 for entry in self.gen2people[generation]:
-                    if entry[5] == parpos:
+                    if entry[4] == parpos:
+                        entry[7] = COLLAPSED
+                data[7] = EXPANDED
+            else:
+                #is expanded, set back to normal
+                for entry in self.gen2people[generation]:
+                    if entry[4] == parpos:
+                        entry[7] = NORMAL
+        if btype == TYPE_BOX_FAMILY:
+            data = self.gen2fam[generation][selected]
+            parpos = data[4]
+            status = data[8]
+            if status == NORMAL:
+                #should be expanded, rest collapsed
+                for entry in self.gen2fam[generation]:
+                    if entry[4] == parpos:
                         entry[8] = COLLAPSED
                 data[8] = EXPANDED
             else:
                 #is expanded, set back to normal
-                for entry in self.gen2people[generation]:
-                    if entry[5] == parpos:
+                for entry in self.gen2fam[generation]:
+                    if entry[4] == parpos:
                         entry[8] = NORMAL
-        if btype == TYPE_BOX_FAMILY:
-            data = self.gen2fam[generation][selected]
-            parpos = data[5]
-            status = data[9]
-            if status == NORMAL:
-                #should be expanded, rest collapsed
-                for entry in self.gen2fam[generation]:
-                    if entry[5] == parpos:
-                        entry[9] = COLLAPSED
-                data[9] = EXPANDED
-            else:
-                #is expanded, set back to normal
-                for entry in self.gen2fam[generation]:
-                    if entry[5] == parpos:
-                        entry[9] = NORMAL
-
-        self.__compute_angles()
 
 class FanChartDescGrampsGUI(FanChartGrampsGUI):
     """ class for functions fanchart GUI elements will need in Gramps
@@ -727,7 +641,7 @@ class FanChartDescGrampsGUI(FanChartGrampsGUI):
         data.
         """
         root_person_handle = self.get_active('Person')
-        self.fan.set_values(root_person_handle, self.maxgen, self.background,
+        self.fan.set_values(root_person_handle, self.maxgen, self.flipupsidedownname, self.twolinename, self.background,
                         self.fonttype, self.grad_start, self.grad_end,
                         self.generic_filter, self.alpha_filter, self.form,
                         self.angle_algo, self.dupcolor)

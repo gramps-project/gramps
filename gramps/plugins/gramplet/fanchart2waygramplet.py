@@ -17,55 +17,74 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-## Based on the paper:
-##   http://www.cs.utah.edu/~draperg/research/fanchart/draperg_FHT08.pdf
-## and the applet:
-##   http://www.cs.utah.edu/~draperg/research/fanchart/demo/
+# $Id$
 
-## Found by redwood:
-## http://www.gramps-project.org/bugs/view.php?id=2611
+## Based on the normal fanchart
 
 #-------------------------------------------------------------------------
 #
-# Gramps modules
+# Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.plug import Gramplet
-from gramps.gui.widgets.fanchart import (FanChartWidget, FanChartGrampsGUI,
-                                         FORM_HALFCIRCLE, BACKGROUND_SCHEME1)
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Pango
+from gi.repository import Gtk
+import math
+from gi.repository import Gdk
+try:
+    import cairo
+except ImportError:
+    pass
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.plug import Gramplet
+from gramps.gen.errors import WindowActiveError
+from gramps.gui.editors import EditPerson
+from gramps.gui.widgets.fanchart2way import (FanChart2WayWidget, FanChart2WayGrampsGUI,
+                                      ANGLE_WEIGHT)
+from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
 
-class FanChartGramplet(FanChartGrampsGUI, Gramplet):
+class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
     """
     The Gramplet code that realizes the FanChartWidget.
     """
 
     def __init__(self, gui, nav_group=0):
         Gramplet.__init__(self, gui, nav_group)
-        FanChartGrampsGUI.__init__(self, self.on_childmenu_changed)
-        self.maxgen = 6
+        FanChart2WayGrampsGUI.__init__(self, self.on_childmenu_changed)
+        self.generations_asc = 5
+        self.generations_desc = 4
         self.background = BACKGROUND_SCHEME1
-        self.childring = True
-        self.flipupsidedownname = True
-        self.twolinename = True
-        self.radialtext = True
         self.fonttype = 'Sans'
-        self.grad_start = '#0000FF'
-        self.grad_end = '#FF0000'
+        self.grad_start = '#FF0000'
+        self.grad_end = '#0000FF'
+        self.dupcolor = '#888A85'  #light grey
         self.generic_filter = None
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE
-        self.set_fan(FanChartWidget(self.dbstate, self.uistate, self.on_popup))
+        self.angle_algo = ANGLE_WEIGHT
+        self.flipupsidedownname = True
+        self.twolinename = True
+        self.childring = False
+        self.background_gradient = True
+        #self.filter = filter
+
+        self.set_fan(FanChart2WayWidget(self.dbstate, self.uistate, self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add(self.fan)
+        self.gui.get_container_widget().add_with_viewport(self.fan)
         # Make sure it is visible:
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\nRight-click for "
-                           "options\nClick and drag in open area to rotate"))
+        self.set_tooltip(_("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate"))
 
     def active_changed(self, handle):
         """

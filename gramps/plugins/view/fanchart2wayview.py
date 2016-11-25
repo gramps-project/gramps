@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2001-2007  Donald N. Allingham, Martin Hawlisch
 # Copyright (C) 2009 Douglas S. Blank
+# Copyright (C) 2014 Bastien Jacquet
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 import gramps.gui.widgets.fanchart as fanchart
-import gramps.gui.widgets.fanchartdesc as fanchartdesc
+import gramps.gui.widgets.fanchart2way as fanchart2way
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gui.utils import SystemFonts
@@ -50,14 +51,16 @@ from gramps.gui.utils import SystemFonts
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
 
-class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
+class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
     """
     The Gramplet code that realizes the FanChartWidget.
     """
     #settings in the config file
     CONFIGSETTINGS = (
-        ('interface.fanview-maxgen', 9),
+        ('interface.fanview-maxgen-asc', 4),
+        ('interface.fanview-maxgen-desc', 4),
         ('interface.fanview-background', fanchart.BACKGROUND_GRAD_GEN),
+        ('interface.fanview-background-gradient', True),
         ('interface.fanview-radialtext', True),
         ('interface.fanview-twolinename', True),
         ('interface.fanview-flipupsidedownname', True),
@@ -65,21 +68,23 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         ('interface.fanview-form', fanchart.FORM_CIRCLE),
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
-        ('interface.angle-algorithm', fanchartdesc.ANGLE_WEIGHT),
+        ('interface.angle-algorithm', fanchart2way.ANGLE_WEIGHT),
         ('interface.duplicate-color', '#888a85')
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
         self.uistate = uistate
 
-        NavigationView.__init__(self, _('Descendant Fan Chart'),
+        NavigationView.__init__(self, _('2-Way Fan Chart'),
                                       pdata, dbstate, uistate,
                                       PersonBookmarks,
                                       nav_group)
-        fanchartdesc.FanChartDescGrampsGUI.__init__(self, self.on_childmenu_changed)
+        fanchart2way.FanChart2WayGrampsGUI.__init__(self, self.on_childmenu_changed)
         #set needed values
-        self.maxgen = self._config.get('interface.fanview-maxgen')
+        self.generations_asc = self._config.get('interface.fanview-maxgen-asc')
+        self.generations_desc = self._config.get('interface.fanview-maxgen-desc')
         self.background = self._config.get('interface.fanview-background')
+        self.background_gradient = self._config.get('interface.fanview-background-gradient')
         self.radialtext = self._config.get('interface.fanview-radialtext')
         self.twolinename = self._config.get('interface.fanview-twolinename')
         self.flipupsidedownname = self._config.get('interface.fanview-flipupsidedownname')
@@ -87,7 +92,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
-        self.form = self._config.get('interface.fanview-form')
+        self.form = fanchart.FORM_CIRCLE
         self.angle_algo = self._config.get('interface.angle-algorithm')
         self.dupcolor = self._config.get('interface.duplicate-color')
         self.generic_filter = None
@@ -103,14 +108,14 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         return 'Person'
 
     def build_widget(self):
-        self.set_fan(fanchartdesc.FanChartDescWidget(self.dbstate, self.uistate,
+        self.set_fan(fanchart2way.FanChart2WayWidget(self.dbstate, self.uistate,
                                                      self.on_popup))
         self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None,
-                                                 vadjustment=None)
+                                                                        vadjustment=None)
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.fan.show_all()
-        self.scrolledwindow.add(self.fan)
+        self.scrolledwindow.add_with_viewport(self.fan)
 
         return self.scrolledwindow
 
@@ -169,7 +174,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', 'document-print', _("_Print..."),
+        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print..."),
                          accel="<PRIMARY>P",
                          tip=_("Print or save the Fan Chart View"),
                          callback=self.printview)
@@ -236,11 +241,6 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
-        if self.form == fanchart.FORM_HALFCIRCLE:
-            heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
-        elif self.form == fanchart.FORM_QUADRANT:
-            heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
-            widthpx = heightpx
 
         prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
         prt.run()
@@ -277,12 +277,15 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
-        configdialog.add_spinner(grid, _("Max generations"), 0,
-                'interface.fanview-maxgen', (2, 16),
+        configdialog.add_spinner(grid, _("Max ancestor generations"), 0,
+                'interface.fanview-maxgen-asc', (1, 11),
+                callback=self.cb_update_maxgen)
+        configdialog.add_spinner(grid, _("Max descendant generations"), 1,
+                'interface.fanview-maxgen-desc', (1, 11),
                 callback=self.cb_update_maxgen)
         configdialog.add_combo(grid,
                 _('Text Font'),
-                1, 'interface.fanview-font',
+                2, 'interface.fanview-font',
                 self.allfonts, callback=self.cb_update_font, valueactive=True)
         backgrvals = (
                 (fanchart.BACKGROUND_GENDER, _('Gender colors')),
@@ -303,31 +306,30 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
             nrval += 1
         configdialog.add_combo(grid,
                 _('Background'),
-                2, 'interface.fanview-background',
+                3, 'interface.fanview-background',
                 backgrvals,
                 callback=self.cb_update_background, valueactive=False,
                 setactive=nrval
                 )
+
+        # show names one two line
+        configdialog.add_checkbox(grid,
+                _('Add global background colored gradient'),
+                4, 'interface.fanview-background-gradient')
+
         #colors, stored as hex values
-        configdialog.add_color(grid, _('Start gradient/Main color'), 3,
+        configdialog.add_color(grid, _('Start gradient/Main color'), 5,
                         'interface.color-start-grad', col=1)
-        configdialog.add_color(grid, _('End gradient/2nd color'), 4,
+        configdialog.add_color(grid, _('End gradient/2nd color'), 6,
                         'interface.color-end-grad',  col=1)
-        configdialog.add_color(grid, _('Color for duplicates'), 5,
+        configdialog.add_color(grid, _('Color for duplicates'), 7,
                         'interface.duplicate-color', col=1)
-        # form of the fan
-        configdialog.add_combo(grid, _('Fan chart type'), 6,
-                        'interface.fanview-form',
-                        ((fanchart.FORM_CIRCLE, _('Full Circle')),
-                         (fanchart.FORM_HALFCIRCLE, _('Half Circle')),
-                         (fanchart.FORM_QUADRANT, _('Quadrant'))),
-                        callback=self.cb_update_form)
         # algo for the fan angle distribution
-        configdialog.add_combo(grid, _('Fan chart distribution'), 7,
+        configdialog.add_combo(grid, _('Fan chart distribution'), 8,
                         'interface.angle-algorithm',
-                        ((fanchartdesc.ANGLE_CHEQUI,
+                        ((fanchart2way.ANGLE_CHEQUI,
                           _('Homogeneous children distribution')),
-                         (fanchartdesc.ANGLE_WEIGHT,
+                         (fanchart2way.ANGLE_WEIGHT,
                           _('Size  proportional to number of descendants')),
                         ),
                         callback=self.cb_update_anglealgo)
@@ -335,12 +337,12 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         # show names one two line
         configdialog.add_checkbox(grid,
                 _('Show names on two lines'),
-                8, 'interface.fanview-twolinename')
+                9, 'interface.fanview-twolinename')
 
         # Flip names
         configdialog.add_checkbox(grid,
                 _('Flip name on the left of the fan'),
-                9, 'interface.fanview-flipupsidedownname')
+                10, 'interface.fanview-flipupsidedownname')
 
         return _('Layout'), grid
 
@@ -360,10 +362,13 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                           self.cb_update_flipupsidedownname)
         self._config.connect('interface.fanview-twolinename',
                           self.cb_update_twolinename)
+        self._config.connect('interface.fanview-background-gradient',
+                          self.cb_update_background_gradient)
 
     def cb_update_maxgen(self, spinbtn, constant):
-        self.maxgen = spinbtn.get_value_as_int()
-        self._config.set(constant, self.maxgen)
+        self._config.set(constant, spinbtn.get_value_as_int())
+        self.generations_asc = int(self._config.get('interface.fanview-maxgen-asc'))
+        self.generations_desc =  int(self._config.get('interface.fanview-maxgen-desc'))
         self.update()
 
     def cb_update_twolinename(self, client, cnxn_id, entry, data):
@@ -380,6 +385,13 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                 obj.get_model().get_iter_from_string('%d' % entry), 0))
         self._config.set(constant, val)
         self.background = val
+        self.update()
+
+    def cb_update_background_gradient(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the twolinename setting.
+        """
+        self.background_gradient = (entry == 'True')
         self.update()
 
     def cb_update_form(self, obj, constant):
@@ -428,7 +440,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 # CairoPrintSave class
 #
 #------------------------------------------------------------------------
-class CairoPrintSave:
+class CairoPrintSave():
     """Act as an abstract document that can render onto a cairo context.
 
     It can render the model onto cairo context pages, according to the received
