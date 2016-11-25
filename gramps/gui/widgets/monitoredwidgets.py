@@ -144,7 +144,7 @@ class MonitoredEntry:
     def force_value(self, value):
         self.obj.set_text(value)
 
-    def get_value(self, value):
+    def get_value(self):
         return str(self.obj.get_text())
 
     def enable(self, value):
