@@ -1352,6 +1352,11 @@ class ViewManager(CLIManager):
                                                                 _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget,
                                                                     file_entry))
+        include_mode = config.get('preferences.quick-backup-include-mode')
+        if include_mode:
+            include.set_active(True)
+        else:
+            exclude.set_active(True)
         hbox.pack_start(include, False, True, 0)
         hbox.pack_end(exclude, False, True, 0)
         vbox.pack_start(hbox, False, True, 0)
@@ -1426,6 +1431,7 @@ class ViewManager(CLIManager):
         Toggles media include values in the quick backup dialog.
         """
         include = widget.get_active()
+        config.set('preferences.quick-backup-include-mode', include)
         extension = "gpkg" if include else "gramps"
         filename = file_entry.get_text()
         if "." in filename:

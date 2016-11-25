@@ -319,6 +319,7 @@ register('paths.quick-backup-directory', USER_HOME)
 register('paths.quick-backup-filename',
          "%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s")
 
+register('preferences.quick-backup-include-mode', False)
 register('preferences.date-format', 0)
 register('preferences.calendar-format-report', 0)
 register('preferences.cprefix', 'C%04d')
