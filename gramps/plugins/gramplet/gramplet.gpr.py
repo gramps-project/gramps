@@ -148,6 +148,23 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
+         id= "2-Way Fan Chart",
+         name=_("2-Way Fan Chart"),
+         description = _("Gramplet showing active person's direct ancestors and descendants as a fanchart"),
+         status = STABLE,
+         fname="fanchart2waygramplet.py",
+         height=300,
+         expand=True,
+         gramplet = 'FanChart2WayGramplet',
+         detached_height =300,
+         detached_width = 300,
+         gramplet_title=_("2-Way Fan"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         navtypes=["Person"],
+         )
+
+register(GRAMPLET,
          id="FAQ",
          name=_("FAQ"),
          description = _("Gramplet showing frequently asked questions"),
