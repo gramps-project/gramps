@@ -334,6 +334,9 @@ class BookSelector(ManagedWindow):
         self.height_key = 'interface.book-selector-height'
         self.width_key = 'interface.book-selector-width'
         self._set_size()
+        self.horiz_position_key = 'interface.book-selector-horiz-position'
+        self.vert_position_key = 'interface.book-selector-vert-position'
+        self._set_position()
         window.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
@@ -678,7 +681,7 @@ class BookSelector(ManagedWindow):
         """
         Run final BookDialog with the current book.
         """
-        if self.book.item_list:
+        if self.book.get_item_list():
             old_paper_name = self.book.get_paper_name() # from books.xml
             old_orientation = self.book.get_orientation()
             old_paper_metric = self.book.get_paper_metric()
@@ -719,6 +722,11 @@ class BookSelector(ManagedWindow):
         """
         Save the current book in the xml booklist file.
         """
+        if not self.book.get_item_list():
+            WarningDialog(_('No items'),
+                          _('This book has no items.'),
+                          parent=self.window)
+            return
         name = str(self.name_entry.get_text())
         if not name:
             WarningDialog(
