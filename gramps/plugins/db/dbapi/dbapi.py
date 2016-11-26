@@ -41,7 +41,8 @@ from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
                                    TXNADD, TXNUPD, TXNDEL,
                                    PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, NOTE_KEY,
-                                   TAG_KEY, CITATION_KEY, REPOSITORY_KEY)
+                                   TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
+                                   REFERENCE_KEY)
 from gramps.gen.db.generic import DbGeneric
 from gramps.gen.lib import (Tag, Media, Person, Family, Source,
                             Citation, Event, Place, Repository, Note)
@@ -370,6 +371,8 @@ class DBAPI(DbGeneric):
         if not txn.batch:
             # Now, emit signals:
             for (obj_type_val, txn_type_val) in list(txn):
+                if obj_type_val == REFERENCE_KEY:
+                    continue
                 if txn_type_val == TXNDEL:
                     handles = [handle for (handle, data) in
                                txn[(obj_type_val, txn_type_val)]]
@@ -721,7 +724,7 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(obj.serialize())])
         self.update_secondary_values(obj)
         if not trans.batch:
-            self.update_backlinks(obj)
+            self.update_backlinks(obj, trans)
             if old_data:
                 trans.add(obj_key, TXNUPD, obj.handle,
                           old_data,
@@ -941,21 +944,48 @@ class DBAPI(DbGeneric):
             [str(attr.type) for attr in media.attribute_list
              if attr.type.is_custom() and str(attr.type)])
 
-    def update_backlinks(self, obj):
-        # First, delete the current references:
-        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?;",
+    def update_backlinks(self, obj, transaction):
+
+        # Find existing references
+        sql = ("SELECT ref_class, ref_handle " +
+               "FROM reference WHERE obj_handle = ?")
+        self.dbapi.execute(sql, [obj.handle])      
+        existing_references = set(self.dbapi.fetchall())
+
+        # Once we have the list of rows that already have a reference
+        # we need to compare it with the list of objects that are
+        # still references from the primary object.
+        current_references = set(obj.get_referenced_handles_recursively())
+        no_longer_required_references = existing_references.difference(
+                                                            current_references)
+        new_references = current_references.difference(existing_references)
+
+        # Delete the existing references
+        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?",
                            [obj.handle])
-        # Now, add the current ones:
-        references = set(obj.get_referenced_handles_recursively())
-        for (ref_class_name, ref_handle) in references:
-            self.dbapi.execute("""INSERT INTO reference
-                       (obj_handle, obj_class, ref_handle, ref_class)
-                       VALUES(?, ?, ?, ?);""",
-                               [obj.handle,
-                                obj.__class__.__name__,
-                                ref_handle,
-                                ref_class_name])
-        # This function is followed by a commit.
+
+        # Now, add the current ones
+        for (ref_class_name, ref_handle) in current_references:
+            sql = ("INSERT INTO reference " +
+                   "(obj_handle, obj_class, ref_handle, ref_class)" +
+                   "VALUES(?, ?, ?, ?)")
+            self.dbapi.execute(sql, [obj.handle, obj.__class__.__name__,
+                                     ref_handle, ref_class_name])
+
+        if not transaction.batch:
+            # Add new references to the transaction
+            for (ref_class_name, ref_handle) in new_references:
+                key = (obj.handle, ref_handle)
+                data = (obj.handle, obj.__class__.__name__,
+                        ref_handle, ref_class_name)
+                transaction.add(REFERENCE_KEY, TXNADD, key, None, data)
+
+            # Add old references to the transaction
+            for (ref_class_name, ref_handle) in no_longer_required_references:
+                key = (obj.handle, ref_handle)
+                old_data = (obj.handle, obj.__class__.__name__,
+                            ref_handle, ref_class_name)
+                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
 
     def _do_remove(self, handle, transaction, obj_key):
         if isinstance(handle, bytes):

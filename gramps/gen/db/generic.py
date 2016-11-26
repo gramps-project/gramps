@@ -146,9 +146,9 @@ class DbGenericUndo(DbUndo):
                     pickle.loads(self.undodb[record_id])
 
                 if key == REFERENCE_KEY:
-                    self.undo_reference(new_data, handle, self.mapbase[key])
+                    self.undo_reference(new_data, handle)
                 else:
-                    self.undo_data(new_data, handle, self.mapbase[key],
+                    self.undo_data(new_data, handle, key,
                                         db.emit, SIGBASE[key])
             self.db.transaction_backend_commit()
         except:
@@ -184,15 +184,22 @@ class DbGenericUndo(DbUndo):
         subitems = transaction.get_recnos(reverse=True)
 
         # Process all records in the transaction
-        for record_id in subitems:
-            (key, trans_type, handle, old_data, new_data) = \
-                    pickle.loads(self.undodb[record_id])
+        try:
+            self.db.transaction_backend_begin()
+            for record_id in subitems:
+                (key, trans_type, handle, old_data, new_data) = \
+                        pickle.loads(self.undodb[record_id])
 
-            if key == REFERENCE_KEY:
-                self.undo_reference(old_data, handle, self.mapbase[key])
-            else:
-                self.undo_data(old_data, handle, self.mapbase[key],
-                                db.emit, SIGBASE[key])
+                if key == REFERENCE_KEY:
+                    self.undo_reference(old_data, handle)
+                else:
+                    self.undo_data(old_data, handle, key, db.emit, SIGBASE[key])
+
+            self.db.transaction_backend_commit()
+        except:
+            self.db.transaction_backend_abort()
+            raise
+
         # Notify listeners
         if db.undo_callback:
             if self.undo_count > 0:
@@ -208,6 +215,43 @@ class DbGenericUndo(DbUndo):
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
         return True
+
+    def undo_reference(self, data, handle):
+        """
+        Helper method to undo a reference map entry
+        """
+        if data is None:
+            sql = ("DELETE FROM reference " +
+                   "WHERE obj_handle = ? AND ref_handle = ?")
+            self.db.dbapi.execute(sql, [handle[0], handle[1]])
+        else:
+            sql = ("INSERT INTO reference " +
+                   "(obj_handle, obj_class, ref_handle, ref_class) " +
+                   "VALUES(?, ?, ?, ?)")
+            self.db.dbapi.execute(sql, data)
+
+    def undo_data(self, data, handle, obj_key, emit, signal_root):
+        """
+        Helper method to undo/redo the changes made
+        """
+        cls = KEY_TO_CLASS_MAP[obj_key]
+        table = cls.lower()
+        if data is None:
+            emit(signal_root + '-delete', ([handle],))
+            sql = "DELETE FROM %s WHERE handle = ?" % table
+            self.db.dbapi.execute(sql, [handle])
+        else:
+            if self.db.has_handle(obj_key, handle):
+                signal = signal_root + '-update'
+                sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
+                self.db.dbapi.execute(sql, [pickle.dumps(data), handle])
+            else:
+                signal = signal_root + '-add'
+                sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
+                self.db.dbapi.execute(sql, [handle, pickle.dumps(data)])
+            obj = self.db.get_table_func(cls)["class_func"].create(data)
+            self.db.update_secondary_values(obj)
+            emit(signal, ([handle],))
 
 class Table:
     """
