@@ -31,6 +31,7 @@ Depends:
  ${python3:Depends}
 Recommends:
  graphviz,
+ gir1.2-goocanvas-2.0,
  libosmgpsmap-1.0-0,
  gir1.2-osmgpsmap-1.0,
  python3-pyicu
