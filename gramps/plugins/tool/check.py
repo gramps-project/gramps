@@ -1949,6 +1949,7 @@ class CheckIntegrity(object):
             source = Source()
             source.unserialize(info)
             new_media_ref_list = []
+            citation_changed = False
             for media_ref in source.get_media_list():
                 citation_list = media_ref.get_citation_list()
                 new_citation_list = []
@@ -1971,6 +1972,7 @@ class CheckIntegrity(object):
                         citation_handle = create_id()
                         new_citation.set_handle(citation_handle)
                         self.replaced_sourceref.append(handle)
+                        citation_changed = True
                         logging.warning('    FAIL: the source "%s" has a media '
                                         'reference with a source citation '
                                         'which is invalid' % (source.gramps_id))
@@ -1980,9 +1982,10 @@ class CheckIntegrity(object):
                 
                 media_ref.set_citation_list(new_citation_list)
                 new_media_ref_list.append(media_ref)
-                
-            source.set_media_list(new_media_ref_list)
-            self.db.commit_source(source, self.trans)
+
+            if citation_changed:
+                source.set_media_list(new_media_ref_list)
+                self.db.commit_source(source, self.trans)
 
         if len(self.replaced_sourceref) > 0:
             logging.info('    OK: no broken source citations on mediarefs found')
