@@ -253,101 +253,6 @@ class DbGenericUndo(DbUndo):
             self.db.update_secondary_values(obj)
             emit(signal, ([handle],))
 
-class Table:
-    """
-    Implements Table interface.
-    """
-    def __init__(self, db, table_name, funcs=None):
-        self.db = db
-        self.table_name = table_name
-        if funcs:
-            self.funcs = funcs
-        else:
-            self.funcs = db.get_table_func(table_name)
-
-    def cursor(self):
-        """
-        Returns a Cursor for this Table.
-        """
-        return self.funcs["cursor_func"]()
-
-    def put(self, key, data, txn=None):
-        self.funcs["add_func"](data, txn)
-
-class Map:
-    """
-    Implements the map API for person_map, etc.
-
-    Takes a Table() as argument.
-    """
-    def __init__(self, table,
-                 keys_func="handles_func",
-                 contains_func="has_handle_func",
-                 raw_func="raw_func",
-                 *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.table = table
-        self.keys_func = keys_func
-        self.contains_func = contains_func
-        self.raw_func = raw_func
-        self.txn = DbGenericTxn("Dummy transaction",
-                                db=self.table.db, batch=True)
-
-    def keys(self):
-        return self.table.funcs[self.keys_func]()
-
-    def get(self, key):
-        return self[key]
-
-    def values(self):
-        return self.table.funcs["cursor_func"]()
-
-    def __contains__(self, key):
-        return self.table.funcs[self.contains_func](key)
-
-    def __getitem__(self, key):
-        return self.table.funcs[self.raw_func](key)
-
-    def __setitem__(self, key, value):
-        """
-        This is only done in a assignment via key.
-
-        value: serialized object
-        key: bytes key (ignored in this function)
-        """
-        obj = self.table.funcs["class_func"].create(value)
-        self.table.funcs["commit_func"](obj, self.txn)
-
-    def __len__(self):
-        return self.table.funcs["count_func"]()
-
-    def delete(self, key):
-        self.table.funcs["del_func"](key, self.txn)
-
-class MetaCursor:
-    def __init__(self):
-        pass
-    def __enter__(self):
-        return self
-    def __iter__(self):
-        return self.__next__()
-    def __next__(self):
-        yield None
-    def __exit__(self, *args, **kwargs):
-        pass
-    def iter(self):
-        yield None
-    def first(self):
-        self._iter = self.__iter__()
-        return self.next()
-    def next(self):
-        try:
-            return next(self._iter)
-        except:
-            return None
-    def close(self):
-        pass
-
 class Cursor:
     def __init__(self, iterator):
         self.iterator = iterator
@@ -424,17 +329,6 @@ class Bookmarks:
 
     def close(self):
         del self.handles
-
-class DbGenericTxn(DbTxn):
-    """
-    Generic Transaction.
-    """
-    def __init__(self, message, db, batch=False):
-        """
-        Placeholder. This can probably be removed once it is
-        known that it is not needed.
-        """
-        DbTxn.__init__(self, message, db, batch)
 
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
@@ -683,22 +577,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
-        self.person_map = Map(Table(self, "Person"))
-        self.family_map = Map(Table(self, "Family"))
-        self.place_map  = Map(Table(self, "Place"))
-        self.citation_map = Map(Table(self, "Citation"))
-        self.source_map = Map(Table(self, "Source"))
-        self.repository_map  = Map(Table(self, "Repository"))
-        self.note_map = Map(Table(self, "Note"))
-        self.media_map  = Map(Table(self, "Media"))
-        self.event_map  = Map(Table(self, "Event"))
-        self.tag_map  = Map(Table(self, "Tag"))
-        self.metadata   = Map(Table(self, "Metadata", funcs={"cursor_func": lambda: MetaCursor()}))
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
         self.modified   = 0
-        self.txn = DbGenericTxn("DbGeneric Transaction", self)
         self.transaction = None
         self.abort_possible = False
         self._bm_changes = 0
