@@ -949,7 +949,7 @@ class DBAPI(DbGeneric):
         # Find existing references
         sql = ("SELECT ref_class, ref_handle " +
                "FROM reference WHERE obj_handle = ?")
-        self.dbapi.execute(sql, [obj.handle])      
+        self.dbapi.execute(sql, [obj.handle])
         existing_references = set(self.dbapi.fetchall())
 
         # Once we have the list of rows that already have a reference
