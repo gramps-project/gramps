@@ -1926,12 +1926,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_metadata("default-person-handle", handle)
         self.emit('home-person-changed')
 
-    def add_table_funcs(self, table, funcs):
-        """
-        Add a new table and funcs to the database.
-        """
-        self.__tables[table] = funcs
-
     def get_version(self):
         """
         Return the version number of the schema.
