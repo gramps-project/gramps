@@ -76,8 +76,6 @@ from gramps.gen.plug.report._options import ReportOptions
 from ._reportdialog import ReportDialog
 from ._docreportdialog import DocReportDialog
 
-from gramps.gen.display.name import displayer as _nd
-
 #------------------------------------------------------------------------
 #
 # Private Constants
@@ -463,13 +461,14 @@ class BookSelector(ManagedWindow):
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
             item = BookItem(self._db, name)
-            item.option_class = saved_item.option_class
 
             # The option values were loaded magically by the book parser.
             # But they still need to be applied to the menu options.
             opt_dict = item.option_class.handler.options_dict
+            orig_opt_dict = saved_item.option_class.handler.options_dict
             menu = item.option_class.menu
             for optname in opt_dict:
+                opt_dict[optname] = orig_opt_dict[optname]
                 menu_option = menu.get_option_by_name(optname)
                 if menu_option:
                     menu_option.set_value(opt_dict[optname])
@@ -751,7 +750,7 @@ class BookSelector(ManagedWindow):
         # booklist was saved into a file so everything was fine, but
         # this created a problem once the paper settings were added
         # to the Book object in the BookDialog, since those settings
-        # were retrieved from the Book object in Book.save, so mutiple
+        # were retrieved from the Book object in BookList.save, so mutiple
         # books (differentiated by their names) were assigned the
         # same paper values, so the solution is to make each Book be
         # unique in the booklist, so if multiple copies are saved away
@@ -926,14 +925,13 @@ class BookDialog(DocReportDialog):
     def __init__(self, dbstate, uistate, book, options):
         self.format_menu = None
         self.options = options
-        self.is_from_saved_book = False
         self.page_html_added = False
         self.book = book
         self.title = _('Generate Book')
         self.database = dbstate.db
         DocReportDialog.__init__(self, dbstate, uistate, options,
                                  'book', self.title)
-        self.options.options_dict['bookname'] = self.book.name
+        self.options.options_dict['bookname'] = self.book.get_name()
 
         response = self.window.run()
         if response == Gtk.ResponseType.OK:
@@ -1038,8 +1036,7 @@ class BookDialog(DocReportDialog):
                 self.options = option_class(self.raw_name, self.database)
         except TypeError:
             self.options = option_class
-        if not self.is_from_saved_book:
-            self.options.load_previous_values()
+        self.options.load_previous_values()
         handler = self.options.handler
         if self.book.get_paper_name():
             handler.set_paper_name(self.book.get_paper_name())

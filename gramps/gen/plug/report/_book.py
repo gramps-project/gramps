@@ -90,7 +90,6 @@ class BookItem:
         """
         self.dbase = dbase
         self.style_name = "default"
-        self.was_reconfigured = False # has the item been reconfigured?
         pmgr = BasePluginManager.get_instance()
 
         for pdata in pmgr.get_reg_bookitems():
@@ -179,7 +178,6 @@ class Book:
         self.paper_format = None
         self.paper_output = None
         self.item_list = []
-        self.was_reconfigured = False # has the book been reconfigured?
         if obj:
             if exact_copy:
                 self.item_list = obj.item_list
@@ -188,8 +186,12 @@ class Book:
                     new_item = BookItem(item.dbase, item.get_name())
                     orig_opt_dict = item.option_class.handler.options_dict
                     new_opt_dict = new_item.option_class.handler.options_dict
+                    menu = new_item.option_class.menu
                     for optname in orig_opt_dict:
                         new_opt_dict[optname] = orig_opt_dict[optname]
+                        menu_option = menu.get_option_by_name(optname)
+                        if menu_option:
+                            menu_option.set_value(new_opt_dict[optname])
                     new_item.set_style_name(item.get_style_name())
                     self.item_list.append(new_item)
 
