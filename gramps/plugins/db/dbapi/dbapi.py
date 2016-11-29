@@ -617,66 +617,6 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         return row[0]
 
-    def get_number_of_people(self):
-        """
-        Return the number of people currently in the database.
-        """
-        return self.get_number_of(PERSON_KEY)
-
-    def get_number_of_events(self):
-        """
-        Return the number of events currently in the database.
-        """
-        return self.get_number_of(EVENT_KEY)
-
-    def get_number_of_places(self):
-        """
-        Return the number of places currently in the database.
-        """
-        return self.get_number_of(PLACE_KEY)
-
-    def get_number_of_tags(self):
-        """
-        Return the number of tags currently in the database.
-        """
-        return self.get_number_of(TAG_KEY)
-
-    def get_number_of_families(self):
-        """
-        Return the number of families currently in the database.
-        """
-        return self.get_number_of(FAMILY_KEY)
-
-    def get_number_of_notes(self):
-        """
-        Return the number of notes currently in the database.
-        """
-        return self.get_number_of(NOTE_KEY)
-
-    def get_number_of_citations(self):
-        """
-        Return the number of citations currently in the database.
-        """
-        return self.get_number_of(CITATION_KEY)
-
-    def get_number_of_sources(self):
-        """
-        Return the number of sources currently in the database.
-        """
-        return self.get_number_of(SOURCE_KEY)
-
-    def get_number_of_media(self):
-        """
-        Return the number of media objects currently in the database.
-        """
-        return self.get_number_of(MEDIA_KEY)
-
-    def get_number_of_repositories(self):
-        """
-        Return the number of source repositories currently in the database.
-        """
-        return self.get_number_of(REPOSITORY_KEY)
-
     def has_name_group_key(self, key):
         """
         Return if a key exists in the name_group table.
@@ -735,214 +675,6 @@ class DBAPI(DbGeneric):
                           obj.serialize())
 
         return old_data
-
-    def commit_person(self, person, trans, change_time=None):
-        """
-        Commit the specified Person to the database, storing the changes as
-        part of the transaction.
-        """
-        old_data = self._commit_base(person, PERSON_KEY, trans, change_time)
-
-        if old_data:
-            old_person = Person(old_data)
-            # Update gender statistics if necessary
-            if (old_person.gender != person.gender
-                    or (old_person.primary_name.first_name !=
-                        person.primary_name.first_name)):
-
-                self.genderStats.uncount_person(old_person)
-                self.genderStats.count_person(person)
-            # Update surname list if necessary
-            if (self._order_by_person_key(person) !=
-                    self._order_by_person_key(old_person)):
-                self.remove_from_surname_list(old_person)
-                self.add_to_surname_list(person, trans.batch)
-        else:
-            self.genderStats.count_person(person)
-            self.add_to_surname_list(person, trans.batch)
-
-        # Other misc update tasks:
-        self.individual_attributes.update(
-            [str(attr.type) for attr in person.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-        self.event_role_names.update([str(eref.role)
-                                      for eref in person.event_ref_list
-                                      if eref.role.is_custom()])
-
-        self.name_types.update([str(name.type)
-                                for name in ([person.primary_name]
-                                             + person.alternate_names)
-                                if name.type.is_custom()])
-        all_surn = []  # new list we will use for storage
-        all_surn += person.primary_name.get_surname_list()
-        for asurname in person.alternate_names:
-            all_surn += asurname.get_surname_list()
-        self.origin_types.update([str(surn.origintype) for surn in all_surn
-                                  if surn.origintype.is_custom()])
-        all_surn = None
-        self.url_types.update([str(url.type) for url in person.urls
-                               if url.type.is_custom()])
-        attr_list = []
-        for mref in person.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_family(self, family, trans, change_time=None):
-        """
-        Commit the specified Family to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(family, FAMILY_KEY, trans, change_time)
-
-        # Misc updates:
-        self.family_attributes.update(
-            [str(attr.type) for attr in family.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-        rel_list = []
-        for ref in family.child_ref_list:
-            if ref.frel.is_custom():
-                rel_list.append(str(ref.frel))
-            if ref.mrel.is_custom():
-                rel_list.append(str(ref.mrel))
-        self.child_ref_types.update(rel_list)
-
-        self.event_role_names.update(
-            [str(eref.role) for eref in family.event_ref_list
-             if eref.role.is_custom()])
-
-        if family.type.is_custom():
-            self.family_rel_types.add(str(family.type))
-
-        attr_list = []
-        for mref in family.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_citation(self, citation, trans, change_time=None):
-        """
-        Commit the specified Citation to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(citation, CITATION_KEY, trans, change_time)
-
-        # Misc updates:
-        attr_list = []
-        for mref in citation.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-        self.source_attributes.update(
-            [str(attr.type) for attr in citation.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-    def commit_source(self, source, trans, change_time=None):
-        """
-        Commit the specified Source to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(source, SOURCE_KEY, trans, change_time)
-
-        # Misc updates:
-        self.source_media_types.update(
-            [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])
-
-        attr_list = []
-        for mref in source.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-        self.source_attributes.update(
-            [str(attr.type) for attr in source.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-    def commit_repository(self, repository, trans, change_time=None):
-        """
-        Commit the specified Repository to the database, storing the changes
-        as part of the transaction.
-        """
-        self._commit_base(repository, REPOSITORY_KEY, trans, change_time)
-
-        # Misc updates:
-        if repository.type.is_custom():
-            self.repository_types.add(str(repository.type))
-
-        self.url_types.update([str(url.type) for url in repository.urls
-                               if url.type.is_custom()])
-
-    def commit_note(self, note, trans, change_time=None):
-        """
-        Commit the specified Note to the database, storing the changes as part
-        of the transaction.
-        """
-        self._commit_base(note, NOTE_KEY, trans, change_time)
-
-        # Misc updates:
-        if note.type.is_custom():
-            self.note_types.add(str(note.type))
-
-    def commit_place(self, place, trans, change_time=None):
-        """
-        Commit the specified Place to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(place, PLACE_KEY, trans, change_time)
-
-        # Misc updates:
-        if place.get_type().is_custom():
-            self.place_types.add(str(place.get_type()))
-
-        self.url_types.update([str(url.type) for url in place.urls
-                               if url.type.is_custom()])
-
-        attr_list = []
-        for mref in place.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_event(self, event, trans, change_time=None):
-        """
-        Commit the specified Event to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(event, EVENT_KEY, trans, change_time)
-
-        # Misc updates:
-        self.event_attributes.update(
-            [str(attr.type) for attr in event.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-        if event.type.is_custom():
-            self.event_names.add(str(event.type))
-        attr_list = []
-        for mref in event.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_tag(self, tag, trans, change_time=None):
-        """
-        Commit the specified Tag to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(tag, TAG_KEY, trans, change_time)
-
-    def commit_media(self, media, trans, change_time=None):
-        """
-        Commit the specified Media to the database, storing the changes
-        as part of the transaction.
-        """
-        self._commit_base(media, MEDIA_KEY, trans, change_time)
-
-        # Misc updates:
-        self.media_attributes.update(
-            [str(attr.type) for attr in media.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
 
     def update_backlinks(self, obj, transaction):
 
@@ -1054,67 +786,6 @@ class DBAPI(DbGeneric):
         for row in rows:
             yield row[0]
 
-    def iter_person_handles(self):
-        """
-        Return an iterator over handles for Persons in the database
-        """
-        return self._iter_handles(PERSON_KEY)
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over handles for Families in the database
-        """
-        return self._iter_handles(FAMILY_KEY)
-
-    def iter_citation_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Citation
-        in the database.
-        """
-        return self._iter_handles(CITATION_KEY)
-
-    def iter_event_handles(self):
-        """
-        Return an iterator over handles for Events in the database
-        """
-        return self._iter_handles(EVENT_KEY)
-
-    def iter_media_handles(self):
-        """
-        Return an iterator over handles for Media in the database
-        """
-        return self._iter_handles(MEDIA_KEY)
-
-    def iter_note_handles(self):
-        """
-        Return an iterator over handles for Notes in the database
-        """
-        return self._iter_handles(NOTE_KEY)
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over handles for Places in the database
-        """
-        return self._iter_handles(PLACE_KEY)
-
-    def iter_repository_handles(self):
-        """
-        Return an iterator over handles for Repositories in the database
-        """
-        return self._iter_handles(REPOSITORY_KEY)
-
-    def iter_source_handles(self):
-        """
-        Return an iterator over handles for Sources in the database
-        """
-        return self._iter_handles(SOURCE_KEY)
-
-    def iter_tag_handles(self):
-        """
-        Return an iterator over handles for Tags in the database
-        """
-        return self._iter_handles(TAG_KEY)
-
     def _iter_raw_data(self, obj_key):
         """
         Return an iterator over raw data in the database.
@@ -1128,66 +799,6 @@ class DBAPI(DbGeneric):
                 for row in rows:
                     yield (row[0].encode('utf8'), pickle.loads(row[1]))
                 rows = cursor.fetchmany()
-
-    def _iter_raw_person_data(self):
-        """
-        Return an iterator over raw Person data.
-        """
-        return self._iter_raw_data(PERSON_KEY)
-
-    def _iter_raw_family_data(self):
-        """
-        Return an iterator over raw Family data.
-        """
-        return self._iter_raw_data(FAMILY_KEY)
-
-    def _iter_raw_event_data(self):
-        """
-        Return an iterator over raw Event data.
-        """
-        return self._iter_raw_data(EVENT_KEY)
-
-    def _iter_raw_place_data(self):
-        """
-        Return an iterator over raw Place data.
-        """
-        return self._iter_raw_data(PLACE_KEY)
-
-    def _iter_raw_repository_data(self):
-        """
-        Return an iterator over raw Repository data.
-        """
-        return self._iter_raw_data(REPOSITORY_KEY)
-
-    def _iter_raw_source_data(self):
-        """
-        Return an iterator over raw Source data.
-        """
-        return self._iter_raw_data(SOURCE_KEY)
-
-    def _iter_raw_citation_data(self):
-        """
-        Return an iterator over raw Citation data.
-        """
-        return self._iter_raw_data(CITATION_KEY)
-
-    def _iter_raw_media_data(self):
-        """
-        Return an iterator over raw Media data.
-        """
-        return self._iter_raw_data(MEDIA_KEY)
-
-    def _iter_raw_note_data(self):
-        """
-        Return an iterator over raw Note data.
-        """
-        return self._iter_raw_data(NOTE_KEY)
-
-    def _iter_raw_tag_data(self):
-        """
-        Return an iterator over raw Tag data.
-        """
-        return self._iter_raw_data(TAG_KEY)
 
     def reindex_reference_map(self, callback):
         """
@@ -1245,68 +856,11 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(sql, [handle])
         return self.dbapi.fetchone() is not None
 
-    def has_person_handle(self, handle):
-        return self.has_handle(PERSON_KEY, handle)
-
-    def has_family_handle(self, handle):
-        return self.has_handle(FAMILY_KEY, handle)
-
-    def has_source_handle(self, handle):
-        return self.has_handle(SOURCE_KEY, handle)
-
-    def has_citation_handle(self, handle):
-        return self.has_handle(CITATION_KEY, handle)
-
-    def has_event_handle(self, handle):
-        return self.has_handle(EVENT_KEY, handle)
-
-    def has_media_handle(self, handle):
-        return self.has_handle(MEDIA_KEY, handle)
-
-    def has_place_handle(self, handle):
-        return self.has_handle(PLACE_KEY, handle)
-
-    def has_repository_handle(self, handle):
-        return self.has_handle(REPOSITORY_KEY, handle)
-
-    def has_note_handle(self, handle):
-        return self.has_handle(NOTE_KEY, handle)
-
-    def has_tag_handle(self, handle):
-        return self.has_handle(TAG_KEY, handle)
-
     def has_gramps_id(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % table
         self.dbapi.execute(sql, [gramps_id])
         return self.dbapi.fetchone() != None
-
-    def has_person_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PERSON_KEY, gramps_id)
-
-    def has_family_gramps_id(self, gramps_id):
-        return self.has_gramps_id(FAMILY_KEY, gramps_id)
-
-    def has_source_gramps_id(self, gramps_id):
-        return self.has_gramps_id(SOURCE_KEY, gramps_id)
-
-    def has_citation_gramps_id(self, gramps_id):
-        return self.has_gramps_id(CITATION_KEY, gramps_id)
-
-    def has_event_gramps_id(self, gramps_id):
-        return self.has_gramps_id(EVENT_KEY, gramps_id)
-
-    def has_media_gramps_id(self, gramps_id):
-        return self.has_gramps_id(MEDIA_KEY, gramps_id)
-
-    def has_place_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PLACE_KEY, gramps_id)
-
-    def has_repository_gramps_id(self, gramps_id):
-        return self.has_gramps_id(REPOSITORY_KEY, gramps_id)
-
-    def has_note_gramps_id(self, gramps_id):
-        return self.has_gramps_id(NOTE_KEY, gramps_id)
 
     def get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
@@ -1314,33 +868,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
-
-    def get_person_gramps_ids(self):
-        return self.get_gramps_ids(PERSON_KEY)
-
-    def get_family_gramps_ids(self):
-        return self.get_gramps_ids(FAMILY_KEY)
-
-    def get_source_gramps_ids(self):
-        return self.get_gramps_ids(SOURCE_KEY)
-
-    def get_citation_gramps_ids(self):
-        return self.get_gramps_ids(CITATION_KEY)
-
-    def get_event_gramps_ids(self):
-        return self.get_gramps_ids(EVENT_KEY)
-
-    def get_media_gramps_ids(self):
-        return self.get_gramps_ids(MEDIA_KEY)
-
-    def get_place_gramps_ids(self):
-        return self.get_gramps_ids(PLACE_KEY)
-
-    def get_repository_gramps_ids(self):
-        return self.get_gramps_ids(REPOSITORY_KEY)
-
-    def get_note_gramps_ids(self):
-        return self.get_gramps_ids(NOTE_KEY)
 
     def get_raw_data(self, obj_key, handle):
         if isinstance(handle, bytes):
@@ -1352,36 +879,6 @@ class DBAPI(DbGeneric):
         if row:
             return pickle.loads(row[0])
 
-    def get_raw_person_data(self, handle):
-        return self.get_raw_data(PERSON_KEY, handle)
-
-    def get_raw_family_data(self, handle):
-        return self.get_raw_data(FAMILY_KEY, handle)
-
-    def get_raw_source_data(self, handle):
-        return self.get_raw_data(SOURCE_KEY, handle)
-
-    def get_raw_citation_data(self, handle):
-        return self.get_raw_data(CITATION_KEY, handle)
-
-    def get_raw_event_data(self, handle):
-        return self.get_raw_data(EVENT_KEY, handle)
-
-    def get_raw_media_data(self, handle):
-        return self.get_raw_data(MEDIA_KEY, handle)
-
-    def get_raw_place_data(self, handle):
-        return self.get_raw_data(PLACE_KEY, handle)
-
-    def get_raw_repository_data(self, handle):
-        return self.get_raw_data(REPOSITORY_KEY, handle)
-
-    def get_raw_note_data(self, handle):
-        return self.get_raw_data(NOTE_KEY, handle)
-
-    def get_raw_tag_data(self, handle):
-        return self.get_raw_data(TAG_KEY, handle)
-
     def _get_raw_from_id_data(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT blob_data FROM %s WHERE gramps_id = ?" % table
@@ -1389,33 +886,6 @@ class DBAPI(DbGeneric):
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
-
-    def _get_raw_person_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
-
-    def _get_raw_family_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(FAMILY_KEY, gramps_id)
-
-    def _get_raw_source_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(SOURCE_KEY, gramps_id)
-
-    def _get_raw_citation_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(CITATION_KEY, gramps_id)
-
-    def _get_raw_event_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(EVENT_KEY, gramps_id)
-
-    def _get_raw_media_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(MEDIA_KEY, gramps_id)
-
-    def _get_raw_place_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(PLACE_KEY, gramps_id)
-
-    def _get_raw_repository_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
-
-    def _get_raw_note_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
 
     def get_gender_stats(self):
         """
