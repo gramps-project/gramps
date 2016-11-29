@@ -72,6 +72,7 @@ from gramps.gen.lib.nameorigintype import NameOriginType
 from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
 from gramps.gen.db.base import DbReadBase
+from gramps.gen.db.bookmarks import DbBookmarks
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -163,40 +164,6 @@ def __index_surname(surn_list):
     else:
         surn = ""
     return surn
-
-
-#-------------------------------------------------------------------------
-#
-# class DbBookmarks
-#
-#-------------------------------------------------------------------------
-class DbBookmarks:
-    def __init__(self, default=[]):
-        self.bookmarks = list(default) # want a copy (not an alias)
-
-    def set(self, new_list):
-        self.bookmarks = list(new_list)
-
-    def get(self):
-        return self.bookmarks
-
-    def append(self, item):
-        self.bookmarks.append(item)
-
-    def append_list(self, blist):
-        self.bookmarks += blist
-
-    def remove(self, item):
-        self.bookmarks.remove(item)
-
-    def pop(self, item):
-        return self.bookmarks.pop(item)
-
-    def insert(self, pos, item):
-        self.bookmarks.insert(pos, item)
-
-    def close(self):
-        del self.bookmarks
 
 #-------------------------------------------------------------------------
 #

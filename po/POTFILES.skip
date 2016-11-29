@@ -55,6 +55,7 @@ gramps/gen/datehandler/_grampslocale.py
 #
 gramps/gen/db/__init__.py
 gramps/gen/db/backup.py
+gramps/gen/db/bookmarks.py
 gramps/gen/db/bsddbtxn.py
 gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py

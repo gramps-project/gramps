@@ -56,6 +56,7 @@ from gramps.gen.errors import HandleError
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.dbconst import *
+from gramps.gen.db.bookmarks import DbBookmarks
 from gramps.gen.db import exceptions
 
 from gramps.gen.utils.id import create_id
@@ -302,34 +303,6 @@ class TreeCursor(Cursor):
         for handle in handles:
             yield (handle, self.db.get_raw_place_data(handle))
 
-class Bookmarks:
-    def __init__(self, default=[]):
-        self.handles = list(default)
-
-    def set(self, handles):
-        self.handles = list(handles)
-
-    def get(self):
-        return self.handles
-
-    def append(self, handle):
-        self.handles.append(handle)
-
-    def append_list(self, handles):
-        self.handles += handles
-
-    def remove(self, handle):
-        self.handles.remove(handle)
-
-    def pop(self, item):
-        return self.handles.pop(item)
-
-    def insert(self, pos, item):
-        self.handles.insert(pos, item)
-
-    def close(self):
-        del self.handles
-
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -548,15 +521,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.db_is_open = False
         self.name_formats = []
         # Bookmarks:
-        self.bookmarks = Bookmarks()
-        self.family_bookmarks = Bookmarks()
-        self.event_bookmarks = Bookmarks()
-        self.place_bookmarks = Bookmarks()
-        self.citation_bookmarks = Bookmarks()
-        self.source_bookmarks = Bookmarks()
-        self.repo_bookmarks = Bookmarks()
-        self.media_bookmarks = Bookmarks()
-        self.note_bookmarks = Bookmarks()
+        self.bookmarks = DbBookmarks()
+        self.family_bookmarks = DbBookmarks()
+        self.event_bookmarks = DbBookmarks()
+        self.place_bookmarks = DbBookmarks()
+        self.citation_bookmarks = DbBookmarks()
+        self.source_bookmarks = DbBookmarks()
+        self.repo_bookmarks = DbBookmarks()
+        self.media_bookmarks = DbBookmarks()
+        self.note_bookmarks = DbBookmarks()
         self.set_person_id_prefix('I%04d')
         self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
