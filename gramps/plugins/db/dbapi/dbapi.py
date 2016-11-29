@@ -187,7 +187,7 @@ class DBAPI(DbGeneric):
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE family '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
@@ -195,59 +195,59 @@ class DBAPI(DbGeneric):
                            'mother_handle VARCHAR(50), '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE source '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE citation '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE event '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE media '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE place '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE repository '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE note '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE tag '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'order_by TEXT, '
                            'blob_data BLOB'
-                           ');')
+                           ')')
         # Secondary:
         self.dbapi.execute('CREATE TABLE reference '
                            '('
@@ -255,63 +255,63 @@ class DBAPI(DbGeneric):
                            'obj_class TEXT, '
                            'ref_handle VARCHAR(50), '
                            'ref_class TEXT'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE name_group '
                            '('
                            'name VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'grouping TEXT'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE metadata '
                            '('
                            'setting VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'value BLOB'
-                           ');')
+                           ')')
         self.dbapi.execute('CREATE TABLE gender_stats '
                            '('
                            'given_name TEXT, '
                            'female INTEGER, '
                            'male INTEGER, '
                            'unknown INTEGER'
-                           ');')
+                           ')')
         ## Indices:
         self.dbapi.execute('CREATE INDEX person_order_by '
-                           'ON person(order_by);')
+                           'ON person(order_by)')
         self.dbapi.execute('CREATE INDEX person_gramps_id '
-                           'ON person(gramps_id);')
+                           'ON person(gramps_id)')
         self.dbapi.execute('CREATE INDEX person_surname '
-                           'ON person(surname);')
+                           'ON person(surname)')
         self.dbapi.execute('CREATE INDEX person_given_name '
-                           'ON person(given_name);')
+                           'ON person(given_name)')
         self.dbapi.execute('CREATE INDEX source_order_by '
-                           'ON source(order_by);')
+                           'ON source(order_by)')
         self.dbapi.execute('CREATE INDEX source_gramps_id '
-                           'ON source(gramps_id);')
+                           'ON source(gramps_id)')
         self.dbapi.execute('CREATE INDEX citation_order_by '
-                           'ON citation(order_by);')
+                           'ON citation(order_by)')
         self.dbapi.execute('CREATE INDEX citation_gramps_id '
-                           'ON citation(gramps_id);')
+                           'ON citation(gramps_id)')
         self.dbapi.execute('CREATE INDEX media_order_by '
-                           'ON media(order_by);')
+                           'ON media(order_by)')
         self.dbapi.execute('CREATE INDEX media_gramps_id '
-                           'ON media(gramps_id);')
+                           'ON media(gramps_id)')
         self.dbapi.execute('CREATE INDEX place_order_by '
-                           'ON place(order_by);')
+                           'ON place(order_by)')
         self.dbapi.execute('CREATE INDEX place_gramps_id '
-                           'ON place(gramps_id);')
+                           'ON place(gramps_id)')
         self.dbapi.execute('CREATE INDEX tag_order_by '
-                           'ON tag(order_by);')
+                           'ON tag(order_by)')
         self.dbapi.execute('CREATE INDEX reference_ref_handle '
-                           'ON reference(ref_handle);')
+                           'ON reference(ref_handle)')
         self.dbapi.execute('CREATE INDEX family_gramps_id '
-                           'ON family(gramps_id);')
+                           'ON family(gramps_id)')
         self.dbapi.execute('CREATE INDEX event_gramps_id '
-                           'ON event(gramps_id);')
+                           'ON event(gramps_id)')
         self.dbapi.execute('CREATE INDEX repository_gramps_id '
-                           'ON repository(gramps_id);')
+                           'ON repository(gramps_id)')
         self.dbapi.execute('CREATE INDEX note_gramps_id '
-                           'ON note(gramps_id);')
+                           'ON note(gramps_id)')
         self.dbapi.execute('CREATE INDEX reference_obj_handle '
-                           'ON reference(obj_handle);')
+                           'ON reference(obj_handle)')
 
         self.rebuild_secondary_fields()
 
@@ -414,7 +414,7 @@ class DBAPI(DbGeneric):
         its use here is ok.
         """
         self.dbapi.execute(
-            "SELECT value FROM metadata WHERE setting = ?;", [key])
+            "SELECT value FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             return pickle.loads(row[0])
@@ -428,22 +428,22 @@ class DBAPI(DbGeneric):
         key: string
         value: item, will be serialized here
         """
-        self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?;", [key])
+        self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             self.dbapi.execute(
-                "UPDATE metadata SET value = ? WHERE setting = ?;",
+                "UPDATE metadata SET value = ? WHERE setting = ?",
                 [pickle.dumps(value), key])
         else:
             self.dbapi.execute(
-                "INSERT INTO metadata (setting, value) VALUES (?, ?);",
+                "INSERT INTO metadata (setting, value) VALUES (?, ?)",
                 [key, pickle.dumps(value)])
 
     def get_name_group_keys(self):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        self.dbapi.execute("SELECT name FROM name_group ORDER BY name;")
+        self.dbapi.execute("SELECT name FROM name_group ORDER BY name")
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
@@ -452,7 +452,7 @@ class DBAPI(DbGeneric):
         Return the default grouping name for a surname.
         """
         self.dbapi.execute(
-            "SELECT grouping FROM name_group WHERE name = ?;", [key])
+            "SELECT grouping FROM name_group WHERE name = ?", [key])
         row = self.dbapi.fetchone()
         if row:
             return row[0]
@@ -467,9 +467,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM person ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM person ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle FROM person;")
+            self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -495,9 +495,9 @@ class DBAPI(DbGeneric):
                                               (case when family.handle is null
                                                     then mother.given_name
                                                     else father.given_name
-                                               end)) AS f;""")
+                                               end)) AS f""")
         else:
-            self.dbapi.execute("SELECT handle FROM family;")
+            self.dbapi.execute("SELECT handle FROM family")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -506,7 +506,7 @@ class DBAPI(DbGeneric):
         Return a list of database handles, one handle for each Event in the
         database.
         """
-        self.dbapi.execute("SELECT handle FROM event;")
+        self.dbapi.execute("SELECT handle FROM event")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -518,9 +518,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Citation title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM citation ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM citation ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle FROM citation;")
+            self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -532,9 +532,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Source title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM source ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM source ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle from source;")
+            self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -546,9 +546,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Place title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM place ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM place ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle FROM place;")
+            self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -557,7 +557,7 @@ class DBAPI(DbGeneric):
         Return a list of database handles, one handle for each Repository in
         the database.
         """
-        self.dbapi.execute("SELECT handle FROM repository;")
+        self.dbapi.execute("SELECT handle FROM repository")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -569,9 +569,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM media ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM media ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle FROM media;")
+            self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -580,7 +580,7 @@ class DBAPI(DbGeneric):
         Return a list of database handles, one handle for each Note in the
         database.
         """
-        self.dbapi.execute("SELECT handle FROM note;")
+        self.dbapi.execute("SELECT handle FROM note")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -592,9 +592,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Tag name.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM tag ORDER BY order_by;")
+            self.dbapi.execute("SELECT handle FROM tag ORDER BY order_by")
         else:
-            self.dbapi.execute("SELECT handle FROM tag;")
+            self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()
         return [bytes(row[0], "utf-8") for row in rows]
 
@@ -612,7 +612,7 @@ class DBAPI(DbGeneric):
 
     def get_number_of(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT count(1) FROM %s;" % table
+        sql = "SELECT count(1) FROM %s" % table
         self.dbapi.execute(sql)
         row = self.dbapi.fetchone()
         return row[0]
@@ -621,7 +621,7 @@ class DBAPI(DbGeneric):
         """
         Return if a key exists in the name_group table.
         """
-        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?;",
+        self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?",
                            [key])
         row = self.dbapi.fetchone()
         return True if row else False
@@ -630,14 +630,14 @@ class DBAPI(DbGeneric):
         """
         Set the default grouping name for a surname.
         """
-        self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?;",
+        self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?",
                            [name])
         row = self.dbapi.fetchone()
         if row:
-            self.dbapi.execute("DELETE FROM name_group WHERE name = ?;",
+            self.dbapi.execute("DELETE FROM name_group WHERE name = ?",
                                [name])
         self.dbapi.execute(
-            "INSERT INTO name_group (name, grouping) VALUES(?, ?);",
+            "INSERT INTO name_group (name, grouping) VALUES(?, ?)",
             [name, grouping])
 
     def _commit_base(self, obj, obj_key, trans, change_time):
@@ -726,7 +726,7 @@ class DBAPI(DbGeneric):
             return
         if self.has_handle(obj_key, handle):
             table = KEY_TO_NAME_MAP[obj_key]
-            sql = "DELETE FROM %s WHERE handle = ?;" % table
+            sql = "DELETE FROM %s WHERE handle = ?" % table
             self.dbapi.execute(sql, [handle])
             if not transaction.batch:
                 data = self.get_raw_data(obj_key, handle)
@@ -753,7 +753,7 @@ class DBAPI(DbGeneric):
             handle = str(handle, "utf-8")
         self.dbapi.execute("SELECT obj_class, obj_handle "
                            "FROM reference "
-                           "WHERE ref_handle = ?;",
+                           "WHERE ref_handle = ?",
                            [handle])
         rows = self.dbapi.fetchall()
         for row in rows:
@@ -770,7 +770,7 @@ class DBAPI(DbGeneric):
             person = self.get_person_from_handle(handle)
             if person:
                 return person
-        self.dbapi.execute("SELECT handle FROM person;")
+        self.dbapi.execute("SELECT handle FROM person")
         row = self.dbapi.fetchone()
         if row:
             return self.get_person_from_handle(row[0])
@@ -805,7 +805,7 @@ class DBAPI(DbGeneric):
         Reindex all primary records in the database.
         """
         callback(4)
-        self.dbapi.execute("DELETE FROM reference;")
+        self.dbapi.execute("DELETE FROM reference")
         primary_table = (
             (self.get_person_cursor, Person),
             (self.get_family_cursor, Family),
@@ -831,7 +831,7 @@ class DBAPI(DbGeneric):
                         self.dbapi.execute(
                             "INSERT INTO reference "
                             "(obj_handle, obj_class, ref_handle, ref_class) "
-                            "VALUES (?, ?, ?, ?);",
+                            "VALUES (?, ?, ?, ?)",
                             [obj.handle,
                              obj.__class__.__name__,
                              ref_handle,
@@ -864,7 +864,7 @@ class DBAPI(DbGeneric):
 
     def get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
-        sql = "SELECT gramps_id FROM %s;" % table
+        sql = "SELECT gramps_id FROM %s" % table
         self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
@@ -893,19 +893,19 @@ class DBAPI(DbGeneric):
         {given_name: (male_count, female_count, unknown_count)}
         """
         self.dbapi.execute("SELECT given_name, female, male, unknown "
-                           "FROM gender_stats;")
+                           "FROM gender_stats")
         gstats = {}
         for row in self.dbapi.fetchall():
             gstats[row[0]] = (row[1], row[2], row[3])
         return gstats
 
     def save_gender_stats(self, gstats):
-        self.dbapi.execute("DELETE FROM gender_stats;")
+        self.dbapi.execute("DELETE FROM gender_stats")
         for key in gstats.stats:
             female, male, unknown = gstats.stats[key]
             self.dbapi.execute("INSERT INTO gender_stats "
                                "(given_name, female, male, unknown) "
-                               "VALUES (?, ?, ?, ?);",
+                               "VALUES (?, ?, ?, ?)",
                                [key, female, male, unknown])
 
     def get_surname_list(self):
@@ -914,7 +914,7 @@ class DBAPI(DbGeneric):
         """
         self.dbapi.execute("SELECT DISTINCT surname "
                            "FROM person "
-                           "ORDER BY surname;")
+                           "ORDER BY surname")
         surname_list = []
         for row in self.dbapi.fetchall():
             surname_list.append(row[0])
@@ -926,21 +926,21 @@ class DBAPI(DbGeneric):
         already exist, then the caller will need to catch the appropriate
         exception
         """
-        self.dbapi.execute("DROP TABLE  person;")
-        self.dbapi.execute("DROP TABLE  family;")
-        self.dbapi.execute("DROP TABLE  source;")
+        self.dbapi.execute("DROP TABLE  person")
+        self.dbapi.execute("DROP TABLE  family")
+        self.dbapi.execute("DROP TABLE  source")
         self.dbapi.execute("DROP TABLE  citation")
-        self.dbapi.execute("DROP TABLE  event;")
-        self.dbapi.execute("DROP TABLE  media;")
-        self.dbapi.execute("DROP TABLE  place;")
-        self.dbapi.execute("DROP TABLE  repository;")
-        self.dbapi.execute("DROP TABLE  note;")
-        self.dbapi.execute("DROP TABLE  tag;")
+        self.dbapi.execute("DROP TABLE  event")
+        self.dbapi.execute("DROP TABLE  media")
+        self.dbapi.execute("DROP TABLE  place")
+        self.dbapi.execute("DROP TABLE  repository")
+        self.dbapi.execute("DROP TABLE  note")
+        self.dbapi.execute("DROP TABLE  tag")
         # Secondary:
-        self.dbapi.execute("DROP TABLE  reference;")
-        self.dbapi.execute("DROP TABLE  name_group;")
-        self.dbapi.execute("DROP TABLE  metadata;")
-        self.dbapi.execute("DROP TABLE  gender_stats;")
+        self.dbapi.execute("DROP TABLE  reference")
+        self.dbapi.execute("DROP TABLE  name_group")
+        self.dbapi.execute("DROP TABLE  metadata")
+        self.dbapi.execute("DROP TABLE  gender_stats")
 
     def _sql_type(self, python_type):
         """
@@ -977,7 +977,7 @@ class DBAPI(DbGeneric):
                           in self.get_table_func(
                               table, "class_func").get_secondary_fields()]
                 if fields:
-                    self.dbapi.execute("select %s from %s limit 1;"
+                    self.dbapi.execute("select %s from %s limit 1"
                                        % (", ".join(fields), table_name))
                 # if no error, continue
                 LOG.info("Table %s is up to date", table)
@@ -993,7 +993,7 @@ class DBAPI(DbGeneric):
                 sql_type = self._sql_type(python_type)
                 try:
                     # test to see if it exists:
-                    self.dbapi.execute("SELECT %s FROM %s LIMIT 1;"
+                    self.dbapi.execute("SELECT %s FROM %s LIMIT 1"
                                        % (field, table_name))
                     LOG.info("    Table %s, field %s is up to date",
                              table, field)
@@ -1001,7 +1001,7 @@ class DBAPI(DbGeneric):
                     # if not, let's add it
                     LOG.info("    Table %s, field %s was added",
                              table, field)
-                    self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s;"
+                    self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s"
                                        % (table_name, field, sql_type))
                     altered = True
             if altered:
@@ -1028,7 +1028,7 @@ class DBAPI(DbGeneric):
         for field in self.get_table_func(
                 table, "class_func").get_index_fields():
             field = self._hash_name(table, field)
-            self.dbapi.execute("CREATE INDEX %s_%s ON %s(%s);"
+            self.dbapi.execute("CREATE INDEX %s_%s ON %s(%s)"
                                    % (table, field, table_name, field))
 
     def update_secondary_values_all(self):
@@ -1095,7 +1095,7 @@ class DBAPI(DbGeneric):
 
         if len(values) > 0:
             table_name = table.lower()
-            self.dbapi.execute("UPDATE %s SET %s where handle = ?;"
+            self.dbapi.execute("UPDATE %s SET %s where handle = ?"
                                % (table_name, ", ".join(sets)),
                                self._sql_cast_list(table, sets, values)
                                + [obj.handle])
