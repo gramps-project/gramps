@@ -1645,7 +1645,7 @@ class GrampsPreferences(ConfigureDialog):
                     break
                 active_val += 1
             self.add_combo(self.grid,
-                _('Choose font'), 
+                _('Choose font'),
                 5, 'utf8.selected-font',
                 self.all_avail_fonts, callback=self.utf8_update_font, valueactive=True, setactive=active_val)
             symbols = Symbols()
@@ -1740,7 +1740,7 @@ class GrampsPreferences(ConfigureDialog):
         if len(available_fonts) > 0:
             self.all_avail_fonts = [x for x in enumerate(available_fonts)]
             self.add_combo(self.grid,
-                _('Choose font'), 
+                _('Choose font'),
                 5, 'utf8.selected-font',
                 self.all_avail_fonts, callback=self.utf8_update_font, valueactive=True, setactive=active_val)
         else:
