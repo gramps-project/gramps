@@ -287,22 +287,6 @@ class Cursor:
     def close(self):
         pass
 
-class TreeCursor(Cursor):
-
-    def __init__(self, db, map):
-        """
-        """
-        self.db = db
-        Cursor.__init__(self, map)
-
-    def __iter__(self):
-        """
-        Iterator
-        """
-        handles = self.db.get_place_handles(sort_handles=True)
-        for handle in handles:
-            yield (handle, self.db.get_raw_place_data(handle))
-
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
@@ -1454,8 +1438,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_place_cursor(self):
         return Cursor(self._iter_raw_place_data)
 
-    def get_place_tree_cursor(self, *args, **kwargs):
-        return TreeCursor(self, self.place_map)
+    def get_place_tree_cursor(self):
+        return Cursor(self._iter_raw_place_tree_data)
 
     def get_person_cursor(self):
         return Cursor(self._iter_raw_person_data)
@@ -2564,3 +2548,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                     if surname_obj:
                         surname = surname_obj.surname
         return (given_name, surname)
+
+    def _get_place_data(self, place):
+        """
+        Given a Place, return the first PlaceRef handle.
+        """
+        enclosed_by = ""
+        for placeref in place.get_placeref_list():
+            enclosed_by = placeref.ref
+        return enclosed_by

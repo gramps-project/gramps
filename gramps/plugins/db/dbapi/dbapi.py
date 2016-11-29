@@ -226,6 +226,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE TABLE place '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
+                           'enclosed_by VARCHAR(50), '
                            'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
@@ -296,6 +297,8 @@ class DBAPI(DbGeneric):
                            'ON media(gramps_id)')
         self.dbapi.execute('CREATE INDEX place_order_by '
                            'ON place(order_by)')
+        self.dbapi.execute('CREATE INDEX place_enclosed_by '
+                           'ON place(enclosed_by)')
         self.dbapi.execute('CREATE INDEX place_gramps_id '
                            'ON place(gramps_id)')
         self.dbapi.execute('CREATE INDEX tag_order_by '
@@ -800,6 +803,20 @@ class DBAPI(DbGeneric):
                     yield (row[0].encode('utf8'), pickle.loads(row[1]))
                 rows = cursor.fetchmany()
 
+    def _iter_raw_place_tree_data(self):
+        """
+        Return an iterator over raw data in the place hierarchy.
+        """
+        to_do = ['']
+        sql = 'SELECT handle, blob_data FROM place WHERE enclosed_by = ?'
+        while to_do:
+            handle = to_do.pop()
+            self.dbapi.execute(sql, [handle])
+            rows = self.dbapi.fetchall()
+            for row in rows:
+                to_do.append(row[0])
+                yield (row[0].encode('utf8'), pickle.loads(row[1]))
+
     def reindex_reference_map(self, callback):
         """
         Reindex all primary records in the database.
@@ -1078,6 +1095,9 @@ class DBAPI(DbGeneric):
             sets.append("order_by = ?")
             values.append(self._order_by_person_key(obj))
         if table == 'Place':
+            handle = self._get_place_data(obj)
+            sets.append("enclosed_by = ?")
+            values.append(handle)
             sets.append("order_by = ?")
             values.append(self._order_by_place_key(obj))
         if table == 'Source':
