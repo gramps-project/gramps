@@ -184,7 +184,6 @@ class DBAPI(DbGeneric):
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'given_name TEXT, '
                            'surname TEXT, '
-                           'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
@@ -199,14 +198,12 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE TABLE source '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE citation '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
@@ -219,7 +216,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE TABLE media '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
@@ -227,7 +223,6 @@ class DBAPI(DbGeneric):
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'enclosed_by VARCHAR(50), '
-                           'order_by TEXT, '
                            'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
@@ -246,7 +241,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE TABLE tag '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'order_by TEXT, '
                            'blob_data BLOB'
                            ')')
         # Secondary:
@@ -274,35 +268,36 @@ class DBAPI(DbGeneric):
                            'male INTEGER, '
                            'unknown INTEGER'
                            ')')
+
+        self.rebuild_secondary_fields()
+
         ## Indices:
-        self.dbapi.execute('CREATE INDEX person_order_by '
-                           'ON person(order_by)')
         self.dbapi.execute('CREATE INDEX person_gramps_id '
                            'ON person(gramps_id)')
         self.dbapi.execute('CREATE INDEX person_surname '
                            'ON person(surname)')
         self.dbapi.execute('CREATE INDEX person_given_name '
                            'ON person(given_name)')
-        self.dbapi.execute('CREATE INDEX source_order_by '
-                           'ON source(order_by)')
+        self.dbapi.execute('CREATE INDEX source_title '
+                           'ON source(title)')
         self.dbapi.execute('CREATE INDEX source_gramps_id '
                            'ON source(gramps_id)')
-        self.dbapi.execute('CREATE INDEX citation_order_by '
-                           'ON citation(order_by)')
+        self.dbapi.execute('CREATE INDEX citation_page '
+                           'ON citation(page)')
         self.dbapi.execute('CREATE INDEX citation_gramps_id '
                            'ON citation(gramps_id)')
-        self.dbapi.execute('CREATE INDEX media_order_by '
-                           'ON media(order_by)')
+        self.dbapi.execute('CREATE INDEX media_desc '
+                           'ON media(desc)')
         self.dbapi.execute('CREATE INDEX media_gramps_id '
                            'ON media(gramps_id)')
-        self.dbapi.execute('CREATE INDEX place_order_by '
-                           'ON place(order_by)')
+        self.dbapi.execute('CREATE INDEX place_title '
+                           'ON place(title)')
         self.dbapi.execute('CREATE INDEX place_enclosed_by '
                            'ON place(enclosed_by)')
         self.dbapi.execute('CREATE INDEX place_gramps_id '
                            'ON place(gramps_id)')
-        self.dbapi.execute('CREATE INDEX tag_order_by '
-                           'ON tag(order_by)')
+        self.dbapi.execute('CREATE INDEX tag_name '
+                           'ON tag(name)')
         self.dbapi.execute('CREATE INDEX reference_ref_handle '
                            'ON reference(ref_handle)')
         self.dbapi.execute('CREATE INDEX family_gramps_id '
@@ -316,7 +311,6 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE INDEX reference_obj_handle '
                            'ON reference(obj_handle)')
 
-        self.rebuild_secondary_fields()
 
     def close_backend(self):
         self.dbapi.close()
@@ -470,7 +464,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM person ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM person "
+                               "ORDER BY surname COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
@@ -484,21 +479,22 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
-            self.dbapi.execute("""SELECT f.handle FROM
-                                   (SELECT family.*
-                                     FROM family LEFT JOIN
-                                     person AS father
-                                     ON family.father_handle = father.handle LEFT JOIN
-                                     person AS mother
-                                     on family.mother_handle = mother.handle
-                                     order by (case when father.handle is null
-                                                    then mother.surname
-                                                    else father.surname
-                                               end),
-                                              (case when family.handle is null
-                                                    then mother.given_name
-                                                    else father.given_name
-                                               end)) AS f""")
+            sql = ("SELECT family.handle " +
+                   "FROM family " +
+                   "LEFT JOIN person AS father " +
+                   "ON family.father_handle = father.handle " +
+                   "LEFT JOIN person AS mother " +
+                   "ON family.mother_handle = mother.handle " +
+                   "ORDER BY (CASE WHEN father.handle IS NULL " +
+                   "THEN mother.surname " +
+                   "ELSE father.surname " +
+                   "END), " +
+                   "(CASE WHEN family.handle IS NULL " +
+                   "THEN mother.given_name " +
+                   "ELSE father.given_name " +
+                   "END) " +
+                   "COLLATE glocale")
+            self.dbapi.execute(sql)
         else:
             self.dbapi.execute("SELECT handle FROM family")
         rows = self.dbapi.fetchall()
@@ -521,7 +517,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Citation title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM citation ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM citation "
+                               "ORDER BY page COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
@@ -535,7 +532,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Source title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM source ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM source "
+                               "ORDER BY title COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
@@ -549,7 +547,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Place title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM place ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM place "
+                               "ORDER BY title COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
@@ -572,7 +571,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM media ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM media "
+                               "ORDER BY desc COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
@@ -595,7 +595,8 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Tag name.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM tag ORDER BY order_by")
+            self.dbapi.execute("SELECT handle FROM tag "
+                               "ORDER BY name COLLATE glocale")
         else:
             self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()
@@ -1092,26 +1093,10 @@ class DBAPI(DbGeneric):
             values.append(given_name)
             sets.append("surname = ?")
             values.append(surname)
-            sets.append("order_by = ?")
-            values.append(self._order_by_person_key(obj))
         if table == 'Place':
             handle = self._get_place_data(obj)
             sets.append("enclosed_by = ?")
             values.append(handle)
-            sets.append("order_by = ?")
-            values.append(self._order_by_place_key(obj))
-        if table == 'Source':
-            sets.append("order_by = ?")
-            values.append(self._order_by_source_key(obj))
-        if table == 'Citation':
-            sets.append("order_by = ?")
-            values.append(self._order_by_citation_key(obj))
-        if table == 'Media':
-            sets.append("order_by = ?")
-            values.append(self._order_by_media_key(obj))
-        if table == 'Tag':
-            sets.append("order_by = ?")
-            values.append(self._order_by_tag_key(obj.name))
 
         if len(values) > 0:
             table_name = table.lower()

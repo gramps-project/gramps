@@ -216,6 +216,12 @@ class DbRandomTest(unittest.TestCase):
                                 self.db.get_number_of_families,
                                 sort_handles=True)
 
+    def test_get_place_handles_sort(self):
+        self.__get_handles_test('Place',
+                                self.db.get_place_handles,
+                                self.db.get_number_of_places,
+                                sort_handles=True)
+
     def test_get_source_handles_sort(self):
         self.__get_handles_test('Source',
                                 self.db.get_source_handles,

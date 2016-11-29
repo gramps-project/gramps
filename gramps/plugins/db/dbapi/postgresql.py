@@ -26,6 +26,7 @@
 #-------------------------------------------------------------------------
 import psycopg2
 import re
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -56,6 +57,9 @@ class Postgresql:
         self.__connection = psycopg2.connect(*args, **kwargs)
         self.__connection.autocommit = True
         self.__cursor = self.__connection.cursor()
+        locale = os.environ.get('LANG', 'en_US.utf8')
+        self.execute("DROP COLLTAION IF EXISTS glocale")
+        self.execute("CREATE COLLATION glocale (LOCALE = '%s')" % locale)
 
     def _hack_query(self, query):
         query = query.replace("?", "%s")

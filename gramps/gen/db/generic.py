@@ -2517,21 +2517,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             order_by = " ".join(order_by_list)
         return glocale.sort_key(order_by)
 
-    def _order_by_place_key(self, place):
-        return glocale.sort_key(str(int(place.place_type)) + ", " + place.name.value)
-
-    def _order_by_source_key(self, source):
-        return glocale.sort_key(source.title)
-
-    def _order_by_citation_key(self, citation):
-        return glocale.sort_key(citation.page)
-
-    def _order_by_media_key(self, media):
-        return glocale.sort_key(media.desc)
-
-    def _order_by_tag_key(self, key):
-        return glocale.sort_key(key)
-
     def _get_person_data(self, person):
         """
         Given a Person, return primary_name.first_name and surname.
