@@ -144,8 +144,12 @@ class DbRandomTest(unittest.TestCase):
     # Test get_*_handles methods
     #
     ################################################################
-    def __get_handles_test(self, obj_type, handles_func, number_func):
-        handles = handles_func()
+    def __get_handles_test(self, obj_type, handles_func, number_func,
+                           sort_handles=False):
+        if sort_handles:
+            handles = handles_func(sort_handles=True)
+        else:
+            handles = handles_func()
         self.assertEqual(len(handles), number_func())
         for handle in handles:
             self.assertIn(handle.decode('utf8'), self.handles[obj_type])
@@ -199,6 +203,42 @@ class DbRandomTest(unittest.TestCase):
         self.__get_handles_test('Tag',
                                 self.db.get_tag_handles,
                                 self.db.get_number_of_tags)
+
+    def test_get_person_handles_sort(self):
+        self.__get_handles_test('Person',
+                                self.db.get_person_handles,
+                                self.db.get_number_of_people,
+                                sort_handles=True)
+
+    def test_get_family_handles_sort(self):
+        self.__get_handles_test('Family',
+                                self.db.get_family_handles,
+                                self.db.get_number_of_families,
+                                sort_handles=True)
+
+    def test_get_source_handles_sort(self):
+        self.__get_handles_test('Source',
+                                self.db.get_source_handles,
+                                self.db.get_number_of_sources,
+                                sort_handles=True)
+
+    def test_get_citation_handles_sort(self):
+        self.__get_handles_test('Citation',
+                                self.db.get_citation_handles,
+                                self.db.get_number_of_citations,
+                                sort_handles=True)
+
+    def test_get_media_handles_sort(self):
+        self.__get_handles_test('Media',
+                                self.db.get_media_handles,
+                                self.db.get_number_of_media,
+                                sort_handles=True)
+
+    def test_get_tag_handles_sort(self):
+        self.__get_handles_test('Tag',
+                                self.db.get_tag_handles,
+                                self.db.get_number_of_tags,
+                                sort_handles=True)
 
     ################################################################
     #
