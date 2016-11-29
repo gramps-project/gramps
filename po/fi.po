@@ -5,10 +5,10 @@
 # Matti Niemelä <matti.u.niemela@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps425_fi_maintenance_POT_2016-09-01\n"
+"Project-Id-Version: Gramps425_fi_maintenance_POT_20161124\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-01 17:51+0200\n"
-"PO-Revision-Date: 2016-10-02 09:19+0200\n"
+"POT-Creation-Date: 2016-11-24 18:34+0200\n"
+"PO-Revision-Date: 2016-11-28 22:10+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Matti Niemelä <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: /home/niememat/Gramps_424_fi_maintenance_POT20160707\n"
-"X-Poedit-SearchPath-0: gramps-maintenance-gramps42\n"
+"X-Poedit-Basepath: data\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -1403,7 +1403,7 @@ msgid "Import finished..."
 msgstr "Tuonti valmis..."
 
 #. Create a new database
-#: ../gramps/cli/clidbman.py:362 ../gramps/plugins/importer/importcsv.py:347
+#: ../gramps/cli/clidbman.py:362 ../gramps/plugins/importer/importcsv.py:342
 msgid "Importing data..."
 msgstr "Tuodaan tietoja..."
 
@@ -2981,7 +2981,7 @@ msgstr "Sukunimi, Etunimi Loppuliite"
 #: ../gramps/gui/configure.py:658 ../gramps/gui/configure.py:659
 #: ../gramps/gui/configure.py:660 ../gramps/gui/configure.py:661
 #: ../gramps/plugins/export/exportcsv.py:353
-#: ../gramps/plugins/importer/importcsv.py:160
+#: ../gramps/plugins/importer/importcsv.py:161
 msgid "Given"
 msgstr "Etunimi"
 
@@ -3005,18 +3005,18 @@ msgid "Person|title"
 msgstr "titteli"
 
 #: ../gramps/gen/display/name.py:597 ../gramps/gen/display/name.py:697
-#: ../gramps/plugins/importer/importcsv.py:161
+#: ../gramps/plugins/importer/importcsv.py:160
 msgid "given"
 msgstr "etunimi"
 
 #: ../gramps/gen/display/name.py:599 ../gramps/gen/display/name.py:699
-#: ../gramps/plugins/importer/importcsv.py:158
+#: ../gramps/plugins/importer/importcsv.py:157
 msgid "surname"
 msgstr "sukunimi"
 
 #: ../gramps/gen/display/name.py:601 ../gramps/gen/display/name.py:701
 #: ../gramps/gui/editors/editperson.py:389
-#: ../gramps/plugins/importer/importcsv.py:167
+#: ../gramps/plugins/importer/importcsv.py:166
 msgid "suffix"
 msgstr "loppuliite"
 
@@ -3084,7 +3084,7 @@ msgstr "loputnimet"
 
 #: ../gramps/gen/display/name.py:638 ../gramps/gen/display/name.py:730
 #: ../gramps/gui/editors/editperson.py:410
-#: ../gramps/plugins/importer/importcsv.py:166
+#: ../gramps/plugins/importer/importcsv.py:165
 msgid "prefix"
 msgstr "etuliite"
 
@@ -6021,8 +6021,7 @@ msgstr "Kasti"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
-#: ../gramps/gui/glade/rule.glade:902
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:902 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:131 ../gramps/gui/plug/_windows.py:240
 #: ../gramps/gui/plug/_windows.py:607 ../gramps/gui/plug/_windows.py:1084
 #: ../gramps/gui/selectors/selectevent.py:74
@@ -6330,13 +6329,12 @@ msgstr "Elinkaaren tapahtumat"
 #: ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:501
-#: ../gramps/gui/editors/editlink.py:90
+#: ../gramps/gui/editors/editfamily.py:501 ../gramps/gui/editors/editlink.py:90
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade:267
+#: ../gramps/gui/glade/editldsord.glade:269
 #: ../gramps/plugins/export/exportcsv.py:515
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
-#: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/plugins/importer/importcsv.py:210
 #: ../gramps/plugins/quickview/all_events.py:80
 #: ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:139
@@ -6518,7 +6516,7 @@ msgstr "Testamentti"
 
 #: ../gramps/gen/lib/eventtype.py:204 ../gramps/gui/merge/mergeperson.py:243
 #: ../gramps/plugins/export/exportcsv.py:472
-#: ../gramps/plugins/importer/importcsv.py:228
+#: ../gramps/plugins/importer/importcsv.py:218
 #: ../gramps/plugins/textreport/familygroup.py:397
 #: ../gramps/plugins/textreport/familygroup.py:406
 #: ../gramps/plugins/textreport/familygroup.py:589
@@ -6795,7 +6793,6 @@ msgstr "Bahá'í"
 msgid "Canceled"
 msgstr "Peruttu"
 
-#. ----------------------------------
 #: ../gramps/gen/lib/ldsord.py:105
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
 #: ../gramps/gui/glade/editchildref.glade:250
@@ -6803,7 +6800,7 @@ msgstr "Peruttu"
 #: ../gramps/plugins/export/exportcsv.py:515
 #: ../gramps/plugins/gramplet/children.py:81
 #: ../gramps/plugins/gramplet/children.py:181
-#: ../gramps/plugins/importer/importcsv.py:219
+#: ../gramps/plugins/importer/importcsv.py:209
 msgid "Child"
 msgstr "Lapsi"
 
@@ -7374,8 +7371,7 @@ msgstr "Sulauta perhe"
 msgid "Merge Media Objects"
 msgstr "Sulauta mediatiedostot"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Sulauta lisätiedot"
 
@@ -7686,12 +7682,12 @@ msgid "Expand uniformly"
 msgstr "Laajenna tasapuolisesti"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:88
-#: ../gramps/gui/glade/styleeditor.glade:1340
+#: ../gramps/gui/glade/styleeditor.glade:1343
 msgid "Top"
 msgstr "Ylhäällä"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
-#: ../gramps/gui/glade/styleeditor.glade:1355
+#: ../gramps/gui/glade/styleeditor.glade:1358
 msgid "Bottom"
 msgstr "Alhaalla"
 
@@ -7871,8 +7867,7 @@ msgstr ""
 #. 3
 #: ../gramps/gen/plug/docgen/graphdoc.py:248 ../gramps/gui/clipboard.py:394
 #: ../gramps/gui/configure.py:545 ../gramps/gui/editors/editlink.py:92
-#: ../gramps/gui/editors/editmedia.py:99
-#: ../gramps/gui/editors/editmedia.py:184
+#: ../gramps/gui/editors/editmedia.py:99 ../gramps/gui/editors/editmedia.py:184
 #: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
@@ -7890,7 +7885,7 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:360
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
-#: ../gramps/plugins/importer/importcsv.py:170
+#: ../gramps/plugins/importer/importcsv.py:169
 #: ../gramps/plugins/quickview/filterbyname.py:199
 #: ../gramps/plugins/quickview/filterbyname.py:250
 #: ../gramps/plugins/quickview/quickview.gpr.py:205
@@ -7984,8 +7979,7 @@ msgstr "Arvoa '%(val)s' ei löydy optiolle '%(opt)s'"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:73 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84
-#: ../gramps/gui/viewmanager.py:112
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:112
 msgid "Unsupported"
 msgstr "Ei tuettu"
 
@@ -8236,7 +8230,7 @@ msgstr "Rekisteröity '%s'"
 #: ../gramps/gui/glade/editevent.glade:355
 #: ../gramps/gui/glade/editeventref.glade:149
 #: ../gramps/gui/glade/editeventref.glade:420
-#: ../gramps/gui/glade/editldsord.glade:381
+#: ../gramps/gui/glade/editldsord.glade:383
 #: ../gramps/gui/glade/editmedia.glade:332
 #: ../gramps/gui/glade/editmediaref.glade:301
 #: ../gramps/gui/glade/editmediaref.glade:623
@@ -8311,12 +8305,12 @@ msgid "undefined"
 msgstr "määrittelemätön"
 
 #: ../gramps/gen/relationship.py:1735
-#: ../gramps/plugins/importer/importcsv.py:227
+#: ../gramps/plugins/importer/importcsv.py:216
 msgid "husband"
 msgstr "aviomies"
 
 #: ../gramps/gen/relationship.py:1737
-#: ../gramps/plugins/importer/importcsv.py:223
+#: ../gramps/plugins/importer/importcsv.py:213
 msgid "wife"
 msgstr "vaimo"
 
@@ -8416,13 +8410,11 @@ msgid ""
 msgstr ""
 " '%s' kielelle ei löydy perhesuhteiden kääntäjää. Käytetään siksi 'english'."
 
-#: ../gramps/gen/utils/alive.py:146
-#: ../gramps/plugins/importer/importcsv.py:209
+#: ../gramps/gen/utils/alive.py:146 ../gramps/plugins/importer/importcsv.py:200
 msgid "death date"
 msgstr "kuolinaika"
 
-#: ../gramps/gen/utils/alive.py:151
-#: ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:151 ../gramps/plugins/importer/importcsv.py:176
 msgid "birth date"
 msgstr "syntymäaika"
 
@@ -8773,7 +8765,7 @@ msgstr "SUKUNIMI"
 #: ../gramps/gui/plug/_guioptions.py:89 ../gramps/gui/plug/_guioptions.py:1469
 #: ../gramps/plugins/drawreport/statisticschart.py:327
 #: ../gramps/plugins/export/exportcsv.py:353
-#: ../gramps/plugins/importer/importcsv.py:157
+#: ../gramps/plugins/importer/importcsv.py:158
 #: ../gramps/plugins/quickview/filterbyname.py:328
 #: ../gramps/plugins/webreport/narrativeweb.py:2923
 #: ../gramps/plugins/webreport/narrativeweb.py:4045
@@ -8818,7 +8810,7 @@ msgstr "LOPPULIITE"
 #: ../gramps/gui/configure.py:659 ../gramps/gui/configure.py:661
 #: ../gramps/gui/glade/editperson.glade:230
 #: ../gramps/plugins/export/exportcsv.py:354
-#: ../gramps/plugins/importer/importcsv.py:167
+#: ../gramps/plugins/importer/importcsv.py:166
 msgid "Suffix"
 msgstr "Loppuliite"
 
@@ -8923,7 +8915,7 @@ msgstr "ETULIITE"
 #: ../gramps/gui/editors/displaytabs/surnametab.py:74
 #: ../gramps/gui/glade/editperson.glade:471
 #: ../gramps/plugins/export/exportcsv.py:354
-#: ../gramps/plugins/importer/importcsv.py:166
+#: ../gramps/plugins/importer/importcsv.py:165
 msgid "Prefix"
 msgstr "Etuliite"
 
@@ -9146,8 +9138,8 @@ msgstr "Ei saatavilla"
 #: ../gramps/gui/editors/editaddress.py:166
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:102
 #: ../gramps/plugins/gramplet/repositorydetails.py:122
-#: ../gramps/plugins/lib/libgedcom.py:5629
-#: ../gramps/plugins/lib/libgedcom.py:5796
+#: ../gramps/plugins/lib/libgedcom.py:5627
+#: ../gramps/plugins/lib/libgedcom.py:5793
 #: ../gramps/plugins/textreport/familygroup.py:343
 #: ../gramps/plugins/webreport/narrativeweb.py:6857
 msgid "Address"
@@ -9186,7 +9178,7 @@ msgstr "Tapahtuma"
 #: ../gramps/plugins/gramplet/events.py:81
 #: ../gramps/plugins/gramplet/personresidence.py:50
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:111
-#: ../gramps/plugins/importer/importcsv.py:230
+#: ../gramps/plugins/importer/importcsv.py:220
 #: ../gramps/plugins/quickview/filterbyname.py:159
 #: ../gramps/plugins/quickview/filterbyname.py:226
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -9271,9 +9263,9 @@ msgstr "Paikkaviite"
 #: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:67
-#: ../gramps/plugins/gramplet/locations.py:84
+#: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:111
-#: ../gramps/plugins/importer/importcsv.py:232
+#: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/lib/libpersonview.py:98
 #: ../gramps/plugins/lib/libplaceview.py:84
 #: ../gramps/plugins/quickview/filterbyname.py:280
@@ -9347,7 +9339,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/gui/glade/editpersonref.glade:211
 #: ../gramps/plugins/export/exportcsv.py:353
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:106
-#: ../gramps/plugins/importer/importcsv.py:217
+#: ../gramps/plugins/importer/importcsv.py:207
 #: ../gramps/plugins/quickview/ageondate.py:54
 #: ../gramps/plugins/quickview/attributematch.py:34
 #: ../gramps/plugins/quickview/filterbyname.py:128
@@ -9383,7 +9375,7 @@ msgstr "Henkilö"
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
-#: ../gramps/plugins/importer/importcsv.py:169
+#: ../gramps/plugins/importer/importcsv.py:168
 #: ../gramps/plugins/quickview/filterbyname.py:169
 #: ../gramps/plugins/quickview/filterbyname.py:232
 #: ../gramps/plugins/quickview/quickview.gpr.py:202
@@ -9436,9 +9428,9 @@ msgstr "Arkisto"
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:75
-#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/locations.py:86
 #: ../gramps/plugins/gramplet/placedetails.py:112
-#: ../gramps/plugins/importer/importcsv.py:233
+#: ../gramps/plugins/importer/importcsv.py:223
 #: ../gramps/plugins/lib/libplaceview.py:87
 #: ../gramps/plugins/quickview/filterbyname.py:300
 #: ../gramps/plugins/quickview/linkreferences.py:45
@@ -9457,8 +9449,8 @@ msgstr "Arkisto"
 #: ../gramps/plugins/tool/patchnames.py:401
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:97
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:97 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:393
 #: ../gramps/plugins/webreport/narrativeweb.py:1258
 #: ../gramps/plugins/webreport/narrativeweb.py:1566
@@ -9578,9 +9570,8 @@ msgstr "Näytä nimimuokkain"
 #: ../gramps/gui/glade/displaystate.glade:25
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26
 #: ../gramps/gui/glade/rule.glade:997 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:26
-#: ../gramps/gui/plug/_windows.py:103 ../gramps/gui/plug/_windows.py:676
-#: ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/glade/updateaddons.glade:26 ../gramps/gui/plug/_windows.py:103
+#: ../gramps/gui/plug/_windows.py:676 ../gramps/gui/plug/_windows.py:732
 #: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:1228 ../gramps/gui/views/bookmarks.py:236
 #: ../gramps/gui/views/tags.py:419 ../gramps/gui/widgets/grampletbar.py:636
@@ -9692,7 +9683,7 @@ msgstr "Postinumero"
 #: ../gramps/gui/configure.py:517
 #: ../gramps/plugins/gramplet/repositorydetails.py:110
 #: ../gramps/plugins/lib/libgedcom.py:4146
-#: ../gramps/plugins/lib/libgedcom.py:5903
+#: ../gramps/plugins/lib/libgedcom.py:5900
 #: ../gramps/plugins/webreport/narrativeweb.py:387
 msgid "Phone"
 msgstr "Puhelin"
@@ -9838,8 +9829,8 @@ msgstr "Esimerkki"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:150
-#: ../gramps/gui/plug/report/_bookdialog.py:701
-#: ../gramps/gui/views/tags.py:411 ../gramps/gui/widgets/fanchart.py:1801
+#: ../gramps/gui/plug/report/_bookdialog.py:701 ../gramps/gui/views/tags.py:411
+#: ../gramps/gui/widgets/fanchart.py:1801
 #: ../gramps/plugins/view/pedigreeview.py:1599
 msgid "_Add"
 msgstr "_Lisää..."
@@ -9876,7 +9867,7 @@ msgstr "_Poista"
 #: ../gramps/gui/glade/editfamily.glade:594
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:517 ../gramps/gui/glade/rule.glade:466
-#: ../gramps/gui/glade/styleeditor.glade:1869
+#: ../gramps/gui/glade/styleeditor.glade:1872
 #: ../gramps/gui/plug/_windows.py:149 ../gramps/gui/plug/_windows.py:204
 #: ../gramps/gui/plug/report/_bookdialog.py:673
 #: ../gramps/plugins/gramplet/descendant.py:115
@@ -10241,8 +10232,7 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:43
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:41
@@ -10258,8 +10248,7 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:22
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:22
 #: ../gramps/gui/glade/mergecitation.glade:22
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -10275,7 +10264,7 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/glade/mergesource.glade:22
 #: ../gramps/gui/glade/reorder.glade:24 ../gramps/gui/glade/rule.glade:319
 #: ../gramps/gui/glade/rule.glade:750 ../gramps/gui/glade/styleeditor.glade:86
-#: ../gramps/gui/glade/styleeditor.glade:1720
+#: ../gramps/gui/glade/styleeditor.glade:1723
 #: ../gramps/gui/logger/_errorview.py:139 ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/_guioptions.py:1698 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
@@ -10835,9 +10824,9 @@ msgstr "Siirrä valittu osoite alaspäin"
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
 #: ../gramps/plugins/gramplet/events.py:77
-#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:49
-#: ../gramps/plugins/importer/importcsv.py:229
+#: ../gramps/plugins/importer/importcsv.py:219
 #: ../gramps/plugins/quickview/onthisday.py:80
 #: ../gramps/plugins/quickview/onthisday.py:81
 #: ../gramps/plugins/quickview/onthisday.py:82
@@ -10938,15 +10927,13 @@ msgstr "_Ominaisuudet"
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:398
 #: ../gramps/plugins/tool/removeunused.py:197
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:535
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:535
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:589
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:589 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -10973,10 +10960,9 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/editperson.glade:22
 #: ../gramps/gui/glade/editperson.glade:362 ../gramps/gui/glade/rule.glade:425
 #: ../gramps/gui/glade/rule.glade:432
-#: ../gramps/gui/glade/styleeditor.glade:1830
-#: ../gramps/gui/glade/styleeditor.glade:1837
-#: ../gramps/gui/widgets/fanchart.py:1847
-#: ../gramps/plugins/view/relview.py:408
+#: ../gramps/gui/glade/styleeditor.glade:1833
+#: ../gramps/gui/glade/styleeditor.glade:1840
+#: ../gramps/gui/widgets/fanchart.py:1847 ../gramps/plugins/view/relview.py:408
 msgid "Add"
 msgstr "Lisää"
 
@@ -10988,8 +10974,8 @@ msgstr "Lisää"
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
 #: ../gramps/gui/glade/rule.glade:493 ../gramps/gui/glade/rule.glade:500
-#: ../gramps/gui/glade/styleeditor.glade:1894
-#: ../gramps/gui/glade/styleeditor.glade:1901
+#: ../gramps/gui/glade/styleeditor.glade:1897
+#: ../gramps/gui/glade/styleeditor.glade:1904
 msgid "Remove"
 msgstr "Poista"
 
@@ -11093,7 +11079,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectfamily.py:71
 #: ../gramps/gui/widgets/reorderfam.py:83
 #: ../gramps/plugins/gramplet/persondetails.py:184
-#: ../gramps/plugins/importer/importcsv.py:225
+#: ../gramps/plugins/importer/importcsv.py:215
 #: ../gramps/plugins/quickview/all_relations.py:300
 #: ../gramps/plugins/textreport/familygroup.py:222
 #: ../gramps/plugins/textreport/familygroup.py:233
@@ -11107,7 +11093,6 @@ msgstr ""
 msgid "Father"
 msgstr "Isä"
 
-#. ----------------------------------
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:113
 #: ../gramps/gui/glade/editfamily.glade:470
@@ -11115,7 +11100,7 @@ msgstr "Isä"
 #: ../gramps/gui/selectors/selectfamily.py:72
 #: ../gramps/gui/widgets/reorderfam.py:84
 #: ../gramps/plugins/gramplet/persondetails.py:185
-#: ../gramps/plugins/importer/importcsv.py:222
+#: ../gramps/plugins/importer/importcsv.py:212
 #: ../gramps/plugins/quickview/all_relations.py:297
 #: ../gramps/plugins/textreport/familygroup.py:239
 #: ../gramps/plugins/textreport/familygroup.py:250
@@ -11556,7 +11541,7 @@ msgid "Move the selected surname downwards"
 msgstr "Siirrä valittu sukunimi alaspäin"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:78
-#: ../gramps/plugins/lib/libgedcom.py:601
+#: ../gramps/plugins/lib/libgedcom.py:602
 msgid "Origin"
 msgstr "Alkuperä"
 
@@ -11894,7 +11879,7 @@ msgstr "#"
 #: ../gramps/gui/selectors/selectperson.py:96
 #: ../gramps/plugins/drawreport/statisticschart.py:331
 #: ../gramps/plugins/export/exportcsv.py:355
-#: ../gramps/plugins/importer/importcsv.py:168
+#: ../gramps/plugins/importer/importcsv.py:167
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:814
@@ -12011,7 +11996,7 @@ msgstr ""
 "muutoksia on saattanut kadota."
 
 #: ../gramps/gui/editors/editfamily.py:470
-#: ../gramps/plugins/importer/importcsv.py:220
+#: ../gramps/plugins/importer/importcsv.py:210
 #: ../gramps/plugins/view/familyview.py:261
 msgid "family"
 msgstr "perhe"
@@ -12497,8 +12482,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr "Paikkamuokkain_ikkuna"
 
 #: ../gramps/gui/editors/editplace.py:93
-#: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:288 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Paikan nimi:"
 
@@ -12732,9 +12716,9 @@ msgid "Tag selection"
 msgstr "Tagin valinta"
 
 #. pylint: disable-msg=E1101
-#: ../gramps/gui/editors/edittaglist.py:99
-#: ../gramps/gui/views/bookmarks.py:205 ../gramps/gui/views/tags.py:382
-#: ../gramps/gui/views/tags.py:608 ../gramps/gui/views/tags.py:624
+#: ../gramps/gui/editors/edittaglist.py:99 ../gramps/gui/views/bookmarks.py:205
+#: ../gramps/gui/views/tags.py:382 ../gramps/gui/views/tags.py:608
+#: ../gramps/gui/views/tags.py:624
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
@@ -12760,14 +12744,12 @@ msgid "Tag"
 msgstr "Tagi"
 
 #: ../gramps/gui/editors/edittaglist.py:116
-#: ../gramps/gui/glade/addmedia.glade:57
-#: ../gramps/gui/glade/clipboard.glade:23
+#: ../gramps/gui/glade/addmedia.glade:57 ../gramps/gui/glade/clipboard.glade:23
 #: ../gramps/gui/glade/editaddress.glade:55
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:28
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:77
@@ -12783,8 +12765,7 @@ msgstr "Tagi"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:58
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:58
 #: ../gramps/gui/glade/mergecitation.glade:54
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -12812,15 +12793,13 @@ msgstr "_Ohjeet"
 # _Hyväksy
 #: ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:40
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:484 ../gramps/gui/glade/book.glade:557
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:484
+#: ../gramps/gui/glade/book.glade:557 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:58
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:57
@@ -12836,8 +12815,7 @@ msgstr "_Ohjeet"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:38
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:38
 #: ../gramps/gui/glade/mergecitation.glade:38
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -12851,14 +12829,12 @@ msgstr "_Ohjeet"
 #: ../gramps/gui/glade/mergerepository.glade:38
 #: ../gramps/gui/glade/mergesource.glade:38
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336
-#: ../gramps/gui/glade/rule.glade:767
-#: ../gramps/gui/glade/styleeditor.glade:103
-#: ../gramps/gui/glade/styleeditor.glade:1736
+#: ../gramps/gui/glade/rule.glade:767 ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/styleeditor.glade:1739
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:164 ../gramps/gui/utils.py:184
 #: ../gramps/gui/viewmanager.py:1226 ../gramps/gui/views/tags.py:631
-#: ../gramps/plugins/tool/check.py:695
-#: ../gramps/plugins/tool/patchnames.py:117
+#: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:256
 msgid "_OK"
@@ -13014,8 +12990,7 @@ msgid "Rule Name"
 msgstr "Säännön nimi"
 
 #: ../gramps/gui/editors/filtereditor.py:747
-#: ../gramps/gui/editors/filtereditor.py:751
-#: ../gramps/gui/glade/rule.glade:885
+#: ../gramps/gui/editors/filtereditor.py:751 ../gramps/gui/glade/rule.glade:885
 msgid "No rule selected"
 msgstr "Ei valittua sääntöä"
 
@@ -13023,8 +12998,7 @@ msgstr "Ei valittua sääntöä"
 msgid "Define filter"
 msgstr "Määrittele suodin"
 
-#: ../gramps/gui/editors/filtereditor.py:798
-#: ../gramps/gui/glade/rule.glade:938
+#: ../gramps/gui/editors/filtereditor.py:798 ../gramps/gui/glade/rule.glade:938
 msgid "Values"
 msgstr "Arvot"
 
@@ -13200,8 +13174,7 @@ msgstr "_Etsi"
 
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:56
-#: ../gramps/gui/plug/report/_bookdialog.py:670
-#: ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/plug/report/_bookdialog.py:670 ../gramps/gui/undohistory.py:88
 msgid "_Clear"
 msgstr "_Tyhjennä"
 
@@ -13225,8 +13198,8 @@ msgstr "Näppäin %s ei ole sidottu mihinkään"
 msgid "%s does not contain"
 msgstr "%s ei sisällä"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1145 ../gramps/gui/views/listview.py:1165
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1145
+#: ../gramps/gui/views/listview.py:1165
 msgid "Updating display..."
 msgstr "Päivitetään näyttöä..."
 
@@ -13292,7 +13265,6 @@ msgstr "mikä tahansa"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/plugins/export/exportcsv.py:356
-#: ../gramps/plugins/importer/importcsv.py:176
 msgid "Birth date"
 msgstr "Syntymäaika"
 
@@ -13304,13 +13276,12 @@ msgstr "esimerkki: \"%(msg1)s\" tai \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:358
-#: ../gramps/plugins/importer/importcsv.py:208
 msgid "Death date"
 msgstr "Kuolinaika"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:103
 #: ../gramps/plugins/export/exportcsv.py:287
-#: ../gramps/plugins/importer/importcsv.py:236
+#: ../gramps/plugins/importer/importcsv.py:226
 #: ../gramps/plugins/lib/libplaceview.py:88
 msgid "Code"
 msgstr "Koodi"
@@ -13571,8 +13542,7 @@ msgstr "Älä kysy uudelleen"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:47
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:47
 msgid "Accept changes and close window"
 msgstr "Hyväksy muutokset ja sulje ikkuna"
 
@@ -13659,7 +13629,7 @@ msgstr ""
 #: ../gramps/gui/glade/editeventref.glade:142
 #: ../gramps/gui/glade/editeventref.glade:413
 #: ../gramps/gui/glade/editfamily.glade:528
-#: ../gramps/gui/glade/editldsord.glade:374
+#: ../gramps/gui/glade/editldsord.glade:376
 #: ../gramps/gui/glade/editmedia.glade:325
 #: ../gramps/gui/glade/editmediaref.glade:294
 #: ../gramps/gui/glade/editmediaref.glade:616
@@ -13755,7 +13725,7 @@ msgstr "Avaa lapsen henkilömuokkain"
 #: ../gramps/gui/glade/editchildref.glade:240
 #: ../gramps/gui/glade/editfamily.glade:279
 #: ../gramps/gui/glade/editfamily.glade:587 ../gramps/gui/glade/rule.glade:459
-#: ../gramps/gui/glade/styleeditor.glade:1862
+#: ../gramps/gui/glade/styleeditor.glade:1865
 msgid "Edition"
 msgstr "Koulutus"
 
@@ -13940,7 +13910,7 @@ msgstr "P_aikka:"
 #: ../gramps/gui/glade/editevent.glade:260
 #: ../gramps/gui/glade/editfamily.glade:185
 #: ../gramps/gui/glade/editfamily.glade:463
-#: ../gramps/gui/glade/editldsord.glade:257
+#: ../gramps/gui/glade/editldsord.glade:259
 #: ../gramps/gui/glade/editlink.glade:165
 #: ../gramps/gui/glade/editpersonref.glade:201
 msgid "Selector"
@@ -14094,7 +14064,12 @@ msgstr "_Mormonitemppeli:"
 msgid "_Family:"
 msgstr "_Perhe"
 
-#: ../gramps/gui/glade/editldsord.glade:282
+#: ../gramps/gui/glade/editldsord.glade:250
+#: ../gramps/gui/selectors/selectfamily.py:63
+msgid "Select Family"
+msgstr "Valitse perhe"
+
+#: ../gramps/gui/glade/editldsord.glade:284
 msgid "_Status:"
 msgstr "_Tila:"
 
@@ -14999,8 +14974,7 @@ msgid "Note 2"
 msgstr "Lisätieto 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
-#: ../gramps/gui/glade/mergenote.glade:295
-#: ../gramps/gui/views/listview.py:1011
+#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1011
 msgid "Format:"
 msgstr "Muotoiltu:"
 
@@ -15124,8 +15098,8 @@ msgstr "Suunta:"
 #: ../gramps/gui/glade/styleeditor.glade:724
 #: ../gramps/gui/glade/styleeditor.glade:737
 #: ../gramps/gui/glade/styleeditor.glade:869
-#: ../gramps/gui/glade/styleeditor.glade:1295
-#: ../gramps/gui/glade/styleeditor.glade:1641
+#: ../gramps/gui/glade/styleeditor.glade:1298
+#: ../gramps/gui/glade/styleeditor.glade:1644
 #: ../gramps/gui/plug/report/_papermenu.py:208
 msgid "cm"
 msgstr "cm"
@@ -15255,8 +15229,7 @@ msgstr "Muokkaa valittua sääntöä"
 msgid "Delete the selected rule"
 msgstr "Poista valittu sääntö"
 
-#: ../gramps/gui/glade/rule.glade:524
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:524 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/export/exportcsv.glade:113
 #: ../gramps/plugins/export/exportftree.glade:120
 #: ../gramps/plugins/export/exportgeneweb.glade:121
@@ -15321,7 +15294,7 @@ msgid "point size|pt"
 msgstr "pt"
 
 #: ../gramps/gui/glade/styleeditor.glade:384
-#: ../gramps/gui/glade/styleeditor.glade:1430
+#: ../gramps/gui/glade/styleeditor.glade:1433
 #: ../gramps/gui/plug/_guioptions.py:1470 ../gramps/gui/views/tags.py:398
 msgid "Color"
 msgstr "Väri"
@@ -15376,7 +15349,7 @@ msgid "Belo_w:"
 msgstr "_Alla:"
 
 #: ../gramps/gui/glade/styleeditor.glade:753
-#: ../gramps/gui/glade/styleeditor.glade:1253
+#: ../gramps/gui/glade/styleeditor.glade:1256
 #: ../gramps/plugins/drawreport/calendarreport.py:645
 msgid "Borders"
 msgstr "Reunukset"
@@ -15397,115 +15370,115 @@ msgstr "_Vasen"
 msgid "_Right"
 msgstr "_Oikea"
 
-#: ../gramps/gui/glade/styleeditor.glade:959
+#: ../gramps/gui/glade/styleeditor.glade:960
 msgid "J_ustify"
 msgstr "_Tasaa"
 
-#: ../gramps/gui/glade/styleeditor.glade:976
+#: ../gramps/gui/glade/styleeditor.glade:978
 msgid "Cen_ter"
 msgstr "_Keskitä"
 
-#: ../gramps/gui/glade/styleeditor.glade:1005
+#: ../gramps/gui/glade/styleeditor.glade:1008
 msgid "Le_ft"
 msgstr "Va_sen"
 
-#: ../gramps/gui/glade/styleeditor.glade:1023
+#: ../gramps/gui/glade/styleeditor.glade:1026
 msgid "Righ_t"
 msgstr "Oi_kea"
 
-#: ../gramps/gui/glade/styleeditor.glade:1040
+#: ../gramps/gui/glade/styleeditor.glade:1043
 msgid "_Top"
 msgstr "_Ylä"
 
-#: ../gramps/gui/glade/styleeditor.glade:1057
+#: ../gramps/gui/glade/styleeditor.glade:1060
 msgid "_Bottom"
 msgstr "A_lla"
 
-#: ../gramps/gui/glade/styleeditor.glade:1121
+#: ../gramps/gui/glade/styleeditor.glade:1124
 msgid "Paragraph options"
 msgstr "Kappaleasetukset"
 
-#: ../gramps/gui/glade/styleeditor.glade:1143
+#: ../gramps/gui/glade/styleeditor.glade:1146
 msgid "Width"
 msgstr "Leveys"
 
-#: ../gramps/gui/glade/styleeditor.glade:1158
+#: ../gramps/gui/glade/styleeditor.glade:1161
 msgid "Column widths"
 msgstr "Sarakeleveydet"
 
-#: ../gramps/gui/glade/styleeditor.glade:1202
+#: ../gramps/gui/glade/styleeditor.glade:1205
 msgid "%"
 msgstr "%"
 
-#: ../gramps/gui/glade/styleeditor.glade:1228
+#: ../gramps/gui/glade/styleeditor.glade:1231
 msgid "Table options"
 msgstr "Taulukon valinnat"
 
-#: ../gramps/gui/glade/styleeditor.glade:1284
+#: ../gramps/gui/glade/styleeditor.glade:1287
 msgid "Padding:"
 msgstr "Täyte:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1309
+#: ../gramps/gui/glade/styleeditor.glade:1312
 msgid "Left"
 msgstr "Vasen"
 
-#: ../gramps/gui/glade/styleeditor.glade:1325
+#: ../gramps/gui/glade/styleeditor.glade:1328
 msgid "Right"
 msgstr "Oikea"
 
-#: ../gramps/gui/glade/styleeditor.glade:1384
+#: ../gramps/gui/glade/styleeditor.glade:1387
 msgid "Cell options"
 msgstr "Solun valinnat"
 
-#: ../gramps/gui/glade/styleeditor.glade:1409
+#: ../gramps/gui/glade/styleeditor.glade:1412
 msgid "Line"
 msgstr "Rivi"
 
-#: ../gramps/gui/glade/styleeditor.glade:1449
+#: ../gramps/gui/glade/styleeditor.glade:1452
 msgid "Style:"
 msgstr "Tyyli:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1462
+#: ../gramps/gui/glade/styleeditor.glade:1465
 msgid "Width:"
 msgstr "Leveys:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1475
+#: ../gramps/gui/glade/styleeditor.glade:1478
 msgid "Line:"
 msgstr "Rivi:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1488
+#: ../gramps/gui/glade/styleeditor.glade:1491
 msgid "Fill:"
 msgstr "Täyttö:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1503
+#: ../gramps/gui/glade/styleeditor.glade:1506
 msgid "Shadow"
 msgstr "Varjostus"
 
-#: ../gramps/gui/glade/styleeditor.glade:1579
+#: ../gramps/gui/glade/styleeditor.glade:1582
 msgid "pt"
 msgstr "pt"
 
-#: ../gramps/gui/glade/styleeditor.glade:1602
+#: ../gramps/gui/glade/styleeditor.glade:1605
 msgid "Spacing:"
 msgstr "Riviväli:"
 
-#: ../gramps/gui/glade/styleeditor.glade:1624
+#: ../gramps/gui/glade/styleeditor.glade:1627
 msgid "Draw shadow"
 msgstr "Piirtää varjon"
 
-#: ../gramps/gui/glade/styleeditor.glade:1666
+#: ../gramps/gui/glade/styleeditor.glade:1669
 msgid "Draw options"
 msgstr "Piirron valinnat"
 
-#: ../gramps/gui/glade/styleeditor.glade:1821
+#: ../gramps/gui/glade/styleeditor.glade:1824
 msgid "Add a new style"
 msgstr "Lisää uusi lisätieto"
 
-#: ../gramps/gui/glade/styleeditor.glade:1853
+#: ../gramps/gui/glade/styleeditor.glade:1856
 msgid "Edit the selected style"
 msgstr "Muokkaa valittua lisätietoa"
 
-#: ../gramps/gui/glade/styleeditor.glade:1885
+#: ../gramps/gui/glade/styleeditor.glade:1888
 msgid "Delete the selected style"
 msgstr "Poista valittu lisätieto"
 
@@ -16363,36 +16336,36 @@ msgstr "Laajennuksia ei asennettu."
 msgid "Export Assistant"
 msgstr "Vientiavustaja"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:178
+#: ../gramps/gui/plug/export/_exportassistant.py:177
 msgid "Saving your data"
 msgstr "Tallennetaan tietoja"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:224
+#: ../gramps/gui/plug/export/_exportassistant.py:223
 msgid "Choose the output format"
 msgstr "Valitse vientimuoto"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:238
+#: ../gramps/gui/plug/export/_exportassistant.py:237
 msgid "Export options"
 msgstr "Viennin valinnat"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:308
+#: ../gramps/gui/plug/export/_exportassistant.py:307
 msgid "Select save file"
 msgstr "Valitse tiedosto"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:352
+#: ../gramps/gui/plug/export/_exportassistant.py:351
 #: ../gramps/plugins/tool/mediamanager.py:103
 msgid "Final confirmation"
 msgstr "Vahvista tiedot"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:368
+#: ../gramps/gui/plug/export/_exportassistant.py:367
 msgid "Please wait while your data is selected and exported"
 msgstr "Odota kun tietoja etsitään ja tallennetaan"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:380
+#: ../gramps/gui/plug/export/_exportassistant.py:379
 msgid "Summary"
 msgstr "Yhteenveto"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:447
+#: ../gramps/gui/plug/export/_exportassistant.py:446
 #, python-format
 msgid ""
 "The data will be exported as follows:\n"
@@ -16408,7 +16381,7 @@ msgstr ""
 "Paina Toteuta jatkaaksesi, Takaisin muuttaaksesi valintojasi tai Peru "
 "keskeyttääksesi"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:460
+#: ../gramps/gui/plug/export/_exportassistant.py:459
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -16428,7 +16401,7 @@ msgstr ""
 "Paina Toteuta jatkaaksesi, Takaisin muuttaaksesi valintojasi tai Peru "
 "keskeyttääksesi"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:470
+#: ../gramps/gui/plug/export/_exportassistant.py:469
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -16438,11 +16411,11 @@ msgstr ""
 "\n"
 "Palaa Takaisin ja valitse oikean tiedostonimi."
 
-#: ../gramps/gui/plug/export/_exportassistant.py:496
+#: ../gramps/gui/plug/export/_exportassistant.py:495
 msgid "Your data has been saved"
 msgstr "Tiedot tallennettu"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:498
+#: ../gramps/gui/plug/export/_exportassistant.py:497
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -16458,16 +16431,16 @@ msgstr ""
 "muuta juuri tekemääsi kopiota. "
 
 #. add test, what is dir
-#: ../gramps/gui/plug/export/_exportassistant.py:506
+#: ../gramps/gui/plug/export/_exportassistant.py:505
 #, python-format
 msgid "Filename: %s"
 msgstr "Tiedostonimi: %s"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:508
+#: ../gramps/gui/plug/export/_exportassistant.py:507
 msgid "Saving failed"
 msgstr "Tallennus epäonnistui"
 
-#: ../gramps/gui/plug/export/_exportassistant.py:510
+#: ../gramps/gui/plug/export/_exportassistant.py:509
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -16480,7 +16453,7 @@ msgstr ""
 "Huom: tietokanta, joka sinulla on nyt auki, on kunnossa. Vain sen kopion "
 "tallennus epäonnistui."
 
-#: ../gramps/gui/plug/export/_exportassistant.py:531
+#: ../gramps/gui/plug/export/_exportassistant.py:530
 msgid ""
 "Under normal circumstances, Gramps does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -16504,7 +16477,7 @@ msgstr ""
 "Jos muutat mielesi, voit turvallisesti keskeyttää prosessin milloin tahansa "
 "sen aikana. Nykyinen tietokantasi säilyy muuttumattomana."
 
-#: ../gramps/gui/plug/export/_exportassistant.py:601
+#: ../gramps/gui/plug/export/_exportassistant.py:600
 msgid "Error exporting your Family Tree"
 msgstr "Virhe sukupuusi viennissä"
 
@@ -17117,10 +17090,6 @@ msgstr "Valitse tapahtuma"
 #: ../gramps/gui/selectors/selectfamily.py:46
 msgid "manual|Select_Family_selector"
 msgstr "Valitse_perhe_valitsin"
-
-#: ../gramps/gui/selectors/selectfamily.py:63
-msgid "Select Family"
-msgstr "Valitse perhe"
 
 # WIKI_HELP_SEC osa1
 # Valitse_lisätieto
@@ -17745,8 +17714,7 @@ msgstr ""
 "Tämä tietue on käytössä. Sen hävittäminen poistaa tietueen tietokannasta ja "
 "kaikkialta, mistä siihen on viitattu."
 
-#: ../gramps/gui/views/listview.py:561
-#: ../gramps/plugins/view/familyview.py:268
+#: ../gramps/gui/views/listview.py:561 ../gramps/plugins/view/familyview.py:268
 msgid "Deleting item will remove it from the database."
 msgstr "Tietueen hävittäminen poistaa sen tietokannasta."
 
@@ -18014,13 +17982,11 @@ msgstr "Supista tätä osaa"
 msgid "People Menu"
 msgstr "Henkilöt-valikko"
 
-#: ../gramps/gui/widgets/fanchart.py:1617
-#: ../gramps/plugins/view/relview.py:798
+#: ../gramps/gui/widgets/fanchart.py:1617 ../gramps/plugins/view/relview.py:798
 msgid "Edit family"
 msgstr "Muokkaa perhettä"
 
-#: ../gramps/gui/widgets/fanchart.py:1636
-#: ../gramps/plugins/view/relview.py:799
+#: ../gramps/gui/widgets/fanchart.py:1636 ../gramps/plugins/view/relview.py:799
 msgid "Reorder families"
 msgstr "Uudelleen järjestä perheet"
 
@@ -19592,7 +19558,6 @@ msgstr "Syntymäpaikka"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:343
 #: ../gramps/plugins/export/exportcsv.py:358
-#: ../gramps/plugins/importer/importcsv.py:203
 msgid "Death place"
 msgstr "Kuolinpaikka"
 
@@ -20087,7 +20052,6 @@ msgstr "Leveysaste"
 
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/placedetails.py:122
-#: ../gramps/plugins/importer/importcsv.py:235
 #: ../gramps/plugins/lib/libplaceview.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:380
 #: ../gramps/plugins/webreport/narrativeweb.py:3449
@@ -20095,7 +20059,6 @@ msgid "Longitude"
 msgstr "Pituusaste"
 
 #: ../gramps/plugins/export/exportcsv.py:287
-#: ../gramps/plugins/importer/importcsv.py:238
 msgid "Enclosed_by"
 msgstr "Ympärillä"
 
@@ -20105,54 +20068,46 @@ msgid "CSV export doesn't support non-primary surnames, {count} dropped"
 msgstr "CSV vienti ei tue muita kuin ensisijaisia sukunimiä, {count} ohitettu"
 
 #: ../gramps/plugins/export/exportcsv.py:356
-#: ../gramps/plugins/importer/importcsv.py:178
 msgid "Birth source"
 msgstr "Syntymän lähde"
 
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/importer/importcsv.py:188
 msgid "Baptism date"
 msgstr "Kastepäivä"
 
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/importer/importcsv.py:182
 msgid "Baptism place"
 msgstr "Kastepaikka"
 
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/importer/importcsv.py:191
 msgid "Baptism source"
 msgstr "Kasteen lähde"
 
 #: ../gramps/plugins/export/exportcsv.py:358
-#: ../gramps/plugins/importer/importcsv.py:210
 msgid "Death source"
 msgstr "Kuoleman lähde"
 
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/importer/importcsv.py:198
 msgid "Burial date"
 msgstr "Kuolinpäivä"
 
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/importer/importcsv.py:193
 msgid "Burial place"
 msgstr "Kuolinpaikka"
 
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/importer/importcsv.py:201
 msgid "Burial source"
 msgstr "Kuolintiedon lähde"
 
 #: ../gramps/plugins/export/exportcsv.py:472
-#: ../gramps/plugins/importer/importcsv.py:225
+#: ../gramps/plugins/importer/importcsv.py:216
 #: ../gramps/plugins/textreport/familygroup.py:607
 #: ../gramps/plugins/webreport/narrativeweb.py:2492
 msgid "Husband"
 msgstr "Aviomies"
 
 #: ../gramps/plugins/export/exportcsv.py:472
-#: ../gramps/plugins/importer/importcsv.py:222
+#: ../gramps/plugins/importer/importcsv.py:213
 #: ../gramps/plugins/textreport/familygroup.py:616
 #: ../gramps/plugins/webreport/narrativeweb.py:2490
 msgid "Wife"
@@ -21039,8 +20994,7 @@ msgstr "Gramplet näyttää henkilön lisätiedot"
 #: ../gramps/plugins/quickview/filterbyname.py:111
 #: ../gramps/plugins/textreport/indivcomplete.py:228
 #: ../gramps/plugins/textreport/tagreport.py:460
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:95
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:95
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/webreport/narrativeweb.py:381
 #: ../gramps/plugins/webreport/narrativeweb.py:984
@@ -21462,7 +21416,7 @@ msgstr "%d sukupolvi"
 msgid "Uncollected Objects: %s"
 msgstr "Keräämättömiä kohteita: %s"
 
-#: ../gramps/plugins/gramplet/locations.py:80
+#: ../gramps/plugins/gramplet/locations.py:81
 msgid "Double-click on a row to edit the selected place."
 msgstr "Kaksoisnapsauta riviä muokataksesi valittua paikkaa."
 
@@ -22620,124 +22574,105 @@ msgstr "Tulokset"
 msgid "done"
 msgstr "valmis"
 
-#: ../gramps/plugins/importer/importcsv.py:159
-msgid "Given name"
-msgstr "Etunimi"
-
-#: ../gramps/plugins/importer/importcsv.py:161
+#: ../gramps/plugins/importer/importcsv.py:160
 msgid "given name"
 msgstr "etunimi"
+
+#: ../gramps/plugins/importer/importcsv.py:161
+msgid "Given name"
+msgstr "Etunimi"
 
 #: ../gramps/plugins/importer/importcsv.py:162
 msgid "Call name"
 msgstr "Kutsumanimi"
 
-#: ../gramps/plugins/importer/importcsv.py:164
+#: ../gramps/plugins/importer/importcsv.py:163
 msgid "call"
 msgstr "kutsumanimi"
 
-#: ../gramps/plugins/importer/importcsv.py:165
-msgid "Person or Place|Title"
-msgstr "Titteli"
-
-#: ../gramps/plugins/importer/importcsv.py:165
+#: ../gramps/plugins/importer/importcsv.py:164
 msgid "Person or Place|title"
 msgstr "Titteli"
 
-#: ../gramps/plugins/importer/importcsv.py:168
+# uusi
+#: ../gramps/plugins/importer/importcsv.py:164
+msgid "title"
+msgstr "titteli"
+
+#: ../gramps/plugins/importer/importcsv.py:167
 msgid "gender"
 msgstr "sukupuoli"
 
-#: ../gramps/plugins/importer/importcsv.py:169
+#: ../gramps/plugins/importer/importcsv.py:168
 msgid "source"
 msgstr "lähde"
 
-#: ../gramps/plugins/importer/importcsv.py:170
+#: ../gramps/plugins/importer/importcsv.py:169
 msgid "note"
 msgstr "lisätiedot"
 
-#: ../gramps/plugins/importer/importcsv.py:172
+#: ../gramps/plugins/importer/importcsv.py:171
 msgid "birth place"
 msgstr "syntymäpaikka"
 
 #: ../gramps/plugins/importer/importcsv.py:173
-msgid "Birth place id"
-msgstr "Syntymäpaikka id"
-
-#: ../gramps/plugins/importer/importcsv.py:174
 msgid "birth place id"
 msgstr "syntymäpaikka id"
 
-#: ../gramps/plugins/importer/importcsv.py:180
+#: ../gramps/plugins/importer/importcsv.py:178
 msgid "birth source"
 msgstr "syntymän lähde"
 
-#: ../gramps/plugins/importer/importcsv.py:183
+#: ../gramps/plugins/importer/importcsv.py:180
 msgid "baptism place"
 msgstr "kastepaikka"
 
-#: ../gramps/plugins/importer/importcsv.py:185
-msgid "Baptism place id"
-msgstr "Kastepaikka id"
-
-#: ../gramps/plugins/importer/importcsv.py:186
+#: ../gramps/plugins/importer/importcsv.py:182
 msgid "baptism place id"
 msgstr "kastepaikka id"
 
-#: ../gramps/plugins/importer/importcsv.py:189
+#: ../gramps/plugins/importer/importcsv.py:184
 msgid "baptism date"
 msgstr "kastepäivä"
 
-#: ../gramps/plugins/importer/importcsv.py:192
+#: ../gramps/plugins/importer/importcsv.py:186
 msgid "baptism source"
 msgstr "kastelähde"
 
-#: ../gramps/plugins/importer/importcsv.py:194
+#: ../gramps/plugins/importer/importcsv.py:187
 msgid "burial place"
 msgstr "hautauspaikka"
 
-#: ../gramps/plugins/importer/importcsv.py:195
-msgid "Burial place id"
-msgstr "Hautauspaikka id"
-
-#: ../gramps/plugins/importer/importcsv.py:196
+#: ../gramps/plugins/importer/importcsv.py:189
 msgid "burial place id"
 msgstr "hautauspaikka id"
 
-#: ../gramps/plugins/importer/importcsv.py:199
+#: ../gramps/plugins/importer/importcsv.py:191
 msgid "burial date"
 msgstr "hautauspäivä"
 
-#: ../gramps/plugins/importer/importcsv.py:202
+#: ../gramps/plugins/importer/importcsv.py:193
 msgid "burial source"
 msgstr "hautauslähde"
 
-#: ../gramps/plugins/importer/importcsv.py:204
+#: ../gramps/plugins/importer/importcsv.py:195
 msgid "death place"
 msgstr "kuolinpaikka"
 
-#: ../gramps/plugins/importer/importcsv.py:205
-msgid "Death place id"
-msgstr "Kuolinpaikka id"
-
-#: ../gramps/plugins/importer/importcsv.py:206
+#: ../gramps/plugins/importer/importcsv.py:197
 msgid "death place id"
 msgstr "kuolinpaikka id"
 
-#: ../gramps/plugins/importer/importcsv.py:212
+#: ../gramps/plugins/importer/importcsv.py:202
 msgid "death source"
 msgstr "kuoleman lähde"
 
-#: ../gramps/plugins/importer/importcsv.py:213
-msgid "Death cause"
-msgstr "Kuolinsyy"
-
-#: ../gramps/plugins/importer/importcsv.py:214
+#: ../gramps/plugins/importer/importcsv.py:204
 msgid "death cause"
 msgstr "kuolinsyy"
 
 #. #########################
-#: ../gramps/plugins/importer/importcsv.py:215
+#: ../gramps/plugins/importer/importcsv.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:128
 #: ../gramps/plugins/quickview/filterbyname.py:139
 #: ../gramps/plugins/quickview/filterbyname.py:149
@@ -22762,105 +22697,96 @@ msgstr "kuolinsyy"
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
-#: ../gramps/plugins/importer/importcsv.py:216
-msgid "Gramps id"
-msgstr "Gramps id"
-
-#: ../gramps/plugins/importer/importcsv.py:217
+#: ../gramps/plugins/importer/importcsv.py:207
 msgid "person"
 msgstr "henkilö"
 
-#: ../gramps/plugins/importer/importcsv.py:219
+#. ----------------------------------
+#: ../gramps/plugins/importer/importcsv.py:209
 msgid "child"
 msgstr "lapsi"
 
-#: ../gramps/plugins/importer/importcsv.py:223
-msgid "Parent2"
-msgstr "Vanhempi2"
-
-#: ../gramps/plugins/importer/importcsv.py:223
+#. ----------------------------------
+#: ../gramps/plugins/importer/importcsv.py:212
 msgid "mother"
 msgstr "äiti"
 
-#: ../gramps/plugins/importer/importcsv.py:224
+#: ../gramps/plugins/importer/importcsv.py:214
 msgid "parent2"
 msgstr "vanhempi2"
 
-#: ../gramps/plugins/importer/importcsv.py:226
-msgid "Parent1"
-msgstr "Vanhempi1"
-
-#: ../gramps/plugins/importer/importcsv.py:226
+#: ../gramps/plugins/importer/importcsv.py:215
 msgid "father"
 msgstr "isä"
 
-#: ../gramps/plugins/importer/importcsv.py:227
+#: ../gramps/plugins/importer/importcsv.py:217
 msgid "parent1"
 msgstr "vanhempi1"
 
-#: ../gramps/plugins/importer/importcsv.py:228
+#: ../gramps/plugins/importer/importcsv.py:218
 msgid "marriage"
 msgstr "avioliitto"
 
-#: ../gramps/plugins/importer/importcsv.py:229
+#: ../gramps/plugins/importer/importcsv.py:219
 msgid "date"
 msgstr "päivämäärä"
 
-#: ../gramps/plugins/importer/importcsv.py:230
+#: ../gramps/plugins/importer/importcsv.py:220
 msgid "place"
 msgstr "paikka"
 
-#: ../gramps/plugins/importer/importcsv.py:232
+# uusi
+#: ../gramps/plugins/importer/importcsv.py:221
+msgid "place id"
+msgstr "paikan id"
+
+#: ../gramps/plugins/importer/importcsv.py:222
 msgid "name"
 msgstr "nimi"
 
-#: ../gramps/plugins/importer/importcsv.py:233
+#: ../gramps/plugins/importer/importcsv.py:223
 msgid "type"
 msgstr "tyyppi"
 
-#: ../gramps/plugins/importer/importcsv.py:234
+#: ../gramps/plugins/importer/importcsv.py:224
 msgid "latitude"
 msgstr "leveysaste"
 
-#: ../gramps/plugins/importer/importcsv.py:235
+#: ../gramps/plugins/importer/importcsv.py:225
 msgid "longitude"
 msgstr "pituusaste"
 
-#: ../gramps/plugins/importer/importcsv.py:236
+#: ../gramps/plugins/importer/importcsv.py:226
 msgid "code"
 msgstr "koodi"
 
-#: ../gramps/plugins/importer/importcsv.py:237
-msgid "Enclosed by"
-msgstr "Ympärillä"
-
-#: ../gramps/plugins/importer/importcsv.py:237
+#: ../gramps/plugins/importer/importcsv.py:227
 msgid "enclosed by"
 msgstr "ympärillä"
 
-#: ../gramps/plugins/importer/importcsv.py:238
+#: ../gramps/plugins/importer/importcsv.py:228
 msgid "enclosed_by"
 msgstr "ympärillä"
 
-#: ../gramps/plugins/importer/importcsv.py:266
+#: ../gramps/plugins/importer/importcsv.py:255
 #, python-format
 msgid "format error: line %(line)d: %(zero)s"
 msgstr "muotoiluvirhe:: rivi %(line)d: %(zero)s"
 
-#: ../gramps/plugins/importer/importcsv.py:341
+#: ../gramps/plugins/importer/importcsv.py:336
 msgid "CSV Import"
 msgstr "CSV tuonti"
 
-#: ../gramps/plugins/importer/importcsv.py:343
+#: ../gramps/plugins/importer/importcsv.py:338
 msgid "Reading data..."
 msgstr "Luetaan tietoja..."
 
-#: ../gramps/plugins/importer/importcsv.py:350
+#: ../gramps/plugins/importer/importcsv.py:345
 msgid "CSV import"
 msgstr "CSV tuonti"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/importer/importcsv.py:358
+#: ../gramps/plugins/importer/importcsv.py:353
 #: ../gramps/plugins/importer/importgeneweb.py:274
 #: ../gramps/plugins/importer/importvcard.py:233
 #, python-brace-format
@@ -22967,7 +22893,7 @@ msgid "Change Name"
 msgstr "Vaihda nimi"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
-#: ../gramps/plugins/lib/libgedcom.py:586
+#: ../gramps/plugins/lib/libgedcom.py:587
 msgid "Circumcision"
 msgstr "Ympärileikkaus"
 
@@ -22980,7 +22906,7 @@ msgid "Dotation"
 msgstr "Lahjoitus"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
-#: ../gramps/plugins/lib/libgedcom.py:592
+#: ../gramps/plugins/lib/libgedcom.py:593
 msgid "Excommunication"
 msgstr "Kirkosta erottaminen"
 
@@ -22989,7 +22915,7 @@ msgid "LDS Family Link"
 msgstr "LDS Family Link"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
-#: ../gramps/plugins/lib/libgedcom.py:594
+#: ../gramps/plugins/lib/libgedcom.py:595
 msgid "Funeral"
 msgstr "Hautajaiset"
 
@@ -23200,14 +23126,14 @@ msgstr "vCard tuonti"
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Gramps ei tue VCards version %s tuontia."
 
-#: ../gramps/plugins/importer/importvcard.py:484
+#: ../gramps/plugins/importer/importvcard.py:485
 #, python-brace-format
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
 "BDAY {vcard_snippet} : Kelpaamaton päiväys {date}, säilytetään päiväys "
 "tekstinä ."
 
-#: ../gramps/plugins/importer/importvcard.py:492
+#: ../gramps/plugins/importer/importvcard.py:493
 #, python-brace-format
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
@@ -23778,128 +23704,128 @@ msgstr ""
 " Kirjoitetaan tiedostoa %(filename)s muodossa %(impliedext)s."
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:587
+#: ../gramps/plugins/lib/libgedcom.py:588
 msgid "Common Law Marriage"
 msgstr "Avoliitto"
 
-#: ../gramps/plugins/lib/libgedcom.py:588
+#: ../gramps/plugins/lib/libgedcom.py:589
 #: ../gramps/plugins/webreport/narrativeweb.py:8128
 #: ../gramps/plugins/webreport/webcal.py:1328
 msgid "Destination"
 msgstr "Kohde"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:589
+#: ../gramps/plugins/lib/libgedcom.py:590
 msgid "DNA"
 msgstr "DNA"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:590
+#: ../gramps/plugins/lib/libgedcom.py:591
 msgid "Cause of Death"
 msgstr "Kuolinsyy"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:591
+#: ../gramps/plugins/lib/libgedcom.py:592
 msgid "Employment"
 msgstr "Työpaikka"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:593
+#: ../gramps/plugins/lib/libgedcom.py:594
 msgid "Eye Color"
 msgstr "Silmien väri"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:595
+#: ../gramps/plugins/lib/libgedcom.py:596
 msgid "Height"
 msgstr "Korkeus"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:596
+#: ../gramps/plugins/lib/libgedcom.py:597
 msgid "Initiatory (LDS)"
 msgstr "initiaattori (LDS)"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:597
+#: ../gramps/plugins/lib/libgedcom.py:598
 msgid "Military ID"
 msgstr "Sotilastunnus"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:598
+#: ../gramps/plugins/lib/libgedcom.py:599
 msgid "Mission (LDS)"
 msgstr "Lähetystyö (LDS)"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:599
+#: ../gramps/plugins/lib/libgedcom.py:600
 msgid "Namesake"
 msgstr "Kaima"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:600
+#: ../gramps/plugins/lib/libgedcom.py:601
 msgid "Ordinance"
 msgstr "Sakramentti"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:602
+#: ../gramps/plugins/lib/libgedcom.py:603
 msgid "Separation"
 msgstr "Ero"
 
 # 20160822uusi/muutettu
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:603
+#: ../gramps/plugins/lib/libgedcom.py:604
 msgid "Weight"
 msgstr "Kirjasinvahvuus"
 
-#: ../gramps/plugins/lib/libgedcom.py:807
+#: ../gramps/plugins/lib/libgedcom.py:809
 msgid "Line ignored "
 msgstr "Rivi ohitetaan "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1606
+#: ../gramps/plugins/lib/libgedcom.py:1608
 #, python-format
 msgid "Illegal character%s"
 msgstr "Virheellinen merkki%s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1881
+#: ../gramps/plugins/lib/libgedcom.py:1883
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "GEDCOM tiedostosi on rikki. Se vaikuttaa loppuvan kesken."
 
-#: ../gramps/plugins/lib/libgedcom.py:1964
+#: ../gramps/plugins/lib/libgedcom.py:1966
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Tuo GEDCOM-tiedosto (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2796
-#: ../gramps/plugins/lib/libgedcom.py:3240
+#: ../gramps/plugins/lib/libgedcom.py:2798
+#: ../gramps/plugins/lib/libgedcom.py:3241
 msgid "GEDCOM import"
 msgstr "GEDCOM tuonti"
 
-#: ../gramps/plugins/lib/libgedcom.py:2824
+#: ../gramps/plugins/lib/libgedcom.py:2826
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM tuonnin raportti: Ei virheitä"
 
-#: ../gramps/plugins/lib/libgedcom.py:2826
+#: ../gramps/plugins/lib/libgedcom.py:2828
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM tuonnin raportti: %s virhettä löytynyt"
 
-#: ../gramps/plugins/lib/libgedcom.py:3140
-#: ../gramps/plugins/lib/libgedcom.py:3172
+#: ../gramps/plugins/lib/libgedcom.py:3141
+#: ../gramps/plugins/lib/libgedcom.py:3173
 msgid "Line ignored as not understood"
 msgstr "Rivistä ei saatu selvää, joten se jätettiin huomiotta."
 
-#: ../gramps/plugins/lib/libgedcom.py:3161
+#: ../gramps/plugins/lib/libgedcom.py:3162
 msgid "Tag recognized but not supported"
 msgstr "Tagi tunnistettu mutta ei tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:3197
+#: ../gramps/plugins/lib/libgedcom.py:3198
 msgid "Skipped subordinate line"
 msgstr "Ohitettiin alistettu rivi"
 
-#: ../gramps/plugins/lib/libgedcom.py:3231
+#: ../gramps/plugins/lib/libgedcom.py:3232
 msgid "Records not imported into "
 msgstr "Tietueita ei tuotu paikkaan"
 
-#: ../gramps/plugins/lib/libgedcom.py:3267
+#: ../gramps/plugins/lib/libgedcom.py:3268
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -23908,7 +23834,7 @@ msgstr ""
 "Virhe: %(msg)s  '%(gramps_id)s' (tuotuna @%(xref)s@) ei ole GEDCOM "
 "syöttötiedostossa. Tietue syntetisoitu"
 
-#: ../gramps/plugins/lib/libgedcom.py:3276
+#: ../gramps/plugins/lib/libgedcom.py:3277
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -23917,7 +23843,7 @@ msgstr ""
 "Virhe: %(msg)s '%(gramps_id)s' (syötteenä @%(xref)s@) ei GEDCOM aineistossa. "
 "Luotu tietue tyyppiominaisuudeltaan 'Tuntematon' "
 
-#: ../gramps/plugins/lib/libgedcom.py:3315
+#: ../gramps/plugins/lib/libgedcom.py:3316
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -23928,7 +23854,7 @@ msgstr ""
 "%(person)s (tuonnissa %(orig_person)s) ei ole viitatun perheen jäsen. "
 "Henkilöltä poistettu viittaus perheeseen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3393
+#: ../gramps/plugins/lib/libgedcom.py:3394
 #, python-format
 msgid ""
 "\n"
@@ -23948,48 +23874,48 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3465
+#: ../gramps/plugins/lib/libgedcom.py:3466
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR elementti jätetty huomiotta '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3485
+#: ../gramps/plugins/lib/libgedcom.py:3486
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer-osio)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3514
+#: ../gramps/plugins/lib/libgedcom.py:3515
 msgid "(Submitter):"
 msgstr "(Luovuttaja):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3538
-#: ../gramps/plugins/lib/libgedcom.py:7320
+#: ../gramps/plugins/lib/libgedcom.py:3539
+#: ../gramps/plugins/lib/libgedcom.py:7315
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
-#: ../gramps/plugins/lib/libgedcom.py:3584
+#: ../gramps/plugins/lib/libgedcom.py:3585
 msgid "Unknown tag"
 msgstr "Tuntematon tagi"
 
-#: ../gramps/plugins/lib/libgedcom.py:3586
-#: ../gramps/plugins/lib/libgedcom.py:3600
-#: ../gramps/plugins/lib/libgedcom.py:3604
-#: ../gramps/plugins/lib/libgedcom.py:3625
+#: ../gramps/plugins/lib/libgedcom.py:3587
+#: ../gramps/plugins/lib/libgedcom.py:3601
+#: ../gramps/plugins/lib/libgedcom.py:3605
+#: ../gramps/plugins/lib/libgedcom.py:3626
 msgid "Top Level"
 msgstr "Ylin taso"
 
-#: ../gramps/plugins/lib/libgedcom.py:3700
+#: ../gramps/plugins/lib/libgedcom.py:3701
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (henkilö) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3819
+#: ../gramps/plugins/lib/libgedcom.py:3820
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Tyhjä Alias <HENKILÖKOHTAINEN NIMI> ohitettu"
 
 # 20160901uusi
 #: ../gramps/plugins/lib/libgedcom.py:4161
-#: ../gramps/plugins/lib/libgedcom.py:5915
-#: ../gramps/plugins/lib/libgedcom.py:7063
+#: ../gramps/plugins/lib/libgedcom.py:5912
+#: ../gramps/plugins/lib/libgedcom.py:7058
 msgid "FAX"
 msgstr "FAX"
 
@@ -23998,160 +23924,160 @@ msgstr "FAX"
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (perhe) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5338
-#: ../gramps/plugins/lib/libgedcom.py:6748
+#: ../gramps/plugins/lib/libgedcom.py:5337
+#: ../gramps/plugins/lib/libgedcom.py:6743
 msgid "Filename omitted"
 msgstr "Tiedostonimi ohitettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:5361
-#: ../gramps/plugins/lib/libgedcom.py:6788
+#: ../gramps/plugins/lib/libgedcom.py:5360
+#: ../gramps/plugins/lib/libgedcom.py:6783
 #, python-format
 msgid "Could not import %s"
 msgstr "Ei voitu tuoda %s"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:5418
-#: ../gramps/plugins/lib/libgedcom.py:6889
+#: ../gramps/plugins/lib/libgedcom.py:5417
+#: ../gramps/plugins/lib/libgedcom.py:6884
 msgid "Media-Type"
 msgstr "Media-Tyyppi"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:5442
-#: ../gramps/plugins/lib/libgedcom.py:6779
+#: ../gramps/plugins/lib/libgedcom.py:5441
+#: ../gramps/plugins/lib/libgedcom.py:6774
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Kerrannais FILE yksittäis OBJE jätetty huomiotta"
 
-#: ../gramps/plugins/lib/libgedcom.py:5475
-#: ../gramps/plugins/lib/libgedcom.py:7623
-#: ../gramps/plugins/lib/libgedcom.py:7663
+#: ../gramps/plugins/lib/libgedcom.py:5474
+#: ../gramps/plugins/lib/libgedcom.py:7618
+#: ../gramps/plugins/lib/libgedcom.py:7658
 msgid "Empty note ignored"
 msgstr "Tyhjä lisätieto jätettiin huomiotta"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5631
+#: ../gramps/plugins/lib/libgedcom.py:5629
 msgid "A second PLAC ignored"
 msgstr "Muu kuin 1. PLAC ohitetaan"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5770
+#: ../gramps/plugins/lib/libgedcom.py:5767
 msgid "Detail"
 msgstr "Tarkennus"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5783
+#: ../gramps/plugins/lib/libgedcom.py:5780
 msgid "Location already populated; ADDR ignored"
 msgstr "Sijainti-tieto on hyödynnetty; ADDR ohitetaan"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5856
+#: ../gramps/plugins/lib/libgedcom.py:5853
 msgid "Empty event note ignored"
 msgstr "Tyhjä tapahtuman lisätieto ohitettu"
 
 # 20160901uusi
-#: ../gramps/plugins/lib/libgedcom.py:5927
+#: ../gramps/plugins/lib/libgedcom.py:5924
 msgid "EMAIL"
 msgstr "EMAIL"
 
 # 20160901uusi
-#: ../gramps/plugins/lib/libgedcom.py:5939
+#: ../gramps/plugins/lib/libgedcom.py:5936
 msgid "WWW"
 msgstr "WWW"
 
-#: ../gramps/plugins/lib/libgedcom.py:6198
-#: ../gramps/plugins/lib/libgedcom.py:7100
+#: ../gramps/plugins/lib/libgedcom.py:6195
+#: ../gramps/plugins/lib/libgedcom.py:7095
 msgid "Warn: ADDR overwritten"
 msgstr "Varoitus: ADDR kirjoitettu yli"
 
 # 20160822uusi/muutettu
-#: ../gramps/plugins/lib/libgedcom.py:6363
+#: ../gramps/plugins/lib/libgedcom.py:6360
 msgid "Citation Justification"
 msgstr "Lainauksen perustelu"
 
-#: ../gramps/plugins/lib/libgedcom.py:6391
+#: ../gramps/plugins/lib/libgedcom.py:6387
 msgid "REFN ignored"
 msgstr "REFN ohitettu"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6490
+#: ../gramps/plugins/lib/libgedcom.py:6486
 #, python-format
 msgid "No title - ID %s"
 msgstr "Lähteen nimike puuttuu - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6495
+#: ../gramps/plugins/lib/libgedcom.py:6491
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (lähde) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6755
+#: ../gramps/plugins/lib/libgedcom.py:6750
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multi-media object) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6989
+#: ../gramps/plugins/lib/libgedcom.py:6984
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (arkisto) Gramps ID %s"
 
 # 20160901uusi
-#: ../gramps/plugins/lib/libgedcom.py:7050
-#: ../gramps/plugins/lib/libgedcom.py:8023
+#: ../gramps/plugins/lib/libgedcom.py:7045
+#: ../gramps/plugins/lib/libgedcom.py:8018
 msgid "Only one phone number supported"
 msgstr "Tukee vain yhtä puhelinnumeroa"
 
-#: ../gramps/plugins/lib/libgedcom.py:7235
+#: ../gramps/plugins/lib/libgedcom.py:7230
 msgid "HEAD (header)"
 msgstr "HEAD (ylätunniste)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7257
+#: ../gramps/plugins/lib/libgedcom.py:7252
 msgid "Approved system identification"
 msgstr "Hyväksytty järjestelmän tunnistus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7269
+#: ../gramps/plugins/lib/libgedcom.py:7264
 msgid "Generated By"
 msgstr "Tuotettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7285
+#: ../gramps/plugins/lib/libgedcom.py:7280
 msgid "Name of software product"
 msgstr "Sovellustuotteen nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7299
+#: ../gramps/plugins/lib/libgedcom.py:7294
 msgid "Version number of software product"
 msgstr "Sovellustuotteen versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7317
+#: ../gramps/plugins/lib/libgedcom.py:7312
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Sovellustuotteen valmistaja: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7339
+#: ../gramps/plugins/lib/libgedcom.py:7334
 msgid "Name of source data"
 msgstr "Lähdeaineiston nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7356
+#: ../gramps/plugins/lib/libgedcom.py:7351
 msgid "Copyright of source data"
 msgstr "Lähdeaineiston copyright"
 
-#: ../gramps/plugins/lib/libgedcom.py:7373
+#: ../gramps/plugins/lib/libgedcom.py:7368
 msgid "Publication date of source data"
 msgstr "Lähdeaineiston julkaisupäivä"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7387
+#: ../gramps/plugins/lib/libgedcom.py:7382
 #, python-format
 msgid "Import from %s"
 msgstr "Tuonti paikasta %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7426
+#: ../gramps/plugins/lib/libgedcom.py:7421
 msgid "Submission record identifier"
 msgstr "Luovutuksen tietuetunniste"
 
-#: ../gramps/plugins/lib/libgedcom.py:7439
+#: ../gramps/plugins/lib/libgedcom.py:7434
 msgid "Language of GEDCOM text"
 msgstr "GEDCOM tekstin kieli"
 
-#: ../gramps/plugins/lib/libgedcom.py:7465
+#: ../gramps/plugins/lib/libgedcom.py:7460
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -24160,83 +24086,83 @@ msgstr ""
 "GEDCOM tiedoston %(filename)s, jossa DEST=%(by)s, tuonti saattaisi aiheuttaa "
 "virheitä syntyvään tietokantaan!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7468
+#: ../gramps/plugins/lib/libgedcom.py:7463
 msgid "Look for nameless events."
 msgstr "Etsitään nimettömiä tapahtumia."
 
-#: ../gramps/plugins/lib/libgedcom.py:7492
+#: ../gramps/plugins/lib/libgedcom.py:7487
 msgid "Character set"
 msgstr "Merkistön koodaus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7497
+#: ../gramps/plugins/lib/libgedcom.py:7492
 msgid "Character set and version"
 msgstr "Merkistön koodaus ja versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7514
+#: ../gramps/plugins/lib/libgedcom.py:7509
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM versio ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7518
+#: ../gramps/plugins/lib/libgedcom.py:7513
 msgid "GEDCOM version"
 msgstr "GEDCOM versio"
 
 #. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7526
+#: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM FORM pitäisi olla isoilla kirjaimilla"
 
-#: ../gramps/plugins/lib/libgedcom.py:7528
+#: ../gramps/plugins/lib/libgedcom.py:7523
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM FORM ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7531
+#: ../gramps/plugins/lib/libgedcom.py:7526
 msgid "GEDCOM form"
 msgstr "GEDCOM muoto"
 
-#: ../gramps/plugins/lib/libgedcom.py:7580
+#: ../gramps/plugins/lib/libgedcom.py:7575
 msgid "Creation date of GEDCOM"
 msgstr "GEDCOM luontipäivä"
 
-#: ../gramps/plugins/lib/libgedcom.py:7585
+#: ../gramps/plugins/lib/libgedcom.py:7580
 msgid "Creation date and time of GEDCOM"
 msgstr "GEDCOMin luontipäivä ja kellonaika"
 
-#: ../gramps/plugins/lib/libgedcom.py:7678
+#: ../gramps/plugins/lib/libgedcom.py:7673
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "LISÄTIEDOT Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7728
+#: ../gramps/plugins/lib/libgedcom.py:7723
 msgid "Submission: Submitter"
 msgstr "Luovuttaja"
 
-#: ../gramps/plugins/lib/libgedcom.py:7730
+#: ../gramps/plugins/lib/libgedcom.py:7725
 msgid "Submission: Family file"
 msgstr "Sukupuu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7732
+#: ../gramps/plugins/lib/libgedcom.py:7727
 msgid "Submission: Temple code"
 msgstr "Temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7734
+#: ../gramps/plugins/lib/libgedcom.py:7729
 msgid "Submission: Generations of ancestors"
 msgstr "Esivanhempien sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7736
+#: ../gramps/plugins/lib/libgedcom.py:7731
 msgid "Submission: Generations of descendants"
 msgstr "Jälkeläisten sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7738
+#: ../gramps/plugins/lib/libgedcom.py:7733
 msgid "Submission: Ordinance process flag"
 msgstr "Sijaistoimituksen tila"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7962
+#: ../gramps/plugins/lib/libgedcom.py:7957
 msgid "Invalid temple code"
 msgstr "Virheellinen temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:8056
+#: ../gramps/plugins/lib/libgedcom.py:8051
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -24244,7 +24170,7 @@ msgstr ""
 "GEDCOM tiedostosi on viallinen. Tiedosto näyttäisi käyttävän UTF16-"
 "merkkikoodausta, mutta siitä puuttuu vaadittu BOM-merkintä."
 
-#: ../gramps/plugins/lib/libgedcom.py:8059
+#: ../gramps/plugins/lib/libgedcom.py:8054
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM tiedostosi on tyhjä."
 
@@ -32347,8 +32273,7 @@ msgstr "Suurin mahdollinen määrä _vuosia lasten välillä"
 msgid "Maximum _span of years for all children"
 msgstr "Suurin mahdollinen vuosiväli kaikille lapsille"
 
-#: ../gramps/plugins/tool/verify.glade:987
-#: ../gramps/plugins/tool/verify.py:633
+#: ../gramps/plugins/tool/verify.glade:987 ../gramps/plugins/tool/verify.py:633
 msgid "_Hide marked"
 msgstr "_Piilota merkityt"
 
@@ -33617,13 +33542,11 @@ msgstr " (1 sisarus)"
 msgid " (only child)"
 msgstr " (ainoa lapsi)"
 
-#: ../gramps/plugins/view/relview.py:943
-#: ../gramps/plugins/view/relview.py:1441
+#: ../gramps/plugins/view/relview.py:943 ../gramps/plugins/view/relview.py:1441
 msgid "Add new child to family"
 msgstr "Lisää perheeseen uusi lapsi"
 
-#: ../gramps/plugins/view/relview.py:947
-#: ../gramps/plugins/view/relview.py:1445
+#: ../gramps/plugins/view/relview.py:947 ../gramps/plugins/view/relview.py:1445
 msgid "Add existing child to family"
 msgstr "Lisää perheeseen kannassa jo oleva lapsi"
 
@@ -35282,6 +35205,36 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
+
+#~ msgid "Person or Place|Title"
+#~ msgstr "Titteli"
+
+#~ msgid "Birth place id"
+#~ msgstr "Syntymäpaikka id"
+
+#~ msgid "Baptism place id"
+#~ msgstr "Kastepaikka id"
+
+#~ msgid "Burial place id"
+#~ msgstr "Hautauspaikka id"
+
+#~ msgid "Death place id"
+#~ msgstr "Kuolinpaikka id"
+
+#~ msgid "Death cause"
+#~ msgstr "Kuolinsyy"
+
+#~ msgid "Gramps id"
+#~ msgstr "Gramps id"
+
+#~ msgid "Parent2"
+#~ msgstr "Vanhempi2"
+
+#~ msgid "Parent1"
+#~ msgstr "Vanhempi1"
+
+#~ msgid "Enclosed by"
+#~ msgstr "Ympärillä"
 
 #~ msgid "Form omitted"
 #~ msgstr "Muoto ohitettu"
