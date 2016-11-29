@@ -227,6 +227,11 @@ WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
 
+CSS_FONT = """
+* {
+    font: %s;
+  }
+"""
 #-------------------------------------------------------------------------
 #
 # ViewManager
@@ -358,11 +363,18 @@ class ViewManager(CLIManager):
         height = config.get('interface.main-window-height')
         horiz_position = config.get('interface.main-window-horiz-position')
         vert_position = config.get('interface.main-window-vert-position')
+        font = config.get('utf8.selected-font')
 
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
+
+        self.provider = Gtk.CssProvider()
+        Gtk.StyleContext.add_provider_for_screen(
+                         self.window.get_screen(), self.provider,
+                         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        self.change_font(font)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
@@ -855,6 +867,15 @@ class ViewManager(CLIManager):
             GrampsPreferences(self.uistate, self.dbstate)
         except WindowActiveError:
             return
+
+    def change_font(self, font):
+        """
+        Change the default application font.
+        Only in the case we use symbols.
+        """
+        if config.get('utf8.in-use'):
+            css_font = CSS_FONT % font
+            self.provider.load_from_data(css_font.encode('UTF-8'))
 
     def tip_of_day_activate(self, obj):
         """

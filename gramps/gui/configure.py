@@ -6,6 +6,7 @@
 # Copyright (C) 2010       Benny Malengier
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2015-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,6 +69,7 @@ from gramps.gen.errors import WindowActiveError
 from .spell import HAVE_GTKSPELL
 from gramps.gen.constfunc import win
 _ = glocale.translation.gettext
+from gramps.gen.utils.symbols import Symbols
 
 #-------------------------------------------------------------------------
 #
@@ -317,6 +319,14 @@ class ConfigureDialog(ManagedWindow):
         text.set_text(label)
         grid.attach(text, 1, index, 8, 1)
 
+    def add_button(self, grid, label, index, constant, extra_callback=None, config=None):
+        if not config:
+            config = self.__config
+        button = Gtk.Button(label=label)
+        button.connect('clicked', extra_callback)
+        grid.attach(button, 1, index, 1, 1)
+        return button
+
     def add_path_box(self, grid, label, index, entry, path, callback_label,
                      callback_sel, config=None):
         """ Add an entry to give in path and a select button to open a
@@ -497,7 +507,8 @@ class GrampsPreferences(ConfigureDialog):
             self.add_date_panel,
             self.add_researcher_panel,
             self.add_advanced_panel,
-            self.add_color_panel
+            self.add_color_panel,
+            self.add_symbols_panel
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
                                  GrampsPreferences, config,
@@ -1583,3 +1594,241 @@ class GrampsPreferences(ConfigureDialog):
 
     def build_menu_names(self, obj):
         return (_('Preferences'), _('Preferences'))
+
+    def add_symbols_panel(self, configdialog):
+        self.grid = Gtk.Grid()
+        self.grid.set_border_width(12)
+        self.grid.set_column_spacing(6)
+        self.grid.set_row_spacing(6)
+
+        message = _('This tab gives you the possibility to use one font'
+                    ' which is able to show all genealogical symbols\n\n'
+                    'If you select the "use symbols" checkbox, '
+                    'Gramps will use the selected font if it exists.'
+                   )
+        message += '\n'
+        message += _('This can be useful if you want to add phonetic in '
+                    'a note to show how to pronounce a name or if you mix'
+                    ' multiple languages like greek and russian.'
+                   )
+        self.add_text(self.grid, message,
+                0, line_wrap=True)
+        self.add_checkbox(self.grid,
+                _('Use symbols'),
+                1,
+                'utf8.in-use',
+                extra_callback=self.activate_change_font
+                )
+        message = _('Be careful, if you click on the "Try to find" button, it can '
+                    'take a while before you can continue (10 minutes or more). '
+                    '\nIf you cancel the process, nothing will be changed.'
+                   )
+        self.add_text(self.grid, message,
+                2, line_wrap=True)
+        self.add_button(self.grid,
+                _('Try to find'),
+                3,
+                'utf8.in-use',
+                extra_callback=self.can_we_use_genealogical_fonts)
+        sel_font = config.get('utf8.selected-font')
+        available_fonts = config.get('utf8.available-fonts')
+        active_val = 0
+        self.all_avail_fonts = [x for x in enumerate(available_fonts)]
+        if len(available_fonts) > 0:
+            self.add_text(self.grid,
+                _('You already run the tools to search genealogy fonts.'
+                  '\nRun it again only if you added fonts on your system.'
+                 ),
+                4, line_wrap=True)
+            for val in available_fonts:
+                if sel_font == val:
+                    break
+                active_val += 1
+            self.add_combo(self.grid,
+                _('Choose font'), 
+                5, 'utf8.selected-font',
+                self.all_avail_fonts, callback=self.utf8_update_font, valueactive=True, setactive=active_val)
+            symbols = Symbols()
+            all_sbls = symbols.get_death_symbols()
+            all_symbols = []
+            for symbol in all_sbls:
+                all_symbols.append(symbol[2] + " " + symbol[0])
+            self.all_death_symbols = [x for x in enumerate(all_symbols)]
+            val = config.get('utf8.death-symbol')
+            active_val = symbols.get_death_symbol_for_string(val) + " " + symbols.get_death_symbol_name(val)
+            pos = 0
+            for nr, item in enumerate(self.all_death_symbols):
+                if item[-1] == active_val:
+                    pos = nr
+                    break
+            combo = self.add_combo(self.grid,
+                _('Select default death symbol'),
+                6, 'utf8.death-symbol',
+                self.all_death_symbols, callback=self.utf8_update_death_symbol, valueactive=True, setactive='')
+            combo.set_active(pos)
+            if config.get('utf8.selected-font') != "":
+                self.utf8_show_example()
+
+        return _('Genealogical Symbols'), self.grid
+
+    def can_we_use_genealogical_fonts(self, obj):
+        try:
+            import fontconfig
+            from gramps.gui.utils import ProgressMeter
+        except:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(_("Cannot look for genealogical fonts"),
+                          _("I am not able to select genealogical fonts. "
+                            "Please, install the module fontconfig for python 3."),
+                          parent=self.uistate.window)
+            return False
+        fonts = fontconfig.query()
+        all_fonts = {}
+        symbols = Symbols()
+        nb_symbols = symbols.get_how_many_symbols()
+        self.in_progress = True
+        self.progress = ProgressMeter(_('Checking available genealogical fonts'),
+                                       can_cancel=True,
+                                       cancel_callback=self.stop_looking_for_font, parent=self.uistate.window)
+        self.progress.set_pass(_('Looking for all fonts with genealogical symbols.'), nb_symbols*len(fonts))
+        for idx in range(0, len(fonts)):
+            if not self.in_progress:
+                return
+            for rand in range(symbols.SYMBOL_MALE, symbols.SYMBOL_EXTINCT+1):
+                string = symbols.get_symbol_for_html(rand)
+                value = symbols.get_symbol_for_string(rand)
+                font = fonts[idx]
+                fontname = font.family[0][1]
+                try:
+                    vals = all_fonts[fontname]
+                except:
+                    all_fonts[fontname] = []
+                if font.has_char(value):
+                    if value not in all_fonts[fontname]:
+                        all_fonts[fontname].append(value)
+                self.progress.step()
+            for rand in range(symbols.DEATH_SYMBOL_SKULL, symbols.DEATH_SYMBOL_DEAD):
+                string = symbols.get_death_symbol_for_html(rand)
+                value = symbols.get_death_symbol_for_string(string)
+                font = fonts[idx]
+                fontname = font.family[0][1]
+                try:
+                    vals = all_fonts[fontname]
+                except:
+                    all_fonts[fontname] = []
+                if font.has_char(value):
+                    if value not in all_fonts[fontname]:
+                        all_fonts[fontname].append(value)
+                self.progress.step()
+        self.progress.close()
+        nb1 = 0
+        available_fonts = []
+        for font in all_fonts.keys():
+            font_usage = all_fonts[font]
+            if not font_usage:
+               continue
+            if len(font_usage) == nb_symbols: # If the font use all symbols
+                available_fonts.append(font)
+                nb1 += 1
+        config.set('utf8.available-fonts',available_fonts)
+        sel_font = config.get('utf8.selected-font')
+        active_val = 0
+        for val in available_fonts:
+            if sel_font == val:
+                break
+            active_val += 1
+        if len(available_fonts) > 0:
+            self.all_avail_fonts = [x for x in enumerate(available_fonts)]
+            self.add_combo(self.grid,
+                _('Choose font'), 
+                5, 'utf8.selected-font',
+                self.all_avail_fonts, callback=self.utf8_update_font, valueactive=True, setactive=active_val)
+        else:
+            self.add_text(self.grid,
+                _('You have no font with genealogical symbols on your '
+                  'system. Gramps will not be able to use symbols.'
+                 ),
+                4, line_wrap=True)
+            config.set('utf8.selected-font',"")
+        self.grid.show_all()
+        self.in_progress = False
+
+    def utf8_update_font(self, obj, constant):
+        entry = obj.get_active()
+        config.set(constant, self.all_avail_fonts[entry][1])
+        self.utf8_show_example()
+
+    def activate_change_font(self, obj=None):
+        font = config.get('utf8.selected-font')
+        self.uistate.viewmanager.change_font(font)
+
+    def utf8_show_example(self):
+        from gi.repository import Pango
+        from gramps.gen.utils.grampslocale import _LOCALE_NAMES as X
+        try:
+            self.grid.remove_row(8)
+            self.grid.remove_row(7)
+        except:
+            pass
+        font = config.get('utf8.selected-font')
+        symbols = Symbols()
+        my_characters = _("What you will see") + " :\n"
+        my_characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+        my_characters += "àäâçùéèiïîêëiÉÀÈïÏËÄœŒÅåØøìòô ...\n"
+        for k,v in sorted(X.items()):
+            lang = Pango.Language.from_string(k)
+            my_characters += v[2] + ":\t" + lang.get_sample_string() + "\n"
+
+        scrollw = Gtk.ScrolledWindow()
+        text = Gtk.Label()
+        text.set_line_wrap(True)
+        font_description = Pango.font_description_from_string(font)
+        text.modify_font(font_description)
+        self.activate_change_font()
+        text.set_halign(Gtk.Align.START)
+        text.set_text(my_characters)
+        scrollw.add(text)
+        scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.grid.attach(scrollw, 1, 7, 8, 1)
+
+        my_characters = symbols.get_symbol_for_string(Symbols.SYMBOL_MALE) + " "
+        my_characters = symbols.get_symbol_for_string(Symbols.SYMBOL_FEMALE) + " "
+        my_characters = symbols.get_symbol_for_string(Symbols.SYMBOL_LESBIAN) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_MALE_HOMOSEXUAL) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_HETEROSEXUAL) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_HERMAPHRODITE) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_TRANSGENDER) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_ASEXUAL_SEXLESS) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_NEUTER) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_ILLEGITIM) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_BIRTH) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_BAPTISATION) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_ENGAGED) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_MARRIAGE) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_DIVORCE) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_UNMARRIED_PARTNERSHIP) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_BURIED) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_CREMATED) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_KILLED_IN_ACTION) + " "
+        my_characters += symbols.get_symbol_for_string(Symbols.SYMBOL_EXTINCT) + " "
+        my_characters += symbols.get_death_symbol_for_string(config.get('utf8.death-symbol')) + " "
+        text = Gtk.Label()
+        text.set_line_wrap(True)
+        font_description = Pango.font_description_from_string(font)
+        text.modify_font(font_description)
+        text.set_halign(Gtk.Align.START)
+        text.set_text(my_characters)
+        self.grid.attach(text, 1, 8, 8, 1)
+        self.grid.show_all()
+
+    def stop_looking_for_font(self, *args, **kwargs):
+        self.progress.close()
+        self.in_progress = False
+
+    def utf8_update_death_symbol(self, obj, constant):
+        entry = obj.get_active()
+        symbols = Symbols()
+        all_sbls = symbols.get_death_symbols()
+        config.set(constant, all_sbls[entry][1])
+        self.utf8_show_example()
+

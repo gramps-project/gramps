@@ -6,6 +6,7 @@
 # Copyright (C) 2008-2009  Gary Burton
 # Copyright (C) 2009-2012  Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2015-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -390,6 +391,11 @@ register('researcher.researcher-state', '')
 
 register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
+
+register('utf8.in-use', False)
+register('utf8.available-fonts', [])
+register('utf8.selected-font', "")
+register('utf8.death-symbol', "")
 
 #---------------------------------------------------------------
 #
