@@ -145,12 +145,12 @@ class User(user.User):
                 m = message,
                 y = accept_text,
                 n = reject_text)
-        print (text, file = self._fileout) # TODO python3 add flush=True
+        print (text, file = self._fileout) # TODO: python 3.3 add flush=True
         try:
             reply = self._input()
         except EOFError:
             reply = ""
-        ### Trun response into True/False:
+        ### Turn response into True/False:
         if reply == "":
             return default == accept_label
         elif reply == accept_label:
