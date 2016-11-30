@@ -75,6 +75,12 @@ class QuickTable(SimpleTable):
             self._callback_leftdouble = callback
 
     def button_press_event(self, treeview, event):
+        wid = treeview.get_toplevel()
+        try:
+            winmgr = self.simpledoc.doc.uistate.gwm
+            self.track = winmgr.get_item_from_window(wid).track
+        except:
+            self.track = []
         index = None
         button_code = None
         event_time = None
@@ -112,46 +118,50 @@ class QuickTable(SimpleTable):
                     treeview.grab_focus()
                     treeview.set_cursor(path, col, 0)
                 if store and node:
-                    index = store.get_value(node, 0) # index Below,
+                    index = store.get_value(node, 0)  # index Below,
         # you need index, treeview, path, button_code,
         # func, and event_time
         if index is not None:
+            if self._link[index]:
+                objclass, handle = self._link[index]
+            else:
+                return False
+            if (self.simpledoc.doc.uistate.get_export_mode() and
+                    objclass != 'Filter'):
+                return False  # avoid edition during export
             self.popup = Gtk.Menu()
             popup = self.popup
             menu_item = Gtk.MenuItem(label=_("Copy all"))
-            menu_item.connect("activate", lambda widget: text_to_clipboard(model_to_text(treeview.get_model())))
+            menu_item.connect("activate", lambda widget: text_to_clipboard(
+                              model_to_text(treeview.get_model())))
             popup.append(menu_item)
             menu_item.show()
             # Now add more items to popup menu, if available
-            if (index is not None and self._link[index]):
             # See details (edit, etc):
-                objclass, handle = self._link[index]
-                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % glocale.trans_objclass(objclass))
+            menu_item = Gtk.MenuItem(label=_("the object|See %s details") %
+                                     glocale.trans_objclass(objclass))
+            menu_item.connect(
+                "activate", lambda widget: self.on_table_doubleclick(treeview))
+            popup.append(menu_item)
+            menu_item.show()
+            # Add other items to menu:
+            if objclass == 'Person':
+                menu_item = Gtk.MenuItem(label=_("the object|Make %s active")
+                                         % glocale.trans_objclass('Person'))
                 menu_item.connect("activate",
-                  lambda widget: self.on_table_doubleclick(treeview))
+                                  lambda widget: self.on_table_click(treeview))
                 popup.append(menu_item)
                 menu_item.show()
-            # Add other items to menu:
-            if (self._callback_leftclick or
-                (index is not None and self._link[index])):
-                objclass, handle = self._link[index]
-                if objclass == 'Person':
-                    menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % glocale.trans_objclass('Person'))
-                    menu_item.connect("activate",
-                      lambda widget: self.on_table_click(treeview))
-                    popup.append(menu_item)
-                    menu_item.show()
             if (self.simpledoc.doc.dbstate.db !=
-                self.simpledoc.doc.dbstate.db.basedb and
-                (index is not None and self._link[index])):
-                objclass, handle = self._link[index]
+                    self.simpledoc.doc.dbstate.db.basedb):
                 if (objclass == 'Filter' and
                     handle[0] in ['Person', 'Family', 'Place', 'Event',
                                   'Repository', 'Note', 'Media',
                                   'Citation', 'Source']):
                     menu_item = Gtk.MenuItem(label=_("See data not in Filter"))
-                    menu_item.connect("activate",
-                      lambda widget: self.show_not_in_filter(handle[0]))
+                    menu_item.connect(
+                        "activate",
+                        lambda widget: self.show_not_in_filter(handle[0]))
                     popup.append(menu_item)
                     menu_item.show()
             # Show the popup menu:
@@ -163,7 +173,8 @@ class QuickTable(SimpleTable):
         run_quick_report_by_name(self.simpledoc.doc.dbstate,
                                  self.simpledoc.doc.uistate,
                                  'filterbyname',
-                                 'Inverse %s' % obj_class)
+                                 'Inverse %s' % obj_class,
+                                 track=self.track)
 
     def on_table_doubleclick(self, obj):
         """
@@ -269,14 +280,15 @@ class QuickTable(SimpleTable):
                                          self.simpledoc.doc.uistate,
                                          'filterbyname',
                                          'list of people',
-                                         handles=handle)
+                                         handle=handle,
+                                         track=self.track)
             elif objclass == 'Filter':
                 if isinstance(handle, list):
                     handle = handle[0]
                 run_quick_report_by_name(self.simpledoc.doc.dbstate,
                                          self.simpledoc.doc.uistate,
                                          'filterbyname',
-                                         handle)
+                                         handle, track=self.track)
         return False # didn't handle event
 
     def on_table_click(self, obj):

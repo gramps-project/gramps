@@ -106,10 +106,11 @@ class WriterOptionBox:
     the options.
 
     """
-    def __init__(self, person, dbstate, uistate):
+    def __init__(self, person, dbstate, uistate, track=[]):
         self.person = person
         self.dbstate = dbstate
         self.uistate = uistate
+        self.track = track
         self.preview_dbase = None
         self.preview_button = None
         self.preview_proxy_button = {}
@@ -247,7 +248,8 @@ class WriterOptionBox:
         run_quick_report_by_name(dbstate,
                                  self.uistate,
                                  'filterbyname',
-                                 'all')
+                                 'all',
+                                 track=self.track)
 
     def preview(self, widget):
         """
@@ -658,7 +660,7 @@ class WriterOptionBox:
         else:
             the_filter = GenericFilterFactory(namespace)()
         if the_filter:
-            EditFilter(namespace, self.dbstate, self.uistate, [],
+            EditFilter(namespace, self.dbstate, self.uistate, self.track,
                        the_filter, filterdb,
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter
